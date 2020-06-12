@@ -1072,7 +1072,7 @@ a.btn:hover {
 
 .cover  {
 
-  width: 50%;
+  
  
   padding: 20px 50px;
   display: -webkit-box;
@@ -2019,4 +2019,11 @@ footer p strong {
   width: 260px;
   margin: 20px;
 }
-.calendly-badge-widget {position:fixed;float:left;bottom:15px;z-index:9998 }
+
+    .calendly-badge-widget {
+    position: fixed;
+    margin-right:80%;
+    bottom: 15px;
+    z-index: 9998;
+}
+
