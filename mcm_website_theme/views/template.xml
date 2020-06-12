@@ -887,17 +887,11 @@
                         var user_name=document.getElementById("user_name_connected").value;
                         var user_email=document.getElementById("user_email_connected").value;
                         Calendly.initBadgeWidget({ url:
-                        'https://calendly.com/mcm-academy', prefill: {
+                        'https://calendly.com/pratiquetaxivtc', prefill: {
                         name: user_name,
                         email: user_email,
-                        } , text: 'Devis Taxi/VTC', color:
+                        } , text: 'Reservez votre pratique TAXI/VTC', color:
                         '#00a2ff', textColor: '#ffffff', branding: false });
-                    </script>
-                    <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet"/>
-                    <script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript"></script>
-                    <script type="text/javascript">Calendly.initBadgeWidget({ url:
-                        'https://calendly.com/pratiquetaxivtc', text: 'Formation pratique plus location TAXI/VTC ',
-                        color: '#00a2ff', textColor: '#ffffff', branding: false });
                     </script>
                 </div>
                 <div t-if="request.website.is_public_user()==True">
@@ -906,14 +900,8 @@
                             type="text/javascript"></script>
                     <script type="text/javascript">
                         Calendly.initBadgeWidget({ url:
-                        'https://calendly.com/mcm-academy', text: 'Devis Taxi/VTC', color:
+                        'https://calendly.com/pratiquetaxivtc', text: 'Reservez votre pratique TAXI/VTC', color:
                         '#00a2ff', textColor: '#ffffff', branding: false });
-                    </script>
-                    <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet"/>
-                    <script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript"></script>
-                    <script type="text/javascript">Calendly.initBadgeWidget({ url:
-                        'https://calendly.com/pratiquetaxivtc', text: 'Formation pratique plus location TAXI/VTC ',
-                        color: '#00a2ff', textColor: '#ffffff', branding: false });
                     </script>
                 </div>
             </div>
