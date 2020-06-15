@@ -10,8 +10,8 @@
     'sequence': 15,
     'summary': 'Helpdesk',
     'depends': [
-        'website_helpdesk',
         'helpdesk',
+        'website_helpdesk',
     ],
     'description': "Personaliser helpdesk",
     'data': [
