@@ -6,7 +6,7 @@ from odoo import models, api, fields
 import werkzeug
 import json
 import requests
-from datetime import timedelta, datetime
+from datetime import timedelta, datetime,date
 import logging
 _logger = logging.getLogger(__name__)
 
@@ -21,9 +21,9 @@ class Api(models.Model):
                                 default='86bd046a39760594cc2fdd7036571842db01ac3122c4e4df8d6b4e43933ea2ba')
     redirect_uri = fields.Char(string="Calendly redirect URI", required=True, default='https://test.mcm-academy.fr/')
     access_token = fields.Char(string="Calendly access token", required=True,
-                               default='e5c6c2422786d08cc58c5cface0fe510fad175f5350f370932eaa86d7104b2ac')
+                               default='129833d9151b879cd40fc25dc319ff6a6efb9299e7c62752d717e960fbf4ab9c')
     refresh_token = fields.Char(string="Calendly access token", required=True,
-                                default='a961a7d268365568dc1e03ec603f7e45059778cbfd81b58705636cc47eb9bea0')
+                                default='5cf780f8e1b3cb4c6b6f427e386b340e16cc2c9f5890fd0d26a66391ebc13bd5')
 
     def _refresh_token(self):
         headers = {
@@ -41,6 +41,8 @@ class Api(models.Model):
             response = werkzeug.utils.unescape(r.content.decode())
             json_data = json.loads(r.text)
             print(json_data)
+            now = date.today()
+            min_start_time=str(now)+'T00:00:00Z'
             if "access_token" in json_data:
                 access=str(json_data["access_token"])
                 refresh=str(json_data["refresh_token"])
@@ -52,12 +54,24 @@ class Api(models.Model):
                 headers = {
                     'Authorization': 'Bearer ' + str(json_data["access_token"]),
                 }
-                response = requests.get('https://calendly.com/api/v2/users/me/events', headers=headers)
+                data = {
+                    'min_start_time': '2020-01-01T00:00:00Z',
+                    'order': 'desc'
+                }
+
+                response = requests.get('https://calendly.com/api/v2/users/me/events', headers=headers,data=data)
                 json_data_events = json.loads(response.text)
 
+                headers1 = {
+                    'X-TOKEN': 'OGIKABGGLJGSFHATPAZZ4DQ4KSM4XV3N',
+                }
+
+                response1 = requests.get('https://calendly.com/api/v1/users/me/event_types', headers=headers1)
+                json_data_type_events=json.loads(response1.text)
                 if "collection" in json_data_events:
                     collection = json_data_events["collection"]
-
+                    print('collection')
+                    print(collection)
                     for event in collection:
                         event_type = event["event_type"]
                         uuid_type = event_type["uuid"]
