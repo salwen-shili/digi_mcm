@@ -55,8 +55,7 @@ class Api(models.Model):
                     'Authorization': 'Bearer ' + str(json_data["access_token"]),
                 }
                 data = {
-                    'min_start_time': '2020-05-01T00:00:00Z',
-                    'order': 'desc'
+                    'min_start_time': '2020-01-01T00:00:00Z',
                 }
 
                 response = requests.get('https://calendly.com/api/v2/users/me/events', headers=headers,data=data)
