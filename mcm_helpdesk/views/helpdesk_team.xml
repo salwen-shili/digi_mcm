@@ -9,6 +9,13 @@
                 <label name="icon_css" for="icon_css"/>
                 <field name="icon_css"/>
             </xpath>
+            <xpath expr="//sheet" position="before">
+                <button name="publish_team" string="Publier en site web" type="object" class="oe_highlight"
+                        groups="helpdesk.group_helpdesk_user" attrs="{'invisible': [('website_published', '=', True)]}"/>
+                <button name="remove_team" string="Retirer de site web" type="object" class="oe_highlight"
+                        groups="helpdesk.group_helpdesk_user" attrs="{'invisible': [('website_published', '=', False)]}"/>
+
+            </xpath>
         </field>
     </record>
 </odoo>
