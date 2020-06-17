@@ -8,6 +8,7 @@
             <xpath expr="//field[@name='description']" position="after">
                 <label name="icon_css" for="icon_css"/>
                 <field name="icon_css"/>
+                <field name="website_published" invisible="1"/>
             </xpath>
             <xpath expr="//sheet" position="before">
                 <button name="publish_team" string="Publier en site web" type="object" class="oe_highlight"
