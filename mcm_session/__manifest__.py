@@ -20,6 +20,7 @@ ajouter un ensemble des sessions et des modules lié au session
         'sale',
         'payment',
         'mcm_add_fields',
+        'portal',
     ],
     'description': """
 ajouter un ensemble des sessions et des modules lié au session

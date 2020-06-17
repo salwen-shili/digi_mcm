@@ -1,30 +1,29 @@
 <odoo>
     <template id="mcmacademy_website_sale_product" inherit_id="website_sale.product">
         <xpath expr="//a[@id='add_to_cart']" position="before">
-            <div style="margin:auto;background-color:#fff;border-color:#585959;"
+            <div class="col-lg-3 col-md-3 col-sm-12 p-0"
+                 style="margin:auto;background-color:#fff;border-color:#585959"
                  t-if="request.website.is_public_user()==False">
-                <p t-if="modules">
+                <p style="margin-left: -127px;" t-if="modules">
                     <b>
                         Choisissez une session
-                        <br/>
-                        <br/>
-                        <div style="margin-left:0%;">
-                            <select name="module" class="form-control search-slt " t-if="modules">
-                                <t t-foreach="modules" t-as="module">
-                                    <t t-if="module">
-                                        <b>
-                                            <option t-att-value="module.id" selected="selected">
-                                                <t t-esc="module.date_debut"/>
-                                                au
-                                                <t t-esc="module.date_fin"/>
-                                            </option>
-                                        </b>
-                                    </t>
-                                </t>
-                            </select>
-                        </div>
                     </b>
                 </p>
+                <select name="module" class="form-control search-slt" style="width:200px;margin-left: -127px;"
+                        t-if="modules">
+                    <t t-foreach="modules" t-as="module">
+                        <t t-if="module">
+                            <b>
+                                <option t-att-value="module.id"
+                                        selected="selected">
+                                    <t t-esc="module.date_debut"/>
+                                    au
+                                    <t t-esc="module.date_fin"/>
+                                </option>
+                            </b>
+                        </t>
+                    </t>
+                </select>
             </div>
         </xpath>
     </template>
