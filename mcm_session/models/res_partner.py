@@ -34,6 +34,7 @@ class resPartner(models.Model):
     numero_permis=fields.Char('Numéro de permis')
 
 
+
     @api.constrains('code_pole_emploi')
     def _check_parent_id(self):
         for record in self:

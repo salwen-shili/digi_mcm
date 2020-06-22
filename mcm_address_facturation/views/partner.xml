@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="mcmacademy_view_res_partner_form_4" model="ir.ui.view">
+        <field name="name">res.partner.form</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="mcm_session.mcmacademy_view_res_partner_form_3"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[@id='permis']" position="after">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="form-group label-floating form-group-sm is-empty">
+                            <label class="control-label" for="addresse_facturation" string="Adresse de facturation  :">
+                                Adresse de facturation
+                            </label>
+                            <field name="addresse_facturation" widget="radio" options="{'horizontal': true}"/>
+                        </div>
+                    </div>
+                </div>
+
+            </xpath>
+
+        </field>
+    </record>
+</odoo>

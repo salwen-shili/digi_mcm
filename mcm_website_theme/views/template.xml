@@ -425,7 +425,7 @@
                 (function ($) {
                 $.fn.countTo = function (options) {
                 options = options || {};
-
+                pt
                 return $(this).each(function () {
 
                 var settings = $.extend({}, $.fn.countTo.defaults, {
@@ -863,7 +863,7 @@
             </style>
             <ul class="list-unstyled">
                 <li>
-                    <a href="/helpdesk">Contact</a>
+                    <a href="helpdesk">Contact</a>
                 </li>
                 <li>
                     <i class="fa fa-phone"/>
@@ -907,6 +907,7 @@
             </div>
 
         </xpath>
+
     </template>
     <template id="mcm_website_sale_cart_script" inherit_id="website_sale.cart">
         <xpath expr="//a[@class='btn btn-primary float-right']" position="replace">
@@ -1030,10 +1031,74 @@
         <xpath expr="//div[hasclass('form-row')]//div[1]" position="after">
             <div t-attf-class="form-group col-lg-12 ">
                 <label class="col-form-label" for="name">Numéro de permis</label>
-                <input type="text" name="numero_permis" id="numero_permis"
+                <input type="text" name="numero_permis" id="numero_permis" required="required"
                        t-attf-class="form-control #{error.get('numero_permis') and 'is-invalid' or ''}"
-                       t-att-value="numero_permis" required="True"/>
+                       t-att-value="'numero_permis' in checkout and checkout['numero_permis']"/>
             </div>
+        </xpath>
+        <xpath expr="//div[hasclass('form-row')]//div[4]" position="after">
+            <div class="form-group col-lg-12">
+                <label class="col-form-label" for="adresse_facturation">Adresse de facturation</label>
+                <input type="radio" name="adresse_facturation" id="particulier"
+                      t-att-value="'addresse_facturation' in checkout and checkout['addresse_facturation'] or 'particulier'" t-att-checked="fact=='particulier'" onclick="hide_company()">
+                    <span>
+                        Particulier
+                    </span>
+                </input>
+                <input type="radio" name="adresse_facturation" id="company"
+                       t-att-value="'addresse_facturation' in checkout and checkout['addresse_facturation'] or 'societe'" t-att-checked="fact=='societe'" onclick="show_company()">
+                    <span>
+                        Société
+                    </span>
+                </input>
+            </div>
+        </xpath>
+        <xpath expr="//div[hasclass('form-row')]//t[2]" position="replace">
+            <div t-attf-class="form-group #{error.get('company_name') and 'o_has_error' or ''} col-lg-6"
+                 style="display:none;" id="t_company">
+                <label class="col-form-label font-weight-normal label-optional" for="company_name">Nom de la société
+                </label>
+                <input type="text" name="company_name"
+                       t-attf-class="form-control #{error.get('company_name') and 'is-invalid' or ''}"
+                       t-att-value="'commercial_company_name' in checkout and checkout['commercial_company_name'] or 'company_name' in checkout and checkout['company_name']"
+                       t-att-title="'Changing company name is not allowed once document(s) have been issued for your account.'"
+                />
+            </div>
+            <div t-attf-class="form-group #{error.get('siret') and 'o_has_error' or ''} col-lg-6 div_siret"
+                 style="display:none;" id="t_company_siret">
+                <label class="col-form-label font-weight-normal label-optional" for="siret">SIRET</label>
+                <input type="text" name="siret" t-attf-class="form-control #{error.get('siret') and 'is-invalid' or ''}"
+                       t-att-value="'siret' in checkout and checkout['siret']"
+                       t-att-title="'Changing siret number is not allowed once document(s) have been issued for your account.'"/>
+            </div>
+        </xpath>
+
+        <xpath expr="//div[@id='wrap']" position="inside">
+            <script>
+                function hide_company(){
+                document.getElementById("t_company").style.display = 'none';
+                document.getElementById("t_company_siret").style.display = 'none';
+                };
+                function show_company(){
+                document.getElementById("t_company").style.display = 'inline';
+                document.getElementById("t_company_siret").style.display = 'inline';
+                };
+            </script>
+        </xpath>
+        <xpath expr="//label[@for='name']" position="replace">
+            <label class="col-form-label" for="name">Nom &amp; prénom Stagiaire</label>
+        </xpath>
+        <xpath expr="//label[@for='street']" position="replace">
+            <label class="col-form-label" for="street">
+                <span class="d-md-inline">Adresse</span>
+            </label>
+        </xpath>
+        <xpath expr="//label[@for='zip']" position="replace">
+           <label class="col-form-label" for="zip"><span class="d-md-inline">Code postaleee</span></label>
+        </xpath>
+        <xpath expr="//label[@for='street2']" position="replace">
+        </xpath>
+        <xpath expr="//input[@name='street2']" position="replace">
         </xpath>
     </template>
 </odoo>

@@ -348,9 +348,6 @@ class WebsiteSale(WebsiteSale):
 
         partner_id = int(kw.get('partner_id', -1))
         partner=Partner.browse(partner_id)
-        if partner:
-            partner.numero_permis=kw.get('numero_permis')
-
 
         # IF PUBLIC ORDER
         if order.partner_id.id == request.website.user_id.sudo().partner_id.id:
@@ -382,15 +379,27 @@ class WebsiteSale(WebsiteSale):
 
         # IF POSTED
         if 'submitted' in kw:
+            partner.addresse_facturation=str(kw.get('adresse_facturation')) if kw.get('adresse_facturation') else ''
+            partner.numero_permis=str(kw.get('numero_permis')) if kw.get('numero_permis') else ''
+            partner.siret=str(kw.get('siret')) if kw.get('siret') else ''
             pre_values = self.values_preprocess(order, mode, kw)
             errors, error_msg = self.checkout_form_validate(mode, kw, pre_values)
             post, errors, error_msg = self.values_postprocess(order, mode, pre_values, errors, error_msg)
-
             if errors:
                 errors['error_message'] = error_msg
                 values = kw
             else:
                 partner_id = self._checkout_form_save(mode, post, kw)
+                if kw.get('adresse_facturation') and kw.get('adresse_facturation')=='societe':
+                    if not partner.parent_id:
+                        company=Partner.sudo().create({
+                            'name': kw.get('company_name'),
+                            'siret':kw.get('siret'),
+                            'company_type': 'company',
+                            'phone':partner.phone,
+                            'street':partner.street,
+                        })
+                        partner.parent_id=company.id
                 if mode[1] == 'billing':
                     order.partner_id = partner_id
                     order.onchange_partner_id()
@@ -410,11 +419,15 @@ class WebsiteSale(WebsiteSale):
         country = country and country.exists() or def_country_id
         fr_country = request.env['res.country'].sudo().search(
             [('code', 'ilike', 'FR')], limit=1)
+
+        values['addresse_facturation']=partner.addresse_facturation
+        values['siret']=partner.siret
         render_values = {
             'website_sale_order': order,
             'partner_id': partner_id,
             'mode': mode,
             'checkout': values,
+            'fact':partner.addresse_facturation,
             'can_edit_vat': can_edit_vat,
             'country': country,
             'fr_country': fr_country,
@@ -452,25 +465,36 @@ class WebsiteSale(WebsiteSale):
         if not data.get('numero_permis'):
             error["numero_permis"] = 'error'
             error_message.append(_('Numéro de permis doit être rempli'))
+        if not data.get('adresse_facturation'):
+            error["adresse_facturation"] = 'error'
+            error_message.append(_("l'Adresse de facturation doit être rempli"))
+        if 'adresse_facturation' in data:
+            if str(data['adresse_facturation'])=='societe':
+                if not data.get('company_name'):
+                    error["company_name"] = 'error'
+                    error_message.append(_('Nom de la société doit être rempli'))
+                if not data.get('siret'):
+                    error["siret"] = 'error'
+                    error_message.append(_('Numéro Siret doit être rempli'))
+
         # email validation
         if data.get('email') and not tools.single_email_re.match(data.get('email')):
             error["email"] = 'error'
             error_message.append(_('Invalid Email! Please enter a valid email address.'))
-
         # vat validation
         Partner = request.env['res.partner']
-        if data.get("vat") and hasattr(Partner, "check_vat"):
-            if data.get("country_id"):
-                data["vat"] = Partner.fix_eu_vat_number(data.get("country_id"), data.get("vat"))
-            partner_dummy = Partner.new({
-                'vat': data['vat'],
-                'country_id': (int(data['country_id'])
-                               if data.get('country_id') else False),
-            })
-            try:
-                partner_dummy.check_vat()
-            except ValidationError:
-                error["vat"] = 'error'
+        # if data.get("vat") and hasattr(Partner, "check_vat"):
+        #     if data.get("country_id"):
+        #         data["vat"] = Partner.fix_eu_vat_number(data.get("country_id"), data.get("vat"))
+        #     partner_dummy = Partner.new({
+        #         'vat': data['vat'],
+        #         'country_id': (int(data['country_id'])
+        #                        if data.get('country_id') else False),
+        #     })
+        #     try:
+        #         partner_dummy.check_vat()
+        #     except ValidationError:
+        #         error["vat"] = 'error'
 
         if [err for err in error.values() if err == 'missing']:
             error_message.append(_('Some required fields are empty.'))

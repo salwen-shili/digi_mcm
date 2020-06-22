@@ -196,7 +196,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="row">
+                            <div class="row" id="permis">
                                 <div class="col-sm-12">
                                     <div class="form-group label-floating form-group-sm is-empty">
                                         <label class="control-label" for="numero_permis" string="Numéro de permis :">
