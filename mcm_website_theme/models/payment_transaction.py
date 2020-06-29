@@ -15,6 +15,8 @@ class PaymentTransaction(models.Model):
         if (self.stripe_payment_intent and self.state == 'done'):
             sale.action_confirm()
             moves = sale._create_invoices(final=True)
+            for move in moves:
+                move.type_facture='web'
             sale.action_cancel()
             sale.sale_action_sent()
             Session = self.env['mcm.session']
