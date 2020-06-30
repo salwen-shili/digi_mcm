@@ -179,7 +179,7 @@
 
                                 <field name="client_ids" string="" mode="tree,kanban"
                                        domain="['|',('statut', '=', 'won'),('statut', '=', 'finalized')]">
-                                    <tree editable="bottom">
+                                    <tree>
                                         <control>
                                             <create name="add_line_control" string="Ajouter un stagiaire"/>
                                         </control>
@@ -204,7 +204,7 @@
                             <div class="col-8">
                                 <field name="prospect_ids" string="" mode="tree,kanban"
                                        domain="[('statut', '=', 'indecis')]">
-                                    <tree editable="bottom">
+                                    <tree>
                                         <control>
                                             <create name="add_line_control" string="Ajouter un prospect"/>
                                         </control>
@@ -232,7 +232,7 @@
                             <div class="col-8">
                                 <field name="canceled_prospect_ids" string="" mode="tree,kanban"
                                        domain="['|',('statut', '=', 'perdu'),('statut', '=', 'finalized')]">
-                                    <tree editable="bottom">
+                                    <tree >
                                         <control>
                                             <create name="add_line_control" string="Ajouter un prospect annule"/>
                                         </control>
@@ -257,7 +257,7 @@
                             <div class="col-8">
                                 <field name="panier_perdu_ids" string="" mode="tree,kanban"
                                        domain="[('statut', '=', 'panier_perdu')]">
-                                    <tree editable="bottom">
+                                    <tree>
                                         <control>
                                             <create name="add_line_control" string="Ajouter un client perdu"/>
                                         </control>
