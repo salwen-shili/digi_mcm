@@ -255,3 +255,30 @@ class AccountMove(models.Model):
                         'res_id': message_id.id,
                         'target': 'new'
                     }
+
+    def _get_move_display_name(self, show_ref=False):
+        ''' Helper to get the display name of an invoice depending of its type.
+        :param show_ref:    A flag indicating of the display name must include or not the journal entry reference.
+        :return:            A string representing the invoice.
+        '''
+        self.ensure_one()
+        draft_name = ''
+        if self.state == 'draft':
+            draft_name += {
+                'out_invoice': _('Draft Invoice'),
+                'out_refund': _('Draft Credit Note'),
+                'in_invoice': _('Draft Bill'),
+                'in_refund': _('Draft Vendor Credit Note'),
+                'out_receipt': _('Draft Sales Receipt'),
+                'in_receipt': _('Draft Purchase Receipt'),
+                'entry': _('Draft Entry'),
+            }[self.type]
+            if not self.name or self.name == '/':
+                draft_name += ' (* %s)' % str(self.id)
+            else:
+                draft_name += ' ' + self.name
+        partner_name=''
+        if self.partner_id:
+            partner_name=self.partner_id.name
+        return('facture_')+(partner_name)+('_') + (draft_name or self.name) + (show_ref and self.ref and ' (%s%s)' % (self.ref[:50], '...' if len(self.ref) > 50 else '') or '')
+

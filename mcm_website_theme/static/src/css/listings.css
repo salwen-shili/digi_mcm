@@ -1517,12 +1517,10 @@ footer p strong {
  }
 .icon i {
   border-radius: 50%;
-  border: 20px solid #000;
   color: #000;
   font-size: 28px;
   line-height: 80px;
   width: 120px;
-  height: 120px;
 }
 #im1 {
   position: relative;
