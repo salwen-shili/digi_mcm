@@ -44,7 +44,6 @@
                 <field name="mcm_session_id" string="Session"/>
                 <field name="customer_rank" invisible="1"/>
                 <field name="module_id"
-                       attrs="{'invisible': ['|',('customer_rank', '=', 0),('module_id', '=', False)]}"
                        domain="[('session_id', '=', 'mcm_session_id')]"/>
             </xpath>
             <xpath expr="//page[@name='session']" position="after">
