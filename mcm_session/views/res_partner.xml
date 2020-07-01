@@ -43,8 +43,7 @@
             <xpath expr="//field[@name='session_id']" position="after">
                 <field name="mcm_session_id" string="Session"/>
                 <field name="customer_rank" invisible="1"/>
-                <field name="module_id"
-                       domain="[('session_id', '=', 'mcm_session_id')]"/>
+                <field name="module_id"/>
             </xpath>
             <xpath expr="//page[@name='session']" position="after">
                 <page string="Financement" name="financement">
