@@ -71,11 +71,7 @@
                         </h6>
                         <h6>
                             <span>Durée de la formation:</span>
-                            <span t-field="o.partner_id.module_id.duree"/>
-                        </h6>
-                        <h6 invisible="1">
-                            <span>Reference:</span>
-                            <span t-field="o.partner_id.module_id.duree"/>
+                            <span t-field="o.partner_id.module_id.duree"/> heure(s)
                         </h6>
 
                     </div>
