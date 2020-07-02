@@ -255,18 +255,7 @@ class AccountMove(models.Model):
                         'res_id': message_id.id,
                         'target': 'new'
                     }
-    def action_change_avoir_name(self):
-        for rec in self:
 
-            sequence=self.env['ir.sequence'].search(
-                [('name', 'like', _('FAC: Avoir Séquence'))])
-            sequence_date = self.date or self.invoice_date
-            prefix, dummy = sequence._get_prefix_suffix(date=sequence_date, date_range=sequence_date)
-            number_next = sequence._get_current_sequence(sequence_date=sequence_date).number_next_actual
-            number_next = '%%0%sd' % sequence.padding % number_next
-            rec.name=prefix+number_next
-            for number in sequence.date_range_ids:
-                number.number_next_actual+=1
     def _get_move_display_name(self, show_ref=False):
         ''' Helper to get the display name of an invoice depending of its type.
         :param show_ref:    A flag indicating of the display name must include or not the journal entry reference.
