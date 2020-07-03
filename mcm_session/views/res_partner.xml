@@ -11,8 +11,7 @@
                     <field name="code_pole_emploi" invisible="1"/>
                     <field name="module_id" invisible="1"/>
                     <field name="mode_de_financement" invisible="1"/>
-                    <field name="statut" widget="statusbar" clickable="True"
-                           attrs="{'invisible': [('customer_rank', '=', 0)]}"/>
+                    <field name="statut" widget="statusbar" clickable="True"/>
                     <button name="action_validate" id="action_validate" string="Valider" class="btn-primary"
                             type="object"
                             attrs="{'invisible': [('statut', '!=', 'indecis'),'&amp;',('mode_de_financement','!=','aif'),'&amp;',('module_id','!=','False'),'&amp;',('code_pole_emploi','!=','')]}"/>
