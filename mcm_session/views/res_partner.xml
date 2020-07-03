@@ -15,6 +15,9 @@
                     <button name="action_validate" id="action_validate" string="Valider" class="btn-primary"
                             type="object"
                             attrs="{'invisible': [('statut', '!=', 'indecis'),'&amp;',('mode_de_financement','!=','aif'),'&amp;',('module_id','!=','False'),'&amp;',('code_pole_emploi','!=','')]}"/>
+                    <button name="action_statut" id="action_statut" string="Mettre indécis" class="btn-primary"
+                            type="object"
+                            attrs="{'invisible': [('statut', '=', 'indecis')]}"/>
 <!--                    <button name="action_create_contract" id="action_create_contract"-->
 <!--                            string="Valider &amp; Créer Contrat" class="btn-primary"-->
 <!--                            type="object"-->

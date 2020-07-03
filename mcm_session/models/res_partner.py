@@ -74,6 +74,17 @@ class resPartner(models.Model):
                     if partner.id != record.id:
                         list.append(partner.id)
                 record.mcm_session_id.write({'prospect_ids': [(6, 0, list)]})
+    def action_statut(self):
+        for rec in self:
+            self.write({'statut': 'indecis'})
+            for record in self:
+                if record.mcm_session_id:
+                    list = []
+                    for partner in record.mcm_session_id.prospect_ids:
+                        list.append(partner.id)
+                    list.append(record.id)
+                    record.mcm_session_id.write({'prospect_ids': [(6, 0, list)]})
+                    
     def action_change_adress(self):
         for record in self:
             record.type=''
