@@ -16,7 +16,7 @@ class resPartner(models.Model):
         ('panier_perdu', 'Panier perdu'),
         ('canceled', 'Annulé'),
         ('finalized', 'Finalisé'),
-    ], string='Statut Client', domain="[('customer_rank', '>', 0)]", default="indecis")
+    ], string='Statut Client', default="indecis")
     module_id = fields.Many2one('mcmacademy.module')
     mcm_session_id = fields.Many2one('mcmacademy.session')
     mode_de_financement = fields.Selection(selection=[
