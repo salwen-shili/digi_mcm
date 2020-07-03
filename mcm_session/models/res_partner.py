@@ -84,7 +84,7 @@ class resPartner(models.Model):
                         list.append(partner.id)
                     list.append(record.id)
                     record.mcm_session_id.write({'prospect_ids': [(6, 0, list)]})
-                    
+
     def action_change_adress(self):
         for record in self:
             record.type=''
