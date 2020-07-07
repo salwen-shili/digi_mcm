@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="mcmacademy_calendly_session_form_view">
+            <field name="name">calendly.session.form</field>
+            <field name="model">calendly.api</field>
+            <field name="arch" type="xml">
+                <form string="Calendly">
+                    <sheet>
+                        <group>
+                            <field name="client_id"/>
+                            <field name="client_secret"/>
+                            <field name="access_token"/>
+                            <field name="refresh_token"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <record model="ir.ui.view" id="mcmacademy_domain_session_tree_view">
+            <field name="name">calendly.session.tree</field>
+            <field name="model">calendly.api</field>
+            <field name="arch" type="xml">
+                <tree string="Calendly">
+                    <field name="client_id"/>
+                    <field name="access_token"/>
+                    <field name="refresh_token"/>
+                </tree>
+            </field>
+        </record>
+    </data>
+</odoo>

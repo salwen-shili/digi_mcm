@@ -14,6 +14,8 @@
     'data': [
         'data/api_data.xml',
         'views/partner.xml',
+        'views/menu.xml',
+        'views/calendly.xml',
     ],
     'demo': [
     ],
