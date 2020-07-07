@@ -12,6 +12,7 @@
                             <field name="client_secret"/>
                             <field name="access_token"/>
                             <field name="refresh_token"/>
+                            <field name="redirect_uri"/>
                         </group>
                     </sheet>
                 </form>
