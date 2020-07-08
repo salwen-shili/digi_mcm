@@ -1,4 +1,4 @@
-from odoo import http
+from odoo import http,_
 import json
 from odoo.http import request
 from odoo.addons.http_routing.models.ir_http import slug
@@ -94,12 +94,20 @@ class WebsiteSale(WebsiteSale):
             if session:
                 sale_order.session_id=session
             list=[]
-            for partner in session.panier_perdu_ids:
-                list.append(partner.id)
-            list.append(sale_order.partner_id.id)
-            session.write({'panier_perdu_ids': [(6, 0, list)]})
-            sale_order.partner_id.statut='panier_perdu'
-            sale_order.partner_id.module_id=module
+            check_portal = False
+            if self.partner_id.user_ids:
+                for user in self.partner_id.user_ids:
+                    groups = user.groups_id
+                    for group in groups:
+                        if (group.name == _('Portail')):
+                            check_portal = True
+            if check_portal:
+                for partner in session.panier_perdu_ids:
+                    list.append(partner.id)
+                list.append(sale_order.partner_id.id)
+                session.write({'panier_perdu_ids': [(6, 0, list)]})
+                sale_order.partner_id.statut='panier_perdu'
+                sale_order.partner_id.module_id=module
 
         if kw.get('express'):
             return request.redirect("/shop/checkout?express=1")

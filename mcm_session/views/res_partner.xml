@@ -12,9 +12,8 @@
                     <field name="module_id" invisible="1"/>
                     <field name="mode_de_financement" invisible="1"/>
                     <field name="statut" widget="statusbar" clickable="True"/>
-                    <button name="action_validate" id="action_validate" string="Valider" class="btn-primary"
-                            type="object"
-                            attrs="{'invisible': [('statut', '!=', 'indecis'),'&amp;',('mode_de_financement','!=','aif'),'&amp;',('module_id','!=','False'),'&amp;',('code_pole_emploi','!=','')]}"/>
+                    <button name="action_validate" id="action_validate" string="Modifier statut" class="btn-primary"
+                            type="object"/>
                     <button name="action_statut" id="action_statut" string="Mettre indécis" class="btn-primary"
                             type="object"
                             attrs="{'invisible': [('statut', '=', 'indecis')]}"/>
@@ -45,7 +44,8 @@
             <xpath expr="//field[@name='session_id']" position="after">
                 <field name="mcm_session_id" string="Session"/>
                 <field name="customer_rank" invisible="1"/>
-                <field name="module_id" domain="[('session_id', '=', mcm_session_id)]"/>
+                <field name="module_id"
+                       domain="[('session_id', '=', mcm_session_id)]"/>
             </xpath>
             <xpath expr="//page[@name='session']" position="after">
                 <page string="Financement" name="financement">
