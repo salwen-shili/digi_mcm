@@ -16,14 +16,12 @@ class Api(models.Model):
     _description = "Calendly API"
 
     client_id = fields.Char(string="Calendly client ID", required=True,
-                            default='30619c87f05a76ccd4f44ee59d4281a3714395299a4b277492c7f0d149e09462')
+                            default='90d14d3507c35d579924cf87a6de7fbc560211289ee1812e554c683c346f3a9c')
     client_secret = fields.Char(string="Calendly client Secret", required=True,
-                                default='86bd046a39760594cc2fdd7036571842db01ac3122c4e4df8d6b4e43933ea2ba')
-    redirect_uri = fields.Char(string="Calendly redirect URI", required=True, default='https://test.mcm-academy.fr/')
-    access_token = fields.Char(string="Calendly access token", required=True,
-                               default='129833d9151b879cd40fc25dc319ff6a6efb9299e7c62752d717e960fbf4ab9c')
-    refresh_token = fields.Char(string="Calendly access token", required=True,
-                                default='5cf780f8e1b3cb4c6b6f427e386b340e16cc2c9f5890fd0d26a66391ebc13bd5')
+                                default='b863ae64bfa9ebd0d8aa8010028f3bf1041e1f678b682b710d4dec928d0fcca8')
+    redirect_uri = fields.Char(string="Calendly redirect URI", required=True, default='https://www.mcm-academy.fr/')
+    access_token = fields.Char(string="Calendly access token", required=True)
+    refresh_token = fields.Char(string="Calendly access token", required=True)
 
     def _refresh_token(self):
         headers = {
