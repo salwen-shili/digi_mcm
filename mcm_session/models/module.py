@@ -71,5 +71,24 @@ class Module(models.Model):
 
             if (rec.prix_chpf and rec.duree):
                 rec.chpf_price_untaxed = rec.prix_chpf / float(rec.duree)
+    @api.model
+    def create(self,vals):
+        module=super(Module,self).create(vals)
+        if vals.get('product_id') and vals.get('duree'):
+            product = self.env['product.template'].search([('id', '=', vals.get('product_id'))])
+            vals['particulier_price_untaxed']=product.list_price/float(vals.get('duree'))
+        return module
+
+    def write(self,vals):
+        module = super(Module, self).write(vals)
+        if vals.get('product_id') and vals.get('duree'):
+            product = self.env['product.template'].search([('id', '=', vals.get('product_id'))])
+            vals['particulier_price_untaxed'] = product.list_price / float(vals.get('duree'))
+        if vals.get('product_id') and not vals.get('duree'):
+            product = self.env['product.template'].search([('id', '=', vals.get('product_id'))])
+            vals['particulier_price_untaxed'] = product.list_price / float(self.duree)
+        if not vals.get('product_id') and  vals.get('duree'):
+            vals['particulier_price_untaxed'] = self.prix_normal / float(vals.get('duree'))
+        return module
 
 
