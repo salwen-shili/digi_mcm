@@ -95,8 +95,8 @@ class WebsiteSale(WebsiteSale):
                 sale_order.session_id=session
             list=[]
             check_portal = False
-            if self.partner_id.user_ids:
-                for user in self.partner_id.user_ids:
+            if sale_order.partner_id.user_ids:
+                for user in sale_order.partner_id.user_ids:
                     groups = user.groups_id
                     for group in groups:
                         if (group.name == _('Portail')):
