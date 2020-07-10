@@ -261,9 +261,7 @@
                 }
 
             </style>
-            <img src="/mcm_website_theme/static/src/img/bannermcm.gif" style="width:100%"/>
-            <div id="wrap" class="oe_structure oe_empty">
-                <section class="p-0" id="home" style="background-color:#000;margin-top:-15px">
+            <section class="p-0" id="home" style="background-color:#000;margin-top:-15px">
                     <div class="carousel slide" id="main-slide" data-ride="carousel">
                         <section class="search-sec">
                             <div class="container">
@@ -325,7 +323,8 @@
                         </section>
                     </div>
                 </section>
-                <br/>
+            <img src="/mcm_website_theme/static/src/img/bannermcm.gif" style="width:100%"/>
+            <div id="wrap" class="oe_structure oe_empty">
                 <main id="main">
                     <section class="section site-portfolio pt0 pb0">
                         <div class="container">
