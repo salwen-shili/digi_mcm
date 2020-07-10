@@ -262,67 +262,67 @@
 
             </style>
             <section class="p-0" id="home" style="background-color:#000;margin-top:-15px">
-                    <div class="carousel slide" id="main-slide" data-ride="carousel">
-                        <section class="search-sec">
-                            <div class="container">
-                                <center>
-                                    <form t-att-action="action if action else '/shop'"
-                                          t-attf-class="o_mcm_products_searchbar_form" method="get"
-                                          novalidate="novalidate">
-                                        <div class="row">
-                                            <div class="col-lg-12">
-                                                <div class="row">
-                                                    <div class="col-lg-3 col-md-3 col-sm-12 p-0"
-                                                         style="margin:auto;background-color:#fff;border-color:#585959">
-                                                        <select name="category" class="form-control search-slt">
-                                                            <option value="all">Catégorie</option>
-                                                            <t t-foreach="all_categories" t-as="web_category">
-                                                                <t t-if="category">
-                                                                    <t t-if="category.id == web_category.id">
-                                                                        <option t-att-value="web_category.id"
-                                                                                selected="selected">
-                                                                            <t t-esc="web_category.name"/>
-                                                                        </option>
-                                                                    </t>
-                                                                    <t t-if="category.id  != web_category.id">
-                                                                        <option t-att-value="web_category.id">
-                                                                            <t t-esc="web_category.name"/>
-                                                                        </option>
-                                                                    </t>
+                <div class="carousel slide" id="main-slide" data-ride="carousel">
+                    <section class="search-sec">
+                        <div class="container">
+                            <center>
+                                <form t-att-action="action if action else '/shop'"
+                                      t-attf-class="o_mcm_products_searchbar_form" method="get"
+                                      novalidate="novalidate">
+                                    <div class="row">
+                                        <div class="col-lg-12">
+                                            <div class="row">
+                                                <div class="col-lg-3 col-md-3 col-sm-12 p-0"
+                                                     style="margin:auto;background-color:#fff;border-color:#585959">
+                                                    <select name="category" class="form-control search-slt">
+                                                        <option value="all">Catégorie</option>
+                                                        <t t-foreach="all_categories" t-as="web_category">
+                                                            <t t-if="category">
+                                                                <t t-if="category.id == web_category.id">
+                                                                    <option t-att-value="web_category.id"
+                                                                            selected="selected">
+                                                                        <t t-esc="web_category.name"/>
+                                                                    </option>
                                                                 </t>
-                                                                <t t-if="not category">
+                                                                <t t-if="category.id  != web_category.id">
                                                                     <option t-att-value="web_category.id">
                                                                         <t t-esc="web_category.name"/>
                                                                     </option>
                                                                 </t>
                                                             </t>
-                                                        </select>
-                                                    </div>
-                                                    <div class="col-lg-3 col-md-3 col-sm-12 p-0"
-                                                         style="margin:auto;background-color:#fff;border-color:#585959">
-                                                        <input type="text" name="state"
-                                                               class="state-search-query form-control search-slt"
-                                                               placeholder="Liste des départements..."
-                                                               list="states_datalist"/>
-                                                        <datalist id="states_datalist">
-                                                            <span t-set="states" t-value="website.get_states()"/>
-                                                            <span t-foreach="states" t-as="state">
-                                                                <option t-att-value="state.name"/>
-                                                            </span>
-                                                        </datalist>
-                                                    </div>
-                                                    <div class="col-lg-3 col-md-3 col-sm-12 p-0" style="margin:auto">
-                                                        <button class="Button2" type="submit">Recherche</button>
-                                                    </div>
+                                                            <t t-if="not category">
+                                                                <option t-att-value="web_category.id">
+                                                                    <t t-esc="web_category.name"/>
+                                                                </option>
+                                                            </t>
+                                                        </t>
+                                                    </select>
+                                                </div>
+                                                <div class="col-lg-3 col-md-3 col-sm-12 p-0"
+                                                     style="margin:auto;background-color:#fff;border-color:#585959">
+                                                    <input type="text" name="state"
+                                                           class="state-search-query form-control search-slt"
+                                                           placeholder="Liste des départements..."
+                                                           list="states_datalist"/>
+                                                    <datalist id="states_datalist">
+                                                        <span t-set="states" t-value="website.get_states()"/>
+                                                        <span t-foreach="states" t-as="state">
+                                                            <option t-att-value="state.name"/>
+                                                        </span>
+                                                    </datalist>
+                                                </div>
+                                                <div class="col-lg-3 col-md-3 col-sm-12 p-0" style="margin:auto">
+                                                    <button class="Button2" type="submit">Recherche</button>
                                                 </div>
                                             </div>
                                         </div>
-                                    </form>
-                                </center>
-                            </div>
-                        </section>
-                    </div>
-                </section>
+                                    </div>
+                                </form>
+                            </center>
+                        </div>
+                    </section>
+                </div>
+            </section>
             <img src="/mcm_website_theme/static/src/img/bannermcm.gif" style="width:100%"/>
             <div id="wrap" class="oe_structure oe_empty">
                 <main id="main">
@@ -977,6 +977,24 @@
                 document.getElementById("pm_shop_check").href="https://cutt.ly/KyVUm1T";
                 document.getElementById("pm_shop_checkout").href="https://cutt.ly/KyVUm1T";
                 }
+                if(cpf_pm.value=='Formation intensive VMDTR')
+                {
+                document.getElementById("pm_shop").href="https://cutt.ly/Kpars7a";
+                document.getElementById("pm_shop_check").href="https://cutt.ly/Kpars7a";
+                document.getElementById("pm_shop_checkout").href="https://cutt.ly/Kpars7a";
+                }
+                if(cpf_pm.value=='Formation pratique VMDTR')
+                {
+                document.getElementById("pm_shop").href="https://cutt.ly/4parmYi";
+                document.getElementById("pm_shop_check").href="https://cutt.ly/4parmYi";
+                document.getElementById("pm_shop_checkout").href="https://cutt.ly/4parmYi";
+                }
+                if(cpf_pm.value=='Formation à distance VMDTR')
+                {
+                document.getElementById("pm_shop").href="https://cutt.ly/vparDcg";
+                document.getElementById("pm_shop_check").href="https://cutt.ly/vparDcg";
+                document.getElementById("pm_shop_checkout").href="https://cutt.ly/vparDcg";
+                }
                 }
                 }
                 };
@@ -1039,13 +1057,15 @@
             <div class="form-group col-lg-12">
                 <label class="col-form-label" for="adresse_facturation">Adresse de facturation</label>
                 <input type="radio" name="adresse_facturation" id="particulier"
-                      t-att-value="'addresse_facturation' in checkout and checkout['addresse_facturation'] or 'particulier'" t-att-checked="fact=='particulier'" onclick="hide_company()">
+                       t-att-value="'addresse_facturation' in checkout and checkout['addresse_facturation'] or 'particulier'"
+                       t-att-checked="fact=='particulier'" onclick="hide_company()">
                     <span>
                         Particulier
                     </span>
                 </input>
                 <input type="radio" name="adresse_facturation" id="company"
-                       t-att-value="'addresse_facturation' in checkout and checkout['addresse_facturation'] or 'societe'" t-att-checked="fact=='societe'" onclick="show_company()">
+                       t-att-value="'addresse_facturation' in checkout and checkout['addresse_facturation'] or 'societe'"
+                       t-att-checked="fact=='societe'" onclick="show_company()">
                     <span>
                         Société
                     </span>
@@ -1093,7 +1113,9 @@
             </label>
         </xpath>
         <xpath expr="//label[@for='zip']" position="replace">
-           <label class="col-form-label" for="zip"><span class="d-md-inline">Code postaleee</span></label>
+            <label class="col-form-label" for="zip">
+                <span class="d-md-inline">Code postaleee</span>
+            </label>
         </xpath>
         <xpath expr="//label[@for='street2']" position="replace">
         </xpath>
