@@ -12,7 +12,7 @@
     'depends': ['base','mcm_session'
     ],
     'data': [
-        # 'data/api_data.xml',
+        'data/api_data.xml',
         'views/partner.xml',
         'views/menu.xml',
         'views/calendly.xml',
