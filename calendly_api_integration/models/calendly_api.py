@@ -53,7 +53,7 @@ class Api(models.Model):
                     'Authorization': 'Bearer ' + str(json_data["access_token"]),
                 }
                 data = {
-                    'min_start_time':'2020-03-00T00:00:00Z',
+                    'min_start_time': min_start_time,
                     'order': 'desc'
                 }
 
