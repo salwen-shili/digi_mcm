@@ -330,12 +330,12 @@
                     </div>
                 </div>
             </xpath>
-            <xpath expr="//p[@t-if='o.invoice_payment_term_id']" position="replace">
+            <xpath expr="//div[hasclass('page')]//p[3]" position="replace">
                 <p t-if="o.invoice_payment_term_id" name="payment_term">
                     <span></span>
                 </p>
             </xpath>
-            <xpath expr="//p[@t-if='o.fiscal_position_id.note']" position="replace">
+            <xpath expr="//div[hasclass('page')]//p[4]" position="replace">
                 <p t-if="o.fiscal_position_id.note" name="note">
                     <span></span>
                 </p>
