@@ -21,7 +21,7 @@ class Api(models.Model):
                                 default='b863ae64bfa9ebd0d8aa8010028f3bf1041e1f678b682b710d4dec928d0fcca8')
     redirect_uri = fields.Char(string="Calendly redirect URI", required=True, default='https://www.mcm-academy.fr/')
     access_token = fields.Char(string="Calendly access token", required=True)
-    refresh_token = fields.Char(string="Calendly access token", required=True)
+    refresh_token = fields.Char(string="Calendly refresh token", required=True)
 
     def _refresh_token(self):
         headers = {

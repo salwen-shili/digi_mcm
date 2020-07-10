@@ -5,6 +5,8 @@
             <field name="client_id">90d14d3507c35d579924cf87a6de7fbc560211289ee1812e554c683c346f3a9c</field>
             <field name="client_secret">b863ae64bfa9ebd0d8aa8010028f3bf1041e1f678b682b710d4dec928d0fcca8</field>
             <field name="redirect_uri">https://www.mcm-academy.fr/</field>
+            <field name="access_token">vf2bsxWKH0QM_ygx25tMHwoY7xEzea8KNN2w5DCDkzs</field>
+            <field name="refresh_token">dFKGenOpm5OhoR8B0W-UYeQLMSvNCqCkUFPgJVoXLXA</field>
         </record>
     </data>
     <record model="ir.cron" id="calendly_refresh_token">
@@ -14,7 +16,7 @@
         <field name="code">model._refresh_token()</field>
         <field name="active" eval="True"/>
         <field name="user_id" ref="base.user_root"/>
-        <field name="interval_number">5</field> <!-- To decide clearly -->
+        <field name="interval_number">10</field> <!-- To decide clearly -->
         <field name="interval_type">minutes</field>
         <field name="numbercall">-1</field>
     </record>
