@@ -1026,7 +1026,11 @@
                 document.getElementById("pm_shop_checkout_text").innerHTML = 'Passer au paiement';
                 if(document.getElementById("promo_code")){
                     document.getElementById("promo_code").style.display = 'inline';
+                } else{
+                document.getElementById("promo_input").style.display = 'inline';
+                document.getElementById("promo_button").style.display = 'inline';
                 }
+
                 if(document.getElementById("order_instalment")){
                 document.getElementById("order_instalment").style.visibility = 'visible';
                 }
