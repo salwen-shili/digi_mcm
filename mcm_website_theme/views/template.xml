@@ -1003,6 +1003,9 @@
                 document.getElementById("pm_shop_text").innerHTML = 'mobiliser mon CPF';
                 document.getElementById("pm_shop_check_text").innerHTML = 'mobiliser mon CPF';
                 document.getElementById("pm_shop_checkout_text").innerHTML = 'mobiliser mon CPF';
+                document.getElementById("promo_code").style.display = 'none';
+                document.getElementById("promo_button").style.display = 'none';
+                document.getElementById("promo_input").style.display = 'none';
                 if(document.getElementById("order_instalment")){
                 document.getElementById("order_instalment").style.visibility = 'hidden';
                 document.getElementById("order_instalment_number").style.visibility = 'hidden';
@@ -1015,6 +1018,7 @@
                 document.getElementById("pm_shop_text").innerHTML = 'Passer au paiement';
                 document.getElementById("pm_shop_check_text").innerHTML = 'Passer au paiement';
                 document.getElementById("pm_shop_checkout_text").innerHTML = 'Passer au paiement';
+                document.getElementById("promo_code").style.display = 'inline';
                 if(document.getElementById("order_instalment")){
                 document.getElementById("order_instalment").style.visibility = 'visible';
                 }
@@ -1027,6 +1031,10 @@
                 }
                 }
                 }
+                };
+                function show_coupon(){
+                document.getElementById("promo_input").style.display = 'inline';
+                document.getElementById("promo_button").style.display = 'inline';
                 };
             </script>
 
@@ -1043,7 +1051,25 @@
             </script>
         </xpath>
     </template>
-
+    <template id="mcm_reduction_code" inherit_id="website_sale.reduction_code" customize_show="True" name="Promo Code">
+        <xpath expr="//a[hasclass('show_coupon')]" position="replace">
+            <a href="#" class="show_coupon" id="promo_code" style="display:inline;" t-attf-onclick="show_coupon()">J'ai
+                un code promo
+            </a>
+        </xpath>
+    </template>
+    <template id="mcm_coupon_form" inherit_id="website_sale.coupon_form" name='Coupon form'>
+        <xpath expr="//input[@name='promo']" position="replace">
+            <input name="promo" class="form-control" type="text" placeholder="code..." id="promo_input"
+                   style="display:inline;"
+                   t-att-value="website_sale_order.pricelist_id.code or None"/>
+        </xpath>
+        <xpath expr="//div[hasclass('input-group-append')]" position="replace">
+            <div class="input-group-append" id="promo_button" style="display:inline;">
+                <a href="#" role="button" class="btn btn-secondary a-submit">Appliquer</a>
+            </div>
+        </xpath>
+    </template>
     <template id="mcm_website_address" inherit_id="website_sale.address">
         <xpath expr="//div[hasclass('form-row')]//div[1]" position="after">
             <div t-attf-class="form-group col-lg-12 ">
