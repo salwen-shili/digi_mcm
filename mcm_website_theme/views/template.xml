@@ -1003,9 +1003,15 @@
                 document.getElementById("pm_shop_text").innerHTML = 'mobiliser mon CPF';
                 document.getElementById("pm_shop_check_text").innerHTML = 'mobiliser mon CPF';
                 document.getElementById("pm_shop_checkout_text").innerHTML = 'mobiliser mon CPF';
-                document.getElementById("promo_code").style.display = 'none';
-                document.getElementById("promo_button").style.display = 'none';
-                document.getElementById("promo_input").style.display = 'none';
+                if(document.getElementById("promo_code")){
+                    document.getElementById("promo_code").style.display = 'none';
+                }
+                if(document.getElementById("promo_button")){
+                    document.getElementById("promo_button").style.display = 'none';
+                }
+                if(document.getElementById("promo_input")){
+                    document.getElementById("promo_input").style.display = 'none';
+                }
                 if(document.getElementById("order_instalment")){
                 document.getElementById("order_instalment").style.visibility = 'hidden';
                 document.getElementById("order_instalment_number").style.visibility = 'hidden';
@@ -1018,7 +1024,9 @@
                 document.getElementById("pm_shop_text").innerHTML = 'Passer au paiement';
                 document.getElementById("pm_shop_check_text").innerHTML = 'Passer au paiement';
                 document.getElementById("pm_shop_checkout_text").innerHTML = 'Passer au paiement';
-                document.getElementById("promo_code").style.display = 'inline';
+                if(document.getElementById("promo_code")){
+                    document.getElementById("promo_code").style.display = 'inline';
+                }
                 if(document.getElementById("order_instalment")){
                 document.getElementById("order_instalment").style.visibility = 'visible';
                 }
@@ -1033,8 +1041,12 @@
                 }
                 };
                 function show_coupon(){
-                document.getElementById("promo_input").style.display = 'inline';
-                document.getElementById("promo_button").style.display = 'inline';
+                if(document.getElementById("promo_input")){
+                    document.getElementById("promo_input").style.display = 'inline';
+                }
+                if(document.getElementById("promo_button")){
+                    document.getElementById("promo_button").style.display = 'inline';
+                }
                 };
             </script>
 
