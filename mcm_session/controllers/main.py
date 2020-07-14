@@ -45,6 +45,10 @@ class WebsiteSale(WebsiteSale):
         view_track = request.website.viewref("website_sale.product").track
         modules = request.env['mcmacademy.module'].sudo().search(
             [('product_id', '=', product.id)])
+        list_module=[]
+        for module in modules:
+            if module.session_id.stage_id.name==_('Planifiées'):
+                list_module.append(module)
         return {
             'search': search,
             'category': category,
@@ -57,7 +61,7 @@ class WebsiteSale(WebsiteSale):
             'product': product,
             'add_qty': add_qty,
             'view_track': view_track,
-            'modules':modules,
+            'modules':list_module,
         }
 
     @http.route(['/shop/cart/update'], type='http', auth="public", methods=['GET', 'POST'], website=True, csrf=False)
