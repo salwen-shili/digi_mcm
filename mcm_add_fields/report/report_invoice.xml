@@ -247,9 +247,16 @@
                         </p>
                     </div>
                     <div class="col-2">
-                        <span t-if="o.invoice_payment_state=='paid'" style="color: #B22222;" class="text-right">
+                        <span t-if="o.invoice_payment_state=='paid' and o.state=='posted'" style="color: #B22222;" class="text-right">
                             <strong>Facture
                                 acquittée
+                            </strong>
+                        </span>
+                    </div>
+                    <div class="col-2">
+                        <span t-if="o.state=='cancel'" style="color: #B22222;" class="text-right">
+                            <strong>Facture
+                                Annulé
                             </strong>
                         </span>
                     </div>
