@@ -169,105 +169,105 @@ class resPartnerWizard(models.TransientModel):
                 for group in groups:
                     if(group.name==_('Portail')):
                         check_portal=True
-        print('')
-        if check_portal:
-            if self.statut=='won' or self.statut=='finalized':
-                list = []
-                for partner in self.session_id.client_ids:
+        # print('')
+        # if check_portal:
+        if self.statut=='won' or self.statut=='finalized':
+            list = []
+            for partner in self.session_id.client_ids:
+                list.append(partner.id)
+            list.append(self.partner_id.id)
+            self.session_id.write({'client_ids': [(6, 0, list)]})
+
+            list = []
+            for partner in self.session_id.prospect_ids:
+                if partner.id != self.partner_id.id:
                     list.append(partner.id)
-                list.append(self.partner_id.id)
-                self.session_id.write({'client_ids': [(6, 0, list)]})
+            self.session_id.write({'prospect_ids': [(6, 0, list)]})
 
-                list = []
-                for partner in self.session_id.prospect_ids:
-                    if partner.id != self.partner_id.id:
-                        list.append(partner.id)
-                self.session_id.write({'prospect_ids': [(6, 0, list)]})
-
-                list = []
-                for partner in self.session_id.canceled_prospect_ids:
-                    if partner.id != self.partner_id.id:
-                        list.append(partner.id)
-                self.session_id.write({'canceled_prospect_ids': [(6, 0, list)]})
-
-                list = []
-                for partner in self.session_id.panier_perdu_ids:
-                    if partner.id != self.partner_id.id:
-                        list.append(partner.id)
-                self.session_id.write({'panier_perdu_ids': [(6, 0, list)]})
-            if self.statut == 'indecis':
-                list = []
-                for partner in self.session_id.prospect_ids:
+            list = []
+            for partner in self.session_id.canceled_prospect_ids:
+                if partner.id != self.partner_id.id:
                     list.append(partner.id)
-                list.append(self.partner_id.id)
-                self.session_id.write({'prospect_ids': [(6, 0, list)]})
+            self.session_id.write({'canceled_prospect_ids': [(6, 0, list)]})
 
-                list = []
-                for partner in self.session_id.client_ids:
-                    if partner.id != self.partner_id.id:
-                        list.append(partner.id)
-                self.session_id.write({'client_ids': [(6, 0, list)]})
-
-                list = []
-                for partner in self.session_id.canceled_prospect_ids:
-                    if partner.id != self.partner_id.id:
-                        list.append(partner.id)
-                self.session_id.write({'canceled_prospect_ids': [(6, 0, list)]})
-
-                list = []
-                for partner in self.session_id.panier_perdu_ids:
-                    if partner.id != self.partner_id.id:
-                        list.append(partner.id)
-                self.session_id.write({'panier_perdu_ids': [(6, 0, list)]})
-
-            if self.statut == 'panier_perdu':
-                list = []
-                for partner in self.session_id.panier_perdu_ids:
+            list = []
+            for partner in self.session_id.panier_perdu_ids:
+                if partner.id != self.partner_id.id:
                     list.append(partner.id)
-                list.append(self.partner_id.id)
-                self.session_id.write({'panier_perdu_ids': [(6, 0, list)]})
+            self.session_id.write({'panier_perdu_ids': [(6, 0, list)]})
+        if self.statut == 'indecis':
+            list = []
+            for partner in self.session_id.prospect_ids:
+                list.append(partner.id)
+            list.append(self.partner_id.id)
+            self.session_id.write({'prospect_ids': [(6, 0, list)]})
 
-                list = []
-                for partner in self.session_id.client_ids:
-                    if partner.id != self.partner_id.id:
-                        list.append(partner.id)
-                self.session_id.write({'client_ids': [(6, 0, list)]})
-
-                list = []
-                for partner in self.session_id.canceled_prospect_ids:
-                    if partner.id != self.partner_id.id:
-                        list.append(partner.id)
-                self.session_id.write({'canceled_prospect_ids': [(6, 0, list)]})
-
-                list = []
-                for partner in self.session_id.prospect_ids:
-                    if partner.id != self.partner_id.id:
-                        list.append(partner.id)
-                self.session_id.write({'prospect_ids': [(6, 0, list)]})
-
-            if self.statut == 'perdu' or self.statut == 'canceled' :
-                list = []
-                for partner in self.session_id.canceled_prospect_ids:
+            list = []
+            for partner in self.session_id.client_ids:
+                if partner.id != self.partner_id.id:
                     list.append(partner.id)
-                list.append(self.partner_id.id)
-                self.session_id.write({'canceled_prospect_ids': [(6, 0, list)]})
+            self.session_id.write({'client_ids': [(6, 0, list)]})
 
-                list = []
-                for partner in self.session_id.client_ids:
-                    if partner.id != self.partner_id.id:
-                        list.append(partner.id)
-                self.session_id.write({'client_ids': [(6, 0, list)]})
+            list = []
+            for partner in self.session_id.canceled_prospect_ids:
+                if partner.id != self.partner_id.id:
+                    list.append(partner.id)
+            self.session_id.write({'canceled_prospect_ids': [(6, 0, list)]})
 
-                list = []
-                for partner in self.session_id.panier_perdu_ids:
-                    if partner.id != self.partner_id.id:
-                        list.append(partner.id)
-                self.session_id.write({'panier_perdu_ids': [(6, 0, list)]})
+            list = []
+            for partner in self.session_id.panier_perdu_ids:
+                if partner.id != self.partner_id.id:
+                    list.append(partner.id)
+            self.session_id.write({'panier_perdu_ids': [(6, 0, list)]})
 
-                list = []
-                for partner in self.session_id.prospect_ids:
-                    if partner.id != self.partner_id.id:
-                        list.append(partner.id)
-                self.session_id.write({'prospect_ids': [(6, 0, list)]})
-        else:
-            raise ValidationError(_('Vous pouvez pas modifier un utilisateur interne !'))
+        if self.statut == 'panier_perdu':
+            list = []
+            for partner in self.session_id.panier_perdu_ids:
+                list.append(partner.id)
+            list.append(self.partner_id.id)
+            self.session_id.write({'panier_perdu_ids': [(6, 0, list)]})
+
+            list = []
+            for partner in self.session_id.client_ids:
+                if partner.id != self.partner_id.id:
+                    list.append(partner.id)
+            self.session_id.write({'client_ids': [(6, 0, list)]})
+
+            list = []
+            for partner in self.session_id.canceled_prospect_ids:
+                if partner.id != self.partner_id.id:
+                    list.append(partner.id)
+            self.session_id.write({'canceled_prospect_ids': [(6, 0, list)]})
+
+            list = []
+            for partner in self.session_id.prospect_ids:
+                if partner.id != self.partner_id.id:
+                    list.append(partner.id)
+            self.session_id.write({'prospect_ids': [(6, 0, list)]})
+
+        if self.statut == 'perdu' or self.statut == 'canceled' :
+            list = []
+            for partner in self.session_id.canceled_prospect_ids:
+                list.append(partner.id)
+            list.append(self.partner_id.id)
+            self.session_id.write({'canceled_prospect_ids': [(6, 0, list)]})
+
+            list = []
+            for partner in self.session_id.client_ids:
+                if partner.id != self.partner_id.id:
+                    list.append(partner.id)
+            self.session_id.write({'client_ids': [(6, 0, list)]})
+
+            list = []
+            for partner in self.session_id.panier_perdu_ids:
+                if partner.id != self.partner_id.id:
+                    list.append(partner.id)
+            self.session_id.write({'panier_perdu_ids': [(6, 0, list)]})
+
+            list = []
+            for partner in self.session_id.prospect_ids:
+                if partner.id != self.partner_id.id:
+                    list.append(partner.id)
+            self.session_id.write({'prospect_ids': [(6, 0, list)]})
+        # else:
+        #     raise ValidationError(_('Vous pouvez pas modifier un utilisateur interne !'))
