@@ -287,5 +287,12 @@ class AccountMove(models.Model):
             invoice_name='Avoir_facture_'
         return(invoice_name)+(partner_name)+('_') + (draft_name or self.name) + (show_ref and self.ref and ' (%s%s)' % (self.ref[:50], '...' if len(self.ref) > 50 else '') or '')
 
-
-
+    @api.model_create_multi
+    def create(self, vals_list):
+        if any('type_facture' in vals and vals.get('type_facture') == 'interne' and 'partner_id' in vals for vals in vals_list):
+            for vals in vals_list:
+                partner_id=vals.get('partner_id')
+                partner=self.env['res.partner'].sudo().search([('id', '=', partner_id)], limit=1)
+                if not partner.mcm_session_id and not partner.module_id:
+                    raise UserError(_("Vous pouvez pas créer une facture car le client n'est pas encore lié avec une session et un module..veuillez le lier avec une session d'abord "))
+        return super(AccountMove, self).create(vals_list)
