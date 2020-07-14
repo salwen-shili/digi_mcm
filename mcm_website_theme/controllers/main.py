@@ -293,6 +293,15 @@ class WebsiteSale(WebsiteSale):
             order.instalment = False
         return True
 
+    @http.route(['/shop/payment/update_cpf'], type='json', auth="public", methods=['POST'], website=True, csrf=False)
+    def cart_update_amount(self, cpf):
+        order = request.website.sale_get_order(force_create=1)
+        if cpf:
+            order.partner_id.date_cpf=datetime.now()
+            order.partner_id.mode_de_financement='cpf'
+            order.partner_id.statut_cpf='untreated'
+        return True
+
     @http.route('/shop/payment/validate', type='http', auth="public", website=True, sitemap=False)
     def payment_validate(self, transaction_id=None, sale_order_id=None, **post):
         """ Method that should be called by the server when receiving an update

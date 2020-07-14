@@ -17,3 +17,4 @@ class resComapny(models.Model):
         ('service_validated', 'Service Fait Validé'),
         ('bill', 'Facturé'),
     ], string='Statut CPF')
+    date_cpf=fields.Datetime('Date CPF')

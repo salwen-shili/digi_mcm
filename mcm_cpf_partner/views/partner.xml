@@ -10,6 +10,8 @@
                        attrs="{'invisible': [('mode_de_financement', '!=', 'cpf')]}"/>
                 <field name="statut_cpf" string="Statut de dossier CPF"
                        attrs="{'invisible': [('mode_de_financement', '!=', 'cpf')]}"/>
+                <field name="date_cpf" string="Date CPF"
+                       attrs="{'invisible': [('mode_de_financement', '!=', 'cpf')]}"/>
             </xpath>
         </field>
     </record>

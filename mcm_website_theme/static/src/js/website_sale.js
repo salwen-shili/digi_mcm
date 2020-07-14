@@ -12,6 +12,7 @@ var QWeb = core.qweb;
 publicWidget.registry.WebsiteSale.include({
     events: _.extend({}, publicWidget.registry.WebsiteSale.prototype.events, {
        'click #checkbox_instalment': 'verify_check',
+       'click #cpf_pm': 'verify_cpf',
 //       'click #pm_shop_check': 'verify_pm',
 //       'click #pm_shop_checkout': 'verify_pm',
 //       'click #pm_shop': 'verify_pm',
@@ -38,6 +39,23 @@ publicWidget.registry.WebsiteSale.include({
             route: "/shop/payment/update_amount",
             params: {
                 instalment: instalment,
+            },
+        }).then(function () {
+                 return true;
+              });
+    },
+    verify_cpf: function(ev){
+        var self = this;
+        var cpf = false;
+        if (document.getElementById('cpf_pm').checked==true) {
+        cpf=true;
+        } else {
+         cpf=false
+         }
+         this._rpc({
+            route: "/shop/payment/update_cpf",
+            params: {
+                cpf: cpf,
             },
         }).then(function () {
                  return true;
