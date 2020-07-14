@@ -365,7 +365,7 @@
                     </div>
                     <div class="col-3">
                         <t>
-                            <tr>
+                            <tr t-if="o.state != 'cancel'">
                                 <td class="text-right">
                                     <i class="text-right">
                                         <font style="font-size: 16px;">Montant déjà encaissé :</font>
@@ -384,7 +384,7 @@
             </xpath>
             <xpath expr="//t[@t-if='len(payments_vals) &gt; 0']" position="replace">
                 <t>
-                    <tr>
+                    <tr t-if="o.state != 'cancel'">
                         <td class="text-right">
                             <font style="font-size: 16px;">
                                 <i class="oe_form_field text-right oe_payment_label">Montant restant à encaisse :
