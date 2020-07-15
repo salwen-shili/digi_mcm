@@ -11,6 +11,10 @@
                     <field name="prix_chpf" class="oe_inline" widget="monetary"
                            options="{'currency_field': 'currency_id', 'field_digits': True}"/>
                 </div>
+                <label for="department"/>
+                <div name="department">
+                    <field name="department" class="oe_inline"/>
+                </div>
             </xpath>
         </field>
     </record>

@@ -10,3 +10,4 @@ class product_template(models.Model):
         'Prix CHPF', default=1.0,
         digits='Product Price',
         help="Prix CHPF")
+    department=fields.Boolean('Département ')
