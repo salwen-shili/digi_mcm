@@ -1,0 +1,40 @@
+<odoo>
+    <template id="mcmacademy_website_sale_product_department" inherit_id="website_sale.product">
+        <xpath expr="//a[@id='add_to_cart']" position="before">
+            <br/>
+            <div style="margin:auto;background-color:#fff;border-color:#585959;"
+                 t-if="request.website.is_public_user()==False">
+                <p t-if="department==True">
+                    <b>
+                        Département
+                    </b>
+                </p>
+
+                <br/>
+                <div style="margin-left:0%;">
+                    <select name="departement" class="form-control search-slt " t-if="department==True"
+                            required="required">
+                        <option value="all">
+                            <p>
+                                Seletionnez votre département
+                            </p>
+                        </option>
+                        <option value="59">
+                            <p>
+                                59 Nord-Lille
+                            </p>
+                        </option>
+                        <option value="62">
+                            <p>
+                                62 Pas-de-Calais-Arras
+                            </p>
+                        </option>
+                    </select>
+                </div>
+                <p t-if="error_department!=''" class="alert alert-warning" style="margin-left:0%;">
+                    Vous devez Selectionnez un département
+                </p>
+            </div>
+        </xpath>
+    </template>
+</odoo>

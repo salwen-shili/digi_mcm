@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="mcmacademy_partner_department__view_res_partner_form" model="ir.ui.view">
+        <field name="name">res.partner.form</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="mcm_session.mcmacademy_session_view_res_partner_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='module_id']" position="after">
+                <field name="partner_departement" string="Département" readonly="1" invisible="1"/>
+                <field name="state_id" string="Département" />
+            </xpath>
+        </field>
+    </record>
+</odoo>
