@@ -14,7 +14,8 @@
                 <label for="department"/>
                 <div name="department">
                     <field name="department" class="oe_inline"/>
-                 </div>
+                </div>
+                
             </xpath>
         </field>
     </record>
