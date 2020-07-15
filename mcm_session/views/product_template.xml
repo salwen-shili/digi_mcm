@@ -15,7 +15,6 @@
                 <div name="department">
                     <field name="department" class="oe_inline"/>
                 </div>
-                
             </xpath>
         </field>
     </record>
