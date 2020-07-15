@@ -52,6 +52,9 @@ class WebsiteSale(WebsiteSale):
         department=False
         if product.department:
             department=True
+        print('departement1')
+        print(product.department)
+        print(department)
         return {
             'search': search,
             'category': category,
@@ -97,29 +100,28 @@ class WebsiteSale(WebsiteSale):
         )
         if(sale_order.partner_id.customer_rank==0):
             sale_order.partner_id.customer_rank=1
-        print('module')
-        print(module)
-        if module != '' and module !='all':
-            module = request.env['mcmacademy.module'].sudo().search(
-                [('id', '=', module)])
-            session=module.session_id
-            if session:
-                sale_order.session_id=session
-            list=[]
-            check_portal = False
-            if sale_order.partner_id.user_ids:
-                for user in sale_order.partner_id.user_ids:
-                    groups = user.groups_id
-                    for group in groups:
-                        if (group.name == _('Portail')):
-                            check_portal = True
-            if check_portal:
-                for partner in session.panier_perdu_ids:
-                    list.append(partner.id)
-                list.append(sale_order.partner_id.id)
-                session.write({'panier_perdu_ids': [(6, 0, list)]})
-                sale_order.partner_id.statut='panier_perdu'
-                sale_order.partner_id.module_id=module
+        if product_id:
+            if module != '' and module !='all':
+                module = request.env['mcmacademy.module'].sudo().search(
+                    [('id', '=', module)])
+                session=module.session_id
+                if session:
+                    sale_order.session_id=session
+                list=[]
+                check_portal = False
+                if sale_order.partner_id.user_ids:
+                    for user in sale_order.partner_id.user_ids:
+                        groups = user.groups_id
+                        for group in groups:
+                            if (group.name == _('Portail')):
+                                check_portal = True
+                if check_portal:
+                    for partner in session.panier_perdu_ids:
+                        list.append(partner.id)
+                    list.append(sale_order.partner_id.id)
+                    session.write({'panier_perdu_ids': [(6, 0, list)]})
+                    sale_order.partner_id.statut='panier_perdu'
+                    sale_order.partner_id.module_id=module
 
         if kw.get('express'):
             return request.redirect("/shop/checkout?express=1")
