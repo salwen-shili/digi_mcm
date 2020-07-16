@@ -11,8 +11,8 @@ class Session(models.Model):
     _inherit = "mcm.session"
 
     name = fields.Char('Nom', required=True)
-    action_type = fields.Many2one('mcm.action.formation', required=True)
-    targeted_diploma = fields.Char('Diplôme visé', required=True)
+    action_type = fields.Many2one('mcm.action.formation')
+    targeted_diploma = fields.Char('Diplôme visé')
     price_untaxed = fields.Monetary('Prix Unitaire HT', compute='_compute_price_untaxed', store=True, default=0.0)
     start_hour = fields.Char('De (Matin)')
     end_hour = fields.Char('À (Matin) ')

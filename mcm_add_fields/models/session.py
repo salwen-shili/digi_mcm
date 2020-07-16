@@ -8,7 +8,7 @@ class Session(models.Model):
     _description = 'session de formation'
 
     product_id=fields.Many2one('product.template',string="Formation",required=True)
-    start_date=fields.Date(required=True)
-    end_date=fields.Date(required=True)
-    state=fields.Many2one('res.country.state',string="Département",required=True)
+    start_date=fields.Date()
+    end_date=fields.Date()
+    state=fields.Many2one('res.country.state',string="Département")
     partner_ids=fields.One2many('res.partner','session_id','Partners')
