@@ -9,7 +9,7 @@ class Website(models.Model):
 
     @api.model
     def get_states(self):
-        state_ids = self.env['res.country.state'].sudo().search([('country_id.code', 'ilike', 'FR')],order='code')
+        state_ids = self.env['res.country.state'].sudo().search([('country_id.code', 'ilike', 'FR')],order='code asc')
         return state_ids
 
     def get_user_name_logged(self):
