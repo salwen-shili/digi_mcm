@@ -186,6 +186,7 @@
                                         <field name="name"/>
                                         <field name="statut"/>
                                         <field name="module_id"/>
+                                        <field name="state_id" string="Département"/>
                                     </tree>
                                 </field>
                             </div>
@@ -211,6 +212,7 @@
                                         <field name="name"/>
                                         <field name="statut"/>
                                         <field name="module_id"/>
+                                        <field name="state_id" string="Département"/>
                                     </tree>
                                 </field>
                             </div>
@@ -239,6 +241,7 @@
                                         <field name="name"/>
                                         <field name="statut"/>
                                         <field name="module_id"/>
+                                        <field name="state_id" string="Département"/>
                                     </tree>
                                 </field>
                             </div>
@@ -264,6 +267,7 @@
                                         <field name="name"/>
                                         <field name="statut"/>
                                         <field name="module_id"/>
+                                        <field name="state_id" string="Département"/>
                                     </tree>
                                 </field>
                             </div>
