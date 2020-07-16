@@ -2,7 +2,7 @@
 # Part of Odoo. See LICENSE file for full copyright and licensing details.
 from datetime import datetime, timedelta
 
-from odoo import models, api, fields
+from odoo import models, api, fields,_
 import werkzeug
 import json
 import requests
