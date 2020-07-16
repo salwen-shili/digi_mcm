@@ -24,7 +24,7 @@ class Website(Home):
     def index(self, state='', **kw, ):
         homepage = request.website.homepage_id
         all_categs = request.env['product.public.category'].sudo().search([('parent_id', '=', False)])
-        all_states = request.env['res.country.state'].sudo().search([('country_id.code', 'ilike', 'FR')],order='code asc')
+        all_states = request.env['res.country.state'].sudo().search([('country_id.code', 'ilike', 'FR')],order='id asc')
         taxi_category = request.env['product.public.category'].sudo().search([('name', 'ilike', 'Formation TAXI')])
         vtc_category = request.env['product.public.category'].sudo().search([('name', 'ilike', 'Formation VTC')])
         vmdtr_category = request.env['product.public.category'].sudo().search([('name', 'ilike', 'Formation VMDTR')])
