@@ -80,6 +80,44 @@ class Api(models.Model):
                                 event_response = requests.get(url_event,
                                                               headers=headers)
                                 json_data_event = json.loads(event_response.text)
+                                lead = self.env['crm.lead'].sudo().search(
+                                    [('uuid', "=", str(uuid))])
+                                start_date = str(event["start_time"])
+                                start_time = start_date[12:19]
+                                start_date = start_date[:10]
+                                end_date = str(event["end_time"])
+                                end_time = end_date[12:19]
+                                end_date = end_date[:10]
+                                invitees_counter = event["invitees_counter"]
+                                invitees_active = invitees_counter["active"]
+                                invitees_limit = invitees_counter["limit"]
+                                type_evenement = event["event_type"]
+                                type_evenement = type_evenement["name"]
+                                start_date = datetime.strptime(str(start_date), '%Y-%m-%d')
+                                end_date = datetime.strptime(str(end_date), '%Y-%m-%d')
+                                stage = ''
+                                if (start_date.date() == date.today()):
+                                    stage = self.env['crm.stage'].sudo().search(
+                                        [('name', "=", _('Jour J'))])
+                                elif (start_date.date() > date.today()):
+                                    stage = self.env['crm.stage'].sudo().search(
+                                        [('name', "=", _('À Venir'))])
+                                elif (start_date.date() < date.today()):
+                                    stage = self.env['crm.stage'].sudo().search(
+                                        [('name', "=", _('Passé'))])
+                                if not lead:
+                                    lead = self.env['crm.lead'].sudo().create({
+                                        'name': "Session d'info",
+                                        'uuid': str(uuid),
+                                        'type_evenement': str(type_evenement),
+                                        'invitees_limit': int(invitees_limit),
+                                        'invitees_active': int(invitees_active),
+                                        'start_time': str(start_time),
+                                        'end_time': str(end_time),
+                                        'start_date': start_date.date(),
+                                        'end_date': end_date.date(),
+                                        'stage_id': stage.id if stage else ''
+                                    })
                                 if "collection" in json_data_event:
                                     collection = json_data_event["collection"]
                                     for invitee in collection:

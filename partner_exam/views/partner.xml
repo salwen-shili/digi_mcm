@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="mcmacademy_partner_department__view_res_partner_form" model="ir.ui.view">
+        <field name="name">res.partner.form</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="mcm_session.mcmacademy_view_res_partner_form_3"/>
+        <field name="arch" type="xml">
+            <xpath expr="//group//div[@class='row form-panel']//div[1]//div[3]//div[5]" position="after">
+                <div class="col-sm-12">
+                    <div>
+                        <label for="note_exam" string="Note d'examen blanc :">Note d'examen blanc</label>
+                        <field name="note_exam"/>
+                    </div>
+                </div>
+            </xpath>
+        </field>
+    </record>
+</odoo>
