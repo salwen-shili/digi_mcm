@@ -146,48 +146,53 @@ class Api(models.Model):
                                         client = self.env['res.partner'].sudo().search(
                                                 [('id', '=', user.partner_id.id)])
                                         if client:
-                                                client.email=user.login
-                                                infos = invitee["questions_and_answers"]
-                                                for inf in infos:
-                                                    if (str(inf["question"]) == "Ville"):
-                                                        client.city = str(inf["answer"])
-                                                    if (str(inf["question"]) == "Votre adresse postale"):
-                                                        client.street = str(inf["answer"])
-                                                    if (str(inf["question"]) == "Date de naissance : JJ / MM / AAAA"):
-                                                        date_str = str(inf["answer"])
-                                                        if(len(date_str)==10 and date_str[2]=='/' and date_str[5]=='/'):
-                                                            date_object = datetime.strptime(date_str, '%d/%m/%Y').date()
-                                                            client.birthday = date_object
-                                                    if (str(inf["question"]) == "Code postale"):
-                                                        client.zip = str(inf["answer"])
-                                                    if (str(inf["question"]) == "Formation :" or str(inf["question"]) == "Formation : "):
-                                                        formation_type=str(inf["answer"]).lower()
-                                                        if (formation_type=='taxi' or formation_type=='vtc'):
-                                                            client.formation_type = str(inf["answer"]).lower()
-                                                    if (str(inf["question"]) == "Quel est votre financement"):
-                                                        if (str(inf["answer"]) == "Mon Compte Formation, CPF"):
-                                                            client.funding_type = 'cpf'
-                                                        if (str(inf["answer"]) == "Pass'formation"):
-                                                            client.funding_type = 'passformation'
-                                                        if (str(inf["answer"]) == "Personnel"):
-                                                            client.funding_type = 'perso'
-                                                        if (str(inf["answer"]) == "Pôle emploi(AIF)"):
-                                                            client.funding_type = 'pole_emploi'
-                                                    if (str(inf["question"]) == "ID POLE EMPLOI"):
-                                                        client.pole_emploi = str(inf["answer"])
-                                                    if (str(inf["question"]) == "Numéro de sécurité social"):
-                                                        client.social_security_number = str(inf["answer"])
-                                                    if (str(inf["question"]) == "Numéro de téléphone"):
-                                                        client.phone = str(inf["answer"])
-                                                    if (str(inf["question"]) == "Veuillez répondre aux questions(Case vide = Non éligible pour la formation)"):
-                                                        requis = str(inf["answer"])
-                                                        if "J'ai 3 ans de permis ou plus" in requis:
-                                                            client.driver_licence = True
-                                                        if "J'ai aucun retrait définitif du permis ces 10 dernières années" in requis:
-                                                            client.license_suspension = True
-                                                        if "J'ai un casier judiciaire vierge B2" in requis:
-                                                            client.criminal_record = True
-                                                        if client.driver_licence and client.license_suspension and client.criminal_record:
-                                                            client.statut_calendly = 'valid'
-                                                        else:
-                                                            client.statut_calendly = 'waiting'
+                                            client.email=user.login
+                                            infos = invitee["questions_and_answers"]
+                                            for inf in infos:
+                                                if (str(inf["question"]) == "Ville"):
+                                                    client.city = str(inf["answer"])
+                                                if (str(inf["question"]) == "Votre adresse postale"):
+                                                    client.street = str(inf["answer"])
+                                                if (str(inf["question"]) == "Date de naissance : JJ / MM / AAAA"):
+                                                    date_str = str(inf["answer"])
+                                                    if(len(date_str)==10 and date_str[2]=='/' and date_str[5]=='/'):
+                                                        date_object = datetime.strptime(date_str, '%d/%m/%Y').date()
+                                                        client.birthday = date_object
+                                                if (str(inf["question"]) == "Code postale"):
+                                                    client.zip = str(inf["answer"])
+                                                if (str(inf["question"]) == "Formation :" or str(inf["question"]) == "Formation : "):
+                                                    formation_type=str(inf["answer"]).lower()
+                                                    if (formation_type=='taxi' or formation_type=='vtc'):
+                                                        client.formation_type = str(inf["answer"]).lower()
+                                                if (str(inf["question"]) == "Quel est votre financement"):
+                                                    if (str(inf["answer"]) == "Mon Compte Formation, CPF"):
+                                                        client.funding_type = 'cpf'
+                                                    if (str(inf["answer"]) == "Pass'formation"):
+                                                        client.funding_type = 'passformation'
+                                                    if (str(inf["answer"]) == "Personnel"):
+                                                        client.funding_type = 'perso'
+                                                    if (str(inf["answer"]) == "Pôle emploi(AIF)"):
+                                                        client.funding_type = 'pole_emploi'
+                                                if (str(inf["question"]) == "ID POLE EMPLOI"):
+                                                    client.pole_emploi = str(inf["answer"])
+                                                if (str(inf["question"]) == "Numéro de sécurité social"):
+                                                    client.social_security_number = str(inf["answer"])
+                                                if (str(inf["question"]) == "Numéro de téléphone"):
+                                                    client.phone = str(inf["answer"])
+                                                if (str(inf["question"]) == "Veuillez répondre aux questions(Case vide = Non éligible pour la formation)"):
+                                                    requis = str(inf["answer"])
+                                                    if "J'ai 3 ans de permis ou plus" in requis:
+                                                        client.driver_licence = True
+                                                    if "J'ai aucun retrait définitif du permis ces 10 dernières années" in requis:
+                                                        client.license_suspension = True
+                                                    if "J'ai un casier judiciaire vierge B2" in requis:
+                                                        client.criminal_record = True
+                                                    if client.driver_licence and client.license_suspension and client.criminal_record:
+                                                        client.statut_calendly = 'valid'
+                                                    else:
+                                                        client.statut_calendly = 'waiting'
+                                        list = []
+                                        for partner in lead.partner_ids:
+                                            list.append(partner.id)
+                                        list.append(client.id)
+                                        lead.write({'partner_ids': [(6, 0, list)]})
