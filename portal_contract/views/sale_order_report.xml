@@ -202,17 +202,18 @@
                                 <div>
                                     <span style="font-size:12px">Durée de la formation :</span>
                                     <span style="font-size:12px" t-field="doc.partner_id.module_id.duree"/>
+                                    <span style="font-size:12px">h</span>
                                 </div>
                                 <div>
-                                    <span style="font-size:12px">Horraires :</span>
-                                    <span style="font-size:12px">de</span>
+                                    <span style="font-size:12px" t-if="doc.partner_id.module_id.heure_debut_matin and doc.partner_id.module_id.heure_fin_matin and doc.partner_id.module_id.heure_debut_apres_midi and doc.partner_id.module_id.heure_fin_apres_midi">Horraires :</span>
+                                    <span style="font-size:12px" t-if="doc.partner_id.module_id.heure_debut_matin and doc.partner_id.module_id.heure_fin_matin">de</span>
                                     <span style="font-size:12px" t-field="doc.partner_id.module_id.heure_debut_matin"/>
-                                    <span style="font-size:12px">à</span>
+                                    <span style="font-size:12px" t-if="doc.partner_id.module_id.heure_debut_matin and doc.partner_id.module_id.heure_fin_matin">à</span>
                                     <span style="font-size:12px" t-field="doc.partner_id.module_id.heure_fin_matin"/>
-                                    <span style="font-size:12px">de</span>
+                                    <span style="font-size:12px" t-if="doc.partner_id.module_id.heure_debut_apres_midi and doc.partner_id.module_id.heure_fin_apres_midi">de</span>
                                     <span style="font-size:12px"
                                           t-field="doc.partner_id.module_id.heure_debut_apres_midi"/>
-                                    <span style="font-size:12px">à</span>
+                                    <span style="font-size:12px" t-if="doc.partner_id.module_id.heure_debut_apres_midi and doc.partner_id.module_id.heure_fin_apres_midi">à</span>
                                     <span style="font-size:12px"
                                           t-field="doc.partner_id.module_id.heure_fin_apres_midi"/>
                                 </div>
