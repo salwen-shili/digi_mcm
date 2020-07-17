@@ -178,7 +178,7 @@ class Api(models.Model):
                                                 if (str(inf["question"]) == "Numéro de sécurité social"):
                                                     client.social_security_number = str(inf["answer"])
                                                 if (str(inf["question"]) == "Numéro de téléphone"):
-                                                    client.phone = str(inf["answer"])
+                                                    client.mobile = str(inf["answer"])
                                                 if (str(inf["question"]) == "Veuillez répondre aux questions(Case vide = Non éligible pour la formation)"):
                                                     requis = str(inf["answer"])
                                                     if "J'ai 3 ans de permis ou plus" in requis:
