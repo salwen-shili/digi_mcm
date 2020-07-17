@@ -551,6 +551,7 @@
                                 <span style="font-size:12px">Durée de la formation :</span>
                                 <span style="font-size:12px"
                                       t-field="sale_order.partner_id.module_id.duree"/>
+                                <span style="font-size:12px">h</span>
                             </div>
                             <div>
                                 <span style="font-size:12px" t-if="sale_order.partner_id.module_id.heure_debut_matin and sale_order.partner_id.module_id.heure_fin_matin and sale_order.partner_id.module_id.heure_debut_apres_midi and sale_order.partner_id.module_id.heure_fin_apres_midi">Horraires :</span>
