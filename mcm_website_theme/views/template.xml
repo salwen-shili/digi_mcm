@@ -868,10 +868,6 @@
                     <i class="fa fa-phone"/>
                     <span class="o_force_ltr" t-field="res_company.phone"/>
                 </li>
-                <li>
-                    <i class="fa fa-envelope"/>
-                    <span t-field="res_company.email"/>
-                </li>
                 <input type="hidden" name="user_name_connected" id="user_name_connected"
                        t-att-value="request.website.get_user_name_logged()"/>
                 <input type="hidden" name="user_email_connected" id="user_email_connected"
