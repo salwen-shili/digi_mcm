@@ -14,7 +14,7 @@ class Bank(models.Model):
 
     def _get_account_data_number(self):
         for rec in self:
-            if rec.acc_number:
+            if rec.acc_number and rec.bic=='SOGEFRPP':
                 if (len(rec.acc_number)==33):
                     bank_code=rec.acc_number[5:11]
                     bank_code=bank_code.replace(' ','')
