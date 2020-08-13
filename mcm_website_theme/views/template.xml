@@ -945,51 +945,69 @@
                 if (cpf_pm.checked==true) {
                 if(cpf_pm.value=='Formation intensive VTC')
                 {
-                document.getElementById("pm_shop").href="https://urlz.fr/cKaS";
-                document.getElementById("pm_shop_check").href="https://urlz.fr/cKaS";
-                document.getElementById("pm_shop_checkout").href="https://urlz.fr/cKaS";
+                document.getElementById("pm_shop").href="https://bit.ly/3amuO7T";
+                document.getElementById("pm_shop_check").href="https://bit.ly/3amuO7T";
+                document.getElementById("pm_shop_checkout").href="https://bit.ly/3amuO7T";
                 }
                 if(cpf_pm.value=='Formation intensive TAXI')
                 {
-                document.getElementById("pm_shop").href="https://cutt.ly/2yGasyt";
-                document.getElementById("pm_shop_check").href="https://cutt.ly/2yGasyt";
-                document.getElementById("pm_shop_checkout").href="https://cutt.ly/2yGasyt";
+                document.getElementById("pm_shop").href="https://bit.ly/2Fd4D86";
+                document.getElementById("pm_shop_check").href="https://bit.ly/2Fd4D86";
+                document.getElementById("pm_shop_checkout").href="https://bit.ly/2Fd4D86";
                 }
                 if(cpf_pm.value=='Formation pratique TAXI')
                 {
-                document.getElementById("pm_shop").href="https://cutt.ly/yyVUzq1";
-                document.getElementById("pm_shop_check").href="https://cutt.ly/yyVUzq1";
-                document.getElementById("pm_shop_checkout").href="https://cutt.ly/yyVUzq1";
+                document.getElementById("pm_shop").href="https://bit.ly/2XYJwNn";
+                document.getElementById("pm_shop_check").href="https://bit.ly/2XYJwNn";
+                document.getElementById("pm_shop_checkout").href="https://bit.ly/2XYJwNn";
                 }
-                if(cpf_pm.value=='Formation e-learning TAXI')
+                if(cpf_pm.value=='Formation à distance TAXI')
                 {
-                document.getElementById("pm_shop").href="https://cutt.ly/WyVUxTz";
-                document.getElementById("pm_shop_check").href="https://cutt.ly/WyVUxTz";
-                document.getElementById("pm_shop_checkout").href="https://cutt.ly/WyVUxTz";
+                document.getElementById("pm_shop").href="https://bit.ly/31IPZgy";
+                document.getElementById("pm_shop_check").href="https://bit.ly/31IPZgy";
+                document.getElementById("pm_shop_checkout").href="https://bit.ly/31IPZgy";
                 }
                 if(cpf_pm.value=='Formation pratique VTC')
                 {
-                document.getElementById("pm_shop").href="https://cutt.ly/KyVUm1T";
-                document.getElementById("pm_shop_check").href="https://cutt.ly/KyVUm1T";
-                document.getElementById("pm_shop_checkout").href="https://cutt.ly/KyVUm1T";
+                document.getElementById("pm_shop").href="https://bit.ly/3kI1wpa";
+                document.getElementById("pm_shop_check").href="https://bit.ly/3kI1wpa";
+                document.getElementById("pm_shop_checkout").href="https://bit.ly/3kI1wpa";
                 }
                 if(cpf_pm.value=='Formation intensive VMDTR')
                 {
-                document.getElementById("pm_shop").href="https://cutt.ly/Kpars7a";
-                document.getElementById("pm_shop_check").href="https://cutt.ly/Kpars7a";
-                document.getElementById("pm_shop_checkout").href="https://cutt.ly/Kpars7a";
+                document.getElementById("pm_shop").href="https://bit.ly/3kFpcdz";
+                document.getElementById("pm_shop_check").href="https://bit.ly/3kFpcdz";
+                document.getElementById("pm_shop_checkout").href="https://bit.ly/3kFpcdz";
                 }
                 if(cpf_pm.value=='Formation pratique VMDTR')
                 {
-                document.getElementById("pm_shop").href="https://cutt.ly/4parmYi";
-                document.getElementById("pm_shop_check").href="https://cutt.ly/4parmYi";
-                document.getElementById("pm_shop_checkout").href="https://cutt.ly/4parmYi";
+                document.getElementById("pm_shop").href="https://bit.ly/2E1m5Mc";
+                document.getElementById("pm_shop_check").href="https://bit.ly/2E1m5Mc";
+                document.getElementById("pm_shop_checkout").href="https://bit.ly/2E1m5Mc";
                 }
                 if(cpf_pm.value=='Formation à distance VMDTR')
                 {
-                document.getElementById("pm_shop").href="https://cutt.ly/vparDcg";
-                document.getElementById("pm_shop_check").href="https://cutt.ly/vparDcg";
-                document.getElementById("pm_shop_checkout").href="https://cutt.ly/vparDcg";
+                document.getElementById("pm_shop").href="https://bit.ly/2DOdhK1";
+                document.getElementById("pm_shop_check").href="https://bit.ly/2DOdhK1";
+                document.getElementById("pm_shop_checkout").href="https://bit.ly/2DOdhK1";
+                }
+                if(cpf_pm.value=='Formation à distance VTC')
+                {
+                document.getElementById("pm_shop").href="https://bit.ly/3gUDN2u";
+                document.getElementById("pm_shop_check").href="https://bit.ly/3gUDN2u";
+                document.getElementById("pm_shop_checkout").href="https://bit.ly/3gUDN2u";
+                }
+                if(cpf_pm.value=='Formation à distance passerelle Taxi')
+                {
+                document.getElementById("pm_shop").href="https://bit.ly/3fSyOyi";
+                document.getElementById("pm_shop_check").href="https://bit.ly/3fSyOyi";
+                document.getElementById("pm_shop_checkout").href="https://bit.ly/3fSyOyi";
+                }
+                if(cpf_pm.value=='Formation une semaine VTC')
+                {
+                document.getElementById("pm_shop").href="https://bit.ly/30SpdTP";
+                document.getElementById("pm_shop_check").href="https://bit.ly/30SpdTP";
+                document.getElementById("pm_shop_checkout").href="https://bit.ly/30SpdTP";
                 }
                 }
                 }
