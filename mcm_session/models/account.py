@@ -17,7 +17,7 @@ class AccountPayment(models.Model):
         # stripe.api_key = "sk_test_z5yAyGCO7UQ0lrS8RZNsL8kE00evWDCsu7"
         if invoices:
             for invoice in invoices:
-                if invoice.amount_total > 1000 and invoice.type_facture=='web':
+                if invoice.amount_total > 1000 and invoice.type_facture=='web' and invoice.state=='posted':
                     order = self.env['sale.order'].sudo().search([('name', 'ilike', invoice.invoice_origin)])
                     pm_id = self.env['payment.token'].sudo().search([('partner_id', '=', invoice.partner_id.id)])[-1].id
                     first_payment_date = invoice.create_date + timedelta(days=30)
