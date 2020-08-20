@@ -275,34 +275,6 @@ class WebsiteSale(WebsiteSale):
             values['main_object'] = category
         return request.render("website_sale.products", values)
 
-
-    @http.route(['/shop/payment/update_amount'], type='json', auth="public", methods=['POST'], website=True, csrf=False)
-    def cart_update_amount(self, instalment):
-        """This route is called when changing quantity from the cart or adding
-        a product from the wishlist."""
-        order = request.website.sale_get_order(force_create=1)
-
-        print('order')
-        print(order)
-        payment = request.env['payment.acquirer'].sudo().search([('code', 'ilike', 'stripe')])
-        if instalment:
-            if payment:
-                order.instalment=True
-                payment.instalment = True
-        else:
-            payment.instalment = False
-            order.instalment = False
-        return True
-
-    @http.route(['/shop/payment/update_cpf'], type='json', auth="public", methods=['POST'], website=True, csrf=False)
-    def cart_update_amount(self, cpf):
-        order = request.website.sale_get_order(force_create=1)
-        if cpf:
-            order.partner_id.date_cpf=datetime.now()
-            order.partner_id.mode_de_financement='cpf'
-            order.partner_id.statut_cpf='untreated'
-        return True
-
     @http.route('/shop/payment/validate', type='http', auth="public", website=True, sitemap=False)
     def payment_validate(self, transaction_id=None, sale_order_id=None, **post):
         """ Method that should be called by the server when receiving an update
@@ -511,6 +483,30 @@ class WebsiteSale(WebsiteSale):
 
         return error, error_message
 
+class Payment3x(http.Controller):
+
+    @http.route(['/shop/payment/update_amount'], type='json', auth="public", methods=['POST'], website=True, csrf=False)
+    def cart_update_amount(self, instalment):
+        """This route is called when changing value of payment 3x radio button in the cart"""
+        order = request.website.sale_get_order(force_create=1)
+        payment = request.env['payment.acquirer'].sudo().search([('code', 'ilike', 'stripe')])
+        if instalment:
+            if payment:
+                order.instalment=True
+                payment.instalment = True
+        else:
+            payment.instalment = False
+            order.instalment = False
+        return True
+
+    @http.route(['/shop/payment/update_cpf'], type='json', auth="public", methods=['POST'], website=True, csrf=False)
+    def cart_update_amount(self, cpf):
+        order = request.website.sale_get_order(force_create=1)
+        if cpf:
+            order.partner_id.date_cpf=datetime.now()
+            order.partner_id.mode_de_financement='cpf'
+            order.partner_id.statut_cpf='untreated'
+        return True
 
 class Taxi(http.Controller):
 
