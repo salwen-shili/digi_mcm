@@ -32,17 +32,17 @@ publicWidget.registry.WebsiteSale.include({
                 document.getElementById("order_amount_to_pay").style.visibility = 'hidden';
                 document.getElementById("order_instalment_number").style.visibility = 'hidden';
                 }
-            console.log('instalment');
-            console.log(instalment);
+     console.log('instalment');
+     console.log(instalment);
 
-            this._rpc({
-            route: "/shop/payment/update_amount",
-            params: {
-                instalment: instalment,
-            },
-        }).then(function () {
-                 return true;
-              });
+    this._rpc({
+    route: "/shop/payment/update_amount",
+    params: {
+        instalment: instalment,
+    },
+}).then(function () {
+         return true;
+      });
     },
     verify_cpf: function(ev){
         var self = this;
@@ -52,6 +52,8 @@ publicWidget.registry.WebsiteSale.include({
         } else {
          cpf=false
          }
+         console.log('cpf');
+         console.log(cpf);
          this._rpc({
             route: "/shop/payment/update_cpf",
             params: {
