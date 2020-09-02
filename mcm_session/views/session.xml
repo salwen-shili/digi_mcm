@@ -220,7 +220,7 @@
                             </div>
                         </div>
 
-                        <group string="Liste des prospects perdus ou annulés">
+                        <group string="Perdus ou annulés">
                             <div style="font-weight: bold;">
                                 <field name="count_perdu"/>
                                 Perdu,
