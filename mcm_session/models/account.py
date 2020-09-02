@@ -92,7 +92,6 @@ class AccountPayment(models.Model):
                             'partner_email': invoice.partner_id.email,
                             'description': 'Veuillez relancez le paiement de ' + str(invoice.partner_id.name),
                             'name': 'Relance paiement ' + str(invoice.partner_id.name),
-                            'attachment_ids': False,
                             'team_id': self.env['helpdesk.team'].sudo().search([('name', 'like', 'Compta')],
                                                                                limit=1).id,
                             'invoice_id': invoice.id
@@ -236,7 +235,6 @@ class AccountMove(models.Model):
                         'partner_email': rec.partner_id.email,
                         'description': 'Retard de paiement,merci de contacter le stagiaire',
                         'name': 'Retard de paiement,Contacter ' + str(rec.partner_id.name),
-                        'attachment_ids': False,
                         'team_id': self.env['helpdesk.team'].sudo().search([('name', 'like', 'Compta')], limit=1).id
                     }
                     new_ticket = self.env['helpdesk.ticket'].sudo().create(
