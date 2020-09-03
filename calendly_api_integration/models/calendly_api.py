@@ -151,6 +151,8 @@ class Api(models.Model):
                                                 'notification_type': 'email',
 
                                             })
+                                        user = self.env['res.users'].sudo().search(
+                                            [('login', 'ilike', invitee["email"])])
                                         client = self.env['res.partner'].sudo().search(
                                                 [('id', '=', user.partner_id.id)])
                                         if client:
