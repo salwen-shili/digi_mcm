@@ -153,8 +153,10 @@ class Api(models.Model):
                                             })
                                         user = self.env['res.users'].sudo().search(
                                             [('login', 'ilike', invitee["email"])])
-                                        client = self.env['res.partner'].sudo().search(
-                                                [('id', '=', user.partner_id.id)])
+                                        client= False
+                                        if user:
+                                            client = self.env['res.partner'].sudo().search(
+                                                    [('id', '=', user.partner_id.id)])
                                         if client:
                                             client.email=user.login
                                             infos = invitee["questions_and_answers"]
