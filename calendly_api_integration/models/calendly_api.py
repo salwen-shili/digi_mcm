@@ -126,6 +126,7 @@ class Api(models.Model):
                                     lead.end_time=str(end_time)
                                     lead.start_date=start_date.date()
                                     lead.end_date=end_date.date()
+                                    lead.stage_id=stage.id if stage else ''
                                 if "collection" in json_data_event:
                                     collection = json_data_event["collection"]
                                     for invitee in collection:
@@ -190,7 +191,7 @@ class Api(models.Model):
                                                         client.pole_emploi = str(inf["answer"])
                                                     if (str(inf["question"]) == "Numéro de sécurité social"):
                                                         client.social_security_number = str(inf["answer"])
-                                                    if (str(inf["question"]) == "Numéro de téléphone"):
+                                                    if (str(inf["question"]) == "Numéro de téléphone "):
                                                         client.mobile = str(inf["answer"])
                                                     if (str(inf["question"]) == "Veuillez répondre aux questions(Case vide = Non éligible pour la formation)"):
                                                         requis = str(inf["answer"])
