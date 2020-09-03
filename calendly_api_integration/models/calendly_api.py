@@ -118,6 +118,14 @@ class Api(models.Model):
                                         'end_date': end_date.date(),
                                         'stage_id': stage.id if stage else ''
                                     })
+                                else:
+                                    lead.type_evenement=str(type_evenement)
+                                    lead.invitees_limit=int(invitees_limit)
+                                    lead.invitees_active=int(invitees_active)
+                                    lead.start_time=str(start_time)
+                                    lead.end_time=str(end_time)
+                                    lead.start_date=start_date.date()
+                                    lead.end_date=end_date.date()
                                 if "collection" in json_data_event:
                                     collection = json_data_event["collection"]
                                     for invitee in collection:
