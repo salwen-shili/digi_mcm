@@ -152,7 +152,7 @@ class Api(models.Model):
 
                                             })
                                         user = self.env['res.users'].sudo().search(
-                                            [('login', 'ilike', invitee["email"])])
+                                            [('login', '=', invitee["email"])])
                                         client= False
                                         if user:
                                             clients = self.env['res.partner'].sudo().search(
