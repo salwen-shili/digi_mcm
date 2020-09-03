@@ -152,11 +152,11 @@ class Api(models.Model):
 
                                             })
                                         user = self.env['res.users'].sudo().search(
-                                            [('login', '=', invitee["email"])])
+                                            [('login', "=", invitee["email"])])
                                         client= False
                                         if user:
                                             clients = self.env['res.partner'].sudo().search(
-                                                    [('id', '=', user.partner_id.id)])
+                                                    [('id', "=" , user.partner_id.id)])
                                         if clients:
                                             for client in clients:
                                                 client.email=user.login
