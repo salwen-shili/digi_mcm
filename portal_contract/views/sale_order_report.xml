@@ -17,7 +17,11 @@
                         <div class="row">
                             <div class="col-3">
                             </div>
-                            <div class="col-8">
+                            <div class="col-9">
+                                <t t-if="doc.state=='cancel'">
+                                    <img src="/mcm_website_theme/static/src/img/annule.png" width="150px" height="150px"
+                                         style="float:right;right:-20px"/>
+                                </t>
                                 <strong>
                                     <span style="font-size:25px" t-if="doc.partner_id.company_type == 'person'">
                                         <b>Contrat de
@@ -38,7 +42,11 @@
                         <div class="row">
                             <div class="col-3">
                             </div>
-                            <div class="col-8">
+                            <div class="col-9">
+                                <t t-if="doc.state=='cancel'">
+                                    <img src="/mcm_website_theme/static/src/img/annule.png" width="150px" height="150px"
+                                         style="float:right;right:-20px"/>
+                                </t>
                                 <strong>
                                     <span>
                                         <b>Contrat de Location TAXI/VTC dispositions particulières
