@@ -538,11 +538,11 @@
                                       t-field="sale_order.partner_id.mcm_session_id.diplome_vise"/>
                             </div>
                             <div>
-                                <span style="font-size:12px">Date de la formation : </span>
-                                <span style="font-size:12px" t-field="sale_order.partner_id.mcm_session_id.date_debut"
+                                <span style="font-size:12px">Date de la formation:</span>
+                                <span style="font-size:12px" t-field="sale_order.partner_id.module_id.date_debut"
                                       t-options='{"widget": "date"}'/>
                                 <span style="font-size:12px">au</span>
-                                <span style="font-size:12px" t-field="sale_order.partner_id.mcm_session_id.date_fin"
+                                <span style="font-size:12px" t-field="sale_order.partner_id.module_id.date_fin"
                                       t-options='{"widget": "date"}'/>
                             </div>
                             <div>
