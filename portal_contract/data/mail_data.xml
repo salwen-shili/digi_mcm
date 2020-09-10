@@ -699,23 +699,23 @@
 
     </data>
     <data noupdate="0">
-<!--        <template id="mcm_mail_notification_paynow_online" inherit_id="sale.mail_notification_paynow_online">-->
-<!--            <xpath expr="//t[@t-if='record.has_to_be_signed(include_draft=True)']" position="replace">-->
-<!--                <t t-if="record.has_to_be_signed(include_draft=True)">-->
-<!--                    <t t-if="record.has_to_be_paid()" t-set="access_name">Signez &amp; Payez Contrat</t>-->
-<!--                    <t t-else="" t-set="access_name">Acceptez &amp; Signez Contrat</t>-->
-<!--                </t>-->
+        <template id="mcm_mail_notification_paynow_online" inherit_id="sale.mail_notification_paynow_online">
+            <xpath expr="//t[@t-if='record.has_to_be_signed(include_draft=True)']" position="replace">
+                <t t-if="record.has_to_be_signed(include_draft=True)">
+                    <t t-if="record.has_to_be_paid()" t-set="access_name">Signez &amp; Payez Contrat</t>
+                    <t t-else="" t-set="access_name">Acceptez &amp; Signez Contrat</t>
+                </t>
 
-<!--            </xpath>-->
-<!--            <xpath expr="//t[@t-elif='record.has_to_be_paid(include_draft=True)']//t[@t-set='access_name']"-->
-<!--                   position="replace">-->
-<!--                <t t-set="access_name">Acceptez &amp; Payez Contrat</t>-->
-<!--            </xpath>-->
-<!--            <xpath expr="/t//t[1]" position="before">-->
-<!--                <t t-if="record.state in ('sale', 'sent')">-->
-<!--                    <t t-set="access_name">Acceptez &amp; Signez Contrat</t>-->
-<!--                </t>-->
-<!--            </xpath>-->
-<!--        </template>-->
+            </xpath>
+            <xpath expr="//t[@t-elif='record.has_to_be_paid(include_draft=True)']//t[@t-set='access_name']"
+                   position="replace">
+                <t t-set="access_name">Acceptez &amp; Payez Contrat</t>
+            </xpath>
+            <xpath expr="/t//t[1]" position="before">
+                <t t-if="record.state in ('sale', 'sent')">
+                    <t t-set="access_name">Acceptez &amp; Signez Contrat</t>
+                </t>
+            </xpath>
+        </template>
     </data>
 </odoo>
