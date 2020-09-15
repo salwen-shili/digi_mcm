@@ -275,7 +275,6 @@ class WebsiteSale(WebsiteSale):
             values['main_object'] = category
         return request.render("website_sale.products", values)
 
-
     @http.route('/shop/payment/validate', type='http', auth="public", website=True, sitemap=False)
     def payment_validate(self, transaction_id=None, sale_order_id=None, **post):
         """ Method that should be called by the server when receiving an update
@@ -293,7 +292,6 @@ class WebsiteSale(WebsiteSale):
             tx = request.env['payment.transaction'].sudo().browse(transaction_id)
             assert tx in order.transaction_ids()
         elif order:
-            order.sale_action_sent()
             tx = order.get_portal_last_transaction()
         else:
             tx = None
@@ -302,7 +300,6 @@ class WebsiteSale(WebsiteSale):
             return request.redirect('/shop')
 
         if order and not order.amount_total and not tx:
-            order.sale_action_sent()
             order.with_context(send_email=True).action_confirm()
             return request.redirect(order.get_portal_url())
 
@@ -310,9 +307,9 @@ class WebsiteSale(WebsiteSale):
         request.website.sale_reset()
         if tx and tx.state == 'draft':
             return request.redirect('/shop')
-
+        if tx and tx.state == 'done' and tx.amount > 0 and order.state != 'sale':
+            order.sale_action_sent()
         PaymentProcessing.remove_payment_transaction(tx)
-        order.sale_action_sent()
         return request.redirect('/shop/confirmation')
 
     @http.route(['/shop/address'], type='http', methods=['GET', 'POST'], auth="public", website=True, sitemap=False)

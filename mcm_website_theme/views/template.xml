@@ -764,13 +764,15 @@
     </template>
     <template id="mcm_website_sale_confirmation" inherit_id="website_sale.confirmation">
         <xpath expr="//h1" position="replace">
-            <h1>
-                <span>Contrat</span>
-                <em t-field="order.partner_id.name"/>
-                <t t-if="order.state == 'sale'">
-                    <span>Confirmed</span>
-                </t>
-            </h1>
+            <t t-if="order.state in ('sent','sale') ">
+                <h1>
+                    <span>Contrat</span>
+                    <em t-field="order.partner_id.name"/>
+                    <t t-if="order.state == 'sale'">
+                        <span>Confirmed</span>
+                    </t>
+                </h1>
+            </t>
         </xpath>
         <xpath expr="//div[hasclass('thanks_msg')]" position="replace">
             <div class="thanks_msg">
@@ -791,6 +793,19 @@
                 </a>
                 pour suivre votre contrat
             </p>
+        </xpath>
+        <xpath expr="//div[hasclass('oe_cart')]//t[4]" position="replace">
+            <t t-set="tx" t-value="order.get_portal_last_transaction()"/>
+            <t t-if="tx.state=='error'">
+                <div class="alert alert-danger alert-dismissable">
+                    <span>Paiement échoué :</span>
+                    <span t-raw="tx.state_message"/>
+                    <span>Essayez de nouveau</span>
+                </div>
+            </t>
+            <t t-else="">
+                <t t-call="website_sale.payment_confirmation_status"/>
+            </t>
         </xpath>
     </template>
 
