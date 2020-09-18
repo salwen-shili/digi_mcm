@@ -6252,7 +6252,7 @@ h1[id] {
 }
 
 .navbar-nav {
-  margin: 0 -15px;
+  margin: 0 -5px;
 }
 @media (min-width: 768px) {
   .navbar-nav {
