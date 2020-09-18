@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="mcm_website_partner_not_found">
+        <p class="card-text"
+           style="text-align: left; ">Email incorrect ou non trouvé.Client n'a pas été crée
+        </p>
+    </template>
+    <template id="mcm_website_module_not_found">
+        <p class="card-text"
+           style="text-align: left; ">id formation non trouvé
+        </p>
+    </template>
+    <template id="mcm_website_session_not_found">
+        <p class="card-text"
+           style="text-align: left; ">id session non trouvé
+        </p>
+    </template>
+    <template id="mcm_website_request_not_validated">
+        <p class="card-text"
+           style="text-align: left; ">ticket created
+        </p>
+    </template>
+    <template id="mcm_website_cpf_accepted">
+        <p class="card-text"
+           style="text-align: left; ">CPF accepted
+        </p>
+    </template>
+    <template id="mcm_website_cpf_validated">
+        <p class="card-text"
+           style="text-align: left; ">CPF validated
+        </p>
+    </template>
+    <template id="available_module_places">
+        <t class="card-text"
+           style="text-align: left; ">
+            <span t-att-value="available_places" t-esc="available_places"/>
+        </t>
+    </template>
+    <template id="mcm_website_new_partner_created">
+        <p class="card-text"
+           style="text-align: left; ">Email incorrect ou non trouvé.Un nouveau client a été crée
+        </p>
+    </template>
+</odoo>

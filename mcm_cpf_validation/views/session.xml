@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="mcmacademy_session_form_view_edof" model="ir.ui.view">
+        <field name="name">session.form</field>
+        <field name="model">mcmacademy.session</field>
+        <field name="inherit_id" ref="mcm_session.mcmacademy_session_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='diplome_vise']" position="after">
+                <field name="id_edof"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

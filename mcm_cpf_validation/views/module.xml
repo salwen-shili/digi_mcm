@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="mcmacademy_module_session_form_view_edof" model="ir.ui.view">
+        <field name="name">module.session.form</field>
+        <field name="model">mcmacademy.module</field>
+        <field name="inherit_id" ref="mcm_session.mcmacademy_module_session_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='modalite_pedagogique']" position="after">
+                <field name="id_edof"/>
+                <field name="max_number_places"/>
+                <field name="number_places_available"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>
