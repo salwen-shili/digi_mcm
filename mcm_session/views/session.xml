@@ -42,6 +42,7 @@
                                     <field name="duree"/>
                                     <field name="color"/>
                                     <field name="date_module"/>
+                                    <field name="sequence" widget="handle"/>
                                     <templates>
                                         <t t-name="kanban-box">
                                             <div t-attf-class="oe_kanban_color_#{kanban_getcolor(record.color.raw_value)} oe_kanban_content oe_kanban_global_click"
