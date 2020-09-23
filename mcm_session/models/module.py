@@ -49,6 +49,7 @@ class Module(models.Model):
         ('stage', 'Stage'),
         ('conduite', 'Conduite'),
     ], string='Modalité Pédagogique')
+    website_published = fields.Boolean('Publié en site web', default=True)
 
 
     @api.depends('duree')

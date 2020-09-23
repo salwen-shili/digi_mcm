@@ -13,13 +13,15 @@
                                <option value="all">Liste des sessions</option>
                                 <t t-foreach="modules" t-as="module">
                                     <t t-if="module">
-                                        <b>
-                                            <option t-att-value="module.id">
-                                                <t t-esc="module.date_debut"/>
-                                                au
-                                                <t t-esc="module.date_fin"/>
-                                            </option>
-                                        </b>
+                                       <t t-if="module.website_published==True">
+                                            <b>
+                                                <option t-att-value="module.id">
+                                                    <t t-esc="module.date_debut"/>
+                                                    au
+                                                    <t t-esc="module.date_fin"/>
+                                                </option>
+                                            </b>
+                                        </t>
                                     </t>
                                 </t>
                             </select>
