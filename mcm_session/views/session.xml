@@ -30,7 +30,7 @@
                             </group>
                         </group>
                         <group string="Liste des modules">
-                            <field name="module_ids" string="" mode="kanban" edit="True" delete="True">
+                            <field name="module_ids" string="" mode="kanban" edit="True" delete="True" context="{'default_session_id': active_id}">
                                 <kanban>
                                     <field name="name"/>
                                     <field name="product_id"/>
