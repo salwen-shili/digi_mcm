@@ -87,7 +87,7 @@
                         <h6 t-if="o.partner_id.module_id.product_id.distance_formation==True">
                             <span>Dates de la formation: A définir</span>
                         </h6>
-                        <h6>
+                        <h6 t-if="o.partner_id.module_id.duree">
                             <span>Durée de la formation:</span>
                             <span t-field="o.partner_id.module_id.duree"/>h
                         </h6>
