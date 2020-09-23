@@ -668,7 +668,9 @@
                             <span class="payment_option_name">
                                 Carte de crédit
                             </span>
-                            <p style="font-style: italic;font-size: 12px;">Paiement en 1 ou 3 fois sans frais</p>
+                             <t t-if="website_sale_order.amount_total>1000">
+                                <p style="font-style: italic;font-size: 12px;">Paiement en 1 ou 3 fois sans frais</p>
+                            </t>
                         </input>
                     </t>
                 </label>
