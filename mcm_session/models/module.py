@@ -47,6 +47,7 @@ class Module(models.Model):
         ('blended', 'Blended learning'),
         ('travail', 'En situation de travail'),
         ('stage', 'Stage'),
+        ('conduite', 'Conduite'),
     ], string='Modalité Pédagogique')
 
 
