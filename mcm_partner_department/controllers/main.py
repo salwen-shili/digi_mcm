@@ -56,6 +56,10 @@ class WebsiteSale(WebsiteSale):
                 url = "/shop/product/" + str(slug(product))
                 values = self._prepare_product_values(product, category='', search='', **kw)
                 values['error_session'] = "error"
+                product = product_id
+                list = []
+                sale_order.write({'order_line': [(6, 0, list)]})
+                product_id = product
                 return request.render("website_sale.product", values)
 
             if module != ''  and module!='all':
@@ -101,6 +105,10 @@ class WebsiteSale(WebsiteSale):
                 url="/shop/product/"+str(slug(product))
                 values=self._prepare_product_values(product, category='', search='', **kw)
                 values['error_department']="error"
+                product = product_id
+                list = []
+                sale_order.write({'order_line': [(6, 0, list)]})
+                product_id = product
                 return request.render("website_sale.product", values)
 
         if kw.get('express'):
