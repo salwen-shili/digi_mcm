@@ -899,10 +899,10 @@
                         var user_name=document.getElementById("user_name_connected").value;
                         var user_email=document.getElementById("user_email_connected").value;
                         Calendly.initBadgeWidget({ url:
-                        'https://calendly.com/pratiquetaxivtc', prefill: {
+                        'https://calendly.com/mcm-academy/session-d-information-taxi-vtc-clone-02-28-2019', prefill: {
                         name: user_name,
                         email: user_email,
-                        } , text: 'Reservez votre pratique TAXI/VTC', color:
+                        } , text: 'Obtenir Votre devis TAXI/VTC', color:
                         '#00a2ff', textColor: '#ffffff', branding: false });
                     </script>
                 </div>
@@ -912,7 +912,7 @@
                             type="text/javascript"></script>
                     <script type="text/javascript">
                         Calendly.initBadgeWidget({ url:
-                        'https://calendly.com/pratiquetaxivtc', text: 'Reservez votre pratique TAXI/VTC', color:
+                        'https://calendly.com/mcm-academy/session-d-information-taxi-vtc-clone-02-28-2019', text: 'Obtenir Votre devis TAXI/VTC', color:
                         '#00a2ff', textColor: '#ffffff', branding: false });
                     </script>
                 </div>
