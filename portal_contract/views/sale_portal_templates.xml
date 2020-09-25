@@ -434,11 +434,16 @@
                         </div>
                         <div>
                             <span style="font-size:14px">Situé:</span>
-                            <span style="font-size:14px" t-field="sale_order.company_id.street"/>
-                            <span></span>
-                            <span style="font-size:14px" t-field="sale_order.company_id.zip"/>
-                            <span></span>
-                            <span style="font-size:14px" t-field="sale_order.company_id.city"/>
+                            <t t-if="sale_order.partner_id.module_id.name=='Formation continue VMDTR' or sale_order.partner_id.module_id.name=='Formation intensive VMDTR' or sale_order.partner_id.module_id.name=='Formation pratique VMDTR' or sale_order.partner_id.module_id.name=='Formation à distance VMDTR'">
+                                <span style="font-size:14px"> 18 Rue de Villeneuve, 94150 Rungis</span>
+                            </t>
+                            <t t-else="">
+                                <span style="font-size:14px" t-field="sale_order.company_id.street"/>
+                                <span></span>
+                                <span style="font-size:14px" t-field="sale_order.company_id.zip"/>
+                                <span></span>
+                                <span style="font-size:14px" t-field="sale_order.company_id.city"/>
+                            </t>
                         </div>
                         <div>
                             <span style="font-size:14px">Déclaration d'activité n°</span>
