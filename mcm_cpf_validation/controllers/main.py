@@ -81,75 +81,55 @@ class ClientCPFController(http.Controller):
                 client.city=ville
                 client.email=email
                 client.diplome=diplome
-                session_id = request.env['mcmacademy.session'].sudo().search(
-                    [('id_edof', '=', session)])
-                if session_id:
-                    client.mcm_session_id=session_id
-                    module_id=request.env['mcmacademy.module'].sudo().search(
-                    [('id_edof', '=', module),('session_id', '=', session_id.id)])
-                    print('module')
-                    print(module_id)
-                    if module_id:
-                        product_id = request.env['product.product'].sudo().search(
-                            [('product_tmpl_id', '=', module_id.product_id.id)])
-                        client.module_id=module_id
-                        so = request.env['sale.order'].sudo().create({
-                            'partner_id': client.id,
-                        })
-                        request.env['sale.order.line'].sudo().create({
-                            'name': product_id.name,
-                            'product_id': product_id.id,
-                            'product_uom_qty': 1,
-                            'product_uom': product_id.uom_id.id,
-                            'price_unit': product_id.list_price,
-                            'order_id': so.id,
-                            'tax_id': False,
-                        })
-                        if so.env.su:
-                            # sending mail in sudo was meant for it being sent from superuser
-                            so = so.with_user(SUPERUSER_ID)
-                        template_id = int(request.env['ir.config_parameter'].sudo().get_param(
-                            'portal_contract.mcm_mail_template_sale_confirmation'))
-                        template_id = request.env['mail.template'].sudo().search([('id', '=', template_id)]).id
+                module_id=request.env['mcmacademy.module'].sudo().search([('id_edof', '=', module)])
+                if module_id:
+                    product_id = request.env['product.product'].sudo().search(
+                        [('product_tmpl_id', '=', module_id.product_id.id)])
+                    client.mcm_session_id=module_id.session_id
+                    client.module_id=module_id
+                    so = request.env['sale.order'].sudo().create({
+                        'partner_id': client.id,
+                    })
+                    request.env['sale.order.line'].sudo().create({
+                        'name': product_id.name,
+                        'product_id': product_id.id,
+                        'product_uom_qty': 1,
+                        'product_uom': product_id.uom_id.id,
+                        'price_unit': product_id.list_price,
+                        'order_id': so.id,
+                        'tax_id': False,
+                    })
+                    if so.env.su:
+                        # sending mail in sudo was meant for it being sent from superuser
+                        so = so.with_user(SUPERUSER_ID)
+                    template_id = int(request.env['ir.config_parameter'].sudo().get_param(
+                        'portal_contract.mcm_mail_template_sale_confirmation'))
+                    template_id = request.env['mail.template'].sudo().search([('id', '=', template_id)]).id
 
-                        if not template_id:
-                            template_id = request.env['ir.model.data'].xmlid_to_res_id(
-                                'portal_contract.mcm_mail_template_sale_confirmation', raise_if_not_found=False)
-                        if not template_id:
-                            template_id = request.env['ir.model.data'].xmlid_to_res_id(
-                                'portal_contract.mcm_email_template_edi_sale', raise_if_not_found=False)
-                        so.with_context(force_send=True).message_post_with_template(template_id,
-                                                                                              composition_mode='comment',
-                                                                                              email_layout_xmlid="portal_contract.mcm_mail_notification_paynow_online")
-                        so.sudo().write({'state': 'sent'})
+                    if not template_id:
+                        template_id = request.env['ir.model.data'].xmlid_to_res_id(
+                            'portal_contract.mcm_mail_template_sale_confirmation', raise_if_not_found=False)
+                    if not template_id:
+                        template_id = request.env['ir.model.data'].xmlid_to_res_id(
+                            'portal_contract.mcm_email_template_edi_sale', raise_if_not_found=False)
+                    so.with_context(force_send=True).message_post_with_template(template_id,
+                                                                                          composition_mode='comment',
+                                                                                          email_layout_xmlid="portal_contract.mcm_mail_notification_paynow_online")
+                    so.sudo().write({'state': 'sent'})
 
-                        return request.render("mcm_cpf_validation.mcm_website_new_partner_created", {})
-                    else:
-                        vals = {
-                            'partner_email': '',
-                            'partner_id': False,
-                            'description': 'CPF: id module edof %s non trouvé en session %s' % (module,session_id.name),
-                            'name': 'CPF : ID module edof non trouvé ',
-                            'team_id': request.env['helpdesk.team'].sudo().search([('name', 'like', 'Client')],
-                                                                               limit=1).id,
-                        }
-                        new_ticket = request.env['helpdesk.ticket'].sudo().create(
-                            vals)
-                        return request.render("mcm_cpf_validation.mcm_website_module_not_found", {})
+                    return request.render("mcm_cpf_validation.mcm_website_new_partner_created", {})
                 else:
                     vals = {
                         'partner_email': '',
                         'partner_id': False,
-                        'description': 'CPF: id session edof %s non trouvé' % (session),
-                        'name': 'CPF : ID session edof non trouvé ',
+                        'description': 'CPF: id module edof %s non trouvé en session %s' % (module,session_id.name),
+                        'name': 'CPF : ID module edof non trouvé ',
                         'team_id': request.env['helpdesk.team'].sudo().search([('name', 'like', 'Client')],
                                                                            limit=1).id,
-
                     }
                     new_ticket = request.env['helpdesk.ticket'].sudo().create(
                         vals)
-                    return request.render("mcm_cpf_validation.mcm_website_session_not_found", {})
-
+                    return request.render("mcm_cpf_validation.mcm_website_module_not_found", {})
             else:
                 return request.render("mcm_cpf_validation.mcm_website_partner_not_found", {})
         return request.render("mcm_cpf_validation.mcm_website_new_partner_created", {})
