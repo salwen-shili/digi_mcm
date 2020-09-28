@@ -124,15 +124,16 @@ class resPartner(models.Model):
 
 
     def write(self, vals):
-        if 'statut' in vals:
-            if vals['statut']=='won':
-                if (self.module_id.number_places_available <= 0):
-                    raise ValidationError(_('Le nombre de places disponibles est atteint, basculer le condidat vers la prochaine session.'))
-        if 'module_id' in vals:
-            # if self.statut == 'won' and self.statut == 'finalized':
-                module = self.env['mcmacademy.module'].sudo().search([('id', '=', vals['module_id'])])
-                if (module.number_places_available <= 0):
-                    raise ValidationError(_('Le nombre de places disponibles est atteint, basculer le condidat vers la prochaine session.'))
+        # if 'statut' in vals:
+        #     if vals['statut']=='won':
+        #         if(self.module_id):
+        #             if (self.module_id.number_places_available <= 0):
+        #                 raise ValidationError(_('Le nombre de places disponibles est atteint, basculer le condidat vers la prochaine session.'))
+        # if 'module_id' in vals:
+        #     # if self.statut == 'won' and self.statut == 'finalized':
+        #         module = self.env['mcmacademy.module'].sudo().search([('id', '=', vals['module_id'])])
+        #         if (module.number_places_available <= 0):
+        #             raise ValidationError(_('Le nombre de places disponibles est atteint, basculer le condidat vers la prochaine session.'))
         partner = super(resPartner, self).write(vals)
         if self.mcm_session_id:
             check_portal = False
