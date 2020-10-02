@@ -15,7 +15,7 @@ class SaleOrder(models.Model):
             template_id = self.env['mail.template'].search([('id', '=', template_id)]).id
             if not template_id:
                 template_id = self.env['ir.model.data'].xmlid_to_res_id('portal_contract.mcm_mail_template_sale_confirmation', raise_if_not_found=False)
-        if not template_id:
+        if self.state=='sent':
             template_id = self.env['ir.model.data'].xmlid_to_res_id('portal_contract.mcm_email_template_edi_sale', raise_if_not_found=False)
         return template_id
 

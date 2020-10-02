@@ -712,8 +712,11 @@
                 <t t-set="access_name">Acceptez &amp; Payez Contrat</t>
             </xpath>
             <xpath expr="/t//t[1]" position="before">
-                <t t-if="record.state in ('sale', 'sent')">
+                <t t-if="record.state in ('sent')">
                     <t t-set="access_name">Acceptez &amp; Signez Contrat</t>
+                </t>
+                <t t-if="record.state in ('sale')">
+                    <t t-set="access_name">Voir votre contrat</t>
                 </t>
             </xpath>
         </template>

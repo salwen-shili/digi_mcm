@@ -27,7 +27,7 @@ class PaymentTransaction(models.Model):
             if sale.env.su:
                 # sending mail in sudo was meant for it being sent from superuser
                 sale = sale.with_user(SUPERUSER_ID)
-            template_id = sale._find_mail_template(force_confirmation_template=True)
+            template_id = sale._find_mail_template(force_confirmation_template=False)
             if template_id:
                 sale.with_context(force_send=True).message_post_with_template(template_id,
                                                                               composition_mode='comment',
@@ -41,7 +41,10 @@ class PaymentTransaction(models.Model):
         template = self.env['mail.template'].sudo().search([('model', '=', 'account.move')])
         # template_id = self.env['ir.model.data'].xmlid_to_res_id('portal_contract.mcm_email_template_edi_invoice',
         #                                                         raise_if_not_found=False)
-
+        sale_orders = self.sale_order_ids
+        for sale in sale_orders:
+            if sale.state == 'sale' and not sale.signature and not sale.signed_by:
+                sale.sale_action_sent()
         for invoice in invoices.with_user(SUPERUSER_ID):
             invoice.message_post_with_template(int(template),
                                                composition_mode='comment',
