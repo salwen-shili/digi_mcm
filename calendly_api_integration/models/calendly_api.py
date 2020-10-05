@@ -130,16 +130,46 @@ class Api(models.Model):
                                 if "collection" in json_data_event:
                                     collection = json_data_event["collection"]
                                     for invitee in collection:
+                                        email = invitee["email"].replace(' ', '')
+                                        email = email.lower()
                                         client = self.env['res.partner'].sudo().search(
-                                            [('email', 'ilike', invitee["email"])])
+                                            [('email', 'ilike', str(email))])
                                         user = self.env['res.users'].sudo().search(
-                                            [('login', 'ilike', invitee["email"])])
+                                            [('login', 'ilike', str(email))])
                                         # if not client:
                                         #     contact = self.env['res.partner'].sudo().create({
                                         #         'name': str(invitee["name"]),
                                         #         'email': str(invitee["email"]),
                                         #         'company_type': 'person'
                                         #     })
+                                        phone_mobile = ''
+                                        if not user:
+                                            infos = invitee["questions_and_answers"]
+                                            for inf in infos:
+                                                if (str(inf["question"]) == "Numéro de téléphone "):
+                                                    phone_mobile = str(inf["answer"])
+                                                    client = self.env['res.partner'].sudo().search(
+                                                        ['|', ('mobile', "=", phone_mobile),
+                                                         (('phone', "=", phone_mobile))])
+                                                    if client:
+                                                        user = self.env['res.users'].sudo().search(
+                                                            [('partner_id', "=", client.id)])
+                                                    else:
+                                                        phone_mobile = phone_mobile.replace(' ', '')
+                                                        client = self.env['res.partner'].sudo().search(
+                                                            ['|', ('mobile', "=", phone_mobile),
+                                                             (('phone', "=", phone_mobile))])
+                                                        if client:
+                                                            user = self.env['res.users'].sudo().search(
+                                                                [('partner_id', "=", client.id)])
+                                                        phone_mobile = phone_mobile[3:]
+                                                        phone_mobile = "0" + str(phone_mobile)
+                                                        client = self.env['res.partner'].sudo().search(
+                                                            ['|', ('mobile', "=", phone_mobile),
+                                                             (('phone', "=", phone_mobile))])
+                                                        if client:
+                                                            user = self.env['res.users'].sudo().search(
+                                                                [('partner_id', "=", client.id)])
                                         if not user:
                                             client = self.env['res.partner'].sudo().search(
                                                 [('email', 'ilike', invitee["email"])])
