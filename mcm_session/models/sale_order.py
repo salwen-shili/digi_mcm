@@ -9,7 +9,26 @@ class SaleOrder(models.Model):
 
 
     session_id=fields.Many2one('mcmacademy.session',required=False)
+    module_id = fields.Many2one('mcmacademy.module', required=False)
 
+    def action_link_contract(self):
+        orders = self.env['sale.order'].sudo().search([])
+        for order in orders:
+            if len(order.partner_id.sale_order_ids) == 1:
+                order.module_id = order.partner_id.module_id
+                if not order.session_id:
+                    order.session_id = order.partner_id.mcm_session_id
+                product = False
+                for line in order.order_line:
+                    product = line.product_id.product_tmpl_id
+                if product:
+                    module_id = self.env['mcmacademy.module'].sudo().search(
+                        [('product_id', '=', product.id), ('session_id', '=', order.session_id.id)])
+                    if module_id:
+                        for module in module_id:
+                            if order.partner_id.module_id == module:
+                                order.module_id = module
+        return True
     def _create_payment_transaction(self, vals):
         '''Similar to self.env['payment.transaction'].create(vals) but the values are filled with the
         current sales orders fields (e.g. the partner or the currency).
