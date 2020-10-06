@@ -70,6 +70,7 @@ class WebsiteSale(WebsiteSale):
                     sale_order.session_id=session
                     sale_order.partner_id.mcm_session_id = session
                 if module:
+                    sale_order.module_id=module
                     sale_order.partner_id.module_id = module
                 list=[]
                 check_portal = False
