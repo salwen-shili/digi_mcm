@@ -16,9 +16,14 @@ class AuthSignupHome(AuthSignupHome):
         """ Shared helper that creates a res.partner out of a token """
         values = {key: qcontext.get(key) for key in ('login', 'name', 'password', 'phone')}
         if not values:
-            raise UserError(_("The form was not properly filled in."))
+            raise UserError(_("Le formulaire n'est pas correctement rempli."))
         if values.get('password') != qcontext.get('confirm_password'):
-            raise UserError(_("Passwords do not match; please retype them."))
+            raise UserError(_("Les mots de passe ne correspondent pas, veuillez les saisir à nouveau."))
+        if '+33' not in values['phone']:
+            phone=values['phone']
+            phone=phone[1:]
+            phone='+33'+str(phone)
+            values['phone']=phone
         supported_lang_codes = [code for code, _ in request.env['res.lang'].get_installed()]
         lang = request.context.get('lang', '').split('_')[0]
         if lang in supported_lang_codes:
@@ -53,10 +58,10 @@ class AuthSignupHome(AuthSignupHome):
                 qcontext['error'] = e.name or e.value
             except (SignupError, AssertionError) as e:
                 if request.env["res.users"].sudo().search([("login", "=", qcontext.get("login"))]):
-                    qcontext["error"] = _("Another user is already registered using this email address.")
+                    qcontext["error"] = _("Un autre utilisateur est déjà enregistré avec cette adresse courriel.")
                 else:
                     _logger.error("%s", e)
-                    qcontext['error'] = _("Could not create a new account.")
+                    qcontext['error'] = _("Vous ne pouvez pas créer un nouveau compte.")
 
         response = request.render('auth_signup.signup', qcontext)
         response.headers['X-Frame-Options'] = 'DENY'
