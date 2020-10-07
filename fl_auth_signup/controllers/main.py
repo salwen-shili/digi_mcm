@@ -28,6 +28,7 @@ class AuthSignupHome(AuthSignupHome):
         lang = request.context.get('lang', '').split('_')[0]
         if lang in supported_lang_codes:
             values['lang'] = lang
+        values['lang'] = 'fr_FR'
         self._signup_with_values(qcontext.get('token'), values)
         request.env.cr.commit()
 
