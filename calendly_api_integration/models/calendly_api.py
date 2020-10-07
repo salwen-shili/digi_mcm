@@ -130,111 +130,115 @@ class Api(models.Model):
                                 if "collection" in json_data_event:
                                     collection = json_data_event["collection"]
                                     for invitee in collection:
-                                        email = invitee["email"].replace(' ', '')
-                                        email = email.lower()
-                                        client = self.env['res.partner'].sudo().search(
-                                            [('email', 'ilike', str(email))])
+                                        email = invitee["email"]
                                         user = self.env['res.users'].sudo().search(
                                             [('login', 'ilike', str(email))])
-                                        # if not client:
-                                        #     contact = self.env['res.partner'].sudo().create({
-                                        #         'name': str(invitee["name"]),
-                                        #         'email': str(invitee["email"]),
-                                        #         'company_type': 'person'
-                                        #     })
-                                        phone_mobile = ''
                                         if not user:
-                                            infos = invitee["questions_and_answers"]
-                                            for inf in infos:
-                                                if (str(inf["question"]) == "Numéro de téléphone "):
-                                                    phone_mobile = str(inf["answer"])
-                                                    client = self.env['res.partner'].sudo().search(
-                                                        ['|', ('mobile', "=", phone_mobile),
-                                                         (('phone', "=", phone_mobile))])
-                                                    if client:
-                                                        user = self.env['res.users'].sudo().search(
-                                                            [('partner_id', "=", client.id)])
-                                                    else:
-                                                        phone_mobile = phone_mobile.replace(' ', '')
-                                                        client = self.env['res.partner'].sudo().search(
-                                                            ['|', ('mobile', "=", phone_mobile),
-                                                             (('phone', "=", phone_mobile))])
-                                                        if client:
-                                                            user = self.env['res.users'].sudo().search(
-                                                                [('partner_id', "=", client.id)])
-                                                        phone_mobile = phone_mobile[3:]
-                                                        phone_mobile = "0" + str(phone_mobile)
-                                                        client = self.env['res.partner'].sudo().search(
-                                                            ['|', ('mobile', "=", phone_mobile),
-                                                             (('phone', "=", phone_mobile))])
-                                                        if client:
-                                                            user = self.env['res.users'].sudo().search(
-                                                                [('partner_id', "=", client.id)])
-                                        if not user:
+                                            email = invitee["email"].replace(' ', '')
+                                            email = email.lower()
                                             client = self.env['res.partner'].sudo().search(
-                                                [('email', 'ilike', invitee["email"])])
-                                            group_portal = self.env.ref('base.group_portal')
-                                            user = self.env['res.users'].sudo().create({
-                                                'name': str(invitee["name"]),
-                                                'login': str(invitee["email"]),
-                                                'groups_id': [(6, 0, [self.env.ref('base.group_portal').id])],
-                                                'email': False,
-                                                'notification_type': 'email',
-
-                                            })
-                                        user = self.env['res.users'].sudo().search(
-                                            [('login', "=", invitee["email"])])
-                                        client= False
-                                        if user:
-                                            clients = self.env['res.partner'].sudo().search(
-                                                    [('id', "=" , user.partner_id.id)])
-                                        if clients:
-                                            for client in clients:
-                                                client.email=user.login
+                                                [('email', 'ilike', str(email))])
+                                            user = self.env['res.users'].sudo().search(
+                                                [('login', 'ilike', str(email))])
+                                            # if not client:
+                                            #     contact = self.env['res.partner'].sudo().create({
+                                            #         'name': str(invitee["name"]),
+                                            #         'email': str(invitee["email"]),
+                                            #         'company_type': 'person'
+                                            #     })
+                                            phone_mobile = ''
+                                            if not user:
                                                 infos = invitee["questions_and_answers"]
                                                 for inf in infos:
-                                                    if (str(inf["question"]) == "Ville"):
-                                                        client.city = str(inf["answer"])
-                                                    if (str(inf["question"]) == "Votre adresse postale"):
-                                                        client.street = str(inf["answer"])
-                                                    if (str(inf["question"]) == "Date de naissance : JJ / MM / AAAA"):
-                                                        date_str = str(inf["answer"])
-                                                        if(len(date_str)==10 and date_str[2]=='/' and date_str[5]=='/'):
-                                                            date_object = datetime.strptime(date_str, '%d/%m/%Y').date()
-                                                            client.birthday = date_object
-                                                    if (str(inf["question"]) == "Code postale"):
-                                                        client.zip = str(inf["answer"])
-                                                    if (str(inf["question"]) == "Formation :" or str(inf["question"]) == "Formation : "):
-                                                        formation_type=str(inf["answer"]).lower()
-                                                        if (formation_type=='taxi' or formation_type=='vtc'):
-                                                            client.formation_type = str(inf["answer"]).lower()
-                                                    if (str(inf["question"]) == "Quel est votre financement"):
-                                                        if (str(inf["answer"]) == "Mon Compte Formation, CPF"):
-                                                            client.funding_type = 'cpf'
-                                                        if (str(inf["answer"]) == "Pass'formation"):
-                                                            client.funding_type = 'passformation'
-                                                        if (str(inf["answer"]) == "Personnel"):
-                                                            client.funding_type = 'perso'
-                                                        if (str(inf["answer"]) == "Pôle emploi(AIF)"):
-                                                            client.funding_type = 'pole_emploi'
-                                                    if (str(inf["question"]) == "ID POLE EMPLOI"):
-                                                        client.pole_emploi = str(inf["answer"])
-                                                    if (str(inf["question"]) == "Numéro de sécurité social"):
-                                                        client.social_security_number = str(inf["answer"])
                                                     if (str(inf["question"]) == "Numéro de téléphone "):
-                                                        client.mobile = str(inf["answer"])
-                                                    if (str(inf["question"]) == "Veuillez répondre aux questions(Case vide = Non éligible pour la formation)"):
-                                                        requis = str(inf["answer"])
-                                                        if "J'ai 3 ans de permis ou plus" in requis:
-                                                            client.driver_licence = True
-                                                        if "J'ai aucun retrait définitif du permis ces 10 dernières années" in requis:
-                                                            client.license_suspension = True
-                                                        if "J'ai un casier judiciaire vierge B2" in requis:
-                                                            client.criminal_record = True
-                                                        if client.driver_licence and client.license_suspension and client.criminal_record:
-                                                            client.statut_calendly = 'valid'
+                                                        phone_mobile = str(inf["answer"])
+                                                        client = self.env['res.partner'].sudo().search(
+                                                            ['|', ('mobile', "=", phone_mobile),
+                                                             (('phone', "=", phone_mobile))],limit=1)
+                                                        if client:
+                                                            user = self.env['res.users'].sudo().search(
+                                                                [('partner_id', "=", client.id)])
                                                         else:
-                                                            client.statut_calendly = 'waiting'
+                                                            phone_mobile = phone_mobile.replace(' ', '')
+                                                            client = self.env['res.partner'].sudo().search(
+                                                                ['|', ('mobile', "=", phone_mobile),
+                                                                 (('phone', "=", phone_mobile))],limit=1)
+                                                            if client:
+                                                                user = self.env['res.users'].sudo().search(
+                                                                    [('partner_id', "=", client.id)])
+                                                            phone_mobile = phone_mobile[3:]
+                                                            phone_mobile = "0" + str(phone_mobile)
+                                                            client = self.env['res.partner'].sudo().search(
+                                                                ['|', ('mobile', "=", phone_mobile),
+                                                                 (('phone', "=", phone_mobile))],limit=1)
+                                                            if client:
+                                                                user = self.env['res.users'].sudo().search(
+                                                                    [('partner_id', "=", client.id)])
+                                            if not user:
+                                                client = self.env['res.partner'].sudo().search(
+                                                    [('email', 'ilike', invitee["email"])])
+                                                group_portal = self.env.ref('base.group_portal')
+                                                user = self.env['res.users'].sudo().create({
+                                                    'name': str(invitee["name"]),
+                                                    'login': str(invitee["email"]),
+                                                    'groups_id': [(6, 0, [self.env.ref('base.group_portal').id])],
+                                                    'email': False,
+                                                    'notification_type': 'email',
+
+                                                })
+                                            user = self.env['res.users'].sudo().search(
+                                                [('login', "=", invitee["email"])])
+                                            client= False
+                                            if user:
+                                                clients = self.env['res.partner'].sudo().search(
+                                                        [('id', "=" , user.partner_id.id)])
+                                            if clients:
+                                                for client in clients:
+                                                    client.email=user.login
+                                                    infos = invitee["questions_and_answers"]
+                                                    for inf in infos:
+                                                        if (str(inf["question"]) == "Ville"):
+                                                            client.city = str(inf["answer"])
+                                                        if (str(inf["question"]) == "Votre adresse postale"):
+                                                            client.street = str(inf["answer"])
+                                                        if (str(inf["question"]) == "Date de naissance : JJ / MM / AAAA"):
+                                                            date_str = str(inf["answer"])
+                                                            if(len(date_str)==10 and date_str[2]=='/' and date_str[5]=='/'):
+                                                                date_object = datetime.strptime(date_str, '%d/%m/%Y').date()
+                                                                client.birthday = date_object
+                                                        if (str(inf["question"]) == "Code postale"):
+                                                            client.zip = str(inf["answer"])
+                                                        if (str(inf["question"]) == "Formation :" or str(inf["question"]) == "Formation : "):
+                                                            formation_type=str(inf["answer"]).lower()
+                                                            if (formation_type=='taxi' or formation_type=='vtc'):
+                                                                client.formation_type = str(inf["answer"]).lower()
+                                                        if (str(inf["question"]) == "Quel est votre financement"):
+                                                            if (str(inf["answer"]) == "Mon Compte Formation, CPF"):
+                                                                client.funding_type = 'cpf'
+                                                            if (str(inf["answer"]) == "Pass'formation"):
+                                                                client.funding_type = 'passformation'
+                                                            if (str(inf["answer"]) == "Personnel"):
+                                                                client.funding_type = 'perso'
+                                                            if (str(inf["answer"]) == "Pôle emploi(AIF)"):
+                                                                client.funding_type = 'pole_emploi'
+                                                        if (str(inf["question"]) == "ID POLE EMPLOI"):
+                                                            client.pole_emploi = str(inf["answer"])
+                                                        if (str(inf["question"]) == "Numéro de sécurité social"):
+                                                            client.social_security_number = str(inf["answer"])
+                                                        if (str(inf["question"]) == "Numéro de téléphone "):
+                                                            client.mobile = str(inf["answer"])
+                                                        if (str(inf["question"]) == "Veuillez répondre aux questions(Case vide = Non éligible pour la formation)"):
+                                                            requis = str(inf["answer"])
+                                                            if "J'ai 3 ans de permis ou plus" in requis:
+                                                                client.driver_licence = True
+                                                            if "J'ai aucun retrait définitif du permis ces 10 dernières années" in requis:
+                                                                client.license_suspension = True
+                                                            if "J'ai un casier judiciaire vierge B2" in requis:
+                                                                client.criminal_record = True
+                                                            if client.driver_licence and client.license_suspension and client.criminal_record:
+                                                                client.statut_calendly = 'valid'
+                                                            else:
+                                                                client.statut_calendly = 'waiting'
                                         list = []
                                         for partner in lead.partner_ids:
                                             list.append(partner.id)
