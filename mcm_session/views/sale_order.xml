@@ -14,6 +14,7 @@
                 <button name="action_link_contract" type="object" string="Lier contrats avec modules"/>
             </xpath>
             <xpath expr="//field[@name='date_order'][1]" position="replace">
+                <label for="date_order" string="Date du devis"/>
                 <field name="date_order" nolabel="1" string="Date de devis"
                        attrs="{'invisible': [('state', 'in', ['sale', 'done', 'cancel'])]}"/>
             </xpath>
