@@ -38,6 +38,11 @@ class Module(models.Model):
                 rec.published = False
             if rec.number_places_available <= 0 :
                 rec.website_published=False
+                if rec.next_module:
+                    session=rec.session_id
+                    for prospect in session.prospect_ids:
+                            prospect.module_id=rec.next_module
+                            prospect.mcm_session_id=rec.next_module.session_id
             else:
                 rec.website_published=True
             return rec.number_places_available
