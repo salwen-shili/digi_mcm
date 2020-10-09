@@ -9,6 +9,8 @@ class Module(models.Model):
     id_edof=fields.Char("ID Formation EDOF")
     max_number_places=fields.Integer("Nombre des places maximales")
     number_places_available=fields.Integer("Nombre des places disponibles" , compute='get_number_places_available',store=True,default=0)
+    published=fields.Boolean('publié',default=False)
+    next_module=fields.Many2one('mcmacademy.module','Module suivant')
 
     @api.depends('max_number_places','session_id.client_ids')
     def get_number_places_available(self):
@@ -19,17 +21,21 @@ class Module(models.Model):
                     if client.module_id.id==rec.id and client.statut=='won':
                         count+=1
             rec.number_places_available=rec.max_number_places-count
-            if rec.number_places_available ==3:
-                vals = {
-                    'partner_email': '',
-                    'partner_id': False,
-                    'description': 'Bonjour /n Le nombre des places du module %s de la session %s est assez petit /n  Veuillez créer une nouvelle session ' % (rec.name,rec.session_id.name),
-                    'name': '%s : Nombre des places assez petit pour  %s ' % (rec.session_id.name,rec.name),
-                    'team_id': self.env['helpdesk.team'].sudo().search([('name', 'like', 'Clientèle')],
-                                                                          limit=1).id,
-                }
-                new_ticket = self.env['helpdesk.ticket'].sudo().create(
-                    vals)
+            # if rec.number_places_available ==3:
+            #     vals = {
+            #         'partner_email': '',
+            #         'partner_id': False,
+            #         'description': 'Bonjour /n Le nombre des places du module %s de la session %s est assez petit /n  Veuillez créer une nouvelle session ' % (rec.name,rec.session_id.name),
+            #         'name': '%s : Nombre des places assez petit pour  %s ' % (rec.session_id.name,rec.name),
+            #         'team_id': self.env['helpdesk.team'].sudo().search([('name', 'like', 'Clientèle')],
+            #                                                               limit=1).id,
+            #     }
+            #     new_ticket = self.env['helpdesk.ticket'].sudo().create(
+            #         vals)
+            if rec.number_places_available <= 3:
+                rec.published=True
+            else:
+                rec.published = False
             if rec.number_places_available <= 0 :
                 rec.website_published=False
             else:

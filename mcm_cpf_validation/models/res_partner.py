@@ -3,6 +3,7 @@
 
 from odoo import fields, models,api,_
 from odoo.exceptions import AccessError, UserError, ValidationError
+from odoo.http import request
 
 class resPartner(models.Model):
     _inherit = "res.partner"
@@ -124,16 +125,29 @@ class resPartner(models.Model):
 
 
     def write(self, vals):
-        # if 'statut' in vals:
-        #     if vals['statut']=='won':
-        #         if(self.module_id):
-        #             if (self.module_id.number_places_available <= 0):
-        #                 raise ValidationError(_('Le nombre de places disponibles est atteint, basculer le condidat vers la prochaine session.'))
-        # if 'module_id' in vals:
-        #     # if self.statut == 'won' and self.statut == 'finalized':
-        #         module = self.env['mcmacademy.module'].sudo().search([('id', '=', vals['module_id'])])
-        #         if (module.number_places_available <= 0):
-        #             raise ValidationError(_('Le nombre de places disponibles est atteint, basculer le condidat vers la prochaine session.'))
+        User = request.env.user
+        check_portal = False
+        if User.user_has_groups('base.group_portal'):
+            check_portal = True
+        if 'statut' in vals and 'module_id' not in vals:
+            if check_portal == False:
+                if vals['statut']=='won':
+                    if (self.module_id.number_places_available <= 0):
+                        raise ValidationError(_('Le nombre de places disponibles est atteint, basculer le condidat vers la prochaine session.'))
+        if 'module_id' in vals  and 'statut' not in vals:
+            if check_portal == False:
+            # if self.statut == 'won' and self.statut == 'finalized':
+                module = self.env['mcmacademy.module'].sudo().search([('id', '=', vals['module_id'])])
+                if module:
+                    if (self.module_id.id != module.id):
+                        if (module.number_places_available <= 0):
+                            raise ValidationError(_('Le nombre de places disponibles est atteint, basculer le condidat vers la prochaine session.'))
+        if 'module_id' in vals  and 'statut'  in vals:
+            if check_portal == False:
+                module = self.env['mcmacademy.module'].sudo().search([('id', '=', vals['module_id'])])
+                if module:
+                    if ((vals['statut'] == 'won') and (module.number_places_available <= 0)) :
+                        raise ValidationError(_('Le nombre de places disponibles est atteint, basculer le condidat vers la prochaine session.'))
         partner = super(resPartner, self).write(vals)
         if self.mcm_session_id:
             check_portal = False
@@ -150,6 +164,14 @@ class resPartner(models.Model):
                         list.append(client.id)
                     list.append(self.id)
                     self.mcm_session_id.write({'client_ids': [(6, 0, list)]})
+                    if self.module_id:
+                        compteur=0
+                        for client in self.mcm_session_id.client_ids:
+                            if client.module_id==self.module_id:
+                                compteur+=1
+                        print('compteur')
+                        print(compteur)
+                        self.module_id.number_places_available=self.module_id.max_number_places-compteur
 
                     list = []
                     for client in self.mcm_session_id.prospect_ids:

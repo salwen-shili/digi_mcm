@@ -9,6 +9,8 @@
                 <field name="id_edof"/>
                 <field name="max_number_places"/>
                 <field name="number_places_available"/>
+                <field name="published" invisible="1"/>
+                <field name="next_module" attrs="{'invisible' : [('published', '=', False)]}"  domain="[('product_id', '=', product_id)]"/>
             </xpath>
         </field>
     </record>

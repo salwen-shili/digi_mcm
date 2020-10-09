@@ -77,3 +77,12 @@ class SaleOrder(models.Model):
             transaction.s2s_do_transaction()
 
         return transaction
+
+    def _unlink_quotations(self):
+        quotations=self.env['sale.order'].sudo().search([('state',"=",'draft')])
+        if quotations:
+            for quotation in quotations:
+                if (quotation.partner_id.mode_de_financement != 'cpf'):
+                    for line in quotation.order_line:
+                        line.sudo().unlink()
+                    quotation.sudo().unlink()
