@@ -10,9 +10,6 @@
                 <field name="module_id"
                        domain="[('session_id', '=', session_id)]"/>
             </xpath>
-            <xpath expr="//header//button[@name='action_draft']" position="after">
-                <button name="action_link_contract" type="object" string="Lier contrats avec modules"/>
-            </xpath>
             <xpath expr="//div[hasclass('o_td_label')][1]" position="replace">
                 <div class="o_td_label"
                      attrs="{'invisible': [('state', 'in', ['sale', 'done', 'cancel'])]}">
