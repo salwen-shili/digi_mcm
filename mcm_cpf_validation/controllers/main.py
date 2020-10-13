@@ -50,6 +50,7 @@ class ClientCPFController(http.Controller):
         email = str(email).lower()
         user = request.env['res.users'].sudo().search([('login', "=", email)])
         if user:
+            user.partner_id.mode_de_financement = 'cpf'
             user.partner_id.statut_cpf = 'accepted'
             user.partner_id.statut = 'won'
             return request.render("mcm_cpf_validation.mcm_website_cpf_accepted")
