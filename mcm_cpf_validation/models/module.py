@@ -12,7 +12,7 @@ class Module(models.Model):
     published=fields.Boolean('publié',default=False)
     next_module=fields.Many2one('mcmacademy.module','Module suivant')
 
-    @api.depends('max_number_places','session_id.client_ids')
+    @api.onchange('max_number_places','session_id.client_ids')
     def get_number_places_available(self):
         for rec in self:
             count = 0
