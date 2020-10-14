@@ -123,31 +123,35 @@ class resPartner(models.Model):
                     partner.mcm_session_id.write({'panier_perdu_ids': [(6, 0, list)]})
         return partner
 
-
     def write(self, vals):
         User = request.env.user
         check_portal = False
+        group_portal = self.env.ref('base.group_portal')
         if User.user_has_groups('base.group_portal'):
             check_portal = True
         if 'statut' in vals and 'module_id' not in vals:
             if check_portal == False:
-                if vals['statut']=='won':
+                if vals['statut'] == 'won':
                     if (self.module_id.number_places_available <= 0):
-                        raise ValidationError(_('Le nombre de places disponibles est atteint, basculer le condidat vers la prochaine session.'))
-        if 'module_id' in vals  and 'statut' not in vals:
+                        raise ValidationError(_(
+                            'Le nombre de places disponibles est atteint, basculer le condidat vers la prochaine session.'))
+        if 'module_id' in vals and 'statut' not in vals:
             if check_portal == False:
-            # if self.statut == 'won' and self.statut == 'finalized':
+                # if self.statut == 'won' and self.statut == 'finalized':
                 module = self.env['mcmacademy.module'].sudo().search([('id', '=', vals['module_id'])])
                 if module:
                     if (self.module_id.id != module.id):
                         if (module.number_places_available <= 0):
-                            raise ValidationError(_('Le nombre de places disponibles est atteint, basculer le condidat vers la prochaine session.'))
-        if 'module_id' in vals  and 'statut'  in vals:
+                            raise ValidationError(_(
+                                'Le nombre de places disponibles est atteint, basculer le condidat vers la prochaine session.'))
+        if 'module_id' in vals and 'statut' in vals:
+            print('test3')
             if check_portal == False:
                 module = self.env['mcmacademy.module'].sudo().search([('id', '=', vals['module_id'])])
                 if module:
-                    if ((vals['statut'] == 'won') and (module.number_places_available <= 0)) :
-                        raise ValidationError(_('Le nombre de places disponibles est atteint, basculer le condidat vers la prochaine session.'))
+                    if ((vals['statut'] == 'won') and (module.number_places_available <= 0)):
+                        raise ValidationError(_(
+                            'Le nombre de places disponibles est atteint, basculer le condidat vers la prochaine session.'))
         partner = super(resPartner, self).write(vals)
         if self.mcm_session_id:
             check_portal = False
@@ -165,13 +169,11 @@ class resPartner(models.Model):
                     list.append(self.id)
                     self.mcm_session_id.write({'client_ids': [(6, 0, list)]})
                     if self.module_id:
-                        compteur=0
+                        compteur = 0
                         for client in self.mcm_session_id.client_ids:
-                            if client.module_id==self.module_id:
-                                compteur+=1
-                        print('compteur')
-                        print(compteur)
-                        self.module_id.number_places_available=self.module_id.max_number_places-compteur
+                            if client.module_id == self.module_id:
+                                compteur += 1
+                        self.module_id.number_places_available = self.module_id.max_number_places - compteur
 
                     list = []
                     for client in self.mcm_session_id.prospect_ids:
@@ -240,24 +242,24 @@ class resPartner(models.Model):
                         if client.id != self.id:
                             list.append(client.id)
                     self.mcm_session_id.write({'prospect_ids': [(6, 0, list)]})
-
                 if self.statut == 'perdu' or self.statut == 'canceled':
                     list = []
                     for client in self.mcm_session_id.canceled_prospect_ids:
                         list.append(client.id)
                     list.append(self.id)
                     self.mcm_session_id.write({'canceled_prospect_ids': [(6, 0, list)]})
+
                     list = []
                     for client in self.mcm_session_id.client_ids:
                         if client.id != self.id:
-                            list.append(self.id)
+                            list.append(client.id)
                     self.mcm_session_id.write({'client_ids': [(6, 0, list)]})
 
                     list = []
-                    for client in self.mcm_session_id.panier_perdu_ids:
+                    for client in self.mcm_session_id.prospect_ids:
                         if client.id != self.id:
                             list.append(client.id)
-                    self.mcm_session_id.write({'panier_perdu_ids': [(6, 0, list)]})
+                    self.mcm_session_id.write({'prospect_ids': [(6, 0, list)]})
 
                     list = []
                     for client in self.mcm_session_id.panier_perdu_ids:
