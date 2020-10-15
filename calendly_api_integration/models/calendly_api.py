@@ -239,8 +239,8 @@ class Api(models.Model):
                                                                 client.statut_calendly = 'valid'
                                                             else:
                                                                 client.statut_calendly = 'waiting'
-                                        list = []
-                                        for partner in lead.partner_ids:
-                                            list.append(partner.id)
-                                        list.append(client.id)
-                                        lead.write({'partner_ids': [(6, 0, list)]})
+                                                    list = []
+                                                    for partner in lead.partner_ids:
+                                                        list.append(partner.id)
+                                                    list.append(client.id)
+                                                    lead.write({'partner_ids': [(6, 0, list)]})
