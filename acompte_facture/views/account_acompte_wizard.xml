@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <!-- wizard facture acompte form view -->
+        <record model="ir.ui.view" id="mcmacademy_acount_move_wizard_acompte_form_view">
+            <field name="name">account.move.acompte.form</field>
+            <field name="model">account.invoice.acompte.wizard</field>
+            <field name="arch" type="xml">
+                <form string="Créer une facture d’acompte">
+                    <sheet>
+                        <group>
+                            <label for="amount"/>
+                            <div name="amount_div" class="o_row">
+                                <field name="amount"/>
+                                <field name="currency_id" options="{'no_create': True, 'no_open': True}"
+                                       groups="base.group_multi_currency"/>
+                            </div>
+                            <label for="pourcentage"/>
+                            <div class="o_row">
+                                <field name="pourcentage" class="oe_inline"/>
+                                <span class="oe_inline">%</span>
+                            </div>
+                        </group>
+                    </sheet>
+                    <footer>
+                        <button string="Créer" name="action_create_acompte"
+                                type="object" class="btn-primary"/>
+                        <button string="Annuler" class="btn-secondary" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <!-- facture acompte tree/list view -->
+        <record model="ir.ui.view" id="mcmacademy_acount_move_wizard_acompte_tree_view">
+            <field name="name">account.move.acompte.tree</field>
+            <field name="model">account.invoice.acompte.wizard</field>
+            <field name="arch" type="xml">
+                <tree string="Facture acompte">
+                    <field name="invoice_id"/>
+                    <field name="amount"/>
+                    <field name="pourcentage"/>
+                </tree>
+            </field>
+        </record>
+
+    </data>
+</odoo>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="mcmacademy_view_account_move_button_acompte" model="ir.ui.view">
+        <field name="name">account.move.form</field>
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="account.view_move_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//button[@name='action_reverse']" position="after">
+                <button name="action_create_acompte" id="account_invoice_acompte_btn" type="object" context="{'default_amount': amount_total}"
+                        attrs="{'invisible': ['|', '|', ('state', '!=', 'posted'), ('invoice_payment_state', '!=', 'not_paid'), ('type', 'not in', ('out_invoice'))]}"
+                        string="Créer une facture d’acompte" groups="account.group_account_invoice"/>
+            </xpath>
+            <xpath expr="//field[@name='amount_untaxed']" position="before">
+                <label for="pourcentage_acompte"/>
+                <div class="oe_subtotal_footer_separator">
+                    <field name="pourcentage_acompte" class="oe_inline"  attrs="{'invisible': [('pourcentage_acompte', '=', False)]}"/><span class="oe_inline">%</span>
+                </div>
+            </xpath>
+        </field>
+    </record>
+</odoo>

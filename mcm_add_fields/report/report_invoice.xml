@@ -41,7 +41,7 @@
                         <strong>Destinataire:</strong>
                         <t t-if="o.partner_id.company_name">
                             <span class="m-0" t-field="o.partner_id.company_name"/>
-                             <br/>
+                            <br/>
                             <strong>Stagiaire:</strong>
                             <span class="m-0" t-field="o.partner_id.name"/>
                         </t>
@@ -91,10 +91,10 @@
                             <span>Durée de la formation:</span>
                             <span t-field="o.partner_id.module_id.duree"/>h
                         </h6>
-<!--                        <h6 invisible="1">-->
-<!--                            <span>Reference:</span>-->
-<!--                            <span t-field="o.partner_id.module_id.duree"/>-->
-<!--                        </h6>-->
+                        <!--                        <h6 invisible="1">-->
+                        <!--                            <span>Reference:</span>-->
+                        <!--                            <span t-field="o.partner_id.module_id.duree"/>-->
+                        <!--                        </h6>-->
 
                     </div>
                     <div class="col-auto mw-200 mb-4" name="reference" invisible="1" style="visibility:hidden;">
@@ -197,6 +197,37 @@
                                 </tr>
                             </t>
                         </t>
+                        <t t-if="o.acompte_invoice">
+                            <tr>
+                                <td name="account_invoice_acompte_name" class="text-center"
+                                    style="border: 1px solid black;">
+                                    <t t-foreach="o.invoice_line_ids"
+                                       t-as="line">
+                                        <strong>
+                                            <span t-options="{'widget': 'text'}">Acompte</span>
+                                            <span t-field="line.name" t-options="{'widget': 'text'}"/>
+                                            <span t-field="o.pourcentage_acompte" t-options="{'widget': 'text'}"/>
+                                            <span t-options="{'widget': 'text'}">%</span>
+                                        </strong>
+                                    </t>
+                                </td>
+                                <td class="text-center" style="border: 1px solid black;">
+                                    <t t-foreach="o.invoice_line_ids"
+                                       t-as="line">
+                                        <span t-field="line.quantity"/>
+                                        <span t-field="line.product_uom_id" groups="uom.group_uom"/>
+                                    </t>
+                                </td>
+                                <td name="account_invoice_account_amount" class="text-center"
+                                    style="border: 1px solid black;">
+                                    <span t-field="o.amount_total"/>
+                                </td>
+                                <td name="account_invoice_account_amount" class="text-center"
+                                    style="border: 1px solid black;">
+                                    <span t-field="o.amount_total"/>
+                                </td>
+                            </tr>
+                        </t>
                     </tbody>
                 </table>
                 <br></br>
@@ -255,7 +286,8 @@
                         </p>
                     </div>
                     <div class="col-2">
-                        <span t-if="o.invoice_payment_state=='paid' and o.state=='posted'" style="color: #B22222;" class="text-right">
+                        <span t-if="o.invoice_payment_state=='paid' and o.state=='posted'" style="color: #B22222;"
+                              class="text-right">
                             <strong>Facture
                                 acquittée
                             </strong>
@@ -345,16 +377,16 @@
                     </div>
                 </div>
             </xpath>
-<!--            <xpath expr="//div[hasclass('page')]//p[3]" position="replace">-->
-<!--                <p t-if="o.invoice_payment_term_id" name="payment_term">-->
-<!--                    <span></span>-->
-<!--                </p>-->
-<!--            </xpath>-->
-<!--            <xpath expr="//div[hasclass('page')]//p[4]" position="replace">-->
-<!--                <p t-if="o.fiscal_position_id.note" name="note">-->
-<!--                    <span></span>-->
-<!--                </p>-->
-<!--            </xpath>-->
+            <!--            <xpath expr="//div[hasclass('page')]//p[3]" position="replace">-->
+            <!--                <p t-if="o.invoice_payment_term_id" name="payment_term">-->
+            <!--                    <span></span>-->
+            <!--                </p>-->
+            <!--            </xpath>-->
+            <!--            <xpath expr="//div[hasclass('page')]//p[4]" position="replace">-->
+            <!--                <p t-if="o.fiscal_position_id.note" name="note">-->
+            <!--                    <span></span>-->
+            <!--                </p>-->
+            <!--            </xpath>-->
             <xpath expr="//div[@id='qrcode']" position="replace">
                 <div id="qrcode"
                      t-if="(o.company_id.qr_code) and (o.currency_id.name == 'EUR') and (o.invoice_partner_bank_id.acc_number != False)">
