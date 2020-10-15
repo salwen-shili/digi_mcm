@@ -86,3 +86,10 @@ class SaleOrder(models.Model):
                     for line in quotation.order_line:
                         line.sudo().unlink()
                     quotation.sudo().unlink()
+    def _track_subtype(self, init_values):
+        self.ensure_one()
+        if 'state' in init_values and self.state == 'sale':
+            return self.env.ref('mcm_session.mcm_mt_order_confirmed')
+        elif 'state' in init_values and self.state == 'sent':
+            return self.env.ref('mcm_session.mcm_mt_order_sent')
+        return super(SaleOrder, self)._track_subtype(init_values)

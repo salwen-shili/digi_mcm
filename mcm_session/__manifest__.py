@@ -43,6 +43,7 @@ ajouter un ensemble des sessions et des modules lié au session
         'views/sale_order.xml',
         'views/res_partner_session_wizard.xml',
         'data/payment_stripe_3X.xml',
+        'data/mail_data.xml',
         'security/ir.model.access.csv',
     ],
     'qweb': [],
