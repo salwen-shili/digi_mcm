@@ -52,7 +52,6 @@ class ClientCPFController(http.Controller):
         if user:
             user.partner_id.mode_de_financement = 'cpf'
             user.partner_id.statut_cpf = 'accepted'
-            user.partner_id.statut = 'won'
             module_id = request.env['mcmacademy.module'].sudo().search([('id_edof', "=", str(module))], limit=1)
             if module_id:
                 product_id = request.env['product.product'].sudo().search(
@@ -96,12 +95,13 @@ class ClientCPFController(http.Controller):
                 so.sudo().write({'state': 'sent'})
                 so.module_id=module_id
                 so.session_id=module_id.session_id
+                user.partner_id.statut = 'won'
                 return request.render("mcm_cpf_validation.mcm_website_cpf_accepted")
             else:
                 vals = {
                     'partner_email': '',
                     'partner_id': False,
-                    'description': 'CPF: id module edof %s non trouvé en session %s' % (module, module.session_id.name),
+                    'description': 'CPF: id module edof %s non trouvé' % (module),
                     'name': 'CPF : ID module edof non trouvé ',
                     'team_id': request.env['helpdesk.team'].sudo().search([('name', 'like', 'Client')],
                                                                           limit=1).id,
