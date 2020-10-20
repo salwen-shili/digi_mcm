@@ -44,7 +44,7 @@ class WebsiteSale(WebsiteSale):
         # Needed to trigger the recently viewed product rpc
         view_track = request.website.viewref("website_sale.product").track
         modules = request.env['mcmacademy.module'].sudo().search(
-            [('product_id', '=', product.id)])
+            [('product_id', '=', product.id),('website_published',"=",True)])
         list_module=[]
         for module in modules:
             if module.session_id.stage_id.name==_('Planifiées'):
