@@ -181,9 +181,8 @@ class CustomerPortal(CustomerPortal):
                         'owner_id': http.request.env.user.id}
                     vals_list.append(vals)
                     document = request.env['documents.document'].sudo().search(
-                        ['|',('code_document', "=", 'identity_1'),('code_document', "=", 'identity')], limit=1)
+                        ['|','&',('code_document', "=", 'identity_1'),('code_document', "=", 'identity'),('partner_id','=',partner_id)], limit=1)
                     if document:
-                        print('document1')
                         document = document.sudo().write(vals)
                     else:
                         document = request.env['documents.document'].sudo().create(vals_list)
@@ -199,7 +198,7 @@ class CustomerPortal(CustomerPortal):
                         'owner_id': http.request.env.user.id}
                     vals_list.append(vals)
                     document = request.env['documents.document'].sudo().search(
-                        [('code_document', "=", 'identity_2')], limit=1)
+                        [('code_document', "=", 'identity_2'),('partner_id','=',partner_id)], limit=1)
                     if document:
                         document = document.sudo().write(vals)
                     else:
@@ -218,7 +217,7 @@ class CustomerPortal(CustomerPortal):
                         'owner_id': http.request.env.user.id}
                     vals_list.append(vals)
                     document = request.env['documents.document'].sudo().search(
-                        [('code_document', "=", 'identity')], limit=1)
+                        [('code_document', "=", 'identity'),('partner_id','=',partner_id)], limit=1)
                     if document:
                         document = document.sudo().write(vals)
                     else:
@@ -243,7 +242,7 @@ class CustomerPortal(CustomerPortal):
                         'owner_id': http.request.env.user.id}
                     vals_list.append(vals)
                     document = request.env['documents.document'].sudo().search(
-                        ['|',('code_document', "=", 'permis_1'),('code_document', "=", 'permis')], limit=1)
+                        ['|','&',('code_document', "=", 'permis_1'),('code_document', "=", 'permis'),('partner_id','=',partner_id)], limit=1)
                     if document:
                         document = document.sudo().write(vals)
                     else:
@@ -260,7 +259,7 @@ class CustomerPortal(CustomerPortal):
                         'owner_id': http.request.env.user.id}
                     vals_list.append(vals)
                     document = request.env['documents.document'].sudo().search(
-                        [('code_document', "=", 'permis_2')], limit=1)
+                        [('code_document', "=", 'permis_2'),('partner_id','=',partner_id)], limit=1)
                     if document:
                         document = document.sudo().write(vals)
                     else:
@@ -279,7 +278,7 @@ class CustomerPortal(CustomerPortal):
                         'owner_id': http.request.env.user.id}
                     vals_list.append(vals)
                     document = request.env['documents.document'].sudo().search(
-                        [('code_document', "=", 'permis')], limit=1)
+                        [('code_document', "=", 'permis'),('partner_id','=',partner_id)], limit=1)
                     if document:
                         document = document.sudo().write(vals)
                     else:
@@ -301,7 +300,7 @@ class CustomerPortal(CustomerPortal):
                         'owner_id': http.request.env.user.id}
                     vals_list.append(vals)
                     document = request.env['documents.document'].sudo().search(
-                        [('code_document', "=", 'domicile')], limit=1)
+                        [('code_document', "=", 'domicile'),('partner_id','=',partner_id)], limit=1)
                     if document:
                         document = document.sudo().write(vals)
                     else:
@@ -336,7 +335,7 @@ class CustomerPortal(CustomerPortal):
                         'owner_id': http.request.env.user.id}
                     vals_list.append(vals)
                     document = request.env['documents.document'].sudo().search(
-                        [('code_document', "=", 'carte_exam')], limit=1)
+                        [('code_document', "=", 'carte_exam'),('partner_id','=',partner_id)], limit=1)
                     if document:
                         document = document.sudo().write(vals)
                     else:
@@ -359,7 +358,7 @@ class CustomerPortal(CustomerPortal):
                         'owner_id': http.request.env.user.id}
                     vals_list.append(vals)
                     document = request.env['documents.document'].sudo().search(
-                        [('code_document', "=", 'hebergement')], limit=1)
+                        [('code_document', "=", 'hebergement'),('partner_id','=',partner_id)], limit=1)
                     if document:
                         document = document.sudo().write(vals)
                     else:
@@ -385,7 +384,7 @@ class CustomerPortal(CustomerPortal):
                         'owner_id': http.request.env.user.id}
                     vals_list.append(vals)
                     document = request.env['documents.document'].sudo().search(
-                        ['|',('code_document', "=", 'hebergeur_identity_1'),('code_document', "=", 'hebergeur_identity')], limit=1)
+                        ['|','&',('code_document', "=", 'hebergeur_identity_1'),('code_document', "=", 'hebergeur_identity'),('partner_id','=',partner_id)], limit=1)
                     if document:
                         print('document1')
                         document = document.sudo().write(vals)
@@ -403,7 +402,7 @@ class CustomerPortal(CustomerPortal):
                         'owner_id': http.request.env.user.id}
                     vals_list.append(vals)
                     document = request.env['documents.document'].sudo().search(
-                        [('code_document', "=", 'hebergeur_identity_2')], limit=1)
+                        [('code_document', "=", 'hebergeur_identity_2'),('partner_id','=',partner_id)], limit=1)
                     if document:
                         document = document.sudo().write(vals)
                     else:
@@ -422,7 +421,7 @@ class CustomerPortal(CustomerPortal):
                         'owner_id': http.request.env.user.id}
                     vals_list.append(vals)
                     document = request.env['documents.document'].sudo().search(
-                        [('code_document', "=", 'hebergeur_identity')], limit=1)
+                        [('code_document', "=", 'hebergeur_identity'),('partner_id','=',partner_id)], limit=1)
                     if document:
                         document = document.sudo().write(vals)
                     else:
