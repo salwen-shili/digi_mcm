@@ -54,6 +54,8 @@ class ClientCPFController(http.Controller):
             user.partner_id.statut_cpf = 'accepted'
             module_id = request.env['mcmacademy.module'].sudo().search([('id_edof', "=", str(module))], limit=1)
             if module_id:
+                user.partner_id.module_id = module_id
+                user.partner_id.mcm_session_id = module_id.session_id
                 product_id = request.env['product.product'].sudo().search(
                     [('product_tmpl_id', '=', module_id.product_id.id)])
                 user.partner_id.mcm_session_id = module_id.session_id
