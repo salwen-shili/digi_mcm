@@ -116,7 +116,9 @@ class CustomerPortal(CustomerPortal):
     @http.route(['/submitted/document'], type="http", auth="user", methods=['POST'], website=True, csrf=False)
     def submit_documents(self, **kw):
         partner_id = http.request.env.user.partner_id
-        folder_id = request.env['documents.folder'].sudo().search([('name', "=" , _('Documents Clients'))])
+        print('partner')
+        print(partner_id.name)
+        folder_id = request.env['documents.folder'].sudo().search([('name', "=", _('Documents Clients'))])
         if not folder_id:
             vals_list = []
             vals = {
@@ -134,30 +136,33 @@ class CustomerPortal(CustomerPortal):
         files_identity = request.httprequest.files.getlist('identity[]')
         files_permis = request.httprequest.files.getlist('permis[]')
         files_domicile = request.httprequest.files.getlist('domicile[]')
-        check=False
-        error_identity=''
-        error_identity_number=''
-        error_permis=''
-        error_permis_number=''
-        error_domicile=''
-        if(len(files_identity)==0):
-            check=True
-            error_identity='error'
-        if(len(files_permis)==0):
-            check=True
-            error_permis='error'
+        check = False
+        error_identity = ''
+        error_identity_number = ''
+        error_permis = ''
+        error_permis_number = ''
+        error_domicile = ''
+        if (len(files_identity) == 0):
+            check = True
+            error_identity = 'error'
+        if (len(files_permis) == 0):
+            check = True
+            error_permis = 'error'
         if not (kw.get('number')):
-            check=True
-            error_identity_number='error'
-        if(len(files_domicile)==0):
-            check=True
-            error_domicile='error'
+            check = True
+            error_identity_number = 'error'
+        if (len(files_domicile) == 0):
+            check = True
+            error_domicile = 'error'
         if not (kw.get('number_permis')):
-            check=True
-            error_permis_number='error'
-        if check==True:
-            return request.render("mcm_contact_documents.mcm_contact_documents_new_documents", {'partner_id':partner_id ,'error_identity':error_identity,'error_permis':error_permis,'error_identity_number':error_identity_number,'error_permis_number':error_permis_number,'error_domicile':error_domicile})
-        if(len(files_identity) >2 or len(files_permis) > 2):
+            check = True
+            error_permis_number = 'error'
+        if check == True:
+            return request.render("mcm_contact_documents.mcm_contact_documents_new_documents",
+                                  {'partner_id': partner_id, 'error_identity': error_identity,
+                                   'error_permis': error_permis, 'error_identity_number': error_identity_number,
+                                   'error_permis_number': error_permis_number, 'error_domicile': error_domicile})
+        if (len(files_identity) > 2 or len(files_permis) > 2):
             name = http.request.env.user.name
             email = http.request.env.user.email
             return request.redirect('/new_documents')
@@ -174,14 +179,16 @@ class CustomerPortal(CustomerPortal):
                         'name': "Pièce d'identité Recto " + str(partner_id.name),
                         'datas': datas,
                         'folder_id': int(folder_id),
-                        'code_document':'identity_1',
+                        'code_document': 'identity_1',
                         'partner_id': int(partner_id),
                         'attachment_number': kw.get('number'),
                         'confirmation': kw.get('confirmation'),
                         'owner_id': http.request.env.user.id}
                     vals_list.append(vals)
                     document = request.env['documents.document'].sudo().search(
-                        ['|','&',('code_document', "=", 'identity_1'),('code_document', "=", 'identity'),('partner_id','=',partner_id)], limit=1)
+                        ['|', '&', ('code_document', "=", 'identity_1'), ('owner_id', "=", http.request.env.user.id),
+                         ('code_document', "=", 'identity')
+                         ], limit=1)
                     if document:
                         document = document.sudo().write(vals)
                     else:
@@ -198,12 +205,12 @@ class CustomerPortal(CustomerPortal):
                         'owner_id': http.request.env.user.id}
                     vals_list.append(vals)
                     document = request.env['documents.document'].sudo().search(
-                        [('code_document', "=", 'identity_2'),('partner_id','=',partner_id)], limit=1)
+                        [('code_document', "=", 'identity_2'), ('owner_id', '=', http.request.env.user.id)], limit=1)
                     if document:
                         document = document.sudo().write(vals)
                     else:
                         document = request.env['documents.document'].sudo().create(vals_list)
-                elif len(files) ==1:
+                elif len(files) == 1:
                     datas = base64.encodebytes(files[0].read())
                     vals_list = []
                     vals = {
@@ -217,10 +224,11 @@ class CustomerPortal(CustomerPortal):
                         'owner_id': http.request.env.user.id}
                     vals_list.append(vals)
                     document = request.env['documents.document'].sudo().search(
-                        [('code_document', "=", 'identity'),('partner_id','=',partner_id)], limit=1)
+                        [('code_document', "=", 'identity'), ('owner_id', '=', http.request.env.user.id)], limit=1)
                     if document:
                         document = document.sudo().write(vals)
                     else:
+                        print('document not found')
                         document = request.env['documents.document'].sudo().create(vals_list)
             except Exception as e:
                 logger.exception("Fail to upload document ")
@@ -235,14 +243,16 @@ class CustomerPortal(CustomerPortal):
                         'name': "Permis de conduire Recto " + str(partner_id.name),
                         'datas': datas,
                         'folder_id': int(folder_id),
-                        'code_document':'permis_1',
+                        'code_document': 'permis_1',
                         'partner_id': int(partner_id),
                         'attachment_number': kw.get('number_permis'),
                         'confirmation': kw.get('confirmation_permis'),
                         'owner_id': http.request.env.user.id}
                     vals_list.append(vals)
                     document = request.env['documents.document'].sudo().search(
-                        ['|','&',('code_document', "=", 'permis_1'),('code_document', "=", 'permis'),('partner_id','=',partner_id)], limit=1)
+                        ['|', '&', ('code_document', "=", 'permis_1'), ('owner_id', '=', http.request.env.user.id),
+                         ('code_document', "=", 'permis')
+                         ], limit=1)
                     if document:
                         document = document.sudo().write(vals)
                     else:
@@ -259,12 +269,12 @@ class CustomerPortal(CustomerPortal):
                         'owner_id': http.request.env.user.id}
                     vals_list.append(vals)
                     document = request.env['documents.document'].sudo().search(
-                        [('code_document', "=", 'permis_2'),('partner_id','=',partner_id)], limit=1)
+                        [('code_document', "=", 'permis_2'), ('owner_id', '=', http.request.env.user.id)], limit=1)
                     if document:
                         document = document.sudo().write(vals)
                     else:
                         document = request.env['documents.document'].sudo().create(vals_list)
-                elif len(files) ==1:
+                elif len(files) == 1:
                     datas = base64.encodebytes(files[0].read())
                     vals_list = []
                     vals = {
@@ -278,10 +288,12 @@ class CustomerPortal(CustomerPortal):
                         'owner_id': http.request.env.user.id}
                     vals_list.append(vals)
                     document = request.env['documents.document'].sudo().search(
-                        [('code_document', "=", 'permis'),('partner_id','=',partner_id)], limit=1)
+                        [('code_document', "=", 'permis'), ('owner_id', '=', http.request.env.user.id)], limit=1)
                     if document:
+                        print('permis found')
                         document = document.sudo().write(vals)
                     else:
+                        print('permis not found')
                         document = request.env['documents.document'].sudo().create(vals_list)
             except Exception as e:
                 logger.exception("Fail to upload document ")
@@ -300,7 +312,7 @@ class CustomerPortal(CustomerPortal):
                         'owner_id': http.request.env.user.id}
                     vals_list.append(vals)
                     document = request.env['documents.document'].sudo().search(
-                        [('code_document', "=", 'domicile'),('partner_id','=',partner_id)], limit=1)
+                        [('code_document', "=", 'domicile'), ('owner_id', '=', http.request.env.user.id)], limit=1)
                     if document:
                         document = document.sudo().write(vals)
                     else:
@@ -314,18 +326,22 @@ class CustomerPortal(CustomerPortal):
                 if files:
                     datas = base64.encodebytes(files[0].read())
                     vals_list = []
-                    name='Document '
+                    name = 'Document '
                     if partner_id.module_id:
-                        if partner_id.module_id.product_id.name in ('Formation intensive VTC','Formation intensive TAXI','Formation intensive VMDTR'):
-                            name='Reçu de paiement de l’examen CMA '
-                        elif partner_id.module_id.product_id.name in ('Formation continue TAXI','Formation continue VTC','Formation continue VMDTR'):
-                            name='Carte Taxi ou VTC ou VMDTR '
+                        if partner_id.module_id.product_id.name in (
+                                'Formation intensive VTC', 'Formation intensive TAXI', 'Formation intensive VMDTR'):
+                            name = 'Reçu de paiement de l’examen CMA '
+                        elif partner_id.module_id.product_id.name in (
+                                'Formation continue TAXI', 'Formation continue VTC', 'Formation continue VMDTR'):
+                            name = 'Carte Taxi ou VTC ou VMDTR '
                         elif partner_id.module_id.product_id.name in ('Formation mobilité TAXI'):
-                            name='Carte Taxi '
-                        elif partner_id.module_id.product_id.name in ('Formation à distance TAXI','Formation à distance VTC','Formation à distance VMDTR'):
-                            name='Examen Chambre des métiers '
-                        elif partner_id.module_id.product_id.name in ('Formation à distance passerelle VTC','Formation à distance passerelle Taxi'):
-                            name='Obtention Examen ou Carte Taxi / VTC '
+                            name = 'Carte Taxi '
+                        elif partner_id.module_id.product_id.name in (
+                                'Formation à distance TAXI', 'Formation à distance VTC', 'Formation à distance VMDTR'):
+                            name = 'Examen Chambre des métiers '
+                        elif partner_id.module_id.product_id.name in (
+                                'Formation à distance passerelle VTC', 'Formation à distance passerelle Taxi'):
+                            name = 'Obtention Examen ou Carte Taxi / VTC '
                     vals = {
                         'name': name + str(partner_id.name),
                         'datas': datas,
@@ -335,7 +351,7 @@ class CustomerPortal(CustomerPortal):
                         'owner_id': http.request.env.user.id}
                     vals_list.append(vals)
                     document = request.env['documents.document'].sudo().search(
-                        [('code_document', "=", 'carte_exam'),('partner_id','=',partner_id)], limit=1)
+                        [('code_document', "=", 'carte_exam'), ('owner_id', '=', http.request.env.user.id)], limit=1)
                     if document:
                         document = document.sudo().write(vals)
                     else:
@@ -358,7 +374,7 @@ class CustomerPortal(CustomerPortal):
                         'owner_id': http.request.env.user.id}
                     vals_list.append(vals)
                     document = request.env['documents.document'].sudo().search(
-                        [('code_document', "=", 'hebergement'),('partner_id','=',partner_id)], limit=1)
+                        [('code_document', "=", 'hebergement'), ('owner_id', '=', http.request.env.user.id)], limit=1)
                     if document:
                         document = document.sudo().write(vals)
                     else:
@@ -377,14 +393,16 @@ class CustomerPortal(CustomerPortal):
                         'name': "Carte d'identité hebergeur Recto " + str(partner_id.name),
                         'datas': datas,
                         'folder_id': int(folder_id),
-                        'code_document':'hebergeur_identity_1',
+                        'code_document': 'hebergeur_identity_1',
                         'partner_id': int(partner_id),
                         'attachment_number': kw.get('identity_hebergeur_card_number'),
                         'confirmation': kw.get('confirmation_hebergeur'),
                         'owner_id': http.request.env.user.id}
                     vals_list.append(vals)
                     document = request.env['documents.document'].sudo().search(
-                        ['|','&',('code_document', "=", 'hebergeur_identity_1'),('code_document', "=", 'hebergeur_identity'),('partner_id','=',partner_id)], limit=1)
+                        ['|', '&', ('code_document', "=", 'hebergeur_identity_1'),
+                         ('owner_id', '=', http.request.env.user.id),
+                         ('code_document', "=", 'hebergeur_identity')], limit=1)
                     if document:
                         print('document1')
                         document = document.sudo().write(vals)
@@ -402,12 +420,13 @@ class CustomerPortal(CustomerPortal):
                         'owner_id': http.request.env.user.id}
                     vals_list.append(vals)
                     document = request.env['documents.document'].sudo().search(
-                        [('code_document', "=", 'hebergeur_identity_2'),('partner_id','=',partner_id)], limit=1)
+                        [('code_document', "=", 'hebergeur_identity_2'), ('owner_id', '=', http.request.env.user.id)],
+                        limit=1)
                     if document:
                         document = document.sudo().write(vals)
                     else:
                         document = request.env['documents.document'].sudo().create(vals_list)
-                elif len(files) ==1:
+                elif len(files) == 1:
                     datas = base64.encodebytes(files[0].read())
                     vals_list = []
                     vals = {
@@ -421,7 +440,8 @@ class CustomerPortal(CustomerPortal):
                         'owner_id': http.request.env.user.id}
                     vals_list.append(vals)
                     document = request.env['documents.document'].sudo().search(
-                        [('code_document', "=", 'hebergeur_identity'),('partner_id','=',partner_id)], limit=1)
+                        [('code_document', "=", 'hebergeur_identity'), ('owner_id', '=', http.request.env.user.id)],
+                        limit=1)
                     if document:
                         document = document.sudo().write(vals)
                     else:
