@@ -335,7 +335,7 @@
                                             <h3>Formation</h3>
                                             <span>TAXI</span>
                                         </div>
-                                        <img class="img-fluid" src="/mcm_website_theme/static/src/img/TAXIcarte.png"/>
+                                        <img class="img-fluid" src="/mcm_website_theme/static/src/img/TAXIcarte.webp"/>
                                     </a>
                                     <div class="buttons">
                                         <a href="/taxi">
@@ -349,7 +349,7 @@
                                             <h3>Frmation</h3>
                                             <span>VTC</span>
                                         </div>
-                                        <img class="img-fluid" src="/mcm_website_theme/static/src/img/VTCcarte.png"/>
+                                        <img class="img-fluid" src="/mcm_website_theme/static/src/img/VTCcarte.webp"/>
                                     </a>
                                     <div class="buttons">
                                         <a href="/vtc">
@@ -363,7 +363,7 @@
                                             <h3>Formation</h3>
                                             <span>VMDTR</span>
                                         </div>
-                                        <img class="img-fluid" src="/mcm_website_theme/static/src/img/VMDTRcarte.png"/>
+                                        <img class="img-fluid" src="/mcm_website_theme/static/src/img/VMDTRcarte.webp"/>
                                     </a>
                                     <div class="buttons">
                                         <a href="/vmdtr">
@@ -393,22 +393,22 @@
                     <div class="container">
                         <div class="row">
                             <div class="col-lg-2 col-md-4 col-6 d-flex align-items-center justify-content-center">
-                                <img src="/mcm_website_theme/static/src/img/CLICAR.jpg" class="img-fluid" alt=""/>
+                                <img src="/mcm_website_theme/static/src/img/CLICAR.webp" class="img-fluid" alt=""/>
                             </div>
                             <div class="col-lg-2 col-md-4 col-6 d-flex align-items-center justify-content-center">
-                                <img src="/mcm_website_theme/static/src/img/2.jpg" class="img-fluid" alt=""/>
+                                <img src="/mcm_website_theme/static/src/img/2.webp" class="img-fluid" alt=""/>
                             </div>
                             <div class="col-lg-2 col-md-4 col-6 d-flex align-items-center justify-content-center">
-                                <img src="/mcm_website_theme/static/src/img/chambre.jpg" class="img-fluid" alt=""/>
+                                <img src="/mcm_website_theme/static/src/img/chambre.webp" class="img-fluid" alt=""/>
                             </div>
                             <div class="col-lg-2 col-md-4 col-6 d-flex align-items-center justify-content-center">
-                                <img src="/mcm_website_theme/static/src/img/logo-a3.jpg" class="img-fluid" alt=""/>
+                                <img src="/mcm_website_theme/static/src/img/logo-a3.webp" class="img-fluid" alt=""/>
                             </div>
                             <div class="col-lg-2 col-md-4 col-6 d-flex align-items-center justify-content-center">
-                                <img src="/mcm_website_theme/static/src/img/expert.jpg" class="img-fluid" alt=""/>
+                                <img src="/mcm_website_theme/static/src/img/expert.webp" class="img-fluid" alt=""/>
                             </div>
                             <div class="col-lg-2 col-md-4 col-6 d-flex align-items-center justify-content-center">
-                                <img src="/mcm_website_theme/static/src/img/LOGOVIAAUTOMOBILE-CMJN2.png"
+                                <img src="/mcm_website_theme/static/src/img/LOGOVIAAUTOMOBILE-CMJN2.webp"
                                      class="img-fluid" alt=""/>
                             </div>
                         </div>
