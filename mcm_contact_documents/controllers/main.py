@@ -473,13 +473,13 @@ class CustomerPortal(CustomerPortal):
     def portal_my_document(self, document_id=None,access_token=None, **kw):
         document=request.env['documents.document'].sudo().search(
             [('id', '=', document_id)],limit=1)
+
         if document:
             if document.state != 'refused':
                 return request.redirect('/my/documents')
-        try:
-            document_sudo = self._document_check_access('documents.document', document_id, access_token)
-        except AccessError:
-            return request.redirect('/my')
+            document_sudo=document.sudo()
+            if document.owner_id.id != http.request.env.user.id:
+                return request.redirect('/my/documents')
         values = self._document_get_page_view_values(document_sudo, access_token, **kw)
 
         return request.render("mcm_contact_documents.portal_document_page",
