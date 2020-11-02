@@ -46,11 +46,11 @@
             <field name="view_mode">tree,form</field>
         </record>
 
-        <menuitem id="session_menu" name="Sessions"
-                  parent="contacts.menu_contacts"
-                  action="session_list_action"
-                  groups="base.group_system"
-                  sequence="2"/>
+<!--        <menuitem id="session_menu" name="Sessions"-->
+<!--                  parent="contacts.menu_contacts"-->
+<!--                  action="session_list_action"-->
+<!--                  groups="base.group_system"-->
+<!--                  sequence="2"/>-->
 
         <record model="ir.ui.menu" id="contacts.res_partner_menu_config">
             <field name='sequence'>3</field>
