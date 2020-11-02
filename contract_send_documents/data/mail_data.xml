@@ -16,20 +16,22 @@
                         <br/>
                         Documents nécessaires :
                         <br/>
-                        % if object.partner_id.module_id.product_id.name in ('Formation intensive VTC','Formation intensive TAXI','Formation intensive VMDTR'):
+                        % if object.module_id:
+                        % if object.module_id.product_id.name in ('Formation intensive VTC','Formation intensive TAXI','Formation intensive VMDTR'):
                         - Reçu de paiement de l’examen CMA
                         % endif
-                        % if object.partner_id.module_id.product_id.name in ('Formation continue TAXI','Formation continue VTC','Formation continue VMDTR'):
+                        % if object.module_id.product_id.name in ('Formation continue TAXI','Formation continue VTC','Formation continue VMDTR'):
                         - Carte Taxi ou VTC ou VMDTR
                         % endif
-                        % if object.partner_id.module_id.product_id.name in ('Formation mobilité TAXI'):
+                        % if object.module_id.product_id.name in ('Formation mobilité TAXI'):
                         - Carte Taxi
                         % endif
-                        % if object.partner_id.module_id.product_id.name in ('Formation à distance TAXI','Formation à distance VTC','Formation à distance VMDTR'):
+                        % if object.module_id.product_id.name in ('Formation à distance TAXI','Formation à distance VTC','Formation à distance VMDTR'):
                         - Examen Chambre des métiers
                         % endif
-                        % if object.partner_id.module_id.product_id.name in ('Formation à distance passerelle VTC','Formation à distance passerelle Taxi'):
+                        % if object.module_id.product_id.name in ('Formation à distance passerelle VTC','Formation à distance passerelle Taxi'):
                         - Obtention Examen ou Carte Taxi / VTC ( Après 2016 )
+                        % endif
                         % endif
                         <br/>
                         - Permis de conduire recto/ verso
