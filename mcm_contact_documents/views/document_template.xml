@@ -255,9 +255,7 @@
                                                                                             <p t-if="error_identity!='' and error_identity_number!=''"
                                                                                                class="alert alert-warning"
                                                                                                style="margin-left:0%;">
-                                                                                                Vous devez remplir et
-                                                                                                charger votre pièce
-                                                                                                d'identité
+                                                                                                Vous devez remplir et charger votre pièce d'identité
                                                                                             </p>
                                                                                             <p t-if="error_identity!='' and error_identity_number==''"
                                                                                                class="alert alert-warning"
@@ -322,21 +320,16 @@
                                                                                                     Oui:
                                                                                                     <input style="width:20%;font-size:0.3em"
                                                                                                            type="radio"
-                                                                                                           name="radio2"
-                                                                                                            id="exam_checked"
-                                                                                                            onclick="check_exam()"/>
+                                                                                                           name="radio2"/>
                                                                                                     Non:
                                                                                                     <input type="radio"
                                                                                                            name="radio2"
-                                                                                                           style="width:20%;font-size:0.3em"
-                                                                                                            id="exam_not_checked"
-                                                                                                            onclick="check_exam()"/>
+                                                                                                           style="width:20%;font-size:0.3em"/>
                                                                                                     <center>
                                                                                                         <a href="https://www.examentaxivtc.fr/"
                                                                                                            target="_blank"
                                                                                                            class="button-three"
-                                                                                                           id="reserve_exam"
-                                                                                                           style="margin-left:5%;float:right;text-decoration:none;color:#fff;width:50%;height:50%;display:none">
+                                                                                                           style="margin-left:5%;float:right;text-decoration:none;color:#fff;width:50%;height:50%">
                                                                                                             Reserver
 
                                                                                                         </a>
@@ -704,8 +697,7 @@
                                                                                         <p t-if="error_permis!='' and error_permis_number!=''"
                                                                                            class="alert alert-warning"
                                                                                            style="margin-left:0%;">
-                                                                                            Vous devez charger,remplir
-                                                                                            votre permis de conduire.
+                                                                                            Vous devez charger,remplir votre permis de conduire.
                                                                                         </p>
                                                                                         <p t-if="error_permis!='' and error_permis_number==''"
                                                                                            class="alert alert-warning"
@@ -907,8 +899,7 @@
                                                                                         <p t-if="error_domicile!=''"
                                                                                            class="alert alert-warning"
                                                                                            style="margin-left:0%;">
-                                                                                            Vous devez charger votre
-                                                                                            justificatif à domicile
+                                                                                            Vous devez charger votre justificatif à domicile
                                                                                         </p>
                                                                                     </div>
                                                                                 </div>
@@ -1077,13 +1068,11 @@
                                             </div>
 
                                             <div style="display:inline-block;">
-                                                <center>
-                                                    <div class="sub-main" style="margin-right:40px">
-                                                        <button class="button-one" style="float:right;" type="submit">
-                                                            Valider
-                                                        </button>
-                                                    </div>
-                                                </center>
+                                               <center> <div class="sub-main" style="margin-right:40px">
+                                                    <button class="button-one" style="float:right;" type="submit">
+                                                        Valider
+                                                    </button>
+                                               </div></center>
 
                                             </div>
                                         </div>
@@ -1093,40 +1082,28 @@
 
                                 <script>
                                     function check_domicile(){
-                                        var domicile_checked=document.getElementById('domicile_checked');
-                                        var domicile_not_checked=document.getElementById('domicile_not_checked');
-                                        if(domicile_checked) {
-                                            if (document.getElementById('domicile_checked').checked==true){
-                                            document.getElementById("attestation_hebergement").style.display = 'none';
-                                            document.getElementById("identity_hebergeur").style.display = 'none';
-                                            }
-                                        }
-                                        if(domicile_not_checked) {
-                                            if (document.getElementById('domicile_not_checked').checked==true){
-                                            document.getElementById("attestation_hebergement").style.display = 'inline-block';
-                                            document.getElementById("identity_hebergeur").style.display = 'inline-block';
-                                            }
-                                        }
+                                    var domicile_checked=document.getElementById('domicile_checked');
+                                    var domicile_not_checked=document.getElementById('domicile_not_checked');
+                                    if(domicile_checked) {
+                                    if (document.getElementById('domicile_checked').checked==true){
+                                    document.getElementById("attestation_hebergement").style.display = 'none';
+                                    document.getElementById("identity_hebergeur").style.display = 'none';
                                     }
-                                    function check_exam(){
-                                        var exam_checked=document.getElementById('exam_checked');
-                                        var exam_not_checked=document.getElementById('exam_not_checked');
-                                        if(exam_checked){
-                                            if (document.getElementById('exam_checked').checked==true){
-                                            document.getElementById("reserve_exam").style.display = 'none';
-                                            }
-                                        }
-                                        if(exam_not_checked){
-                                            if (document.getElementById('exam_not_checked').checked==true){
-                                            document.getElementById("reserve_exam").style.display = 'inline-block';
-                                            }
-                                        }
+                                    }
+                                    if(domicile_not_checked) {
+                                    if (document.getElementById('domicile_not_checked').checked==true){
+                                    document.getElementById("attestation_hebergement").style.display = 'inline-block';
+                                    document.getElementById("identity_hebergeur").style.display = 'inline-block';
+                                    }
+                                    }
                                     }
                                 </script>
                                 <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"
                                         integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
                                         crossorigin="anonymous"></script>
                                 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+
+
                                 <script type="text/javascript"
                                         src="/mcm_contact_documents/static/src/js/image-uploader.min.js"></script>
                                 <script>jQuery(document).ready(function($){

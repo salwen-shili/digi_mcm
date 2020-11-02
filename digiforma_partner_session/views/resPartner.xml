@@ -6,8 +6,8 @@
         <field name="inherit_id" ref="base.view_partner_form"/>
         <field name="arch" type="xml">
             <xpath expr="//page[@name='internal_notes']" position="after">
-                <page string="Liste des sessions" name="digiforma_sessions" attrs="{'invisible': [('from_digiforma', '=', False)]}" groups="base.group_user">
-                    <group string="Digiforma Sessions" name="digiforma_sessions">
+                <page string="Digiforma" name="digiforma_sessions" attrs="{'invisible': [('from_digiforma', '=', False)]}" groups="base.group_user">
+                    <group name="digiforma_sessions">
                         <field name="from_digiforma" invisible="1"/>
                         <field name="digiforma_sessions" />
                     </group>
