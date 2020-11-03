@@ -20,10 +20,16 @@
             </xpath>
         </template>
         <template id="fl_auth_signup.login" inherit_id="auth_signup.login" name="Sign up - Reset Password">
-            <xpath expr="//a[2]" position="replace">
-                <a t-if="reset_password_enabled" t-attf-href="/web/reset_password?{{ keep_query() }}">Mot de passe
-                    oublié ?
-                </a>
+            <xpath expr="//div[@class='justify-content-between mt-2 d-flex small']" position="replace">
+                <div class="justify-content-between mt-2 d-flex small">
+                    <a t-if="signup_enabled" t-attf-href="/web/signup?{{ keep_query() }}" style="font-size: large;">Vous
+                        n'avez pas de compte ?
+                    </a>
+                    <a t-if="reset_password_enabled" t-attf-href="/web/reset_password?{{ keep_query() }}"
+                       style="font-size: large;">Mot de passe
+                        oublié ?
+                    </a>
+                </div>
             </xpath>
         </template>
     </data>
