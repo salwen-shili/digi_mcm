@@ -32,7 +32,7 @@ class SaleOrder(models.Model):
             message = self.env['mail.message'].sudo().create({
                 'subject': 'Document refusé',
                 'model': 'res.partner',
-                'res_id': order.partner_id.id,
+                'res_id': self.partner_id.id,
                 'message_type': 'notification',
                 'subtype_id': subtype_id,
                 'body': 'Contrat signé par ' + str(values['signed_by']),
