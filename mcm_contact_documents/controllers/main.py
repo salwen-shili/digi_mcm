@@ -448,7 +448,17 @@ class CustomerPortal(CustomerPortal):
                         document = request.env['documents.document'].sudo().create(vals_list)
             except Exception as e:
                 logger.exception("Fail to upload document ")
+            vals = {
+                'partner_email': False,
+                'partner_id': False,
+                'description': '%s a envoyé ses documents ' % (partner_id.name),
+                'name': 'News : Documents reçu',
+                'team_id': request.env['helpdesk.team'].sudo().search([('name', 'like', _('Documents'))],
+                                                                      limit=1).id,
 
+            }
+            new_ticket = request.env['helpdesk.ticket'].sudo().create(
+                vals)
         except:
             logger.exception("Fail to upload documents")
         return http.request.render('mcm_contact_documents.success_documents')
