@@ -3,9 +3,10 @@
     <data>
         <template id="auth_signup_fields_extend" inherit_id="auth_signup.fields" name="Signup Fields Extend">
             <xpath expr="//div[hasclass('field-name')]" position="after">
-                 <div class="form-group field-phone">
+                <div class="form-group field-phone">
                     <label for="phone" class="control-label">Téléphone</label>
-                    <input type="tel" name="phone" t-att-value="phone" id="phone" class="form-control" required="required"/>
+                    <input type="tel" name="phone" t-att-value="phone" id="phone" class="form-control"
+                           required="required"/>
                 </div>
             </xpath>
             <xpath expr="//div[hasclass('field-login')]" position="replace">
@@ -17,6 +18,14 @@
                            t-att-readonly="'readonly' if only_passwords else None"/>
                 </div>
             </xpath>
+        </template>
+        <template id="fl_auth_signup.login" inherit_id="auth_signup.login" name="Sign up - Reset Password">
+            <xpath expr="//a[2]" position="replace">
+                <a t-if="reset_password_enabled" t-attf-href="/web/reset_password?{{ keep_query() }}">Mot de passe
+                    oublié ?
+                </a>
+            </xpath>
+
         </template>
     </data>
 </odoo>
