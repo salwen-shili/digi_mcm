@@ -50,12 +50,18 @@ class Module(models.Model):
         ('conduite', 'Conduite'),
     ], string='Modalité Pédagogique')
     website_published = fields.Boolean('Publié en site web', default=True)
+    contract_price = fields.Monetary('Prix Affiché en contrat', default=lambda self: self.product_id.list_price)
 
 
     @api.depends('duree')
     def _get_display_duration(self):
         for rec in self:
             rec.display_duration = str(rec.duree) + ' heures'
+
+    @api.onchange('product_id')
+    def change_contract_price(self):
+        if self.product_id:
+            self.contract_price = self.product_id.list_price
 
     @api.depends('module_details_ids')
     def _get_module_prices(self):
@@ -68,8 +74,8 @@ class Module(models.Model):
 
     def _compute_price_untaxed(self):
         for rec in self:
-            if (rec.prix_normal and rec.duree):
-                rec.particulier_price_untaxed = rec.prix_normal / float(rec.duree)
+            if (rec.contract_price and rec.duree):
+                rec.particulier_price_untaxed = rec.contract_price / float(rec.duree)
 
             if (rec.prix_chpf and rec.duree):
                 rec.chpf_price_untaxed = rec.prix_chpf / float(rec.duree)
@@ -89,7 +95,7 @@ class Module(models.Model):
             product = self.env['product.template'].search([('id', '=', vals.get('product_id'))])
             self.particulier_price_untaxed = product.list_price / float(self.duree)
         if not vals.get('product_id') and  vals.get('duree'):
-            self.particulier_price_untaxed = self.prix_normal / float(vals.get('duree'))
+            self.particulier_price_untaxed = self.contract_price / float(vals.get('duree'))
         return module
 
 

@@ -690,7 +690,7 @@
                                 <strong>
                                     <span style="font-size:12px">TOTAL NET DE TAXES:</span>
                                     <span style="font-size:12px"
-                                          t-field="sale_order.module_id.prix_normal"
+                                          t-field="sale_order.module_id.contract_price"
                                           t-options='{"widget": "monetary", "display_currency": sale_order.currency_id}'/>
                                 </strong>
                             </div>
