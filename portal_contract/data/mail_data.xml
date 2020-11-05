@@ -334,7 +334,7 @@
                         <br/>
                         % set transaction = object.get_portal_last_transaction()
                         Votre Contrat <strong>${object.name}</strong> D'un montant de
-                        <strong>${format_amount(object.amount_total, object.currency_id)}</strong>
+                        <strong>${format_amount(object.module_id.contract_price, object.currency_id)}</strong>
                         % if object.state == 'sale' or (transaction and transaction.state in ('done', 'authorized')) :
                         a été confirmé
                         <br/>
