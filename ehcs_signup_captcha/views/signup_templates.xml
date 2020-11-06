@@ -1,0 +1,30 @@
+<odoo>
+    <template id="signup_captcha" inherit_id="auth_signup.signup">
+        <xpath expr="//div[@class='text-center oe_login_buttons pt-3'] " position="replace">
+<!--            <center>-->
+<!--                <script type="text/javascript" src="https://www.google.com/recaptcha/api.js"></script>-->
+<!--                <script>-->
+<!--                    function recaptchaCallback() {-->
+<!--                    $('#submitBtn').removeAttr('disabled');-->
+<!--                    };-->
+<!--                </script>-->
+<!--                <br/>-->
+<!--                <div class="g-recaptcha" data-sitekey="6Lfhd7QUAAAAAHCSqpzvBvIi-uNr6h9rzEJbafBd"-->
+<!--                     data-callback="recaptchaCallback"/>-->
+<!--                <br></br>-->
+<!--            </center>-->
+
+            <button type="submit" class="btn btn-primary btn-block" > Sinscrire</button><br/> <!--  disabled="True" id="submitBtn" -->
+            <br/>
+            <center>
+                <a t-attf-href="/web/login?{{ keep_query() }}" class="btn btn-link btn-sm" role="button"
+                   style="font-size: large;">Connexion
+                </a>
+                <a t-attf-href="/web/reset_password?{{ keep_query() }}" class="btn btn-link btn-sm" role="button"
+                   style="font-size: large;">Mot de passe oublié ?
+                </a>
+            </center>
+            <div class="o_login_auth"/>
+        </xpath>
+    </template>
+</odoo>
