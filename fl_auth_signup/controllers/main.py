@@ -59,7 +59,7 @@ class AuthSignupHome(AuthSignupHome):
                 qcontext['error'] = e.name or e.value
             except (SignupError, AssertionError) as e:
                 if request.env["res.users"].sudo().search([("login", "=", qcontext.get("login"))]):
-                    qcontext["error"] = _("Un autre utilisateur est déjà enregistré avec cette adresse courriel.")
+                    qcontext["error"] = _("Un autre compte est déjà enregistré avec cette adresse email. Accédez à la page Mot de passe oublié.")
                 else:
                     _logger.error("%s", e)
                     qcontext['error'] = _("Vous ne pouvez pas créer un nouveau compte.")
