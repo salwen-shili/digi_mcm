@@ -88,7 +88,7 @@
                                                                             style="font-weight: bold;padding: 8px;">
                                                                             Prix CHPF
                                                                         </th>
-                                                                        <th t-if="record.prix_normal"
+                                                                        <th t-if="record.contract_price"
                                                                             style="font-weight: bold;padding: 8px;">
                                                                             Prix Personnel
                                                                         </th>
@@ -100,9 +100,9 @@
                                                                                    name="prix_chpf"
                                                                                    widget="monetary"/>€
                                                                         </td>
-                                                                        <td t-if="record.prix_normal"
+                                                                        <td t-if="record.contract_price"
                                                                             style="padding: 8px;">
-                                                                            <field t-if="record.prix_normal"
+                                                                            <field t-if="record.contract_price"
                                                                                    name="prix_normal"
                                                                                    widget="monetary"/>€
                                                                         </td>
