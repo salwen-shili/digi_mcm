@@ -104,7 +104,7 @@
                                                                         <td t-if="record.contract_price"
                                                                             style="padding: 8px;">
                                                                             <field t-if="record.contract_price"
-                                                                                   name="prix_normal"
+                                                                                   name="contract_price"
                                                                                    widget="monetary"/>€
                                                                         </td>
                                                                     </tr>
