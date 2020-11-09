@@ -39,6 +39,7 @@
                                     <field name="display_duration"/>
                                     <field name="prix_chpf"/>
                                     <field name="prix_normal"/>
+                                    <field name="contract_price"/>
                                     <field name="duree"/>
                                     <field name="color"/>
                                     <field name="date_module"/>
