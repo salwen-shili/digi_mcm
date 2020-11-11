@@ -1,5 +1,5 @@
 {
-    'name': 'Facebook Pixel Integration',
+    'name': 'Facebook Pixel Integration ',
     'version': '13.0.1.0.0',
     'category': 'Website',
     'summary': 'Facebook Pixel Integration',
