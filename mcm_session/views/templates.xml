@@ -11,11 +11,6 @@
                     <i class="fa fa-bolt"/>
                     Contactez-nous
                 </a>
-                <a t-if="request.env['ir.config_parameter'].sudo().get_param('auth_signup.invitation_scope', 'b2b') == 'b2c' and request.website.is_public_user()" role="button" id="sign_up" class="btn btn-outline-primary btn-lg mt16 d-block d-sm-inline-block"
-                   t-attf-href="/web/signup?{{ keep_query() }}">
-                    <i class="fa fa-bolt"/>
-                    S'inscrire
-                </a>
         </xpath>
         <xpath expr="//a[@id='add_to_cart']" position="before">
             <div style="margin:auto;background-color:#fff;border-color:#585959;"
