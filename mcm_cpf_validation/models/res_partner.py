@@ -124,11 +124,11 @@ class resPartner(models.Model):
         return partner
 
     def write(self, vals):
-        # User = request.env.user
+        User = self.env.user
         check_portal = False
         group_portal = self.env.ref('base.group_portal')
-        # if User.user_has_groups('base.group_portal'):
-        #     check_portal = True
+        if User.user_has_groups('base.group_portal'):
+            check_portal = True
         if 'statut' in vals and 'module_id' not in vals:
             if check_portal == False:
                 if vals['statut'] == 'won':
