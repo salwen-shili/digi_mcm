@@ -68,7 +68,7 @@ class Api(models.Model):
                 json_data_type_events=json.loads(response1.text)
                 if "collection" in json_data_events:
                     collection = json_data_events["collection"]
-                    print('collection')
+                    print('-----------------collection-------------')
                     print(collection)
                     for event in collection:
                         event_type = event["event_type"]
