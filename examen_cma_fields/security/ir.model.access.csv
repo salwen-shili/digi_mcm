@@ -1,0 +1,4 @@
+id,name,model_id/id,group_id/id,perm_read,perm_write,perm_create,perm_unlink
+mcmacademy_history_partner_session_manager,partner sessions history manager,model_partner_sessions,base.group_user,1,1,1,1
+mcmacademy_history_partner_session_read_all,partner sessions history all,model_partner_sessions,,1,1,1,1
+

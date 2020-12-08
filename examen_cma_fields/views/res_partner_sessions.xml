@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <!-- historic partner sessions form view -->
+        <record model="ir.ui.view" id="historic_partner_sessions_form_view">
+            <field name="name">partner.sessions.history.form</field>
+            <field name="model">partner.sessions</field>
+            <field name="arch" type="xml">
+                <form string="Historique Client Sessions ">
+                    <sheet>
+                        <group>
+                            <field name="client_id" string="Client"/>
+                            <field name="session_id" string="Session"/>
+                            <field name="theoretic" string="Théorique"/>
+                            <field name="practical" string="Pratique"/>
+                            <field name="company_id"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- historic partner sessions tree/list view -->
+        <record model="ir.ui.view" id="historic_partner_sessions_tree_view">
+            <field name="name">partner.sessions.history.tree</field>
+            <field name="model">partner.sessions</field>
+            <field name="arch" type="xml">
+                <tree string="Historique Client Sessions ">
+                    <field name="client_id" string="Client"/>
+                    <field name="session_id" string="Session"/>
+                </tree>
+            </field>
+        </record>
+    </data>
+</odoo>

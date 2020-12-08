@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<odoo>
+<record id="res_partner_examen_cma_view_buttons" model="ir.ui.view">
+            <field name="name">res.partner.view.buttons</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_form" />
+            <field name="priority" eval="3"/>
+            <field name="arch" type="xml">
+                <div name="button_box" position="inside">
+                    <button class="oe_stat_button" context="{'search_default_client_id': active_id}" type="object" name="get_sessions_history"
+                        icon="fa-book">
+                         <field string="Session" name="sessions_count" widget="statinfo"/>
+                    </button>
+
+                </div>
+            </field>
+        </record>
+</odoo>
