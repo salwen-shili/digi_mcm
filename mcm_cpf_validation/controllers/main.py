@@ -31,15 +31,17 @@ class ClientCPFController(http.Controller):
                 client.city = ville
                 client.email = email
         partner = user.partner_id
-        vals = {
-            'partner_email': '',
-            'partner_id': False,
-            'description': ' N°Dossier : %s \n Motif : %s ' % (dossier, motif),
-            'name': 'CPF : Dossier non validé ',
-            'team_id': request.env['helpdesk.team'].sudo().search([('name', 'like', 'Client')],
-                                                                  limit=1).id,
+        ticket=request.env['helpdesk.ticket'].sudo().search([('partner_id', '=', partner.id),('name',"=",'CPF : Dossier non validé ')])
 
-        }
+        # vals = {
+        #     'partner_email': '',
+        #     'partner_id': False,
+        #     'description': ' N°Dossier : %s \n Motif : %s ' % (dossier, motif),
+        #     'name': 'CPF : Dossier non validé ',
+        #     'team_id': request.env['helpdesk.team'].sudo().search([('name', 'like', 'Client')],
+        #                                                           limit=1).id,
+        #
+        # }
         new_ticket = request.env['helpdesk.ticket'].sudo().create(
             vals)
         return request.render("mcm_cpf_validation.mcm_website_request_not_validated", {})
