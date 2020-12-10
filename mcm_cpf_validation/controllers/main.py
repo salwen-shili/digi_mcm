@@ -163,16 +163,20 @@ class ClientCPFController(http.Controller):
                 }
                 return request.render("mcm_cpf_validation.available_module_places",places)
             else:
-                vals = {
-                    'partner_email': '',
-                    'partner_id': False,
-                    'description': 'CPF: id module edof %s non trouvé' % (module),
-                    'name': 'CPF : ID module edof non trouvé ',
-                    'team_id': request.env['helpdesk.team'].sudo().search([('name', 'like', 'Client')],
-                                                                          limit=1).id,
-                }
-                new_ticket = request.env['helpdesk.ticket'].sudo().create(
-                    vals)
+                description='CPF: id module edof '+str(module)+' non trouvé'
+                ticket = request.env['helpdesk.ticket'].sudo().search(
+                    [('name', "like", 'CPF : ID module edof non trouvé '),('description',"like",description)])
+                if not ticket:
+                    vals = {
+                        'partner_email': '',
+                        'partner_id': False,
+                        'description': 'CPF: id module edof %s non trouvé' % (module),
+                        'name': 'CPF : ID module edof non trouvé ',
+                        'team_id': request.env['helpdesk.team'].sudo().search([('name', 'like', 'Client')],
+                                                                              limit=1).id,
+                    }
+                    new_ticket = request.env['helpdesk.ticket'].sudo().create(
+                        vals)
                 return request.render("mcm_cpf_validation.mcm_website_module_not_found", {})
 
 
