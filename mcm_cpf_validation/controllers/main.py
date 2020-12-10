@@ -31,7 +31,7 @@ class ClientCPFController(http.Controller):
                 client.city = ville
                 client.email = email
         partner = user.partner_id
-        ticket=request.env['helpdesk.ticket'].sudo().search([('partner_id', '=', partner.id),('name',"=",'CPF : Dossier non validé ')])
+        ticket=request.env['helpdesk.ticket'].sudo().search([('partner_id', '=', partner.id),('name','like','CPF : Dossier non validé ')])
         if not ticket:
             vals = {
                 'partner_email': '',
