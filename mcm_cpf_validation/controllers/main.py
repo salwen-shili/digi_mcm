@@ -42,8 +42,8 @@ class ClientCPFController(http.Controller):
         #                                                           limit=1).id,
         #
         # }
-        new_ticket = request.env['helpdesk.ticket'].sudo().create(
-            vals)
+        # new_ticket = request.env['helpdesk.ticket'].sudo().create(
+        #     vals)
         return request.render("mcm_cpf_validation.mcm_website_request_not_validated", {})
 
     @http.route('/cpf_accepted/<string:email>/<string:module>/', type="http", auth="user")
