@@ -32,18 +32,18 @@ class ClientCPFController(http.Controller):
                 client.email = email
         partner = user.partner_id
         ticket=request.env['helpdesk.ticket'].sudo().search([('partner_id', '=', partner.id),('name',"=",'CPF : Dossier non validé ')])
+        if not ticket:
+            vals = {
+                'partner_email': '',
+                'partner_id': partner.id,
+                'description': ' N°Dossier : %s \n Motif : %s ' % (dossier, motif),
+                'name': 'CPF : Dossier non validé ',
+                'team_id': request.env['helpdesk.team'].sudo().search([('name', 'like', 'Client')],
+                                                                      limit=1).id,
 
-        # vals = {
-        #     'partner_email': '',
-        #     'partner_id': False,
-        #     'description': ' N°Dossier : %s \n Motif : %s ' % (dossier, motif),
-        #     'name': 'CPF : Dossier non validé ',
-        #     'team_id': request.env['helpdesk.team'].sudo().search([('name', 'like', 'Client')],
-        #                                                           limit=1).id,
-        #
-        # }
-        # new_ticket = request.env['helpdesk.ticket'].sudo().create(
-        #     vals)
+            }
+            new_ticket = request.env['helpdesk.ticket'].sudo().create(
+                vals)
         return request.render("mcm_cpf_validation.mcm_website_request_not_validated", {})
 
     @http.route('/cpf_accepted/<string:email>/<string:module>/', type="http", auth="user")
