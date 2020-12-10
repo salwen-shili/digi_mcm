@@ -25,7 +25,7 @@ class ClientCPFController(http.Controller):
             if client:
                 client.mode_de_financement = 'cpf'
                 client.numero_cpf = dossier
-                client.mobile = tel
+                client.phone = tel
                 client.street = address
                 client.zip = code_postal
                 client.city = ville
@@ -138,7 +138,7 @@ class ClientCPFController(http.Controller):
                 client.mode_de_financement = 'cpf'
                 client.statut_cpf = 'validated'
                 client.numero_cpf = dossier
-                client.mobile=tel
+                client.phone=tel
                 client.street=address
                 client.zip=code_postal
                 client.city=ville
