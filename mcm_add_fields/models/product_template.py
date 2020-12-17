@@ -10,6 +10,4 @@ class ProductTemplate(models.Model):
     duration = fields.Char(string='Duration')
     distance_formation=fields.Boolean('À distance')
     location=fields.Boolean('Location de véhicule')
-
-
-
+    cpf_available = fields.Boolean('Disponible en CPF')

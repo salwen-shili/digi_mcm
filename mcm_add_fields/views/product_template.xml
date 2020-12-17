@@ -9,6 +9,7 @@
                 <field name="distance_formation"/>
                 <field name="duration"/>
                 <field name="location"/>
+                <field name="cpf_available"/>
             </xpath>
         </field>
     </record>
