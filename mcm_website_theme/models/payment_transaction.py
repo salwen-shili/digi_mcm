@@ -26,6 +26,7 @@ class PaymentTransaction(models.Model):
                 if template_id:
                     sale.with_context(force_send=True).message_post_with_template(template_id,
                                                                                   composition_mode='comment',
+                                                                                  email_layout_xmlid="portal_contract.mcm_mail_notification_paynow_online"
                                                                                   )
                 test = sale.get_portal_url(report_type='pdf', download=True)
 
