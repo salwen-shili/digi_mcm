@@ -51,7 +51,7 @@
         <record id="mcm_reset_password_email" model="mail.template">
             <field name="name">Auth Signup: Reset Password</field>
             <field name="model_id" ref="base.model_res_users"/>
-            <field name="subject">Password reset</field>
+            <field name="subject">Changement de mot de passe</field>
             <field name="email_from">"${object.company_id.name | safe}" &lt;${(object.company_id.email or user.email) | safe}&gt;</field>
             <field name="email_to">${object.email_formatted | safe}</field>
             <field name="body_html" type="html">
@@ -101,14 +101,14 @@
                                                             Cher(e) ${object.name},
                                                             <br/>
                                                             <br/>
-                                                            Nous avons reçu une demande de réinitialisation de mot de
-                                                            passe pour votre compte.
-                                                            Cliquez sur ce lien (valable 24 heures) pour le changer:
+                                                            Nous avons reçu une demande de changement de mot de
+                                                            passe.
+                                                            Cliquez sur ce lien (valable 24 heures) pour en définir un nouveau:
                                                             <br/>
                                                             <div style="margin: 16px 0px 16px 0px;">
                                                                 <a href="${object.signup_url}"
                                                                    style="background-color: #875A7B; padding: 8px 16px 8px 16px; text-decoration: none; color: #fff; border-radius: 5px; font-size:13px;">
-                                                                    Changer mon mot de passe
+                                                                    Changer le mot de passe
                                                                 </a>
                                                             </div>
                                                             Si vous n'êtes pas à l'origine de cette demande, ignorez-cet
