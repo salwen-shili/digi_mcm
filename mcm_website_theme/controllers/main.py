@@ -638,8 +638,7 @@ class CustomerPortal(CustomerPortal):
         users = request.env['res.users'].sudo().search([('id', "=", uid)])
         for user in users:
             for task in grouped_tasks:
-                
-                if task.user_id.id==user.id or task.partner_id.id==user.partner_id.id:
+                if task.partner_id.id==user.partner_id.id:
                     my_tasks.append(task)
 
         values.update({
