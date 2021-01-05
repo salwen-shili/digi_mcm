@@ -635,10 +635,11 @@ class CustomerPortal(CustomerPortal):
             grouped_tasks = [tasks]
         my_tasks=[]
         uid=request.env.uid
-        user = request.env['res.users'].sudo().search([('id', "=", uid)])
-        for task in grouped_tasks:
-            if task.user_id.id==user.id or task.partner_id.id==user.partner_id.id:
-                my_tasks.append(task)
+        users = request.env['res.users'].sudo().search([('id', "=", uid)])
+        for user in users:
+            for task in grouped_tasks:
+                if task.user_id.id==user.id or task.partner_id.id==user.partner_id.id:
+                    my_tasks.append(task)
 
         values.update({
             'date': date_begin,
