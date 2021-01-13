@@ -41,4 +41,26 @@
            style="text-align: left; ">Email incorrect ou non trouvé.Un nouveau client a été crée
         </p>
     </template>
+    <template id="mcm_website_partner_updated">
+        <p class="card-text"
+           style="text-align: left; ">la fiche client a été mise à jour
+        </p>
+    </template>
+    <template id="mcm_website_contract_exist">
+        <p class="card-text"
+           style="text-align: left; ">Le client a déjà un contrat
+        </p>
+    </template>
+    <template id="ko_places">
+        <p class="card-text"
+           style="text-align: left; ">KO
+        </p>
+    </template>
+    <template id="ok_places">
+        <p class="card-text"
+           style="text-align: left; ">OK
+        </p>
+    </template>
+
+
 </odoo>
