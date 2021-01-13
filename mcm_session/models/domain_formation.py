@@ -9,3 +9,4 @@ class Domaine(models.Model):
 
     name=fields.Char("Nom de domaine de formation")
     code=fields.Integer("Code")
+    company_id = fields.Many2one('res.company', string='Company', default=lambda self: self.env.company)

@@ -17,16 +17,17 @@
                     </div>
                     <div>
                         <group>
-                            <group>
+                            <group name="general">
                                 <field name="type_client"/>
                                 <field name="sous_traitance"/>
                                 <field name="action_type_id"/>
                                 <field name="diplome_vise"/>
                             </group>
-                            <group>
-                                <field name="domaine_formation"/>
+                            <group name="dates">
+                                <field name="domaine_formation" />
                                 <field name="date_debut"/>
                                 <field name="date_fin"/>
+                                <field name="company_id"/>
                             </group>
                         </group>
                         <group string="Liste des modules">
@@ -39,7 +40,6 @@
                                     <field name="display_duration"/>
                                     <field name="prix_chpf"/>
                                     <field name="prix_normal"/>
-                                    <field name="contract_price"/>
                                     <field name="duree"/>
                                     <field name="color"/>
                                     <field name="date_module"/>
@@ -89,7 +89,7 @@
                                                                             style="font-weight: bold;padding: 8px;">
                                                                             Prix CHPF
                                                                         </th>
-                                                                        <th t-if="record.contract_price"
+                                                                        <th t-if="record.prix_normal"
                                                                             style="font-weight: bold;padding: 8px;">
                                                                             Prix Personnel
                                                                         </th>
@@ -101,10 +101,10 @@
                                                                                    name="prix_chpf"
                                                                                    widget="monetary"/>€
                                                                         </td>
-                                                                        <td t-if="record.contract_price"
+                                                                        <td t-if="record.prix_normal"
                                                                             style="padding: 8px;">
-                                                                            <field t-if="record.contract_price"
-                                                                                   name="contract_price"
+                                                                            <field t-if="record.prix_normal"
+                                                                                   name="prix_normal"
                                                                                    widget="monetary"/>€
                                                                         </td>
                                                                     </tr>

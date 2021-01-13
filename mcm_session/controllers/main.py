@@ -44,7 +44,7 @@ class WebsiteSale(WebsiteSale):
         # Needed to trigger the recently viewed product rpc
         view_track = request.website.viewref("website_sale.product").track
         modules = request.env['mcmacademy.module'].sudo().search(
-            [('product_id', '=', product.id),('website_published',"=",True)])
+            [('product_id', '=', product.id)])
         list_module=[]
         for module in modules:
             if module.session_id.stage_id.name==_('Planifiées'):
@@ -74,7 +74,7 @@ class WebsiteSale(WebsiteSale):
         }
 
     @http.route(['/shop/cart/update'], type='http', auth="public", methods=['GET', 'POST'], website=True, csrf=False)
-    def cart_update(self, product_id,module='', add_qty=1, set_qty=0, **kw):
+    def cart_update(self, product_id,module='', add_qty=1, set_qty=0,promo=None, **kw):
         """This route is called when adding a product to cart (no options)."""
         sale_order = request.website.sale_get_order(force_create=True)
         if sale_order.order_line:
@@ -100,6 +100,9 @@ class WebsiteSale(WebsiteSale):
         )
         if(sale_order.partner_id.customer_rank==0):
             sale_order.partner_id.customer_rank=1
+        print('promo')
+        if promo:
+            print(promo)
         if product_id:
             if module != '' and module !='all':
                 module = request.env['mcmacademy.module'].sudo().search(

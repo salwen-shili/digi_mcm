@@ -9,8 +9,9 @@
                 <form string="domaine de formation">
                     <sheet>
                         <group>
-                           <field name="name"/>
-                           <field name="code"/>
+                            <field name="name"/>
+                            <field name="code"/>
+                            <field name="company_id"/>
                         </group>
                     </sheet>
                 </form>
@@ -28,5 +29,6 @@
                 </tree>
             </field>
         </record>
+
     </data>
 </odoo>

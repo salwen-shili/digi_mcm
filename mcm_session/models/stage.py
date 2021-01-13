@@ -8,3 +8,4 @@ class Module(models.Model):
     _description = "Etats des sessions"
 
     name=fields.Char("Nom d'état")
+    company_id = fields.Many2one('res.company', string='Company', default=lambda self: self.env.company)

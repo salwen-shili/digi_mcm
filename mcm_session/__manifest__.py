@@ -26,6 +26,7 @@ ajouter un ensemble des sessions et des modules lié au session
 ajouter un ensemble des sessions et des modules lié au session
     """,
     'data': [
+        'security/session_security.xml',
         'views/session.xml',
         'views/menu.xml',
         'views/action.xml',
@@ -43,7 +44,6 @@ ajouter un ensemble des sessions et des modules lié au session
         'views/sale_order.xml',
         'views/res_partner_session_wizard.xml',
         'data/payment_stripe_3X.xml',
-        'data/mail_data.xml',
         'security/ir.model.access.csv',
     ],
     'qweb': [],

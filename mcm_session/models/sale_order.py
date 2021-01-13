@@ -9,8 +9,26 @@ class SaleOrder(models.Model):
 
 
     session_id=fields.Many2one('mcmacademy.session',required=False)
-    module_id = fields.Many2one('mcmacademy.module', required=False)
+    module_id=fields.Many2one('mcmacademy.module',required=False)
 
+    def action_link_contract(self):
+        orders = self.env['sale.order'].sudo().search([])
+        for order in orders:
+            if len(order.partner_id.sale_order_ids)==1:
+                order.module_id=order.partner_id.module_id
+                if not order.session_id:
+                    order.session_id=order.partner_id.mcm_session_id
+                product=False
+                for line in order.order_line:
+                    product=line.product_id.product_tmpl_id
+                if product:
+                    module_id = self.env['mcmacademy.module'].sudo().search(
+                        [('product_id', '=', product.id), ('session_id', '=', order.session_id.id)])
+                    if module_id:
+                            for module in module_id:
+                                if order.partner_id.module_id==module:
+                                    order.module_id=module
+        return True
     def _create_payment_transaction(self, vals):
         '''Similar to self.env['payment.transaction'].create(vals) but the values are filled with the
         current sales orders fields (e.g. the partner or the currency).
@@ -61,8 +79,13 @@ class SaleOrder(models.Model):
         if not acquirer_id and acquirer:
             vals['acquirer_id'] = acquirer.id
         amount = sum(self.mapped('amount_total'))
-        if self.instalment and amount>1000:
+        if self.instalment and amount>1000 and self.company_id.id==1:
             amount=amount/3
+        print('_create_payment_transaction')
+        print(self.instalment)
+        print(self.company_id.id)
+        if self.instalment and self.company_id.id==2:
+            amount=amount/int(self.instalment_number)
         vals.update({
             'amount': amount,
             'currency_id': currency.id,
@@ -77,19 +100,3 @@ class SaleOrder(models.Model):
             transaction.s2s_do_transaction()
 
         return transaction
-
-    def _unlink_quotations(self):
-        quotations=self.env['sale.order'].sudo().search([('state',"=",'draft')])
-        if quotations:
-            for quotation in quotations:
-                if (quotation.partner_id.mode_de_financement != 'cpf'):
-                    for line in quotation.order_line:
-                        line.sudo().unlink()
-                    quotation.sudo().unlink()
-    def _track_subtype(self, init_values):
-        self.ensure_one()
-        if 'state' in init_values and self.state == 'sale':
-            return self.env.ref('mcm_session.mcm_mt_order_confirmed')
-        elif 'state' in init_values and self.state == 'sent':
-            return self.env.ref('mcm_session.mcm_mt_order_sent')
-        return super(SaleOrder, self)._track_subtype(init_values)

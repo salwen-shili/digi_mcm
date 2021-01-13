@@ -111,9 +111,11 @@ class resPartner(models.Model):
             so = so.with_user(SUPERUSER_ID)
         template_id = so._find_mail_template(force_confirmation_template=True)
         if template_id:
+            print('envoi 2')
             so.with_context(force_send=True).message_post_with_template(template_id,
                                                                         composition_mode='comment',
-                                                                        email_layout_xmlid="portal_contract.mcm_mail_notification_paynow_online")
+                                                                        email_layout_xmlid="portal_contract.mcm_mail_notification_paynow_online"
+                                                                       )
 
     def add_comment(self,**kw):
         for record in self:

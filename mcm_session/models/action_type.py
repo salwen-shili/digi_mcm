@@ -8,3 +8,5 @@ class Module(models.Model):
     _description = "Type d'action"
 
     name=fields.Char("Nom d'action")
+    company_id = fields.Many2one('res.company', string='Company', default=lambda self: self.env.company)
+

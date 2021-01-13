@@ -16,88 +16,145 @@ class AccountPayment(models.Model):
             [('invoice_payment_state', '=', 'not_paid'), ('type', '=', 'out_invoice'), ('state', '=', 'posted'),
              ('amount_total', '>', '1000'), ('type_facture', '=', 'web')])
         # stripe.api_key = "sk_test_z5yAyGCO7UQ0lrS8RZNsL8kE00evWDCsu7"
-        if invoices:
-            for invoice in invoices:
-                order = self.env['sale.order'].sudo().search([('name', 'ilike', invoice.invoice_origin)])
-                pm_id = self.env['payment.token'].sudo().search([('partner_id', '=', invoice.partner_id.id)])[-1].id
-                first_payment_date = invoice.create_date + timedelta(days=30)
-                second_payment_date = invoice.create_date + timedelta(days=60)
-                first_payment_date = first_payment_date.date()
-                second_payment_date = second_payment_date.date()
-                if (str(date.today()) == str(first_payment_date) or str(date.today()) == str(second_payment_date)):
+        # if invoices:
+        #     for invoice in invoices:
+        #         order = self.env['sale.order'].sudo().search([('name', 'ilike', invoice.invoice_origin)])
+        #         pm_id = self.env['payment.token'].sudo().search([('partner_id', '=', invoice.partner_id.id)])[-1].id
+        #         first_payment_date = invoice.create_date + timedelta(days=30)
+        #         second_payment_date = invoice.create_date + timedelta(days=60)
+        #         first_payment_date = first_payment_date.date()
+        #         second_payment_date = second_payment_date.date()
+        #         if (str(date.today()) == str(first_payment_date) or str(date.today()) == str(second_payment_date)):
+        #
+        #             acquirer = self.env['payment.acquirer'].sudo().search([('name', 'ilike', 'stripe'),('company_id',"=",invoice.company_id.id)])
+        #             vals = {}
+        #             vals.update({
+        #                 'acquirer_id': acquirer.id,
+        #                 'amount': invoice.amount_total / 3,
+        #                 'currency_id': invoice.currency_id.id,
+        #                 'partner_id': invoice.partner_id.id,
+        #                 'sale_order_ids': [(6, 0, order.ids)],
+        #             })
+        #             tx = self.env['payment.transaction'].create(vals)
+        #             tx.payment_token_id = pm_id
+        #             res = tx._stripe_create_payment_intent()
+        #             if (str(res.get('status')) == 'succeeded'):
+        #                 tx.acquirer_reference = res.get('id')
+        #                 tx.date = datetime.now()
+        #                 tx._set_transaction_done()
+        #                 journal = self.env['account.journal'].sudo().search(
+        #                     [('code', 'ilike', 'STRIP')])
+        #                 payment_method = self.env['account.payment.method'].sudo().search(
+        #                     [('code', 'ilike', 'electronic')])
+        #                 acquirer = self.env['payment.acquirer'].sudo().search([('name', 'ilike', 'stripe'),('company_id',"=",invoice.company_id.id)])
+        #                 payment = self.env['account.payment'].create({'payment_type': 'inbound',
+        #                                                               'payment_method_id': payment_method.id,
+        #                                                               'partner_type': 'customer',
+        #                                                               'partner_id': invoice.partner_id.id,
+        #                                                               'amount': tx.amount,
+        #                                                               'currency_id': invoice.currency_id.id,
+        #                                                               'payment_date': datetime.now(),
+        #                                                               'journal_id': journal.id,
+        #                                                               'communication': tx.reference,
+        #                                                               'payment_token_id': pm_id,
+        #                                                               'invoice_ids': [(6, 0, invoice.ids)],
+        #                                                               })
+        #                 payment.payment_transaction_id = tx
+        #                 tx.payment_id = payment
+        #                 payment.post()
+        #                 message_id = self.env['message.wizard'].create(
+        #                     {'message': _("Le paiement a été effectué avec succès")})
+        #                 return {
+        #                     'name': _('Paiement avec succès'),
+        #                     'type': 'ir.actions.act_window',
+        #                     'view_mode': 'form',
+        #                     'res_model': 'message.wizard',
+        #                     # pass the id
+        #                     'res_id': message_id.id,
+        #                     'target': 'new'
+        #                 }
+        #             elif (str(res.get('status')) == 'requires_payment_method'):
+        #
+        #                 new_ticket = self.env['helpdesk.ticket'].sudo().create(
+        #                     vals)
+        #                 message_id = self.env['message.wizard'].create(
+        #                     {'message': _("Le paiement a été echoué....veuillez contacter le client")})
+        #                 return {
+        #                     'name': _('Paiement echoué'),
+        #                     'type': 'ir.actions.act_window',
+        #                     'view_mode': 'form',
+        #                     'res_model': 'message.wizard',
+        #                     # pass the id
+        #                     'res_id': message_id.id,
+        #                     'target': 'new'
+        #                 }
+        #                 vals = {
+        #                     'partner_email': invoice.partner_id.email,
+        #                     'description': 'Veuillez relancez le paiement de ' + str(invoice.partner_id.name),
+        #                     'name': 'Relance paiement ' + str(invoice.partner_id.name),
+        #                     'team_id': self.env['helpdesk.team'].sudo().search([('name', 'like', 'Compta')],
+        #                                                                        limit=1).id,
+        #                     'invoice_id': invoice.id
+        #                 }
+        #                 new_ticket = self.env['helpdesk.ticket'].sudo().create(
+        #                     vals)
+        digimoov_invoices=self.env['account.move'].sudo().search(
+            [('invoice_payment_state', '=', 'not_paid'), ('type', '=', 'out_invoice'), ('state', '=', 'posted'),
+              ('type_facture', '=', 'web'),('company_id',"=",2)])
+        print('digimoov_invoices')
+        for invoice in digimoov_invoices:
+            print(invoice)
+            order = self.env['sale.order'].sudo().search([('name', 'ilike', invoice.invoice_origin)])
+            pm_id = self.env['payment.token'].sudo().search([('partner_id', '=', invoice.partner_id.id)])[-1].id
+            print(order)
+            print(pm_id)
+            acquirer = self.env['payment.acquirer'].sudo().search([('name', 'ilike', 'stripe'),('company_id',"=",invoice.company_id.id)])
+            vals = {}
+            print(acquirer)
+            journal = self.env['account.journal'].sudo().search(
+                [('type', "=", 'bank'), ('code', 'ilike', 'BNK')])
+            if order.instalment and order.instalment_number>1:
+                vals.update({
+                    'acquirer_id': acquirer.id,
+                    'amount': invoice.amount_total / order.instalment_number,
+                    'currency_id': invoice.currency_id.id,
+                    'partner_id': invoice.partner_id.id,
+                    'sale_order_ids': [(6, 0, order.ids)],
+                })
+                tx = self.env['payment.transaction'].create(vals)
+                tx.payment_token_id = pm_id
+                res = tx._stripe_create_payment_intent()
+                if (str(res.get('status')) == 'succeeded'):
+                    tx.acquirer_reference = res.get('id')
+                    tx.date = datetime.now()
+                    tx._set_transaction_done()
+                    journal = self.env['account.journal'].sudo().search(
+                        [('type', "=", 'bank'),('code','ilike','BNK')])
 
-                    acquirer = self.env['payment.acquirer'].sudo().search([('code', 'ilike', 'stripe')])
-                    vals = {}
-                    vals.update({
-                        'acquirer_id': acquirer.id,
-                        'amount': invoice.amount_total / 3,
-                        'currency_id': invoice.currency_id.id,
-                        'partner_id': invoice.partner_id.id,
-                        'sale_order_ids': [(6, 0, order.ids)],
-                    })
-                    tx = self.env['payment.transaction'].create(vals)
-                    tx.payment_token_id = pm_id
-                    res = tx._stripe_create_payment_intent()
-                    if (str(res.get('status')) == 'succeeded'):
-                        tx.acquirer_reference = res.get('id')
-                        tx.date = datetime.now()
-                        tx._set_transaction_done()
-                        journal = self.env['account.journal'].sudo().search(
-                            [('code', 'ilike', 'STRIP')])
-                        payment_method = self.env['account.payment.method'].sudo().search(
-                            [('code', 'ilike', 'electronic')])
-                        acquirer = self.env['payment.acquirer'].sudo().search([('code', 'ilike', 'stripe')])
-                        payment = self.env['account.payment'].create({'payment_type': 'inbound',
-                                                                      'payment_method_id': payment_method.id,
-                                                                      'partner_type': 'customer',
-                                                                      'partner_id': invoice.partner_id.id,
-                                                                      'amount': tx.amount,
-                                                                      'currency_id': invoice.currency_id.id,
-                                                                      'payment_date': datetime.now(),
-                                                                      'journal_id': journal.id,
-                                                                      'communication': tx.reference,
-                                                                      'payment_token_id': pm_id,
-                                                                      'invoice_ids': [(6, 0, invoice.ids)],
-                                                                      })
-                        payment.payment_transaction_id = tx
-                        tx.payment_id = payment
-                        payment.post()
-                        message_id = self.env['message.wizard'].create(
-                            {'message': _("Le paiement a été effectué avec succès")})
-                        return {
-                            'name': _('Paiement avec succès'),
-                            'type': 'ir.actions.act_window',
-                            'view_mode': 'form',
-                            'res_model': 'message.wizard',
-                            # pass the id
-                            'res_id': message_id.id,
-                            'target': 'new'
-                        }
-                    elif (str(res.get('status')) == 'requires_payment_method'):
+                    payment_method = self.env['account.payment.method'].sudo().search(
+                        [('code', 'ilike', 'electronic')])
+                    acquirer = self.env['payment.acquirer'].sudo().search([('name', 'ilike', 'stripe'),('company_id',"=",invoice.company_id.id)])
+                    payment = self.env['account.payment'].create({'payment_type': 'inbound',
+                                                                  'payment_method_id': payment_method.id,
+                                                                  'partner_type': 'customer',
+                                                                  'partner_id': invoice.partner_id.id,
+                                                                  'amount': tx.amount,
+                                                                  'currency_id': invoice.currency_id.id,
+                                                                  'payment_date': datetime.now(),
+                                                                  'journal_id': journal.id,
+                                                                  'communication': tx.reference,
+                                                                  'payment_token_id': pm_id,
+                                                                  'company_id':invoice.company_id.id,
+                                                                  'invoice_ids': [(6, 0, invoice.ids)],
+                                                                  })
+                    payment.payment_transaction_id = tx
+                    tx.payment_id = payment
+                    payment.post()
+            elif (str(res.get('status')) == 'requires_payment_method'):
+                print('paiement echoué')
 
-                        new_ticket = self.env['helpdesk.ticket'].sudo().create(
-                            vals)
-                        message_id = self.env['message.wizard'].create(
-                            {'message': _("Le paiement a été echoué....veuillez contacter le client")})
-                        return {
-                            'name': _('Paiement echoué'),
-                            'type': 'ir.actions.act_window',
-                            'view_mode': 'form',
-                            'res_model': 'message.wizard',
-                            # pass the id
-                            'res_id': message_id.id,
-                            'target': 'new'
-                        }
-                        vals = {
-                            'partner_email': invoice.partner_id.email,
-                            'description': 'Veuillez relancez le paiement de ' + str(invoice.partner_id.name),
-                            'name': 'Relance paiement ' + str(invoice.partner_id.name),
-                            'team_id': self.env['helpdesk.team'].sudo().search([('name', 'like', 'Compta')],
-                                                                               limit=1).id,
-                            'invoice_id': invoice.id
-                        }
-                        new_ticket = self.env['helpdesk.ticket'].sudo().create(
-                            vals)
+
+
 
 
 class AccountMove(models.Model):
@@ -160,9 +217,15 @@ class AccountMove(models.Model):
         amount = sum(self.mapped('amount_residual'))
         if self.invoice_origin:
             order = self.env['sale.order'].sudo().search([('name', 'ilike', self.invoice_origin)])
+            print('orderrrrr')
+            print(order)
+            print(self.company_id.id)
+            print(order.instalment)
             if order:
-                if order.instalment and self.amount_total > 1000:
+                if order.instalment and self.amount_total > 1000 and self.company_id.id==1:
                     amount = self.amount_total / 3
+                if order.instalment and self.company_id.id==2:
+                    amount = self.amount_total / order.instalment_number
 
         vals.update({
             'amount': amount,
@@ -180,10 +243,10 @@ class AccountMove(models.Model):
 
     def action_invoice_register_payment_stripe(self):
         for rec in self:
-            if rec.amount_total  > 1000 and rec.type_facture=='web':
+            if rec.amount_total  > 1000 and rec.type_facture=='web' and rec.company_id.id==1:
                 order = self.env['sale.order'].sudo().search([('name', 'ilike', rec.invoice_origin)])
                 pm_id = self.env['payment.token'].sudo().search([('partner_id', '=', rec.partner_id.id)])[-1].id
-                acquirer = self.env['payment.acquirer'].sudo().search([('code', 'ilike', 'stripe')])
+                acquirer = self.env['payment.acquirer'].sudo().search([('name', 'ilike', 'stripe'),('company_id',"=",rec.company_id.id)])
                 vals = {}
                 vals.update({
                     'acquirer_id': acquirer.id,
@@ -204,7 +267,7 @@ class AccountMove(models.Model):
                         [('code', 'ilike', 'STRIP')])
                     payment_method = self.env['account.payment.method'].sudo().search(
                         [('code', 'ilike', 'electronic')])
-                    acquirer = self.env['payment.acquirer'].sudo().search([('code', 'ilike', 'stripe')])
+                    acquirer = self.env['payment.acquirer'].sudo().search([('name', 'ilike', 'stripe'),('company_id',"=",rec.company_id.id)])
                     payment = self.env['account.payment'].create({'payment_type': 'inbound',
                                                                   'payment_method_id': payment_method.id,
                                                                   'partner_type': 'customer',

@@ -11,7 +11,7 @@ class Module(models.Model):
 
     name = fields.Char('Nom du module', required=True)
     product_id = fields.Many2one('product.template', string="Formation", required=True)
-    prix_normal = fields.Monetary('Prix Normal', compute='_get_module_prices')
+    prix_normal = fields.Monetary('Prix Normal',default=lambda self:self.product_id.list_price,store=True)
     prix_chpf = fields.Monetary('Prix CHPF', compute='_get_module_prices')
     date_debut = fields.Date('Du')
     date_fin = fields.Date('Au')
@@ -50,7 +50,7 @@ class Module(models.Model):
         ('conduite', 'Conduite'),
     ], string='Modalité Pédagogique')
     website_published = fields.Boolean('Publié en site web', default=True)
-    contract_price = fields.Monetary('Prix Affiché en contrat', default=lambda self: self.product_id.list_price)
+    contract_price=fields.Monetary('Prix Affiché en contrat',default=lambda self: self.product_id.list_price)
 
 
     @api.depends('duree')
@@ -61,7 +61,7 @@ class Module(models.Model):
     @api.onchange('product_id')
     def change_contract_price(self):
         if self.product_id:
-            self.contract_price = self.product_id.list_price
+            self.contract_price=self.product_id.list_price
 
     @api.depends('module_details_ids')
     def _get_module_prices(self):

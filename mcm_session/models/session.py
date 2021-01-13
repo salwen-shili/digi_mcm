@@ -35,6 +35,7 @@ class Session(models.Model):
     count_annule=fields.Integer('',compute='_compute_count_clients')
     count_prospect=fields.Integer('',compute='_compute_count_clients')
     count_panier_perdu=fields.Integer('',compute='_compute_count_clients')
+    company_id = fields.Many2one('res.company', string='Company', default=lambda self: self.env.company)
 
 
     @api.depends('client_ids','prospect_ids','canceled_prospect_ids')

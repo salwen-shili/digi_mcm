@@ -37,7 +37,7 @@ class HelpdeskTicket(models.Model):
         if self.invoice_id:
             order = self.env['sale.order'].sudo().search([('name', 'ilike', self.invoice_id.invoice_origin)])
             pm_id = self.env['payment.token'].sudo().search([('partner_id', '=', self.invoice_id.partner_id.id)])[-1].id
-            acquirer = self.env['payment.acquirer'].sudo().search([('code', 'ilike', 'stripe')])
+            acquirer = self.env['payment.acquirer'].sudo().search([('name', 'ilike', 'stripe'),('company_id',"=",self.env.user.company_id.id)])
             vals = {}
             vals.update({
                 'acquirer_id': acquirer.id,
@@ -58,7 +58,7 @@ class HelpdeskTicket(models.Model):
                     [('code', 'ilike', 'STRIP')])
                 payment_method = self.env['account.payment.method'].sudo().search(
                     [('code', 'ilike', 'electronic')])
-                acquirer = self.env['payment.acquirer'].sudo().search([('code', 'ilike', 'stripe')])
+                acquirer = self.env['payment.acquirer'].sudo().search([('name', 'ilike', 'stripe'),('company_id',"=",self.invoice_id.company_id.id)])
                 payment = self.env['account.payment'].create({'payment_type': 'inbound',
                                                               'payment_method_id': payment_method.id,
                                                               'partner_type': 'customer',
