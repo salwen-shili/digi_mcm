@@ -11,3 +11,6 @@ class ProductTemplate(models.Model):
     distance_formation=fields.Boolean('À distance')
     location=fields.Boolean('Location de véhicule')
     cpf_available = fields.Boolean('Disponible en CPF')
+    id_edof = fields.Char('Id produit en edof')
+
+

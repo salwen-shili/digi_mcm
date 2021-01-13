@@ -10,6 +10,7 @@
                 <field name="duration"/>
                 <field name="location"/>
                 <field name="cpf_available"/>
+                <field name="id_edof"/>
             </xpath>
         </field>
     </record>
