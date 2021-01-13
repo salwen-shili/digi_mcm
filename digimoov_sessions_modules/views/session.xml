@@ -11,6 +11,7 @@
                     <field name="date_debut" attrs="{'invisible': [('company_id', '=', 2)]}"/>
                     <field name="date_fin" attrs="{'invisible': [('company_id', '=', 2)]}"/>
                     <field name="ville" attrs="{'invisible': [('company_id', '=', 1)]}"/>
+                    <field name="intervalle_jours" attrs="{'invisible': [('company_id', '=', 1)]}"/>
                     <field name="company_id"/>
                 </group>
             </xpath>

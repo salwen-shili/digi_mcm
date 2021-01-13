@@ -17,3 +17,4 @@ class Session(models.Model):
         ('strasbourg', 'Strasbourg'),
         ('toulouse', 'Toulouse'),
     ], string='Ville', default="bordeaux")
+    intervalle_jours = fields.Integer('Intervalle des jours',default=42)

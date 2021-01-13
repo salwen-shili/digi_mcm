@@ -41,7 +41,7 @@ class WebsiteSale(WebsiteSale):
             for module in all_digimoov_modules:
                 if module.date_exam:
                     print('interval days :'+str((module.date_exam - today).days))
-                    if (module.date_exam - today).days > 42:
+                    if (module.date_exam - today).days > int(module.session_id.intervalle_jours):
                         list_modules_digimoov.append(module)
 
         if order and order.state != 'draft':

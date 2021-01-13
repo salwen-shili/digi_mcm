@@ -32,7 +32,7 @@ class FINANCEMENT(http.Controller):
                     for module in all_digimoov_modules:
                         if module.date_exam:
                             print('interval days :' + str((module.date_exam - today).days))
-                            if (module.date_exam - today).days > 42:
+                            if (module.date_exam - today).days > int(module.session_id.intervalle_jours):
                                 list_modules_digimoov.append(module)
                 values.update({
                     'modules_digimoov': list_modules_digimoov,
@@ -75,7 +75,7 @@ class FINANCEMENT(http.Controller):
                     if (all_digimoov_modules):
                         for module in all_digimoov_modules:
                             if module.date_exam:
-                                if (module.date_exam - today).days > 42:
+                                if (module.date_exam - today).days > int(module.session_id.intervalle_jours):
                                     list_modules_digimoov.append(module)
                     values.update({
                         'modules_digimoov': list_modules_digimoov,
