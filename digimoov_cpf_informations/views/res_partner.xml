@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="digimoov_cpf_view_res_partner_form" model="ir.ui.view">
+        <field name="name">res.partner.form</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="mcm_cpf_partner.mcmacademy_cpf_view_res_partner_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='statut_cpf']" position="after">
+                <field name="id_edof"
+                       attrs="{'invisible': [('mode_de_financement', '!=', 'cpf'),('company_id', '=', 1)]}"/>
+                <field name="date_examen_edof"
+                       attrs="{'invisible': [('mode_de_financement', '!=', 'cpf'),('company_id', '=', 1)]}"/>
+                <field name="ville"
+                       attrs="{'invisible': [('mode_de_financement', '!=', 'cpf'),('company_id', '=', 1)]}"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>
