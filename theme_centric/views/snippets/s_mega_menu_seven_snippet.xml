@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+	<template id="s_mega_menu_seven_snippet" name="Mega Menu Seven">
+		<section class="s_mega_menu_seven_snippet">
+			<div class="container ">
+				<div class="row">
+					<div class="one-column col-md-2 col-sm-2">
+						<ul class="list-unstyled">
+							<li>
+								<span class="mega-headline">Example Pages</span>
+							</li>
+							<li><a href="#">Contact</a></li>
+							<li><a href="#">About Us</a></li>
+							<li><a href="#">Services</a></li>
+							<li><a href="#">FAQ</a></li>
+							<li><a href="#">404 Page</a></li>
+						</ul>
+					</div>
+					<div class="one-column col-md-2 col-sm-2">
+						<ul class="list-unstyled">
+							<li>
+								<span class="mega-headline">Featured Pages</span>
+							</li>
+							<li><a href="#">Business Homepage</a></li>
+							<li><a href="#">Default Shop</a></li>
+							<li><a href="#">Masonry Blog</a></li>
+							<li><a href="#">Variable Product</a></li>
+							<li><a href="#">Dynamic Grid</a></li>
+						</ul>
+					</div>
+					<div class="one-column hidden-on-mobile col-md-2 col-sm-2">
+						<ul class="list-unstyled">
+							<li>
+								<span class="mega-headline">Paragraph</span>
+							</li>
+							<li>
+								<p>"This 
+								Mega Menu </p>
+								<p>can handle 
+								everything. </p>
+								<p>Lists, paragraphs, forms...</p>
+							</li>
+						</ul>
+					</div>
+					<div class="one-fourth-column hidden-on-mobile col-md-2 py-2 text-center col-sm-2" >
+							<img class="img-fluid" src="/theme_centric/static/src/img/t1.jpg"/>
+					</div>
+					<div class="one-fourth-column hidden-on-mobile col-md-2 py-2 text-center col-sm-2">
+							<img class="img-fluid" src="/theme_centric/static/src/img/t2.jpg"/>
+					</div>
+				</div>
+			</div>
+		</section>
+	</template>
+</odoo>

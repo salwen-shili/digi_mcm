@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+	<template id="s_soft_services" name="Soft services">
+		<section class="theme-soft">
+		<section class="services pb64 pt64" id="services">
+			<div class="container">
+				<div class="row pt16">
+					<div class="col-md-5 pt128 pb32">
+						<h6 class="text-feature">SERVICES</h6>
+						<h1 class="text-alpha">Best solutions</h1>
+						<h1 class="font-weight-lighter text-alpha">for you</h1>
+						<p class="pt16 ">We provide digital experience services to startups and small businesses to looking for a partner of their digital media, design and development, lead generation and communications requirents. We work with you, not for you. Although we have a great resources</p>
+						<div class="s_btn" data-name="Button">
+							<a class="btn btn-md px-4 py-3 rounded-circle mt-5 btn-alpha" type="button" href="#">SEE ALL SERVICES</a>
+						</div>
+					</div>
+					<div class=" col-md-1"></div>
+
+					<div class="col-lg-6 card-p" >
+						<div class="row">
+							<div class="col-lg-6  co
+								l-md-8 col-sm-12 mt-4 ">
+								<section class="pt32 pb32  ml-md-1 mr-md-1 px-4 service red_card">
+			 						<span class="fa fa-bookmark-o cardimg "></span>
+										<h3 class=" font-weight-bold pt-5">Branding</h3>
+  									<p class=" text-justify pt-2 ">Introduction and kick-off meeting checklist. Lorem ispumdolor sit amet.</p>
+  								</section>
+							</div>
+
+							<div class="col-lg-6  col-md-8 col-sm-12  mt-4 top-set">
+								<section class="pt32 pb32 ml-md-1 mr-md-1 px-4 service red_card">
+			 						<span class="fa fa-desktop cardimg "></span>
+										<h3 class=" font-weight-bold pt-5">UI/UX Design</h3>
+  									<p class=" text-justify pt-2 ">Introduction and kick-off meeting checklist. Lorem ispumdolor sit amet.</p>
+  								</section>
+							</div>
+
+
+							<div class="col-lg-6  col-md-8 col-sm-12  mt-4">
+								<section class="pt32 pb32 ml-md-1 mr-md-1 px-4 service red_card">
+			 						<span class="fa fa-film cardimg "></span>
+										<h3 class=" font-weight-bold pt-5">Animation</h3>
+  									<p class=" text-justify pt-2 ">Introduction and kick-off meeting checklist. Lorem ispumdolor sit amet.</p>
+  								</section>
+							</div>
+
+							<div class="col-lg-6  col-md-8 col-sm-12  mt-4 top-set">
+								<section class="pt32 pb32 ml-md-1 mr-md-1 px-4 service red_card">
+			 						<span class="fa fa-camera-retro cardimg "></span>
+										<h3 class=" font-weight-bold pt-5">Photography</h3>
+  									<p class=" text-justify pt-2 ">Introduction and kick-off meeting checklist. Lorem ispumdolor sit amet.</p>
+  								</section>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+	</section>
+	</template>
+</odoo>

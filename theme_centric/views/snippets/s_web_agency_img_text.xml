@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+	<template id="s_web_agency_img_text" name="Icons with image and paragraph">
+		<section class="s_web_agency_img_text bg-light-1">
+			<div class="spacer  feature26">
+				<div class="container">
+					<div class="row">
+						<div class="col-lg-6 col-md-6 align-self-center">
+							<h2 class="title m-t-0 text-beta">We have covered everything for you get desire
+								results with us
+							</h2>
+							<p class="m-t-30 custom_p">You can relay on our amazing features list and also
+								our customer services will be great experience for you
+								without doubt and in no-time and with great quality.
+							</p>
+							<div class="row">
+								<div class="col-md-6 m-t-40">
+									<span class="fa fa-laptop display-5 text-alpha"></span>
+									<h5 class="font-medium m-t-20 m-b-20">Your complete website in just few minutes</h5>
+									<p class="custom_p">You can relay on our amazing features list and also
+										our
+										customer services will be great experience have.
+									</p>
+									<div class="s_btn" data-name="Link Align">
+										<a class="linking font-medium" 
+											href="#">
+											Lets Talk!
+											<span class="fa fa-long-arrow-right  text-alpha"></span>
+										</a>
+									</div>
+								</div>
+								<div class="col-md-6  m-t-40">
+									<span class="fa fa-rocket display-5 text-alpha"></span>
+									<h5 class="font-medium m-t-20 m-b-20">Get Powerful Results with Bizople</h5>
+									<p class="custom_p">You can relay on our amazing features list and also
+										our
+										customer services will be great experience have.
+									</p>
+									<div class="s_btn" data-name="Link Align">
+										<a class="linking font-medium" 
+											href="#">
+											Lets Talk!
+											<span class="fa fa-long-arrow-right  text-alpha"></span>
+										</a>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-lg-6 col-md-6 text-center">
+							<img src="/theme_centric/static/src/img/fe27.png"
+								class="img-fluid" alt="bizople" />
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+	</template>
+
+</odoo>

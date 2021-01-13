@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+	<template id="s_marketing_carousel_images"
+		name="Testimonial Nine">
+		<section class="s_marketing_carousel_images bg-success-gradiant mb64">
+			<div class="testimonial9 spacer ">
+				<div id="marketing_carousel1232"
+					class="owl-carousel owl-theme testi3 m-t-40 s_carousel_default carousel slide"
+					data-interval="5000">
+					<div class="container">
+						<div class="row">
+							<div class="col-lg-5 text-white col-md-6">
+								<h2 class="m-t-40 text-white">What Our Customers Say</h2>
+								<span class="devider bg-white"></span>
+								<p class="custom_p">We care what our customers think of us and so
+									should you.
+									We
+									are partners in your business and your success
+									is ours in
+									your
+									business.
+								</p>
+								<ol class="carousel-indicators">
+									<li data-target="#marketing_carousel1232" data-slide-to="0"
+										class="">
+									</li>
+									<li data-target="#marketing_carousel1232" data-slide-to="1"
+										class="active"></li>
+									<li data-target="#marketing_carousel1232" data-slide-to="2"
+										class=""></li>
+									<li data-target="#marketing_carousel1232" data-slide-to="3"
+										class=""></li>
+									<li data-target="#marketing_carousel1232" data-slide-to="4"
+										class=""></li>
+								</ol>
+							</div>
+							<div class="col-lg-6 col-md-6 ml-auto">
+								<div class="carousel-inner">
+									<div class="carousel-item active" data-name="Slide">
+										<div class="item">
+											<section class="card card-shadow">
+												<div class="p-40">
+													<h5 class="text">Bizople has given our websites huge
+														national
+														presence. We are #1 on page one in Google
+														search results
+														for every website we’ve built, and rank
+														for more keywords
+														than I ever expected in a very
+														competitive, high-value
+														customer industry. In addition,
+													</h5>
+												</div>
+											</section>
+											<div class="d-flex no-block align-items-center">
+												<div class="customer-thumb">
+													<img src="/theme_centric/static/src/img/2.jpg"
+														alt="bizople" class="circle" />
+												</div>
+												<div class="">
+													<h6 class="font-bold m-b-0 text-white">Michael Anderson</h6>
+													<span class="font-13 text-white">Project client</span>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="carousel-item oe_img_bg" data-name="Slide">
+										<div class="item">
+											<section class="card card-shadow">
+												<div class="p-40">
+													<h5 class="text">Bizople has given our websites huge
+														national
+														presence. We are #1 on page one in Google
+														search results
+														for every website we’ve built, and rank
+														for more keywords
+														than I ever expected in a very
+														competitive, high-value
+														customer industry. In addition,
+													</h5>
+												</div>
+											</section>
+											<div class="d-flex no-block align-items-center">
+												<div class="customer-thumb">
+													<img src="/theme_centric/static/src/img/1.jpg"
+														alt="bizople" class="circle" />
+												</div>
+												<div class="">
+													<h6 class="font-bold m-b-0 text-white">Michael Anderson</h6>
+													<span class="font-13 text-white">Project client</span>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="carousel-item oe_img_bg" data-name="Slide">
+										<div class="item">
+											<section class="card card-shadow">
+												<div class="p-40">
+													<h5 class="text">Bizople has given our websites huge
+														national
+														presence. We are #1 on page one in Google
+														search results
+														for every website we’ve built, and rank
+														for more keywords
+														than I ever expected in a very
+														competitive, high-value
+														customer industry. In addition,
+													</h5>
+												</div>
+											</section>
+											<div class="d-flex no-block align-items-center">
+												<div class="customer-thumb">
+													<img src="/theme_centric/static/src/img/3.jpg"
+														alt="bizople" class="circle" />
+												</div>
+												<div class="">
+													<h6 class="font-bold m-b-0 text-white">Michael Anderson</h6>
+													<span class="font-13 text-white">Project client</span>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="carousel-item oe_img_bg" data-name="Slide">
+										<div class="item">
+											<section class="card card-shadow">
+												<div class="p-40">
+													<h5 class="text">Bizople has given our websites huge
+														national
+														presence. We are #1 on page one in Google
+														search results
+														for every website we’ve built, and rank
+														for more keywords
+														than I ever expected in a very
+														competitive, high-value
+														customer industry. In addition,
+													</h5>
+												</div>
+											</section>
+											<div class="d-flex no-block align-items-center">
+												<div class="customer-thumb">
+													<img src="/theme_centric/static/src/img/1.jpg"
+														alt="bizople" class="circle" />
+												</div>
+												<div class="">
+													<h6 class="font-bold m-b-0 text-white">Michael Anderson</h6>
+													<span class="font-13 text-white">Project client</span>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="carousel-item oe_img_bg" data-name="Slide">
+										<div class="item">
+											<section class="card card-shadow">
+												<div class="p-40">
+													<h5 class="text">Bizople has given our websites huge
+														national
+														presence. We are #1 on page one in Google
+														search results
+														for every website we’ve built, and rank
+														for more keywords
+														than I ever expected in a very
+														competitive, high-value
+														customer industry. In addition,
+													</h5>
+												</div>
+											</section>
+											<div class="d-flex no-block align-items-center">
+												<div class="customer-thumb">
+													<img src="/theme_centric/static/src/img/2.jpg"
+														alt="bizople" class="circle" />
+												</div>
+												<div class="">
+													<h6 class="font-bold m-b-0 text-white">Michael Anderson</h6>
+													<span class="font-13 text-white">Project client</span>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+	</template>
+
+</odoo>

@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+	<template id="s_contact_us_five"
+		name="Contact us Five">
+		<section id="banner2"
+			class="s_medical_banner spacer banner p-b-0 " style="background-image: url(/theme_centric/static/src/img/banner-bg_medical.jpg);">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-5 align-self-center hidden-md-down bg-alpha">
+						<div class="pt40 pb40 mr16 ml16">
+							<h3 class="text-white">The Best Medical Treatment Which You Deserve
+							</h3>
+							<p class="text-white op-7 m-t-20 custom_p">To accomplish great things, we must not only
+								act
+								but also dream and plan.
+							</p>
+						</div>
+					</div>
+					<div class="col-md-7 col-lg-4 ml-auto aos-init ">
+						<form action="/website_form/" method="post"
+							data-model_name="crm.lead"
+							data-success_page="/contactus-thank-you"
+							class="s_website_form contact-form  bg-white appointment-form"
+							enctype="multipart/form-data" data-editable-form="false">
+							<div class="form-row b-b ">
+								<div class="p-30 left">
+									<label class="text-inverse font-12 text-uppercase">First Name</label>
+									<input  placeholder="Your First Name"
+										name="contact_name" required="" type="text"
+										class="o_website_form_input b-0 p-0 font-14 form-control"
+										t-att-value="request.params.get('contact_name', '')" />
+								</div>
+
+							</div>
+							<div class="form-row b-b p-30 ">
+								<label class="text-inverse font-12 text-uppercase">Email Address</label>
+								<input  name="email_from"
+									placeholder="Enter your Email Address" required="" value=""
+									type="email"
+									class="o_website_form_input b-0 p-0 font-14 form-control"
+									t-att-value="request.params.get('email_from', '')" />
+							</div>
+							<div class="form-row b-b p-30 ">
+								<label class="text-inverse font-12 text-uppercase">Phone Number</label>
+								<input  name="phone"
+									placeholder="Enter your Phone Number" type="text" 
+									t-att-value="request.params.get('phone', '')"
+									class="o_website_form_input b-0 p-0 font-14 form-control" />
+
+							</div>
+							<div class="form-row b-b p-30 po-relative ">
+								<label class="text-inverse font-12 text-uppercase">Subject</label>
+								<div class="input-group date">
+									<input  name="name"
+										placeholder="Enter Your Subject" type="text" required=""
+										t-att-value="request.params.get('name', '')"
+										class="o_website_form_input b-0 p-0 font-14 form-control" />
+
+								</div>
+							</div>
+							<div class="form-row b-b p-30 ">
+								<label class="text-inverse font-12 text-uppercase">Message</label>
+								<textarea  name="description" rows="3"
+									placeholder="Write Down the Message" required=""
+									t-att-value="request.params.get('description', '')"
+									class=" o_website_form_input b-0 font-light p-0 font-14 form-control"></textarea>
+								<div class="reserve-submit mt-40">
+								</div>
+
+							</div>
+							<div id="o_website_form_result" class="text-danger ml8 mt16  mb16"></div>
+							<div class="s_btn" data-name="Button">
+								<button
+									class="o_website_form_send m-0 b-0 p-t-30 p-b-30 font-14 font-semibold btn-alpha btn btn-block arrow-btn text-center text-white text-uppercase"
+									type="submit">
+										Book Your Appointment Now
+										<span class="fa fa-1x fa-fw fa-long-arrow-right ml-1"></span>
+								</button>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</section>
+	</template>
+
+</odoo>

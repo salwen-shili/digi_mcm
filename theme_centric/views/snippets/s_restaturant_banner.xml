@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+	<template id="s_restaturant_banner" name="Home Banner Seven">
+		<section id="slider-sec"
+			class="s_restaturant_banner slider5 bg-light-1">
+			<div id="slider_restaurant"
+				class="carousel bs-slider control-round indicators-line"
+				data-ride="carousel" data-pause="hover" data-interval="7000">
+				<ol class="carousel-indicators">
+					<li data-target="#slider_restaurant" data-slide-to="0" class=""></li>
+					<li data-target="#slider_restaurant" data-slide-to="1"
+						class="active"></li>
+				</ol>
+				<div class="carousel-inner" role="listbox">
+					<div class="carousel-item " style="background-image: url('/theme_centric/static/src/img/restaurant_slide1.jpg');">
+						<div class="container">
+							<div class="row">
+								<div class="col-md-9 col-lg-5 ml-auto">
+									<h2 data-animation="animated zoomInRight"
+										class="title font-stylish font-bold m-0 p-b-20 p-t-30">Delicious Food</h2>
+									<p data-animation="animated lightSpeedIn"
+										class="custom_p m-b-40 d-none d-md-block">Not like the brazen giant of Greek fame With
+										conquering limbs astride from land to land Here
+									</p>
+									<div class="s_btn" data-name="Button">
+										<a
+											class="btn btn-outline-danger btn-md btn-rounded rounded-circle arrow-btn bizople_button"
+											data-animation="animated fadeInRight" 
+											href="#">
+												Today's Special
+												<span class="fa fa-1x fa-fw fa-long-arrow-right ml-1"></span>
+										</a>
+									</div>
+									<div class="promo-code" data-animation="animated fadeInUp">
+										<img src="/theme_centric/static/src/img/slide-offer-bg.jpg" class="no-repeat center top promo-code-image"/>
+										<div class="code-content">
+											<h3 class=" font-semibold text-uppercase m-b-0">Hot Summer - 35 % OFF</h3>
+											<p>Apply promocode '154FEB'
+										</p>
+										</div>
+									</div>
+								</div>
+								<div class="col-lg-1 hidden-md-down"></div>
+							</div>
+						</div>
+					</div>
+					<div class="carousel-item active "  style="background-image: url('/theme_centric/static/src/img/restaurant_slide2.jpg');">
+						<div class="container">
+							<div class="row">
+								<div class="col-md-9 col-lg-5 ml-auto">
+									<h2 data-animation="animated flipInX"
+										class="title font-stylish font-bold m-0 p-b-20 p-t-30">Delicious Food</h2>
+									<p data-animation="animated lightSpeedIn"
+										class="m-b-40 d-none d-md-block custom_p">Not like the brazen giant of Greek fame With
+										conquering limbs astride from land to land Here
+									</p>
+									<div class="s_btn" data-name="Button">
+										<a class="btn btn-danger btn-md btn-rounded rounded-circle arrow-btn bizople_button"
+											data-animation="animated fadeInRight" 
+											href="#">
+												Today's Special
+												<span class="fa fa-1x fa-fw fa-long-arrow-right ml-1"></span>
+										</a>
+									</div>
+									<div class="promo-code" data-animation="animated fadeInUp">
+										<img src="/theme_centric/static/src/img/slide-offer-bg.jpg" class="no-repeat center top promo-code-image"/>
+										<div class="code-content">
+											<h3 class=" font-semibold text-uppercase m-b-0">Hot Summer - 35 % OFF</h3>
+											<p>Apply promocode '154FEB'
+										</p>
+										</div>
+									</div>
+								</div>
+								<div class="col-lg-1 hidden-md-down"></div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+	</template>
+
+</odoo>

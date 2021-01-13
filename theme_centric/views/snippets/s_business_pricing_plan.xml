@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+	<template id="s_business_pricing_plan" name="Pricing Plan Three">
+		<section class="s_business_pricing_plan pricing5 spacer">
+			<div class="container">
+				<div class="row justify-content-center">
+					<div class="col-md-8 text-center">
+						<h2 class="title text-beta">Simple Pricing to make your Work Effective</h2>
+						<h6 class="subtitle">We offer 100% satisfaction and Money back
+							Guarantee
+						</h6>
+					</div>
+				</div>
+				<div class="row text-center pricing-box">
+					<div class="col-md-4">
+						<section class="card card-shadow"
+							style="background:url(/theme_centric/static/src/img/p5-img1.jpg)no-repeat">
+							<div class="">
+								<h6 class="text-white m-t-30 m-b-0">BASE PACK</h6>
+								<h2 class="text-white m-t-0 monthly">$100</h2>
+								<h2 class="text-white m-t-0 yearly">$1000</h2>
+								<ul class="general-listing only-li">
+									<li>
+										<h5>10 IMAGES</h5>
+										<h6 class="subtitle">Premium images / Day</h6>
+									</li>
+									<li>
+										<h5>05 Videos</h5>
+										<h6 class="subtitle">Video Footage / Day</h6>
+									</li>
+									<li>
+										<h5>03 Users</h5>
+										<h6 class="subtitle">Can access the site</h6>
+									</li>
+								</ul>
+								<div class="s_btn text-center pt8 pb24 px-5" data-name="Button">
+									<a href="/contactus"
+										class="btn btn-outline-alpha btn-md arrow-btn btn-rounded rounded-circle m-b-20 bizople_button">
+										BUY BASIC
+										<span class="fa fa-1x fa-fw fa-long-arrow-right ml-1"></span>
+									</a>
+								</div>
+							</div>
+						</section>
+					</div>
+					<div class="col-md-4 middle-box">
+						<section class="card card-shadow"
+							style="background:url(/theme_centric/static/src/img/p5-img2.jpg)no-repeat">
+							<div class="">
+								<h6 class="text-white m-t-30 m-b-0">PRO PACK</h6>
+								<h2 class="text-white m-t-0 monthly">$200</h2>
+								<h2 class="text-white m-t-0 yearly">$2000</h2>
+								<div class="star-plan m-t-20">
+									<img src="/theme_centric/static/src/img/star.png" alt=" " />
+								</div>
+								<ul class="general-listing only-li">
+									<li>
+										<h5>20 IMAGES</h5>
+										<h6 class="subtitle">Premium images / Day</h6>
+									</li>
+									<li>
+										<h5>10 Videos</h5>
+										<h6 class="subtitle">Video Footage / Day</h6>
+									</li>
+									<li>
+										<h5>05 Users</h5>
+										<h6 class="subtitle">Can access the site</h6>
+									</li>
+								</ul>
+								<div class="s_btn text-center pt8 pb24 px-5" data-name="Button">
+									<a href="/contactus"
+										class="btn btn-primary btn-md btn-rounded rounded-circle arrow-btn m-b-20 btn-alpha bizople_button">
+										BUY BASIC
+										<span class="fa fa-1x fa-fw fa-long-arrow-right ml-1"></span>
+									</a>
+								</div>
+							</div>
+						</section>
+					</div>
+					<div class="col-md-4">
+						<section class="card card-shadow"
+							style="background:url(/theme_centric/static/src/img/p5-img3.jpg)no-repeat">
+							<div class="">
+								<h6 class="text-white m-t-30 m-b-0">BASE PACK</h6>
+								<h2 class="text-white m-t-0 monthly">$300</h2>
+								<h2 class="text-white m-t-0 yearly">$3000</h2>
+								<ul class="general-listing only-li">
+									<li>
+										<h5>50 IMAGES</h5>
+										<h6 class="subtitle">Premium images / Day</h6>
+									</li>
+									<li>
+										<h5>25 Videos</h5>
+										<h6 class="subtitle">Video Footage / Day</h6>
+									</li>
+									<li>
+										<h5>10 Users</h5>
+										<h6 class="subtitle">Can access the site</h6>
+									</li>
+								</ul>
+								<div class="s_btn text-center pt8 pb24 px-5" data-name="Button">
+									<a href="/contactus"
+										class="btn btn-outline-alpha btn-md arrow-btn btn-rounded rounded-circle m-b-20 bizople_button">
+										BUY BASIC
+										<span class="fa fa-1x fa-fw fa-long-arrow-right ml-1"></span>
+									</a>
+								</div>
+							</div>
+						</section>
+					</div>
+				</div>
+			</div>
+		</section>
+	</template>
+
+</odoo>

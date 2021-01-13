@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+	<template id="s_accounting_banner" name="home Banner Nine">
+		<section id="slider-sec" class="slider4 s_accounting_banner">
+			<div id="accounting_slider123"
+				class="carousel bs-slider slide  control-round indicators-line"
+				data-ride="carousel" data-pause="hover" data-interval="7000">
+				<ol class="carousel-indicators">
+					<li data-target="#accounting_slider123" data-slide-to="0"
+						class="active"></li>
+					<li data-target="#accounting_slider123" data-slide-to="1"
+						class=""></li>
+				</ol>
+				<div class="carousel-inner" role="listbox">
+					<div class="carousel-item active pt128 pb128" data-name="Slide" alt="We are Digital Agency" style="background-image: url(/theme_centric/static/src/img/accounting_banner1.jpg);">
+						<div class="container">
+							<div class="row">
+								<div class="col-md-9 col-lg-6">
+									<label class="font-20"
+										data-animation="">Best Accounting Services</label>
+									<h2 data-animation=""
+										class="title font-bold m-0 p-b-40">Accounting Made Easier, Faster &amp; Managable</h2>
+									<ul class="p-0 m-b-40 hidden-sm-down"
+										data-animation="">
+										<li>
+											<span class="fa fa-check-circle text-primary m-r-10"></span>
+											Powerful and Faster Results for your site
+										</li>
+										<li>
+											<span class="fa fa-check-circle text-primary m-r-10"></span>
+											Make your site in no-time with your Bootstrap Bizople
+										</li>
+										<li>
+											<span class="fa fa-check-circle text-primary m-r-10"></span>
+											Tons of Features and Elements available here
+										</li>
+									</ul>
+									<div class="s_btn" data-name="Button">
+										<a
+											class="btn btn-alpha rounded-circle btn-md arrow-btn bizople_button"
+											 
+											href="#">
+											Check Our Services
+											<span class="fa fa-1x fa-fw fa-long-arrow-right ml-1"></span>
+										</a>
+										<a class="btn btn-secondary btn-md arrow-btn  rounded-circle m-l-10 bizople_button"
+											
+											href="#">
+											Ask for Quatation
+											<span class="fa fa-1x fa-fw fa-long-arrow-right ml-1"></span>
+										</a>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="carousel-item oe_img_bg pt152 pb128" data-name="Slide" alt="We are Digital Agency" style="background-image: url(/theme_centric/static/src/img/accounting_banner2.jpg);">
+						<div class="container">
+							<div class="row">
+								<div class="col-md-9 col-lg-6">
+									<label class="font-20"
+										data-animation="">Best Accounting Services</label>
+									<h2 data-animation=""
+										class="title font-bold m-0 p-b-30">Get Free from Accounting related Headaches</h2>
+									<p data-animation=""
+										class="m-b-40 hidden-sm-down custom_p">We offer services in various jonar of
+										Accounting.Let
+										us take your all worry regarding your
+										daily accounting and
+										take rest.
+									</p>
+									<div class="s_btn" data-name="Button">
+										<a
+											class="btn btn-alpha rounded-circle btn-md arrow-btn bizople_button"
+											href="#">
+											Check Our Services
+											<span class="fa fa-1x fa-fw fa-long-arrow-right ml-1"></span>
+										</a>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+	</template>
+
+</odoo>

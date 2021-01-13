@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+	<template id="centric_footer" inherit_id="website.layout" name="Centric Footer" 
+		active="True">
+	       <xpath expr="//div[@id='footer']" position="replace">
+	        <section class="footer-page align-items-left text-left d-flex min-vh-40" style="background-image: url('/theme_centric/static/img/footer.png');" id="footer_page">
+					<div class="container">
+						<div class="row">
+							<div class="col-lg-4 col-md-6 col-sm-6">
+								<div class="footer-area">
+									<div class="footer-head">
+										<h3>About Us</h3>
+									</div>
+									<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Risus commodo viverra</p>
+									<div class="s_share" data-name="Share">
+								        <a t-att-href="website.social_facebook"
+											t-if="website.social_facebook" target="_blank" class="shareftle">
+								            <i class="fa fa-1x fa-facebook"></i>
+								        </a>
+								        <a t-att-href="website.social_twitter"
+											t-if="website.social_twitter" target="_blank" class="shareftle ">
+								            <i class="fa fa-1x fa-twitter"></i>
+								        </a>
+								        <a t-att-href="website.social_linkedin"
+											t-if="website.social_linkedin" target="_blank" class="shareftle">
+								            <i class="fa fa-1x fa-linkedin"></i>
+								        </a>
+								        <a class="shareftle" t-att-href="website.social_youtube"
+											t-if="website.social_youtube" target="_blank">
+											<i class="fa fa-1x fa-youtube-play" />
+										</a>
+										<a class="shareftle" t-att-href="website.social_instagram"
+											t-if="website.social_instagram" target="_blank">
+											<i class="fa fa-1x fa-instagram"></i>
+										</a>
+										<a class="shareftle" t-att-href="website.social_github"
+											t-if="website.social_github" target="_blank">
+											<i class="fa fa-1x fa-github"></i>
+										</a>
+								    </div>
+								</div>
+							</div>
+							<div class="col-lg-2 col-md-6 col-sm-6">
+								<div class="footer-area2">
+									<div class="footer-head">
+										<h3>Important Links</h3>
+									</div>
+									<ul class="footer-links">
+										<li>
+											<a href="/about">About Us</a>
+										</li>
+										<li>
+											<a href="/project">Project</a>
+										</li>
+										<li>
+											<a href="/service">Services</a>
+										</li>
+										<li>
+											<a href="/team">Team</a>
+										</li>
+										<li>
+											<a href="/contact">Contact</a>
+										</li>
+									</ul>
+								</div>
+							</div>
+							<div class="col-lg-2 col-md-6 col-sm-6">
+								<div class="footer-area2">
+									<div class="footer-head">
+										<h3>Our Service</h3>
+									</div>
+									<ul class="footer-links">
+										<li>
+											<a href="#">Mobile App Development</a>
+										</li>
+										<li>
+											<a href="#">Website Development</a>
+										</li>
+										<li>
+											<a href="#">ERP Implementation</a>
+										</li>
+										<li>
+											<a href="#">CRM Development</a>
+										</li>
+										<li>
+											<a href="#">SEO Services</a>
+										</li>
+									</ul>
+								</div>
+							</div>
+							<div class="col-lg-4 col-md-6 col-sm-6">
+								<div class="contactus">
+									<div class="footer-head">
+										<h3>Contact</h3>
+									</div>
+									<div class="footer-contact">
+										<i class="fa fa-phone"></i>
+										<h3>Phone</h3>
+										<span t-field="res_company.phone"></span>
+									</div>
+									<div class="footer-contact">
+										<i class="fa fa-envelope-o"></i>
+										<h3>Email</h3>
+										<span t-field="res_company.email"></span>
+									</div>
+									<div class="footer-contact">
+										<i class="fa fa-map-marker"></i>
+										<h3>Address</h3>
+										<span t-field="res_company.street"></span>,<span t-field="res_company.city"></span>
+										<span t-field="res_company.country_id.name"></span>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div id="to-top">
+							<a id="to-top bg-alpha">
+								<span class="fa fa-arrow-up"></span>
+							</a>
+						</div>
+					</div>
+
+			</section>
+		</xpath>
+	</template>
+</odoo>

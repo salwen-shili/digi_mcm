@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+	<template id="s_one_page_six_blocks"
+		name="Center paragraph with six blocks">
+		<section class="s_one_page_six_blocks bg-light-1 spacer">
+			<div class="feature5" id="feature">
+				<div class="container">
+					<div class="row justify-content-center">
+						<div class="col-md-7 text-center">
+							<h2 class="title text-beta">Awesome with Extra Ordinary Flexibility</h2>
+							<h6 class="subtitle">You can relay on our amazing features list and
+								also our customer services will be great experience for you
+								without doubt and in no-time
+							</h6>
+						</div>
+					</div>
+					<div class="row m-t-40">
+						<div class="col-lg-4 col-md-6 wrap-feature5-box">
+							<section class="card card-shadow aos-init">
+								<div class="card-body d-flex">
+									<div class="icon-space">
+										<span class="text-alpha fa fa-clock-o"></span>
+									</div>
+									<div class="">
+										<h6 class="font-medium">
+											<a href="#" class="linking">Instant Solutions</a>
+										</h6>
+										<p class="m-t-20 custom_p">You can relay on our amaz features list and also
+											our customer services.
+										</p>
+									</div>
+								</div>
+							</section>
+						</div>
+						<div class="col-lg-4 col-md-6 wrap-feature5-box">
+							<section class="card card-shadow aos-init">
+								<div class="card-body d-flex">
+									<div class="icon-space">
+										<span class="text-alpha fa fa-check"></span>
+									</div>
+									<div class="">
+										<h6 class="font-medium">
+											<a href="#" class="linking">Powerful Tech </a>
+										</h6>
+										<p class="m-t-20 custom_p">You can relay on our amaz features list and also
+											our customer services.
+										</p>
+									</div>
+								</div>
+							</section>
+						</div>
+						<div class="col-lg-4 col-md-6 wrap-feature5-box">
+							<section class="card card-shadow aos-init">
+								<div class="card-body d-flex">
+									<div class="icon-space">
+										<span class="text-alpha fa fa-globe"></span>
+									</div>
+									<div class="">
+										<h6 class="font-medium">
+											<a href="#" class="linking">100% Satisfaction </a>
+										</h6>
+										<p class="m-t-20 custom_p">You can relay on our amaz features list and also
+											our customer services.
+										</p>
+									</div>
+								</div>
+							</section>
+						</div>
+						<div class="col-lg-4 col-md-6 wrap-feature5-box">
+							<section class="card card-shadow aos-init">
+								<div class="card-body d-flex">
+									<div class="icon-space">
+										<span class="text-alpha fa fa-dot-circle-o"></span>
+									</div>
+									<div class="">
+										<h6 class="font-medium">
+											<a href="#" class="linking">Targeting Market</a>
+										</h6>
+										<p class="m-t-20 custom_p">You can relay on our amaz features list and also
+											our customer services.
+										</p>
+									</div>
+								</div>
+							</section>
+						</div>
+						<div class="col-lg-4 col-md-6 wrap-feature5-box">
+							<section class="card card-shadow aos-init">
+								<div class="card-body d-flex">
+									<div class="icon-space">
+										<span class="text-alpha fa fa-smile-o"></span>
+									</div>
+									<div class="">
+										<h6 class="font-medium">
+											<a href="#" class="linking">Goal Achievement </a>
+										</h6>
+										<p class="m-t-20 custom_p">You can relay on our amaz features list and also
+											our customer services.
+										</p>
+									</div>
+								</div>
+							</section>
+						</div>
+						<div class="col-lg-4 col-md-6 wrap-feature5-box">
+							<section class="card card-shadow aos-init">
+								<div class="card-body d-flex">
+									<div class="icon-space">
+										<span class="text-alpha fa fa-laptop"></span>
+									</div>
+									<div class="">
+										<h6 class="font-medium">
+											<a href="#" class="linking">Fully Responsive</a>
+										</h6>
+										<p class="m-t-20 custom_p">You can relay on our amaz features list and also
+											our customer services.
+										</p>
+									</div>
+								</div>
+							</section>
+						</div>
+						<div class="col-md-12 text-center m-t-40">
+							<p class="custom_p">
+								Do you have any questions regarding our features?
+								<a href="#" class="linking font-bold">
+									Let's Talk
+									<span class="fa fa-1x fa-fw fa-long-arrow-right ml-1"></span>
+								</a>
+							</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+	</template>
+
+</odoo>

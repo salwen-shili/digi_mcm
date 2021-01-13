@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+	<template id="s_one_page_half_img_para" name="Image with paragraph and button">
+		<section class="s_one_page_half_img_para spacer">
+			<div class="feature22">
+				<div class="container">
+					<div class="row justify-content-center">
+						<div class="col-md-8 text-center">
+							<h2 class="title text-beta">Craft Beautiful About Section With Bizople</h2>
+							<h6 class="subtitle">You can relay on our amazing features list and
+								also our customer services will be great experience for you
+								without doubt and in no-time
+							</h6>
+						</div>
+					</div>
+					<div class="row wrap-feature-22">
+						<div class="col-lg-6 col-md-6 ">
+							<img src="/theme_centric/static/src/img/img1_one.jpg"
+								class="rounded img-shadow img-responsive img img-fluid" alt="" />
+						</div>
+						<div class="col-lg-6 col-md-6">
+							<div class="text-box">
+								<small class="text-epsilon font-medium">Make your site in No-Time</small>
+								<h3 class="font-light">
+									Bizople helps you to
+									<span class="font-medium">build your project</span>
+									in record time with fun making it.
+								</h3>
+								<p class="custom_p">Lorem ipsum dolor sit amet, consectetuer
+									adipiscing elit,
+									sed diam nonummy nibh euismod tincidunt ut
+									laoreet dolore
+									magna aliquam erat volutpat.
+								</p>
+								<p class="custom_p">Quis nostrud exerci tation ullamcorper suscipit
+									lobortis
+									nisl ut aliquis would be good to have.
+								</p>
+								<div class="s_btn" data-name="Button">
+									<a class="btn btn-alpha rounded-circle btn-md arrow-btn m-t-20 bizople_button"
+										 href="#">
+											Checkout Our Team
+											<span class="fa fa-1x fa-fw fa-long-arrow-right ml-1"></span>
+									</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+	</template>
+
+</odoo>

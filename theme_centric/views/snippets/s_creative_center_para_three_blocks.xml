@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+	<template id="s_creative_center_para_three_blocks"
+		name="Center Paragraph with three Blocks">
+		<section class="s_creative_center_para_three_blocks">
+			<div class="spacer feature1">
+				<div class="container">
+					<div class="row justify-content-center">
+						<div class="col-md-7 text-center">
+							<h2 class="title font-bold text-beta ">Bizople has tons of new features to build your
+								website faster
+							</h2>
+						</div>
+					</div>
+					<div class="row m-t-40">
+						<div class="col-md-4 wrap-feature1-box">
+							<section class="card ">
+								<div class="card-body text-center">
+									<div class="icon-space"> 
+										<span class="text-alpha fa fa-cog display-5 text-alpha"></span>
+									</div>
+									<p class="m-t-20 custom_p">You can relay on our amazing features list and
+										also our customer services will be great experience.
+									</p>
+								</div>
+							</section>
+						</div>
+						<div class="col-md-4 wrap-feature1-box">
+							<section class="card" >
+								<div class="card-body text-center">
+									<div class="icon-space">
+										<span class="text-alpha fa fa-laptop display-5 text-alpha"></span>
+									</div>
+									<p class="m-t-20 custom_p">You can relay on our amazing features list and
+										also our customer services will be great experience.
+									</p>
+								</div>
+							</section>
+						</div>
+						<div class="col-md-4 wrap-feature1-box">
+							<section class="card" >
+								<div class="card-body text-center">
+									<div class="icon-space">
+										<span class="text-alpha fa fa-smile-o display-5 text-alpha"></span>
+									</div>
+									<p class="m-t-20 custom_p">You can relay on our amazing features list and
+										also our customer services will be great experience.
+									</p>
+								</div>
+							</section>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+	</template>
+
+</odoo>

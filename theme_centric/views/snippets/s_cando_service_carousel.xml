@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+	<odoo>
+		<template id="s_cando_service_carousel" name="Cando Service Carousel">
+			<section class="service-page align-items-center text-center" id="service_page">
+				<div class="container" >
+					<div class="row">
+						<div class="data-lg-2 col py-5 mt-lg-4">
+						<center><h2 class="text-secondary">We've been chosen by the best</h2></center> 
+						<div id="myCarousel1580905897546" class="s_carousel carousel slide s_carousel_rounded" data-interval="10000" data-name="Carousel">
+								<div class="carousel-inner">
+									<div class="carousel-item active" data-index="0">
+										<div class="container">
+											<img class="img-fluid" src="/theme_centric/static/src/img/cando/metro-cloud.jpg" alt="Slide image" data-index="0"/>
+											<img class="img-fluid" src="/theme_centric/static/src/img/cando/metro-drop.png" alt="Slide image" data-index="1"/>
+											<img class="img-fluid" src="/theme_centric/static/src/img/cando/metro-interaction1.jpg" alt="Slide image" data-index="2"/>
+											<img class="img-fluid" src="/theme_centric/static/src/img/cando/metro-wave2.jpg" alt="Slide image" data-index="3"/>
+										</div>
+									</div>
+									<div class="carousel-item" data-index="0">
+										<div class="container">
+											<img class="img-fluid" src="/theme_centric/static/src/img/cando/metro-interaction1.jpg" alt="Slide image" data-index="2"/>
+											<img class="img-fluid" src="/theme_centric/static/src/img/cando/metro-cloud.jpg" alt="Slide image" data-index="0"/>
+											<img class="img-fluid" src="/theme_centric/static/src/img/cando/metro-wave2.jpg" alt="Slide image" data-index="3"/>
+											<img class="img-fluid" src="/theme_centric/static/src/img/cando/metro-drop.png" alt="Slide image" data-index="1"/>
+										</div>
+									</div>
+									<div class="carousel-item" data-index="0">
+										<div class="container">
+											<img class="img-fluid" src="/theme_centric/static/src/img/cando/metro-cloud.jpg" alt="Slide image" data-index="0"/>
+											<img class="img-fluid" src="/theme_centric/static/src/img/cando/metro-drop.png" alt="Slide image" data-index="1"/>
+											<img class="img-fluid" src="/theme_centric/static/src/img/cando/metro-wave2.jpg" alt="Slide image" data-index="3"/>
+											 <img class="img-fluid" src="/theme_centric/static/src/img/cando/metro-interaction1.jpg" alt="Slide image" data-index="2"/>
+										</div>
+									</div>
+								</div>
+								<ol class="carousel-indicators">
+									<li data-target="#myCarousel1580905897546" data-slide-to="0" class="active "/>
+									<li data-target="#myCarousel1580905897546" data-slide-to="1" class=""/>
+									<li data-target="#myCarousel1580905897546" data-slide-to="2" class=""/>
+								</ol>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+		</template>
+	</odoo>

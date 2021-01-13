@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+	<template id="s_ind_projects_block" name="Images with title">
+		<section class="s_ind_projects_block">
+			<div class="spacer feature2" id="work">
+				<div class="container">
+					<div class="row justify-content-center">
+						<div class="col-md-7 text-center">
+							<h2 class="title text-beta font-bold">Recent Projects from Us</h2>
+							<h6 class="subtitle">You can relay on our amazing features list and
+								also our customer services will be great experience for you
+								without doubt and in no-time
+							</h6>
+						</div>
+					</div>
+					<div class="row m-t-40 popup-gallery">
+						<div class="col-md-4">
+							<section class="card " >
+								<a href="images/project/1.jpg" class="img-ho"
+									title="Bridge at NY Central">
+									<img class="card-img-top"
+										src="/theme_centric/static/src/img/pr1.jpg" alt="" />
+								</a>
+								<div class="bg-dark-1">
+									<p class="m-b-0 font-16 m-t-20 subtitle">Bridge at NY Central</p>
+								</div>
+							</section>
+						</div>
+						<div class="col-md-4">
+							<section class="card " >
+								<a href="images/project/2.jpg" class="img-ho"
+									title="Pine Tree Building">
+									<img class="card-img-top"
+										src="/theme_centric/static/src/img/pr2.jpg" alt="" />
+								</a>
+								<div class="bg-dark-1">
+									<p class="m-b-0 font-16 m-t-20 subtitle">Pine Tree Building</p>
+								</div>
+							</section>
+						</div>
+						<div class="col-md-4">
+							<section class="card " >
+								<a href="images/project/3.jpg" class="img-ho"
+									title="Rodger and Sons Factory">
+									<img class="card-img-top"
+										src="/theme_centric/static/src/img/pr3.jpg" alt="" />
+								</a>
+								<div class="bg-dark-1">
+									<p class="m-b-0 font-16 m-t-20 subtitle">Rodger and Sons Factory</p>
+								</div>
+							</section>
+						</div>
+						<div class="col-md-4">
+							<section class="card " >
+								<a href="images/project/4.jpg" class="img-ho"
+									title="Largest Construction">
+									<img class="card-img-top"
+										src="/theme_centric/static/src/img/pr4.jpg" alt="" />
+								</a>
+								<div class="bg-dark-1">
+									<p class="m-b-0 font-16 m-t-20 subtitle">Largest Construction</p>
+								</div>
+							</section>
+						</div>
+						<div class="col-md-4">
+							<section class="card " >
+								<a href="images/project/5.jpg" class="img-ho"
+									title="Mechanical Work">
+									<img class="card-img-top"
+										src="/theme_centric/static/src/img/pr5.jpg" alt="" />
+								</a>
+								<div class="bg-dark-1">
+									<p class="m-b-0 font-16 m-t-20 subtitle">Mechanical Work</p>
+								</div>
+							</section>
+						</div>
+						<div class="col-md-4">
+							<section class="card " >
+								<a href="images/project/6.jpg" class="img-ho"
+									title="Power &amp; Energy Project">
+									<img class="card-img-top"
+										src="/theme_centric/static/src/img/pr6.jpg" alt="" />
+								</a>
+								<div class="bg-dark-1">
+									<p class="m-b-0 font-16 m-t-20 subtitle">Power &amp; Energy Project</p>
+								</div>
+							</section>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+	</template>
+
+</odoo>

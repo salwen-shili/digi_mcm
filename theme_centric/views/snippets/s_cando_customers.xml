@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+	<template id="s_cando_customers" name="Cando Customers Block">
+
+		<!-- customers Page Start -->
+						<section class="customers-page align-items-center text-center mb32" id="customers_page">
+							<div class="container py-5 mt-lg-4">
+								<center>
+									<h2 class="text-secondary">Check out our clients testimonials</h2>
+									<div class="row">
+										<div class="col-lg-2">
+											<div class="row">
+												<image src="/theme_centric/static/src/img/cando/c1.png" class="imge_1" id="No_mobile_view"/>
+											</div>
+											<div class="row">
+												<image src="/theme_centric/static/src/img/cando/c2.png" class="imge_2" id="No_mobile_view"/>
+											</div>
+											<div class="row">
+												<image src="/theme_centric/static/src/img/cando/c3.png" class="imge_3" id="No_mobile_view"/>
+											</div>
+										</div>
+										<div class="col-lg-8">
+											<div id="myCarousel1580910512632" class="s_carousel carousel slide s_carousel_rounded" data-interval="10000" data-name="Carousel">
+												<div class="carousel-inner">
+													<div class="carousel-item active" data-index="0">
+														<div class="container">
+															<p class="lead text-secondary">
+																"The application is wonderful and amazing to work with.
+															</p>
+															<p class="lead text-secondary">
+																I could not be happier to my decision to download."
+															</p>
+															<p class="lead text-secondary">
+																Hana/Germany
+															</p>
+														</div>
+													</div>
+													<div class="carousel-item" data-index="0">
+														<div class="container">
+															<p class="lead text-secondary">
+																"We love the app.This should go up for an award or something!
+															</p>
+															<p class="lead text-secondary">
+																Great response and exceptional quality."
+															</p>
+															<p class="lead text-secondary">
+																Anna/Italy
+															</p>
+														</div>
+													</div>
+													<div class="carousel-item" data-index="0">
+														<div class="container">
+															<p class="lead text-secondary">
+																"The application is wonderful and amazing to work with.
+															</p>
+															<p class="lead text-secondary">
+																I could not be happier to my decision to download."
+															</p>
+															<p class="lead text-secondary">
+																Marcelo/Brazil
+															</p>
+														</div>
+													</div>
+												</div>
+												<ol class="carousel-indicators">
+													<li data-target="#myCarousel1580910512632" data-slide-to="0" class="active bg-primary"/>
+													<li data-target="#myCarousel1580910512632" class="bg-primary" data-slide-to="1"/>
+													<li data-target="#myCarousel1580910512632" class="bg-primary" data-slide-to="2"/>
+												</ol>
+											</div>
+										</div>
+										<div class="col-lg-2">
+											<div class="row">
+												<image src="/theme_centric/static/src/img/cando/c4.png" class="imge_4" id="No_mobile_view"/>
+											</div>
+											<div class="row">
+												<image src="/theme_centric/static/src/img/cando/c5.png" class="imge_5" id="No_mobile_view"/>
+											</div>
+											<div class="row">
+												<image src="/theme_centric/static/src/img/cando/c6.png" class="imge_6" id="No_mobile_view"/>
+											</div>
+										</div>
+									</div>
+								</center>
+							</div>
+						</section>
+		<!-- customers Page End -->
+		
+	</template>
+</odoo>

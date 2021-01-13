@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+	<template id="s_creative_bg_img_with_para_btns"
+		name="Background image with paragraph">
+		<section
+			class="s_creative_bg_img_with_para_btns spacer bg-light-1"
+			style="background-image: url(/theme_centric/static/src/img/creative_img6.png);">
+			<div class="container">
+				<div class="row justify-content-center">
+					<div class="col-md-7 text-center">
+						<section class="label bg-epsilon d-inline-block label-rounded">Features</section>
+						<h2 class="title text-uppercase text-beta">Awesome Features</h2>
+						<h6 class="subtitle">You can relay on our amazing features</h6>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-lg-8">
+						<div class="row">
+							<div class="col-md-5 m-t-40">
+								<h3 class="text-uppercase title stick-bottom">
+									Comfort
+									<span class="bg-epsilon"></span>
+								</h3>
+								<p class="custom_p">You can relay on our amazing features list and
+									also our
+									customer services will be great
+								</p>
+								<div class="s_btn" data-name="Button">
+									<a
+										class="btn btn-alpha rounded-circle btn-md arrow-btn m-t-20 bizople_button"
+										 href="#f36">
+										Submit
+										<span class="fa fa-1x fa-fw fa-long-arrow-right ml-1"></span>
+									</a>
+								</div>
+							</div>
+							<div class="col-md-5 ml-auto m-t-40">
+								<h3 class="text-uppercase title stick-bottom">
+									Saftey
+									<span class="bg-epsilon"></span>
+								</h3>
+								<p class="custom_p">You can relay on our amazing features list and
+									also our
+									customer services will be great
+								</p>
+								<div class="s_btn" data-name="Button">
+									<a
+										class="btn btn-alpha rounded-circle btn-md arrow-btn m-t-20 bizople_button"
+										 href="#f36">
+										Submit
+										<span class="fa fa-1x fa-fw fa-long-arrow-right ml-1"></span>
+									</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+	</template>
+
+</odoo>

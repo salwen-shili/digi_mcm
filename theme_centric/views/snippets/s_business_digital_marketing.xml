@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+	<template id="s_business_digital_marketing"
+		name="Center Paragraph with four blocks">
+		<section class="s_business_digital_marketing">
+			<div class="container spacer feature9">
+				<div class="row justify-content-center">
+					<div class="col-md-7 text-center">
+						<h2 class="title text-beta">Bizople Digital Marketing Agency</h2>
+						<h6 class="subtitle">You can relay on our amazing features list and
+							also our customer services will be great experience for you
+							without doubt and in no-time
+						</h6>
+					</div>
+				</div>
+				<div class="row m-t-40">
+					<div class="col-md-6 wrap-feature9-box b-r b-b">
+						<section class="card">
+							<div class="card-body d-flex">
+								<div class="icon-space align-self-center">
+									<span class="fa fa-desktop display-4 text-alpha"></span>
+								</div>
+								<div class="align-self-center">
+									<h5 class="font-medium">
+										<a href="#" class="linking">Online Marketer</a>
+									</h5>
+									<p class="m-t-20">You can relay on our amazing features list and
+										also our customer services will be great experience.
+									</p>
+								</div>
+							</div>
+						</section>
+					</div>
+					<div class="col-md-6 wrap-feature9-box b-b">
+						<section class="card" >
+							<div class="card-body d-flex">
+								<div class="icon-space align-self-center">
+									<span class="fa fa-diamond display-4 text-alpha"></span>
+								</div>
+								<div class="align-self-center">
+									<h5 class="font-medium">
+										<a href="#" class="linking">Target Market</a>
+									</h5>
+									<p class="m-t-20">You can relay on our amazing features list and
+										also our customer services will be great experience.
+									</p>
+								</div>
+							</div>
+						</section>
+					</div>
+					<div class="col-md-6 wrap-feature9-box b-r">
+						<section class="card" >
+							<div class="card-body d-flex">
+								<div class="icon-space align-self-center">
+									<span class="fa fa-object-group display-4 text-alpha"></span>
+								</div>
+								<div class="align-self-center">
+									<h5 class="font-medium">
+										<a href="#" class="linking">Digital World</a>
+									</h5>
+									<p class="m-t-20">You can relay on our amazing features list and
+										also our customer services will be great experience.
+									</p>
+								</div>
+							</div>
+						</section>
+					</div>
+					<div class="col-md-6 wrap-feature9-box">
+						<section class="card " >
+							<div class="card-body d-flex">
+								<div class="icon-space align-self-center">
+									<span class="fa fa-users display-4 text-alpha"></span>
+								</div>
+								<div class="align-self-center">
+									<h5 class="font-medium">
+										<a href="#" class="linking">Meet the Team</a>
+									</h5>
+									<p class="m-t-20">You can relay on our amazing features list and
+										also our customer services will be great experience.
+									</p>
+								</div>
+							</div>
+						</section>
+					</div>
+				</div>
+			</div>
+		</section>
+
+	</template>
+
+</odoo>

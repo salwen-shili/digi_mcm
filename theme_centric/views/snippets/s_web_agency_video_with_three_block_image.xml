@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+	<template id="s_web_agency_video_with_three_block_image"
+		name="Two icons with paragraph center image and video">
+		<section class="s_web_agency_video_with_three_block_image">
+			<section class="spacer feature29 p-b-0">
+				<div class="container wrap-feature-29">
+					<div class="row justify-content-center">
+						<div class="col-md-7 text-center">
+							<h2 class="title">Seo Techniques Off / On Page</h2>
+							<h6 class="subtitle">Effective search engine optimisation requires
+								experience and expertise.
+							</h6>
+							<div class="s_btn" data-name="Button">
+								<a href="https://www.youtube.com/embed/Ug6D1K_yr4s" data-toggle="modal" target="_blank"
+									class="btn btn-outline-light btn-rounded rounded-circle m-t-20 bizople_button">
+									Watch video
+									<span class="btn-devider">
+										<span class="fa fa-play"></span>
+									</span>
+								</a>
+							</div>
+						</div>
+					</div>
+					<div class="row wrap-feature-29 text-white">
+						<div class="col-lg-4 col-md-4 text-center">
+							<span class="fa fa-laptop display-5"></span>
+							<h5 class="title">Off Page Seo</h5>
+							<p>Off-Page SEO includes not only link building but also
+								social media promotion, bookmarking, etc.
+							</p>
+						</div>
+						<div class="col-lg-4 col-md-4 text-center ">
+							<img src="/theme_centric/static/src/img/f29.png"
+								class="img-responsive" alt="bizople" />
+						</div>
+						<div class="col-lg-4 col-md-4 text-center m-b-30">
+							<span class="fa fa-id-card display-5"></span>
+							<h5 class="title">On Page Seo</h5>
+							<p>Off-Page SEO includes not only link building but also
+								social media promotion, bookmarking, etc.
+							</p>
+						</div>
+					</div>
+				</div>
+			</section>
+		</section>
+
+	</template>
+
+</odoo>

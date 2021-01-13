@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+	<template id="s_cando_feature_blocks" name="Cando Feature Blocks">
+
+		<!-- Features Page Start -->
+		<section class="features-page align-items-center text-center" id="Features_page">
+			<div class="container">
+				<h2 class="text-secondary text-center">How we do it</h2>
+				<div class="row">
+					<div class="col-lg-6 col-md-6 col-sm-6">
+						<div class="feature-item d-flex align-items-center">
+								<div class="feature-icon1">
+									<img src="/theme_centric/static/src/img/cando/Brand Strategy.png" alt="Succesful Advertising" class="img-fluid block"/>
+								</div>
+								<div class="feature-content1">
+									<h5 class="text-secondary">Brand Strategy</h5>
+									<p class="">Hand two was eat busy fail. Stand smart grave would in so. Be acceptance at precaution astonished.</p>
+								</div>
+						</div>
+					</div>
+					<div class="col-lg-6 col-md-6 col-sm-6">
+						<div class="feature-item d-flex align-items-center">
+								<div class="feature-icon2">
+									<img src="/theme_centric/static/src/img/cando/Content Marketing.png" alt="Succesful Advertising" class="img-fluid block"/>
+								</div>
+								<div class="feature-content2">
+									<h5 class="text-secondary">Content Marketing</h5>
+									<p class="">Hand two was eat busy fail. Stand smart grave would in so. Be acceptance at precaution astonished.</p>
+								</div>
+						</div>
+					</div>
+				
+				
+					<div class="col-lg-6 col-md-6 col-sm-6">
+						<div class="feature-item d-flex align-items-center">
+								<div class="feature-icon3">
+									<img src="/theme_centric/static/src/img/cando/SEO Strategies.png" alt="SEO Strategies" class="img-fluid block"/>
+								</div>
+								<div class="feature-content3">
+									<h5 class="text-secondary">SEO Strategies</h5>
+									<p class="">Hand two was eat busy fail. Stand smart grave would in so. Be acceptance at precaution astonished.</p>
+								</div>
+						</div>
+					</div>
+					<div class="col-lg-6 col-md-6 col-sm-6">
+						<div class="feature-item d-flex align-items-center">
+								<div class="feature-icon4">
+									<img src="/theme_centric/static/src/img/cando/Succesful Advertising.png" alt="Succesful Advertising" class="img-fluid block"/>
+								</div>
+								<div class="feature-content4">
+									<h5 class="text-secondary">Succesful Advertising</h5>
+									<p class="">Hand two was eat busy fail. Stand smart grave would in so. Be acceptance at precaution astonished.</p>
+			
+								</div>
+						</div>
+					</div>
+							
+							
+				</div>
+			</div>
+		</section>
+	</template>
+</odoo>

@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+	<template id="s_centric_project" name="Projects">
+		<section class="centric_template">
+			<section class="project-section pt128 pb128">
+				<div class="container">
+					<div class="project-title text-center">
+						<span>PROJECTS</span>
+						<h3>
+							Our Projects For Client
+						</h3>
+					</div>
+					<section class="s_web_agency_images_with_center_para bg-light-1">
+						<div class="spacer ">
+							<div class="container">
+								<div class="row m-t-40">
+									<div class="col-md-4">
+										<div class="card card-shadow aos-init" data-aos="flip-left"
+											data-aos-duration="1200">
+											<a href="#" class="img-ho">
+												<img class="card-img-top"
+													src="/theme_centric/static/src/img/c1.jpg" alt="bizople kit" />
+											</a>
+											<div class="card-body">
+												<h5 class="font-medium m-b-0">Branding for Theme Designer</h5>
+												<p class="m-b-0 font-14">Digital Marketing</p>
+											</div>
+										</div>
+									</div>
+									<div class="col-md-4">
+										<div class="card card-shadow aos-init" data-aos="flip-up"
+											data-aos-duration="1200">
+											<a href="#" class="img-ho">
+												<img class="card-img-top"
+													src="/theme_centric/static/src/img/c2.jpg" alt="bizople kit" />
+											</a>
+											<div class="card-body">
+												<h5 class="font-medium m-b-0">Button Designs Free</h5>
+												<p class="m-b-0 font-14">Search Engine</p>
+											</div>
+										</div>
+									</div>
+									<div class="col-md-4">
+										<div class="card card-shadow aos-init" data-aos="flip-right"
+											data-aos-duration="1200">
+											<a href="#" class="img-ho">
+												<img class="card-img-top"
+													src="/theme_centric/static/src/img/c3.jpg" alt="bizople kit" />
+											</a>
+											<div class="card-body">
+												<h5 class="font-medium m-b-0">Branding &amp; Co Agency</h5>
+												<p class="m-b-0 font-14">Admin templates</p>
+											</div>
+										</div>
+									</div>
+									<div class="col-md-4">
+										<div class="card card-shadow aos-init" data-aos="flip-left"
+											data-aos-duration="1200">
+											<a href="#" class="img-ho">
+												<img class="card-img-top"
+													src="/theme_centric/static/src/img/c4.jpg" alt="bizople kit" />
+											</a>
+											<div class="card-body">
+												<h5 class="font-medium m-b-0">Zukandre Phoniex</h5>
+												<p class="m-b-0 font-14">Branding</p>
+											</div>
+										</div>
+									</div>
+									<div class="col-md-4">
+										<div class="card card-shadow aos-init" data-aos="flip-up"
+											data-aos-duration="1200">
+											<a href="#" class="img-ho">
+												<img class="card-img-top"
+													src="/theme_centric/static/src/img/c5.jpg" alt="bizople kit" />
+											</a>
+											<div class="card-body">
+												<h5 class="font-medium m-b-0">Sionage Mokcup</h5>
+												<p class="m-b-0 font-14">Wll Mockup</p>
+											</div>
+										</div>
+									</div>
+									<div class="col-md-4">
+										<div class="card card-shadow aos-init" data-aos="flip-right"
+											data-aos-duration="1200">
+											<a href="#" class="img-ho">
+												<img class="card-img-top"
+													src="/theme_centric/static/src/img/c6.jpg" alt="bizople kit" />
+											</a>
+											<div class="card-body">
+												<h5 class="font-medium m-b-0">Hard Cover Book Mock</h5>
+												<p class="m-b-0 font-14">Book Covers</p>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</section>
+				</div>
+			</section>
+		</section>
+	</template>
+</odoo>

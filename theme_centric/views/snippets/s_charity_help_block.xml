@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+	<template id="s_charity_help_block"
+		name="Center Paragraph with three blocks">
+		<section class="s_charity_help_block">
+			<div class="spacer feature1">
+				<div class="container">
+					<div class="row justify-content-center">
+						<div class="col-md-7 text-center">
+							<h2 class="title font-medium text-beta">How can you help us?</h2>
+							<h6 class="subtitle">You can relay on our amazing features list and
+								also our customer services will be great experience for you
+								without doubt and in no-time
+							</h6>
+						</div>
+					</div>
+					<div class="row m-t-40">
+						<div class="col-md-4 wrap-feature1-box">
+							<section class="card "
+								>
+								<div class="card-body text-center">
+									<div class="icon-space">
+										<img src="/theme_centric/static/src/img/market.png"
+											alt="bizople" class="img img-fluid"/>
+									</div>
+									<h5 class="font-medium">Give Donation</h5>
+									<p class="m-t-20">You can relay on our amazing features list and
+										also our customer services will be great experience.
+									</p>
+								</div>
+							</section>
+						</div>
+						<div class="col-md-4 wrap-feature1-box">
+							<section class="card "
+								>
+								<div class="card-body text-center">
+									<div class="icon-space">
+										<img src="/theme_centric/static/src/img/fruit.png"
+											alt="bizople" class="img img-fluid"/>
+									</div>
+									<h5 class="font-medium">Become Volunteer</h5>
+									<p class="m-t-20">You can relay on our amazing features list and
+										also our customer services will be great experience.
+									</p>
+								</div>
+							</section>
+						</div>
+						<div class="col-md-4 wrap-feature1-box">
+							<section class="card "
+								>
+								<div class="card-body text-center">
+									<div class="icon-space">
+										<img src="/theme_centric/static/src/img/instant.png"
+											alt="bizople" class="img img-fluid"/>
+									</div>
+									<h5 class="font-medium">Provide Food Supply</h5>
+									<p class="m-t-20">You can relay on our amazing features list and
+										also our customer services will be great experience.
+									</p>
+								</div>
+							</section>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+	</template>
+
+</odoo>

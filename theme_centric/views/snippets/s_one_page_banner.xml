@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+	<template id="s_one_page_banner" name="Home Banner Ten">
+		<section class="s_one_page_banner static-slider2 spacer">
+			<div class="container">
+				<div class="row align-items-center">
+					<div class="col-md-5 align-self-center">
+						<h1 class="title">
+							<span class="typewrite" data-period="2000"
+								data-type='[ "Creative", "Jquery", "Design", "Angular" ]'></span>
+							<br />
+							Done
+							<span class="text-megna">.</span>
+						</h1>
+						<h6 class="subtitle">I’m John Doe, a Web &amp; Mobile App
+							Designer,Specialize in Website Design, Illustration &amp;
+							Mobile
+							Application Work.
+						</h6>
+						<div class="s_btn" data-name="Button">
+							<a
+								class="btn btn-alpha rounded-circle btn-md arrow-btn m-t-20 m-b-10 bizople_button"
+								 href="#">
+									Hire Me
+									<span class="fa fa-1x fa-fw fa-long-arrow-right ml-1"></span>
+							</a>
+							<a
+								class="btn btn-outline-alpha btn-rounded rounded-circle btn-md arrow-btn m-t-20 m-b-10 font-medium underline bizople_button"
+								 href="#">
+									Check my work
+									<span class="fa fa-1x fa-fw fa-long-arrow-right ml-1"></span>
+							</a>
+						</div>
+					</div>
+					<div class="col-md-7 img-anim">
+						<img src="/theme_centric/static/src/img/one_page_img.jpg"
+							alt=" " class="img-fluid m-t-20" />
+					</div>
+				</div>
+			</div>
+		</section>
+	</template>
+
+</odoo>

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+	<template id="s_estate_logo_partners" name="Partners with logos and paragraph">
+		<section class="s_estate_logo_partners bg-light-1">
+			<div class="spacer feature14">
+				<div class="container">
+					<div class="row justify-content-center">
+						<div class="col-md-7 text-center">
+							<h2 class="title text-beta">Our Valuable Partners</h2>
+							<h6 class="subtitle">You can relay on our amazing features list and
+								also our customer services will be great experience for you
+								without doubt and in no-time
+							</h6>
+						</div>
+					</div>
+					<div class="client2">
+						<div class="container">
+							<div class="row client-box text-center">
+								<div class="col-lg-2 col-md-4">
+									<img src="/theme_centric/static/src/img/c1.png"
+										alt="bizople" class="img img-fluid"/>
+								</div>
+								<div class="col-lg-2 col-md-4">
+									<img src="/theme_centric/static/src/img/c2.png"
+										alt="bizople" class="img img-fluid"/>
+								</div>
+								<div class="col-lg-2 col-md-4">
+									<img src="/theme_centric/static/src/img/c3.png"
+										alt="bizople" class="img img-fluid"/>
+								</div>
+								<div class="col-lg-2 col-md-4">
+									<img src="/theme_centric/static/src/img/c4.png"
+										alt="bizople" class="img img-fluid"/>
+								</div>
+								<div class="col-lg-2 col-md-4">
+									<img src="/theme_centric/static/src/img/c5.png"
+										alt="bizople" class="img img-fluid"/>
+								</div>
+								<div class="col-lg-2 col-md-4">
+									<img src="/theme_centric/static/src/img/c6.png"
+										alt="bizople" class="img img-fluid"/>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+	</template>
+
+</odoo>

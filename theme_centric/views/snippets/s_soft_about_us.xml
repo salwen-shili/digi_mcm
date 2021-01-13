@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+	<template id="s_soft_about_us" name="Soft about us one">
+		<section class="theme-soft theme-soft-how-it-work-bg">
+		<section class="about aboute_bgimg pt128 pb128" id="about">
+			<div class="container">
+				<div class="row">
+					<div class="col-sm-12 col-xs-12 mb64" id="HOW IT WORKS">
+						<h6 class="text-feature">HOW IT WORKS</h6>
+						<h1 class="text-alpha">Simple process <span class="font-weight-lighter">to start</span></h1>
+					</div>
+					<div class="col-sm-12 col-xs-12 pb64 mb64">
+						<div class="row text-center">
+							<div class="col-lg-4 col-md-4 col-sm-4">
+								<section class="feature-item1">
+									<div class="icon">
+										<div class="dotted-img">
+											<span class="fa fa-object-group"></span>
+										</div>
+									</div>
+									<h3 id="feat">Seo Consultancy</h3>
+									<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor</p>
+								</section>
+							</div>
+							<div class="col-lg-4 col-md-4 col-sm-4">
+								<section class="feature-item2">
+									<div class="icon">
+										<div class="dotted-img2">
+											<span class="fa fa-clone"></span>
+										</div>
+									</div>
+									<h3 id="feat">Competitor Analysis</h3>
+									<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor</p>
+								</section>
+							</div>
+							<div class="col-lg-4 col-md-4 col-sm-4">
+								<section class="feature-item3">
+									<div class="icon">
+										<div class="dotted-img3">
+											<span class="fa fa-commenting-o"></span>
+										</div>
+									</div>
+									<h3 id="feat">Social Media Marketing</h3>
+									<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor</p>
+								</section>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+	</section>
+	</template>
+</odoo>

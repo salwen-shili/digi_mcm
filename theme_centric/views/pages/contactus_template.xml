@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+	<record id="centric_contactus_template" model="ir.ui.view">
+		<field name="name">Contact Us</field>
+		<field name="type">qweb</field>
+		<field name="key">website.centric_contactus_template</field>
+		<field name="arch" type="xml">
+			<t name="Contact Us" t-name="centric_contactus_template">
+				<t t-call="website.layout">
+					<div class="oe_structure"/>
+						<!-- banner start -->
+						<section class="service-banner s_cover parallax s_parallax_is_fixed pt96 s_parallax_no_overflow_hidden bg-black-75 pb120" data-scroll-background-ratio="1" data-name="Cover" style="background-image: none;">
+					       <span class="s_parallax_bg oe_img_bg oe_custom_bg" style="background-image: url('theme_centric/static/src/img/2862664.png'); background-position: 46.59% 50.53%;"></span>
+					       <div class="container">
+					         <div class="row s_nb_column_fixed">
+					           <div class="col-lg-12 s_title" data-name="Title">
+					             <h1 class="s_title_thin" style="font-size: 62px; text-align: center;">
+					               <font class="page-banner-text" style="background-color: rgba(238, 238, 238, 0);">Contact Us</font>
+					             </h1>
+					           </div>
+					           
+					           <div class="col-lg-12 s_btn text-center pt16 pb16" data-name="Buttons">
+					             <div class="page-title-content text-center">
+									
+									<ul>
+										<li class="home-dot">
+											<a href="/">Home</a>
+										</li>
+										<li>Contact Us
+										</li>
+									</ul>
+								</div>
+					           </div>
+					         </div>
+					       </div>
+					     </section>
+						<!-- banner end -->
+						<div class="oe_structure"/>
+						<!-- Contact Icon Boxes start -->
+
+						<section class="contactus-icon-section pt56 pb56">
+							<div class="container">
+								<div class="row">
+									<div class="col-md-4">
+									<div class="contact-icon-box">
+										<div class="dotted-img">
+											<i class="fa fa-phone"></i>
+										</div>
+										<div class="contact-text">
+											<h4>Phone</h4>
+											<p t-field="res_company.phone"></p>
+										</div>
+										</div>
+									</div>
+									<div class="col-md-4">
+									<div class="contact-icon-box">
+										<div class="dotted-img">
+											<i class="fa fa-envelope"></i>
+										</div>
+										<div class="contact-text">
+											<h4>Email</h4>
+											<p t-field="res_company.email"></p>
+										</div>
+										</div>
+									</div>
+									<div class="col-md-4">
+									<div class="contact-icon-box">
+										<div class="dotted-img">
+											<i class="fa fa-street-view "></i>
+										</div>
+										<div class="contact-text">
+											<h4>Address</h4>
+											<span t-field="res_company.street"></span>,<span t-field="res_company.city"></span>
+											<span t-field="res_company.country_id.name"></span>
+										</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</section>
+
+						<!-- End Contact Icon Boxes start -->
+						<div class="oe_structure"/>
+						
+						<!-- Contact Form start -->
+						
+						
+						<section class="analysis-section contactus-form-section pt56 pb56">
+							<div class="container">
+								<div class="row">
+									<div class="col-lg-6 col-md-12">
+										<div class="analysis-content">
+											<h3>Get in Touch</h3>
+											<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna.</p>
+											<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna.</p>
+										</div>
+										<div class="s_share pt32" data-name="Share">
+								        <a t-att-href="website.social_facebook"
+											t-if="website.social_facebook" target="_blank" class="shareftle">
+								            <i class="fa fa-1x fa-facebook"></i>
+								        </a>
+								        <a t-att-href="website.social_twitter"
+											t-if="website.social_twitter" target="_blank" class="shareftle ">
+								            <i class="fa fa-1x fa-twitter"></i>
+								        </a>
+								        <a t-att-href="website.social_linkedin"
+											t-if="website.social_linkedin" target="_blank" class="shareftle">
+								            <i class="fa fa-1x fa-linkedin"></i>
+								        </a>
+								        <a class="shareftle" t-att-href="website.social_youtube"
+											t-if="website.social_youtube" target="_blank">
+											<i class="fa fa-1x fa-youtube-play" />
+										</a>
+										<a class="shareftle" t-att-href="website.social_instagram"
+											t-if="website.social_instagram" target="_blank">
+											<i class="fa fa-1x fa-instagram"></i>
+										</a>
+										<a class="shareftle" t-att-href="website.social_github"
+											t-if="website.social_github" target="_blank">
+											<i class="fa fa-1x fa-github"></i>
+										</a>
+								    </div>
+									</div>
+									<div class="col-lg-6 col-md-12">
+										<form action="/website_form/" method="post" data-aos="fade-left" data-aos-duration="1200" data-model_name="crm.lead" data-success_page="/contactus-thank-you" class="s_website_form contact-form  aos-init aos-animate" enctype="multipart/form-data" data-editable-form="false">
+											<div class=" contact-form row">
+												<div class="col-lg-6 col-md-6 col-sm-6">
+													<div class="formgroup form-group m-t-15">
+														<input id="name" placeholder="First Name" name="contact_name" required="True" type="text" class="formtext o_website_form_input form-control op-5" t-att-value="request.params.get('contact_name', '')" />
+													</div>
+												</div>
+												<div class="col-lg-6 col-md-6 col-sm-6">
+													<div class="formgroup form-group m-t-15">
+														<input id="email" name="email_from" placeholder="Email" required="" value="" type="email" class="formtext o_website_form_input form-control op-5" t-att-value="request.params.get('email_from', '')" />
+													</div>
+												</div>
+												<div class="col-lg-6 col-md-6 col-sm-6">
+													<div class="formgroup form-group m-t-15">
+														<input id="phone" name="phone" placeholder="Phone" type="text" t-att-value="request.params.get('phone', '')" class="formtext o_website_form_input form-control op-5" />
+													</div>
+												</div>
+												<div class="col-lg-6 col-md-6 col-sm-6">
+													<div class="formgroup form-group m-t-15">
+														<input id="subject" name="name" placeholder="Subject" type="text" t-att-value="request.params.get('name', '')" class="formtext o_website_form_input form-control op-5" />
+													</div>
+												</div>
+												<div class="col-lg-12 col-md-12 col-sm-12">
+													<div class="formgroup form-group m-t-15">
+														<textarea id="messagge" name="description" rows="3" placeholder="Messagge" t-att-value="request.params.get('description', '')" class="formtext o_website_form_input form-control op-5">
+															
+														</textarea>
+														<div class="reserve-submit mt-40">
+														</div>
+													</div>
+												</div>
+												<div class="analysis-btn s_btn col-lg-12 text-center">
+													<a href="#" class="analysisbtn btn btn-alpha rounded-circle o_website_form_send">Send Message</a>
+													<span id="o_website_form_result" class="text-danger ml8 mt16  mb16 col-md-12">
+													</span>
+												</div>
+											</div>
+										</form>
+									</div>
+								</div>
+							</div>
+						</section>
+					<div class="oe_structure"/>
+				</t>
+			</t>
+		</field>
+	</record>
+
+	<record id="centric_contactus_template_menu"
+		model="website.page">
+		<field name="website_published">True</field>
+		<field name="url">/contact</field>
+		<field name="is_homepage">False</field>
+		<field name="view_id" ref="centric_contactus_template" />
+	</record>
+
+</odoo>

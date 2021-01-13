@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+	<template id="s_new_three_imgs_block" name="Three Images block">
+		<section class="s_new_three_imgs_block">
+			<div class="container-fluid mt64 mb32">
+				<div class="row">
+					<div class="col-sm-6 col-md-4">
+						<div class="promobox position-relative">
+							<img class="img img-responsive"
+								src="/theme_centric/static/src/img/img01.png" />
+
+							<div class="img_desc">
+								<div class="img_wrapper">
+									<div class="bg_white"></div>
+									<div class="img_title_small">
+										AUTUMN
+										<span class="img_span">2018</span>
+									</div>
+									<a href="#" class="img_title_big">NEW ARRIVALS</a>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-sm-6 col-md-4">
+						<div class="promobox position-relative">
+							<img class="img img-responsive"
+								src="/theme_centric/static/src/img/img02.png" />
+
+							<div class="img_desc">
+								<div class="img_wrapper">
+									<div class="bg_white"></div>
+									<div class="img_title_small">
+										New Collection
+									</div>
+									<a href="#" class="img_title_big">
+										<span class="big_span">streestyle</span>
+									</a>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-sm-6 col-md-4">
+						<div class="promobox position-relative">
+							<img class="img img-responsive"
+								src="/theme_centric/static/src/img/img03.png" />
+
+							<div class="img_desc">
+								<div class="img_wrapper">
+									<div class="bg_white"></div>
+									<div class="img_title_small">
+										GREAT SUMMER CLEARANCE SALES
+									</div>
+									<a href="#" class="img_title_big">
+										Get up to
+										<span class="big_span">70% off</span>
+									</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+	</template>
+
+</odoo>

@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+	<template id="s_one_page_testimonial" name="Testimonial Eight">
+		<section class="s_one_page_testimonial spacer bg-dark"
+			style="background-image:url(/theme_centric/static/src/img/bg.jpg)">
+			<div class="container">
+				<div class="row justify-content-center">
+					<div class="col-md-7 text-center">
+						<div class="testimonial-content text-center">
+							<h2 class="title text-white">Few Words from our Valuable Customers</h2>
+							<p class="subtitle">You can relay on our amazing features list and also our customer services will be great experience for you without doubt and in no-time
+							</p>
+						</div>
+					</div>
+				</div>
+				<div class="row align-items-center">
+					<div class="col-lg-4 one-page-testimonial">
+						<div id="myCarousel1580451466791" class="s_carousel carousel slide s_carousel_rounded" data-interval="3000" data-name="Carousel">
+					        <div class="carousel-inner text-center">
+					            <div class="carousel-item active" data-name="Slide">
+					            	<div class="container">
+										<div class="item">
+											<section class="content bg-danger-gradiant">“It was incredibly refreshing to work with an
+												agency that focused on our needs as business.”
+											</section>
+											<div class="customer-thumb">
+												<img src="/theme_centric/static/src/img/2.jpg" alt=""
+													class="circle" />
+												<h6 class="text-white m-b-0">Erin Wilson</h6>
+												<p>Marketing manager</p>
+											</div>
+										</div>
+									</div>
+					            </div>
+					            <div class="carousel-item" data-name="Slide">
+					                <div class="container">
+										<div class="item">
+											<section class="content bg-danger-gradiant">“It was incredibly refreshing to work with an
+												agency that focused on our needs as business.”
+											</section>
+											<div class="customer-thumb">
+												<img src="/theme_centric/static/src/img/3.jpg" alt=""
+													class="circle" />
+												<h6 class="text-white m-b-0">Erin Wilson</h6>
+												<p>Marketing manager</p>
+											</div>
+										</div>
+									</div>
+					            </div>
+					            <div class="carousel-item" data-name="Slide">
+					                <div class="container">
+										<div class="item">
+											<section class="content bg-danger-gradiant">“It was incredibly refreshing to work with an
+												agency that focused on our needs as business.”
+											</section>
+											<div class="customer-thumb">
+												<img src="/theme_centric/static/src/img/test1.png" alt=""
+													class="circle" />
+												<h6 class="text-white m-b-0">Erin Wilson</h6>
+												<p>Marketing manager</p>
+											</div>
+										</div>
+									</div>
+					            </div>
+					            <div class="carousel-item" data-name="Slide">
+					                <div class="container">
+										<div class="item">
+											<section class="content bg-danger-gradiant">“It was incredibly refreshing to work with an
+												agency that focused on our needs as business.”
+											</section>
+											<div class="customer-thumb">
+												<img src="/theme_centric/static/src/img/3.jpg" alt=""
+													class="circle" />
+												<h6 class="text-white m-b-0">Erin Wilson</h6>
+												<p>Marketing manager</p>
+											</div>
+										</div>
+									</div>
+					            </div>
+					            <div class="carousel-item" data-name="Slide">
+					                <div class="container">
+										<div class="item">
+											<section class="content bg-danger-gradiant">“It was incredibly refreshing to work with an
+												agency that focused on our needs as business.”
+											</section>
+											<div class="customer-thumb">
+												<img src="/theme_centric/static/src/img/1.jpg" alt=""
+													class="circle" />
+												<h6 class="text-white m-b-0">Erin Wilson</h6>
+												<p>Marketing manager</p>
+											</div>
+										</div>
+									</div>
+					            </div>
+					        </div>
+					        <ol class="carousel-indicators">
+					            <li data-target="#myCarousel1580451466791" data-slide-to="0" class="carodot active"></li>
+					            <li data-target="#myCarousel1580451466791" data-slide-to="1" class="carodot"></li>
+					            <li data-target="#myCarousel1580451466791" data-slide-to="2" class="carodot"></li>
+					            <li data-target="#myCarousel1580451466791" data-slide-to="3" class="carodot"></li>
+					            <li data-target="#myCarousel1580451466791" data-slide-to="4" class="carodot"></li>
+					        </ol>
+					    </div>
+					</div>
+				</div>
+			</div>
+		</section>
+	</template>
+
+</odoo>

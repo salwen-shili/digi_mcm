@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+	<record id="centric_projectdetail_template" model="ir.ui.view">
+		<field name="name">Project Details</field>
+		<field name="type">qweb</field>
+		<field name="key">website.centric_projectdetail_template</field>
+		<field name="arch" type="xml">
+			<t name="centric Template" t-name="centric_projectdetail_template">
+				<t t-call="website.layout">
+					<div class="oe_structure"/>
+						<!-- banner start -->
+					<section class="centric_template">
+						<section class="service-banner s_cover parallax s_parallax_is_fixed pt96 s_parallax_no_overflow_hidden bg-black-75 pb120" data-scroll-background-ratio="1" data-name="Cover" style="background-image: none;">
+					       <span class="s_parallax_bg oe_img_bg oe_custom_bg" style="background-image: url('theme_centric/static/src/img/2862664.png'); background-position: 46.59% 50.53%;"/>
+					       <div class="container">
+					         <div class="row s_nb_column_fixed">
+					           <div class="col-lg-12 s_title" data-name="Title">
+					             <h1 class="s_title_thin" style="font-size: 62px; text-align: center;">
+					               <font class="page-banner-text" style="background-color: rgba(238, 238, 238, 0);">Project Details</font>
+					             </h1>
+					           </div>
+					           
+					           <div class="col-lg-12 s_btn text-center pt16 pb16" data-name="Buttons">
+					             <div class="page-title-content text-center">
+									
+									<ul>
+										<li class="home-dot">
+											<a href="/">Home</a>
+										</li>
+										<li>Project Details
+										</li>
+									</ul>
+								</div>
+					           </div>
+					         </div>
+					       </div>
+					     </section>
+						<!-- banner end -->
+						<!-- project detail content start -->
+						<section class="project-detail-section pt128">
+							<div class="container">
+								<div class="row">
+									<div class="col-lg-6 col-md-6">
+										<img class="img img-fluid" src="theme_centric/static/src/img/service_detail1.jpg"/>
+									</div>
+									<div class="col-lg-6 col-md-6">
+										<img class="img img-fluid" src="theme_centric/static/src/img/service_detail2.jpg"/>
+									</div>
+									<div class="col-lg-12 col-md-12">
+										<h3>Competitor Analysis</h3>
+										<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+
+										<p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).</p>
+
+										<div class="details">
+
+											<h4><i class="fa fa-check"></i>Core Development</h4>
+
+											<p>No fake products and services. The customer is king, their lives and needs are the inspiration. There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text.</p>
+
+										</div>
+										<div class="details">
+
+											<h4><i class="fa fa-check"></i>Define Your Choices</h4>
+											<p>No fake products and services. The customer is king, their lives and needs are the inspiration. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable. The generated Lorem Ipsum is therefore always free from repetition, injected humour, or non-characteristic words etc.</p>
+
+										</div>
+
+										<p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, "Lorem ipsum dolor sit amet..", comes from a line in section.</p>
+
+									</div>
+								</div>
+							</div>
+						</section>
+						<!-- project detail content end -->
+						<section class="project-detail-reference s_references pt16 pb16" data-name="References">
+					        <div class="container">
+					          	<div class="row align-items-center">
+						            <!-- <div class="pt32 col-lg-1">
+						              <h4></h4>
+						            </div> -->
+						            <div class="col-lg-2">
+						        		<h4>Client</h4>
+						        		<p>James Anderson</p>
+						            </div>
+						            <div class="col-lg-2">
+						            	<h4>Category</h4>
+						        		<p>Network, Marketing</p>
+						            </div>
+						            <div class="col-lg-2">
+						            	<h4>Date</h4>
+						        		<p>February 28, 2020</p>
+						            </div>
+						            <div class="col-lg-2">
+						            	<h4>Share</h4>
+						            	<div class="s_share text-center" data-name="Share">
+									        <a href="#" target="_blank" class="shareftle">
+									            <i class="fa fa-linkedin"></i>
+									        </a>
+									        <a href="#" target="_blank" class="shareftle ">
+									            <i class="fa fa-facebook"></i>
+									        </a>
+									        <a href="#" target="_blank" class="shareftle">
+									            <i class="fa fa-twitter"></i>
+									        </a>
+									        <a href="#" class="shareftle">
+									            <i class="fa fa-instagram"></i>
+									        </a>
+									    </div>
+						        		
+						            </div>
+						            <div class="col-lg-2">
+						            	<a href="#" class="livepreviewbtn btn btn-alpha rounded-circle">Live Preview</a>
+						            </div>
+					          	</div>
+				        	</div>
+				      	</section>
+
+				</section>
+				</t>
+			</t>
+		</field>
+	</record>
+
+	<record id="centric_projectdetail_template_menu" model="website.page">
+		<field name="website_published">True</field>
+		<field name="url">/project-detail</field>
+		<field name="is_homepage">False</field>
+		<field name="view_id" ref="centric_projectdetail_template" />
+	</record>
+
+</odoo>

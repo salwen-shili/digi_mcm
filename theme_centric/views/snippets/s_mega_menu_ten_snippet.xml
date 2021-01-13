@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+	<template id="s_mega_menu_ten_snippet" name="Mega Menu Ten">
+		<section class="s_mega_menu_ten_snippet">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-2 col-sm-2">
+						<div class="inner">
+							<h5 class="title widgettitle">AUDIO &amp; VIDEO</h5>
+							<ul class="list-unstyled">
+								<li><a href="#">MP3 Players </a></li>
+								<li><a href="#">Speakers</a></li>
+								<li><a href="#">Ipods </a></li>
+								<li><a href="#">Video Players </a></li>
+								<li><a href="#">Television </a></li>
+							</ul>
+						</div>
+					</div>
+					<div class="col-md-2 col-sm-2">
+						<div class="inner">
+							<h5 class="title widgettitle">MOBILES</h5>
+							<ul class="list-unstyled">
+								<li><a href="#">All Mobiles  </a></li>
+								<li><a href="#">Android Mobiles</a></li>
+								<li><a href="#">Smart Phones </a></li>
+								<li><a href="#">Video Players </a></li>
+								<li><a href="#">Television </a></li>
+							</ul>
+						</div>
+					</div>
+					<div class="col-md-2 col-sm-2">
+						<div class="inner">
+							<h5 class="title widgettitle">CAMERAS</h5>
+							<ul class="list-unstyled">
+								<li><a href="#">MP3 Players </a></li>
+								<li><a href="#">Speakers</a></li>
+								<li><a href="#">Ipods </a></li>
+								<li><a href="#">Video Players </a></li>
+								<li><a href="#">Television </a></li>
+							</ul>
+						</div>
+					</div>
+					<div class="col-md-2 col-sm-2">
+						<div class="inner">
+							<h5 class="title widgettitle">HEALTH CARE</h5>
+							<ul class="list-unstyled">
+								<li><a href="#">MP3 Players </a></li>
+								<li><a href="#">Speakers</a></li>
+								<li><a href="#">Ipods </a></li>
+								<li><a href="#">Video Players </a></li>
+								<li><a href="#">Television </a></li>
+							</ul>
+						</div>
+					</div>
+					<div class="col-md-2 col-sm-2">
+						<div class="inner">
+							<h5 class="title widgettitle">KITCHEN</h5>
+							<ul class="list-unstyled">
+								<li><a href="#">MP3 Players </a></li>
+								<li><a href="#">Speakers</a></li>
+								<li><a href="#">Ipods </a></li>
+								<li><a href="#">Video Players </a></li>
+								<li><a href="#">Television </a></li>
+							</ul>
+						</div>
+					</div>
+					<div class="col-md-2 col-sm-2">
+						<div class="inner">
+							<h5 class="title widgettitle">TELEVISION</h5>
+							<ul class="list-unstyled">
+								<li><a href="#">MP3 Players </a></li>
+								<li><a href="#">Speakers</a></li>
+								<li><a href="#">Ipods </a></li>
+								<li><a href="#">Video Players </a></li>
+								<li><a href="#">Television </a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-6 col-sm-6">
+						<div class="img-caption">
+							<img class="img-fluid" src="/theme_centric/static/src/img/restaurant_slide1.jpg"/>
+						</div>
+					</div>
+					<div class="col-md-6 col-sm-6">
+						<div class="img-caption">
+							<img class="img-fluid" src="/theme_centric/static/src/img/restaurant_slide2.jpg"/>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+	</template>
+</odoo>

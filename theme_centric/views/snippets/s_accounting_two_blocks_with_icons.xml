@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+	<template id="s_accounting_two_blocks_with_icons"
+		name="Two blocks with icons">
+		<section class="s_accounting_two_blocks_with_icons">
+			<div class="spacer feature4">
+				<div class="container">
+					<div class="row justify-content-center">
+						<div class="col-md-7 text-center">
+							<h2 class="title text-beta">Fast &amp; Reliable Accounting Process</h2>
+							<h6 class="subtitle">You can relay on our amazing features list and
+								also our customer services will be great experience for you
+								without doubt and in no-time
+							</h6>
+						</div>
+					</div>
+					<div class="row m-t-40">
+						<div class="col-md-6 wrap-feature4-box">
+							<section class="card" >
+								<div class="card-body">
+									<div class="display-5 text-alpha m-b-30">
+										<span class="fa fa-cog"></span>
+									</div>
+									<h5 class="font-medium">Retargeting Market</h5>
+									<p class="m-t-30 m-b-30 custom_p">You can relay on our amazing features list and
+										also our customer services will be great experience. Lorem
+										ipsum dolor sit amet, consectetur adipiscing elit. Praesent
+										tristique pellentesque ipsum.
+									</p>
+									<div class="s_btn" data-name="Link Align">
+										<a class="linking text-themecolor font-medium" href="#">
+											Learn more about Market
+											<span class="fa fa-1x fa-fw fa-long-arrow-right ml-1"></span>
+										</a>
+									</div>
+								</div>
+							</section>
+						</div>
+						<div class="col-md-6 wrap-feature4-box">
+							<section class="card" >
+								<div class="card-body">
+									<div class="display-5 text-alpha m-b-30">
+										<span class="fa fa-desktop"></span>
+									</div>
+									<h5 class="font-medium">Instant Solutions</h5>
+									<p class="m-t-30 m-b-30 custom_p">You can relay on our amazing features list and
+										also our customer services will be great experience. Lorem
+										ipsum dolor sit amet, consectetur adipiscing elit. Praesent
+										tristique pellentesque ipsum.
+									</p>
+									<div class="s_btn" data-name="Link Align">
+										<a class="linking text-themecolor font-medium" href="#">
+											Learn more about Solution
+											<span class="fa fa-1x fa-fw fa-long-arrow-right ml-1"></span>
+										</a>
+									</div>
+								</div>
+							</section>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+	</template>
+
+</odoo>

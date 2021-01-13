@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+	<record id="centric_servicepage_detail_template" model="ir.ui.view">
+		<field name="name">Service Details</field>
+		<field name="type">qweb</field>
+		<field name="key">website.centric_servicepage_detail_template</field>
+		<field name="arch" type="xml">
+			<t name="Service Details" t-name="centric_servicepage_detail_template">
+
+				<t t-call="website.layout">
+					<div class="oe_structure"/>
+						<!-- banner start -->
+					<section class="centric_template">
+						<section class="service-banner s_cover parallax s_parallax_is_fixed pt96 s_parallax_no_overflow_hidden bg-black-75 pb120" data-scroll-background-ratio="1" data-name="Cover" style="background-image: none;">
+					       <span class="s_parallax_bg oe_img_bg oe_custom_bg" style="background-image: url('theme_centric/static/src/img/2862664.png'); background-position: 46.59% 50.53%;"/>
+					       <div class="container">
+					         <div class="row s_nb_column_fixed">
+					           <div class="col-lg-12 s_title" data-name="Title">
+					             <h1 class="s_title_thin" style="font-size: 62px; text-align: center;">
+					               <font class="page-banner-text" style="background-color: rgba(238, 238, 238, 0);">Service Details</font>
+					             </h1>
+					           </div>
+					           
+					           <div class="col-lg-12 s_btn text-center pt16 pb16" data-name="Buttons">
+					             <div class="page-title-content text-center">
+									
+									<ul>
+										<li class="home-dot">
+											<a href="/">Home</a>
+										</li>
+										<li>Service Details
+										</li>
+									</ul>
+								</div>
+					           </div>
+					         </div>
+					       </div>
+					     </section>
+						<!-- banner end -->
+						<div class="oe_structure"/>
+						<!-- service detail content start -->
+						<section class="service-detail-section pt128 pb128">
+							<div class="container">
+								<div class="service-detail-area">
+									<div class="row align-items-center">
+										<div class="col-md-12 col-lg-6">
+											<div class="service-detail-content">
+												
+												<h3>Digital Marketing</h3>
+												<p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable.</p>
+												<div class="details">
+													
+													<h4><i class="fa fa-check"></i>Core Development</h4>
+													<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's.</p>
+												</div>
+												<div class="details">
+													<h4><i class="fa fa-check"></i>Define Your Choices</h4>
+													<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's.</p>
+												</div>
+												
+											</div>
+										</div>
+										<div class="col-md-12 col-lg-6">
+											<img class="img img-fluid" src="theme_centric/static/src/img/service_detail1.jpg"/>
+										</div>
+									</div>
+								</div>
+								<div class="service-detail-area">
+									<div class="row align-items-center">
+										<div class="col-md-12 col-lg-6">
+											<img class="img img-fluid" src="theme_centric/static/src/img/service_detail2.jpg"/>
+										</div>
+										<div class="col-md-12 col-lg-6">
+											<div class="service-detail-content">
+												
+												<h3>Social Media Marketing</h3>
+												<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's.</p>
+												<div class="details">
+													<h4><i class="fa fa-check"></i>First Working Process</h4>
+													<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's.</p>
+												</div>
+												<div class="details">
+													<h4><i class="fa fa-check"></i>Dedicated Team Member</h4>
+													<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's.</p>
+												</div>
+												
+											</div>
+										</div>
+										
+									</div>
+								</div>
+							</div>
+						</section>
+						<!-- service detail content end -->
+						<div class="oe_structure"/>
+								
+				</section>
+				</t>
+			</t>
+		</field>
+	</record>
+
+	<record id="centric_servicepage_detail_template_menu" model="website.page">
+		<field name="website_published">True</field>
+		<field name="url">/service-detail</field>
+		<field name="view_id" ref="centric_servicepage_detail_template" />
+
+	</record>
+
+</odoo>

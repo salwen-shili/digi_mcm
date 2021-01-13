@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+	<template id="s_contact_map_form" name="Contact Us Three">
+		<section class="s_contact_map_form">
+			<div class="contact1 container-fluid">
+				<div class="row">
+					<section class="col-lg-12 col-md-12 bg-map bg-cover"
+						style="background-image:url(/theme_centric/static/src/img/map-icon-1.jpg); height:600px;"></section>
+					<div class="container">
+						<div class="spacer">
+							<div class="row m-0">
+								<div class="col-lg-8">
+									<div class="contact-box p-r-40">
+										<h4 class="title">Quick Contact</h4>
+										<form action="/website_form/" method="post"
+											data-aos="fade-left" data-aos-duration="1200"
+											data-model_name="crm.lead"
+											data-success_page="/contactus-thank-you"
+											class="s_website_form contact-form  aos-init aos-animate"
+											enctype="multipart/form-data" data-editable-form="false">
+											<div class="row">
+												<div class="col-lg-6">
+													<div class="form-group m-t-15">
+														<input  placeholder="Name" 
+															name="contact_name" required="" type="text"
+															class="o_website_form_input form-control"
+															t-att-value="request.params.get('contact_name', '')" />
+													</div>
+												</div>
+												<div class="col-lg-6">
+													<div class="form-group m-t-15">
+														<input  name="email_from"
+															placeholder="Email" required="" value="" type="email"
+															class="o_website_form_input form-control"
+															t-att-value="request.params.get('email_from', '')" />
+													</div>
+												</div>
+												<div class="col-lg-6">
+													<div class="form-group m-t-15">
+														<input  name="phone" placeholder="Phone"
+															type="text" t-att-value="request.params.get('phone', '')"
+															class="o_website_form_input form-control" />
+													</div>
+												</div>
+												<div class="col-lg-6">
+													<div class="form-group m-t-15">
+														<input  name="name"
+															placeholder="Subject" type="text" required=""
+															t-att-value="request.params.get('name', '')"
+															class="o_website_form_input form-control" />
+													</div>
+												</div>
+												<div class="col-lg-12">
+													<div class="form-group m-t-15">
+														<textarea  name="description"
+															rows="3" placeholder="Message" required=""
+															t-att-value="request.params.get('description', '')"
+															class=" o_website_form_input form-control"></textarea>
+														<div class="reserve-submit mt-40">
+														</div>
+													</div>
+												</div>
+												<div class="col-lg-12 s_btn" data-name="Button">
+													<button
+														class="o_website_form_send btn btn-alpha rounded-circle btn-md m-t-20 arrow-btn"
+														type="submit">
+															SUBMIT NOW
+															<span class="fa fa-1x fa-fw fa-long-arrow-right ml-1"></span>
+													</button>
+													<span id="o_website_form_result"
+														class="text-danger ml8 mt16  mb16 col-md-12"></span>
+												</div>
+											</div>
+										</form>
+									</div>
+								</div>
+								<div class="col-lg-4">
+									<div class="detail-box p-40 bg-info-1">
+										<h2 class="text-white">Bizople Headquarters</h2>
+										<p class="text-white m-t-30 op-8 custom_p">
+											364 586 9542
+											<br />
+											info@bizople.com
+										</p>
+										<p class="text-white op-8 custom_p">
+											A-405 Pushp Business Campus,
+											<br />
+											Ring Road,
+											Ahmedabad
+										</p>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+	</template>
+
+</odoo>

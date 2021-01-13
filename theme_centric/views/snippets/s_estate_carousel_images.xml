@@ -1,0 +1,438 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+	<template id="s_estate_carousel_images"
+		name="Slider with images and paragraph">
+		<section class="s_estate_carousel_images bg-light-1">
+			<div class="spacer ">
+				<div class="container-fluid">
+					<div class="container">
+						<div class="row justify-content-center">
+							<div class="col-md-7 text-center">
+								<h2 class="title text-beta">Popular Properties</h2>
+								<h6 class="subtitle">You can relay on our amazing features list and
+									also
+									our customer services will be great experience for you
+									without
+									doubt and in no-time
+								</h6>
+							</div>
+						</div>
+					</div>
+					<div id="real_estate_carousel123"
+						class="owl-carousel owl-theme testi3 m-t-40 s_carousel_default carousel slide"
+						data-interval="5000">
+						<ol class="carousel-indicators">
+							<li data-target="#real_estate_carousel123" data-slide-to="0"
+								class=""></li>
+							<li data-target="#real_estate_carousel123" data-slide-to="1"
+								class="active"></li>
+							<li data-target="#real_estate_carousel123" data-slide-to="2"
+								class=""></li>
+						</ol>
+						<div class="carousel-inner">
+							<div class="carousel-item active" data-name="Slide">
+								<div class="col-md-4 block">
+									<div class="item card-shadow property-box "
+										>
+										<img src="/theme_centric/static/src/img/estate_c2.jpg"
+											alt="bizople" class="img-fluid" />
+										<div class="bg-white p-40 po-relative desc_img">
+											<label class="label text-white bg-feature">ON SALE</label>
+											<h3  class="m-b-10 m-t-0">
+												<a href="#" class="link">Paragon Aparments</a>
+											</h3>
+											<p 
+												class="m-t-20 custom_p">36,
+												Kingstone Cornern, Melbourne, Australia - 3890
+											</p>
+											<h3 class="text-feature m-b-0">
+												$685,000
+												<span class="tag bg-alpha">Hot Offer</span>
+											</h3>
+										</div>
+										<div class="bg-light-extra p-40 specifiaction-box">
+											<div class="row">
+												<div class="col-4">
+													<h6 class="specifiaction text-muted-1">Bedrooms</h6>
+													<h5 class="m-b-0 font-medium">4</h5>
+												</div>
+												<div class="col-4">
+													<h6 class="specifiaction text-muted-1">Bathrooms</h6>
+													<h5 class="m-b-0 font-medium">2</h5>
+												</div>
+												<div class="col-4">
+													<h6 class="specifiaction text-muted-1">Garages</h6>
+													<h5 class="m-b-0 font-medium">1</h5>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="col-md-4 block">
+									<div class="item card-shadow property-box "
+										>
+										<img src="/theme_centric/static/src/img/estate_c3.jpg"
+											alt="bizople" class="img-fluid" />
+										<div class="bg-white p-40 po-relative desc_img">
+											<label class="label text-white bg-feature">ON SALE</label>
+											<h3  class="m-b-10 m-t-0">
+												<a href="#" class="link">Apollo Residency</a>
+											</h3>
+											<p 
+												class="m-t-20 custom_p">36,
+												Kingstone Cornern, Melbourne, Australia - 3890
+											</p>
+											<h3 class="text-feature m-b-0">$685,000 </h3>
+										</div>
+										<div class="bg-light-extra p-40 specifiaction-box">
+											<div class="row">
+												<div class="col-4">
+													<h6 class="specifiaction text-muted-1">Bedrooms</h6>
+													<h5 class="m-b-0 font-medium">4</h5>
+												</div>
+												<div class="col-4">
+													<h6 class="specifiaction text-muted-1">Bathrooms</h6>
+													<h5 class="m-b-0 font-medium">2</h5>
+												</div>
+												<div class="col-4">
+													<h6 class="specifiaction text-muted-1">Garages</h6>
+													<h5 class="m-b-0 font-medium">1</h5>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="col-md-4 block">
+									<div class="item card-shadow property-box "
+										>
+										<img src="/theme_centric/static/src/img/estate_c2.jpg"
+											alt="bizople" class="img-fluid" />
+										<div class="bg-white p-40 po-relative desc_img">
+											<label class="label text-white bg-feature">ON RENT</label>
+											<h3  class="m-b-10 m-t-0">
+												<a href="#" class="link">Agora Township</a>
+											</h3>
+											<p 
+												class="m-t-20 custom_p">36,
+												Kingstone Cornern, Melbourne, Australia - 3890
+											</p>
+											<h3 class="text-feature m-b-0">
+												$685,000
+												<span class="tag bg-alpha">Hot Offer</span>
+											</h3>
+										</div>
+										<div class="bg-light-extra p-40 specifiaction-box">
+											<div class="row">
+												<div class="col-4">
+													<h6 class="specifiaction text-muted-1">Bedrooms</h6>
+													<h5 class="m-b-0 font-medium">4</h5>
+												</div>
+												<div class="col-4">
+													<h6 class="specifiaction text-muted-1">Bathrooms</h6>
+													<h5 class="m-b-0 font-medium">2</h5>
+												</div>
+												<div class="col-4">
+													<h6 class="specifiaction text-muted-1">Garages</h6>
+													<h5 class="m-b-0 font-medium">1</h5>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+
+
+							<div class="carousel-item oe_img_bg" data-name="Slide">
+								<div class="col-md-4 block">
+									<div class="item card-shadow property-box "
+										>
+										<img src="/theme_centric/static/src/img/estate_c1.jpg"
+											alt="bizople" class="img-fluid" />
+										<div class="bg-white p-40 po-relative desc_img">
+											<label class="label text-white bg-feature">ON RENT</label>
+											<h3  class="m-b-10 m-t-0">
+												<a href="#" class="link">Magical Apartment</a>
+											</h3>
+											<p 
+												class="m-t-20 custom_p">36,
+												Kingstone Cornern, Melbourne, Australia - 3890
+											</p>
+											<h3 class="text-feature m-b-0">$685,000 </h3>
+										</div>
+										<div class="bg-light-extra p-40 specifiaction-box">
+											<div class="row">
+												<div class="col-4">
+													<h6 class="specifiaction text-muted-1">Bedrooms</h6>
+													<h5 class="m-b-0 font-medium">4</h5>
+												</div>
+												<div class="col-4">
+													<h6 class="specifiaction text-muted-1">Bathrooms</h6>
+													<h5 class="m-b-0 font-medium">2</h5>
+												</div>
+												<div class="col-4">
+													<h6 class="specifiaction text-muted-1">Garages</h6>
+													<h5 class="m-b-0 font-medium">1</h5>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="col-md-4 block">
+									<div class="item card-shadow property-box "
+										>
+										<img src="/theme_centric/static/src/img/estate_c2.jpg"
+											alt="bizople" class="img-fluid" />
+										<div class="bg-white p-40 po-relative desc_img">
+											<label class="label text-white bg-feature">ON RENT</label>
+											<h3  class="m-b-10 m-t-0">
+												<a href="#" class="link">Agora Township</a>
+											</h3>
+											<p 
+												class="m-t-20 custom_p">36,
+												Kingstone Cornern, Melbourne, Australia - 3890
+											</p>
+											<h3 class="text-feature m-b-0">
+												$685,000
+												<span class="tag bg-alpha">Hot Offer</span>
+											</h3>
+										</div>
+										<div class="bg-light-extra p-40 specifiaction-box">
+											<div class="row">
+												<div class="col-4">
+													<h6 class="specifiaction text-muted-1">Bedrooms</h6>
+													<h5 class="m-b-0 font-medium">4</h5>
+												</div>
+												<div class="col-4">
+													<h6 class="specifiaction text-muted-1">Bathrooms</h6>
+													<h5 class="m-b-0 font-medium">2</h5>
+												</div>
+												<div class="col-4">
+													<h6 class="specifiaction text-muted-1">Garages</h6>
+													<h5 class="m-b-0 font-medium">1</h5>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="col-md-4 block">
+									<div class="item card-shadow property-box "
+										>
+										<img src="/theme_centric/static/src/img/estate_c3.jpg"
+											alt="bizople" class="img-fluid" />
+										<div class="bg-white p-40 po-relative desc_img">
+											<label class="label text-white bg-feature">ON SALE</label>
+											<h3  class="m-b-10 m-t-0">
+												<a href="#" class="link">Apollo Residency</a>
+											</h3>
+											<p 
+												class="m-t-20 custom_p">36,
+												Kingstone Cornern, Melbourne, Australia - 3890
+											</p>
+											<h3 class="text-feature m-b-0">$685,000 </h3>
+										</div>
+										<div class="bg-light-extra p-40 specifiaction-box">
+											<div class="row">
+												<div class="col-4">
+													<h6 class="specifiaction text-muted-1">Bedrooms</h6>
+													<h5 class="m-b-0 font-medium">4</h5>
+												</div>
+												<div class="col-4">
+													<h6 class="specifiaction text-muted-1">Bathrooms</h6>
+													<h5 class="m-b-0 font-medium">2</h5>
+												</div>
+												<div class="col-4">
+													<h6 class="specifiaction text-muted-1">Garages</h6>
+													<h5 class="m-b-0 font-medium">1</h5>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+
+
+							<div class="carousel-item oe_img_bg" data-name="Slide">
+								<div class="col-md-4 block">
+									<div class="item card-shadow property-box "
+										>
+										<img src="/theme_centric/static/src/img/estate_c2.jpg"
+											alt="bizople" class="img-fluid" />
+										<div class="bg-white p-40 po-relative desc_img">
+											<label class="label text-white bg-feature">ON SALE</label>
+											<h3  class="m-b-10 m-t-0">
+												<a href="#" class="link">Apollo Residency</a>
+											</h3>
+											<p 
+												class="m-t-20 custom_p">36,
+												Kingstone Cornern, Melbourne, Australia - 3890
+											</p>
+											<h3 class="text-feature m-b-0">$685,000 </h3>
+										</div>
+										<div class="bg-light-extra p-40 specifiaction-box">
+											<div class="row">
+												<div class="col-4">
+													<h6 class="specifiaction text-muted-1">Bedrooms</h6>
+													<h5 class="m-b-0 font-medium">4</h5>
+												</div>
+												<div class="col-4">
+													<h6 class="specifiaction text-muted-1">Bathrooms</h6>
+													<h5 class="m-b-0 font-medium">2</h5>
+												</div>
+												<div class="col-4">
+													<h6 class="specifiaction text-muted-1">Garages</h6>
+													<h5 class="m-b-0 font-medium">1</h5>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="col-md-4 block">
+									<div class="item card-shadow property-box "
+										>
+										<img src="/theme_centric/static/src/img/estate_c1.jpg"
+											alt="bizople" class="img-fluid" />
+										<div class="bg-white p-40 po-relative desc_img">
+											<label class="label text-white bg-feature">ON SALE</label>
+											<h3  class="m-b-10 m-t-0">
+												<a href="#" class="link">Apollo Residency</a>
+											</h3>
+											<p 
+												class="m-t-20 custom_p">36,
+												Kingstone Cornern, Melbourne, Australia - 3890
+											</p>
+											<h3 class="text-feature m-b-0">$685,000 </h3>
+										</div>
+										<div class="bg-light-extra p-40 specifiaction-box">
+											<div class="row">
+												<div class="col-4">
+													<h6 class="specifiaction text-muted-1">Bedrooms</h6>
+													<h5 class="m-b-0 font-medium">4</h5>
+												</div>
+												<div class="col-4">
+													<h6 class="specifiaction text-muted-1">Bathrooms</h6>
+													<h5 class="m-b-0 font-medium">2</h5>
+												</div>
+												<div class="col-4">
+													<h6 class="specifiaction text-muted-1">Garages</h6>
+													<h5 class="m-b-0 font-medium">1</h5>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="col-md-4 block">
+									<div class="item card-shadow property-box "
+										>
+										<img src="/theme_centric/static/src/img/estate_c2.jpg"
+											alt="bizople" class="img-fluid" />
+										<div class="bg-white p-40 po-relative desc_img">
+											<label class="label text-white bg-feature">ON SALE</label>
+											<h3  class="m-b-10 m-t-0">
+												<a href="#" class="link">Apollo Residency</a>
+											</h3>
+											<p 
+												class="m-t-20 custom_p">36,
+												Kingstone Cornern, Melbourne, Australia - 3890
+											</p>
+											<h3 class="text-feature m-b-0">$685,000 </h3>
+										</div>
+										<div class="bg-light-extra p-40 specifiaction-box">
+											<div class="row">
+												<div class="col-4">
+													<h6 class="specifiaction text-muted-1">Bedrooms</h6>
+													<h5 class="m-b-0 font-medium">4</h5>
+												</div>
+												<div class="col-4">
+													<h6 class="specifiaction text-muted-1">Bathrooms</h6>
+													<h5 class="m-b-0 font-medium">2</h5>
+												</div>
+												<div class="col-4">
+													<h6 class="specifiaction text-muted-1">Garages</h6>
+													<h5 class="m-b-0 font-medium">1</h5>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+
+							<div class="carousel-item oe_img_bg" data-name="Slide">
+								<div class="col-md-4 block">
+									<div class="item card-shadow property-box "
+										>
+										<img src="/theme_centric/static/src/img/estate_c3.jpg"
+											alt="bizople" class="img-fluid" />
+										<div class="bg-white p-40 po-relative desc_img">
+											<label class="label text-white bg-feature">ON SALE</label>
+											<h3  class="m-b-10 m-t-0">
+												<a href="#" class="link">Apollo Residency</a>
+											</h3>
+											<p 
+												class="m-t-20 custom_p">36,
+												Kingstone Cornern, Melbourne, Australia - 3890
+											</p>
+											<h3 class="text-feature m-b-0">$685,000 </h3>
+										</div>
+										<div class="bg-light-extra p-40 specifiaction-box">
+											<div class="row">
+												<div class="col-4">
+													<h6 class="specifiaction text-muted-1">Bedrooms</h6>
+													<h5 class="m-b-0 font-medium">4</h5>
+												</div>
+												<div class="col-4">
+													<h6 class="specifiaction text-muted-1">Bathrooms</h6>
+													<h5 class="m-b-0 font-medium">2</h5>
+												</div>
+												<div class="col-4">
+													<h6 class="specifiaction text-muted-1">Garages</h6>
+													<h5 class="m-b-0 font-medium">1</h5>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="col-md-4 block">
+									<div class="item card-shadow property-box "
+										>
+										<img src="/theme_centric/static/src/img/estate_c1.jpg"
+											alt="bizople" class="img-fluid" />
+										<div class="bg-white p-40 po-relative desc_img">
+											<label class="label text-white bg-feature">ON RENT</label>
+											<h3  class="m-b-10 m-t-0">
+												<a href="#" class="link">Magical Apartment</a>
+											</h3>
+											<p 
+												class="m-t-20 custom_p">36,
+												Kingstone Cornern, Melbourne, Australia - 3890
+											</p>
+											<h3 class="text-feature m-b-0">$685,000 </h3>
+										</div>
+										<div class="bg-light-extra p-40 specifiaction-box">
+											<div class="row">
+												<div class="col-4">
+													<h6 class="specifiaction text-muted-1">Bedrooms</h6>
+													<h5 class="m-b-0 font-medium">4</h5>
+												</div>
+												<div class="col-4">
+													<h6 class="specifiaction text-muted-1">Bathrooms</h6>
+													<h5 class="m-b-0 font-medium">2</h5>
+												</div>
+												<div class="col-4">
+													<h6 class="specifiaction text-muted-1">Garages</h6>
+													<h5 class="m-b-0 font-medium">1</h5>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+	</template>
+
+</odoo>

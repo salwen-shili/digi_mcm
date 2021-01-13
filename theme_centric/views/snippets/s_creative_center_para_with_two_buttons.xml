@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+	<template id="s_creative_center_para_with_two_buttons" name="Center paragraph with two buttons">
+		<section class="s_creative_center_para_with_two_buttons">
+			<div class="spacer feature">
+				<div class="container">
+					<div class="row justify-content-center">
+						<div class="col-md-7 text-center">
+							<h2 class="title font-bold text-beta">Are you happy with what we offer? Grab your
+								theme
+								copy now
+							</h2>
+							<h6 class="subtitle">You can relay on our amazing features list and
+								also our customer services will be great experience for you
+								without doubt and in no-time
+							</h6>
+							<div class="m-t-40 s_btn" data-name="Button">
+								<a
+									class="btn btn-alpha rounded-circle btn-rounded btn-md arrow-btn m-t-20 m-r-10 bizople_button"
+									href="#">
+										Buy Theme
+										<span class="fa fa-1x fa-fw fa-long-arrow-right ml-1"></span>
+								</a>
+								<a
+									class="btn btn-outline-alpha btn-rounded rounded-circle btn-md arrow-btn m-t-20 bizople_button"
+									href="#">
+										Live Preview
+										<span class="fa fa-1x fa-fw fa-long-arrow-right ml-1"></span>
+								</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+	</template>
+
+</odoo>

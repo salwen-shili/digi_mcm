@@ -1,0 +1,455 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+	<template id="s_software_carousel_testimonial"
+		name="Testimonial four">
+		<section class="s_software_carousel_testimonial bg-light-1">
+			<div class="testimonial3 spacer ">
+				<div class="container-fluid">
+					<div class="container">
+						<div class="row justify-content-center">
+							<div class="col-md-7 text-center">
+								<h2 class="title text-beta">Check what our Customers are Saying</h2>
+								<h6 class="subtitle">You can relay on our amazing features list and
+									also our customer services will be great experience for you
+									without doubt and in no-time
+								</h6>
+							</div>
+						</div>
+					</div>
+					<div id="software_carousel_tesimonial123"
+						class="owl-carousel owl-theme testi3 m-t-40 s_carousel_default carousel slide"
+						data-interval="5000">
+						<ol class="carousel-indicators">
+							<li data-target="#software_carousel_tesimonial123"
+								data-slide-to="0" class=""></li>
+							<li data-target="#software_carousel_tesimonial123"
+								data-slide-to="1" class="active"></li>
+							<li data-target="#software_carousel_tesimonial123"
+								data-slide-to="2" class=""></li>
+							<li data-target="#software_carousel_tesimonial123"
+								data-slide-to="3" class=""></li>
+							<li data-target="#software_carousel_tesimonial123"
+								data-slide-to="4" class=""></li>
+						</ol>
+						<div class="carousel-inner">
+								<div class="carousel-item active" data-name="Slide">
+									<div class="row">
+										<div class="col-md-6">
+											<div class="item "
+												data-aos="fade-left">
+												<section class="card card-shadow">
+													<div class="card-body">
+														<h6 class="font-light m-b-30">“Cum sociis natoque penatibus et magnis dis
+															parturient montes, nascetur ridiculus mus. Cras venene
+															veliel vestibulum.”
+														</h6>
+														<div class="d-flex no-block align-items-center">
+															<span class="thumb-img">
+																<img src="/theme_centric/static/src/img/3.jpg"
+																	alt="bizople" class="circle" />
+															</span>
+															<div class="m-l-20">
+																<h6 class="m-b-0 customer">Limpsy adam</h6>
+																<div class="font-10">
+																	<a href="#" class="text-feature">
+																		<span class="fa fa-star"></span>
+																	</a>
+																	<a href="#" class="text-feature">
+																		<span class="fa fa-star"></span>
+																	</a>
+																	<a href="#" class="text-feature">
+																		<span class="fa fa-star"></span>
+																	</a>
+																	<a href="#" class="text-feature">
+																		<span class="fa fa-star"></span>
+																	</a>
+																	<a href="#" class="text-muted">
+																		<span class="fa fa-star-o"></span>
+																	</a>
+																</div>
+															</div>
+														</div>
+													</div>
+												</section>
+											</div>
+										</div>
+										<div class="col-md-6">
+											<div class="item "
+												data-aos="fade-left">
+												<section class="card card-shadow">
+													<div class="card-body">
+														<h6 class="font-light m-b-30">“Cum sociis natoque penatibus et magnis dis
+															parturient montes, nascetur ridiculus mus. Cras venene
+															veliel vestibulum.”
+														</h6>
+														<div class="d-flex no-block align-items-center">
+															<span class="thumb-img">
+																<img src="/theme_centric/static/src/img/2.jpg"
+																	alt="bizople" class="circle" />
+															</span>
+															<div class="m-l-20">
+																<h6 class="m-b-0 customer">Limpsy adam</h6>
+																<div class="font-10">
+																	<a href="#" class="text-feature">
+																		<span class="fa fa-star"></span>
+																	</a>
+																	<a href="#" class="text-feature">
+																		<span class="fa fa-star"></span>
+																	</a>
+																	<a href="#" class="text-feature">
+																		<span class="fa fa-star"></span>
+																	</a>
+																	<a href="#" class="text-feature">
+																		<span class="fa fa-star"></span>
+																	</a>
+																	<a href="#" class="text-muted">
+																		<span class="fa fa-star-o"></span>
+																	</a>
+																</div>
+															</div>
+														</div>
+													</div>
+												</section>
+											</div>
+										</div>
+									</div>
+								</div>
+
+								<div class="carousel-item oe_img_bg" data-name="Slide">
+									<div class="row">
+										<div class="col-md-6">
+											<div class="item "
+												data-aos="fade-left">
+												<section class="card card-shadow">
+													<div class="card-body">
+														<h6 class="font-light m-b-30">“Cum sociis natoque penatibus et magnis dis
+															parturient montes, nascetur ridiculus mus. Cras venene
+															veliel vestibulum.”
+														</h6>
+														<div class="d-flex no-block align-items-center">
+															<span class="thumb-img">
+																<img src="/theme_centric/static/src/img/test1.png"
+																	alt="bizople" class="circle" />
+															</span>
+															<div class="m-l-20">
+																<h6 class="m-b-0 customer">Limpsy adam</h6>
+																<div class="font-10">
+																	<a href="#" class="text-feature">
+																		<span class="fa fa-star"></span>
+																	</a>
+																	<a href="#" class="text-feature">
+																		<span class="fa fa-star"></span>
+																	</a>
+																	<a href="#" class="text-feature">
+																		<span class="fa fa-star"></span>
+																	</a>
+																	<a href="#" class="text-feature">
+																		<span class="fa fa-star"></span>
+																	</a>
+																	<a href="#" class="text-muted">
+																		<span class="fa fa-star-o"></span>
+																	</a>
+																</div>
+															</div>
+														</div>
+													</div>
+												</section>
+											</div>
+										</div>
+										<div class="col-md-6">
+											<div class="item "
+												data-aos="fade-right">
+												<section class="card card-shadow">
+													<div class="card-body">
+														<h6 class="font-light m-b-30">“Cum sociis natoque penatibus et magnis dis
+															parturient montes, nascetur ridiculus mus. Cras venene
+															veliel vestibulum.”
+														</h6>
+														<div class="d-flex no-block align-items-center">
+															<span class="thumb-img">
+																<img src="/theme_centric/static/src/img/1.jpg"
+																	alt="bizople" class="circle" />
+															</span>
+															<div class="m-l-20">
+																<h6 class="m-b-0 customer">Michelle Anderson</h6>
+																<div class="font-10">
+																	<a href="#" class="text-feature">
+																		<span class="fa fa-star"></span>
+																	</a>
+																	<a href="#" class="text-feature">
+																		<span class="fa fa-star"></span>
+																	</a>
+																	<a href="#" class="text-feature">
+																		<span class="fa fa-star"></span>
+																	</a>
+																	<a href="#" class="text-feature">
+																		<span class="fa fa-star"></span>
+																	</a>
+																	<a href="#" class="text-muted">
+																		<span class="fa fa-star-o"></span>
+																	</a>
+																</div>
+															</div>
+														</div>
+													</div>
+												</section>
+											</div>
+										</div>
+									</div>
+								</div>
+
+								<div class="carousel-item oe_img_bg" data-name="Slide">
+									<div class="row">
+										<div class="col-md-6">
+											<div class="item "
+												data-aos="fade-left">
+												<section class="card card-shadow">
+													<div class="card-body">
+														<h6 class="font-light m-b-30">“Cum sociis natoque penatibus et magnis dis
+															parturient montes, nascetur ridiculus mus. Cras venene
+															veliel vestibulum.”
+														</h6>
+														<div class="d-flex no-block align-items-center">
+															<span class="thumb-img">
+																<img src="/theme_centric/static/src/img/1.jpg"
+																	alt="bizople" class="circle" />
+															</span>
+															<div class="m-l-20">
+																<h6 class="m-b-0 customer">Limpsy adam</h6>
+																<div class="font-10">
+																	<a href="#" class="text-feature">
+																		<span class="fa fa-star"></span>
+																	</a>
+																	<a href="#" class="text-feature">
+																		<span class="fa fa-star"></span>
+																	</a>
+																	<a href="#" class="text-feature">
+																		<span class="fa fa-star"></span>
+																	</a>
+																	<a href="#" class="text-feature">
+																		<span class="fa fa-star"></span>
+																	</a>
+																	<a href="#" class="text-muted">
+																		<span class="fa fa-star-o"></span>
+																	</a>
+																</div>
+															</div>
+														</div>
+													</div>
+												</section>
+											</div>
+										</div>
+										<div class="col-md-6">
+											<div class="item "
+												data-aos="fade-left">
+												<section class="card card-shadow">
+													<div class="card-body">
+														<h6 class="font-light m-b-30">“Cum sociis natoque penatibus et magnis dis
+															parturient montes, nascetur ridiculus mus. Cras venene
+															veliel vestibulum.”
+														</h6>
+														<div class="d-flex no-block align-items-center">
+															<span class="thumb-img">
+																<img src="/theme_centric/static/src/img/3.jpg"
+																	alt="bizople" class="circle" />
+															</span>
+															<div class="m-l-20">
+																<h6 class="m-b-0 customer">Limpsy adam</h6>
+																<div class="font-10">
+																	<a href="#" class="text-feature">
+																		<span class="fa fa-star"></span>
+																	</a>
+																	<a href="#" class="text-feature">
+																		<span class="fa fa-star"></span>
+																	</a>
+																	<a href="#" class="text-feature">
+																		<span class="fa fa-star"></span>
+																	</a>
+																	<a href="#" class="text-feature">
+																		<span class="fa fa-star"></span>
+																	</a>
+																	<a href="#" class="text-muted">
+																		<span class="fa fa-star-o"></span>
+																	</a>
+																</div>
+															</div>
+														</div>
+													</div>
+												</section>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="carousel-item oe_img_bg" data-name="Slide">
+									<div class="row">
+										<div class="col-md-6">
+											<div class="item "
+												data-aos="fade-left">
+												<section class="card card-shadow">
+													<div class="card-body">
+														<h6 class="font-light m-b-30">“Cum sociis natoque penatibus et magnis dis
+															parturient montes, nascetur ridiculus mus. Cras venene
+															veliel vestibulum.”
+														</h6>
+														<div class="d-flex no-block align-items-center">
+															<span class="thumb-img">
+																<img src="/theme_centric/static/src/img/2.jpg"
+																	alt="bizople" class="circle" />
+															</span>
+															<div class="m-l-20">
+																<h6 class="m-b-0 customer">Limpsy adam</h6>
+																<div class="font-10">
+																	<a href="#" class="text-feature">
+																		<span class="fa fa-star"></span>
+																	</a>
+																	<a href="#" class="text-feature">
+																		<span class="fa fa-star"></span>
+																	</a>
+																	<a href="#" class="text-feature">
+																		<span class="fa fa-star"></span>
+																	</a>
+																	<a href="#" class="text-feature">
+																		<span class="fa fa-star"></span>
+																	</a>
+																	<a href="#" class="text-muted">
+																		<span class="fa fa-star-o"></span>
+																	</a>
+																</div>
+															</div>
+														</div>
+													</div>
+												</section>
+											</div>
+										</div>
+										<div class="col-md-6">
+											<div class="item "
+												data-aos="fade-right">
+												<section class="card card-shadow">
+													<div class="card-body">
+														<h6 class="font-light m-b-30">“Cum sociis natoque penatibus et magnis dis
+															parturient montes, nascetur ridiculus mus. Cras venene
+															veliel vestibulum.”
+														</h6>
+														<div class="d-flex no-block align-items-center">
+															<span class="thumb-img">
+																<img src="/theme_centric/static/src/img/1.jpg"
+																	alt="bizople" class="circle" />
+															</span>
+															<div class="m-l-20">
+																<h6 class="m-b-0 customer">Michelle Anderson</h6>
+																<div class="font-10">
+																	<a href="#" class="text-feature">
+																		<span class="fa fa-star"></span>
+																	</a>
+																	<a href="#" class="text-feature">
+																		<span class="fa fa-star"></span>
+																	</a>
+																	<a href="#" class="text-feature">
+																		<span class="fa fa-star"></span>
+																	</a>
+																	<a href="#" class="text-feature">
+																		<span class="fa fa-star"></span>
+																	</a>
+																	<a href="#" class="text-muted">
+																		<span class="fa fa-star-o"></span>
+																	</a>
+																</div>
+															</div>
+														</div>
+													</div>
+												</section>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="carousel-item oe_img_bg" data-name="Slide">
+									<div class="row">
+										<div class="col-md-6">
+											<div class="item "
+												data-aos="fade-left">
+												<section class="card card-shadow">
+													<div class="card-body">
+														<h6 class="font-light m-b-30">“Cum sociis natoque penatibus et magnis dis
+															parturient montes, nascetur ridiculus mus. Cras venene
+															veliel vestibulum.”
+														</h6>
+														<div class="d-flex no-block align-items-center">
+															<span class="thumb-img">
+																<img src="/theme_centric/static/src/img/test1.png"
+																	alt="bizople" class="circle" />
+															</span>
+															<div class="m-l-20">
+																<h6 class="m-b-0 customer">Limpsy adam</h6>
+																<div class="font-10">
+																	<a href="#" class="text-feature">
+																		<span class="fa fa-star"></span>
+																	</a>
+																	<a href="#" class="text-feature">
+																		<span class="fa fa-star"></span>
+																	</a>
+																	<a href="#" class="text-feature">
+																		<span class="fa fa-star"></span>
+																	</a>
+																	<a href="#" class="text-feature">
+																		<span class="fa fa-star"></span>
+																	</a>
+																	<a href="#" class="text-muted">
+																		<span class="fa fa-star-o"></span>
+																	</a>
+																</div>
+															</div>
+														</div>
+													</div>
+												</section>
+											</div>
+										</div>
+										<div class="col-md-6">
+											<div class="item " data-aos="fade-up">
+												<section class="card card-shadow">
+													<div class="card-body">
+														<h6 class="font-light m-b-30">“Cum sociis natoque penatibus et magnis dis
+															parturient montes, nascetur ridiculus mus. Cras venene
+															veliel vestibulum.”
+														</h6>
+														<div class="d-flex no-block align-items-center">
+															<span class="thumb-img">
+																<img src="/theme_centric/static/src/img/2.jpg"
+																	alt="bizople" class="circle" />
+															</span>
+															<div class="m-l-20">
+																<h6 class="m-b-0 customer">Mark mesty</h6>
+																<div class="font-10">
+																	<a href="#" class="text-feature">
+																		<span class="fa fa-star"></span>
+																	</a>
+																	<a href="#" class="text-feature">
+																		<span class="fa fa-star"></span>
+																	</a>
+																	<a href="#" class="text-feature">
+																		<span class="fa fa-star"></span>
+																	</a>
+																	<a href="#" class="text-feature">
+																		<span class="fa fa-star"></span>
+																	</a>
+																	<a href="#" class="text-muted">
+																		<span class="fa fa-star-o"></span>
+																	</a>
+																</div>
+															</div>
+														</div>
+													</div>
+												</section>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+	</template>
+
+</odoo>

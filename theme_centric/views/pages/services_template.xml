@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+	<record id="centric_servicepage_template" model="ir.ui.view">
+		<field name="name">Services</field>
+		<field name="type">qweb</field>
+		<field name="key">website.centric_servicepage_template</field>
+		<field name="arch" type="xml">
+			<t name="Centric Service" t-name="centric_servicepage_template">
+				<t t-call="website.layout">
+					<div class="oe_structure"/>
+						<!-- banner start -->
+					<section class="centric_template">
+						<section class="service-banner s_cover parallax s_parallax_is_fixed pt96 s_parallax_no_overflow_hidden bg-black-75 pb120" data-scroll-background-ratio="1" data-name="Cover" style="background-image: none;">
+					       <span class="s_parallax_bg oe_img_bg oe_custom_bg" style="background-image: url('theme_centric/static/src/img/2862664.png'); background-position: 46.59% 50.53%;"/>
+					       <div class="container">
+					         <div class="row s_nb_column_fixed">
+					           <div class="col-lg-12 s_title" data-name="Title">
+					             <h1 class="s_title_thin" style="font-size: 62px; text-align: center;">
+					               <font class="page-banner-text" style="background-color: rgba(238, 238, 238, 0);">Services</font>
+					             </h1>
+					           </div>
+					           
+					           <div class="col-lg-12 s_btn text-center pt16 pb16" data-name="Buttons">
+					             <div class="page-title-content text-center">
+									
+									<ul>
+										<li class="home-dot">
+											<a href="/">Home</a>
+										</li>
+										<li>Services
+										</li>
+									</ul>
+								</div>
+					           </div>
+					         </div>
+					       </div>
+					     </section>
+						<!-- banner end -->
+						<div class="oe_structure"/>
+						<!-- services start -->
+						<section class="services-section pt128 pb128">
+							<div class="container">
+								<div class="service-title text-center">
+									<span>SERVICES</span>
+									<h3>
+										How We Can Help?
+									</h3>
+								</div>
+								<div class="row text-center">
+									<div class="col-lg-4 col-md-6 col-sm-6">
+										<div class="service-box-link">
+											<div class="service-box">
+												<div class="service-icon">
+													<div class="icon1">
+														<i class="fa fa-newspaper-o"></i>
+													</div>
+												</div>
+												<h3>
+													<a href="/service-detail" class="text-secondary">Search Engine Optimization</a>
+												</h3>
+												<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incutu  labore et dolore magna aliqua.</p>
+											</div>
+										</div>
+									</div>
+									<div class="col-lg-4 col-md-6 col-sm-6">
+										<div class="service-box-link">
+											<div class="service-box">
+												<div class="service-icon">
+													<div class="icon2">
+														<i class="fa fa-object-group"></i>
+													</div>
+												</div>
+												<h3>
+													<a href="/service-detail" class="text-secondary">Social Media Strategy</a>
+												</h3>
+												<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incutu  labore et dolore magna aliqua.</p>
+											</div>
+										</div>
+									</div>
+									<div class="col-lg-4 col-md-6 col-sm-6">
+										<div class="service-box-link">
+											<div class="service-box">
+												<div class="service-icon">
+													<div class="icon3">
+														<i class="fa fa-diamond"></i>
+													</div>
+												</div>
+												<h3>
+													<a href="/service-detail" class="text-secondary">Real Time And Data</a>
+												</h3>
+												<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incutu  labore et dolore magna aliqua.</p>
+											</div>
+										</div>
+									</div>
+									<div class="col-lg-4 col-md-6 col-sm-6">
+										<div class="service-box-link">
+											<div class="service-box">
+												<div class="service-icon">
+													<div class="icon4">
+														<i class="fa fa-commenting-o"></i>
+													</div>
+												</div>
+												<h3>
+													<a href="/service-detail" class="text-secondary">Online Media Management</a>
+												</h3>
+												<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incutu  labore et dolore magna aliqua.</p>
+											</div>
+										</div>
+									</div>
+									<div class="col-lg-4 col-md-6 col-sm-6">
+										<div class="service-box-link">
+											<div class="service-box">
+												<div class="service-icon">
+													<div class="icon5">
+														<i class="fa fa-clone"></i>
+													</div>
+												</div>
+												<h3>
+													<a href="/service-detail" class="text-secondary">Reporting &amp; Analysis</a>
+												</h3>
+												<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incutu  labore et dolore magna aliqua.</p>
+											</div>
+										</div>
+									</div>
+									<div class="col-lg-4 col-md-6 col-sm-6">
+										<div class="service-box-link">
+											<div class="service-box">
+												<div class="service-icon">
+													<div class="icon6">
+														<i class="fa fa-file-code-o"></i>
+													</div>
+												</div>
+												<h3>
+													<a href="/service-detail" class="text-secondary">Penalty Recovery</a>
+												</h3>
+												<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incutu  labore et dolore magna aliqua.</p>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</section>
+						<!-- service end -->
+						<div class="oe_structure"/>
+						<!-- Why Choose US -->
+						<section class="whychooseus-section pt128 pb128">
+							<div class="container">
+								<div class="row align-items-center">
+									<div class="col-lg-6 col-md-12">
+										<div class="whychoose-content">
+											<span>WHY CHOOSE US</span>
+											<h3>Outstanding Digital Experience</h3>
+											<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.</p>
+											<div class="choose">
+												<i class="fa fa-check"></i>
+												<h4>First Working Process</h4>
+												<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor abore et dolore magna aliqua.</p>
+											</div>
+											<div class="choose">
+												<i class="fa fa-check"></i>
+												<h4>Dedicated Team Member</h4>
+												<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor abore et dolore magna aliqua.</p>
+											</div>
+											<div class="choose">
+												<i class="fa fa-check"></i>
+												<h4>24/7 Support</h4>
+												<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor abore et dolore magna aliqua.</p>
+											</div>
+											<div class="choose-btn">
+												<a href="#" class="whychoosebtn btn btn-alpha rounded-circle">Discover More</a>
+											</div>
+										</div>
+									</div>
+									<div class="col-lg-6 col-md-12">
+										<img src="theme_centric/static/img/chooseimg.png"/>
+									</div>
+								</div>
+							</div>
+							
+						</section>
+						<!-- whychoose end -->
+						<div class="oe_structure"/>
+						<!-- subs start -->
+						<section class="service-banner s_cover parallax s_parallax_is_fixed pt96 s_parallax_no_overflow_hidden bg-black-75 pb120" data-scroll-background-ratio="1" data-name="Cover" style="background-image: none;">
+					       <span class="s_parallax_bg oe_img_bg oe_custom_bg" style="background-image: url('theme_centric/static/src/img/2862664.png'); background-position: 46.59% 50.53%;"/>
+					       <div class="container">
+								<div class="subs-content text-center">
+									<span class="discount">Get Started Instantly!</span>
+									<h2>Get the only new update from this newsletter</h2>
+									
+								</div>
+								<div class="input-group js_subscribe" data-list-id="1">
+							        <input type="email" name="email" class="js_subscribe_email form-control" placeholder="your email..."/>
+							        <span class="input-group-append">
+							            <a role="button" href="#" class="btn btn-primary js_subscribe_btn">Subscribe</a>
+							            <a role="button" href="#" class="btn btn-success js_subscribed_btn d-none" disabled="disabled">Thanks</a>
+							        </span>
+							    </div>
+							</div>
+					     </section>
+						<!-- subs end -->
+						<div class="oe_structure"/>
+						<!-- clients start -->
+						<section class="clients s_references bg-200 pt16 pb16" data-name="References">
+					        <div class="container">
+					            <div class="row">
+					            	 <div class="col-lg-2">
+					                    <img src="/theme_centric/static/src/img/c1.png" class="img img-fluid" alt="Demo Logo" data-original-title="" title="" aria-describedby="tooltip843653"/>
+					                </div>
+					                <div class="col-lg-2">
+					                    <img src="/theme_centric/static/src/img/c2.png" class="img img-fluid" alt="Demo Logo" data-original-title="" title="" aria-describedby="tooltip843653"/>
+					                </div>
+					                <div class="col-lg-2">
+					                    <img src="/theme_centric/static/src/img/c3.png" class="img img-fluid" alt="Demo Logo" data-original-title="" title="" aria-describedby="tooltip623872"/>
+					                </div>
+					                <div class="col-lg-2">
+					                    <img src="/theme_centric/static/src/img/c4.png" class="img img-fluid" alt="Demo Logo" data-original-title="" title="" aria-describedby="tooltip175558"/>
+					                </div>
+					                <div class="col-lg-2">
+					                    <img src="/theme_centric/static/src/img/c5.png" class="img img-fluid" alt="Demo Logo" data-original-title="" title="" aria-describedby="tooltip940624"/>
+					                </div>
+					                <div class="col-lg-2">
+					                    <img src="/theme_centric/static/src/img/c6.png" class="img img-fluid" alt="Demo Logo" data-original-title="" title="" aria-describedby="tooltip478170"/>
+					                </div>
+					            </div>
+					        </div>
+					    </section>
+						<!-- clients end -->
+						<div class="oe_structure"/>
+					
+				</section>
+				</t>
+			</t>
+		</field>
+	</record>
+
+	<record id="centric_servicepage_template_menu" model="website.page">
+		<field name="website_published">True</field>
+		<field name="url">/service</field>
+		<field name="view_id" ref="centric_servicepage_template" />
+	</record>
+
+</odoo>

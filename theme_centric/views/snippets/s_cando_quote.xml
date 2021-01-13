@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+	<template id="s_cando_quote" name="Cando Quote Block">
+		
+		<!-- quote Page Start -->
+						<section class="quote-page pb-120 pt-120" id="quot_page">
+							<div class="container py-5 mt-lg-4">
+								<div class="row">
+									<div class="col-lg-1">
+										<img class="LI" src="/theme_centric/static/src/img/cando/quote1.png" id="No_mobile_view"/>
+									</div>
+									<div class="col-lg-10">
+										<div class="box_1">
+											<div class="row">
+												<div class="col-lg-6 align-self-center">
+													<h4 class="text-primary">Start growing your bussiness today!</h4>
+													<p class="text-secondary">
+														More traffic, more calls and more sales!<br/>
+														Learn more about your business<br/>
+														by hiring a SEO expert today!<br/>
+													</p>
+													<p class="text-secondary">Get a free consultation!</p>
+												</div>
+												<div class="col-lg-6 mb-0 align-self-center">
+													<div class="row">
+														<form action="/website_form/" method="post" data-aos="fade-left" data-aos-duration="1200" data-model_name="crm.lead" data-success_page="/contactus-thank-you" class="s_website_form contact-form  aos-init aos-animate" enctype="multipart/form-data" data-editable-form="false">
+															<div class="contact-form row">
+																<div class="fn col-lg-6">
+																	<div class="form-group m-t-15">
+																	<input id="name" placeholder="First Name" name="contact_name" required="True" type="text" class="o_website_form_input form-control op-5" t-att-value="request.params.get('contact_name', '')" />
+																	</div>
+																</div>
+																<div class="ln col-lg-6">
+																	<div class="form-group m-t-15">
+																		<input id="name" name="contact_name" placeholder="Last Name" required="" value="" type="text" class="o_website_form_input form-control op-5" t-att-value="request.params.get('contact_name', '')" />
+																	</div>
+																</div>
+																<div class="col-lg-12">
+																	<div class="form-group m-t-15">
+																		<input id="email" name="email_from" placeholder="Email" type="email" t-att-value="request.params.get('email_from', '')" class="o_website_form_input form-control op-5" />
+																	</div>
+																</div>
+																<div class="col-lg-12">
+																	<div class="form-group m-t-15">
+																		<input id="subject" name="name" placeholder="Website URL" type="text" t-att-value="request.params.get('name', '')" class="o_website_form_input form-control op-5" />
+																	</div>
+																</div>
+																<div class="s_btn col-lg-12 text-left">
+																	<a href="#" class="btn rounded-circle btn-lg btn-primary o_website_form_send m-b-20" type="submit">
+																		Submit
+																	</a>
+																	<span id="o_website_form_result" class="text-danger ml8 mt16  mb16 col-md-12">
+																	</span>
+																</div>
+															</div>
+														</form>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="col-lg-1">
+										<img class="RI" src="/theme_centric/static/src/img/cando/quote2.png" id="No_mobile_view"/>
+									</div>
+								</div>
+							</div>
+						</section>
+		<!-- quote Page End -->	
+
+	</template>
+</odoo>

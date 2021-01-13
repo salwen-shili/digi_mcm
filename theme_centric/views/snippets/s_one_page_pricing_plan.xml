@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+	<template id="s_one_page_pricing_plan" name="Pricing plan two">
+		<section class="s_one_page_pricing_plan bg-light-1">
+			<div class="pricing1 spacer " id="pricing">
+				<div class="container">
+					<div class="row justify-content-center">
+						<div class="col-md-8 text-center">
+							<h2 class="title text-beta">Simple Pricing to make your Work Effective</h2>
+							<h6 class="subtitle">We offer 100% satisafaction and Money back
+								Guarantee
+							</h6>
+						</div>
+					</div>
+					<div class="row m-t-40">
+						<div class="col-lg-3 col-md-6 aos-init" data-aos="fade-right"
+							data-aos-duration="1200">
+							<section class="card text-center card-shadow">
+								<div class="card-body font-14">
+									<h5 class="title">BASIC</h5>
+									<h6 class="subtitle">For Team of 3-5 Members</h6>
+									<div class="pricing">
+										<sup>$</sup>
+										<span class="monthly display-5">28</span>
+										<span class="yearly display-5">240</span>
+										<small class="monthly">/mo</small>
+										<small class="yearly">/yr</small>
+										<span class="db">
+											Save
+											<span class="font-medium">$20</span>
+											a Year
+										</span>
+									</div>
+									<ul class="list-inline">
+										<li>Perfect of Small Team</li>
+										<li>Unlimited Invoices</li>
+										<li>Project Management</li>
+										<li>
+											<hr />
+										</li>
+										<li>
+											<hr />
+										</li>
+									</ul>
+									<div class="bottom-btn s_btn" data-name="Button">
+										<a href="#"
+											class="btn btn-outline-alpha btn-md arrow-btn btn-block bizople_button">
+												Choose Plan
+												<span class="fa fa-1x fa-fw fa-long-arrow-right ml-1"></span>
+										</a>
+									</div>
+								</div>
+							</section>
+						</div>
+						<div class="col-lg-3 col-md-6 aos-init" data-aos="fade-up"
+							data-aos-duration="1200">
+							<section class="card text-center card-shadow">
+								<div class="card-body font-14">
+									<span class="badge bg-feature p-10">Popular</span>
+									<h5 class="title">INTERMEDIATE</h5>
+									<h6 class="subtitle">For Team of 5-10 Members</h6>
+									<div class="pricing">
+										<sup>$</sup>
+										<span class="monthly display-5">39</span>
+										<span class="yearly display-5">400</span>
+										<small class="monthly">/mo</small>
+										<small class="yearly">/yr</small>
+										<span class="db">
+											Save
+											<span class="font-medium">$30</span>
+											a Year
+										</span>
+									</div>
+									<ul class="list-inline">
+										<li>Perfect of Small Team</li>
+										<li>Unlimited Invoices</li>
+										<li>Project Management</li>
+										<li>Team Management</li>
+										<li>
+											<hr />
+										</li>
+									</ul>
+									<div class="bottom-btn s_btn" data-name="Button">
+										<a href="#"
+											class="btn btn-alpha btn-md arrow-btn btn-block bizople_button">
+												Choose Plan
+												<span class="fa fa-1x fa-fw fa-long-arrow-right ml-1"></span>
+										</a>
+									</div>
+								</div>
+							</section>
+						</div>
+						<div class="col-lg-3 col-md-6 aos-init" data-aos="fade-up"
+							data-aos-duration="1200">
+							<section class="card text-center card-shadow">
+								<div class="card-body font-14">
+									<h5 class="title">HIGH CLASS</h5>
+									<h6 class="subtitle">For Team of 10-25 Members</h6>
+									<div class="pricing">
+										<sup>$</sup>
+										<span class="monthly display-5">58</span>
+										<span class="yearly display-5">600</span>
+										<small class="monthly">/mo</small>
+										<small class="yearly">/yr</small>
+										<span class="db">
+											Save
+											<span class="font-medium">$50</span>
+											a Year
+										</span>
+									</div>
+									<ul class="list-inline">
+										<li>Perfect of Small Team</li>
+										<li>Unlimited Invoices</li>
+										<li>Project Management</li>
+										<li>Team Management</li>
+										<li>Time Tracking</li>
+									</ul>
+									<div class="bottom-btn s_btn" data-name="Button">
+										<a href="#"
+											class="btn btn-outline-alpha btn-md arrow-btn btn-block bizople_button">
+												Choose Plan
+												<span class="fa fa-1x fa-fw fa-long-arrow-right ml-1"></span>
+										</a>
+									</div>
+								</div>
+							</section>
+						</div>
+						<div class="col-lg-3 col-md-6 aos-init" data-aos="fade-left"
+							data-aos-duration="1200">
+							<section class="card text-center card-shadow">
+								<div class="card-body font-14">
+									<h5 class="title">SUPREME</h5>
+									<h6 class="subtitle">For Team of 25-100 Members</h6>
+									<div class="pricing">
+										<sup>$</sup>
+										<span class="monthly display-5">99</span>
+										<span class="yearly display-5">1000</span>
+										<small class="monthly">/mo</small>
+										<small class="yearly">/yr</small>
+										<span class="db">
+											Save
+											<span class="font-medium">$80</span>
+											a Year
+										</span>
+									</div>
+									<ul class="list-inline">
+										<li>Perfect of Small Team</li>
+										<li>Unlimited Invoices</li>
+										<li>Project Management</li>
+										<li>Team Management</li>
+										<li>Time Tracking</li>
+									</ul>
+									<div class="bottom-btn s_btn" data-name="Button">
+										<a href="#"
+											class="btn btn-outline-alpha btn-md arrow-btn btn-block bizople_button">
+												Choose Plan
+												<span class="fa fa-1x fa-fw fa-long-arrow-right ml-1"></span>
+										</a>
+									</div>
+								</div>
+							</section>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+	</template>
+
+</odoo>

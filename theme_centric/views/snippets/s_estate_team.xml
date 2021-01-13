@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+	<template id="s_estate_team" name="Team Block Two">
+		<section class="s_estate_team">
+			<div class="spacer feature14">
+				<div class="container">
+					<div class="row justify-content-center">
+						<div class="col-md-7 text-center">
+							<h2 class="title text-beta">Super Agents from Bizople</h2>
+							<h6 class="subtitle">You can relay on our amazing features list and
+								also our customer services will be great experience for you
+								without doubt and in no-time
+							</h6>
+						</div>
+					</div>
+					<div class="row m-t-40 p-t-20">
+						<div class="col-lg-3 col-md-6 wrap-feature14-box">
+							<div class="" 
+								>
+								<img class="rounded img-responsive"
+									src="/theme_centric/static/src/img/a1.jpg" alt="Bizople kit" />
+								<div class="m-t-30">
+									<h5 class="font-medium m-b-0">Micheal Anderson</h5>
+									<h6 class="subtitle">Property Specialist</h6>
+									<p class="custom_p m-t-20">You can relay on our amazing features list and
+										also our customer services will be great.
+									</p>
+									<a href="#" class="text-feature font-medium">Learn More </a>
+								</div>
+							</div>
+						</div>
+						<div class="col-lg-3 col-md-6 wrap-feature14-box">
+							<div class="" 
+								>
+								<img class="rounded img-responsive"
+									src="/theme_centric/static/src/img/a2.jpg" alt="Bizople kit" />
+								<div class="m-t-30">
+									<h5 class="font-medium m-b-0">Julia D’Souza</h5>
+									<h6 class="subtitle">Sales Person</h6>
+									<p class="custom_p m-t-20">You can relay on our amazing features list and
+										also our customer services will be great.
+									</p>
+									<a href="#" class="text-feature font-medium">Learn More </a>
+								</div>
+							</div>
+						</div>
+						<div class="col-lg-3 col-md-6 wrap-feature14-box">
+							<div class="" 
+								>
+								<img class="rounded img-responsive"
+									src="/theme_centric/static/src/img/a3.jpg" alt="Bizople kit" />
+								<div class="m-t-30">
+									<h5 class="font-medium m-b-0">Megan Doe</h5>
+									<h6 class="subtitle">Property Manager</h6>
+									<p class="custom_p m-t-20">You can relay on our amazing features list and
+										also our customer services will be great.
+									</p>
+									<a href="#" class="text-feature font-medium">Learn More </a>
+								</div>
+							</div>
+						</div>
+						<div class="col-lg-3 col-md-6 wrap-feature14-box">
+							<div class="" 
+								>
+								<img class="rounded img-responsive"
+									src="/theme_centric/static/src/img/a4.jpg" alt="Bizople kit" />
+								<div class="m-t-30">
+									<h5 class="font-medium m-b-0">Johnathan Birt</h5>
+									<h6 class="subtitle">Site Consultant</h6>
+									<p class="custom_p m-t-20">You can relay on our amazing features list and
+										also our customer services will be great.
+									</p>
+									<a href="#" class="text-feature font-medium">Learn More </a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+	</template>
+
+</odoo>

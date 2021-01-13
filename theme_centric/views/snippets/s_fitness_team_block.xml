@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+	<template id="s_fitness_team_block" name="Team block four">
+		<section class="s_fitness_team_block bg-light-1">
+			<div class=" spacer feature13">
+				<div class="container">
+					<div class="row justify-content-center">
+						<div class="col-md-7 text-center">
+							<h2 class="title text-beta">Experienced &amp; Professional Trainers</h2>
+							<h6 class="subtitle">You can relay on our amazing features list and
+								also our customer services will be great experience for you
+								without doubt and in no-time
+							</h6>
+						</div>
+					</div>
+					<div class="row m-t-40">
+						<div class="col-lg-6 col-md-6 wrap-feature13-box">
+							<section class="card card-shadow " >
+								<ul class="img-inline">
+									<li class="half-width">
+										<img src="/theme_centric/static/src/img/img1_f1.jpg"
+											alt="" class="img-responsive rounded" />
+									</li>
+									<li class="p-20 half-width">
+										<h5 class="font-medium m-t-10">
+											<a href="#" class="linking">Michale Doe </a>
+										</h5>
+										<p class="m-t-20 custom_p">You can relay on our amazing features list and
+											also our customer.
+										</p>
+									</li>
+								</ul>
+							</section>
+						</div>
+						<div class="col-lg-6 col-md-6 wrap-feature13-box">
+							<section class="card card-shadow " >
+								<ul class="img-inline">
+									<li class="half-width">
+										<img src="/theme_centric/static/src/img/img2_f2.jpg"
+											alt="" class="img-responsive rounded" />
+									</li>
+									<li class="p-20 half-width">
+										<h5 class="font-medium m-t-10">
+											<a href="#" class="linking">James Anderson </a>
+										</h5>
+										<p class="m-t-20 custom_p">You can relay on our amazing features list and
+											also our customer.
+										</p>
+									</li>
+								</ul>
+							</section>
+						</div>
+						<div class="col-lg-6 col-md-6 wrap-feature13-box">
+							<section class="card card-shadow " >
+								<ul class="img-inline">
+									<li class="half-width">
+										<img src="/theme_centric/static/src/img/img3_f3.jpg"
+											alt="" class="img-responsive rounded" />
+									</li>
+									<li class="p-20 half-width">
+										<h5 class="font-medium m-t-10">
+											<a href="#" class="linking">Pamela Johnson</a>
+										</h5>
+										<p class="m-t-20 custom_p">You can relay on our amazing features list and
+											also our customer.
+										</p>
+									</li>
+								</ul>
+							</section>
+						</div>
+						<div class="col-lg-6 col-md-6 wrap-feature13-box">
+							<section class="card card-shadow " >
+								<ul class="img-inline">
+									<li class="half-width">
+										<img src="/theme_centric/static/src/img/img4_f4.jpg"
+											alt="" class="img-responsive rounded" />
+									</li>
+									<li class="p-20 half-width">
+										<h5 class="font-medium m-t-10">
+											<a href="#" class="linking">Angela Cureson </a>
+										</h5>
+										<p class="m-t-20 custom_p">You can relay on our amazing features list and
+											also our customer.
+										</p>
+									</li>
+								</ul>
+							</section>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+	</template>
+
+</odoo>

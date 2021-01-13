@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+	<template id="s_software_banner" name="Home Banner Five">
+		<section class="s_software_banner static-slider10"
+			style="background-image:url(/theme_centric/static/src/img/software_banner.jpg)">
+			<div class="container">
+				<div class="row justify-content-center">
+					<div class="col-md-6 align-self-center text-center">
+						<h1 class="title etxt-beta">Build Your Site in Rocord time</h1>
+						<h6 class="subtitle op-8">Make in record time with Bizople</h6>
+						<div class="s_btn text-center pt8 pb24" data-name="Button">
+							<a href="/contactus"
+								class="btn btn-alpha rounded-circle arrow-btn m-t-20 btn-md bizople_button">
+								<span class="o_default_snippet_text">GRAB IT NOW</span>
+								<span class="fa fa-1x fa-fw fa-long-arrow-right ml-1"></span>
+							</a>
+						</div>
+					</div>
+
+				</div>
+			</div>
+		</section>
+	</template>
+
+</odoo>

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+	<template id="s_marketing_three_blocks"
+		name="Services with three blocks">
+		<section class="s_marketing_three_blocks bg-light-1">
+			<div class="spacer feature2 ">
+				<div class="container">
+					<div class="row justify-content-center">
+						<div class="col-md-7 text-center">
+							<h2 class="title text-beta">Serviecs that you can Relay</h2>
+							<h6 class="subtitle">You can relay on our amazing features list and
+								also our customer services will be great experience for you
+								without doubt and in no-time
+							</h6>
+						</div>
+					</div>
+					<div class="row m-t-40">
+						<div class="col-md-4 wrap-feature2-box">
+							<section class="card card-shadow " >
+								<img class="card-img-top"
+									src="/theme_centric/static/src/img/ser1.jpg" alt="" />
+								<div class="card-body text-center">
+									<h5 class="font-medium">Digital Art Work</h5>
+									<p class="m-t-20 custom_p">You can relay on our amazing features list and
+										also our customer services will be great experience.
+									</p>
+								</div>
+							</section>
+						</div>
+						<div class="col-md-4 wrap-feature2-box">
+							<section class="card card-shadow ">
+								<img class="card-img-top"
+									src="/theme_centric/static/src/img/ser2.jpg" alt="" />
+								<div class="card-body text-center">
+									<h5 class="font-medium">Website Development</h5>
+									<p class="m-t-20 custom_p">You can relay on our amazing features list and
+										also our customer services will be great experience.
+									</p>
+								</div>
+							</section>
+						</div>
+						<div class="col-md-4 wrap-feature2-box">
+							<section class="card card-shadow ">
+								<img class="card-img-top"
+									src="/theme_centric/static/src/img/ser3.jpg" alt="" />
+								<div class="card-body text-center">
+									<h5 class="font-medium">Online Training</h5>
+									<p class="m-t-20 custom_p">You can relay on our amazing features list and
+										also our customer services will be great experience.
+									</p>
+								</div>
+							</section>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+	</template>
+
+</odoo>

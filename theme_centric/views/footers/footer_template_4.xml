@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+	<template id="website_multi_footer_four"
+		inherit_id="portal.frontend_layout" name="Footer Four" active="False">
+		<xpath expr="//footer" position="replace">
+			<footer id="footer_four" class="footer_four o_footer">
+				<div class="footer2 font-14">
+					<div class="f2-middle">
+						<div class="container">
+							<div class="row">
+								<div class="col-lg-4 col-md-6">
+									<p class="p-t-10">Nullam erat ametam arcu lorme pharetra id
+										risus act
+										sectetur ipsum luctus est ullam erat ametam
+										arcu lorme
+										pharetra
+										id us act sectetur ipsum luctus est.
+									</p>
+									<p>Vestibulum in accumsa maga eds maurise elit tincidunt
+										turpis
+										id semper.
+									</p>
+									<div class="m-t-20 m-b-30">
+										<a class="link" t-att-href="website.social_facebook"
+											t-if="website.social_facebook" target="_blank">
+											<i class="fa fa-facebook" />
+										</a>
+										<a class="link" t-att-href="website.social_twitter"
+											t-if="website.social_twitter" target="_blank">
+											<i class="fa fa-twitter" />
+										</a>
+										<a class="link" t-att-href="website.social_linkedin"
+											t-if="website.social_linkedin" target="_blank">
+											<i class="fa fa-linkedin" />
+										</a>
+										<a class="link" t-att-href="website.social_youtube"
+											t-if="website.social_youtube" target="_blank">
+											<i class="fa fa-youtube-play" />
+										</a>
+										<a class="link" t-att-href="website.social_instagram"
+											t-if="website.social_instagram" target="_blank">
+											<i class="fa fa-instagram"></i>
+										</a>
+										<a class="link" t-att-href="website.social_github"
+											t-if="website.social_github" target="_blank">
+											<i class="fa fa-github"></i>
+										</a>
+									</div>
+								</div>
+								<div class="col-lg-2 col-md-6">
+									<ul class="general-listing">
+										<li>
+											<a href="#">
+												<i class="fa fa-circle"></i>
+												Home
+											</a>
+										</li>
+										<li>
+											<a href="#">
+												<i class="fa fa-circle"></i>
+												Services
+											</a>
+										</li>
+										<li>
+											<a href="#">
+												<i class="fa fa-circle"></i>
+												Pricing
+											</a>
+										</li>
+										<li>
+											<a href="#">
+												<i class="fa fa-circle"></i>
+												Case Studies
+											</a>
+										</li>
+										<li>
+											<a href="#">
+												<i class="fa fa-circle"></i>
+												Blog
+											</a>
+										</li>
+										<li>
+											<a href="#">
+												<i class="fa fa-circle"></i>
+												Contact Us
+											</a>
+										</li>
+									</ul>
+								</div>
+								<div class="col-lg-3 col-md-6 info-box">
+									<div class="d-flex no-block">
+										<div class="display-7 m-r-20 align-self-top">
+											<i class="fa fa-map-marker"></i>
+										</div>
+										<div class="info">
+											<p>
+												<span t-field="res_company.street"></span>
+												,
+												<br />
+												<span t-field="res_company.city"></span>
+												,
+												<span t-field="res_company.zip"></span>
+												,
+												<br />
+												<span t-field="res_company.country_id.name"></span>
+
+											</p>
+										</div>
+									</div>
+									<div class="d-flex no-block">
+										<div class="display-7 m-r-20 align-self-top">
+											<i class="fa fa-check-circle"></i>
+										</div>
+										<div class="info">
+											<span class="font-medium db  m-t-5">8.00 AM - 6:00PM</span>
+										</div>
+									</div>
+									<div class="d-flex no-block">
+										<div class="display-7 m-r-20 align-self-top">
+											<i class="fa fa-phone"></i>
+										</div>
+										<div class="info">
+											<span class="font-medium db  m-t-5"
+												t-if="res_company.phone" t-field="res_company.phone"></span>
+										</div>
+									</div>
+									<div class="d-flex no-block">
+										<div class="display-7 m-r-20 align-self-top">
+											<i class="fa fa-envelope"></i>
+										</div>
+										<div class="info">
+											<a href="#" class="font-medium db  m-t-5"
+												t-if="res_company.email" t-field="res_company.email"></a>
+										</div>
+									</div>
+								</div>
+
+
+
+								<div class="col-lg-3 col-md-6 input-group js_subscribe"
+									data-list-id="1" data-subscribe="off">
+									<div class="subscribe-box">
+										<div class="display-4 text-white">
+											<i class="fa fa-id-card"></i>
+										</div>
+										<p>Nullam erat ametam arcuing lorme pharetra id risus
+											act
+											sectetur ipsum luctus est.
+										</p>
+										<form>
+											<div class="m-b-20">
+												<input type="email" name="email"
+													class="js_subscribe_email form-control"
+													placeholder="your email..." />
+											</div>
+											<span class="input-group-append">
+												<a role="button" href="#"
+													class="btn btn-feature js_subscribe_btn">JOIN US</a>
+												<a role="button" href="#"
+													class="btn btn-success js_subscribed_btn d-none"
+													disabled="disabled">Thanks</a>
+											</span>
+											<div class="alert alert-success d-none" role="status">Thanks for
+												your subscription!
+											</div>
+
+										</form>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div id="to-top">
+						<a id="to-top bg-alpha">
+							<span class="fa fa-arrow-up"></span>
+						</a>
+					</div>
+				</div>
+			</footer>
+		</xpath>
+	</template>
+</odoo>

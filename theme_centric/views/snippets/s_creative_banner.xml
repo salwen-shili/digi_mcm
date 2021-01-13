@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+	<template id="s_creative_banner" name="Home Banner One">
+		<section class="s_creative_banner bg-success-gradiant" id="s_hero_banner" style="background-size: cover;">
+			<div class="container-fluid">
+				<div class="static-slider5">
+					<div class="left-right-bg">
+						<div class="container">
+							<div class="row justify-content-center ">
+								<div
+									class="col-md-8 align-self-center text-center">
+									<h1 class="title text-white">Your Sales and Expenses at One Place</h1>
+									<p class="text-white op-8 custom_p">Best Partner to Track your Daily Expenses and
+										Earnings,
+										Very Easy to Install &amp; Use. Grab It Now as its
+										FREE for 2
+										Months.
+									</p>
+									<div class="s_btn" data-name="Button">
+										<a
+											class="btn btn-rounded rounded-circle btn-light btn-md arrow-btn m-t-20 m-r-10 bizople_button"
+											href="#">Request a Demo</a>
+										<a
+											class="btn btn-rounded rounded-circle btn-outline-light btn-md arrow-btn m-t-20 bizople_button"
+											href="#">Take a Tour</a>
+										</div>
+								</div>
+								<div class="col-md-12 text-center m-t-40 middle-image">
+									<img src="/theme_centric/static/src/img/img3.png"
+										class="img-fluid" alt="bizople" />
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+	</template>
+
+</odoo>

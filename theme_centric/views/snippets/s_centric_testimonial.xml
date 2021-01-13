@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+	<template id="s_centric_testimonial" name="Testimonial">
+		<section class="centric_template">
+			<section class="testimonial-section pt128 pb128">
+				<div class="container">
+					<div class="row align-items-center">
+						<div class="col-lg-4">
+							<div class="testimonial-content">
+								<span>TESTIMONIAL</span>
+								<h3>What Our Client Say</h3>
+								<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus.Lorem is simply dummy text of the printing and typesetting industry.</p>
+							</div>
+						</div>
+						<div class="col-lg-8">
+							<div id="myCarousel1580451466791" class="s_carousel carousel slide s_carousel_rounded" data-interval="3000" data-name="Carousel">
+						        
+						        <div class="carousel-inner">
+						            <div class="carousel-item active" data-name="Slide">
+						                <div class="container">
+						                    <div class="row content">
+						                        <div class="carousel-content col-md-6">
+						                            <div class="testimonial-single-item">
+						                            	<div class="testimonial-image">
+						                            		<img class="img img-fluid" src="/theme_centric/static/img/testi1.jpeg"/>
+						                            	</div>
+						                            	<div class="testimonial-content-text">
+						                            		<h3>R.Mortein</h3>
+						                            		<span>Product Manager</span>
+						                            		<div class="icon">
+						                            			<span class="fa fa-quote-right"></span>
+						                            		</div>
+						                            		<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse  gravida.</p>
+						                            	</div>
+						                            </div>
+						                        </div>
+						                        <div class="carousel-content col-md-6">
+						                            <div class="testimonial-single-item">
+						                            	<div class="testimonial-image">
+						                            		<img class="img img-fluid" src="/theme_centric/static/img/testi2.jpeg"/>
+						                            	</div>
+						                            	<div class="testimonial-content-text">
+						                            		<h3>Edward Bold</h3>
+						                            		<span>CEO &amp; Founder</span>
+						                            		<div class="icon">
+						                            			<span class="fa fa-quote-right"></span>
+						                            		</div>
+						                            		<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse  gravida.</p>
+						                            	</div>
+						                            </div>
+						                        </div>
+						                    </div>
+						                </div>
+						            </div>
+						            <div class="carousel-item" data-name="Slide">
+						                <div class="container">
+						                    <div class="row content">
+						                        <div class="carousel-content col-md-6">
+						                            <div class="testimonial-single-item">
+						                            	<div class="testimonial-image">
+						                            		<img class="img img-fluid" src="/theme_centric/static/img/testi1.jpeg"/>
+						                            	</div>
+						                            	<div class="testimonial-content-text">
+						                            		<h3>R.Mortein</h3>
+						                            		<span>Product Manager</span>
+						                            		<div class="icon">
+						                            			<span class="fa fa-quote-right"></span>
+						                            		</div>
+						                            		<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse  gravida.</p>
+						                            	</div>
+						                            </div>
+						                        </div>
+						                        <div class="carousel-content col-md-6">
+						                            <div class="testimonial-single-item">
+						                            	<div class="testimonial-image">
+						                            		<img class="img img-fluid" src="/theme_centric/static/img/testi2.jpeg"/>
+						                            	</div>
+						                            	<div class="testimonial-content-text">
+						                            		<h3>Edward Bold</h3>
+						                            		<span>CEO &amp; Founder</span>
+						                            		<div class="icon">
+						                            			<span class="fa fa-quote-right"></span>
+						                            		</div>
+						                            		<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse  gravida.</p>
+						                            	</div>
+						                            </div>
+						                        </div>
+						                    </div>
+						                </div>
+						            </div>
+						            <div class="carousel-item" data-name="Slide">
+						                <div class="container">
+						                    <div class="row content">
+						                        <div class="carousel-content col-md-6">
+						                            <div class="testimonial-single-item">
+						                            	<div class="testimonial-image">
+						                            		<img class="img img-fluid" src="/theme_centric/static/img/testi1.jpeg"/>
+						                            	</div>
+						                            	<div class="testimonial-content-text">
+						                            		<h3>R.Mortein</h3>
+						                            		<span>Product Manager</span>
+						                            		<div class="icon">
+						                            			<span class="fa fa-quote-right"></span>
+						                            		</div>
+						                            		<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse  gravida.</p>
+						                            	</div>
+						                            </div>
+						                        </div>
+						                        <div class="carousel-content col-md-6">
+						                            <div class="testimonial-single-item">
+						                            	<div class="testimonial-image">
+						                            		<img class="img img-fluid" src="/theme_centric/static/img/testi2.jpeg"/>
+						                            	</div>
+						                            	<div class="testimonial-content-text">
+						                            		<h3>Edward Bold</h3>
+						                            		<span>CEO &amp; Founder</span>
+						                            		<div class="icon">
+						                            			<span class="fa fa-quote-right"></span>
+						                            		</div>
+						                            		<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse  gravida.</p>
+						                            	</div>
+						                            </div>
+						                        </div>
+						                    </div>
+						                </div>
+						            </div>
+						        </div>
+						        <ol class="carousel-indicators">
+						            <li data-target="#myCarousel1580451466791" data-slide-to="0" class="carodot active"></li>
+						            <li data-target="#myCarousel1580451466791" data-slide-to="1" class="carodot"></li>
+						            <li data-target="#myCarousel1580451466791" data-slide-to="2" class="carodot"></li>
+						        </ol>
+						    </div>
+						</div>
+					</div>
+				</div>
+			</section>
+		</section>
+	</template>
+</odoo>

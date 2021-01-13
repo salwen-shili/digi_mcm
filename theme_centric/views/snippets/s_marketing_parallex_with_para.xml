@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+	<template id="s_marketing_parallex_with_para"
+		name="Parallex with paragraph and video url">
+		<section
+			class="s_marketing_parallex_with_para spacer feature42"
+			style="background-image:url(/theme_centric/static/src/img/video-bg.jpg)">
+			<div class="container">
+				<div class="row justify-content-center wrap-feature42-box">
+					<div class="col-md-10 col-lg-7 text-center">
+						<h2 class="title text-white">You wont believ that you can make Your Website in
+							Record Time
+						</h2>
+						<h6 class="subtitle text-white op-7 m-b-20">You can relay on our amazing features list and
+							also
+							our customer services will be great experience for you
+							without
+							doubt and in no-time
+						</h6>
+						<a href="#" class=" "
+							data-toggle="modal" data-target="#exampleModal">
+							<span class="fa fa-play display-4 text-feature"></span>
+						</a>
+					</div>
+				</div>
+			</div>
+		</section>
+
+	</template>
+
+</odoo>

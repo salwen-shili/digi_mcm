@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+	<template id="s_contact_with_bg_color_map"
+		name="Contact us Four">
+		<section class="s_contact_with_bg_color_map bg-info-1">
+			<div class="contact4">
+				<div class="container">
+					<div class="row align-items-center">
+							<div class="col-md-6 contact-box">
+								<div class="" >
+									<h1 class="title font-light text-white m-t-10">Contact
+										Us
+									</h1>
+									<form action="/website_form/" method="post"
+										data-model_name="crm.lead"
+										data-success_page="/contactus-thank-you"
+										class="s_website_form contact-form  m-t-30 "
+										enctype="multipart/form-data" data-editable-form="false">
+										<div class="row">
+											<div class="col-lg-12">
+												<div class="form-group m-t-15 ">
+													<input  placeholder="Name"
+														name="contact_name" required="True" type="text"
+														class="o_website_form_input form-control"
+														t-att-value="request.params.get('contact_name', '')" />
+												</div>
+											</div>
+											<div class="col-lg-12">
+												<div class="form-group m-t-15 ">
+													<input  name="email_from"
+														placeholder="Email Address" required="" value=""
+														type="email" class="o_website_form_input form-control"
+														t-att-value="request.params.get('email_from', '')" />
+												</div>
+											</div>
+											<div class="col-lg-12">
+												<div class="form-group m-t-15 ">
+													<input  name="phone" placeholder="Phone"
+														type="text" t-att-value="request.params.get('phone', '')"
+														class="o_website_form_input form-control" />
+												</div>
+											</div>
+											<div class="col-lg-12">
+												<div class="form-group m-t-15 ">
+													<input  name="name" placeholder="Subject" required=""
+														type="text" t-att-value="request.params.get('name', '')"
+														class="o_website_form_input form-control" />
+												</div>
+											</div>
+											<div class="col-lg-12">
+												<div class="form-group m-t-15 ">
+													<textarea  name="description"
+														rows="3" placeholder="Messagge" required=""
+														t-att-value="request.params.get('description', '')"
+														class=" o_website_form_input form-control"></textarea>
+													<div class="reserve-submit mt-40">
+													</div>
+												</div>
+											</div>
+											<div class="col-lg-12 d-flex no-block m-t-20 s_btn" data-name="Button">
+												<button
+													class="o_website_form_send btn bg-white text-inverse arrow-btn"
+													type="submit">
+														SUBMIT NOW
+														<span class="fa fa-1x fa-fw fa-long-arrow-right ml-1"></span>
+												</button>
+
+												<span class="ml-auto text-white align-self-center">
+													<span class="fa fa-phone m-r-10"></span>
+													251 546 9442
+												</span>
+
+											</div>
+											<span id="o_website_form_result" style=""
+												class="text-danger ml8 mt16  mb16 col-md-12"></span>
+										</div>
+									</form>
+								</div>
+							</div>
+
+							<div class=" col-md-6 right-image">
+								<img class="img-img-responsive img-fluid"
+									src="/theme_centric/static/src/img/map-icon-6.jpg" />
+
+							</div>
+					</div>
+				</div>
+			</div>
+		</section>
+	</template>
+
+</odoo>

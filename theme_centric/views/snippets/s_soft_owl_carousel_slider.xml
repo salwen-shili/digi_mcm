@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+	<template id="s_soft_owl_carousel_slider" name="home_row">
+		<section class="theme-soft">
+		<section class="home_row mt64">
+			<div class="container">
+				<div class="row">
+					<div id="owl-demo" class="owl-carousel owl-theme">
+	                    <div class="item mb64">
+	                        <img src="/theme_centric/static/src/img/soft/owl1.jpg"/> 
+	                    </div>
+	                    <div class="item  mb64">
+	                        <img src="/theme_centric/static/src/img/soft/owl2.jpg" class=""/> 
+	                    </div>
+	                    <div class="item mb64">
+	                        <img src="/theme_centric/static/src/img/soft/owl3.jpg"/> 
+	                    </div>
+	                    <div class="item mb64">
+	                        <img src="/theme_centric/static/src/img/soft/owl4.jpg"/> 
+	                    </div>
+	                    <div class="item mb64">
+	                        <img src="/theme_centric/static/src/img/soft/owl5.jpg"/> 
+	                    </div>
+	                    <div class="item mb64">
+	                        <img src="/theme_centric/static/src/img/soft/owl6.jpg"/> 
+	                    </div>
+	                    <div class="item  mb64">
+	                        <img src="/theme_centric/static/src/img/soft/owl1.jpg"/> 
+	                    </div>
+	                    <div class="item mb64">
+	                        <img src="/theme_centric/static/src/img/soft/owl2.jpg"/> 
+	                    </div>
+	                </div>
+				</div>
+			</div>
+		</section>
+	</section>
+	</template>
+</odoo>

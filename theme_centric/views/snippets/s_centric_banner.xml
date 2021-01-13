@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+	<template id="s_centric_banner" name="Banner">
+		<section class="centric_template">
+			<section class="home-banner pt128" id="home_page">
+				
+					<div class="container">
+						<div class="row">
+							<div class="bannarcol col-lg-6 col-md-12">
+								<h1>Software Agency with Excellence Service</h1>
+								<p class="paratext">
+									Lorem ipsum dolor sit amet, consectetur adipiscing elit,  eiusmod tempor incididunt ut labore.
+								</p>
+								<div class="banner-btn s_btn">
+									<a href="/about" class="bannerbtn btn btn-alpha rounded-circle">More About Us</a>
+									<a class="watch-video" href="#contactus">Contact Us
+									</a>
+								</div>
+							</div>
+							<div class="bannercol col-lg-6 col-md-12">
+								<div class="banner_image">
+									<img class="img img-fluid" src="/theme_centric/static/img/banner.png"/>
+								</div>
+							</div>
+						</div>
+					</div>
+				
+			</section>
+		</section>
+	</template>
+</odoo>
+

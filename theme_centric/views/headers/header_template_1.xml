@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+	<template id="website_multi_header_one"
+		inherit_id="portal.frontend_layout" name="Header One" active="False">
+		<xpath expr="//header" position="replace">
+			<header id="header_one" class="header_one ">
+				<nav
+					class="navbar navbar-expand-md navbar-bg-info-gradiant bg-light header1_navbar navbar-light">
+					<div class="container">
+						<a class="hidden-lg-up">Menu</a>
+						<button type="button"
+							class="navbar-toggler collapsed navbar-light ml-auto"
+							data-toggle="collapse" data-target="#top_menu_collapse"
+							aria-expanded="false">
+							<span class="fa fa-bars"></span>
+						</button>
+
+						<div class="collapse navbar-collapse" id="top_menu_collapse">
+							<ul class="nav navbar-nav text-left" id="top_menu">
+
+								<t t-foreach="website.menu_id.child_id" t-as="submenu">
+									<t t-call="website.submenu">
+										<t t-set="item_class" t-value="'nav-item'" />
+										<t t-set="link_class" t-value="'nav-link'" />
+									</t>
+								</t>
+								<li class="nav-item divider" t-ignore="true"
+									t-if="not user_id._is_public()" />
+								<li class="nav-item dropdown" t-ignore="true"
+									t-if="not user_id._is_public()">
+									<a href="#" class="nav-link dropdown-toggle "
+										data-toggle="dropdown">
+										<b>
+											<span
+												t-esc="user_id.name[:23] + '...' if user_id.name and len(user_id.name) &gt; 25 else user_id.name" />
+										</b>
+									</a>
+									<div class="dropdown-menu js_usermenu" role="menu">
+										 <a t-attf-href="/my/home" role="menuitem" class="dropdown-item">My Account</a>
+										<a id="o_logout" class="dropdown-item"
+											t-attf-href="/web/session/logout?redirect=/" role="menuitem">Logout</a>
+									</div>
+								</li>
+								<li groups="base.group_public">
+									<a class="nav-link" t-attf-href="/web/login">
+										<b>Sign in</b>
+									</a>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</nav>
+				<div class="h4-navbar d-block d-sm-none">
+					<div class="container  ">
+						<nav class="navbar navbar-expand-lg h4-nav-bar ">
+							<a href="/" class="navbar-brand logo">
+								<span t-field="res_company.logo"
+									t-options="{'widget': 'image'}"
+									t-att-alt="'Logo of %s' % res_company.name"
+									t-att-title="res_company.name" />
+							</a>
+							<div class="nav-item donate-btn">
+								<a href="#" class="btn btn-outline-alpha">Donate now</a>
+							</div>
+							<div class="navbar-collapse mt16" id="h4-info">
+								<div class="nav-item">
+									<a class="nav-link ">
+										<div class="display-6 m-r-10">
+											<i class="fa fa-envelope"></i>
+										</div>
+										<div>
+											<small>Email Us At</small>
+											<h6 class="font-bold"><span t-esc="res_company.email"/></h6>
+										</div>
+									</a>
+								</div>
+								<div class="nav-item">
+									<a class="nav-link">
+										<div class="display-6 m-r-10">
+											<i class="fa fa-phone"></i>
+										</div>
+										<div>
+											<small>Call Us Now</small>
+											<h6 class="font-bold "><span t-esc="res_company.phone"/></h6>
+										</div>
+									</a>
+								</div>
+							</div>
+						</nav>
+					</div>
+				</div>
+				<div class="h4-navbar">
+					<div class="container">
+						<nav class="navbar navbar-expand-lg h4-nav-bar">
+							<a href="/" class="navbar-brand logo d-none d-sm-block">
+								<span t-field="res_company.logo"
+									t-options="{'widget': 'image'}"
+									t-att-alt="'Logo of %s' % res_company.name"
+									t-att-title="res_company.name" />
+							</a>
+							<div class="collapse navbar-collapse" id="h4-info">
+								<ul class="navbar-nav ml-auto text-uppercase align-items-center">
+									<li class="nav-item">
+										<a class="nav-link b-r">
+											<div class="display-6 m-r-10">
+												<i class="fa fa-envelope"></i>
+											</div>
+											<div>
+												<small>Email us at</small>
+												<h6 class="font-bold font-14"><span t-esc="res_company.email"/></h6>
+											</div>
+										</a>
+									</li>
+									<li class="nav-item">
+										<a class="nav-link">
+											<div class="display-6 m-r-10">
+												<i class="fa fa-phone"></i>
+											</div>
+											<div>
+												<small>CALL US NOW</small>
+												<h6 class="font-bold "><span t-esc="res_company.phone"/></h6>
+											</div>
+										</a>
+									</li>
+									<li class="nav-item donate-btn">
+										<a href="#" class="btn btn-outline-alpha">Donate now</a>
+									</li>
+								</ul>
+							</div>
+						</nav>
+					</div>
+				</div>
+			</header>
+		</xpath>
+	</template>
+
+</odoo>

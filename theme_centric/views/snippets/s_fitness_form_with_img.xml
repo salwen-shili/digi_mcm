@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+	<template id="s_fitness_form_with_img" name="Form with image">
+		<section class="s_fitness_form_with_img">
+			<div class="container-fluid">
+				<div class="row">
+					<div class="col-lg-6 col-md-6">
+						<div class="modal-bg p-40">
+							<h2 class="font-light m-b-0">The goodness of</h2>
+							<h1 class="font-light">Yoga &amp; Meditation</h1>
+							<h6 class="subtitle m-t-20">
+								Lorem ipsum dolor sit amet, constetr
+								adipiscing
+								elit.
+							</h6>
+							<form action="/website_form/" method="post"
+								data-model_name="crm.lead"
+								data-success_page="/contactus-thank-you"
+								class="s_website_form contact-form appointment-form m-t-30"
+								enctype="multipart/form-data" data-editable-form="false">
+								<h4 class="m-b-20 font-normal">Register Now</h4>
+								<div class="row">
+									<div class="col-lg-12">
+										<div class="form-group">
+											<input id="name" placeholder="Name" name="contact_name"
+												required="True" type="text"
+												class="o_website_form_input form-control"
+												t-att-value="request.params.get('contact_name', '')" />
+										</div>
+									</div>
+									<div class="col-lg-12">
+										<div class="form-group">
+											<input id="email" name="email_from"
+												placeholder="Email Address" required="" value="" type="email"
+												class="o_website_form_input form-control"
+												t-att-value="request.params.get('email_from', '')" />
+										</div>
+									</div>
+									<div class="col-lg-12">
+										<div class="form-group">
+											<input id="phone" name="phone"
+												placeholder="Phone Number" type="text"
+												t-att-value="request.params.get('phone', '')"
+												class="o_website_form_input form-control" />
+										</div>
+									</div>
+									<div class="col-lg-12">
+										<div class="form-group">
+											<input id="subject" name="name"
+												placeholder="Enter Your Subject" type="text"
+												t-att-value="request.params.get('name', '')"
+												class="o_website_form_input form-control" />
+										</div>
+									</div>
+									<div class="col-lg-12">
+										<div class="form-group">
+											<textarea id="messagge" name="description" rows="3"
+												placeholder="Write Down the Message"
+												t-att-value="request.params.get('description', '')"
+												class=" o_website_form_input form-control"></textarea>
+										</div>
+									</div>
+									<div class="col-lg-12 s_btn" data-name="Button">
+										<button type="submit"
+											class="o_website_form_send btn btn-md btn-rounded rounded-circle gradiant-btn btn-success-gradiant arrow-btn bizople_button">
+												Register
+												<span class="fa fa-1x fa-fw fa-long-arrow-right ml-1"></span>
+										</button>
+									</div>
+								</div>
+
+							</form>
+						</div>
+					</div>
+					<div class="col-lg-6 col-md-6">
+						<section class="modal-bg-img h-100" style="background-image: url('/theme_centric/static/src/img/fitness_img1.jpg');">
+						</section>
+					</div>
+				</div>
+			</div>
+		</section>
+	</template>
+
+</odoo>

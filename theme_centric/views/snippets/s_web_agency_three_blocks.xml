@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+	<template id="s_web_agency_three_blocks" name="Three blocks with icons">
+		<section class="s_web_agency_three_blocks pt16 pb16">
+			<div class=" feature1">
+				<div class="container">
+					<div class="row">
+						<div class="col-md-4 wrap-feature1-box">
+							<section class="card " >
+								<div class="card-body text-center">
+									<div class="icon-space">
+										<span class="display-5 fa fa-id-card text-alpha"></span>
+									</div>
+									<h5 class="font-medium">Retargeting Marketttt</h5>
+									<p class="m-t-20 custom_p">You can relay on our amazing features list and
+										also our customer services will be great experience.
+									</p>
+								</div>
+							</section>
+						</div>
+						<div class="col-md-4 wrap-feature1-box">
+							<section class="card " >
+								<div class="card-body text-center">
+									<div class="icon-space">
+										<span class="display-5 fa fa-bar-chart text-alpha"></span>
+									</div>
+									<h5 class="font-medium">Fruitful Results</h5>
+									<p class="m-t-20 custom_p">You can relay on our amazing features list and
+										also our customer services will be great experience.
+									</p>
+								</div>
+							</section>
+						</div>
+						<div class="col-md-4 wrap-feature1-box">
+							<section class="card " >
+								<div class="card-body text-center">
+									<div class="icon-space">
+										<span class="display-5 fa fa-desktop text-alpha"></span>
+									</div>
+									<h5 class="font-medium">Instant Solutions</h5>
+									<p class="m-t-20 custom_p">You can relay on our amazing features list and
+										also our customer services will be great experience.
+									</p>
+								</div>
+							</section>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+	</template>
+
+</odoo>

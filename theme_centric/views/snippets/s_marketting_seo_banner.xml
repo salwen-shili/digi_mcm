@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+	<template id="s_marketting_seo_banner"
+		name="Home Banner Eleven">
+		<section class="static-slider4 s_marketting_seo_banner">
+			<div class="">
+				<div class="container">
+					<div class="row">
+						<div class="col-md-5 img-anim" >
+							<img src="/theme_centric/static/src/img/marketing_img1.png"
+								alt=" " class="img-fluid" />
+						</div>
+						<div class="col-md-6 ml-auto align-self-center">
+							<h1 class="title">
+								I’m Angelina Flintoff
+								<b class="font-bold">
+									Marketing &amp;
+									<span class="text-info-gradiant typewrite"
+										data-period="2000"
+										data-type='[ "SEO Expert", "HTML Expert", "CSS3 Expert"]'></span>
+								</b>
+							</h1>
+							<div class="s_btn" data-name="Button">
+								<a class="btn btn-outline-alpha btn-md arrow-btn m-t-20 rounded-circle bizople_button"
+									 href="#">
+										Checkout My Work
+										<span class="fa fa-1x fa-fw fa-long-arrow-right ml-1"></span>
+								</a>
+							</div>
+						</div>
+					</div>
+				</div>
+				<section class="bg-info-gradiant">
+					<div class="container">
+						<div class="row">
+							<div class="col-lg-6 ml-auto info-box">
+								<div class="d-flex">
+									<div class="display-4 text-white m-r-20 ml-auto">
+										<span class="fa fa-play-circle"></span>
+									</div>
+									<div class="align-self-center">
+										<h4 class="font-light m-b-0">
+											<a href="#" class="text-white" data-toggle="modal"
+												data-target="#marketing_modal">
+												<b class="font-bold">10 Marketing Tips for your Project </b>
+												<br />
+												05:30 By Angelina Flintoff
+											</a>
+										</h4>
+									</div>
+
+								</div>
+							</div>
+						</div>
+					</div>
+				</section>
+			</div>
+		</section>
+		
+	</template>
+
+</odoo>

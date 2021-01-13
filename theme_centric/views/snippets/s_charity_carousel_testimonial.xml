@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+	<template id="s_charity_carousel_testimonial"
+		name="Testimonial Three">
+		<section class="s_charity_carousel_testimonial bg-light-1">
+			<div class="testimonial1 spacer ">
+				<div class="container-fluid">
+					<div class="container">
+						<div class="row justify-content-center">
+							<div class="col-md-7 text-center">
+								<h2 class="title font-medium text-beta">Check what our Customers are Saying</h2>
+								<h6 class="subtitle">You can relay on our amazing features list and
+									also our customer services will be great experience for you
+									without doubt and in no-time
+								</h6>
+							</div>
+						</div>
+					</div>
+					<div id="s_charity_testimonial123"
+						class="owl-carousel owl-theme testi1 m-t-40 s_carousel_default carousel slide"
+						data-interval="5000">
+						<ol class="carousel-indicators">
+							<li data-target="#s_charity_testimonial123" data-slide-to="0"
+								class=""></li>
+							<li data-target="#s_charity_testimonial123" data-slide-to="1"
+								class="active"></li>
+							<li data-target="#s_charity_testimonial123" data-slide-to="2"
+								class=""></li>
+							<li data-target="#s_charity_testimonial123" data-slide-to="3"
+								class=""></li>
+						</ol>
+						<div class="carousel-inner">
+							<div class="carousel-item active" data-name="Slide">
+								<div class="col-md-6 block">
+									<div class="item">
+										<section class="card card-shadow">
+											<div class="card-body">
+												<section class="thumb bg-primary">
+													<img src="/theme_centric/static/src/img/3.jpg"
+														alt="bizople" class="thumb-img circle" />
+													Michelle Anderson
+												</section>
+												<h5 class="font-light">You can relay on our amazing features list
+													and
+													also our customer services will be great experience.
+													You
+													can relay on our amazing features.
+												</h5>
+												<span class="devider"></span>
+												<h6>Managing Director, Theme Designer</h6>
+											</div>
+										</section>
+									</div>
+								</div>
+								<div class="col-md-6 block">
+									<div class="item">
+										<section class="card card-shadow">
+											<div class="card-body">
+												<section class="thumb bg-primary">
+													<img src="/theme_centric/static/src/img/1.jpg"
+														alt="bizople" class="thumb-img circle" />
+													Michelle Anderson
+												</section>
+												<h5 class="font-light">You can relay on our amazing features list
+													and
+													also our customer services will be great experience.
+													You
+													can relay on our amazing features.
+												</h5>
+												<span class="devider"></span>
+												<h6>Managing Director, Theme Designer</h6>
+											</div>
+										</section>
+									</div>
+								</div>
+							</div>
+
+							<div class="carousel-item oe_img_bg" data-name="Slide">
+								<div class="col-md-6 block">
+									<div class="item">
+										<section class="card card-shadow">
+											<div class="card-body">
+												<section class="thumb bg-primary">
+													<img src="/theme_centric/static/src/img/1.jpg"
+														alt="bizople" class="thumb-img circle" />
+													Michelle Anderson
+												</section>
+												<h5 class="font-light">You can relay on our amazing features list
+													and
+													also our customer services will be great experience.
+													You
+													can relay on our amazing features.
+												</h5>
+												<span class="devider"></span>
+												<h6>Managing Director, Theme Designer</h6>
+											</div>
+										</section>
+									</div>
+								</div>
+								<div class="col-md-6 block">
+									<div class="item">
+										<section class="card card-shadow">
+											<div class="card-body">
+												<section class="thumb bg-primary">
+													<img src="/theme_centric/static/src/img/2.jpg"
+														alt="bizople" class="thumb-img circle" />
+													Michelle Anderson
+												</section>
+												<h5 class="font-light">You can relay on our amazing features list
+													and
+													also our customer services will be great experience.
+													You
+													can relay on our amazing features.
+												</h5>
+												<span class="devider"></span>
+												<h6>CEO, Theme Designer</h6>
+											</div>
+										</section>
+									</div>
+								</div>
+							</div>
+
+
+							<div class="carousel-item oe_img_bg" data-name="Slide">
+								<div class="col-md-6 block">
+									<div class="item">
+										<section class="card card-shadow">
+											<div class="card-body">
+												<section class="thumb bg-primary">
+													<img src="/theme_centric/static/src/img/3.jpg"
+														alt="bizople" class="thumb-img circle" />
+													Michelle Anderson
+												</section>
+												<h5 class="font-light">You can relay on our amazing features list
+													and
+													also our customer services will be great experience.
+													You
+													can relay on our amazing features.
+												</h5>
+												<span class="devider"></span>
+												<h6>Managing Director, Theme Designer</h6>
+											</div>
+										</section>
+									</div>
+								</div>
+								<div class="col-md-6 block">
+									<div class="item">
+										<section class="card card-shadow">
+											<div class="card-body">
+												<section class="thumb bg-primary">
+													<img src="/theme_centric/static/src/img/1.jpg"
+														alt="bizople" class="thumb-img circle" />
+													Michelle Anderson
+												</section>
+												<h5 class="font-light">You can relay on our amazing features list
+													and
+													also our customer services will be great experience.
+													You
+													can relay on our amazing features.
+												</h5>
+												<span class="devider"></span>
+												<h6>Managing Director, Theme Designer</h6>
+											</div>
+										</section>
+									</div>
+								</div>
+							</div>
+
+							<div class="carousel-item oe_img_bg" data-name="Slide">
+								<div class="col-md-6 block">
+									<div class="item">
+										<section class="card card-shadow">
+											<div class="card-body">
+												<section class="thumb bg-primary">
+													<img src="/theme_centric/static/src/img/3.jpg"
+														alt="bizople" class="thumb-img circle" />
+													Michelle Anderson
+												</section>
+												<h5 class="font-light">You can relay on our amazing features list
+													and
+													also our customer services will be great experience.
+													You
+													can relay on our amazing features.
+												</h5>
+												<span class="devider"></span>
+												<h6>Managing Director, Theme Designer</h6>
+											</div>
+										</section>
+									</div>
+								</div>
+								<div class="col-md-6 block">
+									<div class="item">
+										<section class="card card-shadow">
+											<div class="card-body">
+												<section class="thumb bg-primary">
+													<img src="/theme_centric/static/src/img/1.jpg"
+														alt="bizople" class="thumb-img circle" />
+													Michelle Anderson
+												</section>
+												<h5 class="font-light">You can relay on our amazing features list
+													and
+													also our customer services will be great experience.
+													You
+													can relay on our amazing features.
+												</h5>
+												<span class="devider"></span>
+												<h6>Managing Director, Theme Designer</h6>
+											</div>
+										</section>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+	</template>
+
+</odoo>

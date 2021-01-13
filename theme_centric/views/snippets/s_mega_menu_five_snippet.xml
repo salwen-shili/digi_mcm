@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+	<template id="s_mega_menu_five_snippet" name="Mega Menu Five">
+		<section class="s_mega_menu_five_snippet">
+			<div class="container ">
+				<div class="row content">
+					<div class="col-md-3 col-lg-3">
+						<div class="content ">
+							<h5>Other pages</h5>
+							<ul class="list list-unstyled">
+								<li><a href="#">Single Service</a></li>
+								<li><a href="#">Single Service 2</a></li>
+								<li><a href="#">Project Detail</a></li>
+								<li><a href="#">Tour Page</a></li>
+								<li><a href="#">Media Gallery</a></li>
+								<li><a href="#">Tips and Faq</a></li>
+								<li><a href="#">Pricing Version 2</a></li>
+							</ul>
+						</div>
+					</div>
+					<div class="col-md-3 col-lg-3">
+						<div class="content ">
+							<h5>Extra Pages</h5>
+							<ul class="list list-unstyled">
+								<li><a href="#">404 page</a></li>
+								<li><a href="#">Blog  2</a></li>
+								<li><a href="#">Icon Pack 1</a></li>
+								<li><a href="#">Icon Pack 2</a></li>
+								<li><a href="#">Icon Pack 3</a></li>
+								<li><a href="#">Short codes</a></li>
+								<li><a href="#">Coming soon page</a></li>
+							</ul>
+						</div>
+					</div>
+					<div class="col-md-3 col-lg-3">
+						<div class="content ">
+							<h5>Shop</h5>
+							<ul class="list list-unstyled">
+								<li><a href="#">Shop List</a></li>
+								<li><a href="#">Shop Product</a></li>
+								<li><a href="#">Shop Cart</a></li>
+								<li><a href="#">Shop Checkout</a></li>
+							</ul>
+						</div>
+					</div>
+					<div class="col-md-3 col-lg-3">
+						<div class="content ">
+							<h5>Header sticky</h5>
+							<ul class="list list-unstyled">
+								<li><a href="#">Version 1 (Default)</a></li>
+								<li><a href="#">Version 2</a></li>
+								<li><a href="#">Version 2</a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+	</template>
+</odoo>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+	<template id="s_mini_appoinment_five" name="Mini Appoinment Five">
+		<section class="spacer c2a4 s_mini_appoinment_five">
+			<div class="container">
+				<div class="row p-b-30">
+					<div class="col-lg-9 col-md-7">
+						<h2 class="font-bold">Happy with what we offer? Grab it Now!</h2>
+						<h6 class="subtitle">Yeah ! Its pretty cool about what you are
+							offering and i starterd to feel in love with your
+							Amazing
+							UI Kit.
+						</h6>
+					</div>
+					<div class="col-lg-3 col-md-5 align-self-center s_btn" data-name="Button">
+						<a
+							class="btn btn-alpha btn-md arrow-btn btn-rounded rounded-circle m-b-20 pull-right bizople_button"
+							 href="#f1">
+								BUY BASIC
+								<span class="fa fa-1x fa-fw fa-long-arrow-right ml-1"></span>
+						</a>
+					</div>
+				</div>
+			</div>
+		</section>
+
+	</template>
+
+</odoo>

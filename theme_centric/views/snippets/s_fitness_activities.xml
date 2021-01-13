@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+	<template id="s_fitness_activities" name="Activities block">
+		<section
+			class="s_fitness_activities blog-home4 spacer bg-light">
+			<div class="container">
+				<div class="row justify-content-center">
+					<div class="col-md-8 text-center">
+						<h2 class="title text-beta">Latest Activities on Fitness</h2>
+						<h6 class="subtitle">You can relay on our amazing features list and
+							also our customer services will be great experience for you
+							without doubt and in no-time
+						</h6>
+					</div>
+				</div>
+				<div class="card-columns m-t-40">
+						<section class="card card-shadow ">
+							<a href="#">
+								<img class="card-img-top"
+									src="/theme_centric/static/src/img/fitness1.jpg" alt="" />
+							</a>
+							<div class="p-30">
+								<div class="d-flex no-block font-13">
+									<span class="">OCT 17, 2017</span>
+									<a href="#" class="link ml-auto">MARK SANDERS</a>
+								</div>
+								<h5 class="font-medium m-t-20">
+									<a href="#" class="link">Digital Marketing becomes very Essential
+										for any site
+									</a>
+								</h5>
+								<p class="m-t-20 m-b-20 custom_p">In the broadest sense, is the natural, physical,
+									or
+									material world or...
+								</p>
+								<div class="d-flex no-block font-13">
+									<a href="#" class="text-info-1 font-medium text-uppercase">image, entertainment</a>
+									<a href="#" class="ml-auto link">
+										<span class="fa fa-comments-o font-20 vm"></span>
+										5
+									</a>
+								</div>
+							</div>
+						</section>
+						<section
+							class="card card-shadow text-white bg-epsilon ">
+							<div class="p-30">
+								<div class="d-flex no-block font-13">
+									<span class="">
+										<span class="fa fa-twitter"></span>
+										Twitter feed
+									</span>
+									<a href="#" class="white-link ml-auto text-white">@bizoples</a>
+								</div>
+								<div class="tweet">
+									<h3 class="font-light m-t-40 m-b-40 card-title text-white">
+										Check out new post on my blog #natureshot
+										<a href="#" class="">http://bit.ly/blog</a>
+									</h3>
+									<p class="text-center font-14 op-8">1 DAY AGO</p>
+								</div>
+							</div>
+						</section>
+						<section
+							class="card card-shadow text-white bg-alpha "
+							data-aos="flip-right" data-aos-duration="1200">
+							<div class="p-30">
+								<div class="d-flex no-block font-13">
+									<span class="">OCT 17, 2017</span>
+									<a href="#" class="ml-auto white-link text-white">MARK SANDERS</a>
+								</div>
+								<p class="m-t-30 m-b-20 text-center" style="font-size:1rem;">If everybody
+									learns this simple art of loving his
+									work, whatever it is,
+									enjoying it without asking for any
+									recognition.
+								</p>
+								<p class="text-center font-14 op-8">MIKE HANS</p>
+								<div class="d-flex no-block font-13">
+									<a href="#" class="text-white text-uppercase op-7">music, entertainment</a>
+									<a href="#" class="ml-auto link text-white op-7">
+										<span class="fa fa-comments-o vm"></span>
+										5
+									</a>
+								</div>
+							</div>
+						</section>
+						<section class="card card-shadow ">
+							<a href="#">
+								<img class="card-img-top"
+									src="/theme_centric/static/src/img/2_f1.jpg" alt="" />
+							</a>
+							<div class="p-30">
+								<div class="d-flex no-block font-13">
+									<span class="">OCT 17, 2017</span>
+									<a href="#" class="link ml-auto">MARK SANDERS</a>
+								</div>
+								<h5 class="font-medium m-t-20">
+									<a href="#" class="link">Digital Marketing becomes very Essential
+										for any site
+									</a>
+								</h5>
+								<p class="m-t-20 m-b-20 custom_p">In the broadest sense, is the natural, physical,
+									or
+									material world or...
+								</p>
+								<div class="d-flex no-block font-13">
+									<a href="#" class="text-info-1 font-medium text-uppercase">image, entertainment</a>
+									<a href="#" class="ml-auto link">
+										<span class="fa fa fa-comments-o font-20 vm"></span>
+										5
+									</a>
+								</div>
+							</div>
+						</section>
+						<section class="card card-shadow ">
+
+							<img class="card-img-top"
+								src="/theme_centric/static/src/img/4.jpg" alt="" />
+							<div class="p-30">
+								<div class="d-flex no-block font-13">
+									<span class="">OCT 17, 2017</span>
+									<a href="#" class="link ml-auto">MARK SANDERS</a>
+								</div>
+								<h5 class="font-medium m-t-20">
+									<a href="#" class="link">Digital Marketing becomes very Essential
+										for any site
+									</a>
+								</h5>
+								<p class="m-t-20 m-b-20 custom_p">In the broadest sense, is the natural, physical,
+									or
+									material world or...
+								</p>
+								<div class="d-flex no-block font-13">
+									<a href="#" class="text-info-1 font-medium text-uppercase">image, entertainment</a>
+									<a href="#" class="ml-auto link">
+										<span class="fa fa fa-comments-o font-20 vm"></span>
+										5
+									</a>
+								</div>
+							</div>
+						</section>
+						<section class="card card-shadow">
+							<div class="p-30">
+								<div class="d-flex no-block font-13">
+									<span class="">OCT 17, 2017</span>
+									<a href="#" class="link ml-auto">MARK SANDERS</a>
+								</div>
+								<h5 class="font-medium m-t-20">
+									<a href="#" class="link">Nature, in the broadest sense, is the
+										natural, physical, or material world or universe.
+									</a>
+								</h5>
+								<p class="m-t-20 m-b-20 custom_p">In the broadest sense, is the natural, physical,
+									or
+									material world or...
+								</p>
+								<div class="d-flex no-block font-13">
+									<a href="#" class="text-info-1 font-medium text-uppercase">image, entertainment</a>
+									<a href="#" class="ml-auto link">
+										<span class="fa fa fa-comments-o font-20 vm"></span>
+										5
+									</a>
+								</div>
+							</div>
+						</section>
+					</div>
+			</div>
+		</section>
+
+	</template>
+
+</odoo>

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+	<template id="s_creative_para_three_block_round_img"
+		name="Three Block with right round image">
+		<section
+			class="s_creative_para_three_block_round_img spacer bg-light-1">
+			<div class="container">
+				<div class="row align-items-center">
+					<div class="col-lg-6 col-md-6">
+						<div class="aos-init aos-animate" data-aos="fade-right"
+							data-aos-duration="1200">
+							<section class="label bg-epsilon d-inline-block label-rounded">Features</section>
+							<h2 class="title text-uppercase text-beta">Awesome Extra Ordinary Flexibility</h2>
+							<p class="op-8 custom_p">You can relay on our amazing features list and also
+								our customer services will be great experience.
+							</p>
+							<div class="row m-t-30">
+								<div class="col-md-4">
+									<section class="card card-shadow">
+										<div class="card-body text-center text-uppercase">
+											<span class="fa fa-cog display-5 text-alpha"></span>
+											<h6 class="m-t-10 font-medium">Target</h6>
+										</div>
+									</section>
+								</div>
+								<div class="col-md-4">
+									<section class="card card-shadow">
+										<div class="card-body text-center text-uppercase">
+											<span class="fa fa-desktop display-5 text-alpha"></span>
+											<h6 class="m-t-10 font-medium">Internet</h6>
+										</div>
+									</section>
+								</div>
+								<div class="col-md-4">
+									<section class="card card-shadow">
+										<div class="card-body text-center text-uppercase">
+											<span
+												class="fa fa-pie-chart display-5 text-alpha"></span>
+											<h6 class="m-t-10 font-medium">survive</h6>
+										</div>
+									</section>
+								</div>
+							</div>
+							<div class="s_btn" data-name="Button">
+								<a
+									class="btn btn-alpha btn-md btn-rounded rounded-circle arrow-btn m-t-20 m-b-20 bizople_button"
+									href="#">
+									View other Features
+									<span class="fa fa-1x fa-fw fa-long-arrow-right ml-1"></span>
+								</a>
+							</div>
+						</div>
+					</div>
+					<div class="col-lg-6 col-md-6">
+						<img src="/theme_centric/static/src/img/creative_img2.jpg"
+							class="half-radius img img-fluid" alt=" " />
+					</div>
+				</div>
+			</div>
+		</section>
+	</template>
+
+</odoo>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+	<template id="s_business_app_store" name="App store images with background">
+		<section
+			class="s_business_app_store spacer feature48 bg-light-1"
+			style="background-image:url(/theme_centric/static/src/img/call-act-bg.jpg)">
+			<div class="container">
+				<div class="row wrap-feature48-box">
+					<div class="col-lg-5 col-md-6 ml-auto">
+						<h2 class="title text-beta">We are now on App Store, Grab our IOS or Android
+							App from Stores
+						</h2>
+						<h6 class="subtitle m-b-40 m-t-20">You can relay on our amazing features list and
+							also our customer services will be great experience for you
+							without doubt and in no-time
+						</h6>
+						<a href="#" class="m-b-20">
+							<img src="/theme_centric/static/src/img/app-strore.png"
+								alt=" "  class="img img-fluid"/>
+						</a>
+						<a href="#" class="m-b-20">
+							<img src="/theme_centric/static/src/img/play-store.png"
+								alt=" "  class="img img-fluid"/>
+						</a>
+					</div>
+				</div>
+			</div>
+		</section>
+	</template>
+
+</odoo>

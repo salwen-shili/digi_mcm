@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+	<template id="s_mega_menu_nine_snippet" name="Mega Menu Nine">
+		<section class="s_mega_menu_nine_snippet">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-3 col-sm-3">
+						<div class="wp-megamenu-sub-menu">
+							<h4 class="wpmm-item-title">TOP AGENT</h4>
+							<div class="widget-realesta-property-section">
+								<div class="realesta-widgets media agent">
+									<a href="#">
+										<img  class="img-fluid" src="/theme_centric/static/src/img/t1.jpg"/>
+									</a>
+									<div class="agent-info media-body">
+										<a href="#">Hillary Jhonson</a>
+										<p class="agent-email">Real Estate Broker</p>
+									</div>
+								</div>
+								<div class="realesta-widgets media agent">
+									<a href="#">
+										<img  class="img-fluid" src="/theme_centric/static/src/img/t2.jpg"/>
+									</a>
+									<div class="agent-info media-body">
+										<a href="#">Jonathon</a>
+										<p class="agent-email">Real Estate Broker</p>
+									</div>
+								</div>
+								<div class="realesta-widgets media agent">
+									<a href="#">
+										<img  class="img-fluid" src="/theme_centric/static/src/img/t3.jpg"/>
+									</a>
+									<div class="agent-info media-body">
+										<a href="#">William Nelson</a>
+										<p class="agent-email">Real Estate Broker</p>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-3 col-sm-3">
+						<div class="wp-megamenu-sub-menu">
+							<h4 class="wpmm-item-title">BUY</h4>
+							<div class="widget-realesta-property-section">
+								<div class="realesta-widgets media agent">
+									<a href="#">
+										<img  class="img-fluid" src="/theme_centric/static/src/img/t1.jpg"/>
+									</a>
+									<div class="media-body">
+										<div class="media-body-inner">
+											<a  href="#">$250 / Sqft</a>
+											<p>Jason Landville Apartments</p>
+										</div>
+									</div>
+								</div>
+								<div class="realesta-widgets media agent">
+									<a href="#">
+										<img  class="img-fluid" src="/theme_centric/static/src/img/t2.jpg"/>
+									</a>
+									<div class="media-body">
+										<div class="media-body-inner">
+											<a href="#">$3500 / Sqft</a>
+											<p >NISA Avenue Housing</p>
+										</div>
+									</div>
+								</div>
+								<div class="realesta-widgets media agent">
+									<a href="#">
+										<img  class="img-fluid" src="/theme_centric/static/src/img/t3.jpg"/>
+									</a>
+									<div class="media-body">
+										<div class="media-body-inner">
+											<a href="#">$300 / Sqft</a>
+											<p >Treabean Urban Village</p>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-3 col-sm-3">
+						<div class="wp-megamenu-sub-menu">
+							<h4 class="wpmm-item-title">RENT</h4>
+							<div class="widget-realesta-property-section">
+								<div class="realesta-widgets media agent">
+									<a href="#">
+										<img  class="img-fluid" src="/theme_centric/static/src/img/t1.jpg"/>
+									</a>
+									<div class="media-body">
+										<div class="media-body-inner">
+											<a href="#">$3000 / Month</a>
+											<p>MaryLand Tower</p>
+										</div>
+									</div>
+								</div>
+								<div class="realesta-widgets media agent">
+									<a href="#">
+										<img  class="img-fluid" src="/theme_centric/static/src/img/t2.jpg"/>
+									</a>
+									<div class="media-body">
+										<div class="media-body-inner">
+											<a href="#">$300 / Month</a>
+											<p >Mavin-Dormer Skyscraper</p>
+										</div>
+									</div>
+								</div>
+								<div class="realesta-widgets media agent">
+									<a href="#">
+										<img  class="img-fluid" src="/theme_centric/static/src/img/t3.jpg"/>
+									</a>
+									<div class="media-body">
+										<div class="media-body-inner">
+											<a href="#">$4500 / Month</a>
+											<p >Opusdeli Aurora Tower</p>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-3 col-sm-3">
+						<div class="wp-megamenu-sub-menu">
+							<div class="widget-realesta-property-section">
+								<div class="img-caption">
+									<img  class="img-fluid" src="/theme_centric/static/src/img/web_blog3.jpg"/>
+								</div>
+								<p class="about-desc property">Realesta helps you discover a place where you'll love to live.</p>
+								<div class="property-text-left s_btn">
+									<a href="#" class="btn btn-primary property-btn">List Your Property</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+	</template>
+</odoo>

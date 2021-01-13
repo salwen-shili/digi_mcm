@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+	<template id="s_contact_us_one_page_bg_map"
+		name="Contact us One">
+		<section id="contact"
+			class="s_contact_us_one_page_bg_map mb128 footer1"
+			style="background-image:url(/theme_centric/static/src/img/map.jpg)">
+			<div class="container">
+				<div class="row contact-container">
+					<div class="col-lg-12">
+						<div class="card card-shadow ">
+							<div class="row">
+								<div class="col-lg-8">
+									<div class="contact-box p-40">
+										<h3 class="title font-bold">Contact Us</h3>
+										<form action="/website_form/" method="post" data-model_name="crm.lead" data-success_page="/contactus-thank-you" class="s_website_form contact-form  bg-white appointment-form" enctype="multipart/form-data" data-editable-form="false">
+											<div class="row">
+												<div class="col-lg-6">
+													<div class="form-group m-t-20  o_website_form_required_custom">
+														<input  placeholder="Name" name="contact_name" required="" type="text" class="o_website_form_input font-14 form-control"
+														t-att-value="request.params.get('contact_name', '')"/>
+													</div>
+												</div>
+												<div class="col-lg-6">
+													<div class="form-group m-t-20 ">
+														<input name="email_from" placeholder="Email" required="" value="" type="email"
+															class="o_website_form_input   font-14 form-control"
+															t-att-value="request.params.get('email_from', '')"  />
+													</div>
+												</div>
+												<div class="col-lg-6">
+													<div class="form-group m-t-20 ">
+														<input  name="phone"
+															placeholder="Phone" type="text"
+															t-att-value="request.params.get('phone', '')"
+															class="o_website_form_input   font-14 form-control" />
+													</div>
+												</div>
+												<div class="col-lg-6">
+													<div class="form-group m-t-20 ">
+														<input  name="name" required=""
+															placeholder="Subject" type="text"
+															t-att-value="request.params.get('name', '')"
+															class="o_website_form_input   font-14 form-control" />
+													</div>
+												</div>
+												<div class="col-lg-12">
+													<div class="form-group m-t-20 ">
+														<textarea  name="description" rows="3" required=""
+															placeholder="Write Down the Message"
+															t-att-value="request.params.get('description', '')"
+															class=" o_website_form_input   font-14 form-control"></textarea>
+													</div>
+												</div>
+												<div class="col-lg-12 s_btn" data-name="Button">
+													<button type="submit"
+														class="analysisbtn text-white o_website_form_send btn btn-alpha rounded-circle btn-md m-t-20 arrow-btn">
+															SUBMIT NOW
+														<span class="fa fa-1x fa-fw fa-long-arrow-right ml-1"></span>
+													</button>
+													 <span id="o_website_form_result"></span>
+												</div>
+											</div>
+										</form>
+									</div>
+								</div>
+								<section class="col-lg-4 bg-image"
+									style="background-image:url(/theme_centric/static/src/img/footer-bg.jpg)">
+									<div class="detail-box">
+										<h5 class="text-white font-light m-b-30">ADDRESS</h5>
+										<p class="text-white op-7">
+											A-405 Pushp Business Campus
+											<br />
+											Ahmedabad
+										</p>
+										<h5 class="text-white font-light m-b-30 m-t-40">CALL US</h5>
+										<p class="text-white op-7">
+											451 876 3642
+											<br />
+											549 457 8541
+										</p>
+										
+										<div class="s_share" data-name="Share">
+					                        <a href="https://www.facebook.com/sharer/sharer.php?u={url}" target="_blank" class="s_share_facebook ">
+					                          	<span class="fa fa-1x fa-facebook rounded shadow-sm"/>
+					                        </a>
+					                        <a href="https://twitter.com/intent/tweet?text={title}&amp;url={url}" target="_blank" class="s_share_twitter ">
+					                          	<span class="fa fa-1x fa-twitter rounded shadow-sm"/>
+					                        </a>
+					                        <a href="mailto:?body={url}&amp;subject={title}" class="s_share_email ">
+					                          	<span class="fa fa-1x fa-envelope rounded shadow-sm"/>
+					                        </a>
+				                      	</div>
+									</div>
+								</section>
+							</div>
+						</div>
+
+					</div>
+				</div>
+			</div>
+		</section>
+	</template>
+
+</odoo>

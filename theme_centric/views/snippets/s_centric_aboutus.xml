@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+	<template id="s_centric_aboutus" name="About Us">
+		<section class="centric_template">
+			<section class="about-us pt128 pb128">
+				<div class="container">
+					<div class="row">
+						<div class="col-lg-6 col-md-12">
+							<div class="aboutus-img">
+								<img class="img img-fluid" src="/theme_centric/static/img/aboutus.png"/>
+							</div>
+						</div>
+						<div class="col-lg-6 col-md-12">
+							<div class="aboutus-content">
+								<span>About US</span>
+								<h3 >We are Dynamic Team of SEO Agency</h3>
+								<strong>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt labore  dolore magna aliqua.</strong>
+								<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+							</div>
+							<div class="row">
+								<div class="col-lg-6 col-6 col--6">
+									<div class="single-number">
+										<h3 class="number">1,165
+											<span class="plus-icon">+</span>
+										</h3>
+										<p>Project Completed</p>
+									</div>
+								</div>
+								<div class="col-lg-6 col-6 col--6">
+									<div class="single-number">
+										<h3 class="number">2,654
+											<span class="plus-icon">+</span>
+										</h3>
+										<p>Satisfied Clients</p>
+									</div>	
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+		</section>
+	</template>
+</odoo>

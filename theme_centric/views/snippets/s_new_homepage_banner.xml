@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+	<template id="s_new_homepage_banner"
+		name="Home Banner Sixteen">
+		<section class="s_new_homepage_banner">
+			<div id="fashionbanner123"
+				class="s_carousel carousel slide s_carousel_bordered"
+				data-interval="0" style="    height: 700px;">
+				<ol class="carousel-indicators">
+					<li data-target="#fashionbanner123" data-slide-to="0"
+						class="active" />
+					<li data-target="#fashionbanner123" data-slide-to="1" />
+					<li data-target="#fashionbanner123" data-slide-to="2" />
+				</ol>
+				<div class="carousel-inner">
+					<div
+						class="carousel-item oe_custom_bg oe_img_bg bg_image active"
+						data-name="Slide">
+						<div class="container">
+							<div class="row content">
+								<div class="carousel-content offset-lg-3 col-lg-6">
+									<div class="col-md-12 text-center">
+										<h4 class="blue_txt">Aviat</h4>
+									</div>
+									<div class="s_title pb8" data-name="Title">
+										<h2 class="s_title_default" style="text-align: center; ">
+											<font style="font-size: 62px;"
+												class="o_default_snippet_text">Find Products for store</font>
+										</h2>
+									</div>
+									<p class="lead o_default_snippet_text" />
+									<div style="text-align: center;">
+										<span class="sub_text">Oberlo allows you to easily import
+											dropshipped products directly into your ecommerce store
+										</span>
+									</div>
+
+									<div class="s_btn text-center pt16 pb16"
+										data-name="Buttons">
+										<a href="/shop" class="btn btn-primary shop_btn bizople_button">Shop Now!</a>
+
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="carousel-item oe_custom_bg oe_img_bg pb256 pt216"
+						style="background-image: url('/theme_centric/static/src/img/demo06_13_x1024.png');"
+						data-name="Slide">
+						<div class="container">
+							<div class="row content">
+								<div
+									class="carousel-content  text-center pt48 pb40 offset-lg-5 col-lg-9">
+									<h2 style="font-size: 62px;" class="o_default_snippet_text">
+										<font style="color: rgb(255, 255, 255);">Clever Slogan</font>
+									</h2>
+									<div class="s_hr pt8 pb32">
+										<hr
+											class="s_hr_5px s_hr_dotted border-600 w-25 border-epsilon mx-auto text-center" />
+									</div>
+									<p class="lead o_default_snippet_text">
+										<font style="color: rgb(255, 255, 255);">
+											Storytelling is powerful.
+										</font>
+										<font style="color: rgb(255, 255, 255);">
+											It draws readers in and engages them.
+										</font>
+									</p>
+									<div class="s_btn text-center pt16 pb16"
+										data-name="Buttons">
+										<a href="/start"
+											class="btn btn-epsilon rounded-circle o_default_snippet_text bizople_button">Start your journey</a>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="carousel-item oe_custom_bg oe_img_bg pb256 pt216"
+						style="background-image: url('/theme_centric/static/src/img/demo08_01_x1024.png');"
+						data-name="Slide">
+						<div class="container">
+							<div class="row content">
+								<div class="carousel-content col-lg-6 offset-lg-6">
+									<h2>
+										<font style="color: rgb(255, 255, 255); font-size: 62px;"
+											class="o_default_snippet_text">Edit this title</font>
+									</h2>
+									<h4>
+										<font style="color: rgb(255, 255, 255);"
+											class="o_default_snippet_text">Good
+											writing is simple, but not simplistic.
+										</font>
+									</h4>
+									<p class="mt24 o_default_snippet_text">
+										<font style="color: rgb(255, 255, 255);">Good copy starts with understanding how
+											your
+											product or service helps your customers. Simple words
+											communicate better than big words and pompous language.
+										</font>
+									</p>
+									<div class="s_share text-left pt16 pb16">
+										<a
+											href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2F192.168.0.103%3A9999%2F%23"
+											class="s_share_facebook" target="_blank">
+											<span class="fa fa-1x fa-facebook rounded shadow-sm" />
+										</a>
+										<a
+											href="https://twitter.com/intent/tweet?text=Home%20%7C%20My%20Website&amp;url=http%3A%2F%2F192.168.0.103%3A9999%2F%23"
+											class="s_share_twitter" target="_blank">
+											<span class="fa fa-1x fa-twitter rounded shadow-sm" />
+										</a>
+										<a
+											href="http://www.linkedin.com/shareArticle?mini=true&amp;url=http%3A%2F%2F192.168.0.103%3A9999%2F%23&amp;title=Home%20%7C%20My%20Website&amp;"
+											class="s_share_linkedin" target="_blank">
+											<span class="fa fa-1x fa-linkedin rounded shadow-sm" />
+										</a>
+										<a
+											href="https://plus.google.com/share?url=http%3A%2F%2F192.168.0.103%3A9999%2F%23"
+											class="s_share_google" target="_blank">
+											<span class="fa fa-1x fa-google-plus rounded shadow-sm" />
+										</a>
+										<a
+											href="mailto:?body=http%3A%2F%2F192.168.0.103%3A9999%2F%23&amp;subject=Home%20%7C%20My%20Website"
+											class="s_share_email">
+											<span class="fa fa-1x fa-envelope rounded shadow-sm" />
+										</a>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="carousel-control-prev"
+					data-target="#fashionbanner123" data-slide="prev" role="img"
+					aria-label="Previous" title="Previous"
+					data-cke-saved-href="#fashionbanner123">
+					<span class="carousel-control-prev-icon" />
+					<span class="sr-only o_default_snippet_text">Previous</span>
+				</div>
+				<div class="carousel-control-next"
+					data-target="#fashionbanner123" data-slide="next" role="img"
+					aria-label="Next" title="Next"
+					data-cke-saved-href="#fashionbanner123">
+					<span class="carousel-control-next-icon" />
+					<span class="sr-only o_default_snippet_text">Next</span>
+				</div>
+			</div>
+		</section>
+
+	</template>
+
+</odoo>

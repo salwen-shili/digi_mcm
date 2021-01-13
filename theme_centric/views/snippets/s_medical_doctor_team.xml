@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+	<template id="s_medical_doctor_team" name="Team Block">
+		<section class="s_medical_doctor_team">
+			<div class="spacer feature14">
+				<div class="container">
+					<div class="row justify-content-center">
+						<div class="col-md-7 text-center">
+							<h2 class="title text-beta">Experienced Team of Doctors</h2>
+							<h6 class="subtitle">You can relay on our amazing features list and
+								also our customer services will be great experience for you
+								without doubt and in no-time
+							</h6>
+						</div>
+					</div>
+					<div class="row m-t-40 p-t-20">
+						<div class="col-lg-3 col-md-6 wrap-feature14-box">
+							<div class="" >
+								<img class="rounded img-responsive"
+									src="/theme_centric/static/src/img/t1.jpg" alt="bizople kit" />
+								<div class="m-t-30">
+									<h5 class="font-medium m-b-0">Dr. Micheal Anderson</h5>
+									<h6 class="subtitle">Heart Sergeon</h6>
+									<p class="m-t-20">You can relay on our amazing features list and
+										also our customer services will be great.
+									</p>
+									<a href="#" class="text-feature font-medium">Learn More </a>
+								</div>
+							</div>
+						</div>
+						<div class="col-lg-3 col-md-6 wrap-feature14-box">
+							<div class="" >
+								<img class="rounded img-responsive"
+									src="/theme_centric/static/src/img/t2.jpg" alt="bizople kit" />
+								<div class="m-t-30">
+									<h5 class="font-medium m-b-0">Dr. Julia D’Souza</h5>
+									<h6 class="subtitle">Family Physician</h6>
+									<p class="m-t-20">You can relay on our amazing features list and
+										also our customer services will be great.
+									</p>
+									<a href="#" class="text-feature font-medium">Learn More </a>
+								</div>
+							</div>
+						</div>
+						<div class="col-lg-3 col-md-6 wrap-feature14-box">
+							<div class="" >
+								<img class="rounded img-responsive"
+									src="/theme_centric/static/src/img/t3.jpg" alt="bizople kit" />
+								<div class="m-t-30">
+									<h5 class="font-medium m-b-0">Dr. Megan Doe</h5>
+									<h6 class="subtitle">Cancer Care Specialist</h6>
+									<p class="m-t-20">You can relay on our amazing features list and
+										also our customer services will be great.
+									</p>
+									<a href="#" class="text-feature font-medium">Learn More </a>
+								</div>
+							</div>
+						</div>
+						<div class="col-lg-3 col-md-6 wrap-feature14-box">
+							<div class="" >
+								<img class="rounded img-responsive"
+									src="/theme_centric/static/src/img/t4.jpg" alt="bizople kit" />
+								<div class="m-t-30">
+									<h5 class="font-medium m-b-0">Dr. Johnathan Birt</h5>
+									<h6 class="subtitle">General Care</h6>
+									<p class="m-t-20">You can relay on our amazing features list and
+										also our customer services will be great.
+									</p>
+									<a href="#" class="text-feature font-medium">Learn More </a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+	</template>
+
+</odoo>

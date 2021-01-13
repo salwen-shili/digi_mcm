@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+	<template id="s_charity_img_with_center_text" name="Parallex with center paragraph">
+		<section
+			class="s_charity_img_with_center_text spacer bg-light feature24"
+			style="background-image:url(/theme_centric/static/src/img/call-acti-bg.jpg)">
+			<div class="container">
+				<div class="row justify-content-center">
+					<div class="col-md-7 text-center">
+						<h2 class="title text-white font-medium text-beta">Become a Volunteer</h2>
+						<p class="font-light text-white op-8">Lorem ipsum dolor sit amet, consectetur adipiscelit.
+							Nam malesu dolor sit amet, consectetur adipiscelit.
+							consectetur adipiscelit. Nam malesu dolor.
+						</p>
+						<div class="s_btn" data-name="Button">
+							<a
+								class="btn btn-alpha rounded-circle btn-md arrow-btn m-t-20 text-uppercase bizople_button"
+								href="#">
+									join us now
+									<span class="fa fa-1x fa-fw fa-long-arrow-right ml-1"></span>
+							</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+	</template>
+
+</odoo>

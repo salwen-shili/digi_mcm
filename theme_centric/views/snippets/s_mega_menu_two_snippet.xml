@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+	<template id="s_mega_menu_two_snippet" name="Mega Menu Two">
+		<section class="s_mega_menu_two_snippet ">
+			<div class="container sub-menu">
+				<div class="row ">
+					<div class="widget-custom-menu col-xs-4 col-sm-4 col-md-4 col-lg-4">
+						<h4 class="title widgettitle">Laptop &amp; Tablet</h4>
+						<ul  class = "list-unstyled">
+							<li>
+								<a href="#">Laptops, Desktops &amp; Monitors</a>
+							</li>
+							<li>
+								<a href="#">Printers &amp; Ink</a>
+							</li>
+							<li>
+								<a href="#">Computer Accessories</a>
+							</li>
+							<li>
+								<a href="#">Software</a>
+							</li>
+							<li>
+								<a href="#">Mackbook</a>
+							</li>
+							<li>
+								<a href="#">Mackbook Air</a>
+							</li>
+							<li>
+								<a href="#">Laptop Pro</a>
+							</li>
+						</ul>
+					</div>
+					<div class="widget-custom-menu col-xs-4 col-sm-4 col-md-4 col-lg-4">
+						<h4 class="title widgettitle">TV  &amp; Audio</h4>
+						<ul  class = "list-unstyled">
+							<li>
+								<a href="#">Mouse</a>
+							</li>
+							<li>
+								<a href="#">Printer and Accessories</a>
+							</li>
+							<li>
+								<a href="#">Network Equipment</a>
+							</li>
+							<li>
+								<a href="#">Computer Components</a>
+							</li>
+							<li>
+								<a href="#">Memory Stick</a>
+							</li>
+							<li>
+								<a href="#">Selfie Stick</a>
+							</li>
+							<li>
+								<a href="#">Binoculars</a>
+							</li>
+						</ul>					
+					</div>
+					<div class="widget-custom-menu col-xs-4 col-sm-4 col-md-4 col-lg-4">
+						<h4 class="title widgettitle">Smartphone</h4>
+						<ul  class = "list-unstyled">
+							<li>
+								<a href="#">Accessories</a>
+							</li>
+							<li>
+								<a href="#">Phone Batteries</a>
+							</li>
+							<li>
+								<a href="#">Phone Charger</a>
+							</li>
+							<li>
+								<a href="#">Phone Screen</a>
+							</li>
+							<li>
+								<a href="#">Head Set</a>
+							</li>
+							<li>
+								<a href="#">Software</a>
+							</li>
+						</ul>	
+					</div>
+				</div>
+				<div class="row ">
+					<div class="widget-custom-menu col-xs-4 col-sm-4 col-md-4 col-lg-4">
+						<h4 class="title widgettitle">Headphone</h4>
+						<ul  class = "list-unstyled">
+							<li>
+								<a href="#">Accessories</a>
+							</li>
+							<li>
+								<a href="#">Phone Batteries</a>
+							</li>
+							<li>
+								<a href="#">Phone Charger</a>
+							</li>
+							<li>
+								<a href="#">Phone Screen</a>
+							</li>
+							<li>
+								<a href="#">Head Set</a>
+							</li>
+							<li>
+								<a href="#">Software</a>
+							</li>
+						</ul>	
+					</div>
+					<div class="widget-custom-menu col-xs-4 col-sm-4 col-md-4 col-lg-4">
+						<h4 class="title widgettitle">Camera</h4>
+						<ul class = "list-unstyled">
+							<li>
+								<a href="#">Accessories</a>
+							</li>
+							<li>
+								<a href="#">Phone Batteries</a>
+							</li>
+							<li>
+								<a href="#">Phone Charger</a>
+							</li>
+							<li>
+								<a href="#">Phone Screen</a>
+							</li>
+							<li>
+								<a href="#">Head Set</a>
+							</li>
+							<li>
+								<a href="#">Software</a>
+							</li>
+						</ul>					
+					</div>
+					<div class="widget-custom-menu col-xs-4 col-sm-4 col-md-4 col-lg-4">
+						<h4 class="title widgettitle">Printer &amp; ink</h4>
+						<ul  class = "list-unstyled">
+							<li>
+								<a href="#">Accessories</a>
+							</li>
+							<li>
+								<a href="#">Phone Batteries</a>
+							</li>
+							<li>
+								<a href="#">Phone Charger</a>
+							</li>
+							<li>
+								<a href="#">Phone Screen</a>
+							</li>
+							<li>
+								<a href="#">Head Set</a>
+							</li>
+							<li>
+								<a href="#">Software</a>
+							</li>
+						</ul>	
+					</div>
+				</div>
+			</div>
+		</section>
+	</template>
+</odoo>

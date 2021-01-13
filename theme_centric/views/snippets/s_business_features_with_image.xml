@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+	<template id="s_business_features_with_image" name="Left list with right image">
+		<section class="s_business_features_with_image bg-light-1 spacer feature8">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-6">
+						<small class="text-feature">Success Stories</small>
+						<h3>Re-Targeting gets easier with Bizople</h3>
+						<p class="custom_p">Lorem ipsum dolor sit amet, consectetuer adipiscing
+							elit,
+							sed diam nonummy nibh euismod tincidunt ut laoreet.
+						</p>
+						<ul class="list-block m-b-30">
+							<li>
+								<span class="fa fa-check-circle text-feature"></span>
+								Powerful and Faster Results for your site
+							</li>
+							<li>
+								<span class="fa fa-check-circle text-feature"></span>
+								Make your site in no-time with your Bootstrap Twelve Theme
+							</li>
+							<li>
+								<span class="fa fa-check-circle text-feature"></span>
+								Tons of Features and Elements available here
+							</li>
+							<li>
+								<span class="fa fa-check-circle text-feature"></span>
+								What are you wait for? Go and Get it.
+							</li>
+						</ul>
+						<div class="s_btn text-left pt8 pb24" data-name="Button">
+							<a href="/contactus"
+								class="btn btn-primary btn-md btn-rounded rounded-circle arrow-btn m-t-16 btn-alpha rounded-circle mt16 bizople_button">
+								View More
+								<span class="fa fa-1x fa-fw fa-long-arrow-right ml-1"></span>
+							</a>
+						</div>
+					</div>
+					<div class="col-lg-6">
+						<div class="p-20">
+							<img src="/theme_centric/static/src/img/market.jpg" alt=" "
+								class="img-responsive img-shadow img img-fluid"  />
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+	</template>
+
+</odoo>

@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+	<template id="web_agency_banner" name="Home Banner Eight">
+	<section id="slider-sec" class="web_agency_banner slider4">
+			<div id="myCarousel"
+				class="s_carousel s_carousel_default carousel slide"
+				data-ride="carousel" data-pause="hover" data-interval="7000">
+				<ol class="carousel-indicators">
+					  <li data-target="#myCarousel" data-slide-to="0" class="active"/>
+          		      <li data-target="#myCarousel" data-slide-to="1"/>
+				</ol>
+				<div class="carousel-inner" role="listbox">
+					<div class="carousel-item active pt152 pb152 " style="background-image: url('/theme_centric/static/src/img/web_banner2.jpg');">
+						<div class="container">
+							<div class="row">
+								<div class="col-md-9 col-lg-6">
+									<h1 data-animation="animated fadeInLeft"
+										class="title font-bold m-0 p-b-40">Build Your Stunning Website in Record
+										Time with Ease
+									</h1>
+									<p class="custom_p">You can make great websites for your Clients
+										&amp;
+										Personal use in no-time with creative.
+									</p>
+									<div>
+										<div class="s_btn" data-name="Button">
+											<a class="btn btn-alpha btn-rounded rounded-circle btn-md arrow-btn bizople_button" href="#">
+													DOWNLOAD NOW
+													<span class="fa fa-1x fa-fw fa-long-arrow-right ml-1"></span>
+											</a>
+											<a
+												class="btn btn-outline-alpha btn-rounded rounded-circle btn-md arrow-btn m-l-20 bizople_button"
+												href="#">
+													CHECK FEATURES
+													<span class="fa fa-1x fa-fw fa-long-arrow-right ml-1"></span>
+											</a>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="carousel-item pt152 pb152" style="background-image: url('/theme_centric/static/src/img/web_banner1.jpg');">
+						<div class="container">
+							<div class="row">
+								<div class="col-md-9 col-lg-6">
+									<h1 data-animation="animated fadeInLeft"
+										class="title font-bold m-0 p-b-40">Build Your Stunning Website in Record
+										Time with Ease
+									</h1>
+									<p class="custom_p">You can make great websites for your Clients
+										&amp;
+										Personal use in no-time with creative.
+									</p>
+									<div>
+										<a class="btn btn-alpha btn-rounded rounded-circle btn-md arrow-btn bizople_button" href="#">
+												DOWNLOAD NOW
+												<span class="fa fa-1x fa-fw fa-long-arrow-right ml-1"></span>
+										</a>
+										<a
+											class="btn btn-outline-alpha btn-rounded rounded-circle btn-md arrow-btn m-l-20 bizople_button"
+											href="#">
+												CHECK FEATURES
+												<span class="fa fa-1x fa-fw fa-long-arrow-right ml-1"></span>
+										</a>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="slider-control">
+						<a class="left carousel-control-prev text-white font-14"
+							data-target="#myCarousel" role="button" data-slide="prev">
+							<span class="fa fa-arrow-left"></span>
+							<b class="sr-only font-normal">Previous</b>
+						</a>
+						<a class="right carousel-control-next text-white font-14"
+							data-target="#myCarousel" role="button" data-slide="next">
+							<span class="fa fa-arrow-right"></span>
+							<b class="sr-only font-normal">Next</b>
+						</a>
+					</div>
+				</div>
+			</div>
+		</section>
+	</template>
+
+</odoo>

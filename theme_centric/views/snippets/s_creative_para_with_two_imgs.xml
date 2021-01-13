@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+	<template id="s_creative_para_with_two_imgs" name="Paragraph with two images">
+		<section class="s_creative_para_with_two_imgs">
+			<div class="spacer feature14">
+				<div class="container">
+					<div class="row">
+						<div class="col-lg-4 col-md-12">
+							<h2 class="m-t-20 m-b-30 font-bold text-beta">Work on which you can depend, upon which brings
+								smile
+							</h2>
+							<p class="custom_p">You can relay on our amazing features list and also our
+								customer services will be great experience for our users. You
+								will surely fall in love with ready touse bootstrap ui kit
+								framework.
+							</p>
+							<div class="s_btn" data-name="Button">
+								<a
+									class="btn btn-alpha btn-rounded rounded-circle btn-md arrow-btn m-t-20 m-b-30 bizople_button"
+									href="#">
+										View Other Features
+										<span class="fa fa-1x fa-fw fa-long-arrow-right ml-1"></span>
+								</a>
+							</div>
+						</div>
+						<div class="col-lg-4 col-md-6 wrap-feature14-box">
+							<div class="img img-fluid" >
+								<img class="rounded img-responsive img-fluid"
+									src="/theme_centric/static/src/img/img3.jpg" alt="Bizople kit" />
+							</div>
+						</div>
+						<div class="col-lg-4 col-md-6 wrap-feature14-box">
+							<div class="img img-fluid">
+								<img class="rounded img-responsive img-fluid"
+									src="/theme_centric/static/src/img/img4.jpg" alt="Bizople kit" />
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+	</template>
+
+</odoo>

@@ -1,0 +1,449 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+	<record id="centric_aboutuspage_template" model="ir.ui.view">
+		<field name="name">About Us</field>
+		<field name="type">qweb</field>
+		<field name="key">website.centric_aboutuspage_template</field>
+		<field name="arch" type="xml">
+			<t name="About Us" t-name="centric_aboutuspage_template">
+				<t t-call="website.layout">
+					<div class="oe_structure"/>
+					<section class="centric_template">
+						<!-- banner start -->
+						<section class="service-banner s_cover parallax s_parallax_is_fixed pt96 s_parallax_no_overflow_hidden bg-black-75 pb120" data-scroll-background-ratio="1" data-name="Cover" style="background-image: none;">
+					       <span class="s_parallax_bg oe_img_bg oe_custom_bg" style="background-image: url('theme_centric/static/src/img/2862664.png'); background-position: 46.59% 50.53%;"/>
+					       <div class="container">
+					         <div class="row s_nb_column_fixed">
+					           <div class="col-lg-12 s_title" data-name="Title">
+					             <h1 class="s_title_thin" style="font-size: 62px; text-align: center;">
+					               <font class="page-banner-text" style="background-color: rgba(238, 238, 238, 0);">About Us</font>
+					             </h1>
+					           </div>
+					           
+					           <div class="col-lg-12 s_btn text-center pt16 pb16" data-name="Buttons">
+					             <div class="page-title-content text-center">
+									
+									<ul>
+										<li class="home-dot">
+											<a href="/">Home</a>
+										</li>
+										<li>About Us
+										</li>
+									</ul>
+								</div>
+					           </div>
+					         </div>
+					       </div>
+					     </section>
+						<!-- banner end -->
+						<div class="oe_structure"/>
+						<!-- About Us Start-->
+						<section class="about-us pt128 pb128">
+							<div class="container">
+								<div class="row">
+									<div class="col-lg-6 col-md-12">
+										<div class="aboutus-img">
+											<img src="theme_centric/static/img/aboutus.png"/>
+										</div>
+									</div>
+									<div class="col-lg-6 col-md-12">
+										<div class="aboutus-content">
+											<span>About US</span>
+											<h3 >We are Dynamic Team of SEO Agency</h3>
+											<strong>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt labore  dolore magna aliqua.</strong>
+											<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+										</div>
+										<div class="row">
+											<div class="col-lg-6 col-6 col--6">
+												<div class="single-number">
+													<h3 class="number">1,165
+														<span class="plus-icon">+</span>
+													</h3>
+													<p>Project Completed</p>
+												</div>
+											</div>
+											<div class="col-lg-6 col-6 col--6">
+												<div class="single-number">
+													<h3 class="number">2,654
+														<span class="plus-icon">+</span>
+													</h3>
+													<p>Satisfied Clients</p>
+												</div>	
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</section>
+						<!-- About Us End -->
+						<div class="oe_structure"/>
+						<!-- Features start -->
+						<section class="features pt128 pb128" id="features_page">
+							<div class="container">
+								<div class="row align-items-center">
+									<div class="col-lg-5 col-md-12">
+										<div class="feature-content">
+											<span>CORE FEATURES</span>
+											<h3>Create Awesome Service With Our Tools</h3>
+											<p>
+												Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+											</p>
+											<a href="#" class="featurebtn btn btn-alpha rounded-circle">More Details</a>
+										</div>	
+									</div>
+									<div class="col-lg-7 col-md-12">
+										<div class="row text-center">
+											<div class="col-lg-6 col-md-6 col-sm-6">
+												<section class="feature-item1">
+													<div class="icon">
+														<div class="dotted-img">
+															<i class="fa fa-object-group"></i>
+														</div>
+													</div>
+													<h3 id="feat">Seo Consultancy</h3>
+													<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor</p>
+												</section>
+											</div>
+											<div class="col-lg-6 col-md-6 col-sm-6">
+												<section class="feature-item2">
+													<div class="icon">
+														<div class="dotted-img2">
+															<i class="fa fa-clone"></i>
+														</div>
+													</div>
+													<h3 id="feat">Competitor Analysis</h3>
+													<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor</p>
+												</section>
+											</div>
+											<div class="col-lg-6 col-md-6 col-sm-6">
+												<section class="feature-item3">
+													<div class="icon">
+														<div class="dotted-img3">
+															<i class="fa fa-commenting-o"></i>
+														</div>
+													</div>
+													<h3 id="feat">Social Media Marketing</h3>
+													<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor</p>
+												</section>
+											</div>
+											<div class="col-lg-6 col-md-6 col-sm-6">
+												<section class="feature-item4">
+													<div class="icon">
+														<div class="dotted-img4">
+															<i class="fa fa-file-code-o"></i>
+														</div>
+													</div>
+													<h3 id="feat">Competitor Analysis</h3>
+													<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor</p>
+												</section>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</section>
+						<!-- Features End -->
+						<div class="oe_structure"/>
+						<!-- features 2 start -->
+						<section class="feature-section pt128 pb128">
+							<div class="container">
+								<div class="feature-title text-center">
+									<span>CORE FEATURE</span>
+									<h3>
+										Create Awesome Service With Our Tools
+									</h3>
+								</div>
+								<div class="featurectnt feature-page-items row text-center">
+									<div class="col-lg-3 col-md-6 col-sm-6">
+										<section class="feature-item1">
+											<div class="icon">
+												<div class="dotted-img">
+													<i class="fa fa-object-group"></i>
+												</div>
+											</div>
+											<h3 id="feat">Seo Consultancy</h3>
+											<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor</p>
+										</section>
+									</div>
+									<div class="col-lg-3 col-md-6 col-sm-6">
+										<section class="feature-item2">
+											<div class="icon">
+												<div class="dotted-img2">
+													<i class="fa fa-clone"></i>
+												</div>
+											</div>
+											<h3 id="feat">Competitor Analysis</h3>
+											<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor</p>
+										</section>
+									</div>
+									<div class="col-lg-3 col-md-6 col-sm-6">
+										<section class="feature-item3">
+											<div class="icon">
+												<div class="dotted-img3">
+													<i class="fa fa-commenting-o"></i>
+												</div>
+											</div>
+											<h3 id="feat">Social Media Marketing</h3>
+											<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor</p>
+										</section>
+									</div>
+									<div class="col-lg-3 col-md-6 col-sm-6">
+										<section class="feature-item4">
+											<div class="icon">
+												<div class="dotted-img4">
+													<i class="fa fa-file-code-o"></i>
+												</div>
+											</div>
+											<h3 id="feat">Competitor Analysis</h3>
+											<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor</p>
+										</section>
+									</div>
+								</div>
+							</div>
+						</section>
+						<!-- features 2 end -->
+						<div class="oe_structure"/>
+						<!-- services start -->
+						<section class="services-section pt128 pb128">
+							<div class="container">
+								<div class="service-title text-center">
+									<span>SERVICES</span>
+									<h3>
+										How We Can Help?
+									</h3>
+								</div>
+								<div class="row text-center">
+									<div class="col-lg-4 col-md-6 col-sm-6">
+										<section class="service-box">
+											<div class="service-icon">
+												<div class="icon1">
+													<i class="fa fa-newspaper-o"></i>
+												</div>
+											</div>
+											<h3>
+												<a href="#">Search Engine Optimization</a>
+											</h3>
+											<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incutu  labore et dolore magna aliqua.</p>
+										</section>
+									</div>
+									<div class="col-lg-4 col-md-6 col-sm-6">
+										<section class="service-box">
+											<div class="service-icon">
+												<div class="icon2">
+													<i class="fa fa-object-group"></i>
+												</div>
+											</div>
+											<h3>
+												<a href="#">Social Media Strategy</a>
+											</h3>
+											<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incutu  labore et dolore magna aliqua.</p>
+										</section>
+									</div>
+									<div class="col-lg-4 col-md-6 col-sm-6">
+										<section class="service-box">
+											<div class="service-icon">
+												<div class="icon3">
+													<i class="fa fa-diamond"></i>
+												</div>
+											</div>
+											<h3>
+												<a href="#">Real Time And Data</a>
+											</h3>
+											<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incutu  labore et dolore magna aliqua.</p>
+										</section>
+									</div>
+									<div class="col-lg-4 col-md-6 col-sm-6">
+										<section class="service-box">
+											<div class="service-icon">
+												<div class="icon4">
+													<i class="fa fa-commenting-o"></i>
+												</div>
+											</div>
+											<h3>
+												<a href="#">Online Media Management</a>
+											</h3>
+											<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incutu  labore et dolore magna aliqua.</p>
+										</section>
+									</div>
+									<div class="col-lg-4 col-md-6 col-sm-6">
+										<section class="service-box">
+											<div class="service-icon">
+												<div class="icon5">
+													<i class="fa fa-clone"></i>
+												</div>
+											</div>
+											<h3>
+												<a href="#">Reporting &amp; Analysis</a>
+											</h3>
+											<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incutu  labore et dolore magna aliqua.</p>
+										</section>
+									</div>
+									<div class="col-lg-4 col-md-6 col-sm-6">
+										<section class="service-box">
+											<div class="service-icon">
+												<div class="icon6">
+													<i class="fa fa-file-code-o"></i>
+												</div>
+											</div>
+											<h3>
+												<a href="#">Penalty Recovery</a>
+											</h3>
+											<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incutu  labore et dolore magna aliqua.</p>
+										</section>
+									</div>
+								</div>
+							</div>
+						</section>
+						<!-- service end -->
+						<div class="oe_structure"/>
+						<!-- our team start -->
+						<section class="ourteam-section pt128 pb128">
+							<div class="container">
+								<div class="ourteam-title text-center">
+									<span>TEAM</span>
+									<h3>
+										Meet Our Team
+									</h3>
+								</div>
+								<div class="row">
+									<div class="col-lg-4 col-sm-6">
+										<div class="team-content">
+											<div class="team-image">
+												<img src="theme_centric/static/src/img/t-1.jpg"/>
+											</div>
+											<div class="team-content-text text-center">
+												<h3>William Smith</h3>
+												<span>CEO &amp; Founder</span>
+												<div class="s_share" data-name="Share">
+											        <a href="#" target="_blank" class="shareftle">
+											            <i class="fa fa-linkedin"></i>
+											        </a>
+											        <a href="#" target="_blank" class="shareftle ">
+											            <i class="fa fa-facebook"></i>
+											        </a>
+											        <a href="#" target="_blank" class="shareftle">
+											            <i class="fa fa-twitter"></i>
+											        </a>
+											        <a href="#" class="shareftle">
+											            <i class="fa fa-instagram"></i>
+											        </a>
+											    </div>
+											</div>
+										</div>
+									</div>
+									<div class="col-lg-4 col-sm-6">
+										<div class="team-content">
+											<div class="team-image">
+												<img src="theme_centric/static/src/img/t-2.jpg"/>
+											</div>
+											<div class="team-content-text text-center">
+												<h3>Adina Jones</h3>
+												<span>Project Manager</span>
+												<div class="s_share" data-name="Share">
+											        <a href="#" target="_blank" class="shareftle">
+											            <i class="fa fa-linkedin"></i>
+											        </a>
+											        <a href="#" target="_blank" class="shareftle ">
+											            <i class="fa fa-facebook"></i>
+											        </a>
+											        <a href="#" target="_blank" class="shareftle">
+											            <i class="fa fa-twitter"></i>
+											        </a>
+											        <a href="#" class="shareftle">
+											            <i class="fa fa-instagram"></i>
+											        </a>
+											    </div>
+											</div>
+										</div>
+									</div>
+									<div class="col-lg-4 col-sm-6">
+										<div class="team-content">
+											<div class="team-image">
+												<img src="theme_centric/static/src/img/t-3.jpg"/>
+											</div>
+											<div class="team-content-text text-center">
+												<h3>Karly Miller</h3>
+												<span>UI/UX Designer</span>
+												<div class="s_share" data-name="Share">
+											        <a href="#" target="_blank" class="shareftle">
+											            <i class="fa fa-linkedin"></i>
+											        </a>
+											        <a href="#" target="_blank" class="shareftle ">
+											            <i class="fa fa-facebook"></i>
+											        </a>
+											        <a href="#" target="_blank" class="shareftle">
+											            <i class="fa fa-twitter"></i>
+											        </a>
+											        <a href="#" class="shareftle">
+											            <i class="fa fa-instagram"></i>
+											        </a>
+											    </div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</section>
+						<!-- Ourteam end -->
+						<div class="oe_structure"/>
+						<!-- subs start -->
+						<section class="service-banner s_cover parallax s_parallax_is_fixed pt96 s_parallax_no_overflow_hidden bg-black-75 pb120" data-scroll-background-ratio="1" data-name="Cover" style="background-image: none;">
+					       <span class="s_parallax_bg oe_img_bg oe_custom_bg" style="background-image: url('theme_centric/static/src/img/2862664.png'); background-position: 46.59% 50.53%;"/>
+					       <div class="container">
+								<div class="subs-content text-center">
+									<span class="discount">Get Started Instantly!</span>
+									<h2>Get the only new update from this newsletter</h2>
+									
+								</div>
+								<div class="input-group js_subscribe" data-list-id="1">
+							        <input type="email" name="email" class="js_subscribe_email form-control" placeholder="your email..."/>
+							        <span class="input-group-append">
+							            <a role="button" href="#" class="btn btn-primary js_subscribe_btn">Subscribe</a>
+							            <a role="button" href="#" class="btn btn-success js_subscribed_btn d-none" disabled="disabled">Thanks</a>
+							        </span>
+							    </div>
+							</div>
+					     </section>
+						<!-- subs end -->
+						<div class="oe_structure"/>
+						<!-- clients start -->
+						<section class="clients s_references bg-200 pt16 pb16" data-name="References">
+					        <div class="container">
+					            <div class="row">
+					            	 <div class="col-lg-2">
+					                    <img src="/theme_centric/static/src/img/c1.png" class="img img-fluid" alt="Demo Logo" data-original-title="" title="" aria-describedby="tooltip843653"/>
+					                </div>
+					                <div class="col-lg-2">
+					                    <img src="/theme_centric/static/src/img/c2.png" class="img img-fluid" alt="Demo Logo" data-original-title="" title="" aria-describedby="tooltip843653"/>
+					                </div>
+					                <div class="col-lg-2">
+					                    <img src="/theme_centric/static/src/img/c3.png" class="img img-fluid" alt="Demo Logo" data-original-title="" title="" aria-describedby="tooltip623872"/>
+					                </div>
+					                <div class="col-lg-2">
+					                    <img src="/theme_centric/static/src/img/c4.png" class="img img-fluid" alt="Demo Logo" data-original-title="" title="" aria-describedby="tooltip175558"/>
+					                </div>
+					                <div class="col-lg-2">
+					                    <img src="/theme_centric/static/src/img/c5.png" class="img img-fluid" alt="Demo Logo" data-original-title="" title="" aria-describedby="tooltip940624"/>
+					                </div>
+					                <div class="col-lg-2">
+					                    <img src="/theme_centric/static/src/img/c6.png" class="img img-fluid" alt="Demo Logo" data-original-title="" title="" aria-describedby="tooltip478170"/>
+					                </div>
+					            </div>
+					        </div>
+					    </section>
+						<!-- clients end -->
+					<div class="oe_structure"/>
+				</section>
+				</t>
+			</t>
+		</field>
+	</record>
+
+	<record id="centric_aboutuspage_template_menu" model="website.page">
+		<field name="website_published">True</field>
+		<field name="url">/about</field>
+		<field name="is_homepage">False</field>
+		<field name="view_id" ref="centric_aboutuspage_template" />
+	</record>
+
+</odoo>

@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+	<template id="s_medical_four_block_with_features"
+		name="Four blocks with features">
+		<section class="s_medical_four_block_with_features">
+			<div class="spacer feature9">
+				<div class="container">
+            <div class="row m-t-40">
+              <div class="col-md-6 wrap-feature9-box b-r b-b">
+                <section class="card" >
+                  <div class="card-body d-flex">
+                    <div class="align-self-center">
+                      <h2 class="font-medium text-beta">We are Leading Health Care Hospital in NewYork
+                      </h2>
+                      <p class="m-t-20">You can relay on our amazing features list and
+                        also our customer services will be great experience.
+                      </p>
+                    </div>
+                  </div>
+                </section>
+              </div>
+              <div class="col-md-6 wrap-feature9-box b-b">
+                <section class="card " >
+                  <div class="card-body d-flex">
+                    <div class="icon-space align-self-center">
+                      <span class="fa fa-desktop display-4 text-alpha"></span>
+                    </div>
+                    <div class="align-self-center">
+                      <h5 class="font-medium">
+                        <div class="s_btn" data-name="Link Align">
+                          <a href="#" class="linking text-beta">
+                            Online Appointment
+                            <span class="fa fa-1x fa-fw fa-long-arrow-right ml-1">
+                            </span>
+                          </a>
+                        </div>
+                      </h5>
+                      <p class="m-t-20">You can relay on our amazing features list and
+                        also our customer services will be great experience.
+                      </p>
+                    </div>
+                  </div>
+                </section>
+              </div>
+              <div class="col-md-6 wrap-feature9-box b-r">
+                <section class="card " >
+                  <div class="card-body d-flex">
+                    <div class="icon-space align-self-center">
+                      <span
+                        class="fa fa-mobile display-4 text-alpha"></span>
+                    </div>
+                    <div class="align-self-center">
+                      <h5 class="font-medium">
+                        <div class="s_btn" data-name="Link Align">
+                          <a href="#" class="linking text-beta">
+                            Latest Technologies
+                            <span class="fa fa-1x fa-fw fa-long-arrow-right ml-1"></span>
+                          </a>
+                        </div>
+                      </h5>
+                      <p class="m-t-20">You can relay on our amazing features list and
+                        also our customer services will be great experience.
+                      </p>
+                    </div>
+                  </div>
+                </section>
+              </div>
+              <div class="col-md-6 wrap-feature9-box">
+                <section class="card " >
+                  <div class="card-body d-flex">
+                    <div class="icon-space align-self-center">
+                      <span
+                        class="demo-icon fa fa-users display-4 text-alpha"></span>
+                    </div>
+                    <div class="align-self-center">
+                      <h5 class="font-medium">
+                        <div class="s_btn" data-name="Link Align">
+                          <a href="#" class="linking text-beta">
+                            Experienced Team
+                            <span class="fa fa-1x fa-fw fa-long-arrow-right ml-1"></span>
+                          </a>
+                        </div>
+                      </h5>
+                      <p class="m-t-20">You can relay on our amazing features list and
+                        also our customer services will be great experience.
+                      </p>
+                    </div>
+                  </div>
+                </section>
+              </div>
+            </div>
+          </div>
+			</div>
+		</section>
+
+	</template>
+
+</odoo>

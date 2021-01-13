@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+	<template id="s_cando_home" name="Cando Home Block">
+
+		<!-- Home Page Start -->
+						<section class="home-page align-items-center text-center d-flex min-vh-100" id="home_page">
+							<div class="abcd">
+								<img src="/theme_centric/static/src/img/cando/bg.png"/>
+							</div>
+							<div class="container">
+								<div class="row py-lg-5">
+									<div class="col-lg-1"/>
+									<div class="col-lg-10">
+										<center>
+											<h1 class="text-primary">Top Notch Marketing Services</h1>
+											<p class="">We offer several services that pertain to marketing. Whatever your needs are, whatever your budget, we can help you take your business to another level.</p>
+											<div class="s_btn" data-name="Button">
+												<a href="#" class="btn btn-primary rounded-circle btn-lg">Get started</a>
+												<a href="#" class="btn btn-info rounded-circle btn-lg">Learn More</a>
+											</div>
+										</center>
+									</div>
+									<div class="col-lg-1"/>
+								</div>
+								<div class="row">
+									<div class="col lg-12">
+										<img src="/theme_centric/static/src/img/cando/home_page.png" alt="Home Image" class="img-fluid"/>
+									</div>
+								</div>
+							</div>
+						</section>
+		<!-- Home Page End -->
+		
+	</template>
+</odoo>

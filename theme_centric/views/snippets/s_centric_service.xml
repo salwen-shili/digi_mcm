@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+	<template id="s_centric_service" name="Service">
+		<section class="centric_template">
+			<section class="services-section pt128 pb128">
+				<div class="container">
+					<div class="service-title text-center">
+						<span>SERVICES</span>
+						<h3>
+							How We Can Help?
+						</h3>
+					</div>
+					<div class="row text-center">
+						<div class="col-lg-4 col-md-6 col-sm-6">
+							<div class="service-box-link">
+								<div class="service-box">
+									<div class="service-icon">
+										<div class="icon1">
+											<span class="fa fa-newspaper-o"></span>
+										</div>
+									</div>
+									<h3>
+										<a href="/service-detail" class="text-secondary">Search Engine Optimization</a>
+									</h3>
+									<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incutu  labore et dolore magna aliqua.</p>
+								</div>
+							</div>
+						</div>
+						<div class="col-lg-4 col-md-6 col-sm-6">
+							<div class="service-box-link">
+								<div class="service-box">
+									<div class="service-icon">
+										<div class="icon2">
+											<span class="fa fa-object-group"></span>
+										</div>
+									</div>
+									<h3>
+										<a href="/service-detail" class="text-secondary">Social Media Strategy</a>
+									</h3>
+									<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incutu  labore et dolore magna aliqua.</p>
+								</div>
+							</div>
+						</div>
+						<div class="col-lg-4 col-md-6 col-sm-6">
+							<div class="service-box-link">
+								<div class="service-box">
+									<div class="service-icon">
+										<div class="icon3">
+											<span class="fa fa-diamond"></span>
+										</div>
+									</div>
+									<h3>
+										<a href="/service-detail" class="text-secondary">Real Time And Data</a>
+									</h3>
+									<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incutu  labore et dolore magna aliqua.</p>
+								</div>
+							</div>
+						</div>
+						<div class="col-lg-4 col-md-6 col-sm-6">
+							<div class="service-box-link">
+								<div class="service-box">
+									<div class="service-icon">
+										<div class="icon4">
+											<span class="fa fa-commenting-o"></span>
+										</div>
+									</div>
+									<h3>
+										<a href="/service-detail" class="text-secondary">Online Media Management</a>
+									</h3>
+									<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incutu  labore et dolore magna aliqua.</p>
+								</div>
+							</div>
+						</div>
+						<div class="col-lg-4 col-md-6 col-sm-6">
+							<div class="service-box-link">
+								<div class="service-box">
+									<div class="service-icon">
+										<div class="icon5">
+											<span class="fa fa-clone"></span>
+										</div>
+									</div>
+									<h3>
+										<a href="/service-detail" class="text-secondary">Reporting &amp; Analysis</a>
+									</h3>
+									<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incutu  labore et dolore magna aliqua.</p>
+								</div>
+							</div>
+						</div>
+						<div class="col-lg-4 col-md-6 col-sm-6">
+							<div class="service-box-link">
+								<div class="service-box">
+									<div class="service-icon">
+										<div class="icon6">
+											<span class="fa fa-file-code-o"></span>
+										</div>
+									</div>
+									<h3>
+										<a href="/service-detail" class="text-secondary">Penalty Recovery</a>
+									</h3>
+									<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incutu  labore et dolore magna aliqua.</p>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+		</section>
+	</template>
+</odoo>

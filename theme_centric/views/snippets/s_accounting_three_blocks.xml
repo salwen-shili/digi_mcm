@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+	<template id="s_accounting_three_blocks" name="Three block with image and paragraphs">
+		<section class="s_accounting_three_blocks">
+			<div class="spacer feature7">
+				<div class="container">
+					<div class="row justify-content-center">
+						<div class="col-md-7 text-center">
+							<h2 class="title text-beta">Why Choose Bizople Accounting</h2>
+							<h6 class="subtitle">You can relay on our amazing features list and
+								also our customer services will be great experience for you
+								without doubt and in no-time
+							</h6>
+						</div>
+					</div>
+					<div class="row m-t-40">
+						<div class="col-md-4 wrap-feature7-box">
+							<section class="">
+								<img class="rounded img-responsive"
+									src="/theme_centric/static/src/img/a_f1.jpg" alt="" />
+								<div class="m-t-30">
+									<h5 class="font-medium">All Accounting Solution</h5>
+									<p class="m-t-30 m-b-30 custom_p">You can relay on our amazing features list and
+										also our customer services will be great experience.
+									</p>
+									<a href="#" class="text-feature font-medium">Learn More</a>
+								</div>
+							</section>
+						</div>
+						<div class="col-md-4 wrap-feature7-box">
+							<section class="" >
+								<img class="rounded img-responsive"
+									src="/theme_centric/static/src/img/a_f2.jpg" alt="" />
+								<div class="m-t-30">
+									<h5 class="font-medium">International Standards</h5>
+									<p class="m-t-30 m-b-30 custom_p">You can relay on our amazing features list and
+										also our customer services will be great experience.
+									</p>
+									<a href="#" class="text-feature font-medium">Learn More </a>
+								</div>
+							</section>
+						</div>
+						<div class="col-md-4 wrap-feature7-box">
+							<section class="" >
+								<img class="rounded img-responsive"
+									src="/theme_centric/static/src/img/a_f3.jpg" alt="" />
+								<div class="m-t-30">
+									<h5 class="font-medium">Your Business Partner</h5>
+									<p class="m-t-30 m-b-30 custom_p">You can relay on our amazing features list and
+										also our customer services will be great experience.
+									</p>
+									<a href="#" class="text-feature font-medium">Learn More</a>
+								</div>
+							</section>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+	</template>
+
+</odoo>

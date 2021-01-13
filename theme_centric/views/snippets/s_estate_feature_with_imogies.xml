@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+	<template id="s_estate_feature_with_imogies"
+		name="Paragraph with four blocks">
+		<section class="s_estate_feature_with_imogies bg-light-1">
+			<div class=" spacer feature3">
+				<div class="container">
+					<div class="row justify-content-center">
+						<div class="col-md-7 text-center">
+							<h2 class="title text-beta">Features of Bizople Real Estate</h2>
+							<h6 class="subtitle">You can relay on our amazing features list and
+								also our customer services will be great experience for you
+								without doubt and in no-time
+							</h6>
+						</div>
+					</div>
+					<div class="row m-t-40">
+						<div class="col-md-6 wrap-feature3-box">
+							<section class="card card-shadow " >
+								<div class="card-body d-flex">
+									<div class="icon-space align-self-center">
+										<span class="fa fa-globe display-2 text-alpha"></span>
+									</div>
+									<div class="align-self-center">
+										<h5 class="font-medium">
+											<a href="#" class="linking">Covered Lots of Areas
+											</a>
+										</h5>
+										<p class="custom_p m-t-20">You can relay on our amazing features list and
+											also our customer services will be great experience.
+										</p>
+									</div>
+								</div>
+							</section>
+						</div>
+						<div class="col-md-6 wrap-feature3-box">
+							<section class="card card-shadow " >
+								<div class="card-body d-flex">
+									<div class="icon-space align-self-center">
+										<span class="fa fa-clock-o display-2 text-alpha"></span>
+									</div>
+									<div class="align-self-center">
+										<h5 class="font-medium">
+											<a href="#" class="linking">Faster Property
+												Results
+											</a>
+										</h5>
+										<p class="custom_p m-t-20">You can relay on our amazing features list and
+											also our customer services will be great experience.
+										</p>
+									</div>
+								</div>
+							</section>
+						</div>
+						<div class="col-md-6 wrap-feature3-box">
+							<section class="card card-shadow " >
+								<div class="card-body d-flex">
+									<div class="icon-space align-self-center">
+										<span class="fa fa-smile-o display-2 text-alpha"></span>
+									</div>
+									<div class="align-self-center">
+										<h5 class="font-medium">
+											<a href="#" class="linking">Powerful Sorting
+												Options
+											</a>
+										</h5>
+										<p class="custom_p m-t-20">You can relay on our amazing features list and
+											also our customer services will be great experience.
+										</p>
+									</div>
+								</div>
+							</section>
+						</div>
+						<div class="col-md-6 wrap-feature3-box">
+							<section class="card card-shadow " >
+								<div class="card-body d-flex">
+									<div class="icon-space align-self-center">
+										<span class="fa fa-file display-2 text-alpha"></span>
+									</div>
+									<div class="align-self-center">
+										<h5 class="font-medium">
+											<a href="#" class="linking">Satisfaction
+												Guaranteed
+											</a>
+										</h5>
+										<p class="custom_p m-t-20">You can relay on our amazing features list and
+											also our customer services will be great experience.
+										</p>
+									</div>
+								</div>
+							</section>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+	</template>
+
+</odoo>

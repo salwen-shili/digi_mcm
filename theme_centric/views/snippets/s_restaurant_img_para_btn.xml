@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+	<template id="s_restaurant_img_para_btn" name="Image with paragraph">
+		<section class="s_restaurant_img_para_btn bg-light-1">
+			<div class="spacer feature44 ">
+				<div class="container">
+					<div class="row">
+						<div class="col-md-8 text-center align-self-center">
+							<div class="max-500 m-auto">
+								<h2 class="title font-stylish-1 text-beta">Make Unlimited Websites in No-Time with Bizople
+								</h2>
+								<h6 class="subtitle">You can relay on our amazing features list and
+									also our customer services will be great experience for you
+									without doubt and in no-time
+								</h6>
+								<h6 class="subtitle m-t-30">You can relay on our amazing features list and
+									also our customer services will be great experience.
+								</h6>
+								<div class="s_btn" data-name="Button">
+									<a
+										class="btn btn-alpha btn-md btn-rounded rounded-circle arrow-btn m-t-20 m-b-20 bizople_button"
+										href="#">
+											View Other Features
+											<span class="fa fa-1x fa-fw fa-long-arrow-right ml-1"></span>
+									</a>
+								</div>
+							</div>
+						</div>
+						<div class="col-md-4 wrap-feature2-box">
+							<section class="card card-shadow " >
+								<img class="card-img-top"
+									src="/theme_centric/static/src/img/fruit.jpg"
+									alt="bizople kit" />
+								<div class="card-body text-center p-40">
+									<h6 class="text-muted">Great Products</h6>
+									<h4 class="font-bold">The New way of Making Your Website in mins </h4>
+									<div class="s_btn" data-name="Button">
+										<a href="#"
+											class="btn btn-epsilon m-t-30 text-underline bizople_button">View Other Features
+										</a>
+									</div>
+								</div>
+							</section>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+	</template>
+
+</odoo>

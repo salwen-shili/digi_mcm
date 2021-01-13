@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+	<template id="s_charity_banner" name="Home Banner Four">
+		<section id="slider-sec" class="s_charity_banner slider8 p-0">
+			<div id="slider_charity"
+				class="carousel bs-slider slide control-round indicators-line"
+				data-ride="carousel" data-pause="hover" data-interval="7000">
+				<ol class="carousel-indicators">
+					<li data-target="#slider_charity" data-slide-to="0"
+						class="active"></li>
+					<li data-target="#slider_charity" data-slide-to="1" class=""></li>
+				</ol>
+				<div class="carousel-inner " role="listbox">
+					<div class="carousel-item active oe_custom_bg oe_img_bg animated slide-image ls-slide pt128 pb128"  style="background-image: url('/theme_centric/static/src/img/charity_slide1.jpg');" data-name="Slide" alt="We are Digital Agency" data-animation="animated">
+						<div class="container">
+							<div class="row">
+								<div class="col-lg-4 col-md-8 aos-init aos-animate"
+									data-aos="fade-up" data-aos-duration="1200"
+									data-animation="animated fadeInLeft">
+									<section class="bg-white po-relative p-40">
+										<div class="d-flex align-content-center">
+											<section
+												class="label label-inverse font-12 text-uppercase font-bold m-0 aos-init aos-animate"
+												data-aos="fade-left" data-aos-duration="1200">Featured</section>
+											<b data-aos="fade-right" data-aos-duration="1200"
+												class="text-uppercase ml-auto font-12 font-bold aos-init aos-animate">193 Days Left</b>
+										</div>
+										<h5 data-aos="flip-down" data-aos-duration="1200"
+											class="title font-bold aos-init aos-animate">Give small help to african moms who struggle</h5>
+										<p class="d-none d-md-block">Phasellus in egestas libero, et congue lacus.
+											Cras vel lacus nisi. Duis nulla metus, tincidunt.
+										</p>
+										<div class="row b-t m-t-30">
+											<div class="col-6 b-r">
+												<p class="text-uppercase font-13 m-b-0 m-t-15">Raised</p>
+												<h3 class="text-success">$65,360</h3>
+											</div>
+											<div class="col-6">
+												<p class="text-uppercase font-13 m-b-0 m-t-15">Goal</p>
+												<h3>$124,500</h3>
+											</div>
+										</div>
+										<div class="text-center s_btn" data-name="Button">
+											<a class="btn btn-alpha rounded-circle btn-md arrow-btn m-t-20 text-uppercase font-14 font-bold bizople_button"
+												href="#">
+													Donate Now
+													<span class="fa fa-1x fa-fw fa-long-arrow-right ml-1"></span>
+											</a>
+										</div>
+									</section>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="carousel-item oe_custom_bg oe_img_bg animated slide-image pt216 pb128" style="background-image: url('/theme_centric/static/src/img/charity_slide1.jpg');" data-name="Slide" alt="We are Digital Agency" data-animation="animated">
+						<div class="container">
+							<div class="row">
+								<div class="col-sm-10 col-lg-5">
+									<h2 data-animation="animated fadeInLeft"
+										class="title m-0 text-white font-bold text-uppercase">Bring smile for those childs who are in needs of
+										that
+									</h2>
+									<div class="s_btn" data-name="Button">
+										<a class="btn btn-alpha rounded-circle btn-md arrow-btn m-t-30 text-uppercase font-14 font-bold bizople_button"
+											data-animation="animated fadeInUp" href="#">
+												Donate Now
+												<span class="fa fa-1x fa-fw fa-long-arrow-right ml-1"></span>
+										</a>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+	</template>
+
+</odoo>

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+	<template id="s_cando_process" name="Cando Process Block">
+		
+		<!-- process Page Start -->
+			<section class="process-page align-items-center text-center" id="process_page">
+				
+				<div class="container py-5 mt-lg-4">
+					<div class="row lg-7">
+						<div class="data-lg-2 col py-5 mt-lg-4">
+							<div class="row">
+								<div class="col-lg-1"/>
+								<div class="col-lg-4">
+									<div class="process-title">
+										<h2 class="text-secondary">We deliver results!</h2>
+									</div>
+									<div class="row">
+										<p class="">An eagle-eye view of all SEO and web activities for your site. Monitor the monthly progress and the milestones assigned to your project.</p>
+									</div>
+									<div class="row">
+										<p class="">Living fly the under bring had day forth morning don't evening. Be from grass image own shall winged give.</p>
+									</div>
+									<div class="row">
+										
+									<a href="https://www.youtube.com/watch?v=Scxs7L0vhZ4&amp;feature=emb_logo" class="icon bg-primary" >
+										<span class="fa fa-2x fa-play" ></span>
+									</a>
+									</div>
+								</div>
+								<div class="col-lg-6">
+									<center>
+										<img src="/theme_centric/static/src/img/cando/We deliver results!.png" alt="Process..." class="img-fluid"/>
+									</center>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+		<!-- Process Page End -->
+
+	</template>
+</odoo>

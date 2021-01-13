@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+	<template id="s_creative_left_img_right_para"
+		name="left Image Right Paragraph">
+		<section class="s_creative_left_img_right_para">
+			<div class="feature39 spacer wrap-feature39-box">
+				<div class="container">
+					<div class="row">
+						<div class="col-lg-6">
+							<img src="/theme_centric/static/src/img/creative_img1.jpg"
+								class="img-fluid" alt="bizople" />
+						</div>
+						<div class="col-lg-6">
+							<div class="card-body">
+								<section class="label bg-epsilon d-inline-block label-rounded">Features</section>
+								<h2 class="title font-bold text-beta">Awesome Extra Ordinary Flexibility</h2>
+								<p class="m-t-40 m-b-40 custom_p">You can relay on our amazing features list and
+									also our customer services will be greatexperience for you
+									without
+								</p>
+								<div class="d-flex no-block m-b-40">
+									<div class="display-4 m-r-20">
+										<span class="fa fa-inbox text-alpha"></span>
+									</div>
+									<div>
+										<h4>Payment and exchange</h4>
+										<h6 class="subtitle">You can relay on our amazing features</h6>
+									</div>
+								</div>
+								<div class="d-flex no-block m-b-40">
+									<div class="display-4 m-r-20">
+										<span class="fa fa-file text-alpha"></span>
+									</div>
+									<div>
+										<h4>Notes and organising</h4>
+										<h6 class="subtitle">You can relay on our amazing features</h6>
+									</div>
+								</div>
+								<div class="d-flex no-block m-b-40">
+									<div class="display-4 m-r-20">
+										<span class="fa fa-keyboard-o text-alpha"></span>
+									</div>
+									<div>
+										<h4>Language &amp; Input Tools</h4>
+										<h6 class="subtitle">You can relay on our amazing features</h6>
+									</div>
+								</div>
+								<div class="s_btn" data-name="Button">
+									<a
+										class="btn btn-alpha rounded-circle btn-rounded btn-md arrow-btn bizople_button"
+										href="#">
+										View other features
+										<span class="fa fa-1x fa-fw fa-long-arrow-right ml-1"></span>
+									</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+	</template>
+
+</odoo>

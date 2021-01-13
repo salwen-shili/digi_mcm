@@ -1,0 +1,263 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+	<template id="s_centric_boosting" name="Boosting">
+		<section class="centric_template">
+			<section class="boosting-section pt128 pb128">
+				<div class="container">
+					<div class="boosting-title text-center">
+						<span>BOOSTING</span>
+						<h3>
+							Outstanding Digital Experience
+						</h3>
+					</div>
+					<div class="boosting-tabs">
+						<ul class="nav nav-pills">
+							<li class="nav-item">
+								<a class="nav-link active" data-toggle="tab" href="#tab1">
+									<div>
+										<span class="fa fa-search"></span>
+									</div>
+									<span>Real-Time-Analytics</span>
+								</a>
+							</li>
+							<li class="nav-item bg-eff7e9">
+								<a class="nav-link" data-toggle="tab" href="#tab2">
+									<div>
+										<span class="fa fa-usd"></span>
+									</div>
+									<span>Pay-Per-Click</span>
+								</a>
+							</li>
+							<li class="nav-item bg-fff8f0">
+								<a class="nav-link" data-toggle="tab" href="#tab3">
+									<div>
+										<span class="fa fa-bullhorn"></span>
+									</div>
+									<span>Online Marketing</span>
+								</a>
+							</li>
+							<li class="nav-item bg-ecfaf7">
+								<a class="nav-link " data-toggle="tab" href="#tab4">
+									<div>
+										<span class="fa fa-envelope-open-o"></span>
+									</div>
+									<span>Email Marketing</span>
+								</a>
+							</li>
+							<li class="nav-item bg-f2f0fb">
+								<a class="nav-link " data-toggle="tab" href="#tab5">
+									<div>
+										<span class="fa fa-snowflake-o"></span>
+									</div>
+									<span>Social Marketing</span>
+								</a>
+							</li>
+							<li class="nav-item bg-c5ebf9">
+								<a class="nav-link" data-toggle="tab" href="#tab6">
+									<div>
+										<span class="fa fa-desktop"></span>
+									</div>
+									<span>Digital Marketing</span>
+								</a>
+							</li>
+						</ul>
+						<div class="tab-content">
+						    <div id="tab1" class="tab-pane active">
+						      	<div class="row align-items-center">
+						      		<div class="col-lg-5">
+						      			<div class="tab-image">
+						      				<img class="img img-fluid" src="/theme_centric/static/img/aboutus.png"/>
+						      			</div>
+							      	</div>
+							      	<div class="col-lg-7">
+							      		<div class="content">
+							      			<h2>Real-Time Analytics</h2>
+							      			<p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text.</p>
+							      		</div>
+							      		<div class="row">
+							      			<div class="col-lg-6 col-md-6">
+							      				<div class="tab-text-content">
+							      					<span class="fa fa-search"></span>
+							      					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.</p>
+							      				</div>
+							      			</div>
+							      			<div class="col-lg-6 col-md-6">
+							      				<div class="tab-text-content">
+							      					<span class="fa fa-search"></span>
+							      					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.</p>
+							      				</div>
+							      			</div>
+							      		</div>
+							      		<div class="tab-btn s_btn">
+							      			<a href="#" class="boostingbtn btn btn-alpha rounded-circle">Discover More</a>
+							      		</div>
+							      	</div>
+							  	</div>
+						    </div>
+						    <div id="tab2" class="tab-pane">
+						      	<div class="row align-items-center">
+						      		<div class="col-lg-5">
+						      			<div class="tab-image">
+						      				<img class="img img-fluid" src="/theme_centric/static/img/chooseimg.png"/>
+						      			</div>
+							      	</div>
+							      	<div class="col-lg-7">
+							      		<div class="content">
+							      			<h2>PAY-PER CLICK</h2>
+							      			<p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text.</p>
+							      		</div>
+							      		<div class="row">
+							      			<div class="col-lg-6 col-md-6">
+							      				<div class="tab-text-content">
+							      					<span class="fa fa-search"></span>
+							      					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.</p>
+							      				</div>
+							      			</div>
+							      			<div class="col-lg-6 col-md-6">
+							      				<div class="tab-text-content">
+							      					<span class="fa fa-search"></span>
+							      					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.</p>
+							      				</div>
+							      			</div>
+							      		</div>
+							      		<div class="tab-btn s_btn">
+							      			<a href="#" class="boostingbtn btn btn-alpha rounded-circle">Discover More</a>
+							      		</div>
+							      	</div>
+							  	</div>
+						    </div>
+						    <div id="tab3" class="tab-pane">
+						      	<div class="row align-items-center">
+						      		<div class="col-lg-5">
+						      			<div class="tab-image">
+						      				<img class="img img-fluid" src="/theme_centric/static/img/aboutus.png"/>
+						      			</div>
+							      	</div>
+							      	<div class="col-lg-7">
+							      		<div class="content">
+							      			<h2>Online Marketing</h2>
+							      			<p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text.</p>
+							      		</div>
+							      		<div class="row">
+							      			<div class="col-lg-6 col-md-6">
+							      				<div class="tab-text-content">
+							      					<span class="fa fa-search"></span>
+							      					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.</p>
+							      				</div>
+							      			</div>
+							      			<div class="col-lg-6 col-md-6">
+							      				<div class="tab-text-content">
+							      					<span class="fa fa-search"></span>
+							      					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.</p>
+							      				</div>
+							      			</div>
+							      		</div>
+							      		<div class="tab-btn s_btn">
+							      			<a href="#" class="boostingbtn btn btn-alpha rounded-circle">Discover More</a>
+							      		</div>
+							      	</div>
+							  	</div>
+						    </div>
+						    <div id="tab4" class="tab-pane">
+						      	<div class="row align-items-center">
+						      		<div class="col-lg-5">
+						      			<div class="tab-image">
+						      				<img class="img img-fluid" src="/theme_centric/static/img/chooseimg.png"/>
+						      			</div>
+							      	</div>
+							      	<div class="col-lg-7">
+							      		<div class="content">
+							      			<h2>Email Marketing</h2>
+							      			<p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text.</p>
+							      		</div>
+							      		<div class="row">
+							      			<div class="col-lg-6 col-md-6">
+							      				<div class="tab-text-content">
+							      					<span class="fa fa-search"></span>
+							      					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.</p>
+							      				</div>
+							      			</div>
+							      			<div class="col-lg-6 col-md-6">
+							      				<div class="tab-text-content">
+							      					<span class="fa fa-search"></span>
+							      					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.</p>
+							      				</div>
+							      			</div>
+							      		</div>
+							      		<div class="tab-btn s_btn">
+							      			<a href="#" class="boostingbtn btn btn-alpha rounded-circle">Discover More</a>
+							      		</div>
+							      	</div>
+							  	</div>
+						    </div>
+						    <div id="tab5" class="tab-pane">
+						      	<div class="row align-items-center">
+						      		<div class="col-lg-5">
+						      			<div class="tab-image">
+						      				<img class="img img-fluid" src="/theme_centric/static/img/aboutus.png"/>
+						      			</div>
+							      	</div>
+							      	<div class="col-lg-7">
+							      		<div class="content">
+							      			<h2>Social Marketing</h2>
+							      			<p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text.</p>
+							      		</div>
+							      		<div class="row">
+							      			<div class="col-lg-6 col-md-6">
+							      				<div class="tab-text-content">
+							      					<span class="fa fa-search"></span>
+							      					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.</p>
+							      				</div>
+							      			</div>
+							      			<div class="col-lg-6 col-md-6">
+							      				<div class="tab-text-content">
+							      					<span class="fa fa-search"></span>
+							      					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.</p>
+							      				</div>
+							      			</div>
+							      		</div>
+							      		<div class="tab-btn s_btn">
+							      			<a href="#" class="boostingbtn btn btn-alpha rounded-circle">Discover More</a>
+							      		</div>
+							      	</div>
+							  	</div>
+						    </div>
+						    <div id="tab6" class="tab-pane">
+						      	<div class="row align-items-center">
+						      		<div class="col-lg-5">
+						      			<div class="tab-image">
+						      				<img class="img img-fluid" src="/theme_centric/static/img/chooseimg.png"/>
+						      			</div>
+							      	</div>
+							      	<div class="col-lg-7">
+							      		<div class="content">
+							      			<h2>Digital Marketing</h2>
+							      			<p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text.</p>
+							      		</div>
+							      		<div class="row">
+							      			<div class="col-lg-6 col-md-6">
+							      				<div class="tab-text-content">
+							      					<span class="fa fa-search"></span>
+							      					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.</p>
+							      				</div>
+							      			</div>
+							      			<div class="col-lg-6 col-md-6">
+							      				<div class="tab-text-content">
+							      					<span class="fa fa-search"></span>
+							      					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.</p>
+							      				</div>
+							      			</div>
+							      		</div>
+							      		<div class="tab-btn s_btn">
+							      			<a href="#" class="boostingbtn btn btn-alpha rounded-circle">Discover More</a>
+							      		</div>
+							      	</div>
+							  	</div>
+						    </div>
+						</div>
+					</div>
+				</div>
+			</section>
+		</section>
+	</template>
+</odoo>

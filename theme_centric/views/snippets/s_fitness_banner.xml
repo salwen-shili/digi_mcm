@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+	<template id="s_fitness_banner" name="Home Banner Fourteen">
+		<section id="slider-sec" class="s_fitness_banner slider6">
+			<div id="slider6"
+				class="carousel bs-slider slide  control-round indicators-line"
+				data-ride="carousel" data-pause="hover" data-interval="7000">
+				<ol class="carousel-indicators hide">
+					<li data-target="#slider6" data-slide-to="0" class="active"></li>
+					<li data-target="#slider6" data-slide-to="1" class=""></li>
+				</ol>
+				<div class="carousel-inner" role="listbox">
+					<div class="carousel-item active  pt152" style="background-image: url('/theme_centric/static/src/img/fitness_banner1.jpg');">
+						<div class="container">
+							<div class="row">
+								<div class="col-md-8 col-lg-5"
+									data-animation="animated slideInUp">
+									<div
+										class="bg-danger-gradiant-1 slide-content po-relative">
+										<h2 data-animation="animated fadeInLeft"
+											class="title text-white font-bold">Yoga makes it easy for body to be Fit</h2>
+										<p data-animation="animated fadeInLeft" class="m-b-40">Join Our
+											Programm and Be Fit and Live nice &amp; Joyful Life to
+											everyday.
+										</p>
+										<div class="s_btn" data-name="Button">
+											<a class="btn btn-md arrow-btn text-white bizople_button"
+												href="#">
+													Join The Force Now!
+													<span class="fa fa-1x fa-fw fa-long-arrow-right ml-1"></span>
+											</a>
+										</div>
+										<div class="bg-white price-tag text-center">
+											<label class="text-inverse font-14 font-semibold">Yoga Classes</label>
+											<span class="text-danger-1">
+												$49
+												<b class="font-normal font-14">/M</b>
+											</span>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="carousel-item pt152" style="background-image: url('/theme_centric/static/src/img/fitness_banner2.jpg');">
+						<div class="container">
+							<div class="row">
+								<div class="col-md-8 col-lg-5 ml-auto">
+									<div class="bg-danger-gradiant-1 slide-content"
+										data-animation="animated slideInUp">
+										<h2 data-animation="animated fadeInRight"
+											class="title text-white font-bold">Body Building with Fitness Program</h2>
+										<p data-animation="animated fadeInRight" class="m-b-40">Join Our
+											Programm and Be Fit and Live nice &amp; Joyful Life to
+											everyday.
+										</p>
+										<div class="s_btn" data-name="Button">
+											<a class="btn btn-md arrow-btn text-white bizople_button"
+												href="#">
+													Join The Force Now!
+													<span class="fa fa-1x fa-fw fa-long-arrow-right ml-1"></span>
+											</a>
+										</div>
+										<div class="bg-white price-tag text-center">
+											<label class="text-inverse font-semibold font-14">Yoga Classes</label>
+											<span class="text-danger-1">
+												$49
+												<b class="font-normal font-14">/M</b>
+											</span>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="slider-control">
+						<a class="left carousel-control-prev text-danger-1 font-14"
+							data-target="#slider6" role="button" data-slide="prev">
+							<span class="bg-white text-center fa fa-arrow-left "></span>
+							<b class="sr-only font-normal">Previous</b>
+						</a>
+						<a class="right carousel-control-next text-danger-1 font-14"
+							data-target="#slider6" role="button" data-slide="next">
+							<span class="bg-white text-center fa fa-arrow-right "></span>
+							<b class="sr-only font-normal">Next</b>
+						</a>
+					</div>
+				</div>
+			</div>
+		</section>
+
+	</template>
+
+</odoo>

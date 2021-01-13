@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+	<template id="s_business_img_with_quote"
+		name="Image with three blocks and quote">
+		<section class="s_business_img_with_quote bg-light-1">
+			<div class=" spacer feature15">
+				<div class="container">
+					<div class="row justify-content-center">
+						<div class="col-md-7 text-center">
+							<h2 class="title text-beta">Awesome with Extra Ordinary Flexibility</h2>
+							<h6 class="subtitle">You can relay on our amazing features list and
+								also our customer services will be great experience for you
+								without doubt and in no-time
+							</h6>
+						</div>
+					</div>
+					<div class="row m-t-40">
+						<div class="col-lg-5 wrap-feature15-box">
+							<div class="row">
+								<div class="col-md-12 m-b-30 ">
+									<div class="d-flex no-block">
+										<div class="icon-space align-self-center">
+											<span class="fa fa-dot-circle-o display-5 text-alpha"></span>
+										</div>
+										<div class="p-20">
+											<div class="s_btn" data-name="Link Align">
+												<h5 class="font-medium">
+													<a href="#" class="linking">
+														Retargeting Market
+														<span class="fa fa-1x fa-fw fa-long-arrow-right ml-1"></span>
+													</a>
+												</h5>
+											</div>
+											<p class="m-t-20">You can relay on our amazing features list and
+												also our customer services will be great experience.
+											</p>
+										</div>
+									</div>
+								</div>
+								<div class="col-md-12 m-b-30 ">
+									<div class="d-flex no-block">
+										<div class="icon-space align-self-center">
+											<span class="fa fa-cog display-5 text-alpha"></span>
+										</div>
+										<div class="p-20">
+											<div class="s_btn" data-name="Link Align">
+												<h5 class="font-medium">
+													<a href="#" class="linking">
+														Fruitful Results
+														<span class="fa fa-1x fa-fw fa-long-arrow-right ml-1"></span>
+													</a>
+												</h5>
+											</div>
+											<p class="m-t-20">You can relay on our amazing features list and
+												also our customer services will be great experience.
+											</p>
+										</div>
+									</div>
+								</div>
+								<div class="col-md-12 m-b-30 ">
+									<div class="d-flex no-block">
+										<div class="icon-space align-self-center">
+											<span class="fa fa-mobile display-5 text-alpha"></span>
+										</div>
+										<div class="p-20">
+											<div class="s_btn" data-name="Link Align">
+												<h5 class="font-medium">
+													<a href="#" class="linking">
+														Instant Solutions
+														<span class="fa fa-1x fa-fw fa-long-arrow-right ml-1"></span>
+													</a>
+												</h5>
+											</div>
+											<p class="m-t-20">You can relay on our amazing features list and
+												also our customer services will be great experience.
+											</p>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-lg-6 ml-auto">
+							<section class="card card-shadow ">
+								<img class="card-img-top"
+									src="/theme_centric/static/src/img/img5.jpg" alt="bizople kit" />
+								<div class="card-body p-40 po-relative">
+									<section
+										class="quote icon-round bg-feature po-absolute text-white">
+										<img src="/theme_centric/static/src/img/quote.png"
+											alt="bizople kit" />
+									</section>
+									<div class="quote-text">
+										<h4 class=" font-light">It was incredibaly refreshing to work with an
+											agency that is focused on our needs.
+										</h4>
+										<h6 class="m-t-30 font-medium">Michale Anderson</h6>
+									</div>
+								</div>
+							</section>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+	</template>
+
+</odoo>

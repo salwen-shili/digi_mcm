@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+	<template id="s_new_homepage_img_gallery" name="Image Gallery">
+		<section class="s_new_homepage_img_gallery">
+			<div id=" " class="shopify-section index-section">
+				<div class="container-indent nomargin">
+					<div class="container-fluid-custom">
+						<div class="row flex-sm-row-reverse">
+							<div class="col-sm-12 col-md-6">
+								<div class="row">
+									<div class="col-sm-6">
+										<div class="tt-promo-box tt-one-child hover-type-2" data-hovercolors="">
+											<img class="lazyload"
+												src="/theme_centric/static/src/img/home1_05_x800.png"
+												alt="" />
+											<div class="tt-description normal">
+												<div class="tt-description-wrapper">
+													<a href="#" class="tt-title-small">MEN</a>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="col-sm-6">
+										<div class="tt-promo-box tt-one-child hover-type-2" data-hovercolors="">
+											<img class="lazyload"
+												src="/theme_centric/static/src/img/home1_07_x800.png" />
+											<div class="tt-description normal">
+												<div class="tt-description-wrapper">
+													<a href="#" class="tt-title-small">ACCESSORIES
+													</a>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="col-sm-12">
+										<div class="tt-promo-box tt-one-child hover-type-2" data-hovercolors="">
+											<img class="lazyload"
+												src="/theme_centric/static/src/img/home1_08_10c440e1-7fd8-4025-ab9d-182c7f509284_1024x.png" />
+											<div class="tt-description normal">
+												<div class="tt-description-wrapper">
+													<a href="#" class="tt-title-small">SHOES</a>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="col-sm-12 col-md-6">
+								<div class="row">
+									<div class="col-sm-6">
+										<div class="tt-promo-box tt-one-child hover-type-2" data-hovercolors="">
+											<img class="lazyload img img-fluid" src="/theme_centric/static/src/img/home1_03_x800.png" alt=""/>
+											<div class="tt-description normal">
+												<div class="tt-description-wrapper">
+													<a href="#" class="tt-title-small">SALE</a>
+												</div>
+											</div>
+										</div>
+
+										<div
+											class="tt-promo-box tt-one-child hover-type-2"
+											data-hovercolors="">
+											<img class="lazyload"
+												src="/theme_centric/static/src/img/home1_04_x800.png"
+												alt="" />
+											<div class="tt-description normal">
+												<div class="tt-description-wrapper">
+													<a href="#" class="tt-title-small">NEW</a>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="col-sm-6">
+										<div class="tt-promo-box tt-one-child hover-type-2" data-hovercolors="">
+											<img class="lazyload"
+												src="/theme_centric/static/src/img/home1_06_1024x.png?v=1537467467"
+												alt="" />
+											<div class="tt-description normal">
+												<div class="tt-description-wrapper">
+													<a href="#" class="tt-title-small">WOMEN</a>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+	</template>
+
+</odoo>

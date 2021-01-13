@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+	<template id="s_mini_appoinment" name="Mini Appoinment">
+		<section class="s_mini_appoinment bg-success-1">
+			<div class="mini-spacer  text-white">
+				<div class="container">
+					<div class="d-flex">
+						<div class="display-7 align-self-center">Are you Looking for Online Appointment?</div>
+						<div class="ml-auto m-t-10 m-b-10 s_btn" data-name="Button">
+							<button class="btn btn-outline-light btn-md  rounded-circle bizople_button"
+								data-toggle="modal" data-target="#exampleModal">Book an Appointment</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+	</template>
+
+</odoo>

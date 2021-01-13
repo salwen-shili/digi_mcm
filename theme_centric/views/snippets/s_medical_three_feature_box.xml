@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+	<template id="s_medical_three_feature_box"
+		name="Three Boxes with background colors">
+		<section class="s_medical_three_feature_box">
+			<div class="feature6">
+				<div class="container">
+            <div class="row m-t-40">
+              <div class="col-md-4 wrap-feature6-box">
+                <section
+                  class="card bg-success-light text-white">
+                  <div class="card-box">
+                    <h6 class="font-medium text-white">Cashless Insurance</h6>
+                    <p class="m-t-20">Lorem ipsum dolor sit amet, consecte tuam
+                      porttitor, nunc et fringilla.
+                    </p>
+                    <div class="s_btn" data-name="Link Align">
+                      <a href="#f4" class="linking text-white">
+                        Learn More
+                        <span class="fa fa-1x fa-fw fa-long-arrow-right ml-1"></span>
+                      </a>
+                    </div>
+                  </div>
+                </section>
+              </div>
+              <div class="col-md-4 wrap-feature6-box">
+                <section
+                  class="card bg-success-1 text-white">
+                  <div class="card-box">
+                    <h6 class="font-medium text-white">Affordable Charges</h6>
+                    <p class="m-t-20">Lorem ipsum dolor sit amet, consecte tuam
+                      porttitor,
+                      nunc et fringilla.
+                    </p>
+                    <div class="s_btn" data-name="Link Align">
+                      <a href="#f4" class="linking text-white">
+                        Learn More
+                        <span class="fa fa-1x fa-fw fa-long-arrow-right ml-1"></span>
+                      </a>
+                    </div>
+                  </div>
+                </section>
+
+              </div>
+              <div class="col-md-4 wrap-feature6-box">
+                <section
+                  class="card bg-info-1 text-white">
+                  <div class="card-box">
+                    <h6 class="font-medium text-white">Trusted Brand Name</h6>
+                    <p class="m-t-20">Lorem ipsum dolor sit amet, consecte tuam
+                      porttitor,
+                      nunc et fringilla.
+                    </p>
+                    <div class="s_btn" data-name="Link Align">
+                      <a href="#f4" class="linking text-white">
+                        Learn More
+                        <span class="fa fa-1x fa-fw fa-long-arrow-right ml-1"></span>
+                      </a>
+                    </div>
+                  </div>
+                </section>
+              </div>
+            </div>
+          </div>
+			</div>
+		</section>
+	</template>
+
+</odoo>

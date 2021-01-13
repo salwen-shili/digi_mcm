@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+	<template id="website_multi_footer_seven"
+		inherit_id="portal.frontend_layout" name="Footer Seven" active="False">
+		<xpath expr="//footer" position="replace">
+			<footer id="footer_seven" class="footer_seven o_footer">
+				<div class="footer5 spacer">
+					<div class="container">
+						<div class="row">
+							<div class="col-lg-2 col-md-6 m-b-30">
+								<ul class="general-listing">
+									<li>
+										<a href="#">Nice big link</a>
+									</li>
+									<li>
+										<a href="#">We’re Hiring</a>
+									</li>
+									<li>
+										<a href="#">Press Center</a>
+									</li>
+									<li>
+										<a href="#">Terms of Service</a>
+									</li>
+									<li>
+										<a href="#">Privacy Policy</a>
+									</li>
+								</ul>
+							</div>
+							<div class="col-lg-2 col-md-6 m-b-30">
+								<ul class="general-listing">
+									<li>
+										<a href="#">We’re Hiring</a>
+									</li>
+									<li>
+										<a href="#">Press Center</a>
+									</li>
+									<li>
+										<a href="#">Terms of Service</a>
+									</li>
+									<li>
+										<a href="#">Privacy Policy</a>
+									</li>
+									<li>
+										<a href="#">Accessibility</a>
+									</li>
+								</ul>
+							</div>
+							<div class="col-lg-3 col-md-6 m-b-30">
+								<div class="d-flex no-block">
+									<div class="display-7 m-r-20 align-self-top">
+										<i class="fa fa-map-marker"></i>
+									</div>
+									<div class="info">
+										<span class="font-medium text-dark db m-t-5">
+											<span t-field="res_company.name" />
+											Head Office
+										</span>
+										<br />
+										<p>
+											<span t-field="res_company.street"></span>
+											,
+											<br />
+											<span t-field="res_company.city"></span>
+											,
+											<span t-field="res_company.zip"></span>
+											,
+											<br />
+											<span t-field="res_company.country_id.name"></span>
+
+										</p>
+									</div>
+								</div>
+								<div class="d-flex no-block m-b-10">
+									<div class="display-7 m-r-20 align-self-top">
+										<i class="fa fa-phone"></i>
+									</div>
+									<div class="info">
+										<span class="font-medium text-dark db  m-t-5"
+											t-if="res_company.phone" t-field="res_company.phone"></span>
+									</div>
+								</div>
+								<div class="d-flex no-block m-b-30">
+									<div class="display-7 m-r-20 align-self-top">
+										<i class="fa fa-envelope"></i>
+									</div>
+									<div class="info">
+										<a href="#" class="font-medium text-dark db  m-t-5"
+											t-if="res_company.email" t-field="res_company.email"></a>
+									</div>
+								</div>
+							</div>
+							<div class="col-lg-5 col-md-6 m-b-30">
+								<h6 class="font-medium m-b-30">Subscribe to Our Newsletter</h6>
+								<form>
+									<div class="input-group js_subscribe" data-list-id="1"
+										data-subscribe="off">
+										<input type="email" name="email"
+											class="js_subscribe_email form-control"
+											placeholder="Email Id" />
+										<span class="input-group-btn input-group-append">
+
+											<a role="button" href="#"
+												class="btn btn-feature btn-md js_subscribe_btn ">Subscribe</a>
+											<a role="button" href="#"
+												class="btn btn-success js_subscribed_btn d-none o_default_snippet_text"
+												disabled="disabled">Thanks</a>
+
+											<div
+												class="alert alert-success d-none o_default_snippet_text"
+												role="status">Thanks for your subscription!</div>
+										</span>
+									</div>
+								</form>
+								<div class="social-links">
+									<a class=" " t-att-href="website.social_facebook"
+										t-if="website.social_facebook" target="_blank">
+										<i class="fa fa-facebook" />
+									</a>
+									<a class=" " t-att-href="website.social_twitter"
+										t-if="website.social_twitter" target="_blank">
+										<i class="fa fa-twitter" />
+									</a>
+									<a class=" " t-att-href="website.social_linkedin"
+										t-if="website.social_linkedin" target="_blank">
+										<i class="fa fa-linkedin" />
+									</a>
+									<a class=" " t-att-href="website.social_youtube"
+										t-if="website.social_youtube" target="_blank">
+										<i class="fa fa-youtube-play" />
+									</a>
+									<a class=" " t-att-href="website.social_instagram"
+										t-if="website.social_instagram" target="_blank">
+										<i class="fa fa-instagram"></i>
+									</a>
+									<a class="" t-att-href="website.social_github"
+										t-if="website.social_github" target="_blank">
+										<i class="fa fa-github"></i>
+									</a>
+
+								</div>
+								<img
+									src="/theme_centric/static/src/img/footer_seven_img.jpg"
+									alt=" " />
+							</div>
+						</div>
+
+					</div>
+					<div id="to-top">
+						<a id="to-top bg-alpha">
+							<span class="fa fa-arrow-up"></span>
+						</a>
+					</div>
+				</div>
+			</footer>
+		</xpath>
+	</template>
+</odoo>

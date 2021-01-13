@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+	<template id="s_mega_menu_one_snippet" name="Mega Menu One">
+		<section class="s_mega_menu_one_snippet ">
+			<div class="container ">
+				<div class="row sf-menu">
+					<div class="col-md-4 col-sm-4">
+						<h5>COMMUNICATE</h5>
+							<ul class="mega_submenu_one">
+								<li class="">
+									<a href="#">About us</a>	
+								</li>	
+								<li class="">
+									<a href="#">Teachers</a>	
+								</li>
+								<li class="">
+									<a href="#">Teacher profile</a>	
+								</li>
+								<li class="">
+									<a href="#">Member profile</a>	
+								</li>
+								<li class="">
+									<a href="#">Blog</a>	
+								</li>
+								<li class="">
+									<a href="#">news &amp; Events</a>	
+								</li>				
+							</ul>
+					</div>
+					<div class="col-md-4 col-sm-4">
+						<h5>OTHER PAGES</h5>
+							<ul class="mega_submenu_one">
+								<li class="">
+									<a href="#">PHP working wizard apply</a>	
+								</li>	
+								<li class="">
+									<a href="#">PHP working apply</a>	
+								</li>
+								<li class="">
+									<a href="#">Login</a>	
+								</li>
+								<li class="">
+									<a href="#">Register</a>	
+								</li>
+								<li class="">
+									<a href="#">Shortcodes</a>	
+								</li>
+								<li class="">
+									<a href="#">Photo &amp; Video Gallery</a>	
+								</li>				
+							</ul>
+					</div>
+					<div class="col-md-4 col-sm-4">
+						<h5>SUBMENU WITH ICONS</h5>
+						<ul class="mega_submenu_one">
+							<li class="">
+								<a href="#">Downloads</a>
+								<i class=" fa fa-download"></i>
+							</li>	
+							<li class="">
+								<a href="#">Video files</a>
+								<i class=" fa fa-video-camera"></i>
+							</li>
+							<li class="">
+								<a href="#">Audio Files</a>
+								<i class=" fa fa-music"></i>
+							</li>
+							<li class="">
+								<a href="#">Members</a>
+								<i class=" fa fa-user"></i>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</section>
+	</template>
+</odoo>

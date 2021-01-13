@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+	<template id="s_business_logo_partners" name="Parner logos">
+		<section class="s_business_logo_partners spacer">
+			<div class="client2 p-t-0">
+				<div class="container">
+					<p class="text-beta text-center font-16 font-normal m-b-40">Our awesome partners to help us in best possible way
+					</p>
+					<div class="row client-box text-center op-7">
+						<div class="col-lg-2 col-md-4">
+							<img src="/theme_centric/static/src/img/c1.png"
+								alt="bizople"  class="img img-fluid"/>
+						</div>
+						<div class="col-lg-2 col-md-4">
+							<img src="/theme_centric/static/src/img/c2.png"
+								alt="bizople"  class="img img-fluid"/>
+						</div>
+						<div class="col-lg-2 col-md-4">
+							<img src="/theme_centric/static/src/img/c3.png"
+								alt="bizople"  class="img img-fluid"/>
+						</div>
+						<div class="col-lg-2 col-md-4">
+							<img src="/theme_centric/static/src/img/c4.png"
+								alt="bizople"  class="img img-fluid"/>
+						</div>
+						<div class="col-lg-2 col-md-4">
+							<img src="/theme_centric/static/src/img/c5.png"
+								alt="bizople"  class="img img-fluid"/>
+						</div>
+						<div class="col-lg-2 col-md-4">
+							<img src="/theme_centric/static/src/img/c6.png"
+								alt="bizople"  class="img img-fluid"/>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+	</template>
+
+</odoo>

@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+	<template id="s_mega_menu_eight_snippet" name="Mega Menu Eight">
+		<section class="s_mega_menu_eight_snippet">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-3 col-sm-3">
+						<div class="main_menu">
+						<h3>I Column</h3>
+							<ul class="sub-menu list-unstyled">
+								<li>
+									<i class="fa fa-cloud"></i><a href="#">Fullwidth</a>
+								</li>
+								<li>
+									<i class="fa fa-coffee"></i><a href="#">With Right Sidebar</a>
+								</li>
+								<li>
+									<i class="fa fa-cogs"></i><a href="#">With Left Sidebar</a>
+								</li>
+								<li>
+									<i class="fa fa-camera"></i><a href="#">With Both Sidebar</a>
+								</li>
+								<li>
+									<i class="fa fa-bell"></i><a href="#">With Pagination</a>
+								</li>
+							</ul>
+						</div>
+					</div>
+					<div class="col-md-3 col-sm-3">
+						<div class="main_menu">
+						<h3>II Column</h3>
+							<ul class="sub-menu list-unstyled">
+								<li>
+									<i class="fa fa-cloud"></i><a href="#">Fullwidth</a>
+								</li>
+								<li>
+									<i class="fa fa-coffee"></i><a href="#">With Right Sidebar</a>
+								</li>
+								<li>
+									<i class="fa fa-cogs"></i><a href="#">With Left Sidebar</a>
+								</li>
+								<li>
+									<i class="fa fa-camera"></i><a href="#">With Both Sidebar</a>
+								</li>
+								<li>
+									<i class="fa fa-bell"></i><a href="#">With Pagination</a>
+								</li>
+							</ul>
+						</div>
+					</div>
+					<div class="col-md-3 col-sm-3">
+						<div class="main_menu">
+						<h3>III Column</h3>
+							<ul class="sub-menu list-unstyled">
+								<li>
+									<i class="fa fa-cloud"></i><a href="#">Fullwidth</a>
+								</li>
+								<li>
+									<i class="fa fa-coffee"></i><a href="#">With Right Sidebar</a>
+								</li>
+								<li>
+									<i class="fa fa-cogs"></i><a href="#">With Left Sidebar</a>
+								</li>
+								<li>
+									<i class="fa fa-camera"></i><a href="#">With Both Sidebar</a>
+								</li>
+								<li>
+									<i class="fa fa-bell"></i><a href="#">With Pagination</a>
+								</li>
+							</ul>
+						</div>
+					</div>
+					<div class="col-md-3 col-sm-3">
+						<div class="main_menu">
+						<h3>Blog Thum Image</h3>
+							<ul class="sub-menu list-unstyled">
+								<li>
+									<i class="fa fa-cloud"></i><a href="#">Fullwidth</a>
+								</li>
+								<li>
+									<i class="fa fa-coffee"></i><a href="#">With Right Sidebar</a>
+								</li>
+								<li>
+									<i class="fa fa-cogs"></i><a href="#">With Left Sidebar</a>
+								</li>
+								<li>
+									<i class="fa fa-camera"></i><a href="#">With Both Sidebar</a>
+								</li>
+								<li>
+									<i class="fa fa-bell"></i><a href="#">With Pagination</a>
+								</li>
+							</ul>
+						</div>
+					</div>
+					<div class="col-md-12 col-sm-12">
+						<h3 href="#">Fullwidth Image</h3>
+						<div class="img-caption">
+							<img class="img-fluid" src="/theme_centric/static/src/img/video-bg.jpg"/>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+	</template>
+</odoo>

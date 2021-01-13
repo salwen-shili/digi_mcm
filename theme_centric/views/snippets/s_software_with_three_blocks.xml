@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+	<template id="s_software_with_three_blocks" name="Center Paragraph with three blocks">
+		<section class="s_software_with_three_blocks bg-light-1">
+			<div class=" spacer feature1">
+				<div class="container">
+					<div class="row justify-content-center">
+						<div class="col-md-7 text-center">
+							<h2 class="title text-beta">Awesome with Extra Ordinary Flexibility</h2>
+							<h6 class="subtitle">You can relay on our amazing features list and
+								also our customer services will be great experience for you
+								without doubt and in no-time
+							</h6>
+						</div>
+					</div>
+					<div class="row m-t-40">
+						<div class="col-md-4 wrap-feature1-box">
+							<section class="card card-shadow " >
+								<div class="card-body text-center">
+									<div class="icon-space">
+
+										<span class="text-alpha display-4 fa fa-home"></span>
+									</div>
+									<h5 class="font-medium">Retargeting Market</h5>
+									<p class="custom_p m-t-20">You can relay on our amazing features list and
+										also our customer services will be great experience.
+									</p>
+								</div>
+							</section>
+						</div>
+						<div class="col-md-4 wrap-feature1-box">
+							<section class="card card-shadow " >
+								<div class="card-body text-center">
+									<div class="icon-space">
+										<span class="fa fa-briefcase display-4 text-alpha"></span>
+									</div>
+									<h5 class="font-medium">Fruitful Results</h5>
+									<p class="custom_p m-t-20">You can relay on our amazing features list and
+										also our customer services will be great experience.
+									</p>
+								</div>
+							</section>
+						</div>
+						<div class="col-md-4 wrap-feature1-box">
+							<section class="card card-shadow " >
+								<div class="card-body text-center">
+									<div class="icon-space">
+										<span class="text-alpha display-4 fa fa-smile-o"></span>
+									</div>
+									<h5 class="font-medium">Instant Solutions</h5>
+									<p class="custom_p m-t-20">You can relay on our amazing features list and
+										also our customer services will be great experience.
+									</p>
+								</div>
+							</section>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+	</template>
+
+</odoo>

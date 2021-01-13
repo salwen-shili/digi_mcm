@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+	<template id="s_fitness_pricing_with_img"
+		name="Pricing plan with image">
+		<section class="s_fitness_pricing_with_img bg-light-1">
+			<div class="pricing4 spacer ">
+				<div class="container">
+					<div class="row justify-content-center">
+						<div class="col-md-7 text-center">
+							<h2 class="title text-beta">Extraordinary Pricing for your Fitness</h2>
+							<h6 class="subtitle">You can relay on our amazing features list and
+								also our customer services will be great experience for you
+								without doubt and in no-time
+							</h6>
+						</div>
+					</div>
+					<div class="row m-t-40">
+						<div class="col-md-4">
+							<section class="card card-shadow ">
+								<img class="card-img-top"
+									src="/theme_centric/static/src/img/img1_f1.jpg" alt="" />
+								<div class="p-30">
+									<h5 class="font-medium m-b-0">Bodu Building Program</h5>
+									<h6 class="subtitle font-13">WITH JOHNATHAN DOE</h6>
+									<ul class="general-listing only-li font-14 m-t-20">
+										<li>
+											<span class="fa fa-check-circle text-feature"></span>
+											6 Days a Week
+										</li>
+										<li>
+											<span class="fa fa-check-circle text-feature"></span>
+											Dedicated Trainer Allocated
+										</li>
+										<li>
+											<span class="fa fa-check-circle text-feature"></span>
+											Diet Plan Included
+										</li>
+										<li>
+											<span class="fa fa-check-circle text-feature"></span>
+											Morning and Evening Batches
+										</li>
+									</ul>
+									<div class="d-flex m-t-30 align-items-center">
+										<h2 class="price">
+											$99
+											<sup>*</sup>
+											<small>/m</small>
+										</h2>
+										<div class="ml-auto s_btn" data-name="Button">
+											<a class="btn btn-alpha rounded-circle bizople_button" href="#">Choose Plan</a>
+										</div>
+									</div>
+								</div>
+							</section>
+						</div>
+						<div class="col-md-4">
+							<section class="card card-shadow ">
+								<img class="card-img-top"
+									src="/theme_centric/static/src/img/img2_f2.jpg" alt="" />
+								<div class="p-30">
+									<h5 class="font-medium m-b-0">Yoga &amp; Pilates Class</h5>
+									<h6 class="subtitle font-13">WITH MICHELLE ANDERSON</h6>
+									<ul class="general-listing only-li font-14 m-t-20">
+										<li>
+											<span class="fa fa-check-circle text-feature"></span>
+											6 Days a Week
+										</li>
+										<li>
+											<span class="fa fa-check-circle text-feature"></span>
+											Dedicated Trainer Allocated
+										</li>
+										<li>
+											<span class="fa fa-check-circle text-feature"></span>
+											Diet Plan Included
+										</li>
+										<li>
+											<span class="fa fa-check-circle text-feature"></span>
+											Morning and Evening Batches
+										</li>
+									</ul>
+									<div class="d-flex m-t-30 align-items-center">
+										<h2 class="price">
+											$69
+											<sup>*</sup>
+											<small>/m</small>
+										</h2>
+										<div class="ml-auto s_btn" data-name="Button">
+											<a class="btn btn-alpha rounded-circle bizople_button" href="#">Choose Plan</a>
+										</div>
+									</div>
+								</div>
+							</section>
+						</div>
+						<div class="col-md-4">
+							<section class="card card-shadow ">
+								<img class="card-img-top"
+									src="/theme_centric/static/src/img/img3_f3.jpg" alt="" />
+								<div class="p-30">
+									<h5 class="font-medium m-b-0">Kick Boxing &amp; Karate</h5>
+									<h6 class="subtitle font-13">WITH MATHEW DOE</h6>
+									<ul class="general-listing only-li font-14 m-t-20">
+										<li>
+											<span class="fa fa-check-circle text-feature"></span>
+											6 Days a Week
+										</li>
+										<li>
+											<span class="fa fa-check-circle text-feature"></span>
+											Dedicated Trainer Allocated
+										</li>
+										<li>
+											<span class="fa fa-check-circle text-feature"></span>
+											Diet Plan Included
+										</li>
+										<li>
+											<span class="fa fa-check-circle text-feature"></span>
+											Morning and Evening Batches
+										</li>
+									</ul>
+									<div class="d-flex m-t-30 align-items-center">
+										<h2 class="price">
+											$79
+											<sup>*</sup>
+											<small>/m</small>
+										</h2>
+										<div class="ml-auto s_btn" data-name="Button">
+											<a class="btn btn-alpha rounded-circle bizople_button" href="#">Choose Plan</a>
+										</div>
+									</div>
+								</div>
+							</section>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+	</template>
+
+</odoo>

@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+	<template id="s_estate_latest_news"
+		name="Images with title and paragraph">
+		<section class="s_estate_latest_news">
+			<div class="blog-home3 spacer">
+				<div class="container">
+					<div class="row justify-content-center">
+						<div class="col-md-8 text-center">
+							<h2 class="title text-beta">Latest Properties</h2>
+							<h6 class="subtitle">You can relay on our amazing features list and
+								also our customer services will be great experience for you
+								without doubt and in no-time
+							</h6>
+						</div>
+					</div>
+					<div class="row m-t-40">
+						<div class="col-lg-6">
+							<section class="card " >
+								<a href="#">
+									<img class="card-img-top"
+										src="/theme_centric/static/src/img/news4.jpg"
+										alt="bizople kit" />
+								</a>
+								<div class="date-pos bg-feature">JOHN
+									DOE
+									SEPT 15, 2017
+								</div>
+								<h5 class="font-medium m-t-30">
+									<a href="#" class="link">Techonologies started to change
+										Drastically
+									</a>
+								</h5>
+								<p class="custom_p m-t-20">You can relay on our amazing features list and
+									also our customer services will be great experience. Lorem
+									ipsum dolor sit amet, consectetur adipiscing elit.
+								</p>
+							</section>
+						</div>
+						<div class="col-lg-6">
+							<div class="row">
+								<div class="col-md-6">
+									<section class="card ">
+										<a href="#">
+											<img class="card-img-top"
+												src="/theme_centric/static/src/img/news5.jpg"
+												alt="bizople kit" />
+										</a>
+										<div class="date-pos bg-feature">JOHN
+											DOE
+											SEPT 15, 2017
+										</div>
+										<h6 class="font-medium m-t-20">
+											<a href="#" class="link">New Seminar on Newest Food Recipe from
+												World’s Best
+											</a>
+										</h6>
+									</section>
+								</div>
+								<div class="col-md-6">
+									<section class="card ">
+										<a href="#">
+											<img class="card-img-top"
+												src="/theme_centric/static/src/img/news6.jpg"
+												alt="bizople kit" />
+										</a>
+										<div class="date-pos bg-feature">JOHN
+											DOE
+											SEPT 15, 2017
+										</div>
+										<h6 class="font-medium m-t-20">
+											<a href="#" class="link">New Seminar on Newest Food Recipe from
+												World’s Best
+											</a>
+										</h6>
+									</section>
+								</div>
+								<div class="col-md-6">
+									<section class="card ">
+										<a href="#">
+											<img class="card-img-top"
+												src="/theme_centric/static/src/img/news7.jpg"
+												alt="wrappixel kit" />
+										</a>
+										<div class="date-pos bg-feature">JOHN
+											DOE
+											SEPT 15, 2017
+										</div>
+										<h6 class="font-medium m-t-20">
+											<a href="#" class="link">New Seminar on Newest Food Recipe from
+												World’s Best
+											</a>
+										</h6>
+									</section>
+								</div>
+								<div class="col-md-6">
+									<section class="card " >
+										<a href="#">
+											<img class="card-img-top"
+												src="/theme_centric/static/src/img/news8.jpg"
+												alt="bizople kit" />
+										</a>
+										<div class="date-pos bg-feature">JOHN
+											DOE
+											SEPT 15, 2017
+										</div>
+										<h6 class="font-medium m-t-20">
+											<a href="#" class="link">New Seminar on Newest Food Recipe from
+												World’s Best
+											</a>
+										</h6>
+									</section>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+	</template>
+
+</odoo>

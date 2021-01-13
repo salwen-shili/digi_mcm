@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+	<template id="s_centric_whychooseus" name="Why Choose Us">
+		<section class="centric_template">
+			<section class="whychooseus-section pt128 pb128">
+				<div class="container">
+					<div class="row align-items-center">
+						<div class="col-lg-6 col-md-12">
+							<div class="whychoose-content">
+								<span>WHY CHOOSE US</span>
+								<h3>Outstanding Digital Experience</h3>
+								<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.</p>
+								<div class="choose">
+									<span class="fa fa-check"></span>
+									<h4>First Working Process</h4>
+									<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor abore et dolore magna aliqua.</p>
+								</div>
+								<div class="choose">
+									<span class="fa fa-check"></span>
+									<h4>Dedicated Team Member</h4>
+									<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor abore et dolore magna aliqua.</p>
+								</div>
+								<div class="choose">
+									<span class="fa fa-check"></span>
+									<h4>24/7 Support</h4>
+									<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor abore et dolore magna aliqua.</p>
+								</div>
+								<div class="choose-btn s_btn">
+									<a href="#" class="whychoosebtn btn btn-alpha rounded-circle">Discover More</a>
+								</div>
+							</div>
+						</div>
+						<div class="col-lg-6 col-md-12">
+							<img class="img img-fluid" src="/theme_centric/static/img/chooseimg.png"/>
+						</div>
+					</div>
+				</div>
+				
+			</section>
+		</section>
+	</template>
+</odoo>

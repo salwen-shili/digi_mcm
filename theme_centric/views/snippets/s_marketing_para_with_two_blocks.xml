@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+	<template id="s_marketing_para_with_two_blocks" name="Paragraph with button and icons">
+		<section class="s_marketing_para_with_two_blocks">
+			<div class="spacer feature43">
+				<div class="container">
+					<div class="row align-items-center">
+						<div class="col-lg-5 ">
+							<h3 class="title">Create your Website in Simple and Easy Steps with
+								Powerful Bizople Features
+							</h3>
+							<h6 class="subtitle">You can relay on our amazing features list and
+								also our customer services.
+							</h6>
+							<div class="s_btn" data-name="Button">
+								<a class="btn btn-alpha rounded-circle btn-md arrow-btn m-t-20 bizople_button"
+									 href="#f43">
+										View Other Features
+										<span class="fa fa-1x fa-fw fa-long-arrow-right ml-1"></span>
+								</a>
+							</div>
+						</div>
+						<div class="col-lg-6 ml-auto">
+							<div class="row wrap-feature43-box">
+								<div class="col-md-6 "
+									>
+									<h2 class="text-alpha display-5">
+										<span class="fa fa-cog"></span>
+									</h2>
+									<h5 class="title">Unbeatable Features</h5>
+									<h6 class="subtitle">You can relay on our amazing features list and
+										also our customer services.
+									</h6>
+								</div>
+								<div class="col-md-6 "
+									data-aos="fade-left">
+									<h2 class="text-alpha display-5">
+										<span class="fa fa-dot-circle-o"></span>
+									</h2>
+									<h5 class="title">Professional Support</h5>
+									<h6 class="subtitle">You can relay on our amazing features list and
+										also our customer services.
+									</h6>
+								</div>
+								<div class="col-md-6 aos-init" >
+									<h2 class="text-alpha display-5">
+										<span class="fa fa-file"></span>
+									</h2>
+									<h5 class="title">Quick and Easy</h5>
+									<h6 class="subtitle">You can relay on our amazing features list and
+										also our customer services.
+									</h6>
+								</div>
+								<div class="col-md-6 aos-init" data-aos="fade-left">
+									<h2 class="text-alpha display-5">
+										<span class="fa fa-diamond"></span>
+									</h2>
+									<h5 class="title">Secured &amp; Trendy</h5>
+									<h6 class="subtitle">You can relay on our amazing features list and
+										also our customer services.
+									</h6>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+	</template>
+
+</odoo>

@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+	<template id="website_multi_footer_eight"
+		inherit_id="portal.frontend_layout" name="Footer Eight" active="False">
+		<xpath expr="//footer" position="replace">
+			<footer id="footer_eight"
+				class="footer_eight footer6 spacer o_footer">
+
+				<div class="container">
+					<div class="row">
+						<div class="col-lg-4">
+							<div class="d-flex no-block m-b-10 text-white">
+								<div class="display-7 m-r-20 ">
+									<i class="fa fa-phone"></i>
+								</div>
+								<div class="info">
+									<span class="db m-t-5" t-if="res_company.phone"
+										t-field="res_company.phone"></span>
+								</div>
+							</div>
+						</div>
+						<div class="col-lg-4">
+							<div class="d-flex no-block m-b-10">
+								<div class="display-7 m-r-20 text-white">
+									<i class="fa fa-map-marker"></i>
+								</div>
+								<div class="info">
+									<a href="#" class="db text-white m-t-5"
+										t-if="res_company.email" t-field="res_company.email"></a>
+								</div>
+							</div>
+						</div>
+						<div class="col-lg-4 ml-auto">
+							<div class="ml-auto round-social dark">
+								<a class=" " t-att-href="website.social_facebook"
+									t-if="website.social_facebook" target="_blank">
+									<i class="fa fa-facebook" />
+								</a>
+								<a class=" " t-att-href="website.social_twitter"
+									t-if="website.social_twitter" target="_blank">
+									<i class="fa fa-twitter" />
+								</a>
+								<a class=" " t-att-href="website.social_linkedin"
+									t-if="website.social_linkedin" target="_blank">
+									<i class="fa fa-linkedin" />
+								</a>
+								<a class=" " t-att-href="website.social_youtube"
+									t-if="website.social_youtube" target="_blank">
+									<i class="fa fa-youtube-play" />
+								</a>
+								<a class=" " t-att-href="website.social_instagram"
+									t-if="website.social_instagram" target="_blank">
+									<i class="fa fa-instagram"></i>
+								</a>
+								<a class="link" t-att-href="website.social_github"
+									t-if="website.social_github" target="_blank">
+									<i class="fa fa-github"></i>
+								</a>
+
+							</div>
+						</div>
+						<div class="col-md-12 b-t m-t-40">
+							<div class="p-t-20 custom_p text-white">
+								Copyright 2017. All Rights Reserved by
+								<span t-field="res_company.name" />
+								.
+							</div>
+						</div>
+					</div>
+					<div id="to-top">
+						<a id="to-top bg-alpha">
+							<span class="fa fa-arrow-up"></span>
+						</a>
+					</div>
+				</div>
+			</footer>
+		</xpath>
+	</template>
+</odoo>

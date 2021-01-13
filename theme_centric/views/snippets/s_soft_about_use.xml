@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+	<template id="s_soft_about_use" name="Soft about us two">
+		<section class="theme-soft">
+		<section class="about pb128" id="about">
+			<div class="container">
+				<div class="row">
+					<div class=" col-md-12 col-xs-12 pt128">
+						<div class="row">
+							<div class="col-lg-6 col-md-12 ">
+								<figure class="">
+									<img src="/theme_centric/static/src/img/soft/about-us.png" class="img-fluid float-left"  />
+								</figure>
+							</div>
+							<div class="col-lg-6 col-md-12 col-xs-12 pl-md-5 pt-4">
+								<h6 class="text-feature">ABOUT US</h6>
+								<h1 class="text-alpha font-weight-bold">good <span class="font-weight-lighter">design</span></h1>
+								<h1 class="text-alpha font-weight-bold ">good <span class="font-weight-lighter">business</span></h1>
+								<p class="pt-3 extra-p">We know that good design means good business.</p>
+								<p class="pt-3 ">We help our clients succeed by creating brand identities, digital experiences, and print materials that communicate clearly, achieve marketing goals, and look fantastic.</p>
+								<div class="s_btn" data-name="Button">
+									<a class="btn btn-md rounded-circle mt-4 btn-alpha" type="button" href="#">MORE ABOUT US</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+	</section>
+	</template>
+</odoo>

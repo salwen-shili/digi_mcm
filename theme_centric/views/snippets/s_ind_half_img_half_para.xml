@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+	<template id="s_ind_half_img_half_para" name="Half image half paragraph with lists">
+		<section class="s_ind_half_img_half_para">
+			<div class="spacer feature8">
+				<div class="container">
+					<div class="row align-items-center">
+						<div class="col-lg-6 col-md-6">
+							<small class="text-feature">Featured Project</small>
+							<h3 class="font-bold">NY Power Plant at California</h3>
+							<p class="custom_p">Lorem ipsum dolor sit amet, consectetuer adipiscing
+								elit,
+								sed diam nonummy nibh euismod tincidunt ut laoreet.
+							</p>
+							<ul class="list-block m-b-30">
+								<li>
+									<span class="fa fa-check-circle mr-2 text-feature"></span>
+									Powerful and Faster Results for your site
+								</li>
+								<li>
+									<span class="fa fa-check-circle mr-2 text-feature"></span>
+									Make your site in no-time with your Bootstrap Theme
+								</li>
+								<li>
+									<span class="fa fa-check-circle mr-2 text-feature"></span>
+									Tons of Features and Elements available here
+								</li>
+								<li>
+									<span class="fa fa-check-circle mr-2 text-feature"></span>
+									What are you wait for? Go and Get it.
+								</li>
+							</ul>
+							<div class="s_btn" data-name="Button">
+								<a class="btn btn-alpha rounded-circle btn-md arrow-btn bizople_button" href="#">
+										View More Projects
+										<span class="fa fa-1x fa-fw fa-long-arrow-right ml-1"></span>
+								</a>
+							</div>
+						</div>
+						<div class="col-lg-6 col-md-6">
+							<div class="p-20">
+								<img src="/theme_centric/static/src/img/8.jpg" alt=""
+									class="img-responsive img-shadow img img-fluid"/>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+	</template>
+
+</odoo>

@@ -1,0 +1,1018 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+	<record id="centric_homepage_template" model="ir.ui.view">
+		<field name="name">Home</field>
+		<field name="type">qweb</field>
+		<field name="key">website.centric_homepage_template</field>
+		<field name="arch" type="xml">
+			<t name="centric Template" t-name="centric_homepage_template">
+				<t t-call="website.layout">
+					<div class="oe_structure"/>
+					<section class="centric_template">
+						<!-- Home Banner -->
+							<section class="home-banner pt128" id="home_page">
+								<div>
+									<div class="container">
+										<div class="row">
+											<div class="bannarcol col-lg-6 col-md-12">
+												<h1>Software Agency with Excellence Service</h1>
+												<p class="paratext">
+													Lorem ipsum dolor sit amet, consectetur adipiscing elit,  eiusmod tempor incididunt ut labore.
+												</p>
+												<div class="banner-btn">
+													<a href="/about" class="bannerbtn btn btn-alpha rounded-circle">More About Us</a>
+													<a class="watch-video" href="#contactus">Contact Us
+													</a>
+													
+												</div>
+											</div>
+											<div class="bannercol col-lg-6 col-md-12">
+												<div class="banner_image">
+													<img class="img img-fluid" src="/theme_centric/static/img/banner.png"/>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</section>
+						<!-- Home Banner End -->
+
+						<div class="oe_structure"/>
+
+						<!-- Features start -->
+						<section class="features pt128 pb128" id="features_page">
+							<div class="container">
+								<div class="row align-items-center">
+									<div class="col-lg-5 col-md-12">
+										<div class="feature-content">
+											<span>CORE FEATURES</span>
+											<h3>Create Awesome Service With Our Tools</h3>
+											<p>
+												Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+											</p>
+											<a href="#" class="featurebtn btn btn-alpha rounded-circle">More Details</a>
+										</div>	
+									</div>
+									<div class="col-lg-7 col-md-12">
+										<div class="featurectnt row text-center">
+											<div class="col-lg-6 col-md-6 col-sm-6">
+												<section class="featureitem feature-item1">
+													<div class="icon">
+														<div class="dotted-img">
+															<i class="fa fa-object-group"></i>
+														</div>
+													</div>
+													<h3 id="feat">Seo Consultancy</h3>
+													<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor</p>
+												</section>
+											</div>
+											<div class="col-lg-6 col-md-6 col-sm-6">
+												<section class="featureitem feature-item2">
+													<div class="icon">
+														<div class="dotted-img2">
+															<i class="fa fa-clone"></i>
+														</div>
+													</div>
+													<h3 id="feat">Competitor Analysis</h3>
+													<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor</p>
+												</section>
+											</div>
+											<div class="col-lg-6 col-md-6 col-sm-6">
+												<section class="featureitem feature-item3">
+													<div class="icon">
+														<div class="dotted-img3">
+															<i class="fa fa-commenting-o"></i>
+														</div>
+													</div>
+													<h3 id="feat">Social Media Marketing</h3>
+													<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor</p>
+												</section>
+											</div>
+											<div class="col-lg-6 col-md-6 col-sm-6">
+												<section class="featureitem feature-item4">
+													<div class="icon">
+														<div class="dotted-img4">
+															<i class="fa fa-file-code-o"></i>
+														</div>
+													</div>
+													<h3 id="feat">Competitor Analysis</h3>
+													<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor</p>
+												</section>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="feature-bgimg">
+								<div class="shape-img1">
+									<img class="img img-fluid" src="/theme_centric/static/img/featuregb1.png" alt="image"/>
+								</div>
+								<div class="shape-img2">
+									<img class="img img-fluid" src="/theme_centric/static/img/featuregb2.png" alt="image"/>
+								</div>
+							</div>
+						</section>
+						<!-- Features End -->
+
+						<div class="oe_structure"/>
+
+						<!-- About Us Start-->
+						<section class="about-us pt128 pb128">
+							<div class="container">
+								<div class="row">
+									<div class="col-lg-6 col-md-12">
+										<div class="aboutus-img">
+											<img class="img img-fluid" src="/theme_centric/static/img/aboutus.png"/>
+										</div>
+									</div>
+									<div class="col-lg-6 col-md-12">
+										<div class="aboutus-content">
+											<span>About US</span>
+											<h3 >We are Dynamic Team of SEO Agency</h3>
+											<strong>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt labore  dolore magna aliqua.</strong>
+											<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+										</div>
+										<div class="row">
+											<div class="col-lg-6 col-6 col--6">
+												<div class="single-number">
+													<h3 class="number">1,165
+														<span class="plus-icon">+</span>
+													</h3>
+													<p>Project Completed</p>
+												</div>
+											</div>
+											<div class="col-lg-6 col-6 col--6">
+												<div class="single-number">
+													<h3 class="number">2,654
+														<span class="plus-icon">+</span>
+													</h3>
+													<p>Satisfied Clients</p>
+												</div>	
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</section>
+						<!-- About Us End -->
+
+						<div class="oe_structure"/>
+
+						<!-- Services start -->
+						<section class="services-section pt128 pb128">
+							<div class="container">
+								<div class="service-title text-center">
+									<span>SERVICES</span>
+									<h3>
+										How We Can Help?
+									</h3>
+								</div>
+								<div class="row text-center">
+									<div class="col-lg-4 col-md-6 col-sm-6">
+										<div class="service-box-link">
+											<div class="service-box">
+												<div class="service-icon">
+													<div class="icon1">
+														<i class="fa fa-newspaper-o"></i>
+													</div>
+												</div>
+												<h3>
+													<a href="/service-detail" class="text-secondary">Search Engine Optimization</a>
+												</h3>
+												<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incutu  labore et dolore magna aliqua.</p>
+											</div>
+										</div>
+									</div>
+									<div class="col-lg-4 col-md-6 col-sm-6">
+										<div class="service-box-link">
+											<div class="service-box">
+												<div class="service-icon">
+													<div class="icon2">
+														<i class="fa fa-object-group"></i>
+													</div>
+												</div>
+												<h3>
+													<a href="/service-detail" class="text-secondary">Social Media Strategy</a>
+												</h3>
+												<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incutu  labore et dolore magna aliqua.</p>
+											</div>
+										</div>
+									</div>
+									<div class="col-lg-4 col-md-6 col-sm-6">
+										<div class="service-box-link">
+											<div class="service-box">
+												<div class="service-icon">
+													<div class="icon3">
+														<i class="fa fa-diamond"></i>
+													</div>
+												</div>
+												<h3>
+													<a href="/service-detail" class="text-secondary">Real Time And Data</a>
+												</h3>
+												<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incutu  labore et dolore magna aliqua.</p>
+											</div>
+										</div>
+									</div>
+									<div class="col-lg-4 col-md-6 col-sm-6">
+										<div class="service-box-link">
+											<div class="service-box">
+												<div class="service-icon">
+													<div class="icon4">
+														<i class="fa fa-commenting-o"></i>
+													</div>
+												</div>
+												<h3>
+													<a href="/service-detail" class="text-secondary">Online Media Management</a>
+												</h3>
+												<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incutu  labore et dolore magna aliqua.</p>
+											</div>
+										</div>
+									</div>
+									<div class="col-lg-4 col-md-6 col-sm-6">
+										<div class="service-box-link">
+											<div class="service-box">
+												<div class="service-icon">
+													<div class="icon5">
+														<i class="fa fa-clone"></i>
+													</div>
+												</div>
+												<h3>
+													<a href="/service-detail" class="text-secondary">Reporting &amp; Analysis</a>
+												</h3>
+												<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incutu  labore et dolore magna aliqua.</p>
+											</div>
+										</div>
+									</div>
+									<div class="col-lg-4 col-md-6 col-sm-6">
+										<div class="service-box-link">
+											<div class="service-box">
+												<div class="service-icon">
+													<div class="icon6">
+														<i class="fa fa-file-code-o"></i>
+													</div>
+												</div>
+												<h3>
+													<a href="/service-detail" class="text-secondary">Penalty Recovery</a>
+												</h3>
+												<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incutu  labore et dolore magna aliqua.</p>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</section>
+						<!-- Service End -->
+						<div class="oe_structure"/>
+						<!-- Why Choose US -->
+						<section class="whychooseus-section pt128 pb128">
+							<div class="container">
+								<div class="row align-items-center">
+									<div class="col-lg-6 col-md-12">
+										<div class="whychoose-content">
+											<span>WHY CHOOSE US</span>
+											<h3>Outstanding Digital Experience</h3>
+											<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.</p>
+											<div class="choose">
+												<i class="fa fa-check"></i>
+												<h4>First Working Process</h4>
+												<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor abore et dolore magna aliqua.</p>
+											</div>
+											<div class="choose">
+												<i class="fa fa-check"></i>
+												<h4>Dedicated Team Member</h4>
+												<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor abore et dolore magna aliqua.</p>
+											</div>
+											<div class="choose">
+												<i class="fa fa-check"></i>
+												<h4>24/7 Support</h4>
+												<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor abore et dolore magna aliqua.</p>
+											</div>
+											<div class="choose-btn">
+												<a href="#" class="whychoosebtn btn btn-alpha rounded-circle">Discover More</a>
+											</div>
+										</div>
+									</div>
+									<div class="col-lg-6 col-md-12">
+										<img class="img img-fluid" src="/theme_centric/static/img/chooseimg.png"/>
+									</div>
+								</div>
+							</div>
+							
+						</section>
+						<!-- whychoose end -->
+						<div class="oe_structure"/>
+						<!-- boosting start -->
+						<section class="boosting-section pt128 pb128">
+							<div class="container">
+								<div class="boosting-title text-center">
+									<span>BOOSTING</span>
+									<h3>
+										Outstanding Digital Experience
+									</h3>
+								</div>
+								<div class="boosting-tabs">
+									<ul class="nav nav-pills">
+										<li class="nav-item">
+											<a class="nav-link active" data-toggle="tab" href="#tab1">
+												<div>
+													<i class="fa fa-search"></i>
+												</div>
+												<span>Real-Time-Analytics</span>
+											</a>
+										</li>
+										<li class="nav-item bg-eff7e9">
+											<a class="nav-link" data-toggle="tab" href="#tab2">
+												<div>
+													<i class="fa fa-usd"></i>
+												</div>
+												<span>Pay-Per-Click</span>
+											</a>
+										</li>
+										<li class="nav-item bg-fff8f0">
+											<a class="nav-link" data-toggle="tab" href="#tab3">
+												<div>
+													<i class="fa fa-bullhorn"></i>
+												</div>
+												<span>Online Marketing</span>
+											</a>
+										</li>
+										<li class="nav-item bg-ecfaf7">
+											<a class="nav-link " data-toggle="tab" href="#tab4">
+												<div>
+													<i class="fa fa-envelope-open-o"></i>
+												</div>
+												<span>Email Marketing</span>
+											</a>
+										</li>
+										<li class="nav-item bg-f2f0fb">
+											<a class="nav-link " data-toggle="tab" href="#tab5">
+												<div>
+													<i class="fa fa-snowflake-o"></i>
+												</div>
+												<span>Social Marketing</span>
+											</a>
+										</li>
+										<li class="nav-item bg-c5ebf9">
+											<a class="nav-link" data-toggle="tab" href="#tab6">
+												<div>
+													<i class="fa fa-desktop"></i>
+												</div>
+												<span>Digital Marketing</span>
+											</a>
+										</li>
+									</ul>
+									<div class="tab-content">
+									    <div id="tab1" class="tab-pane active">
+									      	<div class="row align-items-center">
+									      		<div class="col-lg-5">
+									      			<div class="tab-image">
+									      				<img class="img img-fluid" src="/theme_centric/static/img/aboutus.png"/>
+									      			</div>
+										      	</div>
+										      	<div class="col-lg-7">
+										      		<div class="content">
+										      			<h2>Real-Time Analytics</h2>
+										      			<p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text.</p>
+										      		</div>
+										      		<div class="row">
+										      			<div class="col-lg-6 col-md-6">
+										      				<div class="tab-text-content">
+										      					<i class="fa fa-search"></i>
+										      					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.</p>
+										      				</div>
+										      			</div>
+										      			<div class="col-lg-6 col-md-6">
+										      				<div class="tab-text-content">
+										      					<i class="fa fa-search"></i>
+										      					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.</p>
+										      				</div>
+										      			</div>
+										      		</div>
+										      		<div class="tab-btn">
+										      			<a href="#" class="boostingbtn btn btn-alpha rounded-circle">Discover More</a>
+										      		</div>
+										      	</div>
+										  	</div>
+									    </div>
+									    <div id="tab2" class="tab-pane">
+									      	<div class="row align-items-center">
+									      		<div class="col-lg-5">
+									      			<div class="tab-image">
+									      				<img class="img img-fluid" src="/theme_centric/static/img/chooseimg.png"/>
+									      			</div>
+										      	</div>
+										      	<div class="col-lg-7">
+										      		<div class="content">
+										      			<h2>PAY-PER CLICK</h2>
+										      			<p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text.</p>
+										      		</div>
+										      		<div class="row">
+										      			<div class="col-lg-6 col-md-6">
+										      				<div class="tab-text-content">
+										      					<i class="fa fa-search"></i>
+										      					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.</p>
+										      				</div>
+										      			</div>
+										      			<div class="col-lg-6 col-md-6">
+										      				<div class="tab-text-content">
+										      					<i class="fa fa-search"></i>
+										      					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.</p>
+										      				</div>
+										      			</div>
+										      		</div>
+										      		<div class="tab-btn">
+										      			<a href="#" class="boostingbtn btn btn-alpha rounded-circle">Discover More</a>
+										      		</div>
+										      	</div>
+										  	</div>
+									    </div>
+									    <div id="tab3" class="tab-pane">
+									      	<div class="row align-items-center">
+									      		<div class="col-lg-5">
+									      			<div class="tab-image">
+									      				<img class="img img-fluid" src="/theme_centric/static/img/aboutus.png"/>
+									      			</div>
+										      	</div>
+										      	<div class="col-lg-7">
+										      		<div class="content">
+										      			<h2>Online Marketing</h2>
+										      			<p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text.</p>
+										      		</div>
+										      		<div class="row">
+										      			<div class="col-lg-6 col-md-6">
+										      				<div class="tab-text-content">
+										      					<i class="fa fa-search"></i>
+										      					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.</p>
+										      				</div>
+										      			</div>
+										      			<div class="col-lg-6 col-md-6">
+										      				<div class="tab-text-content">
+										      					<i class="fa fa-search"></i>
+										      					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.</p>
+										      				</div>
+										      			</div>
+										      		</div>
+										      		<div class="tab-btn">
+										      			<a href="#" class="boostingbtn btn btn-alpha rounded-circle">Discover More</a>
+										      		</div>
+										      	</div>
+										  	</div>
+									    </div>
+									    <div id="tab4" class="tab-pane">
+									      	<div class="row align-items-center">
+									      		<div class="col-lg-5">
+									      			<div class="tab-image">
+									      				<img class="img img-fluid" src="/theme_centric/static/img/chooseimg.png"/>
+									      			</div>
+										      	</div>
+										      	<div class="col-lg-7">
+										      		<div class="content">
+										      			<h2>Email Marketing</h2>
+										      			<p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text.</p>
+										      		</div>
+										      		<div class="row">
+										      			<div class="col-lg-6 col-md-6">
+										      				<div class="tab-text-content">
+										      					<i class="fa fa-search"></i>
+										      					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.</p>
+										      				</div>
+										      			</div>
+										      			<div class="col-lg-6 col-md-6">
+										      				<div class="tab-text-content">
+										      					<i class="fa fa-search"></i>
+										      					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.</p>
+										      				</div>
+										      			</div>
+										      		</div>
+										      		<div class="tab-btn">
+										      			<a href="#" class="boostingbtn btn btn-alpha rounded-circle">Discover More</a>
+										      		</div>
+										      	</div>
+										  	</div>
+									    </div>
+									    <div id="tab5" class="tab-pane">
+									      	<div class="row align-items-center">
+									      		<div class="col-lg-5">
+									      			<div class="tab-image">
+									      				<img class="img img-fluid" src="/theme_centric/static/img/aboutus.png"/>
+									      			</div>
+										      	</div>
+										      	<div class="col-lg-7">
+										      		<div class="content">
+										      			<h2>Social Marketing</h2>
+										      			<p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text.</p>
+										      		</div>
+										      		<div class="row">
+										      			<div class="col-lg-6 col-md-6">
+										      				<div class="tab-text-content">
+										      					<i class="fa fa-search"></i>
+										      					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.</p>
+										      				</div>
+										      			</div>
+										      			<div class="col-lg-6 col-md-6">
+										      				<div class="tab-text-content">
+										      					<i class="fa fa-search"></i>
+										      					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.</p>
+										      				</div>
+										      			</div>
+										      		</div>
+										      		<div class="tab-btn">
+										      			<a href="#" class="boostingbtn btn btn-alpha rounded-circle">Discover More</a>
+										      		</div>
+										      	</div>
+										  	</div>
+									    </div>
+									    <div id="tab6" class="tab-pane">
+									      	<div class="row align-items-center">
+									      		<div class="col-lg-5">
+									      			<div class="tab-image">
+									      				<img class="img img-fluid" src="/theme_centric/static/img/chooseimg.png"/>
+									      			</div>
+										      	</div>
+										      	<div class="col-lg-7">
+										      		<div class="content">
+										      			<h2>Digital Marketing</h2>
+										      			<p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text.</p>
+										      		</div>
+										      		<div class="row">
+										      			<div class="col-lg-6 col-md-6">
+										      				<div class="tab-text-content">
+										      					<i class="fa fa-search"></i>
+										      					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.</p>
+										      				</div>
+										      			</div>
+										      			<div class="col-lg-6 col-md-6">
+										      				<div class="tab-text-content">
+										      					<i class="fa fa-search"></i>
+										      					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.</p>
+										      				</div>
+										      			</div>
+										      		</div>
+										      		<div class="tab-btn">
+										      			<a href="#" class="boostingbtn btn btn-alpha rounded-circle">Discover More</a>
+										      		</div>
+										      	</div>
+										  	</div>
+									    </div>
+									</div>
+								</div>
+							</div>
+						</section>
+						<!-- BOOSTING end -->
+						<div class="oe_structure"/>
+						<!-- Project Start -->
+						<section class="project-section pt128 pb128">
+							<div class="container">
+								<div class="project-title text-center">
+									<span>PROJECTS</span>
+									<h3>
+										Our Projects For Client
+									</h3>
+								</div>
+								<section class="s_web_agency_images_with_center_para bg-light-1">
+										<div class="spacer ">
+											<div class="container">
+												<div class="row m-t-40">
+													<div class="col-md-4">
+														<div class="card card-shadow aos-init" data-aos="flip-left"
+															data-aos-duration="1200">
+															<a href="#" class="img-ho">
+																<img class="card-img-top"
+																	src="/theme_centric/static/src/img/c1.jpg" alt="bizople kit" />
+															</a>
+															<div class="card-body">
+																<h5 class="font-medium m-b-0">Branding for Theme Designer</h5>
+																<p class="m-b-0 font-14">Digital Marketing</p>
+															</div>
+														</div>
+													</div>
+													<div class="col-md-4">
+														<div class="card card-shadow aos-init" data-aos="flip-up"
+															data-aos-duration="1200">
+															<a href="#" class="img-ho">
+																<img class="card-img-top"
+																	src="/theme_centric/static/src/img/c2.jpg" alt="bizople kit" />
+															</a>
+															<div class="card-body">
+																<h5 class="font-medium m-b-0">Button Designs Free</h5>
+																<p class="m-b-0 font-14">Search Engine</p>
+															</div>
+														</div>
+													</div>
+													<div class="col-md-4">
+														<div class="card card-shadow aos-init" data-aos="flip-right"
+															data-aos-duration="1200">
+															<a href="#" class="img-ho">
+																<img class="card-img-top"
+																	src="/theme_centric/static/src/img/c3.jpg" alt="bizople kit" />
+															</a>
+															<div class="card-body">
+																<h5 class="font-medium m-b-0">Branding &amp; Co Agency</h5>
+																<p class="m-b-0 font-14">Admin templates</p>
+															</div>
+														</div>
+													</div>
+													<div class="col-md-4">
+														<div class="card card-shadow aos-init" data-aos="flip-left"
+															data-aos-duration="1200">
+															<a href="#" class="img-ho">
+																<img class="card-img-top"
+																	src="/theme_centric/static/src/img/c4.jpg" alt="bizople kit" />
+															</a>
+															<div class="card-body">
+																<h5 class="font-medium m-b-0">Zukandre Phoniex</h5>
+																<p class="m-b-0 font-14">Branding</p>
+															</div>
+														</div>
+													</div>
+													<div class="col-md-4">
+														<div class="card card-shadow aos-init" data-aos="flip-up"
+															data-aos-duration="1200">
+															<a href="#" class="img-ho">
+																<img class="card-img-top"
+																	src="/theme_centric/static/src/img/c5.jpg" alt="bizople kit" />
+															</a>
+															<div class="card-body">
+																<h5 class="font-medium m-b-0">Sionage Mokcup</h5>
+																<p class="m-b-0 font-14">Wll Mockup</p>
+															</div>
+														</div>
+													</div>
+													<div class="col-md-4">
+														<div class="card card-shadow aos-init" data-aos="flip-right"
+															data-aos-duration="1200">
+															<a href="#" class="img-ho">
+																<img class="card-img-top"
+																	src="/theme_centric/static/src/img/c6.jpg" alt="bizople kit" />
+															</a>
+															<div class="card-body">
+																<h5 class="font-medium m-b-0">Hard Cover Book Mock</h5>
+																<p class="m-b-0 font-14">Book Covers</p>
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</section>
+							</div>
+						</section>
+						<!-- Project end -->
+						<div class="oe_structure"/>
+						<!-- our team start -->
+						<section class="ourteam-section pt128 pb128">
+							<div class="container">
+								<div class="ourteam-title text-center">
+									<span>TEAM</span>
+									<h3>
+										Meet Our Team
+									</h3>
+								</div>
+								<div class="row">
+									<div class="col-lg-4 col-sm-6">
+										<div class="team-content">
+											<div class="team-image text-center">
+												<img  class="img img-fluid" src="/theme_centric/static/src/img/t-1.jpg"/>
+											</div>
+											<div class="team-content-text text-center">
+												<h3>William Smith</h3>
+												<span>CEO &amp; Founder</span>
+												<div class="s_share" data-name="Share">
+											        <a href="#" target="_blank" class="shareftle">
+											            <i class="fa fa-linkedin"></i>
+											        </a>
+											        <a href="#" target="_blank" class="shareftle ">
+											            <i class="fa fa-facebook"></i>
+											        </a>
+											        <a href="#" target="_blank" class="shareftle">
+											            <i class="fa fa-twitter"></i>
+											        </a>
+											        <a href="#" class="shareftle">
+											            <i class="fa fa-instagram"></i>
+											        </a>
+											    </div>
+											</div>
+										</div>
+									</div>
+									<div class="col-lg-4 col-sm-6">
+										<div class="team-content">
+											<div class="team-image text-center">
+												<img  class="img img-fluid" src="/theme_centric/static/src/img/t-2.jpg"/>
+											</div>
+											<div class="team-content-text text-center">
+												<h3>Adina Jones</h3>
+												<span>Project Manager</span>
+												<div class="s_share" data-name="Share">
+											        <a href="#" target="_blank" class="shareftle">
+											            <i class="fa fa-linkedin"></i>
+											        </a>
+											        <a href="#" target="_blank" class="shareftle ">
+											            <i class="fa fa-facebook"></i>
+											        </a>
+											        <a href="#" target="_blank" class="shareftle">
+											            <i class="fa fa-twitter"></i>
+											        </a>
+											        <a href="#" class="shareftle">
+											            <i class="fa fa-instagram"></i>
+											        </a>
+											    </div>
+											</div>
+										</div>
+									</div>
+									<div class="col-lg-4 col-sm-6">
+										<div class="team-content">
+											<div class="team-image text-center">
+												<img class="img img-fluid" src="/theme_centric/static/src/img/t-3.jpg"/>
+											</div>
+											<div class="team-content-text text-center">
+												<h3>Karly Miller</h3>
+												<span>UI/UX Designer</span>
+												<div class="s_share" data-name="Share">
+											        <a href="#" target="_blank" class="shareftle">
+											            <i class="fa fa-linkedin"></i>
+											        </a>
+											        <a href="#" target="_blank" class="shareftle ">
+											            <i class="fa fa-facebook"></i>
+											        </a>
+											        <a href="#" target="_blank" class="shareftle">
+											            <i class="fa fa-twitter"></i>
+											        </a>
+											        <a href="#" class="shareftle">
+											            <i class="fa fa-instagram"></i>
+											        </a>
+											    </div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</section>
+						<!-- Ourteam end -->
+						<div class="oe_structure"/>
+						<!-- testimonial start -->
+						<section class="testimonial-section pt128 pb128">
+							<div class="container">
+								<div class="row align-items-center">
+									<div class="col-lg-4">
+										<div class="testimonial-content">
+											<span>TESTIMONIAL</span>
+											<h3>What Our Client Say</h3>
+											<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus.Lorem is simply dummy text of the printing and typesetting industry.</p>
+										</div>
+									</div>
+									<div class="col-lg-8">
+										<div id="myCarousel1580451466791" class="s_carousel carousel slide s_carousel_rounded" data-interval="3000" data-name="Carousel">
+									        
+									        <div class="carousel-inner">
+									            <div class="carousel-item active" data-name="Slide">
+									                <div class="container">
+									                    <div class="row content">
+									                        <div class="carousel-content col-md-6">
+									                            <div class="testimonial-single-item">
+									                            	<div class="testimonial-image">
+									                            		<img class="img img-fluid" src="/theme_centric/static/img/testi1.jpeg"/>
+									                            	</div>
+									                            	<div class="testimonial-content-text">
+									                            		<h3>R.Mortein</h3>
+									                            		<span>Product Manager</span>
+									                            		<div class="icon">
+									                            			<i class="fa fa-quote-right"></i>
+									                            		</div>
+									                            		<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse  gravida.</p>
+									                            	</div>
+									                            </div>
+									                        </div>
+									                        <div class="carousel-content col-md-6">
+									                            <div class="testimonial-single-item">
+									                            	<div class="testimonial-image">
+									                            		<img class="img img-fluid" src="/theme_centric/static/img/testi2.jpeg"/>
+									                            	</div>
+									                            	<div class="testimonial-content-text">
+									                            		<h3>Edward Bold</h3>
+									                            		<span>CEO &amp; Founder</span>
+									                            		<div class="icon">
+									                            			<i class="fa fa-quote-right"></i>
+									                            		</div>
+									                            		<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse  gravida.</p>
+									                            	</div>
+									                            </div>
+									                        </div>
+									                    </div>
+									                </div>
+									            </div>
+									            <div class="carousel-item" data-name="Slide">
+									                <div class="container">
+									                    <div class="row content">
+									                        <div class="carousel-content col-md-6">
+									                            <div class="testimonial-single-item">
+									                            	<div class="testimonial-image">
+									                            		<img class="img img-fluid" src="/theme_centric/static/img/testi1.jpeg"/>
+									                            	</div>
+									                            	<div class="testimonial-content-text">
+									                            		<h3>R.Mortein</h3>
+									                            		<span>Product Manager</span>
+									                            		<div class="icon">
+									                            			<i class="fa fa-quote-right"></i>
+									                            		</div>
+									                            		<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse  gravida.</p>
+									                            	</div>
+									                            </div>
+									                        </div>
+									                        <div class="carousel-content col-md-6">
+									                            <div class="testimonial-single-item">
+									                            	<div class="testimonial-image">
+									                            		<img class="img img-fluid" src="/theme_centric/static/img/testi2.jpeg"/>
+									                            	</div>
+									                            	<div class="testimonial-content-text">
+									                            		<h3>Edward Bold</h3>
+									                            		<span>CEO &amp; Founder</span>
+									                            		<div class="icon">
+									                            			<i class="fa fa-quote-right"></i>
+									                            		</div>
+									                            		<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse  gravida.</p>
+									                            	</div>
+									                            </div>
+									                        </div>
+									                    </div>
+									                </div>
+									            </div>
+									            <div class="carousel-item" data-name="Slide">
+									                <div class="container">
+									                    <div class="row content">
+									                        <div class="carousel-content col-md-6">
+									                            <div class="testimonial-single-item">
+									                            	<div class="testimonial-image">
+									                            		<img class="img img-fluid" src="/theme_centric/static/img/testi1.jpeg"/>
+									                            	</div>
+									                            	<div class="testimonial-content-text">
+									                            		<h3>R.Mortein</h3>
+									                            		<span>Product Manager</span>
+									                            		<div class="icon">
+									                            			<i class="fa fa-quote-right"></i>
+									                            		</div>
+									                            		<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse  gravida.</p>
+									                            	</div>
+									                            </div>
+									                        </div>
+									                        <div class="carousel-content col-md-6">
+									                            <div class="testimonial-single-item">
+									                            	<div class="testimonial-image">
+									                            		<img class="img img-fluid" src="/theme_centric/static/img/testi2.jpeg"/>
+									                            	</div>
+									                            	<div class="testimonial-content-text">
+									                            		<h3>Edward Bold</h3>
+									                            		<span>CEO &amp; Founder</span>
+									                            		<div class="icon">
+									                            			<i class="fa fa-quote-right"></i>
+									                            		</div>
+									                            		<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse  gravida.</p>
+									                            	</div>
+									                            </div>
+									                        </div>
+									                    </div>
+									                </div>
+									            </div>
+									        </div>
+									        <ol class="carousel-indicators">
+									            <li data-target="#myCarousel1580451466791" data-slide-to="0" class="carodot active"></li>
+									            <li data-target="#myCarousel1580451466791" data-slide-to="1" class="carodot"></li>
+									            <li data-target="#myCarousel1580451466791" data-slide-to="2" class="carodot"></li>
+									        </ol>
+									    </div>
+									</div>
+								</div>
+							</div>
+						</section>
+						<!-- testimonial end -->
+						<div class="oe_structure"/>
+						<!-- analysis start -->
+						<section class="analysis-section pt128 pb128" id="contactus">
+							<div class="container">
+								<div class="row align-items-center">
+									<div class="col-lg-6 col-md-12">
+										<div class="analysis-img">
+											<img class="img img-fluid" src="/theme_centric/static/img/contact.png"/>
+										</div>
+									</div>
+									<div class="col-lg-6 col-md-12">
+										<div class="analysis-content">
+											<span>ANALYSIS</span>
+											<h3>Get Free SEO Analysis</h3>
+											<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna.</p>
+										</div>
+										<form action="/website_form/" method="post" data-aos="fade-left" data-aos-duration="1200" data-model_name="crm.lead" data-success_page="/contactus-thank-you" class="s_website_form contact-form  aos-init aos-animate" enctype="multipart/form-data" data-editable-form="false">
+											<div class=" contact-form row">
+												<div class="col-lg-6 col-md-6 col-sm-6">
+													<div class="formgroup form-group m-t-15">
+														<input id="name" placeholder="First Name :" name="contact_name" required="True" type="text" class="formtext o_website_form_input form-control op-5" t-att-value="request.params.get('contact_name', '')" />
+													</div>
+												</div>
+												<div class="col-lg-6 col-md-6 col-sm-6">
+													<div class="formgroup form-group m-t-15">
+														<input id="email" name="email_from" placeholder="Email :" required="" value="" type="email" class="formtext o_website_form_input form-control op-5" t-att-value="request.params.get('email_from', '')" />
+													</div>
+												</div>
+												<div class="col-lg-6 col-md-6 col-sm-6">
+													<div class="formgroup form-group m-t-15">
+														<input id="phone" name="phone" placeholder="Phone :" type="text" t-att-value="request.params.get('phone', '')" class="formtext o_website_form_input form-control op-5" />
+													</div>
+												</div>
+												<div class="col-lg-6 col-md-6 col-sm-6">
+													<div class="formgroup form-group m-t-15">
+														<input id="subject" name="name" placeholder="Website :" type="text" t-att-value="request.params.get('name', '')" class="formtext o_website_form_input form-control op-5" />
+													</div>
+												</div>
+												<div class="col-lg-12 col-md-12 col-sm-12">
+													<div class="formgroup form-group m-t-15">
+														<textarea id="messagge" name="description" rows="3" placeholder="Messagge :" t-att-value="request.params.get('description', '')" class="formtext o_website_form_input form-control op-5">
+															
+														</textarea>
+														<div class="reserve-submit mt-40">
+														</div>
+													</div>
+												</div>
+												<div class="analysis-btn s_btn col-lg-12 text-center">
+													<a href="#" class="analysisbtn btn btn-alpha rounded-circle o_website_form_send">Send Message</a>
+													<span id="o_website_form_result" class="text-danger ml8 mt16  mb16 col-md-12">
+													</span>
+												</div>
+											</div>
+										</form>
+									</div>
+								</div>
+							</div>
+						</section>
+						<!-- analysis end -->
+						<div class="oe_structure"/>
+						<!-- blog start -->
+						<section class="blog-section">
+									<t t-call="website_blog.s_latest_posts_big_picture"></t>
+						</section>
+						<!-- blog end -->
+						<div class="oe_structure"/>
+						
+						
+						<!-- subscriber start -->
+						<section class="service-banner s_cover parallax s_parallax_is_fixed pt96 s_parallax_no_overflow_hidden bg-black-75 pb120" data-scroll-background-ratio="1" data-name="Cover" style="background-image: none;">
+					       <span class="s_parallax_bg oe_img_bg oe_custom_bg" style="background-image: url('theme_centric/static/src/img/2862664.png'); background-position: 46.59% 50.53%;"/>
+					       <div class="container">
+								<div class="subs-content text-center">
+									<span class="discount">Get Started Instantly!</span>
+									<h2>Get the only new update from this newsletter</h2>
+									
+								</div>
+								<div class="input-group js_subscribe" data-list-id="1">
+							        <input type="email" name="email" class="js_subscribe_email form-control" placeholder="your email..."/>
+							        <span class="input-group-append">
+							            <a role="button" href="#" class="btn btn-primary js_subscribe_btn">Subscribe</a>
+							            <a role="button" href="#" class="btn btn-success js_subscribed_btn d-none" disabled="disabled">Thanks</a>
+							        </span>
+							    </div>
+							</div>
+					     </section>
+						<!-- subscriber end -->
+						<div class="oe_structure"/>
+						<!-- clients start -->
+						<section class="clients s_references bg-200 pt16 pb16" data-name="References">
+					        <div class="container">
+					            <div class="row">
+					            	 <div class="col-lg-2">
+					                    <img src="/theme_centric/static/src/img/c1.png" class="img img-fluid" alt="Demo Logo" data-original-title="" title="" aria-describedby="tooltip843653"/>
+					                </div>
+					                <div class="col-lg-2">
+					                    <img src="/theme_centric/static/src/img/c2.png" class="img img-fluid" alt="Demo Logo" data-original-title="" title="" aria-describedby="tooltip843653"/>
+					                </div>
+					                <div class="col-lg-2">
+					                    <img src="/theme_centric/static/src/img/c3.png" class="img img-fluid" alt="Demo Logo" data-original-title="" title="" aria-describedby="tooltip623872"/>
+					                </div>
+					                <div class="col-lg-2">
+					                    <img src="/theme_centric/static/src/img/c4.png" class="img img-fluid" alt="Demo Logo" data-original-title="" title="" aria-describedby="tooltip175558"/>
+					                </div>
+					                <div class="col-lg-2">
+					                    <img src="/theme_centric/static/src/img/c5.png" class="img img-fluid" alt="Demo Logo" data-original-title="" title="" aria-describedby="tooltip940624"/>
+					                </div>
+					                <div class="col-lg-2">
+					                    <img src="/theme_centric/static/src/img/c6.png" class="img img-fluid" alt="Demo Logo" data-original-title="" title="" aria-describedby="tooltip478170"/>
+					                </div>
+					            </div>
+					        </div>
+					    </section>
+						
+						<!-- clients end -->
+
+					<div class="oe_structure"/>
+				</section>
+				</t>
+			</t>
+		</field>
+	</record>
+
+	<record id="centric_homepage_template_menu" model="website.page">
+		<field name="website_published">True</field>
+		<field name="url">/home</field>
+		<field name="is_homepage">True</field>
+		<field name="view_id" ref="centric_homepage_template" />
+	</record>
+
+
+</odoo>

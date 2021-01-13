@@ -1,0 +1,483 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+	<template id="s_charity_carousel_images"
+		name="Slider with image and progressbar and numbers">
+		<section class="s_charity_carousel_images bg-light-1">
+			<div class="testimonial3 spacer ">
+				<div class="container-fluid">
+					<div class="container">
+						<div class="row justify-content-center">
+							<div class="col-md-7 text-center">
+								<h2 class="title font-medium text-beta">Causes where need your help</h2>
+								<h6 class="subtitle">You can relay on our amazing features list and
+									also
+									our customer services will be great experience for you
+									without
+									doubt and in no-time
+								</h6>
+							</div>
+						</div>
+					</div>
+					<div id="s_charity_carosel123"
+						class="owl-carousel owl-theme testi3 m-t-40 s_carousel_default carousel slide"
+						data-interval="5000">
+						<ol class="carousel-indicators">
+							<li data-target="#s_charity_carosel123" data-slide-to="0"
+								class=""></li>
+							<li data-target="#s_charity_carosel123" data-slide-to="1"
+								class="active"></li>
+							<li data-target="#s_charity_carosel123" data-slide-to="2"
+								class=""></li>
+							<li data-target="#s_charity_carosel123" data-slide-to="3"
+								class=""></li>
+						</ol>
+						<div class="carousel-inner">
+							<div class="carousel-item active" data-name="Slide">
+								<div class="col-md-4 block">
+									<div class="item aos-init aos-animate"
+										data-aos="fade-right">
+										<div class="card card-shadow aos-init aos-animate"
+											data-aos="flip-left" data-aos-duration="1200">
+											<a href="#">
+												<img class="card-img-top"
+													src="/theme_centric/static/src/img/charity1.jpg"
+													alt="bizople kit" />
+											</a>
+											<div class="card-body p-30">
+												<h5 class="font-bold">Give medical related help for african
+													children
+												</h5>
+												<p class="m-t-20">You can relay on our amazing features list and
+													also our customer services will be great experience.
+												</p>
+												<div class="progress m-t-30">
+													<div class="progress-bar bg-feature"
+														role="progressbar" style="width: 80%; height: 5px;"
+														aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
+												</div>
+												<div class="row">
+													<div class="col-6 b-r">
+														<p class="text-uppercase font-12 m-b-0 m-t-15">Raised</p>
+														<h3>$65,360</h3>
+													</div>
+													<div class="col-6">
+														<p class="text-uppercase font-12 m-b-0 m-t-15">Goal</p>
+														<h3>$124,500</h3>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="col-md-4 block">
+									<div class="item aos-init aos-animate" data-aos="fade-up">
+										<div class="card card-shadow aos-init aos-animate"
+											data-aos="flip-up" data-aos-duration="1200">
+											<a href="#">
+												<img class="card-img-top"
+													src="/theme_centric/static/src/img/charity2.jpg"
+													alt="bizople kit" />
+											</a>
+											<div class="card-body p-30">
+												<h5 class="font-bold">Give small bunch of colors to little kids,
+													joy
+													of colors
+												</h5>
+												<p class="m-t-20">You can relay on our amazing features list and
+													also our customer services will be great experience.
+												</p>
+												<div class="progress m-t-30">
+													<div class="progress-bar bg-feature"
+														role="progressbar" style="width: 80%; height: 5px;"
+														aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
+												</div>
+												<div class="row">
+													<div class="col-6 b-r">
+														<p class="text-uppercase font-12 m-b-0 m-t-15">Raised</p>
+														<h3>$65,360</h3>
+													</div>
+													<div class="col-6">
+														<p class="text-uppercase font-12 m-b-0 m-t-15">Goal</p>
+														<h3>$124,500</h3>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="col-md-4 block">
+									<div class="item aos-init aos-animate" data-aos="fade-left">
+										<div class="card card-shadow aos-init aos-animate"
+											data-aos="flip-right" data-aos-duration="1200">
+											<a href="#">
+												<img class="card-img-top"
+													src="/theme_centric/static/src/img/charity3.jpg"
+													alt="bizople kit" />
+											</a>
+											<div class="card-body p-30">
+												<h5 class="font-bold">Send poor children to school to become
+													superhero
+												</h5>
+												<p class="m-t-20">You can relay on our amazing features list and
+													also our customer services will be great experience.
+												</p>
+												<div class="progress m-t-30">
+													<div class="progress-bar bg-feature"
+														role="progressbar" style="width: 80%; height: 5px;"
+														aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
+												</div>
+												<div class="row">
+													<div class="col-6 b-r">
+														<p class="text-uppercase font-12 m-b-0 m-t-15">Raised</p>
+														<h3>$65,360</h3>
+													</div>
+													<div class="col-6">
+														<p class="text-uppercase font-12 m-b-0 m-t-15">Goal</p>
+														<h3>$124,500</h3>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+
+							<div class="carousel-item oe_img_bg" data-name="Slide">
+								<div class="col-md-4 block">
+									<div class="item aos-init aos-animate"
+										data-aos="fade-right">
+										<div class="card card-shadow aos-init aos-animate"
+											data-aos="flip-left" data-aos-duration="1200">
+											<a href="#">
+												<img class="card-img-top"
+													src="/theme_centric/static/src/img/charity1.jpg"
+													alt="bizople kit" />
+											</a>
+											<div class="card-body p-30">
+												<h5 class="font-bold">Give medical related help for african
+													children
+												</h5>
+												<p class="m-t-20">You can relay on our amazing features list and
+													also our customer services will be great experience.
+												</p>
+												<div class="progress m-t-30">
+													<div class="progress-bar bg-feature"
+														role="progressbar" style="width: 80%; height: 5px;"
+														aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
+												</div>
+												<div class="row">
+													<div class="col-6 b-r">
+														<p class="text-uppercase font-12 m-b-0 m-t-15">Raised</p>
+														<h3>$65,360</h3>
+													</div>
+													<div class="col-6">
+														<p class="text-uppercase font-12 m-b-0 m-t-15">Goal</p>
+														<h3>$124,500</h3>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="col-md-4 block">
+									<div class="item aos-init aos-animate" data-aos="fade-up">
+										<div class="card card-shadow aos-init aos-animate"
+											data-aos="flip-up" data-aos-duration="1200">
+											<a href="#">
+												<img class="card-img-top"
+													src="/theme_centric/static/src/img/charity2.jpg"
+													alt="bizople kit" />
+											</a>
+											<div class="card-body p-30">
+												<h5 class="font-bold">Give small bunch of colors to little kids,
+													joy
+													of colors
+												</h5>
+												<p class="m-t-20">You can relay on our amazing features list and
+													also our customer services will be great experience.
+												</p>
+												<div class="progress m-t-30">
+													<div class="progress-bar bg-feature"
+														role="progressbar" style="width: 80%; height: 5px;"
+														aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
+												</div>
+												<div class="row">
+													<div class="col-6 b-r">
+														<p class="text-uppercase font-12 m-b-0 m-t-15">Raised</p>
+														<h3>$65,360</h3>
+													</div>
+													<div class="col-6">
+														<p class="text-uppercase font-12 m-b-0 m-t-15">Goal</p>
+														<h3>$124,500</h3>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="col-md-4 block">
+									<div class="item aos-init aos-animate" data-aos="fade-left">
+										<div class="card card-shadow aos-init aos-animate"
+											data-aos="flip-right" data-aos-duration="1200">
+											<a href="#">
+												<img class="card-img-top"
+													src="/theme_centric/static/src/img/charity3.jpg"
+													alt="bizople kit" />
+											</a>
+											<div class="card-body p-30">
+												<h5 class="font-bold">Send poor children to school to become
+													superhero
+												</h5>
+												<p class="m-t-20">You can relay on our amazing features list and
+													also our customer services will be great experience.
+												</p>
+												<div class="progress m-t-30">
+													<div class="progress-bar bg-feature"
+														role="progressbar" style="width: 80%; height: 5px;"
+														aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
+												</div>
+												<div class="row">
+													<div class="col-6 b-r">
+														<p class="text-uppercase font-12 m-b-0 m-t-15">Raised</p>
+														<h3>$65,360</h3>
+													</div>
+													<div class="col-6">
+														<p class="text-uppercase font-12 m-b-0 m-t-15">Goal</p>
+														<h3>$124,500</h3>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+
+							<div class="carousel-item oe_img_bg" data-name="Slide">
+								<div class="col-md-4 block">
+									<div class="item aos-init aos-animate"
+										data-aos="fade-right">
+										<div class="card card-shadow aos-init aos-animate"
+											data-aos="flip-left" data-aos-duration="1200">
+											<a href="#">
+												<img class="card-img-top"
+													src="/theme_centric/static/src/img/charity1.jpg"
+													alt="bizople kit" />
+											</a>
+											<div class="card-body p-30">
+												<h5 class="font-bold">Give medical related help for african
+													children
+												</h5>
+												<p class="m-t-20">You can relay on our amazing features list and
+													also our customer services will be great experience.
+												</p>
+												<div class="progress m-t-30">
+													<div class="progress-bar bg-feature"
+														role="progressbar" style="width: 80%; height: 5px;"
+														aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
+												</div>
+												<div class="row">
+													<div class="col-6 b-r">
+														<p class="text-uppercase font-12 m-b-0 m-t-15">Raised</p>
+														<h3>$65,360</h3>
+													</div>
+													<div class="col-6">
+														<p class="text-uppercase font-12 m-b-0 m-t-15">Goal</p>
+														<h3>$124,500</h3>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="col-md-4 block">
+									<div class="item aos-init aos-animate" data-aos="fade-up">
+										<div class="card card-shadow aos-init aos-animate"
+											data-aos="flip-up" data-aos-duration="1200">
+											<a href="#">
+												<img class="card-img-top"
+													src="/theme_centric/static/src/img/charity2.jpg"
+													alt="bizople kit" />
+											</a>
+											<div class="card-body p-30">
+												<h5 class="font-bold">Give small bunch of colors to little kids,
+													joy
+													of colors
+												</h5>
+												<p class="m-t-20">You can relay on our amazing features list and
+													also our customer services will be great experience.
+												</p>
+												<div class="progress m-t-30">
+													<div class="progress-bar bg-feature"
+														role="progressbar" style="width: 80%; height: 5px;"
+														aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
+												</div>
+												<div class="row">
+													<div class="col-6 b-r">
+														<p class="text-uppercase font-12 m-b-0 m-t-15">Raised</p>
+														<h3>$65,360</h3>
+													</div>
+													<div class="col-6">
+														<p class="text-uppercase font-12 m-b-0 m-t-15">Goal</p>
+														<h3>$124,500</h3>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="col-md-4 block">
+									<div class="item aos-init aos-animate" data-aos="fade-left">
+										<div class="card card-shadow aos-init aos-animate"
+											data-aos="flip-right" data-aos-duration="1200">
+											<a href="#">
+												<img class="card-img-top"
+													src="/theme_centric/static/src/img/charity3.jpg"
+													alt="bizople kit" />
+											</a>
+											<div class="card-body p-30">
+												<h5 class="font-bold">Send poor children to school to become
+													superhero
+												</h5>
+												<p class="m-t-20">You can relay on our amazing features list and
+													also our customer services will be great experience.
+												</p>
+												<div class="progress m-t-30">
+													<div class="progress-bar bg-feature"
+														role="progressbar" style="width: 80%; height: 5px;"
+														aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
+												</div>
+												<div class="row">
+													<div class="col-6 b-r">
+														<p class="text-uppercase font-12 m-b-0 m-t-15">Raised</p>
+														<h3>$65,360</h3>
+													</div>
+													<div class="col-6">
+														<p class="text-uppercase font-12 m-b-0 m-t-15">Goal</p>
+														<h3>$124,500</h3>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+
+							<div class="carousel-item oe_img_bg" data-name="Slide">
+								<div class="col-md-4 block">
+									<div class="item aos-init aos-animate"
+										data-aos="fade-right">
+										<div class="card card-shadow aos-init aos-animate"
+											data-aos="flip-left" data-aos-duration="1200">
+											<a href="#">
+												<img class="card-img-top"
+													src="/theme_centric/static/src/img/charity1.jpg"
+													alt="bizople kit" />
+											</a>
+											<div class="card-body p-30">
+												<h5 class="font-bold">Give medical related help for african
+													children
+												</h5>
+												<p class="m-t-20">You can relay on our amazing features list and
+													also our customer services will be great experience.
+												</p>
+												<div class="progress m-t-30">
+													<div class="progress-bar bg-feature"
+														role="progressbar" style="width: 80%; height: 5px;"
+														aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
+												</div>
+												<div class="row">
+													<div class="col-6 b-r">
+														<p class="text-uppercase font-12 m-b-0 m-t-15">Raised</p>
+														<h3>$65,360</h3>
+													</div>
+													<div class="col-6">
+														<p class="text-uppercase font-12 m-b-0 m-t-15">Goal</p>
+														<h3>$124,500</h3>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="col-md-4 block">
+									<div class="item aos-init aos-animate" data-aos="fade-up">
+										<div class="card card-shadow aos-init aos-animate"
+											data-aos="flip-up" data-aos-duration="1200">
+											<a href="#">
+												<img class="card-img-top"
+													src="/theme_centric/static/src/img/charity2.jpg"
+													alt="bizople kit" />
+											</a>
+											<div class="card-body p-30">
+												<h5 class="font-bold">Give small bunch of colors to little kids,
+													joy
+													of colors
+												</h5>
+												<p class="m-t-20">You can relay on our amazing features list and
+													also our customer services will be great experience.
+												</p>
+												<div class="progress m-t-30">
+													<div class="progress-bar bg-feature"
+														role="progressbar" style="width: 80%; height: 5px;"
+														aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
+												</div>
+												<div class="row">
+													<div class="col-6 b-r">
+														<p class="text-uppercase font-12 m-b-0 m-t-15">Raised</p>
+														<h3>$65,360</h3>
+													</div>
+													<div class="col-6">
+														<p class="text-uppercase font-12 m-b-0 m-t-15">Goal</p>
+														<h3>$124,500</h3>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="col-md-4 block">
+									<div class="item aos-init aos-animate" data-aos="fade-left">
+										<div class="card card-shadow aos-init aos-animate"
+											data-aos="flip-right" data-aos-duration="1200">
+											<a href="#">
+												<img class="card-img-top"
+													src="/theme_centric/static/src/img/charity3.jpg"
+													alt="bizople kit" />
+											</a>
+											<div class="card-body p-30">
+												<h5 class="font-bold">Send poor children to school to become
+													superhero
+												</h5>
+												<p class="m-t-20">You can relay on our amazing features list and
+													also our customer services will be great experience.
+												</p>
+												<div class="progress m-t-30">
+													<div class="progress-bar bg-feature"
+														role="progressbar" style="width: 80%; height: 5px;"
+														aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
+												</div>
+												<div class="row">
+													<div class="col-6 b-r">
+														<p class="text-uppercase font-12 m-b-0 m-t-15">Raised</p>
+														<h3>$65,360</h3>
+													</div>
+													<div class="col-6">
+														<p class="text-uppercase font-12 m-b-0 m-t-15">Goal</p>
+														<h3>$124,500</h3>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+	</template>
+
+</odoo>

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+	<template id="s_business_img_with_paragraph"
+		name="Left Image with paragraph and button">
+		<section class="s_business_img_with_paragraph bg-light-1">
+			<div class="feature16 container-fluid">
+				<div class="row wrap-feature-16">
+					<section class="col-lg-6 with-bg"
+						style="background-image:url(/theme_centric/static/src/img/s_img_with_para.jpg)"></section>
+					<div class="col-lg-6 ">
+						<div class="with-text">
+							<h2 class="m-t-30 m-b-30 text-beta">Awesome with Extra Ordinary Flexibility &amp;
+								Features
+							</h2>
+							<p class="op-7">You can relay on our amazing features list and also
+								our customer services will be great experience for you
+								without doubt and in no-time
+							</p>
+							<ul class="list-block m-b-30">
+								<li>
+									<span class="fa fa-check-circle text-feature"></span>
+									<span class="text-dark-1">Powerful and Faster Results for your site
+									</span>
+								</li>
+								<li>
+									<span class="fa fa-check-circle text-feature"></span>
+									<span class="text-dark-1">Make your site in no-time with your
+										Bootstrap Theme
+									</span>
+								</li>
+								<li>
+									<span class="fa fa-check-circle text-feature"></span>
+									<span class="text-dark-1">Tons of Features and Elements available
+										here
+									</span>
+								</li>
+							</ul>
+							<div class="s_btn" data-name="Button">
+								<a
+									class="btn btn-alpha btn-rounded rounded-circle btn-md arrow-btn  mt16 bizople_button" href="#">
+										Features
+										<span class="fa fa-1x fa-fw fa-long-arrow-right ml-1"></span>
+								</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+	</template>
+
+</odoo>

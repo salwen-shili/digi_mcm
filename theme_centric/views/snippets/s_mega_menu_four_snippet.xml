@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+	<template id="s_mega_menu_four_snippet" name="Mega Menu Four">
+		<section class="s_mega_menu_four_snippet">
+			<div class="container ">
+				<div class="jn_menu_partion_div">
+					<div class="row">
+						<div class="col-md-3 col-lg-3">
+							<div class="jen_tabs_conent_list float_left">
+								<h1>Information</h1>
+								<ul class="list-unstyled">
+									<li>
+										<i class="fa fa-caret-right"></i><a href="#">About us I</a>
+									</li>
+									<li>
+										<i class="fa fa-caret-right"></i><a href="#">About us II</a>
+									</li>
+									<li>
+										<i class="fa fa-caret-right"></i><a href="#">Services I</a>
+									</li>
+									<li>
+										<i class="fa fa-caret-right"></i><a href="#">Services II</a>
+									</li>
+									<li>
+										<i class="fa fa-caret-right"></i><a href="#">Our Team</a>
+									</li>
+								</ul>
+							</div>
+						</div>
+						<div class="col-md-3 col-lg-3">
+							<div class="jen_tabs_conent_list float_left">
+								<h1>Miscellaneous</h1>
+								<ul class="list-unstyled">
+									<li>
+										<i class="fa fa-caret-right"></i><a href="#">404 error</a>
+									</li>
+									<li>
+										<i class="fa fa-caret-right"></i><a href="#">404 error II</a>
+									</li>
+									<li>
+										<i class="fa fa-caret-right"></i><a href="#">pricing tables</a>
+									</li>
+									<li>
+										<i class="fa fa-caret-right"></i><a href="#">comming soon</a>
+									</li>
+									<li>
+										<i class="fa fa-caret-right"></i><a href="#">comming soon II</a>
+									</li>
+								</ul>
+							</div>
+						</div>
+						<div class="col-md-3 col-lg-3">
+							<div class="jen_tabs_conent_list float_left">
+								<h1>portfolio</h1>
+								<ul class="list-unstyled">
+									<li>
+										<i class="fa fa-caret-right"></i><a href="#">portfolio II column</a>
+									</li>
+									<li>
+										<i class="fa fa-caret-right"></i><a href="#">portfolio III column</a>
+									</li>
+									<li>
+										<i class="fa fa-caret-right"></i><a href="#">portfolio IV column</a>
+									</li>
+									<li>
+										<i class="fa fa-caret-right"></i><a href="#">portfolio masonry grid</a>
+									</li>
+									<li>
+										<i class="fa fa-caret-right"></i><a href="#">portfolio details</a>
+									</li>
+								</ul>
+							</div>
+						</div>
+						<div class="col-md-3 col-lg-3">
+							<div class="jen_tabs_conent_list float_left">
+								<h1>blog pages</h1>
+								<ul class="list-unstyled">
+									<li>
+										<i class="fa fa-caret-right"></i><a href="#">blog width sidebar</a>
+									</li>
+									<li>
+										<i class="fa fa-caret-right"></i><a href="#">blog full width</a>
+									</li>
+									<li>
+										<i class="fa fa-caret-right"></i><a href="#">blog III column</a>
+									</li>
+									<li>
+										<i class="fa fa-caret-right"></i><a href="#">blog II column</a>
+									</li>
+									<li>
+										<i class="fa fa-caret-right"></i><a href="#">blog single</a>
+									</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+	</template>
+</odoo>

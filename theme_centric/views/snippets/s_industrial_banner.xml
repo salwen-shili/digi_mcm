@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+	<template id="s_industrial_banner" name="Hopme Banner Thirteen">
+		<section id="slider-sec" class="s_industrial_banner slider2">
+			<div id="ind-slider2" class="carousel bs-slider slide  control-round indicators-line"
+				data-ride="carousel" data-pause="hover" data-interval="7000">
+				<ol class="carousel-indicators hide">
+					<li data-target="#ind-slider2" data-slide-to="0" class="active"></li>
+					<li data-target="#ind-slider2" data-slide-to="1" class=""></li>
+					<li data-target="#ind-slider2" data-slide-to="2" class=""></li>
+				</ol>
+				<div class="carousel-inner" role="listbox">
+					<div class="carousel-item active pt128 pb128" style="background-image: url('/theme_centric/static/src/img/ind_banner1.jpg');">
+						<div class="col-md-9 col-lg-6 content">
+							<section class="label bg-white text-uppercase font-semibold"
+								data-animation="animated fadeInDown">Welcome To</section>
+							<h2 data-animation="animated zoomInRight" class="title text-white">Machinery and
+								Hardware Company, which makes Quality
+								Products
+							</h2>
+						<!-- </div> -->
+						<!-- <div class="col-md-8 col-lg-5"> -->
+							<p data-animation="animated fadeInLeft"
+								class="m-t-40 m-b-40 hidden-sm-down text-white op-8 custom_p">We offer services in various jonar of Accounting. Let
+								us
+								take your all worry regarding your daily accounting and
+								take
+								rest.
+							</p>
+						
+							<div class="s_btn btn-pad pt8 pb24" data-name="Button">
+								<a href="/contactus"
+									class="btn btn-primary btn-md arrow-btn m-t-20 btn-alpha rounded-circle bizople_button">
+									Ask for Question
+									<span class="fa fa-1x fa-fw fa-long-arrow-right ml-1"></span>
+								</a>
+							</div>
+						</div>
+					</div>
+					<div class="carousel-item pt128 pb128" style="background-image: url('/theme_centric/static/src/img/ind_banner3.jpg');">
+					<div class="bs-slider-overlay"></div>
+						<div class="col-md-9 col-lg-6 content">
+							<h2 data-animation="animated flipInX" class="title text-white">Machinery and
+								Hardware Company.
+							</h2>
+						<!-- </div> -->
+						<!-- <div class="col-md-8 col-lg-5"> -->
+							<p data-animation="animated lightSpeedIn" class="m-t-40 m-b-40 hidden-sm-down custom_p text-white">We offer
+								services in various jonar of Accounting. Let
+								us take your all
+								worry regarding your daily accounting and
+								take rest.
+							</p>
+						
+							<div class="s_btn col-sm-12 btn-pad" data-name="Button">
+								<a href="/contactus"
+									class="btn btn-primary btn-md arrow-btn m-t-20 btn-alpha rounded-circle bizople_button">
+									Ask for Question
+									<span class="fa fa-1x fa-fw fa-long-arrow-right ml-1"></span>
+								</a>
+							</div>
+						</div>
+					</div>
+					<div class="carousel-item pt128 pb128" style="background-image: url('/theme_centric/static/src/img/ind_banner2.jpg');">
+						<div class="col-md-9 col-lg-6 content">
+							<h2 data-animation="animated flipInX" class="title text-white">Machinery and
+								Hardware Company, which makes Quality
+								Products
+							</h2>
+						<!-- </div> -->
+						<!-- <div class="col-md-8 col-lg-5"> -->
+							<p data-animation="animated lightSpeedIn" class="m-t-40 m-b-40 hidden-sm-down custom_p text-white">We offer
+								services in various jonar of Accounting. Let
+								us take your all
+								worry regarding your daily accounting and
+								take rest.
+							</p>
+						
+							<div class="s_btn col-sm-12 btn-pad" data-name="Button">
+								<a href="/contactus"
+									class="btn btn-primary btn-md arrow-btn m-t-20 btn-alpha rounded-circle bizople_button">
+									Ask for Question
+									<span class="fa fa-1x fa-fw fa-long-arrow-right ml-1"></span>
+								</a>
+							</div>
+						</div>
+					</div>
+					<div class="slider-control">
+						<a class="left carousel-control-prev text-white font-14" data-target="#ind-slider2"
+							role="button" data-slide="prev">
+							<span class="fa fa-arrow-left"></span>
+							<b class="sr-only font-normal">Previous</b>
+						</a>
+						<a class="right carousel-control-next text-white font-14" data-target="#ind-slider2"
+							role="button" data-slide="next">
+							<span class="fa fa-arrow-right"></span>
+							<b class="sr-only font-normal">Next</b>
+						</a>
+					</div>
+				</div>
+			</div>
+			<div class="modal bd-example-modal-lg fade" id="video" tabindex="-1"
+				role="dialog" aria-labelledby="modalTitle" aria-hidden="true">
+				<div class="modal-dialog modal-lg" role="document">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h5 class="modal-title" id="modalTitle">Your Video Title Here</h5>
+							<button type="button" class="close font-20" data-dismiss="modal"
+								aria-label="Close">
+								<span aria-hidden="true" class="ti-close"></span>
+							</button>
+						</div>
+						<div class="modal-body">
+							<video controls="">
+								<source src="/theme_centric/static/src/video/welding.mp4"
+									type="video/mp4"> Your browser does not support HTML5 video.</source>
+							</video>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+	</template>
+
+</odoo>

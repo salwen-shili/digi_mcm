@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+	<template id="s_business_banner" name="Home Banner Two">
+		<section id="s_hero_banner"
+			class="s_business_banner  spacer bg-info"
+			style="background-image:url(/theme_centric/static/src/img/bannerbg.jpg)">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-8 col-lg-6 align-self-center">
+						<h2 class="title font-bold text-white">Give your Business Real boost Now!</h2>
+						<p class="m-t-40 m-b-30 text-white op-8 custom_p">To accomplish great things, we must not only act,
+							but also dream; not only plan, but also believe.
+						</p>
+
+						<div class="input-group js_subscribe " data-list-id="1"
+							data-subscribe="off">
+							<input type="email" name="email"
+								class="js_subscribe_email form-control font-16"
+								placeholder="Enter Email Address" />
+
+							<span class="input-group-append">
+								<a role="button" href="#" class="js_subscribe_btn">
+									<input type="submit" value="Get Started"
+										class="bg-danger-gradiant-1 font-semibold font-16 btn-rounded rounded-circle text-uppercase text-white text-center js_subscribe_btn" />
+								</a>
+
+								<a role="button" href="#"
+									class="btn btn-success js_subscribed_btn d-none o_default_snippet_text"
+									disabled="disabled">Thanks</a>
+							</span>
+							<div
+								class="alert alert-success d-none o_default_snippet_text"
+								role="status">Thanks for your subscription!</div>
+						</div>
+					</div>
+					<div
+						class="col-md-4 col-lg-6 align-self-center ml-auto">
+						<img src="/theme_centric/static/src/img/banner-img.png"
+							alt="We are Digital Agency" class="img-fluid" />
+					</div>
+				</div>
+			</div>
+		</section>
+	</template>
+
+</odoo>

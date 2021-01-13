@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+	<template id="s_crypto_half_img_half_text" name="Half image half paragraph and button">
+		<section class="s_crypto_half_img_half_text bg-light-1">
+			<div class="spacer feature22 ">
+				<div class="container">
+					<div class="row wrap-feature-22">
+						<div class="col-lg-6 aos-init" data-aos="flip-up"
+							data-aos-duration="1200">
+							<img src="/theme_centric/static/src/img/f1_crypto.jpg"
+								class="rounded img-shadow img-responsive img img-fluid" alt="" />
+						</div>
+						<div class="col-lg-6">
+							<div class="text-box">
+								<small class="text-alpha font-medium">Powerful Options</small>
+								<h3 class="font-bold">Buy &amp; Sell your bitcoins in one-click</h3>
+								<p class="custom_p">Lorem ipsum dolor sit amet, consectetuer
+									adipiscing elit,
+									sed diam nonummy nibh euismod tincidunt ut
+									laoreet.
+								</p>
+								<ul class="list-block m-b-20">
+									<li class="text-inverse font-normal">
+										<span class="fa fa-check-circle text-alpha"></span>
+										Powerful and Faster Results for your site
+									</li>
+									<li class="text-inverse font-normal">
+										<span class="fa fa-check-circle text-alpha"></span>
+										Make your site in no-time with your Bootstrap Theme
+									</li>
+									<li class="text-inverse font-normal">
+										<span class="fa fa-check-circle text-alpha"></span>
+										Tons of Features and Elements available here
+									</li>
+									<li class="text-inverse font-normal">
+										<span class="fa fa-check-circle text-alpha"></span>
+										What are you wait for? Go and Get it.
+									</li>
+								</ul>
+								<div class="s_btn" data-name="Button">
+									<a class="btn btn-alpha rounded-circle btn-md arrow-btn bizople_button" href="#">
+											View other options
+											<span class="fa fa-1x fa-fw fa-long-arrow-right ml-1"></span>
+									</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+	</template>
+
+</odoo>

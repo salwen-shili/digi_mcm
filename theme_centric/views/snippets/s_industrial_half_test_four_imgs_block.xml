@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+	<template id="s_industrial_half_test_four_imgs_block" name="Left features right images">
+		<section class="s_industrial_half_test_four_imgs_block">
+			<div class="spacer feature12">
+				<div class="container">
+					<div class="row align-items-center">
+						<div class="col-lg-6">
+							<h2 class="m-b-30 font-bold m-t-20 text-beta">We are leading Manufacturing &amp; Exporting
+								company
+							</h2>
+							<h4 class="text-muted font-light">You can relay on our amazing features list and
+								also our customer services will be great experience for you
+								without doubt and in no-time
+							</h4>
+							<div class="row">
+								<div class="col-md-6 m-t-30">
+									<h5 class="font-medium">Instant Solutions</h5>
+									<p class="custom_p">You can relay on our amazing features list and
+										also our
+										customer services will.
+									</p>
+								</div>
+								<div class="col-md-6 m-t-30">
+									<h5 class="font-medium">Affordable Pricing</h5>
+									<p class="custom_p">You can relay on our amazing features list and
+										also our
+										customer services will.
+									</p>
+								</div>
+								<div class="col-md-6 m-t-30">
+									<h5 class="font-medium">On Time Completion</h5>
+									<p class="custom_p">You can relay on our amazing features list and
+										also our
+										customer services will.
+									</p>
+								</div>
+								<div class="col-md-6 m-t-30">
+									<h5 class="font-medium">Satisfaction Guaranteed</h5>
+									<p class="custom_p">You can relay on our amazing features list and
+										also our
+										customer services will.
+									</p>
+								</div>
+								<div class="col-lg-12 m-t-30 m-b-30 s_btn" data-name="Button">
+									<a class="btn btn-alpha rounded-circle btn-md arrow-btn bizople_button" href="#">
+											View More
+											<span class="fa fa-1x fa-fw fa-long-arrow-right ml-1"></span>
+									</a>
+								</div>
+							</div>
+						</div>
+						<div class="col-lg-6">
+							<div class="row wrap-feature-12">
+								<div class="col-md-6">
+									<div class="row">
+										<div class="col-md-12">
+											<img src="/theme_centric/static/src/img/ind1.jpg"
+												class="rounded img-shadow img-responsive" alt="" />
+										</div>
+										<div class="col-md-12">
+											<img src="/theme_centric/static/src/img/ind2.jpg"
+												class="rounded img-shadow img-responsive" alt="" />
+										</div>
+									</div>
+								</div>
+								<div class="col-md-6 uneven-box">
+									<div class="row">
+										<div class="col-md-12">
+											<img src="/theme_centric/static/src/img/ind3.jpg"
+												class="rounded img-shadow img-responsive" alt="" />
+										</div>
+										<div class="col-md-12">
+											<img src="/theme_centric/static/src/img/ind4.jpg"
+												class="rounded img-shadow img-responsive" alt="" />
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+	</template>
+
+</odoo>

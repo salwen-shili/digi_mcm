@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+	<record id="centric_projectpage_template" model="ir.ui.view">
+		<field name="name">Projects</field>
+		<field name="type">qweb</field>
+		<field name="key">website.centric_projectpage_template</field>
+		<field name="arch" type="xml">
+			<t name="centric Template" t-name="centric_projectpage_template">
+				<t t-call="website.layout">
+					<div class="oe_structure"/>
+						<section class="centric_template">
+						<!-- banner start -->
+						<section class="service-banner s_cover parallax s_parallax_is_fixed pt96 s_parallax_no_overflow_hidden bg-black-75 pb120" data-scroll-background-ratio="1" data-name="Cover" style="background-image: none;">
+					       <span class="s_parallax_bg oe_img_bg oe_custom_bg" style="background-image: url('theme_centric/static/src/img/2862664.png'); background-position: 46.59% 50.53%;"/>
+					       <div class="container">
+					         <div class="row s_nb_column_fixed">
+					           <div class="col-lg-12 s_title" data-name="Title">
+					             <h1 class="s_title_thin" style="font-size: 62px; text-align: center;">
+					               <font class="page-banner-text" style="background-color: rgba(238, 238, 238, 0);">Projects</font>
+					             </h1>
+					           </div>
+					           
+					           <div class="col-lg-12 s_btn text-center pt16 pb16" data-name="Buttons">
+					             <div class="page-title-content text-center">
+									
+									<ul>
+										<li class="home-dot">
+											<a href="/">Home</a>
+										</li>
+										<li>Projects
+										</li>
+									</ul>
+								</div>
+					           </div>
+					         </div>
+					       </div>
+					     </section>
+						<!-- banner end -->
+						<div class="oe_structure"/>
+						<!-- Project Start -->
+						<section class="project-section pt128 pb128">
+							<div class="container">
+								<div class="project-title text-center">
+									<span>PROJECTS</span>
+									<h3>
+										Our Projects For Client
+									</h3>
+								</div>
+								<section class="s_web_agency_images_with_center_para bg-light-1">
+										<div class="spacer ">
+											<div class="container">
+												<div class="row m-t-40">
+													<div class="col-md-4">
+														<div class="card card-shadow aos-init" data-aos="flip-left"
+															data-aos-duration="1200">
+															<a href="/project-detail" class="img-ho">
+																<img class="card-img-top"
+																	src="/theme_centric/static/src/img/c1.jpg" alt="bizople kit" />
+															</a>
+															<div class="card-body">
+																<h5 class="font-medium m-b-0">Branding for Theme Designer</h5>
+																<p class="m-b-0 font-14">Digital Marketing</p>
+															</div>
+														</div>
+													</div>
+													<div class="col-md-4">
+														<div class="card card-shadow aos-init" data-aos="flip-up"
+															data-aos-duration="1200">
+															<a href="/project-detail" class="img-ho">
+																<img class="card-img-top"
+																	src="/theme_centric/static/src/img/c2.jpg" alt="bizople kit" />
+															</a>
+															<div class="card-body">
+																<h5 class="font-medium m-b-0">Button Designs Free</h5>
+																<p class="m-b-0 font-14">Search Engine</p>
+															</div>
+														</div>
+													</div>
+													<div class="col-md-4">
+														<div class="card card-shadow aos-init" data-aos="flip-right"
+															data-aos-duration="1200">
+															<a href="/project-detail" class="img-ho">
+																<img class="card-img-top"
+																	src="/theme_centric/static/src/img/c3.jpg" alt="bizople kit" />
+															</a>
+															<div class="card-body">
+																<h5 class="font-medium m-b-0">Branding &amp; Co Agency</h5>
+																<p class="m-b-0 font-14">Admin templates</p>
+															</div>
+														</div>
+													</div>
+													<div class="col-md-4">
+														<div class="card card-shadow aos-init" data-aos="flip-left"
+															data-aos-duration="1200">
+															<a href="/project-detail" class="img-ho">
+																<img class="card-img-top"
+																	src="/theme_centric/static/src/img/c4.jpg" alt="bizople kit" />
+															</a>
+															<div class="card-body">
+																<h5 class="font-medium m-b-0">Zukandre Phoniex</h5>
+																<p class="m-b-0 font-14">Branding</p>
+															</div>
+														</div>
+													</div>
+													<div class="col-md-4">
+														<div class="card card-shadow aos-init" data-aos="flip-up"
+															data-aos-duration="1200">
+															<a href="/project-detail" class="img-ho">
+																<img class="card-img-top"
+																	src="/theme_centric/static/src/img/c5.jpg" alt="bizople kit" />
+															</a>
+															<div class="card-body">
+																<h5 class="font-medium m-b-0">Sionage Mokcup</h5>
+																<p class="m-b-0 font-14">Wll Mockup</p>
+															</div>
+														</div>
+													</div>
+													<div class="col-md-4">
+														<div class="card card-shadow aos-init" data-aos="flip-right"
+															data-aos-duration="1200">
+															<a href="/project-detail" class="img-ho">
+																<img class="card-img-top"
+																	src="/theme_centric/static/src/img/c6.jpg" alt="bizople kit" />
+															</a>
+															<div class="card-body">
+																<h5 class="font-medium m-b-0">Hard Cover Book Mock</h5>
+																<p class="m-b-0 font-14">Book Covers</p>
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</section>
+							</div>
+						</section>
+						<!-- Project end -->
+						<div class="oe_structure"/>
+						<!-- subs start -->
+						<section class="service-banner s_cover parallax s_parallax_is_fixed pt96 s_parallax_no_overflow_hidden bg-black-75 pb120" data-scroll-background-ratio="1" data-name="Cover" style="background-image: none;">
+					       <span class="s_parallax_bg oe_img_bg oe_custom_bg" style="background-image: url('theme_centric/static/src/img/2862664.png'); background-position: 46.59% 50.53%;"/>
+					       <div class="container">
+								<div class="subs-content text-center">
+									<span class="discount">Get Started Instantly!</span>
+									<h2>Get the only new update from this newsletter</h2>
+									
+								</div>
+								<div class="input-group js_subscribe" data-list-id="1">
+							        <input type="email" name="email" class="js_subscribe_email form-control" placeholder="your email..."/>
+							        <span class="input-group-append">
+							            <a role="button" href="#" class="btn btn-primary js_subscribe_btn">Subscribe</a>
+							            <a role="button" href="#" class="btn btn-success js_subscribed_btn d-none" disabled="disabled">Thanks</a>
+							        </span>
+							    </div>
+							</div>
+					     </section>
+						<!-- subs end -->
+						<div class="oe_structure"/>
+						<!-- clients start -->
+						<section class="clients s_references bg-200 pt16 pb16" data-name="References">
+					        <div class="container">
+					            <div class="row">
+					            	 <div class="col-lg-2">
+					                    <img src="/theme_centric/static/src/img/c1.png" class="img img-fluid" alt="Demo Logo" data-original-title="" title="" aria-describedby="tooltip843653"/>
+					                </div>
+					                <div class="col-lg-2">
+					                    <img src="/theme_centric/static/src/img/c2.png" class="img img-fluid" alt="Demo Logo" data-original-title="" title="" aria-describedby="tooltip843653"/>
+					                </div>
+					                <div class="col-lg-2">
+					                    <img src="/theme_centric/static/src/img/c3.png" class="img img-fluid" alt="Demo Logo" data-original-title="" title="" aria-describedby="tooltip623872"/>
+					                </div>
+					                <div class="col-lg-2">
+					                    <img src="/theme_centric/static/src/img/c4.png" class="img img-fluid" alt="Demo Logo" data-original-title="" title="" aria-describedby="tooltip175558"/>
+					                </div>
+					                <div class="col-lg-2">
+					                    <img src="/theme_centric/static/src/img/c5.png" class="img img-fluid" alt="Demo Logo" data-original-title="" title="" aria-describedby="tooltip940624"/>
+					                </div>
+					                <div class="col-lg-2">
+					                    <img src="/theme_centric/static/src/img/c6.png" class="img img-fluid" alt="Demo Logo" data-original-title="" title="" aria-describedby="tooltip478170"/>
+					                </div>
+					            </div>
+					        </div>
+					    </section>
+						<!-- clients end -->
+						<div class="oe_structure"/>
+					
+				</section>
+				</t>
+			</t>
+		</field>
+	</record>
+
+	<record id="centric_projectpage_template_menu" model="website.page">
+		<field name="website_published">True</field>
+		<field name="url">/project</field>
+		<field name="is_homepage">False</field>
+		<field name="view_id" ref="centric_projectpage_template" />
+	</record>
+
+</odoo>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+	<template id="s_centric_client" name="Client">
+		<section class="centric_template">
+			<section class="clients s_references bg-200 pt16 pb16" data-name="References">
+		        <div class="container">
+		            <div class="row">
+		            	 <div class="col-lg-2">
+		                    <img src="/theme_centric/static/src/img/c1.png" class="img img-fluid" alt="Demo Logo" data-original-title="" title="" aria-describedby="tooltip843653"/>
+		                </div>
+		                <div class="col-lg-2">
+		                    <img src="/theme_centric/static/src/img/c2.png" class="img img-fluid" alt="Demo Logo" data-original-title="" title="" aria-describedby="tooltip843653"/>
+		                </div>
+		                <div class="col-lg-2">
+		                    <img src="/theme_centric/static/src/img/c3.png" class="img img-fluid" alt="Demo Logo" data-original-title="" title="" aria-describedby="tooltip623872"/>
+		                </div>
+		                <div class="col-lg-2">
+		                    <img src="/theme_centric/static/src/img/c4.png" class="img img-fluid" alt="Demo Logo" data-original-title="" title="" aria-describedby="tooltip175558"/>
+		                </div>
+		                <div class="col-lg-2">
+		                    <img src="/theme_centric/static/src/img/c5.png" class="img img-fluid" alt="Demo Logo" data-original-title="" title="" aria-describedby="tooltip940624"/>
+		                </div>
+		                <div class="col-lg-2">
+		                    <img src="/theme_centric/static/src/img/c6.png" class="img img-fluid" alt="Demo Logo" data-original-title="" title="" aria-describedby="tooltip478170"/>
+		                </div>
+		            </div>
+		        </div>
+		    </section>
+		</section>
+	</template>
+</odoo>
+

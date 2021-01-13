@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+	<template id="s_cando_service" name="Cando Service Block">
+		
+		<!-- Service Page Start -->
+			<section class="service-page align-items-center text-center" id="service_page">
+				<div class="container py-5 mt-lg-4" >
+					<h2 class="text-secondary text-center">How we do it</h2>
+					<div class="row">						
+						<div class="col-lg-6 col-md-6 col-sm-6">
+							<div class="service-item d-flex align-items-center">
+								<div class="service-icon1">
+									<span class="fa fa-5x fa-copy m-5"></span>
+								</div>
+								<div class="service-content1">
+									<h5 class="text-secondary">Brand Strategy</h5>
+									<p class="">Hand two was eat busy fail. Stand smart grave would in so. Be acceptance at precaution astonished.</p>
+								</div>
+							</div>
+						</div>
+						<div class="col-lg-6 col-md-6 col-sm-6">
+							<div class="service-item d-flex align-items-center">
+								<div class="service-icon2">
+									<span class="fa fa-5x fa-comments-o m-5"></span>
+								</div>
+								<div class="service-content2">
+									<h5 class="text-secondary">Content Marketing</h5>
+									<p class="">Hand two was eat busy fail. Stand smart grave would in so. Be acceptance at precaution astonished.</p>
+								</div>
+							</div>
+						</div>
+						<div class="col-lg-6 col-md-6 col-sm-6">
+							<div class="service-item d-flex align-items-center">
+								<div class="service-icon3">
+									<span class="fa fa-5x fa-book m-5"></span>
+								</div>
+								<div class="service-content3">
+									<h5 class="text-secondary">SEO Strategies</h5>
+									<p class="">Hand two was eat busy fail. Stand smart grave would in so. Be acceptance at precaution astonished.</p>
+								</div>
+							</div>
+						</div>
+						<div class="col-lg-6 col-md-6 col-sm-6">
+							<div class="service-item d-flex align-items-center">
+								<div class="service-icon4">
+									<span class="fa fa-5x fa-video-camera m-5"></span>
+								</div>
+								<div class="service-content4">
+									<h5 class="text-secondary">Succesful Advertising</h5>
+									<p class="">Hand two was eat busy fail. Stand smart grave would in so. Be acceptance at precaution astonished.</p>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+		<!-- Service Page End -->
+
+	</template>
+</odoo>

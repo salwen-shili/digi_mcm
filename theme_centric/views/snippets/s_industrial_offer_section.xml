@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+	<template id="s_industrial_offer_section" name="Mini Appoinment Four">
+		<section class="s_industrial_offer_section bg-yellow">
+			<div class="mini-spacer  text-white">
+				<div class="container">
+					<div class="d-flex">
+						<div class="display-7 align-self-center">
+							<h3 class="">We are leading Manufacturing and Exporting
+								company
+							</h3>
+							<h6 class="font-16">You will feel great using our quality products
+								and services
+							</h6>
+						</div>
+						<div class="ml-auto m-t-10 m-b-10 s_btn" data-name="Button">
+							<button class="btn btn-alpha rounded-circle btn-md bizople_button">Contact Us</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+	</template>
+
+</odoo>

@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+	<template id="s_crypto_three_blocks"
+		name="Three blocks with diffrent colors">
+		<section class="s_crypto_three_blocks">
+			<div class="mini-spacer feature6">
+				<div class="container">
+					<div class="row">
+						<div class="col-md-4 wrap-feature6-box">
+							<section
+								class="card bg-alpha text-white ">
+								<div class="card-box">
+									<h4 class="font-bold text-white">XRP / Ripple</h4>
+									<h5 class="text-white">USD 1.256</h5>
+									<hr />
+									<div class="row">
+										<div class="col-md-4 col-4 text-center">
+											<h6 class="font-light text-white">% 1h</h6>
+											<h6 class="text-white">
+												<span class="ti-arrow-up"></span>
+												0.08
+											</h6>
+										</div>
+										<div class="col-md-4 col-4 text-center">
+											<h6 class="font-light text-white">% 24h</h6>
+											<h6 class="text-white">
+												<span class="ti-arrow-down"></span>
+												-3.66
+											</h6>
+										</div>
+										<div class="col-md-4 col-4 text-center">
+											<h6 class="font-light text-white">% 7d</h6>
+											<h6 class="text-white">
+												<span class="ti-arrow-down"></span>
+												-23.56
+											</h6>
+										</div>
+									</div>
+								</div>
+							</section>
+						</div>
+						<div class="col-md-4 wrap-feature6-box">
+							<section
+								class="card bg-feature text-white ">
+								<div class="card-box">
+									<h4 class="font-bold text-white">ETH / Ethereum</h4>
+									<h5 class="text-white">USD 1.136</h5>
+									<hr />
+									<div class="row">
+										<div class="col-md-4 col-4 text-center">
+											<h6 class="font-light text-white">% 1h</h6>
+											<h6 class="text-white">
+												<span class="ti-arrow-up"></span>
+												0.08
+											</h6>
+										</div>
+										<div class="col-md-4 col-4 text-center">
+											<h6 class="font-light text-white">% 24h</h6>
+											<h6 class="text-white">
+												<span class="ti-arrow-down"></span>
+												-3.66
+											</h6>
+										</div>
+										<div class="col-md-4 col-4 text-center">
+											<h6 class="font-light text-white">% 7d</h6>
+											<h6 class="text-white">
+												<span class="ti-arrow-down"></span>
+												-23.56
+											</h6>
+										</div>
+									</div>
+								</div>
+							</section>
+						</div>
+						<div class="col-md-4 wrap-feature6-box">
+							<section
+								class="card bg-beta text-white ">
+								<div class="card-box">
+									<h4 class="font-bold text-white">BTC / Bitcoin</h4>
+									<h5 class="text-white">USD 12.568</h5>
+									<hr />
+									<div class="row">
+										<div class="col-md-4 col-4 text-center">
+											<h6 class="font-light text-white">% 1h</h6>
+											<h6 class="text-white">
+												<span class="ti-arrow-up"></span>
+												0.08
+											</h6>
+										</div>
+										<div class="col-md-4 col-4 text-center">
+											<h6 class="font-light text-white">% 24h</h6>
+											<h6 class="text-white">
+												<span class="ti-arrow-down"></span>
+												-3.66
+											</h6>
+										</div>
+										<div class="col-md-4 col-4 text-center">
+											<h6 class="font-light text-white">% 7d</h6>
+											<h6 class="text-white">
+												<span class="ti-arrow-down"></span>
+												-23.56
+											</h6>
+										</div>
+									</div>
+								</div>
+							</section>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+	</template>
+
+</odoo>

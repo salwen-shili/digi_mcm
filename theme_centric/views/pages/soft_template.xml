@@ -1,0 +1,390 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+	<record id="soft_homepage_template" model="ir.ui.view">
+		<field name="name">Soft Home</field>
+		<field name="type">qweb</field>
+		<field name="key">website.soft_homepage_template</field>
+		<field name="arch" type="xml">
+			<t name="Soft Template" t-name="soft_homepage_template">
+				  <t t-call="website.layout">
+				    <div id="wrap" class="oe_structure oe_empty">
+				      <section class="theme-soft" data-name="Soft home">
+				        <section class="home home_bgimg overflow-hidden pt64 pb64">
+				          <div class="container ">
+				            <div class="row align-items-center">
+				              <div class="col-lg-5 col-md-6">
+				                <h1 class="text-alpha o_default_snippet_text">Creative Digital Agency</h1>
+				                <p class="pt32">
+				                  <span>
+				                    <span class="o_default_snippet_text">With us, all over the place becomes all-in-one place.</span>
+				                    <span class="o_default_snippet_text">Every part of a project lifecycle is here.</span>
+				                  </span>
+				                </p>
+				                <div class="col-sm-12 col-xm-12">
+				                  <div class="row pt32">
+				                    <div>
+				                      <a class="btn btn-txt1 pt16 pb16 rounded-circle btn-alpha o_default_snippet_text" type="button" href="#HOW IT WORKS">GET EARLY ACCESS</a>
+				                    </div>
+				                    <div class="pt-2">
+				                      <a href="#" class="pl-3 btn-txt2">
+				                        <span class="btn-txt2 text-center text-beta o_default_snippet_text"> SEE LIVE DEMO
+															<span><i class="fa fa-play-circle-o pl-2 icon_size"/></span>
+														</span>
+				                      </a>
+				                    </div>
+				                  </div>
+				                </div>
+				              </div>
+				              <div class="col-lg-7 d-none d-xl-block container-fluid">
+				                <img src="/theme_centric/static/src/img/soft/banner11.png"/>
+				              </div>
+				            </div>
+				          </div>
+				        </section>
+				      </section>
+				      <section class="theme-soft theme-soft-how-it-work-bg" data-name="Soft about us one">
+				        <section class="about aboute_bgimg pt128 pb128" id="about">
+				          <div class="container">
+				            <div class="row">
+				              <div class="col-sm-12 col-xs-12 mb64" id="HOW IT WORKS">
+				                <h6 class="text-feature o_default_snippet_text">HOW IT WORKS</h6>
+				                <h1 class="text-alpha o_default_snippet_text">Simple process <span class="font-weight-lighter o_default_snippet_text">to start</span></h1>
+				              </div>
+				              <div class="col-sm-12 col-xs-12 pb64 mb64">
+				                <div class="row text-center">
+				                  <div class="col-lg-4 col-md-4 col-sm-4">
+				                    <section class="feature-item1">
+				                      <div class="icon">
+				                        <div class="dotted-img">
+				                          <i class="fa fa-object-group"/>
+				                        </div>
+				                      </div>
+				                      <h3 id="feat" class="o_default_snippet_text">Seo Consultancy</h3>
+				                      <p class="o_default_snippet_text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor</p>
+				                    </section>
+				                  </div>
+				                  <div class="col-lg-4 col-md-4 col-sm-4">
+				                    <section class="feature-item2">
+				                      <div class="icon">
+				                        <div class="dotted-img2">
+				                          <i class="fa fa-clone"/>
+				                        </div>
+				                      </div>
+				                      <h3 id="feat" class="o_default_snippet_text">Competitor Analysis</h3>
+				                      <p class="o_default_snippet_text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor</p>
+				                    </section>
+				                  </div>
+				                  <div class="col-lg-4 col-md-4 col-sm-4">
+				                    <section class="feature-item3">
+				                      <div class="icon">
+				                        <div class="dotted-img3">
+				                          <i class="fa fa-commenting-o"/>
+				                        </div>
+				                      </div>
+				                      <h3 id="feat" class="o_default_snippet_text">Social Media Marketing</h3>
+				                      <p class="o_default_snippet_text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor</p>
+				                    </section>
+				                  </div>
+				                </div>
+				              </div>
+				            </div>
+				          </div>
+				        </section>
+				      </section>
+				      <section class="theme-soft" data-name="Soft about us two">
+				        <section class="about pb128" id="about">
+				          <div class="container">
+				            <div class="row">
+				              <div class=" col-md-12 col-xs-12 pt128">
+				                <div class="row">
+				                  <div class="col-lg-6 col-md-12 ">
+				                    <figure>
+				                      <img src="/theme_centric/static/src/img/soft/about-us.png" class="img-fluid float-left"/>
+				                    </figure>
+				                  </div>
+				                  <div class="col-lg-6 col-md-12 col-xs-12 pl-md-5 pt-4">
+				                    <h6 class="text-feature o_default_snippet_text">ABOUT US</h6>
+				                    <h1 class="text-alpha font-weight-bold o_default_snippet_text">good <span class="font-weight-lighter o_default_snippet_text">design</span></h1>
+				                    <h1 class="text-alpha font-weight-bold o_default_snippet_text">good <span class="font-weight-lighter o_default_snippet_text">business</span></h1>
+				                    <p class="pt-3 extra-p o_default_snippet_text">We know that good design means good business.</p>
+				                    <p class="pt-3 o_default_snippet_text">We help our clients succeed by creating brand identities, digital experiences, and print materials that communicate clearly, achieve marketing goals, and look fantastic.</p>
+				                    <a class="btn btn-md rounded-circle mt-4 btn-alpha o_default_snippet_text" type="button" href="#">MORE ABOUT US</a>
+				                  </div>
+				                </div>
+				              </div>
+				            </div>
+				          </div>
+				        </section>
+				      </section>
+				      <section class="theme-soft" data-name="Soft services">
+				        <section class="services pb64 pt64" id="services">
+				          <div class="container">
+				            <div class="row pt16">
+				              <div class="col-md-5 pt128 pb32">
+				                <h6 class="text-feature o_default_snippet_text">SERVICES</h6>
+				                <h1 class="text-alpha o_default_snippet_text">Best solutions</h1>
+				                <h1 class="font-weight-lighter text-alpha o_default_snippet_text">for you</h1>
+				                <p class="pt16 o_default_snippet_text">We provide digital experience services to startups and small businesses to looking for a partner of their digital media, design and development, lead generation and communications requirents. We work with you, not for you. Although we have a great resources</p>
+				                <a class="btn btn-md px-4 py-3 rounded-circle mt-5 btn-alpha o_default_snippet_text" type="button" href="#">SEE ALL SERVICES</a>
+				              </div>
+				              <div class=" col-md-1"/>
+				              <div class="col-lg-6 card-p">
+				                <div class="row">
+				                  <div class="col-lg-6  co         l-md-8 col-sm-12 mt-4 ">
+				                    <section class="pt32 pb32  ml-md-1 mr-md-1 px-4 service red_card">
+				                      <i class="fa fa-bookmark-o cardimg "/>
+				                      <h3 class="font-weight-bold pt-5 o_default_snippet_text">Branding</h3>
+				                      <p class="text-justify pt-2 o_default_snippet_text">Introduction and kick-off meeting checklist. Lorem ispumdolor sit amet.</p>
+				                    </section>
+				                  </div>
+				                  <div class="col-lg-6  col-md-8 col-sm-12  mt-4 top-set">
+				                    <section class="pt32 pb32 ml-md-1 mr-md-1 px-4 service red_card">
+				                      <i class="fa fa-desktop cardimg "/>
+				                      <h3 class="font-weight-bold pt-5 o_default_snippet_text">UI/UX Design</h3>
+				                      <p class="text-justify pt-2 o_default_snippet_text">Introduction and kick-off meeting checklist. Lorem ispumdolor sit amet.</p>
+				                    </section>
+				                  </div>
+				                  <div class="col-lg-6  col-md-8 col-sm-12  mt-4">
+				                    <section class="pt32 pb32 ml-md-1 mr-md-1 px-4 service red_card">
+				                      <i class="fa fa-film cardimg "/>
+				                      <h3 class="font-weight-bold pt-5 o_default_snippet_text">Animation</h3>
+				                      <p class="text-justify pt-2 o_default_snippet_text">Introduction and kick-off meeting checklist. Lorem ispumdolor sit amet.</p>
+				                    </section>
+				                  </div>
+				                  <div class="col-lg-6  col-md-8 col-sm-12  mt-4 top-set">
+				                    <section class="pt32 pb32 ml-md-1 mr-md-1 px-4 service red_card">
+				                      <i class="fa fa-camera-retro cardimg "/>
+				                      <h3 class="font-weight-bold pt-5 o_default_snippet_text">Photography</h3>
+				                      <p class="text-justify pt-2 o_default_snippet_text">Introduction and kick-off meeting checklist. Lorem ispumdolor sit amet.</p>
+				                    </section>
+				                  </div>
+				                </div>
+				              </div>
+				            </div>
+				          </div>
+				        </section>
+				      </section>
+				      <section class="theme-soft" data-name="Soft works">
+				        <section class="services pb64 pt64" id="services">
+				          <div class="container">
+				            <div class="row">
+				              <div class="col-sm-12">
+				                <div class="work" id="work">
+				                  <div class="row align-items-center">
+				                    <div class="col-sm-12">
+				                      <h6 class="text-left text-feature o_default_snippet_text">PROJECTS</h6>
+				                      <div class="work-title">
+				                        <h1 class="text-alpha o_default_snippet_text">Latest <span class="font-weight-lighter o_default_snippet_text">works</span></h1>
+				                      </div>
+				                    </div>
+				                    <div class="col-sm-12 col-xs-12">
+				                      <div class="row pb64">
+				                        <div class="col-lg-4 col-md-6 col-sm-12 pt-5">
+				                          <a href="#" class="noncard work_my">
+				                            <div class="work_img1">
+				                              <img src="/theme_centric/static/src/img/soft/oblivion1.png" class="img-fluid"/>
+				                            </div>
+				                            <div class="bg-white  work_img py-2 px-3">
+				                              <h3 class="font-weight-bold text-alpha o_default_snippet_text"> Oblivion</h3>
+				                              <p class="text-beta o_default_snippet_text">BL Fashion new branding</p>
+				                            </div>
+				                          </a>
+				                        </div>
+				                        <div class="col-lg-4 col-md-6 col-sm-12 pt-5">
+				                          <a href="#" class="noncard work_my">
+				                            <div class="work_img1">
+				                              <img src="/theme_centric/static/src/img/soft/abstract2.png" class="img-fluid"/>
+				                            </div>
+				                            <div class="bg-white  work_img py-2 px-3">
+				                              <h3 class="font-weight-bold text-alpha o_default_snippet_text"> Abstract</h3>
+				                              <p class="text-beta o_default_snippet_text">Creative colors for brands</p>
+				                            </div>
+				                          </a>
+				                        </div>
+				                        <div class="col-lg-4 col-md-6 col-sm-12 pt-5">
+				                          <a href="#" class="noncard work_my">
+				                            <div class="work_img1">
+				                              <img src="/theme_centric/static/src/img/soft/creative3.png" class="img-fluid"/>
+				                            </div>
+				                            <div class="bg-white  work_img py-2 px-3">
+				                              <h3 class="font-weight-bold text-alpha o_default_snippet_text"> Creative Tropical</h3>
+				                              <p class="text-beta o_default_snippet_text">Winter is coming</p>
+				                            </div>
+				                          </a>
+				                        </div>
+				                        <div class="col-lg-4 col-md-6 col-sm-12 pt-5">
+				                          <a href="#" class="noncard work_my">
+				                            <div class="work_img1">
+				                              <img src="/theme_centric/static/src/img/soft/falling-show4.png" class="img-fluid"/>
+				                            </div>
+				                            <div class="bg-white  work_img py-2 px-3">
+				                              <h3 class="font-weight-bold text-alpha o_default_snippet_text"> Falling Show</h3>
+				                              <p class="text-beta o_default_snippet_text">Redefine cosmetic product</p>
+				                            </div>
+				                          </a>
+				                        </div>
+				                        <div class="col-lg-4 col-md-6 col-sm-12 pt-5">
+				                          <a href="#" class="noncard work_my">
+				                            <div class="work_img1">
+				                              <img src="/theme_centric/static/src/img/soft/headphone5.png" class="img-fluid"/>
+				                            </div>
+				                            <div class="bg-white work_img py-2 px-3">
+				                              <h3 class="font-weight-bold text-alpha o_default_snippet_text"> Kama Headphone</h3>
+				                              <p class="text-beta o_default_snippet_text">Nature meets technology</p>
+				                            </div>
+				                          </a>
+				                        </div>
+				                        <div class="col-lg-4 col-md-6 col-sm-12 pt-5">
+				                          <a href="#" class="noncard work_my">
+				                            <div class="work_img1">
+				                              <img src="/theme_centric/static/src/img/soft/water6.png" class="img-fluid"/>
+				                            </div>
+				                            <div class="bg-white  work_img py-2 px-3">
+				                              <h3 class="font-weight-bold text-alpha o_default_snippet_text">Super Water</h3>
+				                              <p class="text-beta o_default_snippet_text">The title says it all</p>
+				                            </div>
+				                          </a>
+				                        </div>
+				                      </div>
+				                    </div>
+				                  </div>
+				                </div>
+				              </div>
+				            </div>
+				          </div>
+				        </section>
+				      </section>
+				      <section class="theme-soft" data-name="Soft works count">
+				        <section class="work pb-50 pt-50">
+				          <div class="container">
+				            <div class="row text-center">
+				              <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12 count-box counter-box">
+				                <div class="employees">
+				                  <h1 class="counter-count count-text counter text-alpha o_default_snippet_text">2520</h1>
+				                  <h6 class="o_default_snippet_text">PROJECTS DONE</h6>
+				                </div>
+				              </div>
+				              <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12 count-box counter-box ">
+				                <div class="customer">
+				                  <h1 class="counter-count count-text counter text-alpha o_default_snippet_text">615</h1>
+				                  <h6 class="o_default_snippet_text">HAPPY CUSTOMERS</h6>
+				                </div>
+				              </div>
+				              <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12 count-box counter-box">
+				                <div class="design">
+				                  <h1 class="counter-count count-text counter text-alpha o_default_snippet_text">102</h1>
+				                  <h6 class="o_default_snippet_text">WINNING AWWARDS</h6>
+				                </div>
+				              </div>
+				              <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12 count-box counter-box">
+				                <div class="order">
+				                  <h1 class="counter-count count-text counter text-alpha o_default_snippet_text">3200</h1>
+				                  <h6 class="o_default_snippet_text">EMPLOYEES WORLDWIDE</h6>
+				                </div>
+				              </div>
+				            </div>
+				          </div>
+				        </section>
+				      </section>
+				      <section class="theme-soft" data-name="Soft pricing">
+				        <section class="pricing pricing_bgimg pt64 pb64" id="pricing">
+				          <div class="container ">
+				            <div class="row">
+				              <div class="col-lg-12 col-sm-12 col-xs-12 text-center pb64">
+				                <h6 class="text-feature o_default_snippet_text">PRICING PLAN</h6>
+				                <h1 class="text-alpha o_default_snippet_text">Affordable <span class="font-weight-lighter o_default_snippet_text"> pricing</span></h1>
+				              </div>
+				              <div class="col-lg-4 col-xs-12  text-center pricing_shadow1  px mb-3">
+				                <div class="pt128 pb64">
+				                  <div class="card-img-top mb64 ">
+				                    <img src="/theme_centric/static/src/img/soft/boat11.png" alt="Card image"/>
+				                  </div>
+				                  <div class="card-body">
+				                    <div class="card-title">
+				                      <h5 class="o_default_snippet_text">PERSONAL</h5>
+				                    </div>
+				                    <div class="pb-4">
+				                      <h2 class="text-center font-weight-bold o_default_snippet_text"><sup class="dlr o_default_snippet_text">$</sup>9.99<span class="p o_default_snippet_text">/month</span></h2>
+				                    </div>
+				                    <div class="border-top border-bottom pt-4 pb-4">
+				                      <p class="card-text o_default_snippet_text">CUSTOME DOMAINS</p>
+				                    </div>
+				                    <div>
+				                      <p class="card-text pt-4 o_default_snippet_text">SLEEP AFTER 30 MINS OFACTIVITY</p>
+				                    </div>
+				                    <div>
+				                      <a class="btn btn-md px-4 py-3 rounded-circle mt-5 btn-txt1 zoom-efect btn-alpha o_default_snippet_text" type="button" href="#">GET STARTED NOW</a>
+				                    </div>
+				                  </div>
+				                </div>
+				              </div>
+				              <div class="col-lg-4 col-xs-12  text-center pricing_shadow2 px mb-3">
+				                <div class="pb64 price-center">
+				                  <span class="m-auto pb32">
+				                    <span>
+				                      <h4 class="text-uppercase Popular mb32 mx-xl-5 text-white o_default_snippet_text">Popular</h4>
+				                    </span>
+				                  </span>
+				                  <div class="card-img-top mb64 pt64 text-center">
+				                    <img src="/theme_centric/static/src/img/soft/boat12.png" alt="Card image"/>
+				                  </div>
+				                  <div class="card-body">
+				                    <dev class="card-title ">
+				                      <h5 class="o_default_snippet_text">SMALL TEAM</h5>
+				                    </dev>
+				                    <div class="pb-4">
+				                      <h2 class="font-weight-bold text-center o_default_snippet_text"><sup class="dlr o_default_snippet_text">$</sup>49.99<span class="p o_default_snippet_text">/month</span></h2>
+				                    </div>
+				                    <div class="border-top border-bottom pt-4 pb-4">
+				                      <p class="card-text o_default_snippet_text">NEVER SLEEPS</p>
+				                    </div>
+				                    <div>
+				                      <p class="card-text pt-4 o_default_snippet_text">MULTIPLE WORKERS FOR MOREPOWERFUL APPS</p>
+				                    </div>
+				                    <div>
+				                      <a class="btn btn-md px-4 py-3 rounded-circle mt-5 btn-txt2 zoom-efect btn-alpha o_default_snippet_text" type="button" href="#">GET STARTED NOW</a>
+				                    </div>
+				                  </div>
+				                </div>
+				              </div>
+				              <div class="col-lg-4 col-xs-12 text-center pricing_shadow1 px mb-3">
+				                <div class="pt128 pb64 ">
+				                  <div class="card-img-top mb64">
+				                    <img src="/theme_centric/static/src/img/soft/boat13.png" alt="Card image"/>
+				                  </div>
+				                  <div class="card-body ">
+				                    <div class="card-title ">
+				                      <h5 class="o_default_snippet_text">ENTERPRISE</h5>
+				                    </div>
+				                    <div class="pb-4">
+				                      <h2 class="font-weight-bold text-center o_default_snippet_text"><sup class="dlr o_default_snippet_text">$</sup>99.99<span class="p o_default_snippet_text">/month</span></h2>
+				                    </div>
+				                    <div class="border-top border-bottom pt-4 pb-4">
+				                      <p class="card-text o_default_snippet_text">DEDICATED</p>
+				                    </div>
+				                    <div>
+				                      <p class="card-text pt-4 o_default_snippet_text">SIMPLE HORIZONTALSCALABILITY</p>
+				                    </div>
+				                    <div>
+				                      <a class="btn btn-md px-4 py-3 rounded-circle mt-5 btn-txt1 zoom-efect btn-alpha o_default_snippet_text" type="button" href="#">GET STARTED NOW</a>
+				                    </div>
+				                  </div>
+				                </div>
+				              </div>
+				            </div>
+				          </div>
+				        </section>
+				      </section>
+				    </div>
+				  </t>
+			</t>
+		</field>
+	</record>
+
+	<record id="soft_homepage_template_menu" model="website.page">
+		<field name="website_published">True</field>
+		<field name="url">/soft-home</field>
+		<field name="is_homepage">False</field>
+		<field name="view_id" ref="soft_homepage_template" />
+	</record>
+</odoo>

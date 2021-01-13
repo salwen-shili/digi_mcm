@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+	<template id="s_restaturant_app_store" name="App store addvertisement block">
+		<section class="s_restaturant_app_store bg-danger-gradiant">
+			<div class="spacer feature42 ">
+				<div class="container">
+					<div class="row justify-content-center wrap-feature49-box">
+						<div class="col-md-10 col-lg-7 text-center">
+							<h2 class="title text-white font-stylish-1 text-beta">Grab our Theme Twelve from App Stores</h2>
+							<h6 class="subtitle text-white op-7 m-b-20">You can relay on our amazing features list. </h6>
+							<a href="#" class="m-b-20">
+								<img src="/theme_centric/static/src/img/5.png"
+									alt="bizople" class="img img-fluid"/>
+							</a>
+							<a href="#" class="m-b-20">
+								<img src="/theme_centric/static/src/img/6.png"
+									alt="bizople" class="img img-fluid"/>
+							</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+	</template>
+
+</odoo>

@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+	<template id="s_industrial_services_three_blocks" name="Three Blocks with button">
+		<section class="s_industrial_services_three_blocks bg-light-1">
+			<div class="spacer feature2 ">
+				<div class="container">
+					<div class="row justify-content-center">
+						<div class="col-md-7 text-center">
+							<h2 class="title font-bold text-beta">Services area we focus on</h2>
+							<h6 class="subtitle">You can relay on our amazing features list and
+								also our customer services will be great experience for you
+								without doubt and in no-time
+							</h6>
+						</div>
+					</div>
+					<div class="row m-t-40">
+						<div class="col-md-4 wrap-feature2-box">
+							<section class="card card-shadow " >
+								<img class="card-img-top"
+									src="/theme_centric/static/src/img/5_ind.jpg" alt="" />
+								<div class="card-body text-center">
+									<h5 class="font-medium">Construction Services</h5>
+									<p class="m-t-20 custom_p">You can relay on our amazing features list and
+										also our customer services will be great experience.
+									</p>
+								</div>
+							</section>
+						</div>
+						<div class="col-md-4 wrap-feature2-box">
+							<section class="card card-shadow " >
+								<img class="card-img-top"
+									src="/theme_centric/static/src/img/6_ind.jpg" alt="" />
+								<div class="card-body text-center">
+									<h5 class="font-medium">Oil &amp; Gas Products</h5>
+									<p class="m-t-20 custom_p">You can relay on our amazing features list and
+										also our customer services will be great experience.
+									</p>
+								</div>
+							</section>
+						</div>
+						<div class="col-md-4 wrap-feature2-box">
+							<section class="card card-shadow " >
+								<img class="card-img-top"
+									src="/theme_centric/static/src/img/7_ind.jpg" alt="" />
+								<div class="card-body text-center">
+									<h5 class="font-medium">Power &amp; Energy</h5>
+									<p class="m-t-20 custom_p">You can relay on our amazing features list and
+										also our customer services will be great experience.
+									</p>
+								</div>
+							</section>
+						</div>
+						<div class="col-md-12 m-t-20 text-center s_btn" data-name="Button">
+							<a class="btn btn-alpha rounded-circle btn-md arrow-btn bizople_button" href="#">
+									View More Services
+									<span class="fa fa-1x fa-fw fa-long-arrow-right ml-1"></span>
+							</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+	</template>
+
+</odoo>

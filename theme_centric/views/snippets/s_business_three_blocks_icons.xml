@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+	<template id="s_business_three_blocks_icons" name="Three Blocks Of Icons">
+		<section
+			class="s_business_three_blocks_icons bg-light-1 feature11">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-4 wrap-feature11-box">
+						<section class="card card-shadow ">
+							<div class="card-body">
+								<div class="icon-space">
+									<section class="icon-round bg-alpha ">
+										<span class="fa fa-cog"></span>
+									</section>
+								</div>
+								<h5 class="font-medium">Retargeting Market</h5>
+								<p class="m-t-20 custom_p">You can relay on our amazing features list and
+									also our customer services will be great experience.
+								</p>
+							</div>
+						</section>
+					</div>
+					<div class="col-md-4 wrap-feature11-box">
+						<section class="card card-shadow ">
+							<div class="card-body">
+								<div class="icon-space">
+									<section class="icon-round bg-alpha">
+										<span class="fa fa-sun-o"></span>
+									</section>
+								</div>
+								<h5 class="font-medium">Fruitful Results</h5>
+								<p class="m-t-20 custom_p">You can relay on our amazing features list and
+									also our customer services will be great experience.
+								</p>
+							</div>
+						</section>
+					</div>
+					<div class="col-md-4 wrap-feature11-box">
+						<section class="card card-shadow ">
+							<div class="card-body">
+								<div class="icon-space">
+									<section class="icon-round bg-alpha">
+										<span class="fa fa-diamond"></span>
+									</section>
+								</div>
+								<h5 class="font-medium">Instant Solutions</h5>
+								<p class="m-t-20 custom_p">You can relay on our amazing features list and
+									also our customer services will be great experience.
+								</p>
+							</div>
+						</section>
+					</div>
+				</div>
+			</div>
+		</section>
+	</template>
+
+</odoo>

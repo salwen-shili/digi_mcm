@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+	<template id="s_centric_analysis" name="Analysis">
+		<section class="centric_template">
+			<section class="analysis-section pt128 pb128" id="contactus">
+				<div class="container">
+					<div class="row align-items-center">
+						<div class="col-lg-6 col-md-12">
+							<div class="analysis-img">
+								<img class="img img-fluid" src="/theme_centric/static/img/contact.png"/>
+							</div>
+						</div>
+						<div class="col-lg-6 col-md-12">
+							<div class="analysis-content">
+								<span>ANALYSIS</span>
+								<h3>Get Free SEO Analysis</h3>
+								<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna.</p>
+							</div>
+							<form action="/website_form/" method="post" data-aos="fade-left" data-aos-duration="1200" data-model_name="crm.lead" data-success_page="/contactus-thank-you" class="s_website_form contact-form  aos-init aos-animate" enctype="multipart/form-data" data-editable-form="false">
+								<div class=" contact-form row">
+									<div class="col-lg-6 col-md-6 col-sm-6">
+										<div class="formgroup form-group m-t-15">
+											<input id="name" placeholder="First Name :" name="contact_name" required="True" type="text" class="formtext o_website_form_input form-control op-5" t-att-value="request.params.get('contact_name', '')" />
+										</div>
+									</div>
+									<div class="col-lg-6 col-md-6 col-sm-6">
+										<div class="formgroup form-group m-t-15">
+											<input id="email" name="email_from" placeholder="Email :" required="" value="" type="email" class="formtext o_website_form_input form-control op-5" t-att-value="request.params.get('email_from', '')" />
+										</div>
+									</div>
+									<div class="col-lg-6 col-md-6 col-sm-6">
+										<div class="formgroup form-group m-t-15">
+											<input id="phone" name="phone" placeholder="Phone :" type="text" t-att-value="request.params.get('phone', '')" class="formtext o_website_form_input form-control op-5" />
+										</div>
+									</div>
+									<div class="col-lg-6 col-md-6 col-sm-6">
+										<div class="formgroup form-group m-t-15">
+											<input id="subject" name="name" placeholder="Website :" type="text" t-att-value="request.params.get('name', '')" class="formtext o_website_form_input form-control op-5" />
+										</div>
+									</div>
+									<div class="col-lg-12 col-md-12 col-sm-12">
+										<div class="formgroup form-group m-t-15">
+											<textarea id="messagge" name="description" rows="3" placeholder="Messagge :" t-att-value="request.params.get('description', '')" class="formtext o_website_form_input form-control op-5">
+												
+											</textarea>
+											<div class="reserve-submit mt-40">
+											</div>
+										</div>
+									</div>
+									<div class="analysis-btn s_btn col-lg-12 text-center">
+										<a href="#" class="analysisbtn btn btn-alpha rounded-circle o_website_form_send">Send Message</a>
+										<span id="o_website_form_result" class="text-danger ml8 mt16  mb16 col-md-12">
+										</span>
+									</div>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</section>
+		</section>
+	</template>
+</odoo>

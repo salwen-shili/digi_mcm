@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+	<template id="s_creative_left_img_right_popup"
+		name="Left image with right popup">
+		<section
+			class="s_creative_left_img_right_popup spacer bg-light-1 feature34 wrap-feature34-box">
+			<div class="container">
+				<div class=" row align-items-center">
+					<div class="col-lg-6 col-md-6">
+						<img src="/theme_centric/static/src/img/creative_img3.png"
+							class="img img-fluid " alt=" " />
+					</div>
+
+					<div class="col-lg-6 col-md-6 ml-auto">
+						<div class="" >
+							<section class="label bg-epsilon d-inline-block label-rounded">Features</section>
+							<h2 class="title text-uppercase text-beta">Awesome Extra Ordinary Flexibility</h2>
+							<p class="op-8 custom_p">You can relay on our amazing features list and also
+								our customer services will be great experience.
+							</p>
+							<div class="row m-t-30">
+								<div class="col-md-12">
+									<section class="card card-shadow">
+										<div class="card-body">
+											<div class="row p-20">
+												<div class="col-6 b-r">
+													<h2 class="m-b-0 font-light text-alpha">6455</h2>
+													<h6 class="text-muted">PROJECTS</h6>
+												</div>
+												<div class="col-6 text-right b-l">
+													<h2 class="m-b-0 font-light text-alpha">85.5%</h2>
+													<h6 class="text-muted">Sucess Rate</h6>
+												</div>
+												<div class="col-lg-12 m-t-20 s_btn" data-name="Button">
+													<a
+														class="btn btn-alpha rounded-circle btn-md btn-block arrow-btn m-t-20 bizople_button"
+														 href="#f34">
+														View Features
+														<span class="fa fa-1x fa-fw fa-long-arrow-right ml-1"></span>
+													</a>
+												</div>
+											</div>
+										</div>
+									</section>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+	</template>
+
+</odoo>

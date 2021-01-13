@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+	<template id="s_charity_news_letter" name="News Letter One">
+		<section class="s_charity_news_letter">
+			<div class="blog-home6 spacer">
+				<div class="container">
+					<div class="row">
+						<div class="col-lg-5 js_subscribe d-none" data-list-id="1"
+							data-subscribe="off">
+							<h6 class="text-feature text-uppercase">newsletter</h6>
+							<h2 class="title font-medium">Stay informed about new and upcoming causes</h2>
+							<h6 class="subtitle m-t-30">It has been the industry's standard dummy text
+								ever since the 1500s, when an unknown printer took a galley
+								of type and scrambled it to make a type specimen book.
+							</h6>
+							<form class="m-t-30">
+								<div class="form-group">
+									<input class="form-control" type="text"
+										placeholder="Your Name" />
+								</div>
+								<div class="form-group">
+									<input type="email" name="email"
+										class="js_subscribe_email form-control"
+										placeholder="Email Address" />
+								</div>
+								<div class="form-group">
+									<span class="input-group-append">
+										<a role="button" href="#"
+											class="btn btn-alpha rounded-circle btn-block btn-md text-uppercase js_subscribe_btn">Subscribe</a>
+										<a role="button" href="#"
+											class="btn btn-success js_subscribed_btn d-none"
+											disabled="disabled">Thanks</a>
+									</span>
+									<div
+										class="alert alert-success d-none o_default_snippet_text"
+										role="status">Thanks for your subscription!</div>
+								</div>
+								<div class="form-group">
+									<label
+										class="custom-control custom-checkbox mb-2 mr-sm-2 mb-sm-0">
+										<input type="checkbox" class="custom-control-input" />
+										<span class="custom-control-indicator"></span>
+										<span class="custom-control-description">
+											I have read and agree to the
+											<a href="#" class="link">terms and conditions</a>
+										</span>
+									</label>
+								</div>
+							</form>
+						</div>
+						<div class="col-lg-6 ml-auto">
+							<t t-call="website_blog.s_latest_posts"></t>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+	</template>
+
+</odoo>

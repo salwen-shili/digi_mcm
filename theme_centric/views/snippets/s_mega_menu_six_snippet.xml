@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+	<template id="s_mega_menu_six_snippet" name="Mega Menu Six">
+		<section class="s_mega_menu_six_snippet">
+			<div class="container ">
+				<div class="row justify-content-center">
+					<div class="col-lg-4 col-sm-4 col-md-4">
+						<h5>VARIATION 1</h5>
+						<ul class="list list-unstyled">
+							<li><a href="#">Fullwidth Banner</a></li>
+							<li><a href="#">Boxed Slider Banner</a></li>
+							<li><a href="#">Boxed Image Banner</a></li>
+							<li><a href="#">Left Sidebar</a></li>
+							<li><a href="#">Right Sidebar</a></li>
+							<li><a href="#">Product Flex Grid</a></li>
+							<li><a href="#">Horizontal Filter1</a></li>
+							<li><a href="#">Horizontal Filter2</a></li>
+						</ul>	
+					</div>
+					<div class="col-lg-4 col-sm-4 col-md-4">
+						<h5>VARIATION 2</h5>
+						<ul class="list list-unstyled">
+							<li><a href="#">Product List Item Types</a></li>
+							<li><a href="#">Ajax Infinite Scroll</a></li>
+							<li><a href="#">3 Columns Products</a></li>
+							<li><a href="#">4 Columns Products</a></li>
+							<li><a href="#">5 Columns Products</a></li>
+							<li><a href="#">6 Columns Products</a></li>
+							<li><a href="#">7 Columns Products</a></li>
+							<li><a href="#">8 Columns Products</a></li>
+						</ul>	
+					</div>
+					<div class="col-lg-4 col-sm-4 col-md-4 image-container">
+						<img class="img-fluid" src="/theme_centric/static/src/img/t1_c.jpg"/>
+					</div>
+				</div>
+			</div>
+		</section>
+	</template>
+</odoo>

@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+	<template id="s_centric_feature" name="Feature">
+		<section class="centric_template">
+			<section class="features pt128 pb128" id="features_page">
+				<div class="container">
+					<div class="row align-items-center">
+						<div class="col-lg-5 col-md-12">
+							<div class="feature-content">
+								<span>CORE FEATURES</span>
+								<h3>Create Awesome Service With Our Tools</h3>
+								<p>
+									Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+								</p>
+								<div class="s_btn" data-name="Button">
+									<a href="#" class="featurebtn btn btn-alpha rounded-circle">More Details</a>
+								</div>
+							</div>	
+						</div>
+						<div class="col-lg-7 col-md-12">
+							<div class="featurectnt row text-center">
+								<div class="col-lg-6 col-md-6 col-sm-6">
+									<section class="featureitem feature-item1">
+										<div class="icon">
+											<div class="dotted-img">
+												<span class="fa fa-object-group"></span>
+											</div>
+										</div>
+										<h3 id="feat">Seo Consultancy</h3>
+										<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor</p>
+									</section>
+								</div>
+								<div class="col-lg-6 col-md-6 col-sm-6">
+									<section class="featureitem feature-item2">
+										<div class="icon">
+											<div class="dotted-img2">
+												<span class="fa fa-clone"></span>
+											</div>
+										</div>
+										<h3 id="feat">Competitor Analysis</h3>
+										<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor</p>
+									</section>
+								</div>
+								<div class="col-lg-6 col-md-6 col-sm-6">
+									<section class="featureitem feature-item3">
+										<div class="icon">
+											<div class="dotted-img3">
+												<span class="fa fa-commenting-o"></span>
+											</div>
+										</div>
+										<h3 id="feat">Social Media Marketing</h3>
+										<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor</p>
+									</section>
+								</div>
+								<div class="col-lg-6 col-md-6 col-sm-6">
+									<section class="featureitem feature-item4">
+										<div class="icon">
+											<div class="dotted-img4">
+												<span class="fa fa-file-code-o"></span>
+											</div>
+										</div>
+										<h3 id="feat">Competitor Analysis</h3>
+										<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor</p>
+									</section>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="feature-bgimg">
+					<div class="shape-img1">
+						<img class="img img-fluid" src="/theme_centric/static/img/featuregb1.png" alt="image"/>
+					</div>
+					<div class="shape-img2">
+						<img class="img img-fluid" src="/theme_centric/static/img/featuregb2.png" alt="image"/>
+					</div>
+				</div>
+			</section>
+		</section>
+	</template>
+</odoo>

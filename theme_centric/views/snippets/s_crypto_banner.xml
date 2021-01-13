@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+	<template id="s_crypto_banner" name="Home Banner Twelve">
+		<section class="s_crypto_banner spacer form2"
+			style="background-image:url(/theme_centric/static/src/img/banner.jpg)">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-6 ml-auto">
+						<div class="text-box">
+							<h1 class="font-bold text-white">We make it easy to Buy, Sell, Accept Crypto
+								Currencies
+							</h1>
+							<p class="text-white font-light op-7 custom_p">Lorem ipsum dolor sit amet, consectetuer
+								adipiscing
+								elit, sed diam nonummy consectetuer adipiscing.
+							</p>
+							<form class="m-t-20">
+								<div class="row js_subscribe" data-list-id="1"
+									data-subscribe="off">
+									<div class="col-lg-12">
+										<div class="form-group">
+											<input class="js_subscribe_email form-control"
+												name="email" type="email" placeholder="email address" />
+										</div>
+									</div>
+									<div class="col-lg-6">
+										<div class="form-group">
+											<input class="form-control" type="text"
+												placeholder="First Name" />
+										</div>
+									</div>
+									<div class="col-lg-6">
+										<div class="form-group">
+											<input class="form-control" type="text"
+												placeholder="Last Name" />
+										</div>
+									</div>
+									<div class="col-lg-12 d-flex">
+										<div class="s_btn" data-name="Button">
+											<span class="input-group-append">
+												<a role="button" href="#"
+													class="btn btn-md btn-alpha rounded-circle arrow-btn js_subscribe_btn">
+														Create Account
+														<span class="fa fa-1x fa-fw fa-long-arrow-right ml-1"></span>
+													<a role="button" href="#"
+														class="btn btn-success js_subscribed_btn d-none"
+														disabled="disabled">Thanks</a>
+												</a>
+											</span>
+										</div>
+										<div
+											class="alert alert-success d-none o_default_snippet_text"
+											role="status">Thanks for your subscription!</div>
+										<div class="have-ac ml-auto align-self-center text-white ">
+											have an account?
+											<a href="#" class="text-danger">Sign In</a>
+										</div>
+									</div>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+	</template>
+
+</odoo>

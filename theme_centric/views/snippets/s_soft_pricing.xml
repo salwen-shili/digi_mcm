@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+	<template id="s_soft_pricing" name="Soft pricing">
+		<section class="theme-soft">
+		<section class="pricing pricing_bgimg pt64 pb64" id="pricing">
+			<div class="container ">
+				<div class="row">
+					<div class="col-lg-12 col-sm-12 col-xs-12 text-center pb64">
+						<h6 class="text-feature">PRICING PLAN</h6>
+						<h1 class="text-alpha">Affordable <span class="font-weight-lighter"> pricing</span></h1>
+						</div>
+						<div class="col-lg-4 col-xs-12  text-center pricing_shadow1  px mb-3">
+							<div class="pt128 pb64">
+    						<div class="card-img-top mb64 ">
+			 					<img class="" src="/theme_centric/static/src/img/soft/boat11.png" alt="Card image"/>
+			 				</div>
+							<section class="card-body">
+								<div class="card-title">
+  									<h5>PERSONAL</h5>
+  								</div>
+  								<div class="pb-4">
+  									<h2 class="text-center font-weight-bold"><sup class="dlr">$</sup>9.99<span class="p">/month</span></h2>
+  								</div>
+  								<div class="border-top border-bottom pt-4 pb-4">
+      								<p class="card-text">CUSTOME DOMAINS</p>
+      							</div>
+      							<div>
+      								<p class="card-text pt-4 ">SLEEP AFTER 30 MINS OFACTIVITY</p>
+      							</div>
+      							<div class="s_btn">
+      								<a class="btn btn-md px-4 py-3 rounded-circle mt-5 btn-txt1 zoom-efect btn-alpha" type="button" href="#">GET STARTED NOW</a>
+      							</div>
+							</section>
+						</div>
+					</div>
+
+					<div class="col-lg-4 col-xs-12  text-center pricing_shadow2 px mb-3">
+						<div class="pb64 price-center">
+    						<span class="m-auto pb32">
+							<span><h4 class="text-uppercase Popular mb32 mx-xl-5 text-white">Popular</h4></span>
+						</span>
+    						<div class="card-img-top mb64 pt64 text-center">
+			 					<img class="" src="/theme_centric/static/src/img/soft/boat12.png" alt="Card image"/>
+			 				</div>
+							<section class="card-body">
+								<dev class="card-title ">
+  									<h5>SMALL TEAM</h5>
+  								</dev>
+  								<div class="pb-4">
+  									<h2 class="font-weight-bold text-center"><sup class="dlr">$</sup>49.99<span class="p">/month</span></h2>
+  								</div>
+  								<div class="border-top border-bottom pt-4 pb-4">
+      								<p class="card-text">NEVER SLEEPS</p>
+      							</div>
+      							<div>
+      								<p class="card-text pt-4 ">MULTIPLE WORKERS FOR MOREPOWERFUL APPS</p>
+      							</div>
+      							<div class="s_btn">
+      								<a class="btn btn-md px-4 py-3 rounded-circle mt-5 btn-txt2 zoom-efect btn-alpha" type="button" href="#">GET STARTED NOW</a>
+      							</div>
+							</section>
+    					</div>
+    				</div>
+
+					<div class="col-lg-4 col-xs-12 text-center pricing_shadow1 px mb-3">
+						<div class="pt128 pb64 ">
+	    					<div class="card-img-top mb64">
+    			 				<img class="" src="/theme_centric/static/src/img/soft/boat13.png" alt="Card image"/>
+    			 			</div>
+    						<section class="card-body ">
+    							<div class="card-title ">
+  									<h5>ENTERPRISE</h5>
+  								</div>
+  								<div class="pb-4">
+   									<h2 class="font-weight-bold text-center"><sup class="dlr">$</sup>99.99<span class="p">/month</span></h2>
+   								</div>
+      							<div class="border-top border-bottom pt-4 pb-4">
+	      							<p class="card-text">DEDICATED</p>
+	      						</div>
+	      						<div>
+	      							<p class="card-text pt-4 ">SIMPLE HORIZONTALSCALABILITY</p>
+	      						</div>
+	      						<div class="s_btn">
+	      							<a class="btn btn-md px-4 py-3 rounded-circle mt-5 btn-txt1 zoom-efect btn-alpha" type="button" href="#">GET STARTED NOW</a>
+	      						</div>
+	      					</section>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+		</section>
+	</template>
+</odoo>

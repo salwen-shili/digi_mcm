@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+	<template id="s_medical_icons_block"
+		name="Icons Block with paragraph">
+		<section class="s_medical_icons_block spacer feature24">
+			<div class="container">
+				<div class="row justify-content-center">
+					<div class="col-md-7 text-center">
+						<h2 class="title text-beta">Departments At Our Medical Center</h2>
+						<h6 class="subtitle">You can relay on our amazing features list and
+							also our customer services will be great experience for you
+							without doubt and in no-time
+						</h6>
+					</div>
+				</div>
+				<div class="row wrap-feature-24">
+					<div class="col-lg-3 col-md-6">
+						<section class="card card-shadow">
+							<div class="service-24">
+								<div class="display-5 t-icon">
+									<span class="fa fa-sun-o text-alpha"></span>
+								</div>
+								<h6 class="ser-title">Neurology Department</h6>
+							</div>
+						</section>
+					</div>
+					<div class="col-lg-3 col-md-6">
+						<section class="card card-shadow">
+							<div class="service-24">
+								<div class="display-5 t-icon">
+									<span class="fa fa-cog text-alpha"></span>
+								</div>
+								<h6 class="ser-title">Dental Care</h6>
+							</div>
+						</section>
+					</div>
+					<div class="col-lg-3 col-md-6">
+						<section class="card card-shadow">
+							<div class="service-24">
+								<div class="display-5 t-icon">
+									<span class="fa fa-heart text-alpha"></span>
+								</div>
+								<h6 class="ser-title">Heart Specialist</h6>
+							</div>
+						</section>
+					</div>
+					<div class="col-lg-3 col-md-6">
+						<section class="card card-shadow">
+							<div class="service-24">
+								<div class="display-5 t-icon">
+									<span class="fa fa-music text-alpha"></span>
+								</div>
+								<h6 class="ser-title">Ear Specialist</h6>
+							</div>
+						</section>
+					</div>
+					<div class="col-lg-3 col-md-6">
+						<section class="card card-shadow">
+							<div class="service-24">
+								<div class="display-5 t-icon">
+									<span class="fa fa-eye text-alpha"></span>
+								</div>
+								<h6 class="ser-title">Eye Care</h6>
+							</div>
+						</section>
+					</div>
+					<div class="col-lg-3 col-md-6">
+						<section class="card card-shadow">
+							<div class="service-24">
+								<div class="display-5 t-icon">
+									<span class="fa fa-laptop text-alpha"></span>
+								</div>
+								<h6 class="ser-title">Lung Disease</h6>
+							</div>
+						</section>
+					</div>
+					<div class="col-lg-3 col-md-6">
+						<section class="card card-shadow">
+							<div class="service-24">
+								<div class="display-5 t-icon">
+									<span class="fa fa-briefcase text-alpha"></span>
+								</div>
+								<h6 class="ser-title">Nose Specialist</h6>
+							</div>
+						</section>
+					</div>
+					<div class="col-lg-3 col-md-6">
+						<section class="card card-shadow">
+							<div class="service-24">
+								<div class="display-5 t-icon">
+									<span class="fa fa-smile-o text-alpha"></span>
+								</div>
+								<h6 class="ser-title">General Care</h6>
+							</div>
+						</section>
+					</div>
+				</div>
+			</div>
+		</section>
+
+	</template>
+
+</odoo>

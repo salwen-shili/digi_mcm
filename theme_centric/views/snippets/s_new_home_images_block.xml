@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+	<template id="s_new_home_images_block" name="Gallery Block Two">
+		<section class="s_new_home_images_block">
+			<div class="container-fluid mt64 mb32">
+				<div class="">
+					<div class="img_block_title">
+						<h2 class="title_img">
+							<a href="/" class="img_a" target="_blank">@ Follow</a>
+							Us on
+						</h2>
+						<div class="img_desc">Instagram</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="images_block">
+						<div class="icon-block position-relative">
+							<a href="/" target="_blank">
+								<img class="img img-responsive"
+									src="/theme_centric/static/src/img/imgs_block1.jpg" />
+							</a>
+							<div class="view-icon d-inline-block">
+								<span class="fa fa-eye text-white"/>
+							</div>
+						</div>
+						<div class="icon-block position-relative">
+							<a href="/" target="_blank">
+								<img class="img img-responsive"
+									src="/theme_centric/static/src/img/imgs_block2.jpg" />
+							</a>
+							<div class="view-icon d-inline-block">
+								<span class="fa fa-eye text-white"/>
+							</div>
+						</div>
+						<div class="icon-block position-relative">
+							<a href="/" target="_blank">
+								<img class="img img-responsive"
+									src="/theme_centric/static/src/img/imgs_block3.jpg" />
+							</a>
+							<div class="view-icon d-inline-block">
+								<span class="fa fa-eye text-white"/>
+							</div>
+						</div>
+						<div class="icon-block position-relative">
+							<a href="/" target="_blank">
+								<img class="img img-responsive"
+									src="/theme_centric/static/src/img/imgs_block4.jpg" />
+							</a>
+							<div class="view-icon d-inline-block">
+								<span class="fa fa-eye text-white"/>
+							</div>
+						</div>
+						<div class="icon-block position-relative">
+							<a href="/" target="_blank">
+								<img class="img img-responsive"
+									src="/theme_centric/static/src/img/imgs_block5.jpg" />
+							</a>
+							<div class="view-icon d-inline-block">
+								<span class="fa fa-eye text-white"/>
+							</div>
+						</div>
+						<div class="icon-block position-relative">
+							<a href="/" target="_blank">
+								<img class="img img-responsive"
+									src="/theme_centric/static/src/img/imgs_block6.jpg" />
+							</a>
+							<div class="view-icon d-inline-block">
+								<span class="fa fa-eye text-white"/>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+	</template>
+
+</odoo>

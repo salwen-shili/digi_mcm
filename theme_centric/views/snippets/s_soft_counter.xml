@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+	<template id="s_soft_counter" name="Soft works count">
+		<section class="theme-soft">
+		<section class="work pb-50 pt-50">
+		<div class="container">
+			<div class="row text-center">
+		        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12 count-box counter-box">
+						<div class="employees">
+					 		<h1 class="counter-count count-text counter text-alpha">2520</h1>
+	                    <h6 class="">PROJECTS DONE</h6>
+					</div>
+				</div>
+
+	            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12 count-box counter-box ">
+	                <div class="customer">
+	                    <h1 class="counter-count count-text counter text-alpha">615</h1>
+	                    <h6 class="">HAPPY CUSTOMERS</h6>
+	                </div>
+	            </div>
+
+	            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12 count-box counter-box">
+	                <div class="design">
+	                     <h1 class="counter-count count-text counter text-alpha">102</h1>
+	                    <h6 class="">WINNING AWWARDS</h6>
+	                </div>
+	            </div>
+
+	            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12 count-box counter-box">
+	                <div class="order">
+	                     <h1 class="counter-count count-text counter text-alpha">3200</h1>
+	                    <h6 class="">EMPLOYEES WORLDWIDE</h6>
+	                </div>
+	            </div>
+				</div>
+			</div>
+		</section>
+	</section>
+	</template>
+</odoo>

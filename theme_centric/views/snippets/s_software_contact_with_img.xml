@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+	<template id="s_software_contact_with_img"
+		name="News Letter Two">
+		<section class="s_software_contact_with_img">
+			<div class="spacer form2">
+				<div class="container">
+					<div class="row">
+						<div class="col-lg-7 p-r-40 " >
+							<img src="/theme_centric/static/src/img/f1.jpg"
+								class="img-shadow img-responsive img img-fluid" alt="bizople" />
+						</div>
+						<div class="col-lg-5">
+							<div class="text-box " >
+								<h1 class="text-beta">Create your Free Account &amp; Get Started</h1>
+								<p class="custom_p m-t-30 m-b-30">Lorem ipsum dolor sit amet, consectetuer
+									adipiscing elit, sed diam nonummy consectetuer adipiscing.
+								</p>
+								<form class="m-t-20">
+									<div class="row js_subscribe" data-list-id="1"
+										data-subscribe="off">
+										<div class="col-lg-12">
+											<div class="form-group">
+												<input class="js_subscribe_email form-control"
+													name="email" type="email" placeholder="email address" />
+											</div>
+										</div>
+										
+										
+										<div class="col-lg-12 d-flex">
+											<div class="form-group">
+												<div class="s_btn" data-name="Button">
+													<span class="input-group-append">
+														<a role="button" href="#"
+															class="btn btn-md btn-alpha rounded-circle arrow-btn js_subscribe_btn">
+																Create Account
+																<span class="fa fa-1x fa-fw fa-long-arrow-right ml-1"></span>
+															<a role="button" href="#"
+																class="btn btn-success js_subscribed_btn d-none"
+																disabled="disabled">Thanks</a>
+														</a>
+													</span>
+												</div>
+												<div
+													class="alert alert-success d-none o_default_snippet_text"
+													role="status">Thanks for your subscription!</div>
+											</div>
+
+											<div class="have-ac ml-auto align-self-center">
+												or
+												<a href="/web/signup" class="text-feature"> Sign In</a>
+											</div>
+										</div>
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+	</template>
+
+</odoo>

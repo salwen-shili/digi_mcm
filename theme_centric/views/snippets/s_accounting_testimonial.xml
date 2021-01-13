@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+	<template id="s_accounting_testimonial"
+		name="Testimonial Seven">
+		<section class="s_accounting_testimonial spacer">
+			<div class="container">
+				<div class="row">
+					<div
+						class="col-lg-6 col-md-7 align-self-center">
+						<h2>Thousands of Women are Happy Using Our Products</h2>
+						<div id="s_accounting_testimonial123"
+							class="owl-carousel owl-theme testi10 m-t-40 s_carousel_default carousel slide"
+							data-interval="10000">
+							<ol class="carousel-indicators">
+								<li data-target="#s_accounting_testimonial123"
+									data-slide-to="0" class="">1</li>
+								<li data-target="#s_accounting_testimonial123"
+									data-slide-to="1" class="active">2</li>
+								<li data-target="#s_accounting_testimonial123"
+									data-slide-to="2" class="">3</li>
+							</ol>
+							<div class="carousel-inner">
+								<div class="carousel-item" data-name="Slide">
+									<div class="container">
+										<div class="item">
+											<p class="custom_p">Lorem ipsum dolor sit amet, consectetur
+												adipisicing
+												elit,
+												sed do eiusmod tempor incididunt ut
+												labore et dolore
+												magna
+												aliqua. Ut enim ad minim veniam,
+												quis nostrud
+												exercitation
+												ullamco laboris nisi ut aliquip
+												ex ea commodo
+												consequat.
+											</p>
+											<h6 class="m-t-40 m-b-0">Michelle Anderson</h6>
+											<span>Partner, Brevin</span>
+										</div>
+									</div>
+								</div>
+								<div class="carousel-item oe_img_bg active"
+									data-name="Slide">
+									<div class="container">
+										<div class="item">
+											<p class="custom_p">Lorem ipsum dolor sit amet, consectetur
+												adipisicing
+												elit,
+												sed do eiusmod tempor incididunt ut
+												labore et dolore magna
+												aliqua. Ut enim ad minim veniam,
+												quis nostrud
+												exercitation
+												ullamco laboris nisi ut aliquip
+												ex ea commodo consequat.
+											</p>
+											<h6 class="m-t-40 m-b-0">Michelle Anderson</h6>
+											<span>Partner, Brevin</span>
+										</div>
+									</div>
+								</div>
+								<div class="carousel-item oe_img_bg " data-name="Slide">
+									<div class="container">
+										<div class="item">
+											<p class="custom_p">Lorem ipsum dolor sit amet, consectetur
+												adipisicing
+												elit,
+												sed do eiusmod tempor incididunt ut
+												labore et dolore magna
+												aliqua. Ut enim ad minim veniam,
+												quis nostrud
+												exercitation
+												ullamco laboris nisi ut aliquip
+												ex ea commodo consequat.
+											</p>
+											<h6 class="m-t-40 m-b-0">Michelle Anderson</h6>
+											<span>Partner, Brevin</span>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-lg-6 col-md-5 text-right aos-init aos-animate"
+						data-aos="fade-left">
+						<img src="/theme_centric/static/src/img/women.png" alt=""
+							class="img-fluid" />
+					</div>
+				</div>
+			</div>
+		</section>
+	</template>
+
+</odoo>

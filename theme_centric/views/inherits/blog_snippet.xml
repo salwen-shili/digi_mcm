@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+	<template id="blog_inherit_view_centric" inherit_id="website_blog.s_latest_posts_big_picture_template" name="blog_inherit_view_centric">
+	    <xpath expr="//figure[@class='col-12 col-md-6 col-xl-4 my-3 s_latest_posts_post']" position="replace">
+		    	<t t-foreach="posts" t-as="p">
+		    	<div
+					class="col-12 col-md-4 col-sm-6 my-3 col-xl-4 loading_container s_latest_posts_post mt32">
+					<div class="m-t-40">
+						<div class="centric_latest_post" data-aos="flip-left"
+							data-aos-duration="1200">
+							<a t-attf-href="/blog/#{p.blog_id.id}/post/#{p.id}">
+								<t t-call="website.record_cover">
+									<t t-set="_record" t-value="p" />
+									<t t-set="use_filters" t-value="True" />
+									<t t-set="additionnal_classes"
+										t-value="'thumb h-100 w-100 bg-600 position-absolute'" />
+								</t>
+							</a>
+							<div class="blog_detail">
+								<div class="date-pos bg-success-gradiant">
+								<span class="month_span" t-field="p.post_date"
+									t-options='{"format": "MMM"}' />
+								<span class="date_span" t-field="p.post_date"
+									t-options='{"format": "dd"}' />
+								</div>
+								<ul class="">
+				            		<li>
+				            			<a href="#">
+				            				<i class="fa fa-user-alt"></i><span> By
+					                            <span t-esc="p.sudo().author_id.name"></span>
+					                        </span>
+				            			</a>
+				            		</li>
+				            		<li>
+				            			<span t-if="len(p.message_ids) > 0" class="text-nowrap pl-2">
+			                            <i class="fa fa-comments-o text-muted mr-1"/><t t-esc="len(p.message_ids)"/>
+			                            <t t-if="len(p.message_ids)>1">Comments</t>
+			                            <t t-else="">Comment</t>
+			                        	</span>
+				            		</li>
+				            		
+				            	</ul>
+				            	<a t-attf-href="/blog/#{p.blog_id.id}/post/#{p.id}">
+									<h5 class="font-medium m-t-30 link" t-field="p.name">
+									</h5>
+								</a>
+								<p class="m-t-20 custom_p" t-field="p.subtitle">
+								</p>
+								<a  t-attf-href="/blog/#{p.blog_id.id}/post/#{p.id}" class="btn btn-outline-primary rounded-circle" contenteditable="true">Read More</a>
+							</div>
+						</div>
+					</div>
+				</div>
+				</t>
+		</xpath>
+	</template>
+</odoo>

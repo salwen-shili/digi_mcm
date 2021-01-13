@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+	<template id="s_fitness_list_with_img" name="Image with lists">
+		<section class="s_fitness_list_with_img">
+			<div class="spacer feature47">
+				<div class="container">
+					<div class="row wrap-feature47-box align-items-center">
+						<div class="col-md-6 align-self-center">
+							<div class="max-500 m-auto">
+								<h2 class="title font-medium text-beta">Our Experience</h2>
+								<h6 class="subtitle">You can relay on our amazing features list and
+									also
+									our customer services will be great experience for you
+									without
+									doubt and in no-time
+								</h6>
+								<ul
+									class="list-block with-underline font-medium m-t-30 m-b-20 text-dark">
+									<li>
+										<span class="fa fa-check-circle-o mr-2 text-feature"></span>
+										<span>Lorem Ipsum is simply dummy text of the </span>
+									</li>
+									<li>
+										<span class="fa fa-check-circle-o mr-2 text-feature"></span>
+										<span>1-Click Staging Environment the printing </span>
+									</li>
+									<li>
+										<span class="fa fa-check-circle-o mr-2 text-feature"></span>
+										<span>Simply dummy text of the printing and industry.
+										</span>
+									</li>
+									<li>
+										<span class="fa fa-check-circle-o mr-2 text-feature"></span>
+										<span>Dummy text of the printing and typesetting industry..
+										</span>
+									</li>
+								</ul>
+								<div class="s_btn" data-name="Button">
+									<a
+										class="btn btn-alpha rounded-circle btn-md arrow-btn m-t-20 m-b-20 bizople_button"
+										href="#">
+											View more features
+											<span class="fa fa-1x fa-fw fa-long-arrow-right ml-1"></span>
+									</a>
+								</div>
+							</div>
+						</div>
+						<div class="col-md-5 ml-auto">
+							<section class="card card-shadow aos-init" data-aos="flip-up"
+								data-aos-duration="1200">
+								<img class="card-img-top video-img"
+									src="/theme_centric/static/src/img/4.jpg" alt="" />
+								<div class="embed-responsive hide embed-responsive-16by9"
+									data-animation="animated fadeIn">
+									<img src="/theme_centric/static/src/img/4.jpg" alt=" "
+										class="img img-responsive" />
+								</div>
+								<div class="card-body">
+									<div class="p-20">
+										<h3 class="font-light f-47-line">Lorem Ipsum is simply dumm of the printing
+											and
+											type setting industry. Lorem Ipsum has been
+										</h3>
+									</div>
+								</div>
+							</section>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+	</template>
+
+</odoo>

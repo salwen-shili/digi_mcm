@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+	<template id="s_creative_tesimonial" name="Testimonial One">
+		<section class="s_creative_tesimonial bg-light-1">
+			<div class="testimonial2  pt40">
+				<div class="container">
+					<div class="heading">
+					</div>
+					<div id="creative_testimonial123"
+						class="owl-carousel owl-theme testi2 m-t-40 s_carousel_default carousel slide"
+						data-interval="10000">
+						<ol class="carousel-indicators">
+							<li data-target="#creative_testimonial123" data-slide-to="0"
+								class=""></li>
+							<li data-target="#creative_testimonial123" data-slide-to="1"
+								class="active"></li>
+							<li data-target="#creative_testimonial123" data-slide-to="2"
+								class=""></li>
+						</ol>
+						<div class="carousel-inner">
+							<div class="carousel-item" data-name="Slide">
+								<div class="container">
+									<div class="item">
+										<div class="row po-relative">
+											<div class="col-lg-6 col-md-6 align-self-center">
+												<section class="icon-div">
+							                            <div class="s_btn" data-name="Link Align">
+							                              <span class="fa fa-quote-left fa-2x bg-epsilon text-white"></span>
+							                            </div>
+						                          	</section>
+												<h3 class="m-t-20 m-b-20">Customer Reviews</h3>
+												<p class="custom_p">
+													Lorem ipsum dolor sit amet, consectetur
+													adipisicing
+													elit,
+													sed
+													do
+													eiusmod tempor incididunt ut labore
+													et dolore
+													magna
+													aliqua.
+													Ut enim ad minim veniam, quis
+													nostrud
+													exercitation
+													ullamco
+													laboris nisi ut aliquip ex ea
+													commodo
+													consequat.
+												</p>
+												<h5 class="m-t-30">Simon Duo</h5>
+												<h6 class="subtitle">Partner, Brevin</h6>
+											</div>
+											<div class="col-lg-6 col-md-6 image-thumb hidden-sm-down">
+												<img src="/theme_centric/static/src/img/2.jpg" alt=" "
+													class="circle img-fluid" />
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="carousel-item oe_img_bg active" data-name="Slide">
+								<div class="container">
+									<div class="item">
+										<div class="row po-relative">
+											<div class="col-lg-6 col-md-6 align-self-center">
+												<section class="icon-div">
+							                            <div class="s_btn" data-name="Link Align">
+							                              <span class="fa fa-quote-left fa-2x bg-epsilon text-white"></span>
+							                            </div>
+						                          	</section>
+												<h3 class="m-t-20 m-b-20">Customer Reviews</h3>
+												<p class="custom_p">
+													Lorem ipsum dolor sit amet, consectetur
+													adipisicing
+													elit,
+													sed
+													do
+													eiusmod tempor incididunt ut labore
+													et dolore
+													magna
+													aliqua.
+													Ut enim ad minim veniam, quis
+													nostrud
+													exercitation
+													ullamco
+													laboris nisi ut aliquip ex ea
+													commodo
+													consequat.
+												</p>
+												<h5 class="m-t-30">Simon Duo</h5>
+												<h6 class="subtitle">Partner, Brevin</h6>
+											</div>
+											<div class="col-lg-6 col-md-6 image-thumb hidden-sm-down">
+												<img src="/theme_centric/static/src/img/test1.png"
+													alt=" " class="circle img-fluid" />
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="carousel-item oe_img_bg pb80" data-name="Slide">
+								<div class="container">
+									<div class="item">
+										<div class="row po-relative">
+											<div class="col-lg-6 col-md-6 align-self-center">
+												<section class="icon-div">
+							                            <div class="s_btn" data-name="Link Align">
+							                              <span class="fa fa-quote-left fa-2x bg-epsilon text-white"></span>
+							                            </div>
+						                          	</section>
+												<h3 class="m-t-20 m-b-20">Customer Reviews</h3>
+												<p class="custom_p">
+													Lorem ipsum dolor sit amet, consectetur
+													adipisicing
+													elit,
+													sed
+													do
+													eiusmod tempor incididunt ut labore
+													et dolore
+													magna
+													aliqua.
+													Ut enim ad minim veniam, quis
+													nostrud
+													exercitation
+													ullamco
+													laboris nisi ut aliquip ex ea
+													commodo
+													consequat.
+												</p>
+												<h5 class="m-t-30">Simon Duo</h5>
+												<h6 class="subtitle">Partner, Brevin</h6>
+											</div>
+											<div class="col-lg-6 col-md-6 image-thumb hidden-sm-down">
+												<img src="/theme_centric/static/src/img/3.jpg" alt=" "
+													class="circle img-fluid" />
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+	</template>
+
+</odoo>

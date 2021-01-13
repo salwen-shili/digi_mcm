@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+	<template id="s_soft_work" name="Soft works">
+		<section class="theme-soft">
+		<section class="services pb64 pt64" id="services">
+			<div class="container">
+				<div class="row">
+					<div class="col-sm-12">	
+						<div class="work" id="work">
+							<div class="row align-items-center">
+								<div class="col-sm-12">
+									<h6 class="text-left text-feature">PROJECTS</h6>
+									<div class="work-title">
+										<h1 class="text-alpha">Latest <span class="font-weight-lighter">works</span></h1>
+									</div>
+								</div>
+								<div class="col-sm-12 col-xs-12">
+									<div class="row pb64" >
+										<div class="col-lg-4 col-md-6 col-sm-12 pt-5">
+											<a href="#" class="noncard work_my">
+												<div class="work_img1">
+													<img src="/theme_centric/static/src/img/soft/oblivion1.png" class="img-fluid"/>
+												</div>
+												<div class="bg-white  work_img py-2 px-3">
+													<h3 class="font-weight-bold text-alpha"> Oblivion</h3>
+													<p class="text-beta">BL Fashion new branding</p>
+												</div>
+											</a>
+										</div>
+										<div class="col-lg-4 col-md-6 col-sm-12 pt-5">
+											<a href="#" class="noncard work_my">
+												<div class="work_img1">
+													<img src="/theme_centric/static/src/img/soft/abstract2.png" class="img-fluid"/>
+												</div>
+												<div class="bg-white  work_img py-2 px-3">
+													<h3 class="font-weight-bold text-alpha"> Abstract</h3>
+													<p class="text-beta">Creative colors for brands</p>
+												</div>
+											</a>
+										</div>
+										<div class="col-lg-4 col-md-6 col-sm-12 pt-5">
+											<a href="#" class="noncard work_my">
+												<div class="work_img1">
+													<img src="/theme_centric/static/src/img/soft/creative3.png" class="img-fluid"/>
+												</div>
+												<div class="bg-white  work_img py-2 px-3">
+													<h3 class="font-weight-bold text-alpha"> Creative Tropical</h3>
+													<p class="text-beta">Winter is coming</p>
+												</div>
+											</a>
+										</div>
+										<div class="col-lg-4 col-md-6 col-sm-12 pt-5">
+											<a href="#" class="noncard work_my">
+												<div class="work_img1">
+													<img src="/theme_centric/static/src/img/soft/falling-show4.png" class="img-fluid"/>
+												</div>
+												<div class="bg-white  work_img py-2 px-3">
+													<h3 class="font-weight-bold text-alpha"> Falling Show</h3>
+													<p class="text-beta">Redefine cosmetic product</p>
+												</div>
+											</a>
+										</div>
+										<div class="col-lg-4 col-md-6 col-sm-12 pt-5">
+											<a href="#" class="noncard work_my">
+												<div class="work_img1">
+													<img src="/theme_centric/static/src/img/soft/headphone5.png" class="img-fluid"/>
+												</div>
+												<div class="bg-white work_img py-2 px-3">
+													<h3 class="font-weight-bold text-alpha"> Kama Headphone</h3>
+													<p class="text-beta">Nature meets technology</p>
+												</div>
+											</a>
+										</div>
+										<div class="col-lg-4 col-md-6 col-sm-12 pt-5">
+											<a href="#" class="noncard work_my">
+												<div class="work_img1">
+													<img src="/theme_centric/static/src/img/soft/water6.png" class="img-fluid"/>
+												</div>
+												<div class="bg-white  work_img py-2 px-3">
+													<h3 class="font-weight-bold text-alpha">Super Water</h3>
+													<p class="text-beta">The title says it all</p>
+												</div>
+											</a>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+	</section>
+	</template>
+</odoo>

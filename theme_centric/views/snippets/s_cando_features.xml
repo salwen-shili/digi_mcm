@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+	<template id="s_cando_features" name="Cando Features">
+
+		<!-- Features Page Start -->
+		<section class="features-page align-items-center text-center" id="Features_page">
+			<div class="container py-5">
+				<div class="row align-items-center">
+					<div class="mr-5 col-lg-6">
+						<center>
+							<img src="/theme_centric/static/img/aboutus.png" alt="Features..." class="feature img-fluid mb-5 "/>
+						</center>
+					</div>
+					<div class="col-lg-4">
+						<div class="feature-title">
+							<h1 class="text-secondary">What's more</h1>
+							<p class="">Experience clear deliverables of excellence and quantifiable performance benchmarks all backed by full guarantees.</p>
+						</div>
+						<div class="feature-item d-flex align-items-center">
+							<div class="feature-image">
+								<img src="/theme_centric/static/src/img/cando/Content Development.png" alt="Content Development" class="img-fluid"/>
+							</div>
+							<div class="feature-content">
+								<h5 class="text-secondary">Content Development</h5>
+								<p class="">Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin.</p>
+							</div>
+						</div>
+						<div class="feature-item d-flex align-items-center">
+							<div class="feature-image">
+								<img src="/theme_centric/static/src/img/cando/Communication Services.png" alt="Communication Services" class="img-fluid"/>
+							</div>
+							<div class="feature-content">
+								<h5 class="text-secondary">Communication Services</h5>
+								<p class="">Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin.</p>
+							</div>
+						</div>
+						<div class="feature-item d-flex align-items-center">
+							<div class="feature-image">
+								<img src="/theme_centric/static/src/img/cando/Postioning and Messaging.png" alt="Postioning and Messaging" class="img-fluid"/>
+							</div>
+							<div class="feature-content">
+								<h5 class="text-secondary">Postioning and Messaging</h5>
+								<p class="">Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin.</p>
+							</div>
+						</div>
+						<div class="row s_btn" data-name="Button">
+							<a href="/home" class="btn rounded-circle btn-primary btn-lg">Learn more</a>
+						</div>
+					</div>
+				</div>
+										
+			</div>
+		</section>
+					<!-- Features Page End -->
+		
+	</template>
+</odoo>

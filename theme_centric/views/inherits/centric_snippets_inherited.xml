@@ -1,0 +1,642 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+	<template id="theme_centric_snippets"
+		inherit_id="website.snippets">
+		<xpath expr="//div[@id='snippet_mega_menu']" position="after">
+			<div id="snippet_menu" class="o_panel">
+				<div class="o_panel_header">
+					<i class="fa fa-puzzle-piece" />
+					Centric Snippets
+				</div>
+				<div class="o_panel_body">
+					<t t-snippet="theme_centric.s_centric_banner"
+						t-thumbnail="/theme_centric/static/src/img/snippet.png" />
+					<t t-snippet="theme_centric.s_centric_feature"
+						t-thumbnail="/theme_centric/static/src/img/snippet.png" />
+					<t t-snippet="theme_centric.s_centric_aboutus"
+						t-thumbnail="/theme_centric/static/src/img/snippet.png" />
+					<t t-snippet="theme_centric.s_centric_service"
+						t-thumbnail="/theme_centric/static/src/img/snippet.png" />
+					<t t-snippet="theme_centric.s_centric_whychooseus"
+						t-thumbnail="/theme_centric/static/src/img/snippet.png" />
+					<t t-snippet="theme_centric.s_centric_boosting"
+						t-thumbnail="/theme_centric/static/src/img/snippet.png" />
+					<t t-snippet="theme_centric.s_centric_project"
+						t-thumbnail="/theme_centric/static/src/img/snippet.png" />
+					<t t-snippet="theme_centric.s_centric_ourteam"
+						t-thumbnail="/theme_centric/static/src/img/snippet.png" />
+					<t t-snippet="theme_centric.s_centric_testimonial"
+						t-thumbnail="/theme_centric/static/src/img/snippet.png" />
+					<t t-snippet="theme_centric.s_centric_analysis"
+						t-thumbnail="/theme_centric/static/src/img/snippet.png" />
+					<t t-snippet="theme_centric.s_centric_client"
+						t-thumbnail="/theme_centric/static/src/img/snippet.png" />
+					<t t-snippet="theme_centric.s_centric_subscriber"
+						t-thumbnail="/theme_centric/static/src/img/snippet.png" />
+				</div>
+				<div class="o_panel_header">
+					<i class="fa fa-puzzle-piece" />
+						Cando Snippets
+				</div>
+				<div class="o_panel_body">
+					<t t-snippet="theme_centric.s_cando_home"
+						t-thumbnail="/theme_centric/static/src/img/snippet.png" />
+					<t t-snippet="theme_centric.s_cando_service"
+						t-thumbnail="/theme_centric/static/src/img/snippet.png" />
+					<t t-snippet="theme_centric.s_cando_service_carousel"
+						t-thumbnail="/theme_centric/static/src/img/snippet.png" />
+					<t t-snippet="theme_centric.s_cando_features"
+						t-thumbnail="/theme_centric/static/src/img/snippet.png" />
+					<t t-snippet="theme_centric.s_cando_feature_blocks"
+						t-thumbnail="/theme_centric/static/src/img/snippet.png" />
+					<t t-snippet="theme_centric.s_cando_process"
+						t-thumbnail="/theme_centric/static/src/img/snippet.png" />
+					<t t-snippet="theme_centric.s_cando_quote"
+						t-thumbnail="/theme_centric/static/src/img/snippet.png" />
+					<t t-snippet="theme_centric.s_cando_achievement"
+						t-thumbnail="/theme_centric/static/src/img/snippet.png" />
+					<t t-snippet="theme_centric.s_cando_customers"
+						t-thumbnail="/theme_centric/static/src/img/snippet.png" />
+				</div>
+				<div class="o_panel_header">
+                    <i class="fa fa-th-large"/>Soft Snippets
+                </div>
+                <div class="o_panel_body">
+                   	<t t-snippet="theme_centric.s_soft_banner" 
+                   		t-thumbnail="/theme_centric/static/src/img/snippet.png"/>
+                   	<t t-snippet="theme_centric.s_soft_about_us" 
+                   		t-thumbnail="/theme_centric/static/src/img/snippet.png"/>
+                   	<t t-snippet="theme_centric.s_soft_about_use" 
+                   		t-thumbnail="/theme_centric/static/src/img/snippet.png"/>
+                   	<t t-snippet="theme_centric.s_soft_services" 
+                   		t-thumbnail="/theme_centric/static/src/img/snippet.png"/>
+                   	<t t-snippet="theme_centric.s_soft_work" 
+                   		t-thumbnail="/theme_centric/static/src/img/snippet.png"/>
+                   	<t t-snippet="theme_centric.s_soft_counter" 
+                   		t-thumbnail="/theme_centric/static/src/img/snippet.png"/>
+                   	<t t-snippet="theme_centric.s_soft_pricing" 
+                   		t-thumbnail="/theme_centric/static/src/img/snippet.png"/>
+                </div>
+                <div class="o_panel_header">
+					<i class="fa fa-film" />
+					Mega Menu
+				</div>
+				<div class="o_panel_body">
+					<t t-snippet="theme_centric.s_mega_menu_one_snippet"
+						t-thumbnail="/theme_centric/static/src/img/snippet.png" />
+					<t t-snippet="theme_centric.s_mega_menu_two_snippet"
+						t-thumbnail="/theme_centric/static/src/img/snippet.png" />
+					<t t-snippet="theme_centric.s_mega_menu_three_snippet"
+						t-thumbnail="/theme_centric/static/src/img/snippet.png" />
+					<t t-snippet="theme_centric.s_mega_menu_four_snippet"
+						t-thumbnail="/theme_centric/static/src/img/snippet.png" />
+					<t t-snippet="theme_centric.s_mega_menu_five_snippet"
+						t-thumbnail="/theme_centric/static/src/img/snippet.png" />
+					<t t-snippet="theme_centric.s_mega_menu_six_snippet"
+						t-thumbnail="/theme_centric/static/src/img/snippet.png" />
+					<t t-snippet="theme_centric.s_mega_menu_seven_snippet"
+						t-thumbnail="/theme_centric/static/src/img/snippet.png" />
+					<t t-snippet="theme_centric.s_mega_menu_eight_snippet"
+						t-thumbnail="/theme_centric/static/src/img/snippet.png" />
+					<t t-snippet="theme_centric.s_mega_menu_nine_snippet"
+						t-thumbnail="/theme_centric/static/src/img/snippet.png" />
+					<t t-snippet="theme_centric.s_mega_menu_ten_snippet"
+						t-thumbnail="/theme_centric/static/src/img/snippet.png" />
+				</div>
+				<div class="o_panel_header">
+					<i class="fa fa-window-maximize" />
+					Home Banner
+				</div>
+				<div class="o_panel_body">
+					<t t-snippet="theme_centric.s_creative_banner"
+						t-thumbnail="/theme_centric/static/src/img/snippet.png" />
+					<t t-snippet="theme_centric.s_business_banner"
+						t-thumbnail="/theme_centric/static/src/img/snippet.png" />
+					<t t-snippet="theme_centric.s_medical_banner"
+						t-thumbnail="/theme_centric/static/src/img/snippet.png" />
+					<t t-snippet="theme_centric.s_charity_banner"
+						t-thumbnail="/theme_centric/static/src/img/snippet.png" />
+					<t t-snippet="theme_centric.s_software_banner"
+						t-thumbnail="/theme_centric/static/src/img/snippet.png" />
+					<t t-snippet="theme_centric.s_real_estate_banner"
+						t-thumbnail="/theme_centric/static/src/img/snippet.png" />
+					<t t-snippet="theme_centric.s_restaturant_banner"
+						t-thumbnail="/theme_centric/static/src/img/snippet.png" />
+					<t t-snippet="theme_centric.web_agency_banner"
+						t-thumbnail="/theme_centric/static/src/img/snippet.png" />
+					<t t-snippet="theme_centric.s_accounting_banner"
+						t-thumbnail="/theme_centric/static/src/img/snippet.png" />
+					<t t-snippet="theme_centric.s_one_page_banner"
+						t-thumbnail="/theme_centric/static/src/img/snippet.png" />
+					<t t-snippet="theme_centric.s_marketting_seo_banner"
+						t-thumbnail="/theme_centric/static/src/img/snippet.png" />
+					<t t-snippet="theme_centric.s_crypto_banner"
+						t-thumbnail="/theme_centric/static/src/img/snippet.png" />
+					<t t-snippet="theme_centric.s_industrial_banner"
+						t-thumbnail="/theme_centric/static/src/img/snippet.png" />
+					<t t-snippet="theme_centric.s_fitness_banner"
+						t-thumbnail="/theme_centric/static/src/img/snippet.png" />
+					<t t-snippet="theme_centric.s_furniture_banner"
+						t-thumbnail="/theme_centric/static/src/img/snippet.png" />
+					<t t-snippet="theme_centric.s_new_homepage_banner"
+						t-thumbnail="/theme_centric/static/src/img/snippet.png" />
+					<t t-snippet="theme_centric.s_coming_soon_banner"
+						t-thumbnail="/theme_centric/static/src/img/snippet.png" />
+				</div>
+				<div class="o_panel_header">
+					<i class="fa fa-address-book" />
+					Contact Us
+				</div>
+				<div class="o_panel_body">
+					<t t-snippet="theme_centric.s_contact_us_one_page_bg_map"
+						t-thumbnail="/theme_centric/static/src/img/snippet.png" />
+					<t t-snippet="theme_centric.s_contact_with_img"
+						t-thumbnail="/theme_centric/static/src/img/snippet.png" />
+					<t t-snippet="theme_centric.s_contact_map_form"
+						t-thumbnail="/theme_centric/static/src/img/snippet.png" />
+					<t t-snippet="theme_centric.s_contact_with_bg_color_map"
+						t-thumbnail="/theme_centric/static/src/img/snippet.png" />
+					<t t-snippet="theme_centric.s_contact_us_five"
+						t-thumbnail="/theme_centric/static/src/img/snippet.png" />
+				</div>
+				<div class="o_panel_header">
+					<i class="fa fa-american-sign-language-interpreting" />
+					Creative Demo
+				</div>
+				<div class="o_panel_body">
+					<t t-snippet="theme_centric.s_creative_center_para_three_blocks"
+						t-thumbnail="/theme_centric/static/src/img/snippet.png" />
+					<t t-snippet="theme_centric.s_creative_left_para_right_img"
+						t-thumbnail="/theme_centric/static/src/img/snippet.png" />
+					<t t-snippet="theme_centric.s_creative_left_img_right_para"
+						t-thumbnail="/theme_centric/static/src/img/snippet.png" />
+					<t t-snippet="theme_centric.s_creative_bg_imag_with_para"
+						t-thumbnail="/theme_centric/static/src/img/snippet.png" />
+					<t t-snippet="theme_centric.s_creative_para_with_two_imgs"
+						t-thumbnail="/theme_centric/static/src/img/snippet.png" />
+					<t
+						t-snippet="theme_centric.s_creative_center_para_with_two_buttons"
+						t-thumbnail="/theme_centric/static/src/img/snippet.png" />
+					<t
+						t-snippet="theme_centric.s_creative_para_three_block_round_img"
+						t-thumbnail="/theme_centric/static/src/img/snippet.png" />
+					<t t-snippet="theme_centric.s_creative_left_img_right_popup"
+						t-thumbnail="/theme_centric/static/src/img/snippet.png" />
+					<t t-snippet="theme_centric.s_creative_left_para_two_imgs"
+						t-thumbnail="/theme_centric/static/src/img/snippet.png" />
+					<t t-snippet="theme_centric.s_creative_bg_img_with_para_btns"
+						t-thumbnail="/theme_centric/static/src/img/snippet.png" />
+					<t t-snippet="theme_centric.s_creative_mixing_img_para"
+						t-thumbnail="/theme_centric/static/src/img/snippet.png" />
+				</div>
+				<div class="o_panel_header">
+					<i class="fa fa-briefcase" />
+					Business
+				</div>
+				<div class="o_panel_body">
+					<t t-snippet="theme_centric.s_business_digital_marketing"
+						t-thumbnail="/theme_centric/static/src/img/snippet.png" />
+					<t t-snippet="theme_centric.s_business_img_with_paragraph"
+						t-thumbnail="/theme_centric/static/src/img/snippet.png" />
+					<t t-snippet="theme_centric.s_business_text_with_img_left_right"
+						t-thumbnail="/theme_centric/static/src/img/snippet.png" />
+					<t t-snippet="theme_centric.s_business_img_with_quote"
+						t-thumbnail="/theme_centric/static/src/img/snippet.png" />
+					<t t-snippet="theme_centric.s_business_carousel_images"
+						t-thumbnail="/theme_centric/static/src/img/snippet.png" />
+					<t t-snippet="theme_centric.s_business_logo_partners"
+						t-thumbnail="/theme_centric/static/src/img/snippet.png" />
+					<t t-snippet="theme_centric.s_business_three_blocks_icons"
+						t-thumbnail="/theme_centric/static/src/img/snippet.png" />
+					<t t-snippet="theme_centric.s_business_nav_tabs_with_imgs"
+						t-thumbnail="/theme_centric/static/src/img/snippet.png" />
+					<t t-snippet="theme_centric.s_business_features_with_image"
+						t-thumbnail="/theme_centric/static/src/img/snippet.png" />
+					<t t-snippet="theme_centric.s_business_pricing_plan"
+						t-thumbnail="/theme_centric/static/src/img/snippet.png" />
+					<t t-snippet="theme_centric.s_business_app_store"
+						t-thumbnail="/theme_centric/static/src/img/snippet.png" />
+				</div>
+				<div class="o_panel_header">
+					<i class="fa fa-medkit" />
+					Medical &amp; Health
+				</div>
+				<div class="o_panel_body">
+					<t t-snippet="theme_centric.s_medical_three_feature_box"
+						t-thumbnail="/theme_centric/static/src/img/snippet.png" />
+					<t t-snippet="theme_centric.s_medical_four_block_with_features"
+						t-thumbnail="/theme_centric/static/src/img/snippet.png" />
+					<t t-snippet="theme_centric.s_medical_fourblock_img_with_icons"
+						t-thumbnail="/theme_centric/static/src/img/snippet.png" />
+					<t t-snippet="theme_centric.s_medical_doctor_team"
+						t-thumbnail="/theme_centric/static/src/img/snippet.png" />
+					<t t-snippet="theme_centric.s_medical_img_with_features"
+						t-thumbnail="/theme_centric/static/src/img/snippet.png" />
+					<t t-snippet="theme_centric.s_medical_icons_block"
+						t-thumbnail="/theme_centric/static/src/img/snippet.png" />
+				</div>
+				<div class="o_panel_header">
+					<i class="fa fa-sign-language" />
+					Charity
+				</div>
+				<div class="o_panel_body">
+					<t t-snippet="theme_centric.s_charity_help_block"
+						t-thumbnail="/theme_centric/static/src/img/snippet.png" />
+					<t t-snippet="theme_centric.s_charity_carousel_images"
+						t-thumbnail="/theme_centric/static/src/img/snippet.png" />
+					<t t-snippet="theme_centric.s_big_img_with_center_text_block"
+						t-thumbnail="/theme_centric/static/src/img/snippet.png" />
+					<t t-snippet="theme_centric.s_charity_img_with_center_text"
+						t-thumbnail="/theme_centric/static/src/img/snippet.png" />
+				</div>
+				<div class="o_panel_header">
+					<i class="fa fa-television"></i>
+					Software
+				</div>
+				<div class="o_panel_body">
+					<t t-snippet="theme_centric.s_software_two_img_with_features"
+						t-thumbnail="/theme_centric/static/src/img/snippet.png" />
+					<t t-snippet="theme_centric.s_software_with_three_blocks"
+						t-thumbnail="/theme_centric/static/src/img/snippet.png" />
+					<t t-snippet="theme_centric.s_software_feature_with_img"
+						t-thumbnail="/theme_centric/static/src/img/snippet.png" />
+					<t t-snippet="theme_centric.s_software_half_img_text"
+						t-thumbnail="/theme_centric/static/src/img/snippet.png" />
+					<t t-snippet="theme_centric.s_software_counter"
+						t-thumbnail="/theme_centric/static/src/img/snippet.png" />
+					<t t-snippet="theme_centric.s_software_pricing_plan"
+						t-thumbnail="/theme_centric/static/src/img/snippet.png" />
+					<t t-snippet="theme_centric.s_software_logo_partners"
+						t-thumbnail="/theme_centric/static/src/img/snippet.png" />
+				</div>
+				<div class="o_panel_header">
+					<i class="fa fa-home" />
+					Real Estate
+				</div>
+				<div class="o_panel_body">
+					<t t-snippet="theme_centric.s_estate_carousel_images"
+						t-thumbnail="/theme_centric/static/src/img/snippet.png" />
+					<t t-snippet="theme_centric.s_estate_latest_news"
+						t-thumbnail="/theme_centric/static/src/img/snippet.png" />
+					<t t-snippet="theme_centric.s_estate_feature_with_imogies"
+						t-thumbnail="/theme_centric/static/src/img/snippet.png" />
+					<t t-snippet="theme_centric.s_estate_team"
+						t-thumbnail="/theme_centric/static/src/img/snippet.png" />
+					<t t-snippet="theme_centric.s_estate_logo_partners"
+						t-thumbnail="/theme_centric/static/src/img/snippet.png" />
+					<t t-snippet="theme_centric.s_estate_img_with_para"
+						t-thumbnail="/theme_centric/static/src/img/snippet.png" />
+				</div>
+				<div class="o_panel_header">
+					<i class="fa fa-cutlery" />
+					Restaurant
+				</div>
+				<div class="o_panel_body">
+					<t t-snippet="theme_centric.s_restaurant_video_image"
+						t-thumbnail="/theme_centric/static/src/img/snippet.png" />
+					<t t-snippet="theme_centric.s_restaurant_img_para_btn"
+						t-thumbnail="/theme_centric/static/src/img/snippet.png" />
+					<t t-snippet="theme_centric.s_restaurant_left_right_img_para"
+						t-thumbnail="/theme_centric/static/src/img/snippet.png" />
+					<t t-snippet="theme_centric.s_restaturant_app_store"
+						t-thumbnail="/theme_centric/static/src/img/snippet.png" />
+					<t
+						t-snippet="theme_centric.s_restaturant_bg_img_with_center_box"
+						t-thumbnail="/theme_centric/static/src/img/snippet.png" />
+				</div>
+				<div class="o_panel_header">
+					<i class="fa fa-globe" />
+					Web Agency
+				</div>
+				<div class="o_panel_body">
+					<t t-snippet="theme_centric.s_web_agency_three_blocks"
+						t-thumbnail="/theme_centric/static/src/img/snippet.png" />
+					<t t-snippet="theme_centric.s_web_agency_img_text"
+						t-thumbnail="/theme_centric/static/src/img/snippet.png" />
+					<t t-snippet="theme_centric.s_web_agency_center_img_text"
+						t-thumbnail="/theme_centric/static/src/img/snippet.png" />
+					<t
+						t-snippet="theme_centric.s_web_agency_images_with_center_para"
+						t-thumbnail="/theme_centric/static/src/img/snippet.png" />
+					<t
+						t-snippet="theme_centric.s_web_agency_video_with_three_block_image"
+						t-thumbnail="/theme_centric/static/src/img/snippet.png" />
+				</div>
+				<div class="o_panel_header">
+					<i class="fa fa-money" />
+					Accounting
+				</div>
+				<div class="o_panel_body">
+					<t t-snippet="theme_centric.s_accounting_three_blocks"
+						t-thumbnail="/theme_centric/static/src/img/snippet.png" />
+					<t t-snippet="theme_centric.s_accounting_four_blocks"
+						t-thumbnail="/theme_centric/static/src/img/snippet.png" />
+					<t t-snippet="theme_centric.s_accounting_two_blocks_with_icons"
+						t-thumbnail="/theme_centric/static/src/img/snippet.png" />
+					<t t-snippet="theme_centric.s_accounting_parallex"
+						t-thumbnail="/theme_centric/static/src/img/snippet.png" />
+					<t t-snippet="theme_centric.s_accounting_offer"
+						t-thumbnail="/theme_centric/static/src/img/snippet.png" />
+				</div>
+				<div class="o_panel_header">
+					<i class="fa fa-file-text"></i>
+					One Page
+				</div>
+				<div class="o_panel_body">
+					<t t-snippet="theme_centric.s_one_page_six_blocks"
+						t-thumbnail="/theme_centric/static/src/img/snippet.png" />
+					<t t-snippet="theme_centric.s_one_page_half_img_para"
+						t-thumbnail="/theme_centric/static/src/img/snippet.png" />
+					<t t-snippet="theme_centric.s_one_page_para_with_bg_img"
+						t-thumbnail="/theme_centric/static/src/img/snippet.png" />
+					<t t-snippet="theme_centric.s_one_page_para_with_four_imgs"
+						t-thumbnail="/theme_centric/static/src/img/snippet.png" />
+					<t t-snippet="theme_centric.s_one_page_pricing_plan"
+						t-thumbnail="/theme_centric/static/src/img/snippet.png" />
+				</div>
+				<div class="o_panel_header">
+					<i class="fa fa-list-alt"></i>
+					Marketing &amp; SEO
+				</div>
+				<div class="o_panel_body">
+					<t t-snippet="theme_centric.s_marketing_para_with_two_blocks"
+						t-thumbnail="/theme_centric/static/src/img/snippet.png" />
+					<t t-snippet="theme_centric.s_marketing_three_blocks"
+						t-thumbnail="/theme_centric/static/src/img/snippet.png" />
+					<t t-snippet="theme_centric.s_marketing_parallex_with_para"
+						t-thumbnail="/theme_centric/static/src/img/snippet.png" />
+					<t t-snippet="theme_centric.s_marketing_counter"
+						t-thumbnail="/theme_centric/static/src/img/snippet.png" />
+				</div>
+				<div class="o_panel_header">
+					<i class="fa fa-bitcoin" />
+					Crypto Currency
+				</div>
+				<div class="o_panel_body">
+					<t t-snippet="theme_centric.s_crypto_half_para_four_blocks"
+						t-thumbnail="/theme_centric/static/src/img/snippet.png" />
+					<t t-snippet="theme_centric.s_crypto_three_blocks"
+						t-thumbnail="/theme_centric/static/src/img/snippet.png" />
+					<t t-snippet="theme_centric.s_crypto_half_img_half_text"
+						t-thumbnail="/theme_centric/static/src/img/snippet.png" />
+					<t t-snippet="theme_centric.s_crypto_bg_img_with_form"
+						t-thumbnail="/theme_centric/static/src/img/snippet.png" />
+					<t t-snippet="theme_centric.s_crypto_team_block"
+						t-thumbnail="/theme_centric/static/src/img/snippet.png" />
+					<t t-snippet="theme_centric.s_crypto_offer_section"
+						t-thumbnail="/theme_centric/static/src/img/snippet.png" />
+				</div>
+				<div class="o_panel_header">
+					<i class="fa fa-industry " />
+					Industrial
+				</div>
+				<div class="o_panel_body">
+					<t
+						t-snippet="theme_centric.s_industrial_half_test_four_imgs_block"
+						t-thumbnail="/theme_centric/static/src/img/snippet.png" />
+					<t t-snippet="theme_centric.s_industrial_services_three_blocks"
+						t-thumbnail="/theme_centric/static/src/img/snippet.png" />
+					<t t-snippet="theme_centric.s_ind_half_img_half_para"
+						t-thumbnail="/theme_centric/static/src/img/snippet.png" />
+					<t t-snippet="theme_centric.s_ind_projects_block"
+						t-thumbnail="/theme_centric/static/src/img/snippet.png" />
+					<t t-snippet="theme_centric.s_industrial_offer_section"
+						t-thumbnail="/theme_centric/static/src/img/snippet.png" />
+				</div>
+				<div class="o_panel_header">
+					<i class="fa fa-star"></i>
+					Fitness
+				</div>
+				<div class="o_panel_body">
+					<t t-snippet="theme_centric.s_fitness_three_blocks"
+						t-thumbnail="/theme_centric/static/src/img/snippet.png" />
+					<t t-snippet="theme_centric.s_fitness_team_block"
+						t-thumbnail="/theme_centric/static/src/img/snippet.png" />
+					<t t-snippet="theme_centric.s_fitness_list_with_img"
+						t-thumbnail="/theme_centric/static/src/img/snippet.png" />
+					<t t-snippet="theme_centric.s_fitness_pricing_with_img"
+						t-thumbnail="/theme_centric/static/src/img/snippet.png" />
+					<t t-snippet="theme_centric.s_fitness_activities"
+						t-thumbnail="/theme_centric/static/src/img/snippet.png" />
+					<t t-snippet="theme_centric.s_fitness_form_with_img"
+						t-thumbnail="/theme_centric/static/src/img/snippet.png" />
+				</div>
+				<div class="o_panel_header">
+					<i class="fa fa-bell "></i>
+					Furniture
+				</div>
+				<div class="o_panel_body">
+					<t t-snippet="theme_centric.s_furniture_about"
+						t-thumbnail="/theme_centric/static/src/img/snippet.png" />
+					<t t-snippet="theme_centric.s_furniture_with_bg_imag_para"
+						t-thumbnail="/theme_centric/static/src/img/snippet.png" />
+					<t t-snippet="theme_centric.s_furniture_two_blocks_bg_img"
+						t-thumbnail="/theme_centric/static/src/img/snippet.png" />
+					<t t-snippet="theme_centric.s_furniture_two_imgs"
+						t-thumbnail="/theme_centric/static/src/img/snippet.png" />
+					<t t-snippet="theme_centric.s_furniture_gallery"
+						t-thumbnail="/theme_centric/static/src/img/snippet.png" />
+					<t t-snippet="theme_centric.s_furniture_fun-fact-section"
+						t-thumbnail="/theme_centric/static/src/img/snippet.png" />
+					<t t-snippet="theme_centric.s_furniture_services-section"
+						t-thumbnail="/theme_centric/static/src/img/snippet.png" />
+					<t t-snippet="theme_centric.s_furniture_who-we-are"
+						t-thumbnail="/theme_centric/static/src/img/snippet.png" />
+					<t t-snippet="theme_centric.s_furniture_about_with_img"
+						t-thumbnail="/theme_centric/static/src/img/snippet.png" />
+					<t t-snippet="theme_centric.s_furniture_services-section-two"
+						t-thumbnail="/theme_centric/static/src/img/snippet.png" />
+					<t t-snippet="theme_centric.s_furniture_team_section"
+						t-thumbnail="/theme_centric/static/src/img/snippet.png" />
+				</div>
+				<div class="o_panel_header">
+					<i class="fa fa-picture-o"></i>
+					New HomePage
+				</div>
+				<div class="o_panel_body">
+					<t t-snippet="theme_centric.s_new_homepage_img_gallery"
+						t-thumbnail="/theme_centric/static/src/img/snippet.png" />
+					<t t-snippet="theme_centric.s_new_three_imgs_block"
+						t-thumbnail="/theme_centric/static/src/img/snippet.png" />
+					<t t-snippet="theme_centric.s_new_home_images_block"
+						t-thumbnail="/theme_centric/static/src/img/snippet.png" />
+					<t t-snippet="theme_centric.s_new_homepage_features"
+						t-thumbnail="/theme_centric/static/src/img/snippet.png" />
+				</div>
+				<div class="o_panel_header">
+					<i class="fa fa-align-left"></i>
+					Testimonials
+				</div>
+				<div class="o_panel_body">
+					<t t-snippet="theme_centric.s_creative_tesimonial"
+						t-thumbnail="/theme_centric/static/src/img/snippet.png" />
+					<t t-snippet="theme_centric.s_medical_testimonial"
+						t-thumbnail="/theme_centric/static/src/img/snippet.png" />
+					<t t-snippet="theme_centric.s_charity_carousel_testimonial"
+						t-thumbnail="/theme_centric/static/src/img/snippet.png" />
+					<t t-snippet="theme_centric.s_software_carousel_testimonial"
+						t-thumbnail="/theme_centric/static/src/img/snippet.png" />
+					<t t-snippet="theme_centric.s_estate_carousel_testimonial"
+						t-thumbnail="/theme_centric/static/src/img/snippet.png" />
+					<t t-snippet="theme_centric.s_reataurant_carousel_images"
+						t-thumbnail="/theme_centric/static/src/img/snippet.png" />
+					<t t-snippet="theme_centric.s_accounting_testimonial"
+						t-thumbnail="/theme_centric/static/src/img/snippet.png" />
+					<t t-snippet="theme_centric.s_one_page_testimonial"
+						t-thumbnail="/theme_centric/static/src/img/snippet.png" />
+					<t t-snippet="theme_centric.s_marketing_carousel_images"
+						t-thumbnail="/theme_centric/static/src/img/snippet.png" />
+					<t t-snippet="theme_centric.s_crypto_carousel_testimonial"
+						t-thumbnail="/theme_centric/static/src/img/snippet.png" />
+					<t t-snippet="theme_centric.s_industrial_testimonial"
+						t-thumbnail="/theme_centric/static/src/img/snippet.png" />
+					<t t-snippet="theme_centric.s_fitness_testimonial"
+						t-thumbnail="/theme_centric/static/src/img/snippet.png" />
+					<t t-snippet="theme_centric.s_furniture_testimonial"
+						t-thumbnail="/theme_centric/static/src/img/snippet.png" />
+					<t t-snippet="theme_centric.s_web_agency_tesimonial"
+						t-thumbnail="/theme_centric/static/src/img/snippet.png" />
+					
+				</div>
+				<div class="o_panel_header">
+					<i class="fa fa-newspaper-o "></i>
+					Newsletters
+				</div>
+				<div class="o_panel_body">
+					<t t-snippet="theme_centric.s_charity_news_letter"
+						t-thumbnail="/theme_centric/static/src/img/snippet.png" />
+					<t t-snippet="theme_centric.s_software_contact_with_img"
+						t-thumbnail="/theme_centric/static/src/img/snippet.png" />
+					<t t-snippet="theme_centric.s_news_letter"
+						t-thumbnail="/theme_centric/static/src/img/snippet.png" />
+				</div>
+				<div class="o_panel_header">
+					<i class="fa fa-calendar " />
+					MINI Appointment
+				</div>
+				<div class="o_panel_body">
+					<t t-snippet="theme_centric.s_mini_appoinment_four"
+						t-thumbnail="/theme_centric/static/src/img/snippet.png" />
+					<t t-snippet="theme_centric.s_mini_appoinment_five"
+						t-thumbnail="/theme_centric/static/src/img/snippet.png" />
+					<t t-snippet="theme_centric.s_mini_appoinment_three"
+						t-thumbnail="/theme_centric/static/src/img/snippet.png" />
+					<t t-snippet="theme_centric.s_mini_appoinment_six"
+						t-thumbnail="/theme_centric/static/src/img/snippet.png" />
+					<t t-snippet="theme_centric.s_mini_appoinment_seven"
+						t-thumbnail="/theme_centric/static/src/img/snippet.png" />
+					<t t-snippet="theme_centric.s_mini_appoinment"
+						t-thumbnail="/theme_centric/static/src/img/snippet.png" />
+				</div>
+			</div>
+		</xpath>
+	</template>
+
+	<template name="Theme Customize Options Modal"
+		id="theme_customize_centric" inherit_id="website.theme_customize">
+		<xpath expr="//div" position="inside">
+			<content id="theme_customize_content_headers"
+				string="Headers" title="Choose your Headers">
+				<div class="col-12" id="theme_customize_content_headers_options"
+					string="Header Options">
+					<opt data-icon="/theme_centric/static/src/img/header-1.png"
+						data-xmlid="theme_centric.website_multi_header_one" data-reload="/">
+					</opt>
+					<opt data-icon="/theme_centric/static/src/img/header-2.png"
+						data-xmlid="theme_centric.website_multi_header_two" data-reload="/"/>
+					<opt
+						data-icon="/theme_centric/static/src/img/header-3.png"
+						data-xmlid="theme_centric.website_multi_header_three" data-reload="/"/>
+					<opt data-icon="/theme_centric/static/src/img/header-4.png"
+						data-xmlid="theme_centric.website_multi_header_four" data-reload="/"/>
+					<opt data-icon="/theme_centric/static/src/img/header-5.png"
+						data-xmlid="theme_centric.website_multi_header_five" data-reload="/"/>
+					<opt data-icon="/theme_centric/static/src/img/header-6.png"
+						data-xmlid="theme_centric.website_multi_header_six" data-reload="/"/>
+					<opt data-icon="/theme_centric/static/src/img/header-7.png"
+						data-xmlid="theme_centric.website_multi_header_seven" data-reload="/"/>
+					<opt data-icon="/theme_centric/static/src/img/header-8.png"
+						data-xmlid="theme_centric.website_multi_header_eight" data-reload="/"/>
+					<opt data-icon="/theme_centric/static/src/img/header-9.png"
+						data-xmlid="theme_centric.website_multi_header_nine" data-reload="/"/>
+					<opt data-icon="/theme_centric/static/src/img/header-10.png"
+						data-xmlid="theme_centric.website_multi_header_ten" data-reload="/"/>
+				</div>
+			</content>
+			<content id="theme_customize_content_footers"
+				string="Footers" title="Choose your Footer">
+				<div id="theme_customize_content_footers_options">
+					<opt data-icon="/theme_centric/static/src/img/footer.png"
+						data-xmlid="theme_centric.centric_footer" data-reload="/">
+					</opt>
+					<opt data-icon="/theme_centric/static/src/img/footer_img1.png"
+						data-xmlid="theme_centric.website_multi_footer_one" data-reload="/">
+					</opt>
+					<opt data-icon="/theme_centric/static/src/img/footer_img2.png"
+						data-xmlid="theme_centric.website_multi_footer_two" data-reload="/"/>
+					<opt data-icon="/theme_centric/static/src/img/footer_img3.png"
+						data-xmlid="theme_centric.website_multi_footer_three" data-reload="/"/>
+					<opt data-icon="/theme_centric/static/src/img/footer_img4.png"
+						data-xmlid="theme_centric.website_multi_footer_four" data-reload="/"/>
+					<opt data-icon="/theme_centric/static/src/img/footer_img5.png"
+						data-xmlid="theme_centric.website_multi_footer_five" data-reload="/"/>
+					<opt data-icon="/theme_centric/static/src/img/footer_img6.png"
+						data-xmlid="theme_centric.website_multi_footer_six" data-reload="/"/>
+					<opt data-icon="/theme_centric/static/src/img/footer_img7.png"
+						data-xmlid="theme_centric.website_multi_footer_seven" data-reload="/"/>
+					<opt data-icon="/theme_centric/static/src/img/footer_img8.png"
+						data-xmlid="theme_centric.website_multi_footer_eight" data-reload="/"/>
+				</div>
+			</content>
+		</xpath>
+	</template>
+
+	<template id="gradinat_options_centric"
+		inherit_id="web_editor.colorpicker">
+		<xpath expr="//div[hasclass('o_colorpicker_section')]" position="after">
+			<div>Gradient Colors</div>
+			<button data-color="danger-gradiant"
+				class="danger-gradiant-bg"
+				data-select-class="danger-gradiant"></button>
+			<button data-color="success-gradiant"
+				class="success-gradiant-bg"
+				data-select-class="success-gradiant"></button>
+			<button data-color="info-gradiant"
+				class="info-gradiant-bg" data-select-class="info-gradiant"></button>
+			<button data-color="warm-flame-gradiant"
+				class="warm-flame-gradiant-bg"
+				data-select-class="warm-flame-gradiant"></button>
+			<button data-color="night-fade-gradient"
+				class="night-fade-gradient-bg"
+				data-select-class="night-fade-gradient"></button>
+			<button data-color="spring-warmth-gradient"
+				class="spring-warmth-gradient-bg"
+				data-select-class="spring-warmth-gradient"></button>
+			<button data-color="juicy-peach-gradient"
+				class="juicy-peach-gradient-bg"
+				data-select-class="juicy-peach-gradient"></button>
+			<button data-color="amy-crisp-gradient"
+				class="amy-crisp-gradient-bg"
+				data-select-class="amy-crisp-gradient"></button>
+			<button data-color="mean-fruit-gradient"
+				class="mean-fruit-gradient-bg"
+				data-select-class="mean-fruit-gradient"></button>
+			<button data-color="waves-gradient"
+				class="bg-waves-gradient" data-select-class="waves-gradient"></button>
+			<button data-color="orange-gradiant"
+				class="orange-gradiant-bg"
+				data-select-class="orange-gradiant"></button>
+			<button data-color="grey-gradient"
+				class="grey-gradiant-bg" data-select-class="grey-gradient"></button>
+			<button data-color="green-gradient"
+				class="green-gradiant-bg" data-select-class="green-gradient"></button>
+			<button data-color="yellow-blue-gradient"
+				class="yellow-blue-gradiant-bg"
+				data-select-class="yellow-blue-gradient"></button>
+			<button data-color="green-blue-gradient"
+				class="green-blue-gradiant-bg"
+				data-select-class="green-blue-gradient"></button>
+		</xpath>
+	</template>
+
+</odoo>

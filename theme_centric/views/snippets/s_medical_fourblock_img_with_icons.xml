@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+	<template id="s_medical_fourblock_img_with_icons"
+		name="Four blocks image with icons">
+		<section class="s_medical_fourblock_img_with_icons">
+			<div class="bg-light-1 spacer feature18">
+				<div class="container">
+            <div class="row justify-content-center">
+              <div class="col-md-7 text-center">
+                <h2 class="title text-alpha">Powerful Services at Bizople</h2>
+                <h6 class="subtitle">You can relay on our amazing features list and
+                  also our customer services will be great experience for you
+                  without doubt and in no-time
+                </h6>
+              </div>
+            </div>
+            <div class="row  wrap-feature-18">
+              <div class="col-lg-6" >
+                <div class="card">
+                  <div class="row">
+                    <div class="col-md-5 icon-position">
+                      <img src="/theme_centric/static/src/img/s1.jpg"/>
+                      <section
+                        class="icon-round bg-alpha text-white display-6">
+                        <span class="fa fa-file"></span>
+                      </section>
+                    </div>
+                    <div class="col-md-7">
+                      <div class=" p-40">
+                        <h5 class="font-medium">Dental Care with Easy Treatments</h5>
+                        <p class="m-t-20">You can relay on our amazing features list and
+                          also our customer services will be great experience.
+                        </p>
+                        <div class="s_btn" data-name="Link Align">
+                          <a href="#" class="linking text-underline font-medium">
+                            Lets Talk
+                            <span class="fa fa-1x fa-fw fa-long-arrow-right ml-1"></span>
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-6 ">
+                <div class="card">
+                  <div class="row">
+                    <div class="col-md-5 icon-position">
+                      <img src="/theme_centric/static/src/img/s2.jpg"/>
+                      <section
+                        class="icon-round bg-alpha text-white display-6">
+                        <span class="fa fa-heartbeat"></span>
+                      </section>
+                    </div>
+                    <div class="col-md-7">
+                      <div class="p-40">
+                        <h5 class="font-medium">We are Heart Specialist and Surgeon</h5>
+                        <p class="m-t-20">You can relay on our amazing features list and
+                          also our customer services will be great experience.
+                        </p>
+                        <div class="s_btn" data-name="Link Align">
+                          <a href="#" class="linking text-underline font-medium">
+                            Lets Talk
+                            <span class="fa fa-1x fa-fw fa-long-arrow-right ml-1"></span>
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-6" >
+                <div class="card">
+                  <div class="row">
+                    <div class="col-md-5 icon-position">
+                      <img src="/theme_centric/static/src/img/s3.jpg"/>
+                      <section
+                        class="icon-round bg-alpha text-white display-6">
+                        <span class="fa fa-music"></span>
+                      </section>
+                    </div>
+                    <div class="col-md-7">
+                      <div class=" p-40">
+                        <h5 class="font-medium">We do have Department for Research</h5>
+                        <p class="m-t-20">You can relay on our amazing features list and
+                          also our customer services will be great experience.
+                        </p>
+                        <div class="s_btn" data-name="Link Align">
+                          <a href="#" class="linking text-underline font-medium">
+                            Lets Talk
+                            <span class="fa fa-1x fa-fw fa-long-arrow-right ml-1"></span>
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-6" >
+                <div class="card">
+                  <div class="row">
+                    <div class="col-md-5 icon-position">
+                      <img src="/theme_centric/static/src/img/s4.jpg"/>
+                      <section
+                        class="icon-round bg-alpha text-white display-6">
+                        <span class="fa fa-keyboard-o"></span>
+                      </section>
+                    </div>
+                    <div class="col-md-7">
+                      <div class=" p-40">
+                        <h5 class="font-medium">Child Care Department for Everyone</h5>
+                        <p class="m-t-20">You can relay on our amazing features list and
+                          also our customer services will be great experience.
+                        </p>
+                        <div class="s_btn" data-name="Link Align">
+                          <a href="#" class="linking text-underline font-medium">
+                            Lets Talk
+                            <span class="fa fa-1x fa-fw fa-long-arrow-right ml-1"></span>
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12 m-t-40 text-center s_btn" data-name="Button">
+                <a class="btn btn-alpha btn-md arrow-btn rounded-circle bizople_button" 
+                  href="#">
+                    View Other Services
+                    <span class="fa fa-1x fa-fw fa-long-arrow-right ml-1"></span>
+                </a>
+              </div>
+            </div>
+          </div>
+			</div>
+		</section>
+
+	</template>
+
+</odoo>

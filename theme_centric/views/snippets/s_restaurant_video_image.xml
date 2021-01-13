@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+	<template id="s_restaurant_video_image" name="Two images with paragraph and video">
+		<section class="s_restaurant_video_image">
+			<div class="spacer feature14">
+				<div class="container">
+					<div class="row">
+						<div class="col-lg-4 col-md-4">
+							<h2 class="m-t-20 m-b-30 font-stylish-1 text-beta">Awesome with Extra Ordinary Flexibility</h2>
+							<p class="custom_p">You can relay on our amazing features list and also
+								our
+								customer services will be great experience for our users
+							</p>
+							<p class="custom_p">You will surely fall in love with ready touse
+								bootstrap ui
+								kit framework.
+							</p>
+							<div class="s_btn" data-name="Button">
+								<a
+									class="btn btn-rounded rounded-circle btn-alpha btn-md arrow-btn m-t-20 m-b-30 bizople_button"
+									href="#">
+										View Other Features
+										<span class="fa fa-1x fa-fw fa-long-arrow-right ml-1"></span>
+								</a>
+							</div>
+						</div>
+						<div class="col-lg-4 col-md-4 wrap-feature14-box">
+							<div class="" >
+								<img class="rounded img-responsive video-img"
+									src="/theme_centric/static/src/img/res1.jpg" alt="bizople kit" />
+								<div class="embed-responsive hide embed-responsive-16by9"
+									data-animation="animated fadeIn">
+								</div>
+								<div class="m-t-30">
+									<h5 class="font-medium">
+										Retargeting Market
+										<span class="lnr lnr-arrow-right m-l-10 font-14"></span>
+									</h5>
+									<p class="custom_p m-t-20">You can relay on our amazing features list and
+										also our customer services will be great experience.
+									</p>
+								</div>
+							</div>
+						</div>
+						<div class="col-lg-4 col-md-4 wrap-feature14-box">
+							<div class="" >
+								<img class="rounded img-responsive"
+									src="/theme_centric/static/src/img/res2.jpg" alt="bizople kit" />
+								<div class="m-t-30">
+									<h5 class="font-medium">
+										Instant Solution
+										<span class="lnr lnr-arrow-right m-l-10 font-14"></span>
+									</h5>
+									<p class="custom_p m-t-20">You can relay on our amazing features list and
+										also our customer services will be great experience.
+									</p>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+	</template>
+
+</odoo>

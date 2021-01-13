@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+	<template id="s_medical_img_with_features"
+		name="Image With tab options">
+		<section class="s_medical_img_with_features bg-light-1" data-js="navTabs">
+			<div class=" spacer feature41">
+				<div class="container">
+					<div class="row justify-content-center">
+						<div class="col-md-7 col-lg-7 text-center">
+							<h2 class="title text-beta">Create beautiful Websites in Record Time</h2>
+							<h6 class="subtitle">You can relay on our amazing features list and
+								also our customer services will be great experience for you
+								without doubt and in no-time
+							</h6>
+						</div>
+					</div>
+					<div class="row m-t-40 wrap-feature41-box">
+						<div class="col-lg-4 col-md-12">
+							<ul class="nav nav-tabs vtab f41-tab">
+								<li class="nav-item">
+									<a class="nav-link active" id="home-tab" data-toggle="tab"
+										href="#home" aria-controls="home">
+										<div class="display-5 t-icon">
+											<span class="fa fa-pencil"></span>
+										</div>
+										<div>
+											<h5 class="m-b-0">Perfectly Structured</h5>
+											<h6 class="subtitle">You can relay on our amazing features list.
+											</h6>
+										</div>
+									</a>
+								</li>
+								<li class="nav-item">
+									<a class="nav-link" id="profile-tab" data-toggle="tab"
+										href="#profile" aria-controls="profile">
+										<div class="display-5 t-icon">
+											<span class="fa fa-shopping-cart"></span>
+										</div>
+										<div>
+											<h5 class="m-b-0">Thinkful Products</h5>
+											<h6 class="subtitle">You can relay on our amazing features list.
+											</h6>
+										</div>
+									</a>
+								</li>
+								<li class="nav-item">
+									<a class="nav-link" id="dropdown1-tab" data-toggle="tab"
+										href="#dropdown1" aria-controls="dropdown1">
+										<div class="display-5 t-icon">
+											<span class="fa fa-diamond"></span>
+										</div>
+										<div>
+											<h5 class="m-b-0">Make Money</h5>
+											<h6 class="subtitle">You can relay on our amazing features list.
+											</h6>
+										</div>
+									</a>
+								</li>
+								<li class="nav-item">
+									<a class="nav-link" id="ssd-tab" data-toggle="tab"
+										href="#ssd" aria-controls="ssd">
+										<div class="display-5 t-icon">
+											<span class="fa fa-cloud-upload"></span>
+										</div>
+										<div>
+											<h5 class="m-b-0">SSD Storage</h5>
+											<h6 class="subtitle">You can relay on our amazing features list.
+											</h6>
+										</div>
+									</a>
+								</li>
+							</ul>
+						</div>
+						<div class="col-lg-7 col-md-7 ml-auto">
+							<div class="tab-content" id="myTabContent">
+								<div class="tab-pane fade show active" id="home"
+									role="tabpanel" aria-labelledby="home-tab">
+									<img src="/theme_centric/static/src/img/d1.jpg"
+										alt="bizople" class="rounded img-fluid" />
+									<p class="m-t-40">Lorem ipsum dolor sit amet, consectetuer
+										adipiscing elit, sed diam nonummy nibh euismod tincidunt
+										ut
+										laoreet dolore magna aliquam erat volutpat.
+									</p>
+									<div class="s_btn" data-name="Button">
+										<a class="btn btn-alpha rounded-circle btn-md arrow-btn m-t-20 bizople_button"
+											 href="#f41">
+												View Features
+												<span class="fa fa-1x fa-fw fa-long-arrow-right ml-1"></span>
+										</a>
+									</div>
+								</div>
+								<div class="tab-pane fade" id="profile" role="tabpanel"
+									aria-labelledby="profile-tab">
+									<img src="/theme_centric/static/src/img/d2.jpg"
+										alt="bizople" class="rounded img-fluid" />
+									<p class="m-t-40">Lorem ipsum dolor sit amet, consectetuer
+										adipiscing elit, sed diam nonummy nibh euismod tincidunt
+										ut
+										laoreet dolore magna aliquam erat volutpat.
+									</p>
+									<div class="s_btn" data-name="Button">
+										<a class="btn btn-alpha rounded-circle btn-md arrow-btn m-t-20 bizople_button"
+											 href="#f41">
+												View Features
+												<span class="fa fa-1x fa-fw fa-long-arrow-right ml-1"></span>
+										</a>
+									</div>
+								</div>
+								<div class="tab-pane fade" id="dropdown1" role="tabpanel"
+									aria-labelledby="dropdown1-tab">
+									<img src="/theme_centric/static/src/img/d1.jpg"
+										alt="bizople" class="rounded img-fluid" />
+									<p class="m-t-40">Lorem ipsum dolor sit amet, consectetuer
+										adipiscing elit, sed diam nonummy nibh euismod tincidunt
+										ut
+										laoreet dolore magna aliquam erat volutpat.
+									</p>
+									<div class="s_btn" data-name="Button">
+										<a class="btn btn-alpha rounded-circle btn-md arrow-btn m-t-20 bizople_button"
+											 href="#f41">
+												View Features
+												<span class="fa fa-1x fa-fw fa-long-arrow-right ml-1"></span>
+										</a>
+									</div>
+								</div>
+								<div class="tab-pane fade" id="ssd" role="tabpanel"
+									aria-labelledby="ssd-tab">
+									<img src="/theme_centric/static/src/img/d2.jpg"
+										alt="bizople" class="rounded img-fluid" />
+									<p class="m-t-40">Lorem ipsum dolor sit amet, consectetuer
+										adipiscing elit, sed diam nonummy nibh euismod tincidunt
+										ut
+										laoreet dolore magna aliquam erat volutpat.
+									</p>
+									<div class="s_btn" data-name="Button">
+										<a class="btn btn-alpha rounded-circle btn-md arrow-btn m-t-20 bizople_button"
+											 href="#f41">
+												View Features
+												<span class="fa fa-1x fa-fw fa-long-arrow-right ml-1"></span>
+										</a>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+	</template>
+
+</odoo>

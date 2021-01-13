@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+	<template id="s_contact_with_img" name="Contact Us Two">
+		<section class="s_contact_with_img">
+			<div class="contact3 mini-spacer">
+				<div class="container">
+					<div class="row">
+						<div class="row m-0">
+							<div class="col-lg-6">
+								<div class="card-shadow ">
+									<img src="/theme_centric/static/src/img/contact_img1.jpg"
+										class="img-responsive img img-fluid" />
+								</div>
+							</div>
+							<div class="col-lg-6">
+								<div class="contact-box ">
+									<h1 class="title font-light m-t-10">Quick Contact</h1>
+									<form action="/website_form/" method="post"
+										data-model_name="crm.lead"
+										data-success_page="/contactus-thank-you"
+										class="s_website_form container-fluid mt32"
+										enctype="multipart/form-data" data-editable-form="false">
+										<div class="row">
+											<div class="col-lg-6">
+												<div class="form-group m-t-15 ">
+													<input placeholder="Name" name="contact_name"
+														required="True" type="text"
+														class="o_website_form_input   font-14 form-control"
+														t-att-value="request.params.get('contact_name', '')" />
+												</div>
+											</div>
+											<div class="col-lg-6">
+												<div class="form-group m-t-15 ">
+													<input name="email_from" placeholder="Email Address"
+														required="" value="" type="email"
+														class="o_website_form_input form-control"
+														t-att-value="request.params.get('email_from', '')" />
+												</div>
+											</div>
+											<div class="col-lg-12">
+												<div class="form-group m-t-15 ">
+													<input name="phone" placeholder="Phone"
+														type="text" t-att-value="request.params.get('phone', '')"
+														class="o_website_form_input form-control" />
+												</div>
+											</div>
+											<div class="col-lg-12">
+												<div class="form-group m-t-15 ">
+													<input name="name" placeholder="Subject" required=""
+														type="text" t-att-value="request.params.get('name', '')"
+														class="o_website_form_input form-control" />
+												</div>
+											</div>
+											<div class="col-lg-12">
+												<div class="form-group m-t-15 ">
+													<textarea name="description" rows="3"
+														placeholder="Messagge" required=""
+														t-att-value="request.params.get('description', '')"
+														class=" o_website_form_input form-control"></textarea>
+												</div>
+											</div>
+											<div class="col-lg-12 s_name" data-name="Button">
+												<button
+													class="o_website_form_send btn btn-alpha rounded-circle m-t-20 arrow-btn"
+													type="submit">
+													SUBMIT NOW
+													<span class="fa fa-1x fa-fw fa-long-arrow-right ml-1"></span>
+												</button>
+												<span id="o_website_form_result"
+													class="text-danger ml8 mt16  mb16 col-md-12"></span>
+											</div>
+										</div>
+									</form>
+								</div>
+							</div>
+							<div class="col-lg-12">
+								<div class="card m-t-40">
+									<div class="row">
+										<div class="col-lg-4 col-md-4">
+											<div class=" d-flex no-block c-detail p-3">
+												<div class="m-r-20 align-self-center">
+													<img src="/theme_centric/static/src/img/icon1.png" class="img img-fluid"/>
+												</div>
+												<div class="">
+													<h6 class="font-medium">Address</h6>
+													<p class="">
+														A/405, Business Campus
+														<br />
+														Ring Road
+													</p>
+												</div>
+											</div>
+										</div>
+										<div class="col-lg-4 col-md-4">
+											<div class=" d-flex no-block c-detail p-3">
+												<div class="m-r-20 align-self-center">
+													<img src="/theme_centric/static/src/img/icon2.png" class="img img-fluid"/>
+												</div>
+												<div class="">
+													<h6 class="font-medium">Phone</h6>
+													<p class="">
+														251 546 9442
+														<br />
+														630 446
+														8851
+													</p>
+												</div>
+											</div>
+										</div>
+										<div class="col-lg-4 col-md-4">
+											<div class=" d-flex no-block c-detail p-3">
+												<div class="m-r-20 align-self-center">
+													<img src="/theme_centric/static/src/img/icon3.png" class="img img-fluid"/>
+												</div>
+												<div class="">
+													<h6 class="font-medium">Email</h6>
+													<p class="">
+														info@bizople.com
+														<br />
+														www.bizople.com
+													</p>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+	</template>
+
+</odoo>

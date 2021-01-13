@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+	<template id="s_mega_menu_three_snippet" name="Mega Menu Three">
+		<section class="s_mega_menu_three_snippet ">
+			<div class="container ">
+				<div class="row content">
+					<div class="col-md-3">
+						<div class="column">
+							<div class="static-menu-image">
+								<img class="img-fluid" src="/theme_centric/static/src/img/t1_c.jpg"/>
+							</div>
+							<a href="#" class="smooth title-submenu">Living Room</a>
+							<div>
+								<ul class="row-list list-unstyled">
+									<li><a href="#">Large Coffee Tables</a></li>
+									<li><a href="#">Small Coffee Tables</a></li>
+									<li><a href="#">Coffee Table sets</a></li>
+									<li><a href="#">End Tables</a></li>
+									<li><a href="#">Console Tables</a></li>
+									<li><a href="#">Set Of Tables</a></li>
+								</ul>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-3">
+						<div class="column">
+							<div class="static-menu-image">
+								<img class="img-fluid" src="/theme_centric/static/src/img/t2_c.jpg"/>
+							</div>
+							<a href="#" class="smooth title-submenu">Bed Room</a>
+							<div>
+								<ul class="row-list list-unstyled">
+									<li><a href="#">Large Coffee Tables</a></li>
+									<li><a href="#">Small Coffee Tables</a></li>
+									<li><a href="#">Coffee Table sets</a></li>
+									<li><a href="#">End Tables</a></li>
+									<li><a href="#">Console Tables</a></li>
+									<li><a href="#">Set Of Tables</a></li>
+								</ul>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-3">
+						<div class="column">
+							<div class="static-menu-image">
+								<img class="img-fluid" src="/theme_centric/static/src/img/t3_c.jpg"/>
+							</div>
+							<a href="#" class="smooth title-submenu">Work Place</a>
+							<div>
+								<ul class="row-list list-unstyled">
+									<li><a href="#">Large Coffee Tables</a></li>
+									<li><a href="#">Small Coffee Tables</a></li>
+									<li><a href="#">Coffee Table sets</a></li>
+									<li><a href="#">End Tables</a></li>
+									<li><a href="#">Console Tables</a></li>
+									<li><a href="#">Set Of Tables</a></li>
+								</ul>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-3">
+						<div class="column">
+							<div class="static-menu-image">
+								<img class="img-fluid" src="/theme_centric/static/src/img/t4_c.jpg"/>
+							</div>
+							<a href="#" class="smooth title-submenu">Kitchen</a>
+							<div>
+								<ul class="row-list list-unstyled">
+									<li><a href="#">Large Coffee Tables</a></li>
+									<li><a href="#">Small Coffee Tables</a></li>
+									<li><a href="#">Coffee Table sets</a></li>
+									<li><a href="#">End Tables</a></li>
+									<li><a href="#">Console Tables</a></li>
+									<li><a href="#">Set Of Tables</a></li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+	</template>
+</odoo>

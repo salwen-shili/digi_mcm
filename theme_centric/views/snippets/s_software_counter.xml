@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+	<template id="s_software_counter" name="Counter with icons">
+		<section class="s_software_counter">
+			<div class="spacer feature24">
+				<div class="container">
+					<div class="row client-box">
+						<div class="col-lg-3 col-md-6">
+							<div class="d-flex no-block ">
+								<div class="display-5">
+									<span class="fa fa-smile-o text-alpha"></span>
+								</div>
+								<div class="m-l-20 counter-box">
+									<h1 class="font-light counter m-b-0">2868</h1>
+									<h6 class="text-muted font-13 text-uppercase">Happy Clients</h6>
+								</div>
+							</div>
+						</div>
+						<div class="col-lg-3 col-md-6">
+							<div class="d-flex no-block">
+								<div class="display-5">
+									<span class="fa fa-cutlery text-alpha"></span>
+								</div>
+								<div class="m-l-20">
+									<h1 class="font-light counter m-b-0">1319</h1>
+									<h6 class="text-muted font-13 text-uppercase">Cups of Coffe</h6>
+								</div>
+							</div>
+						</div>
+						<div class="col-lg-3 col-md-6">
+							<div class="d-flex no-block">
+								<div class="display-5">
+									<span class="fa fa-users text-alpha"></span>
+								</div>
+								<div class="m-l-20">
+									<h1 class="font-light counter m-b-0">110</h1>
+									<h6 class="text-muted font-13 text-uppercase">Dedicated staff</h6>
+								</div>
+							</div>
+						</div>
+						<div class="col-lg-3 col-md-6">
+							<div class="d-flex no-block">
+								<div class="display-5">
+									<span class="fa fa-gift text-alpha"></span>
+								</div>
+								<div class="m-l-20">
+									<h1 class="font-light counter m-b-0">11</h1>
+									<h6 class="text-muted font-13 text-uppercase">Awards won</h6>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+	</template>
+
+</odoo>

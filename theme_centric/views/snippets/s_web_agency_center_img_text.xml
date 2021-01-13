@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+	<template id="s_web_agency_center_img_text"
+		name="Center image with counter">
+		<section class="s_web_agency_center_img_text">
+			<div class="spacer feature24 ">
+				<div class="container">
+					<div class="row justify-content-center">
+						<div class="col-md-12 text-center m-b-40">
+							<img src="/theme_centric/static/src/img/services_1.jpg"
+								alt="bizople" class="img-fluid" />
+						</div>
+						<div class="col-md-7 text-center">
+							<h2 class="title text-beta">Services you can Relay Upon</h2>
+							<h6 class="subtitle">You can relay on our amazing features list and
+								also our customer services will be great experience for you
+								without doubt and in no-time
+							</h6>
+						</div>
+					</div>
+					<div class="row m-t-30 p-t-30 client-box">
+						<div class="col-lg-3 col-md-6">
+							<div class="d-flex no-block">
+								<div class="display-5">
+									<span class="fa fa-smile-o text-alpha"></span>
+								</div>
+								<div class="m-l-20 counter-box">
+									<h1 class="font-light counter m-b-0">5000</h1>
+									<h6 class="text-muted font-13 text-uppercase">Happy Clients</h6>
+								</div>
+							</div>
+						</div>
+						<div class="col-lg-3 col-md-6">
+							<div class="d-flex no-block">
+								<div class="display-5">
+									<span class="fa fa-cutlery text-alpha"></span>
+								</div>
+								<div class="m-l-20 counter-box">
+									<h1 class="font-light counter m-b-0">2300</h1>
+									<h6 class="text-muted font-13 text-uppercase">Cups of Coffe</h6>
+								</div>
+							</div>
+						</div>
+						<div class="col-lg-3 col-md-6">
+							<div class="d-flex no-block">
+								<div class="display-5">
+									<span class="fa fa-users text-alpha"></span>
+								</div>
+								<div class="m-l-20 counter-box">
+									<h1 class="font-light counter m-b-0">200</h1>
+									<h6 class="text-muted font-13 text-uppercase">Dedicated staff</h6>
+								</div>
+							</div>
+						</div>
+						<div class="col-lg-3 col-md-6">
+							<div class="d-flex no-block">
+								<div class="display-5">
+									<span class="fa fa-gift text-alpha"></span>
+								</div>
+								<div class="m-l-20 counter-box">
+									<h1 class="font-light counter m-b-0">20</h1>
+									<h6 class="text-muted font-13 text-uppercase">Awards won</h6>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+	</template>
+
+</odoo>

@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+	<template id="s_crypto_half_para_four_blocks" name="Paragraph with four blocks">
+		<section class="s_crypto_half_para_four_blocks">
+			<div class="mini-spacer feature43">
+				<div class="container">
+					<div class="row align-items-center">
+						<div class="col-lg-5 "
+							>
+							<h2 class="title font-bold text-beta">Why you should choose bizople Crypto Currency
+								Demo? here are some reasons for that.
+							</h2>
+							<h6 class="subtitle">You can relay on our amazing features list and
+								also our customer services.
+							</h6>
+							<div class="s_btn" data-name="Button">
+								<a class="btn btn-alpha rounded-circle btn-md arrow-btn m-t-20 bizople_button"
+									href="#">
+										View other reasons
+										<span class="fa fa-1x fa-fw fa-long-arrow-right ml-1"></span>
+								</a>
+							</div>
+						</div>
+						<div class="col-lg-6 ml-auto m-t-20">
+							<div class="row wrap-feature43-box">
+								<div class="col-md-6 "
+									>
+									<div class="text-alpha display-4">
+										<span class="fa fa-cog"></span>
+									</div>
+									<h5 class="title font-semibold">Unbeatable Features</h5>
+									<h6 class="subtitle">You can relay on our amazing features list and
+										also our customer services.
+									</h6>
+								</div>
+								<div class="col-md-6 "
+									>
+									<div class="text-alpha display-4">
+										<span class="fa fa-check"></span>
+									</div>
+									<h5 class="title font-semibold">Professional Support</h5>
+									<h6 class="subtitle">You can relay on our amazing features list and
+										also our customer services.
+									</h6>
+								</div>
+								<div class="col-md-6 aos-init" data-aos="fade-right"
+									>
+									<div class="text-alpha display-4">
+										<span class="fa fa-file"></span>
+									</div>
+									<h5 class="title font-semibold">Quick and Easy</h5>
+									<h6 class="subtitle">You can relay on our amazing features list and
+										also our customer services.
+									</h6>
+								</div>
+								<div class="col-md-6 aos-init" data-aos="fade-left"
+									>
+									<div class="text-alpha display-4">
+										<span class="fa fa-diamond"></span>
+									</div>
+									<h5 class="title font-semibold">Secured &amp; Trendy</h5>
+									<h6 class="subtitle">You can relay on our amazing features list and
+										also our customer services.
+									</h6>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+	</template>
+
+</odoo>

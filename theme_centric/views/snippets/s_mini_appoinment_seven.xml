@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+	<template id="s_mini_appoinment_seven"
+		name="Mini Appoinment Seven">
+		<section class="s_mini_appoinment_seven spacer c2a10"
+			style="background-image:url(/theme_centric/static/src/img/mini_apt_bg2.jpg)">
+			<div class="container">
+				<div class="row justify-content-center">
+					<div class="col-md-5 text-center both-space">
+						<div class="card aos-init" data-aos="flip-left"
+							data-aos-duration="1200">
+							<section class="p-4 bg-white">
+								<div class="text-box">
+									<h3 class="title">Brilliant Design and Unlimited Features
+										to
+										Boost your Site
+									</h3>
+									<h6 class="subtitle">You can relay on our amazing features
+										list
+										and also our customer services will be great
+										experience for you without doubt
+									</h6>
+									<div class="s_btn" data-name="Button">
+										<a class="btn btn-alpha rounded-circle btn-md arrow-btn m-t-20 bizople_button"
+											href="#">
+												View Other Features
+												<span class="fa fa-1x fa-fw fa-long-arrow-right ml-1"></span>
+										</a>
+									</div>
+								</div>
+							</section>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+	</template>
+
+</odoo>
