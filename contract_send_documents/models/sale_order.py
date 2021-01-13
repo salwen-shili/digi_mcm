@@ -10,7 +10,6 @@ class SaleOrder(models.Model):
 
     def write(self,values):
         order=super(SaleOrder,self).write(values)
-        print(self.state)
         if 'signed_by' in values and 'signed_on' in values and 'signature' in values and self.state != 'cancel' and self.state != 'draft':
             if self.env.su:
                 # sending mail in sudo was meant for it being sent from superuser
