@@ -1080,7 +1080,7 @@ figure.effect-oscar:hover img {
 /* Pricing table
 ================================================== */
 .pricing {
-  padding-bottom: 80px;
+  padding-bottom: 30px;
 }
 
 .plan {
@@ -1101,7 +1101,7 @@ figure.effect-oscar:hover img {
   padding: 30px 0;
   margin-bottom: 30px;
   position: relative;
-  background: #f2f2f2;
+
 }
 
 .plan-price:after {

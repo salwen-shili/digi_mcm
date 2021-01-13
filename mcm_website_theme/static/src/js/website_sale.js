@@ -12,6 +12,9 @@ var QWeb = core.qweb;
 publicWidget.registry.WebsiteSale.include({
     events: _.extend({}, publicWidget.registry.WebsiteSale.prototype.events, {
        'click #checkbox_instalment': 'verify_check',
+       'click #checkbox_conditions': 'verify_conditions',
+       'click #checkbox_failures': 'verify_failures',
+       'click #checkbox_accompagnement': 'verify_accompagnement',
        'click #cpf_pm': 'verify_cpf',
 //       'click #pm_shop_check': 'verify_pm',
 //       'click #pm_shop_checkout': 'verify_pm',
@@ -47,10 +50,12 @@ publicWidget.registry.WebsiteSale.include({
     verify_cpf: function(ev){
         var self = this;
         var cpf = false;
-        if (document.getElementById('cpf_pm').checked==true) {
-        cpf=true;
-        } else {
-         cpf=false
+        if(document.getElementById('cpf_pm')){
+            if (document.getElementById('cpf_pm').checked==true) {
+            cpf=true;
+            } else {
+             cpf=false
+             }
          }
          console.log('cpf');
          console.log(cpf);
@@ -81,7 +86,80 @@ publicWidget.registry.WebsiteSale.include({
                 }
                 }
 
-    }
+    },
+    verify_conditions : function(ev) {
+        var self = this;
+        var condition = false;
+        var conditions=document.getElementById('checkbox_conditions')
+        if (document.getElementById('checkbox_conditions')) {
+            if (document.getElementById('checkbox_conditions').checked==true) {
+                var error=document.getElementById('error_conditions');
+                if (error) {
+                    error.style.display='none';
+                }
+                condition=true;
+            } else {
+                var error=document.getElementById('error_conditions');
+                if (error) {
+                    error.style.display='inline-block';
+                }
+                condition=false;
+            }
+        }
+        console.log('condition');
+        console.log(condition);
+        this._rpc({
+            route: "/shop/payment/update_condition",
+            params: {
+                condition: condition,
+         },
+        }).then(function () {
+            return true;
+        });
+    },
+    verify_failures : function(ev) {
+        var self = this;
+        var failures = false;
+        if (document.getElementById('checkbox_failures')) {
+            if (document.getElementById('checkbox_failures').checked==true) {
+                failures=true;
+            } else {
+                failures=false;
+            }
+        }
+        console.log('failures');
+        console.log(failures);
+        this._rpc({
+            route: "/shop/payment/update_failures",
+            params: {
+                failures: failures,
+         },
+        }).then(function () {
+            return true;
+        });
+    },
+    verify_accompagnement : function(ev) {
+        var self = this;
+        var accompagnement = false;
+        if (document.getElementById('checkbox_accompagnement')) {
+            if (document.getElementById('checkbox_accompagnement').checked==true) {
+                accompagnement=true;
+            } else {
+                accompagnement=false;
+            }
+        }
+        console.log('accompagnement');
+        console.log(accompagnement);
+        this._rpc({
+            route: "/shop/payment/update_accompagnement",
+            params: {
+                accompagnement: accompagnement,
+         },
+        }).then(function () {
+            return true;
+        });
+    },
+
 
 });
 });

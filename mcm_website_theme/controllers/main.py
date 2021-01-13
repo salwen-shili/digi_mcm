@@ -24,15 +24,32 @@ PPR = 4  # Products Per Row
 
 class Website(Home):
 
-    @http.route('/'
+    @http.route(['''/''','''/<string:partenaire>''',]
         , type='http', auth="public", website=True)
-    def index(self, state='', **kw, ):
-        homepage = request.website.homepage_id
+    def index(self, state='',partenaire='', **kw, ):
+        # homepage=super(Website, self).index()
         all_categs = request.env['product.public.category'].sudo().search([('parent_id', '=', False)])
         all_states = request.env['res.country.state'].sudo().search([('country_id.code', 'ilike', 'FR')],order='id asc')
         taxi_category = request.env['product.public.category'].sudo().search([('name', 'ilike', 'Formation TAXI')])
         vtc_category = request.env['product.public.category'].sudo().search([('name', 'ilike', 'Formation VTC')])
         vmdtr_category = request.env['product.public.category'].sudo().search([('name', 'ilike', 'Formation VMDTR')])
+
+        digimoov_products = request.env['product.product'].sudo().search([('company_id', '=', 2)], order="list_price")
+        basic_price = False
+        avancee_price = False
+        premium_price = False
+        if digimoov_products:
+            for product in digimoov_products:
+                if (product.default_code == 'basic'):
+                    basic_price = round(product.list_price)
+                if (product.default_code == 'avancée'):
+                    avancee_price = round(product.list_price)
+                if (product.default_code == 'premium'):
+                    premium_price = round(product.list_price)
+        promo = False
+        if (request.website.id == 2 and partenaire in ['ubereats', 'deliveroo', 'coursierjob']):
+            promo = request.env['product.pricelist'].sudo().search(
+                [('company_id', '=', 2), ('code', 'ilike', partenaire.upper())])
         if state:
             kw["search"] = state
         values = {
@@ -41,26 +58,23 @@ class Website(Home):
             'all_states': all_states,
             'taxi': taxi_category,
             'vtc': vtc_category,
-            'vmdtr': vmdtr_category
+            'vmdtr': vmdtr_category,
+            'digimoov_products': digimoov_products,
+            'basic_price': basic_price if basic_price else '',
+            'avancee_price': avancee_price if avancee_price else '',
+            'premium_price': premium_price if premium_price else '',
         }
-        return request.render("website.homepage", values)
-        if homepage and (
-                homepage.sudo().is_visible or request.env.user.has_group('base.group_user')) and homepage.url != '/':
-            return request.env['ir.http'].reroute(homepage.url)
+        if (partenaire in ['', 'ubereats', 'deliveroo', 'coursierjob'] and request.website.id == 2):
+            values['partenaire'] = partenaire
+            if (promo):
+                values['promo'] = promo
+            else:
+                values['promo'] = False
+            return request.render("website.homepage", values)
+        if (request.website.id == 1):
+            return request.render("website.homepage", values)
 
-        website_page = request.env['ir.http']._serve_page()
-        if website_page:
-            return website_page
-        else:
-            top_menu = request.website.menu_id
-            first_menu = top_menu and top_menu.child_id and top_menu.child_id.filtered(lambda menu: menu.is_visible)
-            if first_menu and first_menu[0].url not in ('/', '', '#') and (
-                    not (first_menu[0].url.startswith(('/?', '/#', ' ')))):
-                return request.redirect(first_menu[0].url)
-
-        raise request.not_found()
-        values = {'all_categories': all_categs, }
-        return request.render("website.homepage", values)
+        
 
         # --------------------------------------------------------------------------
         # states Search Bar
@@ -512,32 +526,72 @@ class Payment3x(http.Controller):
     def cart_update_amount(self, instalment):
         """This route is called when changing quantity from the cart or adding
         a product from the wishlist."""
-        print('helloooooo')
         order = request.website.sale_get_order(force_create=1)
-
-        print(order.instalment)
-        payment = request.env['payment.acquirer'].sudo().search([('code', 'ilike', 'stripe')])
+        payment = request.env['payment.acquirer'].sudo().search([('name', 'ilike', 'stripe'),('company_id',"=",request.website.company_id.id)])
         if instalment:
             if payment:
                 order.instalment=True
                 payment.instalment = True
+                if(order.company_id.id==2 and order.pricelist_id.name=='ubereats'):
+                    for line in order.order_line:
+                        if line.product_id.default_code=='access':
+                            order.amount_total=450
+                            line.price_unit=450
         else:
             payment.instalment = False
             order.instalment = False
-        print('cart_update_amount')
-        print(order.instalment)
-        print(payment.instalment)
+            if (order.company_id.id == 2 and order.pricelist_id.name == 'ubereats'):
+                for line in order.order_line:
+                    if line.product_id.default_code == 'access':
+                        order.amount_total = 380
+                        line.price_unit = 380
         return True
 
     @http.route(['/shop/payment/update_cpf'], type='json', auth="public", methods=['POST'], website=True, csrf=False)
     def cart_update_cpf(self, cpf):
-        print('cpf')
-        print(cpf)
         order = request.website.sale_get_order(force_create=1)
         if cpf:
             order.partner_id.date_cpf=datetime.now()
             order.partner_id.mode_de_financement='cpf'
             order.partner_id.statut_cpf='untreated'
+        return True
+
+class Conditions(http.Controller):
+
+    @http.route(['/shop/payment/update_condition'], type='json', auth="public", methods=['POST'], website=True)
+    def cart_update_condition(self, condition):
+        """This route is called when changing quantity from the cart or adding
+        a product from the wishlist."""
+        order = request.website.sale_get_order(force_create=0)
+        if order:
+            if condition:
+                order.conditions=True
+            else:
+                order.conditions=False
+        return True
+
+    @http.route(['/shop/payment/update_failures'], type='json', auth="public", methods=['POST'], website=True)
+    def cart_update_failures(self, failures):
+        """This route is called when changing quantity from the cart or adding
+        a product from the wishlist."""
+        order = request.website.sale_get_order(force_create=0)
+        if order:
+            if failures:
+                order.failures = True
+            else:
+                order.failures = False
+        return True
+
+    @http.route(['/shop/payment/update_accompagnement'], type='json', auth="public", methods=['POST'], website=True)
+    def cart_update_accompagnement(self, accompagnement):
+        """This route is called when changing quantity from the cart or adding
+        a product from the wishlist."""
+        order = request.website.sale_get_order(force_create=0)
+        if order:
+            if accompagnement:
+                order.accompagnement = True
+            else:
+                order.accompagnement = False
         return True
 
 class CustomerPortal(CustomerPortal):
@@ -634,12 +688,10 @@ class CustomerPortal(CustomerPortal):
         else:
             grouped_tasks = [tasks]
         my_tasks=[]
-        uid=request.env.uid
-        users = request.env['res.users'].sudo().search([('id', "=", uid)])
-        for user in users:
-            for task in grouped_tasks:
-                if task.partner_id.id==user.partner_id.id:
-                    my_tasks.append(task)
+        user=request.env.user
+        for task in grouped_tasks:
+            if task.user_id.id==user.id or task.partner_id==user.partner_id.id:
+                my_tasks.append(task)
 
         values.update({
             'date': date_begin,
@@ -659,3 +711,5 @@ class CustomerPortal(CustomerPortal):
             'filterby': filterby,
         })
         return request.render("project.portal_my_tasks", values)
+
+

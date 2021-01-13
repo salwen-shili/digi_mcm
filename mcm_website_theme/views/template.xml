@@ -415,108 +415,6 @@
                     </div>
                 </section>
             </div>
-            <script src="/mcm_website_theme/static/src/js/jquery.min.js"/>
-            <script src="/mcm_website_theme/static/src/js/jquery.waypoints.min.js"/>
-            <script src="/mcm_website_theme/static/src/js/main.js"/>
-            <script src="https://code.jquery.com/jquery-3.4.1.js"
-                    integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"/>
-            <script>
-                (function ($) {
-                $.fn.countTo = function (options) {
-                options = options || {};
-                pt
-                return $(this).each(function () {
-
-                var settings = $.extend({}, $.fn.countTo.defaults, {
-                from: $(this).data('from'),
-                to: $(this).data('to'),
-                speed: $(this).data('speed'),
-                refreshInterval: $(this).data('refresh-interval'),
-                decimals: $(this).data('decimals')
-                }, options);
-
-                var loops = Math.ceil(settings.speed / settings.refreshInterval),
-                increment = (settings.to - settings.from) / loops;
-
-                var self = this,
-                $self = $(this),
-                loopCount = 0,
-                value = settings.from,
-                data = $self.data('countTo') || {};
-
-                $self.data('countTo', data);
-
-                if (data.interval) {
-                clearInterval(data.interval);
-                }
-                data.interval = setInterval(updateTimer, settings.refreshInterval);
-
-                // initialize the element with the starting value
-                render(value);
-
-                function updateTimer() {
-                value += increment;
-                loopCount++;
-
-                render(value);
-
-                if (typeof(settings.onUpdate) == 'function') {
-                settings.onUpdate.call(self, value);
-                }
-
-                if (loopCount &gt;= loops) {
-
-                $self.removeData('countTo');
-                clearInterval(data.interval);
-                value = settings.to;
-
-                if (typeof(settings.onComplete) == 'function') {
-                settings.onComplete.call(self, value);
-                }
-                }
-                }
-
-                function render(value) {
-                var formattedValue = settings.formatter.call(self, value, settings);
-                $self.html(formattedValue);
-                }
-                });
-                };
-
-                $.fn.countTo.defaults = {
-                from: 0, // the number the element should start at
-                to: 0, // the number the element should end at
-                speed: 1000, // how long it should take to count between the target numbers
-                refreshInterval: 100, // how often the element should be updated
-                decimals: 0, // the number of decimal places to show
-                formatter: formatter, // handler for formatting the value before rendering
-                onUpdate: null, // callback method for every time the element is updated
-                onComplete: null // callback method for when the element finishes updating
-                };
-
-                function formatter(value, settings) {
-                return value.toFixed(settings.decimals);
-                }
-                }(jQuery));
-
-                jQuery(function ($) {
-
-                $('.count-number').data('countToOptions', {
-                formatter: function (value, options) {
-                return value.toFixed(options.decimals).replace(/\B(?=(?:\d{3})+(?!\d))/g, ',');
-                }
-                });
-
-
-                $('.timer').each(count);
-
-                function count(options) {
-                var $this = $(this);
-                options = $.extend({}, options || {}, $this.data('countToOptions') || {});
-                $this.countTo(options);
-                }
-                });
-            </script>
         </xpath>
     </template>
     <template id="mcm_website_theme.payment_tokens_list" inherit_id="payment.payment_tokens_list">
@@ -668,8 +566,15 @@
                             <span class="payment_option_name">
                                 Carte de crédit
                             </span>
-                             <t t-if="website_sale_order.amount_total>1000">
+                            <t t-if="website_sale_order.amount_total>1000 and website_sale_order.company_id.id==1">
                                 <p style="font-style: italic;font-size: 12px;">Paiement en 1 ou 3 fois sans frais</p>
+                            </t>
+                            <t t-if="website_sale_order.instalment_number>1 and website_sale_order.company_id.id==2">
+                                <p style="font-style: italic;font-size: 12px;">
+                                    <span>Paiement en</span>
+                                    <span t-field="website_sale_order.instalment_number"/>
+                                    <span>fois sans frais</span>
+                                </p>
                             </t>
                         </input>
                     </t>
@@ -712,7 +617,8 @@
             <div class="card-body o_payment_acquirer_select">
                 <label>
                     <t t-foreach="website_sale_order.website_order_line" t-as="line">
-                        <input type="radio" name="pm_method" data-acquirer-id="16" data-form-payment="True" t-if="line.product_id.product_tmpl_id.cpf_available"
+                        <input type="radio" name="pm_method" data-acquirer-id="16" data-form-payment="True"
+                               t-if="line.product_id.product_tmpl_id.cpf_available"
                                data-provider="transfer" class="" id="cpf_pm" t-att-value="line.name_short"
                                t-attf-onclick="onchangeTextButton()">
 
@@ -724,9 +630,40 @@
                     </t>
                 </label>
             </div>
-            <script>
+            <div class="card-body" t-if="website_sale_order.company_id.id==2">
+                <div class="input checkbox">
+                    <input type="checkbox" id="checkbox_conditions" style="white-space: nowrap;"
+                           class="text-xl-left border-0" t-att-checked="website_sale_order.conditions"
+                           t-att-value="website_sale_order.conditions">
+                        <label for="conditions" style="display:inline">
+                            J'ai lu et j'accepte les
+                            <a href="/conditions" target="blank">conditions générales de vente</a>
+                        </label>
+                    </input>
+                </div>
+                <p t-if="website_sale_order.conditions_error != ''" id="error_conditions" class="alert alert-warning" style="margin-left:0%;display:inline-block;">
+                                Vous devez acceptez les conditions générales de ventes
+                            </p>
+                <div class="input checkbox">
+                    <input type="checkbox" id="checkbox_failures" style="white-space: nowrap;"
+                           class="text-xl-left border-0" t-att-checked="website_sale_order.failures"
+                           t-att-value="website_sale_order.failures">
+                        <label for="failures" style="display:inline">
+                            Je reconnais que DIGIMOOV procédera à l'exécution immédiate de ma formation en ligne et à ce titre, je renonce expressément à exercer mon droit de rétractation conformément aux dispositions de l'article L.221-28 1° du code de la consommation.
+                        </label>
+                    </input>
+                </div>
+                <div class="input checkbox">
+                    <input type="checkbox" id="checkbox_accompagnement" style="white-space: nowrap;"
+                           class="text-xl-left border-0" t-att-checked="website_sale_order.accompagnement"
+                           t-att-value="website_sale_order.accompagnement">
+                        <label for="accompagnement" style="display:inline">
+                            J'accepte les appels de suivi et de l'accompagnement
+                        </label>
+                    </input>
 
-            </script>
+                </div>
+            </div>
         </xpath>
 
 
@@ -899,10 +836,10 @@
                         var user_name=document.getElementById("user_name_connected").value;
                         var user_email=document.getElementById("user_email_connected").value;
                         Calendly.initBadgeWidget({ url:
-                        'https://calendly.com/mcm-academy/session-d-information-taxi-vtc-clone-02-28-2019', prefill: {
+                        'https://calendly.com/pratiquetaxivtc', prefill: {
                         name: user_name,
                         email: user_email,
-                        } , text: 'Obtenir Votre devis TAXI/VTC', color:
+                        } , text: 'Reservez votre pratique TAXI/VTC', color:
                         '#00a2ff', textColor: '#ffffff', branding: false });
                     </script>
                 </div>
@@ -912,7 +849,7 @@
                             type="text/javascript"></script>
                     <script type="text/javascript">
                         Calendly.initBadgeWidget({ url:
-                        'https://calendly.com/mcm-academy/session-d-information-taxi-vtc-clone-02-28-2019', text: 'Obtenir Votre devis TAXI/VTC', color:
+                        'https://calendly.com/pratiquetaxivtc', text: 'Reservez votre pratique TAXI/VTC', color:
                         '#00a2ff', textColor: '#ffffff', branding: false });
                     </script>
                 </div>
@@ -1035,13 +972,13 @@
                 document.getElementById("pm_shop_check_text").innerHTML = 'Mobiliser mon CPF';
                 document.getElementById("pm_shop_checkout_text").innerHTML = 'Mobiliser mon CPF';
                 if(document.getElementById("promo_code")){
-                    document.getElementById("promo_code").style.display = 'none';
+                document.getElementById("promo_code").style.display = 'none';
                 }
                 if(document.getElementById("promo_button")){
-                    document.getElementById("promo_button").style.display = 'none';
+                document.getElementById("promo_button").style.display = 'none';
                 }
                 if(document.getElementById("promo_input")){
-                    document.getElementById("promo_input").style.display = 'none';
+                document.getElementById("promo_input").style.display = 'none';
                 }
                 if(document.getElementById("order_instalment")){
                 document.getElementById("order_instalment").style.visibility = 'hidden';
@@ -1056,7 +993,7 @@
                 document.getElementById("pm_shop_check_text").innerHTML = 'Passer au paiement';
                 document.getElementById("pm_shop_checkout_text").innerHTML = 'Passer au paiement';
                 if(document.getElementById("promo_code")){
-                    document.getElementById("promo_code").style.display = 'inline';
+                document.getElementById("promo_code").style.display = 'inline';
                 } else{
                 document.getElementById("promo_input").style.display = 'inline';
                 document.getElementById("promo_button").style.display = 'inline';
@@ -1077,10 +1014,10 @@
                 };
                 function show_coupon(){
                 if(document.getElementById("promo_input")){
-                    document.getElementById("promo_input").style.display = 'inline';
+                document.getElementById("promo_input").style.display = 'inline';
                 }
                 if(document.getElementById("promo_button")){
-                    document.getElementById("promo_button").style.display = 'inline';
+                document.getElementById("promo_button").style.display = 'inline';
                 }
                 };
             </script>
@@ -1091,9 +1028,11 @@
         <xpath expr="//div[hasclass('card')]" position="inside">
             <script>
                 function onchangeButton(){
+                if(document.getElementById("pm_shop_text")){
                 document.getElementById("pm_shop_text").textContent = Créer une demande;
                 document.getElementById("pm_shop_check_text").textContent = Créer une demande;
                 document.getElementById("pm_shop_checkout_text").textContent = Créer une demande;
+                }
                 };
             </script>
         </xpath>

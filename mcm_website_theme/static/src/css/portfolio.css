@@ -6309,13 +6309,11 @@ body {
 
 .counter-box {
     display: block;
-   
     padding: 20px 20px 30px;
     text-align: center;
 	width:80%;
 	border-radius: 10px;
 	border-color:#000;
-	background-color:#f5f5f5;
     padding: 20px 0;
     border-radius: 5px;
 }

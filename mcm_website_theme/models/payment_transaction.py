@@ -9,7 +9,6 @@ class PaymentTransaction(models.Model):
 
     def _set_transaction_done(self):
         transaction = super(PaymentTransaction, self)._set_transaction_done()
-
         if self.reference:
             data = self.reference.split("-")
             sale = self.env['sale.order'].sudo().search([('name', 'ilike', data[0])])
@@ -27,32 +26,34 @@ class PaymentTransaction(models.Model):
                     sale.with_context(force_send=True).message_post_with_template(template_id,
                                                                                   composition_mode='comment',
                                                                                   email_layout_xmlid="portal_contract.mcm_mail_notification_paynow_online"
-                                                                                  )
-                test = sale.get_portal_url(report_type='pdf', download=True)
+                                                                                 )
+                test=sale.get_portal_url(report_type='pdf', download=True)
 
 
     def _reconcile_after_transaction_done(self):
         transaction=super(PaymentTransaction,self)._reconcile_after_transaction_done()
         invoices = self.mapped('invoice_ids')
         template = self.env['mail.template'].sudo().search([('model', '=', 'account.move')])
-        # template_id = self.env['ir.model.data'].xmlid_to_res_id('portal_contract.mcm_email_template_edi_invoice',
-        #                                                         raise_if_not_found=False)
         if self.reference:
             data = self.reference.split("-")
             sale = self.env['sale.order'].sudo().search([('name', 'ilike', data[0])])
-
             if (self.stripe_payment_intent and self.state == 'done'):
-
+                
                 sale.action_confirm()
                 moves = sale._create_invoices(final=False)
                 for move in moves:
-                    move.type_facture = 'web'
+                    move.type_facture='web'
+                    move.module_id=sale.module_id
+                    move.session_id=sale.session_id
+                    if sale.pricelist_id.code:
+                        move.pricelist_id=sale.pricelist_id
+                    move.company_id=sale.company_id
                     move.action_post()
                 sale.action_cancel()
                 sale.sale_action_sent()
 
                 for move in moves.with_user(SUPERUSER_ID):
                     move.message_post_with_template(int(template),
-                                                    composition_mode='comment',
-                                                    email_layout_xmlid="portal_contract.mcm_mail_notification_paynow_online"
-                                                    )
+                                                       composition_mode='comment',
+                                                       email_layout_xmlid="portal_contract.mcm_mail_notification_paynow_online"
+                                                      )
