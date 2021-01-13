@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="digimoov_session_form" model="ir.ui.view">
+        <field name="name">digimoov.session.form</field>
+        <field name="model">mcmacademy.session</field>
+        <field name="inherit_id" ref="mcm_session.mcmacademy_session_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//group[@name='dates']" position="replace">
+                <group name="dates">
+                    <field name="domaine_formation"/>
+                    <field name="date_debut" attrs="{'invisible': [('company_id', '=', 2)]}"/>
+                    <field name="date_fin" attrs="{'invisible': [('company_id', '=', 2)]}"/>
+                    <field name="ville" attrs="{'invisible': [('company_id', '=', 1)]}"/>
+                    <field name="company_id"/>
+                </group>
+            </xpath>
+        </field>
+    </record>
+</odoo>

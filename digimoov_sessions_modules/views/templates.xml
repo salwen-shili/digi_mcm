@@ -1,0 +1,188 @@
+<odoo>
+    <template id="digimoov_website_sale_cart_lines" inherit_id="website_sale.cart_lines">
+        <xpath expr="//table[@id='cart_products']" position="after">
+            <div style="margin:auto;background-color:#fff;border-color:#585959;"
+                 t-if="request.website.is_public_user()==False and modules_digimoov" id="centre_date_examen">
+                <h3 t-if="modules_digimoov" class="mb24">Centre d'examen &amp; Date</h3>
+                <p t-if="modules_digimoov">
+                    <b>
+                        <div style="margin-left:0%;" id="exam_center">
+                                <select name="centre_examen" id="centre_examen" class="form-control search-slt "
+                                        t-if="modules_digimoov">
+                                    <option value="all">Sélectionnez votre centre d'examen</option>
+                                    <b>
+                                        <option value="bordeaux">
+                                            Bordeaux
+                                        </option>
+                                        <option value="lille" >
+                                            Lille
+                                        </option>
+                                        <option value="lyon">
+                                            Lyon
+                                        </option>
+                                        <option value="marseille" >
+                                            Marseille
+                                        </option>
+                                        <option value="nantes" >
+                                            Nantes
+                                        </option>
+                                        <option value="paris" >
+                                            Paris
+                                        </option>
+                                        <option value="strasbourg" >
+                                            Strasbourg
+                                        </option>
+                                        <option value="toulouse">
+                                            Toulouse
+                                        </option>
+                                    </b>
+                                </select>
+                            <p t-if="website_sale_order.exam_center_error != ''" id="error_exam_center" class="alert alert-warning" style="margin-left:0%;display:inline-block;" >
+                                Vous devez Selectionnez une ville
+                            </p>
+                        </div>
+                    </b>
+                </p>
+                <br/>
+                <p t-if="modules_digimoov">
+                    <b>
+                        <div style="margin-left:0%;">
+                            <select name="date_examen" id="exam_date" class="form-control search-slt " t-if="modules_digimoov" style="display:none">
+                                <option value="all" id="all">Sélectionnez votre date d'examen</option>
+                                <t t-foreach="modules_digimoov" t-as="module">
+                                    <t t-if="module">
+                                        <t t-if="module.website_published==True">
+                                            <b>
+                                                <option t-att-value="module.ville" t-att-id="module.id">
+                                                    <t t-esc="module.date_exam.strftime('%A')"/>
+                                                    <t t-esc="module.date_exam.strftime('%d')"/>
+                                                    <t t-esc="module.date_exam.strftime('%B')"/>
+                                                    <t t-esc="module.date_exam.strftime('%Y')"/>
+                                                </option>
+                                            </b>
+                                        </t>
+                                    </t>
+                                </t>
+                            </select>
+                            <p t-if="website_sale_order.exam_date_error != ''" id="error_exam_date" class="alert alert-warning" style="margin-left:0%;display:inline-block;">
+                                Vous devez Selectionnez une date
+                            </p>
+                        </div>
+                    </b>
+                </p>
+                <br/>
+            </div>
+        </xpath>
+        <!--        <xpath expr="//ol" position="replace">-->
+        <!--            <ol class="breadcrumb">-->
+        <!--&lt;!&ndash;                <li class="breadcrumb-item">&ndash;&gt;-->
+        <!--&lt;!&ndash;                    <a t-att-href="keep(category=0)">Produits</a>&ndash;&gt;-->
+        <!--&lt;!&ndash;                </li>&ndash;&gt;-->
+        <!--&lt;!&ndash;                <li t-if="category" class="breadcrumb-item">&ndash;&gt;-->
+        <!--&lt;!&ndash;                    <a t-att-href="keep('/shop/category/%s' % slug(category), category=0)" t-field="category.name"/>&ndash;&gt;-->
+        <!--&lt;!&ndash;                </li>&ndash;&gt;-->
+        <!--                <li class="breadcrumb-item active">-->
+        <!--                    <span t-field="product.name"/>-->
+        <!--                </li>-->
+        <!--            </ol>-->
+        <!--        </xpath>-->
+    </template>
+
+    <template id="digimoov_website_sale_cart_script" inherit_id="website_sale.cart">
+        <xpath expr="//a[@class='btn btn-primary float-right']" position="replace">
+            <a role="button" t-if="website_sale_order and website_sale_order.website_order_line"
+               class="btn btn-primary float-right" href=""
+               t-attf-onclick="verify_payment_method()" id="pm_shop">
+                <span id="pm_shop_text">Passer au paiement</span>
+                <span class="fa fa-chevron-right"/>
+            </a>
+        </xpath>
+        <xpath expr="//a[@class='btn btn-primary float-right d-none d-xl-inline-block']" position="replace">
+            <a role="button" t-if="website_sale_order and website_sale_order.website_order_line"
+               class="btn btn-primary float-right d-none d-xl-inline-block" t-attf-onclick="verify_payment_method()"
+               href="" id="pm_shop_check">
+                <span id="pm_shop_check_text">Passer au paiement</span>
+                <span class="fa fa-chevron-right"/>
+            </a>
+        </xpath>
+        <xpath expr="//div[@class='col-12 col-xl-8 oe_cart']" position="inside">
+            <script>
+                function verify_payment_method(){
+                stripe_pm=document.getElementById('stripe_pm');
+                if (stripe_pm){
+                if (stripe_pm.checked==true) {
+                document.getElementById("pm_shop").href="/shop/checkout?express=1";
+                document.getElementById("pm_shop_check").href="/shop/checkout?express=1";
+                document.getElementById("pm_shop_checkout").href="/shop/checkout?express=1";
+                }
+                }
+                cpf_pm=document.getElementById('cpf_pm');
+                if(cpf_pm){
+                if (cpf_pm.checked==true) {
+                if(cpf_pm.value=='[access] Access')
+                {
+                document.getElementById("pm_shop").href="https://bit.ly/3ny746h";
+                document.getElementById("pm_shop_check").href="https://bit.ly/3ny746h";
+                document.getElementById("pm_shop_checkout").href="https://bit.ly/3ny746h";
+                }
+                }
+                }
+                };
+                function onchangeTextButton(){
+                if(document.getElementById("pm_shop_text")){
+                document.getElementById("pm_shop_text").innerHTML = 'Mobiliser mon CPF';
+                document.getElementById("pm_shop_check_text").innerHTML = 'Mobiliser mon CPF';
+                document.getElementById("pm_shop_checkout_text").innerHTML = 'Mobiliser mon CPF';
+                if(document.getElementById("promo_code")){
+                    document.getElementById("promo_code").style.display = 'none';
+                }
+                if(document.getElementById("promo_button")){
+                    document.getElementById("promo_button").style.display = 'none';
+                }
+                if(document.getElementById("promo_input")){
+                    document.getElementById("promo_input").style.display = 'none';
+                }
+                if(document.getElementById("order_instalment")){
+                document.getElementById("order_instalment").style.visibility = 'hidden';
+                document.getElementById("order_instalment_number").style.visibility = 'hidden';
+                document.getElementById("order_amount_to_pay").style.visibility = 'hidden';
+                }
+                }
+                };
+                function onchangeTextButton1(){
+                if(document.getElementById("pm_shop_text")){
+                document.getElementById("pm_shop_text").innerHTML = 'Passer au paiement';
+                document.getElementById("pm_shop_check_text").innerHTML = 'Passer au paiement';
+                document.getElementById("pm_shop_checkout_text").innerHTML = 'Passer au paiement';
+                if(document.getElementById("promo_code")){
+                    document.getElementById("promo_code").style.display = 'inline';
+                } else{
+                document.getElementById("promo_input").style.display = 'inline';
+                document.getElementById("promo_button").style.display = 'inline';
+                }
+                if(document.getElementById("order_instalment")){
+                document.getElementById("order_instalment").style.visibility = 'visible';
+                }
+
+                instalment=document.getElementById("checkbox_instalment");
+                if(instalment){
+                if(instalment.checked==true){
+                document.getElementById("order_instalment_number").style.visibility = 'visible';
+                document.getElementById("order_amount_to_pay").style.visibility = 'visible';
+                }
+                }
+                }
+                };
+                function show_coupon(){
+                if(document.getElementById("promo_input")){
+                    document.getElementById("promo_input").style.display = 'inline';
+                }
+                if(document.getElementById("promo_button")){
+                    document.getElementById("promo_button").style.display = 'inline';
+                }
+                };
+            </script>
+
+        </xpath>
+    </template>
+</odoo>
