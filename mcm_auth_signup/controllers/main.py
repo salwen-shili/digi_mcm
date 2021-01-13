@@ -51,19 +51,26 @@ class AuthSignupHome(AuthSignupHome):
                     template = request.env.ref('auth_signup.mail_template_user_signup_account_created',
                                                raise_if_not_found=False)
                     if user_sudo and template:
+                        if request.website.id==2:
+                            user_sudo.partner_id.comment='aaaaaaaa'
+                        if request.website.id==1:
+                            user_sudo.partner_id.comment = 'aaaaaaaa1'
                         template.sudo().with_context(
                             lang=user_sudo.lang,
                             auth_login=werkzeug.url_encode({'auth_login': user_sudo.email}),
                         ).send_mail(user_sudo.id, force_send=True)
+                    user_sudo = request.env['res.users'].sudo().search([('login', '=', qcontext.get('login'))])
+                    if user_sudo:
+                        user_sudo.street = str(request.website.name)
                 return self.web_login(*args, **kw)
             except UserError as e:
                 qcontext['error'] = e.name or e.value
             except (SignupError, AssertionError) as e:
                 if request.env["res.users"].sudo().search([("login", "=", qcontext.get("login"))]):
-                    qcontext["error"] = _("Un autre compte est déjà enregistré avec cette adresse email. Cliquez sur la rubrique Mot de passe oublié.")
+                    qcontext["error"] = _("Another user is already registered using this email address.")
                 else:
                     _logger.error("%s", e)
-                    qcontext['error'] = _("Vous ne pouvez pas créer un nouveau compte.")
+                    qcontext['error'] = _("Could not create a new account.")
 
         response = request.render('auth_signup.signup', qcontext)
         response.headers['X-Frame-Options'] = 'DENY'
