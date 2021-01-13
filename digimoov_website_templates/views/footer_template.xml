@@ -1,0 +1,283 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <template id="digimoov_website_templates.digimoov_footer_template" inherit_id="website.footer_custom" active="True">
+        <xpath expr="//div[@id='footer']" position="replace">
+            <style>
+                @import url("//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css");
+                .social-icons {
+                list-style-type: none;
+                margin: 0 auto 20px;
+                padding: 0;
+                width: 100%;
+                height: 100%;
+                }
+
+                .tab {
+                margin-right: 10px;
+                border-radius: 0 0 25px 25px;
+                float: left;
+                }
+
+                .circle {
+                padding: 10px 10px;
+                width: 40px;
+                font-size: 20px;
+                text-align: center;
+                background: #fff;
+                border-radius: 20px;
+                border: solid 1px;
+                }
+                .fa-facebook {
+                color: hsl(221, 44%, 41%);
+                border-color: hsl(221, 44%, 41%);
+                }
+
+                .fa-facebook:hover {
+                background-color: hsl(221, 44%, 41%);
+                }
+                .fa-instagram {
+                color: hsl(221, 44%, 41%);
+                border-color: hsl(221, 44%, 41%);
+                }
+
+                .fa-instagram:hover {
+                background-color: hsl(221, 44%, 41%);
+                } {
+                color: hsl(221, 44%, 41%);
+                border-color: hsl(221, 44%, 41%);
+                }
+
+                .fa-instagram:hover {
+                background: linear-gradient(0deg, rgba(192,195,34,1) 0%, rgba(199,200,35,1) 10%, rgba(204,99,36,1) 20%,
+                rgba(170,39,221,1) 47%, rgba(152,45,253,1) 100%);}
+                .fa-twitter {
+                color: hsl(195, 100%, 60%);
+                border-color: hsl(195, 100%, 60%);
+                }
+
+                .fa-twitter:hover {
+                background-color: hsl(195, 100%, 60%);
+                }
+
+                .fa-google-plus {
+                color: hsl(7, 71%, 55%);
+                border-color: hsl(7, 71%, 55%);
+                }
+
+                .fa-google-plus:hover {
+                background-color: hsl(7, 71%, 55%);
+                }
+
+                .fa-linkedin {
+                color: hsl(199, 85%, 36%);
+                border-color: hsl(199, 85%, 36%);
+                }
+
+                .fa-linkedin:hover {
+                background-color: hsl(199, 85%, 36%);
+                }
+
+                .fa-facebook:hover, .fa-twitter:hover, .fa-google-plus:hover, .fa-linkedin:hover, .fa-instagram:hover {
+                color: hsl(0, 0%, 100%);
+                }
+
+                .screen-reader {
+                position: absolute;
+                left: -9999px;
+                top: -9999px;
+                }
+
+                .shadow .tab {
+                background: none;
+                }
+
+                .shadow .circle {
+                box-shadow: 1px 1px 3px hsla(0, 0%, 0%, .4);
+                }
+
+                .shadow .fa-facebook,
+                .shadow .fa-twitter,
+                .shadow .fa-instagram,
+                .shadow .fa-google-plus,
+                .shadow .fa-linkedin {
+                border-color: hsl(0, 0%, 100%);
+                border: none;
+                padding: 11px;
+
+                }
+
+                .squares .tab {
+                background: none;
+                }
+
+                .square {
+                padding: 9px 9px;
+                width: 20px;
+                font-size: 20px;
+                text-align: center;
+                background: #fff;
+                }
+
+                .fa-facebook.square {
+                background-color: hsl(221, 44%, 41%);
+                border: 1px solid hsl(221, 44%, 41%);
+                color: #fff;
+                }
+
+                .fa-facebook.square:hover {
+                background-color: hsl(0, 0%, 100%);
+                border-color: hsl(221, 44%, 41%);
+                color: hsl(221, 44%, 41%);
+                }
+
+                .fa-twitter.square {
+                background-color: hsl(195, 100%, 60%);
+                border: 1px solid hsl(195, 100%, 60%);
+                color: #fff;
+                }
+
+                .fa-twitter.square:hover {
+                background-color: hsl(0, 0%, 100%);
+                border-color: hsl(195, 100%, 60%);
+                color: hsl(195, 100%, 60%);
+                }
+
+                .fa-google-plus.square {
+                background-color: hsl(7, 71%, 55%);
+                border: 1px solid hsl(7, 71%, 55%);
+                color: #fff;
+                }
+
+                .fa-google-plus.square:hover {
+                background-color: hsl(0, 0%, 100%);
+                border-color: hsl(7, 71%, 55%);
+                color: hsl(7, 71%, 55%);
+                }
+
+
+                .fa-linkedin.square {
+                background-color: hsl(199, 85%, 36%);
+                border: 1px solid hsl(199, 85%, 36%);
+                color: #fff;
+                }
+
+                .fa-linkedin.square:hover {
+                background-color: hsl(0, 0%, 100%);
+                border-color: hsl(199, 85%, 36%);
+                color: hsl(199, 85%, 36%);
+                }
+
+
+            </style>
+            <section class="footer-page align-items-left text-left d-flex min-vh-40 oe_img_bg oe_custom_bg"
+                     style="background-position: 0.85% 97.33%; background-image: url(&quot;https://test.digimoov.fr/web/image/6706/3%20%281%29.png&quot;);"
+                     id="footer_page">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-4 col-md-4">
+                            <div class="footer-area">
+                                <div class="footer-head">
+                                    <h3>
+                                        <font style="color: rgb(255, 255, 255); font-size: 14px; font-weight: normal;">
+                                            <a href="/blog/digimoov-3/post/tout-savoir-sur-la-capacite-de-transport-leger-de-marchandises-3"
+                                               style="color:white;">
+                                                Tout savoir sur la Capacité de Transport Léger de Marchandises
+                                            </a>
+                                        </font>
+                                        <br/>
+                                    </h3>
+                                    <h3>
+                                        <font style="font-size: 14px; font-weight: normal;">
+                                            <a href="/blog/digimoov-3/post/bon-a-savoir-sur-la-formation-capacite-de-transport-leger-6"
+                                               data-original-title="" title="" aria-describedby="tooltip65497"
+                                               style="color:#FFF;">Bon à
+                                                savoir sur la formation capacité de transport léger&amp;nbsp;
+                                            </a>
+                                        </font>
+                                    </h3>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-4">
+                            <div class="footer-area2">
+                                <div class="footer-head">
+                                    <h3 style="text-align: center;">
+                                        <a style="color:white;" href="/contact">Centre d'assistance</a>
+                                    </h3>
+                                </div>
+                                <ul class="footer-links" style="text-align: center;">
+                                    <li>
+                                        <span class="fa fa-map-marker" data-original-title="" title=""
+                                              aria-describedby="tooltip929963" style="color: rgb(255, 255, 255);"/>
+                                        <a href="#" data-original-title="" title="" aria-describedby="tooltip864307">
+                                            &amp;nbsp;10 Rue Waldeck Rochet Bat. 521, 93300 Aubervilliers, France
+                                        </a>
+                                    </li>
+                                </ul>
+                                <p>
+                                    <br/>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-4">
+                            <div class="contactus">
+                                <div class="footer-head">
+                                    <h3 style="text-align: center; ">Support</h3>
+                                </div>
+                                <div class="footer-contact">
+                                    <ul class="footer-links">
+                                        <li>
+                                            <h3>Politique de Confidentialité</h3>
+                                            <h3><br/>Conditions Générales de Vente
+                                            </h3>
+                                        </li>
+                                        <li>
+                                            <h3>
+                                                <a href="/faq" data-original-title="" title=""
+                                                   aria-describedby="tooltip324872">Foire Aux Questions
+                                                </a>
+                                            </h3>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <footer>
+                                <ul class="social-icons shadow">
+                                    <li class="tab">
+                                        <a href="https://www.facebook.com/Digimoov" data-original-title="" title=""
+                                           aria-describedby="tooltip67821" target="_blank"><i
+                                                class="fa fa-facebook circle" data-original-title="" title=""
+                                                aria-describedby="tooltip741703"/>&amp;nbsp;
+                                        </a>
+                                    </li>
+                                    <li class="tab">
+                                        <a href="https://www.instagram.com/digimoov.formation/"><i
+                                                class="circle fa fa-instagram" data-original-title="" title=""
+                                                aria-describedby="tooltip864579"/>&amp;nbsp;&amp;nbsp;
+                                        </a>
+                                    </li>
+                                </ul>
+                            </footer>
+                        </div>
+                    </div>
+                </div>
+                <div id="to-top" style="">
+                    <a id="to-top bg-alpha">
+                        <span class="fa fa-arrow-up"/>
+                    </a>
+                </div>
+                <script>
+                    window.axeptioSettings= {
+                    clientId:"5fe0c7f7dcdda92831033103",
+                    cookiesVersion:"digimoov-base",
+                    };
+                    (function(d,s) {
+                    vart = d.getElementsByTagName(s)[0],e = d.createElement(s);
+                    e.async = true;e.src = "//static.axept.io/sdk.js";
+                    t.parentNode.insertBefore(e, t);
+                    })(document, "script");
+                </script>
+            </section>
+        </xpath>
+    </template>
+</odoo>

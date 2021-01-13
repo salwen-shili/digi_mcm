@@ -1,0 +1,506 @@
+<odoo>
+    <template id="digimoov_website_templates.digimoov_template_quisommesnous" name="Qui Sommes Nous | Digimoov">
+        <t t-call="website.layout">
+            <div id="wrap" class="oe_structure oe_empty">
+                <section
+                        class="s_furniture_with_bg_imag_para lg-banner-area lg-banner-bg pt104 pb128 oe_img_bg oe_custom_bg"
+                        style="background-image: url(&quot;/digimoov_website_templates/static/img/Qui sont Digimoov.webp&quot;); width: 100%;"
+                        data-name="Background imagge with button and paragraph">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-10 col-lg-6">
+                                <div class="lg-banner-info">
+                                    <h2>
+                                        <font style="color: rgb(0, 0, 0);">QUI SOMMES NOUS?</font>
+                                    </h2>
+                                    <p>
+                                        <font style="color: rgb(0, 0, 0);">Créé en 2015, Digimoov est une filiale du
+                                            groupe MCM Academy. Nous sommes un centre spécialisé dans la formation en
+                                            ligne pour l’obtention de l’attestation de la capacité professionnelle en
+                                            transport routier léger de marchandises.
+                                        </font>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <section class="centric_template" data-name="Why Choose Us" style="">
+                    <section class="whychooseus-section pt64 pb32" style="">
+                        <div class="container">
+                            <div class="row align-items-center">
+                                <div class="col-md-12 col-lg-6">
+                                    <div class="whychoose-content">
+                                        <h3>Fort de son expérience, DIGIMOOV est aujourd'hui LEADER en France.</h3>
+                                        <div class="choose">
+                                            <span class="fa fa-check"/>
+                                            <h4>Une expérience de dizaine d’années</h4>
+                                            <p>Digimoov est le fruit d'une expérience professionnelle acquise depuis une
+                                                dizaine d’années. Notre envie a été de transmettre notre expertise et
+                                                nos connaissances par la création de ce centre de formation.
+                                            </p>
+                                        </div>
+                                        <div class="choose">
+                                            <span class="fa fa-check"/>
+                                            <h4>Une formation complète</h4>
+                                            <p>Notre centre met à votre disposition des formations complètes et
+                                                attrayantes, vous assure un suivi personnalisé et une préparation à
+                                                votre rythme afin de vous accompagner jusqu’au bout de votre projet.
+                                            </p>
+                                        </div>
+                                        <div class="choose">
+                                            <span class="fa fa-check"/>
+                                            <h4>Un service complet</h4>
+                                            <p>Digimoov se mobilise pour vous assurer un suivi jusqu'au démarrage de
+                                                votre activité dans les meilleures conditions. Nos conseillers et notre
+                                                expert-comptable sont à votre disposition pour toute demande de création
+                                                de société, portefeuille client…
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-md-12">
+                                    <img class="img img-fluid"
+                                         src="/digimoov_website_templates/static/img/Digimoov - une formation complète et un service complet.webp"
+                                         data-original-title="" title="" aria-describedby="tooltip955844"/>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </section>
+                <section class="s_creative_left_img_right_para" data-name="left Image Right Paragraph">
+                    <div class="feature39 spacer wrap-feature39-box">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <img src="/digimoov_website_templates/static/img/Digimoov - des centres d'examen partout en france.webp"
+                                         class="img-fluid" alt="bizople" data-original-title="" title=""
+                                         aria-describedby="tooltip969892"
+                                         style="transform: translateX(-0.9%) translateY(18.4%) scaleX(1.05) scaleY(1.05);"/>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="card-body">
+                                        <h2 class="font-bold text-beta title">Une équipe qualifiée</h2>
+                                        <p class="custom_p m-b-40 m-t-40">Nous mettons notre expertise et notre
+                                            savoir-faire à votre disposition. Basés sur des valeurs d'innovation, de
+                                            bienveillance et de Team Spirit, nos agents mettent à votre disposition un
+                                            suivi personnalisé, des informations indispensables et un bilan individuel
+                                            pour bien démarrer votre activité et vous faciliter les démarches.
+                                        </p>
+                                        <h2 class="font-bold text-beta title">Des centres partout en France&amp;nbsp;
+                                        </h2>
+                                        <p class="custom_p m-b-40 m-t-40">Digimoov met à votre disposition des centres
+                                            d’examen partout en France. Vous pouvez choisir de passer votre examen dans
+                                            l’un des centres suivants: Bordeaux, Lille, Lyon, Marseille, Nantes, Paris,
+                                            Strasbourg, Toulouse.
+                                        </p>
+                                        <h2 class="font-bold text-beta title">Un rapport qualité prix imbattable&amp;nbsp;</h2>
+                                        <p class="custom_p m-b-40 m-t-40">Nous vous offrons une formation complète pour
+                                            le meilleur prix. Notre formation est aussi éligible au programme Compte
+                                            Professionnel de Formation (CPF).
+                                        </p>
+                                        <div>
+                                            <br/>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <section class="s_furniture_fun-fact-section oe_img_bg oe_custom_bg pt40"
+                         style="background-image: url(&quot;/digimoov_website_templates/static/img/Monter boite de transport.webp&quot;);"
+                         data-name="Counter with parallex image">
+                    <div class="container">
+                        <div class="row clearfix">
+                            <div class="title-column col-lg-6 col-md-12 col-sm-12">
+                                <div class="inner-column">
+                                    <h3>Digimoov en quelque chiffres</h3>
+                                    <div class="text">
+                                        <br/>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="content-column col-lg-6 col-md-12 col-sm-12">
+                                <div class="inner-column">
+                                    <div class="row clearfix">
+                                        <div class="counter-column col-lg-4 col-md-4 col-sm-12">
+                                            <div class="count-box counter-box">
+                                                <span class="count-text counter">1000</span>
+                                                <br/>+
+                                                <br/>
+                                                <h4 class="counter-title">Plus de 1000 Stagiaires formés</h4>
+                                            </div>
+                                        </div>
+                                        <div class="counter-column col-lg-4 col-md-4 col-sm-12">
+                                            <div class="count-box counter-box">
+                                                <span class="count-text counter">4</span>
+                                                <span>.</span>
+                                                <span class="count-text counter">6</span>
+                                                <br/>&amp;nbsp;
+                                                <h4 class="counter-title">Une note de 4,6/5 sur +100 avis sur Google
+                                                </h4>
+                                            </div>
+                                        </div>
+                                        <div class="counter-column col-lg-4 col-md-4 col-sm-12">
+                                            <div class="count-box counter-box">
+                                                <span class="count-text counter">96</span>
+                                                <br/>
+                                                %
+                                                <h4 class="counter-title">Un taux de satisfaction qui s’élève à 96%</h4>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <section class="pt32 pb32" data-name="Title">
+                    <div class="container">
+                        <div class="row s_nb_column_fixed">
+                            <div class="col-lg-12 s_title pt16 pb16" style="text-align: center;">
+                                <h3 class="s_title_default">Témoignages clients</h3>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <section
+                        class="o_gallery s_image_gallery o_fake_not_editable o_anim_fade_in_up o_animate pt0 o_slideshow o_spc-medium"
+                        data-columns="3"
+                        style="overflow: hidden; animation-name: o_anim_fade_in_up; visibility: visible; animation-play-state: paused; height: 438px;"
+                        data-name="Image Gallery">
+                    <div class="container">
+                        <div id="slideshow_1609409222992" class="carousel slide" data-ride="carousel"
+                             data-interval="10000" style="margin: 0 12px;">
+                            <div class="carousel-inner" style="padding: 0;">
+                                <div class="carousel-item" style="">
+                                    <img class="img img-fluid d-block"
+                                         src="/digimoov_website_templates/static/img/Avis Digimoov Madani Brahimi.webp"
+                                         alt="Image de diapositive" data-index="0"/>
+                                </div>
+                                <div class="carousel-item active" style="">
+                                    <img class="img img-fluid d-block"
+                                         src="/digimoov_website_templates/static/img/Avis Digimoov Tarek Amine.webp"
+                                         alt="Image de diapositive" data-index="1"/>
+                                </div>
+                                <div class="carousel-item" style="">
+                                    <img class="img img-fluid d-block"
+                                         src="/digimoov_website_templates/static/img/Avis Digimoov Bingo Ringo.webp"
+                                         alt="Image de diapositive" data-index="2"/>
+                                </div>
+                                <div class="carousel-item" style="">
+                                    <img class="img img-fluid d-block"
+                                         src="/digimoov_website_templates/static/img/Avis Digimoov Walid Sgh.webp"
+                                         alt="Image de diapositive" data-index="3"/>
+                                </div>
+                                <div class="carousel-item" style="">
+                                    <img class="img img-fluid d-block"
+                                         src="/digimoov_website_templates/static/img/Avis digimoov Rayan Ferjani.webp"
+                                         alt="Image de diapositive" data-index="4"/>
+                                </div>
+                                <div class="carousel-item" style="">
+                                    <img class="img img-fluid d-block"
+                                         src="/digimoov_website_templates/static/img/Avis Digimoov Yaser Ilyas.webp"
+                                         alt="Image de diapositive" data-index="5"/>
+                                </div>
+                            </div>
+                            <a class="carousel-control-prev text-black" href="#slideshow_1609409222992"
+                               data-slide="prev" aria-label="Précedent" title="Précedent">
+                                <span class="fa fa-chevron-left"/>
+                            </a>
+                            <a class="carousel-control-next text-black" href="#slideshow_1609409222992"
+                               data-slide="next" aria-label="Suivant" title="Suivant">
+                                <span class="fa fa-chevron-right"/>
+                            </a>
+                        </div>
+                    </div>
+                </section>
+                <div class="s_btn text-center pt16 pb16" data-name="Button">
+                    <a href="https://www.google.fr/search?source=hp&amp;ei=2gDjX575DIKalwS3trWIDg&amp;q=digimoov&amp;oq=digimoov&amp;gs_lcp=CgZwc3ktYWIQAzIICAAQxwEQrwEyAggAMgIIADICCAAyAggAMgIIADICCAAyAggAMgQILhAKMggIABDHARCvAToCCC46CAgAEMcBEKMCUKQBWM0JYOMKaABwAHgAgAFeiAHeBJIBATeYAQCgAQGqAQdnd3Mtd2l6&amp;sclient=psy-ab&amp;ved=0ahUKEwiezobe2OPtAhUCzYUKHTdbDeEQ4dUDCAc&amp;uact=5#lrd=0x47e66f4105e53b4d:0x9b8c7c90c4de0b74,1,,,"
+                       class="btn btn-primary" data-original-title="" title="" aria-describedby="tooltip755390"
+                       target="_blank">Voir tous les avis sur Google
+                    </a>
+                </div>
+                <section class="clients s_references bg-200 pt16 pb16" data-name="References" style="">
+                    <center>
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-lg-3">
+                                    <img src="/digimoov_website_templates/static/img/MCMACADEMY.webp" style="width:30%"
+                                         class="img img-fluid" alt="Demo Logo" data-original-title="" title=""
+                                         aria-describedby="tooltip843653"/>
+                                </div>
+                                <div class="col-lg-3">
+                                    <img src="/digimoov_website_templates/static/img/ubereats partenaire Digimoov.webp" style="width:30%"
+                                         class="img img-fluid" alt="Demo Logo" data-original-title="" title=""
+                                         aria-describedby="tooltip843653"/>
+                                </div>
+                                <div class="col-lg-3">
+                                    <img src="/digimoov_website_templates/static/img/deliveroo partenaire Digimoov.webp" style="width:50%"
+                                         class="img img-fluid" alt="Demo Logo" data-original-title="" title=""
+                                         aria-describedby="tooltip623872"/>
+                                </div>
+                                <div class="col-lg-3">
+                                    <img src="/digimoov_website_templates/static/img/coursierjob partenaire Digimoov.webp" style="width:30%"
+                                         class="img img-fluid" alt="Demo Logo" data-original-title="" title=""
+                                         aria-describedby="tooltip175558"/>
+                                </div>
+                            </div>
+                        </div>
+                    </center>
+                </section>
+            </div>
+        </t>
+    </template>
+    <template id="digimoov_website_templates.digimoov_template_quisommesnous2" name="quisommesnous Digimoov">
+        <t t-call="website.layout">
+            <div id="wrap" class="oe_structure oe_empty">
+                <section
+                        class="s_furniture_with_bg_imag_para lg-banner-area lg-banner-bg pt104 pb128 oe_img_bg oe_custom_bg"
+                        style="background-image: url(&quot;/digimoov_website_templates/static/img/quisommenous.png&quot;); width: 100%;"
+                        data-name="Background imagge with button and paragraph">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-10 col-lg-6">
+                                <div class="lg-banner-info">
+                                    <h2>
+                                        <font style="color: rgb(0, 0, 0);">QUI SOMMES NOUS?</font>
+                                    </h2>
+                                    <p>
+                                        <font style="color: rgb(0, 0, 0);">Créé en 2015, Digimoov est une filiale du
+                                            groupe MCM Academy. Nous sommes un centre spécialisé dans la formation en
+                                            ligne pour l’obtention de l’attestation de la capacité professionnelle en
+                                            transport routier léger de marchandises.
+                                        </font>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <section class="centric_template" data-name="Why Choose Us" style="">
+                    <section class="whychooseus-section pt64 pb32" style="">
+                        <div class="container">
+                            <div class="row align-items-center">
+                                <div class="col-md-12 col-lg-6">
+                                    <div class="whychoose-content">
+                                        <h3>Fort de son expérience, DIGIMOOV est aujourd'hui LEADER en France.</h3>
+                                        <div class="choose">
+                                            <span class="fa fa-check"/>
+                                            <h4>Une expérience de dizaine d’années</h4>
+                                            <p>Digimoov est le fruit d'une expérience professionnelle acquise depuis une
+                                                dizaine d’années. Notre envie a été de transmettre notre expertise et
+                                                nos connaissances par la création de ce centre de formation.
+                                            </p>
+                                        </div>
+                                        <div class="choose">
+                                            <span class="fa fa-check"/>
+                                            <h4>Une formation complète</h4>
+                                            <p>Notre centre met à votre disposition des formations complètes et
+                                                attrayantes, vous assure un suivi personnalisé et une préparation à
+                                                votre rythme afin de vous accompagner jusqu’au bout de votre projet.
+                                            </p>
+                                        </div>
+                                        <div class="choose">
+                                            <span class="fa fa-check"/>
+                                            <h4>Un service complet</h4>
+                                            <p>Digimoov se mobilise pour vous assurer un suivi jusqu'au démarrage de
+                                                votre activité dans les meilleures conditions. Nos conseillers et notre
+                                                expert-comptable sont à votre disposition pour toute demande de création
+                                                de société, portefeuille client…
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-md-12">
+                                    <img class="img img-fluid"
+                                         src="/digimoov_website_templates/static/img/quisommesnous1.png"
+                                         data-original-title="" title="" aria-describedby="tooltip955844"/>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </section>
+                <section class="s_creative_left_img_right_para" data-name="left Image Right Paragraph">
+                    <div class="feature39 spacer wrap-feature39-box">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <img src="/digimoov_website_templates/static/img/quisommenous2.png"
+                                         class="img-fluid"
+                                         alt="bizople" data-original-title="" title="" aria-describedby="tooltip969892"
+                                         style="transform: translateX(0.9%) translateY(63.4%);"/>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="card-body">
+                                        <h2 class="font-bold text-beta title">Une équipe qualifiée</h2>
+                                        <p class="custom_p m-b-40 m-t-40">Nous mettons notre expertise et notre
+                                            savoir-faire à votre disposition. Basés sur des valeurs d'innovation, de
+                                            bienveillance et de Team Spirit, nos agents mettent à votre disposition un
+                                            suivi personnalisé, des informations indispensables et un bilan individuel
+                                            pour bien démarrer votre activité et vous faciliter les démarches.
+                                        </p>
+                                        <h2 class="font-bold text-beta title">Des centres partout en France&amp;nbsp;
+                                        </h2>
+                                        <p class="custom_p m-b-40 m-t-40">Digimoov met à votre disposition des centres
+                                            d’examen partout en France. Vous pouvez choisir de passer votre examen dans
+                                            l’un des centres suivants: Bordeaux, Lille, Lyon, Marseille, Nantes, Paris,
+                                            Strasbourg, Toulouse.
+                                        </p>
+                                        <h2 class="font-bold text-beta title">Un rapport qualité prix imbattable&amp;nbsp;</h2>
+                                        <p class="custom_p m-b-40 m-t-40">Nous vous offrons une formation complète pour
+                                            le meilleur prix. Notre formation est aussi éligible au programme Compte
+                                            Professionnel de Formation (CPF).
+                                        </p>
+                                        <div>
+                                            <br/>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <section class="s_charity_help_block" data-name="Center Paragraph with three blocks" style="">
+                    <div class="spacer feature1">
+                        <div class="container">
+                            <div class="row justify-content-center">
+                                <div class="col-md-7 text-center">
+                                    <h2 class="title font-medium text-beta">Digimoov en quelque chiffres</h2>
+                                    <h6 class="subtitle">&amp;nbsp;</h6>
+                                </div>
+                            </div>
+                            <div class="row m-t-40">
+                                <div class="col-md-4 wrap-feature1-box">
+                                    <section class="card">
+                                        <div class="card-body text-center">
+                                            <div class="icon-space">
+                                                <img src="/digimoov_website_templates/static/img/stagiaires.png"
+                                                     alt="bizople"
+                                                     class="img img-fluid" data-original-title="" title=""
+                                                     aria-describedby="tooltip282602"/>
+                                            </div>
+                                            <h5 class="font-medium">+1000&amp;nbsp;stagiaires formés</h5>
+                                        </div>
+                                    </section>
+                                </div>
+                                <div class="col-md-4 wrap-feature1-box">
+                                    <section class="card">
+                                        <div class="card-body text-center">
+                                            <div class="icon-space">
+                                                <img src="/digimoov_website_templates/static/img/notes.png"
+                                                     alt="bizople"
+                                                     class="img img-fluid rounded-circle" data-original-title=""
+                                                     title="" aria-describedby="tooltip102903"/>
+                                            </div>
+                                            <h5 class="font-medium">Une note de 4,6/5 sur +100 avis sur Google</h5>
+                                        </div>
+                                    </section>
+                                </div>
+                                <div class="col-md-4 wrap-feature1-box">
+                                    <section class="card" style="">
+                                        <div class="card-body text-center">
+                                            <div class="icon-space">
+                                                <img src="/digimoov_website_templates/static/img/96.png" alt="bizople"
+                                                     class="img img-fluid" data-original-title="" title=""
+                                                     aria-describedby="tooltip76804"/>
+                                            </div>
+                                            <h5 class="font-medium">Un taux de satisfaction qui s’élève à 96%</h5>
+                                        </div>
+                                    </section>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <section
+                        class="o_gallery s_image_gallery o_fake_not_editable o_anim_fade_in_up o_animate o_slideshow o_spc-medium"
+                        data-columns="3"
+                        style="overflow: hidden; height: 398px; animation-name: o_anim_fade_in_up; visibility: visible; animation-play-state: paused;"
+                        data-name="Image Gallery">
+                    <div class="container">
+                        <div id="slideshow_1608740318339" class="carousel slide" data-ride="carousel"
+                             data-interval="10000" style="margin: 0 12px;">
+                            <div class="carousel-inner" style="padding: 0;">
+                                <div class="carousel-item" style="">
+                                    <img class="img img-fluid d-block"
+                                         src="/digimoov_website_templates/static/img/Avis1.png"
+                                         alt="Image de diapositive" data-index="0"/>
+                                </div>
+                                <div class="carousel-item" style="">
+                                    <img class="img img-fluid d-block"
+                                         src="/digimoov_website_templates/static/img/Avis2.png"
+                                         alt="Image de diapositive" data-index="1"/>
+                                </div>
+                                <div class="carousel-item" style="">
+                                    <img class="img img-fluid d-block"
+                                         src="/digimoov_website_templates/static/img/Avis3.png"
+                                         alt="Image de diapositive" data-index="2"/>
+                                </div>
+                                <div class="carousel-item active" style="">
+                                    <img class="img img-fluid d-block"
+                                         src="/digimoov_website_templates/static/img/Avis4.png"
+                                         alt="Image de diapositive" data-index="3"/>
+                                </div>
+                                <div class="carousel-item" style="">
+                                    <img class="img img-fluid d-block"
+                                         src="/digimoov_website_templates/static/img/Avis6.png"
+                                         alt="Image de diapositive" data-index="4"/>
+                                </div>
+                                <div class="carousel-item" style="">
+                                    <img class="img img-fluid d-block"
+                                         src="/digimoov_website_templates/static/img/Avis5.png"
+                                         alt="Image de diapositive" data-index="5"/>
+                                </div>
+                            </div>
+                            <a class="carousel-control-prev text-black" href="#slideshow_1608740318339"
+                               data-slide="prev" aria-label="Précedent" title="Précedent">
+                                <span class="fa fa-chevron-left"/>
+                            </a>
+                            <a class="carousel-control-next text-black" href="#slideshow_1608740318339"
+                               data-slide="next" aria-label="Suivant" title="Suivant">
+                                <span class="fa fa-chevron-right"/>
+                            </a>
+                        </div>
+                    </div>
+                </section>
+                <div class="s_btn text-center pt16 pb16" data-name="Button">
+                    <a href="https://www.google.fr/search?source=hp&amp;ei=2gDjX575DIKalwS3trWIDg&amp;q=digimoov&amp;oq=digimoov&amp;gs_lcp=CgZwc3ktYWIQAzIICAAQxwEQrwEyAggAMgIIADICCAAyAggAMgIIADICCAAyAggAMgQILhAKMggIABDHARCvAToCCC46CAgAEMcBEKMCUKQBWM0JYOMKaABwAHgAgAFeiAHeBJIBATeYAQCgAQGqAQdnd3Mtd2l6&amp;sclient=psy-ab&amp;ved=0ahUKEwiezobe2OPtAhUCzYUKHTdbDeEQ4dUDCAc&amp;uact=5#lrd=0x47e66f4105e53b4d:0x9b8c7c90c4de0b74,1,,,"
+                       class="btn btn-primary" data-original-title="" title="" aria-describedby="tooltip755390"
+                       target="_blank">Voir tous les avis sur Google
+                    </a>
+                </div>
+                <section class="clients s_references bg-200 pt16 pb16" data-name="References" style="">
+                    <center>
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-lg-3">
+                                    <img src="/digimoov_website_templates/static/img/MCMACADEMY.png" style="width:30%"
+                                         class="img img-fluid" alt="Demo Logo" data-original-title="" title=""
+                                         aria-describedby="tooltip843653"/>
+                                </div>
+                                <div class="col-lg-3">
+                                    <img src="/digimoov_website_templates/static/img/uber.png" style="width:30%"
+                                         class="img img-fluid" alt="Demo Logo" data-original-title="" title=""
+                                         aria-describedby="tooltip843653"/>
+                                </div>
+                                <div class="col-lg-3">
+                                    <img src="/digimoov_website_templates/static/img/deliveroo.png" style="width:50%"
+                                         class="img img-fluid" alt="Demo Logo" data-original-title="" title=""
+                                         aria-describedby="tooltip623872"/>
+                                </div>
+                                <div class="col-lg-3">
+                                    <img src="/digimoov_website_templates/static/img/coursierjob.png" style="width:30%"
+                                         class="img img-fluid" alt="Demo Logo" data-original-title="" title=""
+                                         aria-describedby="tooltip175558"/>
+                                </div>
+                            </div>
+                        </div>
+                    </center>
+                </section>
+            </div>
+        </t>
+    </template>
+
+</odoo>

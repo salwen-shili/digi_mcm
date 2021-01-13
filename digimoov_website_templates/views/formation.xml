@@ -1,0 +1,8 @@
+<odoo>
+    <template id="digimoov_website_templates.digimoov_template_formation" name="formation Digimoov">
+        <t t-call="website.layout">
+
+
+        </t>
+    </template>
+</odoo>

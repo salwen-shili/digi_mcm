@@ -1,0 +1,591 @@
+<odoo>
+    <template id="digimoov_website_templates.digimoov_template_service_clientele" name="Service Clientèle | Digimoov">
+        <t t-call="website.layout">
+            <div id="wrap" class="oe_structure oe_empty">
+                <section class="s_contact_with_img" data-name="Contact Us Two" style="">
+                    <div class="contact3 mini-spacer">
+                        <div class="container">
+                            <div class="row">
+                                <div class="row m-0">
+                                    <div class="col-lg-6">
+                                        <div class="card-shadow ">
+                                            <img src="/digimoov_website_templates/static/img/Service client Digimoov.webp"
+                                                 class="img-responsive img img-fluid"
+                                                 data-original-title="" title="" aria-describedby="tooltip508208"/>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div class="contact-box ">
+                                            <span style="font-size: 28px;">Contacter le service client</span>
+                                            <br/>
+                                            <form action="/helpdesk/submitted/" method="post"
+                                                  enctype="multipart/form-data">
+                                                <input type="hidden" name="service" value="client"/>
+                                                <div class="row">
+                                                    <div class="col-lg-6">
+                                                        <div class="form-group m-t-15 ">
+                                                            <input placeholder="Nom" name="contact_lastname"
+                                                                   required="True" type="text"
+                                                                   class="o_website_form_input   font-14 form-control"
+                                                                   t-attf-value="#{contact_last_name}"/>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-6">
+                                                        <div class="form-group m-t-15 ">
+                                                            <input placeholder="Prénom" name="contact_name"
+                                                                   required="True" type="text"
+                                                                   class="o_website_form_input   font-14 form-control"
+                                                                    t-attf-value="#{contact_name}"/>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-12">
+                                                        <div class="form-group m-t-15 ">
+                                                            <input name="email_from" placeholder="Adresse email"
+                                                                   required="True" value="" type="email"
+                                                                   class="o_website_form_input form-control" t-attf-value="#{email_from}"/>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-12">
+                                                        <div class="form-group m-t-15 ">
+                                                            <input name="phone" placeholder="Téléphone" required="True"
+                                                                   type="Phone"
+                                                                   class="o_website_form_input form-control" t-attf-value="#{phone}"/>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-12">
+                                                        <div class="form-group m-t-15 ">
+                                                            <input name="name" placeholder="Objet" required="True"
+                                                                   type="Object"
+                                                                   class="o_website_form_input form-control" value=""/>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-12">
+                                                        <div class="form-group m-t-15 ">
+                                                            <textarea name="description" rows="3" placeholder="Message"
+                                                                      required="True"
+                                                                      class=" o_website_form_input form-control"
+                                                                      value=""/>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-12 s_name" data-name="Button">
+                                                        <button class="o_website_form_send btn btn-alpha rounded-circle m-t-20 arrow-btn"
+                                                                type="submit">
+                                                            ENVOYER
+                                                            <span class="fa fa-1x fa-fw fa-long-arrow-right ml-1"/>
+                                                        </button>
+                                                        <span id="o_website_form_result"
+                                                              class="text-danger ml8 mt16  mb16 col-md-12"/>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+        </t>
+    </template>
+    <template id="digimoov_website_templates.digimoov_template_service_administration"
+              name="Service Administration | Digimoov">
+        <t t-call="website.layout">
+            <div id="wrap" class="oe_structure oe_empty">
+                <section class="s_contact_with_img" data-name="Contact Us Two" style="">
+                    <div class="contact3 mini-spacer">
+                        <div class="container">
+                            <div class="row">
+                                <div class="row m-0">
+                                    <div class="col-lg-6">
+                                        <div class="card-shadow ">
+                                            <img src="/digimoov_website_templates/static/img/Administration-Digimoov.webp"
+                                                 class="img-responsive img img-fluid"/>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div class="contact-box ">
+                                            <span style="font-size: 28px;">Contacter l'administration de Digimoov</span>
+                                            <br/>
+                                            <form action="/helpdesk/submitted/" method="post"
+                                                  enctype="multipart/form-data">
+                                                <input name="service"
+                                                       type="hidden"
+                                                       class="o_website_form_input   font-14 form-control"
+                                                       value="Administration"/>
+                                                <div class="row">
+                                                    <div class="col-lg-6">
+                                                        <div class="form-group m-t-15 ">
+                                                            <input placeholder="Nom" name="contact_lastname"
+                                                                   required="True" type="text"
+                                                                   class="o_website_form_input   font-14 form-control"
+                                                                   t-attf-value="#{contact_last_name}"/>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-6">
+                                                        <div class="form-group m-t-15 ">
+                                                            <input placeholder="Prénom" name="contact_name"
+                                                                   required="True" type="text"
+                                                                   class="o_website_form_input   font-14 form-control"
+                                                                   t-attf-value="#{contact_name}"/>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-12">
+                                                        <div class="form-group m-t-15 ">
+                                                            <input name="email_from" placeholder="Adresse email"
+                                                                   required="True" t-attf-value="#{email_from}" type="email"
+                                                                   class="o_website_form_input form-control"/>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-12">
+                                                        <div class="form-group m-t-15 ">
+                                                            <input name="phone" placeholder="Téléphone" required="True"
+                                                                   type="Phone" t-attf-value="#{phone}"
+                                                                   class="o_website_form_input form-control" value=""/>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-12">
+                                                        <div class="form-group m-t-15 ">
+                                                            <input name="name" placeholder="Objet" required="True"
+                                                                   type="Object"
+                                                                   class="o_website_form_input form-control" value=""/>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-12">
+                                                        <div class="form-group m-t-15 ">
+                                                            <textarea name="description" rows="3" placeholder="Message"
+                                                                      required="True"
+                                                                      class=" o_website_form_input form-control"
+                                                                      value=""/>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-12 s_name" data-name="Button">
+                                                        <button class="o_website_form_send btn btn-alpha rounded-circle m-t-20 arrow-btn"
+                                                                type="submit">
+                                                            ENVOYER
+                                                            <span class="fa fa-1x fa-fw fa-long-arrow-right ml-1"/>
+                                                        </button>
+                                                        <span id="o_website_form_result"
+                                                              class="text-danger ml8 mt16  mb16 col-md-12"/>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </t>
+    </template>
+    <template id="digimoov_website_templates.digimoov_template_service_partenariat"
+              name="Service Partenariat | Digimoov">
+        <t t-call="website.layout">
+            <div id="wrap" class="oe_structure oe_empty">
+                <section class="s_contact_with_img" data-name="Contact Us Two" style="">
+                    <div class="contact3 mini-spacer">
+                        <div class="container">
+                            <div class="row">
+                                <div class="row m-0">
+                                    <div class="col-lg-6">
+                                        <div class="card-shadow ">
+                                            <img src="/digimoov_website_templates/static/img/Devenir-Partenaire.webp"
+                                                 class="img-responsive img img-fluid"
+                                                 data-original-title="" title="" aria-describedby="tooltip848764"/>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div class="contact-box ">
+                                            <span style="font-size: 28px;">Partenariat</span>
+                                            <br/>
+                                            <form action="/helpdesk/submitted/" method="post"
+                                                  enctype="multipart/form-data">
+                                                <input name="service"
+                                                       type="hidden"
+                                                       class="o_website_form_input   font-14 form-control"
+                                                       value="Partenariat"/>
+                                                <div class="row">
+                                                    <div class="col-lg-6">
+                                                        <div class="form-group m-t-15 ">
+                                                            <input placeholder="Nom" name="contact_lastname"
+                                                                   required="True" type="text"
+                                                                   class="o_website_form_input   font-14 form-control"
+                                                                  t-attf-value="#{contact_last_name}"/>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-6">
+                                                        <div class="form-group m-t-15 ">
+                                                            <input placeholder="Prénom" name="contact_name"
+                                                                   required="True" type="text"
+                                                                   class="o_website_form_input   font-14 form-control"
+                                                                   t-attf-value="#{contact_name}"/>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-12">
+                                                        <div class="form-group m-t-15 ">
+                                                            <input name="email_from" placeholder="Adresse email"
+                                                                   required="True" t-attf-value="#{email_from}" type="email"
+                                                                   class="o_website_form_input form-control"/>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-12">
+                                                        <div class="form-group m-t-15 ">
+                                                            <input name="phone" placeholder="Téléphone" type="text"
+                                                                   required="True" t-attf-value="#{phone}"
+                                                                   class="o_website_form_input form-control" value=""/>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-12">
+                                                        <div class="form-group m-t-15 ">
+                                                            <input name="name_company" placeholder="Entreprise"
+                                                                   required="True" value="" type="text"
+                                                                   class="o_website_form_input form-control"/>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-12">
+                                                        <div class="form-group m-t-15 ">
+                                                            <input name="objet" placeholder="Objet" required=""
+                                                                   type="text" class="o_website_form_input form-control"
+                                                                   value=""/>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-12">
+                                                        <div class="form-group m-t-15 ">
+                                                            <textarea name="description" rows="3" placeholder="Message"
+                                                                      required=""
+                                                                      class=" o_website_form_input form-control"
+                                                                      value=""/>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-12 s_name" data-name="Button">
+                                                        <button class="o_website_form_send btn btn-alpha rounded-circle m-t-20 arrow-btn"
+                                                                type="submit">
+                                                            ENVOYER
+                                                            <span class="fa fa-1x fa-fw fa-long-arrow-right ml-1"/>
+                                                        </button>
+                                                        <span id="o_website_form_result"
+                                                              class="text-danger ml8 mt16  mb16 col-md-12"/>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </t>
+    </template>
+    <template id="digimoov_website_templates.digimoov_template_service_comptabilite"
+              name="Service Comptabilité | Digimoov">
+        <t t-call="website.layout">
+            <div id="wrap" class="oe_structure oe_empty">
+                <section class="s_contact_with_img" data-name="Contact Us Two">
+                    <div class="contact3 mini-spacer">
+                        <div class="container">
+                            <div class="row">
+                                <div class="row m-0">
+                                    <div class="col-lg-6">
+                                        <div class="card-shadow ">
+                                            <img src="/digimoov_website_templates/static/img/Service compta Digimoov.webp"
+                                                 class="img-responsive img img-fluid"
+                                                 data-original-title="" title="" aria-describedby="tooltip917363"/>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div class="contact-box ">
+                                            <span style="font-size: 28px;">Contacter le service comptabilité</span>
+                                            <br/>
+                                           <form action="/helpdesk/submitted/" method="post"
+                                                  enctype="multipart/form-data">
+                                                <input name="service"
+                                                       type="hidden"
+                                                       class="o_website_form_input   font-14 form-control"
+                                                       value="Comptabilité"/>
+                                                <div class="row">
+                                                    <div class="col-lg-6">
+                                                        <div class="form-group m-t-15 ">
+                                                            <input placeholder="Nom" name="contact_lastname"
+                                                                   required="True" type="text"
+                                                                   class="o_website_form_input   font-14 form-control"
+                                                                   t-attf-value="#{contact_last_name}"/>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-6">
+                                                        <div class="form-group m-t-15 ">
+                                                            <input placeholder="Prénom" name="contact_name"
+                                                                   required="True" type="text"
+                                                                   class="o_website_form_input   font-14 form-control"
+                                                                    t-attf-value="#{contact_name}"/>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-12">
+                                                        <div class="form-group m-t-15 ">
+                                                            <input name="email_from" placeholder="Adresse email"
+                                                                   required="True" t-attf-value="#{email_from}" type="email"
+                                                                   class="o_website_form_input form-control"/>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-12">
+                                                        <div class="form-group m-t-15 ">
+                                                            <input name="phone" placeholder="Téléphone" required="True"
+                                                                   type="Phone" t-attf-value="#{phone}"
+                                                                   class="o_website_form_input form-control" value=""/>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-12">
+                                                        <div class="form-group m-t-15 ">
+                                                            <input name="name" placeholder="Objet" required="True"
+                                                                   type="Object"
+                                                                   class="o_website_form_input form-control" value=""/>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-12">
+                                                        <div class="form-group m-t-15 ">
+                                                            <textarea name="description" rows="3" placeholder="Message"
+                                                                      required="True"
+                                                                      class=" o_website_form_input form-control"
+                                                                      value=""/>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-12 s_name" data-name="Button">
+                                                        <button class="o_website_form_send btn btn-alpha rounded-circle m-t-20 arrow-btn"
+                                                                type="submit">
+                                                            ENVOYER
+                                                            <span class="fa fa-1x fa-fw fa-long-arrow-right ml-1"/>
+                                                        </button>
+                                                        <span id="o_website_form_result"
+                                                              class="text-danger ml8 mt16  mb16 col-md-12"/>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>&amp;nbsp;
+                                    </div>
+                                    <div class="col-lg-12">
+                                        <div class="card m-t-40">
+                                            <div class="row">
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </t>
+    </template>
+    <template id="digimoov_website_templates.digimoov_template_service_pedagogique" name="Service Pédagogique Digimoov">
+        <t t-call="website.layout">
+            <div id="wrap" class="oe_structure oe_empty">
+                <section class="s_contact_with_img" data-name="Contact Us Two" style="">
+                    <div class="contact3 mini-spacer">
+                        <div class="container">
+                            <div class="row">
+                                <div class="row m-0">
+                                    <div class="col-lg-6">
+                                        <div class="card-shadow ">
+                                            <img src="/digimoov_website_templates/static/img/Service_pédagogique.webp"
+                                                 class="img-responsive img img-fluid"
+                                                 data-original-title="" title="" aria-describedby="tooltip821638"/>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div class="contact-box ">
+                                            <span style="font-size: 28px;">Contacter le service pédagogique</span>
+                                            <br/>
+                                            <form action="/helpdesk/submitted/" method="post"
+                                                  enctype="multipart/form-data">
+                                                <input name="service"
+                                                       type="hidden"
+                                                       class="o_website_form_input   font-14 form-control"
+                                                       value="Pédagogique"/>
+                                                <div class="row">
+                                                    <div class="col-lg-6">
+                                                        <div class="form-group m-t-15 ">
+                                                            <input placeholder="Nom" name="contact_lastname"
+                                                                   required="True" type="text"
+                                                                   class="o_website_form_input   font-14 form-control"
+                                                                   t-attf-value="#{contact_last_name}" />
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-6">
+                                                        <div class="form-group m-t-15 ">
+                                                            <input placeholder="Prénom" name="contact_name"
+                                                                   required="True" type="text"
+                                                                   class="o_website_form_input   font-14 form-control"
+                                                                   t-attf-value="#{contact_name}" />
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-12">
+                                                        <div class="form-group m-t-15 ">
+                                                            <input name="email_from" placeholder="Adresse email"
+                                                                   required="True" t-attf-value="#{email_from}"  type="email"
+                                                                   class="o_website_form_input form-control"/>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-12">
+                                                        <div class="form-group m-t-15 ">
+                                                            <input name="phone" placeholder="Téléphone" required="True"
+                                                                   type="Phone" t-attf-value="#{phone}"
+                                                                   class="o_website_form_input form-control" value=""/>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-12">
+                                                        <div class="form-group m-t-15 ">
+                                                            <input name="name" placeholder="Objet" required="True"
+                                                                   type="Object"
+                                                                   class="o_website_form_input form-control" value=""/>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-12">
+                                                        <div class="form-group m-t-15 ">
+                                                            <textarea name="description" rows="3" placeholder="Message"
+                                                                      required="True"
+                                                                      class=" o_website_form_input form-control"
+                                                                      value=""/>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-12 s_name" data-name="Button">
+                                                        <button class="o_website_form_send btn btn-alpha rounded-circle m-t-20 arrow-btn"
+                                                                type="submit">
+                                                            ENVOYER
+                                                            <span class="fa fa-1x fa-fw fa-long-arrow-right ml-1"/>
+                                                        </button>
+                                                        <span id="o_website_form_result"
+                                                              class="text-danger ml8 mt16  mb16 col-md-12"/>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </t>
+    </template>
+    <template id="digimoov_website_templates.digimoov_template_contact" name="Contactez-Nous | Digimoov">
+        <t t-call="website.layout">
+            <div id="wrap" class="oe_structure oe_empty">
+                <section class="centric_template" data-name="Projects">
+                    <section class="project-section pt128 pb0">
+                        <div class="container">
+                            <div class="project-title text-center">
+                                <br/>
+                                <h3>
+                                    Contacter Digimoov
+                                </h3>
+                            </div>
+                            <section class="s_web_agency_images_with_center_para bg-light-1"
+                                     data-name="Images with center aragraph" style="">
+                                <div class="spacer ">
+                                    <div class="container">
+                                        <div class="row m-t-40">
+                                            <div class="col-md-4">
+                                                <div class="card card-shadow aos-init" data-aos="flip-left"
+                                                     data-aos-duration="1200">
+                                                    <a href="/service-clientele" class="img-ho">
+                                                        <img class="card-img-top"
+                                                             src="/digimoov_website_templates/static/img/Service Clientèle Digimoov.webp"
+                                                             alt="bizople kit" data-original-title="" title=""
+                                                             aria-describedby="tooltip486395"/>
+                                                    </a>
+                                                    <div class="card-body">
+                                                        <h5 class="font-medium m-b-0">
+                                                            <a href="/service-clientele">Service clientèle</a>
+                                                        </h5>
+                                                        <p class="font-14 m-b-0">Réponses à vos questions</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="card card-shadow aos-init" data-aos="flip-up"
+                                                     data-aos-duration="1200">
+                                                    <a href="/service-comptabilite" class="img-ho">
+                                                        <img class="card-img-top"
+                                                             src="/digimoov_website_templates/static/img/Service comptabilité Digimoov.webp"
+                                                             alt="bizople kit" data-original-title="" title=""
+                                                             aria-describedby="tooltip4033"/>
+                                                    </a>
+                                                    <div class="card-body">
+                                                        <h5 class="font-medium m-b-0">
+                                                            <a href="/service-comptabilite">Service comptabilité</a>
+                                                        </h5>
+                                                        <p class="m-b-0 font-14">Facturation</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="card card-shadow aos-init" data-aos="flip-right"
+                                                     data-aos-duration="1200">
+                                                    <a href="/service-pedagogique" class="img-ho">
+                                                        <img class="card-img-top"
+                                                             src="/digimoov_website_templates/static/img/Service pédagogique Digimoov formation.webp"
+                                                             alt="bizople kit" data-original-title="" title=""
+                                                             aria-describedby="tooltip88003"/>
+                                                    </a>
+                                                    <div class="card-body">
+                                                        <h5 class="font-medium m-b-0">
+                                                            <a href="/service-pedagogique">Service pédagogique</a>
+                                                        </h5>
+                                                        <p class="m-b-0 font-14">Support de cours, Plateforme en
+                                                            ligne...
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="card card-shadow aos-init" data-aos="flip-left"
+                                                     data-aos-duration="1200">
+                                                    <a href="/administration" class="img-ho">
+                                                        <img class="card-img-top"
+                                                             src="/digimoov_website_templates/static/img/Administration Digimoov.webp"
+                                                             alt="bizople kit" data-original-title="" title=""
+                                                             aria-describedby="tooltip789623"/>
+                                                    </a>
+                                                    <div class="card-body">
+                                                        <h5 class="font-medium m-b-0">
+                                                            <a href="/administration">Administration</a>
+                                                        </h5>
+                                                        <p class="font-14 m-b-0">Demandes, Presse</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="card card-shadow aos-init" data-aos="flip-up"
+                                                     data-aos-duration="1200">
+                                                    <a href="/partenariat" class="img-ho">
+                                                        <img class="card-img-top"
+                                                             src="/digimoov_website_templates/static/img/Devenir partenaire de Digimoov.webp"
+                                                             alt="bizople kit" data-original-title="" title=""
+                                                             aria-describedby="tooltip155657"/>
+                                                    </a>
+                                                    <div class="card-body">
+                                                        <h5 class="font-medium m-b-0">
+                                                            <a href="/partenariat">Partenariat</a>
+                                                        </h5>
+                                                        <p class="m-b-0 font-14">Devenez partenaire avec Digimoov</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
+                        </div>
+                    </section>
+                </section>
+            </div>
+        </t>
+    </template>
+
+</odoo>

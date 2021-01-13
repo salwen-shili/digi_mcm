@@ -1,0 +1,1441 @@
+<odoo>
+    <template id="digimoov_website_templates.digimoov_template_faq" name="FAQ | Digimoov">
+        <t t-call="website.layout">
+            <link href="/digimoov_website_templates/static/src/css/styledigimoov.css" rel="stylesheet"/>
+            <link href="/digimoov_website_templates/static/src/css/faq.css" rel="stylesheet"/>
+            <link href="/digimoov_website_templates/static/src/css/fontawesome.css" rel="stylesheet"/>
+            <link href="https://cdnjs.cloudflare.com/ajax/libs/MaterialDesign-Webfont/3.4.93/css/materialdesignicons.min.css"/>
+            <style>
+                .card-header{
+                background-color:#E0E1E2;
+                }
+
+
+            </style>
+            <section class="banner oe_img_bg oe_custom_bg"
+                     style="background: linear-gradient(90deg, rgba(249,250,252,1) 0%, rgba(242,241,241,0.7203256302521008) 100%);">
+                <p>
+                    <br/>
+                </p>
+                <div class="row">
+                    <div class="offset-lg-1 col-lg-4" style="text-align: center; "><img
+                            class="img-fluid o_we_custom_image"
+                            src="/web/image/7334/Foire%20Aux%20Questions%20Capacit%C3%A9%20de%20transport%20l%C3%A9ger.png"
+                            alt="Foire Aux Questions FAQ Digimoov" data-original-title=""
+                            title="Foire Aux Questions Capacité de Transport Léger" aria-describedby="tooltip523685"/>
+                    </div>
+                    <div class="col-lg-6">
+                        <h2 style="text-align: center; margin-bottom: 10px; font-weight: 600; line-height: 1.3; color: rgb(58, 58, 71); font-size: 28px;">
+                            <font style="color: rgb(0, 0, 0); font-size: 48px;">
+                                <br/>
+                            </font>
+                        </h2>
+                        <h2 style="text-align: center; margin-bottom: 10px; font-weight: 600; line-height: 1.3; color: rgb(58, 58, 71); font-size: 28px;">
+                            <font style="color: rgb(0, 0, 0); font-size: 48px;">FAQ
+                                <br/>
+                            </font>
+                        </h2>
+                        <h2 style="text-align: center; margin-bottom: 10px; font-weight: 600; line-height: 1.3; color: rgb(58, 58, 71); font-size: 28px;">
+                            Foire Aux Questions
+                            <font style="font-size: 14px;"></font>
+                        </h2>
+                    </div>
+                </div>
+            </section>
+            <br/>
+            <br/>
+            <div class="home">
+                <div class="container-m">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-4">
+                                <div class="nav nav-pills faq-nav" id="faq-tabs" role="tablist"
+                                     aria-orientation="vertical">
+                                    <a href="#tab1" class="nav-link" data-toggle="pill" role="tab" aria-controls="tab1"
+                                       aria-selected="false" data-original-title="" title="">
+                                        <b>
+                                            <i class="mdi mdi-help-circle"/>
+                                        </b>
+                                        <font style="font-size: 16px;" data-original-title="" title=""
+                                              aria-describedby="tooltip487201">
+                                            <i class="fa fa-caret-right" style="font-weight: bold;"
+                                               data-original-title=""
+                                               title="" aria-describedby="tooltip83044"/>
+                                            <b data-original-title="" title="" aria-describedby="tooltip700574">Digimoov
+                                            </b>
+                                        </font>
+                                    </a>
+                                    <a href="#tab2" class="nav-link active" data-toggle="pill" role="tab"
+                                       aria-controls="tab2"
+                                       aria-selected="true" data-original-title="" title="">
+                                        <b>
+                                            <i class="mdi mdi-account"/>
+                                            <font style="font-size: 16px;" data-original-title="" title=""
+                                                  aria-describedby="tooltip935360">
+                                                <i class="fa fa-caret-right" data-original-title="" title=""
+                                                   aria-describedby="tooltip582712"/>
+                                                La formation
+                                            </font>
+                                        </b>
+                                    </a>
+                                    <a href="#tab3" class="nav-link" data-toggle="pill" role="tab" aria-controls="tab3"
+                                       aria-selected="false" data-original-title="" title=""
+                                       aria-describedby="tooltip903118">
+                                        <b>
+                                            <i class="mdi mdi-account-settings"/>
+                                            <font style="font-size: 16px;">
+                                                <i class="fa fa-caret-right" data-original-title="" title=""
+                                                   aria-describedby="tooltip566849"/>
+                                                L’examen
+                                            </font>
+                                        </b>
+                                    </a>
+                                    <a href="#tab4" class="nav-link" data-toggle="pill" role="tab" aria-controls="tab4"
+                                       aria-selected="false" data-original-title="" title="">
+                                        <b>
+                                            <i class="mdi mdi-heart"/>
+                                            <font style="font-size: 16px;">
+                                                <i class="fa fa-caret-right" data-original-title="" title=""
+                                                   aria-describedby="tooltip219938"/>
+                                                L’attestation de Capacité de transport de marchandise léger
+
+                                            </font>
+                                        </b>
+                                    </a>
+                                    <a href="#tab5" class="nav-link" data-toggle="pill" role="tab" aria-controls="tab5"
+                                       aria-selected="false" data-original-title="" title=""
+                                       aria-describedby="tooltip230958">
+                                        <i class="mdi mdi-coin"/>
+                                        <font style="font-size: 16px;">
+                                            <i class="fa fa-caret-right" data-original-title="" title=""
+                                               aria-describedby="tooltip582122"/>
+                                            <b>Le financement</b>
+                                        </font>
+                                    </a>
+                                    <a href="#tab6" class="nav-link" data-toggle="pill" role="tab" aria-controls="tab6"
+                                       aria-selected="false" data-original-title="" title="">
+                                        <b>
+                                            <i class="mdi mdi-help"/>
+                                            <font style="font-size: 16px;">
+                                                <i class="fa fa-caret-right" data-original-title="" title=""
+                                                   aria-describedby="tooltip340701"/>
+                                                Divers
+                                            </font>
+                                        </b>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="col-lg-8">
+                                <div class="tab-content" id="faq-tab-content">
+                                    <div class="tab-pane show" id="tab1" role="tabpanel" aria-labelledby="tab1">
+                                        <div class="accordion" id="accordion-tab-1">
+                                            <div class="card">
+                                                <div class="card-header" id="accordion-tab-1-heading-1">
+                                                    <h5>
+                                                        <button class="btn btn-link collapsed" type="button"
+                                                                data-toggle="collapse"
+                                                                data-target="#accordion-tab-1-content-1"
+                                                                aria-expanded="false"
+                                                                aria-controls="accordion-tab-1-content-1"
+                                                                data-original-title=""
+                                                                title="" aria-describedby="tooltip276001">Qu’est ce que
+                                                            Digimoov
+                                                            ?
+                                                        </button>
+                                                    </h5>
+                                                </div>
+                                                <div class="collapse" id="accordion-tab-1-content-1"
+                                                     aria-labelledby="accordion-tab-1-heading-1"
+                                                     data-parent="#accordion-tab-1"
+                                                     style="">
+                                                    <div class="card-body">
+                                                        <p>
+                                                            <font style="color: rgb(0, 0, 0);">Digimoov est un centre de
+                                                                formation à
+                                                                distance qui propose des formations 100 % en ligne
+                                                                certifiées
+                                                                par la
+                                                                DRIEA Île-de-France (Direction Régionale et
+                                                                Interdépartementale
+                                                                de
+                                                                l'Équipement et de l'Aménagement) à destination des
+                                                                métiers
+                                                                de
+                                                                transport
+                                                                de marchandises léger (-3,5 T de PTAC).
+                                                            </font>
+                                                        </p>
+                                                        <p/>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="card">
+                                                <div class="card-header" id="accordion-tab-1-heading-2">
+                                                    <h5>
+                                                        <button class="btn btn-link collapsed" type="button"
+                                                                data-toggle="collapse"
+                                                                data-target="#accordion-tab-1-content-2"
+                                                                aria-expanded="false"
+                                                                aria-controls="accordion-tab-1-content-2"
+                                                                data-original-title="" title=""
+                                                                aria-describedby="tooltip346345">Que propose Digimoov ?
+                                                        </button>
+                                                    </h5>
+                                                </div>
+                                                <div class="collapse" id="accordion-tab-1-content-2"
+                                                     aria-labelledby="accordion-tab-1-heading-2"
+                                                     data-parent="#accordion-tab-1" style="">
+                                                    <div class="card-body">
+                                                        <p>
+                                                            <font style="color: rgb(0, 0, 0);">Notre centre propose une
+                                                                formation 100 % en ligne pour la Capacité de transport
+                                                                léger de marchandises.
+                                                            </font>
+                                                        </p>
+                                                        <p/>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="card">
+                                                <div class="card-header" id="accordion-tab-1-heading-3">
+                                                    <h5>
+                                                        <button class="btn btn-link collapsed" type="button"
+                                                                data-toggle="collapse"
+                                                                data-target="#accordion-tab-1-content-3"
+                                                                aria-expanded="false"
+                                                                aria-controls="accordion-tab-1-content-3"
+                                                                data-original-title="" title=""
+                                                                aria-describedby="tooltip389775">Êtes-vous un centre
+                                                            agréépar l’Etat (DRIEA) ?
+                                                        </button>
+                                                    </h5>
+                                                </div>
+                                                <div class="collapse" id="accordion-tab-1-content-3"
+                                                     aria-labelledby="accordion-tab-1-heading-3"
+                                                     data-parent="#accordion-tab-1" style="">
+                                                    <div class="card-body">
+                                                        <p>
+                                                            <font style="color: rgb(0, 0, 0);">Oui, numéro d'agrément :
+                                                                DRIEA IDF N° 2019-0110.
+                                                            </font>
+                                                        </p>
+                                                        <p/>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="tab-pane active" id="tab2" role="tabpanel" aria-labelledby="tab2">
+                                        <div class="accordion" id="accordion-tab-2">
+                                            <div class="card">
+                                                <div class="card-header" id="accordion-tab-2-heading-1">
+                                                    <h5>
+                                                        <button class="btn btn-link collapsed" type="button"
+                                                                data-toggle="collapse"
+                                                                data-target="#accordion-tab-2-content-1"
+                                                                aria-expanded="false"
+                                                                aria-controls="accordion-tab-2-content-1"
+                                                                data-original-title="" title=""
+                                                                aria-describedby="tooltip589610">À quoi servira la
+                                                            formation ?
+                                                        </button>
+                                                    </h5>
+                                                </div>
+                                                <div class="collapse" id="accordion-tab-2-content-1"
+                                                     aria-labelledby="accordion-tab-2-heading-1"
+                                                     data-parent="#accordion-tab-2" style="">
+                                                    <div class="card-body">
+                                                        <p>
+                                                            <span id="docs-internal-guid-c8476293-7fff-ade3-b687-3c65575f025a">
+                                                                <span style="font-size: 11pt; font-family: Arial; color: rgb(0, 0, 0); background-color: transparent; font-variant-numeric: normal; font-variant-east-asian: normal; vertical-align: baseline;">
+                                                                    L'objectif de la formation est de vous préparer
+                                                                    efficacement à l'examen en vue de l'obtention de
+                                                                    l'attestation de capacité professionnelle et de vous
+                                                                    préparer également à votre futur métier de livreur
+                                                                    indépendant.
+                                                                </span>
+                                                            </span>
+                                                            <br/>
+                                                        </p>
+                                                        <p/>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="card">
+                                                <div class="card-header" id="accordion-tab-2-heading-2">
+                                                    <h5>
+                                                        <button class="btn btn-link collapsed" type="button"
+                                                                data-toggle="collapse"
+                                                                data-target="#accordion-tab-2-content-2"
+                                                                aria-expanded="false"
+                                                                aria-controls="accordion-tab-2-content-2"
+                                                                data-original-title="" title=""
+                                                                aria-describedby="tooltip594112">Comment se passe la
+                                                            formation en ligne ?
+                                                        </button>
+                                                    </h5>
+                                                </div>
+                                                <div class="collapse" id="accordion-tab-2-content-2"
+                                                     aria-labelledby="accordion-tab-2-heading-2"
+                                                     data-parent="#accordion-tab-2" style="">
+                                                    <div class="card-body">
+                                                        <p>
+                                                            <font color="#000000" face="Arial">
+                                                                <span style="font-size: 14.6667px;">
+                                                                    La formation en ligne est une nouvelle méthode
+                                                                    d'apprentissage utile et pratique à la fois. Il
+                                                                    suffit d’avoir un ordinateur, une tablette ou un
+                                                                    smartphone. Vous pouvez accéder à la formation
+                                                                    n'importe où et n'importe quand ! Eh oui, c’est
+                                                                    génial ! Plus de limites avec Digimoov : tout est
+                                                                    réuni pour une formation en ligne réussie ! Vous
+                                                                    serez invités sur une plateforme interactive qui
+                                                                    contient des cours, des vidéos, des exercices et
+                                                                    même des examens blancs avec corrigés. Vous serez
+                                                                    accompagnés par un coach et vous aurez accès à des
+                                                                    directs (lives) avec les formateurs qui répondront à
+                                                                    toutes vos questions.
+                                                                </span>
+                                                            </font>
+                                                            <br/>
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="card">
+                                                <div class="card-header" id="accordion-tab-2-heading-3">
+                                                    <h5>
+                                                        <button class="btn btn-link collapsed" type="button"
+                                                                data-toggle="collapse"
+                                                                data-target="#accordion-tab-2-content-3"
+                                                                aria-expanded="false"
+                                                                aria-controls="accordion-tab-2-content-3"
+                                                                data-original-title="" title=""
+                                                                aria-describedby="tooltip139034"/>
+                                                        <button class="btn btn-link collapsed" type="button"
+                                                                data-toggle="collapse"
+                                                                data-target="#accordion-tab-2-content-3"
+                                                                aria-expanded="false"
+                                                                aria-controls="accordion-tab-2-content-3"
+                                                                data-original-title="" title=""
+                                                                aria-describedby="tooltip139034">Qu’est-ce que je vais
+                                                            apprendre pendant la formation ?
+                                                        </button>
+                                                    </h5>
+                                                </div>
+                                                <div class="collapse" id="accordion-tab-2-content-3"
+                                                     aria-labelledby="accordion-tab-2-heading-3"
+                                                     data-parent="#accordion-tab-2" style="">
+                                                    <div class="card-body">
+                                                        <p dir="ltr"
+                                                           style="line-height:1.2;margin-top:0pt;margin-bottom:0pt;">
+                                                            <span style="background-color: transparent; font-variant-numeric: normal; font-variant-east-asian: normal; vertical-align: baseline;">
+                                                                <font color="#000000" face="Arial">
+                                                                    <span style="font-size: 14.6667px;">
+                                                                        C’est une formation complète pour réussir en
+                                                                        tant que professionnel en transport routier de
+                                                                        marchandises. La formation chez Digimoov vous
+                                                                        permettra de maîtriser les parcours suivants :
+                                                                    </span>
+                                                                </font>
+                                                            </span>
+                                                            <br/>
+                                                            <span style="background-color: transparent; font-variant-numeric: normal; font-variant-east-asian: normal; vertical-align: baseline;">
+                                                                <font color="#000000" face="Arial">
+                                                                    <span style="font-size: 14.6667px;">
+                                                                        L’entreprise et son activité commerciale.
+                                                                    </span>
+                                                                </font>
+                                                            </span>
+                                                            <br/>
+                                                            <span style="background-color: transparent; font-variant-numeric: normal; font-variant-east-asian: normal; vertical-align: baseline;">
+                                                                <font color="#000000" face="Arial">
+                                                                    <span style="font-size: 14.6667px;">
+                                                                        L’entreprise et le cadre réglementaire de
+                                                                        l’activité de transport.
+                                                                    </span>
+                                                                </font>
+                                                            </span>
+                                                            <br/>
+                                                            <span style="background-color: transparent; font-variant-numeric: normal; font-variant-east-asian: normal; vertical-align: baseline;">
+                                                                <font color="#000000" face="Arial">
+                                                                    <span style="font-size: 14.6667px;">
+                                                                        L’entreprise et son activité financière.
+                                                                        L’entreprise et ses salariés.
+                                                                    </span>
+                                                                </font>
+                                                            </span>
+                                                            <br/>
+                                                            <span style="background-color: transparent; font-variant-numeric: normal; font-variant-east-asian: normal; vertical-align: baseline;">
+                                                                <font color="#000000" face="Arial">
+                                                                    <span style="font-size: 14.6667px;">
+                                                                        L’entreprise et la sécurité.
+                                                                    </span>
+                                                                </font>
+                                                            </span>
+                                                            <br/>
+                                                        </p>
+                                                        <p dir="ltr"
+                                                           style="line-height:1.2;margin-top:0pt;margin-bottom:0pt;">
+                                                            <br/>
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="card">
+                                                <div class="card-header" id="accordion-tab-2-heading-4">
+                                                    <h5>
+                                                        <button class="btn btn-link collapsed" type="button"
+                                                                data-toggle="collapse"
+                                                                data-target="#accordion-tab-2-content-4"
+                                                                aria-expanded="false"
+                                                                aria-controls="accordion-tab-2-content-9"
+                                                                data-original-title="" title=""
+                                                                aria-describedby="tooltip751657">Est-ce que je peux
+                                                            choisir de faire qu'une partie des modules formation en
+                                                            ligne ?
+                                                        </button>
+                                                    </h5>
+                                                </div>
+                                                <div class="collapse" id="accordion-tab-2-content-4"
+                                                     aria-labelledby="accordion-tab-2-heading-4"
+                                                     data-parent="#accordion-tab-2" style="">
+                                                    <div class="card-body">
+                                                        <p>
+                                                            <span id="docs-internal-guid-dd0c1628-7fff-6836-c8c8-692979a17fd2">
+                                                                <span style="font-size: 11pt; font-family: Arial; color: rgb(0, 0, 0); background-color: transparent; font-variant-numeric: normal; font-variant-east-asian: normal; vertical-align: baseline;">
+                                                                    Non, vous devez passer tous les modules pour obtenir
+                                                                    l’attestation de fin de formation.
+                                                                </span>
+                                                            </span>
+                                                            <br/>
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="card">
+                                                <div class="card-header" id="accordion-tab-2-heading-5">
+                                                    <h5>
+                                                        <button class="btn btn-link collapsed" type="button"
+                                                                data-toggle="collapse"
+                                                                data-target="#accordion-tab-2-content-5"
+                                                                aria-expanded="false"
+                                                                aria-controls="accordion-tab-2-content-5"
+                                                                data-original-title="" title=""
+                                                                aria-describedby="tooltip819315">Combien de temps dure
+                                                            la formation ?
+                                                        </button>
+                                                    </h5>
+                                                </div>
+                                                <div class="collapse" id="accordion-tab-2-content-5"
+                                                     aria-labelledby="accordion-tab-2-heading-5"
+                                                     data-parent="#accordion-tab-2" style="">
+                                                    <div class="card-body">
+                                                        <p>
+                                                            <span id="docs-internal-guid-7cf579a8-7fff-e2e8-0050-7ff07867b82a">
+                                                                <span style="font-size: 11pt; font-family: Arial; color: rgb(0, 0, 0); background-color: transparent; font-variant-numeric: normal; font-variant-east-asian: normal; vertical-align: baseline;">
+                                                                    La formation dure au total 102 h. Vous disposez d'un
+                                                                    délai allant de l’inscription jusqu’à la date
+                                                                    d’examen choisie pour compléter la formation.
+                                                                </span>
+                                                            </span>
+                                                            <br/>
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="card">
+                                                <div class="card-header" id="accordion-tab-2-heading-6">
+                                                    <h5>
+                                                        <button class="btn btn-link collapsed" type="button"
+                                                                data-toggle="collapse"
+                                                                data-target="#accordion-tab-2-content-6"
+                                                                aria-expanded="false"
+                                                                aria-controls="accordion-tab-2-content-6"
+                                                                data-original-title="" title=""
+                                                                aria-describedby="tooltip819315">Est-ce qu’on doit faire
+                                                            un minimum d'heures de formation par jour ?
+                                                        </button>
+                                                    </h5>
+                                                </div>
+                                                <div class="collapse" id="accordion-tab-2-content-6"
+                                                     aria-labelledby="accordion-tab-2-heading-6"
+                                                     data-parent="#accordion-tab-2" style="">
+                                                    <div class="card-body">
+                                                        <p>
+                                                            <span id="docs-internal-guid-7cf579a8-7fff-e2e8-0050-7ff07867b82a">
+                                                                <span style="font-size: 11pt; font-family: Arial; color: rgb(0, 0, 0); background-color: transparent; font-variant-numeric: normal; font-variant-east-asian: normal; vertical-align: baseline;">
+                                                                    C’est vous qui choisissez comment répartir votre
+                                                                    temps de formation. Cependant, on vous rappelle
+                                                                    qu’il faut passer la totalité des 102 h de formation
+                                                                    afin d'être prêt pour l’examen. Nous vous
+                                                                    conseillons de passer un minimum de 3 heures par
+                                                                    jour pendant la semaine et de 5 heures pendant le
+                                                                    week-end, à répartir selon votre disponibilité.
+                                                                </span>
+                                                            </span>
+                                                            <br/>
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="card">
+                                                <div class="card-header" id="accordion-tab-2-heading-7">
+                                                    <h5>
+                                                        <button class="btn btn-link collapsed" type="button"
+                                                                data-toggle="collapse"
+                                                                data-target="#accordion-tab-2-content-7"
+                                                                aria-expanded="false"
+                                                                aria-controls="accordion-tab-2-content-7"
+                                                                data-original-title="" title=""
+                                                                aria-describedby="tooltip864719">Comment m'inscrire à la
+                                                            formation ?
+                                                        </button>
+                                                    </h5>
+                                                </div>
+                                                <div class="collapse" id="accordion-tab-2-content-7"
+                                                     aria-labelledby="accordion-tab-2-heading-7"
+                                                     data-parent="#accordion-tab-2" style="">
+                                                    <div class="card-body">
+                                                        <p>
+                                                            <font color="#000000" face="Arial">
+                                                                <span style="font-size: 14.6667px;">
+                                                                    Pour vous inscrire à la formation, il vous suffit de
+                                                                    vous rendre sur www.digimoov.fr et de cliquer sur
+                                                                    l'onglet Nos tarifs. Vous pourrez alors choisir
+                                                                    votre formule en cliquant sur « je m’inscris ».
+                                                                    Sélectionnez votre centre d’examen, la date et
+                                                                    choisissez de payer par carte bleue ou par CPF. Si
+                                                                    vous avez choisi de mobiliser votre CPF, vous serez
+                                                                    redirigé vers l’interface Mon compte formation où
+                                                                    vous devrez suivre les étapes d’inscription. Si vous
+                                                                    avez choisi de payer par carte bleue, remplissez le
+                                                                    formulaire avec vos informations personnelles et
+                                                                    validez en effectuant le paiement
+                                                                </span>
+                                                            </font>
+                                                            <br/>
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="card">
+                                                <div class="card-header" id="accordion-tab-2-heading-8">
+                                                    <h5>
+                                                        <button class="btn btn-link collapsed" type="button"
+                                                                data-toggle="collapse"
+                                                                data-target="#accordion-tab-2-content-8"
+                                                                aria-expanded="false"
+                                                                aria-controls="accordion-tab-2-content-8"
+                                                                data-original-title="" title=""
+                                                                aria-describedby="tooltip860922">Une fois le paiement
+                                                            validé, quelle sera la prochaine étape ?
+                                                        </button>
+                                                    </h5>
+                                                </div>
+                                                <div class="collapse" id="accordion-tab-2-content-8"
+                                                     aria-labelledby="accordion-tab-2-heading-8"
+                                                     data-parent="#accordion-tab-2" style="">
+                                                    <div class="card-body">
+                                                        <p>
+                                                            <span id="docs-internal-guid-6a603723-7fff-b161-d28a-a87db446ec06">
+                                                                <span style="font-size: 11pt; font-family: Arial; color: rgb(0, 0, 0); background-color: transparent; font-variant-numeric: normal; font-variant-east-asian: normal; vertical-align: baseline;">
+                                                                    Une fois le paiement validé, vous recevrez par
+                                                                    e-mail votre contrat de formation et une liste de
+                                                                    documents à fournir. Vous devez uploader le contrat
+                                                                    signé et les documents demandés en cliquant sur le
+                                                                    bouton « envoyer mes documents » dans l’email.
+                                                                </span>
+                                                            </span>
+                                                            <br/>
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="card">
+                                                <div class="card-header" id="accordion-tab-2-heading-9">
+                                                    <h5>
+                                                        <button class="btn btn-link collapsed" type="button"
+                                                                data-toggle="collapse"
+                                                                data-target="#accordion-tab-2-content-9"
+                                                                aria-expanded="false"
+                                                                aria-controls="accordion-tab-2-content-9"
+                                                                data-original-title="" title=""
+                                                                aria-describedby="tooltip201179">Quand est ce que
+                                                            j’obtiens les accès à ma formation en ligne ?
+                                                        </button>
+                                                    </h5>
+                                                </div>
+                                                <div class="collapse" id="accordion-tab-2-content-9"
+                                                     aria-labelledby="accordion-tab-2-heading-9"
+                                                     data-parent="#accordion-tab-2" style="">
+                                                    <div class="card-body">
+                                                        <p>
+                                                            <span id="docs-internal-guid-6ab5d0c1-7fff-0b47-2d8e-4a7314b4130a">
+                                                                <span style="font-size: 11pt; font-family: Arial; color: rgb(0, 0, 0); background-color: transparent; font-variant-numeric: normal; font-variant-east-asian: normal; vertical-align: baseline;">
+                                                                    Une fois votre contrat de formation signé et vos
+                                                                    documents validés, vous recevrez une invitation à la
+                                                                    plateforme de e-learning dans un délai de 14 jours.
+                                                                    Si vous souhaitez commencer plus rapidement, il
+                                                                    suffit de cocher la case « Je renonce expressément à
+                                                                    exercer mon droit de rétractation » dans la page
+                                                                    d’inscription.
+                                                                </span>
+                                                            </span>
+                                                            <br/>
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="card">
+                                                <div class="card-header" id="accordion-tab-2-heading-10">
+                                                    <h5>
+                                                        <button class="btn btn-link collapsed" type="button"
+                                                                data-toggle="collapse"
+                                                                data-target="#accordion-tab-2-content-10"
+                                                                aria-expanded="false"
+                                                                aria-controls="accordion-tab-2-content-10"
+                                                                data-original-title="" title=""
+                                                                aria-describedby="tooltip4098">La formation, est-elle
+                                                            obligatoire ?
+                                                        </button>
+                                                    </h5>
+                                                </div>
+                                                <div class="collapse" id="accordion-tab-2-content-10"
+                                                     aria-labelledby="accordion-tab-2-heading-10"
+                                                     data-parent="#accordion-tab-2" style="">
+                                                    <div class="card-body">
+                                                        <p>
+                                                            <span id="docs-internal-guid-465e210c-7fff-4264-0285-3969b1be7a75">
+                                                                <span style="font-size: 11pt; font-family: Arial; color: rgb(0, 0, 0); background-color: transparent; font-variant-numeric: normal; font-variant-east-asian: normal; vertical-align: baseline;">
+                                                                    Oui car vous ne pouvez pas passer l’examen sans
+                                                                    avoir fini la formation.
+                                                                </span>
+                                                            </span>
+                                                            <br/>
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="tab-pane" id="tab3" role="tabpanel" aria-labelledby="tab3">
+                                        <div class="accordion" id="accordion-tab-3">
+                                            <div class="card">
+                                                <div class="card-header" id="accordion-tab-3-heading-1">
+                                                    <h5>
+                                                        <button class="btn btn-link collapsed" type="button"
+                                                                data-toggle="collapse"
+                                                                data-target="#accordion-tab-3-content-1"
+                                                                aria-expanded="false"
+                                                                aria-controls="accordion-tab-3-content-1"
+                                                                data-original-title="" title=""
+                                                                aria-describedby="tooltip528114">Quand est ce je peux
+                                                            passer l’examen ?
+                                                        </button>
+                                                    </h5>
+                                                </div>
+                                                <div class="collapse" id="accordion-tab-3-content-1"
+                                                     aria-labelledby="accordion-tab-3-heading-1"
+                                                     data-parent="#accordion-tab-3" style="">
+                                                    <div class="card-body">
+                                                        <p>
+                                                            <font style="color: rgb(0, 0, 0);">Vous pourrez passer
+                                                                l’examen après avoir complété la formation.
+                                                            </font>
+                                                        </p>
+                                                        <p/>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="card">
+                                                <div class="card-header" id="accordion-tab-3-heading-2">
+                                                    <h5>
+                                                        <button class="btn btn-link collapsed" type="button"
+                                                                data-toggle="collapse"
+                                                                data-target="#accordion-tab-3-content-2"
+                                                                aria-expanded="false"
+                                                                aria-controls="accordion-tab-3-content-2"
+                                                                data-original-title="" title=""
+                                                                aria-describedby="tooltip528114">Où est ce je peux
+                                                            passer l’examen ?
+                                                        </button>
+                                                    </h5>
+                                                </div>
+                                                <div class="collapse" id="accordion-tab-3-content-2"
+                                                     aria-labelledby="accordion-tab-3-heading-2"
+                                                     data-parent="#accordion-tab-3" style="">
+                                                    <div class="card-body">
+                                                        <p>
+                                                            <font style="color: rgb(0, 0, 0);">Vous avez la possibilité
+                                                                de passer l'examen dans l'un des centres suivants :
+                                                                Bordeaux, Lille, Lyon, Marseille, Nantes, Paris,
+                                                                Strasbourg, Toulouse.
+                                                            </font>
+                                                        </p>
+                                                        <p/>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="card">
+                                                <div class="card-header" id="accordion-tab-3-heading-3">
+                                                    <h5>
+                                                        <button class="btn btn-link collapsed" type="button"
+                                                                data-toggle="collapse"
+                                                                data-target="#accordion-tab-3-content-3"
+                                                                aria-expanded="false"
+                                                                aria-controls="accordion-tab-3-content-3"
+                                                                data-original-title="" title=""
+                                                                aria-describedby="tooltip528114">Est ce que je peux
+                                                            passer l'examen en candidat libre (sans formation) ?
+                                                        </button>
+                                                    </h5>
+                                                </div>
+                                                <div class="collapse" id="accordion-tab-3-content-3"
+                                                     aria-labelledby="accordion-tab-3-heading-3"
+                                                     data-parent="#accordion-tab-3" style="">
+                                                    <div class="card-body">
+                                                        <p>
+                                                            <font style="color: rgb(0, 0, 0);">Non. Vous devez
+                                                                absolument avoir complété la formation pour pouvoir
+                                                                passer l'examen.
+                                                            </font>
+                                                        </p>
+                                                        <p/>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="card">
+                                                <div class="card-header" id="accordion-tab-3-heading-4">
+                                                    <h5>
+                                                        <button class="btn btn-link collapsed" type="button"
+                                                                data-toggle="collapse"
+                                                                data-target="#accordion-tab-3-content-4"
+                                                                aria-expanded="false"
+                                                                aria-controls="accordion-tab-3-content-4"
+                                                                data-original-title="" title=""
+                                                                aria-describedby="tooltip528114">Comment se déroule
+                                                            l’examen de capacité de transport léger de marchandise ?
+                                                        </button>
+                                                    </h5>
+                                                </div>
+                                                <div class="collapse" id="accordion-tab-3-content-4"
+                                                     aria-labelledby="accordion-tab-3-heading-4"
+                                                     data-parent="#accordion-tab-3" style="">
+                                                    <div class="card-body">
+                                                        <p>
+                                                            <font style="color: rgb(0, 0, 0);">C’est un examen en salle
+                                                                qui dure 3 heures. Les questions sont proposées sous
+                                                                forme de QCM (50 questions à choix multiples sur 100
+                                                                points) et de Questions rédigées (100 points également
+                                                                au total). La partie QCM dure 1 h 15 et la partie QRC
+                                                                dure 1 h 45.
+                                                            </font>
+                                                        </p>
+                                                        <p/>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="card">
+                                                <div class="card-header" id="accordion-tab-3-heading-5">
+                                                    <h5>
+                                                        <button class="btn btn-link collapsed" type="button"
+                                                                data-toggle="collapse"
+                                                                data-target="#accordion-tab-3-content-5"
+                                                                aria-expanded="false"
+                                                                aria-controls="accordion-tab-3-content-5"
+                                                                data-original-title="" title=""
+                                                                aria-describedby="tooltip528114">Quelles sont les
+                                                            conditions pour réussir l’examen ?
+                                                        </button>
+                                                    </h5>
+                                                </div>
+                                                <div class="collapse" id="accordion-tab-3-content-5"
+                                                     aria-labelledby="accordion-tab-3-heading-5"
+                                                     data-parent="#accordion-tab-3" style="">
+                                                    <div class="card-body">
+                                                        <p>
+                                                            <font style="color: rgb(0, 0, 0);">Le candidat doit obtenir
+                                                                un total d'au moins 120 points sur 200 (c’est-à-dire une
+                                                                moyenne de 12/20), avec des notes minimales de 50/100
+                                                                pour la partie QCM et de 40/100 pour la partie Questions
+                                                                à Réponses Courtes.
+                                                            </font>
+                                                        </p>
+                                                        <p/>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="card">
+                                                <div class="card-header" id="accordion-tab-3-heading-6">
+                                                    <h5>
+                                                        <button class="btn btn-link collapsed" type="button"
+                                                                data-toggle="collapse"
+                                                                data-target="#accordion-tab-3-content-6"
+                                                                aria-expanded="false"
+                                                                aria-controls="accordion-tab-3-content-6"
+                                                                data-original-title="" title=""
+                                                                aria-describedby="tooltip528114">Quand est ce qu'a lieu
+                                                            l’examen ?
+                                                        </button>
+                                                    </h5>
+                                                </div>
+                                                <div class="collapse" id="accordion-tab-3-content-6"
+                                                     aria-labelledby="accordion-tab-3-heading-6"
+                                                     data-parent="#accordion-tab-3" style="">
+                                                    <div class="card-body">
+                                                        <p>
+                                                            <font style="color: rgb(0, 0, 0);">Les dates d’examen
+                                                                varient à l’échelon de 60 jours ; dès qu’une nouvelle
+                                                                date est fixée, elle est affichée sur le site
+                                                                Digimoov.fr.
+                                                            </font>
+                                                        </p>
+                                                        <p/>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="card">
+                                                <div class="card-header" id="accordion-tab-3-heading-7">
+                                                    <h5>
+                                                        <button class="btn btn-link collapsed" type="button"
+                                                                data-toggle="collapse"
+                                                                data-target="#accordion-tab-3-content-7"
+                                                                aria-expanded="false"
+                                                                aria-controls="accordion-tab-3-content-7"
+                                                                data-original-title="" title=""
+                                                                aria-describedby="tooltip528114">Est ce qu’on peut
+                                                            reporter l’examen à une autre date ?
+                                                        </button>
+                                                    </h5>
+                                                </div>
+                                                <div class="collapse" id="accordion-tab-3-content-7"
+                                                     aria-labelledby="accordion-tab-3-heading-7"
+                                                     data-parent="#accordion-tab-3" style="">
+                                                    <div class="card-body">
+                                                        <p>
+                                                            <font style="color: rgb(0, 0, 0);">Non, ce n’est pas
+                                                                possible de reporter l’examen, même avec un justificatif
+                                                                d'absence.
+                                                            </font>
+                                                        </p>
+                                                        <p/>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="card">
+                                                <div class="card-header" id="accordion-tab-3-heading-8">
+                                                    <h5>
+                                                        <button class="btn btn-link collapsed" type="button"
+                                                                data-toggle="collapse"
+                                                                data-target="#accordion-tab-3-content-8"
+                                                                aria-expanded="false"
+                                                                aria-controls="accordion-tab-3-content-8"
+                                                                data-original-title="" title=""
+                                                                aria-describedby="tooltip909647">Si j'échoue à l'examen
+                                                            une première fois, que se passe-t-il ?
+                                                        </button>
+                                                    </h5>
+                                                </div>
+                                                <div class="collapse" id="accordion-tab-3-content-8"
+                                                     aria-labelledby="accordion-tab-3-heading-8"
+                                                     data-parent="#accordion-tab-3" style="">
+                                                    <div class="card-body">
+                                                        <p>
+                                                            <font style="color: rgb(0, 0, 0);">Si vous avez échoué à
+                                                                l’examen après avoir achevé votre formation, vous avez
+                                                                droit à deux tentatives de passage d’examen
+                                                                supplémentaires en ne payant que les frais d’examen et
+                                                                en bénéficiant d’une période de révision gratuite.
+                                                                Cependant, si vous échouez à vos nouvelles tentatives,
+                                                                il vous sera indispensable de refaire la formation.
+                                                            </font>
+                                                        </p>
+                                                        <p/>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="tab-pane" id="tab4" role="tabpanel" aria-labelledby="tab4">
+                                        <div class="accordion" id="accordion-tab-4">
+                                            <div class="card">
+                                                <div class="card-header" id="accordion-tab-4-heading-1">
+                                                    <h5>
+                                                        <button class="btn btn-link collapsed" type="button"
+                                                                data-toggle="collapse"
+                                                                data-target="#accordion-tab-4-content-1"
+                                                                aria-expanded="false"
+                                                                aria-controls="accordion-tab-4-content-1"
+                                                                data-original-title="" title=""
+                                                                aria-describedby="tooltip377677">À quoi sert
+                                                            l'attestation de capacité professionnelle en
+                                                            transport routier léger de marchandises ?
+                                                        </button>
+                                                    </h5>
+                                                </div>
+                                                <div class="collapse" id="accordion-tab-4-content-1"
+                                                     aria-labelledby="accordion-tab-4-heading-1"
+                                                     data-parent="#accordion-tab-4" style="">
+                                                    <div class="card-body">
+                                                        <p>
+                                                            <font style="color: rgb(0, 0, 0);">Pour pouvoir créer une
+                                                                entreprise de transport routier léger de marchandises
+                                                                qui exploite des véhicules ne dépassant pas 3,5 tonnes
+                                                                de poids total autorisé en charge, vous aurez
+                                                                l'obligation d'obtenir l'attestation de capacité
+                                                                professionnelle de transport routier léger de
+                                                                marchandises afin de pouvoir inscrire votre société au
+                                                                registre des transporteurs auprès de la DRIEA/DREAL.
+                                                                Vous pourrez donc devenir livreur/coursier en scooter,
+                                                                voiture ou camionnette pour livrer tous types de
+                                                                marchandises.
+                                                            </font>
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="card">
+                                                <div class="card-header" id="accordion-tab-4-heading-2">
+                                                    <h5>
+                                                        <button class="btn btn-link collapsed" type="button"
+                                                                data-toggle="collapse"
+                                                                data-target="#accordion-tab-4-content-2"
+                                                                aria-expanded="false"
+                                                                aria-controls="accordion-tab-4-content-2"
+                                                                data-original-title="" title=""
+                                                                aria-describedby="tooltip577642">Comment obtenir
+                                                            l'attestation de capacité professionnelle en transport
+                                                            routier léger de marchandises ?
+                                                        </button>
+                                                    </h5>
+                                                </div>
+                                                <div class="collapse" id="accordion-tab-4-content-2"
+                                                     aria-labelledby="accordion-tab-4-heading-2"
+                                                     data-parent="#accordion-tab-4" style="">
+                                                    <div class="card-body">
+                                                        <p>
+                                                            <font color="#000000">La voie classique : formation puis
+                                                                examen.
+                                                            </font>
+                                                        </p>
+                                                        <p>
+                                                            <font color="#000000">Il est indispensable de passer une
+                                                                formation qui dure 102 heures auprès d’un centre de
+                                                                formation agréé par la DREAL/DRIEA. Ensuite, vous devez
+                                                                réussir un examen de 3 heures dans l’un de nos centres
+                                                                d’examens partout en France pour obtenir votre
+                                                                attestation de capacité professionnelle en transport
+                                                                léger de marchandises.
+                                                            </font>
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="card">
+                                                <div class="card-header" id="accordion-tab-4-heading-3">
+                                                    <h5>
+                                                        <button class="btn btn-link collapsed" type="button"
+                                                                data-toggle="collapse"
+                                                                data-target="#accordion-tab-4-content-3"
+                                                                aria-expanded="false"
+                                                                aria-controls="accordion-tab-4-content-3"
+                                                                data-original-title="" title=""
+                                                                aria-describedby="tooltip683839">Dans quels cas puis-je
+                                                            être dispensé de la formation et de l’examen ?
+                                                        </button>
+                                                    </h5>
+                                                </div>
+                                                <div class="collapse" id="accordion-tab-4-content-3"
+                                                     aria-labelledby="accordion-tab-4-heading-3"
+                                                     data-parent="#accordion-tab-4" style="">
+                                                    <div class="card-body">
+                                                        <p dir="ltr"
+                                                           style="line-height:1.2;margin-top:0pt;margin-bottom:0pt;">
+                                                            <font style="color: rgb(0, 0, 0);">Vous pouvez être dispensé
+                                                                si :
+                                                            </font>
+                                                        </p>
+                                                        <ul>
+                                                            <li>
+                                                                <p dir="ltr"
+                                                                   style="line-height:1.2;margin-top:0pt;margin-bottom:0pt;">
+                                                                    <font style="color: rgb(0, 0, 0);">Vous êtes
+                                                                        titulaire du baccalauréat professionnel
+                                                                        Exploitation des transports ou du baccalauréat
+                                                                        professionnel Transport
+                                                                    </font>
+                                                                </p>
+                                                            </li>
+                                                            <li>
+                                                                <p dir="ltr"
+                                                                   style="line-height:1.2;margin-top:0pt;margin-bottom:0pt;">
+                                                                    <font style="color: rgb(0, 0, 0);">Vous avez géré de
+                                                                        manière continue une entreprise de transport
+                                                                        public routier de marchandises pendant au moins
+                                                                        deux ans et que vous n’avez pas cessé cette
+                                                                        activité depuis plus de dix ans
+                                                                    </font>
+                                                                </p>
+                                                            </li>
+                                                            <li>
+                                                                <p dir="ltr"
+                                                                   style="line-height:1.2;margin-top:0pt;margin-bottom:0pt;">
+                                                                    <font style="color: rgb(0, 0, 0);">Si vous êtes dans
+                                                                        l’une de ces deux situations, vous pouvez
+                                                                        constituer un dossier de demande d’attestation
+                                                                        de capacité professionnelle (formulaire Cerfa
+                                                                        11414-04) en incluant votre justificatif
+                                                                        d’expérience professionnelle ou une copie de
+                                                                        votre diplôme. Ce dossier doit être adressé à la
+                                                                        DREAL (ou DRIEA en Île-de-France).
+                                                                    </font>
+                                                                </p>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="tab-pane" id="tab5" role="tabpanel" aria-labelledby="tab5">
+                                        <div class="accordion" id="accordion-tab-5">
+                                            <div class="card">
+                                                <div class="card-header" id="accordion-tab-5-heading-1">
+                                                    <h5>
+                                                        <button class="btn btn-link collapsed" type="button"
+                                                                data-toggle="collapse"
+                                                                data-target="#accordion-tab-5-content-1"
+                                                                aria-expanded="false"
+                                                                aria-controls="accordion-tab-5-content-1"
+                                                                data-original-title="" title=""
+                                                                aria-describedby="tooltip927818">Quelle est la
+                                                            différence entre les offres Solo, Pro et Premium ?
+                                                        </button>
+                                                    </h5>
+                                                </div>
+                                                <div class="collapse" id="accordion-tab-5-content-1"
+                                                     aria-labelledby="accordion-tab-5-heading-1"
+                                                     data-parent="#accordion-tab-5" style="">
+                                                    <div class="card-body">
+                                                        <ul>
+                                                            <li>
+                                                                <p>
+                                                                    <font style="color: rgb(0, 0, 0);">Avec le pack Solo
+                                                                        vous aurez un accès à la plateforme pédagogique
+                                                                        de Digimoov et à l'examen en présentiel. Pendant
+                                                                        la formation, vous aurez accès à un seul examen
+                                                                        blanc d’entraînement (niveau facile).
+                                                                    </font>
+                                                                </p>
+                                                            </li>
+                                                            <li>
+                                                                <p>
+                                                                    <font style="color: rgb(0, 0, 0);">Avec le pack Pro,
+                                                                        vous aurez la possibilité de payer en deux fois
+                                                                        et vous bénéficierez de l'accompagnement d'un
+                                                                        coach dédié tout au long de votre formation.
+                                                                        Vous aurez aussi accès à 5 examens blancs
+                                                                        d’entraînement de tous les niveaux (facile,
+                                                                        moyen, difficile) et vous aurez à votre
+                                                                        disposition un livre d’entraînement en version
+                                                                        électronique pour une meilleure préparation à
+                                                                        l'examen.
+                                                                    </font>
+                                                                </p>
+                                                            </li>
+                                                            <li>
+                                                                <p>
+                                                                    <font style="color: rgb(0, 0, 0);">⦁ Avec le pack
+                                                                        Premium, vous aurez la possibilité de payer en
+                                                                        trois fois. Vous bénéficierez non seulement de
+                                                                        l'accompagnement d'un coach dédié tout au long
+                                                                        de votre formation mais vous aurez aussi une
+                                                                        invitation pour participer aux lives (directs)
+                                                                        hebdomadaires avec des formateurs hautement
+                                                                        qualifiés. Vous aurez un accès illimité à tous
+                                                                        les examens blancs d’entraînement et vous aurez
+                                                                        à votre disposition les deux livres
+                                                                        d’entraînement, à la fois en version
+                                                                        électronique et en version papier, pour une
+                                                                        préparation optimale à l'examen.
+                                                                    </font>
+
+                                                                </p>
+                                                            </li>
+                                                        </ul>
+                                                        <p/>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="card">
+                                                <div class="card-header" id="accordion-tab-5-heading-2">
+                                                    <h5>
+                                                        <button class="btn btn-link collapsed" type="button"
+                                                                data-toggle="collapse"
+                                                                data-target="#accordion-tab-5-content-2"
+                                                                aria-expanded="false"
+                                                                aria-controls="accordion-tab-5-content-2"
+                                                                data-original-title="" title=""
+                                                                aria-describedby="tooltip927818">La formation en ligne
+                                                            de la
+                                                            Capacité Transport de Marchandises léger est-elle éligible
+                                                            au
+                                                            CPF ?
+                                                        </button>
+                                                    </h5>
+                                                </div>
+                                                <div class="collapse" id="accordion-tab-5-content-2"
+                                                     aria-labelledby="accordion-tab-5-heading-2"
+                                                     data-parent="#accordion-tab-5" style="">
+                                                    <div class="card-body">
+                                                        <p>
+                                                            <font style="color: rgb(0, 0, 0);">Oui, la formation en
+                                                                ligne de
+                                                                Capacité de transport de marchandises léger est éligible
+                                                                à
+                                                                Mon compte formation (CPF).
+                                                            </font>
+                                                        </p>
+                                                        <p/>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="card">
+                                                <div class="card-header" id="accordion-tab-5-heading-3">
+                                                    <h5>
+                                                        <button class="btn btn-link collapsed" type="button"
+                                                                data-toggle="collapse"
+                                                                data-target="#accordion-tab-5-content-3"
+                                                                aria-expanded="false"
+                                                                aria-controls="accordion-tab-5-content-3"
+                                                                data-original-title="" title=""
+                                                                aria-describedby="tooltip927818">Quels sont les modes de
+                                                            paiements que je peux utiliser pour payer ma formation ?
+                                                        </button>
+                                                    </h5>
+                                                </div>
+                                                <div class="collapse" id="accordion-tab-5-content-3"
+                                                     aria-labelledby="accordion-tab-5-heading-3"
+                                                     data-parent="#accordion-tab-5" style="">
+                                                    <div class="card-body">
+                                                        <p>
+                                                            <font style="color: rgb(0, 0, 0);">Vous avez le choix de
+                                                                payer
+                                                                par carte bleue ou par CPF.
+                                                            </font>
+                                                        </p>
+                                                        <p/>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="card">
+                                                <div class="card-header" id="accordion-tab-5-heading-4">
+                                                    <h5>
+                                                        <button class="btn btn-link collapsed" type="button"
+                                                                data-toggle="collapse"
+                                                                data-target="#accordion-tab-5-content-4"
+                                                                aria-expanded="false"
+                                                                aria-controls="accordion-tab-5-content-4"
+                                                                data-original-title="" title=""
+                                                                aria-describedby="tooltip927818">Je veux m’inscrire à la
+                                                            formation mais je n'ai pas du tout confiance au paiement en
+                                                            ligne.
+                                                        </button>
+                                                    </h5>
+                                                </div>
+                                                <div class="collapse" id="accordion-tab-5-content-4"
+                                                     aria-labelledby="accordion-tab-5-heading-4"
+                                                     data-parent="#accordion-tab-5" style="">
+                                                    <div class="card-body">
+                                                        <p>
+                                                            <font style="color: rgb(0, 0, 0);">Le site web Digimoov.fr
+                                                                est
+                                                                bien sécurisé, nous utilisons des certifications qui
+                                                                garantissent le cryptage et la protection des
+                                                                informations
+                                                                saisies sur les pages de paiement.
+                                                            </font>
+                                                        </p>
+                                                        <p/>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="card">
+                                                <div class="card-header" id="accordion-tab-5-heading-5">
+                                                    <h5>
+                                                        <button class="btn btn-link collapsed" type="button"
+                                                                data-toggle="collapse"
+                                                                data-target="#accordion-tab-5-content-5"
+                                                                aria-expanded="false"
+                                                                aria-controls="accordion-tab-5-content-5"
+                                                                data-original-title="" title=""
+                                                                aria-describedby="tooltip927818">Comment financer la
+                                                            formation avec mon compte CPF ?
+                                                        </button>
+                                                    </h5>
+                                                </div>
+                                                <div class="collapse" id="accordion-tab-5-content-5"
+                                                     aria-labelledby="accordion-tab-5-heading-5"
+                                                     data-parent="#accordion-tab-5" style="">
+                                                    <div class="card-body">
+                                                        <p>
+                                                            <font style="color: rgb(0, 0, 0);">Cliquez sur Nos tarifs
+                                                                dans
+                                                                le menu du site digimoov.fr. Vous pourrez alors choisir
+                                                                votre formule en cliquant sur « je m’inscris » et vous
+                                                                devrez sélectionner votre centre et la date d’examen
+                                                                puis
+                                                                choisir de payer par CPF et cliquer sur Mobiliser votre
+                                                                CPF.
+                                                                Vous serez redirigé vers l’interface Mon compte
+                                                                formation où
+                                                                vous devrez suivre les étapes d’inscription.
+                                                            </font>
+                                                        </p>
+                                                        <p/>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="card">
+                                                <div class="card-header" id="accordion-tab-5-heading-6">
+                                                    <h5>
+                                                        <button class="btn btn-link collapsed" type="button"
+                                                                data-toggle="collapse"
+                                                                data-target="#accordion-tab-5-content-6"
+                                                                aria-expanded="false"
+                                                                aria-controls="accordion-tab-5-content-6"
+                                                                data-original-title="" title=""
+                                                                aria-describedby="tooltip927818">Je n’ai pas un solde
+                                                            suffisant sur mon compte CPF, comment faire ?
+                                                        </button>
+                                                    </h5>
+                                                </div>
+                                                <div class="collapse" id="accordion-tab-5-content-6"
+                                                     aria-labelledby="accordion-tab-5-heading-6"
+                                                     data-parent="#accordion-tab-5" style="">
+                                                    <div class="card-body">
+                                                        <p>
+                                                            <font style="color: rgb(0, 0, 0);">Vous pouvez alimenter
+                                                                votre
+                                                                compte CPF par carte bleue pour atteindre le montant
+                                                                requis.
+                                                                Si vous êtes un demandeur d’emploi, vous pouvez faire
+                                                                une
+                                                                demande de financement auprès de Pôle emploi. Contactez
+                                                                le
+                                                                service « mon compte CPF » et ils vous expliqueront la
+                                                                procédure.
+                                                            </font>
+                                                        </p>
+                                                        <p/>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="card">
+                                                <div class="card-header" id="accordion-tab-5-heading-7">
+                                                    <h5>
+                                                        <button class="btn btn-link collapsed" type="button"
+                                                                data-toggle="collapse"
+                                                                data-target="#accordion-tab-5-content-7"
+                                                                aria-expanded="false"
+                                                                aria-controls="accordion-tab-5-content-7"
+                                                                data-original-title="" title=""
+                                                                aria-describedby="tooltip927818">Est ce que je peux
+                                                            payer un
+                                                            nouveau passage à l'examen avec mon compte CPF ?
+                                                        </button>
+                                                    </h5>
+                                                </div>
+                                                <div class="collapse" id="accordion-tab-5-content-7"
+                                                     aria-labelledby="accordion-tab-5-heading-7"
+                                                     data-parent="#accordion-tab-5" style="">
+                                                    <div class="card-body">
+                                                        <p>
+                                                            <font style="color: rgb(0, 0, 0);">Non, le CPF permet juste
+                                                                de
+                                                                financer les formations et non pas les examens.
+                                                            </font>
+                                                        </p>
+                                                        <p/>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="tab-pane" id="tab6" role="tabpanel" aria-labelledby="tab6">
+                                        <div class="accordion" id="accordion-tab-6">
+                                            <div class="card">
+                                                <div class="card-header" id="accordion-tab-6-heading-1">
+                                                    <h5>
+                                                        <button class="btn btn-link collapsed" type="button"
+                                                                data-toggle="collapse"
+                                                                data-target="#accordion-tab-6-content-1"
+                                                                aria-expanded="false"
+                                                                aria-controls="accordion-tab-6-content-1"
+                                                                data-original-title="" title=""
+                                                                aria-describedby="tooltip427915">Est ce que on peut
+                                                            créer
+                                                            une société de déménagement avec cette attestation de
+                                                            capacité ?
+                                                        </button>
+                                                    </h5>
+                                                </div>
+                                                <div class="collapse" id="accordion-tab-6-content-1"
+                                                     aria-labelledby="accordion-tab-6-heading-1"
+                                                     data-parent="#accordion-tab-6" style="">
+                                                    <div class="card-body">
+                                                        <p>
+                                                            <font style="color: rgb(0, 0, 0);">Oui, à condition que les
+                                                                véhicules utilisés soient de moins de 3,5 T de PTAC.
+                                                            </font>
+                                                        </p>
+                                                        <p/>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="card">
+                                                <div class="card-header" id="accordion-tab-6-heading-2">
+                                                    <h5>
+                                                        <button class="btn btn-link collapsed" type="button"
+                                                                data-toggle="collapse"
+                                                                data-target="#accordion-tab-6-content-2"
+                                                                aria-expanded="false"
+                                                                aria-controls="accordion-tab-6-content-2"
+                                                                data-original-title="" title=""
+                                                                aria-describedby="tooltip375056">J’ai les permis C/CE,
+                                                            est
+                                                            ce que j'ai besoin de passer la formation de Capacité de
+                                                            Transport léger de marchandises ?
+                                                        </button>
+                                                    </h5>
+                                                </div>
+                                                <div class="collapse" id="accordion-tab-6-content-2"
+                                                     aria-labelledby="accordion-tab-6-heading-2"
+                                                     data-parent="#accordion-tab-6" style="">
+                                                    <div class="card-body">
+                                                        <p>
+                                                            <font style="color: rgb(0, 0, 0);">Oui.</font>
+                                                        </p>
+                                                        <p/>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="card">
+                                                <div class="card-header" id="accordion-tab-6-heading-3">
+                                                    <h5>
+                                                        <button class="btn btn-link collapsed" type="button"
+                                                                data-toggle="collapse"
+                                                                data-target="#accordion-tab-6-content-3"
+                                                                aria-expanded="false"
+                                                                aria-controls="accordion-tab-6-content-3"
+                                                                data-original-title="" title=""
+                                                                aria-describedby="tooltip537404">J'ai la formation à la
+                                                            Fimo
+                                                            et FCO, est ce que j'ai besoin de passer la formation de
+                                                            Capacité de Transport léger de marchandises ?
+                                                        </button>
+                                                    </h5>
+                                                </div>
+                                                <div class="collapse" id="accordion-tab-6-content-3"
+                                                     aria-labelledby="accordion-tab-6-heading-3"
+                                                     data-parent="#accordion-tab-6" style="">
+                                                    <div class="card-body">
+                                                        <p>
+                                                            <font style="color: rgb(0, 0, 0);">Oui.</font>
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="card">
+                                                <div class="card-header" id="accordion-tab-6-heading-5">
+                                                    <h5>
+                                                        <button class="btn btn-link collapsed" type="button"
+                                                                data-toggle="collapse"
+                                                                data-target="#accordion-tab-6-content-5"
+                                                                aria-expanded="false"
+                                                                aria-controls="accordion-tab-6-content-5"
+                                                                data-original-title="" title=""
+                                                                aria-describedby="tooltip991849">Ai-je besoin besoin de
+                                                            repasser la formation de Capacité de Transport léger de
+                                                            marchandises pour travailler en Europe ?
+                                                        </button>
+                                                    </h5>
+                                                </div>
+                                                <div class="collapse" id="accordion-tab-6-content-5"
+                                                     aria-labelledby="accordion-tab-6-heading-5"
+                                                     data-parent="#accordion-tab-6" style="">
+                                                    <div class="card-body">
+                                                        <p>
+                                                            <font style="color: rgb(0, 0, 0);">Non.</font>
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="card">
+                                                <div class="card-header" id="accordion-tab-6-heading-6">
+                                                    <h5>
+                                                        <button class="btn btn-link collapsed" type="button"
+                                                                data-toggle="collapse"
+                                                                data-target="#accordion-tab-6-content-6"
+                                                                aria-expanded="false"
+                                                                aria-controls="accordion-tab-6-content-6"
+                                                                data-original-title="" title=""
+                                                                aria-describedby="tooltip483484">Est-ce qu'on doit
+                                                            signer un
+                                                            document comme un contrat de formation avant de débuter la
+                                                            formation ?
+                                                        </button>
+                                                    </h5>
+                                                </div>
+                                                <div class="collapse" id="accordion-tab-6-content-6"
+                                                     aria-labelledby="accordion-tab-6-heading-6"
+                                                     data-parent="#accordion-tab-6" style="">
+                                                    <div class="card-body">
+                                                        <p>
+                                                            <font style="color: rgb(0, 0, 0);">Oui.</font>
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="card">
+                                                <div class="card-header" id="accordion-tab-6-heading-7">
+                                                    <h5>
+                                                        <button class="btn btn-link collapsed" type="button"
+                                                                data-toggle="collapse"
+                                                                data-target="#accordion-tab-6-content-7"
+                                                                aria-expanded="false"
+                                                                aria-controls="accordion-tab-6-content-7"
+                                                                data-original-title="" title=""
+                                                                aria-describedby="tooltip246905">Est-ce qu'il faut un
+                                                            permis
+                                                            AM (BSR) pour être transporteur ?
+                                                        </button>
+                                                    </h5>
+                                                </div>
+                                                <div class="collapse" id="accordion-tab-6-content-7"
+                                                     aria-labelledby="accordion-tab-6-heading-7"
+                                                     data-parent="#accordion-tab-6" style="">
+                                                    <div class="card-body">
+                                                        <p>
+                                                            <font style="color: rgb(0, 0, 0);">Pour tous ceux qui sont
+                                                                nés
+                                                                après le 31 décembre 1987, il sera nécessaire d'être
+                                                                titulaire du permis AM (BSR) ou d'un permis de conduire.
+                                                            </font>
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </t>
+    </template>
+</odoo>

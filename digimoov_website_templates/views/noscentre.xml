@@ -1,0 +1,101 @@
+<odoo>
+    <template id="digimoov_website_templates.digimoov_template_noscentre"
+              name="Choisissez le centre d'examen qui vous convient | Digimoov">
+        <t t-call="website.layout">
+            <style>
+                @media (min-width: 720px){
+                .s_title_default{
+                width:100%;
+                height:100%;
+                }
+                .mb-2 {
+                    width:60%;
+                    height:100%;
+                }
+                }
+                @media (max-width: 720px){
+                .s_title_default{
+                width:100%;
+                height:150% !important;
+                }
+                .mb-2 {
+                    width:100%;
+                    height:100%;
+                }
+
+                }
+                @media (min-width: 1024px){
+                .pt160{
+                    padding-top: 140px !important;
+                }
+                }
+                @media (max-width: 1024px){
+                .pt160{
+                    padding-top: 20px !important;
+                }
+                }
+            </style>
+            <section class="banner oe_img_bg oe_custom_bg"
+                     style="background: linear-gradient(90deg, rgba(249,250,252,1) 0%, rgba(242,241,241,0.7203256302521008) 100%);">
+                <p>
+                    <br/>
+                </p>
+                <div class="row" style="width:100% !important;">
+                    <div class="pt0 col-lg-6">
+                        <img src="/digimoov_website_templates/static/img/Les centres d'examen de digimoov.webp"
+                             width="50%" height="auto" style="margin-left:10%"
+                             data-original-title="" title="" aria-describedby="tooltip294189"/>
+                    </div>
+                    <div class="col-lg-6 pt160" >
+                        <h2 style="text-align: left; margin-bottom: 10px; font-weight: 600; line-height: 1.3; color: rgb(58, 58, 71); font-size: 28px;">
+                        </h2>
+                        <h2 style="margin-bottom: 10px; font-weight: 600; line-height: 1.3; color: rgb(58, 58, 71); font-size: 28px;">
+                            <font style="color: rgb(0, 0, 0); font-size: 48px;">
+                                <h3 class="text-alpha" style="padding-left:10px">Nos centres d'examen
+                                    <br/>
+                                    <span class="font-weight-lighter">Digimoov met à votre disposition des centres
+                                        d’examen partout en France.&amp;nbsp;
+                                    </span>
+                                </h3>&amp;nbsp;
+                            </font>
+                        </h2>
+                    </div>
+                </div>
+            </section>
+            <section class="pt0 pb16" data-name="Title">
+                <div class="container">
+                    <div class="row s_nb_column_fixed">
+                        <div class="col-sm-12 col-xs-12 mb64" id="HOW IT WORKS">
+                            <br/>
+                            <br/>
+                            <span class="font-weight-lighter">
+                                <h3>
+                                    <center>Choisissez le centre le plus proche de chez vous:<br/>&amp;nbsp;Bordeaux |
+                                        Lille | Lyon | Marseille | Nantes | Paris | Strasbourg | Toulouse
+                                    </center>
+                                </h3>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section class="pb0 pt0 oe_img_bg oe_custom_bg" data-name="Title"
+                     style="background-repeat: no-repeat; background-image: url(&quot;/web/image/2500/backgroundimage-01.png&quot;)">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12 col-sm-12">
+                            <h1 class="s_title_default">
+                                <center class="font-weight-lighter">
+                                    <img src="/digimoov_website_templates/static/img/Centres d'examen digimoov france.webp"
+                                         class="mb-2"
+                                         data-original-title="" title="" aria-describedby="tooltip294189"/>
+                                </center>
+                                <br/>
+                            </h1>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </t>
+    </template>
+</odoo>
