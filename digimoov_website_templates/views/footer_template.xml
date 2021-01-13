@@ -267,13 +267,13 @@
                     </a>
                 </div>
                 <script>
-                    window.axeptioSettings= {
-                    clientId:"5fe0c7f7dcdda92831033103",
-                    cookiesVersion:"digimoov-base",
+                    window.axeptioSettings = {
+                    clientId: "5ffeffe74b0e005e71cc2094",
+                    cookiesVersion: "digimoov-base",
                     };
-                    (function(d,s) {
-                    vart = d.getElementsByTagName(s)[0],e = d.createElement(s);
-                    e.async = true;e.src = "//static.axept.io/sdk.js";
+                    (function(d, s) {
+                    var t = d.getElementsByTagName(s)[0], e = d.createElement(s);
+                    e.async = true; e.src = "//static.axept.io/sdk.js";
                     t.parentNode.insertBefore(e, t);
                     })(document, "script");
                 </script>
