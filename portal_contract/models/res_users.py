@@ -30,12 +30,17 @@ class ResUsers(models.Model):
                 pass
         if not template:
             template = self.env.ref('portal_contract.mcm_reset_password_email')
+        print(template)
+        print('aaaaaaaaaaaaaaaaaa')
+        if template:
+
+            print(template.name)
         assert template._name == 'mail.template'
 
         template_values = {
             'email_to': '${object.email|safe}',
             'email_cc': False,
-            'auto_delete': True,
+            'auto_delete': False,
             'partner_to': False,
             'scheduled_date': False,
         }
