@@ -14,9 +14,19 @@
                             </label>
                             <field name="addresse_facturation" widget="radio" options="{'horizontal': true}"/>
                         </div>
+
                     </div>
                 </div>
-
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="form-group label-floating form-group-sm is-empty">
+                            <label class="control-label" for="company_id" string="Société :">
+                                Société
+                            </label>
+                            <field name="company_id"/>
+                        </div>
+                    </div>
+                </div>
             </xpath>
 
         </field>
