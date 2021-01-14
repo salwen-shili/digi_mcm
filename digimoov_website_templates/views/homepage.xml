@@ -934,21 +934,15 @@
                             <div class="container">
                                 <div class="row justify-content-center">
                                     <div class="col-md-8 text-center col-lg-11" style="">
-                                        <h2 class="text-beta title">Développez aujourd'hui les compétences de demain
+                                        <h2 class="text-beta title">LET'S GO !<br/>Inscrivez-vous dès maintenant !
                                         </h2>
-                                        <h6 class="subtitle">
-                                            <span style="color: rgb(66, 66, 66); font-size: 16px;">Choisissez la formule
-                                                qui vous convient - Formation éligible au CPF
-                                            </span>
-                                            <br/>
-                                            <span style="color: rgb(66, 66, 66); font-size: 16px;">Numéro d'agrément :
-                                                DRIEA IDF N° 2019-0110
-                                            </span>
+                                        <h6 class="subtitle"><span style="color: rgb(66, 66, 66); font-size: 16px;">
+                                            Choisissez la formule qui vous convient</span>&amp;nbsp;
+                                            <span style="color: rgb(66, 66, 66); font-size: 16px;">&amp;nbsp;</span>
                                             <br/>
                                         </h6>
                                     </div>
                                 </div>
-
                             </div>
                         </div>
                     </section>
@@ -977,50 +971,50 @@
                                             <div class="card-body" style="background-color:white">
                                                 <ul class="list-unstyled">
                                                     <li class="mb-4">
-                                                        <i class="fa fa-lg fa-check-circle text-success mr-2"></i>
-                                                        Accès à la plateforme pédagogique
+                                                        <i class="fa fa-check-circle fa-lg mr-2 text-success"/>
+                                                        <b>Formation 102h (100% en ligne)</b>
                                                     </li>
                                                     <li class="mb-4">
-                                                        <i class="fa fa-lg fa-check-circle text-success mr-2"></i>
-                                                        Formation 102h (100% en ligne)
+                                                        <i class="fa fa-check-circle fa-lg mr-2 text-success"/>
+                                                        <b>Examen final en présentiel</b>
                                                     </li>
                                                     <li class="mb-4">
-                                                        <i class="fa fa-lg fa-check-circle text-success mr-2"></i>
-                                                        Examen Final en présentiel
+                                                        <i class="fa fa-check-circle fa-lg mr-2 text-success"/>
+                                                        <b>Accès à 3 examens d'entraînement</b>
                                                     </li>
                                                     <li class="mb-4">
-                                                        <i class="fa fa-lg fa-check-circle text-success mr-2"></i>
-                                                        Accès à 3 examens d'entraînement
+                                                        <i class="fa fa-check-circle fa-lg mr-2 text-success"/>
+                                                        <b>Coaching par mail</b>
                                                     </li>
-                                                    <li class="mb-4">
-                                                        <i class="fa fa-lg fa-check-circle text-success mr-2"></i>
-                                                        Assistance client par tchat
+                                                    <li class="mb-4"><i
+                                                            class="fa fa-lg fa-times-circle mr-2 text-danger"/>Coaching
+                                                        par téléphone
                                                     </li>
-                                                    <li class="mb-4">
-                                                        <i class="fa fa-lg fa-times-circle text-danger mr-2"></i>
-                                                        Accompagnement avec un coach
+                                                    <li class="mb-4"><span
+                                                            class="fa fa-lg fa-times-circle mr-2 text-danger"
+                                                            style="font-size: 1.33333em;"/>Coaching par visioconférence
+                                                        <br/>
                                                     </li>
-                                                    <li class="mb-4">
-                                                        <i class="fa fa-lg fa-times-circle text-danger mr-2"></i>
-                                                        Livre d’entrainement version électronique
+                                                    <li class="mb-4"><i
+                                                            class="fa fa-lg fa-times-circle mr-2 text-danger"/>Livre
+                                                        d’entrainement version électronique
                                                     </li>
-                                                    <li class="mb-4">
-                                                        <i class="fa fa-lg fa-times-circle text-danger mr-2"></i>
-                                                        Livre d’entrainement version papier
+                                                    <li class="mb-4"><i
+                                                            class="fa fa-lg fa-times-circle mr-2 text-danger"/>Livre
+                                                        d’entrainement version papier
                                                     </li>
-                                                    <li class="mb-4">
-                                                        <i class="fa fa-lg fa-times-circle text-danger mr-2"></i>
-                                                        Directs pour explication avec les formateurs
+                                                    <li class="mb-4"><i
+                                                            class="fa fa-lg fa-times-circle mr-2 text-danger"/>Directs
+                                                        pour explication avec les formateurs
                                                     </li>
-                                                    <li class="mb-4">
-                                                        <i class="fa fa-lg fa-times-circle text-danger mr-2"></i>
-                                                        Révision du programme avant examen &amp;nbsp; &amp;nbsp;
+                                                    <li class="mb-4"><i
+                                                            class="fa fa-lg fa-times-circle mr-2 text-danger"/>Révision
+                                                        du programme avant examen &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;
                                                         &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;
-                                                        &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;&amp;nbsp;
-
+                                                        &amp;nbsp; &amp;nbsp; &amp;nbsp;&amp;nbsp;
                                                     </li>
                                                     <li>
-                                                        <i></i>
+                                                        <i/>
                                                     </li>
                                                 </ul>
                                                 <p class="text-center font-weight-bolder text-dark h1 display-4 mb-0">
@@ -1094,53 +1088,61 @@
                                             <div class="card-body" style="background-color:white">
                                                 <ul class="list-unstyled">
                                                     <li class="mb-4">
-                                                        <i class="fa fa-lg fa-check-circle text-success mr-2"></i>
-                                                        Accès à la plateforme pédagogique
+                                                        <i class="fa fa-check-circle fa-lg mr-2 text-success"/>
+                                                        <b>Formation 102h (100% en ligne)</b>
                                                     </li>
                                                     <li class="mb-4">
-                                                        <i class="fa fa-lg fa-check-circle text-success mr-2"></i>
-                                                        Formation 102h (100% en ligne)
+                                                        <i class="fa fa-check-circle fa-lg mr-2 text-success"/>
+                                                        <b>Examen final en présentiel &amp;nbsp;</b>
                                                     </li>
                                                     <li class="mb-4">
-                                                        <i class="fa fa-lg fa-check-circle text-success mr-2"></i>
-                                                        Examen Final en présentiel
+                                                        <i class="fa fa-check-circle fa-lg mr-2 text-success"/>
+                                                        <b>Livre d’entrainement version électronique</b>
                                                     </li>
                                                     <li class="mb-4">
-                                                        <i class="fa fa-lg fa-check-circle text-success mr-2"></i>
-                                                        Accompagnement avec un coach
+                                                        <i class="fa fa-check-circle fa-lg mr-2 text-success"/>
+                                                        <b>Accès à 6 examens d'entraînement</b>
                                                     </li>
                                                     <li class="mb-4">
-                                                        <i class="fa fa-lg fa-check-circle text-success mr-2"></i>
-                                                        Livre d’entrainement version électronique
+                                                        <i class="fa fa-check-circle fa-lg mr-2 text-success"
+                                                           data-original-title="" title=""
+                                                           aria-describedby="tooltip131000"/>
+                                                        <b>Coaching par mail</b>
                                                     </li>
                                                     <li class="mb-4">
-                                                        <i class="fa fa-lg fa-check-circle text-success mr-2"></i>
-                                                        Accès à 6 examens d'entraînement
+                                                        <span class="fa fa-check-circle fa-lg mr-2 text-success"
+                                                              style="font-size: 1.33333em;" data-original-title=""
+                                                              title="" aria-describedby="tooltip96053"/>
+                                                        <b>Coaching par téléphone</b>
                                                     </li>
-                                                    <li class="mb-4">
-                                                        <i class="fa fa-lg fa-check-circle text-success mr-2"></i>
-                                                        Assistance client par tchat / e-mail
+                                                    <li class="mb-4"><span
+                                                            class="fa fa-lg fa-times-circle text-danger mr-2"
+                                                            style="font-size: 1.33333em;" data-original-title=""
+                                                            title="" aria-describedby="tooltip288722"/>Coaching par
+                                                        visioconférence
+                                                        <br/>
                                                     </li>
-                                                    <li class="mb-4">
-                                                        <i class="fa fa-lg fa-times-circle text-danger mr-2"></i>
-                                                        Livre d’entrainement version papier
+                                                    <li class="mb-4"><i
+                                                            class="fa fa-lg fa-times-circle mr-2 text-danger"
+                                                            data-original-title="" title=""
+                                                            aria-describedby="tooltip967071"/>Livre d’entrainement
+                                                        version papier
                                                     </li>
-                                                    <li class="mb-4">
-                                                        <i class="fa fa-lg fa-times-circle text-danger mr-2"></i>
-                                                        Directs avec les formateurs
+                                                    <li class="mb-4"><i
+                                                            class="fa fa-lg fa-times-circle text-danger mr-2"/>Directs
+                                                        pour explication avec les formateurs
                                                     </li>
-                                                    <li class="mb-4">
-                                                        <i class="fa fa-lg fa-times-circle text-danger mr-2"></i>
-                                                        Révision du programme avant examen &amp;nbsp; &amp;nbsp;
+                                                    <li class="mb-4"><i
+                                                            class="fa fa-lg fa-times-circle text-danger mr-2"/>&amp;nbsp;Révision
+                                                        du programme avant examen &amp;nbsp; &amp;nbsp;
                                                         &amp;nbsp;
                                                         &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;
                                                         &amp;nbsp;
                                                         &amp;nbsp; &amp;nbsp; &amp;nbsp;&amp;nbsp;
                                                     </li>
                                                     <li>
-                                                        <i></i>
+                                                        <i/>
                                                     </li>
-
                                                 </ul>
                                                 <p class="text-center font-weight-bolder text-dark h1 display-4 mb-0">
                                                     <font>
@@ -1202,44 +1204,53 @@
                                             <div class="card-body">
                                                 <ul class="list-unstyled">
                                                     <li class="mb-4">
-                                                        <i class="fa fa-lg fa-check-circle text-success mr-2"></i>
-                                                        Accès à la plateforme pédagogique
+                                                        <i class="fa fa-check-circle fa-lg mr-2 text-success"/>
+                                                        <b>Formation 102h (100% en ligne)</b>
                                                     </li>
                                                     <li class="mb-4">
-                                                        <i class="fa fa-lg fa-check-circle text-success mr-2"></i>
-                                                        Formation 102h (100% en ligne)
+                                                        <i class="fa fa-check-circle fa-lg mr-2 text-success"/>
+                                                        <b>Examen final en présentiel</b>
                                                     </li>
                                                     <li class="mb-4">
-                                                        <i class="fa fa-lg fa-check-circle text-success mr-2"></i>
-                                                        Examen Final en présentiel
+                                                        <i class="fa fa-lg fa-check-circle text-success mr-2"/>
+                                                        <b>Livre d’entrainement version papier</b>
+                                                        <br/>
                                                     </li>
                                                     <li class="mb-4">
-                                                        <i class="fa fa-lg fa-check-circle text-success mr-2"></i>
-                                                        Accompagnement avec un coach
+                                                        <i class="fa fa-check-circle fa-lg mr-2 text-success"/>
+                                                        <b>Accès à 12+ examens d'entraînement</b>
+                                                        <br/>
                                                     </li>
                                                     <li class="mb-4">
-                                                        <i class="fa fa-lg fa-check-circle text-success mr-2"></i>
-                                                        Livre d’entrainement version électronique
+                                                        <i class="fa fa-check-circle fa-lg mr-2 text-success"/>
+                                                        <b>Coaching par mail</b>
+                                                        <br/>
                                                     </li>
                                                     <li class="mb-4">
-                                                        <i class="fa fa-lg fa-check-circle text-success mr-2"></i>
-                                                        Livre d’entrainement version papier
+                                                        <i class="fa fa-check-circle fa-lg mr-2 text-success"/>
+                                                        <b>Coaching par téléphone</b>
+                                                        <br/>
                                                     </li>
                                                     <li class="mb-4">
-                                                        <i class="fa fa-lg fa-check-circle text-success mr-2"></i>
-                                                        Directs avec les formateurs
+                                                        <i class="fa fa-check-circle fa-lg mr-2 text-success"/>
+                                                        <b>Coaching par visioconférence</b>
+                                                        <br/>
                                                     </li>
                                                     <li class="mb-4">
-                                                        <i class="fa fa-lg fa-check-circle text-success mr-2"></i>
-                                                        Révision du programme avant examen
+                                                        <i class="fa fa-check-circle fa-lg mr-2 text-success"/>
+                                                        <b>Livre d’entrainement version papier</b>
+                                                        <br/>
                                                     </li>
                                                     <li class="mb-4">
-                                                        <i class="fa fa-lg fa-check-circle text-success mr-2"></i>
-                                                        Accès à 12 examens d'entraînement
+                                                        <i class="fa fa-check-circle fa-lg mr-2 text-success"/>
+                                                        <b>Directs pour explication avec les formateurs</b>
                                                     </li>
                                                     <li class="mb-4">
-                                                        <i class="fa fa-lg fa-check-circle text-success mr-2"></i>
-                                                        Assistance client par tchat / e-mail / Appels téléphoniques
+                                                        <span class="fa fa-check-circle fa-lg mr-2 text-success"
+                                                              style="font-size: 1.33333em;"/>
+                                                        <b>Révision du programme avant examen</b>
+                                                        <br/>
+                                                        <br/>
                                                     </li>
                                                 </ul>
                                                 <p class="text-center font-weight-bolder text-dark h1 display-4 mb-0">
