@@ -180,8 +180,9 @@
                                     <h3>
                                         <font style="color: rgb(255, 255, 255); font-size: 14px; font-weight: normal;">
                                             <a href="/blog/digimoov-3/post/tout-savoir-sur-la-capacite-de-transport-leger-de-marchandises-3"
-                                               style="color:white;">
-                                                Tout savoir sur la Capacité de Transport Léger de Marchandises
+                                               style="color:white;" data-original-title="" title=""
+                                               aria-describedby="tooltip225935">Tout savoir sur la Capacité de
+                                                Marchandises
                                             </a>
                                         </font>
                                         <br/>
@@ -201,17 +202,41 @@
                         <div class="col-lg-4 col-md-4">
                             <div class="footer-area2">
                                 <div class="footer-head">
-                                    <h3 style="text-align: center;">
-                                        <a style="color:white;" href="/contact">Centre d'assistance</a>
+                                    <h3 style="text-align: left;">
+                                        <a style="color:white;" href="/contact" data-original-title="" title=""
+                                           aria-describedby="tooltip408616">
+                                            <font style="font-size: 18px;" data-original-title="" title=""
+                                                  aria-describedby="tooltip948479">&amp;nbsp;Contacter Digimoov
+                                            </font>
+                                        </a>
+                                        <font style="font-size: 18px;">&amp;nbsp;</font>
                                     </h3>
                                 </div>
                                 <ul class="footer-links" style="text-align: center;">
                                     <li>
-                                        <span class="fa fa-map-marker" data-original-title="" title=""
-                                              aria-describedby="tooltip929963" style="color: rgb(255, 255, 255);"/>
-                                        <a href="#" data-original-title="" title="" aria-describedby="tooltip864307">
-                                            &amp;nbsp;10 Rue Waldeck Rochet Bat. 521, 93300 Aubervilliers, France
+                                        <a href="tel:+33 9 86 87 88 66">
+                                            <span class="fa fa-phone float-left fa-2x" data-original-title="" title=""
+                                                  aria-describedby="tooltip853200" style="color: rgb(255, 255, 255);"/>
                                         </a>
+                                        <div style="text-align: left;">
+                                            <span style="font-size: 0.875rem;">&amp;nbsp;&amp;nbsp;</span>
+                                            <font style="color: rgb(255, 255, 255); text-align: left;"><a
+                                                    href="tel:+33 9 86 87 88 66" data-original-title="" title=""
+                                                    aria-describedby="tooltip757473">+33 9 86 87 88 66</a>&amp;nbsp;(Disponible
+                                                de 9h à 12h)
+                                            </font>
+                                        </div>
+                                    </li>
+                                    <li style="text-align: left; ">
+                                        <a href="/contact">
+                                            <span class="fa fa-envelope fa-2x" data-original-title="" title=""
+                                                  aria-describedby="tooltip920610" style="color: white;"/>
+                                        </a>&amp;nbsp; &amp;nbsp;
+                                        <font style="color: white;">
+                                            <a href="/contact" data-original-title="" title=""
+                                               aria-describedby="tooltip754257">Envoyez nous un message
+                                            </a>
+                                        </font>
                                     </li>
                                 </ul>
                                 <p>
@@ -221,9 +246,6 @@
                         </div>
                         <div class="col-lg-4 col-md-4">
                             <div class="contactus">
-                                <div class="footer-head">
-                                    <h3 style="text-align: center; ">Support</h3>
-                                </div>
                                 <div class="footer-contact">
                                     <ul class="footer-links">
                                         <li>
@@ -268,13 +290,13 @@
                 </div>
                 <script>
                     window.axeptioSettings = {
-                    clientId: "5ffeffe74b0e005e71cc2094",
-                    cookiesVersion: "digimoov-base",
+                      clientId: "5fe0c7f7dcdda92831033103",
+                      cookiesVersion: "digimoov-base",
                     };
                     (function(d, s) {
-                    var t = d.getElementsByTagName(s)[0], e = d.createElement(s);
-                    e.async = true; e.src = "//static.axept.io/sdk.js";
-                    t.parentNode.insertBefore(e, t);
+                     var t = d.getElementsByTagName(s)[0], e = d.createElement(s);
+                      e.async = true; e.src = "//static.axept.io/sdk.js";
+                      t.parentNode.insertBefore(e, t);
                     })(document, "script");
                 </script>
             </section>
