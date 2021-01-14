@@ -35,21 +35,23 @@
                                                             <input placeholder="Prénom" name="contact_name"
                                                                    required="True" type="text"
                                                                    class="o_website_form_input   font-14 form-control"
-                                                                    t-attf-value="#{contact_name}"/>
+                                                                   t-attf-value="#{contact_name}"/>
                                                         </div>
                                                     </div>
                                                     <div class="col-lg-12">
                                                         <div class="form-group m-t-15 ">
                                                             <input name="email_from" placeholder="Adresse email"
                                                                    required="True" value="" type="email"
-                                                                   class="o_website_form_input form-control" t-attf-value="#{email_from}"/>
+                                                                   class="o_website_form_input form-control"
+                                                                   t-attf-value="#{email_from}"/>
                                                         </div>
                                                     </div>
                                                     <div class="col-lg-12">
                                                         <div class="form-group m-t-15 ">
                                                             <input name="phone" placeholder="Téléphone" required="True"
                                                                    type="Phone"
-                                                                   class="o_website_form_input form-control" t-attf-value="#{phone}"/>
+                                                                   class="o_website_form_input form-control"
+                                                                   t-attf-value="#{phone}"/>
                                                         </div>
                                                     </div>
                                                     <div class="col-lg-12">
@@ -134,7 +136,8 @@
                                                     <div class="col-lg-12">
                                                         <div class="form-group m-t-15 ">
                                                             <input name="email_from" placeholder="Adresse email"
-                                                                   required="True" t-attf-value="#{email_from}" type="email"
+                                                                   required="True" t-attf-value="#{email_from}"
+                                                                   type="email"
                                                                    class="o_website_form_input form-control"/>
                                                         </div>
                                                     </div>
@@ -213,7 +216,7 @@
                                                             <input placeholder="Nom" name="contact_lastname"
                                                                    required="True" type="text"
                                                                    class="o_website_form_input   font-14 form-control"
-                                                                  t-attf-value="#{contact_last_name}"/>
+                                                                   t-attf-value="#{contact_last_name}"/>
                                                         </div>
                                                     </div>
                                                     <div class="col-lg-6">
@@ -227,7 +230,8 @@
                                                     <div class="col-lg-12">
                                                         <div class="form-group m-t-15 ">
                                                             <input name="email_from" placeholder="Adresse email"
-                                                                   required="True" t-attf-value="#{email_from}" type="email"
+                                                                   required="True" t-attf-value="#{email_from}"
+                                                                   type="email"
                                                                    class="o_website_form_input form-control"/>
                                                         </div>
                                                     </div>
@@ -301,7 +305,7 @@
                                         <div class="contact-box ">
                                             <span style="font-size: 28px;">Contacter le service comptabilité</span>
                                             <br/>
-                                           <form action="/helpdesk/submitted/" method="post"
+                                            <form action="/helpdesk/submitted/" method="post"
                                                   enctype="multipart/form-data">
                                                 <input name="service"
                                                        type="hidden"
@@ -321,13 +325,14 @@
                                                             <input placeholder="Prénom" name="contact_name"
                                                                    required="True" type="text"
                                                                    class="o_website_form_input   font-14 form-control"
-                                                                    t-attf-value="#{contact_name}"/>
+                                                                   t-attf-value="#{contact_name}"/>
                                                         </div>
                                                     </div>
                                                     <div class="col-lg-12">
                                                         <div class="form-group m-t-15 ">
                                                             <input name="email_from" placeholder="Adresse email"
-                                                                   required="True" t-attf-value="#{email_from}" type="email"
+                                                                   required="True" t-attf-value="#{email_from}"
+                                                                   type="email"
                                                                    class="o_website_form_input form-control"/>
                                                         </div>
                                                     </div>
@@ -412,7 +417,7 @@
                                                             <input placeholder="Nom" name="contact_lastname"
                                                                    required="True" type="text"
                                                                    class="o_website_form_input   font-14 form-control"
-                                                                   t-attf-value="#{contact_last_name}" />
+                                                                   t-attf-value="#{contact_last_name}"/>
                                                         </div>
                                                     </div>
                                                     <div class="col-lg-6">
@@ -420,13 +425,14 @@
                                                             <input placeholder="Prénom" name="contact_name"
                                                                    required="True" type="text"
                                                                    class="o_website_form_input   font-14 form-control"
-                                                                   t-attf-value="#{contact_name}" />
+                                                                   t-attf-value="#{contact_name}"/>
                                                         </div>
                                                     </div>
                                                     <div class="col-lg-12">
                                                         <div class="form-group m-t-15 ">
                                                             <input name="email_from" placeholder="Adresse email"
-                                                                   required="True" t-attf-value="#{email_from}"  type="email"
+                                                                   required="True" t-attf-value="#{email_from}"
+                                                                   type="email"
                                                                    class="o_website_form_input form-control"/>
                                                         </div>
                                                     </div>
@@ -503,42 +509,8 @@
                                                         <h5 class="font-medium m-b-0">
                                                             <a href="/service-clientele">Service clientèle</a>
                                                         </h5>
-                                                        <p class="font-14 m-b-0">Réponses à vos questions</p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-4">
-                                                <div class="card card-shadow aos-init" data-aos="flip-up"
-                                                     data-aos-duration="1200">
-                                                    <a href="/service-comptabilite" class="img-ho">
-                                                        <img class="card-img-top"
-                                                             src="/digimoov_website_templates/static/img/Service comptabilité Digimoov.webp"
-                                                             alt="bizople kit" data-original-title="" title=""
-                                                             aria-describedby="tooltip4033"/>
-                                                    </a>
-                                                    <div class="card-body">
-                                                        <h5 class="font-medium m-b-0">
-                                                            <a href="/service-comptabilite">Service comptabilité</a>
-                                                        </h5>
-                                                        <p class="m-b-0 font-14">Facturation</p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-4">
-                                                <div class="card card-shadow aos-init" data-aos="flip-right"
-                                                     data-aos-duration="1200">
-                                                    <a href="/service-pedagogique" class="img-ho">
-                                                        <img class="card-img-top"
-                                                             src="/digimoov_website_templates/static/img/Service pédagogique Digimoov formation.webp"
-                                                             alt="bizople kit" data-original-title="" title=""
-                                                             aria-describedby="tooltip88003"/>
-                                                    </a>
-                                                    <div class="card-body">
-                                                        <h5 class="font-medium m-b-0">
-                                                            <a href="/service-pedagogique">Service pédagogique</a>
-                                                        </h5>
-                                                        <p class="m-b-0 font-14">Support de cours, Plateforme en
-                                                            ligne...
+                                                        <p class="font-14 m-b-0">Notre service client est à votre
+                                                            disposition pour répondre à toutes vos questions.
                                                         </p>
                                                     </div>
                                                 </div>
@@ -556,7 +528,9 @@
                                                         <h5 class="font-medium m-b-0">
                                                             <a href="/administration">Administration</a>
                                                         </h5>
-                                                        <p class="font-14 m-b-0">Demandes, Presse</p>
+                                                        <p class="font-14 m-b-0">Contactez l'administration pour les
+                                                            communiqués de presse, collaboration...
+                                                        </p>
                                                     </div>
                                                 </div>
                                             </div>
@@ -573,7 +547,51 @@
                                                         <h5 class="font-medium m-b-0">
                                                             <a href="/partenariat">Partenariat</a>
                                                         </h5>
-                                                        <p class="m-b-0 font-14">Devenez partenaire avec Digimoov</p>
+                                                        <p class="font-14 m-b-0">Contactez-nous par ici si vous
+                                                            souhaitez devenir partenaire avec Digimoov.
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="card card-shadow aos-init" data-aos="flip-up"
+                                                     data-aos-duration="1200">
+                                                    <a href="/service-comptabilite" class="img-ho">
+                                                        <img class="card-img-top"
+                                                             src="/digimoov_website_templates/static/img/Service comptabilité Digimoov.webp"
+                                                             alt="bizople kit" data-original-title="" title=""
+                                                             aria-describedby="tooltip4033"/>
+                                                    </a>
+                                                    <div class="card-body">
+                                                        <h5 class="font-medium m-b-0">
+                                                            <a href="/service-comptabilite">Service comptabilité</a>
+                                                        </h5>
+                                                        <p class="font-14 m-b-0">Vous souhaitez suivre vos paiements?
+                                                            Demandez-le ici.
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="card card-shadow aos-init" data-aos="flip-right"
+                                                     data-aos-duration="1200">
+                                                    <a href="/service-pedagogique" class="img-ho">
+                                                        <img class="card-img-top"
+                                                             src="/digimoov_website_templates/static/img/Service pédagogique Digimoov formation.webp"
+                                                             alt="bizople kit" data-original-title="" title=""
+                                                             aria-describedby="tooltip88003"/>
+                                                    </a>
+                                                    <div class="card-body">
+                                                        <h5 class="font-medium m-b-0">
+                                                            <a href="/service-pedagogique">Service pédagogique</a>
+                                                        </h5>
+                                                        <p class="font-14 m-b-0">Vous êtes déjà inscris?
+                                                            <span class="fa fa-info-circle" data-original-title=""
+                                                                  title="Service réservé aux abonnés"
+                                                                  aria-describedby="tooltip551325"
+                                                                  style="color: rgb(99, 74, 165);"/>
+                                                            Contactez le service pédagogique de Digimoov par ici.
+                                                        </p>
                                                     </div>
                                                 </div>
                                             </div>
