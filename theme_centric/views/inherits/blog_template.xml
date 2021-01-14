@@ -19,12 +19,12 @@
 				<div class="d-flex small flex-wrap mb-1 w-100">
 			        <div t-attf-class="d-flex flex-wrap align-items-center justify-content-between mx-n2 #{opt_blog_list_view and 'flex-grow-0 w-auto mw-100' or 'flex-grow-1' }">
 			        	<time class="blogtime">
-			        		<div class="datemonth">
-			        			<span t-field="blog_post.post_date" class="text-nowrap font-weight-bold px-2 date-month" t-options='{"format": "MMM d"}'></span>
-			        		</div>
-			        		<div class="dateyear">
-			        			<span t-field="blog_post.post_date" class="text-nowrap font-weight-bold px-2 date-year" t-options='{"format": "yyyy"}'></span>
-			        		</div>
+<!--			        		<div class="datemonth">-->
+<!--			        			<span t-field="blog_post.post_date" class="text-nowrap font-weight-bold px-2 date-month" t-options='{"format": "MMM d"}'></span>-->
+<!--			        		</div>-->
+<!--			        		<div class="dateyear">-->
+<!--			        			<span t-field="blog_post.post_date" class="text-nowrap font-weight-bold px-2 date-year" t-options='{"format": "yyyy"}'></span>-->
+<!--			        		</div>-->
 			        	</time>
 
 
