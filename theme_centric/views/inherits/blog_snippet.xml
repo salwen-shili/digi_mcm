@@ -17,29 +17,6 @@
 								</t>
 							</a>
 							<div class="blog_detail">
-								<div class="date-pos bg-success-gradiant">
-								<span class="month_span" t-field="p.post_date"
-									t-options='{"format": "MMM"}' />
-								<span class="date_span" t-field="p.post_date"
-									t-options='{"format": "dd"}' />
-								</div>
-								<ul class="">
-				            		<li>
-				            			<a href="#">
-				            				<i class="fa fa-user-alt"></i><span> By
-					                            <span t-esc="p.sudo().author_id.name"></span>
-					                        </span>
-				            			</a>
-				            		</li>
-				            		<li>
-				            			<span t-if="len(p.message_ids) > 0" class="text-nowrap pl-2">
-			                            <i class="fa fa-comments-o text-muted mr-1"/><t t-esc="len(p.message_ids)"/>
-			                            <t t-if="len(p.message_ids)>1">Comments</t>
-			                            <t t-else="">Comment</t>
-			                        	</span>
-				            		</li>
-				            		
-				            	</ul>
 				            	<a t-attf-href="/blog/#{p.blog_id.id}/post/#{p.id}">
 									<h5 class="font-medium m-t-30 link" t-field="p.name">
 									</h5>
