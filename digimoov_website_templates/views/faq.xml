@@ -18,11 +18,11 @@
                     <br/>
                 </p>
                 <div class="row">
-                    <div class="offset-lg-1 col-lg-4" style="text-align: center; "><img
-                            class="img-fluid o_we_custom_image"
-                            src="/web/image/7334/Foire%20Aux%20Questions%20Capacit%C3%A9%20de%20transport%20l%C3%A9ger.png"
-                            alt="Foire Aux Questions FAQ Digimoov" data-original-title=""
-                            title="Foire Aux Questions Capacité de Transport Léger" aria-describedby="tooltip523685"/>
+                    <div class="offset-lg-1 col-lg-4" style="text-align: center; ">
+                        <img class="img-fluid o_we_custom_image"
+                             src="/digimoov_website_templates/static/img/Foire Aux Questions Capacité de transport léger.webp"
+                             alt="Foire Aux Questions FAQ Digimoov" data-original-title=""
+                             title="Foire Aux Questions Capacité de Transport Léger" aria-describedby="tooltip523685"/>
                     </div>
                     <div class="col-lg-6">
                         <h2 style="text-align: center; margin-bottom: 10px; font-weight: 600; line-height: 1.3; color: rgb(58, 58, 71); font-size: 28px;">
@@ -37,7 +37,7 @@
                         </h2>
                         <h2 style="text-align: center; margin-bottom: 10px; font-weight: 600; line-height: 1.3; color: rgb(58, 58, 71); font-size: 28px;">
                             Foire Aux Questions
-                            <font style="font-size: 14px;"></font>
+                            <font style="font-size: 14px;"/>
                         </h2>
                     </div>
                 </div>
@@ -51,23 +51,21 @@
                             <div class="col-lg-4">
                                 <div class="nav nav-pills faq-nav" id="faq-tabs" role="tablist"
                                      aria-orientation="vertical">
-                                    <a href="#tab1" class="nav-link" data-toggle="pill" role="tab" aria-controls="tab1"
-                                       aria-selected="false" data-original-title="" title="">
+                                    <a href="#tab1" class="nav-link active" data-toggle="pill" role="tab"
+                                       aria-controls="tab1" aria-selected="true" data-original-title="" title="">
                                         <b>
                                             <i class="mdi mdi-help-circle"/>
                                         </b>
                                         <font style="font-size: 16px;" data-original-title="" title=""
                                               aria-describedby="tooltip487201">
                                             <i class="fa fa-caret-right" style="font-weight: bold;"
-                                               data-original-title=""
-                                               title="" aria-describedby="tooltip83044"/>
+                                               data-original-title="" title="" aria-describedby="tooltip83044"/>
                                             <b data-original-title="" title="" aria-describedby="tooltip700574">Digimoov
                                             </b>
                                         </font>
                                     </a>
-                                    <a href="#tab2" class="nav-link active" data-toggle="pill" role="tab"
-                                       aria-controls="tab2"
-                                       aria-selected="true" data-original-title="" title="">
+                                    <a href="#tab2" class="nav-link" data-toggle="pill" role="tab" aria-controls="tab2"
+                                       aria-selected="false" data-original-title="" title="">
                                         <b>
                                             <i class="mdi mdi-account"/>
                                             <font style="font-size: 16px;" data-original-title="" title=""
@@ -127,7 +125,7 @@
                             </div>
                             <div class="col-lg-8">
                                 <div class="tab-content" id="faq-tab-content">
-                                    <div class="tab-pane show" id="tab1" role="tabpanel" aria-labelledby="tab1">
+                                    <div class="tab-pane show active" id="tab1" role="tabpanel" aria-labelledby="tab1">
                                         <div class="accordion" id="accordion-tab-1">
                                             <div class="card">
                                                 <div class="card-header" id="accordion-tab-1-heading-1">
@@ -137,22 +135,21 @@
                                                                 data-target="#accordion-tab-1-content-1"
                                                                 aria-expanded="false"
                                                                 aria-controls="accordion-tab-1-content-1"
-                                                                data-original-title=""
-                                                                title="" aria-describedby="tooltip276001">Qu’est ce que
-                                                            Digimoov
+                                                                data-original-title="" title=""
+                                                                aria-describedby="tooltip276001">Qu’est ce que Digimoov
                                                             ?
                                                         </button>
                                                     </h5>
                                                 </div>
                                                 <div class="collapse" id="accordion-tab-1-content-1"
                                                      aria-labelledby="accordion-tab-1-heading-1"
-                                                     data-parent="#accordion-tab-1"
-                                                     style="">
+                                                     data-parent="#accordion-tab-1" style="">
                                                     <div class="card-body">
                                                         <p>
                                                             <font style="color: rgb(0, 0, 0);">Digimoov est un centre de
                                                                 formation à
-                                                                distance qui propose des formations 100 % en ligne
+                                                                distance qui propose des formations 100 % en
+                                                                ligne
                                                                 certifiées
                                                                 par la
                                                                 DRIEA Île-de-France (Direction Régionale et
@@ -162,7 +159,7 @@
                                                                 métiers
                                                                 de
                                                                 transport
-                                                                de marchandises léger (-3,5 T de PTAC).
+                                                                de marchandises léger (-3,5 T de PTAC).
                                                             </font>
                                                         </p>
                                                         <p/>
@@ -188,7 +185,8 @@
                                                     <div class="card-body">
                                                         <p>
                                                             <font style="color: rgb(0, 0, 0);">Notre centre propose une
-                                                                formation 100 % en ligne pour la Capacité de transport
+                                                                formation 100 % en ligne pour la Capacité de
+                                                                transport
                                                                 léger de marchandises.
                                                             </font>
                                                         </p>
@@ -225,7 +223,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="tab-pane active" id="tab2" role="tabpanel" aria-labelledby="tab2">
+                                    <div class="tab-pane" id="tab2" role="tabpanel" aria-labelledby="tab2">
                                         <div class="accordion" id="accordion-tab-2">
                                             <div class="card">
                                                 <div class="card-header" id="accordion-tab-2-heading-1">
@@ -287,7 +285,8 @@
                                                                     suffit d’avoir un ordinateur, une tablette ou un
                                                                     smartphone. Vous pouvez accéder à la formation
                                                                     n'importe où et n'importe quand ! Eh oui, c’est
-                                                                    génial ! Plus de limites avec Digimoov : tout est
+                                                                    génial ! Plus de limites avec Digimoov :
+                                                                    tout est
                                                                     réuni pour une formation en ligne réussie ! Vous
                                                                     serez invités sur une plateforme interactive qui
                                                                     contient des cours, des vidéos, des exercices et
@@ -503,7 +502,8 @@
                                                                     Pour vous inscrire à la formation, il vous suffit de
                                                                     vous rendre sur www.digimoov.fr et de cliquer sur
                                                                     l'onglet Nos tarifs. Vous pourrez alors choisir
-                                                                    votre formule en cliquant sur « je m’inscris ».
+                                                                    votre formule en cliquant sur « je
+                                                                    m’inscris ».
                                                                     Sélectionnez votre centre d’examen, la date et
                                                                     choisissez de payer par carte bleue ou par CPF. Si
                                                                     vous avez choisi de mobiliser votre CPF, vous serez
@@ -668,7 +668,7 @@
                                                     <div class="card-body">
                                                         <p>
                                                             <font style="color: rgb(0, 0, 0);">Vous avez la possibilité
-                                                                de passer l'examen dans l'un des centres suivants :
+                                                                de passer l'examen dans l'un des centres suivants :
                                                                 Bordeaux, Lille, Lyon, Marseille, Nantes, Paris,
                                                                 Strasbourg, Toulouse.
                                                             </font>
@@ -728,8 +728,9 @@
                                                                 qui dure 3 heures. Les questions sont proposées sous
                                                                 forme de QCM (50 questions à choix multiples sur 100
                                                                 points) et de Questions rédigées (100 points également
-                                                                au total). La partie QCM dure 1 h 15 et la partie QRC
-                                                                dure 1 h 45.
+                                                                au total). La partie QCM dure 1 h 15
+                                                                et la partie QRC
+                                                                dure 1 h 45.
                                                             </font>
                                                         </p>
                                                         <p/>
@@ -775,8 +776,8 @@
                                                                 aria-expanded="false"
                                                                 aria-controls="accordion-tab-3-content-6"
                                                                 data-original-title="" title=""
-                                                                aria-describedby="tooltip528114">Quand est ce qu'a lieu
-                                                            l’examen ?
+                                                                aria-describedby="tooltip528114">Quel est le niveau de
+                                                            difficulté de l’examen de capacité de marchandise ?
                                                         </button>
                                                     </h5>
                                                 </div>
@@ -785,10 +786,15 @@
                                                      data-parent="#accordion-tab-3" style="">
                                                     <div class="card-body">
                                                         <p>
-                                                            <font style="color: rgb(0, 0, 0);">Les dates d’examen
-                                                                varient à l’échelon de 60 jours ; dès qu’une nouvelle
-                                                                date est fixée, elle est affichée sur le site
-                                                                Digimoov.fr.
+                                                            <font style="color: rgb(0, 0, 0);">L’examen est à la portée
+                                                                de tout candidat ayant passé les 102h de la formation.
+                                                                En effet, les candidats vont apprendre plusieurs
+                                                                nouveaux concepts et pratiques durant la formation. Nous
+                                                                conseillons donc les apprenants à ne pas épargner
+                                                                d’efforts lors de la formation et de ne négliger aucun
+                                                                module pour réussir non seulement à l’examen mais aussi
+                                                                à la vie professionnelle en tant que livreur
+                                                                indépendant.
                                                             </font>
                                                         </p>
                                                         <p/>
@@ -804,8 +810,8 @@
                                                                 aria-expanded="false"
                                                                 aria-controls="accordion-tab-3-content-7"
                                                                 data-original-title="" title=""
-                                                                aria-describedby="tooltip528114">Est ce qu’on peut
-                                                            reporter l’examen à une autre date ?
+                                                                aria-describedby="tooltip528114">Quand est ce qu'a lieu
+                                                            l’examen ?
                                                         </button>
                                                     </h5>
                                                 </div>
@@ -814,9 +820,11 @@
                                                      data-parent="#accordion-tab-3" style="">
                                                     <div class="card-body">
                                                         <p>
-                                                            <font style="color: rgb(0, 0, 0);">Non, ce n’est pas
-                                                                possible de reporter l’examen, même avec un justificatif
-                                                                d'absence.
+                                                            <font style="color: rgb(0, 0, 0);">Les dates d’examen
+                                                                varient à l’échelon de 60 jours&amp;nbsp;; dès qu’une
+                                                                nouvelle
+                                                                date est fixée, elle est affichée sur le site
+                                                                Digimoov.fr.
                                                             </font>
                                                         </p>
                                                         <p/>
@@ -832,13 +840,41 @@
                                                                 aria-expanded="false"
                                                                 aria-controls="accordion-tab-3-content-8"
                                                                 data-original-title="" title=""
-                                                                aria-describedby="tooltip909647">Si j'échoue à l'examen
-                                                            une première fois, que se passe-t-il ?
+                                                                aria-describedby="tooltip528114">Est ce qu’on peut
+                                                            reporter l’examen à une autre date ?
                                                         </button>
                                                     </h5>
                                                 </div>
                                                 <div class="collapse" id="accordion-tab-3-content-8"
                                                      aria-labelledby="accordion-tab-3-heading-8"
+                                                     data-parent="#accordion-tab-3" style="">
+                                                    <div class="card-body">
+                                                        <p>
+                                                            <font style="color: rgb(0, 0, 0);">Non, ce n’est pas
+                                                                possible de reporter l’examen, même avec un justificatif
+                                                                d'absence.
+                                                            </font>
+                                                        </p>
+                                                        <p/>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="card">
+                                                <div class="card-header" id="accordion-tab-3-heading-9">
+                                                    <h5>
+                                                        <button class="btn btn-link collapsed" type="button"
+                                                                data-toggle="collapse"
+                                                                data-target="#accordion-tab-3-content-9"
+                                                                aria-expanded="false"
+                                                                aria-controls="accordion-tab-3-content-9"
+                                                                data-original-title="" title=""
+                                                                aria-describedby="tooltip909647">Si j'échoue à l'examen
+                                                            une première fois, que se passe-t-il ?
+                                                        </button>
+                                                    </h5>
+                                                </div>
+                                                <div class="collapse" id="accordion-tab-3-content-9"
+                                                     aria-labelledby="accordion-tab-3-heading-9"
                                                      data-parent="#accordion-tab-3" style="">
                                                     <div class="card-body">
                                                         <p>
@@ -849,6 +885,75 @@
                                                                 en bénéficiant d’une période de révision gratuite.
                                                                 Cependant, si vous échouez à vos nouvelles tentatives,
                                                                 il vous sera indispensable de refaire la formation.
+                                                            </font>
+                                                        </p>
+                                                        <p/>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="card">
+                                                <div class="card-header" id="accordion-tab-3-heading-10">
+                                                    <h5>
+                                                        <button class="btn btn-link collapsed" type="button"
+                                                                data-toggle="collapse"
+                                                                data-target="#accordion-tab-3-content-10"
+                                                                aria-expanded="false"
+                                                                aria-controls="accordion-tab-3-content-10"
+                                                                data-original-title="" title=""
+                                                                aria-describedby="tooltip909647">Quand est-ce que je
+                                                            recevrai les résultats de l’examen ?
+                                                        </button>
+                                                    </h5>
+                                                </div>
+                                                <div class="collapse" id="accordion-tab-3-content-10"
+                                                     aria-labelledby="accordion-tab-3-heading-10"
+                                                     data-parent="#accordion-tab-3" style="">
+                                                    <div class="card-body">
+                                                        <p>
+                                                            <font style="color: rgb(0, 0, 0);">Vos copies seront
+                                                                corrigées par un correcteur, qui ne fait pas partie de
+                                                                l’équipe pédagogique de Digimoov.
+
+                                                                Dans un délais d'un mois, un jury de validation (composé
+                                                                d’un représentant de la DREAL concernée, du directeur de
+                                                                centre, d’un expert métier compétent dans une thématique
+                                                                du référentiel, ainsi que d’un professionnel ou d’un
+                                                                représentant des entreprises concourant à l’activité de
+                                                                transport dans la région) se réunissent pour vérifier et
+                                                                confirmer les résultats.
+
+                                                                Une fois les résultats confirmés, votre attestation de
+                                                                réussite et votre relevé de notes vous seront envoyés
+                                                                par email par notre équipe pédagogique.
+                                                            </font>
+                                                        </p>
+                                                        <p/>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="card">
+                                                <div class="card-header" id="accordion-tab-3-heading-11">
+                                                    <h5>
+                                                        <button class="btn btn-link collapsed" type="button"
+                                                                data-toggle="collapse"
+                                                                data-target="#accordion-tab-3-content-11"
+                                                                aria-expanded="false"
+                                                                aria-controls="accordion-tab-3-content-11"
+                                                                data-original-title="" title=""
+                                                                aria-describedby="tooltip909647">Quand est-ce que je
+                                                            recevrai mon attestation de capacité de transport ?
+                                                        </button>
+                                                    </h5>
+                                                </div>
+                                                <div class="collapse" id="accordion-tab-3-content-11"
+                                                     aria-labelledby="accordion-tab-3-heading-11"
+                                                     data-parent="#accordion-tab-3" style="">
+                                                    <div class="card-body">
+                                                        <p>
+                                                            <font style="color: rgb(0, 0, 0);">Vous allez recevoir votre
+                                                                attestation dans un délai qui varie entre 2 et 3 mois au
+                                                                maximum à compter de la date d'envoi de dossier à la
+                                                                DRIEA.
                                                             </font>
                                                         </p>
                                                         <p/>
@@ -1060,7 +1165,6 @@
                                                                         électronique et en version papier, pour une
                                                                         préparation optimale à l'examen.
                                                                     </font>
-
                                                                 </p>
                                                             </li>
                                                         </ul>
@@ -1078,10 +1182,8 @@
                                                                 aria-controls="accordion-tab-5-content-2"
                                                                 data-original-title="" title=""
                                                                 aria-describedby="tooltip927818">La formation en ligne
-                                                            de la
-                                                            Capacité Transport de Marchandises léger est-elle éligible
-                                                            au
-                                                            CPF ?
+                                                            de la Capacité Transport de Marchandises léger est-elle
+                                                            éligible au CPF ?
                                                         </button>
                                                     </h5>
                                                 </div>
@@ -1090,11 +1192,9 @@
                                                      data-parent="#accordion-tab-5" style="">
                                                     <div class="card-body">
                                                         <p>
-                                                            <font style="color: rgb(0, 0, 0);">Oui, la formation en
-                                                                ligne de
-                                                                Capacité de transport de marchandises léger est éligible
-                                                                à
-                                                                Mon compte formation (CPF).
+                                                            <font style="color: rgb(0, 0, 0);">Seulement les packs de
+                                                                formation Pro et Premium sont éligible au CPF, le pack
+                                                                Solo n’est pas éligible au CPF.
                                                             </font>
                                                         </p>
                                                         <p/>
@@ -1110,8 +1210,8 @@
                                                                 aria-expanded="false"
                                                                 aria-controls="accordion-tab-5-content-3"
                                                                 data-original-title="" title=""
-                                                                aria-describedby="tooltip927818">Quels sont les modes de
-                                                            paiements que je peux utiliser pour payer ma formation ?
+                                                                aria-describedby="tooltip927818">Pourquoi le pack de
+                                                            formation Solo n'est-il pas éligible au CPF ?
                                                         </button>
                                                     </h5>
                                                 </div>
@@ -1120,9 +1220,16 @@
                                                      data-parent="#accordion-tab-5" style="">
                                                     <div class="card-body">
                                                         <p>
-                                                            <font style="color: rgb(0, 0, 0);">Vous avez le choix de
-                                                                payer
-                                                                par carte bleue ou par CPF.
+                                                            <font style="color: rgb(0, 0, 0);">Comme son nom l’indique,
+                                                                lors de la formation Solo le candidat sera privé des
+                                                                efforts d’accompagnement par l’équipe pédagogique de
+                                                                Digimoov, autrement dit, c’est de l’auto-apprentissage.
+                                                                Le financement par le CPF est offert pour payer une
+                                                                formation assurée par les formateurs. Si vous souhaitez
+                                                                mobiliser votre CPF, vous pouvez opter pour la formation
+                                                                Pro ou Premium et profiter d’un coaching dédié, des
+                                                                supports de cours améliorés, des directs avec les
+                                                                formateurs et bien plus.
                                                             </font>
                                                         </p>
                                                         <p/>
@@ -1138,14 +1245,76 @@
                                                                 aria-expanded="false"
                                                                 aria-controls="accordion-tab-5-content-4"
                                                                 data-original-title="" title=""
+                                                                aria-describedby="tooltip927818">Pourquoi les tarifs de
+                                                            Digimoov ont-ils changé?
+                                                        </button>
+                                                    </h5>
+                                                </div>
+                                                <div class="collapse" id="accordion-tab-5-content-4"
+                                                     aria-labelledby="accordion-tab-5-heading-4"
+                                                     data-parent="#accordion-tab-5" style="">
+                                                    <div class="card-body">
+                                                        <p>
+                                                            <font style="color: rgb(0, 0, 0);">Afin de fournir la
+                                                                meilleure formation à ses candidats, Digimoov s’assure
+                                                                toujours d’acquérir les meilleures solutions
+                                                                d’e-learning et d’engager les meilleurs coachs et
+                                                                formateurs du domaine. En effet, l’évolution de
+                                                                l’environnement économique et des charges d’exploitation
+                                                                nous obligent à augmenter nos tarifs pour pouvoir garder
+                                                                des formations de qualité et un service à l’hauteur des
+                                                                attentes de nos apprenants.
+                                                            </font>
+                                                        </p>
+                                                        <p/>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="card">
+                                                <div class="card-header" id="accordion-tab-5-heading-5">
+                                                    <h5>
+                                                        <button class="btn btn-link collapsed" type="button"
+                                                                data-toggle="collapse"
+                                                                data-target="#accordion-tab-5-content-5"
+                                                                aria-expanded="false"
+                                                                aria-controls="accordion-tab-5-content-5"
+                                                                data-original-title="" title=""
+                                                                aria-describedby="tooltip927818">Quels sont les modes de
+                                                            paiements que je peux utiliser pour payer ma formation ?
+                                                        </button>
+                                                    </h5>
+                                                </div>
+                                                <div class="collapse" id="accordion-tab-5-content-5"
+                                                     aria-labelledby="accordion-tab-5-heading-5"
+                                                     data-parent="#accordion-tab-5" style="">
+                                                    <div class="card-body">
+                                                        <p>
+                                                            <font style="color: rgb(0, 0, 0);">Vous avez le choix de
+                                                                payer
+                                                                par carte bleue ou par CPF.
+                                                            </font>
+                                                        </p>
+                                                        <p/>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="card">
+                                                <div class="card-header" id="accordion-tab-5-heading-6">
+                                                    <h5>
+                                                        <button class="btn btn-link collapsed" type="button"
+                                                                data-toggle="collapse"
+                                                                data-target="#accordion-tab-5-content-6"
+                                                                aria-expanded="false"
+                                                                aria-controls="accordion-tab-5-content-6"
+                                                                data-original-title="" title=""
                                                                 aria-describedby="tooltip927818">Je veux m’inscrire à la
                                                             formation mais je n'ai pas du tout confiance au paiement en
                                                             ligne.
                                                         </button>
                                                     </h5>
                                                 </div>
-                                                <div class="collapse" id="accordion-tab-5-content-4"
-                                                     aria-labelledby="accordion-tab-5-heading-4"
+                                                <div class="collapse" id="accordion-tab-5-content-6"
+                                                     aria-labelledby="accordion-tab-5-heading-6"
                                                      data-parent="#accordion-tab-5" style="">
                                                     <div class="card-body">
                                                         <p>
@@ -1162,28 +1331,29 @@
                                                 </div>
                                             </div>
                                             <div class="card">
-                                                <div class="card-header" id="accordion-tab-5-heading-5">
+                                                <div class="card-header" id="accordion-tab-5-heading-7">
                                                     <h5>
                                                         <button class="btn btn-link collapsed" type="button"
                                                                 data-toggle="collapse"
-                                                                data-target="#accordion-tab-5-content-5"
+                                                                data-target="#accordion-tab-5-content-7"
                                                                 aria-expanded="false"
-                                                                aria-controls="accordion-tab-5-content-5"
+                                                                aria-controls="accordion-tab-5-content-7"
                                                                 data-original-title="" title=""
                                                                 aria-describedby="tooltip927818">Comment financer la
                                                             formation avec mon compte CPF ?
                                                         </button>
                                                     </h5>
                                                 </div>
-                                                <div class="collapse" id="accordion-tab-5-content-5"
-                                                     aria-labelledby="accordion-tab-5-heading-5"
-                                                     data-parent="#accordion-tab-5" style="">
+                                                <div class="collapse" id="accordion-tab-5-content-7"
+                                                     aria-labelledby="accordion-tab-5-heading-7"
+                                                     data-parent="#accordion-tab-7" style="">
                                                     <div class="card-body">
                                                         <p>
                                                             <font style="color: rgb(0, 0, 0);">Cliquez sur Nos tarifs
                                                                 dans
                                                                 le menu du site digimoov.fr. Vous pourrez alors choisir
-                                                                votre formule en cliquant sur « je m’inscris » et vous
+                                                                votre formule en cliquant sur « je m’inscris »
+                                                                et vous
                                                                 devrez sélectionner votre centre et la date d’examen
                                                                 puis
                                                                 choisir de payer par CPF et cliquer sur Mobiliser votre
@@ -1198,21 +1368,21 @@
                                                 </div>
                                             </div>
                                             <div class="card">
-                                                <div class="card-header" id="accordion-tab-5-heading-6">
+                                                <div class="card-header" id="accordion-tab-5-heading-8">
                                                     <h5>
                                                         <button class="btn btn-link collapsed" type="button"
                                                                 data-toggle="collapse"
-                                                                data-target="#accordion-tab-5-content-6"
+                                                                data-target="#accordion-tab-5-content-8"
                                                                 aria-expanded="false"
-                                                                aria-controls="accordion-tab-5-content-6"
+                                                                aria-controls="accordion-tab-5-content-8"
                                                                 data-original-title="" title=""
                                                                 aria-describedby="tooltip927818">Je n’ai pas un solde
                                                             suffisant sur mon compte CPF, comment faire ?
                                                         </button>
                                                     </h5>
                                                 </div>
-                                                <div class="collapse" id="accordion-tab-5-content-6"
-                                                     aria-labelledby="accordion-tab-5-heading-6"
+                                                <div class="collapse" id="accordion-tab-5-content-8"
+                                                     aria-labelledby="accordion-tab-5-heading-8"
                                                      data-parent="#accordion-tab-5" style="">
                                                     <div class="card-body">
                                                         <p>
@@ -1224,7 +1394,8 @@
                                                                 une
                                                                 demande de financement auprès de Pôle emploi. Contactez
                                                                 le
-                                                                service « mon compte CPF » et ils vous expliqueront la
+                                                                service « mon compte CPF » et ils vous
+                                                                expliqueront la
                                                                 procédure.
                                                             </font>
                                                         </p>
@@ -1233,13 +1404,13 @@
                                                 </div>
                                             </div>
                                             <div class="card">
-                                                <div class="card-header" id="accordion-tab-5-heading-7">
+                                                <div class="card-header" id="accordion-tab-5-heading-9">
                                                     <h5>
                                                         <button class="btn btn-link collapsed" type="button"
                                                                 data-toggle="collapse"
-                                                                data-target="#accordion-tab-5-content-7"
+                                                                data-target="#accordion-tab-5-content-9"
                                                                 aria-expanded="false"
-                                                                aria-controls="accordion-tab-5-content-7"
+                                                                aria-controls="accordion-tab-5-content-9"
                                                                 data-original-title="" title=""
                                                                 aria-describedby="tooltip927818">Est ce que je peux
                                                             payer un
@@ -1247,8 +1418,8 @@
                                                         </button>
                                                     </h5>
                                                 </div>
-                                                <div class="collapse" id="accordion-tab-5-content-7"
-                                                     aria-labelledby="accordion-tab-5-heading-7"
+                                                <div class="collapse" id="accordion-tab-5-content-9"
+                                                     aria-labelledby="accordion-tab-5-heading-9"
                                                      data-parent="#accordion-tab-5" style="">
                                                     <div class="card-body">
                                                         <p>
@@ -1287,7 +1458,8 @@
                                                     <div class="card-body">
                                                         <p>
                                                             <font style="color: rgb(0, 0, 0);">Oui, à condition que les
-                                                                véhicules utilisés soient de moins de 3,5 T de PTAC.
+                                                                véhicules utilisés soient de moins de 3,5 T de
+                                                                PTAC.
                                                             </font>
                                                         </p>
                                                         <p/>
@@ -1343,6 +1515,34 @@
                                                     <div class="card-body">
                                                         <p>
                                                             <font style="color: rgb(0, 0, 0);">Oui.</font>
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="card">
+                                                <div class="card-header" id="accordion-tab-6-heading-4">
+                                                    <h5>
+                                                        <button class="btn btn-link collapsed" type="button"
+                                                                data-toggle="collapse"
+                                                                data-target="#accordion-tab-6-content-4"
+                                                                aria-expanded="false"
+                                                                aria-controls="accordion-tab-6-content-4"
+                                                                data-original-title="" title=""
+                                                                aria-describedby="tooltip991849">Êtes-vous joignables
+                                                            par téléphone?
+                                                        </button>
+                                                    </h5>
+                                                </div>
+                                                <div class="collapse" id="accordion-tab-6-content-4"
+                                                     aria-labelledby="accordion-tab-6-heading-4"
+                                                     data-parent="#accordion-tab-6" style="">
+                                                    <div class="card-body">
+                                                        <p>
+                                                            <font style="color: rgb(0, 0, 0);">Vous pouvez nous joindre
+                                                                par téléphone sur ce numéro: +33986878866 de 9h à 12h00,
+                                                                du lundi au vendredi. Pour l’après-midi nous restons
+                                                                joignables par ticket dans la rubrique contact.
+                                                            </font>
                                                         </p>
                                                     </div>
                                                 </div>
@@ -1435,7 +1635,6 @@
                     </div>
                 </div>
             </div>
-
         </t>
     </template>
 </odoo>
