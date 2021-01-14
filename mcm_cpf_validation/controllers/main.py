@@ -336,7 +336,7 @@ class ClientCPFController(http.Controller):
                         if not module_id:
                             return request.render("mcm_cpf_validation.ko_places", {})
                         else:
-                            if module_id.number_places_available<=0:
+                            if module_id.session_id.number_places_available<=0:
                                 return request.render("mcm_cpf_validation.ko_places", {})
                             else:
                                 return request.render("mcm_cpf_validation.ok_places", {})
