@@ -227,7 +227,7 @@
                                             </font>
                                         </div>
                                     </li>
-                                    <li style="text-align: left; ">
+                                    <li style="text-align: left !important; ">
                                         <a href="/contact">
                                             <span class="fa fa-envelope fa-2x" data-original-title="" title=""
                                                   aria-describedby="tooltip920610" style="color: white;"/>
