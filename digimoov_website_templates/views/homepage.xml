@@ -1321,7 +1321,7 @@
                                          data-original-title="" title="Coursierjob partenaire Digimoov"
                                          aria-describedby="tooltip175558"/>
                                 </div>
-                                <div class="col-lg-2" t-if="partenaire=='' or partenaire=='coursierjob'">
+                                <div class="col-lg-2">
                                     <img src="/digimoov_website_templates/static/img/Cabinet Comptable Joel Pruvost.webp"
                                          style="width:50%" class="img img-fluid"
                                          alt="Logo partenaire Cabinet Comptable Joël Pruvost" data-original-title=""
