@@ -232,17 +232,20 @@
                                          aria-describedby="tooltip843653"/>
                                 </div>
                                 <div class="col-lg-3">
-                                    <img src="/digimoov_website_templates/static/img/ubereats partenaire Digimoov.webp" style="width:30%"
+                                    <img src="/digimoov_website_templates/static/img/ubereats partenaire Digimoov.webp"
+                                         style="width:30%"
                                          class="img img-fluid" alt="Demo Logo" data-original-title="" title=""
                                          aria-describedby="tooltip843653"/>
                                 </div>
                                 <div class="col-lg-3">
-                                    <img src="/digimoov_website_templates/static/img/deliveroo partenaire Digimoov.webp" style="width:50%"
+                                    <img src="/digimoov_website_templates/static/img/deliveroo partenaire Digimoov.webp"
+                                         style="width:50%"
                                          class="img img-fluid" alt="Demo Logo" data-original-title="" title=""
                                          aria-describedby="tooltip623872"/>
                                 </div>
                                 <div class="col-lg-3">
-                                    <img src="/digimoov_website_templates/static/img/coursierjob partenaire Digimoov.webp" style="width:30%"
+                                    <img src="/digimoov_website_templates/static/img/coursierjob partenaire Digimoov.webp"
+                                         style="width:30%"
                                          class="img img-fluid" alt="Demo Logo" data-original-title="" title=""
                                          aria-describedby="tooltip175558"/>
                                 </div>
@@ -475,24 +478,34 @@
                     <center>
                         <div class="container">
                             <div class="row">
-                                <div class="col-lg-3">
-                                    <img src="/digimoov_website_templates/static/img/MCMACADEMY.png" style="width:30%"
-                                         class="img img-fluid" alt="Demo Logo" data-original-title="" title=""
+                                <div class="col-lg-1">
+                                </div>
+                                <div class="col-lg-2">
+                                    <img src="/digimoov_website_templates/static/img/MCMACADEMY.webp" style="width:50%"
+                                         class="img img-fluid" alt="Logo partenaire MCM Academy" data-original-title="" title=""
                                          aria-describedby="tooltip843653"/>
                                 </div>
-                                <div class="col-lg-3">
-                                    <img src="/digimoov_website_templates/static/img/uber.png" style="width:30%"
-                                         class="img img-fluid" alt="Demo Logo" data-original-title="" title=""
+                                <div class="col-lg-2">
+                                    <img src="/digimoov_website_templates/static/img/ubereats partenaire Digimoov.webp" style="width:50%"
+                                         class="img img-fluid" alt="Logo partenaire Ubereats" data-original-title="" title=""
                                          aria-describedby="tooltip843653"/>
                                 </div>
-                                <div class="col-lg-3">
-                                    <img src="/digimoov_website_templates/static/img/deliveroo.png" style="width:50%"
-                                         class="img img-fluid" alt="Demo Logo" data-original-title="" title=""
+                                <div class="col-lg-2">
+                                    <img src="/digimoov_website_templates/static/img/deliveroo partenaire Digimoov.webp" style="width:70%"
+                                         class="img img-fluid" alt="Logo partenaire Deliveroo" data-original-title="" title=""
                                          aria-describedby="tooltip623872"/>
                                 </div>
-                                <div class="col-lg-3">
-                                    <img src="/digimoov_website_templates/static/img/coursierjob.png" style="width:30%"
-                                         class="img img-fluid" alt="Demo Logo" data-original-title="" title=""
+                                <div class="col-lg-2">
+                                    <img src="/digimoov_website_templates/static/img/coursierjob partenaire Digimoov.webp" style="width:50%"
+                                         class="img img-fluid" alt="Logo partenaire Coursierjob" data-original-title="" title=""
+                                         aria-describedby="tooltip175558"/>
+                                </div>
+                                <div class="col-lg-2">
+                                    <img src="/digimoov_website_templates/static/img/Cabinet Comptable Joel Pruvost.webp"
+                                         style="width:50%"
+                                         class="img img-fluid" alt="Logo partenaire Cabinet Comptable Joël Pruvost"
+                                         data-original-title=""
+                                         title="Cabinet Comptable Joël Pruvost partenaire Digimoov"
                                          aria-describedby="tooltip175558"/>
                                 </div>
                             </div>
