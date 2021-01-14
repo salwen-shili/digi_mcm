@@ -30,20 +30,15 @@ class WebsiteSale(WebsiteSale):
         all_digimoov_modules=False
         for product in list_products:
             all_digimoov_modules = request.env['mcmacademy.module'].sudo().search(
-                [('product_id', '=', product.product_tmpl_id.id), ('website_published', "=", True),
+                [('product_id', '=', product.product_tmpl_id.id),
                  ('company_id', '=', 2)])
-            for m in all_digimoov_modules:
-                print(m.name)
-                print(m.ville)
         list_modules_digimoov = []
         today = date.today()
         if(all_digimoov_modules):
             for module in all_digimoov_modules:
                 if module.date_exam:
-                    print('interval days :'+str((module.date_exam - today).days))
-                    if (module.date_exam - today).days > int(module.session_id.intervalle_jours):
+                    if (module.date_exam - today).days > int(module.session_id.intervalle_jours) and module.session_id.website_published==True:
                         list_modules_digimoov.append(module)
-
         if order and order.state != 'draft':
             request.session['sale_order_id'] = None
             order = request.website.sale_get_order()
