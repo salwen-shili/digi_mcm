@@ -276,8 +276,8 @@ class Services(http.Controller):
                 'company_ids': [2],
                 'company_id': 2
             })
-            if user and name_company:
-                user.partner_id.company_name=name_company
+        if user and name_company:
+            user.partner_id.company_name=name_company
         if service == 'client':
             vals = {
                 'partner_email': str(email_from),
