@@ -281,6 +281,9 @@
                                     </li>
                                 </ul>
                             </footer>
+                            <a href="javascript:showAxeptioButton()">
+                                Cliquez-ici pour modifier vos préférences en matière de cookies
+                            </a>
                         </div>
                     </div>
                 </div>
