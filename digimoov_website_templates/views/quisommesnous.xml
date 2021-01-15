@@ -15,7 +15,12 @@
                                     </h2>
                                     <p>
                                         <font style="color: rgb(0, 0, 0);">Créé en 2015, Digimoov est une filiale du
-                                            groupe MCM Academy. Nous sommes un centre spécialisé dans la formation en
+                                            groupe MCM Academy.
+                                        </font>
+                                    </p>
+                                    <p>
+                                        <font style="color: rgb(0, 0, 0);">
+                                            Nous sommes un centre spécialisé dans la formation en
                                             ligne pour l’obtention de l’attestation de la capacité professionnelle en
                                             transport routier léger de marchandises.
                                         </font>
@@ -230,22 +235,29 @@
                                 </div>
                                 <div class="col-lg-2">
                                     <img src="/digimoov_website_templates/static/img/MCMACADEMY.webp" style="width:50%"
-                                         class="img img-fluid" alt="Logo partenaire MCM Academy" data-original-title="" title=""
+                                         class="img img-fluid" alt="Logo partenaire MCM Academy" data-original-title=""
+                                         title=""
                                          aria-describedby="tooltip843653"/>
                                 </div>
                                 <div class="col-lg-2">
-                                    <img src="/digimoov_website_templates/static/img/ubereats partenaire Digimoov.webp" style="width:50%"
-                                         class="img img-fluid" alt="Logo partenaire Ubereats" data-original-title="" title=""
+                                    <img src="/digimoov_website_templates/static/img/ubereats partenaire Digimoov.webp"
+                                         style="width:50%"
+                                         class="img img-fluid" alt="Logo partenaire Ubereats" data-original-title=""
+                                         title=""
                                          aria-describedby="tooltip843653"/>
                                 </div>
                                 <div class="col-lg-2">
-                                    <img src="/digimoov_website_templates/static/img/deliveroo partenaire Digimoov.webp" style="width:70%"
-                                         class="img img-fluid" alt="Logo partenaire Deliveroo" data-original-title="" title=""
+                                    <img src="/digimoov_website_templates/static/img/deliveroo partenaire Digimoov.webp"
+                                         style="width:70%"
+                                         class="img img-fluid" alt="Logo partenaire Deliveroo" data-original-title=""
+                                         title=""
                                          aria-describedby="tooltip623872"/>
                                 </div>
                                 <div class="col-lg-2">
-                                    <img src="/digimoov_website_templates/static/img/coursierjob partenaire Digimoov.webp" style="width:50%"
-                                         class="img img-fluid" alt="Logo partenaire Coursierjob" data-original-title="" title=""
+                                    <img src="/digimoov_website_templates/static/img/coursierjob partenaire Digimoov.webp"
+                                         style="width:50%"
+                                         class="img img-fluid" alt="Logo partenaire Coursierjob" data-original-title=""
+                                         title=""
                                          aria-describedby="tooltip175558"/>
                                 </div>
                                 <div class="col-lg-2">
@@ -490,22 +502,29 @@
                                 </div>
                                 <div class="col-lg-2">
                                     <img src="/digimoov_website_templates/static/img/MCMACADEMY.webp" style="width:50%"
-                                         class="img img-fluid" alt="Logo partenaire MCM Academy" data-original-title="" title=""
+                                         class="img img-fluid" alt="Logo partenaire MCM Academy" data-original-title=""
+                                         title=""
                                          aria-describedby="tooltip843653"/>
                                 </div>
                                 <div class="col-lg-2">
-                                    <img src="/digimoov_website_templates/static/img/ubereats partenaire Digimoov.webp" style="width:50%"
-                                         class="img img-fluid" alt="Logo partenaire Ubereats" data-original-title="" title=""
+                                    <img src="/digimoov_website_templates/static/img/ubereats partenaire Digimoov.webp"
+                                         style="width:50%"
+                                         class="img img-fluid" alt="Logo partenaire Ubereats" data-original-title=""
+                                         title=""
                                          aria-describedby="tooltip843653"/>
                                 </div>
                                 <div class="col-lg-2">
-                                    <img src="/digimoov_website_templates/static/img/deliveroo partenaire Digimoov.webp" style="width:70%"
-                                         class="img img-fluid" alt="Logo partenaire Deliveroo" data-original-title="" title=""
+                                    <img src="/digimoov_website_templates/static/img/deliveroo partenaire Digimoov.webp"
+                                         style="width:70%"
+                                         class="img img-fluid" alt="Logo partenaire Deliveroo" data-original-title=""
+                                         title=""
                                          aria-describedby="tooltip623872"/>
                                 </div>
                                 <div class="col-lg-2">
-                                    <img src="/digimoov_website_templates/static/img/coursierjob partenaire Digimoov.webp" style="width:50%"
-                                         class="img img-fluid" alt="Logo partenaire Coursierjob" data-original-title="" title=""
+                                    <img src="/digimoov_website_templates/static/img/coursierjob partenaire Digimoov.webp"
+                                         style="width:50%"
+                                         class="img img-fluid" alt="Logo partenaire Coursierjob" data-original-title=""
+                                         title=""
                                          aria-describedby="tooltip175558"/>
                                 </div>
                                 <div class="col-lg-2">
