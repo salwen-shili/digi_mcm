@@ -251,7 +251,7 @@
                                                     </div>
                                                     <div class="col-lg-12">
                                                         <div class="form-group m-t-15 ">
-                                                            <input name="objet" placeholder="Objet" required=""
+                                                            <input name="name" placeholder="Objet" required=""
                                                                    type="text" class="o_website_form_input form-control"
                                                                    value=""/>
                                                         </div>
