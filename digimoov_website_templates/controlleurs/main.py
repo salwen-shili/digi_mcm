@@ -261,6 +261,7 @@ class Services(http.Controller):
         phone=kwargs.get('phone')
         name=kwargs.get('name')
         description=kwargs.get('description')
+        name_company=False
         if kwargs.get('name_company'):
             name_company=kwargs.get('name_company')
         service=kwargs.get('service')
