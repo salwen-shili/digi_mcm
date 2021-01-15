@@ -276,12 +276,14 @@ class Services(http.Controller):
                 'company_ids': [2],
                 'company_id': 2
             })
+            if user and name_company:
+                user.partner_id.company_name=name_company
         if service == 'client':
             vals = {
                 'partner_email': str(email_from),
                 'partner_id': user.partner_id.id,
-                'description':'Digimoov : '+ str(description),
-                'name': name,
+                'description':str(description),
+                'name':'Digimoov : '+ str( name),
                 'team_id': request.env['helpdesk.team'].sudo().search(
                     [('name', 'like', 'Client'), ('company_id', "=", 1)],
                     limit=1).id,
@@ -293,8 +295,8 @@ class Services(http.Controller):
             vals = {
                 'partner_email': str(email_from),
                 'partner_id': user.partner_id.id,
-                'description': 'Digimoov : ' + str(description),
-                'name': name,
+                'description': str(description),
+                'name': 'Digimoov : ' + str(name),
                 'team_id': request.env['helpdesk.team'].sudo().search(
                     [('name', 'like', 'Admini'), ('company_id', "=", 1)],
                     limit=1).id,
@@ -306,8 +308,8 @@ class Services(http.Controller):
             vals = {
                 'partner_email': str(email_from),
                 'partner_id': user.partner_id.id,
-                'description': 'Digimoov : ' + str(description),
-                'name': name,
+                'description': str(description) ,
+                'name': 'Digimoov : ' + str(name),
                 'team_id': request.env['helpdesk.team'].sudo().search(
                     [('name', 'like', 'Admini'), ('company_id', "=", 1)],
                     limit=1).id,
@@ -319,8 +321,8 @@ class Services(http.Controller):
             vals = {
                 'partner_email': str(email_from),
                 'partner_id': user.partner_id.id,
-                'description': 'Digimoov : ' + str(description),
-                'name': name,
+                'description': str(description),
+                'name': 'Digimoov : ' + str(name),
                 'team_id': request.env['helpdesk.team'].sudo().search(
                     [('name', 'like', 'Compta'), ('company_id', "=", 1)],
                     limit=1).id,
@@ -332,8 +334,8 @@ class Services(http.Controller):
             vals = {
                 'partner_email': str(email_from),
                 'partner_id': user.partner_id.id,
-                'description': 'Digimoov : ' + str(description),
-                'name': name,
+                'description': str(description),
+                'name': 'Digimoov : ' + str(name),
                 'team_id': request.env['helpdesk.team'].sudo().search(
                     [('name', 'like', 'gogique'), ('company_id', "=", 1)],
                     limit=1).id,
