@@ -222,14 +222,15 @@
                                             <span style="font-size: 0.875rem;">&amp;nbsp;&amp;nbsp;</span>
                                             <font style="color: rgb(255, 255, 255); text-align: left;"><a
                                                     href="tel:+33 9 86 87 88 66" data-original-title="" title=""
-                                                    aria-describedby="tooltip757473"> +33 9 86 87 88 66 </a>(Disponible
+                                                    aria-describedby="tooltip757473">+33 9 86 87 88 66</a>(Disponible
                                                 de 9h à 12h)
                                             </font>
                                         </div>
                                     </li>
                                     <li style="text-align: left">
                                         <a href="/contact">
-                                            <span class="fa fa-envelope float-left fa-2x" data-original-title="" title=""
+                                            <span class="fa fa-envelope float-left fa-2x" data-original-title=""
+                                                  title=""
                                                   aria-describedby="tooltip920610" style="color: white;"/>
                                         </a>
                                         <font style="color: white;text-align: left">
@@ -290,13 +291,13 @@
                 </div>
                 <script>
                     window.axeptioSettings = {
-                      clientId: "5fe0c7f7dcdda92831033103",
-                      cookiesVersion: "digimoov-base",
+                    clientId: "6001a52f681e562b5c04dfbf",
+                    cookiesVersion: "digimoov-base",
                     };
                     (function(d, s) {
-                     var t = d.getElementsByTagName(s)[0], e = d.createElement(s);
-                      e.async = true; e.src = "//static.axept.io/sdk.js";
-                      t.parentNode.insertBefore(e, t);
+                    var t = d.getElementsByTagName(s)[0], e = d.createElement(s);
+                    e.async = true; e.src = "//static.axept.io/sdk.js";
+                    t.parentNode.insertBefore(e, t);
                     })(document, "script");
                 </script>
             </section>
