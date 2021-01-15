@@ -515,9 +515,6 @@
                                     <div class="row">
                                         <div class="col-6">
                                             <span style="font-size:13px" t-field="sale_order.company_id.name"/>
-                                            <span style="font-size:13px">,</span>
-                                            <span style="font-size:13px"
-                                                  t-field="sale_order.company_id.mcm_responsable_id.name"/>
                                         </div>
                                         <div class="col-6">
                                             <span style="font-size:13px" t-field="sale_order.partner_id.name"/>
