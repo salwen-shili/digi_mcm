@@ -272,6 +272,7 @@ class Services(http.Controller):
                 'login': str(email_from),
                 'groups_id': [(6, 0, [request.env.ref('base.group_portal').id])],
                 'email': email_from,
+                'phone':phone,
                 'notification_type': 'email',
                 'website_id': 2,
                 'company_ids': [2],
