@@ -106,52 +106,55 @@ class AccountPayment(models.Model):
             print(invoice)
             order = self.env['sale.order'].sudo().search([('name', 'ilike', invoice.invoice_origin)])
             pm_id = self.env['payment.token'].sudo().search([('partner_id', '=', invoice.partner_id.id)])[-1].id
-            print(order)
-            print(pm_id)
-            acquirer = self.env['payment.acquirer'].sudo().search([('name', 'ilike', 'stripe'),('company_id',"=",invoice.company_id.id)])
-            vals = {}
-            print(acquirer)
-            journal = self.env['account.journal'].sudo().search(
-                [('type', "=", 'bank'), ('code', 'ilike', 'BNK')])
-            if order.instalment and order.instalment_number>1:
-                vals.update({
-                    'acquirer_id': acquirer.id,
-                    'amount': invoice.amount_total / order.instalment_number,
-                    'currency_id': invoice.currency_id.id,
-                    'partner_id': invoice.partner_id.id,
-                    'sale_order_ids': [(6, 0, order.ids)],
-                })
-                tx = self.env['payment.transaction'].create(vals)
-                tx.payment_token_id = pm_id
-                res = tx._stripe_create_payment_intent()
-                if (str(res.get('status')) == 'succeeded'):
-                    tx.acquirer_reference = res.get('id')
-                    tx.date = datetime.now()
-                    tx._set_transaction_done()
-                    journal = self.env['account.journal'].sudo().search(
-                        [('type', "=", 'bank'),('code','ilike','BNK')])
+            first_payment_date = invoice.create_date + timedelta(days=30)
+            second_payment_date = invoice.create_date + timedelta(days=60)
+            first_payment_date = first_payment_date.date()
+            second_payment_date = second_payment_date.date()
+            if (str(date.today()) == str(first_payment_date) or str(date.today()) == str(second_payment_date)):
+                acquirer = self.env['payment.acquirer'].sudo().search([('name', 'ilike', 'stripe'),('company_id',"=",invoice.company_id.id)])
+                vals = {}
+                print(acquirer)
+                journal = self.env['account.journal'].sudo().search(
+                    [('type', "=", 'bank'), ('code', 'ilike', 'BNK')])
+                if order.instalment and order.instalment_number>1:
+                    vals.update({
+                        'acquirer_id': acquirer.id,
+                        'amount': invoice.amount_total / order.instalment_number,
+                        'currency_id': invoice.currency_id.id,
+                        'partner_id': invoice.partner_id.id,
+                        'sale_order_ids': [(6, 0, order.ids)],
+                    })
+                    tx = self.env['payment.transaction'].create(vals)
+                    tx.payment_token_id = pm_id
+                    res = tx._stripe_create_payment_intent()
+                    if (str(res.get('status')) == 'succeeded'):
+                        tx.acquirer_reference = res.get('id')
+                        tx.date = datetime.now()
+                        tx._set_transaction_done()
+                        journal = self.env['account.journal'].sudo().search(
+                            [('type', "=", 'bank'),('code','ilike','BNK')])
 
-                    payment_method = self.env['account.payment.method'].sudo().search(
-                        [('code', 'ilike', 'electronic')])
-                    acquirer = self.env['payment.acquirer'].sudo().search([('name', 'ilike', 'stripe'),('company_id',"=",invoice.company_id.id)])
-                    payment = self.env['account.payment'].create({'payment_type': 'inbound',
-                                                                  'payment_method_id': payment_method.id,
-                                                                  'partner_type': 'customer',
-                                                                  'partner_id': invoice.partner_id.id,
-                                                                  'amount': tx.amount,
-                                                                  'currency_id': invoice.currency_id.id,
-                                                                  'payment_date': datetime.now(),
-                                                                  'journal_id': journal.id,
-                                                                  'communication': tx.reference,
-                                                                  'payment_token_id': pm_id,
-                                                                  'company_id':invoice.company_id.id,
-                                                                  'invoice_ids': [(6, 0, invoice.ids)],
-                                                                  })
-                    payment.payment_transaction_id = tx
-                    tx.payment_id = payment
-                    payment.post()
-            elif (str(res.get('status')) == 'requires_payment_method'):
-                print('paiement echoué')
+                        payment_method = self.env['account.payment.method'].sudo().search(
+                            [('code', 'ilike', 'electronic')])
+                        acquirer = self.env['payment.acquirer'].sudo().search([('name', 'ilike', 'stripe'),('company_id',"=",invoice.company_id.id)])
+                        payment = self.env['account.payment'].create({'payment_type': 'inbound',
+                                                                      'payment_method_id': payment_method.id,
+                                                                      'partner_type': 'customer',
+                                                                      'partner_id': invoice.partner_id.id,
+                                                                      'amount': tx.amount,
+                                                                      'currency_id': invoice.currency_id.id,
+                                                                      'payment_date': datetime.now(),
+                                                                      'journal_id': journal.id,
+                                                                      'communication': tx.reference,
+                                                                      'payment_token_id': pm_id,
+                                                                      'company_id':invoice.company_id.id,
+                                                                      'invoice_ids': [(6, 0, invoice.ids)],
+                                                                      })
+                        payment.payment_transaction_id = tx
+                        tx.payment_id = payment
+                        payment.post()
+                elif (str(res.get('status')) == 'requires_payment_method'):
+                    print('paiement echoué')
 
 
 
