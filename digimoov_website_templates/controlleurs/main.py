@@ -24,7 +24,7 @@ class FINANCEMENT(http.Controller):
             if product_id:
                 all_digimoov_modules = False
                 all_digimoov_modules = request.env['mcmacademy.module'].sudo().search(
-                    [('product_id', '=', product_id.id), ('website_published', "=", True),
+                    [('product_id', '=', product_id.id),
                      ('company_id', '=', 2)])
                 list_modules_digimoov = []
                 today = date.today()
@@ -32,7 +32,7 @@ class FINANCEMENT(http.Controller):
                     for module in all_digimoov_modules:
                         if module.date_exam:
                             print('interval days :' + str((module.date_exam - today).days))
-                            if (module.date_exam - today).days > int(module.session_id.intervalle_jours):
+                            if (module.date_exam - today).days > int(module.session_id.intervalle_jours) and module.session_id.website_published==True:
                                 list_modules_digimoov.append(module)
                 values.update({
                     'modules_digimoov': list_modules_digimoov,
