@@ -653,16 +653,16 @@
                         </label>
                     </input>
                 </div>
-                <div class="input checkbox">
-                    <input type="checkbox" id="checkbox_accompagnement" style="white-space: nowrap;"
-                           class="text-xl-left border-0" t-att-checked="website_sale_order.accompagnement"
-                           t-att-value="website_sale_order.accompagnement">
-                        <label for="accompagnement" style="display:inline">
-                            J'accepte les appels de suivi et de l'accompagnement
-                        </label>
-                    </input>
+<!--                <div class="input checkbox">-->
+<!--                    <input type="checkbox" id="checkbox_accompagnement" style="white-space: nowrap;"-->
+<!--                           class="text-xl-left border-0" t-att-checked="website_sale_order.accompagnement"-->
+<!--                           t-att-value="website_sale_order.accompagnement">-->
+<!--                        <label for="accompagnement" style="display:inline">-->
+<!--                            J'accepte les appels de suivi et de l'accompagnement-->
+<!--                        </label>-->
+<!--                    </input>-->
 
-                </div>
+<!--                </div>-->
             </div>
         </xpath>
 
