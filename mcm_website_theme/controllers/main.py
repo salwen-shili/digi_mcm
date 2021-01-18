@@ -707,7 +707,7 @@ class CustomerPortal(CustomerPortal):
             'search_in': search_in,
             'sortby': False,
             'groupby': False,
-            'searchbar_filters': ['All'],
+            'searchbar_filters': False,
             'filterby': False,
         })
         return request.render("project.portal_my_tasks", values)
