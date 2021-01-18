@@ -13,6 +13,7 @@ Includes Google Tag Manager HTML elements in the website metadata
     'author': 'Pierre Faniel',
     'depends': [
         'website',
+        'web'
     ],
     'data': [
         'templates/website_layout.xml',
