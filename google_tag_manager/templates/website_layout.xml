@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <template id="web_layout" name="Google Tag Manager: Web Layout" inherit_id="web.layout">
-        <xpath expr="//script[1]" position="before">
+        <xpath expr="//head" position="inside">
             <!-- Google Tag Manager -->
             <script t-if="website and website.google_tag_manager_key">
                 (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
