@@ -7,37 +7,38 @@
                 <p t-if="modules_digimoov">
                     <b>
                         <div style="margin-left:0%;" id="exam_center">
-                                <select name="centre_examen" id="centre_examen" class="form-control search-slt "
-                                        t-if="modules_digimoov">
-                                    <option value="all">Sélectionnez votre centre d'examen</option>
-                                    <b>
-                                        <option value="bordeaux">
-                                            Bordeaux
-                                        </option>
-                                        <option value="lille" >
-                                            Lille
-                                        </option>
-                                        <option value="lyon">
-                                            Lyon
-                                        </option>
-                                        <option value="marseille" >
-                                            Marseille
-                                        </option>
-                                        <option value="nantes" >
-                                            Nantes
-                                        </option>
-                                        <option value="paris" >
-                                            Paris
-                                        </option>
-                                        <option value="strasbourg" >
-                                            Strasbourg
-                                        </option>
-                                        <option value="toulouse">
-                                            Toulouse
-                                        </option>
-                                    </b>
-                                </select>
-                            <p t-if="website_sale_order.exam_center_error != ''" id="error_exam_center" class="alert alert-warning" style="margin-left:0%;display:inline-block;" >
+                            <select name="centre_examen" id="centre_examen" class="form-control search-slt "
+                                    t-if="modules_digimoov">
+                                <option value="all">Sélectionnez votre centre d'examen</option>
+                                <b>
+                                    <option value="bordeaux">
+                                        Bordeaux
+                                    </option>
+                                    <option value="lille">
+                                        Lille
+                                    </option>
+                                    <option value="lyon">
+                                        Lyon
+                                    </option>
+                                    <option value="marseille">
+                                        Marseille
+                                    </option>
+                                    <option value="nantes">
+                                        Nantes
+                                    </option>
+                                    <option value="paris">
+                                        Paris
+                                    </option>
+                                    <option value="strasbourg">
+                                        Strasbourg
+                                    </option>
+                                    <option value="toulouse">
+                                        Toulouse
+                                    </option>
+                                </b>
+                            </select>
+                            <p t-if="website_sale_order.exam_center_error != ''" id="error_exam_center"
+                               class="alert alert-warning" style="margin-left:0%;display:inline-block;">
                                 Vous devez Selectionnez une ville
                             </p>
                         </div>
@@ -47,7 +48,8 @@
                 <p t-if="modules_digimoov">
                     <b>
                         <div style="margin-left:0%;">
-                            <select name="date_examen" id="exam_date" class="form-control search-slt " t-if="modules_digimoov" style="display:none">
+                            <select name="date_examen" id="exam_date" class="form-control search-slt "
+                                    t-if="modules_digimoov" style="display:none">
                                 <option value="all" id="all">Sélectionnez votre date d'examen</option>
                                 <t t-foreach="modules_digimoov" t-as="module">
                                     <t t-if="module">
@@ -64,7 +66,8 @@
                                     </t>
                                 </t>
                             </select>
-                            <p t-if="website_sale_order.exam_date_error != ''" id="error_exam_date" class="alert alert-warning" style="margin-left:0%;display:inline-block;">
+                            <p t-if="website_sale_order.exam_date_error != ''" id="error_exam_date"
+                               class="alert alert-warning" style="margin-left:0%;display:inline-block;">
                                 Vous devez Selectionnez une date
                             </p>
                         </div>
@@ -105,6 +108,10 @@
                 <span class="fa fa-chevron-right"/>
             </a>
         </xpath>
+        <xpath expr="//a[@href='/shop'][1]" position="replace">
+        </xpath>
+        <xpath expr="//div[@class='d-xl-none mt8']//a[1]" position="replace">
+        </xpath>
         <xpath expr="//div[@class='col-12 col-xl-8 oe_cart']" position="inside">
             <script>
                 function verify_payment_method(){
@@ -140,13 +147,13 @@
                 document.getElementById("pm_shop_check_text").innerHTML = 'Mobiliser mon CPF';
                 document.getElementById("pm_shop_checkout_text").innerHTML = 'Mobiliser mon CPF';
                 if(document.getElementById("promo_code")){
-                    document.getElementById("promo_code").style.display = 'none';
+                document.getElementById("promo_code").style.display = 'none';
                 }
                 if(document.getElementById("promo_button")){
-                    document.getElementById("promo_button").style.display = 'none';
+                document.getElementById("promo_button").style.display = 'none';
                 }
                 if(document.getElementById("promo_input")){
-                    document.getElementById("promo_input").style.display = 'none';
+                document.getElementById("promo_input").style.display = 'none';
                 }
                 if(document.getElementById("order_instalment")){
                 document.getElementById("order_instalment").style.visibility = 'hidden';
@@ -161,7 +168,7 @@
                 document.getElementById("pm_shop_check_text").innerHTML = 'Passer au paiement';
                 document.getElementById("pm_shop_checkout_text").innerHTML = 'Passer au paiement';
                 if(document.getElementById("promo_code")){
-                    document.getElementById("promo_code").style.display = 'inline';
+                document.getElementById("promo_code").style.display = 'inline';
                 } else{
                 document.getElementById("promo_input").style.display = 'inline';
                 document.getElementById("promo_button").style.display = 'inline';
@@ -181,10 +188,10 @@
                 };
                 function show_coupon(){
                 if(document.getElementById("promo_input")){
-                    document.getElementById("promo_input").style.display = 'inline';
+                document.getElementById("promo_input").style.display = 'inline';
                 }
                 if(document.getElementById("promo_button")){
-                    document.getElementById("promo_button").style.display = 'inline';
+                document.getElementById("promo_button").style.display = 'inline';
                 }
                 };
             </script>
