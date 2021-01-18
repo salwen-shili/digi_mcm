@@ -86,9 +86,9 @@
                                                                                 <option t-att-value="module.ville"
                                                                                         t-att-id="module.id">
                                                                                     <t t-esc="module.date_exam.strftime('%d')"/>
-                                                                                    <span>/</span>
+                                                                                    /
                                                                                     <t t-esc="module.date_exam.strftime('%m')"/>
-                                                                                    <span>/</span>
+                                                                                    /
                                                                                     <t t-esc="module.date_exam.strftime('%Y')"/>
                                                                                 </option>
                                                                             </b>
