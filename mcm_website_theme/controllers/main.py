@@ -705,10 +705,10 @@ class CustomerPortal(CustomerPortal):
             'searchbar_groupby': searchbar_groupby,
             'searchbar_inputs': searchbar_inputs,
             'search_in': search_in,
-            'sortby': sortby,
-            'groupby': groupby,
+            'sortby': False,
+            'groupby': False,
             'searchbar_filters': OrderedDict(sorted(searchbar_filters.items())),
-            'filterby': filterby,
+            'filterby': False,
         })
         return request.render("project.portal_my_tasks", values)
 
