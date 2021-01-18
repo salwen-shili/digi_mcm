@@ -56,10 +56,7 @@
                                         <t t-if="module.website_published==True">
                                             <b>
                                                 <option t-att-value="module.ville" t-att-id="module.id">
-                                                    <t t-esc="module.date_exam.strftime('%A')"/>
-                                                    <t t-esc="module.date_exam.strftime('%d')"/>
-                                                    <t t-esc="module.date_exam.strftime('%B')"/>
-                                                    <t t-esc="module.date_exam.strftime('%Y')"/>
+                                                    <t t-esc="module.date_exam.strftime('%d/%m/%Y')"/>
                                                 </option>
                                             </b>
                                         </t>
