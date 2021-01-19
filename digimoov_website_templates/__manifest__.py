@@ -34,7 +34,6 @@
         'views/completer_mon_dossier_cpf.xml',
         'views/template.xml',
         'views/cpf_thanks.xml',
-        # 'views/sitemap.xml',
 
     ],
     'qweb': [],
