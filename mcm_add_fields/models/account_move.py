@@ -32,5 +32,6 @@ class AccountMove(models.Model):
     def unlink(self):
         for move in self:
             move.line_ids.unlink()
-        self.sudo().unlink()
+        for rec in self:
+            rec.unlink()
         return super(AccountMove, self).unlink()
