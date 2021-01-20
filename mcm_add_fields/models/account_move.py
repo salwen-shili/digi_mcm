@@ -32,4 +32,4 @@ class AccountMove(models.Model):
     def unlink(self):
         for move in self:
             move.line_ids.unlink()
-        move.unlink()
+        self.unlink()
