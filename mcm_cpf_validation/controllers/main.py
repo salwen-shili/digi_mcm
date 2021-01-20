@@ -177,70 +177,70 @@ class ClientCPFController(http.Controller):
                         return request.render("mcm_cpf_validation.mcm_website_cpf_accepted")
                     else:
                         return request.render("mcm_cpf_validation.mcm_website_contract_exist")
-            elif module_id :
-                user.partner_id.module_id = module_id
-                user.partner_id.mcm_session_id = module_id.session_id
-                product_id = request.env['product.product'].sudo().search(
-                    [('product_tmpl_id', '=', module_id.product_id.id)])
-                user.partner_id.mcm_session_id = module_id.session_id
-                user.partner_id.module_id = module_id
-                request.env.user.company_id = 1
-                order = module_id = request.env['sale.order'].sudo().search(
-                    [('module_id', "=", module_id.id), ('state', 'in', ('sent', 'sale'))])
-                if not order:
-                    so = request.env['sale.order'].sudo().create({
-                        'partner_id': user.partner_id.id,
-                        'company_id': module_id.company_id.id,
-                    })
-                    request.env['sale.order.line'].sudo().create({
-                        'name': product_id.name,
-                        'product_id': product_id.id,
-                        'product_uom_qty': 1,
-                        'product_uom': product_id.uom_id.id,
-                        'price_unit': product_id.list_price,
-                        'order_id': so.id,
-                        'tax_id': product_id.taxes_id,
-                        'company_id': module_id.company_id.id
-                    })
-                    so.action_confirm()
-                    moves = so._create_invoices(final=True)
-                    for move in moves:
-                        move.type_facture = 'interne'
-                        move.module_id = so.module_id
-                        move.session_id = so.session_id
-                        move.company_id=so.company_id
-                        move.website_id=1
-                        print('lines')
-                        for line in move.invoice_line_ids:
-                            if line.account_id != line.product_id.property_account_income_id and line.product_id.property_account_income_id:
-                                line.account_id = line.product_id.property_account_income_id
-                        move.post()
-                    so.action_cancel()
-                    so.sale_action_sent()
-                    if so.env.su:
-                        # sending mail in sudo was meant for it being sent from superuser
-                        so = so.with_user(SUPERUSER_ID)
-                    template_id = int(request.env['ir.config_parameter'].sudo().get_param(
-                        'portal_contract.mcm_mail_template_sale_confirmation'))
-                    template_id = request.env['mail.template'].sudo().search([('id', '=', template_id)]).id
-
-                    if not template_id:
-                        template_id = request.env['ir.model.data'].xmlid_to_res_id(
-                            'portal_contract.mcm_mail_template_sale_confirmation', raise_if_not_found=False)
-                    if not template_id:
-                        template_id = request.env['ir.model.data'].xmlid_to_res_id(
-                            'portal_contract.mcm_email_template_edi_sale', raise_if_not_found=False)
-                    so=so.with_user(SUPERUSER_ID)
-                    so.with_context(force_send=True).message_post_with_template(template_id,
-                                                                                composition_mode='comment',
-                                                                                email_layout_xmlid="portal_contract.mcm_mail_notification_paynow_online")
-                    so.sudo().write({'state': 'sent'})
-                    so.module_id=module_id
-                    so.session_id=module_id.session_id
-                    user.partner_id.statut = 'won'
-                    return request.render("mcm_cpf_validation.mcm_website_cpf_accepted")
-                else:
-                    return request.render("mcm_cpf_validation.mcm_website_contract_exist")
+            # elif module_id :
+            #     user.partner_id.module_id = module_id
+            #     user.partner_id.mcm_session_id = module_id.session_id
+            #     product_id = request.env['product.product'].sudo().search(
+            #         [('product_tmpl_id', '=', module_id.product_id.id)])
+            #     user.partner_id.mcm_session_id = module_id.session_id
+            #     user.partner_id.module_id = module_id
+            #     request.env.user.company_id = 1
+            #     order = module_id = request.env['sale.order'].sudo().search(
+            #         [('module_id', "=", module_id.id), ('state', 'in', ('sent', 'sale'))])
+            #     if not order:
+            #         so = request.env['sale.order'].sudo().create({
+            #             'partner_id': user.partner_id.id,
+            #             'company_id': module_id.company_id.id,
+            #         })
+            #         request.env['sale.order.line'].sudo().create({
+            #             'name': product_id.name,
+            #             'product_id': product_id.id,
+            #             'product_uom_qty': 1,
+            #             'product_uom': product_id.uom_id.id,
+            #             'price_unit': product_id.list_price,
+            #             'order_id': so.id,
+            #             'tax_id': product_id.taxes_id,
+            #             'company_id': module_id.company_id.id
+            #         })
+            #         so.action_confirm()
+            #         moves = so._create_invoices(final=True)
+            #         for move in moves:
+            #             move.type_facture = 'interne'
+            #             move.module_id = so.module_id
+            #             move.session_id = so.session_id
+            #             move.company_id=so.company_id
+            #             move.website_id=1
+            #             print('lines')
+            #             for line in move.invoice_line_ids:
+            #                 if line.account_id != line.product_id.property_account_income_id and line.product_id.property_account_income_id:
+            #                     line.account_id = line.product_id.property_account_income_id
+            #             move.post()
+            #         so.action_cancel()
+            #         so.sale_action_sent()
+            #         if so.env.su:
+            #             # sending mail in sudo was meant for it being sent from superuser
+            #             so = so.with_user(SUPERUSER_ID)
+            #         template_id = int(request.env['ir.config_parameter'].sudo().get_param(
+            #             'portal_contract.mcm_mail_template_sale_confirmation'))
+            #         template_id = request.env['mail.template'].sudo().search([('id', '=', template_id)]).id
+            #
+            #         if not template_id:
+            #             template_id = request.env['ir.model.data'].xmlid_to_res_id(
+            #                 'portal_contract.mcm_mail_template_sale_confirmation', raise_if_not_found=False)
+            #         if not template_id:
+            #             template_id = request.env['ir.model.data'].xmlid_to_res_id(
+            #                 'portal_contract.mcm_email_template_edi_sale', raise_if_not_found=False)
+            #         so=so.with_user(SUPERUSER_ID)
+            #         so.with_context(force_send=True).message_post_with_template(template_id,
+            #                                                                     composition_mode='comment',
+            #                                                                     email_layout_xmlid="portal_contract.mcm_mail_notification_paynow_online")
+            #         so.sudo().write({'state': 'sent'})
+            #         so.module_id=module_id
+            #         so.session_id=module_id.session_id
+            #         user.partner_id.statut = 'won'
+            #         return request.render("mcm_cpf_validation.mcm_website_cpf_accepted")
+            #     else:
+            #         return request.render("mcm_cpf_validation.mcm_website_contract_exist")
             else:
                 vals = {
                     'partner_email': '',
