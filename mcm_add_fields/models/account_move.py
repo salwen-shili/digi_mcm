@@ -28,3 +28,9 @@ class AccountMove(models.Model):
             for payment in payments:
                 paid_amount += payment.amount
             rec.mcm_paid_amount = paid_amount
+    def unlink(self):
+        for move in self:
+            #if move.name != '/' and not self._context.get('force_delete'):
+                #raise UserError(_("You cannot delete an entry which has been posted once."))
+            move.line_ids.unlink()
+        return super(AccountMove, self).unlink()
