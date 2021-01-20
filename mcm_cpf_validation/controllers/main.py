@@ -78,7 +78,7 @@ class ClientCPFController(http.Controller):
                     if not order:
                         so = request.env['sale.order'].sudo().create({
                             'partner_id': user.partner_id.id,
-                            'company_id':module_id.company_id.id,
+                            'company_id':2,
                         })
                         so.module_id=module_id
                         so.session_id=module_id.session_id
@@ -91,7 +91,7 @@ class ClientCPFController(http.Controller):
                             'price_unit': product_id.list_price,
                             'order_id': so.id,
                             'tax_id': product_id.taxes_id,
-                            'company_id':module_id.company_id.id,
+                            'company_id':2,
                         })
                         amount_before_instalment=so.amount_total
                         acompte = so.amount_total * 0.25
@@ -119,7 +119,7 @@ class ClientCPFController(http.Controller):
                 #
                         so1 = request.env['sale.order'].sudo().create({
                             'partner_id': user.partner_id.id,
-                            'company_id': module_id.company_id.id,
+                            'company_id': 2,
                         })
                         so1.module_id = module_id
                         so1.session_id = module_id.session_id
@@ -131,7 +131,7 @@ class ClientCPFController(http.Controller):
                             'price_unit': product_id.list_price,
                             'order_id': so1.id,
                             'tax_id': product_id.taxes_id,
-                            'company_id': module_id.company_id.id,
+                            'company_id': 2,
                         })
                         amount_before_instalment1 = so1.amount_total
                         acompte1 = so1.amount_total * 0.75
