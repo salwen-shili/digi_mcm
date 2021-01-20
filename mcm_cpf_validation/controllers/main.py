@@ -10,6 +10,7 @@ class ClientCPFController(http.Controller):
     def request_not_validated(self, email=None, nom=None, prenom=None, tel=None, address=None, code_postal=None, ville=None,
                    dossier=None, motif=None):
         email = email.replace("%", ".")
+        email = email.replace(" ", "")
         email = str(email).lower()
         user = request.env['res.users'].sudo().search([('login', "=", email)])
         if not user:
@@ -259,6 +260,7 @@ class ClientCPFController(http.Controller):
     @http.route('/validate_cpf/<string:email>/<string:nom>/<string:prenom>/<string:diplome>/<string:tel>/<string:address>/<string:code_postal>/<string:ville>/<string:dossier>/<string:session>/<string:module>/', type="http", auth="user")
     def validate_cpf(self,email=None,nom=None,prenom=None,diplome=None,tel=None,address=None,code_postal=None,ville=None,dossier=None,session=None,module=None, **kw):
         email = email.replace("%", ".")
+        email = email.replace(" ", "")
         user = request.env['res.users'].sudo().search([('login', "=", email)])
         exist=True
         if not user:
