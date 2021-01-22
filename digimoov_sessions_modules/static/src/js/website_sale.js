@@ -76,10 +76,22 @@ publicWidget.registry.WebsiteSaleExamCenterDate = publicWidget.Widget.extend(Var
             var self = this;
             var select_option= $(this);
             console.log(self.value);
-            if (self.value == center || self.value=='all') {
-                select_option.show();
+            var isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+            var ios=false;
+            if (isIOS) {
+              ios=true;
             } else {
-                  select_option.hide();
+               ios=false;
+            }
+            if (self.value == center || self.value=='all') {
+                if (ios==true){select_option.prop('disabled', false);select_option.prop('display', 'none');}
+                else{
+                select_option.show();
+                }
+            } else {
+                  if (ios==true){select_option.prop('disabled', true);select_option.prop('display', 'inline');}
+                   else{
+                  select_option.hide(); }
             }
         });
         if(center_exam){
