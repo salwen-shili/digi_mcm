@@ -68,6 +68,9 @@ class WebsiteSale(WebsiteSale):
             if not request.env.context.get('pricelist'):
                 _order = order.with_context(pricelist=order.pricelist_id.id)
             values['suggested_products'] = _order._cart_accessories()
+        for module in list_modules_digimoov:
+            print(module.ville)
+            print(module.date_exam)
         values.update({
             'modules_digimoov':list_modules_digimoov,
             'error_ville':'',
