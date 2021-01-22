@@ -82,7 +82,7 @@ publicWidget.registry.WebsiteSaleExamCenterDate = publicWidget.Widget.extend(Var
             } else {
                ios=false;
             }
-            console.log(self.value);
+            console.log(select_option);
             if (self.value == center || self.value=='all') {
                 if (ios==true){select_option.prop('disabled', false);select_option.prop('display', 'none');}
                 else{
