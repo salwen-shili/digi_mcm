@@ -42,10 +42,10 @@
         <field name="inherit_id" ref="mcm_add_fields.mcm_view_res_partner_form"/>
         <field name="arch" type="xml">
             <xpath expr="//field[@name='session_id']" position="after">
-                <field name="mcm_session_id" string="Session"/>
+                <field name="mcm_session_id" string="Session" options="{'no_create': True, 'no_edit': True}"/>
                 <field name="customer_rank" invisible="1"/>
                 <field name="module_id"
-                       domain="[('session_id', '=', mcm_session_id)]"/>
+                       domain="[('session_id', '=', mcm_session_id)]" options="{'no_create': True, 'no_edit': True}"/>
             </xpath>
             <xpath expr="//page[@name='session']" position="after">
                 <page string="Financement" name="financement">
