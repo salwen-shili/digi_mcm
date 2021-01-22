@@ -75,6 +75,7 @@ publicWidget.registry.WebsiteSaleExamCenterDate = publicWidget.Widget.extend(Var
         $('#exam_date option').each(function () {
             var self = this;
             var select_option= $(this);
+            console.log(self.value);
             var isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
             var ios=false;
             if (isIOS) {
@@ -82,7 +83,6 @@ publicWidget.registry.WebsiteSaleExamCenterDate = publicWidget.Widget.extend(Var
             } else {
                ios=false;
             }
-            console.log(select_option);
             if (self.value == center || self.value=='all') {
                 if (ios==true){select_option.prop('disabled', false);select_option.prop('display', 'none');}
                 else{
