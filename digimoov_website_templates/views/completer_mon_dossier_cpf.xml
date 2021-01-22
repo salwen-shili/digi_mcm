@@ -29,7 +29,7 @@
                                                 <p t-if="modules_digimoov">
                                                     <b>
                                                         <div style="margin-left:0%;" id="exam_center">
-                                                            <select name="centre_examen" id="centre_examen"
+                                                            <select name="centre_d_examen" id="centre_examen"
                                                                     class="form-control search-slt "
                                                                     t-if="modules_digimoov">
                                                                 <option value="all">Sélectionnez votre centre d'examen
@@ -73,7 +73,7 @@
                                                 <p t-if="modules_digimoov">
                                                     <b>
                                                         <div style="margin-left:0%;">
-                                                            <select name="date_examen" id="exam_date"
+                                                            <select name="date_d_examen" id="exam_date"
                                                                     class="form-control search-slt "
                                                                     t-if="modules_digimoov" style="display:none">
                                                                 <option value="all" id="all">Sélectionnez votre date

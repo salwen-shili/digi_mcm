@@ -6,8 +6,8 @@ var publicWidget = require('web.public.widget');
 publicWidget.registry.ExamCenterDate = publicWidget.Widget.extend({
     selector: '#cpf_centre_date_examen',
     events: {
-        'change select[name="centre_examen"]': 'verify_centre',
-        'change select[name="date_examen"]': 'verify_date_exam',
+        'change select[name="centre_d_examen"]': 'verify_centre',
+        'change select[name="date_d_examen"]': 'verify_date_exam',
     },
 
         verify_date_exam: function (ev) {
