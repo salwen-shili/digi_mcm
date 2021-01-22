@@ -74,7 +74,7 @@ publicWidget.registry.WebsiteSaleExamCenterDate = publicWidget.Widget.extend(Var
         }
         $('#exam_date option').each(function () {
             var self = this;
-            var select_option= $(this);;
+            var select_option= $(this);
             var isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
             var ios=false;
             if (isIOS) {
