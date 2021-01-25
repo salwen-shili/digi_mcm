@@ -22,6 +22,7 @@
         'views/module.xml',
         'views/session.xml',
         'views/res_partner.xml',
+        'data/mail_data.xml',
     ],
     'qweb': [],
     'demo': [

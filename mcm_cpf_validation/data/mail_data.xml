@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="0">
+        <record id="digimoov_email_template_exam_date_center" model="mail.template">
+            <field name="name">Digimoov CPF : Choisir lieu &amp; Date d'examen</field>
+            <field name="model_id" ref="base.model_res_partner"/>
+            <field name="subject">Compléter vos informations - ${object.company_id.name}</field>
+            <field name="email_from">
+                ${(object.company_id.email or object.user_id.email_formatted or user.email_formatted) | safe}
+            </field>
+            <field name="partner_to">${object.id}</field>
+            <field name="body_html" type="html">
+                <div style="margin: 0px; padding: 0px;">
+                    <p style="margin: 0px; padding: 0px; font-size: 13px;">
+                        Bonjour,
+                    </p>
+                    <br/>
+                    <p style="margin: 0px; padding: 0px; font-size: 13px;">
+                        Nous vous remercions de nouveau pour votre inscription chez Digimoov. Pour finaliser votre
+                        dossier,
+                        nous vous invitons à compléter vos informations en cliquant sur le bouton suivant:
+                    </p>
+                    <br/>
+                    <center>
+                        <a href="/completer-mon-dossier-cpf"
+                           style="background-color: #875A7B; padding: 8px 16px 8px 16px; text-decoration: none; color: #fff; border-radius: 5px; font-size:13px;text-align:center;">
+                            Compléter vos informations
+                        </a>
+                    </center>
+                    <br/>
+                    <p style="margin: 0px; padding: 0px; font-size: 13px;">
+                        Bien à vous.
+                    </p>
+                    <br/>
+                    <p style="margin: 0px; padding: 0px; font-size: 13px;">
+                        L’équipe de Digimoov.
+                    </p>
+                </div>
+            </field>
+        </record>
+    </data>
+</odoo>
