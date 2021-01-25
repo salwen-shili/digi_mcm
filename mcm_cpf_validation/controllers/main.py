@@ -52,6 +52,7 @@ class ClientCPFController(http.Controller):
     def cpf_accepted(self,module=None, email=None):
         email = email.replace("%", ".")
         email = str(email).lower()
+        email = email.replace(" ","")
         user = request.env['res.users'].sudo().search([('login', "=", email)])
         if user:
             user.partner_id.mode_de_financement = 'cpf'
