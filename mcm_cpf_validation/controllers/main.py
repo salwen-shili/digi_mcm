@@ -260,8 +260,9 @@ class ClientCPFController(http.Controller):
 
     @http.route('/validate_cpf/<string:email>/<string:nom>/<string:prenom>/<string:diplome>/<string:tel>/<string:address>/<string:code_postal>/<string:ville>/<string:dossier>/<string:session>/<string:module>/', type="http", auth="user")
     def validate_cpf(self,email=None,nom=None,prenom=None,diplome=None,tel=None,address=None,code_postal=None,ville=None,dossier=None,session=None,module=None, **kw):
-        email = email.replace("%", ".")
-        email = email.replace(" ", "")
+        email = email.replace("%", ".") # remplacer % par . dans l'email envoyé en paramètre 
+        email = email.replace(" ", "") # supprimer les espaces envoyés en paramètre email  pour éviter la création des deux comptes
+        email = str(email).lower() # recupérer l'email en miniscule pour éviter la création des deux comptes
         user = request.env['res.users'].sudo().search([('login', "=", email)])
         exist=True
         if not user:
