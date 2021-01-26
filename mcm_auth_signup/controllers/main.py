@@ -54,10 +54,6 @@ class AuthSignupHome(AuthSignupHome):
                     template = request.env.ref('auth_signup.mail_template_user_signup_account_created',
                                                raise_if_not_found=False)
                     if user_sudo and template:
-                        if request.website.id==2:
-                            user_sudo.partner_id.comment='aaaaaaaa'
-                        if request.website.id==1:
-                            user_sudo.partner_id.comment = 'aaaaaaaa1'
                         template.sudo().with_context(
                             lang=user_sudo.lang,
                             auth_login=werkzeug.url_encode({'auth_login': user_sudo.email}),
