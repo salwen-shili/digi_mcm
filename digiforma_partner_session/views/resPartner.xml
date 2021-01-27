@@ -10,6 +10,7 @@
                     <group name="digiforma_sessions">
                         <field name="from_digiforma" invisible="1"/>
                         <field name="digiforma_sessions" />
+                        <field name="note_digiforma" />
                     </group>
                 </page>
             </xpath>
