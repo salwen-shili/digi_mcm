@@ -7,7 +7,7 @@
         <field name="arch" type="xml">
             <xpath expr="//group//div[@class='row form-panel']//div[1]//div[3]//div[5]" position="after">
                 <div class="col-sm-12">
-                    <div>
+                    <div attrs="{'invisible': [('company_id', '=', 2)]}">
                         <label for="note_exam" string="Note d'examen blanc :">Note d'examen blanc</label>
                         <field name="note_exam"/>
                     </div>
