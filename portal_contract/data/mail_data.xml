@@ -10,9 +10,9 @@
             <field name="email_from">${(object.user_id.email_formatted or user.email_formatted) | safe}</field>
             <field name="partner_to">${object.partner_id.id}</field>
             <field name="body_html" type="html">
-                <div style="margin: 0px; padding: 0px;">
-                    <p style="margin: 0px; padding: 0px; font-size: 13px;">
-                        % set doc_name = 'Contrat'
+                <div style="margin:0px;padding: 0px;">
+                    <p style="padding: 0px; font-size: 13px;">
+                        % set doc_name = 'Contrat' if object.state in ('draft', 'sent') else 'Contrat'
                         Bonjour,
                         <br/>
                         <br/>
@@ -352,8 +352,8 @@
             <field name="partner_to">${object.partner_id.id}</field>
             <field name="body_html" type="html">
                 <div style="margin:0px;padding: 0px;">
-                    <p style="padding:0px;font-size: 13px;">
-                        % set doc_name = 'Contrat'
+                    <p style="padding: 0px; font-size: 13px;">
+                        % set doc_name = 'Contrat' if object.state in ('draft', 'sent') else 'Contrat'
                         Bonjour,
                         <br/>
                         <br/>
@@ -373,14 +373,14 @@
                         (with reference: ${object.origin} )
                         % endif
                         d'un montant de <strong>${format_amount(object.amount_total, object.pricelist_id.currency_id)}
-                    </strong>% endif est prêt pour signature.<br/>
+                    </strong> est prêt pour signature.
+                        % endif
+                        <br/>
                         <br/>
                         N'hésitez pas à nous contacter si vous avez des questions.
-                    </p>
-                    <p style="padding:0px;font-size: 13px;">
                         <br/>
+                        Cordialement.
                     </p>
-                    <p style="padding:0px;font-size: 13px;">Cordialement.</p>
                 </div>
 
             </field>
