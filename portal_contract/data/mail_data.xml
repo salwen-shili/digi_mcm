@@ -4,7 +4,8 @@
         <record id="mcm_email_template_edi_sale" model="mail.template">
             <field name="name">MCM Contrat: Send by email</field>
             <field name="model_id" ref="sale.model_sale_order"/>
-            <field name="subject">${object.company_id.name} ${object.state in ('draft', 'sent') and 'Contrat-' or 'Contrat-'} ${object.partner_id.name or 'n/a' })
+            <field name="subject">${object.company_id.name}
+                ${object.state in ('draft', 'sent') and 'Contrat-' or 'Contrat-'} ${object.partner_id.name or 'n/a' })
             </field>
             <field name="email_from">${(object.user_id.email_formatted or user.email_formatted) | safe}</field>
             <field name="partner_to">${object.partner_id.id}</field>
@@ -40,8 +41,8 @@
                     </p>
                 </div>
             </field>
-<!--            <field name="report_template" ref="sale.action_report_saleorder"/>-->
-<!--            <field name="report_name">Contrat- ${(object.partner_id.name)}</field>-->
+            <!--            <field name="report_template" ref="sale.action_report_saleorder"/>-->
+            <!--            <field name="report_name">Contrat- ${(object.partner_id.name)}</field>-->
             <field name="lang">${object.partner_id.lang}</field>
             <field name="user_signature" eval="False"/>
             <field name="auto_delete" eval="True"/>
@@ -192,7 +193,8 @@
         <record id="mcm_set_password_email" model="mail.template">
             <field name="name">Auth Signup: Odoo Connection</field>
             <field name="model_id" ref="base.model_res_users"/>
-            <field name="subject">${object.create_uid.name} de ${object.company_id.name} vous invite à vous connecter à MCM Academy
+            <field name="subject">${object.create_uid.name} de ${object.company_id.name} vous invite à vous connecter à
+                MCM Academy
             </field>
             <field name="email_from">"${object.company_id.name | safe}" &lt;${(object.company_id.email or user.email) | safe}&gt;</field>
             <field name="email_to">${object.email_formatted | safe}</field>
@@ -229,34 +231,57 @@
                                     </tr>
                                     <!-- CONTENT -->
                                     <tr>
-        <td align="center" style="min-width: 590px;">
-            <table border="0" cellpadding="0" cellspacing="0" width="590" style="min-width: 590px; background-color: white; padding: 0px 8px 0px 8px; border-collapse:separate;">
-                <tr><td valign="top" style="font-size: 13px;">
-                    <div>
-                        Chere(e) ${object.name},<br /><br />
-                        Vous avez été invité par ${object.create_uid.name} de ${object.company_id.name} à rejoindre le site.
-                        <div style="margin: 16px 0px 16px 0px;">
-                            <a href="${object.signup_url}"
-                                style="background-color: #875A7B; padding: 8px 16px 8px 16px; text-decoration: none; color: #fff; border-radius: 5px; font-size:13px;">
-                                Accept invitation
-                            </a>
-                        </div>
-                        % set website_url = object.env['ir.config_parameter'].sudo().get_param('web.base.url')
-                        votre nom de domaine est: <b><a href='${website_url}'>${website_url}</a></b><br />
-                        Votre courriel de connection est: <b><a href="/web/login?login=${object.email}" target="_blank">${object.email}</a></b><br /><br />
+                                        <td align="center" style="min-width: 590px;">
+                                            <table border="0" cellpadding="0" cellspacing="0" width="590"
+                                                   style="min-width: 590px; background-color: white; padding: 0px 8px 0px 8px; border-collapse:separate;">
+                                                <tr>
+                                                    <td valign="top" style="font-size: 13px;">
+                                                        <div>
+                                                            Chere(e) ${object.name},
+                                                            <br/>
+                                                            <br/>
+                                                            Vous avez été invité par ${object.create_uid.name} de
+                                                            ${object.company_id.name} à rejoindre le site.
+                                                            <div style="margin: 16px 0px 16px 0px;">
+                                                                <a href="${object.signup_url}"
+                                                                   style="background-color: #875A7B; padding: 8px 16px 8px 16px; text-decoration: none; color: #fff; border-radius: 5px; font-size:13px;">
+                                                                    Accept invitation
+                                                                </a>
+                                                            </div>
+                                                            % set website_url =
+                                                            object.env['ir.config_parameter'].sudo().get_param('web.base.url')
+                                                            votre nom de domaine est:
+                                                            <b>
+                                                                <a href='${website_url}'>${website_url}</a>
+                                                            </b>
+                                                            <br/>
+                                                            Votre courriel de connection est:
+                                                            <b>
+                                                                <a href="/web/login?login=${object.email}"
+                                                                   target="_blank">${object.email}
+                                                                </a>
+                                                            </b>
+                                                            <br/>
+                                                            <br/>
 
-                        <br /><br />
-                        <br /><br />
-                       <br />
-                        --<br/>L'équipe ${object.company_id.name}
-                    </div>
-                </td></tr>
-                <tr><td style="text-align:center;">
-                  <hr width="100%" style="background-color:rgb(204,204,204);border:medium none;clear:both;display:block;font-size:0px;min-height:1px;line-height:0; margin: 16px 0px 16px 0px;"/>
-                </td></tr>
-            </table>
-        </td>
-    </tr>
+                                                            <br/>
+                                                            <br/>
+                                                            <br/>
+                                                            <br/>
+                                                            <br/>
+                                                            --<br/>L'équipe ${object.company_id.name}
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td style="text-align:center;">
+                                                        <hr width="100%"
+                                                            style="background-color:rgb(204,204,204);border:medium none;clear:both;display:block;font-size:0px;min-height:1px;line-height:0; margin: 16px 0px 16px 0px;"/>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                    </tr>
                                     <!-- FOOTER -->
                                     <tr>
                                         <td align="center" style="min-width: 590px;">
@@ -326,183 +351,51 @@
             <field name="email_from">${(object.user_id.email_formatted or user.email_formatted) | safe}</field>
             <field name="partner_to">${object.partner_id.id}</field>
             <field name="body_html" type="html">
-                <div style="margin: 0px; padding: 0px;">
-                    <p style="margin: 0px; padding: 0px; font-size: 12px;">
+                <div style="margin:0px;padding: 0px;">
+                    <p style="padding:0px;font-size: 13px;">
+                        % set doc_name = 'Contrat'
                         Bonjour,
                         <br/>
                         <br/>
-<!--                        % set transaction = object.get_portal_last_transaction()-->
-<!--                        Votre Contrat <strong>${object.name}</strong> D'un montant de-->
-<!--                        <strong>${format_amount(object.amount_total, object.currency_id)}</strong>-->
-<!--                        % if object.state == 'sale' or (transaction and transaction.state in ('done', 'authorized')) :-->
-<!--                        a été confirmé-->
-<!--                        <br/>-->
-<!--                        Merci pour votre confiance-->
-<!--                        % elif transaction and transaction.state == 'pending' :-->
-<!--                        est en attente. Il sera confirmé lors de la réception du paiement.-->
-<!--                        % if object.reference:-->
-<!--                        Votre référence de paiement est <strong>${object.reference}</strong>.-->
-<!--                        % endif-->
-<!--                        % endif-->
-<!--                        <br/>-->
-<!--                        <br/>-->
-<!--                        N'hésitez pas à nous contacter si vous avez des questions-->
-<!--                        <br/>-->
-<!--                        <br/>-->
-<!--                        % if object.website_id:-->
-<!--                        <table width="100%" style="color: #454748; font-size: 12px; border-collapse: collapse;">-->
-<!--                            <tr style="border-bottom: 2px solid #dee2e6;">-->
-<!--                                <td width="18%">-->
-<!--                                    <strong>Produits</strong>-->
-<!--                                </td>-->
-<!--                                <td></td>-->
-<!--                                <td>-->
-<!--                                    <strong>Quantité</strong>-->
-<!--                                </td>-->
-<!--                                <td width="10%" align="center">-->
-<!--                                    <strong>Prix</strong>-->
-<!--                                </td>-->
-<!--                            </tr>-->
-<!--                            % for line in object.order_line:-->
-<!--                            % if not line.is_delivery:-->
-<!--                            <tr style="${loop.cycle('background-color: #f2f2f2', 'background-color: #ffffff')}">-->
-<!--                                % if line.display_type == 'line_section':-->
-<!--                                <td colspan="4">-->
-<!--                                    <strong>${line.name}</strong>-->
-<!--                                </td>-->
-<!--                                % elif line.display_type == 'line_note':-->
-<!--                                <td colspan="4">-->
-<!--                                    <i>${line.name}</i>-->
-<!--                                </td>-->
-<!--                                % else:-->
-<!--                                <td style="width: 150px;">-->
-<!--                                    <img src="/web/image/product.product/${line.product_id.id}/image_128"-->
-<!--                                         style="width: 64px; height: 64px; object-fit: contain;"-->
-<!--                                         alt="Product image"></img>-->
-<!--                                </td>-->
-<!--                                <td align="left">${line.product_id.name}</td>-->
-<!--                                <td>${line.product_uom_qty}</td>-->
-<!--                                % if object.user_id.has_group('account.group_show_line_subtotals_tax_excluded'):-->
-<!--                                <td align="right">${format_amount(line.price_reduce_taxexcl, object.currency_id)}</td>-->
-<!--                                % endif-->
-<!--                                % if object.user_id.has_group('account.group_show_line_subtotals_tax_included'):-->
-<!--                                <td align="right">${format_amount(line.price_reduce_taxinc, object.currency_id)}</td>-->
-<!--                                % endif-->
-<!--                                % endif-->
-<!--                            </tr>-->
-<!--                            % endif-->
-<!--                            % endfor-->
-<!--                        </table>-->
-<!--                        <table width="40%" style="color: #454748; font-size: 12px; border-spacing: 0px 4px;"-->
-<!--                               align="right">-->
-<!--                            % if object.carrier_id:-->
-<!--                            <tr>-->
-<!--                                <td style="border-top: 1px solid #dee2e6;" align="right">-->
-<!--                                    <strong>Livraison:</strong>-->
-<!--                                </td>-->
-<!--                                <td style="border-top: 1px solid #dee2e6;" align="right">-->
-<!--                                    ${format_amount(object.amount_delivery, object.currency_id)}-->
-<!--                                </td>-->
-<!--                            </tr>-->
-<!--                            <tr>-->
-<!--                                <td width="30%" align="right">-->
-<!--                                    <strong>Sous-total</strong>-->
-<!--                                </td>-->
-<!--                                <td align="right">${format_amount(object.amount_untaxed, object.currency_id)}</td>-->
-<!--                            </tr>-->
-<!--                            % else:-->
-<!--                            <tr>-->
-<!--                                <td style="border-top: 1px solid #dee2e6;" width="30%" align="right">-->
-<!--                                    <strong>Sous-total</strong>-->
-<!--                                </td>-->
-<!--                                <td style="border-top: 1px solid #dee2e6;" align="right">-->
-<!--                                    ${format_amount(object.amount_untaxed, object.currency_id)}-->
-<!--                                </td>-->
-<!--                            </tr>-->
-<!--                            % endif-->
-<!--                            <tr>-->
-<!--                                <td align="right">-->
-<!--                                    <strong>Taxes:</strong>-->
-<!--                                </td>-->
-<!--                                <td align="right">${format_amount(object.amount_tax, object.currency_id)}</td>-->
-<!--                            </tr>-->
-<!--                            <tr>-->
-<!--                                <td style="border-top: 1px solid #dee2e6;" align="right">-->
-<!--                                    <strong>Total:</strong>-->
-<!--                                </td>-->
-<!--                                <td style="border-top: 1px solid #dee2e6;" align="right">-->
-<!--                                    ${format_amount(object.amount_total, object.currency_id)}-->
-<!--                                </td>-->
-<!--                            </tr>-->
-<!--                        </table>-->
-<!--                        <br/>-->
-<!--                        <table width="100%" style="color: #454748; font-size: 12px;">-->
-<!--                            % if object.partner_invoice_id:-->
-<!--                            <tr>-->
-<!--                                <td style="padding-top: 10px;">-->
-<!--                                    <strong>Facturation:</strong>-->
-<!--                                    ${object.partner_invoice_id.street or ''}-->
-<!--                                    ${object.partner_invoice_id.city or ''}-->
-<!--                                    ${object.partner_invoice_id.state_id.name or ''}-->
-<!--                                    ${object.partner_invoice_id.zip or ''}-->
-<!--                                    ${object.partner_invoice_id.country_id.name or ''}-->
-<!--                                </td>-->
-<!--                            </tr>-->
-<!--                            <tr>-->
-<!--                                <td>-->
-<!--                                    <strong>Méthode de paiement:</strong>-->
-<!--                                    % if transaction.payment_token_id:-->
-<!--                                    ${transaction.payment_token_id.name}-->
-<!--                                    % else:-->
-<!--                                    ${transaction.acquirer_id.name}-->
-<!--                                    % endif-->
-<!--                                    (${format_amount(transaction.amount, object.currency_id)})-->
-<!--                                </td>-->
-<!--                            </tr>-->
-<!--                            % endif-->
-<!--                            % if object.partner_shipping_id and not object.only_services:-->
-<!--                            <tr>-->
-<!--                                <td>-->
-<!--                                    <br/>-->
-<!--                                    <strong>Livraison à:</strong>-->
-<!--                                    ${object.partner_shipping_id.street or ''}-->
-<!--                                    ${object.partner_shipping_id.city or ''}-->
-<!--                                    ${object.partner_shipping_id.state_id.name or ''}-->
-<!--                                    ${object.partner_shipping_id.zip or ''}-->
-<!--                                    ${object.partner_shipping_id.country_id.name or ''}-->
-<!--                                </td>-->
-<!--                            </tr>-->
-<!--                            % if object.carrier_id:-->
-<!--                            <tr>-->
-<!--                                <td>-->
-<!--                                    <strong>Méthode de Livraison:</strong>-->
-<!--                                    ${object.carrier_id.name}-->
-<!--                                    % if object.carrier_id.fixed_price == 0.0:-->
-<!--                                    (Free)-->
-<!--                                    % else:-->
-<!--                                    (${format_amount(object.carrier_id.fixed_price, object.currency_id)})-->
-<!--                                    % endif-->
-<!--                                </td>-->
-<!--                            </tr>-->
-<!--                            % endif-->
-<!--                            % endif-->
-<!--                        </table>-->
-<!--                        % endif-->
+                        Votre
+                        % if ctx.get('proforma'):
+                        Facture pro forma pour ${doc_name}
+                        <strong>${object.name}</strong>
+                        % if object.origin:
+                        (en référence: ${object.origin} )
+                        % endif
+                        d'un montant de <strong>${format_amount(object.amount_total, object.pricelist_id.currency_id)}
+                    </strong> est disponible.
+                        % else:
+                        ${doc_name}
+                        <strong>${object.name}</strong>
+                        % if object.origin:
+                        (with reference: ${object.origin} )
+                        % endif
+                        d'un montant de <strong>${format_amount(object.amount_total, object.pricelist_id.currency_id)}
+                    </strong>% endif est prêt pour signature.&nbsp;<br>
+                        <br/>
+                        N'hésitez pas à nous contacter si vous avez des questions.
                     </p>
+                    <p style="padding:0px;font-size: 13px;">
+                        <br/>
+                    </p>
+                    <p style="padding:0px;font-size: 13px;">Cordialement.</p>
                 </div>
+
             </field>
-            <field name="report_template" ref="sale.action_report_saleorder"/>
-            <field name="report_name">Contrat- ${(object.partner_id.name)}</field>
+<!--            <field name="report_template" ref="sale.action_report_saleorder"/>-->
+<!--            <field name="report_name">Contrat- ${(object.partner_id.name)}</field>-->
             <field name="lang">${object.partner_id.lang}</field>
             <field name="user_signature" eval="False"/>
             <field name="auto_delete" eval="True"/>
         </record>
 
         <!-- set default order confirmation template -->
-<!--        <record id="sale.default_confirmation_template" model="ir.config_parameter">-->
-<!--            <field name="key">sale.default_confirmation_template</field>-->
-<!--            <field name="value" ref="portal_contract.mcm_mail_template_sale_confirmation"/>-->
-<!--        </record>-->
+        <!--        <record id="sale.default_confirmation_template" model="ir.config_parameter">-->
+        <!--            <field name="key">sale.default_confirmation_template</field>-->
+        <!--            <field name="value" ref="portal_contract.mcm_mail_template_sale_confirmation"/>-->
+        <!--        </record>-->
         <template id="mail.mail_notification_light">
             <table border="0" cellpadding="0" cellspacing="0"
                    style="padding-top: 16px; background-color: #F1F1F1; font-family:Verdana, Arial,sans-serif; color: #454748; width: 100%; border-collapse:separate;">
