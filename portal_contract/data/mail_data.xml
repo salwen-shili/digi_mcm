@@ -373,7 +373,7 @@
                         (with reference: ${object.origin} )
                         % endif
                         d'un montant de <strong>${format_amount(object.amount_total, object.pricelist_id.currency_id)}
-                    </strong>% endif est prêt pour signature.&nbsp;<br>
+                    </strong>% endif est prêt pour signature.&nbsp;<br/>
                         <br/>
                         N'hésitez pas à nous contacter si vous avez des questions.
                     </p>
