@@ -180,7 +180,7 @@
                                 </div>
                                 <div class="col-sm-6">
                                     <div class="form-group label-floating form-group-sm">
-                                        <label class="control-label" for="mobile" string="Téléphone :">Mobile</label>
+                                        <label class="control-label" for="mobile" string="Mobile :">Mobile</label>
                                         <field name="mobile"/>
                                     </div>
                                 </div>
@@ -188,7 +188,7 @@
                             <div class="row">
                                 <div class="col-sm-6">
                                     <div class="form-group label-floating form-group-sm is-empty">
-                                        <label class="control-label" for="phone" string="Téléphone secondaire :">
+                                        <label class="control-label" for="phone" string="Téléphone :">
                                             Téléphone
                                         </label>
                                         <field name="phone"/>
