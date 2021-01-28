@@ -6,13 +6,14 @@
         <field name="inherit_id" ref="base.view_partner_form"/>
         <field name="arch" type="xml">
             <xpath expr="//page[@name='internal_notes']" position="after">
-                <page string="Digiforma" name="digiforma_sessions" attrs="{'invisible': [('from_digiforma', '=', False)]}" groups="base.group_user">
+                <page string="Digiforma" name="digiforma_sessions"
+                      attrs="{'invisible': [('from_digiforma', '=', False)]}" groups="base.group_user">
                     <group name="digiforma_sessions">
                         <field name="from_digiforma" invisible="1"/>
-                        <field name="digiforma_sessions" />
-                        <br/>
-                        <br/>
-                        <field name="note_digiforma" />
+                        <field name="digiforma_sessions"/>
+                    </group>
+                    <group name="digiforma_notes">
+                        <field name="note_digiforma"/>
                     </group>
                 </page>
             </xpath>
