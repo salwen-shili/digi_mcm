@@ -114,8 +114,6 @@ class ClientCPFController(http.Controller):
                                 move.post()
                                 ref=move.name
                         so.action_cancel()
-                        print('so name')
-                        print(so.name)
                         so_line.sudo().unlink()
                         so.sudo().unlink()
                 #
@@ -279,6 +277,7 @@ class ClientCPFController(http.Controller):
                     'company_id': 2
                 })
                 user.company_id=2
+                user.partner_id.company_id = 2
             else:
                 user = request.env['res.users'].sudo().create({
                     'name': str(prenom) + " " + str(nom),
@@ -292,6 +291,7 @@ class ClientCPFController(http.Controller):
 
                 })
                 user.company_id=1
+                user.partner_id.company_id=1
         user = request.env['res.users'].sudo().search([('login', "=", email)])
         if user:
             client = request.env['res.partner'].sudo().search(
