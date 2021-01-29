@@ -19,8 +19,6 @@ class HelpdeskTicket(models.Model):
                 users = ticket.team_id.member_ids
                 if users:
                     for user in users:
-                        print('user')
-                        print(user)
                         message = self.env['mail.activity'].sudo().create({
                             'activity_type_id': message_type.id,
                             'res_model_id': self.env['ir.model'].search([('model', '=', 'helpdesk.ticket')],

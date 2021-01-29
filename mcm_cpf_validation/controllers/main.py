@@ -250,8 +250,11 @@ class ClientCPFController(http.Controller):
                     'team_id': request.env['helpdesk.team'].sudo().search([('name', 'like', 'Client')],
                                                                           limit=1).id,
                 }
-                new_ticket = request.env['helpdesk.ticket'].sudo().create(
-                    vals)
+                description='CPF: id module edof '+str(module)+' non trouvé'
+                ticket = request.env['helpdesk.ticket'].sudo().search([('description', 'ilike', description)])
+                if not ticket:
+                    new_ticket = request.env['helpdesk.ticket'].sudo().create(
+                        vals)
                 return request.render("mcm_cpf_validation.mcm_website_module_not_found", {})
         else:
             return request.render("mcm_cpf_validation.mcm_website_partner_not_found", {})
