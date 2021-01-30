@@ -29,9 +29,9 @@ class AccountMove(models.Model):
                 paid_amount += payment.amount
             rec.mcm_paid_amount = paid_amount
 
-    def unlink(self):
-        for move in self:
-            move.line_ids.unlink()
-        for rec in self:
-            rec.unlink()
-        return super(AccountMove, self).unlink()
+    # def unlink(self):
+    #     for move in self:
+    #         move.line_ids.unlink()
+    #     for rec in self:
+    #         rec.unlink()
+    #     return super(AccountMove, self).unlink()
