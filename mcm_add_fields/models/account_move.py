@@ -35,26 +35,3 @@ class AccountMove(models.Model):
     #     for rec in self:
     #         rec.unlink()
     #     return super(AccountMove, self).unlink()
-
-class AccountMoveLine(models.Model):
-    _inherit = "account.move.line"
-
-    def unlink(self):
-        moves = self.mapped('move_id')
-
-        # Check the lines are not reconciled (partially or not).
-        self._check_reconciliation()
-
-        # Check the lock date.
-        moves._check_fiscalyear_lock_date()
-
-        # Check the tax lock date.
-        self._check_tax_lock_date()
-
-        res = super(AccountMoveLine, self).unlink()
-
-        # Check total_debit == total_credit in the related moves.
-        if self._context.get('check_move_validity', True):
-            moves._check_balanced()
-
-        return res
