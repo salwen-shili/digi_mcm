@@ -131,6 +131,9 @@ class Conditions(http.Controller):
     def conditions(self, **kw, ):
         return request.render("digimoov_website_templates.digimoov_template_conditions", {})
 
+    @http.route('/politique-de-confidentialite',type='http', auth='public', website=True)
+    def confidentialite(self,**kw,):
+        return request.render("digimoov_website_templates.digimoov_template_confidentialite", {})
 class Services(http.Controller):
 
     @http.route('/service-clientele', type='http', auth='public', website=True)

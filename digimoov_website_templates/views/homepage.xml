@@ -532,15 +532,16 @@
                                 <b>
                                     <span class="typewrite" data-period="2000"
                                           data-type="[ &quot;SCOOTER, VOITURE OU CAMIONNETTE&quot; ]">
-                                        <span class="wrap">SCOOTER, VOITURE OU CAMIONNETTE</span>
+                                        <span class="wrap">SCOOTER,</span>
                                     </span>
                                 </b>
                                 <br/>
                             </h6>
                             <br/>
-                            <a class="arrow-btn m-t-20 m-b-10 font-medium btn btn-alpha rounded-circle"
-                               href="https://bit.ly/essgrat" data-original-title="" title="">Essai gratuit
-                                <i class="fa fa-1x fa-fw fa-long-arrow-right ml-1"/>
+                            <a class="arrow-btn btn btn-alpha font-medium m-b-10 m-t-20 rounded-circle"
+                               href="https://bit.ly/essgrat" data-original-title="" title="">En-savoir plus
+                                <i class="fa fa-1x fa-fw fa-long-arrow-right ml-1" data-original-title="" title=""
+                                   aria-describedby="tooltip633757"/>
                             </a>
                             <a class="arrow-btn m-t-20 m-b-10 font-medium underline btn btn-alpha rounded-circle"
                                href="/contact" data-original-title="" title="" aria-describedby="tooltip881944">
@@ -684,7 +685,7 @@
                     </section>
                     <section class="pb32 pt24 bg-100" data-name="Title" style="">
                         <div class="container">
-                            <div class="row s_nb_column_fixed">
+                            <div class="row s_nb_column_fixed" id="en-savoir plus">
                                 <div class="s_title pt16 offset-lg-2 col-lg-8 pb0" style="text-align: center;">
                                     <h2 style="margin-bottom: 10px; font-family: Montserrat; font-weight: 600; line-height: 1.3; color: rgb(58, 58, 71); font-size: 28px;">
                                         <font style="font-size: 24px;">Digimoov vous accompagne jusqu'à l'obtention de
@@ -966,8 +967,7 @@
                                         <form action="/shop/cart/update" method="post">
                                             <input type="hidden" class="product_id" name="product_id"
                                                    t-att-value="product.id"/>
-                                            <input type="hidden" name="promo" t-att-value="promo.id"
-                                                   t-if="promo"/>
+                                            <input type="hidden" name="promo" t-att-value="promo.id" t-if="promo"/>
                                             <div class="card-body" style="background-color:white">
                                                 <ul class="list-unstyled">
                                                     <li class="mb-4">
@@ -1083,8 +1083,7 @@
                                         <form action="/shop/cart/update" method="post">
                                             <input type="hidden" class="product_id" name="product_id"
                                                    t-att-value="product.id"/>
-                                            <input type="hidden" name="promo" t-att-value="promo.id"
-                                                   t-if="promo"/>
+                                            <input type="hidden" name="promo" t-att-value="promo.id" t-if="promo"/>
                                             <div class="card-body" style="background-color:white">
                                                 <ul class="list-unstyled">
                                                     <li class="mb-4">
@@ -1199,8 +1198,7 @@
                                         <form action="/shop/cart/update" method="post">
                                             <input type="hidden" class="product_id" name="product_id"
                                                    t-att-value="product.id"/>
-                                            <input type="hidden" name="promo" t-att-value="promo.id"
-                                                   t-if="promo"/>
+                                            <input type="hidden" name="promo" t-att-value="promo.id" t-if="promo"/>
                                             <div class="card-body">
                                                 <ul class="list-unstyled">
                                                     <li class="mb-4">
@@ -1299,34 +1297,45 @@
                                 <div class="col-lg-1">
                                 </div>
                                 <div class="col-lg-2">
-                                    <img src="/digimoov_website_templates/static/img/MCMACADEMY.webp" style="width:50%"
-                                         class="img img-fluid" alt="Logo partenaire MCM ACADEMY" data-original-title=""
-                                         title="MCM ACADEMY" aria-describedby="tooltip843653"/>
+                                    <a href="https://www.mcm-academy.fr/">
+                                        <img src="/digimoov_website_templates/static/img/MCMACADEMY.webp"
+                                             style="width:50%" class="img img-fluid" alt="Logo partenaire MCM ACADEMY"
+                                             data-original-title="" title="MCM ACADEMY"
+                                             aria-describedby="tooltip843653"/>
+                                    </a>
                                 </div>
                                 <div class="col-lg-2" t-if="partenaire=='' or partenaire=='ubereats'">
-                                    <img src="/digimoov_website_templates/static/img/ubereats partenaire Digimoov.webp"
-                                         style="width:50%" class="img img-fluid" alt="Logo partenaire ubereats"
-                                         data-original-title="" title="Ubereats partenaire Digimoov"
-                                         aria-describedby="tooltip843653"/>
+                                    <a href="https://www.ubereats.com/fr">
+                                        <img src="/digimoov_website_templates/static/img/ubereats partenaire Digimoov.webp"
+                                             style="width:50%" class="img img-fluid" alt="Logo partenaire ubereats"
+                                             data-original-title="" title="Ubereats partenaire Digimoov"
+                                             aria-describedby="tooltip843653"/>
+                                    </a>
                                 </div>
                                 <div class="col-lg-2" t-if="partenaire=='' or partenaire=='deliveroo'">
-                                    <img src="/digimoov_website_templates/static/img/deliveroo partenaire Digimoov.webp"
-                                         style="width:70%" class="img img-fluid" alt="Logo partenaire Deliveroo"
-                                         data-original-title="" title="Deliveroo partenaire Digimoov"
-                                         aria-describedby="tooltip623872"/>
+                                    <a href="https://deliveroo.fr/fr/">
+                                        <img src="/digimoov_website_templates/static/img/deliveroo partenaire Digimoov.webp"
+                                             style="width:70%" class="img img-fluid" alt="Logo partenaire Deliveroo"
+                                             data-original-title="" title="Deliveroo partenaire Digimoov"
+                                             aria-describedby="tooltip623872"/>
+                                    </a>
                                 </div>
                                 <div class="col-lg-2" t-if="partenaire=='' or partenaire=='coursierjob'">
-                                    <img src="/digimoov_website_templates/static/img/coursierjob partenaire Digimoov.webp"
-                                         style="width:50%" class="img img-fluid" alt="Logo partenaire Coursierjob"
-                                         data-original-title="" title="Coursierjob partenaire Digimoov"
-                                         aria-describedby="tooltip175558"/>
+                                    <a href="https://www.coursierjob.com/">
+                                        <img src="/digimoov_website_templates/static/img/coursierjob partenaire Digimoov.webp"
+                                             style="width:50%" class="img img-fluid" alt="Logo partenaire Coursierjob"
+                                             data-original-title="" title="Coursierjob partenaire Digimoov"
+                                             aria-describedby="tooltip175558"/>
+                                    </a>
                                 </div>
                                 <div class="col-lg-2">
-                                    <img src="/digimoov_website_templates/static/img/Cabinet Comptable Joel Pruvost.webp"
-                                         style="width:50%" class="img img-fluid"
-                                         alt="Logo partenaire Cabinet Comptable Joël Pruvost" data-original-title=""
-                                         title="Cabinet Comptable Joël Pruvost partenaire Digimoov"
-                                         aria-describedby="tooltip175558"/>
+                                    <a href="http://www.comptable-douai.com/">
+                                        <img src="/digimoov_website_templates/static/img/Cabinet Comptable Joel Pruvost.webp"
+                                             style="width:50%" class="img img-fluid"
+                                             alt="Logo partenaire Cabinet Comptable Joël Pruvost" data-original-title=""
+                                             title="Cabinet Comptable Joël Pruvost partenaire Digimoov"
+                                             aria-describedby="tooltip175558"/>
+                                    </a>
                                 </div>
                                 <div class="col-lg-1">
                                 </div>

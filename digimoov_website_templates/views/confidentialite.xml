@@ -1,0 +1,20 @@
+<odoo>
+    <template id="digimoov_website_templates.digimoov_template_confidentialite"
+              name="Politique De Confidentialité | Digimoov">
+        <t t-call="website.layout">
+            <div class="features wow fadeInDown">
+                <div class="container-m">
+                    <div class="row text-left">
+                        <div class="col-md-12">
+                            <div class="features-intro">
+                                <p>
+                                    Politique De Confidentialité
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </t>
+    </template>
+</odoo>
