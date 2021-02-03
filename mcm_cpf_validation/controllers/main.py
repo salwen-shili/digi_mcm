@@ -186,11 +186,11 @@ class ClientCPFController(http.Controller):
                 user.partner_id.module_id = module_id
                 request.env.user.company_id = 1
                 order = module_id = request.env['sale.order'].sudo().search(
-                    [('module_id', "=", module_id.id), ('state', 'in', ('sent', 'sale')),('partner_id',"=",user.partner_id.id)]) 
+                    [('module_id', "=", module_id.id), ('state', 'in', ('sent', 'sale')),('partner_id',"=",user.partner_id.id)])
                 if not order:
                     so = request.env['sale.order'].sudo().create({
                         'partner_id': user.partner_id.id,
-                        'company_id': module_id.company_id.id,
+                        'company_id': 1,
                     })
                     request.env['sale.order.line'].sudo().create({
                         'name': product_id.name,
@@ -200,7 +200,7 @@ class ClientCPFController(http.Controller):
                         'price_unit': product_id.list_price,
                         'order_id': so.id,
                         'tax_id': product_id.taxes_id,
-                        'company_id': module_id.company_id.id
+                        'company_id': 1
                     })
                     so.action_confirm()
                     moves = so._create_invoices(final=True)
