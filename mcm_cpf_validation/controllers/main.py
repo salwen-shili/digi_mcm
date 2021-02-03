@@ -192,6 +192,8 @@ class ClientCPFController(http.Controller):
                         'partner_id': user.partner_id.id,
                         'company_id': 1,
                     })
+                    so.module_id = module_id
+                    so.session_id = module_id.session_id
                     request.env['sale.order.line'].sudo().create({
                         'name': product_id.name,
                         'product_id': product_id.id,
