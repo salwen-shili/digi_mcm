@@ -181,11 +181,10 @@
                                     </h3>
                                     <h3>
                                         <font style="color: rgb(255, 255, 255); font-size: 14px; font-weight: normal;">
-                                            <a href="/blog/digimoov-3/post/tout-savoir-sur-la-capacite-de-transport-leger-de-marchandises-3"
+                                            <a href="/blog/digimoov-3/post/tout-savoir-sur-la-capacite-de-transport-leger-de-marchandises-5?anim"
                                                style="color:white;" data-original-title="" title=""
                                                aria-describedby="tooltip225935">Tout savoir sur la Capacité de
                                                 Marchandises
-
                                             </a>
                                         </font>
                                         <br/>
@@ -282,8 +281,14 @@
                                 <div class="footer-contact">
                                     <ul class="footer-links">
                                         <li>
-                                            <h3>Politique de Confidentialité</h3>
-                                            <h3><br/>Conditions Générales de Vente
+                                            <h3>
+                                                <a href="/politique-de-confidentialite">Politique de Confidentialité</a>
+                                            </h3>
+                                            <h3>
+                                                <br/>
+                                                <a href="/conditions" data-original-title="" title=""
+                                                   aria-describedby="tooltip767819">Conditions Générales de Vente
+                                                </a>
                                             </h3>
                                         </li>
                                         <li>
@@ -306,15 +311,16 @@
                                         </a>
                                     </li>
                                     <li class="tab">
-                                        <a href="https://www.instagram.com/digimoov.formation/"><i
-                                                class="circle fa fa-instagram" data-original-title="" title=""
-                                                aria-describedby="tooltip864579"/>&amp;nbsp;&amp;nbsp;
+                                        <a href="https://www.instagram.com/digimoov.formation/" data-original-title=""
+                                           title="" aria-describedby="tooltip9968"><i class="circle fa fa-instagram"
+                                                                                      data-original-title="" title=""
+                                                                                      aria-describedby="tooltip864579"/>&amp;nbsp;&amp;nbsp;
                                         </a>
                                     </li>
                                 </ul>
                             </footer>
-                            <a href="javascript:showAxeptioButton()">
-                                Cliquez-ici pour modifier vos préférences en matière de cookies
+                            <a href="javascript:showAxeptioButton()" data-original-title="" title=""
+                               aria-describedby="tooltip366530">&amp;nbsp;
                             </a>
                         </div>
                     </div>
