@@ -1255,7 +1255,7 @@
                                                    style="color: red !important;">Paiement 1 ou 3 fois
                                                 </p>
                                                 <br/>
-                                                <button class="btn btn-block text-white" type="submit" 
+                                                <button class="btn btn-block text-white" type="submit"
                                                         style="background-color:#6E209F;border-radius: 25px">
                                                     Je m'inscris
                                                 </button>
