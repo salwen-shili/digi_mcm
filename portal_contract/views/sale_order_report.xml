@@ -301,7 +301,7 @@
                                     </span>
                                 </div>
                                 <div>
-                                    <span style="font-size:12px">Coût unitaire HT :</span>
+                                    <span style="font-size:12px">Coût unitaire horaire HT :</span>
                                     <span style="font-size:12px"
                                           t-field="doc.partner_id.module_id.particulier_price_untaxed"
                                           t-options='{"widget": "monetary", "display_currency": doc.currency_id}'/>
