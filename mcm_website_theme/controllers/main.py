@@ -332,7 +332,26 @@ class WebsiteSale(WebsiteSale):
         if tx and tx.state == 'done' and tx.amount > 0 and order.state != 'sale':
             order.sale_action_sent()
         PaymentProcessing.remove_payment_transaction(tx)
-        return request.redirect('/shop/confirmation')
+        if order.company_id.id==1:
+            return request.redirect("/shop/confirmation")
+        else:
+            product_id = False
+            pricelist = False
+            if order:
+                for line in order.order_line:
+                    product_id = line.product_id
+            if tx:
+                state = str(tx.state)
+                if product_id:
+                    slugname = (product_id.name).strip().strip('-').replace(' ', '-').lower()
+                    if order.pricelist_id and order.pricelist_id.name in ['ubereats', 'deliveroo', 'coursierjob']:
+                        return request.redirect("/%s/%s/shop/confirmation/%s" % (slugname, order.pricelist_id.name,state))
+                    else:
+                        return request.redirect("/%s/shop/confirmation/%s"% (slugname ,state))
+                else:
+                    return request.redirect("/shop/confirmation")
+            else:
+                return request.redirect("/shop/confirmation")
 
     @http.route(['''/<string:product>/<string:partenaire>/shop/address''', '''/<string:product>/shop/address''',
                  '''/shop/address'''], type='http', methods=['GET', 'POST'], auth="user", website=True, sitemap=False)
