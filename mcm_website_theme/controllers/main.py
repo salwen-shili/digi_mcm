@@ -737,5 +737,3 @@ class CustomerPortal(CustomerPortal):
             'filterby': False,
         })
         return request.render("project.portal_my_tasks", values)
-
-

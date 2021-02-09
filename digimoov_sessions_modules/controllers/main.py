@@ -372,7 +372,3 @@ class Date_Examen(http.Controller):
             if module and partner:
                 partner.date_examen_edof=module.date_exam
         return True
-
-
-
-
