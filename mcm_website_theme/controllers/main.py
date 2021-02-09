@@ -334,11 +334,11 @@ class WebsiteSale(WebsiteSale):
         PaymentProcessing.remove_payment_transaction(tx)
         return request.redirect('/shop/confirmation')
 
-    @http.route(['/shop/address'], type='http', methods=['GET', 'POST'], auth="public", website=True, sitemap=False)
-    def address(self, **kw):
+    @http.route(['''/<string:product>/<string:partenaire>/shop/address''', '''/<string:product>/shop/address''',
+                 '''/shop/address'''], type='http', methods=['GET', 'POST'], auth="user", website=True, sitemap=False)
+    def address(self, partenaire=None, product=None, **kw):
         Partner = request.env['res.partner'].with_context(show_address=1).sudo()
         order = request.website.sale_get_order()
-
         redirection = self.checkout_redirection(order)
         if redirection:
             return redirection
@@ -349,7 +349,7 @@ class WebsiteSale(WebsiteSale):
         values, errors = {}, {}
 
         partner_id = int(kw.get('partner_id', -1))
-        partner=Partner.browse(partner_id)
+        partner = Partner.browse(partner_id)
 
         # IF PUBLIC ORDER
         if order.partner_id.id == request.website.user_id.sudo().partner_id.id:
@@ -376,14 +376,14 @@ class WebsiteSale(WebsiteSale):
                     values = Partner.browse(partner_id)
             elif partner_id == -1:
                 mode = ('new', 'shipping')
-            else: # no mode - refresh without post?
+            else:  # no mode - refresh without post?
                 return request.redirect('/shop/checkout')
 
         # IF POSTED
         if 'submitted' in kw:
-            partner.addresse_facturation=str(kw.get('adresse_facturation')) if kw.get('adresse_facturation') else ''
-            partner.numero_permis=str(kw.get('numero_permis')) if kw.get('numero_permis') else ''
-            partner.siret=str(kw.get('siret')) if kw.get('siret') else ''
+            partner.addresse_facturation = str(kw.get('adresse_facturation')) if kw.get('adresse_facturation') else ''
+            partner.numero_permis = str(kw.get('numero_permis')) if kw.get('numero_permis') else ''
+            partner.siret = str(kw.get('siret')) if kw.get('siret') else ''
             pre_values = self.values_preprocess(order, mode, kw)
             errors, error_msg = self.checkout_form_validate(mode, kw, pre_values)
             post, errors, error_msg = self.values_postprocess(order, mode, pre_values, errors, error_msg)
@@ -392,16 +392,16 @@ class WebsiteSale(WebsiteSale):
                 values = kw
             else:
                 partner_id = self._checkout_form_save(mode, post, kw)
-                if kw.get('adresse_facturation') and kw.get('adresse_facturation')=='societe':
+                if kw.get('adresse_facturation') and kw.get('adresse_facturation') == 'societe':
                     if not partner.parent_id:
-                        company=Partner.sudo().create({
+                        company = Partner.sudo().create({
                             'name': kw.get('company_name'),
-                            'siret':kw.get('siret'),
+                            'siret': kw.get('siret'),
                             'company_type': 'company',
-                            'phone':partner.phone,
-                            'street':partner.street,
+                            'phone': partner.phone,
+                            'street': partner.street,
                         })
-                        partner.parent_id=company.id
+                        partner.parent_id = company.id
                 if mode[1] == 'billing':
                     order.partner_id = partner_id
                     order.onchange_partner_id()
@@ -409,7 +409,8 @@ class WebsiteSale(WebsiteSale):
                     order.partner_invoice_id = partner_id
                     if not kw.get('use_same'):
                         kw['callback'] = kw.get('callback') or \
-                            (not order.only_services and (mode[0] == 'edit' and '/shop/checkout' or '/shop/address'))
+                                         (not order.only_services and (
+                                                 mode[0] == 'edit' and '/shop/checkout' or '/shop/address'))
                 elif mode[1] == 'shipping':
                     order.partner_shipping_id = partner_id
 
@@ -417,19 +418,22 @@ class WebsiteSale(WebsiteSale):
                 if not errors:
                     return request.redirect(kw.get('callback') or '/shop/confirm_order')
 
-        country = 'country_id' in values and values['country_id'] != '' and request.env['res.country'].browse(int(values['country_id']))
+        country = 'country_id' in values and values['country_id'] != '' and request.env['res.country'].browse(
+            int(values['country_id']))
         country = country and country.exists() or def_country_id
         fr_country = request.env['res.country'].sudo().search(
             [('code', 'ilike', 'FR')], limit=1)
-
-        values['addresse_facturation']=partner.addresse_facturation
-        values['siret']=partner.siret
+        if partner:
+            values['addresse_facturation'] = order.partner_id.addresse_facturation
+            values['siret'] = order.partner_id.siret
+            values['name'] = order.partner_id.name
+            values['phone'] = order.partner_id.phone
         render_values = {
             'website_sale_order': order,
             'partner_id': partner_id,
             'mode': mode,
             'checkout': values,
-            'fact':partner.addresse_facturation,
+            'fact': order.partner_id.addresse_facturation,
             'can_edit_vat': can_edit_vat,
             'country': country,
             'fr_country': fr_country,
