@@ -213,8 +213,8 @@
                                     </div>
                                     <div>
                                         <span style="font-size:12px">
-                                            Vous disposez d'un délai de formationjusqu'àla date de passage de
-                                            votreCentre d'examen de
+                                            Vous disposez d'un délai de formation jusqu'à la date de passage de
+                                            votre Centre d'examen de
                                         </span>
                                         <span style="font-size:12px"
                                               t-field="sale_order.module_id.ville"/>
