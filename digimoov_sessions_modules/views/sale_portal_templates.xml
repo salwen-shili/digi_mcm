@@ -203,7 +203,8 @@
                                         </p>
                                     </div>
                                     <div>
-                                        <span style="font-size:12px">Aucun report d’examen n’est possible une fois la date est fixée lors de l’inscription.
+                                        <span style="font-size:12px">Aucun report d’examen n’est possible une fois la
+                                            date est fixée lors de l’inscription.
                                         </span>
                                     </div>
                                     <br/>
@@ -212,8 +213,12 @@
                                     </div>
                                     <div>
                                         <span style="font-size:12px">
-                                            Vous disposez d'un délai de formation jusqu'à la date de passage de
-                                            votre Centre d'examen de Strasbourg à compter de la réception de vos
+                                            Vous disposez d'un délai de formationjusqu'àla date de passage de
+                                            votreCentre d'examen de
+                                        </span>
+                                        <span style="font-size:12px"
+                                              t-field="sale_order.module_id.ville"/>
+                                        <span style="font-size:12px"> à compterde la réception de vos
                                             identifiants pour effectuer les 102h de formation en ligne.Les formations en
                                             ligne consistent dans la fourniture d’un contenu numérique non fourni sur un
                                             support matériel accessible par le biais d’un espace électronique sécurisé
