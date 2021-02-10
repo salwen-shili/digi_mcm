@@ -278,7 +278,7 @@ class ClientCPFController(http.Controller):
                     'email': email,
                     'notification_type': 'email',
                     'website_id':2,
-                    'company_ids':[2],
+                    'company_ids':[1,2],
                     'company_id': 2
                 })
                 user.company_id=2
@@ -291,7 +291,7 @@ class ClientCPFController(http.Controller):
                     'email': email,
                     'notification_type': 'email',
                     'website_id': 1,
-                    'company_ids': [1],
+                    'company_ids': [1,2],
                     'company_id':1
 
                 })
