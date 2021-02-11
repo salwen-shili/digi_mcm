@@ -21,12 +21,15 @@
     ],
     'description': "Rajout des champs",
     'data': [
+        'security/sign_security.xml',
         'views/session.xml',
         'views/module.xml',
         'views/templates.xml',
         'views/template.xml',
         'views/sale_portal_templates.xml',
         'views/sale_order_report.xml',
+        'views/sign_request.xml',
+        'views/sign_template.xml',
     ],
     'qweb': [],
     'demo': [
