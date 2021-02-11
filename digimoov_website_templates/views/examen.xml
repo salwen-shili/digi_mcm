@@ -427,23 +427,13 @@
                                                 <input type="hidden" class="product_id" name="product_id"
                                                        t-att-value="echec_examen.id"/>
                                                 <td>
-                                                    <button type="submit" t-if="request.website.is_public_user()==False"
+                                                    <button type="submit"
                                                             class="btn btn-alpha o_anim_fade_in_up o_animate"
                                                             data-original-title="" title=""
                                                             aria-describedby="tooltip906293"
                                                             style="animation-name: o_anim_fade_in_up; visibility: visible; animation-play-state: paused;">
                                                         Réservez votre tentative
                                                     </button>
-                                                    <t t-if="request.website.is_public_user()">
-                                                        <a role="button" id="sign_up"
-                                                           class="btn btn-alpha o_anim_fade_in_up o_animate"
-                                                           data-original-title="" title=""
-                                                           aria-describedby="tooltip906293"
-                                                           style="animation-name: o_anim_fade_in_up; visibility: visible; animation-play-state: paused;"
-                                                           t-attf-href="/web/signup?{{ keep_query() }}">
-                                                            S'inscrire
-                                                        </a>
-                                                    </t>
                                                 </td>
                                             </form>
                                         </t>

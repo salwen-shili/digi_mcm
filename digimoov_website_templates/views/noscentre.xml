@@ -126,11 +126,11 @@
                                 <br/>
                             </p>
                             <div class="pb16 pt16 s_btn text-center" data-name="Button">
-                                <button type="submit" t-if="request.website.is_public_user()==False"
+                                <button type="submit"
                                         class="btn btn-alpha o_anim_fade_in_up o_animate" data-original-title=""
                                         title="" aria-describedby="tooltip906293"
                                         style="animation-name: o_anim_fade_in_up; visibility: visible; animation-play-state: paused;">
-                                    <a href="https://www.digimoov.fr/#pricing" data-original-title="" title=""
+                                    <a href="/pricing" data-original-title="" title=""
                                        aria-describedby="tooltip562802">
                                         <font style="color: rgb(255, 255, 255);">S'inscrire maintenant</font>
                                     </a>
