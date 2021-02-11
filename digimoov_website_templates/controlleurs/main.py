@@ -113,20 +113,11 @@ class DIGIEXAMEN(http.Controller):
         }
         return request.render("digimoov_website_templates.digimoov_template_examen", values)
 
-class FORMATION(http.Controller):
-
-    @http.route('/formation', type='http', auth='public', website=True)
-    def formation(self, **kw, ):
-        return request.render("digimoov_website_templates.digimoov_template_formation", {})
 class QUISOMMESNOUS(http.Controller):
 
     @http.route('/qui-sommes-nous', type='http', auth='public', website=True)
     def quisommesnous(self, **kw, ):
         return request.render("digimoov_website_templates.digimoov_template_quisommesnous", {})
-
-    @http.route('/qui-sommes-nous-2', type='http', auth='public', website=True)
-    def quisommesnous2(self, **kw, ):
-        return request.render("digimoov_website_templates.digimoov_template_quisommesnous2", {})
 
 class NOSCENTRES(http.Controller):
 
@@ -357,47 +348,3 @@ class Services(http.Controller):
             new_ticket = request.env['helpdesk.ticket'].sudo().create(
                 vals)
             return request.render("digimoov_website_templates.pedagogique_thank_you")
-
-
-
-
-
-
-
-
-
-
-
-class HOME2(http.Controller):
-
-    @http.route(['''/acceuil2''','''/acceuil2/<string:partenaire>'''], type='http', auth='public', website=True)
-    def noscentres(self,partenaire='', **kw, ):
-        digimoov_products = request.env['product.product'].sudo().search([('company_id', '=', 2)],order="list_price")
-        basic_price = False
-        avancee_price = False
-        premium_price = False
-        if digimoov_products:
-            for product in digimoov_products:
-                if (product.default_code == 'basic'):
-                    basic_price = round(product.list_price)
-                if (product.default_code == 'avancée'):
-                    avancee_price = round(product.list_price)
-                if (product.default_code == 'premium'):
-                    premium_price = round(product.list_price)
-        promo = False
-        if (request.website.id == 2 and partenaire in ['ubereats', 'deliveroo', 'coursierjob']):
-            promo = request.env['product.pricelist'].sudo().search(
-                [('company_id', '=', 2), ('code', 'ilike', partenaire.upper())])
-        values = {
-            'digimoov_products': digimoov_products,
-            'basic_price': basic_price if basic_price else '',
-            'avancee_price': avancee_price if avancee_price else '',
-            'premium_price': premium_price if premium_price else '',
-        }
-        if (partenaire in ['', 'ubereats', 'deliveroo', 'coursierjob'] and request.website.id == 2):
-            values['partenaire'] = partenaire
-            if (promo):
-                values['promo'] = promo
-            else:
-                values['promo'] = False
-        return request.render("digimoov_website_templates.digimoov_template_homepage2", values)
