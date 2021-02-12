@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <template id="mcm_website_theme.digimoov_sitemap" inherit_id="website.sitemap_xml" name="sitemap digimoov">
+    <template id="digimoov_website_templates.digimoov_sitemap" inherit_id="website.sitemap_xml" name="sitemap digimoov">
         <xpath expr="//t[@t-raw='content']" position="replace">
             <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
                     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"

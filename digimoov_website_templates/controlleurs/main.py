@@ -8,7 +8,7 @@ class Website(Home):
     def sitemap_xml_index(self, **kwargs):
         current_website=request.website
         if current_website.id==2:
-            return request.render("mcm_website_theme.digimoov_sitemap", {})
+            return request.render("digimoov_website_templates.digimoov_sitemap", {})
         res=super(Website, self).sitemap_xml_index()
 
 class FAQ(http.Controller):
