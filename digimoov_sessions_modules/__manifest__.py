@@ -21,7 +21,7 @@
     ],
     'description': "Rajout des champs",
     'data': [
-        # 'data/sign_data.xml',
+        'data/sign_data.xml',
         'security/sign_security.xml',
         'views/session.xml',
         'views/module.xml',
