@@ -7,6 +7,7 @@ from odoo.addons.portal.controllers.web import Home
 class Website(Home):
     @http.route('/sitemap.xml', type='http', auth="public", website=True, multilang=False, sitemap=False)
     def sitemap_xml_index(self, **kwargs):
+        res = super(Website, self).sitemap_xml_index()
         if request.website.id == 2:
             content = u""" <url>
 <loc>https://www.digimoov.fr/</loc>
@@ -112,7 +113,6 @@ class Website(Home):
 <lastmod>2021-02-11T15:29:28+00:00</lastmod>
 <priority>0.64</priority>
 </url>"""
-        res = super(Website, self).sitemap_xml_index()
 
 
 class FAQ(http.Controller):
