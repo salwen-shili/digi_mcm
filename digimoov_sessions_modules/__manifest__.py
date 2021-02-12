@@ -21,7 +21,6 @@
     ],
     'description': "Rajout des champs",
     'data': [
-        'data/sign_data.xml',
         'security/sign_security.xml',
         'views/session.xml',
         'views/module.xml',
@@ -31,6 +30,7 @@
         'views/sale_order_report.xml',
         'views/sign_request.xml',
         'views/sign_template.xml',
+        'data/sign_data.xml',
     ],
     'qweb': [],
     'demo': [
