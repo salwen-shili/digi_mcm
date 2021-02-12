@@ -114,6 +114,7 @@ class Website(Home):
 '</url>' \
 '</urlset> '
             return request.make_response(content)
+        res=super(Website, self).sitemap_xml_index()
 
 
 class FAQ(http.Controller):
