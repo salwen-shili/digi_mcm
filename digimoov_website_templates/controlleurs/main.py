@@ -1,15 +1,16 @@
 from odoo import http
 from odoo.http import request
-from datetime import datetime, date
+from datetime import datetime,date
 from odoo.addons.portal.controllers.web import Home
-
 
 class Website(Home):
     @http.route('/sitemap.xml', type='http', auth="public", website=True, multilang=False, sitemap=False)
     def sitemap_xml_index(self, **kwargs):
-        res = super(Website, self).sitemap_xml_index()
-        if request.website.id == 2:
-            content = u""" <url>
+        if request.website.id==2:
+            content=u""" This XML file does not appear to have any style information associated with it. The document tree is shown below.
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+<!--  created with Free Online Sitemap Generator www.xml-sitemaps.com  -->
+<url>
 <loc>https://www.digimoov.fr/</loc>
 <lastmod>2021-02-11T15:29:28+00:00</lastmod>
 <priority>1.00</priority>
@@ -112,15 +113,16 @@ class Website(Home):
 <loc>https://www.digimoov.fr/web/signup</loc>
 <lastmod>2021-02-11T15:29:28+00:00</lastmod>
 <priority>0.64</priority>
-</url>"""
-
+</url>
+</urlset> """
+            return request.make_response(content)
+        res=super(Website, self).sitemap_xml_index()
 
 class FAQ(http.Controller):
 
     @http.route('/faq', type='http', auth='public', website=True)
     def faq(self, **kw, ):
         return request.render("digimoov_website_templates.digimoov_template_faq", {})
-
 
 class FINANCEMENT(http.Controller):
 
@@ -130,7 +132,7 @@ class FINANCEMENT(http.Controller):
 
     @http.route('/completer-mon-dossier-cpf', type='http', auth='user', website=True)
     def completer_mon_dossier(self, **kw, ):
-        partner = request.env.user.partner_id
+        partner=request.env.user.partner_id
         values = {}
         if partner and partner.id_edof:
             product_id = request.env['product.template'].sudo().search(
@@ -146,12 +148,11 @@ class FINANCEMENT(http.Controller):
                     for module in all_digimoov_modules:
                         if module.date_exam:
                             print('interval days :' + str((module.date_exam - today).days))
-                            if (module.date_exam - today).days > int(
-                                    module.session_id.intervalle_jours) and module.session_id.website_published == True:
+                            if (module.date_exam - today).days > int(module.session_id.intervalle_jours) and module.session_id.website_published==True:
                                 list_modules_digimoov.append(module)
                 values.update({
                     'modules_digimoov': list_modules_digimoov,
-                    'product': product_id,
+                    'product':product_id,
                     'error_ville': False,
                     'error_exam_date': False,
                 })
@@ -160,16 +161,16 @@ class FINANCEMENT(http.Controller):
 
     @http.route('/cpf-complete', type='http', auth='user', website=True)
     def submit_cpf(self, **kw, ):
-        ville = kw.get('centre_examen')
-        date_examen = kw.get('date_examen')
-        error_ville = False
-        error_exam_date = False
-        if ville == 'all' and date_examen != 'all':
-            error_ville = True
-        if date_examen == 'all' and ville != 'all':
-            error_exam_date = True
-        if date_examen == 'all' and ville == 'all':
-            error_ville = True
+        ville=kw.get('centre_examen')
+        date_examen=kw.get('date_examen')
+        error_ville=False
+        error_exam_date=False
+        if ville=='all' and date_examen!='all':
+            error_ville=True
+        if date_examen=='all' and ville!='all':
+            error_exam_date=True
+        if date_examen=='all' and ville=='all':
+            error_ville=True
 
         partner = request.env.user.partner_id
         print('cpf-complete')
@@ -198,10 +199,10 @@ class FINANCEMENT(http.Controller):
                         'error_ville': error_ville,
                         'error_exam_date': error_exam_date,
                     })
-                    partner.ville = ''
+                    partner.ville=''
                     return request.render("digimoov_website_templates.completer_mon_dossier_cpf", values)
         else:
-            partner.ville = ville
+            partner.ville=ville
             return request.redirect("/cpf-thank-you")
 
     @http.route('/cpf-thank-you', type='http', auth='user', website=True)
@@ -210,12 +211,10 @@ class FINANCEMENT(http.Controller):
 
     @http.route('/pricing', type='http', auth='public', website=True)
     def pricing_table(self, **kw, ):
-        user_connected = request.env.user
+        user_connected=request.env.user
         if user_connected:
-            if user_connected.partner_id.partner_from and user_connected.partner_id.partner_from in ['ubereats',
-                                                                                                     'deliveroo',
-                                                                                                     'coursierjob']:
-                return request.redirect("/%s#pricing" % str(user_connected.partner_id.partner_from))
+            if user_connected.partner_id.partner_from and user_connected.partner_id.partner_from in ['ubereats', 'deliveroo', 'coursierjob']:
+                return request.redirect("/%s#pricing"% str(user_connected.partner_id.partner_from))
             else:
                 return request.redirect("/#pricing")
 
@@ -224,13 +223,11 @@ class DIGIEXAMEN(http.Controller):
 
     @http.route('/examen-capacite-transport-marchandises', type='http', auth='public', website=True)
     def exam(self, **kw, ):
-        echec_examen = request.env['product.product'].sudo().search(
-            [('company_id', '=', 2), ('default_code', "=", 'examen')])
+        echec_examen = request.env['product.product'].sudo().search([('company_id', '=', 2),('default_code',"=",'examen')])
         values = {
             'echec_examen': echec_examen,
         }
         return request.render("digimoov_website_templates.digimoov_template_examen", values)
-
 
 class QUISOMMESNOUS(http.Controller):
 
@@ -238,13 +235,11 @@ class QUISOMMESNOUS(http.Controller):
     def quisommesnous(self, **kw, ):
         return request.render("digimoov_website_templates.digimoov_template_quisommesnous", {})
 
-
 class NOSCENTRES(http.Controller):
 
     @http.route('/nos-centres-examen', type='http', auth='public', website=True)
     def noscentres(self, **kw, ):
         return request.render("digimoov_website_templates.digimoov_template_noscentre", {})
-
 
 class Conditions(http.Controller):
 
@@ -252,11 +247,9 @@ class Conditions(http.Controller):
     def conditions(self, **kw, ):
         return request.render("digimoov_website_templates.digimoov_template_conditions", {})
 
-    @http.route('/politique-de-confidentialite', type='http', auth='public', website=True)
-    def confidentialite(self, **kw, ):
+    @http.route('/politique-de-confidentialite',type='http', auth='public', website=True)
+    def confidentialite(self,**kw,):
         return request.render("digimoov_website_templates.digimoov_template_confidentialite", {})
-
-
 class Services(http.Controller):
 
     @http.route('/service-clientele', type='http', auth='public', website=True)
@@ -265,24 +258,22 @@ class Services(http.Controller):
 
         if http.request.uid == public_user.id:
             email_from = ""
-            nom = ""
-            prenom = ""
-            phone = ""
+            nom=""
+            prenom=""
+            phone=""
         else:
             phone = http.request.env.user.phone
             email_from = http.request.env.user.email
-            name = http.request.env.user.name
-            nom = ''
-            prenom = ''
+            name=http.request.env.user.name
+            nom=''
+            prenom=''
             if http.request.env.user.firstname:
-                name = name.split(" ", 1)
+                name=name.split(" ",1)
                 print(name[1])
                 print(name[0])
-                nom = name[1]
-                prenom = name[0]
-        return request.render("digimoov_website_templates.digimoov_template_service_clientele",
-                              {'email_from': email_from, 'phone': phone, 'contact_last_name': nom,
-                               'contact_name': prenom})
+                nom=name[1]
+                prenom=name[0]
+        return request.render("digimoov_website_templates.digimoov_template_service_clientele", {'email_from':email_from,'phone':phone,'contact_last_name':nom,'contact_name':prenom})
 
     @http.route('/administration', type='http', auth='public', website=True)
     def administration(self, **kw, ):
@@ -305,9 +296,7 @@ class Services(http.Controller):
                 print(name[0])
                 nom = name[1]
                 prenom = name[0]
-        return request.render("digimoov_website_templates.digimoov_template_service_administration",
-                              {'email_from': email_from, 'phone': phone, 'contact_last_name': nom,
-                               'contact_name': prenom})
+        return request.render("digimoov_website_templates.digimoov_template_service_administration", {'email_from':email_from,'phone':phone,'contact_last_name':nom,'contact_name':prenom})
 
     @http.route('/partenariat', type='http', auth='public', website=True)
     def partenariat(self, **kw, ):
@@ -330,9 +319,7 @@ class Services(http.Controller):
                 print(name[0])
                 nom = name[1]
                 prenom = name[0]
-        return request.render("digimoov_website_templates.digimoov_template_service_partenariat",
-                              {'email_from': email_from, 'phone': phone, 'contact_last_name': nom,
-                               'contact_name': prenom})
+        return request.render("digimoov_website_templates.digimoov_template_service_partenariat", {'email_from':email_from,'phone':phone,'contact_last_name':nom,'contact_name':prenom})
 
     @http.route('/service-comptabilite', type='http', auth='public', website=True)
     def comptabilite(self, **kw, ):
@@ -355,9 +342,7 @@ class Services(http.Controller):
                 print(name[0])
                 nom = name[1]
                 prenom = name[0]
-        return request.render("digimoov_website_templates.digimoov_template_service_comptabilite",
-                              {'email_from': email_from, 'phone': phone, 'contact_last_name': nom,
-                               'contact_name': prenom})
+        return request.render("digimoov_website_templates.digimoov_template_service_comptabilite", {'email_from':email_from,'phone':phone,'contact_last_name':nom,'contact_name':prenom})
 
     @http.route('/service-pedagogique', type='http', auth='public', website=True)
     def pedagogique(self, **kw, ):
@@ -380,9 +365,7 @@ class Services(http.Controller):
                 print(name[0])
                 nom = name[1]
                 prenom = name[0]
-        return request.render("digimoov_website_templates.digimoov_template_service_pedagogique",
-                              {'email_from': email_from, 'phone': phone, 'contact_last_name': nom,
-                               'contact_name': prenom})
+        return request.render("digimoov_website_templates.digimoov_template_service_pedagogique", {'email_from':email_from,'phone':phone,'contact_last_name':nom,'contact_name':prenom})
 
     @http.route('/contact', type='http', auth='public', website=True)
     def contact1(self, **kw, ):
@@ -390,38 +373,38 @@ class Services(http.Controller):
 
     @http.route('/helpdesk/submitted/',
                 type="http", auth="public", website=True, csrf=False)
-    def get_ticket(self, **kwargs):
-        contact_last_name = kwargs.get('contact_lastname')
-        contact_name = kwargs.get('contact_name')
-        email_from = kwargs.get('email_from')
-        phone = kwargs.get('phone')
-        name = kwargs.get('name')
-        description = kwargs.get('description')
-        name_company = False
+    def get_ticket(self,**kwargs):
+        contact_last_name=kwargs.get('contact_lastname')
+        contact_name=kwargs.get('contact_name')
+        email_from=kwargs.get('email_from')
+        phone=kwargs.get('phone')
+        name=kwargs.get('name')
+        description=kwargs.get('description')
+        name_company=False
         if kwargs.get('name_company'):
-            name_company = kwargs.get('name_company')
-        service = kwargs.get('service')
-        user = http.request.env['res.users'].sudo().search([('login', "=", str(email_from))])
+            name_company=kwargs.get('name_company')
+        service=kwargs.get('service')
+        user = http.request.env['res.users'].sudo().search([('login',"=",str(email_from))])
         if not user:
             user = request.env['res.users'].sudo().create({
                 'name': str(contact_name) + " " + str(contact_last_name),
                 'login': str(email_from),
                 'groups_id': [(6, 0, [request.env.ref('base.group_portal').id])],
                 'email': email_from,
-                'phone': phone,
+                'phone':phone,
                 'notification_type': 'email',
                 'website_id': 2,
-                'company_ids': [1, 2],
+                'company_ids': [1,2],
                 'company_id': 2
             })
         if user and name_company:
-            user.partner_id.company_name = name_company
+            user.partner_id.company_name=name_company
         if service == 'client':
             vals = {
                 'partner_email': str(email_from),
                 'partner_id': user.partner_id.id,
-                'description': str(description),
-                'name': 'Digimoov : ' + str(name),
+                'description':str(description),
+                'name':'Digimoov : '+ str( name),
                 'team_id': request.env['helpdesk.team'].sudo().search(
                     [('name', 'like', 'Client'), ('company_id', "=", 1)],
                     limit=1).id,
@@ -446,7 +429,7 @@ class Services(http.Controller):
             vals = {
                 'partner_email': str(email_from),
                 'partner_id': user.partner_id.id,
-                'description': str(description),
+                'description': str(description) ,
                 'name': 'Digimoov : ' + str(name),
                 'team_id': request.env['helpdesk.team'].sudo().search(
                     [('name', 'like', 'Admini'), ('company_id', "=", 1)],
