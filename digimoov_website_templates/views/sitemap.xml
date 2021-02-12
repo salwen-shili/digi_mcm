@@ -2,10 +2,10 @@
 <odoo>
     <template id="digimoov_website_templates.digimoov_sitemap" inherit_id="website.sitemap_xml" name="sitemap digimoov">
         <xpath expr="//t[@t-raw='content']" position="replace">
-            <t t-raw='
-                &lt;urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-                        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-                        xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd"&gt;
+            <t t-raw="
+                &lt;urlset xmlns='http://www.sitemaps.org/schemas/sitemap/0.9'
+                        xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance'
+                        xsi:schemaLocation='http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd'&gt;
                     &lt;url&gt;
                         &lt;loc&gt;https://www.digimoov.fr/&lt;/loc&gt;
                         &lt;lastmod&gt;2021-02-11T15:29:28+00:00&lt;/lastmod&gt;
@@ -119,7 +119,7 @@
                     &lt;loc&gt;https://www.digimoov.fr/web/signup&lt;/loc&gt;
                     &lt;lastmod&gt;2021-02-11T15:29:28+00:00&lt;/lastmod&gt;
                     &lt;priority&gt;0.64&lt;/priority&gt;
-                &lt;/urlset&gt; ' />
+                &lt;/urlset&gt; " />
         </xpath>
     </template>
 </odoo>
