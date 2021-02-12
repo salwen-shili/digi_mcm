@@ -30,7 +30,7 @@
         'views/sale_order_report.xml',
         'views/sign_request.xml',
         'views/sign_template.xml',
-        'data/sign_data.xml',
+        # 'data/sign_data.xml',
     ],
     'qweb': [],
     'demo': [
