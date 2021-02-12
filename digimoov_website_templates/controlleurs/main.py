@@ -7,8 +7,6 @@ class Website(Home):
     @http.route('/sitemap.xml', type='http', auth="public", website=True, multilang=False, sitemap=False)
     def sitemap_xml_index(self, **kwargs):
         current_website=request.website
-        if current_website.id==2:
-            return request.render("digimoov_website_templates.digimoov_sitemap", {})
         res=super(Website, self).sitemap_xml_index()
 
 class FAQ(http.Controller):
