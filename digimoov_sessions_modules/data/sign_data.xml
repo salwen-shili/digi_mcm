@@ -3,21 +3,21 @@
     <template id="sign.sign_template_mail_request">
         <p style="margin: 0px; padding: 0px; font-size: 12px;">
             Bonjour,
-            <br/>
-            Veuillez trouver ci-dessous, le lien vers la demande d’attestation(s) de capacité professionnelle permettant l’exercice de profession de transport léger de marchandise (Cerfa n°11414*05) à remplir et à signer.
-            <br/>
-            <div style="margin:16px auto; text-align:center;">
-                <a t-att-href="link"
-                   style="padding: 8px 16px 8px 16px; border-radius: 3px; background-color:#875A7B; text-align:center; text-decoration:none; color: #FFFFFF;">
-                    Accéder au document
-                </a>
-            </div>
-            <br/>
-            Une fois le document est rempli et signé, nous pouvons confirmer votre dossier d'inscription et vous pouvez donc commencer la formation.
-            <br/>
-            N'hésitez pas à nous contacter si vous avez des questions. Bien à vous.
-            <br/>
-            L'équipe Digimoov.
+<!--            <br/>-->
+<!--            Veuillez trouver ci-dessous, le lien vers la demande d’attestation(s) de capacité professionnelle permettant l’exercice de profession de transport léger de marchandise (Cerfa n°11414*05) à remplir et à signer.-->
+<!--            <br/>-->
+<!--            <div style="margin:16px auto; text-align:center;">-->
+<!--                <a t-att-href="link"-->
+<!--                   style="padding: 8px 16px 8px 16px; border-radius: 3px; background-color:#875A7B; text-align:center; text-decoration:none; color: #FFFFFF;">-->
+<!--                    Accéder au document-->
+<!--                </a>-->
+<!--            </div>-->
+<!--            <br/>-->
+<!--            Une fois le document est rempli et signé, nous pouvons confirmer votre dossier d'inscription et vous pouvez donc commencer la formation.-->
+<!--            <br/>-->
+<!--            N'hésitez pas à nous contacter si vous avez des questions. Bien à vous.-->
+<!--            <br/>-->
+<!--            L'équipe Digimoov.-->
         </p>
     </template>
 </odoo>
