@@ -7,116 +7,114 @@ class Website(Home):
     @http.route('/sitemap.xml', type='http', auth="public", website=True, multilang=False, sitemap=False)
     def sitemap_xml_index(self, **kwargs):
         if request.website.id==2:
-            content=b""" This XML file does not appear to have any style information associated with it. The document tree is shown below.
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
-<!--  created with Free Online Sitemap Generator www.xml-sitemaps.com  -->
-<url>
-<loc>https://www.digimoov.fr/</loc>
-<lastmod>2021-02-11T15:29:28+00:00</lastmod>
-<priority>1.00</priority>
-</url>
-<url>
-<loc>https://www.digimoov.fr/qui-sommes-nous</loc>
-<lastmod>2021-02-11T15:29:28+00:00</lastmod>
-<priority>0.80</priority>
-</url>
-<url>
-<loc>https://www.digimoov.fr/nos-centres-examen</loc>
-<lastmod>2021-02-11T15:29:28+00:00</lastmod>
-<priority>0.80</priority>
-</url>
-<url>
-<loc>https://www.digimoov.fr/blog/digimoov-3</loc>
-<lastmod>2021-02-11T15:29:28+00:00</lastmod>
-<priority>0.80</priority>
-</url>
-<url>
-<loc>https://www.digimoov.fr/examen-capacite-transport-marchandises</loc>
-<lastmod>2021-02-11T15:29:28+00:00</lastmod>
-<priority>0.80</priority>
-</url>
-<url>
-<loc>https://www.digimoov.fr/mon-compte-de-formation-cpf</loc>
-<lastmod>2021-02-11T15:29:28+00:00</lastmod>
-<priority>0.80</priority>
-</url>
-<url>
-<loc>https://www.digimoov.fr/faq</loc>
-<lastmod>2021-02-11T15:29:28+00:00</lastmod>
-<priority>0.80</priority>
-</url>
-<url>
-<loc>https://www.digimoov.fr/contact</loc>
-<lastmod>2021-02-11T15:29:28+00:00</lastmod>
-<priority>0.80</priority>
-</url>
-<url>
-<loc>https://www.digimoov.fr/web/login</loc>
-<lastmod>2021-02-11T15:29:28+00:00</lastmod>
-<priority>0.80</priority>
-</url>
-<url>
-<loc>https://www.digimoov.fr/blog/digimoov-3/post/bon-a-savoir-sur-la-formation-capacite-de-transport-leger-6</loc>
-<lastmod>2021-02-11T15:29:28+00:00</lastmod>
-<priority>0.80</priority>
-</url>
-<url>
-<loc>https://www.digimoov.fr/blog/digimoov-3/post/tout-savoir-sur-la-capacite-de-transport-leger-de-marchandises-5</loc>
-<lastmod>2021-02-11T15:29:28+00:00</lastmod>
-<priority>0.80</priority>
-</url>
-<url>
-<loc>https://www.digimoov.fr/blog/digimoov-3/post/tout-savoir-sur-la-capacite-de-transport-leger-de-marchandises-5?anim</loc>
-<lastmod>2021-02-11T15:29:28+00:00</lastmod>
-<priority>0.80</priority>
-</url>
-<url>
-<loc>https://www.digimoov.fr/blog/digimoov-3/post/a-quoi-sert-l-attestation-de-capacite-en-transport-leger-3</loc>
-<lastmod>2021-02-11T15:29:28+00:00</lastmod>
-<priority>0.80</priority>
-</url>
-<url>
-<loc>https://www.digimoov.fr/blog/digimoov-3/post/preparer-lexamen-de-capacite-en-transport-de-marchandises-et-la-creation-d-une-entreprise-de-transport-4</loc>
-<lastmod>2021-02-11T15:29:28+00:00</lastmod>
-<priority>0.80</priority>
-</url>
-<url>
-<loc>https://www.digimoov.fr/politique-de-confidentialite</loc>
-<lastmod>2021-02-11T15:29:28+00:00</lastmod>
-<priority>0.80</priority>
-</url>
-<url>
-<loc>https://www.digimoov.fr/conditions</loc>
-<lastmod>2021-02-11T15:29:28+00:00</lastmod>
-<priority>0.80</priority>
-</url>
-<url>
-<loc>https://www.digimoov.fr/service-clientele</loc>
-<lastmod>2021-02-11T15:29:28+00:00</lastmod>
-<priority>0.64</priority>
-</url>
-<url>
-<loc>https://www.digimoov.fr/partenariat</loc>
-<lastmod>2021-02-11T15:29:28+00:00</lastmod>
-<priority>0.64</priority>
-</url>
-<url>
-<loc>https://www.digimoov.fr/service-comptabilite</loc>
-<lastmod>2021-02-11T15:29:28+00:00</lastmod>
-<priority>0.64</priority>
-</url>
-<url>
-<loc>https://www.digimoov.fr/service-pedagogique</loc>
-<lastmod>2021-02-11T15:29:28+00:00</lastmod>
-<priority>0.64</priority>
-</url>
-<loc>https://www.digimoov.fr/web/signup</loc>
-<lastmod>2021-02-11T15:29:28+00:00</lastmod>
-<priority>0.64</priority>
-</url>
-</urlset> """
+            content=' This XML file does not appear to have any style information associated with it. The document tree is shown below.<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">' \
+'<url>' \
+'<loc>https://www.digimoov.fr/</loc> ' \
+'<lastmod>2021-02-11T15:29:28+00:00</lastmod>' \
+'<priority>1.00</priority>' \
+'</url>' \
+'<url>' \
+'<loc>https://www.digimoov.fr/qui-sommes-nous</loc>' \
+'<lastmod>2021-02-11T15:29:28+00:00</lastmod>' \
+'<priority>0.80</priority>' \
+'</url>' \
+'<url>' \
+'<loc>https://www.digimoov.fr/nos-centres-examen</loc>' \
+'<lastmod>2021-02-11T15:29:28+00:00</lastmod>' \
+'<priority>0.80</priority>' \
+'</url>' \
+'<url>' \
+'<loc>https://www.digimoov.fr/blog/digimoov-3</loc>' \
+'<lastmod>2021-02-11T15:29:28+00:00</lastmod>' \
+'<priority>0.80</priority>' \
+'</url>' \
+'<url>' \
+'<loc>https://www.digimoov.fr/examen-capacite-transport-marchandises</loc>' \
+'<lastmod>2021-02-11T15:29:28+00:00</lastmod>' \
+'<priority>0.80</priority>' \
+'</url>' \
+'<url>' \
+'<loc>https://www.digimoov.fr/mon-compte-de-formation-cpf</loc>' \
+'<lastmod>2021-02-11T15:29:28+00:00</lastmod>' \
+'<priority>0.80</priority>' \
+'</url>' \
+'<url>' \
+'<loc>https://www.digimoov.fr/faq</loc>' \
+'<lastmod>2021-02-11T15:29:28+00:00</lastmod>' \
+'<priority>0.80</priority>' \
+'</url>' \
+'<url>' \
+'<loc>https://www.digimoov.fr/contact</loc>' \
+'<lastmod>2021-02-11T15:29:28+00:00</lastmod>' \
+'<priority>0.80</priority>' \
+'</url>' \
+'<url>' \
+'<loc>https://www.digimoov.fr/web/login</loc>' \
+'<lastmod>2021-02-11T15:29:28+00:00</lastmod>' \
+'<priority>0.80</priority>' \
+'</url>' \
+'<url>' \
+'<loc>https://www.digimoov.fr/blog/digimoov-3/post/bon-a-savoir-sur-la-formation-capacite-de-transport-leger-6</loc>' \
+'<lastmod>2021-02-11T15:29:28+00:00</lastmod>' \
+'<priority>0.80</priority>' \
+'</url>' \
+'<url>' \
+'<loc>https://www.digimoov.fr/blog/digimoov-3/post/tout-savoir-sur-la-capacite-de-transport-leger-de-marchandises-5</loc>' \
+'<lastmod>2021-02-11T15:29:28+00:00</lastmod>' \
+'<priority>0.80</priority>' \
+'</url>' \
+'<url>' \
+'<loc>https://www.digimoov.fr/blog/digimoov-3/post/tout-savoir-sur-la-capacite-de-transport-leger-de-marchandises-5?anim</loc>' \
+'<lastmod>2021-02-11T15:29:28+00:00</lastmod>' \
+'<priority>0.80</priority>' \
+'</url>' \
+'<url>' \
+'<loc>https://www.digimoov.fr/blog/digimoov-3/post/a-quoi-sert-l-attestation-de-capacite-en-transport-leger-3</loc>' \
+'<lastmod>2021-02-11T15:29:28+00:00</lastmod>' \
+'<priority>0.80</priority>' \
+'</url>' \
+'<url>' \
+'<loc>https://www.digimoov.fr/blog/digimoov-3/post/preparer-lexamen-de-capacite-en-transport-de-marchandises-et-la-creation-d-une-entreprise-de-transport-4</loc>' \
+'<lastmod>2021-02-11T15:29:28+00:00</lastmod>' \
+'<priority>0.80</priority>' \
+'</url>' \
+'<url>' \
+'<loc>https://www.digimoov.fr/politique-de-confidentialite</loc>' \
+'<lastmod>2021-02-11T15:29:28+00:00</lastmod>' \
+'<priority>0.80</priority>' \
+'</url>' \
+'<url>' \
+'<loc>https://www.digimoov.fr/conditions</loc>' \
+'<lastmod>2021-02-11T15:29:28+00:00</lastmod>' \
+'<priority>0.80</priority>' \
+'</url>' \
+'<url>' \
+'<loc>https://www.digimoov.fr/service-clientele</loc>' \
+'<lastmod>2021-02-11T15:29:28+00:00</lastmod>' \
+'<priority>0.64</priority>' \
+'</url>' \
+'<url>' \
+'<loc>https://www.digimoov.fr/partenariat</loc>' \
+'<lastmod>2021-02-11T15:29:28+00:00</lastmod>' \
+'<priority>0.64</priority>' \
+'</url>' \
+'<url>' \
+'<loc>https://www.digimoov.fr/service-comptabilite</loc>' \
+'<lastmod>2021-02-11T15:29:28+00:00</lastmod>' \
+'<priority>0.64</priority>' \
+'</url>' \
+'<url>' \
+'<loc>https://www.digimoov.fr/service-pedagogique</loc>' \
+'<lastmod>2021-02-11T15:29:28+00:00</lastmod>' \
+'<priority>0.64</priority>' \
+'</url>' \
+'<loc>https://www.digimoov.fr/web/signup</loc>' \
+'<lastmod>2021-02-11T15:29:28+00:00</lastmod>' \
+'<priority>0.64</priority>' \
+'</url>' \
+'</urlset> '
             return request.make_response(content)
-        res=super(Website, self).sitemap_xml_index()
+
 
 class FAQ(http.Controller):
 
