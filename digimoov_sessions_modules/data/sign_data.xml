@@ -4,8 +4,7 @@
         <p style="margin: 0px; padding: 0px; font-size: 12px;">
             Bonjour,
             <br/>
-            Veuillez trouver ci-dessous, le lien vers la demande d’attestation(s) de capacité professionnelle permettant
-            l’exercice de profession de transport léger de marchandise (Cerfa n°11414*05) à remplir et à signer.
+            Veuillez trouver ci-dessous, le lien vers la demande d’attestation(s) de capacité professionnelle permettant l’exercice de profession de transport léger de marchandise (Cerfa n°11414*05) à remplir et à signer.
             <br/>
             <div style="margin:16px auto; text-align:center;">
                 <a t-att-href="link"
