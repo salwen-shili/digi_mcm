@@ -3,11 +3,6 @@ from odoo.http import request
 from datetime import datetime,date
 from odoo.addons.portal.controllers.web import Home
 
-class Website(Home):
-    @http.route('/sitemap.xml', type='http', auth="public", website=True, multilang=False, sitemap=False)
-    def sitemap_xml_index(self, **kwargs):
-        current_website=request.website
-        res=super(Website, self).sitemap_xml_index()
 
 class FAQ(http.Controller):
 
