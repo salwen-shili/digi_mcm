@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <template id="sign_template_mail_request" name="Document sign mail template">
+    <template id="sign.sign_template_mail_request" name="Document sign mail template">
         <p style="margin: 0px; padding: 0px; font-size: 14px;">
             Bonjour,
             <br/>
