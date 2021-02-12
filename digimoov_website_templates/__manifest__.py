@@ -35,7 +35,7 @@
         'views/template.xml',
         'views/cpf_thanks.xml',
         'views/confidentialite.xml',
-        # 'views/sitemap.xml',
+        'views/sitemap.xml',
 
     ],
     'qweb': [],
