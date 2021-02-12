@@ -21,5 +21,7 @@ class SignSendRequest(models.TransientModel):
     @api.model
     def default_get(self, fields):
         res = super(SignSendRequest, self).default_get(fields)
+        user=self.env.user
+        user.company_id=self.env.company.id
         res['subject'] =  _("%s vous a envoyé un document à remplir et à signer") % (self.env.company.name)
         return res
