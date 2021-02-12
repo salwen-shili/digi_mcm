@@ -13,9 +13,9 @@
     <template id="Digimoov Document Sign" inherit_id="sign.doc_sign" name="Document Sign">
         <xpath expr="//meta" position="after">
             <title>Remplissage Document</title>
-            <div class="text-center">
-                <img t-attf-src="/web/binary/company_logo?company={{ res_company.id }}"/>
-            </div>
+        </xpath>
+        <xpath expr="//t[1]" position="attributes">
+            <attribute name="t-name">Remplissage Document</attribute>
         </xpath>
     </template>
 </odoo>
