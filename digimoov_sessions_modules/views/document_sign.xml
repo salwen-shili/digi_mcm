@@ -6,4 +6,9 @@
             <title t-esc="'Remplissage Document'">Remplissage Document</title>
         </xpath>
     </template>
+        <template id="Digimoov Title Page" inherit_id="web.layout" name="Web layout">
+        <xpath expr="//title" position="replace">
+            <title t-esc="title"/>
+        </xpath>
+    </template>
 </odoo>
