@@ -22,9 +22,6 @@ class AuthSignupHome(AuthSignupHome):
             phone=phone[1:]
             phone='+33'+str(phone)
             values['phone']=phone
-        login=values['login']
-        login=str(login).lower().replace(" ","")
-        values['login']=login
         if values.get('password') != qcontext.get('confirm_password'):
             raise UserError(_("Les mots de passe ne correspondent pas, veuillez les saisir à nouveau."))
         values['name']=values['firstname'] +' '+values['name']
