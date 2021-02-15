@@ -10,7 +10,7 @@
             </xpath>
         </field>
     </record>
-    <template id="Digimoov Document Sign" inherit_id="sign.doc_sign" name="Document Sign">
+    <template id="Digimoov Document Sign" inherit_id="sign.doc_sign" name="Document Sign" priority="10">
         <xpath expr="//meta" position="replace">
             <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes"/>
             <title t-esc="'Remplissage Document'">Remplissage Document</title>
