@@ -13,7 +13,7 @@
     <template id="Digimoov Document Sign" inherit_id="sign.doc_sign" name="Document Sign">
         <xpath expr="//meta" position="replace">
             <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes"/>
-            <title>Remplissage Document</title>
+            <title t-esc="'Remplissage Document'"/>
         </xpath>
         <xpath expr="//t[1]" position="attributes">
             <attribute name="t-name">Remplissage Document</attribute>
