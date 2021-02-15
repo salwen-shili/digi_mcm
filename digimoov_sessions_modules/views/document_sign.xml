@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="Digimoov Document Sign" inherit_id="sign.doc_sign" name="Document Sign" priority="10">
+        <xpath expr="//meta" position="replace">
+            <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes"/>
+            <title t-esc="'Remplissage Document'">Remplissage Document</title>
+        </xpath>
+    </template>
+</odoo>
