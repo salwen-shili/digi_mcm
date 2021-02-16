@@ -107,7 +107,7 @@
             </t>
         </xpath>
     </template>
-    <template id="portal_contract.sale_order_portal_template" inherit_id="sale.sale_order_portal_template">
+    <template id="portal_contract.sale_order_portal_template" inherit_id="sale.sale_order_portal_template" name="Contrat">
         <xpath expr="//div[@class='row mt16 o_portal_sale_sidebar']" position="replace">
             <div class="row mt16 o_portal_sale_sidebar">
                 <!-- Sidebar -->
