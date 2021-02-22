@@ -144,6 +144,14 @@ class NOSCENTRES(http.Controller):
         else:
             return request.redirect("/pricing")
 
+    @http.route('/formation-mobilite-taxi', type='http', auth='public', website=True)
+    def formation_mobilite_taxi(self, **kw, ):
+        if request.website.id==1:
+            return request.render("website.formation-mobilite-taxi", {})
+        else:
+            return request.redirect("/pricing")
+
+
 
 
 class Conditions(http.Controller):
