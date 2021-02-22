@@ -11,6 +11,13 @@ class MailMessage(models.Model):
 
     @api.model_create_multi
     def create(self, values_list):
+        get_param = self.env['ir.config_parameter'].sudo().get_param
+        alias=self.env['res.config.settings'].sudo().write({
+            'alias_domain':self.env.company.alias_domain,
+        })
+        alias_domain= self.env['ir.config_parameter'].sudo().search([('key', "=",'mail.catchall.domain')])
+        if alias_domain:
+            alias_domain.sudo().write({'value':self.env.company.alias_domain})
         for vals in values_list:
             if vals.get("model") and vals.get("res_id"):
                 current_object = self.env[vals["model"]].browse(vals["res_id"])
