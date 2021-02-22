@@ -59,9 +59,6 @@ class FINANCEMENT(http.Controller):
             error_ville=True
 
         partner = request.env.user.partner_id
-        print('cpf-complete')
-        print(error_ville)
-        print(error_exam_date)
         if error_ville or error_exam_date:
             values = {}
             if partner and partner.id_edof:
@@ -119,7 +116,10 @@ class QUISOMMESNOUS(http.Controller):
 
     @http.route('/qui-sommes-nous', type='http', auth='public', website=True)
     def quisommesnous(self, **kw, ):
-        return request.render("digimoov_website_templates.digimoov_template_quisommesnous", {})
+        if request.website.id==2:
+            return request.render("digimoov_website_templates.digimoov_template_quisommesnous", {})
+        elif request.website.id==1:
+            return request.render("website.qui-sommes-nous-1", {})
 
 class NOSCENTRES(http.Controller):
 
