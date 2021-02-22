@@ -125,7 +125,17 @@ class NOSCENTRES(http.Controller):
 
     @http.route('/nos-centres-examen', type='http', auth='public', website=True)
     def noscentres(self, **kw, ):
-        return request.render("digimoov_website_templates.digimoov_template_noscentre", {})
+        if request.website.id==2:
+            return request.render("digimoov_website_templates.digimoov_template_noscentre", {})
+        else:
+            return request.redirect("/nos-centres")
+
+    @http.route('/nos-centres', type='http', auth='public', website=True)
+    def noscentres(self, **kw, ):
+        if request.website.id==1:
+            return request.render("website.nos-centres-formation", {})
+        else:
+            return request.redirect("/nos-centres-examen")
 
 class Conditions(http.Controller):
 
