@@ -2,7 +2,7 @@ from odoo import http
 from odoo.http import request
 from datetime import datetime,date
 from odoo.addons.portal.controllers.web import Home
-
+import werkzeug
 
 class FAQ(http.Controller):
 
@@ -149,7 +149,7 @@ class NOSCENTRES(http.Controller):
         if request.website.id==1:
             return request.render("website.formation-mobilite-taxi", {})
         else:
-            return request.redirect("/pricing")
+            raise werkzeug.exceptions.NotFound()
 
 
 
