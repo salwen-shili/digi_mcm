@@ -137,6 +137,15 @@ class NOSCENTRES(http.Controller):
         else:
             return request.redirect("/nos-centres-examen")
 
+    @http.route('/partenaires', type='http', auth='public', website=True)
+    def partenaires(self, **kw, ):
+        if request.website.id==1:
+            return request.render("website.partenaires-1", {})
+        else:
+            return request.redirect("/pricing")
+
+
+
 class Conditions(http.Controller):
 
     @http.route('/conditions', type='http', auth='public', website=True)
@@ -146,6 +155,8 @@ class Conditions(http.Controller):
     @http.route('/politique-de-confidentialite',type='http', auth='public', website=True)
     def confidentialite(self,**kw,):
         return request.render("digimoov_website_templates.digimoov_template_confidentialite", {})
+
+
 class Services(http.Controller):
 
     @http.route('/service-clientele', type='http', auth='public', website=True)
