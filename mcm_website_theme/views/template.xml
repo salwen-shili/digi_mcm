@@ -915,7 +915,7 @@
                 document.getElementById("pm_shop_check").href="https://bit.ly/2XYJwNn";
                 document.getElementById("pm_shop_checkout").href="https://bit.ly/2XYJwNn";
                 }
-                if(cpf_pm.value=='Formation à distance TAXI LIVE')
+                if(cpf_pm.value=='Formation à distance TAXI')
                 {
                 document.getElementById("pm_shop").href="https://bit.ly/31IPZgy";
                 document.getElementById("pm_shop_check").href="https://bit.ly/31IPZgy";
@@ -939,13 +939,13 @@
                 document.getElementById("pm_shop_check").href="https://bit.ly/2E1m5Mc";
                 document.getElementById("pm_shop_checkout").href="https://bit.ly/2E1m5Mc";
                 }
-                if(cpf_pm.value=='Formation à distance VMDTR LIVE')
+                if(cpf_pm.value=='Formation à distance VMDTR')
                 {
                 document.getElementById("pm_shop").href="https://bit.ly/2DOdhK1";
                 document.getElementById("pm_shop_check").href="https://bit.ly/2DOdhK1";
                 document.getElementById("pm_shop_checkout").href="https://bit.ly/2DOdhK1";
                 }
-                if(cpf_pm.value=='Formation à distance VTC LIVE')
+                if(cpf_pm.value=='Formation à distance VTC')
                 {
                 document.getElementById("pm_shop").href="https://bit.ly/3gUDN2u";
                 document.getElementById("pm_shop_check").href="https://bit.ly/3gUDN2u";
