@@ -85,7 +85,15 @@
                             </h2>
                             <div style="width:100%; margin:0 auto;">
                                 <font style="color: rgb(0, 0, 0); font-size: 18px;">C'est un examen qui dure 3 heures et
-                                    qui comporte 6 matières. Les questions sont proposées sous forme de QCM (questions à
+                                    qui comporte
+                                    <b>
+                                        <u>
+                                            <a href="/blog/digimoov-3/post/bon-a-savoir-sur-la-formation-capacite-de-transport-leger-6"
+                                               target="_blank">6 matières
+                                            </a>
+                                        </u>
+                                    </b>
+                                    . Les questions sont proposées sous forme de QCM (questions à
                                     choix multiples) et de Questions rédigées (QRC).
                                 </font>
                                 <font style="color: rgb(255, 255, 255);">
@@ -181,20 +189,16 @@
                                             </span>
                                             <img class="img-fluid o_we_custom_image d-block mx-auto padding-xl"
                                                  src="digimoov_website_templates/static/img/Partie questions à réponses courtes de l'examen.webp"
-                                                 data-original-title="" title="" aria-describedby="tooltip240442"
-                                            />
+                                                 data-original-title="" title="" aria-describedby="tooltip240442"/>
                                             <b style="color: rgb(103, 67, 148); font-size: 24px;">L'épreuve Questions
                                                 Rédigées
                                             </b>
-
                                         </h5>
-
                                         <p class="font-medium">
                                             <b>
                                                 <i>Durée totale : 1 h 45min</i>
                                             </b>
-                                            <b>
-                                                <br/>Questions et exercices exigeant une réponse rédigée :
+                                            <b><br/>Questions et exercices exigeant une réponse rédigée :
                                             </b>
                                         </p>
                                         <p>
