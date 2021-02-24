@@ -717,7 +717,7 @@ class CustomerPortal(CustomerPortal):
         users=request.env.user
         for user in users:
             for task in grouped_tasks:
-                if task.user_id.id==user.id:
+                if task.partner_id==user.partner_id.id:
                     my_tasks.append(task)
 
         values.update({
