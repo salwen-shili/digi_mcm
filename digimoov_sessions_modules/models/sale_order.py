@@ -20,7 +20,3 @@ class Sale(models.Model):
     exam_center_error= fields.Char('Error Exam Center',default='')
     exam_date_error= fields.Char('Error Exam Center',default='')
     conditions_error=fields.Char('Error Condition',default='')
-
-    def action_sale_contract(self):
-        for rec in self:
-            rec.write({'state':'sale'})
