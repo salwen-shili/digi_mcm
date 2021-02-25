@@ -11,6 +11,10 @@ class SaleOrder(models.Model):
     session_id=fields.Many2one('mcmacademy.session',required=False)
     module_id=fields.Many2one('mcmacademy.module',required=False)
 
+    def action_sale_contract(self):
+        for rec in self:
+            rec.write({'state':'sale'})
+            
     def action_link_contract(self):
         orders = self.env['sale.order'].sudo().search([])
         for order in orders:

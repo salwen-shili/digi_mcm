@@ -12,6 +12,7 @@
             </xpath>
             <xpath expr="//header//button[@name='action_draft']" position="after">
                 <button name="action_link_contract" type="object" string="Lier contrats avec modules"/>
+                <button name="action_sale_contract" type="object" string="mettre le contrat signé"/>
             </xpath>
         </field>
     </record>
