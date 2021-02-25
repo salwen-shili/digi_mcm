@@ -14,7 +14,7 @@ class SaleOrder(models.Model):
     def action_sale_contract(self):
         for rec in self:
             rec.write({'state':'sale'})
-            
+
     def action_link_contract(self):
         orders = self.env['sale.order'].sudo().search([])
         for order in orders:

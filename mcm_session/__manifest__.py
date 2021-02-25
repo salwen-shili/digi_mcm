@@ -21,6 +21,7 @@ ajouter un ensemble des sessions et des modules lié au session
         'payment',
         'mcm_add_fields',
         'portal',
+        'mcm_website_theme'
     ],
     'description': """
 ajouter un ensemble des sessions et des modules lié au session
