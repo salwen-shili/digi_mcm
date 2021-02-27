@@ -33,7 +33,8 @@
                         <div class="form-group row form-field o_website_form_required">
                             <div class="col-lg-9 col-md-12 col-sm-12">
                                 <input type="checkbox" name="confirm_identity" id="confirm_identity" required="1"/>
-                                <label for="confirm_identity" style="margin-left:8px;font-weight:normal !important;display:unset !important;">
+                                <label for="confirm_identity"
+                                       style="margin-left:8px;font-weight:normal !important;display:unset !important;">
                                     Je confirme avoir soumis le recto et le verso
                                 </label>
                             </div>
@@ -79,7 +80,8 @@
                         <div class="form-group row form-field" style="display: none;"
                              id="o_website_form_identity_hebergeur">
                             <div class="col-lg-9 col-md-12 col-sm-12">
-                                <label class="col-form-label" for="identity_hebergeur">Carte d'identité hébergeur recto/verso
+                                <label class="col-form-label" for="identity_hebergeur">Carte d'identité hébergeur
+                                    recto/verso
                                 </label>
                             </div>
                             <div class="col-lg-9 col-md-12 col-sm-12">
@@ -116,15 +118,18 @@
                         <div class="form-group row form-field o_website_form_required">
                             <div class="col-lg-9 col-md-12 col-sm-12">
                                 <input type="checkbox" name="confirm_cerfa" id="confirm_cerfa" required="1"/>
-                                <label for="confirmation" style="margin-left:8px;font-weight:normal !important;display:unset !important;">
+                                <label for="confirmation"
+                                       style="margin-left:8px;font-weight:normal !important;display:unset !important;">
                                     Je confirme avoir rempli et signé le CERFA
                                 </label>
                             </div>
                         </div>
                         <div class="form-group row">
                             <div class="offset-lg-6 offset-md-6 col-md-8 col-lg-7">
-                                <button type="submit" class="btn btn-primary" id="submit_documents">
-                                    Envoyez
+                                <button type="submit" class="btn btn-primary" id="submit_documents" style="font-size:120%">
+                                    <center>
+                                        Envoyez
+                                    </center>
                                 </button>
                                 <span id="o_website_form_result"></span>
                             </div>
@@ -135,7 +140,8 @@
                         var domic_checked= document.getElementById('check_domicile_checked');
                         var domic_not_checked= document.getElementById('check_domicile_not_checked');
                         var domic_identity_hebergeur= document.getElementById('o_website_form_identity_hebergeur');
-                        var domic_attestation_hebergeur= document.getElementById('o_website_form_attestation_hebergeur');
+                        var domic_attestation_hebergeur=
+                        document.getElementById('o_website_form_attestation_hebergeur');
                         var identity_hebergeur = document.getElementById('identity_hebergeur');
                         var attestation_hebergeur = document.getElementById('attestation_hebergeur');
                         if(domic_checked.checked){
