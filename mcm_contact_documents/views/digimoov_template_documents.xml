@@ -127,7 +127,7 @@
                         <div class="form-group row">
                             <div class="col-md-8 col-lg-7">
                                 <button type="submit" class="btn btn-primary" id="submit_documents"
-                                        style="width: 100% !important;margin:0;left:50%;transform: translate(-50%, -50%);">
+                                        style="width: 100% !important;margin:0px;left:50%;transform: translate(-50%, -50%);">
 
                                         Envoyez
                                 </button>
