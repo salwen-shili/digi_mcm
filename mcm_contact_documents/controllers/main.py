@@ -59,7 +59,7 @@ class CustomerPortal(CustomerPortal):
         values = self._prepare_portal_layout_values()
         Document = request.env['documents.document']
         user = request.env.user
-        website = request.website.id
+        website = request.website
         domain = [('owner_id', '=', user.id)]
 
         searchbar_sortings = {
