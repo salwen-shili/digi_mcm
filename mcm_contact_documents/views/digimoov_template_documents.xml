@@ -129,7 +129,8 @@
                                 <button type="submit" class="btn btn-primary centered-content" id="submit_documents"
                                         style="width: 100% !important;">
 
-                                        Envoyez
+                                        Envoyer
+                                    <span class="fa fa-1x fa-fw fa-long-arrow-right ml-1"></span>
                                 </button>
                                 <span id="o_website_form_result"></span>
                             </div>
