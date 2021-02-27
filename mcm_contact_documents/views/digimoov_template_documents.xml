@@ -50,7 +50,7 @@
                         </div>
                         <div class="form-group row form-field o_website_form_required">
                             <div class="col-lg-9 col-md-12 col-sm-12">
-                                <label class="col-form-label" for="address_proof">Jusitificatif à domicile Recto/Verso
+                                <label class="col-form-label" for="address_proof" style="display:unset;">Jusitificatif à domicile Recto/Verso
                                 </label>
                             </div>
                             <div class="col-lg-9 col-md-12 col-sm-12">
@@ -116,7 +116,7 @@
                         <div class="form-group row form-field o_website_form_required">
                             <div class="col-lg-9 col-md-12 col-sm-12">
                                 <input type="checkbox" name="confirm_cerfa" id="confirm_cerfa" required="1"/>
-                                <label for="confirmation" style="margin-left:8px;font-weight:normal !important;">
+                                <label for="confirmation" style="margin-left:8px;font-weight:normal !important;display:unset;">
                                     Je confirme avoir rempli et signé le cerfa
                                 </label>
                             </div>
