@@ -124,6 +124,7 @@
                                 </label>
                             </div>
                         </div>
+                        <br/>
                         <div class="form-group row">
                             <div class="offset-lg-6 offset-md-6 col-md-8 col-lg-7">
                                 <button type="submit" class="btn btn-primary" id="submit_documents" style="font-size:150% !important;text-align: center !important;">
