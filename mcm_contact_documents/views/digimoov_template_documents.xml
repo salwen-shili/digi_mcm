@@ -84,7 +84,7 @@
                             </div>
                             <div class="col-lg-9 col-md-12 col-sm-12">
                                 <input type="file" name="identity_hebergeur" id="identity_hebergeur"
-                                       required="1" multiple="true"
+                                       required="0" multiple="true"
                                        class="form-control o_website_form_input"
                                        accept="image/*,application/pdf"/>
                             </div>
@@ -97,7 +97,7 @@
                             </div>
                             <div class="col-lg-9 col-md-12 col-sm-12">
                                 <input type="file" name="attestation_hebergeur" id="attestation_hebergeur"
-                                       required="1"
+                                       required="0"
                                        class="form-control o_website_form_input"
                                        accept="image/*,application/pdf"/>
                             </div>
