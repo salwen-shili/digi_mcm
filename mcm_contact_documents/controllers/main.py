@@ -772,6 +772,10 @@ class CustomerPortal(CustomerPortal):
         if document:
             try:
                 files = request.httprequest.files.getlist('updated_document')
+                attachments = request.env['ir.attachment'].sudo().search(
+                    [("res_model", "=", "documents.document"), (("res_id", "=", document.id))])
+                for attachment in attachments:
+                    attachment.sudo().unlink()
                 for ufile in files:
                     # mimetype = self._neuter_mimetype(ufile.content_type, http.request.env.user)
                     datas = base64.encodebytes(ufile.read())
