@@ -537,7 +537,7 @@ class CustomerPortal(CustomerPortal):
             if files:
                 vals_list = []
                 vals = {
-                    'name': "Jusitificatif à domicile",
+                    'name': "Jusitificatif de domicile",
                     'datas': False,
                     'folder_id': int(folder_id),
                     'code_document': 'proof',
@@ -555,14 +555,14 @@ class CustomerPortal(CustomerPortal):
                     datas = base64.encodebytes(files[0].read())
                     datas2 = base64.encodebytes(files[1].read())
                     request.env['ir.attachment'].sudo().create({
-                        'name': "Jusitificatif à domicile Recto",
+                        'name': "Jusitificatif de domicile Recto",
                         'type': 'binary',
                         'datas': datas,
                         'res_model': 'documents.document',
                         'res_id': document.id
                     })
                     request.env['ir.attachment'].sudo().create({
-                        'name': "Jusitificatif à domicile Verso",
+                        'name': "Jusitificatif de domicile Verso",
                         'type': 'binary',
                         'datas': datas2,
                         'res_model': 'documents.document',
@@ -571,7 +571,7 @@ class CustomerPortal(CustomerPortal):
                 elif len(files) == 1:
                     datas = base64.encodebytes(files[0].read())
                     request.env['ir.attachment'].sudo().create({
-                        'name': "Jusitificatif à domicile",
+                        'name': "Jusitificatif de domicile",
                         'type': 'binary',
                         'datas': datas,
                         'res_model': 'documents.document',
@@ -678,7 +678,7 @@ class CustomerPortal(CustomerPortal):
             if files:
                 vals_list = []
                 vals = {
-                    'name': "Cerfa",
+                    'name': "CERFA",
                     'datas': False,
                     'folder_id': int(folder_id),
                     'code_document': 'cerfa',
