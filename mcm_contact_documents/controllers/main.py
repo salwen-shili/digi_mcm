@@ -768,21 +768,32 @@ class CustomerPortal(CustomerPortal):
     def update_document(self,document_id=None, **kw):
         document = request.env['documents.document'].sudo().search(
             [('id', '=', document_id)], limit=1)
-        print('document')
-        print(document)
+
         if document:
             try:
                 files = request.httprequest.files.getlist('updated_document')
                 for ufile in files:
                     # mimetype = self._neuter_mimetype(ufile.content_type, http.request.env.user)
-                    print('ufile')
-                    print(ufile)
                     datas = base64.encodebytes(ufile.read())
-                    vals = {
-                        'datas': datas,
-                        'state':'waiting',
-                    }
-                    document.sudo().write(vals)
+                    if request.website.id==1:
+                        vals = {
+                            'datas': datas,
+                            'state':'waiting',
+                        }
+                        document.sudo().write(vals)
+                    else:
+                        vals = {
+                            'state': 'waiting',
+                        }
+                        document.sudo().write(vals)
+                        request.env['ir.attachment'].sudo().create({
+                            'name': "Cerfa",
+                            'type': 'binary',
+                            'datas': datas,
+                            'res_model': 'documents.document',
+                            'res_id': document.id
+                        })
+
             except Exception as e:
                 logger.exception("Fail to upload document %s" % ufile.filename)
 
