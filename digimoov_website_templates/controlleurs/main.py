@@ -191,7 +191,8 @@ class Services(http.Controller):
             prenom = ''
             if http.request.env.user.firstname:
                 name = name.split(" ", 1)
-                nom = name[1] if name[1] else ''
+                if len[name]==2:
+                    nom = name[1] if name[1] else ''
                 prenom = name[0] if name[0] else ''
         return request.render("digimoov_website_templates.digimoov_template_service_clientele",
                               {'email_from': email_from, 'phone': phone, 'contact_last_name': nom,
