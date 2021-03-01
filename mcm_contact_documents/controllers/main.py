@@ -120,7 +120,7 @@ class CustomerPortal(CustomerPortal):
         partner_id = http.request.env.user.partner_id
         print('partner')
         print(partner_id.name)
-        folder_id = request.env['documents.folder'].sudo().search([('name', "=", _('Documents Clients'))])
+        folder_id = request.env['documents.folder'].sudo().search([('name', "=", _('Documents Clients')),('company_id',"=",1)])
         if not folder_id:
             vals_list = []
             vals = {
@@ -132,6 +132,7 @@ class CustomerPortal(CustomerPortal):
             vals = {
                 'name': "Statut document",
                 'folder_id': folder_id.id,
+                'company_id':1,
             }
             vals_list.append(vals)
             facet = request.env['documents.facet'].sudo().create(vals_list)
