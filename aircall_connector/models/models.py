@@ -201,7 +201,7 @@ class ResUser(models.Model):
 
             for call in call_response['calls']:
                 call_rec = self.env['call.detail'].search([('call_id', '=', call['id'])])
-                odoo_contact = None
+                odoo_contact = False
                 if (call['number']['name']=='MCM ACADEMY'):
                     print('call '+str(call))
                 # Creating a non existant contact
