@@ -251,7 +251,7 @@ class ResUser(models.Model):
                                          'call_direction': call['direction'],
                                          'call_date': date,
                                          'phone_number': call['raw_digits'],
-                                         'call_contact': odoo_contact.id if odoo_contact else None,
+                                         'call_contact': odoo_contact.id if odoo_contact else False,
                                          'call_recording': call['asset'],
                                          'digits': call['number']['digits'],
                                          'company_name': call['number']['name'],
@@ -279,7 +279,7 @@ class ResUser(models.Model):
                                         'body': str(note['content']),
                                     })
                     if not call_rec.call_contact and odoo_contact:
-                        call_rec.write({'call_contact': odoo_contact.id if odoo_contact else None,
+                        call_rec.write({'call_contact': odoo_contact.id if odoo_contact else False,
                                         })
 
                     if call['tags']:
