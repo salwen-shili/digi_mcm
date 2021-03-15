@@ -70,29 +70,49 @@
                         Bonjour ${object.partner_id.name},
                         <br/>
                         <br/>
-                        Pour finaliser votre inscription, nous vous invitons à télécharger vos documents en cliquant sur
-                        le bouton ci dessous. Pour vous faciliter la tâche, nous avons attaché le formulaire Cerfa comme
-                        pièce jointe à cet email.
+                        Félicitation pour votre inscription ! Il vous reste encore quelques étapes pour compléter votre
+                        dossier et entrer en formation.
+                        Voici une liste de documents à préparer et à envoyer sur le lien suivant:
+                        <b>
+                            <a href="https://www.digimoov.fr/charger_mes_documents">je charge mes documents</a>
+                        </b>
                         <br/>
                         <br/>
-                        <b>Documents nécessaires :</b>
+
+                        <b>C'est simple et facile :</b>
                         <br/>
                         <br/>
-                        - Carte d’identité recto / verso
+                        1 - Je prends en photo ma
+                        <b> pièce d'identité recto-verso,</b>
                         <br/>
-                        - Justificatif de domicile (à moins de 3 mois) .
+                        2 - Je prends en photo mon <b>justificatif de domicile</b> datant de moins de 3 mois,
                         <br/>
-                        - Cerfa rempli et signé .
+                        3 - Je télécharge le <b>formulaire CERFA ci-joint</b>, je le remplis et le signe,.
                         <br/>
-                        <br/>
-                        N'hésitez pas de nous contacter pour toute question ou assistance.
-                        <br/>
-                        <br/>
-                        Merci pour l’intérêt que vous avez porté à notre centre de formation.
+                        4- J'envois le tout sur le<b>lien indiqué au début du mail.</b>
                         <br/>
                         <br/>
-                        Cordialement
+                        <b>Rappel:</b>
+                        Il est indispensable de participer à une session de bienvenue où on vous expliquera le
+                        fonctionnement de la formation de la capacité de transport léger de marchandise chez Digimoov:
+                        <b>
+                            <a href="https://calendly.com/digimoov/session-de-information-digimoov">
+                                Réservez votre place ici
+                            </a>
+                        </b>
                         <br/>
+                        <br/>
+                        N'hésitez pas à
+                        <b>
+                            <a href="https://www.digimoov.fr/service-clientele">nous contacter</a>
+                        </b>
+                        pour toute question ou assistance.
+                        <br/>
+                        <br/>
+                        À très bientôt
+                        <br/>
+                        <br/>
+                        L'équipe de Digimoov.
                     </p>
                 </div>
             </field>
