@@ -521,22 +521,21 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-md-6 align-self-center">
-                            <h6 class="subtitle" style="font-size:25px;color:#202647">
+                            <h1 class="subtitle" style="font-size:25px;color:#202647;line-height:0.8cm !important">
                                 <b>FORMATION EN CAPACITÉ DE TRANSPORT LÉGER DE</b>
-                                <span class="stabiloblue">
-                                    <h3 style="font-size:25px">
-                                        <b>MARCHANDISES</b>
-                                    </h3>
+                                <span class="stabiloblue">MARCHANDISES
                                 </span>
-                                <b style="font-size:25px;color:#202647">POUR DEVENIR LIVREUR EN</b>
+                                <b style="font-size:25px;color:#202647;line-height:0.8cm !important">POUR DEVENIR
+                                    LIVREUR EN
+                                </b>
                                 <b>
                                     <span class="typewrite" data-period="2000"
                                           data-type="[ &quot;SCOOTER, VOITURE OU CAMIONNETTE&quot; ]">
-                                        <span class="wrap">SCOOTER, VOITURE OU CAM</span>
+                                        <span class="wrap">SCOOTER, VOITURE OU CAMIONNETTE</span>
                                     </span>
                                 </b>
                                 <br/>
-                            </h6>
+                            </h1>
                             <br/>
                             <a class="arrow-btn font-medium m-b-10 m-t-20 btn btn-alpha rounded-circle"
                                href="/#en-savoir-plus" data-original-title="" title="">En-savoir plus
@@ -575,24 +574,24 @@
                             <div class="container wrap-feature-29">
                                 <div class="row justify-content-center">
                                     <div class="col-md-7 text-center">
-                                        <h6 class="subtitle">
+                                        <h2 class="subtitle">
                                             <span style="color: rgb(0, 0, 0); font-size: 36px;">Formation 100 % en
                                                 ligne
                                             </span>
                                             <br/>
                                             <font style="color: rgb(0, 0, 0); font-size: 18px;">éligible au CPF</font>
-                                        </h6>
+                                        </h2>
                                     </div>
                                 </div>
                                 <div class="row wrap-feature-29 text-white">
                                     <div class="col-lg-4 col-md-4 text-center">
                                         <span class="display-5 fa fa-3x fa-rocket" data-original-title="" title=""
                                               aria-describedby="tooltip329079" style="color: rgb(99, 74, 165);"/>
-                                        <h5 class="title">
+                                        <p class="title">
                                             <font style="color: rgb(0, 0, 0);"><br/>Acquérir les connaissances
                                                 nécessaires afin de réussir en tant que livreur indépendant
                                             </font>
-                                        </h5>
+                                        </p>
                                     </div>
                                     <div class="col-lg-4 col-md-4 text-center ">
                                         <img src="/digimoov_website_templates/static/img/Formation 100 pour cent en ligne.webp"
@@ -628,7 +627,9 @@
                                                          title="Apprenez à votre rythme"
                                                          aria-describedby="tooltip965860" style=""/>
                                                 </div>
-                                                <h5 class="font-medium">Apprenez à votre rythme</h5>
+                                                <h3>
+                                                    <font style="font-size: 20px;">Apprenez à votre rythme</font>
+                                                </h3>
                                                 <p class="m-t-20">
                                                     <span style="font-family: Roboto, &quot;Odoo Unicode Support Noto&quot;, sans-serif;">
                                                         Choisissez quand et pour combien de temps vous souhaitez
@@ -648,7 +649,9 @@
                                                          title="Des formateurs Qualifiés chez Digimoov"
                                                          aria-describedby="tooltip549355"/>
                                                 </div>
-                                                <h5 class="font-medium">Des formateurs qualifiés</h5>
+                                                <h3>
+                                                    <font style="font-size: 20px;">Des formateurs qualifiés</font>
+                                                </h3>
                                                 <p class="m-t-20">
                                                     <span style="font-family: Roboto, &quot;Odoo Unicode Support Noto&quot;, sans-serif;">
                                                         Vous serez pris en charge et accompagné par une équipe hautement
@@ -669,7 +672,9 @@
                                                          title="Examens Blancs capacité de transport léger chez Digimoov"
                                                          aria-describedby="tooltip149456"/>
                                                 </div>
-                                                <h5 class="font-medium">Examens blancs</h5>
+                                                <h3>
+                                                    <font style="font-size: 20px;">Examens blancs</font>
+                                                </h3>
                                                 <p class="m-t-20">
                                                     <span style="font-family: Roboto, &quot;Odoo Unicode Support Noto&quot;, sans-serif;">
                                                         Afin de se préparer efficacement à l'examen final
@@ -703,7 +708,9 @@
                                 <div class="row wrap-feature-26">
                                     <div class="col-md-7 align-self-center" style="">
                                         <div class="max-box">
-                                            <h2 class="title m-t-20 text-beta">La formation</h2>
+                                            <h3 class="title m-t-20 text-beta">
+                                                <font style="font-size: 30px;">La formation</font>
+                                            </h3>
                                             <p class="m-t-30 custom_p">Digimoov vous assure une formation de 102 heures
                                                 100 % en ligne. C'est une formation qui vous permettra d'apprendre 6
                                                 modules indispensables pour la réussite en tant que transporteur
@@ -741,7 +748,9 @@
                                              style="transform: scaleX(0.88) scaleY(0.88);"/>
                                     </div>
                                     <div class="col-md-6 align-self-center" style="">
-                                        <h2 class="title m-t-20 text-beta">L'examen</h2>
+                                        <h3 class="title m-t-20 text-beta">
+                                            <font style="font-size: 30px;">L'examen</font>
+                                        </h3>
                                         <p class="m-t-30 custom_p">Après avoir terminé la formation, vous devez passer
                                             un examen de 3 heures en présentiel. Les questions de l'examen sont
                                             proposées sous forme de QCM (questions à choix multiples) et de Questions
@@ -821,9 +830,9 @@
                                                  title="Transport léger sur scooter" aria-describedby="tooltip533278"
                                                  style="transform: scaleX(0.78) scaleY(0.85);"/>
                                             <div class="m-t-30">
-                                                <h5 class="font-medium" style="text-align: center; ">Devenir livreur en
+                                                <h3 class="font-medium" style="text-align: center; ">Devenir livreur en
                                                     scooter
-                                                </h5>
+                                                </h3>
                                                 <p class="custom_p m-b-30 m-t-30" style="text-align: center; ">Passez à
                                                     la vitesse supérieure et faites des livraisons plus rapides et à
                                                     moindre effort sur scooter grâce à la capacité de transport léger de
@@ -842,9 +851,9 @@
                                                  aria-describedby="tooltip970873"
                                                  style="transform: scaleX(0.85) scaleY(0.89);"/>
                                             <div class="m-t-30">
-                                                <h5 class="font-medium" style="text-align: center; ">Devenir livreur en
+                                                <h3 class="font-medium" style="text-align: center; ">Devenir livreur en
                                                     voiture
-                                                </h5>
+                                                </h3>
                                                 <p class="custom_p m-b-30 m-t-30" style="text-align: center;">Le secteur
                                                     de la livraison est en pleine expansion. Plusieurs entreprises sont
                                                     à la recherche des livreurs reconnus en tant que professionnels de
@@ -863,9 +872,9 @@
                                                  aria-describedby="tooltip38151"
                                                  style="transform: scaleX(0.89) scaleY(0.9);"/>
                                             <div class="m-t-30">
-                                                <h5 class="font-medium" style="text-align: center; ">Devenir livreur en
+                                                <h3 class="font-medium" style="text-align: center; ">Devenir livreur en
                                                     camionnette
-                                                </h5>
+                                                </h3>
                                                 <p class="custom_p m-b-30 m-t-30" style="text-align: center;">La
                                                     capacité professionnelle de transport routier léger de marchandises
                                                     vous permettra d'exploiter des véhicules de -3,5 tonnes de poids
@@ -885,9 +894,12 @@
                             <div class="row clearfix">
                                 <div class="title-column col-lg-5 col-md-12 col-sm-12">
                                     <div class="inner-column">
-                                        <h3 class="text-left;font-size:35px !important;">Des centaines de personnes ont
-                                            déjà fait confiance à Digimoov
-                                        </h3>
+                                        <h4 class="text-left;font-size:35px !important;">
+                                            <font style="color: rgb(255, 255, 255); font-size: 36px;">Des centaines de
+                                                personnes ont
+                                                déjà fait confiance à Digimoov
+                                            </font>
+                                        </h4>
                                         <div class="text">Pourquoi pas vous ?
                                             <br/>
                                         </div>
@@ -900,9 +912,9 @@
                                                 <div class="count-box counter-box">
                                                     <span class="count-text counter">90</span>
                                                     <br/>%
-                                                    <h4 class="counter-title">
+                                                    <h5 class="counter-title">
                                                         <font style="font-size: 16px;">de recommandation</font>
-                                                    </h4>
+                                                    </h5>
                                                 </div>
                                             </div>
                                             <div class="counter-column col-lg-4 col-md-4 col-sm-12">
@@ -910,18 +922,18 @@
                                                     <span class="count-text counter">96</span>
                                                     <br/>
                                                     %
-                                                    <h4 class="counter-title">
+                                                    <h5 class="counter-title">
                                                         <font style="font-size: 16px;">de satisfaction</font>
-                                                    </h4>
+                                                    </h5>
                                                 </div>
                                             </div>
                                             <div class="counter-column col-lg-4 col-md-4 col-sm-12">
                                                 <div class="count-box counter-box">
                                                     <span class="count-text counter">1500</span>
                                                     <br/>+
-                                                    <h4 class="counter-title">
+                                                    <h5 class="counter-title">
                                                         <font style="font-size: 16px;">Stagiaires formés</font>
-                                                    </h4>
+                                                    </h5>
                                                 </div>
                                             </div>
                                         </div>
@@ -956,9 +968,11 @@
                                 <div class="text-center text-white border-0"
                                      style="background-color:#6E209F;border-top-left-radius:25px;border-top-right-radius:25px;">
                                     <br/>
-                                    <h2>
-                                        <strong style="color:white">SOLO</strong>
-                                    </h2>
+                                    <p>
+                                        <strong style="color:white">
+                                            <font style="font-size: 30px;">SOLO</font>
+                                        </strong>
+                                    </p>
                                     <p>&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;&amp;nbsp;</p>
                                     <br/>
                                 </div>
@@ -1062,9 +1076,11 @@
                                 <div class="text-center text-white border-0"
                                      style="background-color:#6E209F;border-top-left-radius:25px;border-top-right-radius:25px;">
                                     <br/>
-                                    <h2>
-                                        <strong style="color:white;">PRO</strong>
-                                    </h2>
+                                    <p>
+                                        <strong style="color:white;">
+                                            <font style="font-size: 30px;">PRO</font>
+                                        </strong>
+                                    </p>
                                     <p>
                                         <b>Éligible au CPF</b>
                                     </p>
@@ -1169,9 +1185,11 @@
                                 <div class="text-center text-white border-0"
                                      style="background-color:#6E209F;border-top-left-radius:25px;border-top-right-radius:25px;">
                                     <br/>
-                                    <h2>
-                                        <strong style="color:white">PREMIUM</strong>
-                                    </h2>
+                                    <p>
+                                        <strong style="color:white">
+                                            <font style="font-size: 30px;">PREMIUM</font>
+                                        </strong>
+                                    </p>
                                     <p>
                                         <b>Éligible au CPF</b>
                                     </p>
