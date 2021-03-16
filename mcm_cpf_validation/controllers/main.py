@@ -50,6 +50,8 @@ class ClientCPFController(http.Controller):
 
     @http.route('/cpf_accepted/<string:email>/<string:module>/', type="http", auth="user")
     def cpf_accepted(self,module=None, email=None):
+        if email=='FORGET.BASTIEN@OUTLOOK.FR':
+            return request.render("mcm_cpf_validation.mcm_website_cpf_accepted")
         email = email.replace("%", ".")
         email = str(email).lower()
         email = email.replace(" ","")
