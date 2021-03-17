@@ -113,7 +113,7 @@ class WebsiteSale(WebsiteSale):
         '''/shop/page/<int:page>''',
         '''/shop/category/<model("product.public.category"):category>''',
         '''/shop/category/<model("product.public.category"):category>/page/<int:page>'''
-    ], type='http', auth="public", website=True, sitemap=sitemap_shop)
+    ], type='http', auth="public", website=True, sitemap=False)
     def shop(self, page=0, category=None, state='', taxi_state='', vmdtr_state='',vtc_state='', search='', ppg=False, **post):
         add_qty = int(post.get('add_qty', 1))
         Category = request.env['product.public.category']
@@ -353,8 +353,7 @@ class WebsiteSale(WebsiteSale):
             else:
                 return request.redirect("/shop/confirmation")
 
-    @http.route(['''/<string:product>/<string:partenaire>/shop/address''', '''/<string:product>/shop/address''',
-                 '''/shop/address'''], type='http', methods=['GET', 'POST'], auth="user", website=True, sitemap=False)
+    @http.route(['''/<string:product>/<string:partenaire>/shop/address''','''/<string:product>/shop/address''','''/shop/address'''], type='http', methods=['GET', 'POST'], auth="user", website=True, sitemap=False)
     def address(self, partenaire=None, product=None, **kw):
         Partner = request.env['res.partner'].with_context(show_address=1).sudo()
         order = request.website.sale_get_order()
@@ -429,7 +428,7 @@ class WebsiteSale(WebsiteSale):
                     if not kw.get('use_same'):
                         kw['callback'] = kw.get('callback') or \
                                          (not order.only_services and (
-                                                 mode[0] == 'edit' and '/shop/checkout' or '/shop/address'))
+                                                     mode[0] == 'edit' and '/shop/checkout' or '/shop/address'))
                 elif mode[1] == 'shipping':
                     order.partner_shipping_id = partner_id
 
@@ -487,7 +486,7 @@ class WebsiteSale(WebsiteSale):
             if not data.get(field_name):
                 error[field_name] = 'missing'
 
-        if not data.get('numero_permis') and request.website.id==1:
+        if not data.get('numero_permis'):
             error["numero_permis"] = 'error'
             error_message.append(_('Numéro de permis doit être rempli'))
         if not data.get('adresse_facturation'):
@@ -620,6 +619,7 @@ class Conditions(http.Controller):
                 order.accompagnement = False
         return True
 
+
 class CustomerPortal(CustomerPortal):
     @http.route(['/my/tasks', '/my/tasks/page/<int:page>'], type='http', auth="user", website=True)
     def portal_my_tasks(self, page=1, date_begin=None, date_end=None, sortby=None, filterby=None, search=None,
@@ -648,6 +648,7 @@ class CustomerPortal(CustomerPortal):
 
         # extends filterby criteria with project the customer has access to
         projects = request.env['project.project'].search([])
+        print(projects)
         for project in projects:
             searchbar_filters.update({
                 str(project.id): {'label': project.name, 'domain': [('project_id', '=', project.id)]}
@@ -691,21 +692,25 @@ class CustomerPortal(CustomerPortal):
                 search_domain = OR([search_domain, [('stage_id', 'ilike', search)]])
             domain += search_domain
 
+        # Display just tasks of active user
+        users = request.env.user
+        domain_i = ['|', ('parent_id.user_id', '=', users.id), ('user_id', '=', users.id)]
+        print(domain_i)
         # task count
-        task_count = request.env['project.task'].search_count(domain)
+        task_count = request.env['project.task'].search_count(domain_i)
+        print(task_count)
         # pager
         pager = portal_pager(
             url="/my/tasks",
-            url_args={'date_begin': date_begin, 'date_end': date_end, 'sortby': sortby, 'filterby': filterby,
-                      'search_in': search_in, 'search': search},
+            url_args={'date_begin': date_begin},
             total=task_count,
             page=page,
             step=self._items_per_page
         )
         # content according to pager and archive selected
-        if groupby == 'project':
+        if groupby == 'project_id':
             order = "project_id, %s" % order  # force sort on project first to group by project in view
-        tasks = request.env['project.task'].search(domain, order=order, limit=self._items_per_page,
+        tasks = request.env['project.task'].search(domain_i, order=order, limit=self._items_per_page,
                                                    offset=(page - 1) * self._items_per_page)
         request.session['my_tasks_history'] = tasks.ids[:100]
         if groupby == 'project':
@@ -713,17 +718,12 @@ class CustomerPortal(CustomerPortal):
                              groupbyelem(tasks, itemgetter('project_id'))]
         else:
             grouped_tasks = [tasks]
-        my_tasks=[]
-        users=request.env.user
-        for user in users:
-            for task in grouped_tasks:
-                if task.partner_id==user.partner_id.id:
-                    my_tasks.append(task)
+            print(grouped_tasks)
 
         values.update({
             'date': date_begin,
             'date_end': date_end,
-            'grouped_tasks': my_tasks,
+            'grouped_tasks': grouped_tasks,
             'page_name': 'task',
             'archive_groups': archive_groups,
             'default_url': '/my/tasks',
@@ -738,3 +738,79 @@ class CustomerPortal(CustomerPortal):
             'filterby': False,
         })
         return request.render("project.portal_my_tasks", values)
+
+    # First Function to Add Filter to invoice_count in portal invoice view
+    def _prepare_portal_layout_values(self):
+        values = super(CustomerPortal, self)._prepare_portal_layout_values()
+        invoice_count = request.env['account.move'].search_count([
+            ('type', 'in', ('out_invoice', 'in_invoice', 'out_refund', 'in_refund', 'out_receipt', 'in_receipt')), ('type_facture', '=', 'web'), ('cpf_solde_invoice', '=', False), ('cpf_acompte_invoice', '=', False)
+        ])
+        values['invoice_count'] = invoice_count
+        users = request.env.user
+        domain_i = ['|', ('parent_id.user_id', '=', users.id), ('user_id', '=', users.id)]
+        values['task_count'] = request.env['project.task'].search_count(domain_i)
+        return values
+
+    #Second Function to Add Filter to invoice_count in portal invoice view
+    def _prepare_home_portal_values(self):
+        values = super(CustomerPortal, self)._prepare_home_portal_values()
+        invoice_count = request.env['account.move'].search_count([
+            ('type', 'in', ('out_invoice', 'in_invoice', 'out_refund', 'in_refund', 'out_receipt', 'in_receipt')),
+            ('type_facture', '=', 'web'), ('cpf_solde_invoice', '=', False), ('cpf_acompte_invoice', '=', False)
+        ]) if request.env['account.move'].check_access_rights('read', raise_exception=False) else 0
+        values['invoice_count'] = invoice_count
+        users = request.env.user
+        domain_i = ['|', ('parent_id.user_id', '=', users.id), ('user_id', '=', users.id)]
+        values['task_count'] = request.env['project.task'].search_count(domain_i)
+        return values
+
+    #Add filter to display just type=WEB of list invoices linked to specific portal
+    @http.route(['/my/invoices', '/my/invoices/page/<int:page>'], type='http', auth="user", website=True)
+    def portal_my_invoices(self, page=1, date_begin=None, date_end=None, sortby=None, **kw):
+        values = self._prepare_portal_layout_values()
+        AccountInvoice = request.env['account.move']
+
+        domain = [('type', 'in', ('out_invoice', 'out_refund', 'in_invoice', 'in_refund', 'out_receipt', 'in_receipt')),
+                  ('type_facture', '=', 'web'), ('cpf_solde_invoice', '=', False), ('cpf_acompte_invoice', '=', False)]
+
+        searchbar_sortings = {
+            'date': {'label': _('Invoice Date'), 'order': 'invoice_date desc'},
+            'duedate': {'label': _('Due Date'), 'order': 'invoice_date_due desc'},
+            'name': {'label': _('Reference'), 'order': 'name desc'},
+            'state': {'label': _('Status'), 'order': 'state'},
+        }
+        # default sort by order
+        if not sortby:
+            sortby = 'date'
+        order = searchbar_sortings[sortby]['order']
+
+        archive_groups = self._get_archive_groups('account.move', domain)
+        if date_begin and date_end:
+            domain += [('create_date', '>', date_begin), ('create_date', '<=', date_end)]
+
+        # count for pager
+        invoice_count = AccountInvoice.search_count(domain)
+        # pager
+        pager = portal_pager(
+            url="/my/invoices",
+            url_args={'date_begin': date_begin, 'date_end': date_end, 'sortby': sortby},
+            total=invoice_count,
+            page=page,
+            step=self._items_per_page
+        )
+        # content according to pager and archive selected
+        invoices = AccountInvoice.search(domain, order=order, limit=self._items_per_page, offset=pager['offset']).filtered(lambda facture: facture.type_facture == 'web' and facture.cpf_solde_invoice == False and facture.cpf_acompte_invoice == False)
+        request.session['my_invoices_history'] = invoices.ids[:100]
+        values.update({
+            'date': date_begin,
+            'invoices': invoices,
+            'page_name': 'invoice',
+            'pager': pager,
+            'archive_groups': archive_groups,
+            'default_url': '/my/invoices',
+            'searchbar_sortings': searchbar_sortings,
+            'sortby': sortby,
+        })
+        return request.render("account.portal_my_invoices", values)
+
+
