@@ -158,7 +158,7 @@ class ResUser(models.Model):
                         'name': contact['first_name'] + ' ' + contact['last_name'],
                         'login': str(email).lower().replace(' ',''),
                         'groups_id': [(6, 0, [self.env.ref('base.group_portal').id])],
-                        'email': False,
+                        'email': str(email).lower().replace(' ',''),
                         'notification_type': 'email',
                         'company_id': 2,
                         'company_ids': [1, 2]
@@ -169,7 +169,7 @@ class ResUser(models.Model):
                         'name': contact['first_name'] + ' ' + (contact['last_name'] if contact['last_name'] else ''),
                         'login': str(email).lower().replace(' ',''),
                         'groups_id': [(6, 0, [self.env.ref('base.group_portal').id])],
-                        'email': False,
+                        'email': str(email).lower().replace(' ',''),
                         'notification_type': 'email',
                         'company_id': 1,
                         'company_ids': [1, 2]
