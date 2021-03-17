@@ -403,7 +403,7 @@
                 <section class="s_newsletter_block oe_img_bg o_animate pb40 pt40 o_anim_zoom_in oe_custom_bg"
                          style="background-image: url(&quot;/digimoov_website_templates/static/img/fond.webp&quot;); animation-name: o_anim_zoom_in; visibility: visible; animation-play-state: paused; background-position: 75.48% 30.96%;"
                          data-name="Newsletter block">
-                    <div class="container">
+                    <div class="container" id="nouvelle-tentative">
                         <div class="row">
                             <div class="bg-white-75 col-lg-12 pt16 pb16">
                                 <div class="text-center">
