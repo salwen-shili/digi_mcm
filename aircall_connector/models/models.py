@@ -573,9 +573,12 @@ class ResPartner(models.Model):
                 data=json.dumps(data),
                 headers=header)
 
-            if response.status_code == 400:
-                raise ValidationError(
-                    json.loads(response.content)['troubleshoot'] + 'Please enter Phone/mobile number with country code')
+            # Send phone number to aircall to verify if it is a valid number ..if it's not valid api return response 400
+            # and raising error
+
+            # if response.status_code == 400:
+            #     raise ValidationError(
+            #         json.loads(response.content)['troubleshoot'] + 'Please enter Phone/mobile number with country code')
 
             response = json.loads(response.content)
             if response:
