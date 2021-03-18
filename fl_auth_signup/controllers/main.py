@@ -20,10 +20,10 @@ class AuthSignupHome(AuthSignupHome):
         if values.get('password') != qcontext.get('confirm_password'):
             raise UserError(_("Les mots de passe ne correspondent pas, veuillez les saisir à nouveau."))
         if '+33' not in values['phone']:
-            phone=values['phone']
-            phone=phone[1:]
-            phone='+33'+str(phone)
-            values['phone']=phone
+            phone = values['phone']
+            phone = phone[1:]
+            phone = '+33' + str(phone)
+            values['phone'] = phone
         supported_lang_codes = [code for code, _ in request.env['res.lang'].get_installed()]
         lang = request.context.get('lang', '').split('_')[0]
         if lang in supported_lang_codes:
@@ -59,7 +59,8 @@ class AuthSignupHome(AuthSignupHome):
                 qcontext['error'] = e.name or e.value
             except (SignupError, AssertionError) as e:
                 if request.env["res.users"].sudo().search([("login", "=", qcontext.get("login"))]):
-                    qcontext["error"] = _("Un autre compte est déjà enregistré avec cette adresse email. Cliquez sur la rubrique Mot de passe oublié.")
+                    qcontext["error"] = _(
+                        "Un autre compte est déjà enregistré avec cette adresse email. Cliquez sur la rubrique Mot de passe oublié.")
                 else:
                     _logger.error("%s", e)
                     qcontext['error'] = _("Vous ne pouvez pas créer un nouveau compte.")
