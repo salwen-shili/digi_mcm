@@ -120,11 +120,12 @@ class CustomerPortal(CustomerPortal):
         partner_id = http.request.env.user.partner_id
         print('partner')
         print(partner_id.name)
+        #Recherche d'espace de travail du documents clients de MCM ACADEMY
         folder_id = request.env['documents.folder'].sudo().search([('name', "=", _('Documents Clients')),('company_id',"=",1)])
         if not folder_id:
             vals_list = []
             vals = {
-                'name': "Documents Clients"
+                'name': "Documents MCM ACADEMY"
             }
             vals_list.append(vals)
             folder_id = request.env['documents.folder'].sudo().create(vals_list)
@@ -470,11 +471,12 @@ class CustomerPortal(CustomerPortal):
     def upload_my_files(self, **kw):
         print('upload_my_files')
         print(http.request.env.user.name)
+        # Recherche d'espace de travail du documents clients de Digimoov
         folder_id = request.env['documents.folder'].sudo().search([('name', "=", _('Documents Clients')),('company_id',"=",2)])
         if not folder_id:
             vals_list = []
             vals = {
-                'name': "Documents Clients",
+                'name': "Documents Digimoov",
                 'company_id':2
             }
             vals_list.append(vals)
