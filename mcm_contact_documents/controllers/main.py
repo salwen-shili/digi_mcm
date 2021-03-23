@@ -472,7 +472,7 @@ class CustomerPortal(CustomerPortal):
         print('upload_my_files')
         print(http.request.env.user.name)
         # Recherche d'espace de travail du documents clients de Digimoov
-        folder_id = request.env['documents.folder'].sudo().search([('name', "=", _('Documents Clients')),('company_id',"=",2)])
+        folder_id = request.env['documents.folder'].sudo().search([('name', "=", _('Documents Digimoov')),('company_id',"=",2)])
         if not folder_id:
             vals_list = []
             vals = {
