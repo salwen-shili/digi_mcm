@@ -121,7 +121,7 @@ class CustomerPortal(CustomerPortal):
         print('partner')
         print(partner_id.name)
         #Recherche d'espace de travail du documents clients de MCM ACADEMY
-        folder_id = request.env['documents.folder'].sudo().search([('name', "=", _('Documents Clients')),('company_id',"=",1)])
+        folder_id = request.env['documents.folder'].sudo().search([('name', "=", _('Documents MCM ACADEMY')),('company_id',"=",1)])
         if not folder_id:
             vals_list = []
             vals = {
