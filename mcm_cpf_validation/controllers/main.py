@@ -244,19 +244,37 @@ class ClientCPFController(http.Controller):
                 else:
                     return request.render("mcm_cpf_validation.mcm_website_contract_exist")
             else:
-                vals = {
-                    'partner_email': '',
-                    'partner_id': False,
-                    'description': 'CPF: id module edof %s non trouvé' % (module),
-                    'name': 'CPF : ID module edof non trouvé ',
-                    'team_id': request.env['helpdesk.team'].sudo().search([('name', 'like', 'Client')],
-                                                                          limit=1).id,
-                }
-                description='CPF: id module edof '+str(module)+' non trouvé'
-                ticket = request.env['helpdesk.ticket'].sudo().search([('description', 'ilike', description)])
-                if not ticket:
-                    new_ticket = request.env['helpdesk.ticket'].sudo().create(
-                        vals)
+                if 'digimoov' in str(module):
+                    # if no exam date or  no exam center or no id_edof in customer record ( Digimoov )
+                    vals = {
+                        'description': 'CPF: vérifier la date et ville de %s' % (user.name),
+                        'name': 'CPF : Vérifier Date et Ville ',
+                        'team_id': request.env['helpdesk.team'].sudo().search([('name', 'like', 'Clientèle')],
+                                                                              limit=1).id,
+                    }
+                    description = "CPF: vérifier la date et ville de "+str(user.name)
+                    # Search  helpdesk ticket with same description if exist ( Digimoov )
+                    ticket = request.env['helpdesk.ticket'].sudo().search([("description", "=", description)])
+                    if not ticket:
+                        # Create helpdesk ticket for client service to verify exam date and exam center of client Digimoov
+                        new_ticket = request.env['helpdesk.ticket'].sudo().create(
+                            vals)
+                else:
+                    vals = {
+                        'partner_email': '',
+                        'partner_id': False,
+                        'description': 'CPF: id module edof %s non trouvé' % (module),
+                        'name': 'CPF : ID module edof non trouvé ',
+                        'team_id': request.env['helpdesk.team'].sudo().search([('name', "=", _('Service Clientèle'))],
+                                                                              limit=1).id,
+                    }
+                    description='CPF: id module edof '+str(module)+' non trouvé'
+                    # Search  helpdesk ticket with same description if exist ( MCM Academy )
+                    ticket = request.env['helpdesk.ticket'].sudo().search([('description', 'ilike', description)])
+                    if not ticket:
+                        # Create helpdesk ticket for client service to verify id_edof of "module" in sessions MCM academy
+                        new_ticket = request.env['helpdesk.ticket'].sudo().create(
+                            vals)
                 return request.render("mcm_cpf_validation.mcm_website_module_not_found", {})
         else:
             return request.render("mcm_cpf_validation.mcm_website_partner_not_found", {})
