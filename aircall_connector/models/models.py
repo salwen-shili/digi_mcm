@@ -771,7 +771,7 @@ class MailMessage(models.Model):
                 'message_type' in value and value['message_type'] == 'notification' or value[
             'message_type'] == 'user_notification'):
             return res
-        if is_comment and value['model'] == 'call.detail':
+        if is_comment and self.model == 'call.detail':
             odoo_call = self.env['call.detail'].search([('id', '=', value['res_id'])])
             if odoo_call.call_id:
                 if not ax_api_id or not ax_api_token:
