@@ -9,6 +9,7 @@ publicWidget.registry.digi_documents = publicWidget.Widget.extend({
         'click #check_domicile_not_checked': 'check_domicile',
         'click #check_domicile_checked': 'check_domicile',
         'change #cerfa': 'verify_cerfa',
+        'change input[type="file"]': '_onCheckType',
     },
 
         check_domicile: function (ev) {
@@ -98,6 +99,37 @@ publicWidget.registry.digi_documents = publicWidget.Widget.extend({
                     cerfa_3.required = 0;
                     $("#label_cerfa_3_pages").text("CERFA 11414-05 (Page1,2,3)");
                 }
+        },
+        _onCheckType: function (ev)
+        {
+            var id_of_input=ev.target.id;
+            var file=null;
+            var type=null;
+            var input_id=null;
+            var check_type=false
+            if (id_of_input)
+            {
+                 var file=document.getElementById(id_of_input).files[0];
+                 var input_id=document.getElementById(id_of_input)
+                 if (file != null)
+                 {
+                    var type=file['type'];
+                    if (type != null)
+                    {
+                     if (type.includes("image/") || type.includes("application/pdf"))
+                     {
+                        check_type=true;
+                     }
+                     if (check_type==false)
+                        {
+                            input_id.value='';
+                            alert('Les formats acceptés sont : Images ou PDF.');
+                        }
+                    }
+                 }
+
+
+            }
         }
 
 })
