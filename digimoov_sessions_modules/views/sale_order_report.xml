@@ -195,6 +195,9 @@
                                     <span style="font-size:12px;font-weight: bold;">Centre d'examen de</span>
                                     <span style="font-size:12px"
                                           t-field="doc.module_id.ville"/>
+                                    <span style="font-size:12px;">le</span>
+                                        <span style="font-size:12px"
+                                              t-field="doc.module_id.date_exam"/>
                                 </div>
                                 <div>
                                     <p style="font-size:12px">*En cas d'absence à l'examen, le candidat sera
