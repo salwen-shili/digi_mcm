@@ -312,7 +312,7 @@ class Services(http.Controller):
         if kwargs.get('name_company'):
             name_company = kwargs.get('name_company')
         service = kwargs.get('service')
-        user = http.request.env['res.users'].sudo().search([('login', "=", str(email_from))])
+        user = http.request.env['res.users'].sudo().search([('login', "=", str(email_from))],limit=1) # get only one user if there is double account with same email
         if not user:
             user = request.env['res.users'].sudo().create({
                 'name': str(contact_name) + " " + str(contact_last_name),
