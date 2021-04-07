@@ -1183,7 +1183,7 @@
                         <div class="col-md-4 col-sm-12">
                             <div class="card border-0 shadow" style="border-radius: 25px 25px;">
                                 <div class="text-center text-white border-0"
-                                     style="background-color:#6E209F;border-top-left-radius:25px;border-top-right-radius:25px;">
+                                     style="background-color:#767B7F;border-top-left-radius:25px;border-top-right-radius:25px;">
                                     <br/>
                                     <p>
                                         <strong style="color:white">
@@ -1191,7 +1191,10 @@
                                         </strong>
                                     </p>
                                     <p>
-                                        <b>Éligible au CPF</b>
+                                        <span class="fa fa-warning" style="color: rgb(255, 255, 0); font-size: 16px;"/>
+                                        <b>
+                                            <font style="font-size: 14px;">&amp;nbsp;Momentanément indisponible</font>
+                                        </b>
                                     </p>
                                     <br/>
                                 </div>
@@ -1204,52 +1207,103 @@
                                             <div class="card-body">
                                                 <ul class="list-unstyled">
                                                     <li class="mb-4">
-                                                        <i class="fa fa-check-circle fa-lg mr-2 text-success"/>
-                                                        <b>Formation 102h (100% en ligne)</b>
+                                                        <i class="fa fa-check-circle fa-lg mr-2"
+                                                           style="color: rgb(206, 198, 206);" data-original-title=""
+                                                           title="" aria-describedby="tooltip814642"/>
+                                                        <b>
+                                                            <font style="color: rgb(206, 198, 206);">Formation 102h
+                                                                (100% en ligne)
+                                                            </font>
+                                                        </b>
                                                     </li>
                                                     <li class="mb-4">
-                                                        <i class="fa fa-check-circle fa-lg mr-2 text-success"/>
-                                                        <b>Examen final en présentiel</b>
+                                                        <i class="fa fa-check-circle fa-lg mr-2"
+                                                           style="color: rgb(206, 198, 206);"/>
+                                                        <b>
+                                                            <font style="color: rgb(206, 198, 206);">Examen final en
+                                                                présentiel
+                                                            </font>
+                                                        </b>
                                                     </li>
                                                     <li class="mb-4">
-                                                        <i class="fa fa-lg fa-check-circle text-success mr-2"/>
-                                                        <b>Livre d’entrainement version&amp;nbsp;</b>
-                                                        <span style="font-weight: bolder;">électronique</span>
+                                                        <i class="fa fa-check-circle fa-lg mr-2"
+                                                           style="color: rgb(206, 198, 206);"/>
+                                                        <b>
+                                                            <font style="color: rgb(206, 198, 206);">Livre
+                                                                d’entrainement version&amp;nbsp;
+                                                            </font>
+                                                        </b>
+                                                        <span style="font-weight: bolder;">
+                                                            <font style="color: rgb(206, 198, 206);">électronique</font>
+                                                        </span>
                                                         <br/>
                                                     </li>
                                                     <li class="mb-4">
-                                                        <i class="fa fa-check-circle fa-lg mr-2 text-success"/>
-                                                        <b>Accès à 12+ examens d'entraînement</b>
+                                                        <i class="fa fa-check-circle fa-lg mr-2"
+                                                           style="color: rgb(206, 198, 206);"/>
+                                                        <b>
+                                                            <font style="color: rgb(206, 198, 206);">Accès à 12+ examens
+                                                                d'entraînement
+                                                            </font>
+                                                        </b>
                                                         <br/>
                                                     </li>
                                                     <li class="mb-4">
-                                                        <i class="fa fa-check-circle fa-lg mr-2 text-success"/>
-                                                        <b>Coaching par mail</b>
+                                                        <i class="fa fa-check-circle fa-lg mr-2"
+                                                           style="color: rgb(206, 198, 206);"/>
+                                                        <b>
+                                                            <font style="color: rgb(206, 198, 206);">Coaching par mail
+                                                            </font>
+                                                        </b>
                                                         <br/>
                                                     </li>
                                                     <li class="mb-4">
-                                                        <i class="fa fa-check-circle fa-lg mr-2 text-success"/>
-                                                        <b>Coaching par téléphone</b>
+                                                        <i class="fa fa-check-circle fa-lg mr-2"
+                                                           style="color: rgb(206, 198, 206);"/>
+                                                        <b>
+                                                            <font style="color: rgb(206, 198, 206);">Coaching par
+                                                                téléphone
+                                                            </font>
+                                                        </b>
                                                         <br/>
                                                     </li>
                                                     <li class="mb-4">
-                                                        <i class="fa fa-check-circle fa-lg mr-2 text-success"/>
-                                                        <b>Coaching par visioconférence</b>
+                                                        <i class="fa fa-check-circle fa-lg mr-2"
+                                                           style="color: rgb(206, 198, 206);"/>
+                                                        <b>
+                                                            <font style="color: rgb(206, 198, 206);">Coaching par
+                                                                visioconférence
+                                                            </font>
+                                                        </b>
                                                         <br/>
                                                     </li>
                                                     <li class="mb-4">
-                                                        <i class="fa fa-check-circle fa-lg mr-2 text-success"/>
-                                                        <b>Livre d’entrainement version papier</b>
+                                                        <i class="fa fa-check-circle fa-lg mr-2"
+                                                           style="color: rgb(206, 198, 206);"/>
+                                                        <b>
+                                                            <font style="color: rgb(206, 198, 206);">Livre
+                                                                d’entrainement version papier
+                                                            </font>
+                                                        </b>
                                                         <br/>
                                                     </li>
                                                     <li class="mb-4">
-                                                        <i class="fa fa-check-circle fa-lg mr-2 text-success"/>
-                                                        <b>Directs pour explication avec les formateurs</b>
+                                                        <i class="fa fa-check-circle fa-lg mr-2"
+                                                           style="color: rgb(206, 198, 206);"/>
+                                                        <b>
+                                                            <font style="color: rgb(206, 198, 206);">Directs pour
+                                                                explication avec les formateurs
+                                                            </font>
+                                                        </b>
                                                     </li>
                                                     <li class="mb-4">
-                                                        <span class="fa fa-check-circle fa-lg mr-2 text-success"
-                                                              style="font-size: 1.33333em;"/>
-                                                        <b>Révision du programme avant examen</b>
+                                                        <span class="fa fa-check-circle fa-lg mr-2"
+                                                              style="color: rgb(206, 198, 206); font-size: 1.33333em;"/>
+                                                        <b>
+                                                            <font style="color: rgb(206, 198, 206);">Révision du
+                                                                programme avant examen
+                                                            </font>
+                                                        </b>
                                                         <br/>
                                                         <br/>
                                                     </li>
@@ -1270,12 +1324,15 @@
                                                     </p>
                                                 </t>
                                                 <p class="medium text-center font-weight-bolder text-secondary"
-                                                   style="color: red !important;">Paiement 1 ou 3 fois
+                                                   style="color: red !important;">
+                                                    <font style="color: rgb(156, 156, 148);">Paiement 1 ou 3 fois</font>
                                                 </p>
                                                 <br/>
                                                 <button class="btn btn-block text-white" type="submit"
-                                                        style="background-color:#6E209F;border-radius: 25px">
-                                                    Je m'inscris
+                                                        style="background-color:#767B7F;border-radius: 25px"><span
+                                                        class="fa fa-warning"
+                                                        style="color: rgb(255, 255, 0); font-size: 16px;"/>&amp;nbsp;Momentanément
+                                                    indisponible&amp;nbsp;
                                                 </button>
                                             </div>
                                         </form>
@@ -1338,6 +1395,83 @@
                         </div>
                     </center>
                 </section>
+            </section>
+            <section class="s_faq_collapse pt48 pb32" data-name="Accordion">
+                <div class="container">
+                    <div class="row s_col_no_bgcolor">
+                        <div class="pt16 pb16 col-lg-4" style="border-style: none; border-width: 0px;">
+                            <div id="myCollapse" class="accordion" role="tablist">
+                                <div class="card bg-white" style="">
+                                    <a href="#" role="tab" data-toggle="collapse" aria-expanded="false"
+                                       class="card-header collapsed" data-parent="#myCollapse"
+                                       data-target="#myCollapseTab1616754726586" data-original-title="" title=""
+                                       aria-describedby="tooltip5917">Capacité de transport
+                                    </a>
+                                    <div class="collapse" role="tabpanel" id="myCollapseTab1616754726586" style="">
+                                        <div class="card-body">
+                                            <p class="card-text">Formation capacité de transport 100% en ligne pour
+                                                devenir livreur indépendant, devenir coursier indépendant et créer une
+                                                société de transport qui exploite des véhicules né dépassant pas -3,5t
+                                                de PTAC, deux roues (scooters, motos électriques) et tricycles inclus.
+                                                La capacité de transport vous permet d'offrir les services de transport
+                                                routier et de devenir partenaire de transport des plus grandes
+                                                entreprises et enseignes sur le marché de transport et de la livraison.&amp;nbsp;
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="pt16 pb16 col-lg-4" style="border-style: none; border-width: 0px;">
+                            <div id="myCollapse" class="accordion" role="tablist">
+                                <div class="card bg-white">
+                                    <a href="#" role="tab" data-toggle="collapse" aria-expanded="false"
+                                       class="card-header collapsed" data-parent="#myCollapse" data-original-title=""
+                                       title="" aria-describedby="tooltip5917"
+                                       data-target="#myCollapseTab1616754743649">Formation capacité de transport
+                                    </a>
+                                    <div class="collapse" role="tabpanel" style="" id="myCollapseTab1616754743649">
+                                        <div class="card-body">
+                                            <p class="card-text">La formation capacité en transport routier léger de
+                                                marchandise dure 102 heures et son objectif est de préparer l’apprenant
+                                                à son futur métier comme livreur indépendant. Par exemple, l’apprenant
+                                                va apprendre les méthodes de prospection commerciale, les droits et les
+                                                obligations d’un transporteur, les responsabilités de
+                                                transporteur/livreur en cas de retard, ainsi qu’il va apprendre
+                                                plusieurs compétences de gestion tel que l’élaboration d’une étude de
+                                                marché, déterminer le prix de vente, etc.
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="pt16 pb16 col-lg-4" style="border-style: none; border-width: 0px;">
+                            <div id="myCollapse" class="accordion" role="tablist">
+                                <div class="card bg-white">
+                                    <a href="#" role="tab" data-toggle="collapse" aria-expanded="false"
+                                       class="card-header collapsed" data-parent="#myCollapse" data-original-title=""
+                                       title="" aria-describedby="tooltip5917"
+                                       data-target="#myCollapseTab1616754743646">Examen capacité de transport
+                                    </a>
+                                    <div class="collapse" role="tabpanel" style="" id="myCollapseTab1616754743646">
+                                        <div class="card-body">
+                                            <p class="card-text">Une fois la formation en capacité de transport de
+                                                marchandises -3,5t en ligne achevée, l’apprenant devra passer et réussir
+                                                un examen en salle. L'examen dure 3 heures: les questions sont proposées
+                                                sous forme de QCM et de Questions rédigées. La correction des copies se
+                                                fait par un jury qui ne fait pas partie de centre de formation.
+                                                Retrouvez tous les détails sur l'examen pour l'obtention de
+                                                l'attestation de capacité de marchandises <a
+                                                        href="/examen-capacite-transport-marchandises">ici</a>.
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </section>
             <!--            <script src="/digimoov_website_templates/static/src/js/jquery.min.js"/>-->
             <!--            <script src="/digimoov_website_templates/static/src/js/main.js"/>-->
