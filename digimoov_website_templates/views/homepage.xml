@@ -1346,8 +1346,6 @@
                     <center>
                         <div class="container">
                             <div class="row">
-                                <div class="col-lg-1">
-                                </div>
                                 <div class="col-lg-2">
                                     <a href="https://www.mcm-academy.fr/">
                                         <img src="/digimoov_website_templates/static/img/MCMACADEMY.webp"
@@ -1396,8 +1394,6 @@
                                              title="Cabinet Comptable Joël Pruvost partenaire Digimoov"
                                              aria-describedby="tooltip175558"/>
                                     </a>
-                                </div>
-                                <div class="col-lg-1">
                                 </div>
                             </div>
                         </div>
