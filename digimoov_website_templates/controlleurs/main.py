@@ -102,7 +102,7 @@ class FINANCEMENT(http.Controller):
         if user_connected:
             if user_connected.partner_id.partner_from and user_connected.partner_id.partner_from in ['ubereats',
                                                                                                      'deliveroo',
-                                                                                                     'coursierjob']:
+                                                                                                     'coursierjob','box2home']:
                 return request.redirect("/%s#pricing" % str(user_connected.partner_id.partner_from))
             else:
                 return request.redirect("/#pricing")

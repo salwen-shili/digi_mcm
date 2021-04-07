@@ -1049,7 +1049,7 @@
                                                         </p>
                                                     </font>
                                                 </p>
-                                                <t t-if="promo">
+                                                <t t-if="promo and promo.name!='box2home'">
                                                     <p class="text-center font-weight-bolder text-secondary">
                                                         <b style="font-size:80%">
                                                             <t>avec le code</t>
@@ -1159,7 +1159,7 @@
                                                         </p>
                                                     </font>
                                                 </p>
-                                                <t t-if="promo">
+                                                <t t-if="promo and promo.name!='box2home'">
                                                     <p class="text-center font-weight-bolder text-secondary">
                                                         <b style="font-size:80%">
                                                             <t>&amp;nbsp; &amp;nbsp; &amp;nbsp;&amp;nbsp;</t>
@@ -1316,7 +1316,7 @@
                                                         </p>
                                                     </font>
                                                 </p>
-                                                <t t-if="promo">
+                                                <t t-if="promo and promo.name!='box2home'">
                                                     <p class="text-center font-weight-bolder text-secondary">
                                                         <b style="font-size:80%">
                                                             <t>&amp;nbsp; &amp;nbsp; &amp;nbsp;&amp;nbsp;</t>
@@ -1377,6 +1377,14 @@
                                         <img src="/digimoov_website_templates/static/img/coursierjob partenaire Digimoov.webp"
                                              style="width:50%" class="img img-fluid" alt="Logo partenaire Coursierjob"
                                              data-original-title="" title="Coursierjob partenaire Digimoov"
+                                             aria-describedby="tooltip175558"/>
+                                    </a>
+                                </div>
+                                <div class="col-lg-2" t-if="partenaire=='' or partenaire=='box2home'">
+                                    <a href="https://www.box2home.fr/">
+                                        <img src="/digimoov_website_templates/static/img/Box2home-partenaire-digimoov.webp"
+                                             style="width:50%" class="img img-fluid" alt="Logo partenaire Box2home"
+                                             data-original-title="" title="Box2home partenaire Digimoov"
                                              aria-describedby="tooltip175558"/>
                                     </a>
                                 </div>
