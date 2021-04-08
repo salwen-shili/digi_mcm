@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <template id="id_releve_note_print_report_pdf">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="note">
+                    <div class="page" style="line-height:1.5;font-family:Montserrat;font-size:12 %;page-break-before: always;" font-family="Montserrat-Bold, Montserrat">
+                        <div class="oe_structure"/>
+                        <div class="row">
+                            <div class="col-6">
+<!--                                <div name="left-upper-side" class="col-5" t-if="not pre_printed_report" align="center">-->
+<!--                                    <img t-if="docs.company_id.logo" t-att-src="image_data_uri(docs.company_id.logo)"-->
+<!--                                         style="max-height: 85px;" alt="Logo"/>-->
+<!--                                </div>-->
+                                <br></br>
+                                <h1 align="center" style="color:#656295;font-size:25px;">
+                                    Attestation aux épreuves d’examen pour l’obtention de
+                                    l’attestation de capacité Transport léger de marchandises ( &lt; 3,5 tonnes)
+                                </h1>
+                                <p align="center">
+                                    Je soussigné <b>NASSERDDINE CHERIH</b>, agissant en tant que directeur général au sein de
+                                    Digimoov, centre de formation
+                                    agréé par le préfet de la région Ile de France sous le numéro d’agrément 2019-0110,
+                                    Après délibération du Jury,
+                                </p>
+                                <p>
+                                    <br/>
+                                    Atteste que :......................
+                                    <br/>
+                                    Né(e) le: .................
+                                    <br/>
+                                    Demeurant au: .........
+                                    <br></br>
+                                    A .............. aux épreuves d’examen pour l’obtention de
+                                    l’attestation de capacité transport léger de marchandises
+                                    organisé au centre d’examen situé au ..................
+                                    <br></br>
+                                    le .............. pour son ......... passage, en ayant obtenu les notes suivantes :
+                                </p>
+                                <br/>
+                                <strong align="center">
+                                    Conformément à l’arrêté du 28 décembre 2011 relatif à la délivrance des attestations
+                                    de capacité, professionnelle
+                                    permettant l’exercice de la profession de transporteur public routier, article 7
+                                </strong>
+
+                                <div class="row" style="padding-top:50px!important;">
+
+                                    <table border="1" width="900">
+                                        <thead>
+                                            <tr style="height:50px!important;">
+                                                <th>EPREUVES</th>
+                                                <th>NOTES/20</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr style="height:50px!important;">
+                                                <td align="center">
+                                                    <b>EPREUVE A - QUESTIONS A CHOIX UNIQUE</b>
+                                                </td>
+                                                <td align="center" width="200">C
+                                                </td>
+                                            </tr>
+                                            <tr style="height:50px!important;">
+                                                <td align="center">
+                                                    <b>EPREUVE B - QUESTION DE RÉDACTION</b>
+                                                </td>
+                                                <td align="center" width="200">
+                                                    D
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                                <br></br>
+                                <div class="row" style="padding-top:50px!important;">
+
+                                    <table border="1" width="900">
+                                        <tbody>
+                                            <tr style="height:50px!important;">
+                                                <td align="center">
+                                                    <b>Moyenne génerale</b>
+                                                </td>
+                                                <td align="center" width="200">C
+                                                </td>
+                                            </tr>
+                                            <tr style="height:50px!important;">
+                                                <td align="center">
+                                                    <b>Résultat</b>
+                                                </td>
+                                                <td align="center" width="200">
+                                                    D
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <br></br>
+
+                                <p align="center">
+                                    <b>Il est rappelé que d’après Arrêté du 28 décembre 2011 relatif à la délivrance des
+                                    attestations de capacité professionnelle permettant
+                                    l'exercice de la profession de transporteur public routier, sont déclarés reçus les
+                                    candidats qui ont obtenu, pour l'ensemble des épreuves,
+                                    une note au moins égale à 120 sur 200 soit 12/20, sous réserve qu'ils aient obtenu
+                                    au moins 50 points soit 10/20 pour le questionnaire à
+                                        choix multiples et 40 points soit 8/20 pour l'épreuve à réponses rédigées.</b>
+                                </p>
+
+                                <div class="row" style="padding-top:50px!important;">
+                                    <table border="0" width="900">
+                                        <thead>
+                                            <tr>
+                                                <th>Date</th>
+                                                <th>Signature</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr t-foreach="docs.partner_id.note_exam_id" t-as="footer">
+                                                <td align="center">
+                                                </td>
+                                                <td align="center">B
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </t>
+            </t>
+        </template>
+    </data>
+</odoo>
