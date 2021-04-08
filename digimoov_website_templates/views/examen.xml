@@ -144,28 +144,46 @@
                                                 <i>Durée totale : 1 h 15 min</i>
                                             </b>
                                             <br/>
-                                            <b>50 questions à choix multiples réparties comme suit :</b>
-                                            <b>
-                                                <br/>
-                                            </b>
+                                            <b>Questionnaires de 50 Questions à Choix Multiples</b>(4 propositions : une
+                                            seule bonne réponse) à 2 points chacune, soit 100 points, réparties sur
+                                            l’ensemble des thématiques du référentiel des connaissances :
+                                            <br/>
                                         </p>
                                         <p class="font-medium"/>
                                         <p>
-                                            <i>
-                                                <font style="color: rgb(0, 0, 0);">Thématique A :</font>
-                                            </i>
-                                            <b/>
-                                            <font style="color: rgb(0, 0, 0);">L'entreprise, le droit civil et le doit
-                                                commercial - 14 QCM</font>&amp;
-                                            <br/>
-                                            <i><font style="color: rgb(0, 0, 0);">Thématique B :</font>&amp;
-                                            </i>
-                                            <b/>
-                                            <font style="color: rgb(0, 0, 0);">L'entreprise et son activité commerciale
-                                                - 2
-                                                QCM
+                                            <font color="#000000">e) L’entreprise et le droit civil et commercial : 14
+                                                questions ;
                                             </font>
-                                            <br/>
+                                        </p>
+                                        <p>
+                                            <font color="#000000">f) L’entreprise et son activité commerciale : 2
+                                                questions ;
+                                            </font>
+                                        </p>
+                                        <p>
+                                            <font color="#000000">g) L’entreprise et le cadre réglementaire de
+                                                l’activité de transport : 13 questions ;
+                                            </font>
+                                        </p>
+                                        <p>
+                                            <font color="#000000">h) L’entreprise et son activité financière : 5
+                                                questions ;
+                                            </font>
+                                        </p>
+                                        <p>
+                                            <font color="#000000">i) L’entreprise et ses salariés : 10 questions ;
+                                            </font>
+                                        </p>
+                                        <p>
+                                            <font color="#000000">j) L’entreprise et la sécurité : 6 questions.</font>
+                                        </p>
+                                        <p>
+                                        </p>
+                                        <p>
+                                            <font color="#000000">Dans chaque thématique, le créateur de l’examen
+                                                veillera à ce que les QCM ne portent pas sur les mêmes sujets que les
+                                                questions à réponse rédigée de la seconde partie de l’examen.
+                                            </font>
                                         </p>
                                         <p class="font-medium">
                                             <b>Note minimale à obtenir : 50/100</b>
@@ -189,7 +207,8 @@
                                             </span>
                                             <img class="img-fluid o_we_custom_image d-block mx-auto padding-xl"
                                                  src="digimoov_website_templates/static/img/Partie questions à réponses courtes de l'examen.webp"
-                                                 data-original-title="" title="" aria-describedby="tooltip240442"/>
+                                                 data-original-title="" title="" aria-describedby="tooltip240442"
+                                                 style=""/>
                                             <b style="color: rgb(103, 67, 148); font-size: 24px;">L'épreuve Questions
                                                 Rédigées
                                             </b>
@@ -198,21 +217,52 @@
                                             <b>
                                                 <i>Durée totale : 1 h 45min</i>
                                             </b>
-                                            <b><br/>Questions et exercices exigeant une réponse rédigée :
-                                            </b>
-                                        </p>
-                                        <p>
-                                            <b>Thématiques C, E, F :</b>
-                                            <font style="color: rgb(0, 0, 0);">5 questions à réponses rédigés.</font>
                                             <br/>
-                                            <b>Thématique B :</b>
-                                            <font style="color: rgb(0, 0, 0);">L'entreprise et son activité financière -
-                                                Des exercices exigeant une réponse rédigée, comportant au moins un
-                                                calcul de coût de revient complet et deux questions rédigées portant sur
-                                                les autres connaissances de la thématique. Un calcul de seuil de
-                                                rentabilité ou un exercice d’organisation/classement de postes
-                                                financiers peuvent remplacer une de ces questions.
-                                                <br/>
+                                            <b>Questions et exercices exigeant une réponse rédigée sur 100 points :</b>
+                                            <br/>
+                                        </p>
+                                        <ul>
+                                            <li>
+                                                <p>
+                                                    <font color="#000000">Exercices sur la thématique « D. L’entreprise
+                                                        et son activité financière » exigeant une réponse rédigée, sur
+                                                        50 points, comportant au moins un calcul de coût de revient
+                                                        complet et deux questions rédigées portant sur les autres
+                                                        connaissances de la thématique « D. L’entreprise et son&amp;nbsp;
+                                                        activité&amp;nbsp; financière&amp;nbsp; ».&amp;nbsp; Un&amp;nbsp;
+                                                        calcul&amp;nbsp; de&amp;nbsp; seuil&amp;nbsp; de&amp;nbsp;
+                                                        rentabilité&amp;nbsp; ou&amp;nbsp; un&amp;nbsp; exercice
+                                                        d’organisation/classement de postes financiers peuvent remplacer
+                                                        une de ces questions ;
+                                                        <br/>
+                                                        <br/>
+                                                    </font>
+                                                </p>
+                                            </li>
+                                            <li>
+                                                <p>
+                                                    <font color="#000000">25 à 30 points pour le coût de revient et 20 à
+                                                        25 points à répartir sur les autres questions, soit 50 points au
+                                                        total ;
+                                                        <br/>
+                                                        <br/>
+                                                    </font>
+                                                </p>
+                                            </li>
+                                            <li>
+                                                <p>
+                                                    <font color="#000000">5 questions à réponses rédigées portant sur
+                                                        les thématiques « C. L’entreprise et le son cadre réglementaire
+                                                        de l’activité de transport », « E. L’entreprise et ses salariés
+                                                        » et « F. L’entreprise et la sécurité » (dont 3 questions sur la
+                                                        thématique E et 1 question sur chaque thématique C et F); Entre
+                                                        6 à 10 points par question, pour un total de 50 points ;
+                                                    </font>
+                                                </p>
+                                            </li>
+                                        </ul>
+                                        <p>
+                                            <font style="color: rgb(0, 0, 0);">
                                                 <b style="color: rgb(85, 85, 85);">Note minimale à obtenir : 40/100</b>
                                             </font>
                                         </p>
@@ -338,22 +388,20 @@
                                         </h3>
                                         <p class="m-b-30 m-t-20 text-beta"/>
                                         <div style="text-align: justify;">
-                                            <span style="font-size: 1rem; background-color: unset;">La photocopie de la
-                                                pièce
-                                                d'identité
-                                                ou d'un
-                                                titre de séjour européen
+                                            <span style="color: rgb(32, 38, 71); font-size: 16px; background-color: unset;">
+                                                La photocopie de la pièce d'identité ou d'un titre de séjour européen
                                             </span>
+                                            <span style="color: rgb(32, 38, 71); font-size: 16px;">
+                                                <br/>
+                                                <br/>
+                                            </span>
+                                            <span style="color: rgb(32, 38, 71); font-size: 16px; background-color: unset;">
+                                                Une justification de domicile de moins de 3 mois
+                                            </span>
+                                            <span style="color: rgb(32, 38, 71); font-size: 16px;">&amp;nbsp;</span>
+                                            <br/>
                                         </div>
                                         <span style="font-size: 1rem; background-color: unset;">
-                                            <div style="text-align: justify;">
-                                                <span style="background-color: unset; font-size: 1rem;">Une
-                                                    justification de
-                                                    domicile de
-                                                    moins
-                                                    de 3 mois
-                                                </span>
-                                            </div>
                                         </span>
                                     </div>
                                 </section>
