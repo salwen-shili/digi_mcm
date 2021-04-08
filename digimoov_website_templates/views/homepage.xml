@@ -521,21 +521,46 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-md-6 align-self-center">
-                            <h1 class="subtitle" style="font-size:25px;color:#202647;line-height:0.8cm !important">
-                                <b>FORMATION EN CAPACITÉ DE TRANSPORT LÉGER DE</b>
-                                <span class="stabiloblue">MARCHANDISES
-                                </span>
-                                <b style="font-size:25px;color:#202647;line-height:0.8cm !important">POUR DEVENIR
-                                    LIVREUR EN
-                                </b>
-                                <b>
-                                    <span class="typewrite" data-period="2000"
-                                          data-type="[ &quot;SCOOTER, VOITURE OU CAMIONNETTE&quot; ]">
-                                        <span class="wrap">SCOOTER, VOITURE OU CAMIONNETTE</span>
-                                    </span>
-                                </b>
-                                <br/>
-                            </h1>
+                            <t t-if="partenaire=='' or partenaire!='box2home'">
+                                    <h1 class="subtitle"
+                                        style="font-size:25px;color:#202647;line-height:0.8cm !important"
+                                        t-if="partenaire=='' or partenaire!='box2home'">
+                                        <b>FORMATION EN CAPACITÉ DE TRANSPORT LÉGER DE</b>
+                                        <span class="stabiloblue">MARCHANDISES
+                                        </span>
+                                        <b style="font-size:25px;color:#202647;line-height:0.8cm !important">POUR
+                                            DEVENIR
+                                            LIVREUR EN
+                                        </b>
+                                        <b>
+                                            <span class="typewrite" data-period="2000"
+                                                  data-type="[ &quot;SCOOTER, VOITURE OU CAMIONNETTE&quot; ]">
+                                                <span class="wrap">SCOOTER, VOITURE OU CAMIONNETTE</span>
+                                            </span>
+                                        </b>
+                                        <br/>
+                                    </h1>
+                                </t>
+                                <t t-if="partenaire=='box2home'">
+                                    <h1 class="subtitle"
+                                        style="font-size:25px;color:#202647;line-height:0.8cm !important"
+                                        t-if="partenaire=='box2home'">
+                                        <b>FORMATION EN CAPACITÉ DE TRANSPORT LÉGER DE</b>
+                                        <span class="stabiloblue">MARCHANDISES
+                                        </span>
+                                        <b style="font-size:25px;color:#202647;line-height:0.8cm !important">POUR
+                                            DEVENIR
+                                            LIVREUR EN
+                                        </b>
+                                        <b>
+                                            <span class="typewrite" data-period="2000"
+                                                  data-type="[ &quot;PARTENARIAT AVEC BOX2HOME&quot; ]">
+                                                <span class="wrap">PARTENARIAT AVEC BOX2HOME</span>
+                                            </span>
+                                        </b>
+                                        <br/>
+                                    </h1>
+                                </t>
                             <br/>
                             <a class="arrow-btn font-medium m-b-10 m-t-20 btn btn-alpha rounded-circle"
                                href="/#en-savoir-plus" data-original-title="" title="">En-savoir plus
