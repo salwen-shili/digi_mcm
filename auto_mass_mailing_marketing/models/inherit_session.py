@@ -1,13 +1,14 @@
 from odoo import api, fields, models, _
 from datetime import datetime
 
+
 class AccountMove(models.Model):
     _inherit = "mcmacademy.session"
 
     temps_convocation = fields.Selection(selection=[
         ('matin', 'Matin'),
-        ('apres_midi', 'Aprés Midi')],
-        default=False, string="Examen Matin/Aprés Midi")
+        ('apres_midi', 'Après-Midi')],
+        default="apres_midi", string="Examen Matin/Aprés Midi")
 
     heure_examen_matin = fields.Char(default="09H00")
     heure_examen_apres_midi = fields.Char(default="14H00")

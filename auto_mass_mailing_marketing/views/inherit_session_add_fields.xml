@@ -14,7 +14,7 @@
                 <group string="Horaire">
                 <field name="date_exam"/>
                 <field name="temps_convocation"/>
-                <field name="horaire_email"/>
+                <field name="horaire_email" invisible="1"/>
                 <field name="heure_examen_matin" string="Heure"
                        attrs="{'invisible': [('temps_convocation', '=', 'apres_midi')]}"/>
                 <field name="heure_examen_apres_midi" string="Heure"

@@ -68,15 +68,14 @@
                                         l'épreuve).
                                             </t>
                                         </t>
-                                        <br></br>
                                         <t t-foreach="docs.mcm_session_id" t-as="apres_midi">
-                                            <t t-if="apres_midi.temps_convocation == 'apresmidi'">
+                                            <t t-if="apres_midi.temps_convocation == 'apres_midi'">
                                                 <strong>
                                                     <span t-field="apres_midi.heure_examen_apres_midi"/>
-                                                    Apres Midi
+                                                    Après-Midi
                                                 </strong>
                                                  (Tous les candidats doivent impérativement se présenter <b style="text-decoration : underline;">30 minutes</b> avant
-                                        l'épreuve).
+                                        l'épreuve).<br></br>
                                             </t>
                                         </t>
                                         <t t-foreach="docs.mcm_session_id" t-as="none">
@@ -100,7 +99,6 @@
                                             </strong>
                                         </center>
                                         <br></br>
-
                                         <center>
                                             <bold>
                                                 <a class="alert-link"
@@ -123,8 +121,8 @@
                                             <tbody>
                                                 <tr align="center">
                                                     <td>
-                                                        <t t-foreach="docs.mcm_session_id" t-as="footer">
-                                                            <span t-field="footer.date_convocation" t-field-options='{"format": "dd/MM/yyyy"}'/>
+                                                        <t t-foreach="docs" t-as="footer">
+                                                            <span t-field="footer.date_today" t-field-options='{"format": "dd/MM/yyyy"}'/>
                                                         </t>
                                                     </td>
                                                     <td></td>
