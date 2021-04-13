@@ -14,113 +14,114 @@ class resPartner(models.Model):
     @api.model
     def create(self, values):
         partner= super(resPartner, self).create(values)
-        if partner and partner.mcm_session_id :
-            check_portal = False
-            if partner.user_ids:
-                for user in self.partner_id.user_ids:
-                    groups = user.groups_id
-                    for group in groups:
-                        if (group.name == _('Portail')):
-                            check_portal = True
-            if check_portal:
-                if partner.statut == 'won' or partner.statut == 'finalized':
-                    list = []
-                    for client in partner.mcm_session_id.client_ids:
-                        list.append(client.id)
-                    list.append(partner.id)
-                    partner.mcm_session_id.write({'client_ids': [(6, 0, list)]})
-
-                    list = []
-                    for client in partner.mcm_session_id.prospect_ids:
-                        if client.id != partner.id:
+        if partner:
+            if partner and partner.mcm_session_id :
+                check_portal = False
+                if partner.user_ids:
+                    for user in self.partner_id.user_ids:
+                        groups = user.groups_id
+                        for group in groups:
+                            if (group.name == _('Portail')):
+                                check_portal = True
+                if check_portal:
+                    if partner.statut == 'won' or partner.statut == 'finalized':
+                        list = []
+                        for client in partner.mcm_session_id.client_ids:
                             list.append(client.id)
-                    partner.mcm_session_id.write({'prospect_ids': [(6, 0, list)]})
+                        list.append(partner.id)
+                        partner.mcm_session_id.write({'client_ids': [(6, 0, list)]})
 
-                    list = []
-                    for client in partner.mcm_session_id.canceled_prospect_ids:
-                        if client.id != partner.id:
+                        list = []
+                        for client in partner.mcm_session_id.prospect_ids:
+                            if client.id != partner.id:
+                                list.append(client.id)
+                        partner.mcm_session_id.write({'prospect_ids': [(6, 0, list)]})
+
+                        list = []
+                        for client in partner.mcm_session_id.canceled_prospect_ids:
+                            if client.id != partner.id:
+                                list.append(client.id)
+                        partner.mcm_session_id.write({'canceled_prospect_ids': [(6, 0, list)]})
+
+                        list = []
+                        for client in partner.mcm_session_id.panier_perdu_ids:
+                            if client.id != partner.id:
+                                list.append(client.id)
+                        partner.mcm_session_id.write({'panier_perdu_ids': [(6, 0, list)]})
+
+                    if partner.statut == 'indecis':
+                        list = []
+                        for client in partner.mcm_session_id.prospect_ids:
                             list.append(client.id)
-                    partner.mcm_session_id.write({'canceled_prospect_ids': [(6, 0, list)]})
+                        list.append(partner.id)
+                        partner.mcm_session_id.write({'prospect_ids': [(6, 0, list)]})
 
-                    list = []
-                    for client in partner.mcm_session_id.panier_perdu_ids:
-                        if client.id != partner.id:
+                        list = []
+                        for client in partner.mcm_session_id.client_ids:
+                            if client.id != partner.id:
+                                list.append(client.id)
+                        partner.mcm_session_id.write({'client_ids': [(6, 0, list)]})
+
+                        list = []
+                        for client in partner.mcm_session_id.canceled_prospect_ids:
+                            if client.id != partner.id:
+                                list.append(client.id)
+                        partner.mcm_session_id.write({'canceled_prospect_ids': [(6, 0, list)]})
+
+                        list = []
+                        for client in partner.mcm_session_id.panier_perdu_ids:
+                            if client.id != partner.id:
+                                list.append(client.id)
+                        partner.mcm_session_id.write({'panier_perdu_ids': [(6, 0, list)]})
+
+                    if partner.statut == 'panier_perdu':
+                        list = []
+                        for client in partner.mcm_session_id.panier_perdu_ids:
                             list.append(client.id)
-                    partner.mcm_session_id.write({'panier_perdu_ids': [(6, 0, list)]})
+                        list.append(partner.id)
+                        partner.mcm_session_id.write({'panier_perdu_ids': [(6, 0, list)]})
 
-                if partner.statut == 'indecis':
-                    list = []
-                    for client in partner.mcm_session_id.prospect_ids:
-                        list.append(client.id)
-                    list.append(partner.id)
-                    partner.mcm_session_id.write({'prospect_ids': [(6, 0, list)]})
+                        list = []
+                        for client in partner.mcm_session_id.client_ids:
+                            if client.id != partner.id:
+                                list.append(client.id)
+                        partner.mcm_session_id.write({'client_ids': [(6, 0, list)]})
 
-                    list = []
-                    for client in partner.mcm_session_id.client_ids:
-                        if client.id != partner.id:
+                        list = []
+                        for client in partner.mcm_session_id.canceled_prospect_ids:
+                            if client.id != partner.id:
+                                list.append(client.id)
+                        partner.mcm_session_id.write({'canceled_prospect_ids': [(6, 0, list)]})
+
+                        list = []
+                        for client in partner.mcm_session_id.prospect_ids:
+                            if client.id != partner.id:
+                                list.append(client.id)
+                        partner.mcm_session_id.write({'prospect_ids': [(6, 0, list)]})
+
+                    if partner.statut == 'perdu' or partner.statut == 'canceled':
+                        list = []
+                        for client in partner.mcm_session_id.canceled_prospect_ids:
                             list.append(client.id)
-                    partner.mcm_session_id.write({'client_ids': [(6, 0, list)]})
+                        list.append(partner.id)
+                        partner.mcm_session_id.write({'canceled_prospect_ids': [(6, 0, list)]})
+                        list = []
+                        for client in partner.mcm_session_id.client_ids:
+                            if client.id != partner.id:
+                                list.append(client.id)
+                        partner.mcm_session_id.write({'client_ids': [(6, 0, list)]})
 
-                    list = []
-                    for client in partner.mcm_session_id.canceled_prospect_ids:
-                        if client.id != partner.id:
-                            list.append(client.id)
-                    partner.mcm_session_id.write({'canceled_prospect_ids': [(6, 0, list)]})
+                        list = []
+                        for client in partner.mcm_session_id.panier_perdu_ids:
+                            if client.id != partner.id:
+                                list.append(client.id)
+                        partner.mcm_session_id.write({'panier_perdu_ids': [(6, 0, list)]})
 
-                    list = []
-                    for client in partner.mcm_session_id.panier_perdu_ids:
-                        if client.id != partner.id:
-                            list.append(client.id)
-                    partner.mcm_session_id.write({'panier_perdu_ids': [(6, 0, list)]})
-
-                if partner.statut == 'panier_perdu':
-                    list = []
-                    for client in partner.mcm_session_id.panier_perdu_ids:
-                        list.append(client.id)
-                    list.append(partner.id)
-                    partner.mcm_session_id.write({'panier_perdu_ids': [(6, 0, list)]})
-
-                    list = []
-                    for client in partner.mcm_session_id.client_ids:
-                        if client.id != partner.id:
-                            list.append(client.id)
-                    partner.mcm_session_id.write({'client_ids': [(6, 0, list)]})
-
-                    list = []
-                    for client in partner.mcm_session_id.canceled_prospect_ids:
-                        if client.id != partner.id:
-                            list.append(client.id)
-                    partner.mcm_session_id.write({'canceled_prospect_ids': [(6, 0, list)]})
-
-                    list = []
-                    for client in partner.mcm_session_id.prospect_ids:
-                        if client.id != partner.id:
-                            list.append(client.id)
-                    partner.mcm_session_id.write({'prospect_ids': [(6, 0, list)]})
-
-                if partner.statut == 'perdu' or partner.statut == 'canceled':
-                    list = []
-                    for client in partner.mcm_session_id.canceled_prospect_ids:
-                        list.append(client.id)
-                    list.append(partner.id)
-                    partner.mcm_session_id.write({'canceled_prospect_ids': [(6, 0, list)]})
-                    list = []
-                    for client in partner.mcm_session_id.client_ids:
-                        if client.id != partner.id:
-                            list.append(client.id)
-                    partner.mcm_session_id.write({'client_ids': [(6, 0, list)]})
-
-                    list = []
-                    for client in partner.mcm_session_id.panier_perdu_ids:
-                        if client.id != partner.id:
-                            list.append(client.id)
-                    partner.mcm_session_id.write({'panier_perdu_ids': [(6, 0, list)]})
-
-                    list = []
-                    for client in partner.mcm_session_id.panier_perdu_ids:
-                        if client.id != partner.id:
-                            list.append(client.id)
-                    partner.mcm_session_id.write({'panier_perdu_ids': [(6, 0, list)]})
+                        list = []
+                        for client in partner.mcm_session_id.panier_perdu_ids:
+                            if client.id != partner.id:
+                                list.append(client.id)
+                        partner.mcm_session_id.write({'panier_perdu_ids': [(6, 0, list)]})
         return partner
 
     def write(self, vals):
