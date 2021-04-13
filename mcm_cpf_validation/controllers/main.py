@@ -57,10 +57,10 @@ class ClientCPFController(http.Controller):
         user=False
         if len(users) > 1 :
             for utilisateur in users:
-                if utilisateur.partner_id.id_edof and utilisateur.partner_id.date_exam_edof and utilisateur.partner_id.ville:
+                if utilisateur.partner_id.id_edof and utilisateur.partner_id.date_examen_edof and utilisateur.partner_id.ville:
                     user=utilisateur
                 else:
-                    user=users[1]
+                    user=utilisateur
         if user:
             user.partner_id.mode_de_financement = 'cpf'
             user.partner_id.statut_cpf = 'accepted'
