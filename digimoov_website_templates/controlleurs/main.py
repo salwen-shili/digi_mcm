@@ -318,7 +318,7 @@ class Services(http.Controller):
                 'name': str(contact_name) + " " + str(contact_last_name),
                 'login': str(email_from),
                 'groups_id': [(6, 0, [request.env.ref('base.group_portal').id])],
-                # 'email': email_from,
+                'email': email_from,
                 # 'phone': phone,
                 'notification_type': 'email',
                 # 'website_id': 2,
