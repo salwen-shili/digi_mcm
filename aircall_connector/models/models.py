@@ -581,7 +581,7 @@ class ResPartner(models.Model):
             #         json.loads(response.content)['troubleshoot'] + 'Please enter Phone/mobile number with country code')
 
             response = json.loads(response.content)
-            if response and response['contact']['id']:
+            if response and response.status_code == 200:
                 res.air_contact_id = response['contact']['id']
                 return res
         else:
