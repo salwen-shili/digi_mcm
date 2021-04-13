@@ -14,7 +14,7 @@ class resPartner(models.Model):
     @api.model
     def create(self, values):
         partner= super(resPartner, self).create(values)
-        if partner.mcm_session_id:
+        if partner and partner.mcm_session_id :
             check_portal = False
             if partner.user_ids:
                 for user in self.partner_id.user_ids:
