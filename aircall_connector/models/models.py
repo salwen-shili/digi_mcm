@@ -579,9 +579,9 @@ class ResPartner(models.Model):
             # if response.status_code == 400:
             #     raise ValidationError(
             #         json.loads(response.content)['troubleshoot'] + 'Please enter Phone/mobile number with country code')
-
+            statut_code = response.status_code
             response = json.loads(response.content)
-            if response and response.status_code == 200:
+            if response and statut_code == 200:
                 res.air_contact_id = response['contact']['id']
                 return res
         else:
