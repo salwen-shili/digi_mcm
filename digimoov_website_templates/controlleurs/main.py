@@ -322,10 +322,11 @@ class Services(http.Controller):
                 'phone': phone,
                 'notification_type': 'email',
                 'website_id': 2,
-                'company_ids': [1, 2],
-                'company_id': 2
+                # 'company_ids': [1, 2],
+                # 'company_id': 2
             })
         if user and name_company:
+            user.sudo().write({'company_id':1,'company_ids': [1,2]})
             user.partner_id.company_name = name_company
         if service == 'client':
             vals = {
