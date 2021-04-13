@@ -318,15 +318,17 @@ class Services(http.Controller):
                 'name': str(contact_name) + " " + str(contact_last_name),
                 'login': str(email_from),
                 'groups_id': [(6, 0, [request.env.ref('base.group_portal').id])],
-                'email': email_from,
-                'phone': phone,
+                # 'email': email_from,
+                # 'phone': phone,
                 'notification_type': 'email',
                 # 'website_id': 2,
                 # 'company_ids': [1, 2],
                 # 'company_id': 2
             })
         if user and name_company:
-            user.sudo().write({'company_id':1,'company_ids': [1,2],'website_id':2})
+            user.sudo().write({'company_id':1,'company_ids': [1,2]})
+            user.partner_id.sudo().write({'phone':phone,'website_id':2,'email':email_from})
+
             user.partner_id.company_name = name_company
         if service == 'client':
             vals = {
