@@ -21,11 +21,12 @@ class AuthSignupHome(AuthSignupHome):
         values['login'] = values['login'].replace(' ', '').lower()
         if not values:
             raise UserError(_("Le formulaire n'est pas correctement rempli."))
-        if '+33' not in values['phone']:
-            phone = values['phone']
-            phone = phone[1:]
-            phone = '+33' + str(phone)
-            values['phone'] = phone
+        if 'phone' in values:
+            if '+33' not in values['phone']:
+                phone = values['phone']
+                phone = phone[1:]
+                phone = '+33' + str(phone)
+                values['phone'] = phone
         if values.get('password') != qcontext.get('confirm_password'):
             raise UserError(_("Les mots de passe ne correspondent pas, veuillez les saisir à nouveau."))
         values['name'] = values['firstname'] + ' ' + values['name']
