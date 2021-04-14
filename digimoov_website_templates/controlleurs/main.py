@@ -296,7 +296,10 @@ class Services(http.Controller):
 
     @http.route('/contact', type='http', auth='public', website=True)
     def contact1(self, **kw, ):
-        return request.render("digimoov_website_templates.digimoov_template_contact", {})
+        if request.website.id == 1:
+            return request.render("digimoov_website_templates.digimoov_template_contact", {})
+        else:
+            return request.redirect("/helpdesk")
 
     @http.route('/helpdesk/submitted/',
                 type="http", auth="public", website=True, csrf=False)
