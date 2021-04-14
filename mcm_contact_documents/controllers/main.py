@@ -558,7 +558,8 @@ class CustomerPortal(CustomerPortal):
                     'res_model': 'documents.document',
                     'res_id': document.id
                 })
-            document.sudo().write({'name':"Carte d'identité Recto/Verso"})
+            if document:
+                document.sudo().write({'name':"Carte d'identité Recto/Verso"})
         except Exception as e:
             logger.exception("Fail to upload document Carte d'identité ")
 
@@ -680,7 +681,8 @@ class CustomerPortal(CustomerPortal):
                     'res_model': 'documents.document',
                     'res_id': document.id
                 })
-            document.sudo().write({'name':"Carte d'identité hebergeur Recto/Verso"})
+            if document:
+                document.sudo().write({'name':"Carte d'identité hebergeur Recto/Verso"})
         except Exception as e:
             logger.exception("Fail to upload document Carte d'identité ")
 
@@ -792,7 +794,8 @@ class CustomerPortal(CustomerPortal):
                     'res_model': 'documents.document',
                     'res_id': document.id
                 })
-            document.sudo().write({'name':"CERFA 11414-05"})
+            if document:
+                document.sudo().write({'name':"CERFA 11414-05"})
         except Exception as e:
             logger.exception("Fail to upload document Carte d'identité ")
         return http.request.render('mcm_contact_documents.success_documents')
