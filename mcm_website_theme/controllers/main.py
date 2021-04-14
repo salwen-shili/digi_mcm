@@ -421,7 +421,8 @@ class WebsiteSale(WebsiteSale):
                             'phone': partner.phone,
                             'street': partner.street,
                         })
-                        partner.parent_id = company.id
+                        if partner and company:
+                            partner.parent_id = company.id
                 if mode[1] == 'billing':
                     order.partner_id = partner_id
                     order.onchange_partner_id()
