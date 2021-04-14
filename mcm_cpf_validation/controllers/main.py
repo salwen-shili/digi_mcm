@@ -54,7 +54,7 @@ class ClientCPFController(http.Controller):
         email = str(email).lower()
         email = email.replace(" ","")
         users = request.env['res.users'].sudo().search([('login', "=", email)])
-
+        user=False
         if len(users) > 1 :
             user=users[1]
             for utilisateur in users:
