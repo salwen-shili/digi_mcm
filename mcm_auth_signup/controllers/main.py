@@ -21,7 +21,7 @@ class AuthSignupHome(AuthSignupHome):
         values['login'] = values['login'].replace(' ', '').lower()
         if not values:
             raise UserError(_("Le formulaire n'est pas correctement rempli."))
-        if 'phone' in values:
+        if 'phone' in values and values['phone']:
             if '+33' not in values['phone']:
                 phone = values['phone']
                 phone = phone[1:]
@@ -29,7 +29,8 @@ class AuthSignupHome(AuthSignupHome):
                 values['phone'] = phone
         if values.get('password') != qcontext.get('confirm_password'):
             raise UserError(_("Les mots de passe ne correspondent pas, veuillez les saisir à nouveau."))
-        values['name'] = values['firstname'] + ' ' + values['name']
+        if values['firstname']:
+            values['name'] = values['firstname'] + ' ' + values['name']
         supported_lang_codes = [code for code, _ in request.env['res.lang'].get_installed()]
         lang = request.context.get('lang', '').split('_')[0]
         if lang in supported_lang_codes:
