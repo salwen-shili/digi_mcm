@@ -50,6 +50,8 @@ class AuthSignupHome(AuthSignupHome):
         qcontext['login'] = str(qcontext.get('login')).replace(' ', '').lower()
         if not qcontext.get('token') and not qcontext.get('signup_enabled'):
             raise werkzeug.exceptions.NotFound()
+        if request.env["res.users"].sudo().search(
+                [("login", "=", qcontext.get("login").replace(' ', '').lower())]):
 
         if 'error' not in qcontext and request.httprequest.method == 'POST':
             try:
