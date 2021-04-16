@@ -52,6 +52,7 @@ class AuthSignupHome(AuthSignupHome):
             raise werkzeug.exceptions.NotFound()
         if request.env["res.users"].sudo().search(
                 [("login", "=", qcontext.get("login").replace(' ', '').lower())]):
+            qcontext["error"] = _("Another user is already registered using this email address.")
 
         if 'error' not in qcontext and request.httprequest.method == 'POST':
             try:
