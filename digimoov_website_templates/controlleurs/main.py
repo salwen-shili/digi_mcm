@@ -4,7 +4,23 @@ from datetime import datetime, date
 from odoo.addons.portal.controllers.web import Home
 import werkzeug
 import base64
+from odoo.addons.website.controllers.main import Website #import website controller
 
+class Website(Website):
+    #inherit sitemap route function
+    @http.route('/sitemap.xml', type='http', auth="public", website=True, multilang=False, sitemap=False)
+    def sitemap_xml_index(self, **kwargs):
+        current_website = request.website
+        Attachment = request.env['ir.attachment'].sudo()
+        mimetype = 'application/xml;charset=utf-8'
+        content = None
+        dom = [('url', '=', '/sitemap-%d.xml' % current_website.id), ('type', '=', 'binary')]
+        sitemap = Attachment.search(dom, limit=1) #check existing of a sitemap attachment in database
+        if sitemap and sitemap.datas: # if sitemap exist get it from database and don't generate a new one
+            content = base64.b64decode(sitemap.datas)
+            return request.make_response(content, [('Content-Type', mimetype)])
+        else: # if doesn't exist in database generate new sitemap
+            return super(Website,self).sitemap_xml_index(**kwargs)
 
 class FAQ(http.Controller):
 
