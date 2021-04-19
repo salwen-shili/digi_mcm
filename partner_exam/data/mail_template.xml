@@ -1,0 +1,28 @@
+<?xml version="1.0" ?>
+<odoo>
+
+    <!-- Mail template are declared in a NOUPDATE block
+         so users can freely customize/delete them -->
+    <data noupdate="1">
+        <!--Email template -->
+        <record id="email_template_edi_invoice_id" model="mail.template">
+            <field name="name">Notes: Send by email</field>
+            <field name="model_id" ref="mcm_session.model_mcmacademy_session"/>
+            <field name="email_from"></field>
+            <field name="email_to"></field>
+            <field name="subject">Note Exams </field>
+            <field name="body_html" type="html">
+                <div style="margin: 0px; padding: 0px;">
+                    <p style="margin: 0px; padding: 0px; font-size: 13px;">
+                        Dear
+                        <br/>
+                        Do not hesitate to contact us if you have any questions.
+                    </p>
+                </div>
+            </field>
+            <field name="report_template" ref="digi_mcm_convocation.convocation_print_report_pdf"/>
+            <field name="report_name">Hello
+            </field>
+        </record>
+    </data>
+</odoo>

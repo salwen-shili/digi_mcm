@@ -65,7 +65,7 @@
                                                     Matin
                                                 </strong>
                                                  (Tous les candidats doivent impérativement se présenter <b style="text-decoration : underline;">30 minutes</b> avant
-                                        l'épreuve).<br></br>
+                                        l'épreuve).
                                             </t>
                                         </t>
                                         <t t-foreach="docs.mcm_session_id" t-as="apres_midi">

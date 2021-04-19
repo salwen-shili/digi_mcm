@@ -130,8 +130,8 @@
                                             <tbody>
                                                 <tr align="center">
                                                     <td>
-                                                        <t t-foreach="docs.partner_id.mcm_session_id" t-as="footer">
-                                                            <span t-field="footer.date_convocation" t-field-options='{"format": "dd/MM/yyyy"}'/>
+                                                        <t t-foreach="docs.partner_id" t-as="footer">
+                                                            <span t-field="footer.date_today" t-field-options='{"format": "dd/MM/yyyy"}'/>
                                                         </t>
                                                     </td>
                                                     <td></td>

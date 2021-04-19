@@ -27,16 +27,16 @@
             paperformat="partner_exam.paperformat_convocation"
     />
 
-    <report id="releve_note_print_report_pdf'"
-            string="Relevé de note"
-            model="mailing.contact"
-            report_type="qweb-pdf"
-            name="partner_exam.id_releve_note_print_report_pdf"
-            file="partner_exam.releve_note_print_report_pdf"
-            attachment_use="True"
-            print_report_name="'Releve Note - %s' % (object.partner_id.name).replace('/', '')"
-            paperformat="partner_exam.paperformat_convocation"
-    />
+    <!--    <report id="releve_note_print_report_pdf'"
+                string="Relevé de note"
+                model="mailing.contact"
+                report_type="qweb-pdf"
+                name="partner_exam.id_releve_note_print_report_pdf"
+                file="partner_exam.releve_note_print_report_pdf"
+                attachment_use="True"
+                print_report_name="'Releve Note - %s' % (object.partner_id.name).replace('/', '')"
+                paperformat="partner_exam.paperformat_convocation"
+        />-->
 
     <report id="id_convocation_print_report_pdf_ids'"
             string="Convocation"
@@ -49,12 +49,38 @@
             paperformat="partner_exam.paperformat_convocation"
     />
 
-    <report id="report_id"
-            model="info.examen"
-            string="Model Report"
+    <record id="paperformat_releve_note_id" model="report.paperformat">
+        <field name="name">Relevé de note Reussite</field>
+        <field name="default" eval="False"/>
+        <field name="format">A4</field>
+        <field name="page_height">0</field>
+        <field name="page_width">0</field>
+        <field name="orientation">Portrait</field>
+        <field name="margin_top">0</field>
+        <field name="margin_bottom">0</field>
+        <field name="margin_left">15</field>
+        <field name="margin_right">15</field>
+        <field name="header_line" eval="False"/>
+        <field name="header_spacing">0</field>
+        <field name="dpi">90</field>
+    </record>
+
+    <report id="report_releve_note_reussite_id"
+            model="res.partner"
+            string="Relevé de note Reussite"
             report_type="qweb-pdf"
-            name="partner_exam.id_convocation_print_report_pdf"
-            file="partner_exam.id_convocation_print_report_pdf"
-            menu="False"/>
+            name="partner_exam.id_releve_note_print_report_pdf"
+            file="partner_exam.report_releve_note_reussite_id"
+            menu="True"
+            paperformat="partner_exam.paperformat_releve_note_id"/>
+
+    <report id="id_releve_note_ajournement_pdf_id"
+            model="res.partner"
+            string="Relevé de note D'ajournement"
+            report_type="qweb-pdf"
+            name="partner_exam.id_releve_note_ajournement_id"
+            file="partner_exam.id_releve_note_ajournement_pdf_id"
+            menu="True"
+            paperformat="partner_exam.paperformat_releve_note_id"/>
 
 </odoo>
