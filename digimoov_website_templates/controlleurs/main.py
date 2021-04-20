@@ -192,123 +192,138 @@ class Services(http.Controller):
 
     @http.route('/service-clientele', type='http', auth='public', website=True)
     def clientele(self, **kw, ):
-        public_user = http.request.env['res.users'].sudo().search([('id', '=', 4), ('active', '=', False)])
+        if request.website.id==2:
+            public_user = http.request.env['res.users'].sudo().search([('id', '=', 4), ('active', '=', False)])
 
-        if http.request.uid == public_user.id:
-            email_from = ""
-            nom = ""
-            prenom = ""
-            phone = ""
+            if http.request.uid == public_user.id:
+                email_from = ""
+                nom = ""
+                prenom = ""
+                phone = ""
+            else:
+                phone = http.request.env.user.phone
+                email_from = http.request.env.user.email
+                name = http.request.env.user.name
+                nom = ''
+                prenom = ''
+                if http.request.env.user.firstname:
+                    name = name.split(" ", 1)
+                    if ' ' in name:
+                        nom = name[1] if name[1] else ''
+                    prenom = name[0] if name[0] else ''
+            return request.render("digimoov_website_templates.digimoov_template_service_clientele",
+                                  {'email_from': email_from, 'phone': phone, 'contact_last_name': nom,
+                                   'contact_name': prenom})
         else:
-            phone = http.request.env.user.phone
-            email_from = http.request.env.user.email
-            name = http.request.env.user.name
-            nom = ''
-            prenom = ''
-            if http.request.env.user.firstname:
-                name = name.split(" ", 1)
-                if ' ' in name:
-                    nom = name[1] if name[1] else ''
-                prenom = name[0] if name[0] else ''
-        return request.render("digimoov_website_templates.digimoov_template_service_clientele",
-                              {'email_from': email_from, 'phone': phone, 'contact_last_name': nom,
-                               'contact_name': prenom})
+            return request.redirect("/helpdesk")
 
     @http.route('/administration', type='http', auth='public', website=True)
     def administration(self, **kw, ):
-        public_user = http.request.env['res.users'].sudo().search([('id', '=', 4), ('active', '=', False)])
+        if request.website.id == 2:
+            public_user = http.request.env['res.users'].sudo().search([('id', '=', 4), ('active', '=', False)])
 
-        if http.request.uid == public_user.id:
-            email_from = ""
-            nom = ""
-            prenom = ""
-            phone = ""
+            if http.request.uid == public_user.id:
+                email_from = ""
+                nom = ""
+                prenom = ""
+                phone = ""
+            else:
+                phone = http.request.env.user.phone
+                email_from = http.request.env.user.email
+                name = http.request.env.user.name
+                nom = ''
+                prenom = ''
+                if http.request.env.user.firstname:
+                    name = name.split(" ", 1)
+                    if ' ' in name:
+                        nom = name[1] if name[1] else ''
+                    prenom = name[0] if name[0] else ''
+            return request.render("digimoov_website_templates.digimoov_template_service_administration",
+                                  {'email_from': email_from, 'phone': phone, 'contact_last_name': nom,
+                                   'contact_name': prenom})
         else:
-            phone = http.request.env.user.phone
-            email_from = http.request.env.user.email
-            name = http.request.env.user.name
-            nom = ''
-            prenom = ''
-            if http.request.env.user.firstname:
-                name = name.split(" ", 1)
-                if ' ' in name:
-                    nom = name[1] if name[1] else ''
-                prenom = name[0] if name[0] else ''
-        return request.render("digimoov_website_templates.digimoov_template_service_administration",
-                              {'email_from': email_from, 'phone': phone, 'contact_last_name': nom,
-                               'contact_name': prenom})
+            return request.redirect("/helpdesk")
 
     @http.route('/partenariat', type='http', auth='public', website=True)
     def partenariat(self, **kw, ):
-        public_user = http.request.env['res.users'].sudo().search([('id', '=', 4), ('active', '=', False)])
+        if request.website.id == 2:
+            public_user = http.request.env['res.users'].sudo().search([('id', '=', 4), ('active', '=', False)])
 
-        if http.request.uid == public_user.id:
-            email_from = ""
-            nom = ""
-            prenom = ""
-            phone = ""
+            if http.request.uid == public_user.id:
+                email_from = ""
+                nom = ""
+                prenom = ""
+                phone = ""
+            else:
+                phone = http.request.env.user.phone
+                email_from = http.request.env.user.email
+                name = http.request.env.user.name
+                nom = ''
+                prenom = ''
+                if http.request.env.user.firstname:
+                    name = name.split(" ", 1)
+                    if ' ' in name:
+                        nom = name[1] if name[1] else ''
+                    prenom = name[0] if name[0] else ''
+            return request.render("digimoov_website_templates.digimoov_template_service_partenariat",
+                                  {'email_from': email_from, 'phone': phone, 'contact_last_name': nom,
+                                   'contact_name': prenom})
         else:
-            phone = http.request.env.user.phone
-            email_from = http.request.env.user.email
-            name = http.request.env.user.name
-            nom = ''
-            prenom = ''
-            if http.request.env.user.firstname:
-                name = name.split(" ", 1)
-                if ' ' in name:
-                    nom = name[1] if name[1] else ''
-                prenom = name[0] if name[0] else ''
-        return request.render("digimoov_website_templates.digimoov_template_service_partenariat",
-                              {'email_from': email_from, 'phone': phone, 'contact_last_name': nom,
-                               'contact_name': prenom})
+            return request.redirect("/helpdesk")
 
     @http.route('/service-comptabilite', type='http', auth='user', website=True)
     def comptabilite(self, **kw, ):
-        public_user = http.request.env['res.users'].sudo().search([('id', '=', 4), ('active', '=', False)])
+        if request.website.id == 2:
+            public_user = http.request.env['res.users'].sudo().search([('id', '=', 4), ('active', '=', False)])
 
-        if http.request.uid == public_user.id:
-            email_from = ""
-            nom = ""
-            prenom = ""
-            phone = ""
+            if http.request.uid == public_user.id:
+                email_from = ""
+                nom = ""
+                prenom = ""
+                phone = ""
+            else:
+                phone = http.request.env.user.phone
+                email_from = http.request.env.user.email
+                name = http.request.env.user.name
+                nom = ''
+                prenom = ''
+                if http.request.env.user.firstname:
+                    name = name.split(" ", 1)
+                    if ' ' in name:
+                        nom = name[1] if name[1] else ''
+                    prenom = name[0] if name[0] else ''
+            return request.render("digimoov_website_templates.digimoov_template_service_comptabilite",
+                                  {'email_from': email_from, 'phone': phone, 'contact_last_name': nom,
+                                   'contact_name': prenom})
         else:
-            phone = http.request.env.user.phone
-            email_from = http.request.env.user.email
-            name = http.request.env.user.name
-            nom = ''
-            prenom = ''
-            if http.request.env.user.firstname:
-                name = name.split(" ", 1)
-                if ' ' in name:
-                    nom = name[1] if name[1] else ''
-                prenom = name[0] if name[0] else ''
-        return request.render("digimoov_website_templates.digimoov_template_service_comptabilite",
-                              {'email_from': email_from, 'phone': phone, 'contact_last_name': nom,
-                               'contact_name': prenom})
+            return request.redirect("/helpdesk")
 
     @http.route('/service-pedagogique', type='http', auth='user', website=True)
     def pedagogique(self, **kw, ):
-        public_user = http.request.env['res.users'].sudo().search([('id', '=', 4), ('active', '=', False)])
+        if request.website.id == 2:
+            public_user = http.request.env['res.users'].sudo().search([('id', '=', 4), ('active', '=', False)])
 
-        if http.request.uid == public_user.id:
-            email_from = ""
-            nom = ""
-            prenom = ""
-            phone = ""
+            if http.request.uid == public_user.id:
+                email_from = ""
+                nom = ""
+                prenom = ""
+                phone = ""
+            else:
+                phone = http.request.env.user.phone
+                email_from = http.request.env.user.email
+                name = http.request.env.user.name
+                nom = ''
+                prenom = ''
+                if http.request.env.user.firstname:
+                    name = name.split(" ", 1)
+                    if ' ' in name:
+                        nom = name[1] if name[1] else ''
+                    prenom = name[0] if name[0] else ''
+            return request.render("digimoov_website_templates.digimoov_template_service_pedagogique",
+                                  {'email_from': email_from, 'phone': phone, 'contact_last_name': nom,
+                                   'contact_name': prenom})
         else:
-            phone = http.request.env.user.phone
-            email_from = http.request.env.user.email
-            name = http.request.env.user.name
-            nom = ''
-            prenom = ''
-            if http.request.env.user.firstname:
-                name = name.split(" ", 1)
-                if ' ' in name:
-                    nom = name[1] if name[1] else ''
-                prenom = name[0] if name[0] else ''
-        return request.render("digimoov_website_templates.digimoov_template_service_pedagogique",
-                              {'email_from': email_from, 'phone': phone, 'contact_last_name': nom,
-                               'contact_name': prenom})
+            return request.redirect("/helpdesk")
 
     @http.route('/contact', type='http', auth='public', website=True)
     def contact1(self, **kw, ):
