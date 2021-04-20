@@ -262,7 +262,7 @@ class Services(http.Controller):
                               {'email_from': email_from, 'phone': phone, 'contact_last_name': nom,
                                'contact_name': prenom})
 
-    @http.route('/service-comptabilite', type='http', auth='public', website=True)
+    @http.route('/service-comptabilite', type='http', auth='user', website=True)
     def comptabilite(self, **kw, ):
         public_user = http.request.env['res.users'].sudo().search([('id', '=', 4), ('active', '=', False)])
 
@@ -286,7 +286,7 @@ class Services(http.Controller):
                               {'email_from': email_from, 'phone': phone, 'contact_last_name': nom,
                                'contact_name': prenom})
 
-    @http.route('/service-pedagogique', type='http', auth='public', website=True)
+    @http.route('/service-pedagogique', type='http', auth='user', website=True)
     def pedagogique(self, **kw, ):
         public_user = http.request.env['res.users'].sudo().search([('id', '=', 4), ('active', '=', False)])
 
