@@ -128,12 +128,15 @@ class DIGIEXAMEN(http.Controller):
 
     @http.route('/examen-capacite-transport-marchandises', type='http', auth='public', website=True)
     def exam(self, **kw, ):
-        echec_examen = request.env['product.product'].sudo().search(
-            [('company_id', '=', 2), ('default_code', "=", 'examen')])
-        values = {
-            'echec_examen': echec_examen,
-        }
-        return request.render("digimoov_website_templates.digimoov_template_examen", values)
+        if request.website.id==2:
+            echec_examen = request.env['product.product'].sudo().search(
+                [('company_id', '=', 2), ('default_code', "=", 'examen')])
+            values = {
+                'echec_examen': echec_examen,
+            }
+            return request.render("digimoov_website_templates.digimoov_template_examen", values)
+        else:
+            return request.redirect("/preparation-examen-taxi/vtc")
 
 
 class QUISOMMESNOUS(http.Controller):
