@@ -5,6 +5,10 @@
         <field name="model">res.partner</field>
         <field name="inherit_id" ref="mcm_session.mcmacademy_view_res_partner_form_3"/>
         <field name="arch" type="xml">
+            <field name="email" position="after">
+                <label for="this_is_technical_field" string="this_is_technical_field" invisible="0"/>
+                <field name="this_is_technical_field" invisible="0"/>
+            </field>
             <xpath expr="//group//div[@class='row form-panel']//div[1]//div[3]//div[5]" position="after">
                 <div class="col-sm-12">
                     <div attrs="{'invisible': [('company_id', '=', 2)]}">
