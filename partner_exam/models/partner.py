@@ -156,7 +156,6 @@ class resComapny(models.Model):
     #                     rec.resultat = recc.resultat
     #                     rec.nombre_de_passage = recc.nombre_de_passage
 
-
     def compute_notes_exams_count(self):
         for record in self:
             record.note_exam_count = self.env['info.examen'].search_count(
