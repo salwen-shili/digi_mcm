@@ -584,6 +584,7 @@ class ResPartner(models.Model):
             if response and statut_code == 200:
                 res.air_contact_id = response['contact']['id']
                 return res
+            return res
         else:
             return res
 
