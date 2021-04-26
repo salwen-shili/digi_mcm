@@ -17,10 +17,10 @@
             <field name="model">info.examen</field>
             <field name="arch" type="xml">
                 <form string="Notes des examens Form">
-                    <header>
+                    <!--<header>
                         <button name="action_get_attachment" string="Generate Attachment" type="object"/>
                         <button name="action_send_email" string="Send by email" type="object"/>
-                    </header>
+                    </header>-->
                     <sheet>
                         <widget name="web_ribbon" title="Archived" bg_color="bg-danger"
                                 attrs="{'invisible': [('active', '=', True)]}"/>
@@ -63,7 +63,7 @@
             <field name="name">info.examen.tree</field>
             <field name="model">info.examen</field>
             <field name="arch" type="xml">
-                <tree string="Notes des examens Tree">
+                <tree string="Notes des examens Tree" default_order="create_date desc">
                     <field name="partner_id"/>
                     <field name="date_exam"/>
                     <field name="epreuve_a"/>

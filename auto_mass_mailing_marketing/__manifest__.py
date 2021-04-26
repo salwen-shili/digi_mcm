@@ -9,10 +9,12 @@
     'depends': [
         'sale',
         'mcm_session',
+        'digest',
     ],
     'description': "Create auto mass mailing marketing",
     'data': [
         'views/inherit_session_add_fields.xml',
+        'views/inherit_template_abonnement.xml',
     ],
     'qweb': [],
     'demo': [

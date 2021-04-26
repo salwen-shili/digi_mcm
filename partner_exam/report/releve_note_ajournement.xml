@@ -1,4 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!--
+Cette page contient les deux templates pour attestation de reussite et attestation d'ajournement
+-->
 <odoo>
     <data>
         <template id="id_releve_note_ajournement_id">
@@ -59,7 +62,7 @@
                                                 <t t-if="mention.mention == 'ajourne'">
                                                     <span>ajourné</span>
                                                 </t>
-                                                <t t-else=""> </t>
+                                                <t t-else=""></t>
                                             </t>
                                         </t>
                                     </strong>
@@ -192,7 +195,7 @@
                                                                         <t t-if="res.resultat == 'ajourne'">
                                                                             <b>Ajourné</b>
                                                                         </t>
-                                                                        <t t-else=""> </t>
+                                                                        <t t-else=""></t>
                                                                     </t>
                                                                 </t>
                                                             </strong>
@@ -204,10 +207,10 @@
                                         <div class="col-1"></div>
                                     </div>
                                     <br></br>
-                                    <!--                                    <div class="row" style="margin-right:350px;">-->
-                                    <!--     <img src='/partner_exam/static/src/img/texte_2.png' height="200"
+                                    <!--<div class="row" style="margin-right:350px;">-->
+                                    <!--<img src='/partner_exam/static/src/img/texte_2.png' height="200"
                                               style="width:150%;"/>-->
-                                    <!--                                    </div>-->
+                                    <!--</div>-->
                                     <center>
                                         <b>Il est rappelé que d’après l’arrêté du 28 décembre 2011 relatif à la
                                             délivrance des attestations de capacité

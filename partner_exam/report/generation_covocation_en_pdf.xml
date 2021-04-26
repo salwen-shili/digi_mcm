@@ -9,22 +9,6 @@
                              style="line-height:1.5;font-family:Montserrat;font-size:12 %;page-break-before: always;">
                             <div class="row">
                                 <div class="col-12">
-                                    <!--<div name="left-upper-side" class="col-5" t-if="not pre_printed_report"
-                                         align="center">
-                                        <img t-if="docs.partner_id.company_id.logo"
-                                             t-att-src="image_data_uri(docs.partner_id.company_id.logo)"
-                                             style="max-height: 85px;" alt="Logo"/>
-                                    </div>-->
-
-                                    <!--<h1 align="center" style="color:#656295;font-size:25px;">
-                                        Convocation à l'examen de la Capacité de Marchandise (- de 3.5T)
-                                    </h1>-->
-                                    <!--<p align="center">Digimoov centre de formation, organisateur de premier examen pour
-                                        l’obtention
-                                        de la capacité professionnelle en transports routier léger de marchandise agréé
-                                        par
-                                        le préfet de la région Ile de France sous le numéro d’agrément 2019-0110
-                                    </p>-->
                                     <br>
                                         <!--<strong>Arrêté du 28 décembre 2011 relatif à la délivrance des attestations de
                                             capacité
@@ -34,8 +18,7 @@
                                         <img src='/partner_exam/static/src/img/header.png' height="500" width="1000"/>
                                         <p>
                                             Vous êtes invité(e) à vous présenter à l'examen de capacité de transport de
-                                            marchandise
-                                            léger.
+                                            marchandise léger.
                                         </p>
                                         <strong>
                                             Prénom et Nom :
