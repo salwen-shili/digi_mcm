@@ -367,6 +367,12 @@ class Services(http.Controller):
             user.partner_id.sudo().write({'phone':phone,'website_id':2,'email':email_from})
 
             user.partner_id.company_name = name_company
+        if user:
+            ticket_name = 'Digimoov : '+ str( name)
+            ticket = request.env['helpdesk.ticket'].sudo().search([('name', "=", ticket_name),('partner_id',"=",user.partner_id.id),('description',"=",str(description),)], limit=1)
+            if ticket: # check if the customer has already sent a ticket with the same datas
+                # if ticket has already created redirect client to contact page
+                return request.redirect('/contact')
         if service == 'client':
             vals = {
                 'partner_email': str(email_from),
