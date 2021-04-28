@@ -1,4 +1,4 @@
-from odoo import http,SUPERUSER_ID
+from odoo import http,SUPERUSER_ID,_
 from odoo.http import request
 
 
@@ -37,7 +37,7 @@ class ClientCPFController(http.Controller):
             'partner_id': partner.id,
             'description': ' N°Dossier : %s \n Motif : %s ' % (dossier, motif),
             'name': 'CPF : Dossier non validé ',
-            'team_id': request.env['helpdesk.team'].sudo().search([('name', 'like', 'Client')],
+            'team_id': request.env['helpdesk.team'].sudo().search([('name', 'like', 'Client'),('company_id',"=",1)],
                                                                   limit=1).id,
 
         }
@@ -47,6 +47,11 @@ class ClientCPFController(http.Controller):
             new_ticket = request.env['helpdesk.ticket'].sudo().create(
                 vals)
         return request.render("mcm_cpf_validation.mcm_website_request_not_validated", {})
+
+    # Ce programme a été modifié par seifeddinne le 24/03/2021
+    # Modification du process de la facturation chez zoee
+    # Elimination du 25 % account
+    # Zoe traite le dossier s il est bien le CPF sera accepte et generation d'un devis
 
     @http.route('/cpf_accepted/<string:email>/<string:module>/', type="http", auth="user")
     def cpf_accepted(self,module=None, email=None):
@@ -105,69 +110,35 @@ class ClientCPFController(http.Controller):
                             'tax_id': product_id.taxes_id,
                             'company_id':2,
                         })
+                        #prix de la formation dans le devis
                         amount_before_instalment=so.amount_total
-                        acompte = so.amount_total * 0.25
+                        # so.amount_total = so.amount_total * 0.25
                         for line in so.order_line:
-                            line.price_unit=acompte
+                            line.price_unit= so.amount_total
                         so.action_confirm()
                         ref=False
+                        #Creation de la Facture interne
+                        #Si la facture est en interne :  On parse le pourcentage qui est 25 %
+                        #cpf_compte_invoice prend la valeur True pour savoir bien qui est une facture creer par Zoe
+
+
                         if so.amount_total>0 and so.order_line:
                             moves = so._create_invoices(final=True)
                             for move in moves:
                                 move.type_facture = 'interne'
+                                move.cpf_acompte_invoice=True
+                                move.pourcentage_acompte = 25
                                 move.module_id = so.module_id
                                 move.session_id = so.session_id
                                 if so.pricelist_id.code:
                                     move.pricelist_id = so.pricelist_id
                                 move.company_id = so.company_id
+                                move.price_unit =  so.amount_total
+                                print(move.price_unit)
                                 move.cpf_acompte_invoice=True
                                 move.post()
                                 ref=move.name
-                        so.action_cancel()
-                        so_line.sudo().unlink()
-                        so.sudo().unlink()
                 #
-                        so1 = request.env['sale.order'].sudo().create({
-                            'partner_id': user.partner_id.id,
-                            'company_id': 2,
-                        })
-                        so1.module_id = module_id
-                        so1.session_id = module_id.session_id
-                        request.env['sale.order.line'].sudo().create({
-                            'name': product_id.name,
-                            'product_id': product_id.id,
-                            'product_uom_qty': 1,
-                            'product_uom': product_id.uom_id.id,
-                            'price_unit': product_id.list_price,
-                            'order_id': so1.id,
-                            'tax_id': product_id.taxes_id,
-                            'company_id': 2,
-                        })
-                        amount_before_instalment1 = so1.amount_total
-                        acompte1 = so1.amount_total * 0.75
-                        for line in so1.order_line:
-                            line.price_unit = acompte1
-                        so1.action_confirm()
-                        if so1.amount_total>0:
-                            moves = so1._create_invoices(final=True)
-                            for move in moves:
-                                move.type_facture = 'interne'
-                                move.module_id = so1.module_id
-                                move.session_id = so1.session_id
-                                if so1.pricelist_id.code:
-                                    move.pricelist_id = so1.pricelist_id
-                                move.company_id = so1.company_id
-                                move.ref=ref
-                                move.cpf_solde_invoice=True
-                                move.cpf_acompte_amount=acompte
-                                move.post()
-                        so1.action_cancel()
-                        for line in so1.order_line:
-                            line.price_unit=amount_before_instalment
-                        so1.sale_action_sent()
-                        if so1.env.su:
-                            # sending mail in sudo was meant for it being sent from superuser
-                            so1 = so1.with_user(SUPERUSER_ID)
                         template_id = int(request.env['ir.config_parameter'].sudo().get_param(
                             'portal_contract.mcm_mail_template_sale_confirmation'))
                         template_id = request.env['mail.template'].sudo().search([('id', '=', template_id)]).id
@@ -178,11 +149,7 @@ class ClientCPFController(http.Controller):
                         if not template_id:
                             template_id = request.env['ir.model.data'].xmlid_to_res_id(
                                 'portal_contract.mcm_email_template_edi_sale', raise_if_not_found=False)
-                        if template_id:
-                            so1.with_context(force_send=True).message_post_with_template(template_id,
-                                                                                        composition_mode='comment',
-                                                                                        email_layout_xmlid="portal_contract.mcm_mail_notification_paynow_online"
-                                                                                       )
+
                         user.partner_id.statut = 'won'
                         return request.render("mcm_cpf_validation.mcm_website_cpf_accepted")
                     else:
@@ -202,8 +169,6 @@ class ClientCPFController(http.Controller):
                         'partner_id': user.partner_id.id,
                         'company_id': 1,
                     })
-                    so.module_id = module_id
-                    so.session_id = module_id.session_id
                     request.env['sale.order.line'].sudo().create({
                         'name': product_id.name,
                         'product_id': product_id.id,
@@ -214,15 +179,22 @@ class ClientCPFController(http.Controller):
                         'tax_id': product_id.taxes_id,
                         'company_id': 1
                     })
+                    # Enreggistrement des valeurs de la facture
+                    # Parser le pourcentage d'acompte
+                    # Creation de la fcture étape Finale
+                    #Facture comptabilisée
                     so.action_confirm()
+                    so.module_id=module_id
+                    so.session_id=module_id.session_id
                     moves = so._create_invoices(final=True)
                     for move in moves:
                         move.type_facture = 'interne'
                         move.module_id = so.module_id
+                        move.cpf_acompte_invoice=True
+                        move.pourcentage_acompte = 25
                         move.session_id = so.session_id
                         move.company_id=so.company_id
                         move.website_id=1
-                        print('lines')
                         for line in move.invoice_line_ids:
                             if line.account_id != line.product_id.property_account_income_id and line.product_id.property_account_income_id:
                                 line.account_id = line.product_id.property_account_income_id
@@ -255,18 +227,15 @@ class ClientCPFController(http.Controller):
                     return request.render("mcm_cpf_validation.mcm_website_contract_exist")
             else:
                 if 'digimoov' in str(module):
-                    # if no exam date or  no exam center or no id_edof in customer record ( Digimoov )
                     vals = {
                         'description': 'CPF: vérifier la date et ville de %s' % (user.name),
                         'name': 'CPF : Vérifier Date et Ville ',
-                        'team_id': request.env['helpdesk.team'].sudo().search([('name', 'like', 'Clientèle')],
+                        'team_id': request.env['helpdesk.team'].sudo().search([('name', 'like', 'Clientèle'),('company_id',"=",2)],
                                                                               limit=1).id,
                     }
                     description = "CPF: vérifier la date et ville de "+str(user.name)
-                    # Search  helpdesk ticket with same description if exist ( Digimoov )
                     ticket = request.env['helpdesk.ticket'].sudo().search([("description", "=", description)])
                     if not ticket:
-                        # Create helpdesk ticket for client service to verify exam date and exam center of client Digimoov
                         new_ticket = request.env['helpdesk.ticket'].sudo().create(
                             vals)
                 else:
@@ -275,14 +244,12 @@ class ClientCPFController(http.Controller):
                         'partner_id': False,
                         'description': 'CPF: id module edof %s non trouvé' % (module),
                         'name': 'CPF : ID module edof non trouvé ',
-                        'team_id': request.env['helpdesk.team'].sudo().search([('name', "=", _('Service Clientèle'))],
+                        'team_id': request.env['helpdesk.team'].sudo().search([('name', "=", _('Service Clientèle')),('company_id',"=",2)],
                                                                               limit=1).id,
                     }
                     description='CPF: id module edof '+str(module)+' non trouvé'
-                    # Search  helpdesk ticket with same description if exist ( MCM Academy )
                     ticket = request.env['helpdesk.ticket'].sudo().search([('description', 'ilike', description)])
                     if not ticket:
-                        # Create helpdesk ticket for client service to verify id_edof of "module" in sessions MCM academy
                         new_ticket = request.env['helpdesk.ticket'].sudo().create(
                             vals)
                 return request.render("mcm_cpf_validation.mcm_website_module_not_found", {})
@@ -291,7 +258,7 @@ class ClientCPFController(http.Controller):
 
     @http.route('/validate_cpf/<string:email>/<string:nom>/<string:prenom>/<string:diplome>/<string:tel>/<string:address>/<string:code_postal>/<string:ville>/<string:dossier>/<string:session>/<string:module>/', type="http", auth="user")
     def validate_cpf(self,email=None,nom=None,prenom=None,diplome=None,tel=None,address=None,code_postal=None,ville=None,dossier=None,session=None,module=None, **kw):
-        email = email.replace("%", ".") # remplacer % par . dans l'email envoyé en paramètre 
+        email = email.replace("%", ".") # remplacer % par . dans l'email envoyé en paramètre
         email = email.replace(" ", "") # supprimer les espaces envoyés en paramètre email  pour éviter la création des deux comptes
         email = str(email).lower() # recupérer l'email en miniscule pour éviter la création des deux comptes
         user = request.env['res.users'].sudo().search([('login', "=", email)])
@@ -306,7 +273,7 @@ class ClientCPFController(http.Controller):
                     'email': email,
                     'notification_type': 'email',
                     'website_id':2,
-                    'company_ids':[1,2],
+                    'company_ids':[2],
                     'company_id': 2
                 })
                 user.company_id=2
@@ -319,7 +286,7 @@ class ClientCPFController(http.Controller):
                     'email': email,
                     'notification_type': 'email',
                     'website_id': 1,
-                    'company_ids': [1,2],
+                    'company_ids': [1],
                     'company_id':1
 
                 })
@@ -420,9 +387,3 @@ class ClientCPFController(http.Controller):
                 new_ticket = request.env['helpdesk.ticket'].sudo().create(
                     vals)
                 return request.render("mcm_cpf_validation.mcm_website_module_not_found", {})
-
-
-
-
-
-
