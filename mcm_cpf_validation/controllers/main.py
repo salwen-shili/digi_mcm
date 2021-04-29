@@ -138,7 +138,13 @@ class ClientCPFController(http.Controller):
                                 move.cpf_acompte_invoice=True
                                 move.post()
                                 ref=move.name
-                #
+                        so.action_cancel()
+                        for line in so.order_line:
+                            line.price_unit=amount_before_instalment
+                        so.sale_action_sent()
+                        if so.env.su:
+                            # sending mail in sudo was meant for it being sent from superuser
+                            so = so.with_user(SUPERUSER_ID)
                         template_id = int(request.env['ir.config_parameter'].sudo().get_param(
                             'portal_contract.mcm_mail_template_sale_confirmation'))
                         template_id = request.env['mail.template'].sudo().search([('id', '=', template_id)]).id
