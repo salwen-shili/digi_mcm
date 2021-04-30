@@ -134,8 +134,6 @@ class ClientCPFController(http.Controller):
                                     move.pricelist_id = so.pricelist_id
                                 move.company_id = so.company_id
                                 move.price_unit =  so.amount_total
-                                print(move.price_unit)
-                                move.cpf_acompte_invoice=True
                                 move.post()
                                 ref=move.name
                         so.action_cancel()
