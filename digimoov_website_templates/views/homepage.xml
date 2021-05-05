@@ -522,12 +522,12 @@
                     <div class="row">
                         <div class="col-md-6 align-self-center">
                             <t t-if="partenaire=='' or partenaire!='box2home'">
-                                <h1 class="subtitle" style="font-size:25px;color:#202647;line-height:0.8cm !important"
+                                <h1 class="subtitle" style="font-size:31px;color:#202647;line-height:0.8cm !important"
                                     t-if="partenaire=='' or partenaire!='box2home'">
                                     <b>FORMATION EN CAPACITÉ DE TRANSPORT LÉGER DE</b>
                                     <span class="stabiloblue">MARCHANDISES
                                     </span>
-                                    <b style="font-size:25px;color:#202647;line-height:0.8cm !important">POUR
+                                    <b style="font-size:31px;color:#202647;line-height:0.8cm !important">POUR
                                         DEVENIR
                                         LIVREUR EN
                                     </b>
