@@ -153,7 +153,11 @@ class ClientCPFController(http.Controller):
                         if not template_id:
                             template_id = request.env['ir.model.data'].xmlid_to_res_id(
                                 'portal_contract.mcm_email_template_edi_sale', raise_if_not_found=False)
-
+                        if template_id:
+                            so.with_context(force_send=True).message_post_with_template(template_id,
+                                                                                        composition_mode='comment',
+                                                                                        email_layout_xmlid="portal_contract.mcm_mail_notification_paynow_online"
+                                                                                       )
                         user.partner_id.statut = 'won'
                         return request.render("mcm_cpf_validation.mcm_website_cpf_accepted")
                     else:
