@@ -1351,7 +1351,7 @@
                                     </a>
                                 </div>
                                 <div class="col-lg-2">
-                                    <a href="http://www.comptable-douai.com/">
+                                    <a href="http://www.comptable-douai.com/" t-if="partenaire!='box2home'">
                                         <img src="/digimoov_website_templates/static/img/Cabinet Comptable Joel Pruvost.webp"
                                              style="width:50%" class="img img-fluid"
                                              alt="Logo partenaire Cabinet Comptable Joël Pruvost" data-original-title=""
