@@ -55,7 +55,7 @@
         <field name="dpi">90</field>
     </record>
 
-<!--    This is the action to create a print pdf for "relevé de note", using the template(xml) ID-->
+    <!--    This is the action to create a print pdf for "relevé de note", using the template(xml) ID-->
     <report id="report_releve_note_id"
             model="res.partner"
             string="Relevé de notes"
