@@ -10,7 +10,7 @@
             </field>
         </record>
 
-        <!-- Views -->
+        <!-- Form View -->
         <record id="notes_des_examens_form" model="ir.ui.view">
             <field name="name">info.examen.form</field>
             <field name="model">info.examen</field>
@@ -53,7 +53,7 @@
                 </form>
             </field>
         </record>
-
+        <!-- Tree View -->
         <record id="collecte_info_tree_view" model="ir.ui.view">
             <field name="name">info.examen.tree</field>
             <field name="model">info.examen</field>
@@ -71,7 +71,7 @@
                 </tree>
             </field>
         </record>
-
+        <!-- Searsh View -->
         <record id="info_examen_view_search" model="ir.ui.view">
             <field name="name">info.examen.search</field>
             <field name="model">info.examen</field>

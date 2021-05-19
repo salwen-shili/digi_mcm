@@ -1,5 +1,5 @@
 <odoo>
-<!--    This is used to reformat paper format of report PDF Convocation-->
+    <!--    This is used to reformat paper format of report PDF Convocation-->
     <record id="paperformat_convocation" model="report.paperformat">
         <field name="name">Convocation</field>
         <field name="default" eval="False"/>
@@ -16,6 +16,7 @@
         <field name="dpi">90</field>
     </record>
 
+    <!--    This report action create a print pdf for "convocation", using the template(xml) ID in contact view-->
     <report id="id_convocation_print_report_pdf_ids'"
             string="Convocation"
             model="res.partner"
