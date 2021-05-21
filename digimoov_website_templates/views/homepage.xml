@@ -1,3 +1,4 @@
+<odoo>
 <data inherit_id="website.homepage">
   <xpath expr="//div[@id='wrap']" position="replace">
     <link href="/digimoov_website_templates/static/src/css/animate.css" rel="stylesheet"/>
@@ -1264,3 +1265,4 @@
     <!--            <script src="/digimoov_website_templates/static/src/js/jquery.magnific-popup.min.js"/>-->
   </xpath>
 </data>
+    </odoo>
