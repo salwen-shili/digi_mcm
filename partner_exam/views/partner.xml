@@ -7,8 +7,8 @@
         <field name="inherit_id" ref="mcm_session.mcmacademy_view_res_partner_form_3"/>
         <field name="arch" type="xml">
             <field name="email" position="after">
-                <label for="resultat" string="Résultat" invisible="0"/>
-                <field name="resultat" invisible="0"/>
+                <label for="resultat" string="Résultat" invisible="1"/>
+                <field name="resultat" invisible="1"/>
             </field>
             <xpath expr="//group//div[@class='row form-panel']//div[1]//div[3]//div[5]" position="after">
                 <div class="col-sm-12">
