@@ -6,16 +6,15 @@ from odoo.tools import datetime, base64
 from odoo.exceptions import ValidationError
 
 
-
 class NoteExamen(models.Model):
     _name = "info.examen"
     _inherit = ["mail.thread", "mail.activity.mixin"]
     _description = "Les Notes et les informations des examens"
 
     partner_id = fields.Many2one('res.partner', string="Client")
-    epreuve_a = fields.Float(string="Epreuve A(QCM):")
-    epreuve_b = fields.Float(string="Epreuve B(QRO)")
-    moyenne_generale = fields.Float(compute="_compute_moyenne_generale", string="Moyenne Générale")
+    epreuve_a = fields.Float(string="Epreuve A(QCM):", track_visibility='always')
+    epreuve_b = fields.Float(string="Epreuve B(QRO)", track_visibility='always')
+    moyenne_generale = fields.Float(compute="_compute_moyenne_generale", string="Moyenne Générale", track_visibility='always')
     mention = fields.Selection(selection=[
         ('recu', 'reçu'),
         ('ajourne', 'ajourné')],
