@@ -68,6 +68,17 @@ class NoteExamen(models.Model):
                     rec.presence = 'present'
                 elif rec.epreuve_a < 1 and rec.epreuve_b < 1:
                     rec.presence = 'Absent'
+
+    @api.onchange("résultat")
+    def etat_de_client_apres_examen(self):
+        """Fonction pour mettre le champs etat
+        automatique depend de champ resultat,
+        pour l'utilisé dans la template de "Atestation de suivi de formation" """
+        for rec in self:
+            if rec.resultat == 'recu':
+                rec.etat = "avec succès"
+            if not rec.resultat == "recu":
+                rec.etat = "sans succès"
                     
     @api.model
     def create(self, vals):
