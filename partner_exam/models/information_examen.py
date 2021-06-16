@@ -40,7 +40,9 @@ class NoteExamen(models.Model):
         ('present', 'Présent'),
         ('Absent', 'Absent')],
         string="Présence", default='present')
-
+    # Ajout le champ etat qui sera invisible dans l'interface "notes & examen"
+    # Utilisation de ce champ pour une information dans le fichier xml de "attestation de suivi de formation
+    etat = fields.Char(compute="etat_de_client_apres_examen")
     @api.onchange('epreuve_a', 'epreuve_b', 'presence')
     def _compute_moyenne_generale(self):
         """ This function used to auto display some result
