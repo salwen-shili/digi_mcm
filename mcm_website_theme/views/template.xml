@@ -759,7 +759,6 @@
                 var x=document.getElementById('checkbox_instalment');
 
                 if(x) {
-                console.log(x.checked);
                 if (document.getElementById('checkbox_instalment').checked==true) {
                 document.getElementById("order_amount_to_pay").style.visibility = 'visible';
                 document.getElementById("order_instalment_number").style.visibility = 'visible';
@@ -1026,19 +1025,6 @@
                 };
             </script>
 
-        </xpath>
-    </template>
-    <template id="mcm_website_sale_cart_summary" inherit_id="website_sale.cart_summary">
-        <xpath expr="//div[hasclass('card')]" position="inside">
-            <script>
-                function onchangeButton(){
-                if(document.getElementById("pm_shop_text")){
-                document.getElementById("pm_shop_text").textContent = Créer une demande;
-                document.getElementById("pm_shop_check_text").textContent = Créer une demande;
-                document.getElementById("pm_shop_checkout_text").textContent = Créer une demande;
-                }
-                };
-            </script>
         </xpath>
     </template>
     <template id="mcm_reduction_code" inherit_id="website_sale.reduction_code" customize_show="True" name="Promo Code">
