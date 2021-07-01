@@ -9,9 +9,9 @@
             <field name="inherit_id" ref="account.account_journal_dashboard_kanban_view"/>
             <field name="arch" type="xml">
                     <xpath expr="//button[@name='action_create_new']" position="after">
-                        <button type="object" name="synchronisation_recent_invoice">
-                           <span> synchronise Invoice </span>
-                        </button>
+<!--                        <button type="object" name="synchronisation_recent_invoice">-->
+<!--                           <span> synchronise Invoice </span>-->
+<!--                        </button>-->
                     </xpath>
             </field>
         </record>
