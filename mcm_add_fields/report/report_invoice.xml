@@ -330,30 +330,34 @@
              <!-- Dans ce rapport on traite la notion de multi_compagnie par compagnie_id  -->
                         <!-- compagnie_id== 1 c'est pour MCM_Academy -->
                         <!-- compagnie_id== 2 c'est pour Digimoov -->
+             <xpath expr="//table[@name='invoice_line_table']" position="after">
+                <table style="width: 100% ;border-color:#000" name="Acount_Client" t-if="o.methodes_payment == 'cpf' and o.pourcentage_acompte !=0 and o.company_id.id==2">
+                                <tr>
+                                    <td class="text-center"
+                                        style="background-color: #E8E8E8; border: 1px solid black; padding: 5px" t-if="o.methodes_payment == 'cpf' and o.pourcentage_acompte !=0 and o.company_id.id==2">
+                                        Acompte :
+                                    </td>
+                                     <td class="text-center o_price_total" style="border: 1px solid black; padding: 5px">
+                                        <span t-field="o.pourcentage_acompte" readonly="False" t-if="o.methodes_payment == 'cpf' and o.company_id.id==2"/>%
+                                     </td>
+                                     <td class="text-center o_price_total" style="border: 1px solid black; padding: 5px">
+                                        <strong>
+                                            <span t-field="o.module_id.product_id.list_price" t-if="o.methodes_payment == 'cartebleu'"/>
+                                        </strong>
+                                    </td>
+                                </tr>
+                </table>
+                <br>
 
-            <xpath expr="//div[hasclass('clearfix')]" position="replace" t-if="o.methodes_payment == 'cpf'">
+                </br>
+            </xpath>
+
+            <xpath expr="//div[hasclass('clearfix')]" position="replace">
                 <div class="clearfix">
                     <div id="total" class="row">
                         <div class="col-4">
                         </div>
                         <div class="col-8">
-                            <table style="width: 100% ;border-color:#000" name="Acount_Client" t-if="o.methodes_payment == 'cpf' and o.pourcentage_acompte !=0 and o.company_id.id==2">
-                                <tr>
-                                    <td class="text-center"
-                                        style="background-color: #E8E8E8; border: 1px solid black; padding: 1px ; width:263px" t-if="o.methodes_payment == 'cpf' and o.pourcentage_acompte !=0 and o.company_id.id==2">
-                                        Acompte
-                                    </td>
-                                     <td class="text-center o_price_total" style="border: 1px solid black; padding: 5px ; width:80px">
-                                        <span t-field="o.pourcentage_acompte" readonly="False" t-if="o.methodes_payment == 'cpf' and o.company_id.id==2"/>%
-                                     </td>
-                                     <td class="text-center o_price_total" style="border: 1px solid black; padding: 5px">
-                                        <strong>
-                                            <span t-field="o.amount_paye"/>
-                                            <span t-field="o.module_id.product_id.list_price" t-if="o.methodes_payment == 'cartebleu'"/>
-                                        </strong>
-                                    </td>
-                                </tr>
-                            </table>
                             <br>
 
                             </br>
@@ -366,7 +370,7 @@
                                     <td class="text-left" style="border: 1px solid black; padding: 5px" >
                                         <span t-field="o.amount_untaxed" t-if="o.methodes_payment == 'cpf'" t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
                                         <span t-field="o.amount_total" t-if="o.methodes_payment  =='cartebleu'" t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
-                                        <span t-field="o.amount_untaxed" t-if="o.company_id.id==1  and o.methodes_payment!='cpf' and o.methodes_payment !='cartebleu'" t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
+                                        <span t-field="o.amount_untaxed" t-if="o.company_id.id==1 and o.methodes_payment!='cpf' and o.methodes_payment !='cartebleu'" t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
                                     </td>
                                     <tr>
                                     <td class="text-left"
@@ -395,7 +399,7 @@
                                         <span t-field="o.amount_total" t-if="o.methodes_payment =='cartebleu'"/>
                                     </td>
                                     <td class="text-center o_price_total" style="border: 1px solid black; padding: 5px" t-if="o.methodes_payment == 'cpf'">
-                                        <span t-field="o.restamount" t-if="o.methodes_payment == 'cpf' and o.company_id.id==2 "/>
+                                        <span t-field="o.restamount" t-if="o.company_id.id==2 "/>
                                     </td>
                                     </tr>
                                 </tr>
