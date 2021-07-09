@@ -263,7 +263,7 @@ class ClientCPFController(http.Controller):
                         'partner_id': False,
                         'description': 'CPF: id module edof %s non trouvé' % (module),
                         'name': 'CPF : ID module edof non trouvé ',
-                        'team_id': request.env['helpdesk.team'].sudo().search([('name', "=", _('Service Clientèle')),('company_id',"=",2)],
+                        'team_id': request.env['helpdesk.team'].sudo().search([('name', "like", _('Client')),('company_id',"=",2)],
                                                                               limit=1).id,
                     }
                     description='CPF: id module edof '+str(module)+' non trouvé'
@@ -493,7 +493,7 @@ class ClientCPFController(http.Controller):
                         'partner_id': False,
                         'description': 'CPF: id module edof %s non trouvé' % (module),
                         'name': 'CPF : ID module edof non trouvé ',
-                        'team_id': request.env['helpdesk.team'].sudo().search([('name', "=", _('Service Clientèle')),('company_id', "=", 2)],
+                        'team_id': request.env['helpdesk.team'].sudo().search([('name', "like", _('Client')),('company_id', "=", 2)],
                                                                               limit=1).id,
                     }
                     description = 'CPF: id module edof ' + str(module) + ' non trouvé'
