@@ -205,7 +205,7 @@ class Services(http.Controller):
     @http.route('/service-clientele', type='http', auth='public', website=True)
     def clientele(self, **kw, ):
         if request.website.id == 2:
-            return request.redirect('/maintenance')
+            # return request.redirect('/maintenance')
             public_user = http.request.env['res.users'].sudo().search([('id', '=', 4), ('active', '=', False)])
 
             if http.request.uid == public_user.id:
@@ -233,7 +233,7 @@ class Services(http.Controller):
     @http.route('/administration', type='http', auth='public', website=True)
     def administration(self, **kw, ):
         if request.website.id == 2:
-            return request.redirect('/maintenance')
+            # return request.redirect('/maintenance')
             public_user = http.request.env['res.users'].sudo().search([('id', '=', 4), ('active', '=', False)])
 
             if http.request.uid == public_user.id:
@@ -261,7 +261,7 @@ class Services(http.Controller):
     @http.route('/partenariat', type='http', auth='public', website=True)
     def partenariat(self, **kw, ):
         if request.website.id == 2:
-            return request.redirect('/maintenance')
+            # return request.redirect('/maintenance')
             public_user = http.request.env['res.users'].sudo().search([('id', '=', 4), ('active', '=', False)])
 
             if http.request.uid == public_user.id:
@@ -289,7 +289,7 @@ class Services(http.Controller):
     @http.route('/service-comptabilite', type='http', auth='user', website=True)
     def comptabilite(self, **kw, ):
         if request.website.id == 2:
-            return request.redirect('/maintenance')
+            # return request.redirect('/maintenance')
             public_user = http.request.env['res.users'].sudo().search([('id', '=', 4), ('active', '=', False)])
 
             if http.request.uid == public_user.id:
@@ -317,7 +317,7 @@ class Services(http.Controller):
     @http.route('/service-pedagogique', type='http', auth='user', website=True)
     def pedagogique(self, **kw, ):
         if request.website.id == 2:
-            return request.redirect('/maintenance')
+            # return request.redirect('/maintenance')
             public_user = http.request.env['res.users'].sudo().search([('id', '=', 4), ('active', '=', False)])
 
             if http.request.uid == public_user.id:
@@ -345,15 +345,16 @@ class Services(http.Controller):
     @http.route('/contact', type='http', auth='public', website=True)
     def contact1(self, **kw, ):
         if request.website.id == 2:
-            return request.redirect('/maintenance')
+            # return request.redirect('/maintenance')
             return request.render("digimoov_website_templates.digimoov_template_contact", {})
         else:
             return request.redirect("/helpdesk")
 
-    @http.route('/maintenance', type='http', auth='public', website=True)
+    @http.route('/maintenance', type='http', auth='public', website=True) # url of maintenance page 
     def maintenance(self, **kw, ):
+        raise werkzeug.exceptions.NotFound()
         if request.website.id == 2:
-            return request.render("digimoov_website_templates.support_maintenance", {})
+            return request.render("digimoov_website_templates.support_maintenance", {}) # maintenance view
         else:
             raise werkzeug.exceptions.NotFound()
 
