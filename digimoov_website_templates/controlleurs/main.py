@@ -4,10 +4,11 @@ from datetime import datetime, date
 from odoo.addons.portal.controllers.web import Home
 import werkzeug
 import base64
-from odoo.addons.website.controllers.main import Website #import website controller
+from odoo.addons.website.controllers.main import Website  # import website controller
+
 
 class Website(Website):
-    #inherit sitemap route function
+    # inherit sitemap route function
     @http.route('/sitemap.xml', type='http', auth="public", website=True, multilang=False, sitemap=False)
     def sitemap_xml_index(self, **kwargs):
         current_website = request.website
@@ -15,17 +16,19 @@ class Website(Website):
         mimetype = 'application/xml;charset=utf-8'
         content = None
         dom = [('url', '=', '/sitemap-%d.xml' % current_website.id), ('type', '=', 'binary')]
-        sitemap = Attachment.search(dom, limit=1) #check existing of a sitemap attachment in database
-        if sitemap and sitemap.datas: # if sitemap exist get it from database and don't generate a new one
+        sitemap = Attachment.search(dom, limit=1)  # check existing of a sitemap attachment in database
+        if sitemap and sitemap.datas:  # if sitemap exist get it from database and don't generate a new one
             content = base64.b64decode(sitemap.datas)
             return request.make_response(content, [('Content-Type', mimetype)])
-        else: # if doesn't exist in database generate new sitemap
-            return super(Website,self).sitemap_xml_index(**kwargs)
-    @http.route('/update_renonce',type='json', auth="public", methods=['POST'], website=True)
-    def update_renonce(self,demande_renonce):
-        user = request.env.user #recuperer l'utilisateur connecté
-        if demande_renonce: # testé si l'utilisateur a cocher la demande de renonce dans son portal client
-            user.partner_id.renounce_request = True # mettre la demande de renonce cocher dans la fiche client
+        else:  # if doesn't exist in database generate new sitemap
+            return super(Website, self).sitemap_xml_index(**kwargs)
+
+    @http.route('/update_renonce', type='json', auth="public", methods=['POST'], website=True)
+    def update_renonce(self, demande_renonce):
+        user = request.env.user  # recuperer l'utilisateur connecté
+        if demande_renonce:  # testé si l'utilisateur a cocher la demande de renonce dans son portal client
+            user.partner_id.renounce_request = True  # mettre la demande de renonce cocher dans la fiche client
+
 
 class FAQ(http.Controller):
 
@@ -123,7 +126,8 @@ class FINANCEMENT(http.Controller):
         if user_connected:
             if user_connected.partner_id.partner_from and user_connected.partner_id.partner_from in ['ubereats',
                                                                                                      'deliveroo',
-                                                                                                     'coursierjob','box2home']:
+                                                                                                     'coursierjob',
+                                                                                                     'box2home']:
                 return request.redirect("/%s#pricing" % str(user_connected.partner_id.partner_from))
             else:
                 return request.redirect("/#pricing")
@@ -133,7 +137,7 @@ class DIGIEXAMEN(http.Controller):
 
     @http.route('/examen-capacite-transport-marchandises', type='http', auth='public', website=True)
     def exam(self, **kw, ):
-        if request.website.id==2:
+        if request.website.id == 2:
             echec_examen = request.env['product.product'].sudo().search(
                 [('company_id', '=', 2), ('default_code', "=", 'examen')])
             values = {
@@ -200,7 +204,8 @@ class Services(http.Controller):
 
     @http.route('/service-clientele', type='http', auth='public', website=True)
     def clientele(self, **kw, ):
-        if request.website.id==2:
+        if request.website.id == 2:
+            return request.redirect('/maintenance')
             public_user = http.request.env['res.users'].sudo().search([('id', '=', 4), ('active', '=', False)])
 
             if http.request.uid == public_user.id:
@@ -228,6 +233,7 @@ class Services(http.Controller):
     @http.route('/administration', type='http', auth='public', website=True)
     def administration(self, **kw, ):
         if request.website.id == 2:
+            return request.redirect('/maintenance')
             public_user = http.request.env['res.users'].sudo().search([('id', '=', 4), ('active', '=', False)])
 
             if http.request.uid == public_user.id:
@@ -255,6 +261,7 @@ class Services(http.Controller):
     @http.route('/partenariat', type='http', auth='public', website=True)
     def partenariat(self, **kw, ):
         if request.website.id == 2:
+            return request.redirect('/maintenance')
             public_user = http.request.env['res.users'].sudo().search([('id', '=', 4), ('active', '=', False)])
 
             if http.request.uid == public_user.id:
@@ -282,6 +289,7 @@ class Services(http.Controller):
     @http.route('/service-comptabilite', type='http', auth='user', website=True)
     def comptabilite(self, **kw, ):
         if request.website.id == 2:
+            return request.redirect('/maintenance')
             public_user = http.request.env['res.users'].sudo().search([('id', '=', 4), ('active', '=', False)])
 
             if http.request.uid == public_user.id:
@@ -309,6 +317,7 @@ class Services(http.Controller):
     @http.route('/service-pedagogique', type='http', auth='user', website=True)
     def pedagogique(self, **kw, ):
         if request.website.id == 2:
+            return request.redirect('/maintenance')
             public_user = http.request.env['res.users'].sudo().search([('id', '=', 4), ('active', '=', False)])
 
             if http.request.uid == public_user.id:
@@ -336,9 +345,17 @@ class Services(http.Controller):
     @http.route('/contact', type='http', auth='public', website=True)
     def contact1(self, **kw, ):
         if request.website.id == 2:
+            return request.redirect('/maintenance')
             return request.render("digimoov_website_templates.digimoov_template_contact", {})
         else:
             return request.redirect("/helpdesk")
+
+    @http.route('/maintenance', type='http', auth='public', website=True)
+    def maintenance(self, **kw, ):
+        if request.website.id == 2:
+            return request.render("digimoov_website_templates.support_maintenance", {})
+        else:
+            raise werkzeug.exceptions.NotFound()
 
     @http.route('/helpdesk/submitted/',
                 type="http", auth="public", website=True, csrf=False)
@@ -354,7 +371,8 @@ class Services(http.Controller):
         if kwargs.get('name_company'):
             name_company = kwargs.get('name_company')
         service = kwargs.get('service')
-        user = http.request.env['res.users'].sudo().search([('login', "=", str(email_from))],limit=1) # get only one user if there is double account with same email
+        user = http.request.env['res.users'].sudo().search([('login', "=", str(email_from))],
+                                                           limit=1)  # get only one user if there is double account with same email
         if not user:
             user = request.env['res.users'].sudo().create({
                 'name': str(contact_name) + " " + str(contact_last_name),
@@ -368,14 +386,16 @@ class Services(http.Controller):
                 # 'company_id': 2
             })
         if user and name_company:
-            user.sudo().write({'company_id':1,'company_ids': [1,2]})
-            user.partner_id.sudo().write({'phone':phone,'website_id':2,'email':email_from})
+            user.sudo().write({'company_id': 1, 'company_ids': [1, 2]})
+            user.partner_id.sudo().write({'phone': phone, 'website_id': 2, 'email': email_from})
 
             user.partner_id.company_name = name_company
         if user:
-            ticket_name = 'Digimoov : '+ str( name)
-            ticket = request.env['helpdesk.ticket'].sudo().search([('name', "=", ticket_name),('partner_id',"=",user.partner_id.id),('description',"=",str(description),)], limit=1)
-            if ticket: # check if the customer has already sent a ticket with the same datas
+            ticket_name = 'Digimoov : ' + str(name)
+            ticket = request.env['helpdesk.ticket'].sudo().search(
+                [('name', "=", ticket_name), ('partner_id', "=", user.partner_id.id),
+                 ('description', "=", str(description),)], limit=1)
+            if ticket:  # check if the customer has already sent a ticket with the same datas
                 # if ticket has already created redirect client to contact page
                 return request.redirect('/contact')
         if service == 'client':
