@@ -65,17 +65,18 @@ class HelpdeskTicket(models.Model):
         ]
         list_ids_deleted_tickets=[] # préparer une liste vide qui sera par les id des tickets à supprimer
         for ticket in tickets: #parcourir les 100 derniers tickets
-            if any(email in ticket.partner_email for email in rejected_mails): #vérifier si l'email de client contient l'un des emails/terms rejetés mis à la liste rejected_mails
-                list_ids_deleted_tickets.append(ticket.id) #ajouter l'id de ticket à list des tickets à supprimer
-            else:
-                rejected_notes = [
-                    'Devis vu', 'Contrat signé', 'Quotation viewed by'
-                ] # liste des terms des notes système créer en ticket à vérifier
+            if ticket.partner_email:
+                if any(email in ticket.partner_email for email in rejected_mails): #vérifier si l'email de client contient l'un des emails/terms rejetés mis à la liste rejected_mails
+                    list_ids_deleted_tickets.append(ticket.id) #ajouter l'id de ticket à list des tickets à supprimer
+                else:
+                    rejected_notes = [
+                        'Devis vu', 'Contrat signé', 'Quotation viewed by'
+                    ] # liste des terms des notes système créer en ticket à vérifier
 
-                notes = self.env["mail.message"].sudo().search([('model',"=",'helpdesk.ticket'),('res_id',"=",ticket.id)]) #recupère tous les notes créer dans le ticket
-                for note in notes: # parcourir les notes de la ticket
-                    if any(term in note.body for term in rejected_notes): # vérifier si l'un des notes est parmis la liste rejected notes
-                        list_ids_deleted_tickets.append(ticket.id) #ajouter l'id de ticket à list des tickets à supprimer
+                    notes = self.env["mail.message"].sudo().search([('model',"=",'helpdesk.ticket'),('res_id',"=",ticket.id)]) #recupère tous les notes créer dans le ticket
+                    for note in notes: # parcourir les notes de la ticket
+                        if any(term in note.body for term in rejected_notes): # vérifier si l'un des notes est parmis la liste rejected notes
+                            list_ids_deleted_tickets.append(ticket.id) #ajouter l'id de ticket à list des tickets à supprimer
         for ticket in tickets:
             if any(name in ticket.name for name in rejected_subject): # vérifier si le nom de ticket contient un term parmis les termes de la liste rejected subject
                 list_ids_deleted_tickets.append(ticket.id) #ajouter l'id de ticket à list des tickets à supprimer
