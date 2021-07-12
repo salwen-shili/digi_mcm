@@ -13,7 +13,6 @@
 
             </style>
             <script defer="defer" type="text/javascript" src="/digimoov_website_templates/static/src/js/lazy-min.js"/>
-
             <section class="banner oe_img_bg oe_custom_bg" style="background: linear-gradient(90deg, rgba(249,250,252,1) 0%, rgba(242,241,241,0.7203256302521008) 100%);">
                 <p>
                     <br/>
@@ -170,9 +169,7 @@
                                                 <div class="collapse" id="accordion-tab-1-content-3" aria-labelledby="accordion-tab-1-heading-3" data-parent="#accordion-tab-1" style="">
                                                     <div class="card-body">
                                                         <p>
-                                                            <font style="color: rgb(0, 0, 0);">Oui, numéro d'agrément :
-                                                                DRIEAT IDF N° 2019-0110.
-                                                            </font>
+                                                            <font style="color: rgb(0, 0, 0);">Oui, Digimoov est un nom commercial de la société MCM Academy. Numéro d’agrément : DRIEAT IDF N° 2019-0110 </font>
                                                         </p>
                                                         <p/>
                                                     </div>
