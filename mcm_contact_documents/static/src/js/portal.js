@@ -124,7 +124,7 @@ publicWidget.registry.digi_documents = publicWidget.Widget.extend({
                  if (file != null)
                  {
                     var type=file['type'];
-                    var types = ['image/png' , 'image/jpg' , 'image/jpeg' , 'image/bmp' , 'image/gif' , 'image/svg+xml' , 'application/pdf'];
+                    var types = ['image/png' , 'image/jpg' , 'image/jpeg' , 'image/bmp' ,  'image/svg+xml' , 'application/pdf'];
                     if (types.includes(type)){
                         check_type=true;
                     }
@@ -133,7 +133,7 @@ publicWidget.registry.digi_documents = publicWidget.Widget.extend({
                      if (check_type==false)
                         {
                             input_id.value='';
-                            alert('Formats possibles : jpg, jpeg, png, bmp, svg, pdf');
+                            alert('Formats possibles : jpg , png, pdf');
                         }
                     }
                  }
@@ -207,7 +207,7 @@ publicWidget.registry.mcm_documents = publicWidget.Widget.extend({
                  if (file != null)
                  {
                     var type=file['type'];
-                    var types = ['image/png' , 'image/jpg' , 'image/jpeg' , 'image/bmp' , 'image/gif' , 'image/svg+xml' , 'application/pdf'];
+                    var types = ['image/png' , 'image/jpg', 'application/pdf'];
                     if (types.includes(type)){
                         check_type=true;
                     }
@@ -216,7 +216,7 @@ publicWidget.registry.mcm_documents = publicWidget.Widget.extend({
                      if (check_type==false)
                         {
                             input_id.value='';
-                            alert('Formats possibles : jpg, jpeg, png, bmp, svg, pdf');
+                            alert('Formats possibles : jpg , png, pdf');
                         }
                     }
                  }
