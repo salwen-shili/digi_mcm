@@ -29,3 +29,15 @@ class resComapny(models.Model):
             "domain": [("partner_id", "child_of", self.id)],
             'context': {'default_note_exam_id': self.note_exam_id.ids},
         }
+
+    def write(self, values):
+        """ Update this function to add new line in list of sessions
+        if the field mcm_session_id changed """
+        session = super(resComapny, self).write(values)
+        if 'mcm_session_id' in values:
+            self.env['partner.sessions'].sudo().create({
+                'client_id': self.id,
+                'session_id': self.mcm_session_id.id,
+                'company_id': self.company_id.id
+            })
+        return session
