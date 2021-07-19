@@ -11,7 +11,7 @@
                 <button class="oe_stat_button" context="{'search_default_partner_id': active_id}" type="object"
                         name="get_mail_history"
                         string="Liste des commentaires interne"
-                        icon="fa-book">
+                        icon="fa-comments-o">
                 </button>
             </div>
         </field>
