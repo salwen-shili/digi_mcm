@@ -9,7 +9,7 @@
         <field name="arch" type="xml">
             <div name="button_box" position="inside">
                 <button class="oe_stat_button" context="{'search_default_partner_id': active_id}" type="object"
-                        name="get_mail_history"
+                        name="get_comments_history"
                         string="Liste des commentaires interne"
                         icon="fa-comments-o">
                 </button>
