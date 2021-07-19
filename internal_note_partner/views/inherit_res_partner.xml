@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <!-- Inherit Form View from res.partner to add a smart button
+    contains list of comments with type(comments & notification)-->
+    <record id="inherit_mcmacademy_partner_form" model="ir.ui.view">
+        <field name="name">res.partner.form</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+            <div name="button_box" position="inside">
+                <button class="oe_stat_button" context="{'search_default_partner_id': active_id}" type="object"
+                        name="get_mail_history"
+                        string="Liste des commentaires interne"
+                        icon="fa-book">
+                </button>
+            </div>
+        </field>
+    </record>
+    <!-- Inherit Tree View from res.partner-->
+    <record model="ir.ui.view" id="view_partner_tree_inherit">
+        <field name="name">res.partner.tree.inherit</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_tree"/>
+        <field name="arch" type="xml">
+            <xpath expr="//tree/field[@name='company_id']" position="replace">
+                <field name="company_id" optional="hide"/>
+            </xpath>
+            <xpath expr="//tree/field[@name='email']" position="after">
+                <field name="last_internal_log" widget="html" optional="show"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>
