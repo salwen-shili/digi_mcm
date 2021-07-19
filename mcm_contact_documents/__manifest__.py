@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 # Part of Odoo. See LICENSE file for full copyright and licensing details.
-
+#change document
 {
     'name': 'Partner Documents',
     'description': " App to upload and manage your documents. ",
@@ -24,6 +24,7 @@
         'views/templates.xml',
         'views/document_template.xml',
         'views/digimoov_template_documents.xml',
+        'views/digimoov_template_documents1.xml',
         'views/mcm_template_documents.xml',
         'data/mail_template.xml',
     ],

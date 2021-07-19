@@ -400,6 +400,156 @@ class CustomerPortal(CustomerPortal):
         partner = http.request.env.user.partner_id
         return http.request.render('mcm_contact_documents.success_documents', {'partner': partner})
 
+    @http.route('/upload_my_files1', type="http", auth="user", methods=['POST'], website=True, csrf=False)
+    def upload_my_files1(self, **kw):
+        # charger le dossier des documents clients appartenant à Digimoov
+        # mcm-academy a l'id 1 et digimoov a l'id 2
+        folder_id = request.env['documents.folder'].sudo().search(
+            [('name', "=", _('Documents Digimoov')), ('company_id', "=", 2)])
+        # Si le dossier Documents Digimoov n'existe pas, le créer
+        if not folder_id:
+            vals_list = []
+            # mcm-academy a l'id 1 et digimoov a l'id 2
+            vals = {
+                'name': "Documents Digimoov",
+                'company_id': 2
+            }
+            vals_list.append(vals)
+            folder_id = request.env['documents.folder'].sudo().create(vals_list)
+
+        try:
+            # Récupérer le justificatif de domicile
+            fichier_justificatif = request.httprequest.files.getlist('justificatif_domicile')
+            if fichier_justificatif:
+                vals_list = []
+                # Création du document justificatif de domicile
+                vals = {
+                    'name': "Jusitificatif de domicile",
+                    'folder_id': int(folder_id),
+                    'code_document': 'justificatif_domicile',
+                    'type': 'binary',
+                    'partner_id': False,
+                    'owner_id': False
+                }
+                vals_list.append(vals)
+                document_justificatif = request.env['documents.document'].sudo().create(vals_list)
+                if document_justificatif:
+                    # Ajouter le partner_id et le owner_id
+                    uid = document_justificatif.create_uid
+                    document_justificatif.sudo().write(
+                        {'owner_id': uid, 'partner_id': uid.partner_id,
+                         'name': document_justificatif.name + ' ' + str(uid.name)})
+                    # Créer la pièce jointe
+                    datas_justificatif = base64.encodebytes(fichier_justificatif[0].read())
+                    request.env['ir.attachment'].sudo().create({
+                        'name': "Jusitificatif de domicile",
+                        'type': 'binary',
+                        'datas': datas_justificatif,
+                        'res_model': 'documents.document',
+                        'res_id': document_justificatif.id
+                    })
+        except Exception as e:
+            logger.exception("Erreur de chargement du fichier justificatif de domicile ")
+
+        try:
+            # Récupérer l'identité de l'hébergeur
+            fichier_identite = request.httprequest.files.getlist('identite_hebergeur')
+            if fichier_identite:
+                # Création du document identité de l'hébergeur
+                vals_list = []
+                vals = {
+                    'name': "Carte d'identité hébergeur",
+                    'folder_id': int(folder_id),
+                    'code_document': 'identite_hebergeur',
+                    'type': 'binary',
+                    'partner_id': False,
+                    'owner_id': False
+                }
+                vals_list.append(vals)
+                document_identite_hebergeur = request.env['documents.document'].sudo().create(vals_list)
+                if document_identite_hebergeur:
+                    # Ajouter le partner_id et le owner_id
+                    uid = document_identite_hebergeur.create_uid
+                    document_identite_hebergeur.sudo().write(
+                        {'owner_id': uid, 'partner_id': uid.partner_id,
+                         'name': document_identite_hebergeur.name + ' ' + str(uid.name)})
+                    # Créer la pièce jointe
+                    datas_identite_hebergeur = base64.encodebytes(fichier_identite[0].read())
+                    request.env['ir.attachment'].sudo().create({
+                        'name': "Carte d'identité de l'hébergeur",
+                        'type': 'binary',
+                        'datas': datas_identite_hebergeur,
+                        'res_model': 'documents.document',
+                        'res_id': document_identite_hebergeur.id
+                    })
+            if document_identite_hebergeur:
+                document_identite_hebergeur.sudo().write({'name': "Carte d'identité de l'hébergeur"})
+        except Exception as e:
+            logger.exception("Erreur de chargement du document: Carte d'identité de l'hébergeur")
+        try:
+            # charger l'attestation de l'hébergement
+            fichier_attestation = request.httprequest.files.getlist('attestation_hebergement')
+            if fichier_attestation:
+                # Création du document
+                vals_list = []
+                vals = {
+                    'name': "Attestation d'hébergement",
+                    'folder_id': int(folder_id),
+                    'code_document': 'attestation_hebergement',
+                    'type': 'binary',
+                    'partner_id': False,
+                    'owner_id': False
+                }
+                vals_list.append(vals)
+                document_attestation = request.env['documents.document'].sudo().create(vals_list)
+                if document_attestation:
+                    # Ajouter le partner_id et le owner_id
+                    uid = document_attestation.create_uid
+                    document_attestation.sudo().write(
+                        {'owner_id': uid, 'partner_id': uid.partner_id,
+                         'name': document_attestation.name + ' ' + str(uid.name)})
+                    # Créer la pièce jointe
+                    datas_attestation_hebergement = base64.encodebytes(fichier_attestation[0].read())
+                    request.env['ir.attachment'].sudo().create({
+                        'name': "Attestation d'hébergement",
+                        'type': 'binary',
+                        'datas': datas_attestation_hebergement,
+                        'res_model': 'documents.document',
+                        'res_id': document_attestation.id
+                    })
+        except Exception as e:
+            logger.exception("Erreur de téléchargement du fichier: Attestation d'hébergement")
+
+        try:
+            # charger le document CERFA
+            fichier_cerfa = request.httprequest.files.getlist('cerfa')
+            datas_cerfa = base64.encodebytes(fichier_cerfa[0].read())
+            if fichier_cerfa:
+                # Création du document
+                vals_list = []
+                vals = {
+                    'name': "CERFA",
+                    'folder_id': int(folder_id),
+                    'code_document': 'cerfa',
+                    'confirmation': kw.get('confirm_cerfa'),
+                    'datas': datas_cerfa,
+                    'type': 'binary',
+                    'partner_id': False,
+                    'owner_id': False
+                }
+                vals_list.append(vals)
+                document_cerfa = request.env['documents.document'].sudo().create(vals_list)
+                if document_cerfa:
+                    # Ajouter le partner_id et le owner_id
+                    uid = document_cerfa.create_uid
+                    # Créer la pièce jointe
+                    document_cerfa.sudo().write(
+                        {'owner_id': uid, 'partner_id': uid.partner_id,
+                         'name': document_cerfa.name + ' ' + str(uid.name)})
+        except Exception as e:
+            logger.exception("Erreur de téléchargement du document: CERFA")
+        return http.request.render('mcm_contact_documents.success_documents')
+
     @http.route('/new_documents', type="http", auth="user", website=True)
     def create_documents(self, **kw):
         name = http.request.env.user.name
@@ -408,6 +558,17 @@ class CustomerPortal(CustomerPortal):
         print(partner_id.module_id.name)
         return http.request.render('mcm_contact_documents.mcm_contact_documents_new_documents', {
             'email': email, 'name': name, 'partner_id':partner_id ,'error_identity':'','error_permis':'','error_identity_number':'','error_permis_number':'','error_domicile':'' })
+
+
+    #Nouvelle page qui ressemble à la page précédente
+    @http.route('/charger_mes_documents_1', type="http", auth="user", website=True)
+    def create_documents_digimoov1(self, **kw):
+        name = http.request.env.user.name
+        email = http.request.env.user.email
+        partner_id = http.request.env.user.partner_id
+        return http.request.render('mcm_contact_documents.mcm_contact_document_charger_mes_documents1', {
+            'email': email, 'name': name, 'partner_id': partner_id, 'error_identity': '', 'error_permis': '',
+            'error_identity_number': '', 'error_permis_number': '', 'error_domicile': ''})
 
     @http.route('/charger_mes_documents', type="http", auth="user", website=True)
     def create_documents_digimoov(self, **kw):
