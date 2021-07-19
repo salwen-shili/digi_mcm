@@ -13,14 +13,14 @@ class InheritResPartner(models.Model):
             last_line = record.env['mail.message'].sudo().search([('record_name', '=', record.name), ('subtype_id', '=', 'Note'), ('message_type', 'in', ['comment', 'notification'])], limit=1)
             record.last_internal_log = last_line.body
 
-    def get_mail_history(self):
+    def get_comments_history(self):
         self.ensure_one()
         return {
-            "name": self.name,
-            "view_type": "form",
-            "view_mode": "tree,form",
-            "res_model": "mail.message",
-            "type": "ir.actions.act_window",
-            "domain": [("record_name", "=", self.name), ('message_type', 'in', ['comment', 'notification']), ('subtype_id', '=', 'Note')],
+            'name': self.name,
+            'view_type': "form",
+            'view_mode': "tree,form",
+            'res_model': "mail.message",
+            'type': "ir.actions.act_window",
+            'domain': [("record_name", "=", self.name), ('message_type', 'in', ['comment', 'notification']), ('subtype_id', '=', 'Note')],
             'context': "{'create': False, 'edit':False}"
         }
