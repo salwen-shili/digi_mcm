@@ -22,4 +22,5 @@ class InheritResPartner(models.Model):
             "res_model": "mail.message",
             "type": "ir.actions.act_window",
             "domain": [("record_name", "=", self.name), ('message_type', 'in', ['comment', 'notification']), ('subtype_id', '=', 'Note')],
+            'context': "{'create': False}"
         }
