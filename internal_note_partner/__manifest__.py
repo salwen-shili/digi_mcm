@@ -17,6 +17,7 @@
         'base',
         'mail',
         'contacts',
+        'plateforme_pedagogique',
     ],
     'data': [
         'views/inherit_res_partner.xml',
