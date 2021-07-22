@@ -28,6 +28,12 @@
             <xpath expr="//tree/field[@name='email']" position="after">
                 <field name="last_internal_log" widget="html" optional="show"/>
             </xpath>
+            <xpath expr="//tree/field[@name='last_login']" position="replace">
+                <field name="last_login" optional="hide"/>
+            </xpath>
+            <xpath expr="//tree/field[@name='totalTimeSpentInMinutes']" position="replace">
+                <field name="totalTimeSpentInMinutes" optional="hide"/>
+            </xpath>
         </field>
     </record>
 </odoo>
