@@ -18,7 +18,7 @@ class Session(models.Model):
     action_type_id=fields.Many2one('mcmacademy.action',string="Type d'action de formation")
     domaine_formation=fields.Many2one('mcmacademy.domain',string='Domaine de formation')
     diplome_vise=fields.Char('Diplôme visé par la formation')
-    module_ids=fields.One2many('mcmacademy.module',inverse_name='session_id',string='Liste des modules')
+    module_ids = fields.One2many('mcmacademy.module', inverse_name='session_id', string='Liste des modules', copy=True)
     client_ids=fields.Many2many('res.partner','session_clients_rel', 'session_id', 'client_id', string='')
     prospect_ids=fields.Many2many('res.partner','session_prospect_rel','session_id','prospect_id',string='')
     canceled_prospect_ids=fields.Many2many('res.partner','session_canceled_prospect_rel','session_id','prospect_id',string='')
