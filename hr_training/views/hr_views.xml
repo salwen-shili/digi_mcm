@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="training_line_done_view_form" model="ir.ui.view">
+        <field name="name">hr.training.done.line.form</field>
+        <field name="model">hr.training.done.line</field>
+        <field name="arch" type="xml">
+             <form string="Training">
+                <div class="oe_title">
+                    <label for="name" class="oe_edit_only"/>
+                    <h1>
+                        <field name="name" placeholder="Formation" required="True"/>
+                    </h1>
+                </div>
+                <group>
+                    <group>
+                        <field name="date" required="True"/>
+                    </group>
+                </group>
+                <field name="organisme" placeholder="Organisme"/>
+                <field name="document" placeholder="Document"/>
+            </form>
+        </field>
+    </record>
+
+
+        <record id="training_line_todo_view_form" model="ir.ui.view">
+        <field name="name">hr.training.todo.line.form</field>
+        <field name="model">hr.training.todo.line</field>
+        <field name="arch" type="xml">
+            <form string="Training">
+                <div class="oe_title">
+                    <label for="name" class="oe_edit_only"/>
+                    <h1>
+                        <field name="name" placeholder="Formation" required="True"/>
+                    </h1>
+                </div>
+                <group>
+                    <group>
+                        <field name="date" required="True"/>
+                    </group>
+                </group>
+                <field name="organisme" placeholder="Organisme"/>
+                <field name="document" placeholder="Document"/>
+            </form>
+        </field>
+    </record>
+
+
+    <record id="hr_employee_view_form" model="ir.ui.view">
+        <field name="name">hr.employee.view.form.inherit.training</field>
+        <field name="model">hr.employee</field>
+        <field name="inherit_id" ref="hr.view_employee_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//page[@name='public']" position="before">
+                <page name="public" string="Suivi de plan de formation">
+                    <div class="row">
+                        <div class="o_hr_training_group o_group_training  col-lg-6 flex-column">
+                            <separator string=" Formations Faites"/>
+                            <field mode="tree" nolabel="1" name="training_line_done_ids">
+                                <tree>
+                                    <field name="name"/>
+                                    <field name="organisme"/>
+                                    <field name="date"/>
+                                    <field name="document"/>
+                                </tree>
+                            </field>
+                        </div>
+                        <div class="o_hr_training_group o_group_training col-lg-6 d-flex flex-column">
+                            <separator string=" Formations à faire"/>
+                            <field mode="tree" nolabel="1" name="training_line_todo_ids">
+                                <tree>
+                                    <field name="name"/>
+                                    <field name="organisme"/>
+                                    <field name="date"/>
+                                    <field name="document"/>
+                                </tree>
+                            </field>
+                        </div>
+                    </div>
+                </page>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>
