@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="inherit_partner_form" model="ir.ui.view">
+        <field name="name">res.partner.form</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[@class='oe_title']" position="inside">
+                <div class="col-sm-12">
+                    <label for="est_surveillant" string="Est un(e) surveillant(e):">Est un(e) surveillant(e)</label>
+                    <field name="est_surveillant" widget="boolean_toggle"/>
+                </div>
+            </xpath>
+            <xpath expr="//page[@name='sales_purchases']" position="attributes">
+                <attribute name="attrs">{'invisible': [('est_surveillant', '=', True)]}</attribute>
+            </xpath>
+        </field>
+    </record>
+    <!-- Inherit view account to add new condition of visivility to Accounting page in partner view-->
+    <record id="inherit_financement_form" model="ir.ui.view">
+        <field name="name">res.partner.form</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="account.view_partner_property_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//page[@name='accounting']" position="attributes">
+                <attribute name="attrs">{'invisible': [('est_surveillant', '=', True)]}</attribute>
+            </xpath>
+        </field>
+    </record>
+    <!--Inherit view account to add new condition of visivility to page financement page in partner view-->
+    <record id="inherit_financement_form" model="ir.ui.view">
+        <field name="name">res.partner.form</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="mcm_add_fields.mcm_view_res_partner_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//page[@name='financement']" position="attributes">
+                <attribute name="attrs">{'invisible': [('est_surveillant', '=', True)]}</attribute>
+            </xpath>
+        </field>
+    </record>
+</odoo>

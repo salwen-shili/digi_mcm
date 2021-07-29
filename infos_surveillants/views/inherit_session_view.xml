@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- inherit la vue form de la session pour ajouter le bloc des surveillant(e)s-->
+    <record id="inherit_digimoov_session_form" model="ir.ui.view">
+        <field name="name">surveillant.session.form</field>
+        <field name="model">mcmacademy.session</field>
+        <field name="inherit_id" ref="mcm_session.mcmacademy_session_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//form/div/group/group[@name='horaire']" position="after">
+                <group name="surveillant" string="Liste des surveillant(e)s" >
+                    <field name="surveillant_id" nolabel="1"/>
+                </group>
+            </xpath>
+        </field>
+    </record>
+</odoo>
