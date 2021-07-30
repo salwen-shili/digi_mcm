@@ -2,7 +2,7 @@
     <data>
         <!-- Action -->
         <record id="action_infos_surveillant" model="ir.actions.act_window">
-            <field name="name">Les surveillant(e)s</field>
+            <field name="name">Les surveillant(e)s des examens</field>
             <field name="res_model">infos.surveillant</field>
             <field name="view_mode">tree,form</field>
             <field name="help" type="html">
