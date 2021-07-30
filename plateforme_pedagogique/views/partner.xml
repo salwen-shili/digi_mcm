@@ -60,7 +60,7 @@
                      </div>
                 </div>
         </xpath>
-        <xpath expr="//page/group[@name='session']" position="inside">
+        <xpath expr="//page/group[@name='session']/group" position="inside">
                     <field name="renounce_request" />
         </xpath>
         <xpath expr="//page[@name='internal_notes']" position="after">
