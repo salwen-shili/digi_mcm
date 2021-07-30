@@ -40,4 +40,20 @@
             </xpath>
         </field>
     </record>
+    <!--Inherit partner module to add new boolean field to control the auto creation of new line in session historic smart button-->
+    <record model="ir.ui.view" id="inherit_partner_for_report_form_view">
+        <field name="name">Client Add report boolean field</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"></field>
+        <field name="arch" type="xml">
+            <xpath expr="//page/group[@name='session']/group" position="after">
+                <group name="report" class="oe_edit_only">
+                    <field name="report" string="Report date d'examen"/>
+                </group>
+            </xpath>
+            <xpath expr="//page/group[@name='session']/group/field[@name='mcm_session_id']" position="attributes">
+                <attribute name="attrs">{'readonly': [('report', '=', False)]}</attribute>
+            </xpath>
+        </field>
+    </record>
 </odoo>
