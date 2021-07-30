@@ -70,7 +70,7 @@
             </field>
         </record>
         <!--inherit configuration menu and add menu of "Les surveillant(e)s)-->
-        <menuitem id="infos_surveillant_id" name="Les surveillant(e)s"
+        <menuitem id="infos_surveillant_id" name="Les surveillant(e)s d'examens"
                   parent="mcm_session.mcm_academy_session_config_main_menu" action="action_infos_surveillant"
                   sequence="16"/>
     </data>
