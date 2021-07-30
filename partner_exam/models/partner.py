@@ -12,7 +12,8 @@ class resComapny(models.Model):
     note_exam_count = fields.Integer(compute="compute_notes_exams_count")
     this_is_technical_field = fields.Boolean(readonly=True, default=True)
     company_id = fields.Many2one('res.company', default=lambda self: self.env.company)
-
+    report = fields.Boolean(default=False, help="Cocher ce bouton si vous voulez changer la session de ce client!")
+    
     def compute_notes_exams_count(self):
         for record in self:
             record.note_exam_count = self.env['info.examen'].search_count(
