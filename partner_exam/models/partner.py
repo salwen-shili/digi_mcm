@@ -33,12 +33,14 @@ class resComapny(models.Model):
 
     def write(self, values):
         """ Update this function to add new line in list of sessions
-        if the field mcm_session_id changed """
+        if the field mcm_session_id changed based on report boolean field
+        if report=True ===> user can edit session in partner view"""
         session = super(resComapny, self).write(values)
-        if 'mcm_session_id' in values:
+        if 'mcm_session_id' in values and self.report is not False:
             self.env['partner.sessions'].sudo().create({
                 'client_id': self.id,
                 'session_id': self.mcm_session_id.id,
-                'company_id': self.company_id.id
+                'company_id': self.company_id.id,
             })
+            self.report = False
         return session
