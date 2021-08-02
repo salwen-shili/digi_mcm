@@ -37,7 +37,7 @@ class FAQ(http.Controller):
         if request.website.id == 2:
             return request.render("digimoov_website_templates.digimoov_template_faq", {})
         else:
-            return request.redirect('/foire-aux-questions-taxi/vtc/vmdt')
+            return request.redirect('/foire-aux-questions-taxi/vtc/vmdtr')
 
 
 class FINANCEMENT(http.Controller):
