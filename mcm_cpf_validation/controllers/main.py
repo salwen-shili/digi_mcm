@@ -38,20 +38,39 @@ class ClientCPFController(http.Controller):
                 client.city = ville
                 client.email = email
         partner = user.partner_id
-        vals = {
-            'partner_email': partner.email,
-            'partner_id': partner.id,
-            'description': ' N°Dossier : %s \n Motif : %s ' % (dossier, motif),
-            'name': 'CPF : Dossier non validé ',
-            'team_id': request.env['helpdesk.team'].sudo().search([('name', 'like', 'Client'),('company_id',"=",1)],
-                                                                  limit=1).id,
+        # Si Zoé n'a pas validé les dossiers cpf on classe
+        # Chercher l'apprenant sur crm lead et classer sous etape non traité
+        stage = request.env['crm.stage'].sudo().search([("name", "=", _("Non Traité"))])
+        print('stageeeee non traité', stage)
+        if stage:
+            lead = request.env['crm.lead'].sudo().search([('partner_id', '=', partner.id)], limit=1)
+            if lead:
+                print('if lead')
+                lead.sudo().write({
+                    'name': partner.name,
+                    'partner_name': partner.name,
+                    'num_dossier': dossier,
+                    'email': partner.email,
+                    'type': "opportunity",
+                    'stage_id': stage.id,
+                    'description': 'Motif : %s ' % (motif),
+                    'mode_de_financement': 'cpf',
 
-        }
-        description=' N°Dossier : '+str(dossier)
-        ticket=request.env['helpdesk.ticket'].sudo().search([('description', 'like', description)])
-        if not ticket:
-            new_ticket = request.env['helpdesk.ticket'].sudo().create(
-                vals)
+                })
+            if not lead:
+                print('if not lead')
+                lead = request.env['crm.lead'].sudo().create({
+                    'name': partner.name,
+                    'partner_name': partner.name,
+                    'num_dossier': dossier,
+                    'email': partner.email,
+                    'type': "opportunity",
+                    'stage_id': stage.id,
+                    'description': 'Motif : %s ' % (motif),
+                    'mode_de_financement': 'cpf',
+
+                })
+                lead.partner_id = partner.id
         return request.render("mcm_cpf_validation.mcm_website_request_not_validated", {})
 
     # Ce programme a été modifié par seifeddinne le 24/03/2021
