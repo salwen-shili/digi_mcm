@@ -1,0 +1,7 @@
+<?xml version="1.0" ?>
+<odoo>
+    <record id="group_hr_intervenants" model="res.groups">
+        <field name="name">Droit de consultation rapport entretien d'embauche</field>
+    </record>
+</odoo>
+
