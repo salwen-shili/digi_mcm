@@ -34,7 +34,10 @@ class FAQ(http.Controller):
 
     @http.route('/faq', type='http', auth='public', website=True)
     def faq(self, **kw, ):
-        return request.render("digimoov_website_templates.digimoov_template_faq", {})
+        if request.website.id == 2:
+            return request.render("digimoov_website_templates.digimoov_template_faq", {})
+        else:
+            return request.redirect('/foire-aux-questions-taxi/vtc/vmdt')
 
 
 class FINANCEMENT(http.Controller):
