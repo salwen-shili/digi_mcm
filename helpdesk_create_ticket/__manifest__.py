@@ -17,6 +17,7 @@
         'helpdesk'
     ],
     'data': [
+        'views/helpdesk_team.xml',
         'data/scheduled_unlink_tickets.xml'
     ],
     'images': [
