@@ -64,7 +64,7 @@
                     <field name="renounce_request" />
         </xpath>
         <xpath expr="//page[@name='internal_notes']" position="after">
-                <page string="Statistiques sur 360 Learning">
+                <page string="Statistiques sur 360 Learning" name="pedagogique">
                     <group>
                         <group  col="12">
                         </group>
