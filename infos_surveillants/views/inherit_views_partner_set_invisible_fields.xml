@@ -22,19 +22,19 @@
         </field>
     </record>
 
-    <record model="ir.ui.view" id="inherit_account_partner_view_form">
-        <field name="name">Partner Invoices</field>
-        <field name="model">res.partner</field>
-        <field name="inherit_id" ref="base.view_partner_form"/>
-        <field name="arch" type="xml">
-            <xpath expr="//button[@name='action_view_partner_invoices']" position="attributes">
-                <attribute name="attrs">{'invisible': [('est_surveillant', '=', True)]}</attribute>
-            </xpath>
-            <xpath expr="//page[@name='pedagogique']" position="attributes">
-                <attribute name="attrs">{'invisible': [('est_surveillant', '=', True)]}</attribute>
-            </xpath>
-        </field>
-    </record>
+<!--    <record model="ir.ui.view" id="inherit_account_partner_view_form">-->
+<!--        <field name="name">Partner Invoices</field>-->
+<!--        <field name="model">res.partner</field>-->
+<!--        <field name="inherit_id" ref="base.view_partner_form"/>-->
+<!--        <field name="arch" type="xml">-->
+<!--            <xpath expr="//button[@name='action_view_partner_invoices']" position="attributes">-->
+<!--                <attribute name="attrs">{'invisible': [('est_surveillant', '=', True)]}</attribute>-->
+<!--            </xpath>-->
+<!--            <xpath expr="//page[@name='pedagogique']" position="attributes">-->
+<!--                <attribute name="attrs">{'invisible': [('est_surveillant', '=', True)]}</attribute>-->
+<!--            </xpath>-->
+<!--        </field>-->
+<!--    </record>-->
 
     <record model="ir.ui.view" id="inherit_session_partner_view_form">
         <field name="name">Partner Sessions</field>
