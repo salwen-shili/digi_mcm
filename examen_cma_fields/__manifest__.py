@@ -20,6 +20,8 @@
         'security/session_security.xml',
         'views/res_partner_sessions.xml',
         'views/res_partner.xml',
+        'data/ir_actions.server.xml',
+
     ],
     'qweb': [],
     'demo': [
