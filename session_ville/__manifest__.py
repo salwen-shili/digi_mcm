@@ -19,9 +19,11 @@
     ],
     'data': [
         'security/ir.model.access.csv',
+        'wizard/address_class_exams.xml',
         'views/session_ville_view.xml',
         'views/adresse_centre_examen.xml',
         'views/inherit_info_exam.xml',
+        'views/res_partner_adresse_view.xml',
     ],
     'qweb': [],
     'images': [],

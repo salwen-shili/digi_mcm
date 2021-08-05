@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="partner_address_class_exams_wizard_form_view" model="ir.ui.view">
+        <field name="name">address.class.examen.wizard.form</field>
+        <field name="model">address.class.examen.wizard</field>
+        <field name="arch" type="xml">
+            <form>
+                <group>
+                    <group>
+                        <field name="salle_id" string="Adresse salle d'examen"/>
+                    </group>
+                </group>
+                <footer>
+                    <button string="Update salle d'examen" name="update_partner_salle_examen" type="object"
+                            class="btn-primary"/>
+                    <button string="Cancel" class="btn-default" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+        <!-- Action to launch Wizard for change address class exam of partner from action menu -->
+        <record id="partner_address_class_exams_wizard_view" model="ir.actions.act_window">
+            <field name="name">Planification des salles d'examens</field>
+            <field name="res_model">address.class.examen.wizard</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="partner_address_class_exams_wizard_form_view"/>
+            <field name="target">new</field>
+            <field name="binding_model_id" ref="base.model_res_partner"/>
+            <field name="binding_view_types">list</field>
+        </record>
+</odoo>
