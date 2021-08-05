@@ -7,7 +7,7 @@
             <form>
                 <group>
                     <group>
-                        <field name="salle_id" string="Adresse salle d'examen"/>
+                        <field name="salle_id" string="Adresse salle d'examen" options="{'no_create': True, 'no_edit': True}"/>
                     </group>
                 </group>
                 <footer>
