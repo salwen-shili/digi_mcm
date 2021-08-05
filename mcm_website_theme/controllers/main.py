@@ -39,6 +39,15 @@ class Website(Home):
         basic_price = False
         avancee_price = False
         premium_price = False
+        # get all exam centers to show them in digimoov website homepage
+        last_ville = request.env['session.ville'].sudo().search(
+            [], order='name_ville desc', limit=1)
+        list_villes = request.env['session.ville'].sudo().search(
+            [('id', "!=", last_ville.id)], order='name_ville asc')
+        values = {
+            'list_villes': list_villes,
+            'last_ville': last_ville
+        }
         if digimoov_products:
             for product in digimoov_products:
                 if (product.default_code == 'basic'):
@@ -68,6 +77,11 @@ class Website(Home):
             'avancee_price': avancee_price if avancee_price else '',
             'premium_price': premium_price if premium_price else '',
         }
+        #send all exam centers to digimoov website homepage
+        if last_ville:
+            values['last_ville'] = last_ville
+        if list_villes:
+            values['list_villes'] = list_villes
         if (partenaire in ['', 'ubereats', 'deliveroo', 'coursierjob', 'box2home'] and request.website.id == 2):
             values['partenaire'] = partenaire
             if (promo):
