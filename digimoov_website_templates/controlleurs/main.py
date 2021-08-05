@@ -35,7 +35,16 @@ class FAQ(http.Controller):
     @http.route('/faq', type='http', auth='public', website=True)
     def faq(self, **kw, ):
         if request.website.id == 2:
-            return request.render("digimoov_website_templates.digimoov_template_faq", {})
+            # recuperer la liste des villes pour l'afficher dans la page faq de siteweb digimoov
+            last_ville = request.env['session.ville'].sudo().search(
+                [], order='name_ville desc', limit=1)
+            list_villes = request.env['session.ville'].sudo().search(
+                [('id', "!=", last_ville.id)], order='name_ville asc')
+            values = {
+                'list_villes': list_villes,
+                'last_ville': last_ville
+            }
+            return request.render("digimoov_website_templates.digimoov_template_faq", values)
         else:
             return request.redirect('/foire-aux-questions-taxi/vtc/vmdtr')
 
@@ -73,6 +82,11 @@ class FINANCEMENT(http.Controller):
                     'error_ville': False,
                     'error_exam_date': False,
                 })
+                list_villes = request.env['session.ville'].sudo().search([])
+                if list_villes:
+                    values.update({
+                        'list_villes': list_villes,
+                    })
 
         return request.render("digimoov_website_templates.completer_mon_dossier_cpf", values)
 
@@ -116,7 +130,10 @@ class FINANCEMENT(http.Controller):
                     partner.ville = ''
                     return request.render("digimoov_website_templates.completer_mon_dossier_cpf", values)
         else:
-            partner.ville = ville
+            centre_examen = request.env['session.ville'].sudo().search(
+                [('name_ville', "=", ville)])
+            if centre_examen:
+                partner.session_ville_id = centre_examen
             return request.redirect("/cpf-thank-you")
 
     @http.route('/cpf-thank-you', type='http', auth='user', website=True)
@@ -156,7 +173,16 @@ class QUISOMMESNOUS(http.Controller):
     @http.route('/qui-sommes-nous', type='http', auth='public', website=True)
     def quisommesnous(self, **kw, ):
         if request.website.id == 2:
-            return request.render("digimoov_website_templates.digimoov_template_quisommesnous", {})
+            # recuperer la liste des villes pour l'afficher dans la page qui sommes nous de siteweb digimoov
+            last_ville = request.env['session.ville'].sudo().search(
+                [],order='name_ville desc',limit=1)
+            list_villes = request.env['session.ville'].sudo().search(
+                [('id',"!=",last_ville.id)],order='name_ville asc')
+            values = {
+                'list_villes': list_villes,
+                'last_ville':last_ville
+            }
+            return request.render("digimoov_website_templates.digimoov_template_quisommesnous", values)
         elif request.website.id == 1:
             return request.render("website.qui-sommes-nous-1", {})
 
@@ -166,7 +192,16 @@ class NOSCENTRES(http.Controller):
     @http.route('/nos-centres-examen', type='http', auth='public', website=True)
     def noscentresdigimoov(self, **kw, ):
         if request.website.id == 2:
-            return request.render("digimoov_website_templates.digimoov_template_noscentre", {})
+            # recuperer la liste des villes pour l'afficher dans la page nos centres examen de siteweb digimoov
+            last_ville = request.env['session.ville'].sudo().search(
+                [],order='name_ville desc',limit=1)
+            list_villes = request.env['session.ville'].sudo().search(
+                [('id',"!=",last_ville.id)],order='name_ville asc')
+            values = {
+                'list_villes': list_villes,
+                'last_ville':last_ville
+            }
+            return request.render("digimoov_website_templates.digimoov_template_noscentre", values)
         else:
             return request.redirect("/nos-centres")
 

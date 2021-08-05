@@ -195,7 +195,7 @@
                                     </span>
                                     <span style="font-size:12px;font-weight: bold;">Centre d'examen de</span>
                                     <span style="font-size:12px"
-                                          t-field="doc.module_id.ville"/>
+                                          t-field="doc.module_id.session_ville_id.name_ville"/>
                                     <span style="font-size:12px;">le</span>
                                         <span style="font-size:12px"
                                               t-field="doc.module_id.date_exam"/>

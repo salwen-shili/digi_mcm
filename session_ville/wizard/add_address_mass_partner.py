@@ -6,7 +6,7 @@ class AddressSalleExamenWizard(models.TransientModel):
     _name = 'address.class.examen.wizard'
     _description = 'Create class exam entry.'
 
-    # define the class_id field which you will use to change the partner adress class for the selected partners, for example if the class_id field is a char
+    # define the salle_id field which you will use to change the partner adress class for the selected partners, for example if the salle_id field is a char
     salle_id = fields.Many2one('session.adresse.examen', help="Choisir une adresse pour la salle d'examen!")
 
     # method update_partner_salle_examen which will be called from wizard once click on Planification des salles d'examens action in tree view of partners
@@ -16,7 +16,7 @@ class AddressSalleExamenWizard(models.TransientModel):
         # loop the partners
         for salle in partners:
             # set the selected classe_id for each partner
-            salle.class_id = self.salle_id
+            salle.salle_id = self.salle_id
 
 
 

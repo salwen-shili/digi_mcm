@@ -55,7 +55,7 @@
                 <tree string="session ville Tree" default_order="name_ville asc">
                     <field name="name_ville"/>
                     <field name="session_adresse_examen_ids"
-                           string="Liste des adresses de centre d'examens de ce paye"/>
+                           string="Nombre d'addresses"/>
                 </tree>
             </field>
         </record>

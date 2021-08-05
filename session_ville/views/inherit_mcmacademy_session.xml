@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!--    inherit la vue form de la session pour ajouter le bloc des données sur la ville-->
+    <record id="inherit_digimoov_session_form" model="ir.ui.view">
+        <field name="name">digimoov.session.form</field>
+        <field name="model">mcmacademy.session</field>
+        <field name="inherit_id" ref="mcm_session.mcmacademy_session_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='ville']" position="replace">
+                <field name="session_ville_id" options="{'no_create': True, 'no_create_edit':True}"/>
+                <field name="session_adresse_examen"/>
+                <field name="phone"/>
+                <field name="email"/>
+                <field name="lien" widget="url"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

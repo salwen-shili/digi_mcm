@@ -6,7 +6,7 @@ class SessionVille(models.Model):
     _rec_name = 'name_ville'
     _order = 'name_ville asc'
     _inherit = ["mail.thread", "mail.activity.mixin"]
-    _description = "Les villes en relation avec les adresse avec un champ de description"
+    _description = "Ville"
 
     name_ville = fields.Char(string="Nom Ville")
     # Ce champ "active" pour permettre a l'utilisateur d'archiver un enregistrement(ville)

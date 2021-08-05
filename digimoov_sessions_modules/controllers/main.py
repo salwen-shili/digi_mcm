@@ -149,9 +149,16 @@ class WebsiteSale(WebsiteSale):
             'error_exam_date': '',
             'error_condition': '',
         })
+        # recuperer la liste des villes pour l'afficher dans la vue panier de siteweb digimoov pour que le client peut choisir une ville parmis la liste
+        list_villes = request.env['session.ville'].sudo().search([])
+        if list_villes:
+            values.update({
+                'list_villes':list_villes,
+            })
         if post.get('type') == 'popover':
             # force no-cache so IE11 doesn't cache this XHR
             return request.render("website_sale.cart_popover", values, headers={'Cache-Control': 'no-cache'})
+
 
         return request.render("website_sale.cart", values)
 
@@ -160,7 +167,7 @@ class WebsiteSale(WebsiteSale):
         if order:
             if (order.company_id.id==2):
                 check=False
-                if not order.ville:
+                if not order.session_ville_id:
                     order.exam_center_error='error'
                     check=True
                 else:
@@ -333,17 +340,18 @@ class Centre_Examen(http.Controller):
         order = request.website.sale_get_order()
         print("center")
         print(center)
+        ville = request.env['session.ville'].sudo().search([('name_ville', "=", center)], limit=1)
         if center and center !='all':
             order.sudo().write({
-                'ville':center,
+                'session_ville_id':ville,
                 'module_id':False,
                 'session_id':False,
             })
         else:
             order.sudo().write({
-                'ville' :False
+                'session_ville_id' :False
             })
-        return order.ville
+        return order.session_ville_id
 
     @http.route(['/cpf/update_exam_center'], type='json', auth="public", methods=['POST'], website=True)
     def partner_update_exam_center(self, center):

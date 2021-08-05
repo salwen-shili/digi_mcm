@@ -5,8 +5,9 @@ class Adresse_Centre_Examen(models.Model):
     _name = "session.adresse.examen"
     _rec_name = 'adresse_centre_examen'
     _inherit = ["mail.thread", "mail.activity.mixin"]
-    _description = "Cette classe contient tous les informations nécessaire pour " \
-                   "Les adresses des centres d'examens selon la ville choisi"
+    _description = "Adresse d'examen"
+    # "Cette classe contient tous les informations nécessaire pour " \
+    #                "Les adresses des centres d'examens selon la ville choisi"
 
     adresse_centre_examen = fields.Char(required=True, help="Ajouter une adresse de centre d'examen")
     phone = fields.Char(string="N° téléphone de centre d'examen.",

@@ -361,9 +361,14 @@
                                             l'examen sont proposées sous forme de QCM (questions à
                                             choix multiples) et de Questions rédigées. Vous pouvez
                                             choisir le centre le plus proche de votre domicile :
-                                            Bordeaux, Dijon, Lille, Lyon, Marseille,
-                                            Montpellier, Nantes, Nice, Orléans, Paris, Rennes, Rouen,
-                                            Strasbourg, Toulouse...
+                                            <t t-foreach="list_villes" t-as="ville">
+                                                <t t-if="ville">
+                                                    <t t-esc="ville.name_ville"/>,
+                                                </t>
+                                            </t>
+                                            <t t-if="last_ville">
+                                                <t t-esc="last_ville.name_ville"/>...
+                                            </t>
                                             <br/>
                                         </p>
 
