@@ -31,5 +31,20 @@
                 </tree>
             </field>
         </record>
+        <!-- Action -->
+        <record id="action_history_session_ville" model="ir.actions.act_window">
+            <field name="name">partner.sessions.history.tree</field>
+            <field name="res_model">partner.sessions</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">Ajouter une ville!</p>
+            </field>
+        </record>
+
+        <!-- menu des villes sera afficher apres menu configuration dans l'interface de convocation-->
+        <menuitem id="action_history_menu" name="Historique sessions"
+                  parent="contacts.menu_contacts"
+                  action="action_history_session_ville"
+                  sequence="4"/>
     </data>
 </odoo>
