@@ -25,8 +25,8 @@
                                         </strong>
                                         <br></br>
                                         <strong>Adresse :
-                                            <t t-foreach="docs.mcm_session_id" t-as="adresse">
-                                                <span t-esc="adresse.adresse_examen"/>
+                                            <t t-foreach="docs.salle_id" t-as="adresse">
+                                                <span t-esc="adresse.adresse_centre_examen"/>
                                             </t>
                                         </strong>
                                         <br></br>
