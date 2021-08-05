@@ -33,7 +33,7 @@
         </record>
         <!-- Action -->
         <record id="action_history_session_ville" model="ir.actions.act_window">
-            <field name="name">partner.sessions.history.tree</field>
+            <field name="name">Historique des sessions</field>
             <field name="res_model">partner.sessions</field>
             <field name="view_mode">tree,form</field>
             <field name="help" type="html">
