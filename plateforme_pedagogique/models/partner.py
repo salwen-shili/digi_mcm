@@ -2,17 +2,19 @@ import functools
 import xmlrpc.client
 import requests
 from requests.structures import CaseInsensitiveDict
-from datetime import datetime,timedelta,date
+from datetime import datetime, timedelta, date
 import re
 import json
 from odoo import _
 import locale
 
-from odoo import models, fields,api
+from odoo import models, fields, api
 from odoo.exceptions import ValidationError
-from unidecode import  unidecode
+from unidecode import unidecode
 import logging
+
 _logger = logging.getLogger(__name__)
+
 
 class partner(models.Model):
     _inherit = 'res.partner'
@@ -31,92 +33,93 @@ class partner(models.Model):
     password360 = fields.Char()  # Champs pour stocker le mot de passe non crypté
     firstName = fields.Char()
     lastName = fields.Char()
-    date_creation=fields.Char(string="Date d'inscription")
+    date_creation = fields.Char(string="Date d'inscription")
     messages = fields.Char(string='Messages Postés')
     publications = fields.Char(string='Cours ou programmes publiés')
     comments = fields.Char(string='Commentaires Postés')
-    reactions =fields.Char(string="Réactions dans les forums d'activités")
-    renounce_request = fields.Boolean("Renonciation au droit de rétractation conformément aux dispositions de l'article L.221-28 1°")
-    toDeactivateAt=fields.Char("Date de suppression")
-    passage_exam=fields.Boolean("Examen passé",default=False)
-    stats_ids=fields.Many2one('plateforme_pedagogique.user_stats')
+    reactions = fields.Char(string="Réactions dans les forums d'activités")
+    renounce_request = fields.Boolean(
+        "Renonciation au droit de rétractation conformément aux dispositions de l'article L.221-28 1°")
+    toDeactivateAt = fields.Char("Date de suppression")
+    passage_exam = fields.Boolean("Examen passé", default=False)
+    stats_ids = fields.Many2one('plateforme_pedagogique.user_stats')
 
     # Recuperer les utilisateurs de 360learning
     def getusers(self):
-            locale.setlocale(locale.LC_TIME, str(self.env.user.lang) + '.utf8')
-            params = (
-                ('company', '56f5520e11d423f46884d593'),
-                ('apiKey', 'cnkcbrhHKyfzKLx4zI7Ub2P5'),
-            )
-            response = requests.get('https://app.360learning.com/api/v1/users', params=params)
-            users = response.json()
-            # Faire un parcours sur chaque user et extraire ses statistiques
-            for user in users:
-                iduser = user['_id']
-                email = user['mail']
-                response_user = requests.get('https://app.360learning.com/api/v1/users/' + iduser, params=params)
-                table_user = response_user.json()
-                lastlogin=""
-                if 'lastLoginAt' in table_user:
-                 lastlogin = str(table_user['lastLoginAt'])
-                    
-                print('user date supp', table_user['toDeactivateAt'])
-                times = ''
-                # Ecrire le temps récupéré de 360 sous forme d'heures et minutes
-                if 'totalTimeSpentInMinutes' in table_user:
-                    time = int(table_user['totalTimeSpentInMinutes'])
-                    heure = time // 60
-                    minute = time % 60
-                    times = str(heure) + 'h' + str(minute) + 'min'
-                    if (heure == 0):
-                        times = str(minute) + 'min'
-                        print(times)
-                    if (minute == 0):
-                        times = '0min'
-                average = ''
-                
-                # Vérifier l'existance de champ dans table_user
-                if 'averageScore' in table_user:
-                    average = str(table_user['averageScore'])
-                    print(average)
-                # Si lastlogin n'est pas vide on change le format de date sous forme "01 mars, 2021"
-                if (len(lastlogin) > 0):
-                    date_split = lastlogin[0:19]
-                    date = datetime.strptime(date_split, "%Y-%m-%dT%H:%M:%S")
-                    new_format = '%d %B, %Y'
-                    new_format = '%d %B, %Y'
-                    last_login = str(date.strftime(new_format))
+        locale.setlocale(locale.LC_TIME, str(self.env.user.lang) + '.utf8')
+        params = (
+            ('company', '56f5520e11d423f46884d593'),
+            ('apiKey', 'cnkcbrhHKyfzKLx4zI7Ub2P5'),
+        )
+        response = requests.get('https://app.360learning.com/api/v1/users', params=params)
+        users = response.json()
+        # Faire un parcours sur chaque user et extraire ses statistiques
+        for user in users:
+            iduser = user['_id']
+            email = user['mail']
+            response_user = requests.get('https://app.360learning.com/api/v1/users/' + iduser, params=params)
+            table_user = response_user.json()
+            lastlogin = ""
+            if 'lastLoginAt' in table_user:
+                lastlogin = str(table_user['lastLoginAt'])
 
-                message="0"
-                if ('messages' in table_user):
-                    message=table_user['messages']
-                publication=''
-                if('publications'in table_user):
-                    publication=table_user['publications']
-                comment="0"
-                if ('comments' in table_user):
-                    comments=table_user['comments']
-                reaction="0"
-                if('reactions' in table_user):
-                    reaction=table_user['reactions']
-                # Chercher par email le meme client pour lui affecter les stats de 360
-                partners = self.env['res.partner'].sudo().search([('email', "=", email)])
-                for partner in partners:
-                    if partners:
-                        partner.sudo().write({
-                            'last_login': last_login,
-                            'averageScore': average,
-                            'comments':comment,
-                            'reactions':reaction,
-                            'publications':publication,
-                            'messages':message,
-                            'totalTimeSpentInMinutes': times,
-                            'assignedPrograms': table_user['assignedPrograms'],
-                            'toDeactivateAt': table_user['toDeactivateAt'],
-                            'apprenant': True
+            print('user date supp', table_user['toDeactivateAt'])
+            times = ''
+            # Ecrire le temps récupéré de 360 sous forme d'heures et minutes
+            if 'totalTimeSpentInMinutes' in table_user:
+                time = int(table_user['totalTimeSpentInMinutes'])
+                heure = time // 60
+                minute = time % 60
+                times = str(heure) + 'h' + str(minute) + 'min'
+                if (heure == 0):
+                    times = str(minute) + 'min'
+                    print(times)
+                if (minute == 0):
+                    times = '0min'
+            average = ''
 
-                        })
-                        print("partner",partner.name, partner.last_login)
+            # Vérifier l'existance de champ dans table_user
+            if 'averageScore' in table_user:
+                average = str(table_user['averageScore'])
+                print(average)
+            # Si lastlogin n'est pas vide on change le format de date sous forme "01 mars, 2021"
+            if (len(lastlogin) > 0):
+                date_split = lastlogin[0:19]
+                date = datetime.strptime(date_split, "%Y-%m-%dT%H:%M:%S")
+                new_format = '%d %B, %Y'
+                new_format = '%d %B, %Y'
+                last_login = str(date.strftime(new_format))
+
+            message = "0"
+            if ('messages' in table_user):
+                message = table_user['messages']
+            publication = ''
+            if ('publications' in table_user):
+                publication = table_user['publications']
+            comment = "0"
+            if ('comments' in table_user):
+                comments = table_user['comments']
+            reaction = "0"
+            if ('reactions' in table_user):
+                reaction = table_user['reactions']
+            # Chercher par email le meme client pour lui affecter les stats de 360
+            partners = self.env['res.partner'].sudo().search([('email', "=", email)])
+            for partner in partners:
+                if partners:
+                    partner.sudo().write({
+                        'last_login': last_login,
+                        'averageScore': average,
+                        'comments': comment,
+                        'reactions': reaction,
+                        'publications': publication,
+                        'messages': message,
+                        'totalTimeSpentInMinutes': times,
+                        'assignedPrograms': table_user['assignedPrograms'],
+                        'toDeactivateAt': table_user['toDeactivateAt'],
+                        'apprenant': True
+
+                    })
+                    print("partner", partner.name, partner.last_login)
 
     # Recuperer les statistique par session de 360learning
     def getstats_session(self):
@@ -128,24 +131,23 @@ class partner(models.Model):
         sessions = response.json()
         # faire un parcours sur chaque user et extraie ses statistique
         for session in sessions:
-            id= session['_id']
-            re = requests.get('https://app.360learning.com/api/v1/courses/'+id+'/stats/youcefallahoum@gmail.com',
-                      params=params)
-            pogramstat=re.json()
-            print("courses:", session['name'],'*******',pogramstat)
+            id = session['_id']
+            re = requests.get('https://app.360learning.com/api/v1/courses/' + id + '/stats/youcefallahoum@gmail.com',
+                              params=params)
+            pogramstat = re.json()
+            print("courses:", session['name'], '*******', pogramstat)
 
-    #En cas de changement de statut de client cette methode est exécutée
+    # En cas de changement de statut de client cette methode est exécutée
 
     def write(self, vals):
         if 'statut' in vals:
-            #Si statut annulé on supprime i-One
+            # Si statut annulé on supprime i-One
             if vals['statut'] == 'canceled':
-
                 self.supprimer_ione_manuelle()
-        record=super(partner, self).write(vals)
+        record = super(partner, self).write(vals)
         return record
 
-    #Ajouter ione manuellement
+    # Ajouter ione manuellement
     def ajouter_iOne_manuelle(self):
         # _logger.info("++++++++++++Cron ajouter_iOne_manuelle++++++++++++++++++++++")
         sale_order = self.env['sale.order'].sudo().search([('partner_id', '=', self.id),
@@ -175,8 +177,8 @@ class partner(models.Model):
             if (sale_order.state == 'sale' and self.passage_exam == False):
                 # _logger.info("++++++++++++Cron sale contrat signé++++++++++++++++++++++")
                 print('contrat signé')
-                date_signature = sale_order.signed_on
-                if ( (failure == True) and (statut == 'won')):
+
+                if ((failure == True) and (statut == 'won')):
                     # _logger.info("++++++++++++Cron failure++++++++++++++++++++++")
                     print('it works')
                     self.ajouter_iOne(self)
@@ -184,7 +186,12 @@ class partner(models.Model):
                 # si aujourd'hui est la date d'ajout,et si le statut est gagné
                 # alors on ajoute l'apprenant à 360
                 if ((failure == False) and (statut == 'won')):
+                    # Si demande de renonce est coché donc l'apprenant est ajouté sans attendre 14jours
+                    if (self.renounce_request):
+                        print('renonce', self.name, 'failure', failure, 'statut', self.statut)
+                        self.ajouter_iOne(self)
                     # Calculer date d'ajout apres 14jours de date de signature
+                    date_signature = sale_order.signed_on
                     date_ajout = date_signature + timedelta(days=14)
                     today = datetime.today()
                     print('partner', self.name, 'sale_order', sale_order, 'date_ajout:', date_ajout, 'today:', today)
@@ -194,71 +201,67 @@ class partner(models.Model):
                         print('not renonce', self.name, 'failure', failure, 'statut', self.statut, 'date_ajout',
                               date_ajout)
                         self.ajouter_iOne(self)
-                    # Si demande de renonce est coché donc l'apprenant est ajouté sans attendre 14jours
-                    if (self.renounce_request):
-                        print('renonce', self.name, 'failure', failure, 'statut', self.statut, 'date_ajout',
-                              date_ajout)
-                        self.ajouter_iOne(self)
-
 
     # Ajouter i-One sur 360learning après 14jours
     # si Délai de rétractation n'est pas coché
     def Ajouter_iOne_auto(self):
-      for partner in self.env['res.partner'].sudo().search([('statut', "=", "won")]):
-        #Pour chaque apprenant extraire le delai de retractation
-        sale_order = self.env['sale.order'].sudo().search([('partner_id', '=', partner.id),
-                                                           ('session_id', '=', partner.mcm_session_id.id),
-                                                           ('module_id', '=', partner.module_id.id),
-                                                           ('state', '=', 'sale'),
-                                                           ('session_id.date_exam', '>', date.today())
-                                                           ], limit=1,order="id desc")
+        for partner in self.env['res.partner'].sudo().search([('statut', "=", "won")]):
+            # Pour chaque apprenant extraire le delai de retractation
+            sale_order = self.env['sale.order'].sudo().search([('partner_id', '=', partner.id),
+                                                               ('session_id', '=', partner.mcm_session_id.id),
+                                                               ('module_id', '=', partner.module_id.id),
+                                                               ('state', '=', 'sale'),
+                                                               ('session_id.date_exam', '>', date.today())
+                                                               ], limit=1, order="id desc")
 
-        print('sale order',sale_order.name)
-        #Récupérer les documents et vérifier si ils sont validés ou non
-        documents = self.env['documents.document'].sudo().search([('partner_id','=',partner.id)])
-        document_valide=False
-        count=0
-        for document in documents:
-            if (document.state == "validated"):
-                count=count+1
-                print('valide')
-        print('count',count,'len',len(documents))
-        if (count == len(documents) and count!=0):
-            document_valide=True
-        # Vérifier si partner a choisi une formation et si ses documents sont validés
-        if ((sale_order) and(document_valide)):
-            #delai de retractation
-            failure = sale_order.failures
-            statut = partner.statut
-            # Vérifier si contrat signé ou non
-            if (sale_order.state == 'sale' and partner.passage_exam == False):
-              print('contrat signé')
-              date_signature = sale_order.signed_on
-              if (failure == True):
-                    print('it works')
-                    self.ajouter_iOne(partner)
-              #Vérifier si delai de retractaion et demande de renoncer  ne sont pas coché,
-              # si aujourd'hui est la date d'ajout,et si le statut est gagné
-              # alors on ajoute l'apprenant à 360
-              else:
-                    # Calculer date d'ajout apres 14jours de date de signature
-                    date_ajout = date_signature + timedelta(days=14)
-                    today = datetime.today()
-                    print('partner', partner.name, 'sale_order', sale_order, 'date_ajout:', date_ajout, 'today:', today)
-                    #Si l'apprenant n'a pas demander une renonce de delai de retractation
-                    #il doit attendre 14jours pour etre ajouté
-                    if (not(partner.renounce_request) and (date_ajout <= today)):
-                      print('not renonce',partner.name,'failure', failure, 'statut',partner.statut,'date_ajout',date_ajout)
-                      self.ajouter_iOne(partner)
-                    #Si demande de renonce est coché donc l'apprenant est ajouté sans attendre 14jours
-                    if (partner.renounce_request):
-                      print('renonce', partner.name, 'failure', failure, 'statut', partner.statut, 'date_ajout',  date_ajout )
-                      self.ajouter_iOne(partner)
+            print('sale order', sale_order.name)
+            # Récupérer les documents et vérifier si ils sont validés ou non
+            documents = self.env['documents.document'].sudo().search([('partner_id', '=', partner.id)])
+            document_valide = False
+            count = 0
+            for document in documents:
+                if (document.state == "validated"):
+                    count = count + 1
+                    print('valide')
+            print('count', count, 'len', len(documents))
+            if (count == len(documents) and count != 0):
+                document_valide = True
+            # Vérifier si partner a choisi une formation et si ses documents sont validés
+            if ((sale_order) and (document_valide)):
+                # delai de retractation
+                failure = sale_order.failures
+                statut = partner.statut
+                # Vérifier si contrat signé ou non
+                if (sale_order.state == 'sale' and partner.passage_exam == False):
+                    print('contrat signé')
 
+                    if (failure == True):
+                        print('it works')
+                        self.ajouter_iOne(partner)
+                    # Vérifier si delai de retractaion et demande de renoncer  ne sont pas coché,
+                    # si aujourd'hui est la date d'ajout,et si le statut est gagné
+                    # alors on ajoute l'apprenant à 360
+                    else:
+                        # Si demande de renonce est coché donc l'apprenant est ajouté sans attendre 14jours
+                        if (partner.renounce_request):
+                            print('renonce', partner.name, 'failure', failure, 'statut', partner.statut)
+                            self.ajouter_iOne(partner)
 
+                        # Calculer date d'ajout apres 14jours de date de signature
+                        date_signature = sale_order.signed_on
+                        date_ajout = date_signature + timedelta(days=14)
+                        today = datetime.today()
+                        print('partner', partner.name, 'sale_order', sale_order, 'date_ajout:', date_ajout, 'today:',
+                              today)
+                        # Si l'apprenant n'a pas demander une renonce de delai de retractation
+                        # il doit attendre 14jours pour etre ajouté
+                        if (not (partner.renounce_request) and (date_ajout <= today)):
+                            print('not renonce', partner.name, 'failure', failure, 'statut', partner.statut,
+                                  'date_ajout', date_ajout)
+                            self.ajouter_iOne(partner)
 
     def ajouter_iOne(self, partner):
-        # Remplacez les paramètres régionaux de l'heure par le paramètre de langue actuel 
+        # Remplacez les paramètres régionaux de l'heure par le paramètre de langue actuel
         # du compte dans odoo
         locale.setlocale(locale.LC_TIME, str(self.env.user.lang) + '.utf8')
         product_name = partner.module_id.product_id.name
@@ -268,9 +271,11 @@ class partner(models.Model):
             partner.phone = ''
         # Extraire firstName et lastName à partir du champs name
         self.diviser_nom(partner)
-        ville = str(partner.mcm_session_id.ville).upper()
+
         new_format = '%d %B %Y'
-        if (partner.mcm_session_id.date_exam):
+        if (partner.mcm_session_id.date_exam) and (partner.mcm_session_id.session_ville_id.name_ville):
+            ville = str(partner.mcm_session_id.session_ville_id.name_ville).upper()
+            # _logger.info('----ville %s' % ville)
             date_exam = partner.mcm_session_id.date_exam
             # Changer format de date et la mettre en majuscule
             datesession = str(date_exam.strftime(new_format).upper())
@@ -419,49 +424,48 @@ class partner(models.Model):
                                 respsession = requests.put(urlsession, headers=headers, data=data_group)
                                 print(existe, 'ajouter à son session', respsession.status_code)
 
-
     def supprimer_ione_auto(self):
-     company_id = '56f5520e11d423f46884d593'
-     api_key = 'cnkcbrhHKyfzKLx4zI7Ub2P5'
-     headers = CaseInsensitiveDict()
-     headers["Accept"] = "*/*"
-     params = (
+        company_id = '56f5520e11d423f46884d593'
+        api_key = 'cnkcbrhHKyfzKLx4zI7Ub2P5'
+        headers = CaseInsensitiveDict()
+        headers["Accept"] = "*/*"
+        params = (
             ('company', '56f5520e11d423f46884d593'),
             ('apiKey', 'cnkcbrhHKyfzKLx4zI7Ub2P5'),
         )
-     response = requests.get('https://app.360learning.com/api/v1/users', params=params)
-     users = response.json()
-     for user in users:
-         iduser = user['_id']
-         email = user['mail']
-         #Pour chaque partner verifier si date_suppression est aujourd'hui
-         # pour assurer la suppresion automatique
-         partner= self.env['res.partner'].sudo().search([('email',"=",email)],limit=1)
-         if(partner and partner.mcm_session_id.date_exam) :
-             #date de suppression est date d'examen + 4jours
-             date_suppression = partner.mcm_session_id.date_exam + timedelta(days=4)
-             today = date.today()
-             if(date_suppression <= today):
-              email=partner['email']
-              print('date_sup',email,date_suppression,today)
-              url = 'https://app.360learning.com/api/v1/users/tmejri@digimoov.fr?company=' + company_id + '&apiKey=' + api_key
-              resp = requests.delete(url)
-              if resp.status_code==204:
-                partner.passage_exam=True
-                print('supprimé avec succès', resp.status_code,'passage',partner.passage_exam)
-         else:
-             print('date incompatible')
+        response = requests.get('https://app.360learning.com/api/v1/users', params=params)
+        users = response.json()
+        for user in users:
+            iduser = user['_id']
+            email = user['mail']
+            # Pour chaque partner verifier si date_suppression est aujourd'hui
+            # pour assurer la suppresion automatique
+            partner = self.env['res.partner'].sudo().search([('email', "=", email)], limit=1)
+            if (partner and partner.mcm_session_id.date_exam):
+                # date de suppression est date d'examen + 4jours
+                date_suppression = partner.mcm_session_id.date_exam + timedelta(days=4)
+                today = date.today()
+                if (date_suppression <= today):
+                    email = partner['email']
+                    print('date_sup', email, date_suppression, today)
+                    url = 'https://app.360learning.com/api/v1/users/tmejri@digimoov.fr?company=' + company_id + '&apiKey=' + api_key
+                    resp = requests.delete(url)
+                    if resp.status_code == 204:
+                        partner.passage_exam = True
+                        print('supprimé avec succès', resp.status_code, 'passage', partner.passage_exam)
+            else:
+                print('date incompatible')
 
     def supprimer_ione_manuelle(self):
         company_id = '56f5520e11d423f46884d593'
         api_key = 'cnkcbrhHKyfzKLx4zI7Ub2P5'
         headers = CaseInsensitiveDict()
         headers["Accept"] = "*/*"
-        url = 'https://app.360learning.com/api/v1/users/'+ self.email +'?company=' + company_id + '&apiKey=' + api_key
+        url = 'https://app.360learning.com/api/v1/users/' + self.email + '?company=' + company_id + '&apiKey=' + api_key
         resp = requests.delete(url)
         if resp.status_code == 204:
             self.passage_exam = True
-            print('supprimé avec succès', resp.status_code,'passage',self.passage_exam)
+            print('supprimé avec succès', resp.status_code, 'passage', self.passage_exam)
 
     # Extraire firstName et lastName à partir du champs name
     def diviser_nom(self, partner):

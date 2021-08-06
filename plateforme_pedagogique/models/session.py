@@ -33,8 +33,8 @@ class Session(models.Model):
             id_groupe = groupe['_id']
             find_session=self.env['mcmacademy.session'].sudo().search([('name',"=",nomgroupe)])
             if find_session:
-                if find_session.date_exam:
-                    ville = str(find_session.ville).lower()
+                if (find_session.date_exam) and (find_session.session_ville_id.name_ville):
+                    ville = str(find_session.session_ville_id.name_ville).lower()
                     date_exam = str(find_session.date_exam).lower()
                     print('date d\'examen', find_session.date_exam)
                     # date de suppression est date d'examen + 4jours
@@ -68,7 +68,7 @@ class Session(models.Model):
         for groupe in groupes:
             nomgroupe = str(groupe['name']).lower()
             id_groupe = groupe['_id']
-            ville =str(self.ville).lower()
+            ville =str(self.session_ville_id.name_ville).lower()
             date_exam=str(self.date_exam).lower()
             if  ((ville in nomgroupe) and (date_exam in nomgroupe) ):
                         print('date_sup', )
