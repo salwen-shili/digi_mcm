@@ -26,7 +26,7 @@ class Partner(models.Model):
                 self.changestage("Validé", self)
             # Si statut cpf accepté on classe l'apprenant dans le pipeline du crm  sous statut  accepté
             if vals['statut_cpf'] == 'accepted':
-                if not (self.ville) and not (self.date_examen_edof):
+                if not (self.ville) or not (self.date_examen_edof):
                     self.changestage("Choix date d'examen - CPF", self)
 
         # else:
@@ -165,7 +165,7 @@ class Partner(models.Model):
                     self.changestage("Validé", partner)
                 if partner.statut_cpf and partner.statut_cpf == "accepted":
                     print('accepté')
-                    if not (self.ville) and not (self.date_examen_edof):
+                    if not (self.ville) or not (self.date_examen_edof):
                         self.changestage("Choix date d'examen - CPF", self)
 
             #Recuperer le contrat pour vérifier son statut
