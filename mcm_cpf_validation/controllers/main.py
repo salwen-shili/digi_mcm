@@ -88,7 +88,7 @@ class ClientCPFController(http.Controller):
         if len(users) > 1:
             user = users[1]
             for utilisateur in users:
-                if utilisateur.partner_id.id_edof and utilisateur.partner_id.date_examen_edof and utilisateur.partner_id.ville:
+                if utilisateur.partner_id.id_edof and utilisateur.partner_id.date_examen_edof and utilisateur.partner_id.session_ville_id:
                     user = utilisateur
         else:
             user = users
@@ -103,7 +103,7 @@ class ClientCPFController(http.Controller):
                 module_id = request.env['mcmacademy.module'].sudo().search(
                     [('id_edof', "=", str(module)), ('company_id', "=", 1)], limit=1)
 
-            if product_id and product_id.company_id.id==2 and user.partner_id.id_edof and user.partner_id.date_examen_edof and user.partner_id.ville:
+            if product_id and product_id.company_id.id == 2 and user.partner_id.id_edof and user.partner_id.date_examen_edof and user.partner_id.session_ville_id:
                 module_id = request.env['mcmacademy.module'].sudo().search(
                     [('company_id', "=", 2) , ('session_ville_id',"=",user.partner_id.session_ville_id.id),('date_exam',"=",user.partner_id.date_examen_edof),('product_id',"=",product_id.id),('session_id.number_places_available', '>', 0)], limit=1)
                 if module_id:
@@ -312,7 +312,7 @@ class ClientCPFController(http.Controller):
         if len(users) > 1:
             user = users[1]
             for utilisateur in users:
-                if utilisateur.partner_id.id_edof and utilisateur.partner_id.date_examen_edof and utilisateur.partner_id.ville:
+                if utilisateur.partner_id.id_edof and utilisateur.partner_id.date_examen_edof and utilisateur.partner_id.session_ville_id:
                     user = utilisateur
         else:
             user = users
@@ -330,7 +330,7 @@ class ClientCPFController(http.Controller):
                 module_id = request.env['mcmacademy.module'].sudo().search(
                     [('id_edof', "=", str(module)), ('company_id', "=", 1)], limit=1)
 
-            if product_id and product_id.company_id.id == 2 and user.partner_id.id_edof and user.partner_id.date_examen_edof and user.partner_id.ville:
+            if product_id and product_id.company_id.id == 2 and user.partner_id.id_edof and user.partner_id.date_examen_edof and user.partner_id.session_ville_id:
                 module_id = request.env['mcmacademy.module'].sudo().search(
                     [('company_id', "=", 2), ('session_ville_id', "=", user.partner_id.session_ville_id.id),
                      ('date_exam', "=", user.partner_id.date_examen_edof), ('product_id', "=", product_id.id),('session_id.number_places_available', '>', 0)], limit=1)
@@ -614,7 +614,7 @@ class ClientCPFController(http.Controller):
         if 'digimoov' in str(module):
             user = request.env['res.users'].sudo().search([('login', "=", email)])
             if user:
-                if not user.partner_id.ville or not user.partner_id.date_examen_edof or not user.partner_id.id_edof:
+                if not user.partner_id.session_ville_id or not user.partner_id.date_examen_edof or not user.partner_id.id_edof:
                     return request.render("mcm_cpf_validation.ko_places",{})
                 else:
                     product_id = request.env['product.template'].sudo().search(
@@ -667,7 +667,7 @@ class ClientCPFController(http.Controller):
         if len(users) > 1 :
             user=users[1]
             for utilisateur in users:
-                if utilisateur.partner_id.id_edof and utilisateur.partner_id.date_examen_edof and utilisateur.partner_id.ville: #if more than user ,check between them wich user is come from edof
+                if utilisateur.partner_id.id_edof and utilisateur.partner_id.date_examen_edof and utilisateur.partner_id.session_ville_id: #if more than user ,check between them wich user is come from edof
                     user=utilisateur
         else:
             user=users
