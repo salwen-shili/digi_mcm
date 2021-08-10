@@ -105,7 +105,7 @@ class ClientCPFController(http.Controller):
 
             if product_id and product_id.company_id.id==2 and user.partner_id.id_edof and user.partner_id.date_examen_edof and user.partner_id.ville:
                 module_id = request.env['mcmacademy.module'].sudo().search(
-                    [('company_id', "=", 2) , ('ville',"=",user.partner_id.ville),('date_exam',"=",user.partner_id.date_examen_edof),('product_id',"=",product_id.id),('session_id.number_places_available', '>', 0)], limit=1)
+                    [('company_id', "=", 2) , ('session_ville_id',"=",user.partner_id.session_ville_id.id),('date_exam',"=",user.partner_id.date_examen_edof),('product_id',"=",product_id.id),('session_id.number_places_available', '>', 0)], limit=1)
                 if module_id:
                     user.partner_id.module_id = module_id
                     user.partner_id.mcm_session_id = module_id.session_id
@@ -332,7 +332,7 @@ class ClientCPFController(http.Controller):
 
             if product_id and product_id.company_id.id == 2 and user.partner_id.id_edof and user.partner_id.date_examen_edof and user.partner_id.ville:
                 module_id = request.env['mcmacademy.module'].sudo().search(
-                    [('company_id', "=", 2), ('ville', "=", user.partner_id.ville),
+                    [('company_id', "=", 2), ('session_ville_id', "=", user.partner_id.session_ville_id.id),
                      ('date_exam', "=", user.partner_id.date_examen_edof), ('product_id', "=", product_id.id),('session_id.number_places_available', '>', 0)], limit=1)
                 if module_id:
                     user.partner_id.module_id = module_id
@@ -621,7 +621,7 @@ class ClientCPFController(http.Controller):
                         [('id_edof', "=", str(module)), ('company_id', "=", 2)], limit=1)
                     if product_id:
                         module_id = request.env['mcmacademy.module'].sudo().search(
-                            [('company_id', "=", 2), ('ville', "=", user.partner_id.ville),
+                            [('company_id', "=", 2), ('session_ville_id', "=", user.partner_id.session_ville_id.id),
                              ('date_exam', "=", user.partner_id.date_examen_edof)], limit=1)
                         if not module_id:
                             return request.render("mcm_cpf_validation.ko_places", {})
