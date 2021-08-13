@@ -357,6 +357,7 @@ class partner(models.Model):
                         # Si la company est digimoov on ajoute i-One sur 360
                         if (company == '2'):
                             if (nom_groupe == digimoov_examen.upper()):
+                                id_Digimoov_Examen_Attestation = id_groupe
                                 urlsession = 'https://app.360learning.com/api/v1/groups/' + id_groupe + '/users/' + partner.email + '?company=' + company_id + '&apiKey=' + api_key
                                 respsession = requests.put(urlsession, headers=headers, data=data_group)
                                 print("examen", 'ajouté à examen digimoov', respsession.status_code, 'groupe', nom_groupe)
@@ -386,7 +387,7 @@ class partner(models.Model):
                                 print('affecté à premium', respgrp_prim.status_code)
 
                             # Affecter apprenant à Digimoov-Révision
-                            revision = "Digimoov - Repassage Examen"
+                            revision = "Digimoov - Pack Repassage Examen"
                             if (("Repassage d'examen" in product_name) and (nom_groupe == revision.upper())):
                                 urlgrp_revision = 'https://app.360learning.com/api/v1/groups/' + id_groupe + '/users/' + partner.email + '?company=' + company_id + '&apiKey=' + api_key
                                 respgrp_revision = requests.put(urlgrp_revision, headers=headers, data=data_group)
