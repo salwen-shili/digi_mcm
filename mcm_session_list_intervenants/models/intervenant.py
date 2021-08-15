@@ -1,9 +1,12 @@
 import datetime as datetime
 from datetime import date, datetime, tzinfo, timedelta
+from odoo.exceptions import UserError
+import mimetypes
+from odoo.tools.mimetypes import guess_mimetype
 
 from odoo import api, fields, models, _
 # ce programme est crée Par Mabrouk Seifeddinne le 28/06/2021
-# cette application fait la gestions des intervents dans une session
+# cette application fait la gestions des intervenants dans une session
 # on a herité des fields de res.partner par le champs intervenant_id pour la reecuperation automatique des fields
 #chargement des documents curriculum_viatae,contrat_travail,rapport_entretient_embauche avec visualisation des attachements
 
@@ -12,7 +15,7 @@ class Intervenant(models.Model):
     _name = "info.listeintervenants"
     _description = "Add fields in session view"
     intervenant_id = fields.Many2one('res.partner', string="Nom et Prenom de l'intervenant" , required = True )
-    # session_id = fields.Many2one('mcmacademy.session', string="session")
+    session_id = fields.Many2one('mcmacademy.session', string="session")
     state = fields.Many2one('res.country.state', string="Département")
     partner_ids = fields.One2many('res.partner', 'session_id', 'Partners')
     country_id = fields.Many2one('res.country', string="Pays_id")
@@ -28,7 +31,7 @@ class Intervenant(models.Model):
     departement_naissance = fields.Char(string="Département de Naissance" ,related="intervenant_id.birth_state" , required = True)
     country_id = fields.Many2one(string="Pays" , related="intervenant_id.country_id", required = True)
     code_postale = fields.Char(string="Code_postale" , related="intervenant_id.zip" ,required = True)
-    civilite = fields.Char(string="Civilité")
+    civilite = fields.Char(string="Civilité" )
     langue = fields.Char(string="Langue" )
     social_security_number = fields.Char(string="Numéro de sécurité social",required = True)
     num_declaration_activité = fields.Char(string="Numéro de déclaration d'activité" , required = True)
@@ -44,13 +47,35 @@ class Intervenant(models.Model):
     diplome = fields.Char(string="Diplôme")
     note_libre = fields.Char(string="Notes Libres")
     note_competance = fields.Char(string="Notes sur les Compétances")
-    curriculum_viatae = fields.Binary("Curriculum_viatae", help="Charger votre document" , filters ="*.png, *.jpeg ,*.pdf,*.doc,*.docx" )
-    contrat_travail = fields.Binary("Contrat de travail", help="Charger votre document" ,filters ="*.png, *.jpeg ,*.pdf,*.doc,*.docx")
-    rapport_entretient_embauche = fields.Binary("Rapport d'entretient d'embauche", help="Charger votre document" , filters ="*.png, *.jpeg ,*.pdf,*.doc,*.docx")
+    curriculum_viatae = fields.Binary("Curriculum_viatae", help="Charger votre document" )
+    filename_curiculum_vitae = fields.Char()
+    contrat_travail = fields.Binary("Contrat de travail", help="Charger votre document")
+    filename_contrat_travail = fields.Char()
+    rapport_entretient_embauche = fields.Binary("Rapport d'entretient d'embauche", help="Charger votre document")
     formation_faite = fields.Char(string=" Formations Faites")
     formation_programme = fields.Char(string=" Formations Programmés")
 
+    @api.constrains('curriculum_viatae')
+    def _check_attachments(self):
+        if self.filename_curiculum_vitae:
+            if not self.filename_curiculum_vitae:
+                raise exceptions.ValidationError(_("Veuillez charger un document!"))
+            else:
+                # Check the file's extension
+                tmp = self.filename_curiculum_vitae.split('.')
+                ext = tmp[len(tmp) - 1]
+                if (ext not in ['pdf','png','jpg'] ) :
+                    raise UserError('Format fichier non valide ! \n Format accepté : jpg , png , pdf ')
 
-
-
+    @api.constrains('contrat_travail')
+    def _check_attachments1(self):
+        if self.filename_contrat_travail:
+            if not self.filename_contrat_travail:
+                raise exceptions.ValidationError(_("Veuillez charger un document!"))
+            else:
+                # Check the file's extension
+                tmp1 = self.filename_contrat_travail.split('.')
+                ext1 = tmp1[len(tmp1) - 1]
+                if (ext1 not in ['pdf', 'png', 'jpg']):
+                    raise UserError('Format fichier non valide ! \n Format accepté : jpg , png , pdf ')
 

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="assets_backend_inherit" name="pos_intervenant" >
+         <xpath expr="." position="inside">
+<!--            <script type="text/javascript" src="/mcm_session_list_intervenants/static/src/js/portal_intervenant.js"></script> &lt;!&ndash; script de vérification des types de fichiers chargés par les clients pour MCM/DIGIMOOV &ndash;&gt;-->
+<!--            <script type="text/javascript" src="/mcm_contact_documents/static/src/js/image-uploader.min.js"></script>-->
+             <!--add charger_document -->
+<!--                <script type="text/javascript" src="/mcm_contact_documents/static/src/js/charger_document.js"></script>-->
+        </xpath>
+    </template>
+</odoo>

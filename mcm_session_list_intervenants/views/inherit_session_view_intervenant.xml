@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- inherit la vue form de la session pour ajouter le bloc des intervenants(e)s-->
+    <record id="inherit_digimoov_session_form" model="ir.ui.view">
+        <field name="name">intervenant.session.form</field>
+        <field name="model">mcmacademy.session</field>
+        <field name="inherit_id" ref="mcm_session.mcmacademy_session_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//form/div/group/group[@name='dates']" position="after">
+                <group name="Intervenants" string="Liste de formateur" >
+                    <field name="intervenant_id" nolabel="1"/>
+
+                </group>
+            </xpath>
+        </field>
+    </record>
+</odoo>
