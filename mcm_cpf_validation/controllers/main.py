@@ -40,7 +40,7 @@ class ClientCPFController(http.Controller):
         partner = user.partner_id
         # Si Zoé n'a pas validé les dossiers cpf on classe
         # Chercher l'apprenant sur crm lead et classer sous etape non traité
-        stage = request.env['crm.stage'].sudo().search([("name", "=", _("Non Traité"))])
+        stage = request.env['crm.stage'].sudo().search([("name", "=", _("Non traité"))])
         print('stageeeee non traité', stage)
         if stage:
             lead = request.env['crm.lead'].sudo().search([('partner_id', '=', partner.id)], limit=1)
