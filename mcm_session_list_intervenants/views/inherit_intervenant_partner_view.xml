@@ -23,9 +23,9 @@
             <xpath expr="//page[@name='note_exam']" position="attributes">
                 <attribute name="attrs">{'invisible': [('est_intervenant', '=', True)]}</attribute>
             </xpath>
-            <xpath expr="//button[@name='action_view_partner_invoices']" position="attributes">
-                <attribute name="attrs">{'invisible': [('est_intervenant', '=', True)]}</attribute>
-            </xpath>
+<!--            <xpath expr="//button[@name='action_view_partner_invoices']" position="attributes">-->
+<!--                <attribute name="attrs">{'invisible': [('est_intervenant', '=', True)]}</attribute>-->
+<!--            </xpath>-->
             <xpath expr="//group[2]" position="attributes">
                 <attribute name="attrs">{'invisible': [('est_intervenant', '=', True)]}</attribute>
             </xpath>

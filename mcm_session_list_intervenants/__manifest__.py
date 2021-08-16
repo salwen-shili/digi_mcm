@@ -32,7 +32,6 @@
         'views/intervenant_view.xml',
         'views/inherit_intervenant_partner_view.xml',
         'views/inherit_session_view_intervenant.xml',
-        # 'views/inherit_views_partner_invisible_fields_intervenants.xml',
         'views/add_js_intervenant.xml',
 
 
