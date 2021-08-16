@@ -207,7 +207,7 @@ publicWidget.registry.mcm_documents = publicWidget.Widget.extend({
                  if (file != null)
                  {
                     var type=file['type'];
-                    var types = ['image/png' , 'image/jpg', 'application/pdf'];
+                    var types = ['image/png' , 'image/jpg', 'image/png' , 'image/jpg' , 'image/jpeg' , 'image/bmp' ,'application/pdf'];
                     if (types.includes(type)){
                         check_type=true;
                     }
