@@ -232,7 +232,7 @@ class partner(models.Model):
                 failure = sale_order.failures
                 statut = partner.statut
                 # Vérifier si contrat signé ou non
-                if (sale_order.state == 'sale' and partner.passage_exam == False):
+                if (sale_order.state == 'sale')  and (sale_order.signed_on) and (sale_order.signature) and (partner.passage_exam == False):
                     print('contrat signé')
 
                     if (failure == True):
