@@ -264,6 +264,7 @@ class partner(models.Model):
         # Remplacez les paramètres régionaux de l'heure par le paramètre de langue actuel
         # du compte dans odoo
         locale.setlocale(locale.LC_TIME, str(self.env.user.lang) + '.utf8')
+        company = str(partner.module_id.company_id.id)
         product_name = partner.module_id.product_id.name
         if (not (product_name)):
             product_name = ''
@@ -308,7 +309,7 @@ class partner(models.Model):
                 # if(resp_invit.status_code == 200):
                 #     invit=True
                 # Si non si mot de passe récupéré on l'ajoute sur la plateforme avec le meme mot de passe
-                if user.password360:
+                if (user.password360) and ("Repassage d'examen" not in product_name) and (company == '2'):
                     partner.password360 = user.password360
                     print(user.password)
 
@@ -387,11 +388,11 @@ class partner(models.Model):
                                 print('affecté à premium', respgrp_prim.status_code)
 
                             # Affecter apprenant à Digimoov-Révision
-                            revision = "Digimoov - Pack Repassage Examen"
-                            if (("Repassage d'examen" in product_name) and (nom_groupe == revision.upper())):
-                                urlgrp_revision = 'https://app.360learning.com/api/v1/groups/' + id_groupe + '/users/' + partner.email + '?company=' + company_id + '&apiKey=' + api_key
-                                respgrp_revision = requests.put(urlgrp_revision, headers=headers, data=data_group)
-                                print('affecté à revision', respgrp_revision.status_code)
+                            # revision = "Digimoov - Pack Repassage Examen"
+                            # if (("Repassage d'examen" in product_name) and (nom_groupe == revision.upper())):
+                            #     urlgrp_revision = 'https://app.360learning.com/api/v1/groups/' + id_groupe + '/users/' + partner.email + '?company=' + company_id + '&apiKey=' + api_key
+                            #     respgrp_revision = requests.put(urlgrp_revision, headers=headers, data=data_group)
+                            #     print('affecté à revision', respgrp_revision.status_code)
 
                             # Affecter apprenant à une session d'examen
                             print('date, ville', ville, date_session)
