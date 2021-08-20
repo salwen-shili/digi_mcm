@@ -37,6 +37,7 @@ class AuthSignupHome(AuthSignupHome):
         if request.website.id == 2:
             values['company_ids'] = [1, 2]
             values['company_id'] = 2
+        values['notification_type'] = 'email'  # make default notificatication type by email for new users 
         self._signup_with_values(qcontext.get('token'), values)
         request.env.cr.commit()
 

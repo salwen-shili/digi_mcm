@@ -328,7 +328,7 @@ class ClientCPFController(http.Controller):
                     [('id_edof', "=", str(module)), ('company_id', "=", 2)], limit=1)
             else:
                 module_id = request.env['mcmacademy.module'].sudo().search(
-                    [('id_edof', "=", str(module)), ('company_id', "=", 1)], limit=1)
+                    [('id_edof', "=", str(module)), ('company_id', "=", 1)],order='create_date DESC', limit=1)
 
             if product_id and product_id.company_id.id == 2 and user.partner_id.id_edof and user.partner_id.date_examen_edof and user.partner_id.session_ville_id:
                 module_id = request.env['mcmacademy.module'].sudo().search(
