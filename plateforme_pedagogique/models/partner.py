@@ -150,6 +150,8 @@ class partner(models.Model):
     # Ajouter ione manuellement
     def ajouter_iOne_manuelle(self):
         # _logger.info("++++++++++++Cron ajouter_iOne_manuelle++++++++++++++++++++++")
+        product_name = self.module_id.product_id.name
+
         sale_order = self.env['sale.order'].sudo().search([('partner_id', '=', self.id),
                                                            ('session_id', '=', self.mcm_session_id.id),
                                                            ('module_id', '=', self.module_id.id),
@@ -177,36 +179,37 @@ class partner(models.Model):
             if (sale_order.state == 'sale' and self.passage_exam == False):
                 # _logger.info("++++++++++++Cron sale contrat signé++++++++++++++++++++++")
                 print('contrat signé')
-
-                if ((failure == True) and (statut == 'won')):
-                    # _logger.info("++++++++++++Cron failure++++++++++++++++++++++")
-                    print('it works')
-                    self.ajouter_iOne(self)
-                # Vérifier si delai de retractaion et demande de renoncer  ne sont pas coché,
-                # si aujourd'hui est la date d'ajout,et si le statut est gagné
-                # alors on ajoute l'apprenant à 360
-                if ((failure == False) and (statut == 'won')):
-                    # Si demande de renonce est coché donc l'apprenant est ajouté sans attendre 14jours
-                    if (self.renounce_request):
-                        print('renonce', self.name, 'failure', failure, 'statut', self.statut)
+                if (product_name != "Repassage d'examen"):
+                    if ((failure == True) and (statut == 'won')):
+                        # _logger.info("++++++++++++Cron failure++++++++++++++++++++++")
+                        print('it works')
                         self.ajouter_iOne(self)
-                    # Calculer date d'ajout apres 14jours de date de signature
-                    date_signature = sale_order.signed_on
-                    date_ajout = date_signature + timedelta(days=14)
-                    today = datetime.today()
-                    print('partner', self.name, 'sale_order', sale_order, 'date_ajout:', date_ajout, 'today:', today)
-                    # Si l'apprenant n'a pas demander une renonce de delai de retractation
-                    # il doit attendre 14jours pour etre ajouté
-                    if (not (self.renounce_request) and (date_ajout <= today)):
-                        print('not renonce', self.name, 'failure', failure, 'statut', self.statut, 'date_ajout',
-                              date_ajout)
-                        self.ajouter_iOne(self)
+                    # Vérifier si delai de retractaion et demande de renoncer  ne sont pas coché,
+                    # si aujourd'hui est la date d'ajout,et si le statut est gagné
+                    # alors on ajoute l'apprenant à 360
+                    if ((failure == False) and (statut == 'won')):
+                        # Si demande de renonce est coché donc l'apprenant est ajouté sans attendre 14jours
+                        if (self.renounce_request):
+                            print('renonce', self.name, 'failure', failure, 'statut', self.statut)
+                            self.ajouter_iOne(self)
+                        # Calculer date d'ajout apres 14jours de date de signature
+                        date_signature = sale_order.signed_on
+                        date_ajout = date_signature + timedelta(days=14)
+                        today = datetime.today()
+                        print('partner', self.name, 'sale_order', sale_order, 'date_ajout:', date_ajout, 'today:', today)
+                        # Si l'apprenant n'a pas demander une renonce de delai de retractation
+                        # il doit attendre 14jours pour etre ajouté
+                        if (not (self.renounce_request) and (date_ajout <= today)):
+                            print('not renonce', self.name, 'failure', failure, 'statut', self.statut, 'date_ajout',
+                                  date_ajout)
+                            self.ajouter_iOne(self)
 
     # Ajouter i-One sur 360learning après 14jours
     # si Délai de rétractation n'est pas coché
     def Ajouter_iOne_auto(self):
         for partner in self.env['res.partner'].sudo().search([('statut', "=", "won")]):
             # Pour chaque apprenant extraire le delai de retractation
+            product_name = partner.module_id.product_id.name
             sale_order = self.env['sale.order'].sudo().search([('partner_id', '=', partner.id),
                                                                ('session_id', '=', partner.mcm_session_id.id),
                                                                ('module_id', '=', partner.module_id.id),
@@ -233,32 +236,34 @@ class partner(models.Model):
                 statut = partner.statut
                 # Vérifier si contrat signé ou non
                 if (sale_order.state == 'sale')  and (sale_order.signed_on) and (sale_order.signature) and (partner.passage_exam == False):
-                    print('contrat signé')
+                    #n'ajouter pas les apprenants de repassage
+                    if(  product_name != "Repassage d'examen"):
+                        print('contrat signé')
 
-                    if (failure == True):
-                        print('it works')
-                        self.ajouter_iOne(partner)
-                    # Vérifier si delai de retractaion et demande de renoncer  ne sont pas coché,
-                    # si aujourd'hui est la date d'ajout,et si le statut est gagné
-                    # alors on ajoute l'apprenant à 360
-                    else:
-                        # Si demande de renonce est coché donc l'apprenant est ajouté sans attendre 14jours
-                        if (partner.renounce_request):
-                            print('renonce', partner.name, 'failure', failure, 'statut', partner.statut)
+                        if (failure == True):
+                            print('it works')
                             self.ajouter_iOne(partner)
+                        # Vérifier si delai de retractaion et demande de renoncer  ne sont pas coché,
+                        # si aujourd'hui est la date d'ajout,et si le statut est gagné
+                        # alors on ajoute l'apprenant à 360
+                        else:
+                            # Si demande de renonce est coché donc l'apprenant est ajouté sans attendre 14jours
+                            if (partner.renounce_request):
+                                print('renonce', partner.name, 'failure', failure, 'statut', partner.statut)
+                                self.ajouter_iOne(partner)
 
-                        # Calculer date d'ajout apres 14jours de date de signature
-                        date_signature = sale_order.signed_on
-                        date_ajout = date_signature + timedelta(days=14)
-                        today = datetime.today()
-                        print('partner', partner.name, 'sale_order', sale_order, 'date_ajout:', date_ajout, 'today:',
-                              today)
-                        # Si l'apprenant n'a pas demander une renonce de delai de retractation
-                        # il doit attendre 14jours pour etre ajouté
-                        if (not (partner.renounce_request) and (date_ajout <= today)):
-                            print('not renonce', partner.name, 'failure', failure, 'statut', partner.statut,
-                                  'date_ajout', date_ajout)
-                            self.ajouter_iOne(partner)
+                            # Calculer date d'ajout apres 14jours de date de signature
+                            date_signature = sale_order.signed_on
+                            date_ajout = date_signature + timedelta(days=14)
+                            today = datetime.today()
+                            print('partner', partner.name, 'sale_order', sale_order, 'date_ajout:', date_ajout, 'today:',
+                                  today)
+                            # Si l'apprenant n'a pas demander une renonce de delai de retractation
+                            # il doit attendre 14jours pour etre ajouté
+                            if (not (partner.renounce_request) and (date_ajout <= today)):
+                                print('not renonce', partner.name, 'failure', failure, 'statut', partner.statut,
+                                      'date_ajout', date_ajout)
+                                self.ajouter_iOne(partner)
 
     def ajouter_iOne(self, partner):
         # Remplacez les paramètres régionaux de l'heure par le paramètre de langue actuel
