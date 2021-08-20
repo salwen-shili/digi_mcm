@@ -179,7 +179,7 @@ class partner(models.Model):
             if (sale_order.state == 'sale' and self.passage_exam == False):
                 # _logger.info("++++++++++++Cron sale contrat signé++++++++++++++++++++++")
                 print('contrat signé')
-                if (product_name != "Repassage d'examen"):
+                if  (product_name ) and (product_name != "Repassage d'examen"):
                     if ((failure == True) and (statut == 'won')):
                         # _logger.info("++++++++++++Cron failure++++++++++++++++++++++")
                         print('it works')
@@ -237,7 +237,7 @@ class partner(models.Model):
                 # Vérifier si contrat signé ou non
                 if (sale_order.state == 'sale')  and (sale_order.signed_on) and (sale_order.signature) and (partner.passage_exam == False):
                     #n'ajouter pas les apprenants de repassage
-                    if(  product_name != "Repassage d'examen"):
+                    if (product_name) and (product_name != "Repassage d'examen"):
                         print('contrat signé')
 
                         if (failure == True):
