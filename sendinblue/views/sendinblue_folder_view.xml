@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_sendinblue_floder_form" model="ir.ui.view">
+            <field name="name">sendinblue.folder.form</field>
+            <field name="model">sendinblue.folder</field>
+            <field name="arch" type="xml">
+                <form string="SendinBlue Folders">
+                    <header>
+                        <button name="export_folder_sendinblue" string="Export in SendinBlue" type="object"
+                                class="btn-success" attrs="{'invisible' :[('sendinblue_id','!=', False)]}"/>
+                        <button name="refresh_folder" string="Refresh" type="object" class="btn-primary"
+                                attrs="{'invisible' :[('sendinblue_id','=', False)]}"/>
+                    </header>
+                    <sheet>
+                        <div class="oe_button_box" name="button_box">
+                            <button type="object" name="action_view_sb_lists" class="oe_stat_button" icon="fa-list"
+                                    attrs="{'invisible': [('sb_list_count', '=', 0)]}">
+                                <field name="sb_list_count" widget="statinfo" string="Lists"/>
+                            </button>
+                        </div>
+                        <div class="oe_title">
+                            <label for="name" string="Folder Name"/>
+                            <h1>
+                                <field name="name" placeholder="Folder Name"/>
+                            </h1>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="account_id" required="1"/>
+                                <field name="sendinblue_id" readonly="1" invisible="1"/>
+                                <field name="totalsubscribers"/>
+                                <field name="totalblacklisted"/>
+                                <field name="uniquesubscribers"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_sendinblue_folder_tree" model="ir.ui.view">
+            <field name="name">sendinblue.folder.tree</field>
+            <field name="model">sendinblue.folder</field>
+            <field name="arch" type="xml">
+                <tree string="SendinBlue Folders" decoration-muted="not sendinblue_id">
+                    <field name="sendinblue_id" invisible="1"/>
+                    <field name="name"/>
+                    <field name="totalsubscribers"/>
+                    <field name="totalblacklisted"/>
+                    <field name="uniquesubscribers"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="action_sendinblue_folders" model="ir.actions.act_window">
+            <field name="name">SendinBlue Folders</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">sendinblue.folder</field>
+<!--            <field name="view_type">form</field>-->
+            <field name="view_mode">tree,form</field>
+            <field name="context">{}</field>
+            <field name="help" type="html">
+                <p>
+                    Retrieve the Folders of configured folder on the account using Import
+                    operations.
+                </p>
+            </field>
+        </record>
+
+        <menuitem name="Folders" parent="menu_sendinblue_root"
+                  action="action_sendinblue_folders" id="menu_action_sendinblue_folder"
+                  sequence="20"/>
+    </data>
+</odoo>

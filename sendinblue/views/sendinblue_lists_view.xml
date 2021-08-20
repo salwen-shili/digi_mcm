@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_sendinblue_lists_form" model="ir.ui.view">
+            <field name="name">sendinblue.lists.form</field>
+            <field name="model">sendinblue.lists</field>
+            <field name="arch" type="xml">
+                <form string="sendinblue Lists/Audiences">
+                    <header>
+                        <button name="export_in_sendinblue" string="Export In sendinblue" type="object"
+                                class="btn-success" attrs="{'invisible' :[('list_id','!=', False)]}"/>
+<!--                        <button name="update_in_sendinblue" string="Update In sendinblue" type="object"-->
+<!--                                class="btn-success" attrs="{'invisible' :[('list_id','=', False)]}"/>-->
+                        <button name="refresh_list" string="Refresh" type="object" class="btn-primary"
+                                attrs="{'invisible' :[('list_id','=', False)]}"/>
+                        <button name="fetch_members" string="Fetch Members" type="object" class="btn-primary"
+                                attrs="{'invisible' :[('list_id','=', False)]}"/>
+                    </header>
+                    <sheet>
+                        <div class="oe_button_box">
+                            <button name="action_view_recipients" context="{'show_total': True}"
+                                    type="object" icon="fa-user" class="oe_stat_button">
+                                <field name="contact_total_nbr" string="Total Contacts" widget="statinfo"/>
+                            </button>
+                        </div>
+                        <div class="oe_title">
+                            <label for="name" string="Audience Name"/>
+                            <h1>
+                                <field name="name" placeholder="Audience Name"/>
+                            </h1>
+                            <div name="options">
+                                <div>
+                                    <label for="account_id" string="Associated Account"/>
+                                    <field name="account_id"/>
+                                </div>
+                            </div>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="folder_id" required="1"/>
+                                <field name="list_id" invisible="1"/>
+                                <field name="totalblacklisted" readonly="1"/>
+                                <field name="member_since_last_changed"/>
+                            </group>
+                            <group>
+                                <field name="odoo_list_id"/>
+                                <field name="totalsubscribers" readonly="1"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_sendinblue_lists_tree" model="ir.ui.view">
+            <field name="name">sendinblue.lists.tree</field>
+            <field name="model">sendinblue.lists</field>
+            <field name="arch" type="xml">
+                <tree string="sendinblue Lists/Audiences">
+                    <field name="name"/>
+                    <field name="list_id"/>
+                    <field name="totalsubscribers"/>
+                    <field name="totalblacklisted"/>
+                    <button name="refresh_list" attrs="{'invisible': [('list_id','=', False)]}" string="Refresh"
+                            type="object" icon="fa-refresh"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_sendinblue_lists_search" model="ir.ui.view">
+            <field name="name">sendinblue.lists.search</field>
+            <field name="model">sendinblue.lists</field>
+            <field name="arch" type="xml">
+                <search string="sendinblue Lists/Audiences">
+                    <field name="name"/>
+                    <field name="list_id"/>
+                    <field name="account_id"/>
+                    <group expand="0" string="Group By...">
+                        <filter string="Account" name="account" domain="[]" context="{'group_by':'account_id'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <record id="action_sendinblue_lists" model="ir.actions.act_window">
+            <field name="name">SendinBlue Lists/Audiences</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">sendinblue.lists</field>
+<!--            <field name="view_type">form</field>-->
+            <field name="view_mode">tree,form</field>
+            <field name="context">{}</field>
+            <field name="help" type="html">
+                <p>
+                    Retrieve the Lists/Audiences of configured lists on the account using Import operations.
+                </p>
+            </field>
+        </record>
+
+        <menuitem name="Lists/Audiences" parent="menu_sendinblue_root"
+                  action="action_sendinblue_lists" id="menu_action_sendinblue_listss"
+                  sequence="20"/>
+
+<!--        <record id="ir_actions_sendinblue_export_update" model="ir.actions.server">-->
+<!--            <field name="name">Export or Update(SendinBlue)</field>-->
+<!--            <field name="type">ir.actions.server</field>-->
+<!--            <field name="model_id" ref="sendinblue.model_sendinblue_lists"/>-->
+<!--            <field name="binding_model_id" ref="sendinblue.model_sendinblue_lists" />-->
+<!--            <field name="state">code</field>-->
+<!--            <field name="code">-->
+<!--                if records:-->
+<!--                    records.export_update_data_in_sendinblue()-->
+<!--            </field>-->
+<!--        </record>-->
+    </data>
+</odoo>

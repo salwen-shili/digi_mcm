@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="sendinblue_queue_process_form_view" model="ir.ui.view">
+            <field name="name">sendinblue.queue.process.form.view</field>
+            <field name="model">sendinblue.queue.process</field>
+            <field name="arch" type="xml">
+                <form string="SendinBlue Job Queue" create="0" edit="0">
+                    <header>
+                        <field name="state" widget="statusbar" statusbar_visible="in_queue,done"/>
+                    </header>
+                    <sheet>
+                        <div class="oe_title">
+                            <label class="oe_edit_only" for="name"/>
+                            <h1>
+                                <field name="name"/>
+                            </h1>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="create_date"/>
+                                <field name="operation"/>
+                                <field name="user_id"/>
+                            </group>
+                            <group>
+                                <field name="account_id"/>
+                                <field name="list_id"/>
+                                <field name="campaign_id" attrs="{'invisible' : [('operation', 'not in', ['campaign_activity_report'])]}"/>
+                            </group>
+                        </group>
+
+
+                        <group attrs="{'invisible' : [('operation', 'not in', ['campaign_activity_report','pending_to_export_contact'])]}">
+                            <field name="processed_contact_ids" nolabel="1"/>
+                        </group>
+                        <group attrs="{'invisible' : [('operation', 'not in', ['fetch_member'])]}">
+                            <field name="response_data" nolabel="1"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="sendinblue_queue_process_tree_view" model="ir.ui.view">
+            <field name="name">sendinblue.queue.process.tree.view</field>
+            <field name="model">sendinblue.queue.process</field>
+            <field name="arch" type="xml">
+                <tree create="0" edit="0" string="SendinBlue Job Queue" decoration-success="state == 'done'" decoration-muted="state == 'in_queue'">
+                    <field name="name"/>
+                    <field name="create_date"/>
+                    <field name="account_id"/>
+                    <field name="operation"/>
+                    <field name="state" />
+                </tree>
+            </field>
+        </record>
+
+        <record id="sendinblue_queue_process_search_view" model="ir.ui.view">
+            <field name="name">sendinblue.queue.process.search.view</field>
+            <field name="model">sendinblue.queue.process</field>
+            <field name="arch" type="xml">
+                <search string="SendinBlue Job Queue">
+                    <field name="name" string="Name"/>
+                    <filter string="In Queue" name="in_queue" domain="[('state', '=', 'in_queue')]"/>
+                    <filter name="completed" string="Completed" domain="[('state', '=', 'done')]"/>
+                    <group expand="0" string="Group By">
+                        <filter string="Account" name="group_by_account_id" domain="[]" context="{'group_by': 'account_id'}"/>
+                        <filter string="Operation" name="group_by_operation" domain="[]" context="{'group_by': 'operation'}"/>
+                        <filter string="List" name="group_by_list_id" domain="[]" context="{'group_by': 'list_id'}"/>
+                        <filter string="Campaign" name="group_by_campaign_id" domain="[]" context="{'group_by': 'campaign_id'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <record id="action_sendinblue_queue_process" model="ir.actions.act_window">
+            <field name="name">SendinBlue Job Queue</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">sendinblue.queue.process</field>
+<!--            <field name="view_type">form</field>-->
+            <field name="view_mode">tree,form</field>
+            <field name="search_view_id" ref="sendinblue_queue_process_search_view"/>
+            <field name="context">{'search_default_in_queue': 1}</field>
+        </record>
+
+        <menuitem name="Sendinblue Job Queue" parent="menu_sendinblue_root"
+                  action="action_sendinblue_queue_process" id="menu_action_sendinblue_queue_process"
+                  sequence="100" groups="base.group_no_one"/>
+    </data>
+</odoo>

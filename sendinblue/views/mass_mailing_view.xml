@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_mail_mass_mailing_form" model="ir.ui.view">
+            <field name="name">mailing.mailing.form</field>
+            <field name="model">mailing.mailing</field>
+            <field name="inherit_id" ref="mass_mailing.view_mail_mass_mailing_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//sheet/group[1]" position="inside">
+                    <label for="sendinblue_template_id" string="SendinBlue Template"/>
+                    <div>
+                        <field name="sendinblue_template_id" nolabel="1"
+                                attrs="{'readonly':[('state','not in',['draft','in_queue'])]}"/>
+                    </div>
+                    <label for="sendinblue_champ_type" string="Type" attrs="{'required':[('sendinblue_template_id','!=',False)], 'invisible' : [('sendinblue_template_id','=',False)]}"/>
+                    <div>
+                        <field name="sendinblue_champ_type" nolabel="1"
+                               attrs="{'required':[('sendinblue_template_id','!=',False)],
+                                       'invisible' : [('sendinblue_template_id','=',False)],
+                                       'readonly':[('state','not in',['draft','in_queue'])]}"/>
+                    </div>
+                    <label for="sb_sender_id" string="Senders"
+                           attrs="{'required':[('sendinblue_template_id','!=',False)],
+                                   'invisible' : [('sendinblue_template_id','=',False)],
+                                   'readonly':[('state','not in',['draft','in_queue'])]}"/>
+                    <div>
+                        <field name="sb_sender_id" nolabel="1"
+                               attrs="{'required':[('sendinblue_template_id','!=',False)],
+                                       'invisible' : [('sendinblue_template_id','=',False)],
+                                       'readonly':[('state','not in',['draft','in_queue'])]}"/>
+                    </div>
+                    <field name="sendinblue_account_id" invisible="1"/>
+                </xpath>
+                <field name="body_html" position="attributes">
+                    <attribute name="attrs">{'invisible': [('sendinblue_template_id', '!=', False)]}</attribute>
+                </field>
+                <field name="body_arch" position="attributes">
+                    <attribute name="attrs">{'invisible': [('sendinblue_template_id', '!=', False)]}</attribute>
+                </field>
+                <xpath expr="//sheet/notebook/page[1]" position="inside">
+                    <field name="sendinblue_body_html"/>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="view_mail_mass_mailing_kanban" model="ir.ui.view">
+            <field name="name">mailing.mailing</field>
+            <field name="model">mailing.mailing</field>
+            <field name="inherit_id" ref="mass_mailing.view_mail_mass_mailing_kanban"/>
+            <field name="arch" type="xml">
+                <field name="color" position="after">
+                    <field name="sendinblue_id"/>
+                </field>
+                <xpath expr="//div[hasclass('o_kanban_record_headings')]/h3" position="after">
+                    <t t-if="record.sendinblue_id.raw_value">
+                        <span class="badge badge-primary oe_inline o_enterprise_label">
+                            SendinBlue
+                        </span>
+                    </t>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

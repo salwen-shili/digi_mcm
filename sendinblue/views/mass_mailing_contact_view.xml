@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_mail_mass_mailing_contact_mail_form" model="ir.ui.view">
+            <field name="name">mailing.contact.form</field>
+            <field name="model">mailing.contact</field>
+            <field name="inherit_id" ref="mass_mailing.view_mail_mass_mailing_contact_form"/>
+            <field name="arch" type="xml">
+                <field name="title_id" position="before">
+                    <field name="related_partner_id" />
+                </field>
+            </field>
+        </record>
+
+        <record id="view_mail_mass_mailing_contact_tree" model="ir.ui.view">
+            <field name="name">mailing.contact.tree</field>
+            <field name="model">mailing.contact</field>
+            <field name="inherit_id" ref="mass_mailing.view_mail_mass_mailing_contact_tree"/>
+            <field name="arch" type="xml">
+                <field name="opt_out" position="after">
+                    <field name="is_email_valid"/>
+                    <field name="sendinblue_pending_for_export" invisible="1" />
+                </field>
+            </field>
+        </record>
+
+        <record id="view_mail_mass_mailing_contact_search" model="ir.ui.view">
+            <field name="name">mailing.contact.search</field>
+            <field name="model">mailing.contact</field>
+            <field name="inherit_id" ref="mass_mailing.view_mail_mass_mailing_contact_search"/>
+            <field name="arch" type="xml">
+                <filter name="filter_valid_email_recipient" position="after">
+                    <separator/>
+                    <filter string="Pending for Export" name="pending_export" domain="[('sendinblue_pending_for_export', '=', True)]"/>
+                    <separator/>
+                    <filter string="Unsubscribers" name="unsub_contact" domain="[('opt_out', '=', True)]"
+                            invisible="'default_list_ids' not in context"/>
+                    <filter string="Cleaned" name="cleaned_contact" domain="[('is_email_valid', '=', False)]"
+                            invisible="'default_list_ids' not in context"/>
+                </filter>
+            </field>
+        </record>
+
+        <record id="ir_actions_mass_mailing_contact_export" model="ir.actions.server">
+            <field name="name">Export To SendinBlue</field>
+            <field name="type">ir.actions.server</field>
+            <field name="model_id" ref="mass_mailing.model_mailing_contact"/>
+            <field name="state">code</field>
+            <field name="code">
+                if records:
+                    records.action_export_to_sendinblue()
+            </field>
+            <field name="binding_model_id" ref="mass_mailing.model_mailing_contact"/>
+        </record>
+
+        <record id="ir_actions_mass_mailing_contact_update" model="ir.actions.server">
+            <field name="name">Update To SendinBlue</field>
+            <field name="type">ir.actions.server</field>
+            <field name="model_id" ref="mass_mailing.model_mailing_contact"/>
+            <field name="state">code</field>
+            <field name="code">
+                if records:
+                    records.action_update_to_sendinblue()
+            </field>
+            <field name="binding_model_id" ref="mass_mailing.model_mailing_contact"/>
+        </record>
+    </data>
+</odoo>

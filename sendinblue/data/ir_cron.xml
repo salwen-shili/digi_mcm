@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <record id="create_queue_sendinblue" model="ir.cron">
+            <field name="name">Do Not Delete : Create Queue For Campaings and Email Activity(SendinBlue)</field>
+            <field name="model_id" ref="sendinblue.model_sendinblue_queue_process"/>
+            <field name="state">code</field>
+            <field name="code">model.sendinblue_create_queue()</field>
+            <field name='interval_number'>5</field>
+            <field name='interval_type'>minutes</field>
+            <field name="numbercall">-1</field>
+            <field name="active">1</field>
+        </record>
+
+        <record id="refresh_sendinblue_list_and_folder" model="ir.cron">
+            <field name="name">Sync SendinBlue Lists and Folders</field>
+            <field name="model_id" ref="sendinblue.model_sendinblue_lists"/>
+            <field name="state">code</field>
+            <field name="code">model.search([]).refresh_list()</field>
+            <field name='interval_number'>5</field>
+            <field name='interval_type'>minutes</field>
+            <field name="numbercall">-1</field>
+            <field name="active">1</field>
+        </record>
+
+        <record id="sendinblue_fetch_email_activity" model="ir.cron">
+            <field name="name">Do Not Delete : Process Queue(SendinBlue)</field>
+            <field name="model_id" ref="sendinblue.model_sendinblue_queue_process"/>
+            <field name="state">code</field>
+            <field name="code">model.sendinblue_process_queue()</field>
+            <field name='interval_number'>5</field>
+            <field name='interval_type'>minutes</field>
+            <field name="numbercall">-1</field>
+            <field name="active">1</field>
+        </record>
+
+        <record id="fetch_member_sendinblue" model="ir.cron">
+            <field name="name">Do Not Delete : Fetch SendinBlue Audience</field>
+            <field name="model_id" ref="sendinblue.model_sendinblue_lists"/>
+            <field name="state">code</field>
+            <field name="code">model.fetch_member_cron()</field>
+            <field name='interval_number'>1</field>
+            <field name='interval_type'>hours</field>
+            <field name="numbercall">-1</field>
+            <field name="active">1</field>
+        </record>
+    </data>
+</odoo>

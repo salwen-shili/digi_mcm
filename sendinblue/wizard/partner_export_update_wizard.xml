@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+<!--    <data>-->
+<!--    <record id="sendinblue_export_update_view_form" model="ir.ui.view">-->
+<!--        <field name="name">partner.export.sendinblue.form</field>-->
+<!--        <field name="model">partner.export.sendinblue</field>-->
+<!--        <field name="arch" type="xml">-->
+<!--            <form string="">-->
+<!--                <group invisible="context.get('update_in_sendinblue', False)">-->
+<!--                    <field name="odoo_list_ids" required="not context.get('update_in_sendinblue', False)"-->
+<!--                           widget="many2many_tags"/>-->
+<!--                </group>-->
+<!--                <footer>-->
+<!--                    <group>-->
+<!--                        <span>-->
+<!--                            <button string="Update" invisible="not context.get('update_in_sendinblue', False)"-->
+<!--                                    type="object" class="oe_highlight" name="action_update_partner_sendinblue"/>-->
+<!--                            <button string="Export" invisible="context.get('update_in_sendinblue', False)" type="object"-->
+<!--                                    class="oe_highlight" name="action_export_partner_sendinblue"/>-->
+<!--                            <button string="Cancel" class="oe_link" special="cancel"/>-->
+<!--                        </span>-->
+<!--                    </group>-->
+<!--                </footer>-->
+<!--            </form>-->
+<!--        </field>-->
+<!--    </record>-->
+    <record id="sendinblue_export_update_view_form" model="ir.ui.view">
+        <field name="name">partner.export.sendinblue.form</field>
+        <field name="model">partner.export.sendinblue</field>
+        <field name="arch" type="xml">
+            <form string="">
+                <group invisible="context.get('update_in_sendinblue', False)">
+                    <field name="odoo_list_ids" required="not context.get('update_in_sendinblue', False)" widget="many2many_tags"/>
+                </group>
+                <footer>
+                    <group>
+                        <span>
+                            <button string="Update" invisible="not context.get('update_in_sendinblue', False)" type="object" class="oe_highlight" name="action_update_partner_sendinblue"/>
+                            <button string="Export" invisible="context.get('update_in_sendinblue', False)" type="object" class="oe_highlight" name="action_export_partner_sendinblue"/>
+                            <button string="Cancel" class="oe_link" special="cancel"/>
+                        </span>
+                    </group>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="sendinblue_export_update_form_action" model="ir.actions.act_window">
+        <field name="name">Export to SendinBlue</field>
+        <field name="res_model">partner.export.sendinblue</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+    <!-- Add action entry in the Action Menu for Partners -->
+<!--    For form-->
+    <act_window name="Export to SendinBlue"
+            res_model="partner.export.sendinblue"
+            binding_model="res.partner"
+            view_mode="form"
+            binding_views="form"
+            target="new"
+            id="sendinblue_export_action_form"
+        />
+    <act_window id="sendinblue_update_action_form"
+                name="Update to SendinBlue"
+                binding_model="res.partner"
+                res_model="partner.export.sendinblue"
+                view_mode="form"
+                binding_views="form"
+                context="{'update_in_sendinblue': True}"
+                target="new"/>
+
+<!--    For List-->
+    <act_window name="Export to SendinBlue"
+            res_model="partner.export.sendinblue"
+            binding_model="res.partner"
+            view_mode="form"
+            binding_views="list"
+            target="new"
+            id="sendinblue_export_action_list"
+        />
+    <act_window id="sendinblue_update_action_list"
+                name="Update to SendinBlue"
+                binding_model="res.partner"
+                res_model="partner.export.sendinblue"
+                view_mode="form"
+                binding_views="list"
+                context="{'update_in_sendinblue': True}"
+                target="new"/>
+
+</odoo>

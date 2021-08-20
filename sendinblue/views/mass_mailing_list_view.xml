@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_mailing_list_view_kanban" model="ir.ui.view">
+            <field name="name">mailing.list.kanban</field>
+            <field name="model">mailing.list</field>
+            <field name="inherit_id" ref="mass_mailing.mailing_list_view_kanban"/>
+            <field name="arch" type="xml">
+                <field name="contact_nbr" position="after">
+                    <field name="sendinblue_list_id"/>
+                </field>
+                <xpath expr="//div[hasclass('o_primary')]/span" position="after">
+                    <t t-if="record.sendinblue_list_id.raw_value">
+                        <span class="badge badge-primary oe_inline o_enterprise_label">
+                            SendinBlue
+                        </span>
+                    </t>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

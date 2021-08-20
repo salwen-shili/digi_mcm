@@ -1,0 +1,12 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_sendinblue_accounts_public,sendinblue.accounts,sendinblue.model_sendinblue_accounts,,1,0,0,0
+access_sendinblue_lists_public,sendinblue.lists,sendinblue.model_sendinblue_lists,,1,0,0,0
+access_sendinblue_templates_public,sendinblue.templates,sendinblue.model_sendinblue_templates,,1,0,0,0
+access_sendinblue_accounts_user,sendinblue.accounts.user,sendinblue.model_sendinblue_accounts,mass_mailing.group_mass_mailing_user,1,1,1,1
+access_sendinblue_lists_user,sendinblue.lists.user,sendinblue.model_sendinblue_lists,mass_mailing.group_mass_mailing_user,1,1,1,1
+access_sendinblue_templates_user,sendinblue.templates.user,sendinblue.model_sendinblue_templates,mass_mailing.group_mass_mailing_user,1,1,1,1
+access_sendinblue_merge_fields_public,sendinblue.merge.fields,sendinblue.model_sendinblue_merge_fields,,1,0,0,0
+access_sendinblue_merge_fields_user,sendinblue.merge.fields.user,sendinblue.model_sendinblue_merge_fields,mass_mailing.group_mass_mailing_user,1,1,1,1
+access_sendinblue_folder,sendinblue.folder,sendinblue.model_sendinblue_folder,mass_mailing.group_mass_mailing_user,1,1,1,1
+access_sendinblue_senders,sendinblue.senders,sendinblue.model_sendinblue_senders,mass_mailing.group_mass_mailing_user,1,1,1,1
+access_sendinblue_queue_process_user,sendinblue.queue.process,sendinblue.model_sendinblue_queue_process,mass_mailing.group_mass_mailing_user,1,1,1,1
