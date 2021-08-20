@@ -10,6 +10,13 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="/mail_smtp_imap_by_company/views/alias_mail_view.xml">
+          <value>
+            <Attribute>
+              <option name="separator" value="&#9;" />
+            </Attribute>
+          </value>
+        </entry>
       </map>
     </option>
   </component>
