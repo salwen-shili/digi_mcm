@@ -217,7 +217,8 @@ class partner(models.Model):
                                                                ('session_id.date_exam', '>', date.today())
                                                                ], limit=1, order="id desc")
 
-            print('sale order', sale_order.name)
+            _logger.info('sale order %s ' % sale_order.name)
+
             # Récupérer les documents et vérifier si ils sont validés ou non
             documents = self.env['documents.document'].sudo().search([('partner_id', '=', partner.id)])
             document_valide = False
@@ -281,7 +282,7 @@ class partner(models.Model):
         new_format = '%d %B %Y'
         if (partner.mcm_session_id.date_exam) and (partner.mcm_session_id.session_ville_id.name_ville):
             ville = str(partner.mcm_session_id.session_ville_id.name_ville).upper()
-            # _logger.info('----ville %s' % ville)
+            _logger.info('----ville %s' % ville)
             date_exam = partner.mcm_session_id.date_exam
             # Changer format de date et la mettre en majuscule
             datesession = str(date_exam.strftime(new_format).upper())
@@ -316,7 +317,7 @@ class partner(models.Model):
                 # Si non si mot de passe récupéré on l'ajoute sur la plateforme avec le meme mot de passe
                 if (user.password360) and ("Repassage d'examen" not in product_name) and (company == '2'):
                     partner.password360 = user.password360
-                    print(user.password)
+                    _logger.info('if user product %s ' % product_name)
 
                     # Ajouter i-One to table user
                     data_user = '{"mail":"' + partner.email + '" , "password":"' + user.password360 + '" , "firstName":"' + partner.firstName + '", "lastName":"' + partner.lastName + '", "phone":"' + partner.phone + '", "sendCredentials":"true"}'
