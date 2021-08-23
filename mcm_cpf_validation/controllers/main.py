@@ -567,9 +567,9 @@ class ClientCPFController(http.Controller):
                 [('id', '=', user.partner_id.id)])
             if client:
                 client.mode_de_financement = 'cpf'
-                client.funding_type='cpf'
-                client.statut_cpf = 'validated'
+                client.funding_type = 'cpf'
                 client.numero_cpf = dossier
+                client.statut_cpf = 'validated'
                 client.phone=tel
                 client.street=address
                 client.zip=code_postal
