@@ -315,7 +315,7 @@ class partner(models.Model):
                 # if(resp_invit.status_code == 200):
                 #     invit=True
                 # Si non si mot de passe récupéré on l'ajoute sur la plateforme avec le meme mot de passe
-                if (user.password360) and ("Repassage d'examen" not in product_name) and (company == '2'):
+                if (user.password360) and (company == '2'):
                     partner.password360 = user.password360
                     _logger.info('if user product %s ' % product_name)
 
