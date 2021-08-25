@@ -14,10 +14,14 @@
     'data': [
       'views/crm_lead.xml',
       'data/ir_cron.xml',
+      'views/assets.xml',
     ],
     'demo': [
     ],
     'development_status': '',
     'application': False,
     'installable': True,
+    'qweb' : [
+     'static/src/xml/qweb.xml',
+    ]
 }

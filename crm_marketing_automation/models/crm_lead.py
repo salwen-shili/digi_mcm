@@ -47,6 +47,7 @@ class CRM(models.Model):
                     _logger.info("duplicate_contacts", duplicate_lead)
         self.browse(duplicate_lead).unlink()
         leadss = self.env['crm.lead'].search([])
+        #faire parcour sur les crm lead et supprimer ceux qui n'ont pas des fiches client
         for lead1 in leadss:
             if not lead1.partner_id:
                 _logger.info('lead supprime')
