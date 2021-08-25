@@ -14,11 +14,12 @@ class Sale(models.Model):
     def create(self, vals):
         print('drafttt', vals)
         partner_id = vals['partner_id']
-        partner = self.env['res.partner'].sudo().search([('id', '=', partner_id)],limit=1)
-        print('partner', partner)
-        if partner:
-            self.change_stage_lead("Prospection", partner)
-        res = super(Sale, self).create(vals)
+        if partner_id.company_id.id == 2:
+            partner = self.env['res.partner'].sudo().search([('id', '=', partner_id)],limit=1)
+            print('partner', partner)
+            if partner:
+                self.change_stage_lead("Prospection", partner)
+            res = super(Sale, self).create(vals)
 
         return res
     
@@ -26,7 +27,8 @@ class Sale(models.Model):
         record = super(Sale, self).write(vals)
         #Si le contrat a changé d'état 
         # on change le statut de l'apprenant dans le lead 
-        if 'state' in vals:
+        company = self.partner_id.company_id.id
+        if 'state' in vals and company == 2:
             if vals['state'] == 'sent':
                 partner = self.partner_id
                 print('sent', partner)

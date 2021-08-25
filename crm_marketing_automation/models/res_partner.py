@@ -22,13 +22,13 @@ class Partner(models.Model):
                 self.changestage("Annulé", self)
         if 'statut_cpf' in vals:
             # Si statut cpf non traité on classe l'apprenant dans le pipeline du crm  sous etat non traité
-            if vals['statut_cpf'] == 'untreated':
+            if vals['statut_cpf'] == 'untreated' and self.company_id.id == 2:
                 self.changestage("Non traité", self)
             # Si statut cpf validé on classe l'apprenant dans le pipeline du crm  sous etat validé
-            if vals['statut_cpf'] == 'validated':
+            if vals['statut_cpf'] == 'validated' and self.company_id.id == 2:
                 self.changestage("Validé", self)
             # Si statut cpf accepté on classe l'apprenant dans le pipeline du crm  sous statut  accepté
-            if vals['statut_cpf'] == 'accepted':
+            if vals['statut_cpf'] == 'accepted' and self.company_id.id == 2:
                 if not (self.session_ville_id) or not (self.date_examen_edof):
                     self.changestage("Choix date d'examen - CPF", self)
 
@@ -93,7 +93,8 @@ class Partner(models.Model):
     # Methode pour classer les apprenants dans crm lead comme non retracté
     # Vérifier tout les conditions nécessaires pour ce classement
     def change_stage_non_retracte(self):
-        partners = self.env['res.partner'].sudo().search([('statut', "=", "won")])
+        partners = self.env['res.partner'].sudo().search([('statut', "=", "won"),
+                                                          ('company_id.id','=',2)])
 
         for partner in partners:
             # Pour chaque apprenant extraire la session et la formation reservé pour passer l'examen
@@ -170,7 +171,7 @@ class Partner(models.Model):
                 year = date_cpf.year
                 month = date_cpf.month
                 if (year > 2020) and (month > 3):
-                    if not (partner.ville) or not (partner.date_examen_edof):
+                    if not (partner.session_ville_id.name_ville) or not (partner.date_examen_edof):
                         print('accepté')
                         self.changestage("Choix date d'examen - CPF", partner)
             # Recuperer le contrat pour vérifier son statut
