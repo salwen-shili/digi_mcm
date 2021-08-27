@@ -64,7 +64,9 @@ class Partner(models.Model):
                     'email_from': partner.email,
                     'type': "opportunity",
                     'stage_id': stage.id,
-                    'mode_de_financement':partner.mode_de_financement
+                    'mode_de_financement':partner.mode_de_financement,
+                    'module_id': partner.module_id,
+                    'mcm_session_id': partner.mcm_session_id,
                 })
 
             if not lead:
@@ -81,7 +83,9 @@ class Partner(models.Model):
                     'email_from': partner.email,
                     'type': "opportunity",
                     'stage_id': stage.id,
-                    'mode_de_financement': partner.mode_de_financement
+                    'mode_de_financement': partner.mode_de_financement,
+                    'module_id': partner.module_id,
+                    'mcm_session_id': partner.mcm_session_id,
                 })
                 partner = self.env['res.partner'].sudo().search([('id', '=', partner.id)])
                 if partner:

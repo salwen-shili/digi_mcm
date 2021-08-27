@@ -20,6 +20,9 @@ class CRM(models.Model):
         ('chpf', 'Région Hauts-de-France, CHPF'),
         ('aif', 'Pôle emploi, AIF'),
     ], string='Mode de financement', default="particulier")
+    module_id = fields.Many2one('mcmacademy.module')
+    mcm_session_id = fields.Many2one('mcmacademy.session')
+
 
     #Fonction qui va affecter chaque crm lead à sa fiche client et supprimer les duplications
     def crm_import_data(self):
@@ -33,7 +36,9 @@ class CRM(models.Model):
                     lead.sudo().write({
                         'partner_id': partner,
                         'name': partner.name,
-                        'mode_de_financement': 'cpf'
+                        'mode_de_financement': 'cpf',
+                        'module_id': partner.module_id,
+                        'mcm_session_id': partner.mcm_session_id,
                     })
                     print('lead', lead)
             if lead.num_dossier and lead.id not in duplicate_lead:

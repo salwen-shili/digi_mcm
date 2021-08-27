@@ -55,6 +55,8 @@ class ClientCPFController(http.Controller):
                     'stage_id': stage.id,
                     'description': 'Motif : %s ' % (motif),
                     'mode_de_financement': 'cpf',
+                    'module_id': partner.module_id,
+                    'mcm_session_id': partner.mcm_session_id,
 
                 })
             if not lead:
@@ -68,6 +70,8 @@ class ClientCPFController(http.Controller):
                     'stage_id': stage.id,
                     'description': 'Motif : %s ' % (motif),
                     'mode_de_financement': 'cpf',
+                    'module_id': partner.module_id,
+                    'mcm_session_id': partner.mcm_session_id,
 
                 })
                 lead.partner_id = partner.id
