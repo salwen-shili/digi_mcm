@@ -20,17 +20,21 @@ class Partner(models.Model):
         if 'statut' in vals:
             if vals['statut'] == 'canceled' and self.company_id.id == 2:
                 self.changestage("Annulé", self)
-        if 'statut_cpf' in vals:
+        if 'statut_cpf' in vals  and self.company_id.id == 2:
             # Si statut cpf non traité on classe l'apprenant dans le pipeline du crm  sous etat non traité
-            if vals['statut_cpf'] == 'untreated' and self.company_id.id == 2:
+            if vals['statut_cpf'] == 'untreated':
                 self.changestage("Non traité", self)
             # Si statut cpf validé on classe l'apprenant dans le pipeline du crm  sous etat validé
-            if vals['statut_cpf'] == 'validated' and self.company_id.id == 2:
+            if vals['statut_cpf'] == 'validated':
                 self.changestage("Validé", self)
             # Si statut cpf accepté on classe l'apprenant dans le pipeline du crm  sous statut  accepté
-            if vals['statut_cpf'] == 'accepted' and self.company_id.id == 2:
+            if vals['statut_cpf'] == 'accepted':
                 if not (self.session_ville_id) or not (self.date_examen_edof):
                     self.changestage("Choix date d'examen - CPF", self)
+            # Si statut cpf annulé on classe l'apprenant dans le pipeline du crm  sous statut  annulé
+            if vals['statut_cpf'] == 'canceled':
+                if not (self.session_ville_id) or not (self.date_examen_edof):
+                    self.changestage("Annulé", self)
 
         # else:
 
@@ -170,6 +174,8 @@ class Partner(models.Model):
             # if partner.statut_cpf and partner.statut_cpf == "validated":
             #     print('Validé')
             #     self.changestage("Validé", partner)
+            if partner.statut_cpf and (partner.statut_cpf == 'canceled' or partner.statut == 'canceled' ) :
+                self.changestage("Annulé", partner)
             if partner.statut_cpf and partner.date_cpf and partner.statut_cpf == "accepted":
                 date_cpf = partner.date_cpf
                 year = date_cpf.year
