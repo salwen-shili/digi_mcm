@@ -18,7 +18,7 @@
              </xpath>
             <xpath expr="//div[hasclass('oe_kanban_content')]" position="replace">
                 <div class="oe_kanban_color_0 oe_kanban_global_click o_kanban_record oe_kanban_card_muted"
-                     t-if="record.mode_de_financement.raw_value !='particulier'" style=" background-color: #FBEDC9;">
+                     t-if="record.mode_de_financement.raw_value!='particulier' and record.partner_id.raw_value != false" style=" background-color: #FBEDC9;">
                     <div class="oe_kanban_content">
                         <div>
                             <strong class="o_kanban_record_title" style="font-weight: bold; font-size:17px; color:#00A09D;">
@@ -31,7 +31,7 @@
                             </strong>
                         </div>
                          <div>
-                            <strong class="o_kanban_record_title">
+                            <strong class="o_kanban_record_title" style="font-weight: bold;">
                                 <field name="module_id"></field>
                             </strong>
                         </div>
@@ -57,11 +57,79 @@
                     </div>
                 </div>
                 <div class="oe_kanban_color_0 oe_kanban_global_click o_kanban_record oe_kanban_card_muted"
-                     t-if="record.mode_de_financement.raw_value=='particulier'" style="background-color: #D2E9E1;">
+                     t-if="record.mode_de_financement.raw_value=='particulier' and record.partner_id.raw_value != false" style="background-color: #D2E9E1;">
                     <div class="oe_kanban_content">
                         <div>
                             <strong class="o_kanban_record_title" style="font-weight: bold; font-size:17px; color:#00A09D;">
                                 <field name="name"/>
+                            </strong>
+                        </div>
+                        <div>
+                             <strong class="o_kanban_record_title" style="font-weight: bold;">
+                             <field name="mode_de_financement"></field>
+                            </strong>
+                        </div>
+                        <div>-</div>
+                        <div>
+                             <i class="fa fa-address-book-o" attrs="{'invisible': [('num_dossier', '=', '')]}">
+                            </i>
+                            <field name="num_dossier" attrs="{'invisible': [('num_dossier', '=', '')]}"/>
+                        </div>
+                        <div>
+                            <i   class="fa fa-phone" attrs="{'invisible': [('partner_address_phone', '=',False)]}"> </i>
+                            <field name="partner_address_phone" attrs="{'invisible': [('partner_address_phone', '=',False)]}"/>
+                        </div>
+                        <div>
+                            <i class="fa fa-envelope" attrs="{'invisible': [('email_from', '=',False)]}"> </i>
+                            <field name="email_from" attrs="{'invisible': [('email_from', '=',False)]}"/>
+                        </div>
+                        <div class="o_kanban_record_bottom">
+                         <div>
+                             <field name="description"  attrs="{'invisible': [('description', '=',False),('stage_id','!=','Non Traité')]}"/>
+                         </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="oe_kanban_color_0 oe_kanban_global_click o_kanban_record oe_kanban_card_muted"
+                     t-if="record.mode_de_financement.raw_value=='particulier' and record.partner_id.raw_value === false" style="background-color: #FFA873;">
+                    <div class="oe_kanban_content">
+                        <div>
+                            <strong class="o_kanban_record_title" style="font-weight: bold; font-size:17px;">
+                             <field name="name"/>  <field name="contact_name"></field>
+                            </strong>
+                        </div>
+                        <div>
+                             <strong class="o_kanban_record_title" style="font-weight: bold;">
+                             <field name="mode_de_financement"></field>
+                            </strong>
+                        </div>
+                        <div>-</div>
+                        <div>
+                             <i class="fa fa-address-book-o" attrs="{'invisible': [('num_dossier', '=', '')]}">
+                            </i>
+                            <field name="num_dossier" attrs="{'invisible': [('num_dossier', '=', '')]}"/>
+                        </div>
+                        <div>
+                            <i   class="fa fa-phone" attrs="{'invisible': [('partner_address_phone', '=',False)]}"> </i>
+                            <field name="partner_address_phone" attrs="{'invisible': [('partner_address_phone', '=',False)]}"/>
+                        </div>
+                        <div>
+                            <i class="fa fa-envelope" attrs="{'invisible': [('email_from', '=',False)]}"> </i>
+                            <field name="email_from" attrs="{'invisible': [('email_from', '=',False)]}"/>
+                        </div>
+                        <div class="o_kanban_record_bottom">
+                         <div>
+                             <field name="description"  attrs="{'invisible': [('description', '=',False),('stage_id','!=','Non Traité')]}"/>
+                         </div>
+                        </div>
+                    </div>
+                </div>
+    <div class="oe_kanban_color_0 oe_kanban_global_click o_kanban_record oe_kanban_card_muted"
+                     t-if="record.mode_de_financement.raw_value!='particulier' and record.partner_id.raw_value === false" style="background-color: #FFA873;">
+                    <div class="oe_kanban_content">
+                        <div>
+                            <strong class="o_kanban_record_title" style="font-weight: bold; font-size:17px;">
+                              <field name="name"/>  <field name="contact_name"></field>
                             </strong>
                         </div>
                         <div>
@@ -116,9 +184,12 @@
             <xpath expr="//group//group[2]/field[@name='partner_address_phone']" position="after">
                <field name="num_dossier"></field>
                 <field name="module_id"></field>
-                <field name="mcm_session_id"></field>
             </xpath>
              <xpath expr="//group//group[4]" position="replace">
+            </xpath>
+            <xpath expr="//field[@name='name']" position="replace">
+                  <field name="name" style="margin-right:10px;"></field>
+                         <field name="contact_name" attrs="{'invisible': [('partner_id', '!=', False)]}"></field>
             </xpath>
             <xpath expr="//field[@name='planned_revenue']" position="replace">
             </xpath>
