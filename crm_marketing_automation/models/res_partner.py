@@ -147,7 +147,8 @@ class Partner(models.Model):
                     if leads:
                         for lead in leads:
                             _logger.info('lead order %s' % lead.name)
-                            lead.sudo().unlink()
+                            # lead.sudo().unlink()
+                            self.changestage("Formation sur 360", partner)
                 elif (date_signature and (date_signature + timedelta(days=14)) <= (today)):
                     print('parnter à supprimer  date', partner.name, sale_order)
                     leads = self.env['crm.lead'].sudo().search([('partner_id', '=', partner.id)])
@@ -155,7 +156,8 @@ class Partner(models.Model):
                     if leads:
                         for lead in leads:
                             _logger.info('lead signature %s' % lead.name)
-                            lead.sudo().unlink()
+                            # lead.sudo().unlink()
+                            self.changestage("Formation sur 360", partner)
                 # Si non il est classé comme apprenant non retracté
                 else:
                     _logger.info('non retracté' )
@@ -177,10 +179,10 @@ class Partner(models.Model):
             if partner.statut_cpf and (partner.statut_cpf == 'canceled' or partner.statut == 'canceled' ) :
                 self.changestage("Annulé", partner)
             if partner.statut_cpf and partner.date_cpf and partner.statut_cpf == "accepted":
-                date_cpf = partner.date_cpf
-                year = date_cpf.year
-                month = date_cpf.month
-                if (year > 2020) and (month > 3):
+                date_creation = partner.create_date
+                year = date_creation.year
+                month = date_creation.month
+                if (year > 2020) and (month > 1):
                     if not (partner.session_ville_id.name_ville) or not (partner.date_examen_edof):
                         print('accepté')
                         self.changestage("Choix date d'examen - CPF", partner)
