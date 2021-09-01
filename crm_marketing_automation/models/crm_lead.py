@@ -26,21 +26,24 @@ class CRM(models.Model):
 
     #Fonction qui va affecter chaque crm lead à sa fiche client et supprimer les duplications
     def crm_import_data(self):
+        _logger.info('------------lead ')
         leads = self.env['crm.lead'].search([])
         duplicate_lead = []
+
         for lead in leads:
             num_dossier = lead.num_dossier
             partners = self.env['res.partner'].search([('company_id.id', '=', 2)])
             for partner in partners:
-                if (partner.numero_cpf) and (partner.numero_cpf == lead.num_dossier):
+                if partner.numero_cpf == lead.num_dossier:
                     lead.sudo().write({
                         'partner_id': partner,
                         'name': partner.name,
                         'mode_de_financement': 'cpf',
                         'module_id': partner.module_id,
                         'mcm_session_id': partner.mcm_session_id,
+
                     })
-                    print('lead', lead)
+                    _logger.info("lead %s" % lead.name)
             if lead.num_dossier and lead.id not in duplicate_lead:
                 duplicates = self.env['crm.lead'].search(
                     [('id', '!=', lead.id),
@@ -49,11 +52,10 @@ class CRM(models.Model):
                 for dup in duplicates:
                     print("dup", dup)
                     duplicate_lead.append(dup.id)
-                    _logger.info("duplicate_contacts", duplicate_lead)
+                    _logger.info("duplicate_contacts %s" % dup.name)
         self.browse(duplicate_lead).unlink()
-        leadss = self.env['crm.lead'].search([])
-        #faire parcour sur les crm lead et supprimer ceux qui n'ont pas des fiches client
-        # for lead1 in leadss:
-        #     if not lead1.partner_id:
-        #         _logger.info('lead supprime')
-        #         lead1.unlink()
+        new_leads = self.env['crm.lead'].search([])
+
+        # for new in new_leads:
+        #     if  not(new.partner_id):
+        #         new.sudo().unlink()
