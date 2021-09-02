@@ -10,7 +10,8 @@
                             <div class="row">
                                 <div class="col-12">
                                     <br>
-                                        <img src='/partner_exam/static/src/img/header.png' height="500" width="1000"/>
+                                        <img src='/partner_exam/static/src/img/1.png' height="150" width="950"/>
+                                        <img src='/partner_exam/static/src/img/header2.png' height="300" width="1000"/>
                                         <p>
                                             Vous êtes invité(e) à vous présenter à l'examen de capacité de transport de
                                             marchandises
@@ -97,10 +98,10 @@
                                             <b>Plan D'accès de centre d'examen</b>
                                             <br/>
                                             <center>
-                                            <bold>
-                                                <a class="alert-link" t-field="docs.mcm_session_id.lien"
-                                                   style="color:#0000FF;"/>
-                                            </bold>
+                                                <bold>
+                                                    <a class="alert-link" t-field="docs.mcm_session_id.lien"
+                                                       style="color:#0000FF;"/>
+                                                </bold>
                                             </center>
                                         </center>
                                     </br>
