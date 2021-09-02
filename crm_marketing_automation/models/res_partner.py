@@ -103,7 +103,7 @@ class Partner(models.Model):
     # Vérifier tout les conditions nécessaires pour ce classement
     def change_stage_non_retracte(self):
         partners = self.env['res.partner'].sudo().search([('statut', "=", "won"),
-                                                          ('company_id.id','=',2)])
+                                                          ('user_id.company_id.id','=',2)])
 
         for partner in partners:
             # Pour chaque apprenant extraire la session et la formation reservé pour passer l'examen
@@ -167,7 +167,7 @@ class Partner(models.Model):
     # Methode pour classer les apprenants existant déja sur odoo
 
     def change_stage_existant(self):
-        partners = self.env['res.partner'].sudo().search([('company_id.id', '=', 2)])
+        partners = self.env['res.partner'].sudo().search([('user_id.company_id.id', '=', 2)])
         for partner in partners:
             # if partner.statut == "indecis":
             # Vérifier le statut  pour classer client  dans crm lead

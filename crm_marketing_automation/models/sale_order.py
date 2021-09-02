@@ -17,7 +17,7 @@ class Sale(models.Model):
 
         partner = self.env['res.partner'].sudo().search([('id', '=', partner_id)],limit=1)
         print('partner', partner)
-        if partner and  partner.company_id.id == 2:
+        if partner and  partner.user_id.company_id.id == 2:
             self.change_stage_lead("Prospection", partner)
         res = super(Sale, self).create(vals)
 
@@ -27,7 +27,7 @@ class Sale(models.Model):
         record = super(Sale, self).write(vals)
         #Si le contrat a changé d'état 
         # on change le statut de l'apprenant dans le lead 
-        company = self.partner_id.company_id.id
+        company = self.partner_id.user_id.company_id.id
         if 'state' in vals and company == 2:
             if vals['state'] == 'sent':
                 partner = self.partner_id
