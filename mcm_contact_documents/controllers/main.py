@@ -21,6 +21,9 @@ import PIL
 from PIL import Image
 import os
 import glob
+from odoo.exceptions import UserError
+import mimetypes
+from odoo.tools.mimetypes import guess_mimetype
 
 
 logger = logging.getLogger(__name__)
@@ -171,7 +174,6 @@ class CustomerPortal(CustomerPortal):
                         'folder_id': int(folder_id),
                         'code_document': 'identity',
                         'confirmation': kw.get('confirm_identity'),
-                        'attachment_number': kw.get('identity_number'),
                         'type': 'binary',
                         'partner_id': False,
                         'owner_id': False}
@@ -182,6 +184,7 @@ class CustomerPortal(CustomerPortal):
                         document.sudo().write(
                             {'owner_id': uid, 'partner_id': uid.partner_id,
                              'name': document.name + ' ' + str(uid.name)})
+                         # ajout du champ mimetype  dans ir.attachement
                     if len(files) == 2:
                         datas_Carte_didentité_Recto = base64.encodebytes(files[0].read())
                         datas_Carte_didentité_Verso = base64.encodebytes(files[1].read())
@@ -190,14 +193,17 @@ class CustomerPortal(CustomerPortal):
                             'name': "Carte d'identité recto",
                             'type': 'binary',
                             'datas': datas_Carte_didentité_Recto,
+                            'mimetype': 'application/pdf, image/jpeg, image/pneg',
                             'res_model': 'documents.document',
                             'res_id': document.id
                         })
                         # Attachement Carte d'identité Verso
+                        # ajout du champ mimetype  dans ir.attachement
                         request.env['ir.attachment'].sudo().create({
                             'name': "Carte d'identité Verso",
                             'type': 'binary',
                             'datas': datas_Carte_didentité_Verso,
+                            'mimetype': 'application/pdf, image/jpeg, image/pneg',
                             'res_model': 'documents.document',
                             'res_id': document.id
                         })
@@ -213,12 +219,13 @@ class CustomerPortal(CustomerPortal):
                         })
                 if files2 and document:
                     datas_carte_didentite = base64.encodebytes(files2[0].read())
-
+                    # ajout du champ mimetype  dans ir.attachement
                     request.env['ir.attachment'].sudo().create({
                         'name': "Carte d'identité Verso",
                         'type': 'binary',
                         'datas': datas_carte_didentite,
                         'res_model': 'documents.document',
+                        'mimetype': 'application/pdf, image/jpeg, image/pneg',
                         'res_id': document.id
                     })
                 document.sudo().write({'name': "Carte d'identité Recto/Verso"})
@@ -257,6 +264,7 @@ class CustomerPortal(CustomerPortal):
                             'name': "Carte d'identité recto",
                             'type': 'binary',
                             'datas': datas_permis_Recto,
+                            'mimetype': 'application/pdf, image/jpeg, image/pneg',
                             'res_model': 'documents.document',
                             'res_id': document.id
                         })
@@ -265,6 +273,7 @@ class CustomerPortal(CustomerPortal):
                             'name': "Permis de conduire Verso",
                             'type': 'binary',
                             'datas': datas_permis_Verso,
+                            'mimetype': 'application/pdf, image/jpeg, image/pneg',
                             'res_model': 'documents.document',
                             'res_id': document.id
                         })
@@ -275,6 +284,7 @@ class CustomerPortal(CustomerPortal):
                             'name': "Permis de conduire Recto",
                             'type': 'binary',
                             'datas': datas_permis_recto,
+                            'mimetype': 'application/pdf, image/jpeg, image/pneg',
                             'res_model': 'documents.document',
                             'res_id': document.id
                         })
@@ -285,6 +295,7 @@ class CustomerPortal(CustomerPortal):
                         'name': "Carte d'identité Verso",
                         'type': 'binary',
                         'datas': datas_permis,
+                        'mimetype': 'application/pdf, image/jpeg, image/pneg',
                         'res_model': 'documents.document',
                         'res_id': document.id
                     })
@@ -293,6 +304,12 @@ class CustomerPortal(CustomerPortal):
                 logger.exception("Fail to upload document Carte d'identité ")
         except:
             logger.exception("Fail to upload documents")
+        # suppression des documents qui ont mimetype de type octet_stream
+        obj_attachment = request.env['ir.attachment']
+        for record in obj_attachment:
+                if record.mimetype == 'application/octet-stream':
+                    raise UserError('Format possible Pdf , jpg , png')
+                record.unlink()
         partner = http.request.env.user.partner_id
         return http.request.render('mcm_contact_documents.success_documents', {'partner': partner})
 # Upload documents digimoov
@@ -321,6 +338,13 @@ class CustomerPortal(CustomerPortal):
 
         files_identity = request.httprequest.files.getlist('identity')
         files_identity_verso = request.httprequest.files.getlist('identity2')
+
+        # file_name = files_identity.name
+        # mimetype = None
+        # if mimetype is None and self.file_name:
+        #     mimetype = mimetypes.guess_type(self.file_name)[0]
+        #     if not mimetype == 'pdf' or mimetype == 'jpg' or mimetype == 'png':
+        #         raise UserError('Allowed Format Pdf , jpg , png')
         if (len(files_identity) > 2 ):
             name = http.request.env.user.name
             email = http.request.env.user.email
@@ -331,7 +355,7 @@ class CustomerPortal(CustomerPortal):
             try:
                 files = request.httprequest.files.getlist('identity')
                 files2 = request.httprequest.files.getlist('identity2')
-                if files:
+                if files :
                     vals_list = []
                     # charge le modele de la carte d'identité [un seul modele pour deux attachements]
                     # on a pris les precaution au cas ou un client télécharge le recto et le verso avec le meme upload file
@@ -341,7 +365,6 @@ class CustomerPortal(CustomerPortal):
                         'folder_id': int(folder_id),
                         'code_document': 'identity',
                         'confirmation': kw.get('confirm_identity'),
-                        'attachment_number': kw.get('identity_number'),
                         'type': 'binary',
                         'partner_id': False,
                         'owner_id': False}
@@ -353,6 +376,7 @@ class CustomerPortal(CustomerPortal):
                             {'owner_id': uid, 'partner_id': uid.partner_id,
                              'name': document.name + ' ' + str(uid.name)})
                     # En cas ou le candiadat charge deux piéces_jointe
+                    #ajout du champ mimetype dans ir.attachement
                     if len(files) == 2:
                         datas_Carte_didentité_Recto = base64.encodebytes(files[0].read())
                         datas_Carte_didentité_Verso = base64.encodebytes(files[1].read())
@@ -361,6 +385,7 @@ class CustomerPortal(CustomerPortal):
                             'name': "Carte d'identité recto",
                             'type': 'binary',
                             'datas': datas_Carte_didentité_Recto,
+                            'mimetype': 'application/pdf, image/jpeg, image/pneg',
                             'res_model': 'documents.document',
                             'res_id': document.id
                         })
@@ -369,26 +394,31 @@ class CustomerPortal(CustomerPortal):
                             'name': "Carte d'identité Verso",
                             'type': 'binary',
                             'datas': datas_Carte_didentité_Verso,
+                            'mimetype':'application/pdf, image/jpeg, image/pneg',
                             'res_model': 'documents.document',
                             'res_id': document.id
                         })
                         # Attachement Carte d'identité recto
+                        # ajout du champ mimetype dans ir.attachement
                     elif len(files) == 1:
                         datas_carte_didentiterecto = base64.encodebytes(files[0].read())
                         request.env['ir.attachment'].sudo().create({
                             'name': "Carte d'identité recto",
                             'type': 'binary',
                             'datas': datas_carte_didentiterecto,
+                            'mimetype': 'application/pdf, image/jpeg, image/pneg',
                             'res_model': 'documents.document',
                             'res_id': document.id
                         })
-                if files2 and document:
+                        # ajout du champ mimetype dans ir.attachement
+                if files2 and document :
                     datas_carte_didentite = base64.encodebytes(files2[0].read())
 
                     request.env['ir.attachment'].sudo().create({
                         'name': "Carte d'identité Verso",
                         'type': 'binary',
                         'datas': datas_carte_didentite,
+                        'mimetype': 'application/pdf, image/jpeg, image/pneg',
                         'res_model': 'documents.document',
                         'res_id': document.id
                     })
@@ -396,8 +426,13 @@ class CustomerPortal(CustomerPortal):
             except Exception as e:
                 logger.exception("Fail to upload document Carte d'identité ")
         except Exception as e:
-            logger.exception("Fail to upload document Carte d'identité ")
+            logger.exception("Fail to upload document Carte d'identité")
         partner = http.request.env.user.partner_id
+        # suppression des documents qui ont mimetype de type octet_stream
+        obj_attachment = request.env['ir.attachment']
+        for record in obj_attachment:
+            if record.mimetype == 'application/octet-stream':
+                raise UserError('Format possible Pdf , jpg , png')
         return http.request.render('mcm_contact_documents.success_documents', {'partner': partner})
 
     @http.route('/upload_my_files1', type="http", auth="user", methods=['POST'], website=True, csrf=False)
@@ -502,7 +537,7 @@ class CustomerPortal(CustomerPortal):
                 }
                 vals_list.append(vals)
                 document_attestation = request.env['documents.document'].sudo().create(vals_list)
-                if document_attestation:
+                if document_attestation :
                     # Ajouter le partner_id et le owner_id
                     uid = document_attestation.create_uid
                     document_attestation.sudo().write(
@@ -557,7 +592,7 @@ class CustomerPortal(CustomerPortal):
         partner_id = http.request.env.user.partner_id
         print(partner_id.module_id.name)
         return http.request.render('mcm_contact_documents.mcm_contact_documents_new_documents', {
-            'email': email, 'name': name, 'partner_id':partner_id ,'error_identity':'','error_permis':'','error_identity_number':'','error_permis_number':'','error_domicile':'' })
+            'email': email, 'name': name, 'partner_id':partner_id ,'error_identity':'','error_permis':'','error_permis_number':'','error_domicile':'' })
 
 
     #Nouvelle page qui ressemble à la page précédente
@@ -567,8 +602,7 @@ class CustomerPortal(CustomerPortal):
         email = http.request.env.user.email
         partner_id = http.request.env.user.partner_id
         return http.request.render('mcm_contact_documents.mcm_contact_document_charger_mes_documents1', {
-            'email': email, 'name': name, 'partner_id': partner_id, 'error_identity': '', 'error_permis': '',
-            'error_identity_number': '', 'error_permis_number': '', 'error_domicile': ''})
+            'email': email, 'name': name, 'partner_id': partner_id, 'error_identity': '', 'error_permis': '', 'error_permis_number': '', 'error_domicile': ''})
 
     @http.route('/charger_mes_documents', type="http", auth="user", website=True)
     def create_documents_digimoov(self, **kw):
@@ -577,12 +611,10 @@ class CustomerPortal(CustomerPortal):
         partner_id = http.request.env.user.partner_id
         if request.website.id==2: # id 2 of website in database means website DIGIMOOV
             return http.request.render('mcm_contact_documents.mcm_contact_document_charger_mes_documents', {
-                'email': email, 'name': name, 'partner_id': partner_id, 'error_identity': '', 'error_permis': '',
-                'error_identity_number': '', 'error_permis_number': '', 'error_domicile': ''})
+                'email': email, 'name': name, 'partner_id': partner_id, 'error_identity': '', 'error_permis': '', 'error_permis_number': '', 'error_domicile': ''})
         elif request.website.id==1: # id 1 of website in database means website MCM ACADEMY
             return http.request.render('mcm_contact_documents.mcm_contact_documents_charger_mes_documents_mcm', {
-                'email': email, 'name': name, 'partner_id': partner_id, 'error_identity': '', 'error_permis': '',
-                'error_identity_number': '', 'error_permis_number': '', 'error_domicile': ''})
+                'email': email, 'name': name, 'partner_id': partner_id, 'error_identity': '', 'error_permis': '', 'error_permis_number': '', 'error_domicile': ''})
 
     def _document_get_page_view_values(self, document, access_token, **kwargs):
         values = {

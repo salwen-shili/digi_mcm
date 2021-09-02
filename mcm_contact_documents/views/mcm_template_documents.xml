@@ -6,6 +6,9 @@
                 <t t-set="additional_title">Document</t>
                 <div id="wrap" class="oe_structure oe_empt">
                     <div class="container">
+                        <div class="oe_blockui_spin" id ="spin_load_form" style="height: 6px">
+                                        <img src="/mcm_contact_documents/static/img/spin.jpg" style="animation: fa-spin 5s infinite steps(12);"  alt="Chargement..."/>
+                        </div>
                         <div class="row">
                             <div class="row m-0">
                                 <div class="col-lg-6">
@@ -64,17 +67,17 @@
                                                     </label>
                                                 </div>
                                             </div>
-                                            <div class="form-group row form-field o_website_form_required">
-                                                <div class="col-lg-9 col-md-12 col-sm-12">
-                                                    <label class="col-form-label" for="number">N°Pièce d'identité
-                                                    </label>
-                                                </div>
-                                                <div class="col-lg-9 col-md-12 col-sm-12">
-                                                    <input type="number" class="form-control o_website_form_input"
-                                                           name="identity_number"
-                                                           required="0"/>
-                                                </div>
-                                            </div>
+<!--                                            <div class="form-group row form-field o_website_form_required">-->
+<!--                                                <div class="col-lg-9 col-md-12 col-sm-12">-->
+<!--                                                    <label class="col-form-label" for="number">N°Pièce d'identité-->
+<!--                                                    </label>-->
+<!--                                                </div>-->
+<!--                                                <div class="col-lg-9 col-md-12 col-sm-12">-->
+<!--                                                    <input type="number" class="form-control o_website_form_input"-->
+<!--                                                           name="identity_number"-->
+<!--                                                           required="0"/>-->
+<!--                                                </div>-->
+<!--                                            </div>-->
                                             <div class="form-group row form-field o_website_form_required">
                                                 <div class="col-lg-9 col-md-9">
                                                     <label class="col-form-label" for="identity" style="font-weight:normal" >Charger le permis de
@@ -123,6 +126,33 @@
                                                 </div>
                                             </div>
                                         </form>
+                                        <!--Script spin load-->
+                                        <script>
+                                            document.addEventListener ("DOMContentLoaded", function()
+                                             {
+                                             document.getElementById('spin_load_form').style.display= "none"; });
+                                             function spin_on_load()
+                                            {
+                                                var carte_recto_lenth_files = document.getElementById("identity").files.length;
+                                                var carte_verso_lenth_files = document.getElementById("identity2").files.length;
+                                                var permis_lenth_files = document.getElementById("permis").files.length;
+                                                var permis_verso_lenth_files = document.getElementById("permis1").files.length;
+                                                if (carte_recto_lenth_files >= 1)
+                                                {
+                                                  if (carte_verso_lenth_files >= 1)
+                                                   {
+                                                     if (permis_lenth_files >= 1)
+                                                        {
+                                                        if (permis_verso_lenth_files >= 1)
+                                                          {
+                                                            document.getElementById('spin_load_form').style.display = "block";
+                                                          }
+                                                        }
+                                                   }
+                                                }
+                                            }
+                                            document.getElementById("submit_documents").onclick = function() {spin_on_load()};
+                                        </script>
 
                                     </div>
                                 </div>

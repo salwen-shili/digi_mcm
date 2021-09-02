@@ -5,6 +5,9 @@
             <t t-set="additional_title">Charger mes documents| Digimoov</t>
             <div id="wrap" class="oe_structure oe_empt">
                 <div class="container">
+                    <div class="oe_blockui_spin" id ="spin_load_form" style="height: 6px">
+                             <img src="/mcm_contact_documents/static/img/spin.jpg" style="animation: fa-spin 5s infinite steps(12);"  alt="Chargement..."/>
+                    </div>
                     <div class="row">
                         <div class="row m-0">
                             <div class="col-lg-6">
@@ -34,7 +37,8 @@
                                                 </label>
                                             </div>
                                             <div class="col-lg-9 col-md-12 col-sm-12">
-                                                <input type="file" name="identity" required="1" id="identity"
+                                                <field name="carte_identiterecto" invisible="0" />
+                                                <input type="file" name="identity" required="1" id="identity" filename="carte_identiterecto"
                                                        placeholder="Veuillez Charger 1 fichier Recto verso ou 2 fichiers "
                                                        class="form-control o_website_form_input" string="format documents supportés: *jpg,*.png,*.pdf"
                                                        accept="image/*,application/pdf" help ="format documents supportés: *jpg,*.png,*.pdf"/>
@@ -46,7 +50,8 @@
                                                 </label>
                                             </div>
                                             <div class="col-lg-9 col-md-12 col-sm-12">
-                                                <input type="file" name="identity2" required="1" id="identity2"
+                                                <field name="carte_identiteverso" invisible="1" />
+                                                <input type="file" name="identity2" required="1" id="identity2" filename="carte_identiteverso"
                                                        placeholder="Veuillez Charger 1 fichier Recto verso ou 2 fichiers "
                                                        class="form-control o_website_form_input" string="format documents supportés: *jpg,*.png,*.pdf" help ='format documents supportés: *jpg,*.png,*.pdf'
                                                        accept="image/*,application/pdf"/>
@@ -62,19 +67,19 @@
                                                 </label>
                                             </div>
                                         </div>
-                                        <div class="form-group row form-field o_website_form_required">
-                                            <div class="col-lg-9 col-md-12 col-sm-12">
-                                                <label class="col-form-label" for="number">N°Pièce d'identité</label>
-                                            </div>
-                                            <div class="col-lg-9 col-md-12 col-sm-12">
-                                                <input type="text" class="form-control o_website_form_input"
-                                                       name="identity_number"
-                                                       required="0"/>
-                                            </div>
-                                        </div>
+<!--                                        <div class="form-group row form-field o_website_form_required">-->
+<!--                                            <div class="col-lg-9 col-md-12 col-sm-12">-->
+<!--                                                <label class="col-form-label" for="number">N°Pièce d'identité</label>-->
+<!--                                            </div>-->
+<!--                                            <div class="col-lg-9 col-md-12 col-sm-12">-->
+<!--                                                <input type="text" class="form-control o_website_form_input"-->
+<!--                                                       name="identity_number"-->
+<!--                                                       required="0"/>-->
+<!--                                            </div>-->
+<!--                                        </div>-->
                                         <div class="form-group row">
                                             <div class="col-md-8 col-lg-7">
-                                                <button type="submit" class="btn btn-primary centered-content"
+                                                <button type="submit" class="btn btn-primary centered-content" onclick="spin_on_load()"
                                                         id="submit_documents"
                                                         style="width: 100% !important;">
                                                     Envoyer
@@ -83,6 +88,25 @@
                                                 <span id="o_website_form_result"></span>
                                             </div>
                                         </div>
+                                        <!--Script spin load-->
+                                        <script>
+                                            document.addEventListener ("DOMContentLoaded", function()
+                                             {
+                                             document.getElementById('spin_load_form').style.display= "none"; });
+                                             function spin_on_load() {
+                                                var carte_recto_lenth_files = document.getElementById("identity").files.length;
+                                                var carte_verso_lenth_files = document.getElementById("identity2").files.length;
+                                                if (carte_recto_lenth_files >= 1)
+                                                {
+                                                  if (carte_verso_lenth_files >= 1)
+                                                  {
+                                                    document.getElementById('spin_load_form').style.display = "block";
+                                                  }
+                                                 }
+                                                }
+                                            document.getElementById("submit_documents").onclick = function() {spin_on_load()};
+
+                                        </script>
                                     </form>
                                 </div>
                             </div>
