@@ -69,8 +69,9 @@ class Partner(models.Model):
                     'type': "opportunity",
                     'stage_id': stage.id,
                     'mode_de_financement':partner.mode_de_financement,
-                    'module_id': partner.module_id,
-                    'mcm_session_id': partner.mcm_session_id,
+                    'module_id': partner.module_id if partner.module_id else False,
+                    'mcm_session_id': partner.mcm_session_id if partner.mcm_session_id else False,
+
                 })
 
             if not lead:
@@ -88,15 +89,15 @@ class Partner(models.Model):
                     'type': "opportunity",
                     'stage_id': stage.id,
                     'mode_de_financement': partner.mode_de_financement,
-                    'module_id': partner.module_id,
-                    'mcm_session_id': partner.mcm_session_id,
+
                 })
                 partner = self.env['res.partner'].sudo().search([('id', '=', partner.id)])
                 if partner:
                     print("parnterrrr", lead.partner_id)
                     lead.partner_id = partner
                     lead.num_dossier = num_dossier
-
+                    lead.mcm_session_id = partner.mcm_session_id if partner.mcm_session_id else False
+                    lead.module_id = partner.module_id if partner.module_id else False
     
     # Methode pour classer les apprenants dans crm lead comme non retracté
     # Vérifier tout les conditions nécessaires pour ce classement
@@ -182,8 +183,8 @@ class Partner(models.Model):
                 date_creation = partner.create_date
                 year = date_creation.year
                 month = date_creation.month
-                if (year > 2020) and (month > 1):
-                    if not (partner.session_ville_id.name_ville) or not (partner.date_examen_edof):
+                if (year > 2020) and (month > 1) and not(partner.mcm_session_id) and not(partner.module_id):
+                    if not (partner.session_ville_id) or not (partner.date_examen_edof):
                         print('accepté')
                         self.changestage("Choix date d'examen - CPF", partner)
             # Recuperer le contrat pour vérifier son statut

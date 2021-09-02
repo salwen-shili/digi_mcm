@@ -69,8 +69,9 @@ class Sale(models.Model):
                         'type': "opportunity",
                         'stage_id': stage.id,
                         'mode_de_financement':partner.mode_de_financement,
-                        'module_id': partner.module_id,
-                        'mcm_session_id': partner.mcm_session_id,
+                        'module_id': partner.module_id if partner.module_id else False,
+                        'mcm_session_id': partner.mcm_session_id if partner.mcm_session_id else False,
+
                     })
 
                 if not lead:
@@ -88,8 +89,9 @@ class Sale(models.Model):
                         'type': "opportunity",
                         'stage_id': stage.id,
                         'mode_de_financement':partner.mode_de_financement,
-                        'module_id': partner.module_id,
-                        'mcm_session_id': partner.mcm_session_id,
+
                     })
                     print('leaddddd', partner)
                     lead.partner_id = partner
+                    lead.mcm_session_id = partner.mcm_session_id if partner.mcm_session_id else False
+                    lead.module_id = partner.module_id if partner.module_id else False
