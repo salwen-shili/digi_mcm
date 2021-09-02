@@ -179,40 +179,41 @@ class Partner(models.Model):
             #     self.changestage("Validé", partner)
             if (partner.statut_cpf == 'canceled') or ((partner.statut_cpf) and(partner.statut == 'canceled')) :
                 self.changestage("Annulé", partner)
-            if partner.statut_cpf and partner.date_cpf and partner.statut_cpf == "accepted":
-                date_creation = partner.create_date
-                year = date_creation.year
-                month = date_creation.month
-                if (year > 2020) and (month > 1) and not(partner.mcm_session_id) and not(partner.module_id):
-                    if not (partner.session_ville_id) or not (partner.date_examen_edof):
-                        print('accepté')
-                        self.changestage("Choix date d'examen - CPF", partner)
-            # Recuperer le contrat pour vérifier son statut
-            sale_order = self.env['sale.order'].sudo().search([('partner_id', '=', partner.id),
-                                                               ('session_id', '=', partner.mcm_session_id.id),
-                                                               ('module_id', '=', partner.module_id.id),
-                                                               ('session_id.date_exam', '>', date.today()),
-                                                               ], limit=1, order="id desc")
-            # Récupérer les documents
-            documents = self.env['documents.document'].sudo().search([('partner_id', '=', partner.id)])
-            # Classer client dans crm lead selon le statut de contrat
-            if sale_order:
-                if sale_order.state == "sent":
-                    print('contrat non signé')
-                    self.changestage("Contrat non Signé", partner)
-                if sale_order.state == "sale" and not (documents):
-                    dateexam = str(sale_order.session_id.date_exam)
-                    _logger.info('contrat signé %s', dateexam)
-                    self.changestage("Contrat Signé", partner)
+            if (partner.statut != 'canceled'):
+                if partner.statut_cpf and partner.date_cpf and partner.statut_cpf == "accepted":
+                    date_creation = partner.create_date
+                    year = date_creation.year
+                    month = date_creation.month
+                    if (year > 2020) and (month > 1) and not(partner.mcm_session_id) and not(partner.module_id):
+                        if not (partner.session_ville_id) or not (partner.date_examen_edof):
+                            print('accepté')
+                            self.changestage("Choix date d'examen - CPF", partner)
+                # Recuperer le contrat pour vérifier son statut
+                sale_order = self.env['sale.order'].sudo().search([('partner_id', '=', partner.id),
+                                                                   ('session_id', '=', partner.mcm_session_id.id),
+                                                                   ('module_id', '=', partner.module_id.id),
+                                                                   ('session_id.date_exam', '>', date.today()),
+                                                                   ], limit=1, order="id desc")
+                # Récupérer les documents
+                documents = self.env['documents.document'].sudo().search([('partner_id', '=', partner.id)])
+                # Classer client dans crm lead selon le statut de contrat
+                if sale_order:
+                    if sale_order.state == "sent":
+                        print('contrat non signé')
+                        self.changestage("Contrat non Signé", partner)
+                    if sale_order.state == "sale" and not (documents):
+                        dateexam = str(sale_order.session_id.date_exam)
+                        _logger.info('contrat signé %s', dateexam)
+                        self.changestage("Contrat Signé", partner)
 
-                    # vérifier l'existance des document en etat waiting
-                    # pour classer sous document dans crm lead
-                if documents and sale_order.state == "sale":
-                    waiting = False
-                    for document in documents:
-                        if (document.state == "waiting"):
-                            _logger.info("document waiting")
-                            waiting = True
-                    if waiting:
-                        self.changestage("Document non Validé", partner)
+                        # vérifier l'existance des document en etat waiting
+                        # pour classer sous document dans crm lead
+                    if documents and sale_order.state == "sale":
+                        waiting = False
+                        for document in documents:
+                            if (document.state == "waiting"):
+                                _logger.info("document waiting")
+                                waiting = True
+                        if waiting:
+                            self.changestage("Document non Validé", partner)
 
