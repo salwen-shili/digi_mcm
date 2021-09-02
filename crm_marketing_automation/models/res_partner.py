@@ -177,7 +177,7 @@ class Partner(models.Model):
             # if partner.statut_cpf and partner.statut_cpf == "validated":
             #     print('Validé')
             #     self.changestage("Validé", partner)
-            if partner.statut_cpf and (partner.statut_cpf == 'canceled' or partner.statut == 'canceled' ) :
+            if (partner.statut_cpf == 'canceled') or ((partner.statut_cpf) and(partner.statut == 'canceled')) :
                 self.changestage("Annulé", partner)
             if partner.statut_cpf and partner.date_cpf and partner.statut_cpf == "accepted":
                 date_creation = partner.create_date
