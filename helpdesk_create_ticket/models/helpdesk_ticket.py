@@ -60,7 +60,7 @@ class HelpdeskTicket(models.Model):
             'uipath@discoursemail.com','info@dkv-euroservice.com','serviceclient@enjoy.eset.com','noreply@e.fiverr.com','hello@emails.paloaltonetworks.com',
             'francois.g@eset-nod32.fr','support@nordvpn.com','noreply@jotform.com','newsletter','communication@modedigital.online','support@ovh.com','do-not-reply@market.envato.com','cody@codeur.com','svein-tore.griff@joubel.com',
             'h5p','security@mail.instagram.com','notification@facebookmail.com','advertise-noreply@support.facebook.com','google','ne_pas_repondre_Moncompteformation','digimoov.fr','mcm-academy.fr','slack.com',
-            'noreply-platform@uipath.com','digidom.pro','ovhcloud.com','codepen.io','intercom.io','optimonk.com','yooda.com','facebookmail.com','junto.fr','sjalal@mcm-academy.fr'
+            'noreply-platform@uipath.com','digidom.pro','ovhcloud.com','codepen.io','intercom.io','optimonk.com','yooda.com','facebookmail.com','junto.fr','sjalal@mcm-academy.fr','hello@edusign.fr'
         ]
         # list des terms  rejetés ( supprimer les tickets qui ont l'un de ces terms comme objet )
         rejected_subject = [
