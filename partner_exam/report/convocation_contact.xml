@@ -79,29 +79,22 @@
                                         <br></br>
                                         <center>
                                             <strong>Pour vous préparer, nous vous invitons à consulter le guide de
-                                                l'examen en cliquant sur
-                                                le
-                                                lien
-                                                ci-dessous :
+                                                l'examen en cliquant
                                             </strong>
-                                        </center>
-                                        <br></br>
-                                        <center>
                                             <bold>
                                                 <a class="alert-link"
                                                    href="https://www.digimoov.fr/examen-capacite-transport-marchandises">
-                                                    https://www.digimoov.fr/examen-capacite-transport-marchandises
+                                                    ici.
                                                 </a>
                                             </bold>
-                                            <br/>
-                                            <br/>
-                                            <b>Plan D'accès de centre d'examen</b>
-                                            <br/>
+                                        </center>
+                                        <br></br>
+                                        <center>
                                             <center>
-                                                <bold>
-                                                    <a class="alert-link" t-field="docs.mcm_session_id.lien"
-                                                       style="color:#0000FF;"/>
-                                                </bold>
+                                            <bold>
+                                                <a t-attf-href="docs.mcm_session_id.lien"><b>Cliquer ici</b></a>
+                                                <b>pour consulter le plan D'accès au centre d'examen</b>
+                                            </bold>
                                             </center>
                                         </center>
                                     </br>
