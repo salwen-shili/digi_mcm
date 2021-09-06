@@ -207,7 +207,9 @@ class partner(models.Model):
     # Ajouter i-One sur 360learning après 14jours
     # si Délai de rétractation n'est pas coché
     def Ajouter_iOne_auto(self):
-        for partner in self.env['res.partner'].sudo().search([('statut', "=", "won")]):
+        for partner in self.env['res.partner'].sudo().search([('statut', "=", "won"),
+                                                              ('statut_cpf',"!=", "canceled")
+                                                              ]):
             # Pour chaque apprenant extraire le delai de retractation
             product_name = partner.module_id.product_id.name
             sale_order = self.env['sale.order'].sudo().search([('partner_id', '=', partner.id),
