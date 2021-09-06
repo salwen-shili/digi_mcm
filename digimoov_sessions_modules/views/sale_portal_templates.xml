@@ -182,7 +182,7 @@
                                         </span>
                                         <span style="font-size:12px;">Centre d'examen de</span>
                                         <span style="font-size:12px"
-                                              t-field="sale_order.module_id.ville"/>
+                                              t-field="sale_order.module_id.session_ville_id.name_ville"/>
                                         <span style="font-size:12px;">le</span>
                                         <span style="font-size:12px"
                                               t-field="sale_order.module_id.date_exam"/>
