@@ -196,6 +196,7 @@ class Partner(models.Model):
                     # chercher l'apprenant sur odoo et l
                     print('partner', part.name, len(users))
                     self.changestage("Formation sur 360", part)
+
         partners = self.env['res.partner'].sudo().search([('company_id.id', '=', 2)])
         for partner in partners:
             if partner.statut_cpf and (partner.statut_cpf == 'canceled' or partner.statut == 'canceled'):
@@ -205,14 +206,7 @@ class Partner(models.Model):
                 year = date_creation.year
                 month = date_creation.month
                 if (year > 2020) and (month > 1):
-                    if partner.statut == "indecis":
-                        # Vérifier le statut  pour classer client  dans crm lead
-                        if partner.statut_cpf == "untreated":
-                            print('non traité')
-                            self.changestage("Non traité", partner)
-                        if partner.statut_cpf == "validated":
-                            print('Validé')
-                            self.changestage("Validé", partner)
+
                     if partner.statut_cpf == "canceled":
                         self.changestage("Annulé", partner)
                     if partner.statut_cpf == "bill":
