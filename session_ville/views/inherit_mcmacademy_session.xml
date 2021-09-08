@@ -10,7 +10,7 @@
                 <field name="session_ville_id" options="{'no_create': True, 'no_create_edit':True}" string="Ville"/>
                 <field name="session_adresse_examen" string="Adresse"/>
                 <field name="phone" string="N° téléphone"/>
-                <field name="email"/>
+                <field name="email" string="Email"/>
                 <field name="lien" widget="url" string="Lien"/>
             </xpath>
         </field>
