@@ -18,7 +18,7 @@
                 </div>
             </xpath>
             <xpath expr="//form/div/group/group[@name='dates']" position="inside">
-                <field name="adresse_examen" attrs="{'required':[('company_id', '=', 2)],'invisible':[('company_id','!=', 2)]}"/>
+                <field name="adresse_examen" attrs="{'required':['invisible':[('company_id','!=', 2)]}"/>
             </xpath>
             <xpath expr="//form/div/group/group[@name='dates']" position="after">
                 <group name="horaire" string="Horaire" attrs="{'invisible':[('company_id','!=', 2)]}">
