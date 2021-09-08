@@ -11,7 +11,7 @@
                 <field name="session_adresse_examen" string="Adresse"/>
                 <field name="phone" string="N° téléphone"/>
                 <field name="email" string="Email"/>
-                <field name="lien" widget="url"/>
+                <field name="lien" widget="url" string="Lien"/>
             </xpath>
         </field>
     </record>
