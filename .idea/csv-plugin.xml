@@ -17,6 +17,27 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="/partner_exam/report/convocation_contact.xml">
+          <value>
+            <Attribute>
+              <option name="separator" value=":" />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="/session_ville/views/adresse_centre_examen.xml">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="/session_ville/views/inherit_mcmacademy_session.xml">
+          <value>
+            <Attribute>
+              <option name="separator" value=":" />
+            </Attribute>
+          </value>
+        </entry>
       </map>
     </option>
   </component>
