@@ -211,8 +211,8 @@ class Partner(models.Model):
                         self.changestage("Annulé", partner)
                     if partner.statut_cpf == "bill":
                         self.changestage("Facturé", partner)
-                    if partner.statut_cpf == "in_training":
-                        self.changestage("En formation", partner)
+                    # if partner.statut_cpf == "in_training":
+                    #     self.changestage("En formation", partner)
                     if partner.statut_cpf == "out_training":
                         self.changestage("Sortie de formation", partner)
                     if partner.statut_cpf == "service_declared":
