@@ -5,9 +5,6 @@
             <t t-set="additional_title">Charger mes documents| Digimoov</t>
             <div id="wrap" class="oe_structure oe_empt">
                 <div class="container">
-                    <div class="oe_blockui_spin" id ="spin_load_form" style="height: 6px">
-                             <img src="/mcm_contact_documents/static/img/spin.jpg" style="animation: fa-spin 5s infinite steps(12);"  alt="Chargement..."/>
-                    </div>
                     <div class="row">
                         <div class="row m-0">
                             <div class="col-lg-6">
@@ -21,8 +18,13 @@
                                 <div class="contact-box ">
                                     <center>
                                         <span style="font-size: 28px;">CHARGER MES DOCUMENTS</span>
+                                        <div class="oe_blockui_spin" id ="spin_load_form" position="center"  style="height: 120px">
+                                             <p align="center" >
+                                                 <img src="/mcm_contact_documents/static/img/spinn.jpg" style="animation: fa-spin 5s infinite steps(12); height: 50px "  alt="Chargement..."/>
+                                                 <p style="height: 6px" position = "right"> Chargement ...</p>
+                                             </p>
+                                        </div>
                                     </center>
-                                    <br/>
                                     <form action="/upload_my_files" method="post" id="digimoov_my_documents_form"
                                           class="s_website_form container-fluid mt32" enctype="multipart/form-data"
                                           data-model_name="partner.document"

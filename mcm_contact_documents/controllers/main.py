@@ -131,7 +131,7 @@ class CustomerPortal(CustomerPortal):
         })
         return request.render("mcm_contact_documents.portal_my_documents", values)
 # upload documents MCM-Academy
-    # Retour en arriere pour la version précédente pour les mimetype à cause d un problème service clientèle le 06/09/2021
+    # Retour en arrière pour la version précédente pour les mimetype à cause d un problème service clientèle le 06/09/2021
     @http.route(['/submitted/document'], type="http", auth="user", methods=['POST'], website=True, csrf=False)
     def submit_documents(self, **kw):
         partner_id = http.request.env.user.partner_id
@@ -302,7 +302,7 @@ class CustomerPortal(CustomerPortal):
         obj_attachment = request.env['ir.attachment']
         return http.request.render('mcm_contact_documents.success_documents', {'partner': partner})
 # Upload documents digimoov
-    # Retour en arriere pour la version précédente pour les mimetype à cause d un problème service clientèle le 06/09/2021
+    # Retour en arrière pour la version précédente pour les mimetype à cause d un problème service clientèle le 06/09/2021
     @http.route('/upload_my_files', type="http", auth="user", methods=['POST'], website=True, csrf=False)
     def upload_my_files(self, **kw):
         # charger le dossier des documents clients appartenant a Digimoov
@@ -362,7 +362,7 @@ class CustomerPortal(CustomerPortal):
                              'name': document.name + ' ' + str(uid.name)})
                     # En cas ou le candiadat charge deux piéces_jointe
                     #ajout du champ mimetype dans ir.attachement
-                    #Retour en arriere pour la version précédente pour les mimetype à cause d un problème service clientèle le 06/09/2021
+                    #Retour en arrière pour la version précédente pour les mimetype à cause d un problème service clientèle le 06/09/2021
                     if len(files) == 2:
                         datas_Carte_didentité_Recto = base64.encodebytes(files[0].read())
                         datas_Carte_didentité_Verso = base64.encodebytes(files[1].read())
@@ -384,7 +384,7 @@ class CustomerPortal(CustomerPortal):
                         })
                         # Attachement Carte d'identité recto
                         # ajout du champ mimetype dans ir.attachement
-                        # Retour en arriere pour la version précédente pour les mimetype à cause d un problème service clientèle le 06/09/2021
+                        # Retour en arrière pour la version précédente pour les mimetype à cause d un problème service clientèle le 06/09/2021
                     elif len(files) == 1:
                         datas_carte_didentiterecto = base64.encodebytes(files[0].read())
                         request.env['ir.attachment'].sudo().create({
@@ -395,7 +395,7 @@ class CustomerPortal(CustomerPortal):
                             'res_id': document.id
                         })
                         # ajout du champ mimetype dans ir.attachement
-                        # Retour en arriere pour la version précédente pour les mimetype à cause d un problème service clientèle le 06/09/2021
+                        # Retour en arrière pour la version précédente pour les mimetype à cause d un problème service clientèle le 06/09/2021
                 if files2 and document :
                     datas_carte_didentite = base64.encodebytes(files2[0].read())
 
