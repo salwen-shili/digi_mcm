@@ -14,6 +14,12 @@
                             <field name="theoretic" string="Théorique"/>
                             <field name="practical" string="Pratique"/>
                             <field name="company_id"/>
+                            <field name="justification" string="Report justification"
+                                   attrs="{'invisible': [('paiement', '=', True)]}"/>
+                            <field name="paiement" string="Report paiement"
+                                   attrs="{'invisible': [('justification', '=', True)]}"/>
+                            <field name="attachment_ids" string="Justificatif" widget="many2many_binary" nolabel="1"
+                                   attrs="{'invisible': [('justification', '=', False)]}"/>
                         </group>
                     </sheet>
                 </form>
@@ -28,6 +34,9 @@
                 <tree string="Historique Client Sessions ">
                     <field name="client_id" string="Client"/>
                     <field name="session_id" string="Session"/>
+                    <field name="justification" string="Report justification"/>
+                    <field name="paiement" string="Report paiement"/>
+                    <field name="attachment_ids" string="Justificatif"/>
                 </tree>
             </field>
         </record>
@@ -37,7 +46,7 @@
             <field name="res_model">partner.sessions</field>
             <field name="view_mode">tree,form</field>
             <field name="help" type="html">
-                <p class="o_view_nocontent_smiling_face">Ajouter une ville!</p>
+                <p class="o_view_nocontent_smiling_face">Ajouter une session!</p>
             </field>
         </record>
 

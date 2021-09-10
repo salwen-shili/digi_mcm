@@ -18,6 +18,10 @@ class resPartnerSessions(models.Model):
         ('admitted', 'Admis'),
     ], string='Pratique')
     company_id = fields.Many2one('res.company', string='Company', default=lambda self: self.env.company)
+    # Add new field pour la justification de report
+    justification = fields.Boolean(string="Justification")
+    paiement = fields.Boolean(string="Paiement")
+    attachment_ids = fields.Many2many('ir.attachment', string="Attachment", required=True)
     
     def remove_double_session_same_session(self):
         """ Add this function to remove duplicate
