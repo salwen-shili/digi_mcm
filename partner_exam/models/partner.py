@@ -44,6 +44,12 @@ class resComapny(models.Model):
                 'client_id': self.id,
                 'session_id': self.mcm_session_id.id,
                 'company_id': self.company_id.id,
+                'justification': self.justification,
+                'paiement': self.paiement,
+                'attachment_ids': self.attachment_ids,
             })
             self.report = False
+            self.justification = False
+            self.paiement = False
+            self.attachment_ids = None
         return session
