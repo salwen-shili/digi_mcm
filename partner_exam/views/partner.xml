@@ -50,7 +50,7 @@
                 <group name="report" class="oe_edit_only">
                     <field name="report" string="Report date d'examen"/>
                     <field name="justification" string="Report justification"
-                           attrs="{'invisible': [('report', '=', False)]}"/>
+                           attrs="{'invisible': ['|',('report', '=', False), ('paiement', '=', True)]}"/>
                     <field name="paiement" string="Report paiement"
                            attrs="{'invisible': ['|',('justification', '=', True), ('report', '=', False)]}"/>
                     <field name="attachment_ids" widget="many2many_binary" string="Attach a file" nolabel="1"
