@@ -165,13 +165,13 @@ class Partner(models.Model):
                             self.changestage("Formation sur 360", partner)
                 elif (date_signature and (date_signature + timedelta(days=14)) <= (today)):
                     print('parnter à supprimer  date', partner.name, sale_order)
-                    leads = self.env['crm.lead'].sudo().search([('partner_id', '=', partner.id)])
-                    print('leeaaadd', leads)
-                    if leads:
-                        for lead in leads:
-                            _logger.info('lead signature %s' % lead.name)
+                    # leads = self.env['crm.lead'].sudo().search([('partner_id', '=', partner.id)])
+                    # print('leeaaadd', leads)
+                    # if leads:
+                    #     for lead in leads:
+                    #         _logger.info('lead signature %s' % lead.name)
                             # lead.sudo().unlink()
-                            self.changestage("Formation sur 360", partner)
+                    self.changestage("Formation sur 360", partner)
                 # Si non il est classé comme apprenant non retracté
                 else:
                     _logger.info('non retracté' )
