@@ -36,7 +36,7 @@
                     <field name="session_id" string="Session"/>
                     <field name="justification" string="Report justification"/>
                     <field name="paiement" string="Report paiement"/>
-                    <field name="attachment_ids" string="Justificatif"/>
+                    <field name="attachment_ids" string="Justificatif" widget="many2many_binary"/>
                 </tree>
             </field>
         </record>
