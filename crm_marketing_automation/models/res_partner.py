@@ -155,12 +155,12 @@ class Partner(models.Model):
                 # si l'apprenant a fait une renonce  ou a passé 14jours apres la signature de contrat
                 # On le supprime de crm car il va etre ajouté sur 360
                 if (failure) or (renonciation):
-                    print('parnter à supprimer  sale', partner.name, sale_order)
-                    leads = self.env['crm.lead'].sudo().search([('partner_id', '=', partner.id)])
-                    _logger.info('partner if failure to delete  %s' % partner.name)
-                    if leads:
-                        for lead in leads:
-                            _logger.info('lead order %s' % lead.name)
+                    # print('parnter à supprimer  sale', partner.name, sale_order)
+                    # leads = self.env['crm.lead'].sudo().search([('partner_id', '=', partner.id)])
+                    # _logger.info('partner if failure to delete  %s' % partner.name)
+                    # if leads:
+                    #     for lead in leads:
+                    #         _logger.info('lead order %s' % lead.name)
                             # lead.sudo().unlink()
                             self.changestage("Formation sur 360", partner)
                 elif (date_signature and (date_signature + timedelta(days=14)) <= (today)):
