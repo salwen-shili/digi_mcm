@@ -291,6 +291,7 @@ class Partner(models.Model):
 
                     lead = self.env['crm.lead'].sudo().create({
                         'name': table_user['firstName'] if 'firstName' in table_user else table_user['mail'],
+                        'contact_name': table_user['lastName'] if 'lastName' in table_user else '',
                         'partner_name': table_user['lastName'] if 'lastName' in table_user else table_user['mail'],
                         'email': email,
                         'email_from': email,
@@ -302,5 +303,6 @@ class Partner(models.Model):
                     partner = self.env['res.partner'].sudo().search([('email', '=', email)], limit=1)
                     if partner:
                         lead.partner_id = partner
+                        lead.name=partner.name
                         lead.num_dossier = partner.numero_cpf if partner.numero_cpf else False
                         lead.mode_de_financement = partner.mode_de_financement
