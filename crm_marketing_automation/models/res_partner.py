@@ -214,7 +214,7 @@ class Partner(models.Model):
                                                                        ('session_id', '=', partner.mcm_session_id.id),
                                                                        ('module_id', '=', partner.module_id.id),
                                                                        ('session_id.date_exam', '>', date.today()),
-                                                                       ], limit=1, order="id desc")
+                                                                       ],order="date_order desc",limit=1)
                     # Récupérer les documents
                     documents = self.env['documents.document'].sudo().search([('partner_id', '=', partner.id)])
                     # Classer client dans crm lead selon le statut de contrat
