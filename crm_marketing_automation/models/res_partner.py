@@ -180,22 +180,7 @@ class Partner(models.Model):
     # Methode pour classer les apprenants existant déja sur odoo
 
     def change_stage_existant(self):
-        params = (
-            ('company', '56f5520e11d423f46884d593'),
-            ('apiKey', 'cnkcbrhHKyfzKLx4zI7Ub2P5'),
-        )
-        response = requests.get('https://app.360learning.com/api/v1/users', params=params)
-        users = response.json()
-        # Faire un parcours sur  user sur 360
-        for user in users:
-            iduser = user['_id']
-            email = user['mail']
-            parts = self.env['res.partner'].sudo().search([('email', '=', email)])
-            if parts:
-                for part in parts:
-                    # chercher l'apprenant sur odoo et l
-                    print('partner', part.name, len(users))
-                    self.changestage("Formation sur 360", part)
+        self.import_data("Formation sur 360")
 
         partners = self.env['res.partner'].sudo().search([('company_id.id', '=', 2)])
         for partner in partners:
@@ -275,4 +260,47 @@ class Partner(models.Model):
                                         _logger.info('non retracté')
                                         self.changestage("Rétractation non Coché", partner)
 
+    def import_data(self, name):
+        params = (
+            ('company', '56f5520e11d423f46884d593'),
+            ('apiKey', 'cnkcbrhHKyfzKLx4zI7Ub2P5'),
+        )
+        response = requests.get('https://app.360learning.com/api/v1/users', params=params)
+        users = response.json()
+        # Faire un parcours sur chaque user et extraire ses statistiques
+        for user in users:
+            iduser = user['_id']
+            email = user['mail']
+            response_user = requests.get('https://app.360learning.com/api/v1/users/' + iduser, params=params)
+            table_user = response_user.json()
+            stage = self.env['crm.stage'].sudo().search([("name", "=", _(name))])
 
+            if stage:
+                leads = self.env['crm.lead'].sudo().search([('email', "=", email)], )
+
+                if leads:
+
+                    for lead in leads:
+                        _logger.info('if leads %s' % lead.name)
+                        lead.sudo().write({
+                            'stage_id': stage.id
+
+                        })
+                        # self.changestage("Formation sur 360", lead)
+                if not (leads):
+
+                    lead = self.env['crm.lead'].sudo().create({
+                        'name': table_user['firstName'] if 'firstName' in table_user else table_user['mail'],
+                        'partner_name': table_user['lastName'] if 'lastName' in table_user else table_user['mail'],
+                        'email': email,
+                        'email_from': email,
+                        'type': "opportunity",
+                        'stage_id': stage.id,
+
+                    })
+
+                    partner = self.env['res.partner'].sudo().search([('email', '=', email)], limit=1)
+                    if partner:
+                        lead.partner_id = partner
+                        lead.num_dossier = partner.numero_cpf if partner.numero_cpf else False
+                        lead.mode_de_financement = partner.mode_de_financement
