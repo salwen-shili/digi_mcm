@@ -34,7 +34,7 @@ class CRM(models.Model):
             num_dossier = lead.num_dossier
             partners = self.env['res.partner'].search([('company_id.id', '=', 2)])
             for partner in partners:
-                if partner.numero_cpf == lead.num_dossier:
+                if (partner.numero_cpf) and (partner.numero_cpf == lead.num_dossier):
                     lead.sudo().write({
                         'partner_id': partner,
                         'name': partner.name,
