@@ -114,8 +114,7 @@
                                                 <tr align="center">
                                                     <td>
                                                         <t t-foreach="docs.mcm_session_id" t-as="footer">
-                                                            <span t-field="footer.date_convocation"
-                                                                  t-field-options='{"format": "dd/MM/yyyy"}'/>
+                                                            <span t-esc="context_timestamp(datetime.datetime.now()).strftime('%d/%m/%Y')"/>
                                                         </t>
                                                     </td>
                                                     <td></td>
