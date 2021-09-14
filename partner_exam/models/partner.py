@@ -49,9 +49,11 @@ class resComapny(models.Model):
                 'justification': self.justification,
                 'paiement': self.paiement,
                 'attachment_ids': self.attachment_ids,
+                'autre_raison': self.autre_raison,
             })
             self.report = False
             self.justification = False
             self.paiement = False
             self.attachment_ids = None
+            self.autre_raison = None
         return session
