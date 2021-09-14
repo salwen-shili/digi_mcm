@@ -48,7 +48,7 @@
         <field name="arch" type="xml">
             <xpath expr="//page/group[@name='session']/group" position="after">
                 <group name="report" class="oe_edit_only">
-                    <field name="report" string="Changement"/>
+                    <field name="report" string="Changement information session"/>
                     <field name="justification" string="Absence justifié"
                            attrs="{'invisible': ['|',('report', '=', False), ('paiement', '=', True)]}"/>
                     <field name="paiement" string="Prolongation formation"
