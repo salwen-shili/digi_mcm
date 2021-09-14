@@ -20,6 +20,9 @@
                                    attrs="{'invisible': [('justification', '=', True)]}"/>
                             <field name="attachment_ids" string="Justificatif" widget="many2many_binary" nolabel="1"
                                    attrs="{'invisible': [('justification', '=', False)]}"/>
+                            <field name="autre_raison"
+                                   attrs="{'invisible': ['|',('justification', '=', True), ('paiement', '=', True)]}"/>
+
                         </group>
                     </sheet>
                 </form>
@@ -37,6 +40,7 @@
                     <field name="justification" string="Report justification"/>
                     <field name="paiement" string="Report paiement"/>
                     <field name="attachment_ids" string="Justificatif" widget="many2many_binary"/>
+                    <field name="autre_raison"/>
                 </tree>
             </field>
         </record>
