@@ -17,6 +17,8 @@ class resComapny(models.Model):
     justification = fields.Boolean(string="Justification")
     paiement = fields.Boolean(string="Paiement")
     attachment_ids = fields.Many2many('ir.attachment', string="Attachment", required=True)
+    autre_raison = fields.Text(string="Autre Raison")
+
     def compute_notes_exams_count(self):
         for record in self:
             record.note_exam_count = self.env['info.examen'].search_count(
