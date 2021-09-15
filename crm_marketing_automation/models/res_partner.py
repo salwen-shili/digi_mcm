@@ -191,13 +191,20 @@ class Partner(models.Model):
                 year = date_creation.year
                 month = date_creation.month
                 if (year > 2020) and (month > 1):
-
+                    if partner.statut == "indecis":
+                        """ Vérifier le statut  pour classer client  dans crm lead """
+                        if partner.statut_cpf == "untreated":
+                            print('non traité')
+                            self.changestage("Non traité", partner)
+                        if partner.statut_cpf == "validated":
+                            print('Validé')
+                            self.changestage("Validé", partner)
                     if partner.statut_cpf == "canceled":
                         self.changestage("Annulé", partner)
                     if partner.statut_cpf == "bill":
                         self.changestage("Facturé", partner)
-                    # if partner.statut_cpf == "in_training":
-                    #     self.changestage("En formation", partner)
+                    if partner.statut_cpf == "in_training":
+                        self.changestage("En formation", partner)
                     if partner.statut_cpf == "out_training":
                         self.changestage("Sortie de formation", partner)
                     if partner.statut_cpf == "service_declared":
