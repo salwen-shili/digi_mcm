@@ -29,7 +29,6 @@
                            attrs="{'invisible': [('temps_convocation', '=', 'apres_midi')]}"/>
                     <field name="heure_examen_apres_midi" string="Heure"
                            attrs="{'invisible': [('temps_convocation', '=', 'matin')]}"/>
-                    <field name="date_convocation"/>
                 </group>
             </xpath>
         </field>
