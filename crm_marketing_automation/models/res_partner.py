@@ -186,7 +186,7 @@ class Partner(models.Model):
         for partner in partners:
             if partner.statut_cpf and (partner.statut_cpf == 'canceled' or partner.statut == 'canceled'):
                 self.changestage("Annulé", partner)
-            if (partner.statut != 'canceled') and (partner.statut_cpf):
+            if (partner.statut != 'canceled') and (partner.statut_cpf) and (partner.statut_cpf != 'canceled'):
                 date_creation = partner.create_date
                 year = date_creation.year
                 month = date_creation.month
@@ -199,8 +199,6 @@ class Partner(models.Model):
                         if partner.statut_cpf == "validated":
                             print('Validé')
                             self.changestage("Validé", partner)
-                    if partner.statut_cpf == "canceled":
-                        self.changestage("Annulé", partner)
                     if partner.statut_cpf == "bill":
                         self.changestage("Facturé", partner)
                     if partner.statut_cpf == "in_training":
@@ -213,7 +211,7 @@ class Partner(models.Model):
                         self.changestage("Service fait validé", partner)
                     if partner.statut_cpf == "accepted":
                         if (not (partner.session_ville_id) or not (partner.date_examen_edof)) and not (
-                        partner.mcm_session_id) and not (partner.module_id):
+                                partner.mcm_session_id) and not (partner.module_id):
                             print('accepté')
                             self.changestage("Choix date d'examen - CPF", partner)
                     # Recuperer le contrat pour vérifier son statut
@@ -221,7 +219,7 @@ class Partner(models.Model):
                                                                        ('session_id', '=', partner.mcm_session_id.id),
                                                                        ('module_id', '=', partner.module_id.id),
                                                                        ('session_id.date_exam', '>', date.today()),
-                                                                       ],order="date_order desc",limit=1)
+                                                                       ], order="date_order desc", limit=1)
                     # Récupérer les documents
                     documents = self.env['documents.document'].sudo().search([('partner_id', '=', partner.id)])
                     # Classer client dans crm lead selon le statut de contrat
