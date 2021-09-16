@@ -10,6 +10,7 @@ import logging
 
 _logger = logging.getLogger(__name__)
 
+
 class Partner(models.Model):
     _inherit = 'res.partner'
 
@@ -55,23 +56,22 @@ class Partner(models.Model):
                 if not (self.session_ville_id) or not (self.date_examen_edof):
                     self.changestage("Annulé", self)
 
-
         record = super(Partner, self).write(vals)
 
         return record
 
     def changestage(self, name, partner):
         stage = self.env['crm.stage'].sudo().search([("name", "=", _(name))])
-        
+
         if stage:
 
-            lead = self.env['crm.lead'].sudo().search([('partner_id', '=', partner.id)],limit=1)
+            lead = self.env['crm.lead'].sudo().search([('partner_id', '=', partner.id)], limit=1)
             if lead:
-                
+
                 num_dossier = ""
                 if partner.numero_cpf:
                     num_dossier = partner.numero_cpf
-                    lead.num_dossier=num_dossier
+                    lead.num_dossier = num_dossier
                 lead.sudo().write({
                     'name': partner.name,
                     'partner_name': partner.name,
@@ -81,7 +81,7 @@ class Partner(models.Model):
                     'email_from': partner.email,
                     'type': "opportunity",
                     'stage_id': stage.id,
-                    'mode_de_financement':partner.mode_de_financement,
+                    'mode_de_financement': partner.mode_de_financement,
                     'module_id': partner.module_id if partner.module_id else False,
                     'mcm_session_id': partner.mcm_session_id if partner.mcm_session_id else False,
 
@@ -111,71 +111,71 @@ class Partner(models.Model):
                     lead.num_dossier = num_dossier
                     lead.mcm_session_id = partner.mcm_session_id if partner.mcm_session_id else False
                     lead.module_id = partner.module_id if partner.module_id else False
-    
+
     # Methode pour classer les apprenants dans crm lead comme non retracté
     # Vérifier tout les conditions nécessaires pour ce classement
-    def change_stage_non_retracte(self):
-        partners = self.env['res.partner'].sudo().search([('statut', "=", "won"),
-                                                          ('company_id.id','=',2)])
-
-        for partner in partners:
-            # Pour chaque apprenant extraire la session et la formation reservé pour passer l'examen
-            sale_order = self.env['sale.order'].sudo().search([('partner_id', '=', partner.id),
-                                                               ('session_id', '=', partner.mcm_session_id.id),
-                                                               ('module_id', '=', partner.module_id.id),
-                                                               ('state', '=', 'sale'),
-                                                               ('session_id.date_exam', '>', date.today())
-                                                               ], limit=1, order="id desc")
-
-            _logger.info('partner  %s' % partner.name)
-            _logger.info('sale order %s' % sale_order.name)
-            # Récupérer les documents et vérifier s'ils sont validés ou non
-            documents = self.env['documents.document'].sudo().search([('partner_id', '=', partner.id)])
-            document_valide = False
-            count = 0
-            for document in documents:
-                if (document.state == "validated"):
-                    count = count + 1
-                    print('valide')
-            print('count', count, 'len', len(documents))
-            if (count == len(documents) and count != 0):
-                document_valide = True
-            # Vérifier si partner a signé son contrat et si ses documents sont validés
-            if ((sale_order) and (document_valide)):
-                # delai de retractation
-                failure = sale_order.failures
-                renonciation = partner.renounce_request
-                # date_signature=""
-                # if sale_order.signed_on:
-                date_signature = sale_order.signed_on
-                #
-                # # Calculer date d'ajout sur 360 apres 14jours de date de signature
-                # date_ajout = date_signature + timedelta(days=14)
-                today = datetime.today()
-                # si l'apprenant a fait une renonce  ou a passé 14jours apres la signature de contrat
-                # On le supprime de crm car il va etre ajouté sur 360
-                if (failure) or (renonciation):
-                    # print('parnter à supprimer  sale', partner.name, sale_order)
-                    # leads = self.env['crm.lead'].sudo().search([('partner_id', '=', partner.id)])
-                    # _logger.info('partner if failure to delete  %s' % partner.name)
-                    # if leads:
-                    #     for lead in leads:
-                    #         _logger.info('lead order %s' % lead.name)
-                            # lead.sudo().unlink()
-                            self.changestage("Formation sur 360", partner)
-                elif (date_signature and (date_signature + timedelta(days=14)) <= (today)):
-                    print('parnter à supprimer  date', partner.name, sale_order)
-                    # leads = self.env['crm.lead'].sudo().search([('partner_id', '=', partner.id)])
-                    # print('leeaaadd', leads)
-                    # if leads:
-                    #     for lead in leads:
-                    #         _logger.info('lead signature %s' % lead.name)
-                            # lead.sudo().unlink()
-                    self.changestage("Formation sur 360", partner)
-                # Si non il est classé comme apprenant non retracté
-                else:
-                    _logger.info('non retracté' )
-                    self.changestage("Rétractation non Coché", partner)
+    # def change_stage_non_retracte(self):
+    #     partners = self.env['res.partner'].sudo().search([('statut', "=", "won"),
+    #                                                       ('company_id.id','=',2)])
+    #
+    #     for partner in partners:
+    #         # Pour chaque apprenant extraire la session et la formation reservé pour passer l'examen
+    #         sale_order = self.env['sale.order'].sudo().search([('partner_id', '=', partner.id),
+    #                                                            ('session_id', '=', partner.mcm_session_id.id),
+    #                                                            ('module_id', '=', partner.module_id.id),
+    #                                                            ('state', '=', 'sale'),
+    #                                                            ('session_id.date_exam', '>', date.today())
+    #                                                            ], limit=1, order="id desc")
+    #
+    #         _logger.info('partner  %s' % partner.name)
+    #         _logger.info('sale order %s' % sale_order.name)
+    #         # Récupérer les documents et vérifier s'ils sont validés ou non
+    #         documents = self.env['documents.document'].sudo().search([('partner_id', '=', partner.id)])
+    #         document_valide = False
+    #         count = 0
+    #         for document in documents:
+    #             if (document.state == "validated"):
+    #                 count = count + 1
+    #                 print('valide')
+    #         print('count', count, 'len', len(documents))
+    #         if (count == len(documents) and count != 0):
+    #             document_valide = True
+    #         # Vérifier si partner a signé son contrat et si ses documents sont validés
+    #         if ((sale_order) and (document_valide)):
+    #             # delai de retractation
+    #             failure = sale_order.failures
+    #             renonciation = partner.renounce_request
+    #             # date_signature=""
+    #             # if sale_order.signed_on:
+    #             date_signature = sale_order.signed_on
+    #             #
+    #             # # Calculer date d'ajout sur 360 apres 14jours de date de signature
+    #             # date_ajout = date_signature + timedelta(days=14)
+    #             today = datetime.today()
+    #             # si l'apprenant a fait une renonce  ou a passé 14jours apres la signature de contrat
+    #             # On le supprime de crm car il va etre ajouté sur 360
+    #             if (failure) or (renonciation):
+    #                 # print('parnter à supprimer  sale', partner.name, sale_order)
+    #                 # leads = self.env['crm.lead'].sudo().search([('partner_id', '=', partner.id)])
+    #                 # _logger.info('partner if failure to delete  %s' % partner.name)
+    #                 # if leads:
+    #                 #     for lead in leads:
+    #                 #         _logger.info('lead order %s' % lead.name)
+    #                         # lead.sudo().unlink()
+    #                         self.changestage("Formation sur 360", partner)
+    #             elif (date_signature and (date_signature + timedelta(days=14)) <= (today)):
+    #                 print('parnter à supprimer  date', partner.name, sale_order)
+    #                 # leads = self.env['crm.lead'].sudo().search([('partner_id', '=', partner.id)])
+    #                 # print('leeaaadd', leads)
+    #                 # if leads:
+    #                 #     for lead in leads:
+    #                 #         _logger.info('lead signature %s' % lead.name)
+    #                         # lead.sudo().unlink()
+    #                 self.changestage("Formation sur 360", partner)
+    #             # Si non il est classé comme apprenant non retracté
+    #             else:
+    #                 _logger.info('non retracté' )
+    #                 self.changestage("Rétractation non Coché", partner)
 
     # Methode pour classer les apprenants existant déja sur odoo
 
