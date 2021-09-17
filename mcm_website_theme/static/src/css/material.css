@@ -1,0 +1,763 @@
+/* -----------------------------------------------------
+  Material Design Buttons
+
+-------------------------------------------------------- */
+/* -----------------------------------------------------
+  Body
+-------------------------------------------------------- */
+body {
+  margin: 0;
+  padding: 0;
+  color: #646360;
+  font-size: 16px;
+  font-family: "Roboto", sans-serif;
+  background-color: #eee;
+}
+
+*,
+*::after,
+*::before {
+  -ms-box-sizing: border-box;
+  -o-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+a {
+  color: #03a9f4;
+  outline: none;
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: underline;
+}
+
+/* -----------------------------------------------------
+    Main
+-------------------------------------------------------- */
+main {
+  width: 100%;
+  max-width: 940px;
+  margin: 1.4rem auto;
+}
+main section {
+  display: block;
+  margin-bottom: 1.4rem;
+  padding: 1.2rem;
+  background-color: #fff;
+  box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.157);
+}
+main section:last-child {
+  margin-bottom: 0;
+}
+main section .heading {
+  margin: 0;
+  padding: 0;
+  font-size: 1.2rem;
+}
+main section .wrap {
+  overflow: hidden;
+  display: block;
+  margin: 1rem 0 0.8rem;
+  text-align: center;
+}
+main section .wrap .holder {
+  float: left;
+  text-align: center;
+  background-color: #f2f2f2;
+}
+main section .wrap .holder:last-child {
+  margin-right: 0;
+}
+main section .wrap .holder.col-3 {
+  width: 32.6666666667%;
+}
+main section .wrap .holder.col-3:nth-child(n) {
+  margin-right: 1%;
+  margin-bottom: 1%;
+}
+main section .wrap .holder.col-3:nth-child(3n) {
+  margin-right: 0;
+  margin-bottom: 0;
+}
+main section .wrap .holder.col-4 {
+  width: 24.25%;
+}
+main section .wrap .holder.col-4:nth-child(n) {
+  margin-right: 1%;
+  margin-bottom: 1%;
+}
+main section .wrap .holder.col-4:nth-child(4n) {
+  margin-right: 0;
+  margin-bottom: 0;
+}
+main section .wrap .holder .demo {
+  min-height: 120px;
+  padding: 2em 0;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+}
+main section .wrap .holder .captions {
+  padding: 8px;
+  color: rgba(0, 0, 0, 0.5);
+  font-size: 13px;
+  font-weight: bold;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+@media only screen and (max-width: 860px) {
+  main section .wrap .holder.col-4 {
+    width: 32.6666666667%;
+  }
+  main section .wrap .holder.col-4:nth-child(n) {
+    margin-right: 1%;
+    margin-bottom: 1%;
+  }
+  main section .wrap .holder.col-4:nth-child(3n) {
+    margin-right: 0;
+    margin-bottom: 0;
+  }
+}
+@media only screen and (max-width: 640px) {
+  main section .wrap .holder {
+    float: none;
+  }
+  main section .wrap .holder.col-3,
+  main section .wrap .holder.col-4 {
+    display: block;
+    width: 100%;
+  }
+  main section .wrap .holder.col-3:nth-child(n),
+  main section .wrap .holder.col-4:nth-child(n) {
+    margin: 0;
+    margin-bottom: 14px;
+  }
+}
+@media only screen and (max-width: 960px) {
+  main {
+    padding: 0 1.5%;
+  }
+}
+
+/* -----------------------------------------------------
+   Header
+-------------------------------------------------------- */
+header {
+  display: block;
+  width: 100%;
+  /* padding: 12px 0; */
+  text-align: center;
+  background-color: #fff;
+  box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.1);
+}
+header h2 {
+  margin: 0;
+  padding: 25px 0;
+  font-size: 2em;
+  font-weight: 300;
+  letter-spacing: 1px;
+}
+
+/* ----------------------------------------------------------------------
+  Material Design Raised Buttons 
+------------------------------------------------------------------------- */
+.rkmd-btn {
+  display: inline-block;
+  position: relative;
+  cursor: pointer;
+  height: 35px;
+  line-height: 35px;
+  padding: 0 1.5rem;
+  color: #424242;
+  font-size: 15px;
+  font-weight: 600;
+  font-family: "Roboto", sans-serif;
+  letter-spacing: 0.8px;
+  text-align: center;
+  text-decoration: none;
+  text-transform: uppercase;
+  vertical-align: middle;
+  white-space: nowrap;
+  outline: none;
+  border: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  border-radius: 2px;
+  transition: all 0.3s ease-out;
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.225);
+}
+.rkmd-btn:hover {
+  text-decoration: none;
+  box-shadow: 0 4px 10px 0px rgba(0, 0, 0, 0.225);
+}
+
+/* ----------------------------------------------------------------------
+  Material Design Fab Buttons 
+------------------------------------------------------------------------- */
+.rkmd-btn.btn-fab,
+.rkmd-btn.btn-fab-mini {
+  overflow: hidden;
+  position: relative;
+  margin: auto;
+  padding: 0;
+  line-height: normal;
+  border-radius: 50%;
+  box-shadow: 0 2px 5px 1px rgba(0, 0, 0, 0.3);
+}
+.rkmd-btn.btn-fab:hover,
+.rkmd-btn.btn-fab-mini:hover {
+  box-shadow: 0 4px 11px 0px rgba(0, 0, 0, 0.375);
+}
+.rkmd-btn.btn-fab i,
+.rkmd-btn.btn-fab-mini i {
+  display: inline-block;
+  float: none;
+  width: inherit;
+  margin: 0;
+  font-size: inherit;
+  text-align: center;
+  line-height: none;
+  vertical-align: middle;
+}
+.rkmd-btn.btn-fab {
+  width: 56px;
+  height: 56px;
+  font-size: 28px;
+}
+.rkmd-btn.btn-fab-mini {
+  width: 40px;
+  height: 40px;
+  font-size: 24px;
+}
+
+/* Buttons Color */
+.rkmd-btn.btn-lightBlue {
+  color: #fff;
+  background-color: #03a9f4;
+}
+.rkmd-btn.btn-lightBlue:hover {
+  background-color: #23b9fc;
+}
+.rkmd-btn.btn-white {
+  color: #444;
+  background-color: #fff;
+}
+.rkmd-btn.btn-white:hover {
+  background-color: #fafafa;
+}
+.rkmd-btn.btn-black {
+  color: #bdbdbd;
+  background-color: #111;
+}
+.rkmd-btn.btn-black:hover {
+  background-color: #252525;
+}
+.rkmd-btn.btn-grey {
+  color: #757575;
+  background-color: #f5f5f5;
+}
+.rkmd-btn.btn-grey:hover {
+  background-color: #ebebeb;
+}
+.rkmd-btn.btn-orange {
+  color: #fff;
+  background-color: #ff9800;
+}
+.rkmd-btn.btn-orange:hover {
+  background-color: #ffa829;
+}
+.rkmd-btn.btn-amber {
+  color: #fff;
+  background-color: #ffc107;
+}
+.rkmd-btn.btn-amber:hover {
+  background-color: #ffcb30;
+}
+.rkmd-btn.btn-green {
+  color: #fff;
+  background-color: #4caf50;
+}
+.rkmd-btn.btn-green:hover {
+  background-color: #67bd6a;
+}
+.rkmd-btn.btn-teal {
+  color: #fff;
+  background-color: #009688;
+}
+.rkmd-btn.btn-teal:hover {
+  background-color: #00bfad;
+}
+.rkmd-btn.btn-cyan {
+  color: #fff;
+  background-color: #00bcd4;
+}
+.rkmd-btn.btn-cyan:hover {
+  background-color: #00e0fd;
+}
+.rkmd-btn.btn-indigo {
+  color: #fff;
+  background-color: #3f51b5;
+}
+.rkmd-btn.btn-indigo:hover {
+  background-color: #5869c5;
+}
+.rkmd-btn.btn-deepPurple {
+  color: #fff;
+  background-color: #673ab7;
+}
+.rkmd-btn.btn-deepPurple:hover {
+  background-color: #7c52c8;
+}
+.rkmd-btn.btn-pink {
+  color: #fff;
+  background-color: #e91e63;
+}
+.rkmd-btn.btn-pink:hover {
+  background-color: #ed437d;
+}
+.rkmd-btn.btn-red {
+  color: #fff;
+  background-color: #c00000;
+}
+.rkmd-btn.btn-red:hover {
+  background-color: #860000;
+}
+.rkmd-btn.btn-yellow {
+  color: #fff;
+  background-color: #ffeb3b;
+}
+.rkmd-btn.btn-yellow:hover {
+  background-color: #f8de00;
+}
+.rkmd-btn.btn-lime {
+  color: #fff;
+  background-color: #cddc39;
+}
+.rkmd-btn.btn-lime:hover {
+  background-color: #bac923;
+}
+.rkmd-btn.btn-brown {
+  color: #fff;
+  background-color: #795548;
+}
+.rkmd-btn.btn-brown:hover {
+  background-color: #936757;
+}
+
+/* Raised Buttons Size (Not work in Fab Buttons) */
+.rkmd-btn.btn-lg {
+  height: 48px;
+  line-height: 48px;
+}
+.rkmd-btn.btn-sm {
+  height: 30px;
+  padding: 0 1rem;
+  line-height: 30px;
+  font-size: 12px;
+}
+.rkmd-btn.btn-xs {
+  height: 24px;
+  padding: 0 0.4rem;
+  line-height: 24px;
+  font-size: 11px;
+  font-weight: 300;
+  letter-spacing: 0.2px;
+}
+
+/* Raised Buttons Types */
+.rkmd-btn.disabled,
+.rkmd-btn[disabled] {
+  cursor: default !important;
+  color: #9e9e9e !important;
+  box-shadow: none !important;
+}
+.rkmd-btn.disabled:not(.btn-flat),
+.rkmd-btn[disabled]:not(.btn-flat) {
+  background-color: #cdcdcd !important;
+}
+.rkmd-btn.disabled:not(.btn-flat):hover,
+.rkmd-btn[disabled]:not(.btn-flat):hover {
+  background-color: #cdcdcd !important;
+}
+.rkmd-btn.btn-flat {
+  box-shadow: none !important;
+  background-color: transparent !important;
+}
+.rkmd-btn.btn-flat:hover {
+  background-color: #cecece !important;
+  box-shadow: none !important;
+}
+.rkmd-btn.btn-flat.disabled:hover,
+.rkmd-btn.btn-flat[disabled]:hover {
+  background-color: transparent !important;
+}
+.rkmd-btn.btn-link {
+  color: #3949ab !important;
+  box-shadow: none !important;
+  background-color: transparent !important;
+}
+.rkmd-btn.btn-link:hover {
+  text-decoration: underline !important;
+  background-color: transparent !important;
+  box-shadow: none !important;
+}
+.rkmd-btn.btn-link.disabled,
+.rkmd-btn.btn-link[disabled] {
+  color: #9fa8da !important;
+  text-decoration: underline !important;
+  background-color: transparent !important;
+}
+.rkmd-btn.btn-link.disabled:hover,
+.rkmd-btn.btn-link[disabled]:hover {
+  background-color: transparent !important;
+}
+.rkmd-btn i {
+  float: left;
+  width: auto;
+  height: auto;
+  margin-right: 10px;
+  font-size: 1.3rem;
+  line-height: inherit;
+}
+.rkmd-btn i.right {
+  float: right !important;
+  margin: 0;
+  margin-left: 10px;
+}
+
+/* ----------------------------------------------------------------------
+  Material Design Ripple Effect 
+------------------------------------------------------------------------- */
+.ripple-effect {
+  display: inline-block;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  vertical-align: middle;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  z-index: 1;
+}
+.ripple-effect .ripple {
+  display: block;
+  position: absolute;
+  border-radius: 100%;
+  background: rgba(255, 255, 255, 0.5);
+  transform: scale(0);
+  pointer-events: none;
+}
+.ripple-effect.ripple-dark .ripple {
+  background: rgba(0, 0, 0, 0.1) !important;
+}
+.ripple-effect.ripple-red .ripple {
+  background: rgba(244, 67, 54, 0.725) !important;
+}
+.ripple-effect.ripple-orange .ripple {
+  background: rgba(255, 152, 0, 0.725) !important;
+}
+.ripple-effect.ripple-yellow .ripple {
+  background: rgba(255, 235, 59, 0.725) !important;
+}
+.ripple-effect.ripple-green .ripple {
+  background: rgba(76, 175, 80, 0.725) !important;
+}
+.ripple-effect.ripple-purple .ripple {
+  background: rgba(156, 39, 176, 0.725) !important;
+}
+.ripple-effect.ripple-teal .ripple {
+  background: rgba(0, 150, 136, 0.725) !important;
+}
+.ripple-effect.ripple-pink .ripple {
+  background: rgba(233, 30, 99, 0.725) !important;
+}
+.ripple-effect .animated {
+  -webkit-animation: ripple 0.6s linear;
+  animation: ripple 0.6s linear;
+}
+@-webkit-keyframes ripple {
+  100% {
+    opacity: 0;
+    transform: scale(2.5);
+  }
+}
+@keyframes ripple {
+  100% {
+    opacity: 0;
+    transform: scale(2.5);
+  }
+}
+
+@media (max-width: 767px) {
+  .mgb {
+    margin-bottom: 1.3rem;
+  }
+}
+
+.pure-material-checkbox {
+  z-index: 0;
+  position: relative;
+  display: inline-block;
+  color: rgba(var(--pure-material-onsurface-rgb, 0, 0, 0), 0.87);
+  font-family: var(
+    --pure-material-font,
+    "Roboto",
+    "Segoe UI",
+    BlinkMacSystemFont,
+    system-ui,
+    -apple-system
+  );
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+/* Input */
+.pure-material-checkbox > input {
+  appearance: none;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  z-index: -1;
+  position: absolute;
+  left: -10px;
+  top: -8px;
+  display: block;
+  margin: 0;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  background-color: rgba(var(--pure-material-onsurface-rgb, 0, 0, 0), 0.6);
+  box-shadow: none;
+  outline: none;
+  opacity: 0;
+  transform: scale(1);
+  pointer-events: none;
+  transition: opacity 0.3s, transform 0.2s;
+}
+
+/* Span */
+.pure-material-checkbox > label {
+  display: inline-block;
+  width: 100%;
+  cursor: pointer;
+}
+
+/* Box */
+.pure-material-checkbox > label::before {
+  content: "";
+  display: inline-block;
+  box-sizing: border-box;
+  margin: 3px 11px 3px 1px;
+  border: solid 2px; /* Safari */
+  border-color: rgba(var(--pure-material-onsurface-rgb, 0, 0, 0), 0.6);
+  border-radius: 2px;
+  width: 18px;
+  height: 18px;
+  vertical-align: top;
+  transition: border-color 0.2s, background-color 0.2s;
+}
+
+/* Checkmark */
+.pure-material-checkbox > label::after {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 3px;
+  left: 1px;
+  width: 10px;
+  height: 5px;
+  border: solid 2px transparent;
+  border-right: none;
+  border-top: none;
+  transform: translate(3px, 4px) rotate(-45deg);
+}
+
+/* Checked, Indeterminate */
+.pure-material-checkbox > input:checked,
+.pure-material-checkbox > input:indeterminate {
+  background-color: rgb(var(--pure-material-primary-rgb, 33, 150, 243));
+}
+
+.pure-material-checkbox > input:checked + label::before,
+.pure-material-checkbox > input:indeterminate + label::before {
+  border-color: rgb(var(--pure-material-primary-rgb, 33, 150, 243));
+  background-color: rgb(var(--pure-material-primary-rgb, 33, 150, 243));
+}
+
+.pure-material-checkbox > input:checked + label::after,
+.pure-material-checkbox > input:indeterminate + label::after {
+  border-color: rgb(var(--pure-material-onprimary-rgb, 255, 255, 255));
+}
+
+.pure-material-checkbox > input:indeterminate + label::after {
+  border-left: none;
+  transform: translate(4px, 3px);
+}
+
+/* Hover, Focus */
+.pure-material-checkbox:hover > input {
+  opacity: 0.04;
+}
+
+.pure-material-checkbox > input:focus {
+  opacity: 0.12;
+}
+
+.pure-material-checkbox:hover > input:focus {
+  opacity: 0.16;
+}
+
+/* Active */
+.pure-material-checkbox > input:active {
+  opacity: 1;
+  transform: scale(0);
+  transition: transform 0s, opacity 0s;
+}
+
+.pure-material-checkbox > input:active + label::before {
+  border-color: rgb(var(--pure-material-primary-rgb, 33, 150, 243));
+}
+
+.pure-material-checkbox > input:checked:active + label::before {
+  border-color: transparent;
+  background-color: rgba(var(--pure-material-onsurface-rgb, 0, 0, 0), 0.6);
+}
+
+/* Disabled */
+.pure-material-checkbox > input:disabled {
+  opacity: 0;
+}
+
+.pure-material-checkbox > input:disabled + label {
+  color: rgba(var(--pure-material-onsurface-rgb, 0, 0, 0), 0.38);
+  cursor: initial;
+}
+
+.pure-material-checkbox > input:disabled + label::before {
+  border-color: currentColor;
+}
+
+.pure-material-checkbox > input:checked:disabled + label::before,
+.pure-material-checkbox > input:indeterminate:disabled + label::before {
+  border-color: transparent;
+  background-color: currentColor;
+}
+
+select:disabled {
+  cursor: not-allowed;
+
+  color: rgba(0, 0, 0, 0.38);
+}
+
+/* Video */
+/* ::-webkit-scrollbar {
+  width: 20px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: lightgray;
+  border-radius: 5px;
+}
+
+p {
+  text-align: center;
+}
+
+.title {
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.video {
+  width: 100%;
+  height: 400px;
+  margin: auto;
+  display: block;
+  border: none;
+}
+
+/* .popup-btn,
+.close-btn {
+  width: 100px;
+  height: 50px;
+  display: block;
+  margin: 50px auto;
+  cursor: pointer;
+  border: 2px solid black;
+  background-color: white;
+} */
+.popup-btn,
+.close-btn {
+  position: absolute;
+  left: 50%;
+  width: 32px;
+  height: 32px;
+  display: block;
+  margin: 50px auto;
+  cursor: pointer;
+  /* border-radius: 50%; */
+  /* border: 1px solid; */
+  background-color: white;
+  opacity: 0.3;
+}
+.close-btn:hover {
+  opacity: 1;
+}
+.close-btn:before,
+.close-btn:after {
+  position: absolute;
+  left: 15px;
+  content: " ";
+  height: 33px;
+  width: 2px;
+  background-color: #333;
+}
+.close-btn:before {
+  transform: rotate(45deg);
+}
+.close-btn:after {
+  transform: rotate(-45deg);
+}
+.popup-btn:hover {
+  color: white;
+  background-color: black;
+}
+
+.video-popup {
+  display: none;
+  width: 100%;
+  height: 100vh;
+  margin: auto;
+  position: fixed;
+  top: 0;
+  box-shadow: 10px 10px 10px 10px black;
+  z-index: 44 !important;
+}
+
+.popup-bg {
+  background: rgba(0, 0, 0, 0.8);
+  width: 100%;
+  height: 100vh;
+  position: fixed;
+  left: 0;
+  right: 0;
+  margin: 0;
+  padding: 0;
+}
+
+.popup-content {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 800px;
+  height: auto;
+}
+
+.popup-title {
+  padding: 30px;
+  margin: 0 auto;
+  color: red;
+  text-transform: uppercase;
+}

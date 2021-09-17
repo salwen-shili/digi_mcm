@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="mcm_website_theme_view_questionnaire_form" model="ir.ui.view">
+            <field name="name">mcm.website.theme.view.questionnaire.form</field>
+            <field name="model">questionnaire</field>
+            <field name="arch" type="xml">
+                <form string="Questionnaire">
+                    <sheet>
+                        <div>
+                            <field name="partner_id"/>
+                            <field name="product_id"/>
+                            <field name="besoins_particuliers"/>
+                            <field name="type_besoins"/>
+                            <field name="raison_choix"/>
+                            <field name="support_formation"/>
+                            <field name="attentes"/>
+                        </div>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="mcm_website_theme_view_questionnaire_tree" model="ir.ui.view">
+            <field name="name">mcm.website.theme.view.questionnaire.tree</field>
+            <field name="model">questionnaire</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="partner_id"/>
+                    <field name="product_id"/>
+                    <field name="besoins_particuliers"/>
+                    <field name="type_besoins"/>
+                    <field name="raison_choix"/>
+                    <field name="support_formation"/>
+                    <field name="attentes"/>
+                </tree>
+
+            </field>
+        </record>
+
+        <!--smart button in partner form -->
+        <record id="questionnaire_smart_button" model="ir.ui.view">
+            <field name="name">questionnaire.buttons</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_form"/>
+            <field name="arch" type="xml">
+                <div name="button_box" position="inside">
+                    <button class="oe_stat_button" type="object" name="get_questionnaires">
+                        <field string="Questionnaires" name="questionnaires_count" widget="statinfo"/>
+                    </button>
+                </div>
+            </field>
+        </record>
+
+    </data>
+
+</odoo>

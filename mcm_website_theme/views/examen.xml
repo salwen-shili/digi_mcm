@@ -1,0 +1,391 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <template id="mcm_website_examen" name="Examen | MCM ACADEMY">
+    <t t-call="website.layout">
+      <div id="wrap" class="oe_structure oe_empty">
+        <section class="pt32 pb32 bg-100" data-name="Title" style="">
+          <div class="container">
+            <div class="row s_nb_column_fixed">
+              <div class="col-lg-12 s_title pt48 pb24" style="text-align: center;">
+                <h4 style="margin-bottom: 15px; font-weight: 600; font-size: 38px; color: rgb(33, 37, 41); background-color: rgb(248, 249, 250);">EXAMEN VTC / TAXI / VMDTR</h4>
+                <h4 style="margin-bottom: 15px; font-weight: 600; font-size: 38px; color: rgb(33, 37, 41); background-color: rgb(248, 249, 250);">
+                  <span style="color: rgb(66, 66, 66); font-size: 16px;">Passer les examens TAXI , VTC , ou VMDTR et les réussir est important pour que vous puissiez avoir votre carte professionnelle</span>
+                  <br/>
+                </h4>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="s_text_block pb0 pt16" data-name="Text block">
+          <div class="container">
+            <div class="row">
+              <div class="pt8 offset-lg-1 col-lg-10 pb16">
+                <p class="lead">
+                  <span style="color: rgb(0, 0, 0); font-family: Poppins, sans-serif;">Pour exercer la profession de conducteur de taxi ou de voiture de transport avec chauffeur, vous devez valider un examen comprenant une épreuve d’admissibilité et une épreuve d'admission.</span>
+                  <br/>
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="s_text_image pt32 pb32" data-name="Image - Text">
+          <div class="container">
+            <div class="row align-items-center">
+              <div class="col-lg-6 pt16 pb16">
+                <img src="/mcm_website_theme/static/src/img/examen/1.png" class="img img-fluid mx-auto" alt="Odoo • Image et Texte" data-original-title="" title="" aria-describedby="tooltip38510"/>
+              </div>
+              <div class="col-lg-6 pt16 pb16" style="border-style: none; border-width: 0px;">
+                <h2>
+                  <font color="#000000" face="Poppins, sans-serif">
+                    <span style="font-size: 24px;">
+                      <span style="font-weight: 700;">Comment m’inscrire à l’examen du VTC / TAXI / VMDTR ?</span>
+                    </span>
+                  </font>
+                  <br/>
+                </h2>
+                <h2/>
+                <p style="font-size: 14px;">
+                  <font color="#000000" face="Poppins, sans-serif">Pour vous inscrire à l’examen, créez votre compte en ligne sur EVALBOX en suivant le lien&amp;nbsp;<span style="color: rgb(0, 0, 255);">ICI</span>&amp;nbsp;.</font>
+                  <br/>
+                </p>
+                <p style="font-size: 14px;">&amp;nbsp;<span class="fa fa-play-circle-o"/>
+&amp;nbsp;&amp;nbsp;<font color="#000000" face="Poppins, sans-serif">Vous devez joindre vos pièces justificatives directement en ligne ► </font>
+                <font color="#000000" face="Poppins, sans-serif" style="color: rgb(0, 0, 255);">liste des pièces à télécharger</font>
+                <font color="#000000" face="Poppins, sans-serif"> (</font>&amp;nbsp;<span class="fa fa-warning"/>
+&amp;nbsp;<font color="#000000" face="Poppins, sans-serif">&amp;nbsp;<span style="font-weight: 700;">Attention</span>&amp;nbsp;: Ne mettre que les originaux. Les photocopies déchirées seront automatiquement refusées)<br/>
+            </font>
+            <span class="fa fa-play-circle-o"/>
+&amp;nbsp;<font color="#000000" face="Poppins, sans-serif">&amp;nbsp;Pour les candidats se présentant à l'ensemble des épreuves d'admissibilité et à l'épreuve d'admission, il faut prévoir:</font>&amp;nbsp;<span style="font-size: 0.9375rem;">&amp;nbsp;&amp;nbsp;</span>
+          </p>
+          <p style="font-size: 14px;">&amp;nbsp;<span class="fa fa-check"/>
+&amp;nbsp;&amp;nbsp;<font color="#000000" face="Poppins, sans-serif">206 € d'inscription aux 7 épreuves théoriques d'admissibilité et à l'épreuve pratique.&amp;nbsp;<br/>
+        </font>
+        <span class="fa fa-check"/>
+&amp;nbsp;<font color="#000000" face="Poppins, sans-serif">&amp;nbsp;101 € d'inscription à une 2ème ou 3ème une présentation à l'épreuve pratique d'admission.<br/>
+      <br/>
+    </font>
+    <span style="font-weight: 700; color: rgb(0, 0, 255); text-align: right;">Retrouvez plus d'informations ici</span>
+    <font color="#000000" face="Poppins, sans-serif">
+      <br/>
+    </font>
+  </p>
+</div>
+</div>
+</div>
+</section>
+<section class="s_text_image pt32 pb32" data-name="Text - Image">
+<div class="container">
+<div class="row align-items-center">
+
+
+</div>
+</div>
+</section>
+<section class="s_text_block pt0 pb0" data-name="Text block" style="background-color: rgb(255, 227, 71);">
+<div class="container">
+<div class="row">
+
+</div>
+</div>
+</section>
+<section id="sh_corpomate_theme_section_184" class="sh_animation_part oe_img_bg oe_custom_bg" data-name="Slider" style="background-image: url(&quot;/web/image/31989/people-A9PZ5P9.jpg&quot;);">
+
+</section>
+<section class="s_text_block pt0 pb0" data-name="Text block">
+<div class="container">
+<div class="row">
+
+</div>
+</div>
+</section>
+<section class="s_text_image pt32 pb32" data-name="Text - Image">
+<div class="container">
+<div class="row align-items-center">
+<div class="col-lg-6 pt16 pb16">
+  <h2>
+    <font color="#000000" face="Poppins, sans-serif">
+      <span style="font-size: 24px;">
+        <span style="font-weight: 700;">Quelles sont les conditions pour passer l'examen de taxi/VTC ?</span>&amp;nbsp;<br/>
+      </span>
+    </font>
+    <br/>
+  </h2>
+  <h2/>
+  <p style="font-size: 14px;">
+    <font color="#000000" face="Poppins, sans-serif">Pour s'inscrire à l'examen TAXI/VTC, le candidat doit être :</font>
+    <br/>
+  </p>
+  <p style="font-size: 14px;">&amp;nbsp;<span class="fa fa-check"/>
+&amp;nbsp;&amp;nbsp;<font color="#000000" face="Poppins, sans-serif">Européen ou avoir un titre de séjour lui permettant d'exercer en France.</font>
+</p>
+<p style="font-size: 14px;">&amp;nbsp;<span class="fa fa-check"/>
+&amp;nbsp;&amp;nbsp;<font color="#000000" face="Poppins, sans-serif">Titulaire d'un permis B depuis au moins 3 ans et non soumis à une période probatoire.</font>&amp;nbsp;</p>
+<p style="font-size: 14px;">&amp;nbsp;<span class="fa fa-check"/>
+&amp;nbsp;&amp;nbsp;<font color="#000000" face="Poppins, sans-serif">En capacité physique de devenir chauffeur professionnel.<br/>
+<br/>
+</font>
+<span style="font-weight: 700; color: rgb(0, 0, 255); text-align: right;">Retrouvez plus d'informations ici</span>
+<font color="#000000" face="Poppins, sans-serif">
+<br/>
+</font>
+</p>
+</div>
+<div class="col-lg-6 pt16 pb16">
+<img src="/mcm_website_theme/static/src/img/examen/2.png" class="img img-fluid mx-auto" alt="Odoo • Texte et Image" data-original-title="" title="" aria-describedby="tooltip202025"/>
+</div>
+</div>
+</div>
+</section>
+<section class="pb0 pt0" data-name="Title">
+<div class="container">
+<div class="row s_nb_column_fixed">
+<div class="s_title offset-lg-1 col-lg-10 pt0 pb4" style="text-align: center;">
+<h2 style="text-align: center;">
+<font color="#000000" face="Poppins, sans-serif">
+<span style="font-size: 24px;">
+<b>Quels sont les modules d’examens pour avoir le Certificat de Capacité Professionnelle ?</b>
+</span>
+</font>
+<br/>
+</h2>
+</div>
+</div>
+</div>
+</section>
+<section class="s_text_block pb32 pt16" data-name="Text block">
+<div class="container">
+<div class="row">
+<div class="col-lg-12 pt32 pb32">
+<p class="lead">
+<font color="#000000" face="Poppins, sans-serif">L’examen se décompose en deux types d’épreuves : <br/>
+</font>
+<span class="fa fa-play-circle-o"/>
+<font color="#000000" face="Poppins, sans-serif">&amp;nbsp;Des épreuves théoriques, sous la forme de questions à choix multiples et de questions à réponses courtes ;<br/>
+</font>
+<span class="fa fa-play-circle-o"/>
+<font color="#000000" face="Poppins, sans-serif">&amp;nbsp;Une épreuve pratique consiste en une mise en situation pratique de réalisation d’une course de taxi ou d’une mission de transport en voiture de transport avec chauffeur.</font>
+</p>
+</div>
+</div>
+</div>
+</section>
+<section id="sh_corpomate_theme_section_238" class="pt16" data-name="Practice Area">
+<div class="container">
+<div class="row">
+<div class="pt16 pb16 col-lg-7" style="border-style: none; border-width: 0px;">
+<h2>
+<font color="#000000" face="Poppins, sans-serif">
+<span style="font-size: 24px;">
+<b>Les modules théoriques communs d’admissibilité sont les suivants :&amp;nbsp;</b>
+</span>
+</font>
+</h2>
+<h2>
+<font color="#000000" face="Poppins, sans-serif">
+<span style="font-size: 24px;">&amp;nbsp;</span>
+</font>
+</h2>
+<p>
+<font color="#000000" face="Poppins, sans-serif" style="font-size: 18px;">Pendant votre formation nous allons vous apprendre à maîtriser les modules suivants:&amp;nbsp;</font>
+</p>
+<p>
+<font color="#000000" face="Poppins, sans-serif" style="font-size: 18px;">
+<b>A</b> - RÉGLEMENTATION DU TRANSPORT PUBLIC PARTICULIER DE PERSONNES </font>
+</p>
+<p>
+<font color="#000000" face="Poppins, sans-serif" style="font-size: 18px;">
+<b>B</b> -&amp;nbsp;</font>
+<span style="color: rgb(0, 0, 0); font-family: Poppins, sans-serif; font-size: 18px;">GESTION&amp;nbsp;</span>
+</p>
+<p>
+<span style="color: rgb(0, 0, 0); font-family: Poppins, sans-serif; font-size: 18px;">
+<b>C</b> - SÉCURITÉ ROUTIÈRE</span>
+</p>
+<p>
+<font color="#000000" face="Poppins, sans-serif" style="font-size: 18px;">
+<b>D</b> - FRANÇAIS
+</font>
+</p>
+<p>
+<font color="#000000" face="Poppins, sans-serif" style="font-size: 18px;">
+<b>E</b> - ANGLAIS</font>
+</p>
+</div>
+<div class="col-lg-5 col-12">
+<div class="sh_img">
+<img src="/mcm_website_theme/static/src/img/examen/3.png" data-original-title="" title="" aria-describedby="tooltip859873"/>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="s_text_block pt32 pb0" data-name="Text block">
+<div class="container">
+<div class="row">
+<div class="pt32 pb32 col-lg-6" style="border-style: none; border-width: 0px;">
+<h2 style="text-align: center; ">
+<font color="#000000" face="Poppins, sans-serif">
+<span style="font-size: 24px;">
+<span style="font-weight: 700;">Modules spécifiques VTC</span>
+</span>
+</font>
+</h2>
+<h2>
+<font color="#000000" face="Poppins, sans-serif">
+<span style="font-size: 24px;">&amp;nbsp;</span>
+</font>
+</h2>
+<p>
+<font color="#000000" face="Poppins, sans-serif">
+<span style="font-size: 18px;">Les modules spécifiques d'accès à la profession de conducteur de VTC sont les suivants :</span>
+</font>
+<font color="#000000" face="Poppins, sans-serif" style="font-size: 18px;">&amp;nbsp;</font>
+</p>
+<p>
+<font color="#000000" face="Poppins, sans-serif">
+<span style="font-size: 18px;">
+<b>F</b> - Développement commercial en gestion propre à l’activité VTC&amp;nbsp;</span>
+</font>
+</p>
+<p>
+<font color="#000000" face="Poppins, sans-serif">
+<span style="font-size: 18px;">
+<b>G</b> - Réglementation nationale spécifique de l’activité de VTC&amp;nbsp;</span>
+</font>
+</p>
+</div>
+<div class="pt32 pb32 col-lg-6" style="border-style: none; border-width: 0px;">
+<h2 style="text-align: center; ">
+<font color="#000000" face="Poppins, sans-serif">
+<span style="font-size: 24px;">
+<span style="font-weight: 700;">Modules spécifiques TAXI</span>
+</span>
+</font>
+</h2>
+<h2>
+<font color="#000000" face="Poppins, sans-serif">
+<span style="font-size: 24px;">&amp;nbsp;</span>
+</font>
+</h2>
+<p>
+<font color="#000000" face="Poppins, sans-serif">
+<span style="font-size: 18px;">Les épreuves spécifiques d'accès à la profession de conducteur de taxi sont les suivantes :&amp;nbsp;</span>
+</font>
+<br/>
+</p>
+<p>
+<font color="#000000" face="Poppins, sans-serif">
+<span style="font-size: 18px; font-weight: 700;">F</span>
+<span style="font-size: 18px;">&amp;nbsp;- Connaissance du territoire et de la réglementation locale&amp;nbsp;&amp;nbsp;</span>
+</font>
+</p>
+<p>
+<span style="font-size: 18px; color: rgb(0, 0, 0); font-family: Poppins, sans-serif; font-weight: 700;">G</span>
+<span style="font-size: 18px; color: rgb(0, 0, 0); font-family: Poppins, sans-serif;">&amp;nbsp;</span>
+<span style="font-size: 18px; color: rgb(0, 0, 0); font-family: Poppins, sans-serif;">-&amp;nbsp;</span>
+<font color="#000000" face="Poppins, sans-serif" style="">
+<span style="font-size: 18px;">Réglementation nationale de l’activité taxis et gestion propre à cette activité&amp;nbsp;</span>
+</font>
+</p>
+</div>
+</div>
+</div>
+</section>
+<section class="s_text_block pt32 pb32" data-name="Text block">
+<div class="container">
+<div class="row">
+<div class="pt32 pb32 offset-lg-1 col-lg-10" style="border-style: none; border-width: 0px;">
+<h2 style="text-align: center;">
+<font color="#000000" face="Poppins, sans-serif">
+<span style="font-size: 24px;">
+<span style="font-weight: 700;">Détails sur l'examen</span>
+</span>
+</font>
+</h2>
+<h2>
+<font color="#000000" face="Poppins, sans-serif">
+<span style="font-size: 24px;">&amp;nbsp;</span>
+</font>
+</h2>
+<p>
+<font color="#000000" face="Poppins, sans-serif">
+<span style="font-size: 18px;">Retrouvez plus d'informations sur la durée des épreuves, les coefficients, la notations et les modalités d'évaluation en cliquant sur le bouton suivant:<br/>
+<br/>
+</span>
+</font>
+</p>
+<div class="s_btn text-center pt16 pb16" data-name="Button">
+<a href="#" class="btn btn-primary sh_btn_cm_4" data-original-title="" title="" aria-describedby="tooltip942226">Voir les détails</a>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="s_text_image pt32 pb32" data-name="Image - Text">
+<div class="container">
+<div class="row align-items-center">
+<div class="col-lg-6 pt16 pb16">
+<img src="/mcm_website_theme/static/src/img/examen/4.png" class="img img-fluid mx-auto" alt="Odoo • Image et Texte"/>
+</div>
+<div class="col-lg-6 pt16 pb16" style="border-style: none; border-width: 0px;">
+<h2>
+<font color="#000000" face="Poppins, sans-serif">
+<span style="font-size: 24px;">
+<b>Comment m’inscrire à l’examen du VMDTR?</b>&amp;nbsp;<br/>
+</span>
+</font>
+<br/>
+</h2>
+<p>
+<font color="#000000" face="Poppins, sans-serif">
+<span style="font-size: 14px;">Comme le cas pour les examens du TAXI et VTC , pour passer l’examen VMDTR le candidat doit passer par une épreuve théorique et une épreuve pratique.</span>
+</font>
+<br/>
+</p>
+<p>&amp;nbsp;<span class="fa fa-play-circle-o"/>
+&amp;nbsp;<font color="#000000" face="Poppins, sans-serif">
+<span style="font-size: 14px;">Pour réussir l’examen théorique VMDTR, une moyenne générale d’au moins 10/20&amp;nbsp; est&amp;nbsp; obligatoire. Aussi, chaque épreuve est soumise à une note éliminatoire propre. Le candidat se verra éliminé s'il obtient une note inférieure à celle-ci.</span>
+</font>
+</p>
+<p>&amp;nbsp;<span class="fa fa-play-circle-o" data-original-title="" title="" aria-describedby="tooltip206664"/>
+&amp;nbsp;<font color="#000000" face="Poppins, sans-serif">
+<span style="font-size: 14px;">Les résultats de l’examen VMDTR théorique vous seront communiqués par la Chambre des Métiers et de l'Artisanat (CMA) dans les semaines qui suivent l’épreuve par mail et sms mais aussi en ligne sur&amp;nbsp; le site web de la CMA.</span>
+</font>&amp;nbsp;</p>
+<div class="s_btn pt16 pb16 text-center" data-name="Button">
+<a href="#" class="btn btn-primary sh_btn_cm_4" data-original-title="" title="" aria-describedby="tooltip515890">Détails sur l'examen VMDTR&amp;nbsp;</a>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="sh_corpomate_theme_section_254" data-name="Call To Action" style="">
+<div class="container">
+<div class="sh_content">
+<p>
+<font style="color: rgb(255, 227, 71);">MCM ACADEMY propose des formations VTC, TAXI et VMDTR d’excellence basée sur l'expertise de nos formateurs et la dédication de toute l'équipe. Toutes nos formations sont éligibles au CPF !</font>
+</p>
+<div class="sh_btn">
+<a href="/#sh_corpomate_theme_section_188" class="btn" data-original-title="" title="" aria-describedby="tooltip398035">Je m'inscris</a>
+</div>
+</div>
+</div>
+</section>
+<section class="s_text_block pt32 pb32" data-name="Text block">
+<div class="container">
+<div class="row">
+<div class="col-lg-12 pb0 pt0">
+<p class="lead">
+<br/>
+</p>
+</div>
+</div>
+</div>
+</section>
+<section id="main-container">
+<div class="gap-60"/>
+<div class="gap-60"/>
+</section>
+</div>
+</t>
+</template>
+</odoo>

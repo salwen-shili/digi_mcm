@@ -10,6 +10,7 @@ $(document).ready(function()
 	1. Vars and Inits
 
 	*/
+	console.log("hello world");
 	var header = $('.header');
 
 	initMenu();

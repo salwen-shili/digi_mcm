@@ -17,6 +17,7 @@ from odoo.exceptions import ValidationError
 from odoo import fields, http, SUPERUSER_ID, tools, _
 from odoo.osv import expression
 from datetime import datetime, date
+import werkzeug
 
 PPG = 20  # Products Per Page
 PPR = 4  # Products Per Row
@@ -65,6 +66,22 @@ class Website(Home):
                 [('company_id', '=', 2), ('code', 'ilike', partenaire.upper())])
         if state:
             kw["search"] = state
+
+        # Tarifs mcm
+        mcm_products = request.env['product.product'].sudo().search([('company_id', '=', 1)], order="list_price")
+        print(mcm_products)
+        taxi_price = False
+        vtc_price = False
+        vmdtr_price = False
+        if mcm_products:
+            for product in mcm_products:
+                if (product.default_code == 'taxi'):
+                    taxi_price = round(product.list_price)
+                if (product.default_code == 'vmdtr'):
+                    vmdtr_price = round(product.list_price)
+                if (product.default_code == 'vtc'):
+                    vtc_price = round(product.list_price)
+
         values = {
             'all_categories': all_categs,
             'state': state,
@@ -76,8 +93,13 @@ class Website(Home):
             'basic_price': basic_price if basic_price else '',
             'avancee_price': avancee_price if avancee_price else '',
             'premium_price': premium_price if premium_price else '',
+            'taxi_price': taxi_price if taxi_price else '',
+            'vtc_price': vtc_price if vtc_price else '',
+            'vmdtr_price': vmdtr_price if vmdtr_price else '',
+            'mcm_products':mcm_products, # send mcm product to homepage
         }
-        #send all exam centers to digimoov website homepage
+
+        # send all exam centers to digimoov website homepage
         if last_ville:
             values['last_ville'] = last_ville
         if list_villes:
@@ -90,7 +112,19 @@ class Website(Home):
                 values['promo'] = False
             return request.render("website.homepage", values)
         if (request.website.id == 1):
-            return request.render("website.homepage", values)
+            user= http.request.env.user
+            partner = user.partner_id
+            documents = False
+            if partner:
+                documents = request.env['documents.document'].sudo().search([('partner_id', '=', partner.id)])
+            values['documents'] = documents
+            if not partenaire:
+                return request.render("website.homepage", values)
+            else:
+                website_page = request.env['website.page'].sudo().search([('url', "=", '/'+str(partenaire))])
+                if website_page:
+                    return request.render(str(website_page.view_id.key), {})
+
 
         # --------------------------------------------------------------------------
         # states Search Bar
@@ -105,6 +139,92 @@ class Website(Home):
             'states': states.read(fields),
         }
         return res
+
+class Routes_Site(http.Controller):
+
+    @http.route('/update_partner', type='http', auth='user', website=True)
+    def update_partner(self, **kw):
+        vals = {}
+        vals['lastName'] = kw.get("lastName")
+        vals['firstname'] = kw.get("firstname")
+        vals['zip'] = kw.get("zip")
+        vals['city'] = kw.get("city")
+        vals['street2'] = kw.get("street2")
+        vals['phone'] = kw.get("phone")
+        vals['street'] = kw.get("num_voie") + " " + kw.get("voie") + " " + kw.get("nom_voie")
+        user_id = request.uid
+        partner = request.env['res.users'].sudo().search([('id', "=", user_id)]).partner_id
+        partner.sudo().write(vals)
+        return request.render("mcm_contact_documents.mcm_contact_documents_charger_mes_documents_mcm", {})
+
+    @http.route('/edit_info', type='http', auth='user', website=True)
+    def editInfo(self):
+        if request.website.id == 2:
+            raise werkzeug.exceptions.NotFound()
+        elif request.website.id == 1:
+            return request.render("mcm_website_theme.mcm_website_theme_edit_info", {})
+
+    @http.route('/formation-chauffeur-taxi', type='http', auth='public', website=True)
+    def taxi(self):
+        if request.website.id == 2:
+            raise werkzeug.exceptions.NotFound()
+        elif request.website.id == 1:
+            return request.render("mcm_website_theme.mcm_website_theme_taxi", {})
+
+    @http.route('/formation-chauffeur-vtc', type='http', auth='public', website=True)
+    def vtc(self):
+        if request.website.id == 2:
+            raise werkzeug.exceptions.NotFound()
+        elif request.website.id == 1:
+            return request.render("mcm_website_theme.mcm_website_theme_vtc", {})
+
+    @http.route('/formation-taximoto-vmtdr', type='http', auth='public', website=True)
+    def vmdtr(self):
+        if request.website.id == 2:
+            raise werkzeug.exceptions.NotFound()
+        elif request.website.id == 1:
+            return request.render("mcm_website_theme.mcm_website_theme_vmdtr", {})
+
+    @http.route('/examen', type='http', auth='public', website=True)
+    def examen(self):
+        if request.website.id == 2:
+            raise werkzeug.exceptions.NotFound()
+        elif request.website.id == 1:
+            return request.render("mcm_website_theme.mcm_website_examen", {})
+
+    @http.route('/coordonnées', type='http', auth='user', website=True,csrf=False)
+    def validation_questionnaires(self, **kw):
+        if request.website.id == 2:
+            raise werkzeug.exceptions.NotFound()
+        elif request.website.id == 1:
+            return request.render("mcm_website_theme.mcm_website_theme_validation")
+
+    @http.route(['/validation/submit'], type='http', auth="user", website=True, csrf=False)
+    def validation_submit(self, **kw):
+        vals = {}
+        vals['besoins_particuliers'] = kw.get("group1")
+        vals['type_besoins'] = kw.get("type_besoins")
+        vals['raison_choix'] = kw.get("group2")
+        vals['support_formation'] = kw.get("group3")
+        vals['attentes'] = kw.get("attentes")
+        partner = http.request.env.user.partner_id
+        partner.step = "document"
+        partner = request.env['res.partner'].sudo().search([('id', "=", partner.id)])[-1]
+        vals['partner_id'] = partner.id
+        order = request.website.sale_get_order()
+        product = order.order_line[0].product_id
+        vals['product_id'] = product.id
+        new_quetionnaire = request.env['questionnaire'].sudo().create(vals)
+        if order:
+            #order.sudo().write(vals)
+            documents = False
+            if order.partner_id:
+                documents = request.env['documents.document'].sudo().search([('partner_id', '=', order.partner_id.id)])
+                if order and order.company_id.id == 1 and not documents:
+                    return request.redirect('/charger_mes_documents')
+                else:
+                    return request.redirect('/shop/cart')
+        return http.request.render('mcm_contact_documents.portal_my_home', {'step': 'document'})
 
 
 class WebsiteSale(WebsiteSale):
@@ -373,6 +493,8 @@ class WebsiteSale(WebsiteSale):
                  '''/shop/address'''], type='http', methods=['GET', 'POST'], auth="user", website=True, sitemap=False)
     def address(self, partenaire=None, product=None, **kw):
         Partner = request.env['res.partner'].with_context(show_address=1).sudo()
+        if request.website.id == 1 :
+            return request.redirect('/edit_info')
         order = request.website.sale_get_order()
         redirection = self.checkout_redirection(order)
         if redirection:
@@ -544,7 +666,7 @@ class WebsiteSale(WebsiteSale):
         return error, error_message
 
 
-class Taxi(http.Controller):
+"""class Taxi(http.Controller):
 
     @http.route('/taxi', type='http', auth='public', website=True)
     def taxi(self, taxi_state='', **kw, ):
@@ -562,7 +684,7 @@ class VTC(http.Controller):
 
     @http.route('/vtc', type='http', auth='public', website=True)
     def taxi(self, vtc_state='', **kw, ):
-        return request.render("mcm_website_theme.mcm_website_theme_vtc", {})
+        return request.render("mcm_website_theme.mcm_website_theme_vtc", {})"""
 
 
 class Payment3x(http.Controller):
@@ -647,6 +769,7 @@ class CustomerPortal(CustomerPortal):
     'users_tasks_domain' to restrict users to display tasks
     assigned to them.
     """
+
     @http.route(['/my/tasks', '/my/tasks/page/<int:page>'], type='http', auth="user", website=True)
     def portal_my_tasks(self, page=1, date_begin=None, date_end=None, sortby=None, filterby=None, search=None,
                         search_in='content', groupby='project', **kw):
@@ -769,7 +892,7 @@ class CustomerPortal(CustomerPortal):
             ('type_facture', '=', 'web')
         ])
         values['invoice_count'] = invoice_count
-        #add users_tasks_domain to filter tasks in portal view
+        # add users_tasks_domain to filter tasks in portal view
         users = request.env.user
         users_tasks_domain = ['|', ('parent_id.user_id', '=', users.id), ('user_id', '=', users.id)]
         values['task_count'] = request.env['project.task'].search_count(users_tasks_domain)
@@ -791,6 +914,7 @@ class CustomerPortal(CustomerPortal):
 
     """@override this function to add filter can display 
     all invoices Not CPF type linked to specific portal"""
+
     @http.route(['/my/invoices', '/my/invoices/page/<int:page>'], type='http', auth="user", website=True)
     def portal_my_invoices(self, page=1, date_begin=None, date_end=None, sortby=None, **kw):
         values = self._prepare_portal_layout_values()
@@ -831,7 +955,8 @@ class CustomerPortal(CustomerPortal):
         contains type WEB also the cpf_solde_invoice, cpf_acompte_invoice
         should be not ckecked using lambda """
 
-        invoices = AccountInvoice.search(domain, order=order, limit=self._items_per_page, offset=pager['offset']).filtered(lambda facture: facture.type_facture == 'web')
+        invoices = AccountInvoice.search(domain, order=order, limit=self._items_per_page,
+                                         offset=pager['offset']).filtered(lambda facture: facture.type_facture == 'web')
         request.session['my_invoices_history'] = invoices.ids[:100]
         values.update({
             'date': date_begin,
@@ -844,3 +969,42 @@ class CustomerPortal(CustomerPortal):
             'sortby': sortby,
         })
         return request.render("account.portal_my_invoices", values)
+
+
+
+
+class MCMFORMATION(http.Controller):
+
+    # @http.route('/formation-theorique-et-pratique-vtc', type='http', auth='public', website=True)
+    # def formvtc(self, **kw, ):
+    #     if request.website.id == 2:
+    #         return 0
+    #     elif request.website.id == 1:
+    #         return request.render("mcm_website_theme.mcm_website_formation_vtc")
+
+    @http.route('/formation-taximoto-vmtdr', type='http', auth='public', website=True)
+    def formvmdtr(self, **kw, ):
+        if request.website.id == 2:
+            return 0
+        elif request.website.id == 1:
+            return request.render("mcm_website_theme.mcm_website_theme_vmdtr")
+
+
+class MCM_SIGNUP(http.Controller):
+
+    @http.route('/sign_up', type='http', auth='public', website=True)
+    def formvtc(self, **kw, ):
+        if request.website.id == 2:
+            return 0
+        elif request.website.id == 1:
+            return request.render("mcm_website_theme.mcm_website_register_form")
+
+
+class MCM_SIGNUP(http.Controller):
+
+    @http.route('/sign_up', type='http', auth='public', website=True)
+    def formvtc(self, **kw, ):
+        if request.website.id == 2:
+            return 0
+        elif request.website.id == 1:
+            return request.render("mcm_website_theme.mcm_website_register_form")

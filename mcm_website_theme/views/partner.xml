@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+         <record id="res_partner_form_inherit_mcm_website_new" model="ir.ui.view">
+            <field name="name">res.partner.form.inherit.mcm.website.new</field>
+            <field name="model">res.partner</field>
+          <field name="inherit_id" ref="base.view_partner_form"/>
+            <field name="arch" type="xml">
+                  <xpath expr="//field[@name='city']" position="after">
+                  <br/>
+                         <label for="street2">Complément d'adresse: </label>
+                      <field name="street2"/>
+                     <field name="voie" invisible="True"/>
+                         <field name="nom_voie" invisible="True"/>
+                         <field name="num_voie" invisible="True"/>
+                        <field name="step" invisible="True"/>
+                </xpath>
+            </field>
+        </record>
+
+
+    </data>
+</odoo>

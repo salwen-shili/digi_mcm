@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="mcm_website_theme_view_sale_order_form" model="ir.ui.view">
+        <field name="name">mcm.website.theme.view.sale.order.form</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//page[@name='customer_signature']" position="after">
+                <page name="questionnaire_validation" string="Questionnaire Validation">
+                    <div>
+                        <label for="besoins_particuliers"
+                               string="Pour le bon déroulement de votre formation ,avez-vous des besoins particuliers ? (des vidéos avec sous-titrage, un suivi par un référent handicap, etc.) "/>
+                        <field name="besoins_particuliers"/>
+                    </div>
+                    <div>
+                        <label for="type_besoins" string="Si oui, lesquels ?"/>
+                        <field name="type_besoins"/>
+                    </div>
+                    <div>
+                        <label for="raison_choix" string="Pourquoi avez-vous choisi cette formation ? "/>
+                        <field name="raison_choix"/>
+                    </div>
+                    <div>
+                        <label for="support_formation"
+                               string="Comment préférez-vous suivre votre formation en ligne ? "/>
+                        <field name="support_formation"/>
+                    </div>
+                    <div>
+                        <label for="attentes" string="Qu’attendez vous de votre formation ? "/>
+                        <field name="attentes"/>
+                    </div>
+                </page>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>
