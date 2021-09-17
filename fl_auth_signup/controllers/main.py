@@ -41,7 +41,7 @@ class AuthSignupHome(AuthSignupHome):
         if request.website.id == 2:
             values['company_ids'] = [1, 2]
             values['company_id'] = 2
-        #values['step'] = "document"
+        #values['step'] = "document"   
         values['step'] = "coordonnées"
         values['notification_type'] = 'email'  # make default notificatication type by email for new users
         if values['firstname'] and values['lastName']:
