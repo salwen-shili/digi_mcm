@@ -11,10 +11,10 @@
                     <field name="date_debut" attrs="{'invisible': [('company_id', '=', 2)]}"/>
                     <field name="date_fin" attrs="{'invisible': [('company_id', '=', 2)]}"/>
                     <field name="ville" attrs="{'invisible': [('company_id', '=', 1)]}"/>
-                    <field name="intervalle_jours" attrs="{'invisible': [('company_id', '=', 1)]}"/>
-                    <field name="max_number_places" attrs="{'invisible': [('company_id', '=', 1)]}"/>
-                    <field name="number_places_available" attrs="{'invisible': [('company_id', '=', 1)]}"/>
-                    <field name="website_published" attrs="{'invisible': [('company_id', '=', 1)]}" readonly="1"/>
+                    <field name="intervalle_jours"/>
+                    <field name="max_number_places"/>
+                    <field name="number_places_available"/>
+                    <field name="website_published" readonly="1"/>
                     <field name="company_id"/>
                 </group>
             </xpath>

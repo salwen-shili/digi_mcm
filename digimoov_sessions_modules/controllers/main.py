@@ -25,7 +25,20 @@ class WebsiteSale(WebsiteSale):
         revive: Revival method when abandoned cart. Can be 'merge' or 'squash'
         """
         order = request.website.sale_get_order()
-        print(order)
+        documents = False
+        if order.partner_id:
+            documents = request.env['documents.document'].sudo().search([('partner_id', '=', order.partner_id.id)])
+        if order and order.company_id.id == 1 and order.partner_id:
+            product_id = False
+            if order:
+                for line in order.order_line:
+                    product_id = line.product_id
+            if product_id:
+                questionnaire = request.env['questionnaire'].sudo().search([('partner_id', '=', order.partner_id.id),('product_id',"=",product_id.id)])
+                if not questionnaire :
+                    return request.redirect("/coordonnées")
+        if order and order.company_id.id == 1 and not documents:
+            return request.redirect("/charger_mes_documents")
         if order.company_id.id == 1 and (partenaire or product):
             return request.redirect("/shop/cart/")
         if order and order.company_id.id == 2:
@@ -96,12 +109,17 @@ class WebsiteSale(WebsiteSale):
         if order:
             for line in order.order_line:
                 list_products.append(line.product_id)
+        all_mcm_modules =False
         all_digimoov_modules = False
         for product in list_products:
+            all_mcm_modules = request.env['mcmacademy.module'].sudo().search(
+                [('product_id', '=', product.product_tmpl_id.id),
+                 ('company_id', '=', 1)])
             all_digimoov_modules = request.env['mcmacademy.module'].sudo().search(
                 [('product_id', '=', product.product_tmpl_id.id),
                  ('company_id', '=', 2)])
         list_modules_digimoov = []
+        list_modules_mcm = []
         today = date.today()
         if (all_digimoov_modules):
             for module in all_digimoov_modules:
@@ -109,6 +127,12 @@ class WebsiteSale(WebsiteSale):
                     if (module.date_exam - today).days > int(
                             module.session_id.intervalle_jours) and module.session_id.website_published == True:
                         list_modules_digimoov.append(module)
+        if (all_mcm_modules):
+            for module in all_mcm_modules:
+                if module.date_exam:
+                    if (module.date_exam - today).days > int(
+                            module.session_id.intervalle_jours) and module.session_id.website_published == True:
+                        list_modules_mcm.append(module)
         if order and order.state != 'draft':
             request.session['sale_order_id'] = None
             order = request.website.sale_get_order()
@@ -145,16 +169,27 @@ class WebsiteSale(WebsiteSale):
             print(module.date_exam)
         values.update({
             'modules_digimoov': list_modules_digimoov,
+            'modules_mcm': list_modules_mcm,
             'error_ville': '',
             'error_exam_date': '',
             'error_condition': '',
         })
         # recuperer la liste des villes pour l'afficher dans la vue panier de siteweb digimoov pour que le client peut choisir une ville parmis la liste
-        list_villes = request.env['session.ville'].sudo().search([])
+        list_villes = request.env['session.ville'].sudo().search([('company_id', '=', 2)])
         if list_villes:
             values.update({
                 'list_villes':list_villes,
             })
+
+            # recuperer la liste des villes pour l'afficher dans la vue panier de siteweb mcm pour que le client peut choisir une ville parmis la liste
+            list_villes_mcm = []
+
+        list_villes_mcm = request.env['session.ville'].sudo().search([('company_id', '=', 1)])
+        if list_villes_mcm:
+            values.update({
+                'list_villes_mcm': list_villes_mcm,
+            })
+
         if post.get('type') == 'popover':
             # force no-cache so IE11 doesn't cache this XHR
             return request.render("website_sale.cart_popover", values, headers={'Cache-Control': 'no-cache'})
@@ -263,6 +298,13 @@ class WebsiteSale(WebsiteSale):
         if order:
             if order.company_id.id == 1 and (partenaire or product):
                 return request.redirect("/shop/confirmation/")
+            if order and order.company_id.id==1 :
+                check_transaction = True
+                for transaction in order.transaction_ids:
+                    if transaction.state != 'done':
+                        check_transaction = False
+                if check_transaction and order.state=='sent':
+                    return request.redirect("/my/orders/%s?access_token=%s" % (order.id,order.access_token))
             if order and order.company_id.id == 2:
                 product_id = False
                 if order:
@@ -367,10 +409,15 @@ class Date_Examen(http.Controller):
             if module and order:
                 order.module_id=module
                 order.session_id=module.session_id
+                if order.company_id.id == 1 :
+                    order.partner_id.date_examen_edof = module.date_exam
+                    order.partner_id.session_ville_id = module.session_ville_id
         if exam_date_id and exam_date_id=='all':
             if order:
                 order.module_id=False
                 order.session_id=False
+                order.partner_id.date_examen_edof = False
+                order.partner_id.session_ville_id = False
 
     @http.route(['/cpf/update_exam_date'], type='json', auth="public", methods=['POST'], website=True)
     def partner_update_exam_center(self, exam_date_id):

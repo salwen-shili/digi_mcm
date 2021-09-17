@@ -7,7 +7,7 @@
         <field name="arch" type="xml">
             <xpath expr="//field[@name='lieu']" position="replace">
                 <field name="lieu" domain="[('country_id' ,'=', 'France')]"
-                       attrs="{'invisible': [('company_id', '=', 2)]}"/>
+                       attrs="{'invisible': [('company_id', '=', 2)]}" invisible="1"/>
             </xpath>
             <xpath expr="//field[@name='heure_debut_matin']" position="replace">
                 <field name="heure_debut_matin" domain="[('country_id' ,'=', 'France')]"
@@ -27,7 +27,7 @@
                        attrs="{'invisible': [('company_id', '=', 2)]}"/>
             </xpath>
             <xpath expr="//field[@name='currency_id']" position="after">
-                <field name="date_exam" attrs="{'invisible': [('company_id', '=', 1)]}"/>
+                <field name="date_exam"/>
                 <field name="ville" attrs="{'invisible': [('company_id', '=', 1)]}"/>
             </xpath>
         </field>
