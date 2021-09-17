@@ -1,4 +1,4 @@
-odoo.define('sh_snippet_adv.snippets.options1', function (require) {
+odoo.define('sh_snippet_adv.snippets.options_1', function (require) {
 'use strict';
 
 var core = require('web.core');
