@@ -32,6 +32,7 @@ class resPartner(models.Model):
     birth_state=fields.Char('Région de naissance')
     birth_city=fields.Char('Ville de naissance')
     numero_permis=fields.Char('Numéro de permis')
+    # choosed_product=fields.Integer('Produit choisi')
 
 
 

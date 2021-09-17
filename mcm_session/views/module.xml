@@ -28,7 +28,7 @@
                                 <field name="contract_price" widget="monetary"
                                        options="{'currency_field': 'currency_id'}"/>
                                 <field name="currency_id" invisible="1"/>
-                                <field name="lieu" domain="[('country_id' ,'=', 'France')]"/>
+                                <field name="lieu" domain="[('country_id' ,'=', 'France')]" invisible="1"/>
                                 <field name="heure_debut_matin" placeholder="e.x. 09:00"/>
                                 <field name="heure_fin_matin" placeholder="e.x. 12:30"/>
                                 <field name="heure_debut_apres_midi" placeholder="e.x. 13:30"/>

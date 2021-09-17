@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 # Part of Odoo. See LICENSE file for full copyright and licensing details.
 
-from odoo import api, fields, models
+from odoo import api, fields, models,_
 import random
 
 class Session(models.Model):
@@ -23,7 +23,7 @@ class Session(models.Model):
     prospect_ids=fields.Many2many('res.partner','session_prospect_rel','session_id','prospect_id',string='')
     canceled_prospect_ids=fields.Many2many('res.partner','session_canceled_prospect_rel','session_id','prospect_id',string='')
     panier_perdu_ids=fields.Many2many('res.partner','session_panier_perdu_rel','session_id','prospect_id',string='')
-    stage_id=fields.Many2one('mcmacademy.stage','État')
+    stage_id=fields.Many2one('mcmacademy.stage','État',group_expand='_read_group_stage_ids')
     color = fields.Integer(string='Color Index')
     date_debut=fields.Date('Date de debut de session')
     date_fin=fields.Date('Date de fin de session')
@@ -37,6 +37,13 @@ class Session(models.Model):
     count_panier_perdu=fields.Integer('',compute='_compute_count_clients')
     company_id = fields.Many2one('res.company', string='Company', default=lambda self: self.env.company)
 
+    @api.model
+    def _read_group_stage_ids(self, stages, domain, order):
+        """ Read group customization in order to display all the stages in the
+            kanban view, even if they are empty
+        """
+        stage_ids = self.env['mcmacademy.stage'].search([('name',"!=",_('Planifiées')),('name',"!=",_('Terminées'))])
+        return stage_ids
 
     @api.depends('client_ids','prospect_ids','canceled_prospect_ids')
     def _count_clients(self):
