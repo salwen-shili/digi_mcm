@@ -3,6 +3,7 @@
     <template id="digimoov_website_templates.cpf_thank_you" name="CPF | DIGIMOOV">
         <t t-call="website.layout">
             <script defer="defer" type="text/javascript" src="/digimoov_website_templates/static/src/js/lazy-min.js" />
+
             <div id="wrap" class="oe_structure oe_empty">
                 <div class="container">
                     <div class="row">

@@ -46,14 +46,17 @@ class FAQ(http.Controller):
             }
             return request.render("digimoov_website_templates.digimoov_template_faq", values)
         else:
-            return request.redirect('/foire-aux-questions-taxi/vtc/vmdtr')
+            return request.render("mcm_website_theme.mcm_website_faq",{})
 
 
 class FINANCEMENT(http.Controller):
 
     @http.route('/mon-compte-de-formation-cpf', type='http', auth='public', website=True)
     def financement(self, **kw, ):
-        return request.render("digimoov_website_templates.digimoov_template_financement", {})
+        if request.website.id == 2:
+            return request.render("digimoov_website_templates.digimoov_template_financement", {})
+        elif request.website.id == 1:
+            return request.render("mcm_website_theme.mcm_website_theme_cpf", {})
 
     @http.route('/completer-mon-dossier-cpf', type='http', auth='user', website=True)
     def completer_mon_dossier(self, **kw, ):
@@ -184,7 +187,7 @@ class QUISOMMESNOUS(http.Controller):
             }
             return request.render("digimoov_website_templates.digimoov_template_quisommesnous", values)
         elif request.website.id == 1:
-            return request.render("website.qui-sommes-nous-1", {})
+            return request.render("mcm_website_theme.mcm_website_theme_qui_sommes_nous", {})
 
 
 class NOSCENTRES(http.Controller):
@@ -219,13 +222,6 @@ class NOSCENTRES(http.Controller):
         else:
             return request.redirect("/pricing")
 
-    @http.route('/formation-mobilite-taxi', type='http', auth='public', website=True)
-    def formation_mobilite_taxi(self, **kw, ):
-        if request.website.id == 1:
-            return request.render("website.formation-mobilite-taxi", {})
-        else:
-            raise werkzeug.exceptions.NotFound()
-
 
 class Conditions(http.Controller):
 
@@ -242,143 +238,122 @@ class Services(http.Controller):
 
     @http.route('/service-clientele', type='http', auth='public', website=True)
     def clientele(self, **kw, ):
-        if request.website.id == 2:
-            # return request.redirect('/maintenance')
-            public_user = http.request.env['res.users'].sudo().search([('id', '=', 4), ('active', '=', False)])
+        public_user = http.request.env['res.users'].sudo().search([('id', '=', 4), ('active', '=', False)])
 
-            if http.request.uid == public_user.id:
-                email_from = ""
-                nom = ""
-                prenom = ""
-                phone = ""
-            else:
-                phone = http.request.env.user.phone
-                email_from = http.request.env.user.email
-                name = http.request.env.user.name
-                nom = ''
-                prenom = ''
-                if http.request.env.user.firstname:
-                    name = name.split(" ", 1)
-                    if ' ' in name:
-                        nom = name[1] if name[1] else ''
-                    prenom = name[0] if name[0] else ''
-            return request.render("digimoov_website_templates.digimoov_template_service_clientele",
-                                  {'email_from': email_from, 'phone': phone, 'contact_last_name': nom,
-                                   'contact_name': prenom})
+        if http.request.uid == public_user.id:
+            email_from = ""
+            nom = ""
+            prenom = ""
+            phone = ""
         else:
-            return request.redirect("/helpdesk")
+            phone = http.request.env.user.phone
+            email_from = http.request.env.user.email
+            name = http.request.env.user.name
+            nom = ''
+            prenom = ''
+            if http.request.env.user.firstname:
+                name = name.split(" ", 1)
+                if ' ' in name:
+                    nom = name[1] if name[1] else ''
+                prenom = name[0] if name[0] else ''
+        return request.render("digimoov_website_templates.digimoov_template_service_clientele",
+                              {'email_from': email_from, 'phone': phone, 'contact_last_name': nom,
+                               'contact_name': prenom})
 
     @http.route('/administration', type='http', auth='public', website=True)
     def administration(self, **kw, ):
-        if request.website.id == 2:
-            # return request.redirect('/maintenance')
-            public_user = http.request.env['res.users'].sudo().search([('id', '=', 4), ('active', '=', False)])
+        public_user = http.request.env['res.users'].sudo().search([('id', '=', 4), ('active', '=', False)])
 
-            if http.request.uid == public_user.id:
-                email_from = ""
-                nom = ""
-                prenom = ""
-                phone = ""
-            else:
-                phone = http.request.env.user.phone
-                email_from = http.request.env.user.email
-                name = http.request.env.user.name
-                nom = ''
-                prenom = ''
-                if http.request.env.user.firstname:
-                    name = name.split(" ", 1)
-                    if ' ' in name:
-                        nom = name[1] if name[1] else ''
-                    prenom = name[0] if name[0] else ''
-            return request.render("digimoov_website_templates.digimoov_template_service_administration",
-                                  {'email_from': email_from, 'phone': phone, 'contact_last_name': nom,
-                                   'contact_name': prenom})
+        if http.request.uid == public_user.id:
+            email_from = ""
+            nom = ""
+            prenom = ""
+            phone = ""
         else:
-            return request.redirect("/helpdesk")
+            phone = http.request.env.user.phone
+            email_from = http.request.env.user.email
+            name = http.request.env.user.name
+            nom = ''
+            prenom = ''
+            if http.request.env.user.firstname:
+                name = name.split(" ", 1)
+                if ' ' in name:
+                    nom = name[1] if name[1] else ''
+                prenom = name[0] if name[0] else ''
+        return request.render("digimoov_website_templates.digimoov_template_service_administration",
+                              {'email_from': email_from, 'phone': phone, 'contact_last_name': nom,
+                               'contact_name': prenom})
 
     @http.route('/partenariat', type='http', auth='public', website=True)
     def partenariat(self, **kw, ):
-        if request.website.id == 2:
-            # return request.redirect('/maintenance')
-            public_user = http.request.env['res.users'].sudo().search([('id', '=', 4), ('active', '=', False)])
+        public_user = http.request.env['res.users'].sudo().search([('id', '=', 4), ('active', '=', False)])
 
-            if http.request.uid == public_user.id:
-                email_from = ""
-                nom = ""
-                prenom = ""
-                phone = ""
-            else:
-                phone = http.request.env.user.phone
-                email_from = http.request.env.user.email
-                name = http.request.env.user.name
-                nom = ''
-                prenom = ''
-                if http.request.env.user.firstname:
-                    name = name.split(" ", 1)
-                    if ' ' in name:
-                        nom = name[1] if name[1] else ''
-                    prenom = name[0] if name[0] else ''
-            return request.render("digimoov_website_templates.digimoov_template_service_partenariat",
-                                  {'email_from': email_from, 'phone': phone, 'contact_last_name': nom,
-                                   'contact_name': prenom})
+        if http.request.uid == public_user.id:
+            email_from = ""
+            nom = ""
+            prenom = ""
+            phone = ""
         else:
-            return request.redirect("/helpdesk")
+            phone = http.request.env.user.phone
+            email_from = http.request.env.user.email
+            name = http.request.env.user.name
+            nom = ''
+            prenom = ''
+            if http.request.env.user.firstname:
+                name = name.split(" ", 1)
+                if ' ' in name:
+                    nom = name[1] if name[1] else ''
+                prenom = name[0] if name[0] else ''
+        return request.render("digimoov_website_templates.digimoov_template_service_partenariat",
+                              {'email_from': email_from, 'phone': phone, 'contact_last_name': nom,
+                               'contact_name': prenom})
 
     @http.route('/service-comptabilite', type='http', auth='user', website=True)
     def comptabilite(self, **kw, ):
-        if request.website.id == 2:
-            # return request.redirect('/maintenance')
-            public_user = http.request.env['res.users'].sudo().search([('id', '=', 4), ('active', '=', False)])
+        public_user = http.request.env['res.users'].sudo().search([('id', '=', 4), ('active', '=', False)])
 
-            if http.request.uid == public_user.id:
-                email_from = ""
-                nom = ""
-                prenom = ""
-                phone = ""
-            else:
-                phone = http.request.env.user.phone
-                email_from = http.request.env.user.email
-                name = http.request.env.user.name
-                nom = ''
-                prenom = ''
-                if http.request.env.user.firstname:
-                    name = name.split(" ", 1)
-                    if ' ' in name:
-                        nom = name[1] if name[1] else ''
-                    prenom = name[0] if name[0] else ''
-            return request.render("digimoov_website_templates.digimoov_template_service_comptabilite",
-                                  {'email_from': email_from, 'phone': phone, 'contact_last_name': nom,
-                                   'contact_name': prenom})
+        if http.request.uid == public_user.id:
+            email_from = ""
+            nom = ""
+            prenom = ""
+            phone = ""
         else:
-            return request.redirect("/helpdesk")
+            phone = http.request.env.user.phone
+            email_from = http.request.env.user.email
+            name = http.request.env.user.name
+            nom = ''
+            prenom = ''
+            if http.request.env.user.firstname:
+                name = name.split(" ", 1)
+                if ' ' in name:
+                    nom = name[1] if name[1] else ''
+                prenom = name[0] if name[0] else ''
+        return request.render("digimoov_website_templates.digimoov_template_service_comptabilite",
+                              {'email_from': email_from, 'phone': phone, 'contact_last_name': nom,
+                               'contact_name': prenom})
 
     @http.route('/service-pedagogique', type='http', auth='user', website=True)
     def pedagogique(self, **kw, ):
-        if request.website.id == 2:
-            # return request.redirect('/maintenance')
-            public_user = http.request.env['res.users'].sudo().search([('id', '=', 4), ('active', '=', False)])
-
-            if http.request.uid == public_user.id:
-                email_from = ""
-                nom = ""
-                prenom = ""
-                phone = ""
-            else:
-                phone = http.request.env.user.phone
-                email_from = http.request.env.user.email
-                name = http.request.env.user.name
-                nom = ''
-                prenom = ''
-                if http.request.env.user.firstname:
-                    name = name.split(" ", 1)
-                    if ' ' in name:
-                        nom = name[1] if name[1] else ''
-                    prenom = name[0] if name[0] else ''
-            return request.render("digimoov_website_templates.digimoov_template_service_pedagogique",
-                                  {'email_from': email_from, 'phone': phone, 'contact_last_name': nom,
-                                   'contact_name': prenom})
+        public_user = http.request.env['res.users'].sudo().search([('id', '=', 4), ('active', '=', False)])
+        if http.request.uid == public_user.id:
+            email_from = ""
+            nom = ""
+            prenom = ""
+            phone = ""
         else:
-            return request.redirect("/helpdesk")
+            phone = http.request.env.user.phone
+            email_from = http.request.env.user.email
+            name = http.request.env.user.name
+            nom = ''
+            prenom = ''
+            if http.request.env.user.firstname:
+                name = name.split(" ", 1)
+                if ' ' in name:
+                    nom = name[1] if name[1] else ''
+                prenom = name[0] if name[0] else ''
+        return request.render("digimoov_website_templates.digimoov_template_service_pedagogique",
+                              {'email_from': email_from, 'phone': phone, 'contact_last_name': nom,
+                               'contact_name': prenom})
 
     @http.route('/contact', type='http', auth='public', website=True)
     def contact1(self, **kw, ):
@@ -386,7 +361,8 @@ class Services(http.Controller):
             # return request.redirect('/maintenance')
             return request.render("digimoov_website_templates.digimoov_template_contact", {})
         else:
-            return request.redirect("/helpdesk")
+            return request.render("mcm_website_theme.mcm_template_contact", {})
+
 
     @http.route('/maintenance', type='http', auth='public', website=True) # url of maintenance page 
     def maintenance(self, **kw, ):
@@ -438,15 +414,26 @@ class Services(http.Controller):
                 # if ticket has already created redirect client to contact page
                 return request.redirect('/contact')
         if service == 'client':
-            vals = {
-                'partner_email': str(email_from),
-                'partner_id': user.partner_id.id,
-                'description': str(description),
-                'name': 'Digimoov : ' + str(name),
-                'team_id': request.env['helpdesk.team'].sudo().search(
-                    [('name', 'like', 'Client'), ('company_id', "=", 2)],
-                    limit=1).id,
-            }
+            if request.website.id == 2 :
+                vals = {
+                    'partner_email': str(email_from),
+                    'partner_id': user.partner_id.id,
+                    'description': str(description),
+                    'name': 'Digimoov : ' + str(name),
+                    'team_id': request.env['helpdesk.team'].sudo().search(
+                        [('name', 'like', 'Client'), ('company_id', "=", 2)],
+                        limit=1).id,
+                }
+            elif request.website.id == 1 :
+                vals = {
+                    'partner_email': str(email_from),
+                    'partner_id': user.partner_id.id,
+                    'description': str(description),
+                    'name': str(name),
+                    'team_id': request.env['helpdesk.team'].sudo().search(
+                        [('name', 'like', 'Client'), ('company_id', "=", 1)],
+                        limit=1).id,
+                }
             new_ticket = request.env['helpdesk.ticket'].sudo().create(
                 vals)
             if files:
@@ -461,54 +448,98 @@ class Services(http.Controller):
                     })
             return request.render("digimoov_website_templates.client_thank_you")
         elif service == 'Administration':
-            vals = {
-                'partner_email': str(email_from),
-                'partner_id': user.partner_id.id,
-                'description': str(description),
-                'name': 'Digimoov : ' + str(name),
-                'team_id': request.env['helpdesk.team'].sudo().search(
-                    [('name', 'like', 'Admini'), ('company_id', "=", 2)],
-                    limit=1).id,
-            }
+            if request.website.id == 2 :
+                vals = {
+                    'partner_email': str(email_from),
+                    'partner_id': user.partner_id.id,
+                    'description': str(description),
+                    'name': 'Digimoov : ' + str(name),
+                    'team_id': request.env['helpdesk.team'].sudo().search(
+                        [('name', 'like', 'Admini'), ('company_id', "=", 2)],
+                        limit=1).id,
+                }
+            elif request.website.id == 1 :
+                vals = {
+                    'partner_email': str(email_from),
+                    'partner_id': user.partner_id.id,
+                    'description': str(description),
+                    'name': str(name),
+                    'team_id': request.env['helpdesk.team'].sudo().search(
+                        [('name', 'like', 'Admini'), ('company_id', "=", 1)],
+                        limit=1).id,
+                }
             new_ticket = request.env['helpdesk.ticket'].sudo().create(
                 vals)
             return request.render("digimoov_website_templates.administration_thank_you")
         elif service == 'Partenariat':
-            vals = {
-                'partner_email': str(email_from),
-                'partner_id': user.partner_id.id,
-                'description': str(description),
-                'name': 'Digimoov : ' + str(name),
-                'team_id': request.env['helpdesk.team'].sudo().search(
-                    [('name', 'like', 'Admini'), ('company_id', "=", 2)],
-                    limit=1).id,
-            }
+            if request.website.id == 2 :
+                vals = {
+                    'partner_email': str(email_from),
+                    'partner_id': user.partner_id.id,
+                    'description': str(description),
+                    'name': 'Digimoov : ' + str(name),
+                    'team_id': request.env['helpdesk.team'].sudo().search(
+                        [('name', 'like', 'Admini'), ('company_id', "=", 2)],
+                        limit=1).id,
+                }
+            elif request.website.id == 1 :
+                vals = {
+                    'partner_email': str(email_from),
+                    'partner_id': user.partner_id.id,
+                    'description': str(description),
+                    'name': str(name),
+                    'team_id': request.env['helpdesk.team'].sudo().search(
+                        [('name', 'like', 'Admini'), ('company_id', "=", 1)],
+                        limit=1).id,
+                }
             new_ticket = request.env['helpdesk.ticket'].sudo().create(
                 vals)
             return request.render("digimoov_website_templates.administration_thank_you")
         elif service == 'Comptabilité':
-            vals = {
-                'partner_email': str(email_from),
-                'partner_id': user.partner_id.id,
-                'description': str(description),
-                'name': 'Digimoov : ' + str(name),
-                'team_id': request.env['helpdesk.team'].sudo().search(
-                    [('name', 'like', 'Compta'), ('company_id', "=", 2)],
-                    limit=1).id,
-            }
+            if request.website.id == 2 :
+                vals = {
+                    'partner_email': str(email_from),
+                    'partner_id': user.partner_id.id,
+                    'description': str(description),
+                    'name': 'Digimoov : ' + str(name),
+                    'team_id': request.env['helpdesk.team'].sudo().search(
+                        [('name', 'like', 'Compta'), ('company_id', "=", 2)],
+                        limit=1).id,
+                }
+            elif request.website.id == 1 :
+                vals = {
+                    'partner_email': str(email_from),
+                    'partner_id': user.partner_id.id,
+                    'description': str(description),
+                    'name': str(name),
+                    'team_id': request.env['helpdesk.team'].sudo().search(
+                        [('name', 'like', 'Compta'), ('company_id', "=", 1)],
+                        limit=1).id,
+                }
             new_ticket = request.env['helpdesk.ticket'].sudo().create(
                 vals)
             return request.render("digimoov_website_templates.comptabilite_thank_you")
         elif service == 'Pédagogique':
-            vals = {
-                'partner_email': str(email_from),
-                'partner_id': user.partner_id.id,
-                'description': str(description),
-                'name': 'Digimoov : ' + str(name),
-                'team_id': request.env['helpdesk.team'].sudo().search(
-                    [('name', 'like', 'gogique'), ('company_id', "=", 2)],
-                    limit=1).id,
-            }
+            if request.website.id == 2 :
+                vals = {
+                    'partner_email': str(email_from),
+                    'partner_id': user.partner_id.id,
+                    'description': str(description),
+                    'name': 'Digimoov : ' + str(name),
+                    'team_id': request.env['helpdesk.team'].sudo().search(
+                        [('name', 'like', 'gogique'), ('company_id', "=", 2)],
+                        limit=1).id,
+                }
+            elif request.website.id == 1 :
+                vals = {
+                    'partner_email': str(email_from),
+                    'partner_id': user.partner_id.id,
+                    'description': str(description),
+                    'name': str(name),
+                    'team_id': request.env['helpdesk.team'].sudo().search(
+                        [('name', 'like', 'gogique'), ('company_id', "=", 1)],
+                        limit=1).id,
+                }
             new_ticket = request.env['helpdesk.ticket'].sudo().create(
                 vals)
             if files:
