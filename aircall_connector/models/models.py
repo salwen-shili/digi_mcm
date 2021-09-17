@@ -218,12 +218,15 @@ class ResUser(models.Model):
             headers=header,
         )
         #Get last 50 calls from aircall
+        _logger.info("status code %s", call_response.status_code )
         if call_response.status_code == 400 or call_response.status_code == 404:
             raise ValidationError('Error')
         else:
-            calls = json.loads(call_response.content)
-            call=calls['calls']
-            self.call_details(calls)
+            #Case when response has no content, this can cause a problem in signup in mcm website
+            if call_response.status_code != 204:
+                calls = json.loads(call_response.content)
+                call=calls['calls']
+                self.call_details(calls)
 
     def call_details(self, call_response):
         """This function get all call details from Aircall """
@@ -579,12 +582,17 @@ class ResPartner(models.Model):
             # if response.status_code == 400:
             #     raise ValidationError(
             #         json.loads(response.content)['troubleshoot'] + 'Please enter Phone/mobile number with country code')
-            statut_code = response.status_code
-            response = json.loads(response.content)
-            if response and statut_code == 200:
-                res.air_contact_id = response['contact']['id']
+            if response :
+                statut_code = response.status_code
+                #Condition ajoutée car ça peut générer une erreur dans l'inscription dans le site de mcm_academy
+                if statut_code != 204:
+                    response = json.loads(response.content)
+                if response and statut_code == 200:
+                    res.air_contact_id = response['contact']['id']
+                    return res
                 return res
-            return res
+            else:
+                return res
         else:
             return res
 
@@ -647,15 +655,14 @@ class ResPartner(models.Model):
                         data=json.dumps(data),
                         headers=header)
 
-                    # if response.status_code == 404 or response.status_code == 400:
-                    #     raise ValidationError(
-                    #         json.loads(response.content)['error'] + ',' + json.loads(response.content)['troubleshoot'])
+                    if response.status_code == 404 or response.status_code == 400:
+                        raise ValidationError(
+                            json.loads(response.content)['error'] + ',' + json.loads(response.content)['troubleshoot'])
 
-                    # response = json.loads(response.content)
-                    # self.air_contact_id = response['contact']['id']
+                    response = json.loads(response.content)
+                    if response :
+                        self.air_contact_id = response['contact']['id']
                     return res
-
-
                 else:
                     return res
             else:
