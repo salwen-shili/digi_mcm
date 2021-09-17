@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+
+      <!--  <record id="mcmacademy_session_kanban_inherit" model="ir.ui.view">
+            <field name="name">mcmacademy.session.kanban.inherit</field>
+            <field name="model">mcmacademy.session</field>
+            <field name="inherit_id" ref="mcm_session.view_mcmacademy_session_kanban"/>
+            <field name="arch" type="xml">
+                <xpath expr="//kanban" position="attributes">
+                    <attribute name="default_group_by">session_ville_id</attribute>
+                </xpath>
+            </field>
+        </record> -->
+
+
+        <record id="view_clients_stagiaires_inherited" model="ir.ui.view">
+            <field name="name">view.clients.stagiaires.inherited</field>
+            <field name="model">mcmacademy.session</field>
+            <field name="inherit_id" ref="mcm_session.mcmacademy_session_form_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='client_ids']/tree" position="attributes">
+                    <attribute name="default_order">module_id</attribute>
+                </xpath>
+                <xpath expr="//field[@name='prospect_ids']/tree" position="attributes">
+                    <attribute name="default_order">module_id</attribute>
+                </xpath>
+                <xpath expr="//field[@name='canceled_prospect_ids']/tree" position="attributes">
+                    <attribute name="default_order">module_id</attribute>
+                </xpath>
+                <xpath expr="//field[@name='panier_perdu_ids']/tree" position="attributes">
+                    <attribute name="default_order">module_id</attribute>
+                </xpath>
+            </field>
+        </record>
+
+
+     <!--   <record id="mcmacademy_module_session_form_view_inherit_new" model="ir.ui.view">
+            <field name="name">mcmacademy.module.session.form.view.inherit.new</field>
+            <field name="model">mcmacademy.module</field>
+            <field name="inherit_id" ref="mcm_session.mcmacademy_module_session_form_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='next_module']" position="replace">
+                    <field name="next_module" attrs="{'invisible': [(['company_id'],'=',1)]}"/>
+                </xpath>
+            </field>
+        </record> -->
+
+        <!--  <record id="mcmacademy_module_session_form_view_inherit_new" model="ir.ui.view">
+              <field name="name">mcmacademy.module.session.form.view.inherit.new</field>
+              <field name="model">mcmacademy.module</field>
+              <field name="inherit_id" ref="mcm_session.mcmacademy_module_session_form_view"/>
+              <field name="arch" type="xml">
+                  <xpath expr="//field[@name='modalite_pedagogique']" position="replace">
+                      <field name="modalite_pedagogique" attrs="{'invisible': [(['company_id'],'=',1)]}"/>
+                  </xpath>
+                  <xpath expr="//field[@name='date_module']" position="replace">
+                      <field name="date_module" attrs="{'invisible': [(['company_id'],'=',1)]}"/>
+                  </xpath>
+                  <xpath expr="//field[@name='prix_chpf']" position="replace">
+                      <field name="prix_chpf" invisible="True"/>
+                  </xpath>
+                  <xpath expr="//field[@name='contract_price']" position="replace">
+                      <field name="contract_price" invisible="True"/>
+                  </xpath>
+              </field>
+          </record> -->
+
+
+    </data>
+</odoo>

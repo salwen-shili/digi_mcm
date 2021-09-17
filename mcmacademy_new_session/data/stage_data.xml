@@ -1,0 +1,50 @@
+<?xml version="1.0" ?>
+<odoo>
+    <data noupdate="1">
+
+    <record id="stage_paris" model="mcmacademy.stage">
+        <field name="name">bordeaux</field>
+        <field name="company_id">1</field>
+    </record>
+
+    <record id="stage_lille" model="mcmacademy.stage">
+        <field name="name">lille</field>
+        <field name="company_id">1</field>
+    </record>
+
+    <record id="stage_marseille" model="mcmacademy.stage">
+        <field name="name">lyon</field>
+        <field name="company_id">1</field>
+    </record>
+
+    <record id="stage_lyon" model="mcmacademy.stage">
+        <field name="name">marseille</field>
+        <field name="company_id">1</field>
+    </record>
+
+    <record id="stage_toulouse" model="mcmacademy.stage">
+        <field name="name">paris</field>
+        <field name="company_id">1</field>
+    </record>
+
+    <record id="stage_bordeaux" model="mcmacademy.stage">
+        <field name="name">strasbourg</field>
+         <field name="company_id">1</field>
+    </record>
+
+           <record id="stage_strasbourg" model="mcmacademy.stage">
+        <field name="name">toulouse</field>
+       <field name="company_id">1</field>
+    </record>
+
+               <record id="stage_autre_ville" model="mcmacademy.stage">
+        <field name="name">Autre ville</field>
+       <field name="company_id">1</field>
+    </record>
+
+         <record id="handle_install_uninstall_rec" model="handle.install.uninstall">
+            <field name="name">Install - uninstall handler</field>
+        </record>
+
+    </data>
+</odoo>

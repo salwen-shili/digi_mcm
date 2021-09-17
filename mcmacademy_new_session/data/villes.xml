@@ -1,0 +1,50 @@
+<?xml version="1.0" ?>
+<odoo>
+    <data noupdate="0">
+
+<!--    <record id="ville_paris" model="session.ville">-->
+<!--        <field name="name_ville">Bordeaux</field>-->
+<!--        <field name="company_id">1</field>-->
+<!--    </record>-->
+
+<!--    <record id="ville_lille" model="session.ville">-->
+<!--        <field name="name_ville">Lille</field>-->
+<!--        <field name="company_id">1</field>-->
+<!--    </record>-->
+
+<!--    <record id="ville_marseille" model="session.ville">-->
+<!--        <field name="name_ville">Lyon</field>-->
+<!--        <field name="company_id">1</field>-->
+<!--    </record>-->
+
+<!--    <record id="ville_lyon" model="session.ville">-->
+<!--        <field name="name_ville">Marseille</field>-->
+<!--        <field name="company_id">1</field>-->
+<!--    </record>-->
+
+<!--    <record id="ville_toulouse" model="session.ville">-->
+<!--        <field name="name_ville">Paris</field>-->
+<!--        <field name="company_id">1</field>-->
+<!--    </record>-->
+
+<!--    <record id="ville_bordeaux" model="session.ville">-->
+<!--        <field name="name_ville">Strasbourg</field>-->
+<!--         <field name="company_id">1</field>-->
+<!--    </record>-->
+
+<!--           <record id="ville_strasbourg" model="session.ville">-->
+<!--        <field name="name_ville">Toulouse</field>-->
+<!--       <field name="company_id">1</field>-->
+<!--    </record>-->
+
+<!--               <record id="ville_autre_ville" model="session.ville">-->
+<!--        <field name="name_ville">Autre ville</field>-->
+<!--       <field name="company_id">1</field>-->
+<!--    </record>-->
+
+      <!--   <record id="handle_install_uninstall_rec" model="handle.install.uninstall">
+            <field name="name">Install - uninstall handler</field>
+        </record> -->
+
+    </data>
+</odoo>
