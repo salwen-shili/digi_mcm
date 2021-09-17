@@ -131,7 +131,6 @@ class CustomerPortal(CustomerPortal):
         })
         return request.render("mcm_contact_documents.portal_my_documents", values)
 # upload documents MCM-Academy
-    # Retour en arrière pour la version précédente pour les mimetype à cause d un problème service clientèle le 06/09/2021
     @http.route(['/submitted/document'], type="http", auth="user", methods=['POST'], website=True, csrf=False)
     def submit_documents(self, **kw):
         partner_id = http.request.env.user.partner_id
@@ -300,9 +299,14 @@ class CustomerPortal(CustomerPortal):
             logger.exception("Fail to upload documents")
         # suppression des documents qui ont mimetype de type octet_stream
         obj_attachment = request.env['ir.attachment']
-        return http.request.render('mcm_contact_documents.success_documents', {'partner': partner})
+        partner = http.request.env.user.partner_id
+        partner.step = "financement"
+        order = request.website.sale_get_order()
+        if order:
+            return request.redirect('/shop/cart')
+        else:
+            return http.request.render('mcm_contact_documents.success_documents', {'partner': partner})
 # Upload documents digimoov
-    # Retour en arrière pour la version précédente pour les mimetype à cause d un problème service clientèle le 06/09/2021
     @http.route('/upload_my_files', type="http", auth="user", methods=['POST'], website=True, csrf=False)
     def upload_my_files(self, **kw):
         # charger le dossier des documents clients appartenant a Digimoov
@@ -329,7 +333,12 @@ class CustomerPortal(CustomerPortal):
         files_identity = request.httprequest.files.getlist('identity')
         files_identity_verso = request.httprequest.files.getlist('identity2')
 
-
+        # file_name = files_identity.name
+        # mimetype = None
+        # if mimetype is None and self.file_name:
+        #     mimetype = mimetypes.guess_type(self.file_name)[0]
+        #     if not mimetype == 'pdf' or mimetype == 'jpg' or mimetype == 'png':
+        #         raise UserError('Allowed Format Pdf , jpg , png')
         if (len(files_identity) > 2 ):
             name = http.request.env.user.name
             email = http.request.env.user.email
@@ -362,7 +371,6 @@ class CustomerPortal(CustomerPortal):
                              'name': document.name + ' ' + str(uid.name)})
                     # En cas ou le candiadat charge deux piéces_jointe
                     #ajout du champ mimetype dans ir.attachement
-                    #Retour en arrière pour la version précédente pour les mimetype à cause d un problème service clientèle le 06/09/2021
                     if len(files) == 2:
                         datas_Carte_didentité_Recto = base64.encodebytes(files[0].read())
                         datas_Carte_didentité_Verso = base64.encodebytes(files[1].read())
@@ -384,7 +392,6 @@ class CustomerPortal(CustomerPortal):
                         })
                         # Attachement Carte d'identité recto
                         # ajout du champ mimetype dans ir.attachement
-                        # Retour en arrière pour la version précédente pour les mimetype à cause d un problème service clientèle le 06/09/2021
                     elif len(files) == 1:
                         datas_carte_didentiterecto = base64.encodebytes(files[0].read())
                         request.env['ir.attachment'].sudo().create({
@@ -395,7 +402,6 @@ class CustomerPortal(CustomerPortal):
                             'res_id': document.id
                         })
                         # ajout du champ mimetype dans ir.attachement
-                        # Retour en arrière pour la version précédente pour les mimetype à cause d un problème service clientèle le 06/09/2021
                 if files2 and document :
                     datas_carte_didentite = base64.encodebytes(files2[0].read())
 
@@ -412,6 +418,11 @@ class CustomerPortal(CustomerPortal):
         except Exception as e:
             logger.exception("Fail to upload document Carte d'identité")
         partner = http.request.env.user.partner_id
+        # suppression des documents qui ont mimetype de type octet_stream
+        obj_attachment = request.env['ir.attachment']
+        for record in obj_attachment:
+            if record.mimetype == 'application/octet-stream':
+                raise UserError('Format possible Pdf , jpg , png')
         return http.request.render('mcm_contact_documents.success_documents', {'partner': partner})
 
     @http.route('/upload_my_files1', type="http", auth="user", methods=['POST'], website=True, csrf=False)
