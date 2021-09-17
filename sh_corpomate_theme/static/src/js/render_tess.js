@@ -971,7 +971,7 @@ odoo.define("sh_ecommerce_snippet.Testimonial", function (require) {
           template_id: "sh_corpomate_theme.sh_corpomate_theme_item_394",
         })
         .then(function (data) {
-          $el.find(".owl-carousel").replaceWith(data);
+          // $el.find(".owl-carousel").replaceWith(data);
 
           //refresh the owl start here
           $el.find(".owl-carousel").owlCarousel({
