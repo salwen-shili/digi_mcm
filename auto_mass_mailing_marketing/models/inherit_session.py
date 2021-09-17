@@ -11,15 +11,17 @@ class AccountMove(models.Model):
     temps_convocation = fields.Selection(selection=[
         ('matin', 'Matin'),
         ('apres_midi', 'Après-Midi')],
-        default="apres_midi", string="Examen Matin/Aprés Midi", help="Choisir un temp pour la session si Matin ou Apres Midi")
+        default="apres_midi", string="Examen Matin/Aprés Midi",
+        help="Choisir un temp pour la session si Matin ou Apres Midi")
 
     heure_examen_matin = fields.Char(default="09H00")
     heure_examen_apres_midi = fields.Char(default="14H00")
     date_exam = fields.Date(string="Date d'examen")
 
     # Add adresse field pour l'afficher dans la convocation
-    adresse_examen = fields.Char(string="Adresse D'examen", help="Ajouter l'adresse d'examen, "
-                                                                                "cette information sera affiché dans les rapports PDF")
+    adresse_examen = fields.Char(string="Adresse d'examen", help="Ajouter l'adresse d'examen, "
+                                                                 "cette information sera affiché dans les rapports PDF")
+    # date_convocation = fields.Date(string="Date d'envoi de convocation", default=datetime.today())
     horaire_email = fields.Char(compute="_compute_auto_horaire_email", string="Horaire Email",
                                 help="Heure d'examen qui sera affiché "
                                      "dans le text de l'email pour la convocation.")
@@ -42,7 +44,7 @@ class AccountMove(models.Model):
             record.prospect_count = self.env['res.partner'].search_count(
                 [('id', 'in', [x.id for x in self.prospect_ids])])
 
-    #Add this compute field to call the function calculate the number
+    # Add this compute field to call the function calculate the number
     prospect_count = fields.Integer(compute='compute_count_prospect_ids')
 
     def compute_count_client_ids(self):
