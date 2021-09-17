@@ -17,3 +17,5 @@ class Adresse_Centre_Examen(models.Model):
     session_ville_id = fields.Many2one('session.ville', help="Choisir une ville.")
     lien = fields.Char(default="https://", string="Lien d'accées au centre d'examen",
                        help="Lien de plan d'accès au centre d'examen sur Google Map")
+    company_id = fields.Many2one('res.company', string='Company', default=lambda self: self.env.company)
+

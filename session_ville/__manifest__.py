@@ -19,6 +19,7 @@
     ],
     'data': [
         'security/ir.model.access.csv',
+        'security/session_ville_security.xml',
         'wizard/address_class_exams.xml',
         'views/session_ville_view.xml',
         'views/adresse_centre_examen.xml',
@@ -28,7 +29,7 @@
         'views/inherit_mcmacademy_module.xml',
         'views/res_partner_adresse_view.xml',
     ],
-    'qweb': [],
+    'qweb': ['static/src/xml/hide_checkbox_company.xml'],
     'images': [],
     'demo': [
     ],

@@ -13,3 +13,5 @@ class SessionVille(models.Model):
     active = fields.Boolean('Active', default=True)
     description = fields.Text()
     session_adresse_examen_ids = fields.One2many('session.adresse.examen', 'session_ville_id')
+    company_id = fields.Many2one('res.company', string='Company', default=lambda self: self.env.company)
+

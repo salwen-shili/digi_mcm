@@ -25,6 +25,10 @@
                                 <field name="name_ville" class="oe_inline"/>
                             </h1>
                         </div>
+                        <div>
+                            <label for="company_id" class="oe_edit_only"/>
+                            <field name="company_id" class="oe_inline"/>
+                        </div>
                         <group>
                             <group name="Informations">
                                 <field name="active" invisible="1"/>
