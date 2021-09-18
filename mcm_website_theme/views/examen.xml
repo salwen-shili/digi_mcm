@@ -3,72 +3,157 @@
   <template id="mcm_website_examen" name="Examen | MCM ACADEMY">
     <t t-call="website.layout">
       <div id="wrap" class="oe_structure oe_empty">
-        <section class="pt32 pb32 bg-100" data-name="Title" style="">
-          <div class="container">
-            <div class="row s_nb_column_fixed">
-              <div class="col-lg-12 s_title pt48 pb24" style="text-align: center;">
-                <h4 style="margin-bottom: 15px; font-weight: 600; font-size: 38px; color: rgb(33, 37, 41); background-color: rgb(248, 249, 250);">EXAMEN VTC / TAXI / VMDTR</h4>
-                <h4 style="margin-bottom: 15px; font-weight: 600; font-size: 38px; color: rgb(33, 37, 41); background-color: rgb(248, 249, 250);">
-                  <span style="color: rgb(66, 66, 66); font-size: 16px;">Passer les examens TAXI , VTC , ou VMDTR et les réussir est important pour que vous puissiez avoir votre carte professionnelle</span>
-                  <br/>
-                </h4>
+        <div id="myCarousel1629963079639" class="s_carousel carousel slide s_carousel_default" data-interval="10000" data-name="Carousel" style="border-style: none; border-width: 0px;">
+          <ol class="carousel-indicators d-none">
+            <li data-target="#myCarousel1629963079639" data-slide-to="0" class="active"/>
+          </ol>
+          <div class="carousel-inner">
+            <div class="carousel-item oe_img_bg pb0 pt104 oe_custom_bg active" style="background-image: url(&quot;/mcm_website_theme/static/src/img/examen/1.png&quot;); background-position: 1.47% 0.39%;" data-name="Slide">
+              <div class="container">
+                <div class="row content">
+                  <div class="carousel-content pb120 col-lg-6">
+                    <div class="sh_content">
+                      <div class="container sh_content_text text-center">
+                        <h1 style="margin: auto auto 40px; font-size: 50px; color: rgb(255, 255, 255); max-width: 70%;">
+                          <font style="color: rgb(0, 0, 0);">EXAMEN TAXI/VTC/VMDTR</font>
+                        </h1>
+                        <h1/>
+                        <p class="heading text-center" style="">
+                          <font color="#000000">Passer les examens TAXI, VTC, ou VMDTR et les réussir est important pour que vous puissiez avoir votre carte professionnelle</font>
+                          <br/>
+                        </p>
+                        <br/>
+                        <a href="#" class="sh_more_btn btn btn-secondary sh_btn_cm_8" data-original-title="" title="" aria-describedby="tooltip878772">En-savoir plus</a>
+                        <a href="#" class="sh_more_btn btn btn-secondary sh_btn_cm_8" data-original-title="" title="" aria-describedby="tooltip694619">S'inscrire</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
-        </section>
+          <div class="carousel-control-prev d-none" data-target="#myCarousel1629963079639" data-slide="prev" role="img" aria-label="Previous" title="Previous">
+            <span class="carousel-control-prev-icon"/>
+            <span class="sr-only o_default_snippet_text">Previous</span>
+          </div>
+          <div class="carousel-control-next d-none" data-target="#myCarousel1629963079639" data-slide="next" role="img" aria-label="Next" title="Next">
+            <span class="carousel-control-next-icon"/>
+            <span class="sr-only o_default_snippet_text">Next</span>
+          </div>
+        </div>
         <section class="s_text_block pb0 pt16" data-name="Text block">
           <div class="container">
             <div class="row">
               <div class="pt8 offset-lg-1 col-lg-10 pb16">
                 <p class="lead">
-                  <span style="color: rgb(0, 0, 0); font-family: Poppins, sans-serif;">Pour exercer la profession de conducteur de taxi ou de voiture de transport avec chauffeur, vous devez valider un examen comprenant une épreuve d’admissibilité et une épreuve d'admission.</span>
+                  <font color="#000000" face="Poppins, sans-serif">Pour exercer la profession de chauffeur de TAXI ou de voiture de transport avec chauffeur (VTC), vous devez valider un examen comprenant une épreuve d’admissibilité et une épreuve d'admission.</font>
                   <br/>
                 </p>
               </div>
             </div>
           </div>
         </section>
-        <section class="s_text_image pt32 pb32" data-name="Image - Text">
+        <section class="s_text_image pt0 pb4" data-name="Image - Text">
           <div class="container">
             <div class="row align-items-center">
               <div class="col-lg-6 pt16 pb16">
-                <img src="/mcm_website_theme/static/src/img/examen/1.png" class="img img-fluid mx-auto" alt="Odoo • Image et Texte" data-original-title="" title="" aria-describedby="tooltip38510"/>
+                <img src="/mcm_website_theme/static/src/img/examen/2.png" class="img img-fluid mx-auto" alt="Odoo • Image et Texte" data-original-title="" title="" aria-describedby="tooltip38510"/>
               </div>
               <div class="col-lg-6 pt16 pb16" style="border-style: none; border-width: 0px;">
                 <h2>
                   <font color="#000000" face="Poppins, sans-serif">
                     <span style="font-size: 24px;">
-                      <span style="font-weight: 700;">Comment m’inscrire à l’examen du VTC / TAXI / VMDTR ?</span>
+                      <b>Comment vous inscrire à l’examen TAXI/VTC/VMDTR ?</b>
                     </span>
                   </font>
                   <br/>
                 </h2>
-                <h2/>
-                <p style="font-size: 14px;">
-                  <font color="#000000" face="Poppins, sans-serif">Pour vous inscrire à l’examen, créez votre compte en ligne sur EVALBOX en suivant le lien&amp;nbsp;<span style="color: rgb(0, 0, 255);">ICI</span>&amp;nbsp;.</font>
+                <p>
+                  <font color="#000000" face="Poppins, sans-serif">
+                    <span style="font-size: 14px;">Pour vous inscrire à l’examen, créez votre compte en ligne sur EVALBOX en suivant le lien <a href="https://evalbox.fr/">ICI</a>.
+                    </span>
+                  </font>
                   <br/>
                 </p>
-                <p style="font-size: 14px;">&amp;nbsp;<span class="fa fa-play-circle-o"/>
-&amp;nbsp;&amp;nbsp;<font color="#000000" face="Poppins, sans-serif">Vous devez joindre vos pièces justificatives directement en ligne ► </font>
-                <font color="#000000" face="Poppins, sans-serif" style="color: rgb(0, 0, 255);">liste des pièces à télécharger</font>
-                <font color="#000000" face="Poppins, sans-serif"> (</font>&amp;nbsp;<span class="fa fa-warning"/>
-&amp;nbsp;<font color="#000000" face="Poppins, sans-serif">&amp;nbsp;<span style="font-weight: 700;">Attention</span>&amp;nbsp;: Ne mettre que les originaux. Les photocopies déchirées seront automatiquement refusées)<br/>
+                <p>&amp;nbsp;<span class="fa fa-chevron-right" data-original-title="" title="" aria-describedby="tooltip724482"/>
+&amp;nbsp;<font color="#000000" face="Poppins, sans-serif">
+                <span style="font-size: 14px;">Vous devez joindre vos pièces justificatives directement en ligne. ► <a href="/mcm_website_theme/static/src/img/examen/EVALBOX INSCRIPTION ET REINSCRIPTION.pdf">
+                  <span style="color: rgb(8, 82, 148); font-size: 14px;"> liste des pièces à télécharger </span>
+                </a>
+              </span>
+
+              <span style="font-size: 14px;">(</span>
             </font>
-            <span class="fa fa-play-circle-o"/>
-&amp;nbsp;<font color="#000000" face="Poppins, sans-serif">&amp;nbsp;Pour les candidats se présentant à l'ensemble des épreuves d'admissibilité et à l'épreuve d'admission, il faut prévoir:</font>&amp;nbsp;<span style="font-size: 0.9375rem;">&amp;nbsp;&amp;nbsp;</span>
-          </p>
-          <p style="font-size: 14px;">&amp;nbsp;<span class="fa fa-check"/>
-&amp;nbsp;&amp;nbsp;<font color="#000000" face="Poppins, sans-serif">206 € d'inscription aux 7 épreuves théoriques d'admissibilité et à l'épreuve pratique.&amp;nbsp;<br/>
+            <span class="fa fa-warning"/>
+            <font color="#000000" face="Poppins, sans-serif">
+              <span style="font-size: 14px;">&amp;nbsp;</span>
+              <b style="font-size: 14px;">attention :</b>
+              <span style="font-size: 14px;">&amp;nbsp;ne télécharger que les originaux. Les photocopies déchirées seront automatiquement refusées.)</span>
+              <br/>
+            </font>
+            <span class="fa fa-chevron-right"/>
+            <font color="#000000" face="Poppins, sans-serif">
+              <span style="font-size: 14px;">&amp;nbsp;Pour les candidats se présentant à l'ensemble des épreuves d'admissibilité et à l'épreuve d'admission, il faut prévoir :</span>
+            </font>
+            <span style="font-size: 0.9375rem;">&amp;nbsp;<br/>
+            </span>&amp;nbsp;<span class="fa fa-check"/>
+&amp;nbsp;<font color="#000000" face="Poppins, sans-serif">
+          <span style="font-size: 14px;">206 € de frais d'inscription aux 7 épreuves théoriques d'admissibilité et à l'épreuve pratique.&amp;nbsp;</span>
+          <br/>
         </font>
-        <span class="fa fa-check"/>
-&amp;nbsp;<font color="#000000" face="Poppins, sans-serif">&amp;nbsp;101 € d'inscription à une 2ème ou 3ème une présentation à l'épreuve pratique d'admission.<br/>
-      <br/>
-    </font>
-    <span style="font-weight: 700; color: rgb(0, 0, 255); text-align: right;">Retrouvez plus d'informations ici</span>
-    <font color="#000000" face="Poppins, sans-serif">
-      <br/>
+        <span class="fa fa-check" data-original-title="" title="" aria-describedby="tooltip149286"/>
+        <font color="#000000" face="Poppins, sans-serif">
+          <span style="font-size: 14px;">&amp;nbsp;101 € de frais d'inscription à une 2e ou 3e présentation à l'épreuve pratique d'admission.</span>
+        </font>
+      </p>
+      <p>
+        <span class="fa fa-chevron-right" data-original-title="" title="" aria-describedby="tooltip560396" style="font-size: 15px; color: rgb(8, 82, 148);"/>
+        <span style="color: rgb(8, 82, 148); font-family: Poppins, sans-serif; font-size: 14px;">&amp;nbsp;Plus de détails</span>
+        <br/>
+      </p>
+    </div>
+    <div class="col-lg-6 pt16 pb16" style="border-style: none; border-width: 0px;">
+      <h2>
+        <font color="#000000" face="Poppins, sans-serif">
+          <span style="font-size: 24px;">
+            <b>Quelles sont les conditions pour passer l'examen TAXI/VTC ?</b>
+          </span>
+          <br/>
+        </font>
+        <br/>
+      </h2>
+      <p>
+        <font color="#000000" face="Poppins, sans-serif">
+          <span style="font-size: 14px;">Pour s'inscrire à l'examen TAXI/VTC, le candidat doit être :</span>
+        </font>
+        <br/>
+      </p>
+      <p>&amp;nbsp;<span class="fa fa-check"/>
+&amp;nbsp;<font color="#000000" face="Poppins, sans-serif">
+      <span style="font-size: 14px;">Européen ou avoir un titre de séjour lui permettant d'exercer en France.</span>
     </font>
   </p>
+  <p>&amp;nbsp;<span class="fa fa-check"/>
+&amp;nbsp;<font color="#000000" face="Poppins, sans-serif">
+  <span style="font-size: 14px;">Titulaire d'un permis B depuis au moins 3 ans et non soumis à une période probatoire.</span>
+</font>&amp;nbsp;</p>
+<p>&amp;nbsp;<span class="fa fa-check"/>
+&amp;nbsp;<font color="#000000" face="Poppins, sans-serif">
+<span style="font-size: 14px;">En capacité physique de devenir chauffeur professionnel.</span>
+<br/>
+<br/>
+</font>
+<span class="fa fa-chevron-right" data-original-title="" title="" aria-describedby="tooltip560396" style="font-size: 15px; color: rgb(8, 82, 148);"/>
+<span style="color: rgb(8, 82, 148); font-family: Poppins, sans-serif; font-size: 14px;">&amp;nbsp;En savoir plus</span>
+<font color="#000000" face="Poppins, sans-serif">
+<span style="font-size: 14px;">
+<br/>
+</span>
+</font>
+</p>
+</div>
+<div class="col-lg-6 pt16 pb16">
+<img src="/mcm_website_theme/static/src/img/examen/3.png" class="img img-fluid mx-auto" alt="Odoo • Texte et Image" data-original-title="" title="" aria-describedby="tooltip202025"/>
 </div>
 </div>
 </div>
@@ -98,53 +183,17 @@
 </div>
 </div>
 </section>
-<section class="s_text_image pt32 pb32" data-name="Text - Image">
-<div class="container">
-<div class="row align-items-center">
-<div class="col-lg-6 pt16 pb16">
-  <h2>
-    <font color="#000000" face="Poppins, sans-serif">
-      <span style="font-size: 24px;">
-        <span style="font-weight: 700;">Quelles sont les conditions pour passer l'examen de taxi/VTC ?</span>&amp;nbsp;<br/>
-      </span>
-    </font>
-    <br/>
-  </h2>
-  <h2/>
-  <p style="font-size: 14px;">
-    <font color="#000000" face="Poppins, sans-serif">Pour s'inscrire à l'examen TAXI/VTC, le candidat doit être :</font>
-    <br/>
-  </p>
-  <p style="font-size: 14px;">&amp;nbsp;<span class="fa fa-check"/>
-&amp;nbsp;&amp;nbsp;<font color="#000000" face="Poppins, sans-serif">Européen ou avoir un titre de séjour lui permettant d'exercer en France.</font>
-</p>
-<p style="font-size: 14px;">&amp;nbsp;<span class="fa fa-check"/>
-&amp;nbsp;&amp;nbsp;<font color="#000000" face="Poppins, sans-serif">Titulaire d'un permis B depuis au moins 3 ans et non soumis à une période probatoire.</font>&amp;nbsp;</p>
-<p style="font-size: 14px;">&amp;nbsp;<span class="fa fa-check"/>
-&amp;nbsp;&amp;nbsp;<font color="#000000" face="Poppins, sans-serif">En capacité physique de devenir chauffeur professionnel.<br/>
-<br/>
-</font>
-<span style="font-weight: 700; color: rgb(0, 0, 255); text-align: right;">Retrouvez plus d'informations ici</span>
-<font color="#000000" face="Poppins, sans-serif">
-<br/>
-</font>
-</p>
-</div>
-<div class="col-lg-6 pt16 pb16">
-<img src="/mcm_website_theme/static/src/img/examen/2.png" class="img img-fluid mx-auto" alt="Odoo • Texte et Image" data-original-title="" title="" aria-describedby="tooltip202025"/>
-</div>
-</div>
-</div>
-</section>
-<section class="pb0 pt0" data-name="Title">
+<section class="pt32 pb0" data-name="Title">
 <div class="container">
 <div class="row s_nb_column_fixed">
-<div class="s_title offset-lg-1 col-lg-10 pt0 pb4" style="text-align: center;">
+<div class="s_title pb48 offset-lg-1 col-lg-10 pt64" style="text-align: center;">
 <h2 style="text-align: center;">
 <font color="#000000" face="Poppins, sans-serif">
+<b style="font-size: 24px;">Quels sont les modules d’examens pour </b>
 <span style="font-size: 24px;">
-<b>Quels sont les modules d’examens pour avoir le Certificat de Capacité Professionnelle ?</b>
+<b>obtenir&amp;nbsp;</b>
 </span>
+<b style="font-size: 24px;">le Certificat de Capacité Professionnelle ?</b>
 </font>
 <br/>
 </h2>
@@ -157,13 +206,13 @@
 <div class="row">
 <div class="col-lg-12 pt32 pb32">
 <p class="lead">
-<font color="#000000" face="Poppins, sans-serif">L’examen se décompose en deux types d’épreuves : <br/>
+<font color="#000000" face="Poppins, sans-serif">L’examen se décompose en deux types d’épreuves :<br/>
 </font>
-<span class="fa fa-play-circle-o"/>
-<font color="#000000" face="Poppins, sans-serif">&amp;nbsp;Des épreuves théoriques, sous la forme de questions à choix multiples et de questions à réponses courtes ;<br/>
+<span class="fa fa-chevron-right" data-original-title="" title="" aria-describedby="tooltip333534"/>
+<font color="#000000" face="Poppins, sans-serif">&amp;nbsp;Des épreuves théoriques, sous la forme de questions à choix multiples (QCM) et de questions à réponses courtes.<br/>
 </font>
-<span class="fa fa-play-circle-o"/>
-<font color="#000000" face="Poppins, sans-serif">&amp;nbsp;Une épreuve pratique consiste en une mise en situation pratique de réalisation d’une course de taxi ou d’une mission de transport en voiture de transport avec chauffeur.</font>
+<span class="fa fa-chevron-right" data-original-title="" title="" aria-describedby="tooltip519564"/>
+<font color="#000000" face="Poppins, sans-serif">&amp;nbsp;Une épreuve pratique consistant en une mise en situation pratique de réalisation d’une course de TAXI ou d’une mission de transport en voiture de transport avec chauffeur (VTC).</font>
 </p>
 </div>
 </div>
@@ -186,7 +235,7 @@
 </font>
 </h2>
 <p>
-<font color="#000000" face="Poppins, sans-serif" style="font-size: 18px;">Pendant votre formation nous allons vous apprendre à maîtriser les modules suivants:&amp;nbsp;</font>
+<font color="#000000" face="Poppins, sans-serif" style="font-size: 18px;">Pendant votre formation, nous allons vous apprendre à maîtriser les modules suivants :&amp;nbsp;</font>
 </p>
 <p>
 <font color="#000000" face="Poppins, sans-serif" style="font-size: 18px;">
@@ -213,7 +262,7 @@
 </div>
 <div class="col-lg-5 col-12">
 <div class="sh_img">
-<img src="/mcm_website_theme/static/src/img/examen/3.png" data-original-title="" title="" aria-describedby="tooltip859873"/>
+<img src="/mcm_website_theme/static/src/img/examen/4.png" data-original-title="" title="" aria-describedby="tooltip859873"/>
 </div>
 </div>
 </div>
@@ -226,9 +275,10 @@
 <h2 style="text-align: center; ">
 <font color="#000000" face="Poppins, sans-serif">
 <span style="font-size: 24px;">
-<span style="font-weight: 700;">Modules spécifiques VTC</span>
+<b>Modules spécifiques VTC</b>
 </span>
 </font>
+<br/>
 </h2>
 <h2>
 <font color="#000000" face="Poppins, sans-serif">
@@ -237,20 +287,19 @@
 </h2>
 <p>
 <font color="#000000" face="Poppins, sans-serif">
-<span style="font-size: 18px;">Les modules spécifiques d'accès à la profession de conducteur de VTC sont les suivants :</span>
-</font>
+<span style="font-size: 18px;">Les modules spécifiques d'accès à la profession de conducteur de VTC sont les suivants :</span>&amp;nbsp;</font>
 <font color="#000000" face="Poppins, sans-serif" style="font-size: 18px;">&amp;nbsp;</font>
 </p>
 <p>
 <font color="#000000" face="Poppins, sans-serif">
 <span style="font-size: 18px;">
-<b>F</b> - Développement commercial en gestion propre à l’activité VTC&amp;nbsp;</span>
+<b>F</b> -&amp;nbsp;Développement commercial en gestion propre à l’activité de VTC</span>
 </font>
 </p>
 <p>
 <font color="#000000" face="Poppins, sans-serif">
 <span style="font-size: 18px;">
-<b>G</b> - Réglementation nationale spécifique de l’activité de VTC&amp;nbsp;</span>
+<b>G</b> -&amp;nbsp;Réglementation nationale spécifique de l’activité de VTC</span>
 </font>
 </p>
 </div>
@@ -269,7 +318,7 @@
 </h2>
 <p>
 <font color="#000000" face="Poppins, sans-serif">
-<span style="font-size: 18px;">Les épreuves spécifiques d'accès à la profession de conducteur de taxi sont les suivantes :&amp;nbsp;</span>
+<span style="font-size: 18px;">Les épreuves spécifiques d'accès à la profession de conducteur de TAXI sont les suivantes :&amp;nbsp;</span>
 </font>
 <br/>
 </p>
@@ -282,9 +331,8 @@
 <p>
 <span style="font-size: 18px; color: rgb(0, 0, 0); font-family: Poppins, sans-serif; font-weight: 700;">G</span>
 <span style="font-size: 18px; color: rgb(0, 0, 0); font-family: Poppins, sans-serif;">&amp;nbsp;</span>
-<span style="font-size: 18px; color: rgb(0, 0, 0); font-family: Poppins, sans-serif;">-&amp;nbsp;</span>
-<font color="#000000" face="Poppins, sans-serif" style="">
-<span style="font-size: 18px;">Réglementation nationale de l’activité taxis et gestion propre à cette activité&amp;nbsp;</span>
+<span style="font-size: 18px; color: rgb(0, 0, 0); font-family: Poppins, sans-serif;">-&amp;nbsp;</span>&amp;nbsp;<font color="#000000" face="Poppins, sans-serif" style="">
+<span style="font-size: 18px;">Réglementation nationale de l’activité de TAXI et gestion propre à cette activité&amp;nbsp;</span>
 </font>
 </p>
 </div>
@@ -309,9 +357,8 @@
 </h2>
 <p>
 <font color="#000000" face="Poppins, sans-serif">
-<span style="font-size: 18px;">Retrouvez plus d'informations sur la durée des épreuves, les coefficients, la notations et les modalités d'évaluation en cliquant sur le bouton suivant:<br/>
+<span style="font-size: 18px;">Retrouvez plus d'informations sur la durée des épreuves, les coefficients, la notation&amp;nbsp;et les modalités d'évaluation en cliquant sur le bouton ci-dessous :</span>
 <br/>
-</span>
 </font>
 </p>
 <div class="s_btn text-center pt16 pb16" data-name="Button">
@@ -325,32 +372,33 @@
 <div class="container">
 <div class="row align-items-center">
 <div class="col-lg-6 pt16 pb16">
-<img src="/mcm_website_theme/static/src/img/examen/4.png" class="img img-fluid mx-auto" alt="Odoo • Image et Texte"/>
+<img src="/mcm_website_theme/static/src/img/examen/5.png" class="img img-fluid mx-auto" alt="Odoo • Image et Texte"/>
 </div>
 <div class="col-lg-6 pt16 pb16" style="border-style: none; border-width: 0px;">
 <h2>
 <font color="#000000" face="Poppins, sans-serif">
 <span style="font-size: 24px;">
-<b>Comment m’inscrire à l’examen du VMDTR?</b>&amp;nbsp;<br/>
+<b>Comment vous inscrire à l’examen VMDTR ?&amp;nbsp;</b>&amp;nbsp;<br/>
 </span>
 </font>
 <br/>
 </h2>
 <p>
 <font color="#000000" face="Poppins, sans-serif">
-<span style="font-size: 14px;">Comme le cas pour les examens du TAXI et VTC , pour passer l’examen VMDTR le candidat doit passer par une épreuve théorique et une épreuve pratique.</span>
+<span style="font-size: 14px;">Comme c’est le cas pour les examens TAXI et VTC, pour l’examen VMDTR, le candidat doit passer une épreuve théorique et une épreuve pratique.</span>
 </font>
 <br/>
 </p>
-<p>&amp;nbsp;<span class="fa fa-play-circle-o"/>
+<p>&amp;nbsp;<span class="fa fa-chevron-right" data-original-title="" title="" aria-describedby="tooltip124208"/>
 &amp;nbsp;<font color="#000000" face="Poppins, sans-serif">
-<span style="font-size: 14px;">Pour réussir l’examen théorique VMDTR, une moyenne générale d’au moins 10/20&amp;nbsp; est&amp;nbsp; obligatoire. Aussi, chaque épreuve est soumise à une note éliminatoire propre. Le candidat se verra éliminé s'il obtient une note inférieure à celle-ci.</span>
+<span style="font-size: 14px;">Pour réussir l’examen théorique VMDTR, une moyenne générale d’au moins 10/20 est obligatoire. Aussi, chaque épreuve est soumise à une note éliminatoire propre. Le candidat se verra éliminé s'il obtient une note inférieure à celle-ci.</span>
 </font>
 </p>
-<p>&amp;nbsp;<span class="fa fa-play-circle-o" data-original-title="" title="" aria-describedby="tooltip206664"/>
+<p>&amp;nbsp;<span class="fa fa-chevron-right" data-original-title="" title="" aria-describedby="tooltip206664"/>
 &amp;nbsp;<font color="#000000" face="Poppins, sans-serif">
-<span style="font-size: 14px;">Les résultats de l’examen VMDTR théorique vous seront communiqués par la Chambre des Métiers et de l'Artisanat (CMA) dans les semaines qui suivent l’épreuve par mail et sms mais aussi en ligne sur&amp;nbsp; le site web de la CMA.</span>
-</font>&amp;nbsp;</p>
+<span style="font-size: 14px;">Les résultats de l’examen VMDTR théorique vous seront communiqués par la Chambre des Métiers et de l'Artisanat (CMA) dans les semaines qui suivent l’épreuve, par mail et SMS, mais aussi en ligne sur le site web de la CMA.</span>
+</font>
+</p>
 <div class="s_btn pt16 pb16 text-center" data-name="Button">
 <a href="#" class="btn btn-primary sh_btn_cm_4" data-original-title="" title="" aria-describedby="tooltip515890">Détails sur l'examen VMDTR&amp;nbsp;</a>
 </div>
@@ -362,10 +410,10 @@
 <div class="container">
 <div class="sh_content">
 <p>
-<font style="color: rgb(255, 227, 71);">MCM ACADEMY propose des formations VTC, TAXI et VMDTR d’excellence basée sur l'expertise de nos formateurs et la dédication de toute l'équipe. Toutes nos formations sont éligibles au CPF !</font>
+<font style="color: rgb(255, 227, 71);">MCM Academy propose des formations VTC, TAXI et VMDTR d’excellence, basées sur l'expertise de nos formateurs et la dédication de toute l'équipe. Toutes nos formations sont éligibles au CPF !</font>
 </p>
 <div class="sh_btn">
-<a href="/#sh_corpomate_theme_section_188" class="btn" data-original-title="" title="" aria-describedby="tooltip398035">Je m'inscris</a>
+<a href="/fr/contactus9" class="btn" data-original-title="" title="" aria-describedby="tooltip398035">Je m'inscris</a>
 </div>
 </div>
 </div>
