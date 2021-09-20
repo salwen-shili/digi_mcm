@@ -21,13 +21,10 @@
                 <section id="sh_corpomate_theme_section_184" class="sh_animation_part oe_img_bg oe_custom_bg" data-name="Slider">
                     <div id="myCarousel1629895999804" class="s_carousel carousel slide s_carousel_default" data-interval="10000" data-name="Carousel">
                         <ol class="carousel-indicators d-none">
-                            <li data-target="#myCarousel1629895999804" data-slide-to="0" class="active" />
+                            <li data-target="#myCarousel1629895999804" data-slide-to="0" class="active"/>
                         </ol>
                         <div class="carousel-inner">
-                            <div class="carousel-item pt152 pb0 oe_img_bg oe_custom_bg active" style="
-                background-image: url('/mcm_website_theme/static/src/img/homepage/homepage.png');
-                background-position: 97.74% 57.84%;
-              " data-name="Slide">
+                            <div class="carousel-item pt152 pb0 oe_img_bg oe_custom_bg active" style="                 background-image: url('/mcm_website_theme/static/src/img/homepage/homepage.png');                 background-position: 97.74% 57.84%;               " data-name="Slide">
                                 <div class="container">
                                     <div class="row content">
                                         <div class="carousel-content col-lg-6" style="border-style: none; border-width: 0px">
@@ -35,40 +32,31 @@
                                                 <div class="container sh_content_text text-center">
                                                     <h1>
                                                         <font style="font-size: 62px; color: #000">&amp;nbsp;FORMATION VTC, TAXI et TAXI MOTO
-                                                            <br />
-                                                        </font
-                          >
+                                                            <br/>
+                                                        </font>
                                                         <font style="color: #000; font-size: 24px">
                                                             <b>100 % en ligne </b>
-                                                        </font
-                          >
+                                                        </font>
                                                     </h1>
                                                     <p class="heading text-center">
                                                         <font style="color: rgb(0, 0, 0)">Besoin de formation pour devenir chauffeur de TAXI,
-                            de VTC ou de VMDTR,<br />
+                            de VTC ou de VMDTR,<br/>
 &amp;nbsp;pour renouveler
                             votre carte professionnelle, ou encore pour une
                             passerelle TAXI-VTC ?
-                                                        <br />
+                                                        <br/>
                             &amp;nbsp;MCM Academy a tout pour satisfaire vos
                             besoins en formation avec un programme riche,
-                            flexible et pertinent.</font
-                          >
-                                                    <font style="color: #000 font-size: 16.5px"></font>
+                            flexible et pertinent.</font>
+                                                    <font style="color: #000 font-size: 16.5px"/>
                                                 </p>
                         &amp;nbsp;
-                                                <a href="#" class="
-                            btn btn-primary
-                            sh_btn_cm_8 sh_more_btn
-                            res_button
-                          " data-original-title="" title="">
+                                                <a href="#pricing" class="                             btn btn-primary                             sh_btn_cm_8 sh_more_btn                             res_button                           " data-original-title="" title="">
                                                     <font style="color: #fff">s'Inscrire </font>
-                                                </a
-                        >
+                                                </a>
                                                 <a href="#" class="btn btn-primary sh_btn_cm_8 sh_more_btn" data-original-title="" title="">
                                                     <font style="color: #fff">En-savoir plus </font>
-                                                </a
-                        >
+                                                </a>
                                             </div>
                                         </div>
                                     </div>
@@ -77,11 +65,11 @@
                         </div>
                     </div>
                     <div class="carousel-control-prev d-none" data-target="#myCarousel1629895999804" data-slide="prev" role="img" aria-label="Previous" title="Previous">
-                        <span class="carousel-control-prev-icon" />
+                        <span class="carousel-control-prev-icon"/>
                         <span class="sr-only o_default_snippet_text">Previous</span>
                     </div>
                     <div class="carousel-control-next d-none" data-target="#myCarousel1629895999804" data-slide="next" role="img" aria-label="Next" title="Next">
-                        <span class="carousel-control-next-icon" />
+                        <span class="carousel-control-next-icon"/>
                         <span class="sr-only o_default_snippet_text">Next</span>
                     </div>
                 </div>
@@ -92,9 +80,9 @@
                         <div class="col-md-6 col-sm-6 col-12 col-lg-4" style="border-style: none; border-width: 0px">
                             <div class="sh_content">
                                 <div class="sh_content_box">
-                                    <div class="sh_icon"></div>
+                                    <div class="sh_icon"/>
                                     <div class="sh_description">
-                                        <h2>Devenez chauffeur de TAXI<br />
+                                        <h2>Devenez chauffeur de TAXI<br/>
                                         </h2>
                                         <h2>
                                             <font style="font-size: 14px">Le métier de chauffeur de TAXI consiste à transporter
@@ -107,7 +95,7 @@
                                             <a href="#" class="btn btn-warning sh_btn_cm_4" data-original-title="" title="" aria-describedby="tooltip562914">En savoir plus
                                             </a>
                                         </div>
-                                        <a href="#" class="sh_number" />
+                                        <a href="#" class="sh_number"/>
                                     </div>
                                 </div>
                             </div>
@@ -115,9 +103,9 @@
                         <div class="col-md-6 col-sm-6 col-12 col-lg-4" style="border-style: none; border-width: 0px">
                             <div class="sh_content">
                                 <div class="sh_content_box">
-                                    <div class="sh_icon"></div>
+                                    <div class="sh_icon"/>
                                     <div class="sh_description">
-                                        <h2>Devenez chauffeur de VTC<br />
+                                        <h2>Devenez chauffeur de VTC<br/>
                                         </h2>
                                         <h2>
                                             <font style="font-size: 14px">Le chauffeur VTC (Voiture de Transport avec Chauffeur)
@@ -128,8 +116,7 @@
                                             </font>
                                         </h2>
                                         <div class="s_btn text-center pt16 pb16" data-name="Button">
-                                            <a href="#" class="btn btn-warning sh_btn_cm_4">En savoir plus</a
-                      >
+                                            <a href="#" class="btn btn-warning sh_btn_cm_4">En savoir plus</a>
                                         </div>
                                     </div>
                                 </div>
@@ -138,9 +125,9 @@
                         <div class="col-md-6 col-sm-6 col-12 col-lg-4" style="border-style: none; border-width: 0px">
                             <div class="sh_content">
                                 <div class="sh_content_box">
-                                    <div class="sh_icon"></div>
+                                    <div class="sh_icon"/>
                                     <div class="sh_description">
-                                        <h2>Devenez chauffeur de MOTO-TAXI<br />
+                                        <h2>Devenez chauffeur de MOTO-TAXI<br/>
                                         </h2>
                                         <h2>
                                             <font style="font-size: 14px">Le chauffeur de VMDTR propose, sous réservation
@@ -148,11 +135,10 @@
                         trois roues, des prestations de transport public
                         particulier de personnes et de leurs bagages.
                                             </font>
-                                            <br />
+                                            <br/>
                                         </h2>
                                         <div class="s_btn text-center pt16 pb16" data-name="Button">
-                                            <a href="#" class="btn btn-warning sh_btn_cm_4">En savoir plus</a
-                      >
+                                            <a href="#" class="btn btn-warning sh_btn_cm_4">En savoir plus</a>
                                         </div>
                                     </div>
                                 </div>
@@ -167,41 +153,39 @@
                         <div class="col-lg-12 s_title pt16 pb16" style="text-align: center">
                             <h2 class="s_title_default">
                                 <b>Une Formation Flexible et Pertinente</b>
-                                <br />
+                                <br/>
                             </h2>
                         </div>
                         <div class="pt32 pb32 col-lg-4" style="border-style: none; border-width: 0px">
                             <p class="lead">
-                                <span class="d-block fa fa-rocket mx-auto fa-2x" data-original-title="" title="" aria-describedby="tooltip803873" style="color: rgb(0, 0, 0)" />
+                                <span class="d-block fa fa-rocket mx-auto fa-2x" data-original-title="" title="" aria-describedby="tooltip803873" style="color: rgb(0, 0, 0)"/>
                                 <span style="color: rgb(0, 0, 0); font-size: 18px">
-                                    <br />
+                                    <br/>
                                 </span>
                                 <font color="#000000">
                                     <span style="font-size: 18px">Formez-vous à votre rythme, où vous voulez et quand vous
                     voulez : vous n’avez besoin que d’une connexion internet
-                    pour vous lancer !</span
-                  >
+                    pour vous lancer !</span>
                                 </font>
-                                <br />
+                                <br/>
                             </p>
                         </div>
                         <div class="pt32 pb32 col-lg-4" style="border-style: none; border-width: 0px">
                             <p class="lead">
-                                <img class="img-fluid o_we_custom_image" src="/mcm_website_theme/static/src/img/homepage/im 1.png" data-original-title="" title="" aria-describedby="tooltip951588" />
-                                <br />
+                                <img class="img-fluid o_we_custom_image" src="/mcm_website_theme/static/src/img/homepage/im 1.png" data-original-title="" title="" aria-describedby="tooltip951588"/>
+                                <br/>
                             </p>
                         </div>
                         <div class="pt32 pb32 col-lg-4" style="border-style: none; border-width: 0px">
                             <p class="lead">
-                                <span class="d-block fa fa-flag mx-auto fa-2x" data-original-title="" title="" aria-describedby="tooltip879316" style="color: rgb(0, 0, 0)" />
-                                <br />
+                                <span class="d-block fa fa-flag mx-auto fa-2x" data-original-title="" title="" aria-describedby="tooltip879316" style="color: rgb(0, 0, 0)"/>
+                                <br/>
                                 <font color="#000000">
                                     <span style="font-size: 18px">Formation animée par des experts du métier, avec des
                     programmes de révision bien étudiés pour se préparer
-                    correctement à l’examen.</span
-                  >
+                    correctement à l’examen.</span>
                                 </font>
-                                <br />
+                                <br/>
                             </p>
                         </div>
                     </div>
@@ -222,69 +206,53 @@
                         <div class="col-lg-3 col-md-6 col-sm-6 col-12 sh_animation_part" style="border-style: none; border-width: 0px">
                             <div class="sh_content">
                                 <div class="sh_icon">
-                                    <span class="fa fa-desktop" data-original-title="" title="" aria-describedby="tooltip309396" style="
-                      background-color: rgb(255, 255, 0);
-                      color: rgb(0, 0, 0);
-                    " />
+                                    <span class="fa fa-desktop" data-original-title="" title="" aria-describedby="tooltip309396" style="                       background-color: rgb(255, 255, 0);                       color: rgb(0, 0, 0);                     "/>
                                 </div>
                                 <h4>1. Vous vous inscrivez</h4>
                                 <p>
                                     <font style="color: rgb(0, 0, 0)">Vous vous inscrivez en ligne sur le site de la CMA et vous
                     y déposez votre dossier ; ensuite, vous vous inscrivez sur
-                    le site de MCM Academy.</font
-                  >
+                    le site de MCM Academy.</font>
                                 </p>
                             </div>
                         </div>
                         <div class="col-lg-3 col-md-6 col-sm-6 col-12 sh_animation_part pb4">
                             <div class="sh_content">
                                 <div class="sh_icon">
-                                    <span class="fa fa-edit" data-original-title="" title="" aria-describedby="tooltip255152" style="
-                      background-color: rgb(255, 255, 0);
-                      color: rgb(0, 0, 0);
-                    " />
+                                    <span class="fa fa-edit" data-original-title="" title="" aria-describedby="tooltip255152" style="                       background-color: rgb(255, 255, 0);                       color: rgb(0, 0, 0);                     "/>
                                 </div>
                                 <h4>2. Vous suivez la formation à distance&amp;nbsp;</h4>
                                 <p>
                                     <font style="color: rgb(0, 0, 0)">Maintenant que vous êtes inscrit sur notre plateforme, vous
                     disposez d'un mois pour suivre nos cours en illimité et
-                    utiliser tout nos supports de révision.</font
-                  >
+                    utiliser tout nos supports de révision.</font>
                                 </p>
                             </div>
                         </div>
                         <div class="col-lg-3 col-md-6 col-sm-6 col-12 sh_animation_part">
                             <div class="sh_content">
                                 <div class="sh_icon">
-                                    <span class="fa fa-mortar-board" data-original-title="" title="" aria-describedby="tooltip343085" style="
-                      background-color: rgb(255, 255, 0);
-                      color: rgb(0, 0, 0);
-                    " />
+                                    <span class="fa fa-mortar-board" data-original-title="" title="" aria-describedby="tooltip343085" style="                       background-color: rgb(255, 255, 0);                       color: rgb(0, 0, 0);                     "/>
                                 </div>
                                 <h4>3.Vous passez l'Examen</h4>
                                 <p>
                                     <font color="#000000">Une fois que vous avez terminé notre formation et suivi nos
                     conseils, vous choisissez votre centre d'examen le plus
-                    proche pour fixer votre date d'examen.</font
-                  >
-                                    <br />
+                    proche pour fixer votre date d'examen.</font>
+                                    <br/>
                                 </p>
                             </div>
                         </div>
                         <div class="col-lg-3 col-md-6 col-sm-6 col-12 sh_animation_part">
                             <div class="sh_content">
                                 <div class="sh_icon">
-                                    <span class="fa fa-list-alt" data-original-title="" title="" aria-describedby="tooltip501034" style="
-                      background-color: rgb(255, 255, 0);
-                      color: rgb(0, 0, 0);
-                    " />
+                                    <span class="fa fa-list-alt" data-original-title="" title="" aria-describedby="tooltip501034" style="                       background-color: rgb(255, 255, 0);                       color: rgb(0, 0, 0);                     "/>
                                 </div>
                                 <h4>4. Vous récupérez votre carte professionnelle</h4>
                                 <p>
                                     <font style="color: rgb(0, 0, 0)">Vous avez obtenu votre certificat ? Félicitations ! L’étape
                     suivante est le dépôt de votre dossier à la préfecture pour
-                    récupérer votre CP.</font
-                  >
+                    récupérer votre CP.</font>
                                 </p>
                             </div>
                         </div>
@@ -306,100 +274,72 @@
                 <div class="container">
                     <div class="row">
                         <div class="pb32 text-center pt0 col-lg-4" style="border-style: none; border-width: 0px">
-                            <i class="fa fa-2x fa-clock-o m-3 rounded-circle" data-original-title="" title="" aria-describedby="tooltip924651" style="
-                  background-color: rgb(255, 255, 255);
-                  color: rgb(0, 0, 0);
-                " />
+                            <i class="fa fa-2x fa-clock-o m-3 rounded-circle" data-original-title="" title="" aria-describedby="tooltip924651" style="                   background-color: rgb(255, 255, 255);                   color: rgb(0, 0, 0);                 "/>
                             <h3>
                                 <b>Flexibilité</b>
-                                <br />
+                                <br/>
                             </h3>
                             <p>
                 Vous avez la liberté de choisir quand et durant combien de temps
-                vous souhaitez travailler.<br />
+                vous souhaitez travailler.<br/>
                             </p>
                         </div>
                         <div class="pb32 text-center pt0 col-lg-4">
-                            <i class="fa fa-2x fa-mortar-board m-3 rounded" data-original-title="" title="" aria-describedby="tooltip680976" style="
-                  background-color: rgb(255, 255, 255);
-                  color: rgb(0, 0, 0);
-                " />
+                            <i class="fa fa-2x fa-mortar-board m-3 rounded" data-original-title="" title="" aria-describedby="tooltip680976" style="                   background-color: rgb(255, 255, 255);                   color: rgb(0, 0, 0);                 "/>
                             <h3>
                                 <b>Qualification</b>
-                                <br />
+                                <br/>
                             </h3>
                             <p>
                 Nos experts pédagogiques vous accompagneront durant tout le
-                cursus de formation.<br />
+                cursus de formation.<br/>
                             </p>
                         </div>
                         <div class="pb32 text-center pt0 col-lg-4" style="border-style: none; border-width: 0px">
-                            <i class="fa fa-star m-3 rounded-leaf fa-2x" data-original-title="" title="" aria-describedby="tooltip820818" style="
-                  background-color: rgb(255, 255, 255);
-                  color: rgb(0, 0, 0);
-                " />
+                            <i class="fa fa-star m-3 rounded-leaf fa-2x" data-original-title="" title="" aria-describedby="tooltip820818" style="                   background-color: rgb(255, 255, 255);                   color: rgb(0, 0, 0);                 "/>
                             <h3>
                                 <b>Expertise</b>
                             </h3>
                             <p>
                 Notre centre de formation est doté d’une expérience de plus de
-                10 ans dans le domaine !<br />
+                10 ans dans le domaine !<br/>
                             </p>
                         </div>
                     </div>
                 </div>
             </section>
-            <section id="sh_corpomate_theme_section_229" class="sh_animation_part bg-900 oe_img_bg oe_custom_bg" data-name="Services counter" style="
-          background-image: url('/mcm_website_theme/static/src/img/homepage/im 2.png');
-          background-position: 1.58% 78.71%;
-        ">
+            <section id="sh_corpomate_theme_section_229" class="sh_animation_part bg-900 oe_img_bg oe_custom_bg" data-name="Services counter" style="           background-image: url('/mcm_website_theme/static/src/img/homepage/im 2.png');           background-position: 1.58% 78.71%;         ">
                 <div class="container">
                     <div class="row">
                         <div class="col-md-3 col-sm-6 col-6" style="border-style: none; border-width: 0px">
                             <div class="sh_counter">
                                 <p style="text-align: center">
                                     <span style="font-size: 24px">Des centaines de personnes ont déjà fait confiance à MCM
-                    Academy. Pourquoi pas vous?</span
-                  >
+                    Academy. Pourquoi pas vous?</span>
                                 </p>
                             </div>
                         </div>
                         <div class="col-md-3 col-sm-6 col-6 pt32">
                             <div class="sh_counter">
                                 <h4 class="sh_count">1899</h4>
-                                <h3 style="
-                    font-weight: 600;
-                    font-size: 15px;
-                    color: rgb(255, 255, 255);
-                    background-color: rgba(0, 0, 0, 0.7);
-                  ">
+                                <h3 style="                     font-weight: 600;                     font-size: 15px;                     color: rgb(255, 255, 255);                     background-color: rgba(0, 0, 0, 0.7);                   ">
                   STAGIAIRES FORMÉS
                                 </h3>
                             </div>
                         </div>
                         <div class="col-md-3 col-sm-6 col-6 pt32">
                             <div class="sh_counter">
-                                <h4 class="sh_count">92</h4>
-                                <h3 style="
-                    font-weight: 600;
-                    font-size: 15px;
-                    color: rgb(255, 255, 255);
-                    background-color: rgba(0, 0, 0, 0.7);
-                  ">
+                                <h4 class="sh_count">92 %</h4>
+                                <h3 style="                     font-weight: 600;                     font-size: 15px;                     color: rgb(255, 255, 255);                     background-color: rgba(0, 0, 0, 0.7);                   ">
                   CLIENTS SATISFAITS
                                 </h3>
                             </div>
                         </div>
                         <div class="col-md-3 col-sm-6 col-6 pt32">
                             <div class="sh_counter">
-                                <h4 class="sh_count">86</h4>
-                                <h3 style="
-                    font-weight: 600;
-                    font-size: 15px;
-                    color: rgb(255, 255, 255);
-                    background-color: rgba(0, 0, 0, 0.7);
-                  ">
-                  TAUX DE RECOMMANDATION
+                                <h4 class="sh_count">86 %</h4>
+                                <h3 style="                     font-weight: 600;                     font-size: 15px;                     color: rgb(255, 255, 255);                     background-color: rgba(0, 0, 0, 0.7);                   ">
+                  TAUX DE RECOMMANDATION 
                                 </h3>
                             </div>
                         </div>
@@ -412,36 +352,19 @@
                         <div class="col-md-3 col-sm-12 pt0 col-lg-2">
                             <div class="sh_heading">
                                 <h3>
-                                    <img class="img-fluid o_we_custom_image" src="/mcm_website_theme/static/src/img/cpf.png" data-original-title="" title="" aria-describedby="tooltip577488" style="width: 100%" />
+                                    <img class="img-fluid o_we_custom_image" src="/mcm_website_theme/static/src/img/cpf.png" data-original-title="" title="" aria-describedby="tooltip577488" style="width: 100%"/>
                                 </h3>
                             </div>
                         </div>
                         <div class="col-md-9 col-sm-12 pt48" style="border-style: none; border-width: 0px">
                             <div class="sh_description">
-                                <p />
-                                <p dir="ltr" style="
-                    line-height: 1.2;
-                    margin-top: 4.47796630859375pt;
-                    margin-bottom: 0pt;
-                  ">
-                                    <span style="
-                      background-color: transparent;
-                      color: #000000;
-                      font-family: Arial;
-                      font-size: 11pt;
-                      font-style: normal;
-                      font-variant: normal;
-                      font-weight: 400;
-                      text-decoration: none;
-                      vertical-align: baseline;
-                      white-space: pre;
-                      white-space: pre-wrap;
-                    ">Le compte personnel de formation sert à accompagner le
+                                <p/>
+                                <p dir="ltr" style="                     line-height: 1.2;                     margin-top: 4.47796630859375pt;                     margin-bottom: 0pt;                   ">
+                                    <span style="                       background-color: transparent;                       color: #000000;                       font-family: Arial;                       font-size: 11pt;                       font-style: normal;                       font-variant: normal;                       font-weight: 400;                       text-decoration: none;                       vertical-align: baseline;                       white-space: pre;                       white-space: pre-wrap;                     ">Le compte personnel de formation sert à accompagner le
                     titulaire dans le cadre de l’évolution, la reconversion et
                     la sécurisation de son parcours professionnel. Une fois
                     alimenté, il permet de financer tout ou une partie d’une
-                    formation éligible au dispositif, en ligne.</span
-                  >
+                    formation éligible au dispositif, en ligne.</span>
                                 </p>
                             </div>
                         </div>
@@ -455,18 +378,13 @@
                         <div class="sh_title">
                             <h2>
                                 <b>Inscrivez-vous dès maintenant !</b>
-                                <br />
+                                <br/>
                             </h2>
-                            <h4 style="
-                  margin-top: 20px;
-                  margin-bottom: 0.5rem;
-                  font-size: 18px;
-                  text-transform: capitalize;
-                ">
+                            <h4 style="                   margin-top: 20px;                   margin-bottom: 0.5rem;                   font-size: 18px;                   text-transform: capitalize;                 ">
                 Choisissez le pack qui vous convient&amp;nbsp;
                             </h4>
                             <p>
-                                <br />
+                                <br/>
                             </p>
                         </div>
                         <div class="row">
@@ -475,24 +393,21 @@
                                     <t t-foreach="mcm_products" t-as="product">
                                         <t t-if="product.default_code=='vtc'">
                                             <form action="/shop/cart/update" method="post" id="form-1-1">
-                                                <input type="hidden" class="product_id" name="product_id" id="vtc_product" t-att-value="product.id" />
+                                                <input type="hidden" class="product_id" name="product_id" id="vtc_product" t-att-value="product.id"/>
                                                 <p>PACK VTC</p>
                                                 <h4>
-                                                    <span t-esc="round(product.list_price)" />
-                                                    <span t-esc="product.currency_id.symbol" />
+                                                    <span t-esc="round(product.list_price)"/>
+                                                    <span t-esc="product.currency_id.symbol"/>
                                                     <sub>/personne</sub>
                                                 </h4>
-                                                <ul>
-                                                    <li>Formation 70h (100% en ligne)</li>
-                                                    <li>Accès à 12+ examens d'entraînement</li>
+                                                <ul class="">
+                                                    <li>Formation 70 h (100 % en ligne)</li>
+                                                    <li>Accès à + de 12 examens d'entraînement</li>
                                                     <li>Coaching par mail</li>
                                                     <li>Coaching par téléphone</li>
                                                     <li>Coaching par visioconférence</li>
-                                                    <li>Directs pour explication avec les formateurs</li>
-                                                    <li>
-                            Révision du programme avant examen
-                                                        <br />
-                                                    </li>
+                                                    <li>Lives&amp;nbsp;avec les formateurs pour explications</li>
+                                                    <li>Révision du programme avant examen</li>
                                                 </ul>
                                                 <div class="sh_btn">
                                                     <a class="btn btn-primary sh_btn_cm_8" data-original-title="" title="" aria-describedby="tooltip357369" onClick="(function(){document.getElementById('form-1-1').submit();return false;})();return false;">
@@ -509,20 +424,20 @@
                                     <t t-foreach="mcm_products" t-as="product">
                                         <t t-if="product.default_code=='taxi'">
                                             <form action="/shop/cart/update" method="post" id="form-1-2">
-                                                <input type="hidden" class="product_id" name="product_id" id="taxi_product" t-att-value="product.id" />
+                                                <input type="hidden" class="product_id" name="product_id" id="taxi_product" t-att-value="product.id"/>
                                                 <p>PACK TAXI</p>
                                                 <h4>
-                                                    <span t-esc="round(product.list_price)" />
-                                                    <span t-esc="product.currency_id.symbol" />
+                                                    <span t-esc="round(product.list_price)"/>
+                                                    <span t-esc="product.currency_id.symbol"/>
                                                     <sub>/personne</sub>
                                                 </h4>
-                                                <ul>
-                                                    <li>Formation 70h (100% en ligne)</li>
-                                                    <li>Accès à 12+ examens d'entraînement</li>
+                                                <ul class="">
+                                                    <li>Formation 70 h (100 % en ligne)</li>
+                                                    <li>Accès à + de 12 examens d'entraînement</li>
                                                     <li>Coaching par mail</li>
                                                     <li>Coaching par téléphone</li>
                                                     <li>Coaching par visioconférence</li>
-                                                    <li>Directs pour explication avec les formateurs</li>
+                                                    <li>Lives&amp;nbsp;avec les formateurs pour explications</li>
                                                     <li>Révision du programme avant examen</li>
                                                 </ul>
                                                 <div class="sh_btn">
@@ -540,20 +455,20 @@
                                     <t t-foreach="mcm_products" t-as="product">
                                         <t t-if="product.default_code=='vmdtr'">
                                             <form action="/shop/cart/update" method="post" id="form-1-3">
-                                                <input type="hidden" class="product_id" name="product_id" id="vmdtr_product" t-att-value="product.id" />
+                                                <input type="hidden" class="product_id" name="product_id" id="vmdtr_product" t-att-value="product.id"/>
                                                 <p>PACK TAXI-MOTO</p>
                                                 <h4>
-                                                    <span t-esc="round(product.list_price)" />
-                                                    <span t-esc="product.currency_id.symbol" />
+                                                    <span t-esc="round(product.list_price)"/>
+                                                    <span t-esc="product.currency_id.symbol"/>
                                                     <sub>/personne</sub>
                                                 </h4>
-                                                <ul>
-                                                    <li>Formation 70h (100% en ligne)</li>
-                                                    <li>Accès à 12+ examens d'entraînement</li>
+                                                <ul class="">
+                                                    <li>Formation 70 h (100 % en ligne)</li>
+                                                    <li>Accès à + de 12 examens d'entraînement</li>
                                                     <li>Coaching par mail</li>
                                                     <li>Coaching par téléphone</li>
                                                     <li>Coaching par visioconférence</li>
-                                                    <li>Directs pour explication avec les formateurs</li>
+                                                    <li>Lives&amp;nbsp;avec les formateurs pour explications</li>
                                                     <li>Révision du programme avant examen</li>
                                                 </ul>
                                                 <div class="sh_btn">
@@ -571,56 +486,51 @@
                 </section>
             </div>
             <!-- FIN PRICING TABLE-->
-
             <section id="sh_corpomate_theme_section_178" class="js_cls_sh_corpomate_theme_section_178" data-name="theme7 partner">
                 <div class="container">
                     <div class="row">
                         <div class="owl-carousel owl-theme carousel-main owl-loaded owl-drag">
                             <div class="owl-stage-outer">
-                                <div class="owl-stage" style="
-                    transform: translate3d(-1150px, 0px, 0px);
-                    transition: all 1s ease 0s;
-                    width: 3450px;
-                  ">
+                                <div class="owl-stage" style="                     transform: translate3d(-1150px, 0px, 0px);                     transition: all 1s ease 0s;                     width: 3450px;                   ">
                                     <div class="owl-item cloned" style="width: 220px; margin-right: 10px">
                                         <div class="col">
                                             <a href="#">
-                                                <img src="/mcm_website_theme/static/src/img/partenaires/a3-navettes.png" />
+                                                <img src="/mcm_website_theme/static/src/img/partenaires/a3-navettes.png"/>
                                             </a>
                                         </div>
                                     </div>
                                     <div class="owl-item cloned" style="width: 220px; margin-right: 10px">
                                         <div class="col">
                                             <a href="#">
-                                                <img src="/mcm_website_theme/static/src/img/partenaires/Adie.png" />
+                                                <img src="/mcm_website_theme/static/src/img/partenaires/Adie.png"/>
                                             </a>
                                         </div>
                                     </div>
                                     <div class="owl-item cloned" style="width: 220px; margin-right: 10px">
                                         <div class="col">
                                             <a href="#">
-                                                <img src="/mcm_website_theme/static/src/img/partenaires/clicar.png" />
+                                                <img src="/mcm_website_theme/static/src/img/partenaires/clicar.png"/>
                                             </a>
                                         </div>
                                     </div>
                                     <div class="owl-item cloned" style="width: 220px; margin-right: 10px">
                                         <div class="col">
                                             <a href="#">
-                                                <img src="/mcm_website_theme/static/src/img/partenaires/cma.jpg" />
+                                                <img src="/mcm_website_theme/static/src/img/partenaires/cma.jpg"/>
                                             </a>
                                         </div>
                                     </div>
                                     <div class="owl-item cloned" style="width: 220px; margin-right: 10px">
                                         <div class="col">
                                             <a href="#">
-                                                <img src="/mcm_website_theme/static/src/img/partenaires/l_expert.png" />
+                                                <img src="/mcm_website_theme/static/src/img/partenaires/l_expert.png"/>
                                             </a>
                                         </div>
                                     </div>
                                     <div class="owl-item cloned" style="width: 220px; margin-right: 10px">
                                         <div class="col">
                                             <a href="#">
-                                                <img src="/mcm_website_theme/static/src/img/partenaires/via_automobile.png" />
+                                                <img src="/mcm_website_theme/static/src/img/partenaires/via_automobile.png"/>
                                             </a>
                                         </div>
                                     </div>
@@ -636,16 +546,15 @@
                             </div>
                             <div class="owl-dots disabled">
                                 <button role="button" class="owl-dot active">
-                                    <span />
+                                    <span/>
                                 </button>
                             </div>
                         </div>
                     </div>
                 </div>
             </section>
-            <p />
+            <p/>
         </div>
-
     </xpath>
 </template>
 </odoo>

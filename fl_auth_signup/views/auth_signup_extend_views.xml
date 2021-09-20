@@ -213,7 +213,7 @@
                                             </div>
                                             <div class="col-md-8 outlined-input-field bg-c" id="city_container" aria-disabled="true">
                                                 <!-- <input type="text" id="city" class="outlined-text-field" autocomplete="off" /> -->
-                                                <select class="outlined-text-field disabled" name="city" id="city" type="hidden" disabled="disabled" required="required"></select>
+                                                <select class="outlined-text-field disabled" name="city" id="city" type="hidden" required="required"></select>
                                                 <label for="city" style="left: 2rem !important">Ville *
                                                 </label
                                                 >
