@@ -34,7 +34,7 @@ class ResPartner(models.Model):
         for partner in self:
             base_url = partner.get_base_url()
             if partner.company_id.id == 1:
-                base_url = "https://mcm-academy.odoo.com"
+                base_url = "https://mcm-academy.fr"
             elif partner.company_id.id == 2:
                 base_url = "https://digimoov.fr"
             # when required, make sure the partner has a valid signup token
