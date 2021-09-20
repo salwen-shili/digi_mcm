@@ -7,8 +7,7 @@
 
         </xpath> -->
         <xpath expr="//a[@href='/shop'][1]" position="replace">
-            <a role="button" href="/shop" class="btn btn-secondary mb32 d-none d-xl-inline-block"
-               style="display:none !important">
+            <a role="button" href="/shop" class="btn btn-secondary mb32 d-none d-xl-inline-block" style="display:none !important">
                 <span class="fa fa-chevron-left"/>
                 <span class="">Continuer Vos achat</span>
             </a>
@@ -225,38 +224,27 @@
     <template id="mcm_website_theme.payment_tokens_list" inherit_id="payment.payment_tokens_list">
         <xpath expr="//button[@id='o_payment_form_pay']" position="after">
             <body onload='verify_PM()'>
-                <a role="button" href="#" t-attf-onclick="linkTo()" style="visibility: hidden;" class="btn btn-primary"
-                   id="link_to">s'inscrire
+                <a role="button" href="#" t-attf-onclick="linkTo()" style="visibility: hidden;" class="btn btn-primary" id="link_to">s'inscrire
                 </a>
             </body>
         </xpath>
         <xpath expr="//label[1]" position="replace">
             <label>
                 <t t-if="acq.payment_flow == 'form'">
-                    <input type="radio" t-att-data-acquirer-id="acq.id" t-att-data-form-payment="true"
-                           t-att-data-provider="acq.provider"
-                           t-att-class="'d-none' if (acquirers_count==1 and pms_count==0) else ''" name="pm_id"
-                           t-attf-id="{{acq.code}}" t-attf-value="{{acq.code}}"
-                           t-att-checked="acquirers_count==1 and pms_count==0 or acquirers[0] == acq"
-                           t-attf-onclick="verify_PM()"/>
+                    <input type="radio" t-att-data-acquirer-id="acq.id" t-att-data-form-payment="true" t-att-data-provider="acq.provider" t-att-class="'d-none' if (acquirers_count==1 and pms_count==0) else ''" name="pm_id" t-attf-id="{{acq.code}}" t-attf-value="{{acq.code}}" t-att-checked="acquirers_count==1 and pms_count==0 or acquirers[0] == acq" t-attf-onclick="verify_PM()"/>
                 </t>
                 <t t-else="acq.payment_flow == 's2s'">
-                    <input type="radio" t-att-data-acquirer-id="acq.id" t-att-data-s2s-payment="true"
-                           t-att-data-provider="acq.provider" name="pm_id" t-attf-value="new_{{acq.id}}"
-                           t-att-class="'d-none' if (acquirers_count==1 and pms_count==0) else ''"
-                           t-att-checked="acquirers_count==1 and pms_count==0 or acquirers[0] == acq"/>
+                    <input type="radio" t-att-data-acquirer-id="acq.id" t-att-data-s2s-payment="true" t-att-data-provider="acq.provider" name="pm_id" t-attf-value="new_{{acq.id}}" t-att-class="'d-none' if (acquirers_count==1 and pms_count==0) else ''" t-att-checked="acquirers_count==1 and pms_count==0 or acquirers[0] == acq"/>
                 </t>
                 <span class="payment_option_name">
                     <t t-esc="acq.display_as or acq.name"/>
-                    <div t-if="acq.state == 'test'" class="badge-pill badge-warning float-right"
-                         style="margin-left:5px">
+                    <div t-if="acq.state == 'test'" class="badge-pill badge-warning float-right" style="margin-left:5px">
                         Test Mode
                     </div>
                 </span>
                 <t t-if="acq_extra_fees and acq_extra_fees.get(acq)">
                     <span class="badge badge-pill badge-secondary">+
-                        <t t-esc="acq_extra_fees[acq]"
-                           t-options='{"widget": "monetary", "display_currency": acq_extra_fees["currency_id"]}'/>
+                        <t t-esc="acq_extra_fees[acq]" t-options='{"widget": "monetary", "display_currency": acq_extra_fees["currency_id"]}'/>
                         Fee
                     </span>
                 </t>
@@ -298,9 +286,7 @@
                 </td>
                 <td class="text-xl-right border-0" id="order_instalment_checkbox" style="display:table-cell">
 
-                    <input type="checkbox" id="checkbox_instalment" style="white-space: nowrap;"
-                           class="text-xl-right border-0" t-att-checked="website_sale_order.instalment"
-                           t-att-value="website_sale_order.instalment"/>
+                    <input type="checkbox" id="checkbox_instalment" style="white-space: nowrap;" class="text-xl-right border-0" t-att-checked="website_sale_order.instalment" t-att-value="website_sale_order.instalment"/>
 
                 </td>
             </tr>
@@ -320,8 +306,7 @@
                         <strong>Montant à payer:</strong>
                     </td>
                     <td class="text-xl-right" id="order_amount_to_pay_amount" style="display: none;">
-                        <strong t-field="website_sale_order.amount_to_pay" class="monetary_field"
-                                t-options='{"widget": "monetary", "display_currency": website_sale_order.pricelist_id.currency_id}'/>
+                        <strong t-field="website_sale_order.amount_to_pay" class="monetary_field" t-options='{"widget": "monetary", "display_currency": website_sale_order.pricelist_id.currency_id}'/>
                     </td>
                 </tr>
             </body>
@@ -333,26 +318,19 @@
         <xpath expr="//td[4]" position="replace">
             <div class="css_quantity input-group mx-auto" style="visibility:hidden;">
                 <div class="input-group-prepend">
-                    <a t-attf-href="#" class="btn btn-link js_add_cart_json d-none d-md-inline-block"
-                       aria-label="Remove one" title="Remove one">
+                    <a t-attf-href="#" class="btn btn-link js_add_cart_json d-none d-md-inline-block" aria-label="Remove one" title="Remove one">
                         <i class="fa fa-minus"></i>
                     </a>
                 </div>
-                <input type="text" class="js_quantity form-control quantity" t-att-data-line-id="line.id"
-                       t-att-data-product-id="line.product_id.id"
-                       t-att-value="int(line.product_uom_qty) == line.product_uom_qty and int(line.product_uom_qty) or line.product_uom_qty"/>
+                <input type="text" class="js_quantity form-control quantity" t-att-data-line-id="line.id" t-att-data-product-id="line.product_id.id" t-att-value="int(line.product_uom_qty) == line.product_uom_qty and int(line.product_uom_qty) or line.product_uom_qty"/>
                 <div class="input-group-append">
-                    <a t-attf-href="#" class="btn btn-link float_left js_add_cart_json d-none d-md-inline-block"
-                       aria-label="Add one" title="Add one">
+                    <a t-attf-href="#" class="btn btn-link float_left js_add_cart_json d-none d-md-inline-block" aria-label="Add one" title="Add one">
                         <i class="fa fa-plus"></i>
                     </a>
                 </div>
             </div>
             <td class="text-center td-qty">
-                <input type="text" class="js_quantity form-control quantity" t-att-data-line-id="line.id"
-                       t-att-data-product-id="line.product_id.id"
-                       t-att-value="int(line.product_uom_qty) == line.product_uom_qty and int(line.product_uom_qty) or line.product_uom_qty"
-                       readonly="True"/>
+                <input type="text" class="js_quantity form-control quantity" t-att-data-line-id="line.id" t-att-data-product-id="line.product_id.id" t-att-value="int(line.product_uom_qty) == line.product_uom_qty and int(line.product_uom_qty) or line.product_uom_qty" readonly="True"/>
             </td>
         </xpath>
         <xpath expr="//table[@id='cart_products']" position="after">
@@ -370,9 +348,7 @@
 
                 <t t-foreach="website_sale_order.website_order_line" t-as="line">
                     <label for="stripe_pm" class="radio ">
-                        <input id="stripe_pm" type="radio" name="pm_method" class="hidden" data-acquirer-id="8"
-                               data-form-payment="True" data-provider="stripe_pm" t-att-value="line.name_short"
-                               checked="True" t-attf-onclick="onchangeTextButton1()"/>
+                        <input id="stripe_pm" type="radio" name="pm_method" class="hidden" data-acquirer-id="8" data-form-payment="True" data-provider="stripe_pm" t-att-value="line.name_short" checked="True" t-attf-onclick="onchangeTextButton1()"/>
                         <span class="label"></span>Carte de crédit
                         <span class="col-lg-12 pt16 " style="">
 
@@ -393,79 +369,55 @@
 
 
                         <li class="list-inline-item">
-                            <span data-oe-model="payment.icon" data-oe-id="1" data-oe-field="image_payment_form"
-                                  data-oe-type="image" data-oe-expression="pm_icon.image_payment_form"
-                                  data-oe-field-xpath="/t[1]/form[1]/div[1]/t[4]/div[1]/ul[1]/t[2]/li[1]/span[1]">
-                                <img src="/web/image/payment.icon/1/image_payment_form/VISA?unique=82297bd"
-                                     class="img img-fluid img-res" alt="VISA"/>
+                            <span data-oe-model="payment.icon" data-oe-id="1" data-oe-field="image_payment_form" data-oe-type="image" data-oe-expression="pm_icon.image_payment_form" data-oe-field-xpath="/t[1]/form[1]/div[1]/t[4]/div[1]/ul[1]/t[2]/li[1]/span[1]">
+                                <img src="/web/image/payment.icon/1/image_payment_form/VISA?unique=82297bd" class="img img-fluid img-res" alt="VISA"/>
                             </span>
                         </li>
 
 
                         <li class="list-inline-item">
-                            <span data-oe-model="payment.icon" data-oe-id="2" data-oe-field="image_payment_form"
-                                  data-oe-type="image" data-oe-expression="pm_icon.image_payment_form"
-                                  data-oe-field-xpath="/t[1]/form[1]/div[1]/t[4]/div[1]/ul[1]/t[2]/li[1]/span[1]">
-                                <img src="/web/image/payment.icon/2/image_payment_form/American%20Express?unique=82297bd"
-                                     class="img img-fluid img-res" alt="American Express"/>
+                            <span data-oe-model="payment.icon" data-oe-id="2" data-oe-field="image_payment_form" data-oe-type="image" data-oe-expression="pm_icon.image_payment_form" data-oe-field-xpath="/t[1]/form[1]/div[1]/t[4]/div[1]/ul[1]/t[2]/li[1]/span[1]">
+                                <img src="/web/image/payment.icon/2/image_payment_form/American%20Express?unique=82297bd" class="img img-fluid img-res" alt="American Express"/>
                             </span>
                         </li>
 
 
                         <li class="list-inline-item">
-                            <span data-oe-model="payment.icon" data-oe-id="4" data-oe-field="image_payment_form"
-                                  data-oe-type="image" data-oe-expression="pm_icon.image_payment_form"
-                                  data-oe-field-xpath="/t[1]/form[1]/div[1]/t[4]/div[1]/ul[1]/t[2]/li[1]/span[1]">
-                                <img src="/web/image/payment.icon/4/image_payment_form/Diners%20Club%20International?unique=82297bd"
-                                     class="img img-fluid img-res" alt="Diners Club International"/>
+                            <span data-oe-model="payment.icon" data-oe-id="4" data-oe-field="image_payment_form" data-oe-type="image" data-oe-expression="pm_icon.image_payment_form" data-oe-field-xpath="/t[1]/form[1]/div[1]/t[4]/div[1]/ul[1]/t[2]/li[1]/span[1]">
+                                <img src="/web/image/payment.icon/4/image_payment_form/Diners%20Club%20International?unique=82297bd" class="img img-fluid img-res" alt="Diners Club International"/>
                             </span>
                         </li>
 
 
                         <li class="list-inline-item">
-                            <span data-oe-model="payment.icon" data-oe-id="5" data-oe-field="image_payment_form"
-                                  data-oe-type="image" data-oe-expression="pm_icon.image_payment_form"
-                                  data-oe-field-xpath="/t[1]/form[1]/div[1]/t[4]/div[1]/ul[1]/t[2]/li[1]/span[1]">
-                                <img src="/web/image/payment.icon/5/image_payment_form/Discover?unique=82297bd"
-                                     class="img img-fluid img-res" alt="Discover"/>
+                            <span data-oe-model="payment.icon" data-oe-id="5" data-oe-field="image_payment_form" data-oe-type="image" data-oe-expression="pm_icon.image_payment_form" data-oe-field-xpath="/t[1]/form[1]/div[1]/t[4]/div[1]/ul[1]/t[2]/li[1]/span[1]">
+                                <img src="/web/image/payment.icon/5/image_payment_form/Discover?unique=82297bd" class="img img-fluid img-res" alt="Discover"/>
                             </span>
                         </li>
                         <li style="display:block;" class="list-inline-item d-none">
                             <span class="float-right more_option text-info">
-                                <a href="#" class="o_payment_form_pay_icon_more" data-toggle="tooltip"
-                                   data-oe-model="ir.ui.view" data-oe-id="888" data-oe-field="arch"
-                                   data-oe-xpath="/t[1]/form[1]/div[1]/t[4]/div[1]/ul[1]/t[2]/li[2]/span[1]/a[1]"
-                                   title="" data-original-title="Discover, JCB, Maestro, MasterCard">et plus
+                                <a href="#" class="o_payment_form_pay_icon_more" data-toggle="tooltip" data-oe-model="ir.ui.view" data-oe-id="888" data-oe-field="arch" data-oe-xpath="/t[1]/form[1]/div[1]/t[4]/div[1]/ul[1]/t[2]/li[2]/span[1]/a[1]" title="" data-original-title="Discover, JCB, Maestro, MasterCard">et plus
                                 </a>
                             </span>
                         </li>
 
 
                         <li class="list-inline-item">
-                            <span data-oe-model="payment.icon" data-oe-id="6" data-oe-field="image_payment_form"
-                                  data-oe-type="image" data-oe-expression="pm_icon.image_payment_form"
-                                  data-oe-field-xpath="/t[1]/form[1]/div[1]/t[4]/div[1]/ul[1]/t[2]/li[1]/span[1]">
-                                <img src="/web/image/payment.icon/6/image_payment_form/JCB?unique=82297bd"
-                                     class="img img-fluid img-res" alt="JCB"/>
+                            <span data-oe-model="payment.icon" data-oe-id="6" data-oe-field="image_payment_form" data-oe-type="image" data-oe-expression="pm_icon.image_payment_form" data-oe-field-xpath="/t[1]/form[1]/div[1]/t[4]/div[1]/ul[1]/t[2]/li[1]/span[1]">
+                                <img src="/web/image/payment.icon/6/image_payment_form/JCB?unique=82297bd" class="img img-fluid img-res" alt="JCB"/>
                             </span>
                         </li>
 
 
                         <li class="list-inline-item">
-                            <span data-oe-model="payment.icon" data-oe-id="7" data-oe-field="image_payment_form"
-                                  data-oe-type="image" data-oe-expression="pm_icon.image_payment_form"
-                                  data-oe-field-xpath="/t[1]/form[1]/div[1]/t[4]/div[1]/ul[1]/t[2]/li[1]/span[1]">
-                                <img src="/web/image/payment.icon/7/image_payment_form/Maestro?unique=82297bd"
-                                     class="img img-fluid img-res" alt="Maestro"/>
+                            <span data-oe-model="payment.icon" data-oe-id="7" data-oe-field="image_payment_form" data-oe-type="image" data-oe-expression="pm_icon.image_payment_form" data-oe-field-xpath="/t[1]/form[1]/div[1]/t[4]/div[1]/ul[1]/t[2]/li[1]/span[1]">
+                                <img src="/web/image/payment.icon/7/image_payment_form/Maestro?unique=82297bd" class="img img-fluid img-res" alt="Maestro"/>
                             </span>
                         </li>
 
                         <li class="list-inline-item">
-                            <span data-oe-model="payment.icon" data-oe-id="8" data-oe-field="image_payment_form"
-                                  data-oe-type="image" data-oe-expression="pm_icon.image_payment_form"
-                                  data-oe-field-xpath="/t[1]/form[1]/div[1]/t[4]/div[1]/ul[1]/t[2]/li[1]/span[1]">
-                                <img src="/web/image/payment.icon/8/image_payment_form/MasterCard?unique=82297bd"
-                                     class="img img-fluid img-res" alt="MasterCard"/>
+                            <span data-oe-model="payment.icon" data-oe-id="8" data-oe-field="image_payment_form" data-oe-type="image" data-oe-expression="pm_icon.image_payment_form" data-oe-field-xpath="/t[1]/form[1]/div[1]/t[4]/div[1]/ul[1]/t[2]/li[1]/span[1]">
+                                <img src="/web/image/payment.icon/8/image_payment_form/MasterCard?unique=82297bd" class="img img-fluid img-res" alt="MasterCard"/>
                             </span>
                         </li>
                     </ul>
@@ -525,10 +477,7 @@
                 <div style="float:left;">
                     <label for="cpf_pm" class="radio" style="display: inline-block;">
                         <t t-foreach="website_sale_order.website_order_line" t-as="line">
-                            <input type="radio" name="pm_method" data-acquirer-id="16" data-form-payment="True"
-                                   t-if="line.product_id.product_tmpl_id.cpf_available" data-provider="transfer"
-                                   class="hidden" id="cpf_pm" t-att-value="line.name_short"
-                                   t-attf-onclick="onchangeTextButton()">
+                            <input type="radio" name="pm_method" data-acquirer-id="16" data-form-payment="True" t-if="line.product_id.product_tmpl_id.cpf_available" data-provider="transfer" class="hidden" id="cpf_pm" t-att-value="line.name_short" t-attf-onclick="onchangeTextButton()">
                                 <span class="label"></span>CPF
                                 <span class="col-lg-12 pt16 " style="">
                                 </span>
@@ -540,8 +489,7 @@
                     </label>
                 </div>
                 <div class="img-pos">
-                    <img style="max-width: 6rem;" class="img-fluid mb-4"
-                         src="/mcm_website_theme/static/src/img/cpf.png"></img>
+                    <img style="max-width: 6rem;" class="img-fluid mb-4" src="/mcm_website_theme/static/src/img/cpf.png"></img>
                 </div>
                 <div style="clear: left;"/>
                 <div id="cpf-details" class="hide">
@@ -566,9 +514,7 @@
 
             <div class="card-body" t-if="website_sale_order.company_id.id==2">
                 <div class="input checkbox">
-                    <input type="checkbox" id="checkbox_failures" style="white-space: nowrap;"
-                           class="text-xl-left border-0" t-att-checked="website_sale_order.failures"
-                           t-att-value="website_sale_order.failures">
+                    <input type="checkbox" id="checkbox_failures" style="white-space: nowrap;" class="text-xl-left border-0" t-att-checked="website_sale_order.failures" t-att-value="website_sale_order.failures">
                         <label for="failures" style="display:inline">
                             Je souhaite accéder à la formation dès maintenant sans attendre 14 jours. Je reconnais que
                             DIGIMOOV procédera à l'exécution immédiate de ma formation en ligne et à ce titre, je
@@ -578,17 +524,14 @@
                     </input>
                 </div>
                 <div class="input checkbox">
-                    <input type="checkbox" id="checkbox_conditions" style="white-space: nowrap;"
-                           class="text-xl-left border-0" t-att-checked="website_sale_order.conditions"
-                           t-att-value="website_sale_order.conditions">
+                    <input type="checkbox" id="checkbox_conditions" style="white-space: nowrap;" class="text-xl-left border-0" t-att-checked="website_sale_order.conditions" t-att-value="website_sale_order.conditions">
                         <label for="conditions" style="display:inline">
                             J'ai lu et j'accepte les
                             <a href="/conditions" target="blank">conditions générales de vente</a>
                         </label>
                     </input>
                 </div>
-                <p t-if="website_sale_order.conditions_error != ''" id="error_conditions" class="alert alert-warning"
-                   style="margin-left:0%;display:inline-block;">
+                <p t-if="website_sale_order.conditions_error != ''" id="error_conditions" class="alert alert-warning" style="margin-left:0%;display:inline-block;">
                     Vous devez acceptez les conditions générales de ventes
                 </p>
                 <!--                <div class="input checkbox">-->
@@ -675,14 +618,12 @@
     <!-- FIN hide product link -->
     <template id="mcm_website_sale_cart_lines_date_and_region" inherit_id="website_sale.cart_lines">
         <xpath expr="//table[@id='cart_products']" position="after">
-            <div style="margin:auto;background-color:#fff;border-color:#585959;"
-                 t-if="request.website.is_public_user()==False and modules_mcm" id="region_date_examen">
+            <div style="margin:auto;background-color:#fff;border-color:#585959;" t-if="request.website.is_public_user()==False and modules_mcm" id="region_date_examen">
                 <h3 t-if="modules_mcm" class="mb24">Région d'examen &amp; Date</h3>
                 <p t-if="modules_mcm">
                     <b>
                         <div style="margin-left:0%;" id="exam_center">
-                            <select name="region_examen" id="region_examen" class="form-control search-slt "
-                                    t-if="modules_mcm" onclick='enableButton()'>
+                            <select name="region_examen" id="region_examen" class="form-control search-slt " t-if="modules_mcm" onclick='enableButton()'>
                                 <option value="all" id="all">Sélectionnez votre région d'examen</option>
                                 <t t-foreach="list_villes_mcm" t-as="ville">
                                     <t t-if="ville">
@@ -694,8 +635,7 @@
                                     </t>
                                 </t>
                             </select>
-                            <p t-if="website_sale_order.exam_center_error != ''" id="error_exam_center"
-                               class="alert alert-warning" style="margin-left:0%;display:inline-block;">
+                            <p t-if="website_sale_order.exam_center_error != ''" id="error_exam_center" class="alert alert-warning" style="margin-left:0%;display:inline-block;">
                                 Vous devez Selectionnez une Région
                             </p>
                         </div>
@@ -705,15 +645,13 @@
                 <p t-if="modules_mcm">
                     <b>
                         <div style="margin-left:0%;">
-                            <select name="date_examen" id="exam_date" class="form-control search-slt "
-                                    t-if="modules_mcm" style="display:none" onclick='disableButton()'>
+                            <select name="date_examen" id="exam_date" class="form-control search-slt " t-if="modules_mcm" style="display:none" onclick='disableButton()'>
                                 <option value="all" id="all">Sélectionnez votre date d'examen</option>
                                 <t t-foreach="modules_mcm" t-as="module">
                                     <t t-if="module">
                                         <t t-if="module.website_published==True">
                                             <b>
-                                                <option t-att-value="module.session_ville_id.name_ville"
-                                                        t-att-id="module.id">
+                                                <option t-att-value="module.session_ville_id.name_ville" t-att-id="module.id">
                                                     <t t-esc="module.date_exam.strftime('%d/%m/%Y')"/>
                                                 </option>
                                             </b>
@@ -721,8 +659,7 @@
                                     </t>
                                 </t>
                             </select>
-                            <p t-if="website_sale_order.exam_date_error != ''" id="error_exam_date"
-                               class="alert alert-warning" style="margin-left:0%;display:inline-block;">
+                            <p t-if="website_sale_order.exam_date_error != ''" id="error_exam_date" class="alert alert-warning" style="margin-left:0%;display:inline-block;">
                                 Vous devez Selectionnez une date
                             </p>
                         </div>
@@ -736,10 +673,7 @@
     <template id="mcm_website_sale_short_cart_summary" inherit_id="website_sale.short_cart_summary">
         <xpath expr="//a[@class='btn btn-secondary float-right d-none d-xl-inline-block']" position="replace">
             <a id="a_pm_shop_checkout">
-                <button disabled="disabled " role="button"
-                        t-if="website_sale_order and website_sale_order.website_order_line"
-                        class="btn btn-secondary float-right d-none d-xl-inline-block" href="/shop/checkout?express=1"
-                        id="pm_shop_checkout" t-attf-onclick="verify_payment_method()">
+                <button disabled="disabled " role="button" t-if="website_sale_order and website_sale_order.website_order_line" class="btn btn-secondary float-right d-none d-xl-inline-block" href="/shop/checkout?express=1" id="pm_shop_checkout" t-attf-onclick="verify_payment_method()">
                     <span id="pm_shop_checkout_text">Passer au paiement</span>
                 </button>
             </a>
@@ -755,8 +689,7 @@
     <template id="mcm_website_sale_products_add_to_cart" inherit_id="website_sale.products_add_to_cart">
         <xpath expr="//t[@t-if='product_variant_id']" position="replace">
             <t t-if="product_variant_id">
-                <a t-if="request.website.is_public_user()==False" href="#" role="button"
-                   class="btn btn-secondary a-submit" aria-label="Shopping cart" title="Shopping cart">
+                <a t-if="request.website.is_public_user()==False" href="#" role="button" class="btn btn-secondary a-submit" aria-label="Shopping cart" title="Shopping cart">
                     <span class="fa fa-shopping-cart"/>
                 </a>
             </t>
@@ -766,8 +699,7 @@
     <template id="mcm_website_sale_products_add_to_cart" inherit_id="website_sale.products_add_to_cart">
         <xpath expr="//t[@t-if='product_variant_id']" position="replace">
             <t t-if="product_variant_id">
-                <a t-if="request.website.is_public_user()==False" href="#" role="button"
-                   class="btn btn-secondary a-submit" aria-label="Shopping cart" title="Shopping cart">
+                <a t-if="request.website.is_public_user()==False" href="#" role="button" class="btn btn-secondary a-submit" aria-label="Shopping cart" title="Shopping cart">
                     <span class="fa fa-shopping-cart"/>
                 </a>
             </t>
@@ -789,8 +721,7 @@
         <xpath expr="//div[hasclass('thanks_msg')]" position="replace">
             <div class="thanks_msg">
                 <h2>Merci pour votre paiement.
-                    <a role="button" class="btn btn-primary d-none d-md-inline-block" href="/shop/print" target="_blank"
-                       aria-label="Print" title="Print">
+                    <a role="button" class="btn btn-primary d-none d-md-inline-block" href="/shop/print" target="_blank" aria-label="Print" title="Print">
                         <i class="fa fa-print"></i>
                         Imprimer
                     </a>
@@ -799,9 +730,7 @@
         </xpath>
         <xpath expr="//p[@class='alert alert-info mt-3']" position="replace">
             <p class="alert alert-info mt-3" role="status">
-                <a role="button"
-                   t-att-href='order.partner_id.signup_prepare() and order.partner_id.with_context(relative_url=True).signup_url'
-                   class='btn btn-primary'>S'inscrire
+                <a role="button" t-att-href='order.partner_id.signup_prepare() and order.partner_id.with_context(relative_url=True).signup_url' class='btn btn-primary'>S'inscrire
                 </a>
                 pour suivre votre contrat
             </p>
@@ -843,16 +772,13 @@
 
     <template id="mcm_website_sale_cart_script" inherit_id="website_sale.cart">
         <xpath expr="//a[@class='btn btn-primary float-right']" position="replace">
-            <a role="button" t-if="website_sale_order and website_sale_order.website_order_line"
-               class="btn btn-primary float-right" href="" t-attf-onclick="verify_payment_method()" id="pm_shop">
+            <a role="button" t-if="website_sale_order and website_sale_order.website_order_line" class="btn btn-primary float-right" href="" t-attf-onclick="verify_payment_method()" id="pm_shop">
                 <span id="pm_shop_text">Passer au paiement</span>
                 <span class="fa fa-chevron-right"/>
             </a>
         </xpath>
         <xpath expr="//a[@class='btn btn-primary float-right d-none d-xl-inline-block']" position="replace">
-            <a role="button" t-if="website_sale_order and website_sale_order.website_order_line"
-               class="btn btn-primary float-right d-none d-xl-inline-block" t-attf-onclick="verify_payment_method()"
-               href="" id="pm_shop_check">
+            <a role="button" t-if="website_sale_order and website_sale_order.website_order_line" class="btn btn-primary float-right d-none d-xl-inline-block" t-attf-onclick="verify_payment_method()" href="" id="pm_shop_check">
                 <span id="pm_shop_check_text">Passer au paiement</span>
                 <span class="fa fa-chevron-right"/>
             </a>
@@ -879,8 +805,7 @@
 
     <template id="mcm_coupon_form" inherit_id="website_sale.coupon_form" name='Coupon form'>
         <xpath expr="//input[@name='promo']" position="replace">
-            <input name="promo" class="form-control" type="text" placeholder="code..." id="promo_input"
-                   style="display:inline;" t-att-value="website_sale_order.pricelist_id.code or None"/>
+            <input name="promo" class="form-control" type="text" placeholder="code..." id="promo_input" style="display:inline;" t-att-value="website_sale_order.pricelist_id.code or None"/>
         </xpath>
         <xpath expr="//div[hasclass('input-group-append')]" position="replace">
             <div class="input-group-append" id="promo_button" style="display:inline;">
@@ -893,24 +818,18 @@
         <xpath expr="//div[hasclass('form-row')]//div[1]" position="after">
             <div t-attf-class="form-group col-lg-12 " t-if="website_sale_order.company_id.id==1">
                 <label class="col-form-label" for="name">Numéro de permis</label>
-                <input type="text" name="numero_permis" id="numero_permis" required="required"
-                       t-attf-class="form-control #{error.get('numero_permis') and 'is-invalid' or ''}"
-                       t-att-value="'numero_permis' in checkout and checkout['numero_permis']"/>
+                <input type="text" name="numero_permis" id="numero_permis" required="required" t-attf-class="form-control #{error.get('numero_permis') and 'is-invalid' or ''}" t-att-value="'numero_permis' in checkout and checkout['numero_permis']"/>
             </div>
         </xpath>
         <xpath expr="//div[hasclass('form-row')]//div[4]" position="after">
             <div class="form-group col-lg-12">
                 <label class="col-form-label" for="adresse_facturation">Adresse de facturation</label>
-                <input type="radio" name="adresse_facturation" id="particulier"
-                       t-att-value="'addresse_facturation' in checkout and checkout['addresse_facturation'] or 'particulier'"
-                       t-att-checked="fact=='particulier'" onclick="hide_company()">
+                <input type="radio" name="adresse_facturation" id="particulier" t-att-value="'addresse_facturation' in checkout and checkout['addresse_facturation'] or 'particulier'" t-att-checked="fact=='particulier'" onclick="hide_company()">
                     <span>
                         Particulier
                     </span>
                 </input>
-                <input type="radio" name="adresse_facturation" id="company"
-                       t-att-value="'addresse_facturation' in checkout and checkout['addresse_facturation'] or 'societe'"
-                       t-att-checked="fact=='societe'" onclick="show_company()">
+                <input type="radio" name="adresse_facturation" id="company" t-att-value="'addresse_facturation' in checkout and checkout['addresse_facturation'] or 'societe'" t-att-checked="fact=='societe'" onclick="show_company()">
                     <span>
                         Société
                     </span>
@@ -918,21 +837,14 @@
             </div>
         </xpath>
         <xpath expr="//div[hasclass('form-row')]//t[2]" position="replace">
-            <div t-attf-class="form-group #{error.get('company_name') and 'o_has_error' or ''} col-lg-6"
-                 style="display:none;" id="t_company">
+            <div t-attf-class="form-group #{error.get('company_name') and 'o_has_error' or ''} col-lg-6" style="display:none;" id="t_company">
                 <label class="col-form-label font-weight-normal label-optional" for="company_name">Nom de la société
                 </label>
-                <input type="text" name="company_name"
-                       t-attf-class="form-control #{error.get('company_name') and 'is-invalid' or ''}"
-                       t-att-value="'commercial_company_name' in checkout and checkout['commercial_company_name'] or 'company_name' in checkout and checkout['company_name']"
-                       t-att-title="'Changing company name is not allowed once document(s) have been issued for your account.'"/>
+                <input type="text" name="company_name" t-attf-class="form-control #{error.get('company_name') and 'is-invalid' or ''}" t-att-value="'commercial_company_name' in checkout and checkout['commercial_company_name'] or 'company_name' in checkout and checkout['company_name']" t-att-title="'Changing company name is not allowed once document(s) have been issued for your account.'"/>
             </div>
-            <div t-attf-class="form-group #{error.get('siret') and 'o_has_error' or ''} col-lg-6 div_siret"
-                 style="display:none;" id="t_company_siret">
+            <div t-attf-class="form-group #{error.get('siret') and 'o_has_error' or ''} col-lg-6 div_siret" style="display:none;" id="t_company_siret">
                 <label class="col-form-label font-weight-normal label-optional" for="siret">SIRET</label>
-                <input type="text" name="siret" t-attf-class="form-control #{error.get('siret') and 'is-invalid' or ''}"
-                       t-att-value="'siret' in checkout and checkout['siret']"
-                       t-att-title="'Changing siret number is not allowed once document(s) have been issued for your account.'"/>
+                <input type="text" name="siret" t-attf-class="form-control #{error.get('siret') and 'is-invalid' or ''}" t-att-value="'siret' in checkout and checkout['siret']" t-att-title="'Changing siret number is not allowed once document(s) have been issued for your account.'"/>
             </div>
         </xpath>
 
@@ -1038,15 +950,11 @@
 
             </style>
 
-            <input type="hidden" name="user_name_connected" id="user_name_connected"
-                   t-att-value="request.website.get_user_name_logged()"/>
-            <input type="hidden" name="user_email_connected" id="user_email_connected"
-                   t-att-value="request.website.get_user_email_logged()"/>
+            <input type="hidden" name="user_name_connected" id="user_name_connected" t-att-value="request.website.get_user_name_logged()"/>
+            <input type="hidden" name="user_email_connected" id="user_email_connected" t-att-value="request.website.get_user_email_logged()"/>
 
-            <div id="footer" class="oe_structure oe_structure_solo" data-oe-id="1568" data-oe-xpath="/data/xpath[2]/div"
-                 data-oe-model="ir.ui.view" data-oe-field="arch">
-                <section class="s_text_block pb8 pt0 bg-900" data-name="Text block"
-                         style="     background: #000 !important; ">
+            <div id="footer" class="oe_structure oe_structure_solo" data-oe-id="1568" data-oe-xpath="/data/xpath[2]/div" data-oe-model="ir.ui.view" data-oe-field="arch">
+                <section class="s_text_block pb8 pt0 bg-900" data-name="Text block" style="     background: #000 !important; ">
                     <div class="container">
                         <div class="row">
                             <div class="col-md-8 col-sm-8 col-lg-5">
@@ -1078,8 +986,7 @@
                                                 Envoyez-nous un message
                                             </li>
                                             <li class="mb-2">
-                                                <span class="fa fa-question-circle" data-original-title="" title=""
-                                                      aria-describedby="tooltip437298"/>
+                                                <span class="fa fa-question-circle" data-original-title="" title="" aria-describedby="tooltip437298"/>
                                                 Foire aux questions
                                                 <br/>
                                             </li>
@@ -1103,23 +1010,18 @@
                                     <div class="contact-info">
                                         <ul class="contact-details">
                                             <li>
-                                                <span class="fa fa-facebook-square fa-2x" data-original-title=""
-                                                      title="" aria-describedby="tooltip139952"/>
+                                                <span class="fa fa-facebook-square fa-2x" data-original-title="" title="" aria-describedby="tooltip139952"/>
                                                 <b/>
-                                                <span class="fa fa-2x fa-instagram" data-original-title="" title=""
-                                                      aria-describedby="tooltip799266"/>
+                                                <span class="fa fa-2x fa-instagram" data-original-title="" title="" aria-describedby="tooltip799266"/>
                                                 <b/>
-                                                <span class="fa fa-twitter fa-2x" data-original-title="" title=""
-                                                      aria-describedby="tooltip617571"/>
+                                                <span class="fa fa-twitter fa-2x" data-original-title="" title="" aria-describedby="tooltip617571"/>
                                                 <b/>
-                                                <span class="fa fa-youtube-play fa-2x" data-original-title="" title=""
-                                                      aria-describedby="tooltip749786"/>
+                                                <span class="fa fa-youtube-play fa-2x" data-original-title="" title="" aria-describedby="tooltip749786"/>
                                                 <b>
                                                     <br/>
                                                 </b>
                                                 <div class="contact-info" style="">
-                                                    <ul class="contact-details"
-                                                        style="margin-bottom: 1rem; list-style-type: disc;">
+                                                    <ul class="contact-details" style="margin-bottom: 1rem; list-style-type: disc;">
                                                         <li style="font-weight: 400;">
                                                             <span style="font-weight: 700;"/>
                                                             <br/>
@@ -1127,7 +1029,7 @@
                                                             <br/>
                                                             <br/>
                                                         </li>
-                                                        <li style="">Conditions générales de vente
+                                                        <li href="/condition" style="">Conditions générales de vente
                                                             <br/>
                                                         </li>
                                                     </ul>
