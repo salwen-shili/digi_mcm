@@ -5,12 +5,9 @@ from odoo import api, fields, models,_
 import calendar
 from datetime import date,datetime
 import logging
-
 _logger = logging.getLogger(__name__)
-
 class CRM(models.Model):
     _inherit = "crm.lead"
-
     num_dossier=fields.Char(string="numéro de dossier",)
     num_tel=fields.Char(string="numéro de téléphone")
     email=fields.Char(string="email")
@@ -22,9 +19,8 @@ class CRM(models.Model):
     ], string='Mode de financement', default="cpf")
     module_id = fields.Many2one('mcmacademy.module')
     mcm_session_id = fields.Many2one('mcmacademy.session')
-
-
-    #Fonction qui va affecter chaque crm lead à sa fiche client et supprimer les duplications
+    """Affecter les crm lead aux apprenants convenables après l'importation
+     Et supression des duplications"""
     def crm_import_data(self):
         _logger.info('------------lead ')
         leads = self.env['crm.lead'].search([])
@@ -71,6 +67,3 @@ class CRM(models.Model):
         self.browse(duplicate_lead).unlink()
         _logger.info('supprimé')
         new_leads = self.env['crm.lead'].search([])
-        # for new in new_leads:
-        #     if  not(new.partner_id):
-        #         new.sudo().unlink()

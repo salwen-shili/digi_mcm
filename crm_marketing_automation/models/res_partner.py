@@ -15,12 +15,10 @@ class Partner(models.Model):
     _inherit = 'res.partner'
 
     def create(self, vals):
-
         partner = super(Partner, self).create(vals)
         return partner
 
     def write(self, vals):
-
         if 'statut' in vals and self.company_id.id == 2:
             if vals['statut'] == 'canceled':
                 self.changestage("Annulé", self)
@@ -55,16 +53,13 @@ class Partner(models.Model):
             if vals['statut_cpf'] == 'canceled':
                 if not (self.session_ville_id) or not (self.date_examen_edof):
                     self.changestage("Annulé", self)
-
         record = super(Partner, self).write(vals)
-
         return record
 
     def changestage(self, name, partner):
         stage = self.env['crm.stage'].sudo().search([("name", "=", _(name))])
 
         if stage:
-
             lead = self.env['crm.lead'].sudo().search([('partner_id', '=', partner.id)], limit=1)
             if lead:
 
@@ -84,9 +79,7 @@ class Partner(models.Model):
                     'mode_de_financement': partner.mode_de_financement,
                     'module_id': partner.module_id if partner.module_id else False,
                     'mcm_session_id': partner.mcm_session_id if partner.mcm_session_id else False,
-
                 })
-
             if not lead:
                 num_dossier = ""
                 if partner.numero_cpf:
@@ -102,7 +95,6 @@ class Partner(models.Model):
                     'type': "opportunity",
                     'stage_id': stage.id,
                     'mode_de_financement': partner.mode_de_financement,
-
                 })
                 partner = self.env['res.partner'].sudo().search([('id', '=', partner.id)])
                 if partner:
@@ -112,76 +104,8 @@ class Partner(models.Model):
                     lead.mcm_session_id = partner.mcm_session_id if partner.mcm_session_id else False
                     lead.module_id = partner.module_id if partner.module_id else False
 
-    # Methode pour classer les apprenants dans crm lead comme non retracté
-    # Vérifier tout les conditions nécessaires pour ce classement
-    # def change_stage_non_retracte(self):
-    #     partners = self.env['res.partner'].sudo().search([('statut', "=", "won"),
-    #                                                       ('company_id.id','=',2)])
-    #
-    #     for partner in partners:
-    #         # Pour chaque apprenant extraire la session et la formation reservé pour passer l'examen
-    #         sale_order = self.env['sale.order'].sudo().search([('partner_id', '=', partner.id),
-    #                                                            ('session_id', '=', partner.mcm_session_id.id),
-    #                                                            ('module_id', '=', partner.module_id.id),
-    #                                                            ('state', '=', 'sale'),
-    #                                                            ('session_id.date_exam', '>', date.today())
-    #                                                            ], limit=1, order="id desc")
-    #
-    #         _logger.info('partner  %s' % partner.name)
-    #         _logger.info('sale order %s' % sale_order.name)
-    #         # Récupérer les documents et vérifier s'ils sont validés ou non
-    #         documents = self.env['documents.document'].sudo().search([('partner_id', '=', partner.id)])
-    #         document_valide = False
-    #         count = 0
-    #         for document in documents:
-    #             if (document.state == "validated"):
-    #                 count = count + 1
-    #                 print('valide')
-    #         print('count', count, 'len', len(documents))
-    #         if (count == len(documents) and count != 0):
-    #             document_valide = True
-    #         # Vérifier si partner a signé son contrat et si ses documents sont validés
-    #         if ((sale_order) and (document_valide)):
-    #             # delai de retractation
-    #             failure = sale_order.failures
-    #             renonciation = partner.renounce_request
-    #             # date_signature=""
-    #             # if sale_order.signed_on:
-    #             date_signature = sale_order.signed_on
-    #             #
-    #             # # Calculer date d'ajout sur 360 apres 14jours de date de signature
-    #             # date_ajout = date_signature + timedelta(days=14)
-    #             today = datetime.today()
-    #             # si l'apprenant a fait une renonce  ou a passé 14jours apres la signature de contrat
-    #             # On le supprime de crm car il va etre ajouté sur 360
-    #             if (failure) or (renonciation):
-    #                 # print('parnter à supprimer  sale', partner.name, sale_order)
-    #                 # leads = self.env['crm.lead'].sudo().search([('partner_id', '=', partner.id)])
-    #                 # _logger.info('partner if failure to delete  %s' % partner.name)
-    #                 # if leads:
-    #                 #     for lead in leads:
-    #                 #         _logger.info('lead order %s' % lead.name)
-    #                         # lead.sudo().unlink()
-    #                         self.changestage("Formation sur 360", partner)
-    #             elif (date_signature and (date_signature + timedelta(days=14)) <= (today)):
-    #                 print('parnter à supprimer  date', partner.name, sale_order)
-    #                 # leads = self.env['crm.lead'].sudo().search([('partner_id', '=', partner.id)])
-    #                 # print('leeaaadd', leads)
-    #                 # if leads:
-    #                 #     for lead in leads:
-    #                 #         _logger.info('lead signature %s' % lead.name)
-    #                         # lead.sudo().unlink()
-    #                 self.changestage("Formation sur 360", partner)
-    #             # Si non il est classé comme apprenant non retracté
-    #             else:
-    #                 _logger.info('non retracté' )
-    #                 self.changestage("Rétractation non Coché", partner)
-
-    # Methode pour classer les apprenants existant déja sur odoo
-
     def change_stage_existant(self):
         self.import_data("Formation sur 360")
-
         partners = self.env['res.partner'].sudo().search([('company_id.id', '=', 2)])
         for partner in partners:
             if partner.statut_cpf and (partner.statut_cpf == 'canceled' or partner.statut == 'canceled'):
@@ -191,24 +115,6 @@ class Partner(models.Model):
                 year = date_creation.year
                 month = date_creation.month
                 if (year > 2020) and (month > 1):
-                    # if partner.statut == "indecis":
-                    #     """ Vérifier le statut  pour classer client  dans crm lead """
-                    #     if partner.statut_cpf == "untreated":
-                    #         print('non traité')
-                    #         self.changestage("Non traité", partner)
-                    #     if partner.statut_cpf == "validated":
-                    #         print('Validé')
-                    #         self.changestage("Validé", partner)
-                    if partner.statut_cpf == "bill":
-                        self.changestage("Facturé", partner)
-                    if partner.statut_cpf == "in_training":
-                        self.changestage("En formation", partner)
-                    if partner.statut_cpf == "out_training":
-                        self.changestage("Sortie de formation", partner)
-                    if partner.statut_cpf == "service_declared":
-                        self.changestage("Service fait déclaré", partner)
-                    if partner.statut_cpf == "service_validated":
-                        self.changestage("Service fait validé", partner)
                     if partner.statut_cpf == "accepted":
                         if (not (partner.session_ville_id) or not (partner.date_examen_edof)) and not (
                                 partner.mcm_session_id) and not (partner.module_id):
@@ -265,17 +171,13 @@ class Partner(models.Model):
                                         _logger.info('non retracté')
                                         self.changestage("Rétractation non Coché", partner)
 
-    """Importation des données à partir de 360"""
+    """Methode pour importation des données à partir de 360"""
 
     def import_data(self, name):
-        leads_formation = self.env['crm.lead'].sudo().search([])
-        _logger.info('nombre de lead %s' % str(len(leads_formation)))
-        if leads_formation:
-            lead_delete = []
-            for record in leads_formation:
-                if record.stage_id.name == "Formation sur 360":
-                    lead_delete.append(record.id)
-            self.browse(lead_delete).unlink()
+        """Supprimer les anciens apprenants et les remplacer par les nouveaux importés par api"""
+        old_leads = self.env['crm.lead'].sudo().search([('stage_id.name', '=', 'Formation sur 360')])
+        if old_leads:
+            old_leads.unlink()
         params = (
             ('company', '56f5520e11d423f46884d593'),
             ('apiKey', 'cnkcbrhHKyfzKLx4zI7Ub2P5'),
@@ -290,21 +192,11 @@ class Partner(models.Model):
             table_user = response_user.json()
             stage = self.env['crm.stage'].sudo().search([("name", "=", _(name))])
             if stage:
-                _logger.info('if stage %s' % stage.name)
-                leads = self.env['crm.lead'].sudo().search([('email', "=", email)], )
-                if leads:
-                    for lead in leads:
-                        _logger.info('if leads %s' % lead.name)
-                        lead.sudo().write({
-                            'stage_id': stage.id
-                        })
-                if not (leads):
-                    self.env['crm.lead'].sudo().create({
-                        'name': table_user['firstName'] if 'firstName' in table_user else table_user['mail'],
-                        'contact_name': table_user['lastName'] if 'lastName' in table_user else table_user['mail'],
-                        'email': email,
-                        'email_from': email,
-                        'type': "opportunity",
-                        'stage_id': stage.id,
-                    })
-
+                self.env['crm.lead'].sudo().create({
+                    'name': table_user['firstName'] if 'firstName' in table_user else table_user['mail'],
+                    'contact_name': table_user['lastName'] if 'lastName' in table_user else table_user['mail'],
+                    'email': email,
+                    'email_from': email,
+                    'type': "opportunity",
+                    'stage_id': stage.id,
+                })
