@@ -329,7 +329,10 @@
                         </div>
                         <div class="col-md-3 col-sm-6 col-6 pt32">
                             <div class="sh_counter">
-                                <h4 class="sh_count">92 %</h4>
+                                <h4>
+                                    <span class="sh_count">92</span>
+                                    <span>%</span>
+                                </h4>
                                 <h3 style="                     font-weight: 600;                     font-size: 15px;                     color: rgb(255, 255, 255);                     background-color: rgba(0, 0, 0, 0.7);                   ">
                   CLIENTS SATISFAITS
                                 </h3>
@@ -337,7 +340,10 @@
                         </div>
                         <div class="col-md-3 col-sm-6 col-6 pt32">
                             <div class="sh_counter">
-                                <h4 class="sh_count">86 %</h4>
+                                <h4>
+                                    <span class="sh_count">86</span>
+                                    <span>%</span>
+                                </h4>
                                 <h3 style="                     font-weight: 600;                     font-size: 15px;                     color: rgb(255, 255, 255);                     background-color: rgba(0, 0, 0, 0.7);                   ">
                   TAUX DE RECOMMANDATION 
                                 </h3>
