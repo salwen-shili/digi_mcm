@@ -15,10 +15,12 @@ class Partner(models.Model):
     _inherit = 'res.partner'
 
     def create(self, vals):
+
         partner = super(Partner, self).create(vals)
         return partner
 
     def write(self, vals):
+
         if 'statut' in vals and self.company_id.id == 2:
             if vals['statut'] == 'canceled':
                 self.changestage("Annulé", self)
@@ -51,15 +53,17 @@ class Partner(models.Model):
                     self.changestage("Choix date d'examen - CPF", self)
             # Si statut cpf annulé on classe l'apprenant dans le pipeline du crm  sous statut  annulé
             if vals['statut_cpf'] == 'canceled':
-                if not (self.session_ville_id) or not (self.date_examen_edof):
-                    self.changestage("Annulé", self)
+                self.changestage("Annulé", self)
+
         record = super(Partner, self).write(vals)
+
         return record
 
     def changestage(self, name, partner):
         stage = self.env['crm.stage'].sudo().search([("name", "=", _(name))])
 
         if stage:
+
             lead = self.env['crm.lead'].sudo().search([('partner_id', '=', partner.id)], limit=1)
             if lead:
 
@@ -79,7 +83,9 @@ class Partner(models.Model):
                     'mode_de_financement': partner.mode_de_financement,
                     'module_id': partner.module_id if partner.module_id else False,
                     'mcm_session_id': partner.mcm_session_id if partner.mcm_session_id else False,
+
                 })
+
             if not lead:
                 num_dossier = ""
                 if partner.numero_cpf:
@@ -95,6 +101,7 @@ class Partner(models.Model):
                     'type': "opportunity",
                     'stage_id': stage.id,
                     'mode_de_financement': partner.mode_de_financement,
+
                 })
                 partner = self.env['res.partner'].sudo().search([('id', '=', partner.id)])
                 if partner:
@@ -106,6 +113,7 @@ class Partner(models.Model):
 
     def change_stage_existant(self):
         self.import_data("Formation sur 360")
+
         partners = self.env['res.partner'].sudo().search([('company_id.id', '=', 2)])
         for partner in partners:
             if partner.statut_cpf and (partner.statut_cpf == 'canceled' or partner.statut == 'canceled'):
@@ -146,8 +154,6 @@ class Partner(models.Model):
                                 for document in documents:
                                     if (document.state == "validated"):
                                         count = count + 1
-                                        print('valide')
-                                    print('count', count, 'len', len(documents))
                                     if (count == len(documents) and count != 0):
                                         document_valide = True
                                     if (document.state == "waiting"):
@@ -162,14 +168,14 @@ class Partner(models.Model):
                                     renonciation = partner.renounce_request
                                     date_signature = sale_order.signed_on
                                     today = datetime.today()
-                                    # si l'apprenant a fait une renonce  ou a passé 14jours apres la signature de contrat
-                                    # On le supprime de crm car il va etre ajouté sur 360
+                                    # si l'apprenant n'a pas fait une renonce
+                                    # On l'ajoute sur etape Retractation non coché
                                     if not (failure) and not (renonciation):
                                         _logger.info('non retracté')
                                         self.changestage("Rétractation non Coché", partner)
-                                    elif (date_signature and (date_signature + timedelta(days=14)) > (today)):
-                                        _logger.info('non retracté')
-                                        self.changestage("Rétractation non Coché", partner)
+                                    # elif (date_signature and (date_signature + timedelta(days=14)) > (today)):
+                                    #     _logger.info('non retracté')
+                                    #     self.changestage("Rétractation non Coché", partner)
 
     """Methode pour importation des données à partir de 360"""
 
@@ -200,3 +206,4 @@ class Partner(models.Model):
                     'type': "opportunity",
                     'stage_id': stage.id,
                 })
+
