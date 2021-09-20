@@ -321,40 +321,51 @@
                         </div>
                         <div class="col-md-3 col-sm-6 col-6 pt32">
                             <div class="sh_counter">
-                                <h4 class="sh_count">1899</h4>
+                                <h4 class="sh_count">1500</h4>
                                 <h3 style="                     font-weight: 600;                     font-size: 15px;                     color: rgb(255, 255, 255);                     background-color: rgba(0, 0, 0, 0.7);                   ">
-                  STAGIAIRES FORMÉS
-                                </h3>
+                  STAGIAIRES FORMÉS*</h3>
                             </div>
                         </div>
                         <div class="col-md-3 col-sm-6 col-6 pt32">
                             <div class="sh_counter">
                                 <h4>
-                                    <span class="sh_count">92</span>
+                                    <span class="sh_count">96</span>
                                     <span>%</span>
                                 </h4>
                                 <h3 style="                     font-weight: 600;                     font-size: 15px;                     color: rgb(255, 255, 255);                     background-color: rgba(0, 0, 0, 0.7);                   ">
-                  CLIENTS SATISFAITS
-                                </h3>
+                  CLIENTS SATISFAITS**</h3>
                             </div>
                         </div>
                         <div class="col-md-3 col-sm-6 col-6 pt32">
                             <div class="sh_counter">
                                 <h4>
-                                    <span class="sh_count">86</span>
-                                    <span>%</span>
-                                </h4>
-                                <h3 style="                     font-weight: 600;                     font-size: 15px;                     color: rgb(255, 255, 255);                     background-color: rgba(0, 0, 0, 0.7);                   ">
-                  TAUX DE RECOMMANDATION 
-                                </h3>
+                                    <span class="sh_count">78</span>&amp;nbsp;%</h4>
+                                <h3 style="                     font-weight: 600;                     font-size: 15px;                     color: rgb(255, 255, 255);                     background-color: rgba(0, 0, 0, 0.7);                   "> MOYENNE DE TAUX DE RÉUSSITE***</h3>
                             </div>
                         </div>
                     </div>
                 </div>
             </section>
             <section id="sh_corpomate_theme_section_155" data-name="Heading" class="pb24 bg-100 pt16" style="">
-                <div class="container">
+                <div class="container" style="border-style: none; border-width: 0px;">
                     <div class="row">
+                        <div class="col-lg-12 s_title pt16 pb0" style="text-align: center; border-style: none; border-width: 0px">
+                            <div style="text-align: left;">
+                                <b style="font-size: 11.2px;">* Le nombre de stagiaires formés depuis l'ouverture de centre et jusqu'à Septembre 2021<br/>
+                                </b>
+                                <b style="font-size: 11.2px;">** Selon l'avis de 125 apprenants sur Google. <a href="https://www.google.com/search?q=mcm+academy&amp;rlz=1C1CHBF_frTN911TN916&amp;sxsrf=AOaemvLXgPjmp_LUdcBr_VYoZZbfCUXnQQ%3A1632154532783&amp;ei=pLNIYZv4LoTDlwT8z6igCw&amp;oq=mcm+a&amp;gs_lcp=Cgdnd3Mtd2l6EAMYADIECCMQJzIFCAAQgAQyCwguEIAEEMcBEK8BMgUIABCABDIFCAAQgAQyBQgAEIAEMgUIABCABDIFCAAQgAQyBQgAEIAEMgUIABCABDoHCCMQsAMQJzoHCAAQRxCwAzoQCC4QxwEQ0QMQyAMQsAMQQzoHCAAQsQMQQzoECAAQQzoKCAAQsQMQgwEQQzoLCAAQgAQQsQMQgwE6CAgAEIAEELEDOgoILhDHARDRAxBDOgQILhBDOg4ILhCABBCxAxDHARDRAzoLCC4QgAQQxwEQ0QM6CAguEIAEELEDOgUILhCABEoFCDgSATFKBAhBGABQpOQLWIbqC2Dc8AtoAXACeACAAcMBiAGbBpIBAzAuNZgBAKABAcgBC8ABAQ&amp;sclient=gws-wiz#lrd=0x47c2d584b3f426a3:0x8c9722c8da9f4da3,1,,,">Cliquez ici pour lire les avis</a>.                                    <br/>
+                                </b>
+                                <b style="font-size: 11.2px;">*** Moyenne de taux de réussite de&amp;nbsp;</b>
+                                <b style="font-size: 11.2px;">Novembre 2020 à juillet 2021 ( VTC : 71%, TAXI : 85%, VMDTR : 80%).&amp;nbsp;</b>
+                                <span style="font-weight: 700; font-size: 11.2px;">Pour connaître les statistiques détaillées (données brutes et formules de calcul), <a href="https://www.mcm-academy.fr/service-clientele" target="_blank" data-original-title="" title="" aria-describedby="tooltip12353">contactez-nous</a>.
+                                </span>
+                                <b style="font-size: 11.2px;">
+                                    <br/>
+                                </b>
+                                <br/>
+                            </div>
+                            <br/>
+                        </div>
                         <div class="col-md-3 col-sm-12 pt0 col-lg-2">
                             <div class="sh_heading">
                                 <h3>
@@ -409,9 +420,9 @@
                                                 <ul class="">
                                                     <li>Formation 70 h (100 % en ligne)</li>
                                                     <li>Accès à + de 12 examens d'entraînement</li>
-                                                    <li>Coaching par mail</li>
-                                                    <li>Coaching par téléphone</li>
-                                                    <li>Coaching par visioconférence</li>
+                                                    <li>Assistance par mail</li>
+                                                    <li>Assistance&amp;nbsp;par téléphone</li>
+                                                    <li>Assistance&amp;nbsp;par visioconférence</li>
                                                     <li>Lives&amp;nbsp;avec les formateurs pour explications</li>
                                                     <li>Révision du programme avant examen</li>
                                                 </ul>
@@ -440,9 +451,9 @@
                                                 <ul class="">
                                                     <li>Formation 70 h (100 % en ligne)</li>
                                                     <li>Accès à + de 12 examens d'entraînement</li>
-                                                    <li>Coaching par mail</li>
-                                                    <li>Coaching par téléphone</li>
-                                                    <li>Coaching par visioconférence</li>
+                                                    <li>Assistance&amp;nbsp;par mail</li>
+                                                    <li>Assistance&amp;nbsp;par téléphone</li>
+                                                    <li>Assistance&amp;nbsp;par visioconférence</li>
                                                     <li>Lives&amp;nbsp;avec les formateurs pour explications</li>
                                                     <li>Révision du programme avant examen</li>
                                                 </ul>
@@ -471,9 +482,9 @@
                                                 <ul class="">
                                                     <li>Formation 70 h (100 % en ligne)</li>
                                                     <li>Accès à + de 12 examens d'entraînement</li>
-                                                    <li>Coaching par mail</li>
-                                                    <li>Coaching par téléphone</li>
-                                                    <li>Coaching par visioconférence</li>
+                                                    <li>Assistance&amp;nbsp;par mail</li>
+                                                    <li>Assistance&amp;nbsp;par téléphone</li>
+                                                    <li>Assistance&amp;nbsp;par visioconférence</li>
                                                     <li>Lives&amp;nbsp;avec les formateurs pour explications</li>
                                                     <li>Révision du programme avant examen</li>
                                                 </ul>
