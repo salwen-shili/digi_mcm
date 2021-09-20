@@ -195,65 +195,65 @@ class ClientCPFController(http.Controller):
                         return request.render("mcm_cpf_validation.mcm_website_cpf_accepted")
                     else:
                         return request.render("mcm_cpf_validation.mcm_website_contract_exist")
-                elif product_id and product_id.company_id.id == 1 and user.partner_id.id_edof and user.partner_id.date_examen_edof and user.partner_id.session_ville_id:
-                    module_id = request.env['mcmacademy.module'].sudo().search(
-                        [('company_id', "=", 1), ('session_ville_id', "=", user.partner_id.session_ville_id.id),
-                         ('date_exam', "=", user.partner_id.date_examen_edof), ('product_id', "=", product_id.id),
-                         ('session_id.number_places_available', '>', 0)], limit=1)
-                    if module_id:
-                        user.partner_id.module_id = module_id
-                        user.partner_id.mcm_session_id = module_id.session_id
-                        product_id = request.env['product.product'].sudo().search(
-                            [('product_tmpl_id', '=', module_id.product_id.id)])
-                        user.partner_id.mcm_session_id = module_id.session_id
-                        user.partner_id.module_id = module_id
-                        request.env.user.company_id = 1
-                        order = request.env['sale.order'].sudo().search(
-                            [('module_id', "=", module_id.id), ('state', 'in', ('sent', 'sale')),
-                             ('partner_id', "=", user.partner_id.id)])
-                        if not order:
-                            so = request.env['sale.order'].sudo().create({
-                                'partner_id': user.partner_id.id,
-                                'company_id': 1,
-                            })
-                            request.env['sale.order.line'].sudo().create({
-                                'name': product_id.name,
-                                'product_id': product_id.id,
-                                'product_uom_qty': 1,
-                                'product_uom': product_id.uom_id.id,
-                                'price_unit': product_id.list_price,
-                                'order_id': so.id,
-                                'tax_id': product_id.taxes_id,
-                                'company_id': 1
-                            })
-                            # Enreggistrement des valeurs de la facture
-                            # Parser le pourcentage d'acompte
-                            # Creation de la fcture étape Finale
-                            # Facture comptabilisée
-                            so.action_confirm()
-                            so.module_id = module_id
-                            so.session_id = module_id.session_id
-                            moves = so._create_invoices(final=True)
-                            for move in moves:
-                                move.type_facture = 'interne'
-                                move.module_id = so.module_id
-                                # move.cpf_acompte_invoice=True
-                                # move.cpf_invoice =True
-                                move.methodes_payment = 'cpf'
-                                move.pourcentage_acompte = 25
-                                move.session_id = so.session_id
-                                move.company_id = so.company_id
-                                move.website_id = 1
-                                for line in move.invoice_line_ids:
-                                    if line.account_id != line.product_id.property_account_income_id and line.product_id.property_account_income_id:
-                                        line.account_id = line.product_id.property_account_income_id
-                                move.post()
-                            so.action_cancel()
-                            so.unlink()
-                            user.partner_id.statut = 'won'
-                            return request.render("mcm_cpf_validation.mcm_website_cpf_accepted")
-                        else:
-                            return request.render("mcm_cpf_validation.mcm_website_contract_exist")
+            elif product_id and product_id.company_id.id == 1 and user.partner_id.id_edof and user.partner_id.date_examen_edof and user.partner_id.session_ville_id:
+                module_id = request.env['mcmacademy.module'].sudo().search(
+                    [('company_id', "=", 1), ('session_ville_id', "=", user.partner_id.session_ville_id.id),
+                     ('date_exam', "=", user.partner_id.date_examen_edof), ('product_id', "=", product_id.id),
+                     ('session_id.number_places_available', '>', 0)], limit=1)
+                if module_id:
+                    user.partner_id.module_id = module_id
+                    user.partner_id.mcm_session_id = module_id.session_id
+                    product_id = request.env['product.product'].sudo().search(
+                        [('product_tmpl_id', '=', module_id.product_id.id)])
+                    user.partner_id.mcm_session_id = module_id.session_id
+                    user.partner_id.module_id = module_id
+                    request.env.user.company_id = 1
+                    order = request.env['sale.order'].sudo().search(
+                        [('module_id', "=", module_id.id), ('state', 'in', ('sent', 'sale')),
+                         ('partner_id', "=", user.partner_id.id)])
+                    if not order:
+                        so = request.env['sale.order'].sudo().create({
+                            'partner_id': user.partner_id.id,
+                            'company_id': 1,
+                        })
+                        request.env['sale.order.line'].sudo().create({
+                            'name': product_id.name,
+                            'product_id': product_id.id,
+                            'product_uom_qty': 1,
+                            'product_uom': product_id.uom_id.id,
+                            'price_unit': product_id.list_price,
+                            'order_id': so.id,
+                            'tax_id': product_id.taxes_id,
+                            'company_id': 1
+                        })
+                        # Enreggistrement des valeurs de la facture
+                        # Parser le pourcentage d'acompte
+                        # Creation de la fcture étape Finale
+                        # Facture comptabilisée
+                        so.action_confirm()
+                        so.module_id = module_id
+                        so.session_id = module_id.session_id
+                        moves = so._create_invoices(final=True)
+                        for move in moves:
+                            move.type_facture = 'interne'
+                            move.module_id = so.module_id
+                            # move.cpf_acompte_invoice=True
+                            # move.cpf_invoice =True
+                            move.methodes_payment = 'cpf'
+                            move.pourcentage_acompte = 25
+                            move.session_id = so.session_id
+                            move.company_id = so.company_id
+                            move.website_id = 1
+                            for line in move.invoice_line_ids:
+                                if line.account_id != line.product_id.property_account_income_id and line.product_id.property_account_income_id:
+                                    line.account_id = line.product_id.property_account_income_id
+                            move.post()
+                        so.action_cancel()
+                        so.unlink()
+                        user.partner_id.statut = 'won'
+                        return request.render("mcm_cpf_validation.mcm_website_cpf_accepted")
+                    else:
+                        return request.render("mcm_cpf_validation.mcm_website_contract_exist")
             else:
                 if 'digimoov' in str(module):
                     vals = {
