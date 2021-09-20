@@ -35,6 +35,7 @@ add css and js files to website model
         'views/edit_info.xml',
         # 'views/footer_custom.xml',
         'views/questionnaire.xml',
+        'views/conditions.xml',
     ],
 
     'installable': True,

@@ -275,8 +275,6 @@ class Routes_Site(http.Controller):
         elif request.website.id == 1:
             return request.render("mcm_website_theme.mcm_website_theme_vmdtr", values)
 
-
-
     @http.route('/examen', type='http', auth='public', website=True)
     def examen(self):
         if request.website.id == 2:
@@ -1061,8 +1059,6 @@ class CustomerPortal(CustomerPortal):
             'sortby': sortby,
         })
         return request.render("account.portal_my_invoices", values)
-
-
 
 
 class MCMFORMATION(http.Controller):

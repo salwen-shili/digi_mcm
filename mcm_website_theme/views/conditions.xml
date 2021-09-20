@@ -1,0 +1,469 @@
+<odoo>
+    <template id="mcm_website_theme.mcm_template_conditions" name="Conditions générales de vente | MCM">
+        <t t-call="website.layout">
+            <style>
+                .features {
+                padding: 100px 0;
+                background: #f6f6fd;
+                }
+
+                .features-intro {
+                margin-bottom: 50px;
+                }
+
+                .features-intro h2 {
+                font-size: 28px;
+                font-weight: 600;
+                color: #3a3a47;
+                line-height: 1.3;
+                margin-bottom: 10px;
+                }
+
+                .features-intro p {
+                font-size: 16px;
+                font-weight: 500;
+                line-height: 1.6;
+                letter-spacing: 0.01em;
+                color: #818198;
+                max-width: 630px;
+                margin: 0 auto;
+                margin-top: 15px;
+                margin-bottom: 15px;
+                }
+                .feature-list {
+                margin: 30px 10px;
+                }
+            </style>
+            <div id="wrap" class="oe_structure oe_empty">
+                <div class="features wow fadeInDown" style="visibility: visible; border-style: none; border-width: 0px;">
+                    <div class="container-m">
+                        <div class="row text-left">
+                            <div class="col-md-12 offset-lg-2 col-lg-9">
+                                <div class="features-intro">
+                                    <div style="text-align: center;">
+                                        <span style="color: rgb(0, 0, 0); font-size: 24px; letter-spacing: 0.01em;">
+                                            <span style="font-weight: bolder;">CONDITIONS GENERALES DE PRESTATIONS DE
+                                            SERVICES
+                                            </span>
+                                        </span>
+                                    </div>
+                                    <p style="text-align: left;">
+                                        <font style="letter-spacing: normal; color: rgb(0, 0, 0); font-size: 24px;">
+                                            <span style="font-weight: bolder;">
+                                                <br/>
+                                            </span>
+                                        </font>
+                                    </p>
+                                    <p style="text-align: left;">
+                                        <font style="color: rgb(0, 0, 0); font-size: 24px;">
+                                            <span style="font-weight: bolder;">
+                                                <br/>
+                                            </span>
+                                        </font>
+                                    </p>
+                                    <p style="text-align: left; -webkit-font-smoothing: antialiased; margin: 0px 0px 20px; cursor: text; padding: 0px; counter-reset: list-1 0 list-2 0 list-3 0 list-4 0 list-5 0 list-6 0 list-7 0 list-8 0 list-9 0;">
+                                        <span style="-webkit-font-smoothing: antialiased; font-weight: bolder; background-color: transparent; color: rgb(0, 0, 0);">DÉFINITIONS</span>
+                                    </p>
+                                    <p class="ql-align-justify" style="text-align: left; -webkit-font-smoothing: antialiased; margin: 0px 0px 20px; cursor: text; padding: 0px; counter-reset: list-1 0 list-2 0 list-3 0 list-4 0 list-5 0 list-6 0 list-7 0 list-8 0 list-9 0;">
+                                        <span style="-webkit-font-smoothing: antialiased; font-weight: bolder; background-color: transparent; color: rgb(0, 0, 0);">Client :</span>
+                                        <span style="-webkit-font-smoothing: antialiased; background-color: transparent; color: rgb(0, 0, 0);"> tout professionnel ou personne physique capable au sens des articles 1123 et suivants du Code civil, ou personne morale, qui visite le Site objet des présentes conditions générales.</span>
+                                    </p>
+                                    <h1 style="text-align: left; -webkit-font-smoothing: antialiased; font-size: 2em; margin-right: 0px; margin-bottom: 20px; margin-left: 0px; font-family: Poppins, &quot;Source Sans Pro&quot;, sans-serif; vertical-align: middle; font-weight: bold; cursor: text; padding: 0px; counter-reset: list-1 0 list-2 0 list-3 0 list-4 0 list-5 0 list-6 0 list-7 0 list-8 0 list-9 0;">
+                                        <span style="font-family: Lato, &quot;Odoo Unicode Support Noto&quot;, sans-serif; font-size: 16px; letter-spacing: 0.16px; text-align: justify; background-color: transparent; -webkit-font-smoothing: antialiased; font-weight: bolder; color: rgb(0, 0, 0);">Prestations et Services :</span>
+                                        <span style="font-family: Lato, &quot;Odoo Unicode Support Noto&quot;, sans-serif; font-size: 16px; font-weight: 500; letter-spacing: 0.16px; text-align: justify; background-color: transparent; -webkit-font-smoothing: antialiased; color: rgb(0, 0, 0);">&amp;nbsp;Les prestations et services que MCM ACADEMY sis 10 RUE DE PENTHIEVRE 75008 PARIS (RCS B 811 219 880) fournis via MCM ACADEMY à ses Clients.</span>
+                                        <br/>
+                                    </h1>
+                                    <p style="text-align: left; -webkit-font-smoothing: antialiased; margin: 0px 0px 20px; cursor: text; padding: 0px; counter-reset: list-1 0 list-2 0 list-3 0 list-4 0 list-5 0 list-6 0 list-7 0 list-8 0 list-9 0;">
+                                        <span style="-webkit-font-smoothing: antialiased; font-weight: bolder; background-color: transparent; color: rgb(0, 0, 0);">Agrément DRIEA : </span>
+                                        <span style="-webkit-font-smoothing: antialiased; background-color: transparent; color: rgb(0, 0, 0);">MCM ACADEMY est titulaire de l’intégralité des agréments délivrés par les préfectures dont la formation dépend et nécessaires à l’organisation des formation (Numéro d’</span>
+                                        <span style="-webkit-font-smoothing: antialiased; color: rgb(0, 0, 0);">agrément </span>
+                                        <em style="-webkit-font-smoothing: antialiased; color: rgb(0, 0, 0);">VTC 59-16-03 |</em>
+                                        <span style="-webkit-font-smoothing: antialiased; color: rgb(0, 0, 0);"></span>
+                                        <em style="-webkit-font-smoothing: antialiased; color: rgb(0, 0, 0);">TAXI 18-03-59</em>
+                                        <span style="-webkit-font-smoothing: antialiased; color: rgb(0, 0, 0);">)</span>
+                                    </p>
+                                    <p class="ql-align-justify" style="text-align: left; -webkit-font-smoothing: antialiased; margin: 0px 0px 20px; cursor: text; padding: 0px; counter-reset: list-1 0 list-2 0 list-3 0 list-4 0 list-5 0 list-6 0 list-7 0 list-8 0 list-9 0;">
+                                        <span style="-webkit-font-smoothing: antialiased; font-weight: bolder; background-color: transparent; color: rgb(0, 0, 0);">Contenu :</span>
+                                        <span style="-webkit-font-smoothing: antialiased; background-color: transparent; color: rgb(0, 0, 0);"> Ensemble des éléments constituants l’information présente sur https://www.mcm-academy.fr/  et les plateformes associées, notamment textes – images – vidéos.</span>
+                                    </p>
+                                    <p class="ql-align-justify" style="text-align: left; -webkit-font-smoothing: antialiased; margin: 0px 0px 20px; cursor: text; padding: 0px; counter-reset: list-1 0 list-2 0 list-3 0 list-4 0 list-5 0 list-6 0 list-7 0 list-8 0 list-9 0;">
+                                        <span style="-webkit-font-smoothing: antialiased; font-weight: bolder; background-color: transparent; color: rgb(0, 0, 0);">Informations clients :</span>
+                                        <span style="-webkit-font-smoothing: antialiased; background-color: transparent; color: rgb(0, 0, 0);"> Ci après dénommé « Information (s) » qui correspondent à l’ensemble des données personnelles susceptibles d’être détenues par MCM ACADEMY pour la gestion de votre compte utilisateur, de la gestion de la relation client et à des fins d’analyses et de statistiques.</span>
+                                    </p>
+                                    <p class="ql-align-justify" style="text-align: left; -webkit-font-smoothing: antialiased; margin: 0px 0px 20px; cursor: text; padding: 0px; counter-reset: list-1 0 list-2 0 list-3 0 list-4 0 list-5 0 list-6 0 list-7 0 list-8 0 list-9 0;">
+                                        <span style="-webkit-font-smoothing: antialiased; font-weight: bolder; background-color: transparent; color: rgb(0, 0, 0);">Utilisateur :</span>
+                                        <span style="-webkit-font-smoothing: antialiased; background-color: transparent; color: rgb(0, 0, 0);"> Internaute se connectant, utilisant le site https://www.mcm-academy.fr/  </span>
+                                    </p>
+                                    <p class="ql-align-justify" style="text-align: left; -webkit-font-smoothing: antialiased; margin: 0px 0px 20px; cursor: text; padding: 0px; counter-reset: list-1 0 list-2 0 list-3 0 list-4 0 list-5 0 list-6 0 list-7 0 list-8 0 list-9 0;">
+                                        <span style="-webkit-font-smoothing: antialiased; font-weight: bolder; background-color: transparent; color: rgb(0, 0, 0);">Informations personnelles :</span>
+                                        <span style="-webkit-font-smoothing: antialiased; background-color: transparent; color: rgb(0, 0, 0);"> « Les informations qui permettent, sous quelque forme que ce soit, directement ou non, l'identification des personnes physiques auxquelles elles s'appliquent » (article 4 de la loi n° 78-17 du 6 janvier 1978).</span>
+                                    </p>
+                                    <p class="ql-align-justify" style="text-align: left; -webkit-font-smoothing: antialiased; margin: 0px 0px 20px; cursor: text; padding: 0px; counter-reset: list-1 0 list-2 0 list-3 0 list-4 0 list-5 0 list-6 0 list-7 0 list-8 0 list-9 0;">
+                                        <span style="-webkit-font-smoothing: antialiased; background-color: transparent; color: rgb(0, 0, 0);">Les termes « données à caractère personnel », « personne concernée », « sous traitant » et « données sensibles » ont le sens défini par le Règlement Général sur la Protection des Données (RGPD : n° 2016-679)</span>
+                                    </p>
+                                    <p style="text-align: left; -webkit-font-smoothing: antialiased; margin: 0px 0px 20px; cursor: text; padding: 0px; counter-reset: list-1 0 list-2 0 list-3 0 list-4 0 list-5 0 list-6 0 list-7 0 list-8 0 list-9 0;">
+                                        <br style="-webkit-font-smoothing: antialiased;"/>
+                                    </p>
+                                    <p style="text-align: left; -webkit-font-smoothing: antialiased; margin: 0px 0px 20px; cursor: text; padding: 0px; counter-reset: list-1 0 list-2 0 list-3 0 list-4 0 list-5 0 list-6 0 list-7 0 list-8 0 list-9 0;">
+                                        <span style="-webkit-font-smoothing: antialiased; font-weight: bolder; background-color: transparent; color: rgb(0, 0, 0);">ARTICLE 1 – OBJET DES CONDITIONS</span>
+                                    </p>
+                                    <p style="text-align: left; -webkit-font-smoothing: antialiased; margin: 0px 0px 20px; cursor: text; padding: 0px; counter-reset: list-1 0 list-2 0 list-3 0 list-4 0 list-5 0 list-6 0 list-7 0 list-8 0 list-9 0;">
+                                        <br style="-webkit-font-smoothing: antialiased;"/>
+                                    </p>
+                                    <p class="ql-align-justify" style="text-align: left; -webkit-font-smoothing: antialiased; margin: 0px 0px 20px; cursor: text; padding: 0px; counter-reset: list-1 0 list-2 0 list-3 0 list-4 0 list-5 0 list-6 0 list-7 0 list-8 0 list-9 0;">
+                                        <span style="-webkit-font-smoothing: antialiased; background-color: transparent; color: rgb(0, 0, 0);">1.1 Les présentes Conditions générales de Prestations et de Services (ci-après “les Conditions”) visent la mise en relation, de SAS MCM ACADEMY sis 10 RUE DE PENTHIEVRE 75008 PARIS (RCS B 811 219 880) via MCM ACADEMY (ci-après “MCM ACADEMY”) et le Candidat particulier. </span>
+                                    </p>
+                                    <p style="text-align: left; -webkit-font-smoothing: antialiased; margin: 0px 0px 20px; cursor: text; padding: 0px; counter-reset: list-1 0 list-2 0 list-3 0 list-4 0 list-5 0 list-6 0 list-7 0 list-8 0 list-9 0;">
+                                        <br style="-webkit-font-smoothing: antialiased;"/>
+                                    </p>
+                                    <p class="ql-align-justify" style="text-align: left; -webkit-font-smoothing: antialiased; margin: 0px 0px 20px; cursor: text; padding: 0px; counter-reset: list-1 0 list-2 0 list-3 0 list-4 0 list-5 0 list-6 0 list-7 0 list-8 0 list-9 0;">
+                                        <span style="-webkit-font-smoothing: antialiased; background-color: transparent; color: rgb(0, 0, 0);">1.2 L’accès, l’achat et le suivi des formations et examens (ci-après le Service) sont proposés exclusivement par le biais du réseau Internet à l’adresse Internet https://mcm-academy.fr (ci-après “le Site”).</span>
+                                    </p>
+                                    <p class="ql-align-justify" style="text-align: left; -webkit-font-smoothing: antialiased; margin: 0px 0px 20px; cursor: text; padding: 0px; counter-reset: list-1 0 list-2 0 list-3 0 list-4 0 list-5 0 list-6 0 list-7 0 list-8 0 list-9 0;">
+                                        <span style="-webkit-font-smoothing: antialiased; background-color: transparent; color: rgb(0, 0, 0);">1.3 Le Candidat est tenu de prendre connaissance des Conditions avant toute passation de commande. Le choix et l’achat d’un Service est de la seule responsabilité du Candidat. (ci-après “le Candidat”).</span>
+                                    </p>
+                                    <p class="ql-align-justify" style="text-align: left; -webkit-font-smoothing: antialiased; margin: 0px 0px 20px; cursor: text; padding: 0px; counter-reset: list-1 0 list-2 0 list-3 0 list-4 0 list-5 0 list-6 0 list-7 0 list-8 0 list-9 0;">
+                                        <span style="-webkit-font-smoothing: antialiased; background-color: transparent; color: rgb(0, 0, 0);">1.4 Les présentes Conditions ont vocation à établir les modalités d’accès, d’utilisation, d’achat, et de paiement par le candidat aux services et prestations proposés en ligne par MCM ACADEMY (ci-après ensemble les ”Parties”).</span>
+                                    </p>
+                                    <p class="ql-align-justify" style="text-align: left; -webkit-font-smoothing: antialiased; margin: 0px 0px 20px; cursor: text; padding: 0px; counter-reset: list-1 0 list-2 0 list-3 0 list-4 0 list-5 0 list-6 0 list-7 0 list-8 0 list-9 0;">
+                                        <span style="-webkit-font-smoothing: antialiased; background-color: transparent; color: rgb(0, 0, 0);">1.5 Le Site est édité par la SAS MCM ACADEMY </span>
+                                    </p>
+                                    <p style="text-align: left; -webkit-font-smoothing: antialiased; margin: 0px 0px 20px; cursor: text; padding: 0px; counter-reset: list-1 0 list-2 0 list-3 0 list-4 0 list-5 0 list-6 0 list-7 0 list-8 0 list-9 0;">
+                                        <span style="-webkit-font-smoothing: antialiased; font-weight: bolder; background-color: transparent; color: rgb(0, 0, 0);">ARTICLE 2 – CONDITIONS PREALABLES</span>
+                                    </p>
+                                    <p style="text-align: left; -webkit-font-smoothing: antialiased; margin: 0px 0px 20px; cursor: text; padding: 0px; counter-reset: list-1 0 list-2 0 list-3 0 list-4 0 list-5 0 list-6 0 list-7 0 list-8 0 list-9 0;">
+                                        <span style="-webkit-font-smoothing: antialiased; background-color: transparent; color: rgb(0, 0, 0);">2.1 L’accès au Site et au Service développé à l’article 4 est subordonné aux conditions suivantes</span>
+                                    </p>
+                                    <p class="ql-align-justify" style="text-align: left; -webkit-font-smoothing: antialiased; margin: 0px 0px 20px; cursor: text; padding: 0px; counter-reset: list-1 0 list-2 0 list-3 0 list-4 0 list-5 0 list-6 0 list-7 0 list-8 0 list-9 0;">
+                                        <span style="-webkit-font-smoothing: antialiased; background-color: transparent; color: rgb(0, 0, 0);">2.1.1 le Candidat déclare avoir pris connaissance des présentes Conditions et les avoir acceptées en cochant la case prévue à cet effet avant la mise en œuvre de la procédure de commande en ligne</span>
+                                    </p>
+                                    <p class="ql-align-justify" style="text-align: left; -webkit-font-smoothing: antialiased; margin: 0px 0px 20px; cursor: text; padding: 0px; counter-reset: list-1 0 list-2 0 list-3 0 list-4 0 list-5 0 list-6 0 list-7 0 list-8 0 list-9 0;">
+                                        <span style="-webkit-font-smoothing: antialiased; background-color: transparent; color: rgb(0, 0, 0);">2.1.2 le Candidat assure MCM ACADEMY de la sincérité et de la fidélité de toutes les informations transmises, afin de donner les moyens à MCM ACADEMY d’assurer sa mission dans des conditions optimales.</span>
+                                    </p>
+                                    <p class="ql-align-justify" style="text-align: left; -webkit-font-smoothing: antialiased; margin: 0px 0px 20px; cursor: text; padding: 0px; counter-reset: list-1 0 list-2 0 list-3 0 list-4 0 list-5 0 list-6 0 list-7 0 list-8 0 list-9 0;">
+                                        <span style="-webkit-font-smoothing: antialiased; background-color: transparent; color: rgb(0, 0, 0);">2.1.3  le Candidat doit être titulaire d’une pièce d’identité européenne en cours de validité ainsi qu’un justificatif de domicile de moins de 3 mois et d’un permis non probatoire pour pouvoir s’inscrire à l’examen</span>
+                                    </p>
+                                    <p class="ql-align-justify" style="text-align: left; -webkit-font-smoothing: antialiased; margin: 0px 0px 20px; cursor: text; padding: 0px; counter-reset: list-1 0 list-2 0 list-3 0 list-4 0 list-5 0 list-6 0 list-7 0 list-8 0 list-9 0;">
+                                        <span style="-webkit-font-smoothing: antialiased; background-color: transparent; color: rgb(0, 0, 0);">. Il faudra également respecter toutes les conditions d’honorabilités.</span>
+                                    </p>
+                                    <p class="ql-align-justify" style="text-align: left; -webkit-font-smoothing: antialiased; margin: 0px 0px 20px; cursor: text; padding: 0px; counter-reset: list-1 0 list-2 0 list-3 0 list-4 0 list-5 0 list-6 0 list-7 0 list-8 0 list-9 0;">
+                                        <span style="-webkit-font-smoothing: antialiased; background-color: transparent; color: rgb(0, 0, 0);">2.1.4 le Service présenté sur le Site est proposé à la vente pour la France, à l’exclusion de tout autre pays.</span>
+                                    </p>
+                                    <p style="text-align: left; -webkit-font-smoothing: antialiased; margin: 0px 0px 20px; cursor: text; padding: 0px; counter-reset: list-1 0 list-2 0 list-3 0 list-4 0 list-5 0 list-6 0 list-7 0 list-8 0 list-9 0;">
+                                        <span style="-webkit-font-smoothing: antialiased; background-color: transparent; color: rgb(0, 0, 0);">2.2 MCM ACADEMY se réserve le droit de déroger à certaines clauses des présentes Conditions, en avisant préalablement le Candidat, en fonction de l’évolution du contenu du Site et/ou pour répondre aux exigences de la législation en vigueur. </span>
+                                    </p>
+                                    <p style="text-align: left; -webkit-font-smoothing: antialiased; margin: 0px 0px 20px; cursor: text; padding: 0px; counter-reset: list-1 0 list-2 0 list-3 0 list-4 0 list-5 0 list-6 0 list-7 0 list-8 0 list-9 0;">
+                                        <span style="-webkit-font-smoothing: antialiased; font-weight: bolder; background-color: transparent; color: rgb(0, 0, 0);">ARTICLE 3 – ACCES AU SERVICE</span>
+                                    </p>
+                                    <p style="text-align: left; -webkit-font-smoothing: antialiased; margin: 0px 0px 20px; cursor: text; padding: 0px; counter-reset: list-1 0 list-2 0 list-3 0 list-4 0 list-5 0 list-6 0 list-7 0 list-8 0 list-9 0;">
+                                        <br style="-webkit-font-smoothing: antialiased;"/>
+                                    </p>
+                                    <p style="text-align: left; -webkit-font-smoothing: antialiased; margin: 0px 0px 20px; cursor: text; padding: 0px; counter-reset: list-1 0 list-2 0 list-3 0 list-4 0 list-5 0 list-6 0 list-7 0 list-8 0 list-9 0;">
+                                        <span style="-webkit-font-smoothing: antialiased; background-color: transparent; color: rgb(0, 0, 0);">3.1 Toute personne souhaitant bénéficier du Service proposé ne peut y accéder qu’en se connectant sur le Site, via un ordinateur ou tout autre support compatible, notamment et sans que cela soit une liste exclusive, les tablettes tactiles ou les smartphones.</span>
+                                    </p>
+                                    <p style="text-align: left; -webkit-font-smoothing: antialiased; margin: 0px 0px 20px; cursor: text; padding: 0px; counter-reset: list-1 0 list-2 0 list-3 0 list-4 0 list-5 0 list-6 0 list-7 0 list-8 0 list-9 0;">
+                                        <span style="-webkit-font-smoothing: antialiased; background-color: transparent; color: rgb(0, 0, 0);">3.2 Lors de la première connexion, le Candidat devra s’enregistrer par la création d’un compte.</span>
+                                    </p>
+                                    <p style="text-align: left; -webkit-font-smoothing: antialiased; margin: 0px 0px 20px; cursor: text; padding: 0px; counter-reset: list-1 0 list-2 0 list-3 0 list-4 0 list-5 0 list-6 0 list-7 0 list-8 0 list-9 0;">
+                                        <span style="-webkit-font-smoothing: antialiased; background-color: transparent; color: rgb(0, 0, 0);">3.3 Le Candidat devra ensuite renseigner ses coordonnées personnelles (nom, prénom, nom commercial ou nom de société, date de naissance et adresse…).</span>
+                                    </p>
+                                    <p style="text-align: left; -webkit-font-smoothing: antialiased; margin: 0px 0px 20px; cursor: text; padding: 0px; counter-reset: list-1 0 list-2 0 list-3 0 list-4 0 list-5 0 list-6 0 list-7 0 list-8 0 list-9 0;">
+                                        <span style="-webkit-font-smoothing: antialiased; background-color: transparent; color: rgb(0, 0, 0);">3.4 Il devra fournir une adresse de courrier électronique valide. Il recevra ensuite par courrier électronique un mot de passe à renseigner avant de pouvoir se connecter.</span>
+                                    </p>
+                                    <p style="text-align: left; -webkit-font-smoothing: antialiased; margin: 0px 0px 20px; cursor: text; padding: 0px; counter-reset: list-1 0 list-2 0 list-3 0 list-4 0 list-5 0 list-6 0 list-7 0 list-8 0 list-9 0;">
+                                        <span style="-webkit-font-smoothing: antialiased; background-color: transparent; color: rgb(0, 0, 0);">3.5 Il est conseillé au Candidat de changer et de personnaliser son mot de passe dès cette première connexion.</span>
+                                    </p>
+                                    <p style="text-align: left; -webkit-font-smoothing: antialiased; margin: 0px 0px 20px; cursor: text; padding: 0px; counter-reset: list-1 0 list-2 0 list-3 0 list-4 0 list-5 0 list-6 0 list-7 0 list-8 0 list-9 0;">
+                                        <span style="-webkit-font-smoothing: antialiased; background-color: transparent; color: rgb(0, 0, 0);">3.6 Le Candidat s’engage à fournir à MCM ACADEMY des informations sincères. Le Candidat s’engage à maintenir à jour les informations transmises lors de son inscription et à tenir informé MCM ACADEMY de toute modification survenue après son inscription.</span>
+                                    </p>
+                                    <p style="text-align: left; -webkit-font-smoothing: antialiased; margin: 0px 0px 20px; cursor: text; padding: 0px; counter-reset: list-1 0 list-2 0 list-3 0 list-4 0 list-5 0 list-6 0 list-7 0 list-8 0 list-9 0;">
+                                        <span style="-webkit-font-smoothing: antialiased; background-color: transparent; color: rgb(0, 0, 0);">3.7 La validation de ce compte ne sera effective que lors de l’acceptation sans réserve des présentes Conditions, matérialisée par une case à cocher lors de la première inscription au Service.</span>
+                                    </p>
+                                    <p style="text-align: left; -webkit-font-smoothing: antialiased; margin: 0px 0px 20px; cursor: text; padding: 0px; counter-reset: list-1 0 list-2 0 list-3 0 list-4 0 list-5 0 list-6 0 list-7 0 list-8 0 list-9 0;">
+                                        <span style="-webkit-font-smoothing: antialiased; background-color: transparent; color: rgb(0, 0, 0);">3.8 Toute connexion au Site par la conjonction de l’identifiant (login) et du mot de passe sera réputée faite par le Candidat, qui prend en conséquence la responsabilité du caractère très confidentiel de ces données et de l’impérative nécessité de les conserver secrètes.</span>
+                                    </p>
+                                    <p style="text-align: left; -webkit-font-smoothing: antialiased; margin: 0px 0px 20px; cursor: text; padding: 0px; counter-reset: list-1 0 list-2 0 list-3 0 list-4 0 list-5 0 list-6 0 list-7 0 list-8 0 list-9 0;">
+                                        <span style="-webkit-font-smoothing: antialiased; background-color: transparent; color: rgb(0, 0, 0);">3.9 Dès l’inscription validée, le Candidat aura accès à un menu principal lui permettant d’accéder au Service.</span>
+                                    </p>
+                                    <p style="text-align: left; -webkit-font-smoothing: antialiased; margin: 0px 0px 20px; cursor: text; padding: 0px; counter-reset: list-1 0 list-2 0 list-3 0 list-4 0 list-5 0 list-6 0 list-7 0 list-8 0 list-9 0;">
+                                        <span style="-webkit-font-smoothing: antialiased; font-weight: bolder; background-color: transparent; color: rgb(0, 0, 0);">ARTICLE 4 – DESCRIPTION DU SERVICE</span>
+                                    </p>
+                                    <p style="text-align: left; -webkit-font-smoothing: antialiased; margin: 0px 0px 20px; cursor: text; padding: 0px; counter-reset: list-1 0 list-2 0 list-3 0 list-4 0 list-5 0 list-6 0 list-7 0 list-8 0 list-9 0;">
+                                        <span style="-webkit-font-smoothing: antialiased; background-color: transparent; color: rgb(0, 0, 0);">4.1 Le candidat inscrit, après paiement des frais afférents, obtiendra accès aux services suivants : </span>
+                                    </p>
+                                    <p style="text-align: left; -webkit-font-smoothing: antialiased; margin: 0px 0px 20px; cursor: text; padding: 0px; counter-reset: list-1 0 list-2 0 list-3 0 list-4 0 list-5 0 list-6 0 list-7 0 list-8 0 list-9 0;">
+                                        <span style="-webkit-font-smoothing: antialiased; background-color: transparent; color: rgb(0, 0, 0);">4.1.1 Les formations en centre de formation, à l’adresse postale indiquée sur le Site ou dans des courriers électroniques de confirmation	</span>
+                                    </p>
+                                    <p style="text-align: left; -webkit-font-smoothing: antialiased; margin: 0px 0px 20px; cursor: text; padding: 0px; counter-reset: list-1 0 list-2 0 list-3 0 list-4 0 list-5 0 list-6 0 list-7 0 list-8 0 list-9 0;">
+                                        <span style="-webkit-font-smoothing: antialiased; background-color: transparent; color: rgb(0, 0, 0);">4.1.2 Les formations en ligne (de type e-learning)</span>
+                                    </p>
+                                    <p style="text-align: left; -webkit-font-smoothing: antialiased; margin: 0px 0px 20px; cursor: text; padding: 0px; counter-reset: list-1 0 list-2 0 list-3 0 list-4 0 list-5 0 list-6 0 list-7 0 list-8 0 list-9 0;">
+                                        <span style="-webkit-font-smoothing: antialiased; background-color: transparent; color: rgb(0, 0, 0);">4.1.3 L’inscription à des examens blancs, en centre de formation ou en ligne</span>
+                                    </p>
+                                    <p style="text-align: left; -webkit-font-smoothing: antialiased; margin: 0px 0px 20px; cursor: text; padding: 0px; counter-reset: list-1 0 list-2 0 list-3 0 list-4 0 list-5 0 list-6 0 list-7 0 list-8 0 list-9 0;">
+                                        <span style="-webkit-font-smoothing: antialiased; background-color: transparent; color: rgb(0, 0, 0);">4.1.4 L’inscription aux examens officiels sur site</span>
+                                    </p>
+                                    <p style="text-align: left; -webkit-font-smoothing: antialiased; margin: 0px 0px 20px; cursor: text; padding: 0px; counter-reset: list-1 0 list-2 0 list-3 0 list-4 0 list-5 0 list-6 0 list-7 0 list-8 0 list-9 0;">
+                                        <span style="-webkit-font-smoothing: antialiased; background-color: transparent; color: rgb(0, 0, 0);">4.1.5 L’accès au compte personnel, notamment aux factures</span>
+                                    </p>
+                                    <p style="text-align: left; -webkit-font-smoothing: antialiased; margin: 0px 0px 20px; cursor: text; padding: 0px; counter-reset: list-1 0 list-2 0 list-3 0 list-4 0 list-5 0 list-6 0 list-7 0 list-8 0 list-9 0;">
+                                        <span style="-webkit-font-smoothing: antialiased; background-color: transparent; color: rgb(0, 0, 0);">4.2 L’étendu des Services offerts au Candidat dépend du forfait souscrit. La description détaillée du Service est accessible sur le Site.</span>
+                                    </p>
+                                    <p style="text-align: left; -webkit-font-smoothing: antialiased; margin: 0px 0px 20px; cursor: text; padding: 0px; counter-reset: list-1 0 list-2 0 list-3 0 list-4 0 list-5 0 list-6 0 list-7 0 list-8 0 list-9 0;">
+                                        <span style="-webkit-font-smoothing: antialiased; font-weight: bolder; background-color: transparent; color: rgb(0, 0, 0);">ARTICLE 5 – ACCES AU SITE</span>
+                                    </p>
+                                    <p style="text-align: left; -webkit-font-smoothing: antialiased; margin: 0px 0px 20px; cursor: text; padding: 0px; counter-reset: list-1 0 list-2 0 list-3 0 list-4 0 list-5 0 list-6 0 list-7 0 list-8 0 list-9 0;">
+                                        <span style="-webkit-font-smoothing: antialiased; background-color: transparent; color: rgb(0, 0, 0);">5.1 Le Candidat accède au Site via le réseau Internet à partir d’un périphérique connecté à internet compatible (ordinateur, tablette, téléphone …).</span>
+                                    </p>
+                                    <p style="text-align: left; -webkit-font-smoothing: antialiased; margin: 0px 0px 20px; cursor: text; padding: 0px; counter-reset: list-1 0 list-2 0 list-3 0 list-4 0 list-5 0 list-6 0 list-7 0 list-8 0 list-9 0;">
+                                        <span style="-webkit-font-smoothing: antialiased; background-color: transparent; color: rgb(0, 0, 0);">5.2 Il crée un compte utilisateur et renseigne précisément les informations sollicitées, telles que prévues à l’article 3. A ce titre, MCM ACADEMY se réserve le droit d’activer le compte uniquement après vérification de l’identité du Candidat.</span>
+                                    </p>
+                                    <p style="text-align: left; -webkit-font-smoothing: antialiased; margin: 0px 0px 20px; cursor: text; padding: 0px; counter-reset: list-1 0 list-2 0 list-3 0 list-4 0 list-5 0 list-6 0 list-7 0 list-8 0 list-9 0;">
+                                        <br style="-webkit-font-smoothing: antialiased;"/>
+                                    </p>
+                                    <p style="text-align: left; -webkit-font-smoothing: antialiased; margin: 0px 0px 20px; cursor: text; padding: 0px; counter-reset: list-1 0 list-2 0 list-3 0 list-4 0 list-5 0 list-6 0 list-7 0 list-8 0 list-9 0;">
+                                        <span style="-webkit-font-smoothing: antialiased; background-color: transparent; color: rgb(0, 0, 0);">5.3 L’accès au Service est subordonné au parfait règlement du montant des formations proposées, en centre de formation ou en ligne.</span>
+                                    </p>
+                                    <p style="text-align: left; -webkit-font-smoothing: antialiased; margin: 0px 0px 20px; cursor: text; padding: 0px; counter-reset: list-1 0 list-2 0 list-3 0 list-4 0 list-5 0 list-6 0 list-7 0 list-8 0 list-9 0;">
+                                        <span style="-webkit-font-smoothing: antialiased; background-color: transparent; color: rgb(0, 0, 0);">5.4 Le Candidat ne peut valider une inscription à une des formations proposées que s’il fournit depuis la plateforme en ligne un certain nombre de documents justificatifs. A titre dérogatoire, l’inscription pourra être validée par MCM ACADEMY, sous réserve que les documents justificatifs manquants soient transmis à MCM ACADEMY au plus tard la veille de la formation ou de l’examen non officiel.</span>
+                                    </p>
+                                    <p style="text-align: left; -webkit-font-smoothing: antialiased; margin: 0px 0px 20px; cursor: text; padding: 0px; counter-reset: list-1 0 list-2 0 list-3 0 list-4 0 list-5 0 list-6 0 list-7 0 list-8 0 list-9 0;">
+                                        <span style="-webkit-font-smoothing: antialiased; background-color: transparent; color: rgb(0, 0, 0);">5.5 Le Candidat choisi le type de service accessible en ligne en fonction du degré de ses connaissances préalables :</span>
+                                    </p>
+                                    <p style="text-align: left; -webkit-font-smoothing: antialiased; margin: 0px 0px 20px; cursor: text; padding: 0px; counter-reset: list-1 0 list-2 0 list-3 0 list-4 0 list-5 0 list-6 0 list-7 0 list-8 0 list-9 0;">
+                                        <span style="-webkit-font-smoothing: antialiased; background-color: transparent; color: rgb(0, 0, 0);">5.5.1 Formation en centre</span>
+                                    </p>
+                                    <p style="text-align: left; -webkit-font-smoothing: antialiased; margin: 0px 0px 20px; cursor: text; padding: 0px; counter-reset: list-1 0 list-2 0 list-3 0 list-4 0 list-5 0 list-6 0 list-7 0 list-8 0 list-9 0;">
+                                        <span style="-webkit-font-smoothing: antialiased; background-color: transparent; color: rgb(0, 0, 0);">5.5.2 Formation en ligne</span>
+                                    </p>
+                                    <p class="ql-align-justify" style="text-align: left; -webkit-font-smoothing: antialiased; margin: 0px 0px 20px; cursor: text; padding: 0px; counter-reset: list-1 0 list-2 0 list-3 0 list-4 0 list-5 0 list-6 0 list-7 0 list-8 0 list-9 0;">
+                                        <span style="-webkit-font-smoothing: antialiased; background-color: transparent; color: rgb(0, 0, 0);">5.6 Le Candidat pourra choisir la date de session de la formation en ligne lors de l’inscription à la formation en fonction des dates disponibles.</span>
+                                    </p>
+                                    <p class="ql-align-justify" style="text-align: left; -webkit-font-smoothing: antialiased; margin: 0px 0px 20px; cursor: text; padding: 0px; counter-reset: list-1 0 list-2 0 list-3 0 list-4 0 list-5 0 list-6 0 list-7 0 list-8 0 list-9 0;">
+                                        <span style="-webkit-font-smoothing: antialiased; background-color: transparent; color: rgb(0, 0, 0);">5.7 En cas de désistement du Candidat, sauf cas de force majeure, moins de deux semaines avant la date de la formation, celui-ci ne pourra solliciter aucun remboursement, la somme versée restant définitivement acquise à MCM ACADEMY. Au cas où l’intégralité de la somme relative à la formation retenue n’a pas été réglée, le solde serait immédiatement exigible.</span>
+                                    </p>
+                                    <p class="ql-align-justify" style="text-align: left; -webkit-font-smoothing: antialiased; margin: 0px 0px 20px; cursor: text; padding: 0px; counter-reset: list-1 0 list-2 0 list-3 0 list-4 0 list-5 0 list-6 0 list-7 0 list-8 0 list-9 0;">
+                                        <span style="-webkit-font-smoothing: antialiased; background-color: transparent; color: rgb(0, 0, 0);">5.8 En cas d’annulation de la formation, pour quelque raison que ce soit, le Candidat se verra proposer plusieurs autres dates de session de formation.</span>
+                                    </p>
+                                    <p class="ql-align-justify" style="text-align: left; -webkit-font-smoothing: antialiased; margin: 0px 0px 20px; cursor: text; padding: 0px; counter-reset: list-1 0 list-2 0 list-3 0 list-4 0 list-5 0 list-6 0 list-7 0 list-8 0 list-9 0;">
+                                        <span style="-webkit-font-smoothing: antialiased; background-color: transparent; color: rgb(0, 0, 0);">5.9 La formation en ligne</span>
+                                    </p>
+                                    <p class="ql-align-justify" style="text-align: left; -webkit-font-smoothing: antialiased; margin: 0px 0px 20px; cursor: text; padding: 0px; counter-reset: list-1 0 list-2 0 list-3 0 list-4 0 list-5 0 list-6 0 list-7 0 list-8 0 list-9 0;">
+                                        <span style="-webkit-font-smoothing: antialiased; background-color: transparent; color: rgb(0, 0, 0);">5.9.1 La formation en ligne de type e-learning, comprend notamment des questions-réponses, des vidéos, un service de chat entre apprenants, un service de question-réponse à un formateur à distance.</span>
+                                    </p>
+                                    <p class="ql-align-justify" style="text-align: left; -webkit-font-smoothing: antialiased; margin: 0px 0px 20px; cursor: text; padding: 0px; counter-reset: list-1 0 list-2 0 list-3 0 list-4 0 list-5 0 list-6 0 list-7 0 list-8 0 list-9 0;">
+                                        <span style="-webkit-font-smoothing: antialiased; background-color: transparent; color: rgb(0, 0, 0);">5.9.2 Le formateur à distance répondra aux questions dans les meilleurs délais.</span>
+                                    </p>
+                                    <p class="ql-align-justify" style="text-align: left; -webkit-font-smoothing: antialiased; margin: 0px 0px 20px; cursor: text; padding: 0px; counter-reset: list-1 0 list-2 0 list-3 0 list-4 0 list-5 0 list-6 0 list-7 0 list-8 0 list-9 0;">
+                                        <span style="-webkit-font-smoothing: antialiased; background-color: transparent; color: rgb(0, 0, 0);"> 5.9.3 Le Candidat peut interrompre à tout moment la formation en ligne pour la   reprendre ultérieurement. Le candidat aura accès à la formation en ligne pour une durée ne pouvant dépasser 90 jours à compter soit de la date de première connexion ou de la date d’examen. </span>
+                                    </p>
+                                    <p class="ql-align-justify" style="text-align: left; -webkit-font-smoothing: antialiased; margin: 0px 0px 20px; cursor: text; padding: 0px; counter-reset: list-1 0 list-2 0 list-3 0 list-4 0 list-5 0 list-6 0 list-7 0 list-8 0 list-9 0;">
+                                        <span style="-webkit-font-smoothing: antialiased; background-color: transparent; color: rgb(0, 0, 0);">5.10 En cas d’échec à l’examen officiel, le Candidat ne devra pas suivre de nouveau toute la formation. Il devra néanmoins justifier de l’attestation de formation attestant qu’il a suivi de manière assidue les 70 h de formation.</span>
+                                    </p>
+                                    <p class="ql-align-justify" style="text-align: left; -webkit-font-smoothing: antialiased; margin: 0px 0px 20px; cursor: text; padding: 0px; counter-reset: list-1 0 list-2 0 list-3 0 list-4 0 list-5 0 list-6 0 list-7 0 list-8 0 list-9 0;">
+                                        <span style="-webkit-font-smoothing: antialiased; background-color: transparent; color: rgb(0, 0, 0);">5.11 L’espace dédié au Candidat sera définitivement désactivé à compter de la notification de la réussite à l’examen officiel final. Le candidat ne pourra plus avoir accès à son compte et ne pourra plus bénéficier du Service réglé.</span>
+                                    </p>
+                                    <p class="ql-align-justify" style="text-align: left; -webkit-font-smoothing: antialiased; margin: 0px 0px 20px; cursor: text; padding: 0px; counter-reset: list-1 0 list-2 0 list-3 0 list-4 0 list-5 0 list-6 0 list-7 0 list-8 0 list-9 0;">
+                                        <span style="-webkit-font-smoothing: antialiased; background-color: transparent; color: rgb(0, 0, 0);">5.12 Le candidat doit prévoir pour le passage de l’examen une disponibilité de trois heures ininterrompues.</span>
+                                    </p>
+                                    <p class="ql-align-justify" style="text-align: left; -webkit-font-smoothing: antialiased; margin: 0px 0px 20px; cursor: text; padding: 0px; counter-reset: list-1 0 list-2 0 list-3 0 list-4 0 list-5 0 list-6 0 list-7 0 list-8 0 list-9 0;">
+                                        <span style="-webkit-font-smoothing: antialiased; background-color: transparent; color: rgb(0, 0, 0);">5.13 En cas d’absence à un examen, le candidat devra régler un montant forfaitaire de 206 euros à la chambre des métiers pour pouvoir se représenter à nouveau à cet examen.</span>
+                                    </p>
+                                    <p style="text-align: left; -webkit-font-smoothing: antialiased; margin: 0px 0px 20px; cursor: text; padding: 0px; counter-reset: list-1 0 list-2 0 list-3 0 list-4 0 list-5 0 list-6 0 list-7 0 list-8 0 list-9 0;">
+                                        <span style="-webkit-font-smoothing: antialiased; background-color: transparent; color: rgb(0, 0, 0);">5.13 Le Candidat accepte par les présentes que les formations proposées sont susceptibles d’être modifiées en fonction des évolutions législatives et de l’enrichissement des contenus.</span>
+                                    </p>
+                                    <p style="text-align: left; -webkit-font-smoothing: antialiased; margin: 0px 0px 20px; cursor: text; padding: 0px; counter-reset: list-1 0 list-2 0 list-3 0 list-4 0 list-5 0 list-6 0 list-7 0 list-8 0 list-9 0;">
+                                        <span style="-webkit-font-smoothing: antialiased; font-weight: bolder; background-color: transparent; color: rgb(0, 0, 0);">ARTICLE 6 – TARIFS ET PAIEMENT</span>
+                                    </p>
+                                    <p class="ql-align-justify" style="text-align: left; -webkit-font-smoothing: antialiased; margin: 0px 0px 20px; cursor: text; padding: 0px; counter-reset: list-1 0 list-2 0 list-3 0 list-4 0 list-5 0 list-6 0 list-7 0 list-8 0 list-9 0;">
+                                        <span style="-webkit-font-smoothing: antialiased; background-color: transparent; color: rgb(0, 0, 0);">6.1 L’utilisation du Service est fournie à titre onéreux. Les tarifs appliqués sont en permanence précisés clairement sur le Site pour tout type de formation envisagée, ou pour toute inscription à un examen.</span>
+                                    </p>
+                                    <p class="ql-align-justify" style="text-align: left; -webkit-font-smoothing: antialiased; margin: 0px 0px 20px; cursor: text; padding: 0px; counter-reset: list-1 0 list-2 0 list-3 0 list-4 0 list-5 0 list-6 0 list-7 0 list-8 0 list-9 0;">
+                                        <span style="-webkit-font-smoothing: antialiased; background-color: transparent; color: rgb(0, 0, 0);">6.2 Les tarifs indiqués ne sont pas soumis à la taxe sur la valeur ajoutée.</span>
+                                    </p>
+                                    <p class="ql-align-justify" style="text-align: left; -webkit-font-smoothing: antialiased; margin: 0px 0px 20px; cursor: text; padding: 0px; counter-reset: list-1 0 list-2 0 list-3 0 list-4 0 list-5 0 list-6 0 list-7 0 list-8 0 list-9 0;">
+                                        <span style="-webkit-font-smoothing: antialiased; background-color: transparent; color: rgb(0, 0, 0);">6.3 MCM ACADEMY met notamment à disposition des Candidats un mode de paiement par carte bancaire, règlement sécurisé par un module de type SSL ( Secure socket layer).Le compte du Candidat sera débité dès le règlement effectué.</span>
+                                    </p>
+                                    <p class="ql-align-justify" style="text-align: left; -webkit-font-smoothing: antialiased; margin: 0px 0px 20px; cursor: text; padding: 0px; counter-reset: list-1 0 list-2 0 list-3 0 list-4 0 list-5 0 list-6 0 list-7 0 list-8 0 list-9 0;">
+                                        <span style="-webkit-font-smoothing: antialiased; background-color: transparent; color: rgb(0, 0, 0);">6.4 Le Candidat est expressément informé que toute commande de Service ne peut faire l’objet d’aucun remboursement, sauf en cas de force majeure.</span>
+                                    </p>
+                                    <p class="ql-align-justify" style="text-align: left; -webkit-font-smoothing: antialiased; margin: 0px 0px 20px; cursor: text; padding: 0px; counter-reset: list-1 0 list-2 0 list-3 0 list-4 0 list-5 0 list-6 0 list-7 0 list-8 0 list-9 0;">
+                                        <span style="-webkit-font-smoothing: antialiased; background-color: transparent; color: rgb(0, 0, 0);">6.5 Le Candidat peut aussi se voir offrir un règlement en deux fois exclusivement par carte bancaire.</span>
+                                    </p>
+                                    <p class="ql-align-justify" style="text-align: left; -webkit-font-smoothing: antialiased; margin: 0px 0px 20px; cursor: text; padding: 0px; counter-reset: list-1 0 list-2 0 list-3 0 list-4 0 list-5 0 list-6 0 list-7 0 list-8 0 list-9 0;">
+                                        <span style="-webkit-font-smoothing: antialiased; background-color: transparent; color: rgb(0, 0, 0);">6.6 Les modalités de règlement, pour chacune de ces options, sont définies en ligne, avant validation de la commande.</span>
+                                    </p>
+                                    <p class="ql-align-justify" style="text-align: left; -webkit-font-smoothing: antialiased; margin: 0px 0px 20px; cursor: text; padding: 0px; counter-reset: list-1 0 list-2 0 list-3 0 list-4 0 list-5 0 list-6 0 list-7 0 list-8 0 list-9 0;">
+                                        <span style="-webkit-font-smoothing: antialiased; background-color: transparent; color: rgb(0, 0, 0);">6.7 En cas de retard de paiement et de versement des sommes dues par le Candidat au-delà du délai ci-dessus fixé, des pénalités de retard calculées au taux légal sur la base du solde HT restant dû seront acquises automatiquement et de plein droit au Prestataire, sans formalité aucune ni mise en demeure préalable.</span>
+                                    </p>
+                                    <p class="ql-align-justify" style="text-align: left; -webkit-font-smoothing: antialiased; margin: 0px 0px 20px; cursor: text; padding: 0px; counter-reset: list-1 0 list-2 0 list-3 0 list-4 0 list-5 0 list-6 0 list-7 0 list-8 0 list-9 0;">
+                                        <span style="-webkit-font-smoothing: antialiased; background-color: transparent; color: rgb(0, 0, 0);">6.8 Le retard de paiement entraînera l’exigibilité immédiate de l’intégralité des sommes dues par le Candidat, sans préjudice de toute autre action que MCM ACADEMY serait en droit d’intenter, à ce titre, à l’encontre du Candidat.</span>
+                                    </p>
+                                    <p class="ql-align-justify" style="text-align: left; -webkit-font-smoothing: antialiased; margin: 0px 0px 20px; cursor: text; padding: 0px; counter-reset: list-1 0 list-2 0 list-3 0 list-4 0 list-5 0 list-6 0 list-7 0 list-8 0 list-9 0;">
+                                        <span style="-webkit-font-smoothing: antialiased; background-color: transparent; color: rgb(0, 0, 0);">6.9 En outre, MCM ACADEMY se réserve le droit, en cas de non-respect des conditions de paiement figurant ci-dessus, de suspendre ou d’annuler la fourniture du Service commandé par le Candidat et/ou de suspendre l’exécution de ses obligations.</span>
+                                    </p>
+                                    <p class="ql-align-justify" style="text-align: left; -webkit-font-smoothing: antialiased; margin: 0px 0px 20px; cursor: text; padding: 0px; counter-reset: list-1 0 list-2 0 list-3 0 list-4 0 list-5 0 list-6 0 list-7 0 list-8 0 list-9 0;">
+                                        <span style="-webkit-font-smoothing: antialiased; background-color: transparent; color: rgb(0, 0, 0);">6.10 Tous les débours, notamment les frais de déplacement ou les frais de connexion au réseau Internet, restent à la charge du Candidat.</span>
+                                    </p>
+                                    <p class="ql-align-justify" style="text-align: left; -webkit-font-smoothing: antialiased; margin: 0px 0px 20px; cursor: text; padding: 0px; counter-reset: list-1 0 list-2 0 list-3 0 list-4 0 list-5 0 list-6 0 list-7 0 list-8 0 list-9 0;">
+                                        <span style="-webkit-font-smoothing: antialiased; background-color: transparent; color: rgb(0, 0, 0);">6.11 En cas de règlement échelonné ou de financement du Service, il est précisé qu’aucun accès au centre d’examen, pour ce qui concerne l’examen officiel, ne sera autorisé si le solde des sommes restant dû n’est pas préalablement réglé.</span>
+                                    </p>
+                                    <p style="text-align: left; -webkit-font-smoothing: antialiased; margin: 0px 0px 20px; cursor: text; padding: 0px; counter-reset: list-1 0 list-2 0 list-3 0 list-4 0 list-5 0 list-6 0 list-7 0 list-8 0 list-9 0;">
+                                        <br style="-webkit-font-smoothing: antialiased;"/>
+                                    </p>
+                                    <p style="text-align: left; -webkit-font-smoothing: antialiased; margin: 0px 0px 20px; cursor: text; padding: 0px; counter-reset: list-1 0 list-2 0 list-3 0 list-4 0 list-5 0 list-6 0 list-7 0 list-8 0 list-9 0;">
+                                        <span style="-webkit-font-smoothing: antialiased; font-weight: bolder; background-color: transparent; color: rgb(0, 0, 0);">ARTICLE 8 – TITULARITÉ DES DROITS</span>
+                                    </p>
+                                    <p style="text-align: left; -webkit-font-smoothing: antialiased; margin: 0px 0px 20px; cursor: text; padding: 0px; counter-reset: list-1 0 list-2 0 list-3 0 list-4 0 list-5 0 list-6 0 list-7 0 list-8 0 list-9 0;">
+                                        <span style="-webkit-font-smoothing: antialiased; background-color: transparent; color: rgb(0, 0, 0);">8.1. MCM ACADEMY assure le Candidat être titulaire de tous les droits de propriété intellectuelle attachés au contenant et au contenu du Site. Tous les éléments du Site sont protégés au titre de la propriété intellectuelle.</span>
+                                    </p>
+                                    <p style="text-align: left; -webkit-font-smoothing: antialiased; margin: 0px 0px 20px; cursor: text; padding: 0px; counter-reset: list-1 0 list-2 0 list-3 0 list-4 0 list-5 0 list-6 0 list-7 0 list-8 0 list-9 0;">
+                                        <span style="-webkit-font-smoothing: antialiased; background-color: transparent; color: rgb(0, 0, 0);">8.2 Plus précisément, les textes, images, représentations graphiques, vidéos, sans que cette liste soit exhaustive, ne peuvent être reproduits sur quelque support que ce soit et quel qu’en soit l’usage, sans autorisation préalable et expresse de MCM ACADEMY.</span>
+                                    </p>
+                                    <p style="text-align: left; -webkit-font-smoothing: antialiased; margin: 0px 0px 20px; cursor: text; padding: 0px; counter-reset: list-1 0 list-2 0 list-3 0 list-4 0 list-5 0 list-6 0 list-7 0 list-8 0 list-9 0;">
+                                        <span style="-webkit-font-smoothing: antialiased; background-color: transparent; color: rgb(0, 0, 0);">8.3 Il est formellement prohibé de dupliquer le contenu du Site, ou de le partager, de quelque manière que ce soit.</span>
+                                    </p>
+                                    <p style="text-align: left; -webkit-font-smoothing: antialiased; margin: 0px 0px 20px; cursor: text; padding: 0px; counter-reset: list-1 0 list-2 0 list-3 0 list-4 0 list-5 0 list-6 0 list-7 0 list-8 0 list-9 0;">
+                                        <span style="-webkit-font-smoothing: antialiased; background-color: transparent; color: rgb(0, 0, 0);">8.4 Il est en outre rappelé que toute intrusion illicite dans l’outil d’administration (le back office) est interdite.</span>
+                                    </p>
+                                    <p style="text-align: left; -webkit-font-smoothing: antialiased; margin: 0px 0px 20px; cursor: text; padding: 0px; counter-reset: list-1 0 list-2 0 list-3 0 list-4 0 list-5 0 list-6 0 list-7 0 list-8 0 list-9 0;">
+                                        <span style="-webkit-font-smoothing: antialiased; background-color: transparent; color: rgb(0, 0, 0);">8.5 il est expressément convenu que toute extraction de contenus appartenant à MCM ACADEMY, qualitative ou quantitative, à des fins privées ou commerciales est strictement interdite.</span>
+                                    </p>
+                                    <p style="text-align: left; -webkit-font-smoothing: antialiased; margin: 0px 0px 20px; cursor: text; padding: 0px; counter-reset: list-1 0 list-2 0 list-3 0 list-4 0 list-5 0 list-6 0 list-7 0 list-8 0 list-9 0;">
+                                        <span style="-webkit-font-smoothing: antialiased; background-color: transparent; color: rgb(0, 0, 0);">8.6. Le Candidat s’interdit en conséquence d’utiliser les signes distinctifs de MCM ACADEMY à toutes fins et de procéder</span>
+                                    </p>
+                                    <p style="text-align: left; -webkit-font-smoothing: antialiased; margin: 0px 0px 20px; cursor: text; padding: 0px; counter-reset: list-1 0 list-2 0 list-3 0 list-4 0 list-5 0 list-6 0 list-7 0 list-8 0 list-9 0;">
+                                        <span style="-webkit-font-smoothing: antialiased; background-color: transparent; color: rgb(0, 0, 0);">8.6.1 à la réservation d’un nom de domaine identique ou similaire, toutes extensions    confondues</span>
+                                    </p>
+                                    <p style="text-align: left; -webkit-font-smoothing: antialiased; margin: 0px 0px 20px; cursor: text; padding: 0px; counter-reset: list-1 0 list-2 0 list-3 0 list-4 0 list-5 0 list-6 0 list-7 0 list-8 0 list-9 0;">
+                                        <span style="-webkit-font-smoothing: antialiased; background-color: transparent; color: rgb(0, 0, 0);">            8.6.2  Au dépôt identique ou similaire d’une marque pour un Service identique ou similaire.</span>
+                                    </p>
+                                    <p style="text-align: left; -webkit-font-smoothing: antialiased; margin: 0px 0px 20px; cursor: text; padding: 0px; counter-reset: list-1 0 list-2 0 list-3 0 list-4 0 list-5 0 list-6 0 list-7 0 list-8 0 list-9 0;">
+                                        <span style="-webkit-font-smoothing: antialiased; font-weight: bolder; background-color: transparent; color: rgb(0, 0, 0);">ARTICLE 9 – OBLIGATIONS ET DROITS DES PARTIES</span>
+                                    </p>
+                                    <p class="ql-align-justify" style="text-align: left; -webkit-font-smoothing: antialiased; margin: 0px 0px 20px; cursor: text; padding: 0px; counter-reset: list-1 0 list-2 0 list-3 0 list-4 0 list-5 0 list-6 0 list-7 0 list-8 0 list-9 0;">
+                                        <span style="-webkit-font-smoothing: antialiased; background-color: transparent; color: rgb(0, 0, 0);">9.1  MCM ACADEMY mettra en œuvre, dans le cadre de son obligation de moyens, toutes les ressources humaines et matérielles dont elle dispose afin de satisfaire le Service attendu par le Candidat, et de respecter une continuité dans la fourniture de ce service.</span>
+                                    </p>
+                                    <p class="ql-align-justify" style="text-align: left; -webkit-font-smoothing: antialiased; margin: 0px 0px 20px; cursor: text; padding: 0px; counter-reset: list-1 0 list-2 0 list-3 0 list-4 0 list-5 0 list-6 0 list-7 0 list-8 0 list-9 0;">
+                                        <span style="-webkit-font-smoothing: antialiased; background-color: transparent; color: rgb(0, 0, 0);">9.2 MCM ACADEMY s’interdit de divulguer, sauf dans le cadre d’obligations judiciaires ou sur injonction de toute autorité habilitée ou avec accord du candidat, toute donnée à caractère personnel à des tiers.</span>
+                                    </p>
+                                    <p class="ql-align-justify" style="text-align: left; -webkit-font-smoothing: antialiased; margin: 0px 0px 20px; cursor: text; padding: 0px; counter-reset: list-1 0 list-2 0 list-3 0 list-4 0 list-5 0 list-6 0 list-7 0 list-8 0 list-9 0;">
+                                        <span style="-webkit-font-smoothing: antialiased; background-color: transparent; color: rgb(0, 0, 0);">9.3A défaut de réserves ou réclamations expressément émises par le Candidat lors de la réception et de l’utilisation du Service, celui-ci sera réputé conforme à la commande, en quantité et qualité.</span>
+                                    </p>
+                                    <p class="ql-align-justify" style="text-align: left; -webkit-font-smoothing: antialiased; margin: 0px 0px 20px; cursor: text; padding: 0px; counter-reset: list-1 0 list-2 0 list-3 0 list-4 0 list-5 0 list-6 0 list-7 0 list-8 0 list-9 0;">
+                                        <span style="-webkit-font-smoothing: antialiased; background-color: transparent; color: rgb(0, 0, 0);">9.4  Le Candidat s’oblige à fournir des informations fidèles et sincères lors de l’inscription et tout au long de la relation contractuelle. La véracité des informations saisies engage la seule responsabilité du Candidat.</span>
+                                    </p>
+                                    <p class="ql-align-justify" style="text-align: left; -webkit-font-smoothing: antialiased; margin: 0px 0px 20px; cursor: text; padding: 0px; counter-reset: list-1 0 list-2 0 list-3 0 list-4 0 list-5 0 list-6 0 list-7 0 list-8 0 list-9 0;">
+                                        <span style="-webkit-font-smoothing: antialiased; background-color: transparent; color: rgb(0, 0, 0);">9.5 Le candidat s’engage à ne pas utiliser le Site ou le Service pour une finalité sans relation avec celles rappelées à l’article 1 des présentes Conditions.</span>
+                                    </p>
+                                    <p class="ql-align-justify" style="text-align: left; -webkit-font-smoothing: antialiased; margin: 0px 0px 20px; cursor: text; padding: 0px; counter-reset: list-1 0 list-2 0 list-3 0 list-4 0 list-5 0 list-6 0 list-7 0 list-8 0 list-9 0;">
+                                        <span style="-webkit-font-smoothing: antialiased; background-color: transparent; color: rgb(0, 0, 0);">9.6 Le candidat s’engage à ne pas utiliser, reproduire ou revendre le Service mis à sa disposition. A défaut, MCM ACADEMY procédera sans préavis à la suppression de son compte. MCM ACADEMY se réserve le droit d’engager la responsabilité devant les juridictions compétentes en cas d’utilisation frauduleuse par le Candidat du Service fourni.</span>
+                                    </p>
+                                    <p class="ql-align-justify" style="text-align: left; -webkit-font-smoothing: antialiased; margin: 0px 0px 20px; cursor: text; padding: 0px; counter-reset: list-1 0 list-2 0 list-3 0 list-4 0 list-5 0 list-6 0 list-7 0 list-8 0 list-9 0;">
+                                        <span style="-webkit-font-smoothing: antialiased; background-color: transparent; color: rgb(0, 0, 0);">9.7 MCM ACADEMY se réserve également le droit, en cas de non-respect délibéré des obligations inhérentes aux présentes, de procéder à la suspension ou à la suppression pure et simple, sans préavis, et sans information préalable, du compte de tout Candidat, sans que ce dernier ne puisse se prévaloir d’aucun préjudice.</span>
+                                    </p>
+                                    <p class="ql-align-justify" style="text-align: left; -webkit-font-smoothing: antialiased; margin: 0px 0px 20px; cursor: text; padding: 0px; counter-reset: list-1 0 list-2 0 list-3 0 list-4 0 list-5 0 list-6 0 list-7 0 list-8 0 list-9 0;">
+                                        <span style="-webkit-font-smoothing: antialiased; background-color: transparent; color: rgb(0, 0, 0);">9.8 Dans l’hypothèse visée à l’article 9.7, MCM ACADEMY pourra le cas échéant refuser toute nouvelle inscription avec les mêmes coordonnées, notamment la même adresse de courrier électronique ou la même adresse IP (Internet Protocol).</span>
+                                    </p>
+                                    <p class="ql-align-justify" style="text-align: left; -webkit-font-smoothing: antialiased; margin: 0px 0px 20px; cursor: text; padding: 0px; counter-reset: list-1 0 list-2 0 list-3 0 list-4 0 list-5 0 list-6 0 list-7 0 list-8 0 list-9 0;">
+                                        <span style="-webkit-font-smoothing: antialiased; background-color: transparent; color: rgb(0, 0, 0);">9.9. Le Candidat reconnaît avoir eu communication, préalablement à la passation de sa commande et à la conclusion du contrat, d’une manière lisible et compréhensible, des présentes Conditions et de toutes les informations listées à l’article L.121-17 du Code de la consommation, et notamment les informations suivantes :</span>
+                                    </p>
+                                    <p style="text-align: left; -webkit-font-smoothing: antialiased; margin: 0px 0px 20px; cursor: text; padding: 0px; counter-reset: list-1 0 list-2 0 list-3 0 list-4 0 list-5 0 list-6 0 list-7 0 list-8 0 list-9 0;">
+                                        <span style="-webkit-font-smoothing: antialiased; background-color: transparent; color: rgb(0, 0, 0);">9.9.1 Les caractéristiques essentielles du Service, compte tenu du support de communication utilisé et du Service concerné ;</span>
+                                    </p>
+                                    <p style="text-align: left; -webkit-font-smoothing: antialiased; margin: 0px 0px 20px; cursor: text; padding: 0px; counter-reset: list-1 0 list-2 0 list-3 0 list-4 0 list-5 0 list-6 0 list-7 0 list-8 0 list-9 0;">
+                                        <span style="-webkit-font-smoothing: antialiased; background-color: transparent; color: rgb(0, 0, 0);">9.9.2 Le prix du Service ;</span>
+                                    </p>
+                                    <p style="text-align: left; -webkit-font-smoothing: antialiased; margin: 0px 0px 20px; cursor: text; padding: 0px; counter-reset: list-1 0 list-2 0 list-3 0 list-4 0 list-5 0 list-6 0 list-7 0 list-8 0 list-9 0;">
+                                        <span style="-webkit-font-smoothing: antialiased; background-color: transparent; color: rgb(0, 0, 0);">9.9.3 En l’absence d’exécution immédiate du contrat, la date ou le délai auquel MCM ACADEMY s’engage à fournir les Services commandés ;</span>
+                                    </p>
+                                    <p style="text-align: left; -webkit-font-smoothing: antialiased; margin: 0px 0px 20px; cursor: text; padding: 0px; counter-reset: list-1 0 list-2 0 list-3 0 list-4 0 list-5 0 list-6 0 list-7 0 list-8 0 list-9 0;">
+                                        <span style="-webkit-font-smoothing: antialiased; background-color: transparent; color: rgb(0, 0, 0);">9.9.4 Les informations relatives à l’identité de MCM ACADEMY, à ses coordonnées postales, téléphoniques et électroniques, et à ses activités ;</span>
+                                    </p>
+                                    <p style="text-align: left; -webkit-font-smoothing: antialiased; margin: 0px 0px 20px; cursor: text; padding: 0px; counter-reset: list-1 0 list-2 0 list-3 0 list-4 0 list-5 0 list-6 0 list-7 0 list-8 0 list-9 0;">
+                                        <span style="-webkit-font-smoothing: antialiased; background-color: transparent; color: rgb(0, 0, 0);">9.9.5 Les informations relatives aux garanties légales et contractuelles et à leurs modalités de mise en œuvre ;</span>
+                                    </p>
+                                    <p style="text-align: left; -webkit-font-smoothing: antialiased; margin: 0px 0px 20px; cursor: text; padding: 0px; counter-reset: list-1 0 list-2 0 list-3 0 list-4 0 list-5 0 list-6 0 list-7 0 list-8 0 list-9 0;">
+                                        <span style="-webkit-font-smoothing: antialiased; background-color: transparent; color: rgb(0, 0, 0);">9.9.6 Les fonctionnalités du contenu numérique ;</span>
+                                    </p>
+                                    <p style="text-align: left; -webkit-font-smoothing: antialiased; margin: 0px 0px 20px; cursor: text; padding: 0px; counter-reset: list-1 0 list-2 0 list-3 0 list-4 0 list-5 0 list-6 0 list-7 0 list-8 0 list-9 0;">
+                                        <span style="-webkit-font-smoothing: antialiased; background-color: transparent; color: rgb(0, 0, 0);">9.9.7 Les informations relatives au droit de rétractation (existence, conditions, délai, modalités d’exercice de ce droit et formulaire type de rétractation), aux modalités de résiliation et autres conditions contractuelles importantes ;</span>
+                                    </p>
+                                    <p class="ql-align-justify" style="text-align: left; -webkit-font-smoothing: antialiased; margin: 0px 0px 20px; cursor: text; padding: 0px; counter-reset: list-1 0 list-2 0 list-3 0 list-4 0 list-5 0 list-6 0 list-7 0 list-8 0 list-9 0;">
+                                        <span style="-webkit-font-smoothing: antialiased; background-color: transparent; color: rgb(0, 0, 0);">9.10 Le Candidat dispose d’un droit à rétractation de quatorze jours à compter de la date d’achat du Service. Il doit être exécuté selon le formulaire accessible en annexe, qui doit être adressé dans ce délai par lettre recommandée avec demande d’avis de réception. Le Candidat sera remboursé dans le délai de quatorze jours à compter de la réception de la notification. Ce droit ne peut plus être exercé dès connexion du candidat au Service, conformément aux dispositions de l’article L.121-21-8 du Code la consommation.</span>
+                                    </p>
+                                    <p style="text-align: left; -webkit-font-smoothing: antialiased; margin: 0px 0px 20px; cursor: text; padding: 0px; counter-reset: list-1 0 list-2 0 list-3 0 list-4 0 list-5 0 list-6 0 list-7 0 list-8 0 list-9 0;">
+                                        <span style="-webkit-font-smoothing: antialiased; font-weight: bolder; background-color: transparent; color: rgb(0, 0, 0);">ARTICLE 10– RESPONSABILITÉ</span>
+                                    </p>
+                                    <p style="text-align: left; -webkit-font-smoothing: antialiased; margin: 0px 0px 20px; cursor: text; padding: 0px; counter-reset: list-1 0 list-2 0 list-3 0 list-4 0 list-5 0 list-6 0 list-7 0 list-8 0 list-9 0;">
+                                        <br style="-webkit-font-smoothing: antialiased;"/>
+                                    </p>
+                                    <p style="text-align: left; -webkit-font-smoothing: antialiased; margin: 0px 0px 20px; cursor: text; padding: 0px; counter-reset: list-1 0 list-2 0 list-3 0 list-4 0 list-5 0 list-6 0 list-7 0 list-8 0 list-9 0;">
+                                        <span style="-webkit-font-smoothing: antialiased; background-color: transparent; color: rgb(0, 0, 0);">10.1 Le Service fourni par l’intermédiaire du Site de MCM ACADEMY est conforme à la réglementation en vigueur en France.</span>
+                                    </p>
+                                    <p style="text-align: left; -webkit-font-smoothing: antialiased; margin: 0px 0px 20px; cursor: text; padding: 0px; counter-reset: list-1 0 list-2 0 list-3 0 list-4 0 list-5 0 list-6 0 list-7 0 list-8 0 list-9 0;">
+                                        <span style="-webkit-font-smoothing: antialiased; background-color: transparent; color: rgb(0, 0, 0);">10.2 En tout état de cause, au cas où la responsabilité de MCM ACADEMY était recherchée, celle-ci ne pourrait en aucun cas être pécuniairement engagée au-delà du montant total de la prestation achetée par le Candidat durant l’année précédant la date de première réclamation. </span>
+                                    </p>
+                                    <p style="text-align: left; -webkit-font-smoothing: antialiased; margin: 0px 0px 20px; cursor: text; padding: 0px; counter-reset: list-1 0 list-2 0 list-3 0 list-4 0 list-5 0 list-6 0 list-7 0 list-8 0 list-9 0;">
+                                        <span style="-webkit-font-smoothing: antialiased; font-weight: bolder; background-color: transparent; color: rgb(0, 0, 0);">ARTICLE 11 – INTEGRALITE ET MODIFICATION</span>
+                                    </p>
+                                    <p class="ql-align-justify" style="text-align: left; -webkit-font-smoothing: antialiased; margin: 0px 0px 20px; cursor: text; padding: 0px; counter-reset: list-1 0 list-2 0 list-3 0 list-4 0 list-5 0 list-6 0 list-7 0 list-8 0 list-9 0;">
+                                        <span style="-webkit-font-smoothing: antialiased; background-color: transparent; color: rgb(0, 0, 0);">11.1 Les présentes Conditions conclues entre MCM ACADEMY et le Candidat expriment l’intégralité des obligations des Parties.</span>
+                                    </p>
+                                    <p class="ql-align-justify" style="text-align: left; -webkit-font-smoothing: antialiased; margin: 0px 0px 20px; cursor: text; padding: 0px; counter-reset: list-1 0 list-2 0 list-3 0 list-4 0 list-5 0 list-6 0 list-7 0 list-8 0 list-9 0;">
+                                        <span style="-webkit-font-smoothing: antialiased; background-color: transparent; color: rgb(0, 0, 0);">11.2 Aucun document technique, publicitaire ou commercial d’aucune sorte, aucune correspondance antérieure à l’acceptation des présentes Conditions, ne peut engendrer d’obligations au titre desdites Conditions.</span>
+                                    </p>
+                                    <p class="ql-align-justify" style="text-align: left; -webkit-font-smoothing: antialiased; margin: 0px 0px 20px; cursor: text; padding: 0px; counter-reset: list-1 0 list-2 0 list-3 0 list-4 0 list-5 0 list-6 0 list-7 0 list-8 0 list-9 0;">
+                                        <span style="-webkit-font-smoothing: antialiased; background-color: transparent; color: rgb(0, 0, 0);">11.3 En cas d’évolution ou de modification des présentes Conditions en cours de contrat, le Candidat en sera averti lors de la connexion, et sera invité à les valider.</span>
+                                    </p>
+                                    <p style="text-align: left; -webkit-font-smoothing: antialiased; margin: 0px 0px 20px; cursor: text; padding: 0px; counter-reset: list-1 0 list-2 0 list-3 0 list-4 0 list-5 0 list-6 0 list-7 0 list-8 0 list-9 0;">
+                                        <span style="-webkit-font-smoothing: antialiased; font-weight: bolder; background-color: transparent; color: rgb(0, 0, 0);">ARTICLE 12 – NON VALIDITE PARTIELLE</span>
+                                    </p>
+                                    <p class="ql-align-justify" style="text-align: left; -webkit-font-smoothing: antialiased; margin: 0px 0px 20px; cursor: text; padding: 0px; counter-reset: list-1 0 list-2 0 list-3 0 list-4 0 list-5 0 list-6 0 list-7 0 list-8 0 list-9 0;">
+                                        <span style="-webkit-font-smoothing: antialiased; background-color: transparent; color: rgb(0, 0, 0);">12.1 Si une stipulation particulière des présentes Conditions est tenue pour non valide ou déclarée comme telle par une décision ayant autorité de la chose jugée d’une juridiction compétente, les autres stipulations garderont toute leur force et leur portée.</span>
+                                    </p>
+                                    <p class="ql-align-justify" style="text-align: left; -webkit-font-smoothing: antialiased; margin: 0px 0px 20px; cursor: text; padding: 0px; counter-reset: list-1 0 list-2 0 list-3 0 list-4 0 list-5 0 list-6 0 list-7 0 list-8 0 list-9 0;">
+                                        <span style="-webkit-font-smoothing: antialiased; background-color: transparent; color: rgb(0, 0, 0);">MCM ACADEMY se chargerait, le cas échéant, de remplacer la ou les stipulations invalidées.</span>
+                                    </p>
+                                    <p style="text-align: left; -webkit-font-smoothing: antialiased; margin: 0px 0px 20px; cursor: text; padding: 0px; counter-reset: list-1 0 list-2 0 list-3 0 list-4 0 list-5 0 list-6 0 list-7 0 list-8 0 list-9 0;">
+                                        <span style="-webkit-font-smoothing: antialiased; font-weight: bolder; background-color: transparent; color: rgb(0, 0, 0);">ARTICLE 13 – DONNEES A CARACTERE PERSONNEL</span>
+                                    </p>
+                                    <p class="ql-align-justify" style="text-align: left; -webkit-font-smoothing: antialiased; margin: 0px 0px 20px; cursor: text; padding: 0px; counter-reset: list-1 0 list-2 0 list-3 0 list-4 0 list-5 0 list-6 0 list-7 0 list-8 0 list-9 0;">
+                                        <br style="-webkit-font-smoothing: antialiased;"/>
+                                    </p>
+                                    <p class="ql-align-justify" style="text-align: left; -webkit-font-smoothing: antialiased; margin: 0px 0px 20px; cursor: text; padding: 0px; counter-reset: list-1 0 list-2 0 list-3 0 list-4 0 list-5 0 list-6 0 list-7 0 list-8 0 list-9 0;">
+                                        <span style="-webkit-font-smoothing: antialiased; background-color: transparent; color: rgb(0, 0, 0);">13.1 Les données concernant le Candidat font l’objet d’un traitement automatisé par MCM ACADEMY.</span>
+                                    </p>
+                                    <p class="ql-align-justify" style="text-align: left; -webkit-font-smoothing: antialiased; margin: 0px 0px 20px; cursor: text; padding: 0px; counter-reset: list-1 0 list-2 0 list-3 0 list-4 0 list-5 0 list-6 0 list-7 0 list-8 0 list-9 0;">
+                                        <span style="-webkit-font-smoothing: antialiased; background-color: transparent; color: rgb(0, 0, 0);">13.2 Conformément à la loi Informatique et Libertés du 6 janvier 1978 modifiée par la loi du 6 août 2004, MCM ACADEMY a procédé à la déclaration des traitements automatisés de données à caractère personnel dont il a la charge et s’engage à respecter les prescriptions légales portant sur l’emploi de ces fichiers conformément a la politique de confidentialité disponible sur le site.</span>
+                                    </p>
+                                    <p style="text-align: left; -webkit-font-smoothing: antialiased; margin: 0px 0px 20px; cursor: text; padding: 0px; counter-reset: list-1 0 list-2 0 list-3 0 list-4 0 list-5 0 list-6 0 list-7 0 list-8 0 list-9 0;">
+                                        <span style="-webkit-font-smoothing: antialiased; font-weight: bolder; background-color: transparent; color: rgb(0, 0, 0);">ARTICLE 14 – LITIGE REPRENDRE LES TERMES DU CONTRAT </span>
+                                    </p>
+                                    <p class="ql-align-justify" style="text-align: left; -webkit-font-smoothing: antialiased; margin: 0px 0px 20px; cursor: text; padding: 0px; counter-reset: list-1 0 list-2 0 list-3 0 list-4 0 list-5 0 list-6 0 list-7 0 list-8 0 list-9 0;">
+                                        <span style="-webkit-font-smoothing: antialiased; background-color: transparent; color: rgb(0, 0, 0);">14.1 Dans l’hypothèse où un litige naîtrait entre MCM ACADEMY et le Candidat du fait de l’exécution ou de l’interprétation du présent contrat, les Parties conviennent préalablement à toute action judiciaire de rechercher une solution amiable par la voie d’une conciliation qui suivra la procédure amiable :</span>
+                                    </p>
+                                    <p class="ql-align-justify" style="text-align: left; -webkit-font-smoothing: antialiased; margin: 0px 0px 20px; cursor: text; padding: 0px; counter-reset: list-1 0 list-2 0 list-3 0 list-4 0 list-5 0 list-6 0 list-7 0 list-8 0 list-9 0;">
+                                        <span style="-webkit-font-smoothing: antialiased; background-color: transparent; color: rgb(0, 0, 0);">14.1.1 Toute réclamation fera l’objet d’un courrier électronique via le formulaire de contact accessible sur le Site ;</span>
+                                    </p>
+                                    <p class="ql-align-justify" style="text-align: left; -webkit-font-smoothing: antialiased; margin: 0px 0px 20px; cursor: text; padding: 0px; counter-reset: list-1 0 list-2 0 list-3 0 list-4 0 list-5 0 list-6 0 list-7 0 list-8 0 list-9 0;">
+                                        <span style="-webkit-font-smoothing: antialiased; background-color: transparent; color: rgb(0, 0, 0);">14.1.2 Le destinataire du courrier électronique s’engage à répondre dans un bref délai ouvré suivant la réception de la réclamation ;</span>
+                                    </p>
+                                    <p class="ql-align-justify" style="text-align: left; -webkit-font-smoothing: antialiased; margin: 0px 0px 20px; cursor: text; padding: 0px; counter-reset: list-1 0 list-2 0 list-3 0 list-4 0 list-5 0 list-6 0 list-7 0 list-8 0 list-9 0;">
+                                        <span style="-webkit-font-smoothing: antialiased; background-color: transparent; color: rgb(0, 0, 0);">14.2 Si une contestation ou un différend ne peut pas être réglés à l’amiable, le litige sera soumis à la juridiction française compétente.</span>
+                                    </p>
+                                    <p style="text-align: left; -webkit-font-smoothing: antialiased; margin: 0px 0px 20px; cursor: text; padding: 0px; counter-reset: list-1 0 list-2 0 list-3 0 list-4 0 list-5 0 list-6 0 list-7 0 list-8 0 list-9 0;">
+                                        <br style="-webkit-font-smoothing: antialiased;"/>
+                                    </p>
+                                    <p style="text-align: left; -webkit-font-smoothing: antialiased; margin: 0px 0px 20px; cursor: text; padding: 0px; counter-reset: list-1 0 list-2 0 list-3 0 list-4 0 list-5 0 list-6 0 list-7 0 list-8 0 list-9 0;">
+                                        <br style="-webkit-font-smoothing: antialiased; color: rgb(60, 72, 78); font-family: Georgia, serif; font-size: 14.3px; letter-spacing: normal; white-space: pre-wrap; background-color: rgb(255, 255, 255);"/>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </t>
+    </template>
+</odoo>
