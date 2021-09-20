@@ -159,9 +159,7 @@
     <xpath expr="//div[@class='col-12 col-xl-8 oe_cart']" position="inside">
       <script>
         function verify_payment_method() {
-          
           stripe_pm = document.getElementById("stripe_pm");
-
           if (stripe_pm) {
             if (stripe_pm.checked == true) {
               document.getElementById("a_pm_shop_checkout").href =
@@ -175,9 +173,7 @@
           cpf_pm = document.getElementById("cpf_pm");
           if (cpf_pm) {
             if (cpf_pm.checked == true) {
-             
-              if (cpf_pm.value == "Formation pro") {
-                
+              if (cpf_pm.value == "Formation pro") {               
                 document.getElementById("a_pm_shop_checkout").href =
                   "https://bit.ly/3nMlm2A";
                 document.getElementById("pm_shop_check").href =
@@ -185,8 +181,7 @@
                 document.getElementById("pm_shop_checkout").href =
                   "https://bit.ly/3nMlm2A";
               }
-              if (cpf_pm.value == "Formation premium") {
-               
+              if (cpf_pm.value == "Formation premium") {              
                 document.getElementById("a_pm_shop_checkout").href =
                   "https://bit.ly/38IxvSa";
                 document.getElementById("pm_shop_check").href =
