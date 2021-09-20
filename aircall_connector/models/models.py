@@ -654,15 +654,19 @@ class ResPartner(models.Model):
 
                         data=json.dumps(data),
                         headers=header)
-
-                    if response.status_code == 404 or response.status_code == 400:
-                        raise ValidationError(
-                            json.loads(response.content)['error'] + ',' + json.loads(response.content)['troubleshoot'])
-
-                    response = json.loads(response.content)
                     if response :
-                        self.air_contact_id = response['contact']['id']
-                    return res
+                        if response.status_code == 404 or response.status_code == 400:
+                            raise ValidationError(
+                                json.loads(response.content)['error'] + ',' + json.loads(response.content)['troubleshoot'])
+                        if response.content:
+                            response = json.loads(response.content)
+                            if response :
+                                self.air_contact_id = response['contact']['id']
+                            return res
+                        else:
+                            return res
+                    else:
+                        return res
                 else:
                     return res
             else:
