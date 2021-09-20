@@ -56,7 +56,7 @@
                           <font color="#000000" style="color: rgb(0, 0, 0);">MCM Academy a tout pour satisfaire vos besoins en formation TAXI en vous offrant un suivi complet, du jour de l’inscription à l’obtention de votre carte professionnelle, et en vous accompagnant dans la création de votre entreprise.</font>
                         </p>
                         <br/>
-                        <a href="#" class="btn btn-primary sh_btn_cm_8 sh_more_btn" data-original-title="" title="" aria-describedby="tooltip878772">EN SAVOIR PLUS</a>
+                        <!-- <a href="#" class="btn btn-primary sh_btn_cm_8 sh_more_btn" data-original-title="" title="" aria-describedby="tooltip878772">EN SAVOIR PLUS</a> -->
                         <a href="#pricing" class="btn btn-primary sh_btn_cm_8 sh_more_btn" data-original-title="" title="" aria-describedby="tooltip694619">S'inscrire</a>
                       </div>
                     </div>
