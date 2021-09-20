@@ -205,5 +205,6 @@ class Partner(models.Model):
                     'email_from': email,
                     'type': "opportunity",
                     'stage_id': stage.id,
+                    'num_dossier': ""
                 })
 

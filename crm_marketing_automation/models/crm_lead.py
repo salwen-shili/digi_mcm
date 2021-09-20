@@ -16,7 +16,7 @@ class CRM(models.Model):
         ('cpf', 'Mon Compte Formation, CPF'),
         ('chpf', 'Région Hauts-de-France, CHPF'),
         ('aif', 'Pôle emploi, AIF'),
-    ], string='Mode de financement', default="cpf")
+    ], string='Mode de financement')
     module_id = fields.Many2one('mcmacademy.module')
     mcm_session_id = fields.Many2one('mcmacademy.session')
     """Affecter les crm lead aux apprenants convenables après l'importation
