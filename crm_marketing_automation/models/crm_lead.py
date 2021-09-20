@@ -33,20 +33,20 @@ class CRM(models.Model):
                     if (partner.numero_cpf) and (partner.numero_cpf == lead.num_dossier):
                         """Changer statut_cpf des fiches client selon
                           statut de dossier nsur edof"""
-                        # if lead.stage_id.name == "En formation":
-                        #     partner.statut_cpf = "in_training"
-                        # if "Annulé" in lead.stage_id.name:
-                        #     partner.statut_cpf = "canceled"
-                        # if lead.stage_id.name == "Sortie de formation":
-                        #     partner.statut_cpf = "out_training"
-                        # if lead.stage_id.name == "Facturé":
-                        #     partner.statut_cpf = "bill"
-                        # if lead.stage_id.name == "Service fait déclaré":
-                        #     partner.statut_cpf = "service_declared"
-                        # if "Service fait validé" in lead.stage_id.name:
-                        #     partner.statut_cpf = "service_validated"
-                        # if lead.stage_id.name == "Annulation titulaire":
-                        #     partner.statut_cpf = "canceled"
+                        if lead.stage_id.name == "En formation":
+                            partner.statut_cpf = "in_training"
+                        if "Annulé" in lead.stage_id.name:
+                            partner.statut_cpf = "canceled"
+                        if lead.stage_id.name == "Sortie de formation":
+                            partner.statut_cpf = "out_training"
+                        if lead.stage_id.name == "Facturé":
+                            partner.statut_cpf = "bill"
+                        if lead.stage_id.name == "Service fait déclaré":
+                            partner.statut_cpf = "service_declared"
+                        if "Service fait validé" in lead.stage_id.name:
+                            partner.statut_cpf = "service_validated"
+                        if lead.stage_id.name == "Annulation titulaire":
+                            partner.statut_cpf = "canceled"
                         lead.sudo().write({
                             'partner_id': partner,
                             'name': partner.name,

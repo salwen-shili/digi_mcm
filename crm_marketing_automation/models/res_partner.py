@@ -19,45 +19,45 @@ class Partner(models.Model):
         partner = super(Partner, self).create(vals)
         return partner
 
-    # def write(self, vals):
-    #
-    #     if 'statut' in vals and self.company_id.id == 2:
-    #         if vals['statut'] == 'canceled':
-    #             self.changestage("Annulé", self)
-    #     if 'statut_cpf' in vals and self.company_id.id == 2:
-    #         # Si statut cpf non traité on classe l'apprenant dans le pipeline du crm  sous etat non traité
-    #         if vals['statut_cpf'] == 'untreated':
-    #             self.changestage("Non traité", self)
-    #         # Si statut cpf validé on classe l'apprenant dans le pipeline du crm  sous etat validé
-    #         if vals['statut_cpf'] == 'validated':
-    #             self.changestage("Validé", self)
-    #         if vals['statut_cpf'] == 'in_training':
-    #             self.changestage("En formation", self)
-    #         if vals['statut_cpf'] == 'out_training':
-    #             self.changestage("Sortie de formation", self)
-    #         if vals['statut_cpf'] == 'service_validated':
-    #             self.changestage("Service fait validé", self)
-    #         if vals['statut_cpf'] == 'service_declared':
-    #             self.changestage("Service fait déclaré", self)
-    #         if vals['statut_cpf'] == 'bill':
-    #             self.changestage("Facturé", self)
-    #         # Si statut cpf non traité on classe l'apprenant dans le pipeline du crm  sous etat non traité
-    #         if vals['statut_cpf'] == 'untreated':
-    #             self.changestage("Non traité", self)
-    #         # Si statut cpf validé on classe l'apprenant dans le pipeline du crm  sous etat validé
-    #         if vals['statut_cpf'] == 'validated':
-    #             self.changestage("Validé", self)
-    #         # Si statut cpf accepté on classe l'apprenant dans le pipeline du crm  sous statut  accepté
-    #         if vals['statut_cpf'] == 'accepted':
-    #             if not (self.session_ville_id) or not (self.date_examen_edof):
-    #                 self.changestage("Choix date d'examen - CPF", self)
-    #         # Si statut cpf annulé on classe l'apprenant dans le pipeline du crm  sous statut  annulé
-    #         if vals['statut_cpf'] == 'canceled':
-    #             self.changestage("Annulé", self)
-    #
-    #     record = super(Partner, self).write(vals)
-    #
-    #     return record
+    def write(self, vals):
+
+        if 'statut' in vals and self.company_id.id == 2:
+            if vals['statut'] == 'canceled':
+                self.changestage("Annulé", self)
+        if 'statut_cpf' in vals and self.company_id.id == 2:
+            # Si statut cpf non traité on classe l'apprenant dans le pipeline du crm  sous etat non traité
+            if vals['statut_cpf'] == 'untreated':
+                self.changestage("Non traité", self)
+            # Si statut cpf validé on classe l'apprenant dans le pipeline du crm  sous etat validé
+            if vals['statut_cpf'] == 'validated':
+                self.changestage("Validé", self)
+            if vals['statut_cpf'] == 'in_training':
+                self.changestage("En formation", self)
+            if vals['statut_cpf'] == 'out_training':
+                self.changestage("Sortie de formation", self)
+            if vals['statut_cpf'] == 'service_validated':
+                self.changestage("Service fait validé", self)
+            if vals['statut_cpf'] == 'service_declared':
+                self.changestage("Service fait déclaré", self)
+            if vals['statut_cpf'] == 'bill':
+                self.changestage("Facturé", self)
+            # Si statut cpf non traité on classe l'apprenant dans le pipeline du crm  sous etat non traité
+            if vals['statut_cpf'] == 'untreated':
+                self.changestage("Non traité", self)
+            # Si statut cpf validé on classe l'apprenant dans le pipeline du crm  sous etat validé
+            if vals['statut_cpf'] == 'validated':
+                self.changestage("Validé", self)
+            # Si statut cpf accepté on classe l'apprenant dans le pipeline du crm  sous statut  accepté
+            if vals['statut_cpf'] == 'accepted':
+                if not (self.session_ville_id) or not (self.date_examen_edof):
+                    self.changestage("Choix date d'examen - CPF", self)
+            # Si statut cpf annulé on classe l'apprenant dans le pipeline du crm  sous statut  annulé
+            if vals['statut_cpf'] == 'canceled':
+                self.changestage("Annulé", self)
+
+        record = super(Partner, self).write(vals)
+
+        return record
 
     def changestage(self, name, partner):
         stage = self.env['crm.stage'].sudo().search([("name", "=", _(name))])
