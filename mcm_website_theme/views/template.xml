@@ -752,7 +752,18 @@
     <template id="mcm_website_sale_cart_total_script" inherit_id="website_sale.total">
         <xpath expr="//div[@id='cart_total']" position="inside">
             <script>
-
+                function verify_checked(){
+                var x=document.getElementById('checkbox_instalment');
+                if(x) {
+                if (document.getElementById('checkbox_instalment').checked==true) {
+                document.getElementById("order_amount_to_pay").style.visibility = 'visible';
+                document.getElementById("order_instalment_number").style.visibility = 'visible';
+                } else {
+                document.getElementById("order_amount_to_pay").style.visibility = 'hidden';
+                document.getElementById("order_instalment_number").style.visibility = 'hidden';
+                }
+                }
+                };
             </script>
         </xpath>
     </template>
