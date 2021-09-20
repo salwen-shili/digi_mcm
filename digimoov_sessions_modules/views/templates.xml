@@ -153,29 +153,44 @@
         </xpath>
         <xpath expr="//div[@class='col-12 col-xl-8 oe_cart']" position="inside">
             <script>
-                function verify_payment_method(){ stripe_pm=document.getElementById('stripe_pm');
-                if (stripe_pm){
-                if (stripe_pm.checked==true) {
-                document.getElementById("pm_shop").href="/shop/checkout?express=1";
-                document.getElementById("pm_shop_check").href="/shop/checkout?express=1";
-                document.getElementById("pm_shop_checkout").href="/shop/checkout?express=1";
-                }
-                } cpf_pm=document.getElementById('cpf_pm');
-                if(cpf_pm){
-                if (cpf_pm.checked==true) { if(cpf_pm.value=='Formation pro')
-                {
-                document.getElementById("pm_shop").href="https://bit.ly/3nMlm2A";
-                document.getElementById("pm_shop_check").href="https://bit.ly/3nMlm2A";
-                document.getElementById("pm_shop_checkout").href="https://bit.ly/3nMlm2A";
-                } if(cpf_pm.value=='Formation premium')
-                {
-                document.getElementById("pm_shop").href="https://bit.ly/38IxvSa";
-                document.getElementById("pm_shop_check").href="https://bit.ly/38IxvSa";
-                document.getElementById("pm_shop_checkout").href="https://bit.ly/38IxvSa";
-                }
-                }
-                }
-                };
+              function verify_payment_method() {
+  console.log("call verify_payment_method");
+  stripe_pm = document.getElementById("stripe_pm");
+
+  if (stripe_pm) {
+    if (stripe_pm.checked == true) {
+      document.getElementById("pm_shop").href = "/shop/checkout?express=1";
+      document.getElementById("pm_shop_check").href =
+        "/shop/checkout?express=1";
+      document.getElementById("pm_shop_checkout").href =
+        "/shop/checkout?express=1";
+    }
+  }
+  cpf_pm = document.getElementById("cpf_pm");
+  if (cpf_pm) {
+    if (cpf_pm.checked == true) {
+      console.log("cpf_pm.checked=true ");
+      if (cpf_pm.value == "Formation pro") {
+        console.log("inside if formation pro ");
+        document.getElementById("a_pm_shop_checkout").href =
+          "https://bit.ly/3nMlm2A";
+        document.getElementById("pm_shop_check").href =
+          "https://bit.ly/3nMlm2A";
+        document.getElementById("pm_shop_checkout").href =
+          "https://bit.ly/3nMlm2A";
+      }
+      if (cpf_pm.value == "Formation premium") {
+        console.log("cpf_pm.value == premuim ");
+        document.getElementById("a_pm_shop_checkout").href =
+          "https://bit.ly/38IxvSa";
+        document.getElementById("pm_shop_check").href =
+          "https://bit.ly/38IxvSa";
+        document.getElementById("pm_shop_checkout").href =
+          "https://bit.ly/38IxvSa";
+      }
+    }
+  }
+}
                 function onchangeTextButton(){
                 if(document.getElementById("pm_shop_text")){
                 //Hide CPF video and details
