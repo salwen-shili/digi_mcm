@@ -62,7 +62,7 @@
                           <br/>
                         </p>
                         <br/>
-                        <a href="#" class="btn btn-primary sh_btn_cm_8 sh_more_btn" data-original-title="" title="" aria-describedby="tooltip878772">En-savoir plus</a>
+                        <!-- <a href="#" class="btn btn-primary sh_btn_cm_8 sh_more_btn" data-original-title="" title="" aria-describedby="tooltip878772">En-savoir plus</a> -->
                         <a href="#pricing" class="btn btn-primary sh_btn_cm_8 sh_more_btn" data-original-title="" title="" aria-describedby="tooltip694619">S'inscrire</a>
                       </div>
                     </div>
@@ -165,7 +165,7 @@
                   </font>
                   <br/>
                   <span class="fa fa-chevron-right" data-original-title="" title="" aria-describedby="tooltip560396" style="font-size: 15px; color: rgb(8, 82, 148);"/>
-                  <!-- <span style="color: rgb(8, 82, 148); font-family: Poppins, sans-serif; font-size: 14px;">&amp;nbsp;En savoir plus</span> -->
+                  <span style="color: rgb(8, 82, 148); font-family: Poppins, sans-serif; font-size: 14px;">&amp;nbsp;En savoir plus</span>
                   <br/>
                 </p>
               </div>
