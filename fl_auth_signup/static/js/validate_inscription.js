@@ -57,8 +57,8 @@ $(document).ready(function () {
   // }
 
   function checkEmail(email, confirm_email) {
+    const pattern = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
     if (email.length > 0) {
-      const pattern = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
       if (email.match(pattern)) {
         $(`#email_container `).removeClass("error-input-field");
         $(`#email_helper `).append("");
@@ -72,7 +72,6 @@ $(document).ready(function () {
     }
 
     if (confirm_email.length > 0) {
-      const pattern = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
       if (confirm_email.match(pattern)) {
         $(`#confirm_email_container `).removeClass("error-input-field");
         $(`#confirm_email_helper `).append("");
@@ -86,11 +85,12 @@ $(document).ready(function () {
     }
     if (email.length > 0 && confirm_email.length > 0) {
       if (email === confirm_email) {
-        console.log("email === confirm_email");
-        $(`#email_container `).removeClass("error-input-field");
-        $(`#email_helper `).append("");
-        $(`#confirm_email_container `).removeClass("error-input-field");
-        $(`#confirm_email_helper `).append("");
+        if (confirm_email.match(pattern)) {
+          $(`#email_container `).removeClass("error-input-field");
+          $(`#email_helper `).append("");
+          $(`#confirm_email_container `).removeClass("error-input-field");
+          $(`#confirm_email_helper `).append("");
+        }
       } else {
         console.log("email !== confirm_email");
         console.log(email, "  ", confirm_email);
