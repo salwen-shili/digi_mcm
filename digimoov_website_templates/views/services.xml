@@ -13,7 +13,9 @@
                                 <div class="row m-0">
                                     <div class="col-lg-6">
                                         <div class="card-shadow ">
-                                            <img data-src="/digimoov_website_templates/static/img/Service client Digimoov.webp" data-srcSafari="/digimoov_website_templates/static/img/services/Service Clientèle Digimoov.jpg" class="img-responsive img img-fluid lazy" data-original-title="" title="" aria-describedby="tooltip508208"/>
+                                            <img t-if="request.website.id==2" data-src="/digimoov_website_templates/static/img/Service client Digimoov.webp" data-srcSafari="/digimoov_website_templates/static/img/services/Service Clientèle Digimoov.jpg" class="img-responsive img img-fluid lazy" data-original-title="" title="" aria-describedby="tooltip508208"/>
+                                            <img t-if="request.website.id==1" data-src="/mcm_website_theme/static/src/img/contact/service comptabilité.png" data-srcSafari="/mcm_website_theme/static/src/img/contact/service comptabilité.png" class="img-responsive img img-fluid lazy" data-original-title="" title="" aria-describedby="tooltip508208"/>
+
                                         </div>
 
                                     </div>
@@ -166,7 +168,9 @@
                                 <div class="row m-0">
                                     <div class="col-lg-6">
                                         <div class="card-shadow ">
-                                            <img data-src="/digimoov_website_templates/static/img/Devenir-Partenaire.webp" data-srcSafari="/digimoov_website_templates/static/img/services/Devenir partenaire de Digimoov.jpg" class="lazy img-responsive img img-fluid " data-original-title="" title="" aria-describedby="tooltip848764"/>
+                                            <img t-if="request.website.id==2" data-src="/digimoov_website_templates/static/img/Devenir-Partenaire.webp" data-srcSafari="/digimoov_website_templates/static/img/services/Devenir partenaire de Digimoov.jpg" class="lazy img-responsive img img-fluid " data-original-title="" title="" aria-describedby="tooltip848764"/>
+                                            <img t-if="request.website.id==1" data-src="/mcm_website_theme/static/src/img/contact/partenariat.png" data-srcSafari="/mcm_website_theme/static/src/img/contact/partenariat.png" class="lazy img-responsive img img-fluid " data-original-title="" title="" aria-describedby="tooltip848764"/>
+
                                         </div>
                                     </div>
                                     <div class="col-lg-6">
@@ -245,7 +249,9 @@
                                 <div class="row m-0">
                                     <div class="col-lg-6">
                                         <div class="card-shadow ">
-                                            <img data-src="/digimoov_website_templates/static/img/Service compta Digimoov.webp" data-srcSafari="/digimoov_website_templates/static/img/services/Service comptabilité Digimoov.jpg" class="img-responsive img img-fluid lazy" data-original-title="" title="" aria-describedby="tooltip917363"/>
+                                            <img t-if="request.website.id==2" data-src="/digimoov_website_templates/static/img/Service compta Digimoov.webp" data-srcSafari="/digimoov_website_templates/static/img/services/Service comptabilité Digimoov.jpg" class="img-responsive img img-fluid lazy" data-original-title="" title="" aria-describedby="tooltip917363"/>
+                                            <img t-if="request.website.id==1" data-src="/mcm_website_theme/static/src/img/contact/service comptabilité.png" data-srcSafari="/mcm_website_theme/static/src/img/contact/service comptabilité.png" class="img-responsive img img-fluid lazy" data-original-title="" title="" aria-describedby="tooltip917363"/>
+
                                         </div>
                                     </div>
                                     <div class="col-lg-6">
@@ -324,7 +330,9 @@
                                 <div class="row m-0">
                                     <div class="col-lg-6">
                                         <div class="card-shadow ">
-                                            <img data-src="/digimoov_website_templates/static/img/Service_pédagogique.webp" data-srcSafari="/digimoov_website_templates/static/img/services/Service pédagogique Digimoov formation (1).jpg" class="img-responsive img img-fluid lazy" data-original-title="" title="" aria-describedby="tooltip821638"/>
+                                            <img t-if="request.website.id==2" data-src="/digimoov_website_templates/static/img/Service_pédagogique.webp" data-srcSafari="/digimoov_website_templates/static/img/services/Service pédagogique Digimoov formation (1).jpg" class="img-responsive img img-fluid lazy" data-original-title="" title="" aria-describedby="tooltip821638"/>
+                                            <img t-if="request.website.id==1" data-src="/mcm_website_theme/static/src/img/contact/service péda 2.png" data-srcSafari="/mcm_website_theme/static/src/img/contact/service péda 2.png" class="img-responsive img img-fluid lazy" data-original-title="" title="" aria-describedby="tooltip821638"/>
+
                                         </div>
                                     </div>
                                     <div class="col-lg-6">
