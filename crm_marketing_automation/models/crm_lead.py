@@ -29,7 +29,7 @@ class CRM(models.Model):
             num_dossier = lead.num_dossier
             partners = self.env['res.partner'].search([('company_id.id', '=', 2)])
             for partner in partners:
-                if lead.stage_id.name != "Formation sur 360":
+                if lead.stage_id.name != "Plateforme 360":
                     if (partner.numero_cpf) and (partner.numero_cpf == lead.num_dossier):
                         """Changer statut_cpf des fiches client selon
                           statut de dossier nsur edof"""

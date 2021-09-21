@@ -112,7 +112,7 @@ class Partner(models.Model):
                     lead.module_id = partner.module_id if partner.module_id else False
 
     def change_stage_existant(self):
-        self.import_data("Formation sur 360")
+        self.import_data("Plateforme 360")
 
         partners = self.env['res.partner'].sudo().search([('company_id.id', '=', 2)])
         for partner in partners:
@@ -178,10 +178,9 @@ class Partner(models.Model):
                                     #     self.changestage("Rétractation non Coché", partner)
 
     """Methode pour importation des données à partir de 360"""
-
     def import_data(self, name):
         """Supprimer les anciens apprenants et les remplacer par les nouveaux importés par api"""
-        old_leads = self.env['crm.lead'].sudo().search([('stage_id.name', '=', 'Formation sur 360')])
+        old_leads = self.env['crm.lead'].sudo().search([('stage_id.name', '=', 'Plateforme 360')])
         if old_leads:
             old_leads.unlink()
         params = (
