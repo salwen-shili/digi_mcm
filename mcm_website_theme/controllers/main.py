@@ -199,7 +199,7 @@ class Routes_Site(http.Controller):
         if request.website.id == 2:
             raise werkzeug.exceptions.NotFound()
         elif request.website.id == 1:
-            return request.render("mcm_website_theme.mcm_website_theme_taxi", values)
+            return request.render("mcm_website_theme.mcm_template_taxi", values)
 
     @http.route('/formation-chauffeur-vtc', type='http', auth='public', website=True)
     def vtc(self):

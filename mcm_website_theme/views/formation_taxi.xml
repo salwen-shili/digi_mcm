@@ -1,59 +1,70 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-  <template id="mcm_website_theme_taxi" name="Formation TAXI">
+  <template id="mcm_website_theme.mcm_template_taxi" name="Formation TAXI">
     <t t-call="website.layout">
       <link href="/mcm_website_theme/static/src/css/theme.css" rel="stylesheet"/>
       <style>
-        .nav-pills .nav-link.active, .nav-pills .show &gt; .nav-link{
-        background-color:#000;
-       
-        } 
+        .nav-pills .nav-link.active,
+        .nav-pills .show &gt;
+        .nav-link {
+          background-color: #000;
+        }
         a {
-    color: #000;}
-    a:hover{color:#000;}
-     .btn{
-    background-color:#000;
-    border-color:#000;
-    color:#fff;
-    }
-    .btn:hover{
-    background-color:#7F7E7E;}
-    
-   #sh_corpomate_theme_section_290 .sh_feature_box p {
-    margin-bottom: 25px;
-    transition: 0.5s;
-    font-size: 17px;
-    line-height: 1.8;
-        display: block !important;
-    -webkit-line-clamp: 3;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-    color: #616161;
-    font-family: 'Poppins', sans-serif;
-}
-          
+          color: #000;
+        }
+        a:hover {
+          color: #000;
+        }
+        .btn {
+          background-color: #000;
+          border-color: #000;
+          color: #fff;
+        }
+        .btn:hover {
+          background-color: #7f7e7e;
+        }
+
+        #sh_corpomate_theme_section_290 .sh_feature_box p {
+          margin-bottom: 25px;
+          transition: 0.5s;
+          font-size: 17px;
+          line-height: 1.8;
+          display: block !important;
+          -webkit-line-clamp: 3;
+          -webkit-box-orient: vertical;
+          overflow: hidden;
+          color: #616161;
+          font-family: "Poppins", sans-serif;
+        }
       </style>
       <div id="wrap" class="oe_structure oe_empty">
-        <div id="myCarousel1629963079639" class="s_carousel carousel slide s_carousel_default" data-interval="10000" data-name="Carousel" style="border-style: none; border-width: 0px;">
+        <div id="myCarousel1629963079639" class="s_carousel carousel slide s_carousel_default" data-interval="10000" data-name="Carousel" style="border-style: none; border-width: 0px">
           <ol class="carousel-indicators d-none">
             <li data-target="#myCarousel1629963079639" data-slide-to="0" class="active"/>
           </ol>
           <div class="carousel-inner">
-            <div class="carousel-item oe_img_bg pb0 pt72 oe_custom_bg active" style="background-image: url(&quot;/mcm_website_theme/static/src/img/formation_taxi/1.png&quot;); background-position: 0.68% 98.71%;" data-name="Slide">
+            <div class="carousel-item oe_img_bg pb0 pt72 oe_custom_bg active" style="                 background-image: url('/mcm_website_theme/static/src/img/formation_taxi/1.png');                 background-position: 0.68% 98.71%;               " data-name="Slide">
               <div class="container">
                 <div class="row content">
                   <div class="carousel-content pb120 col-lg-6">
                     <div class="sh_content">
                       <div class="container sh_content_text text-center">
-                        <h1 style="margin: auto auto 40px; font-size: 50px; color: rgb(255, 255, 255); max-width: 70%;">
-                          <font style="color: rgb(0, 0, 0);">Formation chauffeur de TAXI</font>
+                        <h1 style="                             margin: auto auto 40px;                             font-size: 50px;                             color: rgb(255, 255, 255);                             max-width: 70%;                           ">
+                          <font style="color: rgb(0, 0, 0)">Formation chauffeur de TAXI</font>
                         </h1>
                         <h1/>
                         <p class="heading text-center">
-                          <font color="#000000" style="color: rgb(0, 0, 0);">Besoin de formation pour devenir chauffeur de TAXI, pour renouveler votre carte professionnelle, ou encore pour une passerelle TAXI-VTC ?&amp;nbsp;</font>
+                          <font color="#000000" style="color: rgb(0, 0, 0)">Besoin de formation pour devenir chauffeur de TAXI,
+                            pour renouveler votre carte professionnelle, ou
+                            encore pour une passerelle TAXI-VTC
+                            ?&amp;nbsp;</font>
                         </p>
                         <p class="heading text-center">
-                          <font color="#000000" style="color: rgb(0, 0, 0);">MCM Academy a tout pour satisfaire vos besoins en formation TAXI en vous offrant un suivi complet, du jour de l’inscription à l’obtention de votre carte professionnelle, et en vous accompagnant dans la création de votre entreprise.</font>
+                          <font color="#000000" style="color: rgb(0, 0, 0)">MCM Academy a tout pour satisfaire vos besoins en
+                            formation TAXI en vous offrant un suivi complet, du
+                            jour de l’inscription à l’obtention de votre carte
+                            professionnelle, et en vous accompagnant dans la
+                            création de votre entreprise.</font>
                         </p>
                         <br/>
                         <!-- <a href="#" class="btn btn-primary sh_btn_cm_8 sh_more_btn" data-original-title="" title="" aria-describedby="tooltip878772">EN SAVOIR PLUS</a> -->
@@ -74,14 +85,13 @@
             <span class="sr-only o_default_snippet_text">Next</span>
           </div>
         </div>
-
         <section class="pb0 pt4" data-name="Title">
           <div class="container">
             <div class="row s_nb_column_fixed">
-              <div class="col-lg-12 s_title pb16 pt24" style="text-align: center; border-style: none; border-width: 0px;">
+              <div class="col-lg-12 s_title pb16 pt24" style="                   text-align: center;                   border-style: none;                   border-width: 0px;                 ">
                 <h2 class="s_title_default">
                   <b>
-                    <font style="font-size: 36px;">Devenir chauffeur de TAXI</font>
+                    <font style="font-size: 36px">Devenir chauffeur de TAXI</font>
                   </b>
                 </h2>
               </div>
@@ -94,7 +104,13 @@
               <div class="offset-lg-1 col-lg-10 pt0 pb0">
                 <p class="lead">
                   <font color="#000000" face="Poppins, sans-serif">
-                    <span style="font-size: 14px;">Afin d'exercer la profession de chauffeur de TAXI en toute légalité, le passage d'un examen théorique et pratique est indispensable. Ce que nous vous proposons chez MCM Academy, c’est la garantie d'une formation en ligne théorique et pratique de qualité, qui vous permettra non seulement d’acquérir de nouvelles connaissances, mais également de réussir votre préparation à l’examen.</span>
+                    <span style="font-size: 14px">Afin d'exercer la profession de chauffeur de TAXI en
+                      toute légalité, le passage d'un examen théorique et
+                      pratique est indispensable. Ce que nous vous proposons
+                      chez MCM Academy, c’est la garantie d'une formation en
+                      ligne théorique et pratique de qualité, qui vous permettra
+                      non seulement d’acquérir de nouvelles connaissances, mais
+                      également de réussir votre préparation à l’examen.</span>
                   </font>
                   <br/>
                 </p>
@@ -104,17 +120,12 @@
         </section>
         <section class="s_text_image pt32 pb32" data-name="Text - Image">
           <div class="container">
-            <div class="row align-items-center">
-
-
-            </div>
+            <div class="row align-items-center"/>
           </div>
         </section>
-        <section class="s_text_block pt0 pb0" data-name="Text block" style="background-color: rgb(255, 227, 71);">
+        <section class="s_text_block pt0 pb0" data-name="Text block" style="background-color: rgb(255, 227, 71)">
           <div class="container">
-            <div class="row">
-
-            </div>
+            <div class="row"/>
           </div>
         </section>
         <section class="s_text_image pt0 pb4" data-name="Image - Text">
@@ -123,10 +134,10 @@
               <div class="col-lg-6 pb24 pt0">
                 <img src="/mcm_website_theme/static/src/img/formation_taxi/2.png" class="img img-fluid mx-auto" alt="Odoo • Image et Texte" data-original-title="" title="" aria-describedby="tooltip38510"/>
               </div>
-              <div class="col-lg-6 pb0 pt48" style="border-style: none; border-width: 0px;">
+              <div class="col-lg-6 pb0 pt48" style="border-style: none; border-width: 0px">
                 <h2>
                   <font color="#000000" face="Poppins, sans-serif">
-                    <span style="font-size: 24px;">
+                    <span style="font-size: 24px">
                       <b>À qui s’adresse cette formation ?&amp;nbsp;</b>
                     </span>
                   </font>
@@ -134,41 +145,56 @@
                 </h2>
                 <p>
                   <font color="#000000" face="Poppins, sans-serif">
-                    <span style="font-size: 14px;">Notre formation TAXI s’adresse à toute personne majeure intéressée par les métiers de transport – en recherche d’emploi stable, souhaitant devenir autoentrepreneur, ou en reconversion professionnelle – témoignant des prérequis suivants :</span>
+                    <span style="font-size: 14px">Notre formation TAXI s’adresse à toute personne majeure
+                      intéressée par les métiers de transport – en recherche
+                      d’emploi stable, souhaitant devenir autoentrepreneur, ou
+                      en reconversion professionnelle – témoignant des prérequis
+                      suivants :</span>
                   </font>
                   <br/>
                 </p>
-                <p>&amp;nbsp;<span class="fa fa-check"/>
-&amp;nbsp;<font color="#000000" face="Poppins, sans-serif">
-                <span style="font-size: 14px;">Permis B non probatoire</span>
+                <p>
+                  &amp;nbsp;<span class="fa fa-check"/>
+ &amp;nbsp;<font color="#000000" face="Poppins, sans-serif">
+                <span style="font-size: 14px">Permis B non probatoire</span>
                 <br/>
               </font>&amp;nbsp;<span class="fa fa-check" data-original-title="" title="" aria-describedby="tooltip783781"/>
-&amp;nbsp;<font color="#000000" face="Poppins, sans-serif">
-            <span style="font-size: 14px;">Attestation d’aptitude médicale auprès d’un médecin agréé par la préfecture</span>
+                  &amp;nbsp;<font color="#000000" face="Poppins, sans-serif">
+            <span style="font-size: 14px">Attestation d’aptitude médicale auprès d’un médecin agréé
+                      par la préfecture</span>
           </font>&amp;nbsp;<br/>
-&amp;nbsp;<span class="fa fa-check"/>
-&amp;nbsp;<font color="#000000" face="Poppins, sans-serif">
-      <span style="font-size: 14px;">Casier judiciaire B2 non affecté de certaines condamnations<br/>
+                  &amp;nbsp;<span class="fa fa-check"/>
+ &amp;nbsp;<font color="#000000" face="Poppins, sans-serif">
+      <span style="font-size: 14px">Casier judiciaire B2 non affecté de certaines
+                      condamnations<br/>
       </span>
     </font>
-    <span style="color: rgb(0, 0, 0); font-family: Poppins, sans-serif; font-size: 24px;">
+    <span style="                       color: rgb(0, 0, 0);                       font-family: Poppins, sans-serif;                       font-size: 24px;                     ">
       <b>
         <br/>
-Ses Objectifs :</b>&amp;nbsp;<br/>
+                      Ses Objectifs :</b>&amp;nbsp;<br/>
     </span>
     <span class="fa fa-chevron-right"/>
-    <span style="font-size: 14px;">&amp;nbsp;Acquérir les savoirs nécessaires à la réussite de l’examen TAXI&amp;nbsp;</span>
+    <span style="font-size: 14px">&amp;nbsp;Acquérir les savoirs nécessaires à la réussite de
+                    l’examen TAXI&amp;nbsp;</span>
     <br/>
     <span class="fa fa-chevron-right"/>
-    <span style="font-size: 14px;">&amp;nbsp;Préparation aux épreuves d’admissibilité de l’examen TAXI (théorie)&amp;nbsp;</span>&amp;nbsp;<span style="color: rgb(0, 0, 0); font-family: Poppins, sans-serif; font-size: 14px;">&amp;nbsp; </span>
+    <span style="font-size: 14px">&amp;nbsp;Préparation aux épreuves d’admissibilité de
+                    l’examen TAXI (théorie)&amp;nbsp;</span>&amp;nbsp;<span style="                       color: rgb(0, 0, 0);                       font-family: Poppins, sans-serif;                       font-size: 14px;                     ">&amp;nbsp;
+    </span>
   </p>
 </div>
-<div class="s_title col-lg-12 pt24 pb0" style="text-align: center; border-style: none; border-width: 0px;">
+<div class="s_title col-lg-12 pt24 pb0" style="                   text-align: center;                   border-style: none;                   border-width: 0px;                 ">
   <div class="s_alert clearfix w-100 s_alert_sm alert-100" data-name="Alert" style="">
-    <i class="fa fa-2x fa-info-circle s_alert_icon"></i>
+    <i class="fa fa-2x fa-info-circle s_alert_icon"/>
     <div class="s_alert_content">
-      <p style="text-align: left; ">Nos formations incluent les personnes en situation d'handicap. Bien entendu, nous restons à votre disposition pour répondre à toutes vos questions, en contactant notre référent handicap sur notre espace client accessible sur notre site web<a href="https://dev.mcm-academy.fr/service-clientele" style="background-color: rgb(255, 255, 255);">
-        <font style="color: rgb(0, 0, 255);">par ici</font>
+      <p style="text-align: left">
+                      Nos formations incluent les personnes en situation
+                      d'handicap. Bien entendu, nous restons à votre disposition
+                      pour répondre à toutes vos questions, en contactant notre
+                      référent handicap sur notre espace client accessible sur
+                      notre site web<a href="https://dev.mcm-academy.fr/service-clientele" style="background-color: rgb(255, 255, 255)">
+        <font style="color: rgb(0, 0, 255)">par ici</font>
       </a>.      <br/>
     </p>
   </div>
@@ -180,7 +206,7 @@ Ses Objectifs :</b>&amp;nbsp;<br/>
 <section class="pt32 pb32" data-name="Title">
 <div class="container">
 <div class="row s_nb_column_fixed">
-<div class="col-lg-12 s_title pb16 pt16" style="text-align: center;">
+<div class="col-lg-12 s_title pb16 pt16" style="text-align: center">
 <h2 class="s_title_default">
   <b>Les étapes à suivre pour devenir chauffeur de TAXI</b>
   <br/>
@@ -192,70 +218,76 @@ Ses Objectifs :</b>&amp;nbsp;<br/>
 <section id="sh_corpomate_theme_section_258" class="sh_animation_part" data-name="practice">
 <div class="container">
 <div class="row">
-<div class="col-md-6 col-sm-6 col-12 sh_animation_part col-lg-4" style="border-style: none; border-width: 0px;">
+<div class="col-md-6 col-sm-6 col-12 sh_animation_part col-lg-4" style="border-style: none; border-width: 0px">
 <div class="sh_content">
   <div class="sh_icon">
-    <span class="fa fa-star" data-original-title="" title="" aria-describedby="tooltip918951" style="background-color: rgb(255, 227, 71); color: rgb(0, 0, 0);"/>
+    <span class="fa fa-star" data-original-title="" title="" aria-describedby="tooltip918951" style="                         background-color: rgb(255, 227, 71);                         color: rgb(0, 0, 0);                       "/>
   </div>
   <h4>
-    <span style="background-color: rgba(255, 255, 255, 0.9); color: rgb(0, 0, 0); font-family: Poppins, sans-serif; font-size: 14px; text-align: left; text-transform: none;">1. Souscrire à la formation en ligne à la Chambre des Métiers et de l'Artisanat (CMA)</span>
+    <span style="                         background-color: rgba(255, 255, 255, 0.9);                         color: rgb(0, 0, 0);                         font-family: Poppins, sans-serif;                         font-size: 14px;                         text-align: left;                         text-transform: none;                       ">1. Souscrire à la formation en ligne à la Chambre des
+                      Métiers et de l'Artisanat (CMA)</span>
   </h4>
   <p>
-    <font style="color: rgb(66, 66, 66);">Une inscription sur la plateforme de la Chambre des Métiers et de l'Artisanat (CMA) est obligatoire.<br/>
+    <font style="color: rgb(66, 66, 66)">Une inscription sur la plateforme de la Chambre des
+                      Métiers et de l'Artisanat (CMA) est obligatoire.<br/>
     <br/>
   </font>
-  <span class="fa fa-chevron-right" data-original-title="" title="" aria-describedby="tooltip560396" style="font-size: 15px; text-align: left; color: rgb(8, 82, 148);"/>
-  <span style="text-align: left; color: rgb(8, 82, 148); font-family: Poppins, sans-serif; font-size: 14px;">&amp;nbsp;En savoir plus</span>
+  <span class="fa fa-chevron-right" data-original-title="" title="" aria-describedby="tooltip560396" style="                         font-size: 15px;                         text-align: left;                         color: rgb(8, 82, 148);                       "/>
+  <span style="                         text-align: left;                         color: rgb(8, 82, 148);                         font-family: Poppins, sans-serif;                         font-size: 14px;                       ">&amp;nbsp;En savoir plus</span>
   <br/>
 </p>
 </div>
 </div>
-<div class="col-md-6 col-sm-6 col-12 sh_animation_part col-lg-4" style="border-style: none; border-width: 0px;">
+<div class="col-md-6 col-sm-6 col-12 sh_animation_part col-lg-4" style="border-style: none; border-width: 0px">
 <div class="sh_content">
 <div class="sh_icon">
-  <span class="fa fa-star" data-original-title="" title="" aria-describedby="tooltip548797" style="background-color: rgb(255, 227, 71); color: rgb(0, 0, 0);"/>
+  <span class="fa fa-star" data-original-title="" title="" aria-describedby="tooltip548797" style="                         background-color: rgb(255, 227, 71);                         color: rgb(0, 0, 0);                       "/>
 </div>
-<h3 style="text-align: center; margin: 25px 0px 15px; font-weight: 700; font-size: 22px; transition: all 0.4s ease 0s; color: rgb(255, 255, 255); font-family: Poppins, sans-serif;">
-  <font style="color: rgb(0, 0, 0); font-size: 14px;">2. Souscrire à la formation en ligne chez MCM Academy</font>
+<h3 style="                       text-align: center;                       margin: 25px 0px 15px;                       font-weight: 700;                       font-size: 22px;                       transition: all 0.4s ease 0s;                       color: rgb(255, 255, 255);                       font-family: Poppins, sans-serif;                     ">
+  <font style="color: rgb(0, 0, 0); font-size: 14px">2. Souscrire à la formation en ligne chez MCM
+                      Academy</font>
 </h3>
 <p>
-  <font style="color: rgb(66, 66, 66);">Inscription facile en 3 étapes : tout se passe sur notre site web.</font>
+  <font style="color: rgb(66, 66, 66)">Inscription facile en 3 étapes : tout se passe sur notre
+                      site web.</font>
 </p>
 <p>
-  <font style="color: rgb(66, 66, 66);">
+  <font style="color: rgb(66, 66, 66)">
     <br/>
   </font>
 </p>
 <p>
-  <font style="color: rgb(66, 66, 66);">
-    <span class="fa fa-chevron-right" data-original-title="" title="" aria-describedby="tooltip560396" style="font-size: 15px; text-align: left; color: rgb(8, 82, 148);"/>
-    <span style="text-align: left; color: rgb(8, 82, 148); font-family: Poppins, sans-serif; font-size: 14px;">&amp;nbsp;En savoir plus</span>
+  <font style="color: rgb(66, 66, 66)">
+    <span class="fa fa-chevron-right" data-original-title="" title="" aria-describedby="tooltip560396" style="                           font-size: 15px;                           text-align: left;                           color: rgb(8, 82, 148);                         "/>
+    <span style="                           text-align: left;                           color: rgb(8, 82, 148);                           font-family: Poppins, sans-serif;                           font-size: 14px;                         ">&amp;nbsp;En savoir plus</span>
     <br/>
   </font>
   <br/>
 </p>
 </div>
 </div>
-<div class="col-md-6 col-sm-6 col-12 sh_animation_part col-lg-4" style="border-style: none; border-width: 0px;">
+<div class="col-md-6 col-sm-6 col-12 sh_animation_part col-lg-4" style="border-style: none; border-width: 0px">
 <div class="sh_content">
 <div class="sh_icon">
-  <span class="fa fa-star" data-original-title="" title="" aria-describedby="tooltip708535" style="background-color: rgb(255, 227, 71); color: rgb(0, 0, 0);"/>
+  <span class="fa fa-star" data-original-title="" title="" aria-describedby="tooltip708535" style="                         background-color: rgb(255, 227, 71);                         color: rgb(0, 0, 0);                       "/>
 </div>
-<h3 style="text-align: center; margin: 25px 0px 15px; font-weight: 700; font-size: 22px; transition: all 0.4s ease 0s; color: rgb(255, 255, 255); font-family: Poppins, sans-serif;">
-  <font style="color: rgb(0, 0, 0); font-size: 14px;">3. Déposer votre dossier à la préfecture pour obtenir votre carte professionnelle</font>
+<h3 style="                       text-align: center;                       margin: 25px 0px 15px;                       font-weight: 700;                       font-size: 22px;                       transition: all 0.4s ease 0s;                       color: rgb(255, 255, 255);                       font-family: Poppins, sans-serif;                     ">
+  <font style="color: rgb(0, 0, 0); font-size: 14px">3. Déposer votre dossier à la préfecture pour obtenir
+                      votre carte professionnelle</font>
 </h3>
 <p>
-  <font style="color: rgb(66, 66, 66);">Une fois l’examen passé et votre certificat de réussite obtenu, il faut déposer un dossier à la préfecture.</font>
+  <font style="color: rgb(66, 66, 66)">Une fois l’examen passé et votre certificat de réussite
+                      obtenu, il faut déposer un dossier à la préfecture.</font>
 </p>
 <p>
-  <font style="color: rgb(66, 66, 66);">
+  <font style="color: rgb(66, 66, 66)">
     <br/>
   </font>
 </p>
 <p>
-  <font style="color: rgb(66, 66, 66);">
-    <span class="fa fa-chevron-right" data-original-title="" title="" aria-describedby="tooltip560396" style="font-size: 15px; text-align: left; color: rgb(8, 82, 148);"/>
-    <span style="text-align: left; color: rgb(8, 82, 148); font-family: Poppins, sans-serif; font-size: 14px;">&amp;nbsp;En savoir plus</span>
+  <font style="color: rgb(66, 66, 66)">
+    <span class="fa fa-chevron-right" data-original-title="" title="" aria-describedby="tooltip560396" style="                           font-size: 15px;                           text-align: left;                           color: rgb(8, 82, 148);                         "/>
+    <span style="                           text-align: left;                           color: rgb(8, 82, 148);                           font-family: Poppins, sans-serif;                           font-size: 14px;                         ">&amp;nbsp;En savoir plus</span>
     <br/>
   </font>
   <br/>
@@ -268,10 +300,10 @@ Ses Objectifs :</b>&amp;nbsp;<br/>
 <section class="pb0 pt0" data-name="Title">
 <div class="container">
 <div class="row s_nb_column_fixed">
-<div class="col-lg-12 s_title pt32 pb32" style="text-align: center;">
-<h2 style="text-align: center;">
+<div class="col-lg-12 s_title pt32 pb32" style="text-align: center">
+<h2 style="text-align: center">
 <font color="#000000" face="Poppins, sans-serif">
-  <span style="font-size: 24px;">
+  <span style="font-size: 24px">
     <b>LES DIFFÉRENTES FORMATIONS TAXI</b>
   </span>
 </font>
@@ -284,88 +316,110 @@ Ses Objectifs :</b>&amp;nbsp;<br/>
 <section class="s_three_columns bg-200 pb32 pt0" data-name="Columns">
 <div class="container">
 <div class="row d-flex align-items-stretch">
-<div class="col-lg-4 s_col_no_bgcolor pt16 pb16" style="border-style: none; border-width: 0px;">
+<div class="col-lg-4 s_col_no_bgcolor pt16 pb16" style="border-style: none; border-width: 0px">
 <div class="card bg-white">
 <img class="card-img-top" src="mcm_website_theme/static/src/img/formation_taxi/3.png" alt="Odoo - Echantillon n°1 pour trois colonnes " data-original-title="" title="" aria-describedby="tooltip732985"/>
 <div class="card-body">
-  <h2 style="text-align: center; background-color: rgb(255, 255, 255);">
+  <h2 style="                         text-align: center;                         background-color: rgb(255, 255, 255);                       ">
     <font color="#000000" face="Poppins, sans-serif">
-      <span style="font-size: 24px;">
+      <span style="font-size: 24px">
         <b>Formation initiale au métier de TAXI</b>
       </span>
     </font>
     <br/>
   </h2>
   <h3 class="card-title"/>
-  <p style="background-color: rgb(255, 255, 255);">
+  <p style="background-color: rgb(255, 255, 255)">
     <font color="#000000" face="Poppins, sans-serif">
-      <span style="font-size: 14px;">Afin d'exercer la profession de chauffeur de TAXI en toute légalité, le passage d'un examen théorique et pratique est indispensable. Ce que nous vous proposons chez MCM Academy, c’est la garantie d'une formation en ligne théorique et pratique de qualité, qui vous permettra non seulement d’acquérir de nouvelles connaissances, mais également de réussir votre préparation à l’examen.</span>
+      <span style="font-size: 14px">Afin d'exercer la profession de chauffeur de TAXI en
+                          toute légalité, le passage d'un examen théorique et
+                          pratique est indispensable. Ce que nous vous proposons
+                          chez MCM Academy, c’est la garantie d'une formation en
+                          ligne théorique et pratique de qualité, qui vous
+                          permettra non seulement d’acquérir de nouvelles
+                          connaissances, mais également de réussir votre
+                          préparation à l’examen.</span>
       <br/>
       <br/>
     </font>
-    <span class="fa fa-chevron-right" data-original-title="" title="" aria-describedby="tooltip560396" style="color: rgb(8, 82, 148); font-size: 14px;"/>
-    <span style="color: rgb(8, 82, 148); font-family: Poppins, sans-serif; font-size: 14px;">&amp;nbsp;</span>
-    <span style="color: rgb(8, 82, 148); font-family: Poppins, sans-serif; font-size: 14px;">Modules et démarches</span>
+    <span class="fa fa-chevron-right" data-original-title="" title="" aria-describedby="tooltip560396" style="color: rgb(8, 82, 148); font-size: 14px"/>
+    <span style="                           color: rgb(8, 82, 148);                           font-family: Poppins, sans-serif;                           font-size: 14px;                         ">&amp;nbsp;</span>
+    <span style="                           color: rgb(8, 82, 148);                           font-family: Poppins, sans-serif;                           font-size: 14px;                         ">Modules et démarches</span>
     <br/>
   </p>
 </div>
 </div>
 </div>
-<div class="col-lg-4 s_col_no_bgcolor pt16 pb16" style="border-style: none; border-width: 0px;">
+<div class="col-lg-4 s_col_no_bgcolor pt16 pb16" style="border-style: none; border-width: 0px">
 <div class="card bg-white">
 <img class="card-img-top" src="/mcm_website_theme/static/src/img/formation_taxi/4.png" alt="Odoo - Echantillon n°1 pour trois colonnes " data-original-title="" title="" aria-describedby="tooltip732985"/>
 <div class="card-body">
-  <h2 style="text-align: center; background-color: rgb(255, 255, 255);">
+  <h2 style="                         text-align: center;                         background-color: rgb(255, 255, 255);                       ">
     <font color="#000000" face="Poppins, sans-serif">
-      <span style="font-size: 24px;">
+      <span style="font-size: 24px">
         <b>Formation passerelle VTC-TAXI</b>
       </span>
     </font>
     <br/>
   </h2>
   <h3 class="card-title"/>
-  <p style="background-color: rgb(255, 255, 255);">
+  <p style="background-color: rgb(255, 255, 255)">
     <font color="#000000" face="Poppins, sans-serif" style="">
-      <span style="font-size: 14px;">Depuis mai 2017, il est possible pour un stagiaire qui a réussi l’examen VTC de tronc commun de bénéficier d’une passerelle VTC-TAXI. Il devra donc passer deux modules théoriques (F et G) et une épreuve pratique pour pouvoir exercer la profession de chauffeur de TAXI. Cette formation vous permettra de vous préparer à l'examen théorique et pratique de conducteur de TAXI en vue d'obtenir votre carte professionnelle de conducteur de TAXI.</span>
+      <span style="font-size: 14px">Depuis mai 2017, il est possible pour un stagiaire
+                          qui a réussi l’examen VTC de tronc commun de
+                          bénéficier d’une passerelle VTC-TAXI. Il devra donc
+                          passer deux modules théoriques (F et G) et une épreuve
+                          pratique pour pouvoir exercer la profession de
+                          chauffeur de TAXI. Cette formation vous permettra de
+                          vous préparer à l'examen théorique et pratique de
+                          conducteur de TAXI en vue d'obtenir votre carte
+                          professionnelle de conducteur de TAXI.</span>
       <br/>
       <br/>
     </font>
-    <span class="fa fa-chevron-right" data-original-title="" title="" aria-describedby="tooltip560396" style="color: rgb(8, 82, 148); font-size: 14px;"/>
-    <span style="color: rgb(8, 82, 148); font-family: Poppins, sans-serif; font-size: 14px;">&amp;nbsp;</span>
-    <span style="color: rgb(8, 82, 148); font-family: Poppins, sans-serif; font-size: 14px;">Modules et démarches</span>
-    <font color="#000000" face="Poppins, sans-serif" style="font-size: 0.9375rem;">
+    <span class="fa fa-chevron-right" data-original-title="" title="" aria-describedby="tooltip560396" style="color: rgb(8, 82, 148); font-size: 14px"/>
+    <span style="                           color: rgb(8, 82, 148);                           font-family: Poppins, sans-serif;                           font-size: 14px;                         ">&amp;nbsp;</span>
+    <span style="                           color: rgb(8, 82, 148);                           font-family: Poppins, sans-serif;                           font-size: 14px;                         ">Modules et démarches</span>
+    <font color="#000000" face="Poppins, sans-serif" style="font-size: 0.9375rem">
       <br/>
     </font>
   </p>
 </div>
 </div>
 </div>
-<div class="col-lg-4 s_col_no_bgcolor pt16 pb16" style="border-style: none; border-width: 0px;">
+<div class="col-lg-4 s_col_no_bgcolor pt16 pb16" style="border-style: none; border-width: 0px">
 <div class="card bg-white">
 <img class="card-img-top" src="/mcm_website_theme/static/src/img/formation_taxi/5.png" alt="Odoo - Echantillon n°1 pour trois colonnes " data-original-title="" title="" aria-describedby="tooltip732985"/>
 <div class="card-body">
-  <h2 style="text-align: center; background-color: rgb(255, 255, 255);">
+  <h2 style="                         text-align: center;                         background-color: rgb(255, 255, 255);                       ">
     <font color="#000000" face="Poppins, sans-serif">
-      <span style="font-size: 24px;">
+      <span style="font-size: 24px">
         <b>Formation continue au métier de TAXI</b>
       </span>
     </font>
     <br/>
   </h2>
   <h3 class="card-title"/>
-  <p style="background-color: rgb(255, 255, 255);">
+  <p style="background-color: rgb(255, 255, 255)">
     <font color="#000000" face="Poppins, sans-serif">
-      <span style="font-size: 14px;">Cette formation est obligatoire et doit être suivie tous les 5 ans. Nous vous conseillons d'effectuer un stage de remise à niveau dans un centre de formation agréé. Ce stage porte sur une actualisation des connaissances et répond aux attentes des professionnels TAXIS. Pour suivre cette formation, une demande s’effectue au préalable plusieurs mois avant l’expiration de la carte professionnelle.</span>
+      <span style="font-size: 14px">Cette formation est obligatoire et doit être suivie
+                          tous les 5 ans. Nous vous conseillons d'effectuer un
+                          stage de remise à niveau dans un centre de formation
+                          agréé. Ce stage porte sur une actualisation des
+                          connaissances et répond aux attentes des
+                          professionnels TAXIS. Pour suivre cette formation, une
+                          demande s’effectue au préalable plusieurs mois avant
+                          l’expiration de la carte professionnelle.</span>
     </font>
     <br/>
   </p>
-  <p style="background-color: rgb(255, 255, 255);">
-    <span style="font-size: 14px;">
+  <p style="background-color: rgb(255, 255, 255)">
+    <span style="font-size: 14px">
       <br/>
     </span>
-    <span class="fa fa-chevron-right" data-original-title="" title="" aria-describedby="tooltip560396" style="color: rgb(8, 82, 148); font-size: 14px;"/>
-    <span style="color: rgb(8, 82, 148); font-family: Poppins, sans-serif; font-size: 14px;">&amp;nbsp;</span>
-    <span style="color: rgb(8, 82, 148); font-family: Poppins, sans-serif; font-size: 14px;">Modules et démarches</span>
+    <span class="fa fa-chevron-right" data-original-title="" title="" aria-describedby="tooltip560396" style="color: rgb(8, 82, 148); font-size: 14px"/>
+    <span style="                           color: rgb(8, 82, 148);                           font-family: Poppins, sans-serif;                           font-size: 14px;                         ">&amp;nbsp;</span>
+    <span style="                           color: rgb(8, 82, 148);                           font-family: Poppins, sans-serif;                           font-size: 14px;                         ">Modules et démarches</span>
   </p>
 </div>
 </div>
@@ -374,12 +428,22 @@ Ses Objectifs :</b>&amp;nbsp;<br/>
 </div>
 </section>
 <section class="pt16 pb16" data-name="Title">
-<div class="container">
+<div class="container" style="border-style: none; border-width: 0px;">
 <div class="row s_nb_column_fixed">
-<div class="col-lg-12 s_title pt24 pb16" style="text-align: center;">
+<div class="col-lg-12 s_title pt24 pb16" style="text-align: center">
+<div class="s_btn text-center pt16 pb16" data-name="Button">
+<a href="/mcm_website_theme/static/src/programme_de_formation_MCM_ACADEMY_2021.pdf" class="btn btn-primary sh_btn_cm_8 btn-lg" data-original-title="" title="" aria-describedby="tooltip361278" target="_blank">TÉLÉCHARGER LE PROGRAMME DE LA FORMATION TAXI</a>
+</div>
 <h2 class="s_title_default">
 <b>
-  <font style="font-size: 36px;">Déroulement de la formation</font>
+  <font style="font-size: 36px">&amp;nbsp;</font>
+</b>
+</h2>
+</div>
+<div class="col-lg-12 s_title pt24 pb16" style="text-align: center">
+<h2 class="s_title_default">
+<b>
+  <font style="font-size: 36px">Déroulement de la formation</font>
 </b>
 </h2>
 </div>
@@ -389,11 +453,11 @@ Ses Objectifs :</b>&amp;nbsp;<br/>
 <section class="s_text_block pb32 pt0" data-name="Text block">
 <div class="container">
 <div class="row">
-<div class="col-lg-12 pt32 pb32" style="border-style: none; border-width: 0px;">
+<div class="col-lg-12 pt32 pb32" style="border-style: none; border-width: 0px">
 <p class="lead">
 <br/>
 <font color="#000000" face="Poppins, sans-serif">
-  <span style="font-size: 14px;">
+  <span style="font-size: 14px">
     <b>Une formation Taxi théorique à distance de 70 H</b>
     <br/>
   </span>
@@ -401,103 +465,106 @@ Ses Objectifs :</b>&amp;nbsp;<br/>
 </p>
 <p class="lead">
 <font color="#000000" face="Poppins, sans-serif">
-  <span style="font-size: 14px;">Suivre une formation en ligne c'est" Savoir s'organiser pour réussir".</span>
-  <span style="font-size: 14px;">Ce que nous vous offrons chez MCM ACADEMY c’est :</span>
+  <span style="font-size: 14px">Suivre une formation en ligne c'est" Savoir s'organiser
+                      pour réussir".</span>
+  <span style="font-size: 14px">Ce que nous vous offrons chez MCM ACADEMY c’est :</span>
 </font>
 </p>
 <p class="lead">
-<span class="fa fa-check"></span>
+<span class="fa fa-check"/>
 <font color="#000000" face="Poppins, sans-serif">
-  <span style="font-size: 14px;">Une formation complète<br/>
+  <span style="font-size: 14px">Une formation complète<br/>
   </span>
 </font>
-<span class="fa fa-check" data-original-title="" title="" aria-describedby="tooltip135334"></span>
-<span style="color: rgb(0, 0, 0); font-family: Poppins, sans-serif; font-size: 14px;"></span>
+<span class="fa fa-check" data-original-title="" title="" aria-describedby="tooltip135334"/>
+<span style="                       color: rgb(0, 0, 0);                       font-family: Poppins, sans-serif;                       font-size: 14px;                     "/>
 <font color="#000000" face="Poppins, sans-serif">
-  <span style="font-size: 14px;">à votre rythme<br/>
+  <span style="font-size: 14px">à votre rythme<br/>
   </span>
 </font>
-<span class="fa fa-check" data-original-title="" title="" aria-describedby="tooltip135334" style="font-size: 18.75px;"></span>
-<span style="color: rgb(0, 0, 0); font-family: Poppins, sans-serif; font-size: 14px;"></span>
-<span style="color: rgb(0, 0, 0); font-family: Poppins, sans-serif; font-size: 14px;"></span>
-<span style="font-size: 14px; color: rgb(0, 0, 0); font-family: Poppins, sans-serif;">présentée sous différents supports ,<br/>
+<span class="fa fa-check" data-original-title="" title="" aria-describedby="tooltip135334" style="font-size: 18.75px"/>
+<span style="                       color: rgb(0, 0, 0);                       font-family: Poppins, sans-serif;                       font-size: 14px;                     "/>
+<span style="                       color: rgb(0, 0, 0);                       font-family: Poppins, sans-serif;                       font-size: 14px;                     "/>
+<span style="                       font-size: 14px;                       color: rgb(0, 0, 0);                       font-family: Poppins, sans-serif;                     ">présentée sous différents supports ,<br/>
 </span>
-<span class="fa fa-check" data-original-title="" title="" aria-describedby="tooltip135334" style="font-size: 18.75px;"></span>
-<span style="color: rgb(0, 0, 0); font-family: Poppins, sans-serif; font-size: 14px;"></span>
-<span style="color: rgb(0, 0, 0); font-family: Poppins, sans-serif; font-size: 14px;"></span>
+<span class="fa fa-check" data-original-title="" title="" aria-describedby="tooltip135334" style="font-size: 18.75px"/>
+<span style="                       color: rgb(0, 0, 0);                       font-family: Poppins, sans-serif;                       font-size: 14px;                     "/>
+<span style="                       color: rgb(0, 0, 0);                       font-family: Poppins, sans-serif;                       font-size: 14px;                     "/>
 <font color="#000000" face="Poppins, sans-serif">
-  <span style="font-size: 14px;">organisés par des experts du métiers ,<br/>
+  <span style="font-size: 14px">organisés par des experts du métiers ,<br/>
   </span>
 </font>
-<span class="fa fa-check" data-original-title="" title="" aria-describedby="tooltip135334" style="font-size: 18.75px;"></span>
-<span style="color: rgb(0, 0, 0); font-family: Poppins, sans-serif; font-size: 14px;"></span>
-<span style="color: rgb(0, 0, 0); font-family: Poppins, sans-serif; font-size: 14px;"></span>
+<span class="fa fa-check" data-original-title="" title="" aria-describedby="tooltip135334" style="font-size: 18.75px"/>
+<span style="                       color: rgb(0, 0, 0);                       font-family: Poppins, sans-serif;                       font-size: 14px;                     "/>
+<span style="                       color: rgb(0, 0, 0);                       font-family: Poppins, sans-serif;                       font-size: 14px;                     "/>
 <font color="#000000" face="Poppins, sans-serif">
-  <span style="font-size: 14px;">avec des programmes de révisions bien étudiés,<br/>
+  <span style="font-size: 14px">avec des programmes de révisions bien étudiés,<br/>
   </span>
 </font>
-<span class="fa fa-check" data-original-title="" title="" aria-describedby="tooltip135334" style="font-size: 18.75px;"></span>
-<span style="color: rgb(0, 0, 0); font-family: Poppins, sans-serif; font-size: 14px;"></span>
-<span style="color: rgb(0, 0, 0); font-family: Poppins, sans-serif; font-size: 14px;"></span>
+<span class="fa fa-check" data-original-title="" title="" aria-describedby="tooltip135334" style="font-size: 18.75px"/>
+<span style="                       color: rgb(0, 0, 0);                       font-family: Poppins, sans-serif;                       font-size: 14px;                     "/>
+<span style="                       color: rgb(0, 0, 0);                       font-family: Poppins, sans-serif;                       font-size: 14px;                     "/>
 <font color="#000000" face="Poppins, sans-serif">
-  <span style="font-size: 14px;">un accès à des examens blancs pour s'entraîner ,<br/>
+  <span style="font-size: 14px">un accès à des examens blancs pour s'entraîner ,<br/>
   </span>
 </font>
-<span class="fa fa-check" data-original-title="" title="" aria-describedby="tooltip135334" style="font-size: 18.75px;"></span>
-<span style="color: rgb(0, 0, 0); font-family: Poppins, sans-serif; font-size: 14px;"></span>
-<span style="color: rgb(0, 0, 0); font-family: Poppins, sans-serif; font-size: 14px;"></span>
+<span class="fa fa-check" data-original-title="" title="" aria-describedby="tooltip135334" style="font-size: 18.75px"/>
+<span style="                       color: rgb(0, 0, 0);                       font-family: Poppins, sans-serif;                       font-size: 14px;                     "/>
+<span style="                       color: rgb(0, 0, 0);                       font-family: Poppins, sans-serif;                       font-size: 14px;                     "/>
 <font color="#000000" face="Poppins, sans-serif">
-  <span style="font-size: 14px;">et un suivi personnalisé<br/>
+  <span style="font-size: 14px">et un suivi personnalisé<br/>
   </span>
 </font>
-<span style="color: rgb(0, 0, 0); font-family: Poppins, sans-serif; font-size: 14px;"></span>
-<span style="color: rgb(0, 0, 0); font-family: Poppins, sans-serif; font-size: 14px;"></span>
-<span style="font-size: 14px; color: rgb(0, 0, 0); font-family: Poppins, sans-serif;">Afin de bien vous préparer à l'examen.</span>
+<span style="                       color: rgb(0, 0, 0);                       font-family: Poppins, sans-serif;                       font-size: 14px;                     "/>
+<span style="                       color: rgb(0, 0, 0);                       font-family: Poppins, sans-serif;                       font-size: 14px;                     "/>
+<span style="                       font-size: 14px;                       color: rgb(0, 0, 0);                       font-family: Poppins, sans-serif;                     ">Afin de bien vous préparer à l'examen.</span>
 </p>
 <p class="lead">
 <font color="#000000" face="Poppins, sans-serif">
-  <span style="font-size: 14px;">
-    <b>Les supports de formation seront présentés sous formes de :</b>
+  <span style="font-size: 14px">
+    <b>Les supports de formation seront présentés sous formes
+                        de :</b>
   </span>
 </font>
 </p>
 <p class="lead">
-<span class="fa fa-chevron-right" data-original-title="" title="" aria-describedby="tooltip637629"></span>
-<span style="color: rgb(0, 0, 0); font-family: Poppins, sans-serif; font-size: 14px;"></span>
+<span class="fa fa-chevron-right" data-original-title="" title="" aria-describedby="tooltip637629"/>
+<span style="                       color: rgb(0, 0, 0);                       font-family: Poppins, sans-serif;                       font-size: 14px;                     "/>
 <font color="#000000" face="Poppins, sans-serif">
-  <span style="font-size: 14px;">Vidéos<br/>
+  <span style="font-size: 14px">Vidéos<br/>
   </span>
 </font>
-<span class="fa fa-chevron-right" data-original-title="" title="" aria-describedby="tooltip637629" style="font-size: 18.75px;"></span>
-<span style="color: rgb(0, 0, 0); font-family: Poppins, sans-serif; font-size: 14px;"></span>
-<span style="color: rgb(0, 0, 0); font-family: Poppins, sans-serif; font-size: 14px;"></span>
-<span style="font-size: 14px; color: rgb(0, 0, 0); font-family: Poppins, sans-serif;">Cours en PDF<br/>
+<span class="fa fa-chevron-right" data-original-title="" title="" aria-describedby="tooltip637629" style="font-size: 18.75px"/>
+<span style="                       color: rgb(0, 0, 0);                       font-family: Poppins, sans-serif;                       font-size: 14px;                     "/>
+<span style="                       color: rgb(0, 0, 0);                       font-family: Poppins, sans-serif;                       font-size: 14px;                     "/>
+<span style="                       font-size: 14px;                       color: rgb(0, 0, 0);                       font-family: Poppins, sans-serif;                     ">Cours en PDF<br/>
 </span>
-<span class="fa fa-chevron-right" data-original-title="" title="" aria-describedby="tooltip637629" style="font-size: 18.75px;"></span>
-<span style="color: rgb(0, 0, 0); font-family: Poppins, sans-serif; font-size: 14px;"></span>
-<span style="color: rgb(0, 0, 0); font-family: Poppins, sans-serif; font-size: 14px;"></span>
+<span class="fa fa-chevron-right" data-original-title="" title="" aria-describedby="tooltip637629" style="font-size: 18.75px"/>
+<span style="                       color: rgb(0, 0, 0);                       font-family: Poppins, sans-serif;                       font-size: 14px;                     "/>
+<span style="                       color: rgb(0, 0, 0);                       font-family: Poppins, sans-serif;                       font-size: 14px;                     "/>
 <font color="#000000" face="Poppins, sans-serif">
-  <span style="font-size: 14px;">Quizz en lignes<br/>
+  <span style="font-size: 14px">Quizz en lignes<br/>
   </span>
 </font>
-<span class="fa fa-chevron-right" data-original-title="" title="" aria-describedby="tooltip637629" style="font-size: 18.75px;"></span>
-<span style="color: rgb(0, 0, 0); font-family: Poppins, sans-serif; font-size: 14px;"></span>
-<span style="color: rgb(0, 0, 0); font-family: Poppins, sans-serif; font-size: 14px;"></span>
+<span class="fa fa-chevron-right" data-original-title="" title="" aria-describedby="tooltip637629" style="font-size: 18.75px"/>
+<span style="                       color: rgb(0, 0, 0);                       font-family: Poppins, sans-serif;                       font-size: 14px;                     "/>
+<span style="                       color: rgb(0, 0, 0);                       font-family: Poppins, sans-serif;                       font-size: 14px;                     "/>
 <font color="#000000" face="Poppins, sans-serif">
-  <span style="font-size: 14px;">Examens blancs en ligne<br/>
+  <span style="font-size: 14px">Examens blancs en ligne<br/>
   </span>
 </font>
-<span style="color: rgb(0, 0, 0); font-family: Poppins, sans-serif; font-size: 14px;"></span>
-<span style="color: rgb(0, 0, 0); font-family: Poppins, sans-serif; font-size: 14px;"></span>
+<span style="                       color: rgb(0, 0, 0);                       font-family: Poppins, sans-serif;                       font-size: 14px;                     "/>
+<span style="                       color: rgb(0, 0, 0);                       font-family: Poppins, sans-serif;                       font-size: 14px;                     "/>
 <font color="#000000" face="Poppins, sans-serif">
-  <span style="font-size: 14px;">Un tout pour garantir votre réussite et avoir un résultat à la hauteur de vos ambitions ! Maintenant, à vous de jouer</span>
+  <span style="font-size: 14px">Un tout pour garantir votre réussite et avoir un résultat
+                      à la hauteur de vos ambitions ! Maintenant, à vous de
+                      jouer</span>
 </font>
 </p>
 </div>
 </div>
 </div>
 </section>
-
 <!-- PRICING TABLE-->
 <div id="pricing">
 <section id="sh_corpomate_theme_section_188" class="sh_animation_part" data-name="Pricing" style="margin-bottom: 6rem">
@@ -507,8 +574,8 @@ Ses Objectifs :</b>&amp;nbsp;<br/>
 <b>Inscrivez-vous dès maintenant !</b>
 <br/>
 </h2>
-<h4 style="                   margin-top: 20px;                   margin-bottom: 0.5rem;                   font-size: 18px;                   text-transform: capitalize;                 ">
-                Choisissez le pack qui vous convient&amp;nbsp;
+<h4 style="                     margin-top: 20px;                     margin-bottom: 0.5rem;                     font-size: 18px;                     text-transform: capitalize;                   ">
+                  Choisissez le pack qui vous convient&amp;nbsp;
 </h4>
 <p>
 <br/>
@@ -533,12 +600,15 @@ Ses Objectifs :</b>&amp;nbsp;<br/>
           <li>Assistance&amp;nbsp;par mail</li>
           <li>Assistance&amp;nbsp;par téléphone</li>
           <li>Assistance&amp;nbsp;par visioconférence</li>
-          <li>Lives&amp;nbsp;avec les formateurs pour explications</li>
+          <li>
+                              Lives&amp;nbsp;avec les formateurs pour
+                              explications
+          </li>
           <li>Révision du programme avant examen</li>
         </ul>
         <div class="sh_btn">
           <a class="btn btn-primary sh_btn_cm_8" data-original-title="" title="" aria-describedby="tooltip209445" onClick="(function(){document.getElementById('form-1-2').submit();return false;})();return false;">
-                            Je m'inscris
+                              Je m'inscris
           </a>
         </div>
       </form>
@@ -564,12 +634,15 @@ Ses Objectifs :</b>&amp;nbsp;<br/>
           <li>Assistance par mail</li>
           <li>Assistance&amp;nbsp;par téléphone</li>
           <li>Assistance&amp;nbsp;par visioconférence</li>
-          <li>Lives&amp;nbsp;avec les formateurs pour explications</li>
+          <li>
+                              Lives&amp;nbsp;avec les formateurs pour
+                              explications
+          </li>
           <li>Révision du programme avant examen</li>
         </ul>
         <div class="sh_btn">
           <a class="btn btn-primary sh_btn_cm_8" data-original-title="" title="" aria-describedby="tooltip357369" onClick="(function(){document.getElementById('form-1-1').submit();return false;})();return false;">
-                            Je m'inscris
+                              Je m'inscris
           </a>
         </div>
       </form>
@@ -577,7 +650,6 @@ Ses Objectifs :</b>&amp;nbsp;<br/>
   </t>
 </div>
 </div>
-
 <div class="col-md-4 sh_animation_part">
 <div class="sh_pricing">
   <t t-foreach="mcm_products" t-as="product">
@@ -596,12 +668,15 @@ Ses Objectifs :</b>&amp;nbsp;<br/>
           <li>Assistance&amp;nbsp;par mail</li>
           <li>Assistance&amp;nbsp;par téléphone</li>
           <li>Assistance&amp;nbsp;par visioconférence</li>
-          <li>Lives&amp;nbsp;avec les formateurs pour explications</li>
+          <li>
+                              Lives&amp;nbsp;avec les formateurs pour
+                              explications
+          </li>
           <li>Révision du programme avant examen</li>
         </ul>
         <div class="sh_btn">
           <a class="btn btn-primary sh_btn_cm_8" data-original-title="" title="" aria-describedby="tooltip196298" onClick="(function(){document.getElementById('form-1-3').submit();return false;})();return false;">
-                            Je m'inscris
+                              Je m'inscris
           </a>
         </div>
       </form>
@@ -614,7 +689,6 @@ Ses Objectifs :</b>&amp;nbsp;<br/>
 </section>
 </div>
 <!-- FIN PRICING TABLE-->
-
 <section class="s_text_block pb0 pt0" data-name="Text block">
 <div class="container">
 <div class="row">
