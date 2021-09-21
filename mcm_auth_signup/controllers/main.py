@@ -23,11 +23,11 @@ class AuthSignupHome(AuthSignupHome):
         values['login'] = values['login'].replace(' ', '').lower()
         if not values:
             raise UserError(_("Le formulaire n'est pas correctement rempli."))
-        if '+33' not in values['phone']:
+        """if '+33' not in values['phone']:
             phone = values['phone']
             phone = phone[1:]
             phone = '+33' + str(phone)
-            values['phone'] = phone
+            values['phone'] = phone"""
         if values.get('login') != qcontext.get('confirm_email'):
             raise UserError(_("Les emails ne correspondent pas, veuillez les saisir à nouveau."))
         if (values['num_voie'] and values['voie'] and values['nom_voie']):
