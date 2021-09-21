@@ -224,10 +224,13 @@ class NOSCENTRES(http.Controller):
 
 
 class Conditions(http.Controller):
-
     @http.route('/conditions', type='http', auth='public', website=True)
     def conditions(self, **kw, ):
-        return request.render("digimoov_website_templates.digimoov_template_conditions", {})
+        if request.website.id == 1:
+            return request.render("mcm_website_theme.mcm_template_conditions", {})
+        elif request.website.id == 2:
+            return request.render("digimoov_website_templates.digimoov_template_conditions", {})
+   
 
     @http.route('/politique-de-confidentialite', type='http', auth='public', website=True)
     def confidentialite(self, **kw, ):
