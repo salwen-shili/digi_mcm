@@ -46,25 +46,26 @@
                                     </p>
 
                                     <!-- progressbar -->
-                                    <ul id="progressbar" t-if="not name">
-                                        <li class="active" id="account">
-                                            <strong>Coordonnées</strong>
-                                        </li>
-                                        <li id="personal">
-                                            <strong>Documents</strong>
-                                        </li>
-                                        <li id="payment">
-                                            <strong>Financement</strong>
-                                        </li>
-                                        <li id="confirm">
-                                            <strong>Validation</strong>
-                                        </li>
-                                    </ul>
-                                    <div class="progress" t-if="not name">
-                                        <div class="
-                      progress-bar progress-bar-striped progress-bar-animated
-                    " role="progressbar" aria-valuemin="0" aria-valuemax="100"></div>
-                                    </div>
+                                    <t t-if="request.website.id == 1">
+                                        <ul id="progressbar" t-if="not name">
+                                            <li class="active" id="account">
+                                                <strong>Coordonnées</strong>
+                                            </li>
+                                            <li id="personal">
+                                                <strong>Documents</strong>
+                                            </li>
+                                            <li id="payment">
+                                                <strong>Financement</strong>
+                                            </li>
+                                            <li id="confirm">
+                                                <strong>Validation</strong>
+                                            </li>
+                                        </ul>
+                                        <div class="progress" t-if="not name">
+                                            <div class="progress-bar progress-bar-striped progress-bar-animated"
+                                                 role="progressbar" aria-valuemin="0" aria-valuemax="100"></div>
+                                        </div>
+                                    </t>
                                     <br t-if="not name"/>
 
                                     <fieldset>
@@ -78,7 +79,10 @@
                                         <div class="outlined-input-field bg-c" id="lastname_container" t-if="not name">
 
 
-                                            <input type="text" name="lastName" id="lastname" class="outlined-text-field" autocomplete="off" t-att-value="lastName" pattern="[A-Z,a-z,À-ÿ '-]{2,}" required="required" inputmode="latin-name"/>
+                                            <input type="text" name="lastName" id="lastname" class="outlined-text-field"
+                                                   autocomplete="off" t-att-value="lastName"
+                                                   pattern="[A-Z,a-z,À-ÿ '-]{2,}" required="required"
+                                                   inputmode="latin-name"/>
                                             <label for="lastname" style="font-size: 1rem; top: 1rem; padding: 0px;">Nom
                                                 *
                                             </label>
@@ -90,8 +94,12 @@
                                         </div>
                                         <br t-if="not name"/>
 
-                                        <div class="outlined-input-field bg-c" id="firstname_container" t-if=" not name">
-                                            <input type="text" id="firstname" name="firstname" class="outlined-text-field" autocomplete="off" t-att-value="firstname" pattern="[A-Z,a-z,À-ÿ '-]{2,}" required="required" inputmode="latin-name"/>
+                                        <div class="outlined-input-field bg-c" id="firstname_container"
+                                             t-if=" not name">
+                                            <input type="text" id="firstname" name="firstname"
+                                                   class="outlined-text-field" autocomplete="off"
+                                                   t-att-value="firstname" pattern="[A-Z,a-z,À-ÿ '-]{2,}"
+                                                   required="required" inputmode="latin-name"/>
                                             <label for="firstname">Prénom *</label>
                                             <i class="material-icons error-icon">error_outline</i>
                                             <div class="helper-text bg-c" id="firstname_helper">
@@ -101,7 +109,9 @@
                                         <br t-if="not name"/>
 
                                         <div class="outlined-input-field bg-c" id="phone_container" t-if="not phone">
-                                            <input type="text" id="phone" name="phone" class="outlined-text-field" autocomplete="off" t-att-value="phone" maxlength="10" pattern="(07|06)[0-9]\d{7}" required="required" inputmode="numeric"/>
+                                            <input type="text" id="phone" name="phone" class="outlined-text-field"
+                                                   autocomplete="off" t-att-value="phone" maxlength="10"
+                                                   pattern="(07|06)[0-9]\d{7}" required="required" inputmode="numeric"/>
                                             <label for="phone">Téléphone *</label>
                                             <i class="material-icons error-icon">error_outline</i>
                                             <div class="helper-text bg-c" id="phone_helper">
@@ -111,7 +121,8 @@
                                         <br t-if="not name"/>
 
                                         <div class="outlined-input-field bg-c" id="email_container" t-if="not name">
-                                            <input type="text" id="email" class="outlined-text-field" autocomplete="off" value="" required="required" inputmode="email" name="login"/>
+                                            <input type="text" id="email" class="outlined-text-field" autocomplete="off"
+                                                   value="" required="required" inputmode="email" name="login"/>
                                             <label for="email">Email *</label>
                                             <i class="material-icons error-icon">error_outline</i>
                                             <div class="helper-text bg-c" id="email_helper">
@@ -119,7 +130,9 @@
                                             </div>
                                         </div>
                                         <div class="outlined-input-field bg-c" id="email_container" t-if="name">
-                                            <input type="text" id="email" class="outlined-text-field" autocomplete="off" t-att-value="login" required="required" inputmode="email" name="login" t-att-readonly="'readonly' if login else None"/>
+                                            <input type="text" id="email" class="outlined-text-field" autocomplete="off"
+                                                   t-att-value="login" required="required" inputmode="email"
+                                                   name="login" t-att-readonly="'readonly' if login else None"/>
                                             <label for="email" style="top: -0.7rem;padding: 0.25rem;">Email *</label>
                                             <i class="material-icons error-icon">error_outline</i>
                                             <div class="helper-text bg-c" id="email_helper">
@@ -129,16 +142,22 @@
 
                                         <br/>
 
-                                        <div class="outlined-input-field bg-c" id="confirm_email_container" t-if="not name">
-                                            <input type="text" id="confirm_email" class="outlined-text-field" name="confirm_email" autocomplete="off" value="" required="required" inputmode="email"/>
+                                        <div class="outlined-input-field bg-c" id="confirm_email_container"
+                                             t-if="not name">
+                                            <input type="text" id="confirm_email" class="outlined-text-field"
+                                                   name="confirm_email" autocomplete="off" value="" required="required"
+                                                   inputmode="email"/>
                                             <label for="confirm_email">Confirmer votre email *</label>
                                             <i class="material-icons error-icon">error_outline</i>
                                             <div class="helper-text bg-c" id="confirm_email_helper">
                                                 <span></span>
                                             </div>
                                         </div>
-                                        <div class="outlined-input-field bg-c" id="confirm_email_container" t-if="name" style="display:none">
-                                            <input type="text" id="confirm_email" class="outlined-text-field" name="confirm_email" autocomplete="off" t-att-value="login" required="required" inputmode="email"/>
+                                        <div class="outlined-input-field bg-c" id="confirm_email_container" t-if="name"
+                                             style="display:none">
+                                            <input type="text" id="confirm_email" class="outlined-text-field"
+                                                   name="confirm_email" autocomplete="off" t-att-value="login"
+                                                   required="required" inputmode="email"/>
                                             <label for="confirm_email">Confirmer votre email *</label>
                                             <i class="material-icons error-icon">error_outline</i>
                                             <div class="helper-text bg-c" id="confirm_email_helper">
@@ -148,7 +167,8 @@
                                         <br t-if="not name"/>
 
                                         <div class="outlined-input-field bg-c" id="password_container">
-                                            <input type="password" id="password" class="outlined-text-field" autocomplete="off" required="required" name="password"/>
+                                            <input type="password" id="password" class="outlined-text-field"
+                                                   autocomplete="off" required="required" name="password"/>
                                             <label for="password">Mot de passe *</label>
                                             <i class="material-icons error-icon">error_outline</i>
                                             <div class="helper-text bg-c" id="password_helper">
@@ -158,7 +178,8 @@
 
                                         <br t-if="not name"/>
                                         <br t-if="name"/>
-                                        <button type="submit" class="rkmd-btn btn-black ripple-effect ripple-yellow" t-if="name">
+                                        <button type="submit" class="rkmd-btn btn-black ripple-effect ripple-yellow"
+                                                t-if="name">
                                             Confirmer
                                         </button>
                                         <br t-if="name"/>
@@ -202,7 +223,9 @@
                                         <!-- error-input-field -->
                                         <div class="row">
                                             <div class="col-md-4 mgb outlined-input-field bg-c" id="zipcode_container">
-                                                <input type="text" id="zipcode" name="zip" class="outlined-text-field" required="required" maxlength="5" pattern="[0-9]{5,5}" inputmode="numeric" autocomplete="off" value=""/>
+                                                <input type="text" id="zipcode" name="zip" class="outlined-text-field"
+                                                       required="required" maxlength="5" pattern="[0-9]{5,5}"
+                                                       inputmode="numeric" autocomplete="off" value=""/>
                                                 <label for="zipcode" style="left: 2rem !important">Code Postal *
                                                 </label
                                                 >
@@ -211,9 +234,11 @@
                                                     <span></span>
                                                 </div>
                                             </div>
-                                            <div class="col-md-8 outlined-input-field bg-c" id="city_container" aria-disabled="true">
+                                            <div class="col-md-8 outlined-input-field bg-c" id="city_container"
+                                                 aria-disabled="true">
                                                 <!-- <input type="text" id="city" class="outlined-text-field" autocomplete="off" /> -->
-                                                <select class="outlined-text-field disabled" name="city" id="city" type="hidden" required="required"></select>
+                                                <select class="outlined-text-field disabled" name="city" id="city"
+                                                        type="hidden" required="required"></select>
                                                 <label for="city" style="left: 2rem !important">Ville *
                                                 </label
                                                 >
@@ -226,7 +251,8 @@
                                         <br/>
 
                                         <div class="outlined-input-field bg-c" id="voie_container" aria-disabled="true">
-                                            <select class="outlined-text-field" name="voie" id="voie" disabled="true" required="required">
+                                            <select class="outlined-text-field" name="voie" id="voie" disabled="true"
+                                                    required="required">
                                                 <option value=""></option>
                                                 <option value='AUTRE'>(AUTRE...)</option>
                                                 <option value='ALLÉE'>ALLÉE</option>
@@ -261,9 +287,11 @@
 
                                         <br/>
 
-                                        <div class="outlined-input-field bg-c" id="nom_voie_container" aria-disabled="true">
+                                        <div class="outlined-input-field bg-c" id="nom_voie_container"
+                                             aria-disabled="true">
 
-                                            <input type="text" name="nom_voie" id="nom_voie" class="outlined-text-field" autocomplete="off" required="required"/>
+                                            <input type="text" name="nom_voie" id="nom_voie" class="outlined-text-field"
+                                                   autocomplete="off" required="required"/>
 
                                             <label for="nom_voie">Nom de voie *</label>
                                             <i class="material-icons error-icon">error_outline</i>
@@ -274,7 +302,8 @@
                                         <br/>
 
                                         <div class="outlined-input-field bg-c" id="num_voie_container">
-                                            <input type="text" id="num_voie" name="num_voie" class="outlined-text-field" required="required" inputmode="numeric" autocomplete="off"/>
+                                            <input type="text" id="num_voie" name="num_voie" class="outlined-text-field"
+                                                   required="required" inputmode="numeric" autocomplete="off"/>
                                             <label for="num_voie">N° de voie *</label>
                                             <i class="material-icons error-icon">error_outline</i>
                                             <div class="helper-text bg-c" id="num_voie_helper">
@@ -284,7 +313,8 @@
                                         <br/>
 
                                         <div class="outlined-input-field bg-c" id="comp_address_container">
-                                            <input type="text" id="comp_address" name="street2" class="outlined-text-field" autocomplete="off"/>
+                                            <input type="text" id="comp_address" name="street2"
+                                                   class="outlined-text-field" autocomplete="off"/>
                                             <label for="comp_address">Complément d'adresse</label>
                                             <i class="material-icons error-icon">error_outline</i>
                                             <div class="helper-text bg-c" id="comp_address_helper">
@@ -309,16 +339,22 @@
                                           </button>
                                         </div> -->
                                         <div class="text-center oe_login_buttons pt-5" style="margin-block-end: 3rem">
-                                            <a href="/web/login?" class="rkmd-btn btn-white ripple-effect ripple-yellow" style="margin-right: 10px; display:none">
+                                            <a href="/web/login?" class="rkmd-btn btn-white ripple-effect ripple-yellow"
+                                               style="margin-right: 10px; display:none">
 
                                                 se connecter
                                             </a>
-                                            <button id="inscrire" type="submit" class="rkmd-btn btn-black ripple-effect ripple-yellow" data-oe-model="ir.ui.view" data-oe-id="1730" data-oe-field="arch" data-oe-xpath="/data/xpath[4]/div[2]/div[1]/div[1]/div[1]/div[1]/fieldset[1]/div[7]/button[1]">
+                                            <button id="inscrire" type="submit"
+                                                    class="rkmd-btn btn-black ripple-effect ripple-yellow"
+                                                    data-oe-model="ir.ui.view" data-oe-id="1730" data-oe-field="arch"
+                                                    data-oe-xpath="/data/xpath[4]/div[2]/div[1]/div[1]/div[1]/div[1]/fieldset[1]/div[7]/button[1]">
                                                 S'incrire
                                                 <i class="material-icons right">send</i>
                                             </button>
 
-                                            <div class="o_login_auth" data-oe-model="ir.ui.view" data-oe-id="1730" data-oe-field="arch" data-oe-xpath="/data/xpath[4]/div[2]/div[1]/div[1]/div[1]/div[1]/fieldset[1]/div[7]/div[1]"></div>
+                                            <div class="o_login_auth" data-oe-model="ir.ui.view" data-oe-id="1730"
+                                                 data-oe-field="arch"
+                                                 data-oe-xpath="/data/xpath[4]/div[2]/div[1]/div[1]/div[1]/div[1]/fieldset[1]/div[7]/div[1]"></div>
                                         </div>
                                         <link href="/mcm_contact_documents/static/src/css/button.css" rel="stylesheet"/>
 
@@ -329,12 +365,14 @@
                         </div>
                     </div>
                 </div>
-                <script defer="defer" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"/>
+                <script defer="defer" type="text/javascript"
+                        src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"/>
 
 
                 <!-- <script defer="defer" type="text/javascript" src="/mcm_website_theme/static/src/js/register_form.js" /> -->
 
-                <script defer="defer" type="text/javascript" src="/fl_auth_signup/static/js/validate_inscription.js" t-if="not name"/>
+                <script defer="defer" type="text/javascript" src="/fl_auth_signup/static/js/validate_inscription.js"
+                        t-if="not name"/>
                 <script defer="defer" type="text/javascript" src="/mcm_website_theme/static/src/js/material.js"/>
 
             </xpath>
@@ -347,7 +385,8 @@
                         n'avez pas de compte ?
                     </a>
                     <div>
-                        <a t-if="reset_password_enabled" t-attf-href="/web/reset_password?{{ keep_query() }}" style="font-size: large">Mot de passe oublié ?
+                        <a t-if="reset_password_enabled" t-attf-href="/web/reset_password?{{ keep_query() }}"
+                           style="font-size: large">Mot de passe oublié ?
                         </a>
                     </div>
 
