@@ -33,7 +33,6 @@
 }
           
       </style>
-
       <div id="wrap" class="oe_structure oe_empty">
         <div id="myCarousel1629963079639" class="s_carousel carousel slide s_carousel_default" data-interval="10000" data-name="Carousel" style="border-style: none; border-width: 0px;">
           <ol class="carousel-indicators d-none">
@@ -164,8 +163,6 @@
                     <br/>
                   </font>
                   <br/>
-                  <span class="fa fa-chevron-right" data-original-title="" title="" aria-describedby="tooltip560396" style="font-size: 15px; color: rgb(8, 82, 148);"/>
-                  <span style="color: rgb(8, 82, 148); font-family: Poppins, sans-serif; font-size: 14px;">&amp;nbsp;En savoir plus</span>
                   <br/>
                 </p>
               </div>
@@ -177,7 +174,7 @@
             <div class="row">
               <div class="s_title col-lg-12 pt24 pb0" style="text-align: center; border-style: none; border-width: 0px;">
                 <div class="s_alert clearfix w-100 s_alert_sm alert-100" data-name="Alert" style="">
-                  <i class="fa fa-2x fa-info-circle s_alert_icon"></i>
+                  <i class="fa fa-2x fa-info-circle s_alert_icon"/>
                   <div class="s_alert_content">
                     <p style="text-align: left; ">Nos formations incluent les personnes en situation d'handicap. Bien entendu, nous restons à votre disposition pour répondre à toutes vos questions, en contactant notre référent handicap sur notre espace client accessible sur notre site web<a href="https://dev.mcm-academy.fr/service-clientele" style="background-color: rgb(255, 255, 255);">
                       <font style="color: rgb(0, 0, 255);">par ici</font>
@@ -306,10 +303,8 @@
                 <br/>
               </span>
             </font>
-            <span class="fa fa-arrow-right"/>
-&amp;nbsp;<font color="#000000" face="Poppins, sans-serif">
-            <span style="font-size: 14px;">&amp;nbsp;</span>
-          </font>
+            &amp;nbsp;<span class="fa fa-arrow-right" data-original-title="" title="" aria-describedby="tooltip241170"/>
+
           <font color="#000000" face="Poppins, sans-serif">
             <span style="font-size: 14px;">MCM Academy vous propose une formation e-learning qui allie théorie et pratique, et vous assure un suivi personnalisé tout au long de votre parcours avec des experts du métier.</span>
           </font>
@@ -317,13 +312,10 @@
           <font color="#000000" face="Poppins, sans-serif">
             <br/>
           </font>
-        </p>
-        <p>
-          <span class="fa fa-chevron-right" data-original-title="" title="" aria-describedby="tooltip560396" style="font-size: 15px; color: rgb(8, 82, 148);"/>
-          <span style="color: rgb(8, 82, 148); font-family: Poppins, sans-serif; font-size: 14px;">&amp;nbsp;En savoir plus</span>
-          <font color="#000000" face="Poppins, sans-serif">
-            <br/>
-          </font>
+
+          <span style="color: rgb(8, 82, 148); font-family: Poppins, sans-serif; font-size: 14px;">&amp;nbsp; </span>
+          <br/>
+
         </p>
       </div>
     </div>
@@ -463,15 +455,13 @@
             <span style="font-size: 14px;">&amp;nbsp;Révision du programme avant examen</span>
             <br/>
           </font>
-                &amp;nbsp;<br/>
-
+          <br/>
         </p>
         <p>
-          <span class="fa fa-chevron-right" data-original-title="" title="" aria-describedby="tooltip560396" style="font-size: 15px; color: rgb(8, 82, 148);"/>
-          <span style="color: rgb(8, 82, 148); font-family: Poppins, sans-serif; font-size: 14px;">&amp;nbsp;En savoir plus</span>
-          <font color="#000000" face="Poppins, sans-serif">
-            <br/>
-          </font>
+          <span style="color: rgb(8, 82, 148); font-family: Poppins, sans-serif; font-size: 14px;">&amp;nbsp;
+          
+          </span>
+          <br/>
         </p>
       </div>
       <div class="col-lg-6 pt16 pb16">
@@ -597,13 +587,11 @@
             </t>
           </div>
         </div>
-
       </div>
     </div>
   </section>
 </div>
 <!-- FIN PRICING TABLE-->
-
 <section id="main-container">
   <div class="gap-60"/>
   <div class="gap-60"/>
