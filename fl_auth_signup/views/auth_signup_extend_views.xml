@@ -274,7 +274,7 @@
                                         <br/>
 
                                         <div class="outlined-input-field bg-c" id="num_voie_container">
-                                            <input type="text" id="num_voie" name="num_voie" class="outlined-text-field" autocomplete="off" required="required"/>
+                                            <input type="text" id="num_voie" name="num_voie" class="outlined-text-field" required="required" maxlength="6" pattern="[0-9]{5,5}" inputmode="numeric" autocomplete="off"/>
                                             <label for="num_voie">N° de voie *</label>
                                             <i class="material-icons error-icon">error_outline</i>
                                             <div class="helper-text bg-c" id="num_voie_helper">
@@ -313,7 +313,7 @@
 
                                                 se connecter
                                             </a>
-                                            <button id="inscrire" disabled="disabled" type="submit" class="rkmd-btn btn-black ripple-effect ripple-yellow" data-oe-model="ir.ui.view" data-oe-id="1730" data-oe-field="arch" data-oe-xpath="/data/xpath[4]/div[2]/div[1]/div[1]/div[1]/div[1]/fieldset[1]/div[7]/button[1]">
+                                            <button id="inscrire" type="submit" class="rkmd-btn btn-black ripple-effect ripple-yellow" data-oe-model="ir.ui.view" data-oe-id="1730" data-oe-field="arch" data-oe-xpath="/data/xpath[4]/div[2]/div[1]/div[1]/div[1]/div[1]/fieldset[1]/div[7]/button[1]">
                                                 S'incrire
                                                 <i class="material-icons right">send</i>
                                             </button>
