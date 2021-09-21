@@ -92,7 +92,7 @@
                                             </font>
                                         </h2>
                                         <div class="s_btn text-center pt16 pb16" data-name="Button">
-                                            <a href="#" class="btn btn-warning sh_btn_cm_4" data-original-title="" title="" aria-describedby="tooltip562914">En savoir plus
+                                            <a href="/formation-chauffeur-taxi" class="btn btn-warning sh_btn_cm_4" data-original-title="" title="" aria-describedby="tooltip562914">En savoir plus
                                             </a>
                                         </div>
                                         <a href="#" class="sh_number"/>
@@ -116,7 +116,7 @@
                                             </font>
                                         </h2>
                                         <div class="s_btn text-center pt16 pb16" data-name="Button">
-                                            <a href="#" class="btn btn-warning sh_btn_cm_4">En savoir plus</a>
+                                            <a href="/formation-chauffeur-vtc" class="btn btn-warning sh_btn_cm_4">En savoir plus</a>
                                         </div>
                                     </div>
                                 </div>
@@ -138,7 +138,7 @@
                                             <br/>
                                         </h2>
                                         <div class="s_btn text-center pt16 pb16" data-name="Button">
-                                            <a href="#" class="btn btn-warning sh_btn_cm_4">En savoir plus</a>
+                                            <a href="/formation-taximoto-vmtdr" class="btn btn-warning sh_btn_cm_4">En savoir plus</a>
                                         </div>
                                     </div>
                                 </div>
@@ -375,13 +375,13 @@
                         </div>
                         <div class="col-md-9 col-sm-12 pt48" style="border-style: none; border-width: 0px">
                             <div class="sh_description">
-                                <p/>
-                                <p dir="ltr" style="                     line-height: 1.2;                     margin-top: 4.47796630859375pt;                     margin-bottom: 0pt;                   ">
-                                    <span style="                       background-color: transparent;                       color: #000000;                       font-family: Arial;                       font-size: 11pt;                       font-style: normal;                       font-variant: normal;                       font-weight: 400;                       text-decoration: none;                       vertical-align: baseline;                       white-space: pre;                       white-space: pre-wrap;                     ">Le compte personnel de formation sert à accompagner le
+                                <p>Le compte personnel de formation sert à accompagner le
                     titulaire dans le cadre de l’évolution, la reconversion et
                     la sécurisation de son parcours professionnel. Une fois
                     alimenté, il permet de financer tout ou une partie d’une
-                    formation éligible au dispositif, en ligne.</span>
+                    formation éligible au dispositif, en ligne.</p>
+                                <p dir="ltr" style="                     line-height: 1.2;                     margin-top: 4.47796630859375pt;                     margin-bottom: 0pt;                   ">
+
                                 </p>
                             </div>
                         </div>

@@ -22,7 +22,7 @@ $(document).ready(function () {
       const pattern = /^[A-Z,a-z,À-ÿ '-]{2,}$/;
       if (value.match(pattern)) return false;
       else return `Votre ${prop} doit contenir des lettres seulement!`;
-    } else return "Ce champ est obligatoire!";
+    } else return "Ce champs est obligatoire!";
   }
 
   //check phone number
@@ -31,23 +31,75 @@ $(document).ready(function () {
       const pattern = /^(07|06)[0-9]\d{7}$/;
       if (value.match(pattern)) return false;
       else
-        return `Votre numéero de téléphone doit commencer par 06 ou 07 suivie par 8 chiffres`;
-    } else return "Ce champ est obligatoire!";
+        return `Votre numéro de téléphone doit commencer par 06 ou 07 suivie par 8 chiffres`;
+    } else return "Ce champs est obligatoire!";
   }
 
-  function checkEmail(prop, value) {
-    if (value.length > 0) {
+  // function checkEmail(prop, value, confirm_email) {
+  //   let message = "";
+  //   if (value.length > 0 && confirm_email.length > 0) {
+  //   }
+  //   if (value.length > 0) {
+  //     const pattern = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+  //     if (value.match(pattern)) return false;
+  //     else message = `Votre ${prop} est incorrecte!`;
+  //   } else message = "Ce champs est obligatoire!";
+  // }
+
+  // function checkConfirmEmail(value, confirmValue) {
+  //   if (value.length > 0) {
+  //     if (value === confirmValue) return false;
+  //     else
+  //       return `L'email ne correspond pas au champs precedent! Veuillez confirmer votre email.`;
+  //   }
+  //   if (value.length === 0)
+  //     return "L'email ne correspond pas au champs precedent!";
+  // }
+
+  function checkEmail(email, confirm_email) {
+    if (email.length > 0) {
       const pattern = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-      if (value.match(pattern)) return false;
-      else return `Votre ${prop} est incorrecte!`;
-    } else return "Ce champ est obligatoire!";
-  }
+      if (email.match(pattern)) {
+        $(`#email_container `).removeClass("error-input-field");
+        $(`#email_helper `).append("");
+      } else {
+        $(`#email_container `).addClass("error-input-field");
+        $(`#email_helper span `).text("Votre email est incorrecte!");
+      }
+    } else {
+      $(`#email_container `).addClass("error-input-field");
+      $(`#email_helper span `).text("Ce champs est obligatoire!");
+    }
 
-  function checkConfirmEmail(value, confirmValue) {
-    if (value.length > 0) {
-      if (value === confirmValue) return false;
-      else return `L'email ne correspond pas! Vuillez confirmer votre email.`;
-    } else return "Ce champ est obligatoire!";
+    if (confirm_email.length > 0) {
+      const pattern = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+      if (confirm_email.match(pattern)) {
+        $(`#confirm_email_container `).removeClass("error-input-field");
+        $(`#confirm_email_helper `).append("");
+      } else {
+        $(`#confirm_email_container `).addClass("error-input-field");
+        $(`#confirm_email_helper span `).text("Votre email est incorrecte!");
+      }
+    } else {
+      $(`#confirm_email_container `).addClass("error-input-field");
+      $(`#confirm_email_helper span `).text("Ce champs est obligatoire!");
+    }
+    if (email.length > 0 && confirm_email.length > 0) {
+      if (email === confirm_email) {
+        console.log("email === confirm_email");
+        $(`#email_container `).removeClass("error-input-field");
+        $(`#email_helper `).append("");
+        $(`#confirm_email_container `).removeClass("error-input-field");
+        $(`#confirm_email_helper `).append("");
+      } else {
+        console.log("email !== confirm_email");
+        console.log(email, "  ", confirm_email);
+        $(`#confirm_email_container `).addClass("error-input-field");
+        $(`#confirm_email_helper span `).text(
+          "L'email ne correspond pas au champs precedent! Veuillez confirmer votre email."
+        );
+      }
+    }
   }
 
   function checkPassword(value) {
@@ -61,7 +113,7 @@ $(document).ready(function () {
         else
           return `Votre mot de passe doit contenir une combinaison de chiffres, caractères spéciaux, lettres majuscules et minuscules!`;
       }
-    } else return "Ce champ est obligatoire!";
+    } else return "Ce champs est obligatoire!";
   }
 
   //**************************************************************************************** */
@@ -131,44 +183,14 @@ $(document).ready(function () {
 
   $(`#email`).keyup(function (e) {
     const email = $("#email").val();
-    const errorMessage = checkEmail("email", email);
-    if (errorMessage === false) {
-      validSubmit["email"] = true;
-
-      if (checkValidationButton(validSubmit)) {
-        // buttonInscrire.removeAttribute("disabled");
-      }
-
-      $(`#email_container `).removeClass("error-input-field");
-      $(`#email_helper `).append("");
-    } else {
-      validSubmit["email"] = false;
-      // buttonInscrire.setAttribute("disabled", "disabled");
-
-      $(`#email_container `).addClass("error-input-field");
-      $(`#email_helper span `).text(errorMessage);
-    }
+    const confirm_email = $("#confirm_email").val();
+    checkEmail(email, confirm_email);
   });
 
   $(`#confirm_email`).keyup(function (e) {
+    const email = $("#email").val();
     const confirm_email = $("#confirm_email").val();
-    const errorMessage = checkConfirmEmail($("#email").val(), confirm_email);
-    if (errorMessage === false) {
-      validSubmit["confirmemail_valid"] = true;
-
-      if (checkValidationButton(validSubmit)) {
-        // buttonInscrire.removeAttribute("disabled");
-      }
-
-      $(`#confirm_email_container `).removeClass("error-input-field");
-      $(`#confirm_email_helper `).append("");
-    } else {
-      validSubmit["confirmemail_valid"] = false;
-      // buttonInscrire.setAttribute("disabled", "disabled");
-
-      $(`#confirm_email_container `).addClass("error-input-field");
-      $(`#confirm_email_helper span `).text(errorMessage);
-    }
+    checkEmail(email, confirm_email);
   });
 
   $(`#password`).keyup(function (e) {
