@@ -180,156 +180,151 @@
 <section id="sh_corpomate_theme_section_258" class="sh_animation_part" data-name="practice">
 <div class="container">
   <div class="row">
-    <div class="col-lg-12 s_title pt16 pb48" style="text-align: center;">
+    <div class="s_title col-lg-12 pt24 pb0" style="text-align: center; border-style: none; border-width: 0px;">
       <div class="s_alert clearfix w-100 s_alert_sm alert-100" data-name="Alert" style="">
-        <i class="fa fa-2x fa-info-circle s_alert_icon"/>
+        <i class="fa fa-2x fa-info-circle s_alert_icon"></i>
         <div class="s_alert_content">
-          <p style="text-align: left; ">Notre formation n’inclut pas actuellement les personnes en situation de mobilité réduite ou handicap, mais nous ne négligeons pas la possibilité d’adaptation des cours et de la plateforme dans un futur proche afin qu’ils soient à la hauteur de vos attentes. Bien entendu, nous restons à votre disposition pour répondre à toutes vos questions, en contactant notre référent handicap sur notre espace client accessible sur notre site web.<br/>
-          </p>
-        </div>
-      </div>
-      <h2>
-        <font color="#000000" face="Poppins, sans-serif">
-          <span style="font-size: 24px;">
-            <span style="font-weight: 700;">Les démarches à suivre pour souscrire à la formation VTC</span>
-          </span>
-        </font>
-      </h2>
-    </div>
-    <div class="col-lg-3 col-md-6 col-sm-6 col-12 sh_animation_part" style="border-style: none; border-width: 0px;">
-      <div class="sh_content">
-        <div class="sh_icon">
-          <span class="fa fa-star" data-original-title="" title="" aria-describedby="tooltip285245" style="background-color: rgb(255, 227, 71); color: rgb(0, 0, 0);"/>
-        </div>
-        <h4 class="o_default_snippet_text">
-          <br/>
-        </h4>
-        <div>
-          <h4>
-            <span style="background-color: rgba(255, 255, 255, 0.9); color: rgb(0, 0, 0); font-family: Poppins, sans-serif; text-align: left; text-transform: none;">1.&amp;nbsp;</span>&amp;nbsp;<font color="#000000" face="Poppins, sans-serif">
-            <span style="text-transform: none;">Souscrire à la formation en ligne à la Chambre des Métiers et de l’Artisanat</span>
-          </font>
-        </h4>
-        <p>
-          <font style="color: rgb(66, 66, 66);">Une inscription sur la plateforme de la Chambre des Métiers et de l'Artisanat (CMA) est obligatoire.</font>
-        </p>
-        <p>
-          <font style="color: rgb(66, 66, 66);">
-            <br/>
-          </font>
-          <span class="fa fa-chevron-right"/>
-&amp;nbsp;<span style="text-align: left; color: rgb(8, 82, 148); font-family: Poppins, sans-serif; font-size: 14px;">&amp;nbsp;En savoir plus</span>
+          <p style="text-align: left; ">Nos formations incluent les personnes en situation d'handicap. Bien entendu, nous restons à votre disposition pour répondre à toutes vos questions, en contactant notre référent handicap sur notre espace client accessible sur notre site web<a href="https://dev.mcm-academy.fr/service-clientele" style="background-color: rgb(255, 255, 255);">
+            <font style="color: rgb(0, 0, 255);">par ici</font>
+          </a>.          <br/>
         </p>
       </div>
     </div>
   </div>
-  <div class="col-lg-3 col-md-6 col-sm-6 col-12 sh_animation_part">
+  <div class="col-lg-3 col-md-6 col-sm-6 col-12 sh_animation_part" style="border-style: none; border-width: 0px;">
     <div class="sh_content">
       <div class="sh_icon">
-        <span class="fa fa-star" data-original-title="" title="" aria-describedby="tooltip830561" style="background-color: rgb(255, 227, 71); color: rgb(0, 0, 0);"/>
+        <span class="fa fa-star" data-original-title="" title="" aria-describedby="tooltip285245" style="background-color: rgb(255, 227, 71); color: rgb(0, 0, 0);"/>
       </div>
-      <h3 style="margin: 25px 0px 15px; font-weight: 700; font-size: 22px; transition: all 0.4s ease 0s; color: rgb(255, 255, 255); font-family: Poppins, sans-serif;">
-        <font style="color: rgb(0, 0, 0); font-size: 18px;">2. Souscrire à la formation en ligne chez MCM Academy</font>
-      </h3>
-      <h4/>
-      <p style="font-size: 15px; font-weight: 400; text-transform: none;">
-        <font style="color: rgb(66, 66, 66);">Inscription facile en 3 étapes : tout tout se passe sur notre site web.</font>
-      </p>
-      <p style="font-size: 15px; font-weight: 400; text-transform: none;">
-        <font style="color: rgb(66, 66, 66);">
-          <br/>
-          <span class="fa fa-chevron-right" data-original-title="" title="" aria-describedby="tooltip560396" style="font-size: 15px; text-align: left; color: rgb(8, 82, 148);"/>
-&amp;nbsp;<span style="text-align: left; color: rgb(8, 82, 148); font-family: Poppins, sans-serif; font-size: 14px;">&amp;nbsp;En savoir plus</span>
-        </font>
-      </p>
-    </div>
-  </div>
-  <div class="col-lg-3 col-md-6 col-sm-6 col-12 sh_animation_part">
-    <div class="sh_content">
-      <div class="sh_icon">
-        <span class="fa fa-star" data-original-title="" title="" aria-describedby="tooltip477646" style="background-color: rgb(255, 227, 71); color: rgb(0, 0, 0);"/>
-      </div>
-      <h3 style="margin: 25px 0px 15px; font-weight: 700; font-size: 22px; transition: all 0.4s ease 0s; color: rgb(255, 255, 255); font-family: Poppins, sans-serif;">
-        <font style="color: rgb(0, 0, 0); font-size: 18px;">3- Choisir votre centre d'examen</font>
-      </h3>
-      <h4/>
-      <p style="font-size: 15px; font-weight: 400; text-transform: none;">
-        <font style="color: rgb(66, 66, 66);">Choisissez votre centre d'examen le plus proche de chez vous.</font>
-      </p>
-      <p style="font-size: 15px; font-weight: 400; text-transform: none;">
-        <font style="color: rgb(66, 66, 66);">
-          <br/>
-        </font>
-      </p>
-      <p style="font-size: 15px; font-weight: 400; text-transform: none;">
-        <font style="color: rgb(66, 66, 66);">
-          <span class="fa fa-chevron-right" data-original-title="" title="" aria-describedby="tooltip560396" style="font-size: 15px; text-align: left; color: rgb(8, 82, 148);"/>
-&amp;nbsp;<span style="text-align: left; color: rgb(8, 82, 148); font-family: Poppins, sans-serif; font-size: 14px;">&amp;nbsp;En savoir plus</span>
-        </font>
-      </p>
-    </div>
-  </div>
-  <div class="col-lg-3 col-md-6 col-sm-6 col-12 sh_animation_part">
-    <div class="sh_content">
-      <div class="sh_icon">
-        <span class="fa fa-star" data-original-title="" title="" aria-describedby="tooltip707054" style="background-color: rgb(255, 227, 71); color: rgb(0, 0, 0);"/>
-      </div>
-      <h3 style="margin: 25px 0px 15px; font-weight: 700; font-size: 22px; transition: all 0.4s ease 0s; color: rgb(255, 255, 255); font-family: Poppins, sans-serif;">
-        <font style="color: rgb(0, 0, 0); font-size: 18px;">4. Déposer votre dossier à la préfecture pour obtenir votre carte professionnelle</font>
-      </h3>
-      <h4/>
-      <p>
-        <font color="#424242">Une fois l’examen passé et votre certificat de réussite obtenu, il faut déposer un dossier à la préfecture.</font>
+      <h4 class="o_default_snippet_text">
         <br/>
+      </h4>
+      <div>
+        <h4>
+          <span style="background-color: rgba(255, 255, 255, 0.9); color: rgb(0, 0, 0); font-family: Poppins, sans-serif; text-align: left; text-transform: none;">1.&amp;nbsp;</span>&amp;nbsp;<font color="#000000" face="Poppins, sans-serif">
+          <span style="text-transform: none;">Souscrire à la formation en ligne à la Chambre des Métiers et de l’Artisanat</span>
+        </font>
+      </h4>
+      <p>
+        <font style="color: rgb(66, 66, 66);">Une inscription sur la plateforme de la Chambre des Métiers et de l'Artisanat (CMA) est obligatoire.</font>
       </p>
-      <p style="font-size: 15px; font-weight: 400; text-transform: none;">
+      <p>
         <font style="color: rgb(66, 66, 66);">
           <br/>
         </font>
-      </p>
-      <p style="font-size: 15px; font-weight: 400; text-transform: none;">
-        <font style="color: rgb(66, 66, 66);">
-          <span class="fa fa-chevron-right" data-original-title="" title="" aria-describedby="tooltip560396" style="font-size: 15px; text-align: left; color: rgb(8, 82, 148);"/>
+        <span class="fa fa-chevron-right"/>
 &amp;nbsp;<span style="text-align: left; color: rgb(8, 82, 148); font-family: Poppins, sans-serif; font-size: 14px;">&amp;nbsp;En savoir plus</span>
-        </font>
       </p>
     </div>
   </div>
+</div>
+<div class="col-lg-3 col-md-6 col-sm-6 col-12 sh_animation_part">
+  <div class="sh_content">
+    <div class="sh_icon">
+      <span class="fa fa-star" data-original-title="" title="" aria-describedby="tooltip830561" style="background-color: rgb(255, 227, 71); color: rgb(0, 0, 0);"/>
+    </div>
+    <h3 style="margin: 25px 0px 15px; font-weight: 700; font-size: 22px; transition: all 0.4s ease 0s; color: rgb(255, 255, 255); font-family: Poppins, sans-serif;">
+      <font style="color: rgb(0, 0, 0); font-size: 18px;">2. Souscrire à la formation en ligne chez MCM Academy</font>
+    </h3>
+    <h4/>
+    <p style="font-size: 15px; font-weight: 400; text-transform: none;">
+      <font style="color: rgb(66, 66, 66);">Inscription facile en 3 étapes : tout tout se passe sur notre site web.</font>
+    </p>
+    <p style="font-size: 15px; font-weight: 400; text-transform: none;">
+      <font style="color: rgb(66, 66, 66);">
+        <br/>
+        <span class="fa fa-chevron-right" data-original-title="" title="" aria-describedby="tooltip560396" style="font-size: 15px; text-align: left; color: rgb(8, 82, 148);"/>
+&amp;nbsp;<span style="text-align: left; color: rgb(8, 82, 148); font-family: Poppins, sans-serif; font-size: 14px;">&amp;nbsp;En savoir plus</span>
+      </font>
+    </p>
+  </div>
+</div>
+<div class="col-lg-3 col-md-6 col-sm-6 col-12 sh_animation_part">
+  <div class="sh_content">
+    <div class="sh_icon">
+      <span class="fa fa-star" data-original-title="" title="" aria-describedby="tooltip477646" style="background-color: rgb(255, 227, 71); color: rgb(0, 0, 0);"/>
+    </div>
+    <h3 style="margin: 25px 0px 15px; font-weight: 700; font-size: 22px; transition: all 0.4s ease 0s; color: rgb(255, 255, 255); font-family: Poppins, sans-serif;">
+      <font style="color: rgb(0, 0, 0); font-size: 18px;">3- Choisir votre centre d'examen</font>
+    </h3>
+    <h4/>
+    <p style="font-size: 15px; font-weight: 400; text-transform: none;">
+      <font style="color: rgb(66, 66, 66);">Choisissez votre centre d'examen le plus proche de chez vous.</font>
+    </p>
+    <p style="font-size: 15px; font-weight: 400; text-transform: none;">
+      <font style="color: rgb(66, 66, 66);">
+        <br/>
+      </font>
+    </p>
+    <p style="font-size: 15px; font-weight: 400; text-transform: none;">
+      <font style="color: rgb(66, 66, 66);">
+        <span class="fa fa-chevron-right" data-original-title="" title="" aria-describedby="tooltip560396" style="font-size: 15px; text-align: left; color: rgb(8, 82, 148);"/>
+&amp;nbsp;<span style="text-align: left; color: rgb(8, 82, 148); font-family: Poppins, sans-serif; font-size: 14px;">&amp;nbsp;En savoir plus</span>
+      </font>
+    </p>
+  </div>
+</div>
+<div class="col-lg-3 col-md-6 col-sm-6 col-12 sh_animation_part">
+  <div class="sh_content">
+    <div class="sh_icon">
+      <span class="fa fa-star" data-original-title="" title="" aria-describedby="tooltip707054" style="background-color: rgb(255, 227, 71); color: rgb(0, 0, 0);"/>
+    </div>
+    <h3 style="margin: 25px 0px 15px; font-weight: 700; font-size: 22px; transition: all 0.4s ease 0s; color: rgb(255, 255, 255); font-family: Poppins, sans-serif;">
+      <font style="color: rgb(0, 0, 0); font-size: 18px;">4. Déposer votre dossier à la préfecture pour obtenir votre carte professionnelle</font>
+    </h3>
+    <h4/>
+    <p>
+      <font color="#424242">Une fois l’examen passé et votre certificat de réussite obtenu, il faut déposer un dossier à la préfecture.</font>
+      <br/>
+    </p>
+    <p style="font-size: 15px; font-weight: 400; text-transform: none;">
+      <font style="color: rgb(66, 66, 66);">
+        <br/>
+      </font>
+    </p>
+    <p style="font-size: 15px; font-weight: 400; text-transform: none;">
+      <font style="color: rgb(66, 66, 66);">
+        <span class="fa fa-chevron-right" data-original-title="" title="" aria-describedby="tooltip560396" style="font-size: 15px; text-align: left; color: rgb(8, 82, 148);"/>
+&amp;nbsp;<span style="text-align: left; color: rgb(8, 82, 148); font-family: Poppins, sans-serif; font-size: 14px;">&amp;nbsp;En savoir plus</span>
+      </font>
+    </p>
+  </div>
+</div>
 </div>
 </div>
 </section>
 <section id="sh_corpomate_theme_section_258" class="sh_animation_part" data-name="practice">
 <div class="container">
 <div class="row">
-  <div class="col-lg-6 pb16 pt56" style="border-style: none; border-width: 0px;">
-    <h2>
-      <font color="#000000" face="Poppins, sans-serif">
-        <span style="font-size: 24px;">
-          <b>Déroulement de la formation VTC</b>
-        </span>
-        <b>
-          <span style="font-size: 24px;">:&amp;nbsp;</span>
-        </b>
-      </font>
-      <br/>
-      <font color="#000000" face="Poppins, sans-serif">
-        <b></b>
-      </font>
-    </h2>
-    <p>
-      <font color="#000000" face="Poppins, sans-serif">
-        <span style="font-size: 18px;">Une formation VTC à distance de 70 h</span>&amp;nbsp;<span style="font-size: 14px;">:</span>
-      </font>
-      <br/>
-      <font color="#000000" face="Poppins, sans-serif"></font>
-    </p>
-    <p>
-      <span id="docs-internal-guid-389a209e-7fff-75ad-6a97-97dbfa311600"/>
-    </p>
-    <p>&amp;nbsp;<span class="fa fa-check"/>
+<div class="col-lg-6 pb16 pt56" style="border-style: none; border-width: 0px;">
+  <h2>
+    <font color="#000000" face="Poppins, sans-serif">
+      <span style="font-size: 24px;">
+        <b>Déroulement de la formation VTC</b>
+      </span>
+      <b>
+        <span style="font-size: 24px;">:&amp;nbsp;</span>
+      </b>
+    </font>
+    <br/>
+    <font color="#000000" face="Poppins, sans-serif">
+      <b></b>
+    </font>
+  </h2>
+  <p>
+    <font color="#000000" face="Poppins, sans-serif">
+      <span style="font-size: 18px;">Une formation VTC à distance de 70 h</span>&amp;nbsp;<span style="font-size: 14px;">:</span>
+    </font>
+    <br/>
+    <font color="#000000" face="Poppins, sans-serif"></font>
+  </p>
+  <p>
+    <span id="docs-internal-guid-389a209e-7fff-75ad-6a97-97dbfa311600"/>
+  </p>
+  <p>&amp;nbsp;<span class="fa fa-check"/>
 &amp;nbsp;<font color="#000000" face="Poppins, sans-serif">
-    <span style="font-size: 14px;">Des vidéos préenregistrées bien détaillées</span>
-  </font>
+  <span style="font-size: 14px;">Des vidéos préenregistrées bien détaillées</span>
+</font>
 </p>
 <p>&amp;nbsp;<span class="fa fa-check"/>
 &amp;nbsp;<font color="#000000" face="Poppins, sans-serif">
@@ -472,23 +467,23 @@
 <input type="hidden" class="product_id" name="product_id" id="vtc_product" t-att-value="product.id"/>
 <p>PACK VTC</p>
 <h4>
-  <span t-esc="round(product.list_price)"/>
-  <span t-esc="product.currency_id.symbol"/>
-  <sub>/personne</sub>
+<span t-esc="round(product.list_price)"/>
+<span t-esc="product.currency_id.symbol"/>
+<sub>/personne</sub>
 </h4>
 <ul class="">
-  <li>Formation 70 h (100 % en ligne)</li>
-  <li>Accès à + de 12 examens d'entraînement</li>
-  <li>Assistance par mail</li>
-  <li>Assistance&amp;nbsp;par téléphone</li>
-  <li>Assistance&amp;nbsp;par visioconférence</li>
-  <li>Lives&amp;nbsp;avec les formateurs pour explications</li>
-  <li>Révision du programme avant examen</li>
+<li>Formation 70 h (100 % en ligne)</li>
+<li>Accès à + de 12 examens d'entraînement</li>
+<li>Assistance par mail</li>
+<li>Assistance&amp;nbsp;par téléphone</li>
+<li>Assistance&amp;nbsp;par visioconférence</li>
+<li>Lives&amp;nbsp;avec les formateurs pour explications</li>
+<li>Révision du programme avant examen</li>
 </ul>
 <div class="sh_btn">
-  <a class="btn btn-primary sh_btn_cm_8" data-original-title="" title="" aria-describedby="tooltip357369" onClick="(function(){document.getElementById('form-1-1').submit();return false;})();return false;">
+<a class="btn btn-primary sh_btn_cm_8" data-original-title="" title="" aria-describedby="tooltip357369" onClick="(function(){document.getElementById('form-1-1').submit();return false;})();return false;">
                             Je m'inscris
-  </a>
+</a>
 </div>
 </form>
 </t>
@@ -503,23 +498,23 @@
 <input type="hidden" class="product_id" name="product_id" id="taxi_product" t-att-value="product.id"/>
 <p>PACK TAXI</p>
 <h4>
-  <span t-esc="round(product.list_price)"/>
-  <span t-esc="product.currency_id.symbol"/>
-  <sub>/personne</sub>
+<span t-esc="round(product.list_price)"/>
+<span t-esc="product.currency_id.symbol"/>
+<sub>/personne</sub>
 </h4>
 <ul class="">
-  <li>Formation 70 h (100 % en ligne)</li>
-  <li>Accès à + de 12 examens d'entraînement</li>
-  <li>Assistance&amp;nbsp;par mail</li>
-  <li>Assistance&amp;nbsp;par téléphone</li>
-  <li>Assistance&amp;nbsp;par visioconférence</li>
-  <li>Lives&amp;nbsp;avec les formateurs pour explications</li>
-  <li>Révision du programme avant examen</li>
+<li>Formation 70 h (100 % en ligne)</li>
+<li>Accès à + de 12 examens d'entraînement</li>
+<li>Assistance&amp;nbsp;par mail</li>
+<li>Assistance&amp;nbsp;par téléphone</li>
+<li>Assistance&amp;nbsp;par visioconférence</li>
+<li>Lives&amp;nbsp;avec les formateurs pour explications</li>
+<li>Révision du programme avant examen</li>
 </ul>
 <div class="sh_btn">
-  <a class="btn btn-primary sh_btn_cm_8" data-original-title="" title="" aria-describedby="tooltip209445" onClick="(function(){document.getElementById('form-1-2').submit();return false;})();return false;">
+<a class="btn btn-primary sh_btn_cm_8" data-original-title="" title="" aria-describedby="tooltip209445" onClick="(function(){document.getElementById('form-1-2').submit();return false;})();return false;">
                             Je m'inscris
-  </a>
+</a>
 </div>
 </form>
 </t>
@@ -534,23 +529,23 @@
 <input type="hidden" class="product_id" name="product_id" id="vmdtr_product" t-att-value="product.id"/>
 <p>PACK TAXI-MOTO</p>
 <h4>
-  <span t-esc="round(product.list_price)"/>
-  <span t-esc="product.currency_id.symbol"/>
-  <sub>/personne</sub>
+<span t-esc="round(product.list_price)"/>
+<span t-esc="product.currency_id.symbol"/>
+<sub>/personne</sub>
 </h4>
 <ul class="">
-  <li>Formation 70 h (100 % en ligne)</li>
-  <li>Accès à + de 12 examens d'entraînement</li>
-  <li>Assistance&amp;nbsp;par mail</li>
-  <li>Assistance&amp;nbsp;par téléphone</li>
-  <li>Assistance&amp;nbsp;par visioconférence</li>
-  <li>Lives&amp;nbsp;avec les formateurs pour explications</li>
-  <li>Révision du programme avant examen</li>
+<li>Formation 70 h (100 % en ligne)</li>
+<li>Accès à + de 12 examens d'entraînement</li>
+<li>Assistance&amp;nbsp;par mail</li>
+<li>Assistance&amp;nbsp;par téléphone</li>
+<li>Assistance&amp;nbsp;par visioconférence</li>
+<li>Lives&amp;nbsp;avec les formateurs pour explications</li>
+<li>Révision du programme avant examen</li>
 </ul>
 <div class="sh_btn">
-  <a class="btn btn-primary sh_btn_cm_8" data-original-title="" title="" aria-describedby="tooltip196298" onClick="(function(){document.getElementById('form-1-3').submit();return false;})();return false;">
+<a class="btn btn-primary sh_btn_cm_8" data-original-title="" title="" aria-describedby="tooltip196298" onClick="(function(){document.getElementById('form-1-3').submit();return false;})();return false;">
                             Je m'inscris
-  </a>
+</a>
 </div>
 </form>
 </t>
