@@ -319,7 +319,7 @@
                                                 se connecter
                                             </a>
                                             <button id="inscrire" type="submit" class="rkmd-btn btn-black ripple-effect ripple-yellow" data-oe-model="ir.ui.view" data-oe-id="1730" data-oe-field="arch" data-oe-xpath="/data/xpath[4]/div[2]/div[1]/div[1]/div[1]/div[1]/fieldset[1]/div[7]/button[1]">
-                                                S'incrire
+                                                S'inscrire
                                                 <i class="material-icons right">send</i>
                                             </button>
 
