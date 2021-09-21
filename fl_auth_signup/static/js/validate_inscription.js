@@ -75,13 +75,13 @@ $(document).ready(function () {
       validSubmit["lastname_valid"] = true;
 
       if (checkValidationButton(validSubmit)) {
-        buttonInscrire.removeAttribute("disabled");
+        // buttonInscrire.removeAttribute("disabled");
       }
       $(`#lastname_container `).removeClass("error-input-field");
       $(`#lastname_helper `).append("");
     } else {
       validSubmit["lastname_valid"] = false;
-      buttonInscrire.setAttribute("disabled", "disabled");
+      // buttonInscrire.setAttribute("disabled", "disabled");
 
       $(`#lastname_container `).addClass("error-input-field");
       $(`#lastname_helper span `).text(errorMessage);
@@ -95,13 +95,13 @@ $(document).ready(function () {
       validSubmit["firstname_valid"] = true;
 
       if (checkValidationButton(validSubmit)) {
-        buttonInscrire.removeAttribute("disabled");
+        // buttonInscrire.removeAttribute("disabled");
       }
       $(`#firstname_container `).removeClass("error-input-field");
       $(`#firstname_helper `).append("");
     } else {
       validSubmit["firstname_valid"] = false;
-      buttonInscrire.setAttribute("disabled", "disabled");
+      // buttonInscrire.setAttribute("disabled", "disabled");
 
       $(`#firstname_container `).addClass("error-input-field");
       $(`#firstname_helper span `).text(errorMessage);
@@ -115,14 +115,14 @@ $(document).ready(function () {
       validSubmit["phone_valid"] = true;
 
       if (checkValidationButton(validSubmit)) {
-        buttonInscrire.removeAttribute("disabled");
+        // buttonInscrire.removeAttribute("disabled");
       }
 
       $(`#phone_container `).removeClass("error-input-field");
       $(`#phone_helper `).append("");
     } else {
       validSubmit["phone_valid"] = false;
-      buttonInscrire.setAttribute("disabled", "disabled");
+      // buttonInscrire.setAttribute("disabled", "disabled");
 
       $(`#phone_container `).addClass("error-input-field");
       $(`#phone_helper span `).text(errorMessage);
@@ -136,14 +136,14 @@ $(document).ready(function () {
       validSubmit["email"] = true;
 
       if (checkValidationButton(validSubmit)) {
-        buttonInscrire.removeAttribute("disabled");
+        // buttonInscrire.removeAttribute("disabled");
       }
 
       $(`#email_container `).removeClass("error-input-field");
       $(`#email_helper `).append("");
     } else {
       validSubmit["email"] = false;
-      buttonInscrire.setAttribute("disabled", "disabled");
+      // buttonInscrire.setAttribute("disabled", "disabled");
 
       $(`#email_container `).addClass("error-input-field");
       $(`#email_helper span `).text(errorMessage);
@@ -157,14 +157,14 @@ $(document).ready(function () {
       validSubmit["confirmemail_valid"] = true;
 
       if (checkValidationButton(validSubmit)) {
-        buttonInscrire.removeAttribute("disabled");
+        // buttonInscrire.removeAttribute("disabled");
       }
 
       $(`#confirm_email_container `).removeClass("error-input-field");
       $(`#confirm_email_helper `).append("");
     } else {
       validSubmit["confirmemail_valid"] = false;
-      buttonInscrire.setAttribute("disabled", "disabled");
+      // buttonInscrire.setAttribute("disabled", "disabled");
 
       $(`#confirm_email_container `).addClass("error-input-field");
       $(`#confirm_email_helper span `).text(errorMessage);
@@ -178,14 +178,14 @@ $(document).ready(function () {
       validSubmit["password_valid"] = true;
 
       if (checkValidationButton(validSubmit)) {
-        buttonInscrire.removeAttribute("disabled");
+        // buttonInscrire.removeAttribute("disabled");
       }
 
       $(`#password_container `).removeClass("error-input-field");
       $(`#password_helper `).append("");
     } else {
       validSubmit["password_valid"] = false;
-      buttonInscrire.setAttribute("disabled", "disabled");
+      // buttonInscrire.setAttribute("disabled", "disabled");
 
       $(`#password_container `).addClass("error-input-field");
       $(`#password_helper span `).text(errorMessage);
