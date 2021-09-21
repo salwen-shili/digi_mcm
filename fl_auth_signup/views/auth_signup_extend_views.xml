@@ -68,6 +68,7 @@
                                         </div>
                                     </t>
                                     <br t-if="not name"/>
+
                                     <p class="alert alert-danger" t-if="error" role="alert">
                                         <t t-esc="error"/>
                                     </p>
