@@ -2,6 +2,7 @@
 <odoo>
     <data>
 
+        <!-- Ajouter les nouveaux champs sur la fiche du client -->
          <record id="res_partner_form_inherit_mcm_website_new" model="ir.ui.view">
             <field name="name">res.partner.form.inherit.mcm.website.new</field>
             <field name="model">res.partner</field>

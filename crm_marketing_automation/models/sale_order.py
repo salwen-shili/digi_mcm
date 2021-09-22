@@ -14,13 +14,11 @@ class Sale(models.Model):
     def create(self, vals):
         print('drafttt', vals)
         partner_id = vals['partner_id']
-
         partner = self.env['res.partner'].sudo().search([('id', '=', partner_id)],limit=1)
         print('partner', partner)
         if partner and  partner.user_id.company_id.id == 2:
             self.change_stage_lead("Prospection", partner)
         res = super(Sale, self).create(vals)
-
         return res
     
     def write(self, vals):

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
 
+    <!--Add fields from class questionnaire in the sale order. These fields will be deleted next. -->
     <record id="mcm_website_theme_view_sale_order_form" model="ir.ui.view">
         <field name="name">mcm.website.theme.view.sale.order.form</field>
         <field name="model">sale.order</field>
