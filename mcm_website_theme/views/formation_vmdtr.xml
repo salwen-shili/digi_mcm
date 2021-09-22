@@ -204,7 +204,10 @@
               <p>
                 <font style="color: rgb(66, 66, 66);">
                   <span class="fa fa-chevron-right" data-original-title="" title="" aria-describedby="tooltip560396" style="font-size: 15px; text-align: left; color: rgb(8, 82, 148);"/>
-                  <span style="text-align: left; color: rgb(8, 82, 148); font-family: Poppins, sans-serif; font-size: 14px;">&amp;nbsp;En savoir plus</span>
+                  <a href="/mcm_website_theme/static/src/DEMARCHES_D'INSCRIPTION_A_LA_CMA_-_MCM_ACADEMY.pdf">
+                    <span style="text-align: left; color: rgb(8, 82, 148); font-family: Poppins, sans-serif; font-size: 14px;">&amp;nbsp;En savoir plus</span>
+                  </a>
+
                   <br/>
                 </font>
                 <br/>
@@ -230,7 +233,9 @@
               <p>
                 <font style="color: rgb(66, 66, 66);">
                   <span class="fa fa-chevron-right" data-original-title="" title="" aria-describedby="tooltip560396" style="font-size: 15px; text-align: left; color: rgb(8, 82, 148);"/>
-                  <span style="text-align: left; color: rgb(8, 82, 148); font-family: Poppins, sans-serif; font-size: 14px;">&amp;nbsp;En savoir plus</span>
+                  <a href="/mcm_website_theme/static/src/DEMARCHES_D'INSCRIPTION_SUR_LE_SITE_MCM_ACADEMY.pdf">
+                  </a>
+
                   <br/>
                 </font>
                 <br/>
