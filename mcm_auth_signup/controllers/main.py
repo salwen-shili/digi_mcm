@@ -18,18 +18,24 @@ class AuthSignupHome(AuthSignupHome):
 
     def do_signup(self, qcontext):
         """ Shared helper that creates a res.partner out of a token """
+        #Get all the inputs
         values = {key: qcontext.get(key) for key in ('login', 'name', 'firstname', 'lastName','password', 'phone', "zip", "city", "voie", "nom_voie",
             "num_voie",'street2')}
+        #Remove spaces and lower cases in login
         values['login'] = values['login'].replace(' ', '').lower()
+        #Generate when mandatory fields are empty
         if not values:
             raise UserError(_("Le formulaire n'est pas correctement rempli."))
+        #This block of code was commented after fix error in button "s'inscrire" that was disabled
         """if '+33' not in values['phone']:
             phone = values['phone']
             phone = phone[1:]
             phone = '+33' + str(phone)
             values['phone'] = phone"""
+        #Generate error when email and confirm email do not have the same value
         if values.get('login') != qcontext.get('confirm_email'):
             raise UserError(_("Les emails ne correspondent pas, veuillez les saisir à nouveau."))
+        #Concatenate num_voie, voie and nom_voie inti street
         if (values['num_voie'] and values['voie'] and values['nom_voie']):
             values['street'] = values['num_voie'] + " " + values['voie'] + " " + values['nom_voie']
         supported_lang_codes = [code for code, _ in request.env['res.lang'].get_installed()]
@@ -40,11 +46,13 @@ class AuthSignupHome(AuthSignupHome):
         if request.website.id == 2:
             values['company_ids'] = [1, 2]
             values['company_id'] = 2
-        #values['step'] = "document"
+        #Le step suivant est le questionnaire
         values['step'] = "coordonnées"
         values['notification_type'] = 'email'  # make default notificatication type by email for new users
+        #Concatenate first name and last name into name
         if values['firstname'] and values['lastName']:
             values['name'] = values['firstname'] + ' ' + values['lastName']
+        #Mettre par défaut France dans le pays
         values['country_id'] = request.env['res.country'].sudo().search([('code', 'ilike', 'FR')]).id
         self._signup_with_values(qcontext.get('token'), values)
         request.env.cr.commit()
@@ -57,6 +65,7 @@ class AuthSignupHome(AuthSignupHome):
         qcontext['login'] = str(qcontext.get('login')).replace(' ', '').lower()
         if not qcontext.get('token') and not qcontext.get('signup_enabled'):
             raise werkzeug.exceptions.NotFound()
+        #Generate an error when a user already uses this email
         if request.env["res.users"].sudo().search(
                 [("login", "=", qcontext.get("login").replace(' ', '').lower())]):
             qcontext["error"] = _("Another user is already registered using this email address.")
@@ -91,15 +100,15 @@ class AuthSignupHome(AuthSignupHome):
                     qcontext["error"] = _("Another user is already registered using this email address.")
                 else:
                     _logger.error("%s", e)
+                    #Log signup error
                     if SignupError:
                         _logger.error("name %s", SignupError )
+                    #Log assertion error
                     if AssertionError:
                         _logger.error("name %s", AssertionError)
                     qcontext['error'] = _("Could not create a new account.")
 
         response = request.render('auth_signup.signup', qcontext)
-        #response = request.render('mcm_website_theme.mcm_template')
-        #response =  request.redirect('/#sh_corpomate_theme_section_188')
         _logger.info('STATUS %s', response.status_code)
         response.headers['X-Frame-Options'] = 'DENY'
         if response.status_code != 204:
@@ -116,10 +125,12 @@ class Home(Home):
             login = request.params['login']
         response = super(Home, self).web_login(redirect=redirect, **kw)
         if request.website.id == 1:
+            #Get partner and sale order linked to that partner
             partner = request.env['res.partner'].sudo().search([('email', "=", login)], limit=1)
             order = request.env['sale.order'].sudo().search([('partner_id', "=", partner.id)], order='create_date desc', limit=1)
             order1 = request.website.sale_get_order()
             step = partner.step
+            #When partner hes already an order, redirect him to one of the steps after login
             if order or order1:
                 print("order exist")
                 if step == "document":
@@ -134,22 +145,12 @@ class Home(Home):
                 elif step == "finish":
                     print("afficher espace client")
                     response = super(Home, self).web_login(redirect='/my', **kw)
+            #If he does not have an order, redirect him to pricelist
             else:
                 print("afficher pricelist")
                 response = super(Home, self).web_login(redirect='/#pricing', **kw)
         return response
 
-"""class Home(Home):
-
-    @http.route('/web/login', type='http', auth="public")
-    def web_login(self, redirect=None, **kw):
-        if 'login' in request.params:
-            request.params['login'] = request.params['login'].replace(' ', '').lower()
-        response = super(Home, self).web_login(redirect=redirect, **kw)
-        if 'cart' not in str(redirect):
-            # response=super(Home, self).web_login(redirect=redirect,**kw)
-            response = super(Home, self).web_login(redirect='/#sh_corpomate_theme_section_188', **kw)
-        return response"""
 
 
 
