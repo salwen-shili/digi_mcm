@@ -18,7 +18,7 @@
 
 
         <xpath expr="//h3" position="before">
-            <div t-if="user_id.company_id==1">
+            <div t-if="request.website.id==1">
                 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
                 <link href="/mcm_contact_documents/static/src/css/button.css" rel="stylesheet" />
                 <script src="/mcm_contact_documents/static/src/js/continue_wizard.js" type="text/javascript"></script>
