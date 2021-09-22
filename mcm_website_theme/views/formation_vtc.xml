@@ -54,7 +54,7 @@
                           <br/>
                         </p>
                         <br/>
-                        <a href="#" class="btn btn-primary sh_btn_cm_8 sh_more_btn" data-original-title="" title="" aria-describedby="tooltip878772">En savoir plus</a>
+                        <!-- <a href="#" class="btn btn-primary sh_btn_cm_8 sh_more_btn" data-original-title="" title="" aria-describedby="tooltip878772">En savoir plus</a> -->
                         <a href="#" class="btn btn-primary sh_btn_cm_8 sh_more_btn" data-original-title="" title="" aria-describedby="tooltip694619">S'inscrire</a>
                       </div>
                     </div>
@@ -200,7 +200,7 @@
       </font>
     </h2>
   </div>
-  <div class="col-lg-3 col-md-6 col-sm-6 col-12 sh_animation_part" style="border-style: none; border-width: 0px;">
+  <div class="col-md-6 col-sm-6 col-12 sh_animation_part col-lg-4" style="border-style: none; border-width: 0px;">
     <div class="sh_content">
       <div class="sh_icon">
         <span class="fa fa-star" data-original-title="" title="" aria-describedby="tooltip285245" style="background-color: rgb(255, 227, 71); color: rgb(0, 0, 0);"/>
@@ -222,12 +222,15 @@
           <br/>
         </font>
         <span class="fa fa-chevron-right"/>
-&amp;nbsp;<span style="text-align: left; color: rgb(8, 82, 148); font-family: Poppins, sans-serif; font-size: 14px;">&amp;nbsp;En savoir plus</span>
+        <a href="/mcm_website_theme/static/src/DEMARCHES_D'INSCRIPTION_A_LA_CMA_-_MCM_ACADEMY.pdf">
+  &amp;nbsp;  <span style="text-align: left; color: rgb(8, 82, 148); font-family: Poppins, sans-serif; font-size: 14px;">&amp;nbsp;En savoir plus</span>
+
+        </a>
       </p>
     </div>
   </div>
 </div>
-<div class="col-lg-3 col-md-6 col-sm-6 col-12 sh_animation_part">
+<div class="col-md-6 col-sm-6 col-12 sh_animation_part col-lg-4">
   <div class="sh_content">
     <div class="sh_icon">
       <span class="fa fa-star" data-original-title="" title="" aria-describedby="tooltip830561" style="background-color: rgb(255, 227, 71); color: rgb(0, 0, 0);"/>
@@ -251,14 +254,13 @@
     </p>
   </div>
 </div>
-
-<div class="col-lg-3 col-md-6 col-sm-6 col-12 sh_animation_part">
+<div class="col-md-6 col-sm-6 col-12 sh_animation_part col-lg-4">
   <div class="sh_content">
     <div class="sh_icon">
       <span class="fa fa-star" data-original-title="" title="" aria-describedby="tooltip707054" style="background-color: rgb(255, 227, 71); color: rgb(0, 0, 0);"/>
     </div>
     <h3 style="margin: 25px 0px 15px; font-weight: 700; font-size: 22px; transition: all 0.4s ease 0s; color: rgb(255, 255, 255); font-family: Poppins, sans-serif;">
-      <font style="color: rgb(0, 0, 0); font-size: 18px;">4. Déposer votre dossier à la préfecture pour obtenir votre carte professionnelle</font>
+      <font style="color: rgb(0, 0, 0); font-size: 18px;">3. Déposer votre dossier à la préfecture pour obtenir votre carte professionnelle</font>
     </h3>
     <h4/>
     <p>
@@ -274,14 +276,13 @@
       <font style="color: rgb(66, 66, 66);">
         <span class="fa fa-chevron-right" data-original-title="" title="" aria-describedby="tooltip560396" style="font-size: 15px; text-align: left; color: rgb(8, 82, 148);"/>
         <a href="/mcm_website_theme/static/src/DEMARCHES_D'INSCRIPTION_SUR_LE_SITE_MCM_ACADEMY.pdf">
-        &amp;nbsp;        <a href="/mcm_website_theme/static/src/DEMARCHES_DE_DEMANDE_DE_LA_CARTE_PRO_TAXI-VTC_-_MCM_ACADEMY.pdf">
+        &amp;nbsp;        </a>
+        <a href="/mcm_website_theme/static/src/DEMARCHES_DE_DEMANDE_DE_LA_CARTE_PRO_TAXI-VTC_-_MCM_ACADEMY.pdf">
           <span style="text-align: left; color: rgb(8, 82, 148); font-family: Poppins, sans-serif; font-size: 14px;">&amp;nbsp;En savoir plus</span>
         </a>
-
-      </a>
-    </font>
-  </p>
-</div>
+      </font>
+    </p>
+  </div>
 </div>
 </div>
 </div>
@@ -290,44 +291,44 @@
 <div class="container">
 <div class="row">
 <div class="pt8 pb16 col-lg-12" style="border-style: none; border-width: 0px;">
-<div class="s_btn text-center pt16 pb16" data-name="Button">
-  <a href="/mcm_website_theme/static/src/programme_de_formation_MCM_ACADEMY_2021.pdf" class="btn btn-primary sh_btn_cm_8 btn-lg" data-original-title="" title="" aria-describedby="tooltip710781" target="_blank">TÉLÉCHARGER LE PROGRAMME DE LA FORMATION VTC</a>
-</div>
-<p class="lead">
-  <font color="#000000" face="Poppins, sans-serif">
-    <span style="font-size: 17px;">&amp;nbsp;</span>
-  </font>
-  <br/>
-</p>
+  <div class="s_btn text-center pt16 pb16" data-name="Button">
+    <a href="/mcm_website_theme/static/src/programme_de_formation_MCM_ACADEMY_2021.pdf" class="btn btn-primary sh_btn_cm_8 btn-lg" data-original-title="" title="" aria-describedby="tooltip710781" target="_blank">TÉLÉCHARGER LE PROGRAMME DE LA FORMATION VTC</a>
+  </div>
+  <p class="lead">
+    <font color="#000000" face="Poppins, sans-serif">
+      <span style="font-size: 17px;">&amp;nbsp;</span>
+    </font>
+    <br/>
+  </p>
 </div>
 <div class="col-lg-6 pb16 pt56" style="border-style: none; border-width: 0px;">
-<h2>
-  <font color="#000000" face="Poppins, sans-serif">
-    <span style="font-size: 24px;">
-      <b>Déroulement de la formation VTC</b>
-    </span>
-    <b>
-      <span style="font-size: 24px;">:&amp;nbsp;</span>
-    </b>
-  </font>
-  <br/>
-  <font color="#000000" face="Poppins, sans-serif">
-    <b/>
-  </font>
-</h2>
-<p>
-  <font color="#000000" face="Poppins, sans-serif">
-    <span style="font-size: 18px;">Une formation VTC à distance de 70 h</span>&amp;nbsp;<span style="font-size: 14px;">:</span>
-  </font>
-  <br/>
-  <font color="#000000" face="Poppins, sans-serif"/>
-</p>
-<p>
-  <span id="docs-internal-guid-389a209e-7fff-75ad-6a97-97dbfa311600"/>
-</p>
-<p>&amp;nbsp;<span class="fa fa-check"/>
+  <h2>
+    <font color="#000000" face="Poppins, sans-serif">
+      <span style="font-size: 24px;">
+        <b>Déroulement de la formation VTC</b>
+      </span>
+      <b>
+        <span style="font-size: 24px;">:&amp;nbsp;</span>
+      </b>
+    </font>
+    <br/>
+    <font color="#000000" face="Poppins, sans-serif">
+      <b/>
+    </font>
+  </h2>
+  <p>
+    <font color="#000000" face="Poppins, sans-serif">
+      <span style="font-size: 18px;">Une formation VTC à distance de 70 h</span>&amp;nbsp;<span style="font-size: 14px;">:</span>
+    </font>
+    <br/>
+    <font color="#000000" face="Poppins, sans-serif"/>
+  </p>
+  <p>
+    <span id="docs-internal-guid-389a209e-7fff-75ad-6a97-97dbfa311600"/>
+  </p>
+  <p>&amp;nbsp;<span class="fa fa-check"/>
 &amp;nbsp;<font color="#000000" face="Poppins, sans-serif">
-<span style="font-size: 14px;">Des vidéos préenregistrées bien détaillées</span>
+  <span style="font-size: 14px;">Des vidéos préenregistrées bien détaillées</span>
 </font>
 </p>
 <p>&amp;nbsp;<span class="fa fa-check"/>

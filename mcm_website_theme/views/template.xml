@@ -518,7 +518,7 @@
                         <label for="failures" style="display:inline">
                             Je souhaite accéder à la formation dès maintenant sans attendre 14 jours. Je reconnais que
                             <span t-if="website_sale_order.company_id.id==2">DIGIMOOV</span>
-                            <span t-if="website_sale_order.company_id.id==1">MCM</span> procédera à l'exécution immédiate de ma formation en ligne et à ce titre, je
+                            <span t-if="website_sale_order.company_id.id==1">MCM Academy</span> procédera à l'exécution immédiate de ma formation en ligne et à ce titre, je
                             renonce expressément à exercer mon droit de rétractation conformément aux dispositions de
                             l'article L.221-28 1° du code de la consommation.
                         </label>
