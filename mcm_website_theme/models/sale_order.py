@@ -13,6 +13,7 @@ class ProductTemplate(models.Model):
     conditions = fields.Boolean(default=False)
     failures = fields.Boolean(default=False)
     accompagnement = fields.Boolean(default=False)
+    #Add fields of questionnaire in the sale order. These fields will be deleted next.
     besoins_particuliers = fields.Selection([('Oui','Oui'),('Non','Non')])
     type_besoins = fields.Text()
     raison_choix = fields.Selection([

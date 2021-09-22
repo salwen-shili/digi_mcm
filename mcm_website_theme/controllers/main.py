@@ -82,6 +82,8 @@ class Website(Home):
                 if (product.default_code == 'vtc'):
                     vtc_price = round(product.list_price)
 
+        #Send values to digimoov and mcm websites
+
         values = {
             'all_categories': all_categs,
             'state': state,
@@ -144,6 +146,9 @@ class Routes_Site(http.Controller):
 
     @http.route('/update_partner', type='http', auth='user', website=True)
     def update_partner(self, **kw):
+
+        #Bouton submit de la page edit_info pour modifier les coordonnées du client
+
         vals = {}
         vals['lastName'] = kw.get("lastName")
         vals['firstname'] = kw.get("firstname")
@@ -171,7 +176,7 @@ class Routes_Site(http.Controller):
         vtc_category = request.env['product.public.category'].sudo().search([('name', 'ilike', 'Formation VTC')])
         vmdtr_category = request.env['product.public.category'].sudo().search([('name', 'ilike', 'Formation VMDTR')])
 
-        # Tarifs mcm
+        # Pricelist sur la page formation chauffeur taxi
         mcm_products = request.env['product.product'].sudo().search([('company_id', '=', 1)], order="list_price")
         print(mcm_products)
         taxi_price = False
@@ -208,7 +213,7 @@ class Routes_Site(http.Controller):
         vtc_category = request.env['product.public.category'].sudo().search([('name', 'ilike', 'Formation VTC')])
         vmdtr_category = request.env['product.public.category'].sudo().search([('name', 'ilike', 'Formation VMDTR')])
 
-        # Tarifs mcm
+        # Pricelists sur la page formation chauffeur vtc
         mcm_products = request.env['product.product'].sudo().search([('company_id', '=', 1)], order="list_price")
         print(mcm_products)
         taxi_price = False
@@ -245,7 +250,7 @@ class Routes_Site(http.Controller):
         vtc_category = request.env['product.public.category'].sudo().search([('name', 'ilike', 'Formation VTC')])
         vmdtr_category = request.env['product.public.category'].sudo().search([('name', 'ilike', 'Formation VMDTR')])
 
-        # Tarifs mcm
+        # Pricelist de la page formation vmdtr
         mcm_products = request.env['product.product'].sudo().search([('company_id', '=', 1)], order="list_price")
         print(mcm_products)
         taxi_price = False
@@ -277,6 +282,9 @@ class Routes_Site(http.Controller):
 
     @http.route('/examen', type='http', auth='public', website=True)
     def examen(self):
+
+        #La page n'est affichée que sur le site mcm
+
         if request.website.id == 2:
             raise werkzeug.exceptions.NotFound()
         elif request.website.id == 1:
@@ -284,6 +292,8 @@ class Routes_Site(http.Controller):
 
     @http.route('/coordonnées', type='http', auth='user', website=True,csrf=False)
     def validation_questionnaires(self, **kw):
+
+        # La page n'est affichée que sur le site mcm
         if request.website.id == 2:
             raise werkzeug.exceptions.NotFound()
         elif request.website.id == 1:
@@ -291,6 +301,7 @@ class Routes_Site(http.Controller):
 
     @http.route(['/validation/submit'], type='http', auth="user", website=True, csrf=False)
     def validation_submit(self, **kw):
+        # Méthode qui s'exécute au clic sur le bouton submit du questionnaire
         vals = {}
         vals['besoins_particuliers'] = kw.get("group1")
         vals['type_besoins'] = kw.get("type_besoins")
@@ -298,16 +309,21 @@ class Routes_Site(http.Controller):
         vals['support_formation'] = kw.get("group3")
         vals['attentes'] = kw.get("attentes")
         partner = http.request.env.user.partner_id
+        # Étape suivante est documents
         partner.step = "document"
         partner = request.env['res.partner'].sudo().search([('id', "=", partner.id)])[-1]
         vals['partner_id'] = partner.id
+        #Récupérer la commande liée au client
         order = request.website.sale_get_order()
+        #Récupérer le produit
         product = order.order_line[0].product_id
         vals['product_id'] = product.id
         new_quetionnaire = request.env['questionnaire'].sudo().create(vals)
+        #Si le client a choisi un pack
         if order:
             #order.sudo().write(vals)
             documents = False
+            #Si le client a déjà chargé ses documents, aller directement au panier
             if order.partner_id:
                 documents = request.env['documents.document'].sudo().search([('partner_id', '=', order.partner_id.id)])
                 if order and order.company_id.id == 1 and not documents:
@@ -756,27 +772,6 @@ class WebsiteSale(WebsiteSale):
         return error, error_message
 
 
-"""class Taxi(http.Controller):
-
-    @http.route('/taxi', type='http', auth='public', website=True)
-    def taxi(self, taxi_state='', **kw, ):
-        return request.render("mcm_website_theme.mcm_website_theme_taxi", {})
-
-
-class VMDTR(http.Controller):
-
-    @http.route('/vmdtr', type='http', auth='public', website=True)
-    def taxi(self, vmdtr_state='', **kw, ):
-        return request.render("mcm_website_theme.mcm_website_theme_vmdtr", {})
-
-
-class VTC(http.Controller):
-
-    @http.route('/vtc', type='http', auth='public', website=True)
-    def taxi(self, vtc_state='', **kw, ):
-        return request.render("mcm_website_theme.mcm_website_theme_vtc", {})"""
-
-
 class Payment3x(http.Controller):
     @http.route(['/shop/payment/update_amount'], type='json', auth="public", methods=['POST'], website=True)
     def cart_update_amount(self, instalment):
@@ -1072,6 +1067,8 @@ class MCMFORMATION(http.Controller):
 
     @http.route('/formation-taximoto-vmtdr', type='http', auth='public', website=True)
     def formvmdtr(self, **kw, ):
+
+        #Si site Digimoov, ne renvoie rien
         if request.website.id == 2:
             return 0
         elif request.website.id == 1:

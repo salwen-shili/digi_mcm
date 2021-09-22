@@ -5,7 +5,7 @@ from odoo import api, fields, models
 
 class Questionnaire(models.Model):
     _name = "questionnaire"
-
+    # Questionnaire posé aux clients MCM après l'inscription
     partner_id = fields.Many2one('res.partner', 'Customer Name')
     product_id = fields.Many2one('product.product','Formation')
     besoins_particuliers = fields.Selection([('Oui','Oui'),('Non','Non')])
@@ -26,6 +26,7 @@ class Questionnaire(models.Model):
 
 class search(models.Model):
     _inherit = 'res.partner'
+
     questionnaires_count = fields.Integer(compute='compute_count')
 
     def get_questionnaires(self):
@@ -40,6 +41,7 @@ class search(models.Model):
         }
 
     def compute_count(self):
+        # Compter le nombre de questionnaire pour un client
         for record in self:
             record.questionnaires_count = self.env['questionnaire'].search_count(
                 [('partner_id', '=', self.id)])
