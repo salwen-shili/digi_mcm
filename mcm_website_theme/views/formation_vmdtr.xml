@@ -254,10 +254,6 @@
       </div>
     </div>
   </section>
-
-
-
-
   <section class=" pb32" data-name="Title">
     <div class="container" style="border-style: none; border-width: 0px;">
       <div class="row s_nb_column_fixed">
@@ -266,7 +262,6 @@
             <font color="#000000" face="Poppins, sans-serif">
               <span style="font-size: 24px;">
                 <span style="font-weight: 700;">LES MODULES DE LA FORMATION MOTO-TAXI</span>
-
               </span>
             </font>
           </h2>
@@ -322,7 +317,6 @@
   </div>
 </div>
 </section>
-
 <section id="sh_corpomate_theme_section_238" class="pt16" data-name="Practice Area">
 <div class="container">
   <div class="row">
@@ -371,7 +365,9 @@
       <p>
         <span class="fa fa-chevron-right" data-original-title="" title="" aria-describedby="tooltip560396" style="font-size: 15px; color: rgb(8, 82, 148);"/>
         <span style="color: rgb(8, 82, 148); font-family: Poppins, sans-serif; font-size: 14px;">&amp;nbsp;</span>
-        <span style="color: rgb(8, 82, 148); font-family: Poppins, sans-serif; font-size: 18px;">Découvrez les modules en détail</span>
+        <span style="color: rgb(0, 0, 255); font-family: Poppins, sans-serif; font-size: 18px;">
+          <a href="/mcm_website_theme/static/src/programme_de_formation_MCM_ACADEMY_2021.pdf" style="color: #0d5294;" target="_blank">Découvrez les modules en détail</a>
+        </span>
         <font color="#000000" face="Poppins, sans-serif" style="font-size: 18px;">
           <br/>
         </font>

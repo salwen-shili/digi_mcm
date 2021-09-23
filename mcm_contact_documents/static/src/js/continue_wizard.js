@@ -2,14 +2,25 @@ document.addEventListener("DOMContentLoaded", function () {
   const current = document.getElementById("step_value");
   console.log(current.value);
 
-  const finish = `<h2 class="purple-text text-center"><strong>FELCITATION !</strong></h2> <br>
+  const finish = `<h2 class="purple-text text-center"><strong>FÉLICITATIONS !</strong></h2> <br>
                             <div class="row justify-content-center">
                                 <div class="col-3"> <img src="/mcm_contact_documents/static/img/GwStPmg.png" class="fit-image"> </div>
                             </div> <br><br>
                             <div class="row justify-content-center">
-                                <div class="col-7 text-center">
-                                    <h5 class="purple-text text-center">Vous êtes bien inscris chez MCM ACADEMY!</h5>
-                                </div>`;
+                                <div class="col-10 text-center">
+                                    <h5 class="purple-text text-center" style="line-height: 30px;margin-block-end: 2rem;">Vous êtes bien inscris chez <span style="font-weight: 600;">MCM ACADEMY!</span> <br/>
+                                    Vous pouvez accéder à notre plateforme de formation en créant votre compte apprenant ci dessous <i class="fa fa-hand-o-down"></i>
+                                    </h5>
+                                    
+                                    
+                                    
+                                </div>
+                                <a id ="button-continuer" href="https://formation.mcm-academy.fr/register?next=/dashboard">
+                                        <button class="rkmd-btn btn-black ripple-effect ripple-yellow" type="submit" style="font-size: 11px;">
+                                            <i class="material-icons right">send</i>continuer</button>
+                                    </a>
+                                </div>
+                                `;
 
   const finished = document.getElementById("finished");
 
@@ -21,6 +32,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const validationUrl = "/validation";
   const btnContinuer = document.getElementById("button-continuer");
   const questionnaireUrl = "/coordonnées";
+
   var step = 1;
   console.log("step", current.value);
   switch (current.value) {
