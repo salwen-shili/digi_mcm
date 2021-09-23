@@ -228,7 +228,6 @@ class partner(models.Model):
             for document in documents:
                 if (document.state == "validated"):
                     count = count + 1
-                    print('valide')
             print('count', count, 'len', len(documents))
             if (count == len(documents) and count != 0):
                 document_valide = True
@@ -238,34 +237,25 @@ class partner(models.Model):
                 failure = sale_order.failures
                 statut = partner.statut
                 # Vérifier si contrat signé ou non
-                if (sale_order.state == 'sale')  and (sale_order.signed_on) and (sale_order.signature) and (partner.passage_exam == False):
-                    #n'ajouter pas les apprenants de repassage
-                    if (product_name) and (product_name != "Repassage d'examen"):
-                        print('contrat signé')
+                if (sale_order.state == 'sale')  and (sale_order.signed_on) and (sale_order.signature) :
 
                         if (failure == True):
-                            print('it works')
                             self.ajouter_iOne(partner)
                         # Vérifier si delai de retractaion et demande de renoncer  ne sont pas coché,
-                        # si aujourd'hui est la date d'ajout,et si le statut est gagné
-                        # alors on ajoute l'apprenant à 360
+                        # si aujourd'hui est la date d'ajout,alors on ajoute l'apprenant à 360
                         else:
                             # Si demande de renonce est coché donc l'apprenant est ajouté sans attendre 14jours
                             if (partner.renounce_request):
-                                print('renonce', partner.name, 'failure', failure, 'statut', partner.statut)
                                 self.ajouter_iOne(partner)
 
                             # Calculer date d'ajout apres 14jours de date de signature
                             date_signature = sale_order.signed_on
                             date_ajout = date_signature + timedelta(days=14)
                             today = datetime.today()
-                            print('partner', partner.name, 'sale_order', sale_order, 'date_ajout:', date_ajout, 'today:',
-                                  today)
+
                             # Si l'apprenant n'a pas demander une renonce de delai de retractation
                             # il doit attendre 14jours pour etre ajouté
                             if (not (partner.renounce_request) and (date_ajout <= today)):
-                                print('not renonce', partner.name, 'failure', failure, 'statut', partner.statut,
-                                      'date_ajout', date_ajout)
                                 self.ajouter_iOne(partner)
 
     def ajouter_iOne(self, partner):
@@ -289,7 +279,7 @@ class partner(models.Model):
             # Changer format de date et la mettre en majuscule
             datesession = str(date_exam.strftime(new_format).upper())
             date_session = unidecode(datesession)
-            # print('date, ville', ville, date_session)
+
             # Récuperer le mot de passe à partir de res.users
             user = self.env['res.users'].sudo().search([('partner_id', '=', partner.id)])
 
@@ -317,10 +307,6 @@ class partner(models.Model):
                 # if(resp_invit.status_code == 200):
                 #     invit=True
                 # Si non si mot de passe récupéré on l'ajoute sur la plateforme avec le meme mot de passe
-                _logger.info('user %s ' % partner.email)
-                _logger.info('product %s ' % product_name)
-                _logger.info('password %s ' % user.password360)
-                _logger.info('password %s ' % company)
                 if (user.password360) and (company == '2'):
                     partner.password360 = user.password360
                     _logger.info('if user product %s ' % product_name)
@@ -329,7 +315,6 @@ class partner(models.Model):
                     data_user = '{"mail":"' + partner.email + '" , "password":"' + user.password360 + '" , "firstName":"' + partner.firstName + '", "lastName":"' + partner.lastName + '", "phone":"' + partner.phone + '", "sendCredentials":"true"}'
                     resp = requests.post(urluser, headers=headers, data=data_user)
                     print(data_user, 'user', resp.status_code)
-                    # _logger.info('_______________________Cron password360_________________________ %s' % data_user)
                     if (resp.status_code == 200):
                         create = True
                 data_group = {}
@@ -340,8 +325,6 @@ class partner(models.Model):
                     ]
                 })
                 resp_unsub_email = requests.put(url_unsubscribeToEmailNotifications, headers=headers, data=data_email)
-                print("desactiver email", resp_unsub_email.status_code)
-
                 # Si l'apprenant a été ajouté sur table user on l'affecte aux autres groupes
                 if (create):
                     today = date.today()
@@ -349,7 +332,6 @@ class partner(models.Model):
                     # Changer format de date et la mettre en majuscule
                     date_ajout = today.strftime(new_format)
                     partner.date_creation = date_ajout
-
                     # Affecter i-One to groupe digimoov-bienvenue
                     respgroupe = requests.put(urlgroup_Bienvenue, headers=headers, data=data_group)
                     print('bienvenue ', respgroupe.status_code, partner.date_creation)
@@ -373,8 +355,7 @@ class partner(models.Model):
                                 id_Digimoov_Examen_Attestation = id_groupe
                                 urlsession = 'https://app.360learning.com/api/v1/groups/' + id_groupe + '/users/' + partner.email + '?company=' + company_id + '&apiKey=' + api_key
                                 respsession = requests.put(urlsession, headers=headers, data=data_group)
-                                print("examen", 'ajouté à examen digimoov', respsession.status_code, 'groupe', nom_groupe)
-                                print('groupe')
+
                                 # Affecter à un pack solo
                             packsolo = "Digimoov - Pack Solo"
                             if (("solo" in product_name) and (nom_groupe == packsolo.upper())):
@@ -389,22 +370,18 @@ class partner(models.Model):
                                 print(partner.module_id.name)
                                 urlgrp_pro = 'https://app.360learning.com/api/v1/groups/' + id_groupe + '/users/' + partner.email + '?company=' + company_id + '&apiKey=' + api_key
                                 respgrp_pro = requests.put(urlgrp_pro, headers=headers, data=data_group)
-                                print('affecté à pro', respgrp_pro.status_code)
-
                             # Affecter à unpremium
                             packprem = "Digimoov - Pack Premium"
                             if (("premium" in product_name) and (nom_groupe == packprem.upper())):
                                 print(partner.module_id.name)
                                 urlgrp_prim = 'https://app.360learning.com/api/v1/groups/' + id_groupe + '/users/' + partner.email + '?company=' + company_id + '&apiKey=' + api_key
                                 respgrp_prim = requests.put(urlgrp_prim, headers=headers, data=data_group)
-                                print('affecté à premium', respgrp_prim.status_code)
 
                             # Affecter apprenant à Digimoov-Révision
-                            # revision = "Digimoov - Pack Repassage Examen"
-                            # if (("Repassage d'examen" in product_name) and (nom_groupe == revision.upper())):
-                            #     urlgrp_revision = 'https://app.360learning.com/api/v1/groups/' + id_groupe + '/users/' + partner.email + '?company=' + company_id + '&apiKey=' + api_key
-                            #     respgrp_revision = requests.put(urlgrp_revision, headers=headers, data=data_group)
-                            #     print('affecté à revision', respgrp_revision.status_code)
+                            revision = "Digimoov - Pack Repassage Examen"
+                            if (("Repassage d'examen" in product_name) and (nom_groupe == revision.upper())):
+                                urlgrp_revision = 'https://app.360learning.com/api/v1/groups/' + id_groupe + '/users/' + partner.email + '?company=' + company_id + '&apiKey=' + api_key
+                                respgrp_revision = requests.put(urlgrp_revision, headers=headers, data=data_group)
 
                             # Affecter apprenant à une session d'examen
                             print('date, ville', ville, date_session)
@@ -412,7 +389,6 @@ class partner(models.Model):
                                 existe = True
                                 urlsession = 'https://app.360learning.com/api/v1/groups/' + id_groupe + '/users/' + partner.email + '?company=' + company_id + '&apiKey=' + api_key
                                 respsession = requests.put(urlsession, headers=headers, data=data_group)
-                                print(existe, 'ajouté à son session', respsession.status_code)
 
                   # Si la session n'est pas trouvée sur 360 on l'ajoute
                     print('exist', existe)
@@ -426,7 +402,6 @@ class partner(models.Model):
                         print('creer  une session', create_session.status_code)
                         response_grpss = requests.get(url_groups, params=params)
                         groupess = response_grpss.json()
-                        # print(response_grpss.json())
                         for groupe in groupess:
                             # Convertir le nom en majuscule
                             nom_groupe = str(groupe['name']).upper()
@@ -462,11 +437,9 @@ class partner(models.Model):
                 if (date_suppression <= today):
                     email = partner['email']
                     print('date_sup', email, date_suppression, today)
-                    url = 'https://app.360learning.com/api/v1/users/tmejri@digimoov.fr?company=' + company_id + '&apiKey=' + api_key
-                    resp = requests.delete(url)
-                    if resp.status_code == 204:
-                        partner.passage_exam = True
-                        print('supprimé avec succès', resp.status_code, 'passage', partner.passage_exam)
+                    # url = 'https://app.360learning.com/api/v1/users/tmejri@digimoov.fr?company=' + company_id + '&apiKey=' + api_key
+                    # resp = requests.delete(url)
+
             else:
                 print('date incompatible')
 
@@ -477,9 +450,7 @@ class partner(models.Model):
         headers["Accept"] = "*/*"
         url = 'https://app.360learning.com/api/v1/users/' + self.email + '?company=' + company_id + '&apiKey=' + api_key
         resp = requests.delete(url)
-        if resp.status_code == 204:
-            self.passage_exam = True
-            print('supprimé avec succès', resp.status_code, 'passage', self.passage_exam)
+
 
     # Extraire firstName et lastName à partir du champs name
     def diviser_nom(self, partner):
@@ -494,7 +465,6 @@ class partner(models.Model):
                 if name:
                     partner.firstName = name[0]
                     partner.lastName = name[1]
-                # _logger.info('name  last in  if name  %s'  % partner.name)
             # Cas d'un seul nom
             else:
                 partner.firstName = partner.name
