@@ -55,7 +55,7 @@
                         </p>
                         <br/>
                         <!-- <a href="#" class="btn btn-primary sh_btn_cm_8 sh_more_btn" data-original-title="" title="" aria-describedby="tooltip878772">En savoir plus</a> -->
-                        <a href="#pricing" class="btn btn-primary sh_btn_cm_8 sh_more_btn" data-original-title="" title="" aria-describedby="tooltip694619">S'inscrire</a>
+                        <a href="#" class="btn btn-primary sh_btn_cm_8 sh_more_btn" data-original-title="" title="" aria-describedby="tooltip694619">S'inscrire</a>
                       </div>
                     </div>
                   </div>
@@ -200,7 +200,7 @@
       </font>
     </h2>
   </div>
-  <div class="col-lg-3 col-md-6 col-sm-6 col-12 sh_animation_part" style="border-style: none; border-width: 0px;">
+  <div class="col-md-6 col-sm-6 col-12 sh_animation_part col-lg-4" style="border-style: none; border-width: 0px;">
     <div class="sh_content">
       <div class="sh_icon">
         <span class="fa fa-star" data-original-title="" title="" aria-describedby="tooltip285245" style="background-color: rgb(255, 227, 71); color: rgb(0, 0, 0);"/>
@@ -222,12 +222,15 @@
           <br/>
         </font>
         <span class="fa fa-chevron-right"/>
-&amp;nbsp;<span style="text-align: left; color: rgb(8, 82, 148); font-family: Poppins, sans-serif; font-size: 14px;">&amp;nbsp;En savoir plus</span>
+        <a href="/mcm_website_theme/static/src/DEMARCHES_D'INSCRIPTION_A_LA_CMA_-_MCM_ACADEMY.pdf">
+  &amp;nbsp;  <span style="text-align: left; color: rgb(8, 82, 148); font-family: Poppins, sans-serif; font-size: 14px;">&amp;nbsp;En savoir plus</span>
+
+        </a>
       </p>
     </div>
   </div>
 </div>
-<div class="col-lg-3 col-md-6 col-sm-6 col-12 sh_animation_part">
+<div class="col-md-6 col-sm-6 col-12 sh_animation_part col-lg-4">
   <div class="sh_content">
     <div class="sh_icon">
       <span class="fa fa-star" data-original-title="" title="" aria-describedby="tooltip830561" style="background-color: rgb(255, 227, 71); color: rgb(0, 0, 0);"/>
@@ -243,43 +246,21 @@
       <font style="color: rgb(66, 66, 66);">
         <br/>
         <span class="fa fa-chevron-right" data-original-title="" title="" aria-describedby="tooltip560396" style="font-size: 15px; text-align: left; color: rgb(8, 82, 148);"/>
-&amp;nbsp;<span style="text-align: left; color: rgb(8, 82, 148); font-family: Poppins, sans-serif; font-size: 14px;">&amp;nbsp;En savoir plus</span>
+        <a href="/mcm_website_theme/static/src/DEMARCHES_D'INSCRIPTION_A_LA_CMA_-_MCM_ACADEMY.pdf">
+  &amp;nbsp;  <span style="text-align: left; color: rgb(8, 82, 148); font-family: Poppins, sans-serif; font-size: 14px;">&amp;nbsp;En savoir plus</span>
+
+        </a>
       </font>
     </p>
   </div>
 </div>
-<div class="col-lg-3 col-md-6 col-sm-6 col-12 sh_animation_part">
-  <div class="sh_content">
-    <div class="sh_icon">
-      <span class="fa fa-star" data-original-title="" title="" aria-describedby="tooltip477646" style="background-color: rgb(255, 227, 71); color: rgb(0, 0, 0);"/>
-    </div>
-    <h3 style="margin: 25px 0px 15px; font-weight: 700; font-size: 22px; transition: all 0.4s ease 0s; color: rgb(255, 255, 255); font-family: Poppins, sans-serif;">
-      <font style="color: rgb(0, 0, 0); font-size: 18px;">3- Choisir votre centre d'examen</font>
-    </h3>
-    <h4/>
-    <p style="font-size: 15px; font-weight: 400; text-transform: none;">
-      <font style="color: rgb(66, 66, 66);">Choisissez votre centre d'examen le plus proche de chez vous.</font>
-    </p>
-    <p style="font-size: 15px; font-weight: 400; text-transform: none;">
-      <font style="color: rgb(66, 66, 66);">
-        <br/>
-      </font>
-    </p>
-    <p style="font-size: 15px; font-weight: 400; text-transform: none;">
-      <font style="color: rgb(66, 66, 66);">
-        <span class="fa fa-chevron-right" data-original-title="" title="" aria-describedby="tooltip560396" style="font-size: 15px; text-align: left; color: rgb(8, 82, 148);"/>
-&amp;nbsp;<span style="text-align: left; color: rgb(8, 82, 148); font-family: Poppins, sans-serif; font-size: 14px;">&amp;nbsp;En savoir plus</span>
-      </font>
-    </p>
-  </div>
-</div>
-<div class="col-lg-3 col-md-6 col-sm-6 col-12 sh_animation_part">
+<div class="col-md-6 col-sm-6 col-12 sh_animation_part col-lg-4">
   <div class="sh_content">
     <div class="sh_icon">
       <span class="fa fa-star" data-original-title="" title="" aria-describedby="tooltip707054" style="background-color: rgb(255, 227, 71); color: rgb(0, 0, 0);"/>
     </div>
     <h3 style="margin: 25px 0px 15px; font-weight: 700; font-size: 22px; transition: all 0.4s ease 0s; color: rgb(255, 255, 255); font-family: Poppins, sans-serif;">
-      <font style="color: rgb(0, 0, 0); font-size: 18px;">4. Déposer votre dossier à la préfecture pour obtenir votre carte professionnelle</font>
+      <font style="color: rgb(0, 0, 0); font-size: 18px;">3. Déposer votre dossier à la préfecture pour obtenir votre carte professionnelle</font>
     </h3>
     <h4/>
     <p>
@@ -294,7 +275,11 @@
     <p style="font-size: 15px; font-weight: 400; text-transform: none;">
       <font style="color: rgb(66, 66, 66);">
         <span class="fa fa-chevron-right" data-original-title="" title="" aria-describedby="tooltip560396" style="font-size: 15px; text-align: left; color: rgb(8, 82, 148);"/>
-&amp;nbsp;<span style="text-align: left; color: rgb(8, 82, 148); font-family: Poppins, sans-serif; font-size: 14px;">&amp;nbsp;En savoir plus</span>
+        <a href="/mcm_website_theme/static/src/DEMARCHES_D'INSCRIPTION_SUR_LE_SITE_MCM_ACADEMY.pdf">
+        &amp;nbsp;        </a>
+        <a href="/mcm_website_theme/static/src/DEMARCHES_DE_DEMANDE_DE_LA_CARTE_PRO_TAXI-VTC_-_MCM_ACADEMY.pdf">
+          <span style="text-align: left; color: rgb(8, 82, 148); font-family: Poppins, sans-serif; font-size: 14px;">&amp;nbsp;En savoir plus</span>
+        </a>
       </font>
     </p>
   </div>

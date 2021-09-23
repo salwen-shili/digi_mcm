@@ -57,8 +57,8 @@ $(document).ready(function () {
   // }
 
   function checkEmail(email, confirm_email) {
+    const pattern = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
     if (email.length > 0) {
-      const pattern = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
       if (email.match(pattern)) {
         $(`#email_container `).removeClass("error-input-field");
         $(`#email_helper `).append("");
@@ -72,7 +72,6 @@ $(document).ready(function () {
     }
 
     if (confirm_email.length > 0) {
-      const pattern = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
       if (confirm_email.match(pattern)) {
         $(`#confirm_email_container `).removeClass("error-input-field");
         $(`#confirm_email_helper `).append("");
@@ -86,14 +85,13 @@ $(document).ready(function () {
     }
     if (email.length > 0 && confirm_email.length > 0) {
       if (email === confirm_email) {
-        console.log("email === confirm_email");
-        $(`#email_container `).removeClass("error-input-field");
-        $(`#email_helper `).append("");
-        $(`#confirm_email_container `).removeClass("error-input-field");
-        $(`#confirm_email_helper `).append("");
+        if (confirm_email.match(pattern)) {
+          $(`#email_container `).removeClass("error-input-field");
+          $(`#email_helper `).append("");
+          $(`#confirm_email_container `).removeClass("error-input-field");
+          $(`#confirm_email_helper `).append("");
+        }
       } else {
-        console.log("email !== confirm_email");
-        console.log(email, "  ", confirm_email);
         $(`#confirm_email_container `).addClass("error-input-field");
         $(`#confirm_email_helper span `).text(
           "L'email ne correspond pas au champs precedent! Veuillez confirmer votre email."
@@ -218,8 +216,8 @@ $(document).ready(function () {
     const toArray = Object.keys(valid).map((key, index) => {
       return valid[key];
     });
-    // console.log(valid);
-    // console.log("validation", toArray);
+    //
+    //
     for (let index = 0; index < toArray.length; index++) {
       if (toArray[index] === false) return false;
     }
@@ -227,12 +225,12 @@ $(document).ready(function () {
     return true;
   }
 
-  // // console.log("valid submit en dehors  ", validSubmit);
+  // //
   // $("#first_form").submit(function (e) {
-  // //   console.log("valid  ", validSubmit);
+  // //
   //   e.preventDefault();
 
-  // //   console.log(checkValidationButton(validSubmit), "type");
+  // //
   //   $(this).submit();
   // });
 
@@ -311,14 +309,14 @@ $(document).ready(function () {
 
   $(zipcode).on("blur", function () {
     var code = $(this).val();
-    //console.log(code);
+    //
     let url = apiCommunes + code + format;
-    //console.log(url);
+    //
 
     fetch(url, { method: "get" })
       .then((response) => response.json())
       .then((results) => {
-        //console.log(results);
+        //
         $(city).find("option").remove();
         if (results.length) {
           $(`#city_container `).removeClass("error-input-field");
@@ -329,8 +327,8 @@ $(document).ready(function () {
           $(voie).removeAttr("disabled");
           $(city).focus();
           $.each(results, function (key, value) {
-            //console.log(value);
-            // console.log(value.nom);
+            //
+            //
             $(city).removeAttr("disbaled");
 
             $(city).append(
@@ -358,7 +356,7 @@ $(document).ready(function () {
         }
       })
       .catch((err) => {
-        // console.log(err);
+        //
         $(city).find("option").remove();
       });
   });
@@ -366,7 +364,7 @@ $(document).ready(function () {
   //fetch voie address
   // $(typeVoie).on("blur", function () {
   //   let voieVal = $(this).val();
-  // //   console.log(voieVal);
+  // //
   //   // https://api-adresse.data.gouv.fr/search/?q=cour&type=street&postcode=75001
   //   let url =
   //     apiVoie +
@@ -375,7 +373,7 @@ $(document).ready(function () {
   //     zipcode.val() +
   //     "&city=" +
   //     city.val();
-  // //   console.log(url);
+  // //
 
   //   fetch(url, { method: "get" })
   //     .then((response) => response.json())
@@ -386,7 +384,7 @@ $(document).ready(function () {
   //           val.properties.name.split(" ")[0].toUpperCase() ===
   //           voieVal.toUpperCase()
   //       );
-  //       //console.log("filter", filteredResults);
+  //       //
   //       const finalResult = filteredResults.map((v) => {
   //         var values = v.properties.name.split(" ");
 
@@ -395,7 +393,7 @@ $(document).ready(function () {
   //           : "";
   //         return subs.charAt(0).toUpperCase() + subs.slice(1) + ` (${voieVal})`;
   //       });
-  // //       console.log(finalResult, finalResult.length);
+  // //
   //       if (finalResult.length) {
   //         $(`#nom_voie_container `).removeClass("error-input-field");
   //         $(`#nom_voie `).removeClass("error-input-field");
@@ -404,7 +402,7 @@ $(document).ready(function () {
   //         $(nom_voie).removeAttr("disabled");
   //         $(nom_voie).focus();
 
-  // //         //   console.log("finalResult ", finalResult);
+  // //         //
   //         $.each(finalResult, function (key, value) {
   //           $(nomVoie).append(
   //             '<option value="' + value + '">' + value + "</option>"
@@ -419,7 +417,7 @@ $(document).ready(function () {
   //       }
   //     })
   //     .catch((err) => {
-  // //       console.log(err);
+  // //
   //       $(nomVoie).find("option").remove();
   //     });
   // });

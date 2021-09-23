@@ -7,7 +7,7 @@
     <t t-call="website.layout">
       <link rel="stylesheet" href="/mcm_website_theme/static/src/css/faq.css"/>
       <div id="wrap" class="oe_structure">
-        <section id="sh_corpomate_theme_section_182" class="sh_animation_part oe_img_bg oe_custom_bg" data-name="theme7 all banner" style="background-image: url('/mcm_website_theme/static/src/img/faq.png');">
+        <section id="sh_corpomate_theme_section_182" class="sh_animation_part oe_img_bg oe_custom_bg" data-name="theme7 all banner" style="background-image: url('/mcm_website_theme/static/src/img/FAQ-MCM-ACADEMY.png');">
           <style/>
           <div class="container">
             <div class="content text-center sh_animation_part" style="     color: black ; ">
