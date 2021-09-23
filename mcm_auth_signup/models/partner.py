@@ -27,12 +27,15 @@ class ResPartner(models.Model):
             res['phone'] = partner.phone
         return res
 
+    """This method was re-written because signup url is got from system parameter base_url
+    This parameter does not change according to the company website (bug in odoo)"""
     def _get_signup_url_for_action(self, url=None, action=None, view_type=None, menu_id=None, res_id=None, model=None):
         """ generate a signup url for the given partner ids and action, possibly overriding
             the url state components (menu_id, id, view_type) """
         res = dict.fromkeys(self.ids, False)
         for partner in self:
             base_url = partner.get_base_url()
+            #Define base_url according to partner company
             if partner.company_id.id == 1:
                 base_url = "https://mcm-academy.odoo.com"
             elif partner.company_id.id == 2:
