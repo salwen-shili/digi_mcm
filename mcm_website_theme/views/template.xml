@@ -529,7 +529,7 @@
                         <label for="conditions" style="display:inline">
                             J'ai lu et j'accepte les
                             <a href="/conditions" target="blank" style="
-    font-weight: 600;
+    font-weight: 600; color: #fff;
 ">conditions générales de vente</a>
                         </label>
                     </input>
@@ -646,6 +646,7 @@
                 </p>
                 <br/>
                 <p t-if="modules_mcm">
+
                     <b>
                         <div style="margin-left:0%;">
                             <select name="date_examen" id="exam_date" class="form-control search-slt " t-if="modules_mcm" style="display:none" onclick='disableButton()'>
@@ -667,9 +668,11 @@
                             </p>
                         </div>
                     </b>
+
                 </p>
                 <br/>
             </div>
+
         </xpath>
     </template>
 
@@ -756,6 +759,64 @@
     <template id="mcm_website_sale_cart_total_script" inherit_id="website_sale.total">
         <xpath expr="//div[@id='cart_total']" position="inside">
             <script>
+                function verify_payment_method() {
+  stripe_pm = document.getElementById("stripe_pm");
+
+  if (stripe_pm) {
+    if (stripe_pm.checked == true) {
+      document.getElementById("pm_shop").href = "/shop/checkout?express=1";
+      document.getElementById("pm_shop_check").href =
+        "/shop/checkout?express=1";
+      document.getElementById("a_pm_shop_checkout").href =
+        "/shop/checkout?express=1";
+    }
+  }
+  pole_emploi_pm = document.getElementById("pole_emploi_pm");
+  if (pole_emploi_pm) {
+    if (pole_emploi_pm.checked == true) {
+      document.getElementById("pm_shop").href = "/new/ticket/pole_emploi";
+      document.getElementById("pm_shop_check").href = "/new/ticket/pole_emploi";
+      document.getElementById("a_pm_shop_checkout").href =
+        "/new/ticket/pole_emploi";
+    }
+  }
+  cpf_pm = document.getElementById("cpf_pm");
+
+  if (cpf_pm) {
+    if (cpf_pm.checked == true) {
+      if (cpf_pm.value == "Formation à distance TAXI") {
+        console.log("TAXI", cpf_pm.value);
+        document
+          .getElementById("pm_shop")
+          .setAttribute("href", "https://bit.ly/3DOiZG6");
+        document.getElementById("pm_shop_check").href =
+          "https://bit.ly/3DOiZG6";
+        document.getElementById("a_pm_shop_checkout").href =
+          "https://bit.ly/3DOiZG6";
+      }
+      if (cpf_pm.value == "Formation à distance VMDTR") {
+        console.log("VMDTR", cpf_pm.value);
+        document
+          .getElementById("pm_shop")
+          .setAttribute("href", "https://bit.ly/3tbAxXw");
+        document
+          .getElementById("pm_shop_check")
+          .setAttribute("href", "https://bit.ly/3tbAxXw");
+        document
+          .getElementById("a_pm_shop_checkout")
+          .setAttribute("href", "https://bit.ly/3tbAxXw");
+      }
+      if (cpf_pm.value == "Formation à distance VTC") {
+        console.log("VTC", cpf_pm.value);
+        document.getElementById("pm_shop").href = "https://bit.ly/3mZoImh";
+        document.getElementById("pm_shop_check").href =
+          "https://bit.ly/3mZoImh";
+        document.getElementById("a_pm_shop_checkout").href =
+          "https://bit.ly/3mZoImh";
+      }
+    }
+  }
+}
                 function verify_checked(){
                 var x=document.getElementById('checkbox_instalment');
                 if(x) {
@@ -768,6 +829,7 @@
                 }
                 }
                 };
+                
             </script>
         </xpath>
     </template>

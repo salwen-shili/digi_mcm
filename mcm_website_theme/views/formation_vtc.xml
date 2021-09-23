@@ -159,39 +159,27 @@
   </div>
 </div>
 </section>
-<section class="s_text_image pt32 pb32" data-name="Text - Image">
-<div class="container">
-  <div class="row align-items-center">
 
 
-  </div>
-</div>
-</section>
-<section class="s_text_block pt0 pb0" data-name="Text block" style="background-color: rgb(255, 227, 71);">
+
+<section id="sh_corpomate_theme_section_258" class="sh_animation_part" data-name="practice" style="
+    padding: 0px;
+">
 <div class="container">
   <div class="row">
-
-  </div>
-</div>
-</section>
-<section id="sh_corpomate_theme_section_184" class="sh_animation_part oe_img_bg oe_custom_bg" data-name="Slider" style="background-image: url(&quot;/web/image/31989/people-A9PZ5P9.jpg&quot;);">
-
-</section>
-<section id="sh_corpomate_theme_section_258" class="sh_animation_part" data-name="practice">
-<div class="container">
-  <div class="row">
-    <div class="col-lg-12 s_title pt16 pb48" style="text-align: center;">
-      <div class="s_alert clearfix w-100 s_alert_sm alert-100" data-name="Alert" style="">
-        <i class="fa fa-2x fa-info-circle s_alert_icon"/>
-        <div class="s_alert_content">
-          <p style="text-align: left; ">
-            <span style="font-size: 0.75rem;">Nos formations incluent les personnes en situation d'handicap.&amp;nbsp;</span>
-            <span style="font-size: 0.75rem;">Bien entendu, nous restons à votre disposition pour répondre à toutes vos questions, en contactant notre référent handicap sur notre espace client accessible sur notre site web</span>&amp;nbsp;<a href="https://dev.mcm-academy.fr/service-clientele" style="background-color: rgb(255, 255, 255);">
-            <font style="color: rgb(0, 0, 255);">par ici</font>
-          </a>.          <br/>
-        </p>
-      </div>
+    <div class="s_alert clearfix w-100 s_alert_sm alert-100" data-name="Alert" style="">
+      <i class="fa fa-2x fa-info-circle s_alert_icon"/>
+      <div class="s_alert_content">
+        <p style="text-align: left; ">
+          <span style="font-size: 0.75rem;">Nos formations incluent les personnes en situation d'handicap.&amp;nbsp;</span>
+          <span style="font-size: 0.75rem;">Bien entendu, nous restons à votre disposition pour répondre à toutes vos questions, en contactant notre référent handicap sur notre espace client accessible sur notre site web</span>&amp;nbsp;<a href="https://dev.mcm-academy.fr/service-clientele" style="background-color: rgb(255, 255, 255);">
+          <font style="color: rgb(0, 0, 255);">par ici</font>
+        </a>.        <br/>
+      </p>
     </div>
+  </div>
+  <div class="col-lg-12 s_title pt16 pb48" style="text-align: center;">
+
     <h2>
       <font color="#000000" face="Poppins, sans-serif">
         <span style="font-size: 24px;">
@@ -277,7 +265,7 @@
         <span class="fa fa-chevron-right" data-original-title="" title="" aria-describedby="tooltip560396" style="font-size: 15px; text-align: left; color: rgb(8, 82, 148);"/>
         <a href="/mcm_website_theme/static/src/DEMARCHES_D'INSCRIPTION_SUR_LE_SITE_MCM_ACADEMY.pdf">
         &amp;nbsp;        </a>
-        <a href="/mcm_website_theme/static/src/DEMARCHES_DE_DEMANDE_DE_LA_CARTE_PRO_TAXI-VTC_-_MCM_ACADEMY.pdf">
+        <a href="/mcm_website_theme/static/src/Devenez_chauffeur_taxi_vtc_démarches_dépôt_dossier_préfecture.pdf">
           <span style="text-align: left; color: rgb(8, 82, 148); font-family: Poppins, sans-serif; font-size: 14px;">&amp;nbsp;En savoir plus</span>
         </a>
       </font>
@@ -454,7 +442,7 @@
 <b>Inscrivez-vous dès maintenant !</b>
 <br/>
 </h2>
-<h4 style="                   margin-top: 20px;                   margin-bottom: 0.5rem;                   font-size: 18px;                   text-transform: capitalize;                 ">
+<h4 style="                   margin-top: 20px;                   margin-bottom: 0.5rem;                   font-size: 18px;                                   ">
                 Choisissez le pack qui vous convient&amp;nbsp;
 </h4>
 <p>
