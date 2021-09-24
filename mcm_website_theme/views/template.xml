@@ -338,6 +338,33 @@
             <link href="/mcm_website_theme/static/src/css/cart.css" rel="stylesheet"/>
 
             <t t-foreach="website_sale_order.website_order_line" t-as="line">
+                <div class="card-body hide-text-top">
+                    <div class="input checkbox">
+                        <input type="checkbox" id="checkbox_failures" style="white-space: nowrap;" class="text-xl-left border-0" t-att-checked="website_sale_order.failures" t-att-value="website_sale_order.failures">
+                            <label for="failures" style="display:inline">
+                            Je souhaite accéder à la formation dès maintenant sans attendre 14 jours. Je reconnais que
+                                <span t-if="website_sale_order.company_id.id==2">DIGIMOOV</span>
+                                <span t-if="website_sale_order.company_id.id==1">MCM Academy</span> procédera à l'exécution immédiate de ma formation en ligne et à ce titre, je
+                            renonce expressément à exercer mon droit de rétractation conformément aux dispositions de
+                            l'article L.221-28 1° du code de la consommation.
+                            </label>
+                        </input>
+                    </div>
+                    <div class="input checkbox">
+                        <input type="checkbox" id="checkbox_conditions" style="white-space: nowrap;" class="text-xl-left border-0" t-att-checked="website_sale_order.conditions" t-att-value="website_sale_order.conditions">
+                            <label for="conditions" style="display:inline">
+                            J'ai lu et j'accepte les
+                                <a href="/conditions" target="blank" style="
+    font-weight: 600; color: #000;
+">conditions générales de vente</a>
+                            </label>
+                        </input>
+                    </div>
+                    <p t-if="website_sale_order.conditions_error != ''" id="error_conditions" class="alert alert-warning" style="margin-left:0%;display:inline-block;">
+                    Vous devez acceptez les conditions générales de ventes
+                    </p>
+
+                </div>
                 <h3 class="mb24" t-att-value="line.name_short" style="margin-top: 3rem;
     font-weight: 600;">Mode de financement
                 </h3>
@@ -512,7 +539,7 @@
             </div>
 
 
-            <div class="card-body">
+            <div class="card-body hide-text-bottom">
                 <div class="input checkbox">
                     <input type="checkbox" id="checkbox_failures" style="white-space: nowrap;" class="text-xl-left border-0" t-att-checked="website_sale_order.failures" t-att-value="website_sale_order.failures">
                         <label for="failures" style="display:inline">
@@ -529,7 +556,7 @@
                         <label for="conditions" style="display:inline">
                             J'ai lu et j'accepte les
                             <a href="/conditions" target="blank" style="
-    font-weight: 600; color: #fff;
+    font-weight: 600; color: #000;
 ">conditions générales de vente</a>
                         </label>
                     </input>
@@ -622,7 +649,7 @@
     <template id="mcm_website_sale_cart_lines_date_and_region" inherit_id="website_sale.cart_lines">
         <xpath expr="//table[@id='cart_products']" position="after">
             <div style="margin:auto;background-color:#fff;border-color:#585959;" t-if="request.website.is_public_user()==False and modules_mcm" id="region_date_examen">
-                <h3 t-if="modules_mcm" class="mb24">Région d'examen &amp; Date</h3>
+                <h3 t-if="modules_mcm" class="mb24">Veuillez sélectionner votre Région et une date d’examen</h3>
                 <p t-if="modules_mcm">
                     <b>
                         <div style="margin-left:0%;" id="exam_center">

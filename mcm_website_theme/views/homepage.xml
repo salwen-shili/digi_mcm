@@ -206,7 +206,7 @@
                         <div class="col-lg-3 col-md-6 col-sm-6 col-12 sh_animation_part" style="border-style: none; border-width: 0px">
                             <div class="sh_content">
                                 <div class="sh_icon">
-                                    <span class="fa fa-desktop" data-original-title="" title="" aria-describedby="tooltip309396" style="                       background-color: rgb(255, 255, 0);                       color: rgb(0, 0, 0);                     "/>
+                                    <span class="fa fa-desktop" data-original-title="" title="" aria-describedby="tooltip309396" style="                       background-color: #fdd105;                       color: rgb(0, 0, 0);                     "/>
                                 </div>
                                 <h4>1. Inscription</h4>
                                 <p>
@@ -219,7 +219,7 @@
                         <div class="col-lg-3 col-md-6 col-sm-6 col-12 sh_animation_part pb4">
                             <div class="sh_content">
                                 <div class="sh_icon">
-                                    <span class="fa fa-edit" data-original-title="" title="" aria-describedby="tooltip255152" style="                       background-color: rgb(255, 255, 0);                       color: rgb(0, 0, 0);                     "/>
+                                    <span class="fa fa-edit" data-original-title="" title="" aria-describedby="tooltip255152" style="                       background-color: #fdd105;                       color: rgb(0, 0, 0);                     "/>
                                 </div>
                                 <h4>2. Suivre la formation à distance&amp;nbsp;</h4>
                                 <p>
@@ -232,7 +232,7 @@
                         <div class="col-lg-3 col-md-6 col-sm-6 col-12 sh_animation_part">
                             <div class="sh_content">
                                 <div class="sh_icon">
-                                    <span class="fa fa-mortar-board" data-original-title="" title="" aria-describedby="tooltip343085" style="                       background-color: rgb(255, 255, 0);                       color: rgb(0, 0, 0);                     "/>
+                                    <span class="fa fa-mortar-board" data-original-title="" title="" aria-describedby="tooltip343085" style="                       background-color: #fdd105;                       color: rgb(0, 0, 0);                     "/>
                                 </div>
                                 <h4>3.Passer l'Examen</h4>
                                 <p>
@@ -246,7 +246,7 @@
                         <div class="col-lg-3 col-md-6 col-sm-6 col-12 sh_animation_part">
                             <div class="sh_content">
                                 <div class="sh_icon">
-                                    <span class="fa fa-list-alt" data-original-title="" title="" aria-describedby="tooltip501034" style="                       background-color: rgb(255, 255, 0);                       color: rgb(0, 0, 0);                     "/>
+                                    <span class="fa fa-list-alt" data-original-title="" title="" aria-describedby="tooltip501034" style="                       background-color: #fdd105;                       color: rgb(0, 0, 0);                     "/>
                                 </div>
                                 <h4>4. récupérer votre carte professionnelle</h4>
                                 <p>
@@ -504,7 +504,7 @@
                 </section>
             </div>
             <!-- FIN PRICING TABLE-->
-            <section id="sh_corpomate_theme_section_178" class="js_cls_sh_corpomate_theme_section_178" data-name="theme7 partner">
+            <section id="" class="js_cls_sh_corpomate_theme_section_178" data-name="theme7 partner">
                 <div class="container">
                     <div class="row">
                         <div class="owl-carousel owl-theme carousel-main owl-loaded owl-drag">
