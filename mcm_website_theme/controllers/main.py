@@ -299,6 +299,13 @@ class Routes_Site(http.Controller):
         elif request.website.id == 1:
             return request.render("mcm_website_theme.mcm_website_theme_validation")
 
+    @http.route('/felicitations', type='http', auth='public', website=True)
+    def conditions(self, **kw, ):
+        if request.website.id == 1:
+            return request.render("mcm_website_theme.mcm_template_felicitations", {})
+        elif request.website.id == 2:
+            raise werkzeug.exceptions.NotFound()
+
     @http.route(['/validation/submit'], type='http', auth="user", website=True, csrf=False)
     def validation_submit(self, **kw):
         # Méthode qui s'exécute au clic sur le bouton submit du questionnaire

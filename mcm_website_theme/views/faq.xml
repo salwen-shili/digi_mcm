@@ -50,7 +50,7 @@
                           </button>
                         </h5>
                       </div>
-                      <div class="collapse show" id="accordion-tab-1-content-1" aria-labelledby="accordion-tab-1-heading-1" data-parent="#accordion-tab-1" style="">
+                      <div class="collapse" id="accordion-tab-1-content-1" aria-labelledby="accordion-tab-1-heading-1" data-parent="#accordion-tab-1" style="">
                         <div class="card-body">
                           <p>
                             <font style="color: rgb(99, 99, 99);">Notre formation s’adresse à toute personne majeure intéressée par les métiers de transport , en recherche d’emploi stable , souhaitant devenir auto-entrepreneur, ou en reconversion professionnelle , témoignant des prérequis suivants :</font>
@@ -186,11 +186,20 @@
                             <br/>
                             <span style="background-color: rgb(255, 255, 255); color: rgb(99, 99, 99); font-family: Arial; font-size: 13px; white-space: pre-wrap;">2. Au cours de la formation, les acquis sont évalués à travers les questions posées sous forme des QCM et des textes à trous après chaque sous module. 3. A la fin de chaque module, vous trouverez un quiz final et des examens blancs (QCM, QRO). Pour ce faire, il est primordial de se mettre en conditions réelles d'examen. </span>
                             <br/>
-                            <span style="background-color: rgb(255, 255, 255); color: rgb(99, 99, 99); font-family: Arial; font-size: 13px; white-space: pre-wrap;">4. A la fin de la formation, grâce à la fiche de suivi qui est disponible sur la plateforme vous pouvez visualiser votre taux d’accomplissement de la formation. (NB : la fiche de suivi est à votre disposition tout au long de la formation). Lien pour voir détail des exams : </span>
+                            <span style="background-color: rgb(255, 255, 255); color: rgb(99, 99, 99); font-family: Arial; font-size: 13px; white-space: pre-wrap;">4. A la fin de la formation, grâce à la fiche de suivi qui est disponible sur la plateforme vous pouvez visualiser votre taux d’accomplissement de la formation. (NB : la fiche de suivi est à votre disposition tout au long de la formation).&amp;nbsp;</span>
                             <br/>
-                            <span style="background-color: rgb(255, 255, 255); color: rgb(99, 99, 99); font-family: Arial; font-size: 13px; white-space: pre-wrap;">https://www.cma-idf.fr/fr/la-cma-idf/examens-taxi-vtc-vmdtr.html </span>
+                            <span style="background-color: rgb(255, 255, 255); color: rgb(99, 99, 99); font-family: Arial; font-size: 13px; white-space: pre-wrap;">Voir </span>
+                            <font color="#636363" face="Arial">
+                              <span style="font-size: 13px; white-space: pre-wrap;">
+                                <a href="https://www.cma-idf.fr/fr/la-cma-idf/examens-taxi-vtc-vmdtr.html#collapseArt106" class="btn btn-warning">ANNALES</a>
+                              </span>
+                            </font>
                             <br/>
-                            <span style="background-color: rgb(255, 255, 255); color: rgb(99, 99, 99); font-family: Arial; font-size: 13px; white-space: pre-wrap;">Arrêté du 16 février 2018 relatif aux programmes et à l'évaluation des épreuves de l'examen d'accès à la profession de conducteur de véhicule motorisé à deux ou trois roues - Légifrance (legifrance.gouv.fr)</span>
+                            <span style="background-color: rgb(255, 255, 255); color: rgb(99, 99, 99); font-family: Arial; font-size: 13px; white-space: pre-wrap;"/>
+                            <br/>
+                            <span style="background-color: rgb(255, 255, 255); color: rgb(99, 99, 99); font-family: Arial; font-size: 13px; white-space: pre-wrap;">
+                              <a href="https://www.legifrance.gouv.fr/loda/id/JORFTEXT000036833710/">Arrêté du 16 février 2018 relatif aux programmes et à l'évaluation des épreuves de l'examen </a>.
+                            </span>
                             <br/>
                           </p>
                         </div>
@@ -316,24 +325,12 @@
                     <div class="card">
                       <div class="card-header" id="accordion-tab-1-heading-13">
                         <h5>
-                          <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#accordion-tab-1-content-13" aria-expanded="false" aria-controls="accordion-tab-1-content-13" data-original-title="" title="" aria-describedby="tooltip85291"> Comment estimer le prix d'une course Taxi ? </button>
+                          <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#accordion-tab-1-content-13" aria-expanded="true" aria-controls="accordion-tab-1-content-13" data-original-title="" title="" aria-describedby="tooltip85291"> Comment estimer le prix d'une course Taxi ? </button>
                         </h5>
                       </div>
-                      <div class="collapse" id="accordion-tab-1-content-13" aria-labelledby="accordion-tab-1-heading-13" data-parent="#accordion-tab-1" style="">
+                      <div class="collapse show" id="accordion-tab-1-content-13" aria-labelledby="accordion-tab-1-heading-13" data-parent="#accordion-tab-1" style="">
                         <div class="card-body">
-                          <p>
-                            L'estimation du montant de la course en taxi se fait
-                            grâce au taximètre, un compteur kilométrique qui
-                            doit équiper d'office le véhicule taxi. De multiples
-                            critères sont inclus dans le calcul du tarif d'un
-                            trajet en taxi : Le coût de prise en charge (somme
-                            affichée à l'enclenchement du compteur). Les tarifs
-                            sont très variables et changent selon le département
-                            , l'heure et le nombre de kilométrage . </p>
-                          <p>Pour plus
-                            d'informations , cliquez
-                            <a href="https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000042746839?r=hR7FyTz8Jt">ici</a>: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000042746839?r=hR7FyTz8Jt<br/>
-                          </p>
+                          <p> L'estimation du montant de la course en taxi se fait grâce au taximètre, un compteur kilométrique qui doit équiper d'office le véhicule taxi. De multiples critères sont inclus dans le calcul du tarif d'un trajet en taxi : Le coût de prise en charge (somme affichée à l'enclenchement du compteur). Les tarifs sont très variables et changent selon le département , l'heure et le nombre de kilométrage . </p>
                         </div>
                       </div>
                     </div>
@@ -348,7 +345,7 @@
                       <div class="collapse" id="accordion-tab-1-content-14" aria-labelledby="accordion-tab-1-heading-14" data-parent="#accordion-tab-1" style="">
                         <div class="card-body">
                           <p>
-                            <span style="background-color: rgb(255, 255, 255); color: rgb(99, 99, 99); font-family: Arial; font-size: 13px; white-space: pre-wrap;">Après avoir réussi l’examen du certificat de capacité professionnelle et obtenu la carte professionnelle, le chauffeur de taxi doit, pour pouvoir exercer son activité, soit être titulaire d’une autorisation de stationnement (ADS), communément appelée “licence de taxi” ou “plaque”, soit exercer comme locataire ou salarié pour le compte d’un exploitant titulaire d’une ADS.</span>
+                            <span style="background-color: rgb(255, 255, 255); color: rgb(99, 99, 99); font-family: Arial; font-size: 13px; white-space: pre-wrap;">Après avoir réussi l’épreuve théorique et pratique,&amp;nbsp;et obtenu la carte professionnelle, le chauffeur de taxi doit, pour pouvoir exercer son activité, soit être titulaire d’une autorisation de stationnement (ADS), communément appelée “licence de taxi” ou “plaque”, soit exercer comme locataire ou salarié pour le compte d’un exploitant titulaire d’une ADS.</span>
                             <br/>
                             <span style="background-color: rgb(255, 255, 255); color: rgb(99, 99, 99); font-family: Arial; font-size: 13px; white-space: pre-wrap;"/>
                             <br/>
@@ -385,7 +382,10 @@
                           <p>
                             <span style="background-color: rgb(255, 255, 255); color: rgb(99, 99, 99); font-family: Arial; font-size: 13px; white-space: pre-wrap;">Le métier de taxi est réglementé, il nécessite de passer un diplôme et d'acquérir une licence. </span>
                             <br/>
-                            <span style="background-color: rgb(255, 255, 255); color: rgb(99, 99, 99); font-family: Arial; font-size: 13px; white-space: pre-wrap;">A Paris et en Ile de France, la licence de taxi est onéreuse mais compte tenu de leur rareté, les banques acceptent de les financer.</span>
+                            <span style="background-color: rgb(255, 255, 255); color: rgb(99, 99, 99); font-family: Arial; font-size: 13px; white-space: pre-wrap;">A Paris et en</span>
+                            <span style="background-color: rgb(255, 255, 255); color: rgb(66, 66, 66); font-family: Arial; font-size: 12px; white-space: pre-wrap;"></span>
+                            <span style="color: rgb(66, 66, 66); font-family: Slack-Lato, appleLogo, sans-serif; font-size: 12px; font-variant-ligatures: common-ligatures;" class="bg-epsilon">Île-de-France</span>
+                            <span style="background-color: rgb(255, 255, 255); color: rgb(99, 99, 99); font-family: Arial; font-size: 13px; white-space: pre-wrap;">, la licence de taxi est onéreuse mais compte tenu de leur rareté, les banques acceptent de les financer.</span>
                             <br/>
                           </p>
                         </div>

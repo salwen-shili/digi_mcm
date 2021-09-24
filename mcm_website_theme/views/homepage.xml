@@ -208,7 +208,7 @@
                                 <div class="sh_icon">
                                     <span class="fa fa-desktop" data-original-title="" title="" aria-describedby="tooltip309396" style="                       background-color: rgb(255, 255, 0);                       color: rgb(0, 0, 0);                     "/>
                                 </div>
-                                <h4>1. Vous vous inscrivez</h4>
+                                <h4>1. Inscription</h4>
                                 <p>
                                     <font style="color: rgb(0, 0, 0)">Vous vous inscrivez en ligne sur le site de la CMA et vous
                     y déposez votre dossier ; ensuite, vous vous inscrivez sur
@@ -221,7 +221,7 @@
                                 <div class="sh_icon">
                                     <span class="fa fa-edit" data-original-title="" title="" aria-describedby="tooltip255152" style="                       background-color: rgb(255, 255, 0);                       color: rgb(0, 0, 0);                     "/>
                                 </div>
-                                <h4>2. Vous suivez la formation à distance&amp;nbsp;</h4>
+                                <h4>2. Suivre la formation à distance&amp;nbsp;</h4>
                                 <p>
                                     <font style="color: rgb(0, 0, 0)">Maintenant que vous êtes inscrit sur notre plateforme, vous
                     disposez d'un mois pour suivre nos cours en illimité et
@@ -234,7 +234,7 @@
                                 <div class="sh_icon">
                                     <span class="fa fa-mortar-board" data-original-title="" title="" aria-describedby="tooltip343085" style="                       background-color: rgb(255, 255, 0);                       color: rgb(0, 0, 0);                     "/>
                                 </div>
-                                <h4>3.Vous passez l'Examen</h4>
+                                <h4>3.Passer l'Examen</h4>
                                 <p>
                                     <font color="#000000">Une fois que vous avez terminé notre formation et suivi nos
                     conseils, vous choisissez votre centre d'examen le plus
@@ -248,11 +248,11 @@
                                 <div class="sh_icon">
                                     <span class="fa fa-list-alt" data-original-title="" title="" aria-describedby="tooltip501034" style="                       background-color: rgb(255, 255, 0);                       color: rgb(0, 0, 0);                     "/>
                                 </div>
-                                <h4>4. Vous récupérez votre carte professionnelle</h4>
+                                <h4>4. récupérer votre carte professionnelle</h4>
                                 <p>
-                                    <font style="color: rgb(0, 0, 0)">Vous avez obtenu votre certificat ? Félicitations ! L’étape
+                                    <font style="color: rgb(0, 0, 0)">Vous avez réussi votre examen ? Félicitations ! L’étape
                     suivante est le dépôt de votre dossier à la préfecture pour
-                    récupérer votre CP.</font>
+                    récupérer votre carte professionnelle.</font>
                                 </p>
                             </div>
                         </div>
@@ -314,8 +314,9 @@
                         <div class="col-md-3 col-sm-6 col-6" style="border-style: none; border-width: 0px">
                             <div class="sh_counter">
                                 <p style="text-align: center">
-                                    <span style="font-size: 24px">Des centaines de personnes ont déjà fait confiance à MCM
-                    Academy. Pourquoi pas vous?</span>
+                                    <br/>
+                                    <br/>
+                                    <span style="font-size: 24px">Pourquoi pas vous?</span>
                                 </p>
                             </div>
                         </div>
