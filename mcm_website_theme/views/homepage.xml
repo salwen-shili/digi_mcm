@@ -17,6 +17,7 @@
                 }
 
             </style>
+            <script defer="defer" type="text/javascript" src="/digimoov_website_templates/static/src/js/lazy-min.js"/>
             <div id="wrap" class="oe_structure oe_empty">
                 <section id="sh_corpomate_theme_section_184" class="sh_animation_part oe_img_bg oe_custom_bg" data-name="Slider">
                     <div id="myCarousel1629895999804" class="s_carousel carousel slide s_carousel_default" data-interval="10000" data-name="Carousel">
