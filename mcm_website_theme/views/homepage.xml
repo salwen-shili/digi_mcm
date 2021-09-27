@@ -15,7 +15,7 @@
                 res-button{
                 margin-bottom: 1rem;
                 }
-
+            
             </style>
             <div id="wrap" class="oe_structure oe_empty">
                 <section id="sh_corpomate_theme_section_184" class="sh_animation_part oe_img_bg oe_custom_bg" data-name="Slider">
@@ -234,12 +234,10 @@
                                 <div class="sh_icon">
                                     <span class="fa fa-mortar-board" data-original-title="" title="" aria-describedby="tooltip343085" style="                       background-color: #fdd105;                       color: rgb(0, 0, 0);                     "/>
                                 </div>
-                                <h4>3.Passer l'Examen</h4>
-                                <p>
-                                    <font color="#000000">Une fois que vous avez terminé notre formation et suivi nos
-                    conseils, vous choisissez votre centre d'examen le plus
-                    proche pour fixer votre date d'examen.</font>
-                                    <br/>
+                                <h4>3. Passer l'Examen</h4>
+                                <p style=" color:#000000">
+                                    Vous allez passer un examen comprenant une épreuve d’admissibilité et une épreuve d'admission. L'épreuve se déroulera dans un centre d'examen de votre région que vous choisirez lors de votre inscription.
+                                  
                                 </p>
                             </div>
                         </div>
@@ -316,13 +314,13 @@
                                 <p style="text-align: center">
                                     <br/>
                                     <br/>
-                                    <span style="font-size: 24px">Pourquoi pas vous?</span>
+                                    <span style="font-size: 24px; color:#000">Pourquoi pas vous?</span>
                                 </p>
                             </div>
                         </div>
                         <div class="col-md-3 col-sm-6 col-6 pt32">
                             <div class="sh_counter">
-                                <h4 class="sh_count">1500</h4>
+                                <h4 class="sh_count " style="color:#000">1500</h4>
                                 <h3 style="                     font-weight: 600;                     font-size: 15px;                     color: rgb(255, 255, 255);                     background-color: rgba(0, 0, 0, 0.7);                   ">
                   STAGIAIRES FORMÉS*</h3>
                             </div>
@@ -330,8 +328,8 @@
                         <div class="col-md-3 col-sm-6 col-6 pt32">
                             <div class="sh_counter">
                                 <h4>
-                                    <span class="sh_count">96</span>
-                                    <span>%</span>
+                                    <span class="sh_count" style="color:#000">96</span>
+                                    <span style="color:#000">%</span>
                                 </h4>
                                 <h3 style="                     font-weight: 600;                     font-size: 15px;                     color: rgb(255, 255, 255);                     background-color: rgba(0, 0, 0, 0.7);                   ">
                   CLIENTS SATISFAITS**</h3>
@@ -340,7 +338,9 @@
                         <div class="col-md-3 col-sm-6 col-6 pt32">
                             <div class="sh_counter">
                                 <h4>
-                                    <span class="sh_count">78</span>&amp;nbsp;%</h4>
+                                    <span class="sh_count" style="color:#000">78</span>
+                                    <span style="color:#000">%</span>
+                                </h4>
                                 <h3 style="                     font-weight: 600;                     font-size: 15px;                     color: rgb(255, 255, 255);                     background-color: rgba(0, 0, 0, 0.7);                   "> MOYENNE DE TAUX DE RÉUSSITE***</h3>
                             </div>
                         </div>
