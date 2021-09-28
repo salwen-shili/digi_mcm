@@ -3,6 +3,13 @@
   <component name="CsvFileAttributes">
     <option name="attributeMap">
       <map>
+        <entry key="/auto_mass_mailing_marketing/views/inherit_session_add_fields.xml">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="/examen_cma_fields/views/res_partner_sessions.xml">
           <value>
             <Attribute>

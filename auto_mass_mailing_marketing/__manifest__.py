@@ -10,11 +10,13 @@
         'sale',
         'mcm_session',
         'digest',
+        'base',
     ],
     'description': "Create auto mass mailing marketing",
     'data': [
         'views/inherit_session_add_fields.xml',
         'views/inherit_template_abonnement.xml',
+        'data/ir_actions.server.xml',
     ],
     'qweb': [],
     'demo': [
