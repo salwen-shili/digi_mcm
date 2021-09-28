@@ -182,7 +182,7 @@
                                         </span>
                                         <span style="font-size:12px;">Centre d'examen de</span>
                                         <span style="font-size:12px"
-                                              t-field="sale_order.module_id.ville"/>
+                                              t-field="sale_order.module_id.session_ville_id.name_ville"/>
                                         <span style="font-size:12px;">le</span>
                                         <span style="font-size:12px"
                                               t-field="sale_order.module_id.date_exam"/>
@@ -217,7 +217,7 @@
                                             votre Centre d'examen de
                                         </span>
                                         <span style="font-size:12px"
-                                              t-field="sale_order.module_id.ville"/>
+                                              t-field="sale_order.module_id.session_ville_id.name_ville"/>
                                         <span style="font-size:12px"> à compterde la réception de vos
                                             identifiants pour effectuer les 102h de formation en ligne.Les formations en
                                             ligne consistent dans la fourniture d’un contenu numérique non fourni sur un
