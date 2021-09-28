@@ -123,9 +123,17 @@ class Website(Home):
             if not partenaire:
                 return request.render("website.homepage", values)
             else:
-                website_page = request.env['website.page'].sudo().search([('url', "=", '/'+str(partenaire))])
-                if website_page:
-                    return request.render(str(website_page.view_id.key), {})
+                if (partenaire in ['', 'bolt'] and request.website.id == 1):
+                    values['partenaire'] = partenaire
+                    if (promo):
+                        values['promo'] = promo
+                    else:
+                        values['promo'] = False
+                    return request.render("website.homepage", values)
+                else:
+                    website_page = request.env['website.page'].sudo().search([('url', "=", '/'+str(partenaire))])
+                    if website_page:
+                        return request.render(str(website_page.view_id.key), {})
 
 
         # --------------------------------------------------------------------------
