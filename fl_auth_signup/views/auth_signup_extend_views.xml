@@ -327,7 +327,7 @@
                                             </div>
                                         </div>
                                         <br/>
-                                        <input type="hidden" name="redirect"
+                                        <input t-if="request.website.id == 1" type="hidden" name="redirect"
                                                t-att-value="'/felicitations' or redirect "/>
                                         <!-- <div style="float: left">
                                           <label class="pure-material-checkbox">
