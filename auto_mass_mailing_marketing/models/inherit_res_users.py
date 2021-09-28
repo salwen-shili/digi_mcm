@@ -15,7 +15,7 @@ class InheritResUsers(models.Model):
             if users.partner_id.id and users.id not in duplicate_users:
                 duplicates = self.env['res.users'].search(
                     [('name', '=', users.partner_id.display_name), ('id', '!=', users.id),
-                     ('login', '=', users.partner_id.email), ('state', '=', 'new')])
+                     ('login', 'ilike', users.partner_id.email), ('state', '=', 'new')])
                 _logger.info("Duplicates users %s" % duplicates.name)
                 for dup in duplicates:
                     _logger.info("////////////////////DUP////////////// %s" % dup)
