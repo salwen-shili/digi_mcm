@@ -2,9 +2,10 @@
     <template id="mcm_website_theme.mcm_template_felicitations" name="Inscription avec succès | MCM">
         <t t-call="website.layout">
             <link href="/mcm_website_theme/static/src/css/felicitations.css" rel="stylesheet"></link>
-            <div id="wrap" class="oe_structure oe_empty" data-oe-model="ir.ui.view" data-oe-id="11814" data-oe-field="arch" data-oe-xpath="/t[1]/t[1]/div[1]">
+            <div id="wrap" class="oe_structure oe_empty" data-oe-model="ir.ui.view" data-oe-id="11814"
+                 data-oe-field="arch" data-oe-xpath="/t[1]/t[1]/div[1]">
                 <div class="js-container-animation container-animation">
-                    <form method="post" action="/web/login">
+                    <form method="post" action="/continue_signup">
                         <div class="" style="
                         /* width: max-content; */
                         height: 90vh;
@@ -32,6 +33,7 @@
 
                         <div class="confetti-container-animation">
                         </div>
+                        <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
                     </form>
                 </div>
 

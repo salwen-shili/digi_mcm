@@ -144,6 +144,18 @@ class Website(Home):
 
 class Routes_Site(http.Controller):
 
+    @http.route('/continue_signup', type='http', auth='user', website=True)
+    def get_form_values(self,**kw):
+        order = request.website.sale_get_order()
+        print ("order",order)
+        if request.website.id == 2:
+            raise werkzeug.exceptions.NotFound()
+        elif request.website.id == 1:
+            if order:
+                return request.render("mcm_website_theme.mcm_website_theme_validation", {})
+            else:
+                return werkzeug.utils.redirect('/#pricing')
+
     @http.route('/update_partner', type='http', auth='user', website=True)
     def update_partner(self, **kw):
 

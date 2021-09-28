@@ -114,7 +114,6 @@ class AuthSignupHome(AuthSignupHome):
         if response.status_code != 204:
             return response
 
-
 class Home(Home):
 
     @http.route('/web/login', type='http', auth="public")
@@ -123,33 +122,45 @@ class Home(Home):
         if 'login' in request.params:
             request.params['login'] = request.params['login'].replace(' ', '').lower()
             login = request.params['login']
+        print("redirect1", redirect)
         response = super(Home, self).web_login(redirect=redirect, **kw)
+        print("redirect2",redirect)
+        partner = request.env['res.partner'].sudo().search([('email', "=", login)], limit=1)
+        order = request.env['sale.order'].sudo().search([('partner_id', "=", partner.id)], order='create_date desc', limit=1)
+        order1 = request.website.sale_get_order()
+        print("order1",order1)
         if request.website.id == 1:
-            #Get partner and sale order linked to that partner
-            partner = request.env['res.partner'].sudo().search([('email', "=", login)], limit=1)
-            order = request.env['sale.order'].sudo().search([('partner_id', "=", partner.id)], order='create_date desc', limit=1)
-            order1 = request.website.sale_get_order()
             step = partner.step
-            #When partner hes already an order, redirect him to one of the steps after login
-            if order or order1:
+            print("step",step)
+            if redirect == '/felicitations':
+                response = super(Home, self).web_login(redirect='/felicitations', **kw)
+            elif order or order1:
                 print("order exist")
                 if step == "document":
                     print("afficher document")
-                    response = super(Home, self).web_login(redirect='/charger_mes_documents', **kw)
+                    redirect='/charger_mes_documents'
+                    #response = super(Home, self).web_login(redirect='/charger_mes_documents', **kw)
                 elif step == "coordonnées":
                     print("afficher coordonnées")
-                    response = super(Home, self).web_login(redirect='/coordonnées', **kw)
+                    redirect='/coordonnées'
+                    #response = super(Home, self).web_login(redirect='/coordonnées', **kw)
                 elif step == "financement":
                     print("afficher financement")
-                    response = super(Home, self).web_login(redirect='/shop/cart', **kw)
+                    redirect='/shop/cart'
+                    #response = super(Home, self).web_login(redirect='/shop/cart', **kw)
                 elif step == "finish":
                     print("afficher espace client")
-                    response = super(Home, self).web_login(redirect='/my', **kw)
-            #If he does not have an order, redirect him to pricelist
+                    redirect='/my'
+                    #response = super(Home, self).web_login(redirect='/my', **kw)
             else:
                 print("afficher pricelist")
+                redirect = '/#pricing'
                 response = super(Home, self).web_login(redirect='/#pricing', **kw)
+        print("redirect3", redirect)
+        response = super(Home, self).web_login(redirect=redirect, **kw)
         return response
+
+
 
 
 
