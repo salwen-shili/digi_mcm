@@ -3,7 +3,28 @@
   <component name="CsvFileAttributes">
     <option name="attributeMap">
       <map>
+        <entry key="/auto_mass_mailing_marketing/models/inherit_res_users.py">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="/auto_mass_mailing_marketing/views/inherit_session_add_fields.xml">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="/auto_mass_mailing_marketing/wizard/__init__.py">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="/auto_mass_mailing_marketing/wizard/inherit_base_partner_merge.py">
           <value>
             <Attribute>
               <option name="separator" value="," />
