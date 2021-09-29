@@ -1,6 +1,8 @@
 from odoo import models, api
 from odoo.tools import datetime
+import logging
 
+_logger = logging.getLogger(__name__)
 
 class BasePartnerMergeAutomaticWizard(models.TransientModel):
     _inherit = "base.partner.merge.automatic.wizard"
