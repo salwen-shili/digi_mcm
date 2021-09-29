@@ -64,3 +64,20 @@
   color: #000000;
   transition: all 0.2s ease-out;
 }
+
+.center-logo {
+  display: flex;
+  flex-direction: row;
+  align-content: center;
+  justify-content: space-between;
+  align-items: center;
+}
+@media all and (max-width: 425px) {
+  .center-logo {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content: space-between;
+    align-items: center;
+  }
+}
