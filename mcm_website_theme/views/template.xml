@@ -342,26 +342,30 @@
                     <div class="input checkbox">
                         <input type="checkbox" id="checkbox_failures" style="white-space: nowrap;" class="text-xl-left border-0" t-att-checked="website_sale_order.failures" t-att-value="website_sale_order.failures">
                             <label for="failures" style="display:inline">
-                            Je souhaite accéder à la formation dès maintenant sans attendre 14 jours. Je reconnais que
+                                Je souhaite accéder à la formation dès maintenant sans attendre 14 jours. Je reconnais
+                                que
                                 <span t-if="website_sale_order.company_id.id==2">DIGIMOOV</span>
-                                <span t-if="website_sale_order.company_id.id==1">MCM Academy</span> procédera à l'exécution immédiate de ma formation en ligne et à ce titre, je
-                            renonce expressément à exercer mon droit de rétractation conformément aux dispositions de
-                            l'article L.221-28 1° du code de la consommation.
+                                <span t-if="website_sale_order.company_id.id==1">MCM Academy</span>
+                                procédera à l'exécution immédiate de ma formation en ligne et à ce titre, je
+                                renonce expressément à exercer mon droit de rétractation conformément aux dispositions
+                                de
+                                l'article L.221-28 1° du code de la consommation.
                             </label>
                         </input>
                     </div>
                     <div class="input checkbox">
                         <input type="checkbox" id="checkbox_conditions" style="white-space: nowrap;" class="text-xl-left border-0" t-att-checked="website_sale_order.conditions" t-att-value="website_sale_order.conditions">
                             <label for="conditions" style="display:inline">
-                            J'ai lu et j'accepte les
+                                J'ai lu et j'accepte les
                                 <a href="/conditions" target="blank" style="
     font-weight: 600; color: #000;
-">conditions générales de vente</a>
+">conditions générales de vente
+                                </a>
                             </label>
                         </input>
                     </div>
                     <p t-if="website_sale_order.conditions_error != ''" id="error_conditions" class="alert alert-warning" style="margin-left:0%;display:inline-block;">
-                    Vous devez acceptez les conditions générales de ventes
+                        Vous devez acceptez les conditions générales de ventes
                     </p>
 
                 </div>
@@ -530,6 +534,23 @@
                     <style>.embed-container { position: relative; margin-top: 2rem; padding-bottom: 56.25%; height: 0;
                         overflow: hidden; max-width: 100%; } .embed-container iframe, .embed-container object,
                         .embed-container embed { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
+                        .hide-text-top {
+                        display: block;
+                        }
+                        .hide-text-bottom {
+                        display: block;
+                        }
+
+                        @media screen and (max-width: 1199px) {
+                        .hide-text-top {
+                            display: none;
+                        }
+                        }
+                        @media screen and (min-width: 1200px) {
+                        .hide-text-bottom {
+                            display: none;
+                        }
+                        }
                     </style>
                     <div class='embed-container'>
                         <iframe id="cpf_video" frameborder='0' allowfullscreen="allow"></iframe>
@@ -545,7 +566,8 @@
                         <label for="failures" style="display:inline">
                             Je souhaite accéder à la formation dès maintenant sans attendre 14 jours. Je reconnais que
                             <span t-if="website_sale_order.company_id.id==2">DIGIMOOV</span>
-                            <span t-if="website_sale_order.company_id.id==1">MCM Academy</span> procédera à l'exécution immédiate de ma formation en ligne et à ce titre, je
+                            <span t-if="website_sale_order.company_id.id==1">MCM Academy</span>
+                            procédera à l'exécution immédiate de ma formation en ligne et à ce titre, je
                             renonce expressément à exercer mon droit de rétractation conformément aux dispositions de
                             l'article L.221-28 1° du code de la consommation.
                         </label>
@@ -557,7 +579,8 @@
                             J'ai lu et j'accepte les
                             <a href="/conditions" target="blank" style="
     font-weight: 600; color: #000;
-">conditions générales de vente</a>
+">conditions générales de vente
+                            </a>
                         </label>
                     </input>
                 </div>
@@ -653,7 +676,7 @@
                 <p t-if="modules_mcm">
                     <b>
                         <div style="margin-left:0%;" id="exam_center">
-                            <select name="region_examen" id="region_examen" class="form-control search-slt " t-if="modules_mcm" onclick='enableButton()'>
+                            <select name="region_examen" id="region_examen" class="form-control search-slt " t-if="modules_mcm">
                                 <option value="all" id="all">Sélectionnez votre région d'examen</option>
                                 <t t-foreach="list_villes_mcm" t-as="ville">
                                     <t t-if="ville">
@@ -676,7 +699,7 @@
 
                     <b>
                         <div style="margin-left:0%;">
-                            <select name="date_examen" id="exam_date" class="form-control search-slt " t-if="modules_mcm" style="display:none" onclick='disableButton()'>
+                            <select name="date_examen" id="exam_date" class="form-control search-slt " t-if="modules_mcm" style="display:none">
                                 <option value="all" id="all">Sélectionnez votre date d'examen</option>
                                 <t t-foreach="modules_mcm" t-as="module">
                                     <t t-if="module">
@@ -706,7 +729,7 @@
     <template id="mcm_website_sale_short_cart_summary" inherit_id="website_sale.short_cart_summary">
         <xpath expr="//a[@class='btn btn-secondary float-right d-none d-xl-inline-block']" position="replace">
             <a id="a_pm_shop_checkout">
-                <button disabled="disabled " role="button" t-if="website_sale_order and website_sale_order.website_order_line" class="btn btn-secondary float-right d-none d-xl-inline-block" href="/shop/checkout?express=1" id="pm_shop_checkout" t-attf-onclick="verify_payment_method()">
+                <button disabled="disabled" role="button" t-if="website_sale_order and website_sale_order.website_order_line" class="btn btn-secondary float-right d-none d-xl-inline-block" href="/shop/checkout?express=1" id="pm_shop_checkout" t-attf-onclick="verify_payment_method()">
                     <span id="pm_shop_checkout_text">Passer au paiement</span>
                 </button>
             </a>
@@ -739,9 +762,10 @@
         </xpath>
     </template>
 
+    <!-- /shop/confirmation -->
     <template id="mcm_website_sale_confirmation" inherit_id="website_sale.confirmation">
         <xpath expr="//h1" position="replace">
-            <t t-if="order.state in ('sent','sale') ">
+            <t t-if="order.state in ('sent','sale') and order.company_id.id ==2">
                 <h1>
                     <span>Contrat</span>
                     <em t-field="order.partner_id.name"/>
@@ -751,15 +775,38 @@
                 </h1>
             </t>
         </xpath>
+
+        <!--   <xpath expr="//h3" position="replace">
+            <t t-if="order.company_id.id ==2">
+                <h3 class="text-left mt-3">
+                    <strong>Payment Information:</strong>
+                </h3>
+            </t>
+        </xpath> -->
+
         <xpath expr="//div[hasclass('thanks_msg')]" position="replace">
             <div class="thanks_msg">
-                <h2>Merci pour votre paiement.
-                    <a role="button" class="btn btn-primary d-none d-md-inline-block" href="/shop/print" target="_blank" aria-label="Print" title="Print">
-                        <i class="fa fa-print"></i>
-                        Imprimer
-                    </a>
-                </h2>
+                <form action="/contrat">
+                    <h2>
+                        <span t-if="order.company_id.id ==2">
+                            Merci pour votre paiement.
+                        </span>
+                        <div t-if="order.company_id.id ==2">
+                            <a role="button" class="btn btn-primary d-none d-md-inline-block" href="/shop/print" target="_blank" aria-label="Print" title="Print">
+                                <i class="fa fa-print"></i>
+                                Imprimer
+                            </a>
+                        </div>
+                        <!--  <button type="submit" class="btn btn-primary d-none d-md-inline-block" t-attf-href="'/my/orders/%s?access_token=%s' % (order.id,order.access_token)" title="Contrat"> -->
+                        <div t-if="order.company_id.id ==1">
+                            <button type="submit" class="btn btn-primary d-none d-md-inline-block" title="Contrat">
+                                Continuer
+                            </button>
+                        </div>
+                    </h2>
+                </form>
             </div>
+
         </xpath>
         <xpath expr="//p[@class='alert alert-info mt-3']" position="replace">
             <p class="alert alert-info mt-3" role="status">
@@ -787,63 +834,87 @@
         <xpath expr="//div[@id='cart_total']" position="inside">
             <script>
                 function verify_payment_method() {
-  stripe_pm = document.getElementById("stripe_pm");
+                stripe_pm = document.getElementById("stripe_pm");
 
-  if (stripe_pm) {
-    if (stripe_pm.checked == true) {
-      document.getElementById("pm_shop").href = "/shop/checkout?express=1";
-      document.getElementById("pm_shop_check").href =
-        "/shop/checkout?express=1";
-      document.getElementById("a_pm_shop_checkout").href =
-        "/shop/checkout?express=1";
-    }
-  }
-  pole_emploi_pm = document.getElementById("pole_emploi_pm");
-  if (pole_emploi_pm) {
-    if (pole_emploi_pm.checked == true) {
-      document.getElementById("pm_shop").href = "/new/ticket/pole_emploi";
-      document.getElementById("pm_shop_check").href = "/new/ticket/pole_emploi";
-      document.getElementById("a_pm_shop_checkout").href =
-        "/new/ticket/pole_emploi";
-    }
-  }
-  cpf_pm = document.getElementById("cpf_pm");
+                if (stripe_pm) {
+                if (stripe_pm.checked == true) {
+                document.getElementById("pm_shop").href = "/shop/checkout?express=1";
+                document.getElementById("pm_shop_check").href =
+                "/shop/checkout?express=1";
+                document.getElementById("a_pm_shop_checkout").href =
+                "/shop/checkout?express=1";
+                }
+                }
+                pole_emploi_pm = document.getElementById("pole_emploi_pm");
+                if (pole_emploi_pm) {
+                if (pole_emploi_pm.checked == true) {
+                document.getElementById("pm_shop").href = "/new/ticket/pole_emploi";
+                document.getElementById("pm_shop_check").href = "/new/ticket/pole_emploi";
+                document.getElementById("a_pm_shop_checkout").href =
+                "/new/ticket/pole_emploi";
+                }
+                }
+                cpf_pm = document.getElementById("cpf_pm");
 
-  if (cpf_pm) {
-    if (cpf_pm.checked == true) {
-      if (cpf_pm.value == "Formation à distance TAXI") {
-        console.log("TAXI", cpf_pm.value);
-        document
-          .getElementById("pm_shop")
-          .setAttribute("href", "https://bit.ly/3DOiZG6");
-        document.getElementById("pm_shop_check").href =
-          "https://bit.ly/3DOiZG6";
-        document.getElementById("a_pm_shop_checkout").href =
-          "https://bit.ly/3DOiZG6";
-      }
-      if (cpf_pm.value == "Formation à distance VMDTR") {
-        console.log("VMDTR", cpf_pm.value);
-        document
-          .getElementById("pm_shop")
-          .setAttribute("href", "https://bit.ly/3tbAxXw");
-        document
-          .getElementById("pm_shop_check")
-          .setAttribute("href", "https://bit.ly/3tbAxXw");
-        document
-          .getElementById("a_pm_shop_checkout")
-          .setAttribute("href", "https://bit.ly/3tbAxXw");
-      }
-      if (cpf_pm.value == "Formation à distance VTC") {
-        console.log("VTC", cpf_pm.value);
-        document.getElementById("pm_shop").href = "https://bit.ly/3mZoImh";
-        document.getElementById("pm_shop_check").href =
-          "https://bit.ly/3mZoImh";
-        document.getElementById("a_pm_shop_checkout").href =
-          "https://bit.ly/3mZoImh";
-      }
-    }
-  }
-}
+                if (cpf_pm) {
+                if (cpf_pm.checked == true) {
+                if (cpf_pm.value == "Formation à distance TAXI") {
+                console.log("TAXI", cpf_pm.value);
+                document
+                .getElementById("pm_shop")
+                .setAttribute("href", "https://bit.ly/3DOiZG6");
+                document.getElementById("pm_shop_check").href =
+                "https://bit.ly/3DOiZG6";
+                document.getElementById("a_pm_shop_checkout").href =
+                "https://bit.ly/3DOiZG6";
+                }
+                if (cpf_pm.value == "Formation à distance VMDTR") {
+                console.log("VMDTR", cpf_pm.value);
+                document
+                .getElementById("pm_shop")
+                .setAttribute("href", "https://bit.ly/3tbAxXw");
+                document
+                .getElementById("pm_shop_check")
+                .setAttribute("href", "https://bit.ly/3tbAxXw");
+                document
+                .getElementById("a_pm_shop_checkout")
+                .setAttribute("href", "https://bit.ly/3tbAxXw");
+                }
+                if (cpf_pm.value == "Formation à distance VTC") {
+                console.log("VTC", cpf_pm.value);
+                document.getElementById("pm_shop").href = "https://bit.ly/3mZoImh";
+                document.getElementById("pm_shop_check").href =
+                "https://bit.ly/3mZoImh";
+                document.getElementById("a_pm_shop_checkout").href =
+                "https://bit.ly/3mZoImh";
+                }
+                //digimoov
+                if (cpf_pm.value == "Formation pro") {
+                console.log("cpf_pm.value == ");
+                document.getElementById("pm_shop").href =
+                "https://bit.ly/3nMlm2A";
+                document.getElementById("pm_shop_check").href =
+                "https://bit.ly/3nMlm2A";
+                document.getElementById("pm_shop_checkout").href =
+                "https://bit.ly/3nMlm2A";
+                document.getElementById("a_pm_shop_checkout").href =
+                "https://bit.ly/3nMlm2A";
+
+                }
+                if (cpf_pm.value == "Formation premium") {
+                console.log("cpf_pm.value == Formation premium");
+                document.getElementById("pm_shop").href =
+                "https://bit.ly/38IxvSa";
+                document.getElementById("pm_shop_check").href =
+                "https://bit.ly/38IxvSa";
+                document.getElementById("pm_shop_checkout").href =
+                "https://bit.ly/38IxvSa";
+                document.getElementById("a_pm_shop_checkout").href =
+                "https://bit.ly/38IxvSa";
+                }
+                }
+                }
+                }
                 function verify_checked(){
                 var x=document.getElementById('checkbox_instalment');
                 if(x) {
@@ -856,7 +927,7 @@
                 }
                 }
                 };
-                
+
             </script>
         </xpath>
     </template>
@@ -1062,15 +1133,14 @@
                                             <p>Débouchés : où travailler en tant que chauffeur de VTC ?</p>
                                         </a>
                                         <a href="/blog/blog-vtc-7/post/quel-statut-juridique-choisir-pour-un-chauffeur-vtc-21" style="cursor: pointer; color:#ffffff">
-                                            <p >Quel statut juridique choisir pour un chauffeur de VTC ?</p>
+                                            <p>Quel statut juridique choisir pour un chauffeur de VTC ?</p>
                                         </a>
                                         <a href="/blog/blog-taxi-moto-6/post/reglementation-moto-taxi-le-guide-complet-24" style="cursor: pointer; color:#ffffff">
-                                            <p >MOTO-TAXI : réglementation et bonnes pratiques</p>
+                                            <p>MOTO-TAXI : réglementation et bonnes pratiques</p>
                                         </a>
                                         <a href="/blog" style="cursor: pointer; color:#ffffff">
-                                            <p >Blog métiers de transport</p>
+                                            <p>Blog métiers de transport</p>
                                         </a>
-
 
 
                                     </div>
@@ -1086,14 +1156,14 @@
                                             <a href="/contact" style="cursor: pointer; color:#ffffff">
                                                 <li class="mb-2">
                                                     <span class="fa fa-envelope"/>
-                                                Envoyez-nous un message
+                                                    Envoyez-nous un message
                                                 </li>
                                             </a>
 
                                             <a href="/faq">
                                                 <li class="mb-2">
                                                     <span class="fa fa-question-circle" data-original-title="" title="" aria-describedby="tooltip437298"/>
-                                                Foire aux questions
+                                                    Foire aux questions
                                                     <br/>
                                                 </li>
                                             </a>
@@ -1199,9 +1269,9 @@
                     <div class="row">
                         <div class="col-md-12 text-center">
 
-                            <p>Copyright © 2021 
+                            <p>Copyright © 2021
                                 <a style="color:#fff;">
-										MCM ACADEMY
+                                    MCM ACADEMY
                                 </a>
                             </p>
                         </div>
@@ -1209,7 +1279,6 @@
                 </div>
             </section>
         </xpath>
-
 
 
     </template>
