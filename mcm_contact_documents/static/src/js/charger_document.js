@@ -77,12 +77,12 @@ publicWidget.registry.digimoov_documents = publicWidget.Widget.extend({
             if(justificatif_domicile_non) {
                 justificatif_domicile_non.style.display='block';
                 justificatif_domicile_non.className='form-group row form-field';
-                justificatif_domicile_input_non.required = false;
+                justificatif_domicile_input_non.required = true;
             }
             if(justificatif_domicile_oui) {
                 justificatif_domicile_oui.style.display='none';
                 justificatif_domicile_oui.className='form-group row form-field o_website_form_required';
-                justificatif_domicile_input_oui.required = true;
+                justificatif_domicile_input_oui.required = false;
             }
         }
 
