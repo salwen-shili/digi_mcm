@@ -47,16 +47,22 @@
                                             </div>
                                             <script>
                                                 document.addEventListener("DOMContentLoaded", function () {
-                                                document.getElementById("domicile_personnel_oui").checked = true; document.getElementById('identite_hebergeur_form').style.display='none'; document.getElementById('attestation_hebergement_form').style.display='none';
-                                                document.getElementById('identite_hebergeur_id').required = 0;
+                                                document.getElementById("domicile_personnel_oui").checked = true;
+                                                document.getElementById('identite_hebergeur_recto_form').style.display='none';
+                                                document.getElementById('identite_hebergeur_verso_form').style.display='none';
+                                                document.getElementById('attestation_hebergement_form').style.display='none';
+                                                document.getElementById('justificatif_domicile_form_non').style.display='none';
+                                                document.getElementById('identite_hebergeur_recto_id').required = 0;
+                                                document.getElementById('identite_hebergeur_verso_id').required = 0;
                                                 document.getElementById('attestation_hebergement_id').required = 0;
+                                                document.getElementById('justificatif_domicile_id_non').required = 0;
                                                 });
                                             </script>
 
                                         </div>
 
-                                        <!-- Charger le justificatif à domicile personnel -->
-                                        <div class="form-group row form-field o_website_form_required" id="justificatif_domicile_form">
+                                        <!-- Charger le justificatif à domicile personnel dans la partie oui-->
+                                        <div class="form-group row form-field o_website_form_required" id="justificatif_domicile_form_oui">
                                             <div class="col-lg-9">
                                                 <label class="col-form-label" for="justificatif_domicile">Charger le
                                                     Justificatif à domicile (moins de trois mois)
@@ -64,19 +70,44 @@
                                             </div>
                                             <div class="col-lg-9 col-md-12 col-sm-12">
 
-                                                <input type="file" name="justificatif_domicile" required="1" id="justificatif_domicile_id" placeholder="Veuillez charger un fichier" class="form-control o_website_form_input" accept="image/*,application/pdf"/>
+                                                <input type="file" name="justificatif_domicile" required="1" id="justificatif_domicile_id_oui" placeholder="Veuillez charger un fichier" class="form-control o_website_form_input" accept="image/*,application/pdf"/>
                                             </div>
                                         </div>
 
-                                        <!--Charger la pièce d'identité de l'hebergeur -->
-                                        <div class="form-group row form-field " id="identite_hebergeur_form">
+                                         <!-- Charger le justificatif à domicile personnel dans la partie non-->
+                                        <div class="form-group row form-field o_website_form_required" id="justificatif_domicile_form_non">
+                                            <div class="col-lg-9">
+                                                <label class="col-form-label" for="justificatif_domicile">Charger le
+                                                    Justificatif à domicile (moins de trois mois)
+                                                </label>
+                                            </div>
+                                            <div class="col-lg-9 col-md-12 col-sm-12">
+
+                                                <input type="file" name="justificatif_domicile" required="1" id="justificatif_domicile_id_non" placeholder="Veuillez charger un fichier" class="form-control o_website_form_input" accept="image/*,application/pdf"/>
+                                            </div>
+                                        </div>
+
+                                        <!--Charger la pièce d'identité de l'hebergeur recto-->
+                                        <div class="form-group row form-field " id="identite_hebergeur_recto_form">
                                             <div class="col-lg-9 col-md-9">
-                                                <label class="col-form-label" for="identite_hebergeur">Charger la
-                                                    pièce d'identité de l'hébergeur
+                                                <label class="col-form-label" for="identite_hebergeur_recto">Charger la
+                                                    pièce d'identité de l'hébergeur recto
                                                 </label>
                                             </div>
                                             <div class="col-lg-9 col-md-12 col-sm-12 o_website_form_required">
-                                                <input type="file" name="identite_hebergeur" id="identite_hebergeur_id" required="1" placeholder="Veuillez Charger un fichier" class="form-control o_website_form_input" accept="image/*,application/pdf"/>
+                                                <input type="file" name="identite_hebergeur_recto" id="identite_hebergeur_recto_id" required="1" placeholder="Veuillez Charger un fichier" class="form-control o_website_form_input" accept="image/*,application/pdf"/>
+                                            </div>
+                                        </div>
+
+                                          <!--Charger la pièce d'identité de l'hebergeur verso-->
+                                        <div class="form-group row form-field " id="identite_hebergeur_verso_form">
+                                            <div class="col-lg-9 col-md-9">
+                                                <label class="col-form-label" for="identite_hebergeur_verso">Charger la
+                                                    pièce d'identité de l'hébergeur verso
+                                                </label>
+                                            </div>
+                                            <div class="col-lg-9 col-md-12 col-sm-12 o_website_form_required">
+                                                <input type="file" name="identite_hebergeur_verso" id="identite_hebergeur_verso_id" required="1" placeholder="Veuillez Charger un fichier" class="form-control o_website_form_input" accept="image/*,application/pdf"/>
                                             </div>
                                         </div>
 
