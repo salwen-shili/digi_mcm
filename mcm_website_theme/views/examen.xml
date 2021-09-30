@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
   <template id="mcm_website_examen" name="Examen | MCM ACADEMY">
+
     <t t-call="website.layout">
       <div id="wrap" class="oe_structure oe_empty">
         <div id="myCarousel1629963079639" class="s_carousel carousel slide s_carousel_default" data-interval="10000" data-name="Carousel" style="border-style: none; border-width: 0px">
@@ -46,13 +47,17 @@
           <div class="container">
             <div class="row">
               <div class="pt8 offset-lg-1 col-lg-10 pb16">
-                <p class="lead">
-                  <font color="#000000" face="Poppins, sans-serif">Pour exercer la profession de chauffeur de TAXI ou de
+                <ol>
+                  <li>
+                    <p class="lead">
+                      <font color="#000000" face="Poppins, sans-serif">Pour exercer la profession de chauffeur de TAXI ou de
                     voiture de transport avec chauffeur (VTC), vous devez
                     valider un examen comprenant une épreuve d’admissibilité et
                     une épreuve d'admission.</font>
-                  <br/>
-                </p>
+                      <br/>
+                    </p>
+                  </li>
+                </ol>
               </div>
             </div>
           </div>
@@ -201,15 +206,15 @@
 <div class="row"/>
 </div>
 </section>
-<section class="pt32 pb0" data-name="Title">
+<section class="pt32 pb0 bg-white-75" data-name="Title" style="">
 <div class="container">
 <div class="row s_nb_column_fixed">
-<div class="s_title pb48 offset-lg-1 col-lg-10 pt64" style="text-align: center">
+<div class="s_title pb48 offset-lg-1 col-lg-10 pt64" style="text-align: center; border-style: none; border-width: 0px;">
 <h2 style="text-align: center">
-<font color="#000000" face="Poppins, sans-serif">
+<font color="#000000" face="Poppins, sans-serif" style="color: #000;">
 <b style="font-size: 24px">Quels sont les modules d’examens pour
 </b>
-<span style="font-size: 24px">
+<span style="color: rgb(255, 227, 71); font-size: 24px;">
   <b>obtenir&amp;nbsp;</b>
 </span>
 <b style="font-size: 24px">le Certificat de Capacité Professionnelle ?</b>
@@ -220,178 +225,75 @@
 </div>
 </div>
 </section>
-<section id="sh_corpomate_theme_section_254" data-name="Call To Action" style="">
-<div class="container">
-<div class="sh_content">
-<p class="col-9">
-<font style="color: rgb(255, 227, 71)">MCM Academy propose des formations VTC, TAXI et VMDTR
-                  d’excellence, basées sur l'expertise de nos formateurs et la
-                  dédication de toute l'équipe. Toutes nos formations sont
-                  éligibles au CPF !</font>
-</p>
-<div class="sh_btn col-3" style="display: contents">
-<a href="/#pricing" class="btn" data-original-title="" title="" aria-describedby="tooltip398035" style="width: 20%; padding: 21px">Je m'inscris</a>
-</div>
-</div>
-</div>
-</section>
 <section id="sh_corpomate_theme_section_238" class="pt16" data-name="Practice Area">
 <div class="container">
 <div class="row">
 <div class="pt16 pb16 col-lg-7" style="border-style: none; border-width: 0px">
 <h2>
-<font color="#000000" face="Poppins, sans-serif">
-<span style="font-size: 24px">
-  <b>Les modules théoriques communs d’admissibilité sont les
-                        suivants :&amp;nbsp;</b>
+<span style="font-size: 24px;">
+<b>Les modules théoriques communs d’admissibilité pour les formations Taxi , VTC , et Taxi Moto sont les suivants :&amp;nbsp;</b>
 </span>
-</font>
-</h2>
-<h2>
-<font color="#000000" face="Poppins, sans-serif">
-<span style="font-size: 24px">&amp;nbsp;</span>
-</font>
 </h2>
 <p>
-<font color="#000000" face="Poppins, sans-serif" style="font-size: 18px">Pendant votre formation, nous allons vous apprendre à
+<font style="font-size: 18px;">Pendant votre formation, nous allons vous apprendre à
                     maîtriser les modules suivants :&amp;nbsp;</font>
 </p>
 <p>
-<font color="#000000" face="Poppins, sans-serif" style="font-size: 18px">
-<b>A</b> - RÉGLEMENTATION DU TRANSPORT PUBLIC PARTICULIER DE
+<b>A - RÉGLEMENTATION DU TRANSPORT PUBLIC PARTICULIER DE
                     PERSONNES
+</b>
+</p>
+<p>
+<b>B -&amp;nbsp;</b>
+<span style="font-weight: 700; font-size: 0.875rem;">GESTION</span>
+</p>
+<p>
+<span style="font-weight: 700; font-size: 0.875rem;">
+<font color="#000000" face="Poppins, sans-serif">C</font> -
+</span>
+<span style="font-size: 0.875rem; font-weight: 700;">SECURITE</span>
+</p>
+<p>
+<b>D - FRANÇAIS
+
+</b>
+</p>
+<p>
+<b>E - ANGLAIS</b>
+</p>
+<h2 style="text-align: left;">
+<font color="#000000" face="Poppins, sans-serif">
+<span style="font-size: 18px;">
+  <span style="font-weight: 700;">Modules spécifiques VTC</span>
+</span>
 </font>
+<br/>
+</h2>
+<p>Les modules spécifiques d'accès à la profession de conducteur de VTC sont les suivants :&amp;nbsp;&amp;nbsp;&amp;nbsp;</p>
+<p>
+<span style="font-weight: 700;">F</span>&amp;nbsp;-&amp;nbsp;Développement commercial en gestion propre à l’activité de VTC</p>
+<p>
 </p>
 <p>
-<font color="#000000" face="Poppins, sans-serif" style="font-size: 18px">
-<b>B</b> -&amp;nbsp;</font>
-<span style="                       color: rgb(0, 0, 0);                       font-family: Poppins, sans-serif;                       font-size: 18px;                     ">GESTION&amp;nbsp;</span>
-</p>
-<p>
-<span style="                       color: rgb(0, 0, 0);                       font-family: Poppins, sans-serif;                       font-size: 18px;                     ">
-<b>C</b> - SÉCURITÉ ROUTIÈRE</span>
-</p>
-<p>
-<font color="#000000" face="Poppins, sans-serif" style="font-size: 18px">
-<b>D</b> - FRANÇAIS
+<span style="font-weight: 700;">G</span>&amp;nbsp;-&amp;nbsp;Réglementation nationale spécifique de l’activité de VTC</p>
+<h2 style="text-align: left;">
+<font color="#000000" face="Poppins, sans-serif">
+<span style="font-size: 18px;">
+  <span style="font-weight: 700;">Modules spécifiques TAXI</span>
+</span>
 </font>
+</h2>
+<p>Les épreuves spécifiques d'accès à la profession de conducteur de TAXI sont les suivantes :&amp;nbsp;<br/>
 </p>
 <p>
-<font color="#000000" face="Poppins, sans-serif" style="font-size: 18px">
-<b>E</b> - ANGLAIS</font>
-</p>
+<span style="font-weight: 700;">F</span>&amp;nbsp;&amp;nbsp;-&amp;nbsp; Connaissance du territoire et de la réglementation locale&amp;nbsp;&amp;nbsp;</p>
+<p>
+<span style="color: rgb(0, 0, 0); font-family: Poppins, sans-serif; font-weight: 700;">G</span>&amp;nbsp;<font color="#000000" face="Poppins, sans-serif">-&amp;nbsp;</font>Réglementation nationale de l’activité de TAXI et gestion propre à cette activité&amp;nbsp;</p>
 </div>
 <div class="col-lg-5 col-12">
 <div class="sh_img">
+<br/>
 <img src="/mcm_website_theme/static/src/img/examen/4.png" data-original-title="" title="" aria-describedby="tooltip859873"/>
-</div>
-</div>
-</div>
-</div>
-</section>
-<section class="s_text_block pt32 pb0" data-name="Text block">
-<div class="container">
-<div class="row">
-<div class="pt32 pb32 col-lg-6" style="border-style: none; border-width: 0px">
-<h2 style="text-align: center">
-<font color="#000000" face="Poppins, sans-serif">
-<span style="font-size: 24px">
-  <b>Modules spécifiques VTC</b>
-</span>
-</font>
-<br/>
-</h2>
-<h2>
-<font color="#000000" face="Poppins, sans-serif">
-<span style="font-size: 24px">&amp;nbsp;</span>
-</font>
-</h2>
-<p>
-<font color="#000000" face="Poppins, sans-serif">
-<span style="font-size: 18px">Les modules spécifiques d'accès à la profession de
-                      conducteur de VTC sont les suivants :</span>&amp;nbsp;</font>
-<font color="#000000" face="Poppins, sans-serif" style="font-size: 18px">&amp;nbsp;</font>
-</p>
-<p>
-<font color="#000000" face="Poppins, sans-serif">
-<span style="font-size: 18px">
-  <b>F</b> -&amp;nbsp;Développement commercial en gestion
-                      propre à l’activité de VTC</span>
-</font>
-</p>
-<p>
-<font color="#000000" face="Poppins, sans-serif">
-<span style="font-size: 18px">
-  <b>G</b> -&amp;nbsp;Réglementation nationale spécifique de
-                      l’activité de VTC</span>
-</font>
-</p>
-</div>
-<div class="pt32 pb32 col-lg-6" style="border-style: none; border-width: 0px">
-<h2 style="text-align: center">
-<font color="#000000" face="Poppins, sans-serif">
-<span style="font-size: 24px">
-  <span style="font-weight: 700">Modules spécifiques TAXI</span>
-</span>
-</font>
-</h2>
-<h2>
-<font color="#000000" face="Poppins, sans-serif">
-<span style="font-size: 24px">&amp;nbsp;</span>
-</font>
-</h2>
-<p>
-<font color="#000000" face="Poppins, sans-serif">
-<span style="font-size: 18px">Les épreuves spécifiques d'accès à la profession de
-                      conducteur de TAXI sont les suivantes :&amp;nbsp;</span>
-</font>
-<br/>
-</p>
-<p>
-<font color="#000000" face="Poppins, sans-serif">
-<span style="font-size: 18px; font-weight: 700">F</span>
-<span style="font-size: 18px">&amp;nbsp;- Connaissance du territoire et de la
-                      réglementation locale&amp;nbsp;&amp;nbsp;</span>
-</font>
-</p>
-<p>
-<span style="                       font-size: 18px;                       color: rgb(0, 0, 0);                       font-family: Poppins, sans-serif;                       font-weight: 700;                     ">G</span>
-<span style="                       font-size: 18px;                       color: rgb(0, 0, 0);                       font-family: Poppins, sans-serif;                     ">&amp;nbsp;</span>
-<span style="                       font-size: 18px;                       color: rgb(0, 0, 0);                       font-family: Poppins, sans-serif;                     ">-&amp;nbsp;</span>&amp;nbsp;<font color="#000000" face="Poppins, sans-serif" style="">
-<span style="font-size: 18px">Réglementation nationale de l’activité de TAXI et gestion
-                      propre à cette activité&amp;nbsp;</span>
-</font>
-</p>
-</div>
-</div>
-</div>
-</section>
-<section class="s_text_block pt32 pb32" data-name="Text block">
-<div class="container">
-<div class="row">
-<div class="pt32 pb32 offset-lg-1 col-lg-10" style="border-style: none; border-width: 0px">
-<h2 style="text-align: center">
-<font color="#000000" face="Poppins, sans-serif">
-<span style="font-size: 24px">
-<span style="font-weight: 700">Détails sur l'examen</span>
-</span>
-</font>
-</h2>
-<h2>
-<font color="#000000" face="Poppins, sans-serif">
-<span style="font-size: 24px">&amp;nbsp;</span>
-</font>
-</h2>
-<p>
-<font color="#000000" face="Poppins, sans-serif">
-<span style="font-size: 18px">Retrouvez plus d'informations sur la durée des épreuves,
-                      les coefficients, la notation&amp;nbsp;et les modalités
-                      d'évaluation en cliquant sur le bouton ci-dessous :</span>
-<br/>
-</font>
-</p>
-<div class="s_btn text-center pt16 pb16" data-name="Button">
-<a href="/mcm_website_theme/static/src/img/examen/GRILLE_DE_NOTATION_EXAMEN_TAXI_VTC_MCMACADEMY.png" class="btn btn-primary sh_btn_cm_4" data-original-title="" title="" aria-describedby="tooltip942226">Voir les détails</a>
 </div>
 </div>
 </div>
@@ -401,47 +303,70 @@
 <div class="container">
 <div class="row align-items-center">
 <div class="col-lg-6 pt16 pb16">
-<img src="/mcm_website_theme/static/src/img/examen/5.png" class="img img-fluid mx-auto" alt="Odoo • Image et Texte"/>
+<img src="/web/image/65955/im%207.png" class="img img-fluid mx-auto" alt="Odoo • Image et Texte" data-original-title="" title="" aria-describedby="tooltip663627"/>
 </div>
-<div class="col-lg-6 pt16 pb16" style="border-style: none; border-width: 0px">
+<div class="col-lg-6 pt16 pb16" style="border-style: none; border-width: 0px;">
 <h2>
-<font color="#000000" face="Poppins, sans-serif">
-<span style="font-size: 24px">
-<b>Comment vous inscrire à l’examen VMDTR ?&amp;nbsp;</b>&amp;nbsp;<br/>
+<span style="font-size: 24px;">
+<span style="font-weight: 700;">Les épreuves pratiques communs d’admission des formations Taxi et VTC :&amp;nbsp;</span>
 </span>
-</font>
+<br/>
 <br/>
 </h2>
 <p>
-<font color="#000000" face="Poppins, sans-serif">
-<span style="font-size: 14px">Comme c’est le cas pour les examens TAXI et VTC, pour
-                      l’examen VMDTR, le candidat doit passer une épreuve
-                      théorique et une épreuve pratique.</span>
-</font>
+<span style="font-weight: 700;">1 - PREPARATION ET REALISATION DU PARCOURS</span>
+</p>
+<p>
+<span style="font-weight: 700;">2 - SECURITE ET SOUPLESSE DU PARCOURS, RESPECT DU CODE DE LA ROUTE</span>
+</p>
+<p>
+<span style="font-weight: 700; font-size: 0.875rem;">3 -QUALITE DE LA PRISE EN CHARGE ET DE LA RELATION CLIENT</span>
+</p>
+<p>
+<span style="font-weight: 700;">4 - FACTURATION ET UTILISATION DES EQUIPEMENTS SPECIAUX</span>
+</p>
+<p>
 <br/>
 </p>
 <p>
-                  &amp;nbsp;<span class="fa fa-chevron-right" data-original-title="" title="" aria-describedby="tooltip124208"/>
-                  &amp;nbsp;<font color="#000000" face="Poppins, sans-serif">
-<span style="font-size: 14px">Pour réussir l’examen théorique VMDTR, une moyenne
-                      générale d’au moins 10/20 est obligatoire. Aussi, chaque
-                      épreuve est soumise à une note éliminatoire propre. Le
-                      candidat se verra éliminé s'il obtient une note inférieure
-                      à celle-ci.</span>
-</font>
+<span style="color: rgb(0, 0, 0); font-family: Poppins, sans-serif;">Retrouvez plus d'informations sur la durée des épreuves, les coefficients, la notation&amp;nbsp;et les modalités d'évaluation en cliquant sur le bouton ci-dessous :</span>
+<br/>
 </p>
-<p>
-                  &amp;nbsp;<span class="fa fa-chevron-right" data-original-title="" title="" aria-describedby="tooltip206664"/>
-                  &amp;nbsp;<font color="#000000" face="Poppins, sans-serif">
-<span style="font-size: 14px">Les résultats de l’examen VMDTR théorique vous seront
-                      communiqués par la Chambre des Métiers et de l'Artisanat
-                      (CMA) dans les semaines qui suivent l’épreuve, par mail et
-                      SMS, mais aussi en ligne sur le site web de la CMA.</span>
-</font>
-</p>
-<div class="s_btn pt16 pb16 text-center" data-name="Button">
-<a href="#/blog/blog-taxi-10/post/tout-savoir-sur-l-examen-taxi-vtc-moto-taxi-27" class="btn btn-primary sh_btn_cm_4" data-original-title="" title="" aria-describedby="tooltip515890">Détails sur l'examen VMDTR&amp;nbsp;</a>
+<div class="s_btn text-left pt16 pb16" data-name="Button">
+<a href="#" class="btn btn-outline-primary" data-original-title="" title="" aria-describedby="tooltip561069">En Savoir Plus</a>
 </div>
+</div>
+</div>
+</div>
+</section>
+<section class="s_text_image pt32 pb32" data-name="Text - Image">
+<div class="container">
+<div class="row align-items-center">
+<div class="col-lg-6 pt16 pb16">
+<h2>
+<font color="#000000" face="Poppins, sans-serif">
+<span style="font-size: 24px;">
+  <span style="font-weight: 700;">Comment vous inscrire à l’examen Taxi-Moto ?&amp;nbsp;</span>&amp;nbsp;<br/>
+</span>
+</font>
+</h2>
+<h2/>
+<p style="font-size: 14px;">
+<font color="#000000" face="Poppins, sans-serif">Comme c’est le cas pour les examens TAXI et VTC, pour l’examen VMDTR, le candidat doit passer une épreuve théorique et une épreuve pratique.</font>
+<br/>
+</p>
+<p style="font-size: 14px;">&amp;nbsp;<span class="fa fa-chevron-right" data-original-title="" title="" aria-describedby="tooltip124208"/>
+&amp;nbsp;&amp;nbsp;<font color="#000000" face="Poppins, sans-serif">Pour réussir l’examen théorique VMDTR, une moyenne générale d’au moins 10/20 est obligatoire. Aussi, chaque épreuve est soumise à une note éliminatoire propre. Le candidat se verra éliminé s'il obtient une note inférieure à celle-ci.</font>
+</p>
+<p style="font-size: 14px;">&amp;nbsp;<span class="fa fa-chevron-right" data-original-title="" title="" aria-describedby="tooltip206664"/>
+&amp;nbsp;&amp;nbsp;<font color="#000000" face="Poppins, sans-serif">Les résultats de l’examen VMDTR théorique vous seront communiqués par la Chambre des Métiers et de l'Artisanat (CMA) dans les semaines qui suivent l’épreuve, par mail et SMS, mais aussi en ligne sur le site web de la CMA.</font>
+</p>
+<div class="s_btn text-left pt16 pb16" data-name="Buttons">
+<a href="#" class="btn btn-primary o_default_snippet_text">En savoir plus</a>
+</div>
+</div>
+<div class="col-lg-6 pt16 pb16">
+<img src="/web/image/65996/5.png" class="img img-fluid mx-auto" alt="Odoo • Texte et Image" data-original-title="" title="" aria-describedby="tooltip313758"/>
 </div>
 </div>
 </div>
@@ -478,5 +403,8 @@
 </section>
 </div>
 </t>
+
+
+
 </template>
 </odoo>
