@@ -4111,16 +4111,16 @@ CONTACT 4 STRAT
 
 #sh_corpomate_theme_section_92{padding-top: 30px;overflow: hidden;padding-bottom: 50px;}
 #sh_corpomate_theme_section_92 .sh_content{border: 1px solid #eff2f7;border-radius: 1rem;transition: all .4s;text-align: center;box-shadow: 0 .125rem .25rem rgba(0,0,0,.075);border-radius: 1rem;}
-#sh_corpomate_theme_section_92 .sh_content .sh_content_box{padding: 2rem 1.5rem;min-height: 218px;border-radius: 1rem;background-color: $-color-Primary;}
+#sh_corpomate_theme_section_92 .sh_content .sh_content_box{padding: 2rem 1.5rem;min-height: 218px;border-radius: 1rem;}
 #sh_corpomate_theme_section_92 .sh_content .sh_icon span{font-size: 30px;line-height: 30px;color: $-color-Primary;padding-bottom: 15px;}
-#sh_corpomate_theme_section_92 .sh_content .sh_description h2{font-size: 1.226em;font-weight: 600;margin-bottom: 15px; color:#ffffff}
-#sh_corpomate_theme_section_92 .sh_content .sh_description p{color: #ffffff;display: -webkit-box;-webkit-box-orient: vertical;overflow: hidden;margin-bottom: 0;padding-bottom: 5px;}
+#sh_corpomate_theme_section_92 .sh_content .sh_description h2{font-size: 1.226em;font-weight: 600;margin-bottom: 15px; color:#000000}
+#sh_corpomate_theme_section_92 .sh_content .sh_description p{color: #000000;display: -webkit-box;-webkit-box-orient: vertical;overflow: hidden;margin-bottom: 0;padding-bottom: 5px;}
 // #sh_corpomate_theme_section_92 .sh_content .sh_content_box:hover{background-color: $-color-Primary;border-radius: 1rem;transition: all .4s;}
 #sh_corpomate_theme_section_92 .sh_content .sh_icon span.fa-mobile{font-size: 35px;}
 #sh_corpomate_theme_section_92 .sh_content:hover .sh_icon span{color: #fff;}
 #sh_corpomate_theme_section_92 .sh_content:hover .sh_description h2{color: #fff;}
 #sh_corpomate_theme_section_92 .sh_content:hover .sh_description p{color: #fff;}
-#sh_corpomate_theme_section_92 .sh_content:hover{transform: translateY(-5px);box-shadow: 0 1rem 3rem rgba(31,45,61,.125)!important;}
+#sh_corpomate_theme_section_92 .sh_content:hover{transform: translateY(-5px);box-shadow: 0 1rem 3rem rgba(31,45,61,.125)!important;background:#000000;}
 @media only screen and (max-width: 991px){
    #sh_corpomate_theme_section_92 .sh_content{margin-bottom: 20px;}
 }
