@@ -39,8 +39,72 @@ class WebsiteSale(WebsiteSale):
                     return request.redirect("/coordonnées")
         if order and order.company_id.id == 1 and not documents:
             return request.redirect("/charger_mes_documents")
-        if order.company_id.id == 1 and (partenaire or product):
-            return request.redirect("/shop/cart/")
+        # if order.company_id.id == 1 and (partenaire or product):
+        #     return request.redirect("/shop/cart/")
+        if order and order.company_id.id == 1:
+            request.env.user.company_id = 1  # change default company
+            request.env.user.company_ids = [1,2]  # change default companies
+            product_id = False
+            if order:
+                for line in order.order_line:
+                    product_id = line.product_id
+
+            if not product and not partenaire and product_id:
+                product = True
+                partenaire = True
+            if product and not partenaire:
+                if product_id:
+                    slugname = (product_id.name).strip().strip('-').replace(' ', '-').lower()
+                    if str(slugname) != str(product):
+                        if order.pricelist_id and order.pricelist_id.name in ['bolt']:
+                            return request.redirect("/%s/%s/shop/cart/" % (slugname, order.pricelist_id.name))
+                        else:
+                            return request.redirect("/%s/shop/cart/" % (slugname))
+                    else:
+                        if order.pricelist_id and order.pricelist_id.name in ['bolt']:
+                            return request.redirect("/%s/%s/shop/cart/" % (slugname, order.pricelist_id.name))
+                else:
+                    return request.redirect("/pricing")
+            elif product and partenaire:
+                if product_id:
+                    slugname = (product_id.name).strip().strip('-').replace(' ', '-').lower()
+                    if str(slugname) != str(product):
+                        pricelist = request.env['product.pricelist'].sudo().search(
+                            [('company_id', '=', 1), ('name', "=", str(partenaire))])
+                        if not pricelist:
+                            pricelist_id = order.pricelist_id
+                            if pricelist_id.name in ['bolt',]:
+                                return request.redirect("/%s/%s/shop/cart/" % (slugname, pricelist_id.name))
+                            else:
+                                return request.redirect("/%s/shop/cart/" % (slugname))
+                        else:
+                            if pricelist.name in ['bolt']:
+                                return request.redirect("/%s/%s/shop/cart/" % (slugname, order.pricelist_id.name))
+                            else:
+                                return request.redirect("/%s/shop/cart/" % (slugname))
+                    else:
+                        pricelist = request.env['product.pricelist'].sudo().search(
+                            [('company_id', '=', 1), ('name', "=", str(partenaire))])
+
+                        if not pricelist:
+                            pricelist_id = order.pricelist_id
+                            if pricelist_id.name in ['bolt']:
+                                return request.redirect("/%s/%s/shop/cart/" % (slugname, pricelist_id.name))
+                            else:
+                                return request.redirect("/%s/shop/cart/" % (slugname))
+                        else:
+                            if pricelist.name in ['bolt']:
+                                if pricelist.name != order.pricelist_id.name:
+                                    return request.redirect("/%s/%s/shop/cart/" % (slugname, order.pricelist_id.name))
+                            else:
+                                return request.redirect("/%s/shop/cart/" % (slugname))
+                else:
+                    pricelist = request.env['product.pricelist'].sudo().search(
+                        [('company_id', '=', 1), ('name', "=", str(partenaire))])
+                    if pricelist and pricelist.name in ['bolt']:
+                        return request.redirect("/%s" % (pricelist.name))
+                    else:
+                        return request.redirect("/pricing")
         if order and order.company_id.id == 2:
             request.env.user.company_id = 2  # change default company
             request.env.user.company_ids = [1,2]  # change default companies
@@ -221,8 +285,71 @@ class WebsiteSale(WebsiteSale):
     @http.route(['''/<string:product>/<string:partenaire>/shop/payment''','''/<string:product>/shop/payment''','''/shop/payment'''], type='http', auth="user", website=True)
     def payment(self,partenaire=None,product=None, **post):
         order = request.website.sale_get_order()
-        if order.company_id.id == 1 and (partenaire or product):
-            return request.redirect("/shop/payment/")
+        # if order.company_id.id == 1 and (partenaire or product):
+        #     return request.redirect("/shop/payment/")
+        if order and order.company_id.id == 1:
+            product_id = False
+            if order:
+                for line in order.order_line:
+                    product_id = line.product_id
+
+            if not product and not partenaire and product_id:
+                product = True
+                partenaire = True
+            if product and not partenaire:
+                if product_id:
+                    slugname = (product_id.name).strip().strip('-').replace(' ', '-').lower()
+                    if str(slugname) != str(product):
+                        if order.pricelist_id and order.pricelist_id.name in ['bolt']:
+                            return request.redirect("/%s/%s/shop/payment/" % (slugname, order.pricelist_id.name))
+                        else:
+                            return request.redirect("/%s/shop/payment/" % (slugname))
+                    else:
+                        if order.pricelist_id and order.pricelist_id.name in ['bolt']:
+                            return request.redirect("/%s/%s/shop/payment/" % (slugname, order.pricelist_id.name))
+                else:
+                    return request.redirect("/pricing")
+            elif product and partenaire:
+                if product_id:
+                    slugname = (product_id.name).strip().strip('-').replace(' ', '-').lower()
+                    if str(slugname) != str(product):
+                        pricelist = request.env['product.pricelist'].sudo().search(
+                            [('company_id', '=', 1), ('name', "=", str(partenaire))])
+                        if not pricelist:
+                            pricelist_id = order.pricelist_id
+                            if pricelist_id.name in ['bolt']:
+                                return request.redirect("/%s/%s/shop/payment/" % (slugname, pricelist_id.name))
+                            else:
+                                return request.redirect("/%s/shop/payment/" % (slugname))
+                        else:
+                            if pricelist.name in ['bolt']:
+                                return request.redirect("/%s/%s/shop/payment/" % (slugname, order.pricelist_id.name))
+                            else:
+                                return request.redirect("/%s/shop/payment/" % (slugname))
+                    else:
+                        pricelist = request.env['product.pricelist'].sudo().search(
+                            [('company_id', '=', 1), ('name', "=", str(partenaire))])
+
+                        if not pricelist:
+                            pricelist_id = order.pricelist_id
+                            if pricelist_id.name in ['bolt']:
+                                return request.redirect("/%s/%s/shop/payment/" % (slugname, pricelist_id.name))
+                            else:
+                                return request.redirect("/%s/shop/payment/" % (slugname))
+                        else:
+                            if pricelist.name in ['bolt']:
+                                if pricelist.name != order.pricelist_id.name:
+                                    return request.redirect(
+                                        "/%s/%s/shop/payment/" % (slugname, order.pricelist_id.name))
+                            else:
+                                return request.redirect("/%s/shop/payment/" % (slugname))
+                else:
+                    pricelist = request.env['product.pricelist'].sudo().search(
+                        [('company_id', '=', 1), ('name', "=", str(partenaire))])
+                    if pricelist and pricelist.name in ['bolt']:
+                        return request.redirect("/%s" % (pricelist.name))
+                    else:
+                        return request.redirect("/pricing")
         if order and order.company_id.id == 2:
             product_id = False
             if order:
@@ -296,15 +423,81 @@ class WebsiteSale(WebsiteSale):
         order_id = request.session.get('sale_last_order_id')
         order = request.env['sale.order'].sudo().search([('id', '=', order_id)], limit=1)
         if order:
-            if order.company_id.id == 1 and (partenaire or product):
-                return request.redirect("/shop/confirmation/")
-            if order and order.company_id.id==1 :
-                check_transaction = True
-                for transaction in order.transaction_ids:
-                    if transaction.state != 'done':
-                        check_transaction = False
-                if check_transaction and order.state=='sent':
-                    return request.redirect("/my/orders/%s?access_token=%s" % (order.id,order.access_token))
+            # if order.company_id.id == 1 and (partenaire or product):
+            #     return request.redirect("/shop/confirmation/")
+            # if order and order.company_id.id==1 :
+            #     check_transaction = True
+            #     for transaction in order.transaction_ids:
+            #         if transaction.state != 'done':
+            #             check_transaction = False
+            #     if check_transaction and order.state=='sent':
+            #         return request.redirect("/my/orders/%s?access_token=%s" % (order.id,order.access_token))
+            if order and order.company_id.id == 1:
+                product_id = False
+                if order:
+                    for line in order.order_line:
+                        product_id = line.product_id
+
+                if not product and not partenaire and product_id:
+                    product = True
+                    partenaire = True
+                if product and not partenaire:
+                    if product_id:
+                        slugname = (product_id.name).strip().strip('-').replace(' ', '-').lower()
+                        if str(slugname) != str(product):
+                            if order.pricelist_id and order.pricelist_id.name in ['bolt']:
+                                return request.redirect(
+                                    "/%s/%s/shop/confirmation/" % (slugname, order.pricelist_id.name))
+                            else:
+                                return request.redirect("/%s/shop/confirmation/" % (slugname))
+                        else:
+                            if order.pricelist_id and order.pricelist_id.name in ['bolt']:
+                                return request.redirect(
+                                    "/%s/%s/shop/confirmation/" % (slugname, order.pricelist_id.name))
+                    else:
+                        return request.redirect("/pricing")
+                elif product and partenaire:
+                    if product_id:
+                        slugname = (product_id.name).strip().strip('-').replace(' ', '-').lower()
+                        if str(slugname) != str(product):
+                            pricelist = request.env['product.pricelist'].sudo().search(
+                                [('company_id', '=', 1), ('name', "=", str(partenaire))])
+                            if not pricelist:
+                                pricelist_id = order.pricelist_id
+                                if pricelist_id.name in ['bolt']:
+                                    return request.redirect("/%s/%s/shop/confirmation/" % (slugname, pricelist_id.name))
+                                else:
+                                    return request.redirect("/%s/shop/confirmation/" % (slugname))
+                            else:
+                                if pricelist.name in ['bolt']:
+                                    return request.redirect(
+                                        "/%s/%s/shop/confirmation/" % (slugname, order.pricelist_id.name))
+                                else:
+                                    return request.redirect("/%s/shop/confirmation/" % (slugname))
+                        else:
+                            pricelist = request.env['product.pricelist'].sudo().search(
+                                [('company_id', '=', 1), ('name', "=", str(partenaire))])
+
+                            if not pricelist:
+                                pricelist_id = order.pricelist_id
+                                if pricelist_id.name in ['bolt']:
+                                    return request.redirect("/%s/%s/shop/confirmation/" % (slugname, pricelist_id.name))
+                                else:
+                                    return request.redirect("/%s/shop/confirmation/" % (slugname))
+                            else:
+                                if pricelist.name in ['bolt']:
+                                    if pricelist.name != order.pricelist_id.name:
+                                        return request.redirect(
+                                            "/%s/%s/shop/confirmation/" % (slugname, order.pricelist_id.name))
+                                else:
+                                    return request.redirect("/%s/shop/confirmation/" % (slugname))
+                    else:
+                        pricelist = request.env['product.pricelist'].sudo().search(
+                            [('name', "=", str(partenaire))])
+                        if pricelist and pricelist.name in ['bolt']:
+                            return request.redirect("/%s" % (pricelist.name))
+                        else:
+                            return request.redirect("/pricing")
             if order and order.company_id.id == 2:
                 product_id = False
                 if order:

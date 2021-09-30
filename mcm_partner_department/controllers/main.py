@@ -301,4 +301,12 @@ class WebsiteSale(WebsiteSale):
                 if pricelist:
                     if pricelist.name in ['ubereats', 'deliveroo', 'coursierjob','box2home']:
                         return request.redirect("/%s/%s/shop/cart" % (slugname, pricelist.name))
+            if not promo and product and product.company_id.id == 1:
+                return request.redirect("/%s/shop/cart" % (slugname))
+            elif promo and product and product.company_id.id == 1:
+                pricelist = request.env['product.pricelist'].sudo().search(
+                    [('company_id', '=', 1), ('id', "=", promo)])
+                if pricelist:
+                    if pricelist.name in ['bolt']:
+                        return request.redirect("/%s/%s/shop/cart" % (slugname, pricelist.name))
         return request.redirect("/shop/cart")

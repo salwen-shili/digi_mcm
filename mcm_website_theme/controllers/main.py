@@ -117,23 +117,29 @@ class Website(Home):
             user= http.request.env.user
             partner = user.partner_id
             documents = False
+            promo = False
+            user_connected = request.env.user
+            user_connected.partner_from = False
+            if (request.website.id == 1 and partenaire in ['bolt']):
+                user_connected.partner_from = str(partenaire)
+                promo = request.env['product.pricelist'].sudo().search(
+                    [('company_id', '=', 1), ('code', 'ilike', partenaire.upper())])
             if partner:
                 documents = request.env['documents.document'].sudo().search([('partner_id', '=', partner.id)])
             values['documents'] = documents
-            if not partenaire:
+            if (partenaire in ['', 'bolt'] and request.website.id == 1):
+                values['partenaire'] = partenaire
+                if (promo):
+                    values['promo'] = promo
+                else:
+                    values['promo'] = False
                 return request.render("website.homepage", values)
             else:
-                if (partenaire in ['', 'bolt'] and request.website.id == 1):
-                    values['partenaire'] = partenaire
-                    if (promo):
-                        values['promo'] = promo
-                    else:
-                        values['promo'] = False
-                    return request.render("website.homepage", values)
+                website_page = request.env['website.page'].sudo().search([('url', "=", '/'+str(partenaire))])
+                if website_page:
+                    return request.render(str(website_page.view_id.key), {})
                 else:
-                    website_page = request.env['website.page'].sudo().search([('url', "=", '/'+str(partenaire))])
-                    if website_page:
-                        return request.render(str(website_page.view_id.key), {})
+                    return request.render("website.homepage", values)
 
 
         # --------------------------------------------------------------------------
@@ -600,7 +606,24 @@ class WebsiteSale(WebsiteSale):
             order.sale_action_sent()
         PaymentProcessing.remove_payment_transaction(tx)
         if order.company_id.id == 1:
-            return request.redirect("/shop/confirmation")
+            product_id = False
+            pricelist = False
+            if order:
+                for line in order.order_line:
+                    product_id = line.product_id
+            if tx:
+                state = str(tx.state)
+                if product_id:
+                    slugname = (product_id.name).strip().strip('-').replace(' ', '-').lower()
+                    if order.pricelist_id and order.pricelist_id.name in ['bolt']:
+                        return request.redirect(
+                            "/%s/%s/shop/confirmation/%s" % (slugname, order.pricelist_id.name, state))
+                    else:
+                        return request.redirect("/%s/shop/confirmation/%s" % (slugname, state))
+                else:
+                    return request.redirect("/shop/confirmation")
+            else:
+                return request.redirect("/shop/confirmation")
         else:
             product_id = False
             pricelist = False
