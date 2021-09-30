@@ -325,9 +325,77 @@ class Routes_Site(http.Controller):
         elif request.website.id == 1:
             return request.render("mcm_website_theme.mcm_website_theme_validation")
 
-    @http.route('/felicitations', type='http', auth='public', website=True)
-    def conditions(self, **kw, ):
+    @http.route(['''/<string:product>/<string:partenaire>/felicitations''', '''/<string:product>/felicitations''',
+                 '''/felicitations'''], type='http', auth='user', website=True)
+    def felicitations(self, product=None, partenaire=None, **kw, ):
         if request.website.id == 1:
+            order = request.website.sale_get_order()
+            if order and order.company_id.id == 1:
+                request.env.user.company_id = 1  # change default company
+                request.env.user.company_ids = [1, 2]  # change default companies
+                product_id = False
+                if order:
+                    for line in order.order_line:
+                        product_id = line.product_id
+
+                if not product and not partenaire and product_id:
+                    product = True
+                    partenaire = True
+                if product and not partenaire:
+                    if product_id:
+                        slugname = (product_id.name).strip().strip('-').replace(' ', '-').lower()
+                        if str(slugname) != str(product):
+                            if order.pricelist_id and order.pricelist_id.name in ['bolt']:
+                                return request.redirect("/%s/%s/felicitations/" % (slugname, order.pricelist_id.name))
+                            else:
+                                return request.redirect("/%s/felicitations/" % (slugname))
+                        else:
+                            if order.pricelist_id and order.pricelist_id.name in ['bolt']:
+                                return request.redirect("/%s/%s/felicitations/" % (slugname, order.pricelist_id.name))
+                    else:
+                        return request.redirect("/felicitations")
+                elif product and partenaire:
+                    if product_id:
+                        slugname = (product_id.name).strip().strip('-').replace(' ', '-').lower()
+                        if str(slugname) != str(product):
+                            pricelist = request.env['product.pricelist'].sudo().search(
+                                [('company_id', '=', 1), ('name', "=", str(partenaire))])
+                            if not pricelist:
+                                pricelist_id = order.pricelist_id
+                                if pricelist_id.name in ['bolt', ]:
+                                    return request.redirect("/%s/%s/felicitations/" % (slugname, pricelist_id.name))
+                                else:
+                                    return request.redirect("/%s/felicitations/" % (slugname))
+                            else:
+                                if pricelist.name in ['bolt']:
+                                    return request.redirect(
+                                        "/%s/%s/felicitations/" % (slugname, order.pricelist_id.name))
+                                else:
+                                    return request.redirect("/%s/felicitations/" % (slugname))
+                        else:
+                            pricelist = request.env['product.pricelist'].sudo().search(
+                                [('company_id', '=', 1), ('name', "=", str(partenaire))])
+
+                            if not pricelist:
+                                pricelist_id = order.pricelist_id
+                                if pricelist_id.name in ['bolt']:
+                                    return request.redirect("/%s/%s/felicitations/" % (slugname, pricelist_id.name))
+                                else:
+                                    return request.redirect("/%s/felicitations/" % (slugname))
+                            else:
+                                if pricelist.name in ['bolt']:
+                                    if pricelist.name != order.pricelist_id.name:
+                                        return request.redirect(
+                                            "/%s/%s/felicitations/" % (slugname, order.pricelist_id.name))
+                                else:
+                                    return request.redirect("/%s/felicitations/" % (slugname))
+                    else:
+                        pricelist = request.env['product.pricelist'].sudo().search(
+                            [('company_id', '=', 1), ('name', "=", str(partenaire))])
+                        if pricelist and pricelist.name in ['bolt']:
+                            return request.redirect("/%s" % (pricelist.name))
+                        else:
+                            return request.redirect("/felicitations")
             return request.render("mcm_website_theme.mcm_template_felicitations", {})
         elif request.website.id == 2:
             raise werkzeug.exceptions.NotFound()
