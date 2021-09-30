@@ -328,6 +328,7 @@ class Routes_Site(http.Controller):
     @http.route(['''/<string:product>/<string:partenaire>/felicitations''', '''/<string:product>/felicitations''',
                  '''/felicitations'''], type='http', auth='user', website=True)
     def felicitations(self, product=None, partenaire=None, **kw, ):
+        #dynamic felicitations url
         if request.website.id == 1:
             order = request.website.sale_get_order()
             if order and order.company_id.id == 1:
