@@ -550,6 +550,7 @@ class CustomerPortal(CustomerPortal):
                     'res_model': 'documents.document',
                     'res_id': document.id
                 })
+                
             document.sudo().write({'name': "Carte d'identité Recto/Verso"})
         except Exception as e:
             logger.exception("Fail to upload document Carte d'identité ")
