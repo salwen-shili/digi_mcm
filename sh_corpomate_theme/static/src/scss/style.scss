@@ -7962,7 +7962,12 @@ box-shadow: none;width: 0.5rem;border-radius: 50%;background: #c5c5c5;margin: 0 
 /* =========================================================
                        Theme 8 services counter
 ============================================================ */
-#sh_corpomate_theme_section_229{background: $-color-Primary;padding: 50px 0;}
+#sh_corpomate_theme_section_229{position: relative;
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center center;
+    background-repeat: no-repeat;
+    padding: 87px 0;}
 #sh_corpomate_theme_section_229 .sh_counter {text-align: center;}
 #sh_corpomate_theme_section_229 .sh_counter h4{font-size: 40px;font-weight: 600;color: #fff;}
 #sh_corpomate_theme_section_229 .sh_counter p{margin: 0;color: #fff;font-size: 16px;font-weight: 600;letter-spacing: 1px;}
