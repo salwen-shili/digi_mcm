@@ -311,20 +311,3 @@ html {
 .step.finish {
   background-color: #d9ff00;
 }
-.hide-text-top {
-  display: bloc;
-}
-.hide-text-bottom {
-  display: bloc;
-}
-
-@media screen and (max-width: 1199px) {
-  .hide-text-top {
-    display: none;
-  }
-}
-@media screen and (min-width: 1200px) {
-  .hide-text-bottom {
-    display: none;
-  }
-}
