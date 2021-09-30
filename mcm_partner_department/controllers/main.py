@@ -224,7 +224,7 @@ class WebsiteSale(WebsiteSale):
             )
         if promo:
             pricelist = request.env['product.pricelist'].sudo().search(
-                [('company_id', '=', 2), ('id', "=", promo)])
+                [('id', "=", promo)])
             if pricelist:
                 request.website.sale_get_order(code=pricelist.code)
         else:
