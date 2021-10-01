@@ -85,20 +85,16 @@ odoo.define("digimoov_sessions_modules.website_sale", function (require) {
             ios = false;
           }
           if (self.value == center || self.value == "all") {
-            if (ios !== true) {
-              if ($("#exam_date option").parent().is("span")) {
-                console.log("showw, ios");
-                $("#exam_date option").unwrap();
-              }
+            if (ios == true) {
+              select_option.prop("disabled", false);
+              select_option.prop("display", "none");
             } else {
               select_option.show();
             }
           } else {
-            if (ios !== true) {
-              if (!$("#exam_date option").parent().is("span")) {
-                console.log("hide, ios");
-                $("#exam_date option").wrap("<span>");
-              }
+            if (ios == true) {
+              select_option.prop("disabled", true);
+              select_option.prop("display", "inline");
             } else {
               select_option.hide();
             }
@@ -142,7 +138,7 @@ odoo.define("digimoov_sessions_modules.website_sale", function (require) {
         });
       },
 
-      //     events: _.extend({}, publicWidget.registry.WebsiteSale.prototype.events, {
+      //    events: _.extend({}, publicWidget.registry.WebsiteSale.prototype.events, {
       //       'change select[name="centre_examen"]': 'verify_centre',
       //    }),
       //    verify_centre: function (ev) {
