@@ -142,7 +142,7 @@ odoo.define("digimoov_sessions_modules.website_sale", function (require) {
         });
       },
 
-      //    events: _.extend({}, publicWidget.registry.WebsiteSale.prototype.events, {
+      //     events: _.extend({}, publicWidget.registry.WebsiteSale.prototype.events, {
       //       'change select[name="centre_examen"]': 'verify_centre',
       //    }),
       //    verify_centre: function (ev) {
