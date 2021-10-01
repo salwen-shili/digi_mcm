@@ -278,7 +278,7 @@ odoo.define("mcm_website_theme.mcm_website_sale", function (require) {
               select_option.prop("disabled", true);
               select_option.prop("display", "inline");
             } else {
-              select_option.hide();
+              select_option.hide(); //
             }
           }
         });
