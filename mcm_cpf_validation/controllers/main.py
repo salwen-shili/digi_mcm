@@ -294,6 +294,9 @@ class ClientCPFController(http.Controller):
         email = str(email).lower()
         email = email.replace(" ", "")
         users = request.env['res.users'].sudo().search([('login', "=", email)])
+        #exception for 2 condidats
+        if email == "taha.siroukane@gmail.com" or email == "fbenamara2000@yahoo.fr":
+            return request.render("mcm_cpf_validation.mcm_website_cpf_accepted")
         # redirect link to generate validate cpf link to create the client with all info of client
         if not users:
             return request.redirect("/validate_cpf/%s/%s/%s/%s/%s/%s/%s/%s/%s/%s/%s/" % (
