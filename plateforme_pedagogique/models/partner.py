@@ -281,7 +281,7 @@ class partner(models.Model):
             date_session = unidecode(datesession)
 
             # Récuperer le mot de passe à partir de res.users
-            user = self.env['res.users'].sudo().search([('partner_id', '=', partner.id)])
+            user = self.env['res.users'].sudo().search([('partner_id', '=', partner.id)],limit=1)
 
             if user:
                 id_Digimoov_bienvenue = '56f5520e11d423f46884d594'
