@@ -944,14 +944,15 @@ class Conditions(http.Controller):
 
     @http.route(['/shop/payment/update_failures'], type='json', auth="public", methods=['POST'], website=True)
     def cart_update_failures(self, failures):
-        """This route is called when changing quantity from the cart or adding
-        a product from the wishlist."""
+        """This route is called when changing renounce request in shop cart."""
         order = request.website.sale_get_order(force_create=0)
         if order:
             if failures:
                 order.failures = True
+                order.partner_id.renounce_request = True 
             else:
                 order.failures = False
+                order.partner_id.renounce_request = False
         return True
 
     @http.route(['/shop/payment/update_accompagnement'], type='json', auth="public", methods=['POST'], website=True)
