@@ -91,6 +91,7 @@ odoo.define("mcm_website_theme.mcm_website_sale", function (require) {
       }
     },
     verify_conditions: function (ev) {
+      console.log("input mcm change conditions ");
       var self = this;
       var condition = false;
       var conditions = document.getElementById("checkbox_conditions");
@@ -170,23 +171,15 @@ odoo.define("mcm_website_theme.mcm_website_sale", function (require) {
         //        'change input[id="checkbox_conditions"]': 'verify_conditions',
       }),
       verify_date_exam: function (ev) {
+        console.log("verify");
         var self = this;
         var center = false;
-        var exam_date = document.getElementById("exam_date");
+        var exam_date = document.getElementById("options-date");
         var center = document.getElementById("region_examen").value;
         var exam_date_id = false;
 
         if (exam_date) {
-          var exam = document.getElementById("exam_date").value;
-          if (exam !== "all" && center !== "all") {
-            console.log("verify date exam , exam", exam, "center", center);
-            document
-              .getElementById("pm_shop_checkout")
-              .removeAttribute("disabled");
-          } else
-            document
-              .getElementById("pm_shop_checkout")
-              .setAttribute("disabled", "disabled");
+          var exam = document.getElementById("options-date").value;
 
           if (exam == "all") {
             var error = document.getElementById("error_exam_date");
@@ -239,25 +232,21 @@ odoo.define("mcm_website_theme.mcm_website_sale", function (require) {
             } else {
               t_modules.style.display = "none";
             }
-            var selectDate = document.getElementById("exam_date").value;
-            if (selectDate !== "all") {
-              console.log(
-                "try inside verify center selecteddate not all ",
-                "selectDate",
-                selectDate
-              );
-              document
-                .getElementById("pm_shop_checkout")
-                .removeAttribute("disabled");
-            }
-          } else
-            document
-              .getElementById("pm_shop_checkout")
-              .setAttribute("disabled", "disabled");
+          }
         }
+        console.log('$("#options-date").value', $("#options-date").value);
+        if ($("#options-date").value) {
+          console.log($("#options-date").value);
+          document
+            .getElementById("date_insert")
+            .removeChild("#date_insert select");
+        }
+
+        var dateOptions = "";
         $("#exam_date option").each(function () {
           var self = this;
           var select_option = $(this);
+
           var isIOS =
             /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
           var ios = false;
@@ -265,6 +254,15 @@ odoo.define("mcm_website_theme.mcm_website_sale", function (require) {
             ios = true;
           } else {
             ios = false;
+          }
+          if (self.value === center) {
+            var date = self.text;
+            console.log("if ===", self.value, center);
+            console.log(self.value, self.text);
+            dateOptions += `<option value=${self.value} id=${self.id}>
+             ${date}
+            </option>`;
+            // document.getElementById("options-date").appendChild(dateOptions);
           }
           if (self.value == center || self.value == "all") {
             if (ios == true) {
@@ -282,6 +280,34 @@ odoo.define("mcm_website_theme.mcm_website_sale", function (require) {
             }
           }
         });
+        console.log("dateOptions", dateOptions);
+        if (dateOptions) {
+          var select = `<select name="date_examen" id="options-date" class="form-control search-slt">
+          <option value="all" id="all">
+                                    Sélectionnez votre date d'examen
+                                </option>                  
+          ${dateOptions}
+                            </select>`;
+          document.getElementById("select-date").innerHTML = select;
+          document
+            .getElementById("pm_shop_checkout")
+            .removeAttribute("disabled");
+          console.log(
+            "dateOPTions: button enable",
+            dateOptions,
+            document.getElementById("pm_shop_checkout")
+          );
+        } else {
+          document.getElementById("select-date").innerHTML =
+            "Pas de date disponible pour le moment.";
+          document
+            .getElementById("pm_shop_checkout")
+            .setAttribute("disabled", "disabled");
+          console.log(`document
+            .getElementById("pm_shop_checkout")
+            .setAttribute("disabled", "disabled")`);
+        }
+
         if (center_exam) {
           var center = document.getElementById("region_examen").value;
           if (center == "all") {
