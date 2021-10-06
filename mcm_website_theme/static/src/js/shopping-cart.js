@@ -1,8 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
-  console.log("ready doc");
   var formation = document.getElementById("cpf_pm").value;
-
-  console.log(formation);
 
   // var cpfTaxi =
   //   "https://www.moncompteformation.gouv.fr/espace-prive/html/#/formation/recherche/81121988000085_taxielearning/81121988000085_TAXI_ELEARNING";
@@ -40,18 +37,8 @@ document.addEventListener("DOMContentLoaded", function () {
 //   } else document.getElementById("pm_shop_checkout").removeAttribute("enabled");
 // }
 function onChangeCheckButton() {
-  console.log("onChangeCheckButton");
-  console.log(
-    'document.getElementById("options-date")',
-    document.getElementById("options-date")
-  );
   if (document.getElementById("options-date").value !== "all") {
     document.getElementById("pm_shop_checkout").removeAttribute("disabled");
-    console.log(
-      "dateOPTions: button enable",
-
-      document.getElementById("pm_shop_checkout")
-    );
   } else {
     document
       .getElementById("pm_shop_checkout")
