@@ -598,8 +598,13 @@
 
                 <!--                </div>-->
             </div>
-            <script>
+
+
+            <div t-if="request.website.id == 1">
+                <script>
+                    console.log("site 1");
                 function onchangeTextButton(){
+                    console.log("onchange mcm");
                 if(document.getElementById("pm_shop_text")){
                 document.getElementById("pm_shop_text").innerHTML = 'Mobiliser mon CPF';
                 document.getElementById("pm_shop_check_text").innerHTML = 'Mobiliser mon CPF';
@@ -624,12 +629,13 @@
                 }
                 };
                 function onchangeTextButton1(){
+                    console.log("onchange1 mcm");
                 if(document.getElementById("pm_shop_text")){
                 document.getElementById("cpf-details").classList.add("hide");
 
-                document.getElementById("pm_shop_text").innerHTML = 'Passer au paiement';
-                document.getElementById("pm_shop_check_text").innerHTML = 'Passer au paiement';
-                document.getElementById("pm_shop_checkout_text").innerHTML = 'Passer au paiement';
+                document.getElementById("pm_shop_text").innerHTML = 'Passer au paiement MCM';
+                document.getElementById("pm_shop_check_text").innerHTML = 'Passer au paiement MCM';
+                document.getElementById("pm_shop_checkout_text").innerHTML = 'Passer au paiement MCM';
                 if(document.getElementById("promo_code")){
                 document.getElementById("promo_code").style.display = 'inline';
                 } else{
@@ -653,7 +659,9 @@
                 if(document.getElementById("promo_button")){
                 document.getElementById("promo_button").style.display = 'inline';
                 }
-            </script>
+                </script>
+            </div>
+
         </xpath>
     </template>
 
@@ -698,8 +706,8 @@
                 <p t-if="modules_mcm">
 
                     <b>
-                        <div style="margin-left:0%;">
-                            <select name="date_examen" id="exam_date" class="form-control search-slt " t-if="modules_mcm" style="display:none">
+                        <div style="margin-left:0%; display:none">
+                            <select id="exam_date" class="form-control search-slt " t-if="modules_mcm" style="display:none">
                                 <option value="all" id="all">Sélectionnez votre date d'examen</option>
                                 <t t-foreach="modules_mcm" t-as="module">
                                     <t t-if="module">
@@ -717,6 +725,14 @@
                                 Vous devez Selectionnez une date
                             </p>
                         </div>
+                        <div id="select-date" style="margin-left: 0%">
+                            <select name="date_examen" id="options-date" class="form-control search-slt" style="display:none">
+                                <option value="all" id="all">
+                                    Sélectionnez votre date d'examen
+                                </option>
+
+                            </select>
+                        </div>
                     </b>
 
                 </p>
@@ -728,7 +744,7 @@
 
     <template id="mcm_website_sale_short_cart_summary" inherit_id="website_sale.short_cart_summary">
         <xpath expr="//a[@class='btn btn-secondary float-right d-none d-xl-inline-block']" position="replace">
-            <a id="a_pm_shop_checkout">
+            <a id="a_pm_shop_checkout" href="/shop/checkout?express=1">
                 <button disabled="disabled" role="button" t-if="website_sale_order and website_sale_order.website_order_line" class="btn btn-secondary float-right d-none d-xl-inline-block" href="/shop/checkout?express=1" id="pm_shop_checkout" t-attf-onclick="verify_payment_method()">
                     <span id="pm_shop_checkout_text">Passer au paiement</span>
                 </button>
@@ -832,8 +848,11 @@
 
     <template id="mcm_website_sale_cart_total_script" inherit_id="website_sale.total">
         <xpath expr="//div[@id='cart_total']" position="inside">
-            <script>
+
+            <div t-if="request.website.id==1">>
+                <script >
                 function verify_payment_method() {
+                console.log("verify_payment_method MCM")
                 stripe_pm = document.getElementById("stripe_pm");
 
                 if (stripe_pm) {
@@ -888,49 +907,15 @@
                 document.getElementById("a_pm_shop_checkout").href =
                 "https://bit.ly/3mZoImh";
                 }
-                //digimoov
-                if (cpf_pm.value == "Formation pro") {
-                console.log("cpf_pm.value == ");
-                document.getElementById("pm_shop").href =
-                "https://bit.ly/3nMlm2A";
-                document.getElementById("pm_shop_check").href =
-                "https://bit.ly/3nMlm2A";
-                document.getElementById("pm_shop_checkout").href =
-                "https://bit.ly/3nMlm2A";
-                document.getElementById("a_pm_shop_checkout").href =
-                "https://bit.ly/3nMlm2A";
+              
+                }
+                }
+                }
+                </script>
+            </div>
 
-               (function(w,d,t,r,u){var f,n,i;w[u]=w[u]||[],f=function(){var o={ti:"<t
-                    t-esc="website.microsoft_tracking_key"/>"};o.q=w[u],w[u]=new
-                UET(o),w[u].push("pageLoad")},n=d.createElement(t),n.src=r,n.async=1,n.onload=n.onreadystatechange=function(){var
-                s=this.readyState;s&amp;&amp;s!=="loaded"&amp;&amp;
-                s!=="complete"||(f(),n.onload=n.onreadystatechange=null)},i=d.getElementsByTagName(t)[0],i.parentNode.insertBefore(n,i)})(window,document,"script","//bat.bing.com/bat.js","uetq");
-                console.log('inside function');
-                window.uetq = window.uetq || [];
-                window.uetq.push('event', 'clic sur mobiliser mon cpf pro', {'event_category': 'CPF',
-                'event_label': 'Inscription CPF Pro', 'event_value': '680'});
-                }
-                if (cpf_pm.value == "Formation premium") {
-                document.getElementById("pm_shop").href =
-                "https://bit.ly/38IxvSa";
-                document.getElementById("pm_shop_check").href =
-                "https://bit.ly/38IxvSa";
-                document.getElementById("pm_shop_checkout").href =
-                "https://bit.ly/38IxvSa";
-                document.getElementById("a_pm_shop_checkout").href =
-                "https://bit.ly/38IxvSa";
-                (function(w,d,t,r,u){var f,n,i;w[u]=w[u]||[],f=function(){var o={ti:"<t
-                    t-esc="website.microsoft_tracking_key"/>"};o.q=w[u],w[u]=new
-                UET(o),w[u].push("pageLoad")},n=d.createElement(t),n.src=r,n.async=1,n.onload=n.onreadystatechange=function(){var
-                s=this.readyState;s&amp;&amp;s!=="loaded"&amp;&amp;
-                s!=="complete"||(f(),n.onload=n.onreadystatechange=null)},i=d.getElementsByTagName(t)[0],i.parentNode.insertBefore(n,i)})(window,document,"script","//bat.bing.com/bat.js","uetq");
-                window.uetq = window.uetq || [];
-                window.uetq.push('event', 'clic sur mobiliser mon cpf premium', {'event_category': 'CPF',
-                'event_label': 'Inscription CPF Premium', 'event_value': '849'});
-                }
-                }
-                }
-                }
+            <script>
+               
                 function verify_checked(){
                 var x=document.getElementById('checkbox_instalment');
                 if(x) {
@@ -952,13 +937,13 @@
     <template id="mcm_website_sale_cart_script" inherit_id="website_sale.cart">
         <xpath expr="//a[@class='btn btn-primary float-right']" position="replace">
             <a role="button" t-if="website_sale_order and website_sale_order.website_order_line" class="btn btn-primary float-right" href="" t-attf-onclick="verify_payment_method()" id="pm_shop">
-                <span id="pm_shop_text">Passer au paiement</span>
+                <span id="pm_shop_text">Passer au paiement MCM 2 </span>
                 <span class="fa fa-chevron-right"/>
             </a>
         </xpath>
         <xpath expr="//a[@class='btn btn-primary float-right d-none d-xl-inline-block']" position="replace">
             <a role="button" t-if="website_sale_order and website_sale_order.website_order_line" class="btn btn-primary float-right d-none d-xl-inline-block" t-attf-onclick="verify_payment_method()" href="" id="pm_shop_check">
-                <span id="pm_shop_check_text">Passer au paiement</span>
+                <span id="pm_shop_check_text">Passer au paiement MCM 3 </span>
                 <span class="fa fa-chevron-right"/>
             </a>
         </xpath>
