@@ -95,178 +95,128 @@
             </a>
             <div t-if="request.website.id==2">
                 <script>
-                console.log("site 2")
-                function verify_payment_method() {
+                    console.log("site 2")
+                    function verify_payment_method() {
                     var stripe_pm = document.getElementById("stripe_pm");
                     if (stripe_pm) {
-                        if (stripe_pm.checked == true) {
-                        document.getElementById("pm_shop").href = "/shop/checkout?express=1";
-                        document.getElementById("pm_shop_check").href =
-                            "/shop/checkout?express=1";
-                        document.getElementById("pm_shop_checkout").href =
-                            "/shop/checkout?express=1";
-                        }
+                    if (stripe_pm.checked == true) {
+                    document.getElementById("pm_shop").href = "/shop/checkout?express=1";
+                    document.getElementById("pm_shop_check").href =
+                    "/shop/checkout?express=1";
+                    document.getElementById("pm_shop_checkout").href =
+                    "/shop/checkout?express=1";
+                    }
                     }
                     var cpf_pm = document.getElementById("cpf_pm");
                     if (cpf_pm) {
-                        if (cpf_pm.checked == true) {
-                        if (cpf_pm.value == "Formation pro") {
-                            document.getElementById("pm_shop").href = "https://bit.ly/3nMlm2A";
-                            document.getElementById("pm_shop_check").href =
-                            "https://bit.ly/3nMlm2A";
-                            document.getElementById("pm_shop_checkout").href =
-                            "https://bit.ly/3nMlm2A";
-                            (function(w,d,t,r,u){var f,n,i;w[u]=w[u]||[],f=function(){var o={ti:"<t t-esc="request.website.microsoft_tracking_key"/>
-"};o.q=w[u],w[u]=new
-                UET(o),w[u].push("pageLoad")},n=d.createElement(t),n.src=r,n.async=1,n.onload=n.onreadystatechange=function(){var s=this.readyState;s&amp;&amp;s!=="loaded"&amp;&amp; s!=="complete"||(f(),n.onload=n.onreadystatechange=null)},i=d.getElementsByTagName(t)[0],i.parentNode.insertBefore(n,i)})(window,document,"script","//bat.bing.com/bat.js","uetq");
-                console.log('inside function');
-                window.uetq = window.uetq || [];
-                window.uetq.push('event', 'clic sur mobiliser mon cpf pro', {'event_category': 'CPF',
-                'event_label': 'Inscription CPF Pro', 'event_value': '680'});
-                        }
-                        if (cpf_pm.value == "Formation premium") {
-                            document.getElementById("pm_shop").href = "https://bit.ly/38IxvSa";
-                            document.getElementById("pm_shop_check").href =
-                            "https://bit.ly/38IxvSa";
-                            document.getElementById("pm_shop_checkout").href =
-                            "https://bit.ly/38IxvSa";
-                            (function(w,d,t,r,u){var f,n,i;w[u]=w[u]||[],f=function(){
-                            var o={ti:"<t t-esc="request.website.microsoft_tracking_key"/>
-"};o.q=w[u],w[u]=new
-                            UET(o),w[u].push("pageLoad")},n=d.createElement(t),n.src=r,n.async=1,n.onload=n.onreadystatechange=function(){var s=this.readyState;s&amp;&amp;s!=="loaded"&amp;&amp; s!=="complete"||(f(),n.onload=n.onreadystatechange=null)},i=d.getElementsByTagName(t)[0],i.parentNode.insertBefore(n,i)})(window,document,"script","//bat.bing.com/bat.js","uetq");
-                            window.uetq = window.uetq || [];
-                            window.uetq.push('event', 'clic sur mobiliser mon cpf premium', {'event_category': 'CPF',
-                            'event_label': 'Inscription CPF Premium', 'event_value': '849'});
-                        }
-                        }
-                    }
-                }  
-                
-                function onchangeTextButton() {
-                    console.log("onchangeTextButton");
-     
-  var stripe_pm = document.getElementById("stripe_pm");
-  if (stripe_pm) {
-    if (stripe_pm.checked == true) {
-      document.getElementById("pm_shop").href = "/shop/checkout?express=1";
-      document.getElementById("pm_shop_check").href =
-        "/shop/checkout?express=1";
-      console.log(document.getElementById("a_pm_shop_checkout"))
-        document.getElementById("a_pm_shop_checkout").href =
-        "/shop/checkout?express=1";
-    }
-  }
-  cpf_pm = document.getElementById("cpf_pm");
-  if (cpf_pm) {
-    if (cpf_pm.checked == true) {
-      if (cpf_pm.value == "Formation pro") {
-        document.getElementById("pm_shop").href = "https://bit.ly/3nMlm2A";
-        document.getElementById("pm_shop_check").href =
-          "https://bit.ly/3nMlm2A";
-        document.getElementById("pm_shop_checkout").href =
-          "https://bit.ly/3nMlm2A";
-          document.getElementById("a_pm_shop_checkout").href =
-          "https://bit.ly/3nMlm2A";
-          
-      }
-      if (cpf_pm.value == "Formation premium") {
-        document.getElementById("pm_shop").href = "https://bit.ly/38IxvSa";
-        document.getElementById("pm_shop_check").href =
-          "https://bit.ly/38IxvSa";
-        document.getElementById("pm_shop_checkout").href =
-          "https://bit.ly/38IxvSa";
-          document.getElementById("a_pm_shop_checkout").href =
-          "https://bit.ly/38IxvSa";
-      }
-    }
-  }
+                    if (cpf_pm.checked == true) {
+                    if (cpf_pm.value == "Formation pro") {
+                    document.getElementById("pm_shop").href = "https://bit.ly/3nMlm2A";
+                    document.getElementById("pm_shop_check").href =
+                    "https://bit.ly/3nMlm2A";
+                    document.getElementById("pm_shop_checkout").href =
+                    "https://bit.ly/3nMlm2A";
+                    (function(w,d,t,r,u){var f,n,i;w[u]=w[u]||[],f=function(){var o={ti:"<t t-esc="request.website.microsoft_tracking_key"/>"};o.q=w[u],w[u]=new
+                    UET(o),w[u].push("pageLoad")},n=d.createElement(t),n.src=r,n.async=1,n.onload=n.onreadystatechange=function(){var
+                    s=this.readyState;s&amp;&amp;s!=="loaded"&amp;&amp;
+                    s!=="complete"||(f(),n.onload=n.onreadystatechange=null)},i=d.getElementsByTagName(t)[0],i.parentNode.insertBefore(n,i)})(window,document,"script","//bat.bing.com/bat.js","uetq");
+                    console.log('inside function');
+                    window.uetq = window.uetq || [];
+                    window.uetq.push('event', 'clic sur mobiliser mon cpf pro', {'event_category': 'CPF',
+                    'event_label': 'Inscription CPF Pro', 'event_value': '680'});
 
-                    console.log("onchange digimoov")
-                if (document.getElementById("pm_shop_text")) {
-                //Hide CPF video and details
-                document.getElementById("cpf-details").classList.remove("hide");
-                document.getElementById("pm_shop_text").innerHTML =
-                "Mobiliser mon CPF";
-                document.getElementById("pm_shop_check_text").innerHTML =
-                "Mobiliser mon CPF";
-                document.getElementById("pm_shop_checkout_text").innerHTML =
-                "Mobiliser mon CPF";
-                if (document.getElementById("promo_code")) {
-                document.getElementById("promo_code").style.display = "none";
-                }
-                if (document.getElementById("promo_button")) {
-                document.getElementById("promo_button").style.display = "none";
-                }
-                if (document.getElementById("promo_input")) {
-                document.getElementById("promo_input").style.display = "none";
-                }
-                if (document.getElementById("order_instalment")) {
-                document.getElementById("order_instalment").style.visibility =
-                "hidden";
-                document.getElementById(
-                "order_instalment_number"
-                ).style.visibility = "hidden";
-                document.getElementById("order_amount_to_pay").style.visibility =
-                "hidden";
-                }
-                }
-                }
-                function onchangeTextButton1() {
-                    console.log("onchange digimoov1");
-                    
-  var stripe_pm = document.getElementById("stripe_pm");
-  if (stripe_pm) {
-    if (stripe_pm.checked == true) {
-      document.getElementById("pm_shop").href = "/shop/checkout?express=1";
-      document.getElementById("pm_shop_check").href =
-        "/shop/checkout?express=1";
-      console.log(document.getElementById("a_pm_shop_checkout"))
-        document.getElementById("a_pm_shop_checkout").href =
-        "/shop/checkout?express=1";
-    }
-  }
- 
-                if (document.getElementById("pm_shop_text")) {
-                document.getElementById("cpf-details").classList.add("hide");
-                document.getElementById("pm_shop_text").innerHTML =
-                "Passer au paiement";
-                document.getElementById("pm_shop_check_text").innerHTML =
-                "Passer au paiement";
-                document.getElementById("pm_shop_checkout_text").innerHTML =
-                "Passer au paiement";
-                if (document.getElementById("promo_code")) {
-                document.getElementById("promo_code").style.display = "inline";
-                } else {
-                document.getElementById("promo_input").style.display = "inline";
-                document.getElementById("promo_button").style.display = "inline";
-                }
-                if (document.getElementById("order_instalment")) {
-                document.getElementById("order_instalment").style.visibility =
-                "visible";
-                }
-                instalment = document.getElementById("checkbox_instalment");
-                if (instalment) {
-                if (instalment.checked == true) {
-                document.getElementById(
-                "order_instalment_number"
-                ).style.visibility = "visible";
-                document.getElementById(
-                "order_amount_to_pay"
-                ).style.visibility = "visible";
-                }
-                }
-                }
-                }
-                function show_coupon() {
-                if (document.getElementById("promo_input")) {
-                document.getElementById("promo_input").style.display = "inline";
-                }
-                if (document.getElementById("promo_button")) {
-                document.getElementById("promo_button").style.display = "inline";
-                }
-                }
-            
-            </script>
+                    }
+                    if (cpf_pm.value == "Formation premium") {
+                    document.getElementById("pm_shop").href = "https://bit.ly/38IxvSa";
+                    document.getElementById("pm_shop_check").href =
+                    "https://bit.ly/38IxvSa";
+                    document.getElementById("pm_shop_checkout").href =
+                    "https://bit.ly/38IxvSa";
+                    (function(w,d,t,r,u){var f,n,i;w[u]=w[u]||[],f=function(){
+                    var o={ti:"<t t-esc="request.website.microsoft_tracking_key"/>"};o.q=w[u],w[u]=new
+                    UET(o),w[u].push("pageLoad")},n=d.createElement(t),n.src=r,n.async=1,n.onload=n.onreadystatechange=function(){var
+                    s=this.readyState;s&amp;&amp;s!=="loaded"&amp;&amp;
+                    s!=="complete"||(f(),n.onload=n.onreadystatechange=null)},i=d.getElementsByTagName(t)[0],i.parentNode.insertBefore(n,i)})(window,document,"script","//bat.bing.com/bat.js","uetq");
+                    window.uetq = window.uetq || [];
+                    window.uetq.push('event', 'clic sur mobiliser mon cpf premium', {'event_category': 'CPF',
+                    'event_label': 'Inscription CPF Premium', 'event_value': '849'});
+                    }
+                    }
+                    }
+                    }
+
+                    function onchangeTextButton() {
+                    if (document.getElementById("pm_shop_text")) {
+                    //Hide CPF video and details
+                    document.getElementById("cpf-details").classList.remove("hide");
+                    document.getElementById("pm_shop_text").innerHTML =
+                    "Mobiliser mon CPF";
+                    document.getElementById("pm_shop_check_text").innerHTML =
+                    "Mobiliser mon CPF";
+                    document.getElementById("pm_shop_checkout_text").innerHTML =
+                    "Mobiliser mon CPF";
+                    if (document.getElementById("promo_code")) {
+                    document.getElementById("promo_code").style.display = "none";
+                    }
+                    if (document.getElementById("promo_button")) {
+                    document.getElementById("promo_button").style.display = "none";
+                    }
+                    if (document.getElementById("promo_input")) {
+                    document.getElementById("promo_input").style.display = "none";
+                    }
+                    if (document.getElementById("order_instalment")) {
+                    document.getElementById("order_instalment").style.visibility =
+                    "hidden";
+                    document.getElementById(
+                    "order_instalment_number"
+                    ).style.visibility = "hidden";
+                    document.getElementById("order_amount_to_pay").style.visibility =
+                    "hidden";
+                    }
+                    }
+                    }
+                    function onchangeTextButton1() {
+                    if (document.getElementById("pm_shop_text")) {
+                    document.getElementById("cpf-details").classList.add("hide");
+                    document.getElementById("pm_shop_text").innerHTML =
+                    "Passer au paiement";
+                    document.getElementById("pm_shop_check_text").innerHTML =
+                    "Passer au paiement";
+                    document.getElementById("pm_shop_checkout_text").innerHTML =
+                    "Passer au paiement";
+                    if (document.getElementById("promo_code")) {
+                    document.getElementById("promo_code").style.display = "inline";
+                    } else {
+                    document.getElementById("promo_input").style.display = "inline";
+                    document.getElementById("promo_button").style.display = "inline";
+                    }
+                    if (document.getElementById("order_instalment")) {
+                    document.getElementById("order_instalment").style.visibility =
+                    "visible";
+                    }
+                    instalment = document.getElementById("checkbox_instalment");
+                    if (instalment) {
+                    if (instalment.checked == true) {
+                    document.getElementById(
+                    "order_instalment_number"
+                    ).style.visibility = "visible";
+                    document.getElementById(
+                    "order_amount_to_pay"
+                    ).style.visibility = "visible";
+                    }
+                    }
+                    }
+                    }
+                    function show_coupon() {
+                    if (document.getElementById("promo_input")) {
+                    document.getElementById("promo_input").style.display = "inline";
+                    }
+                    if (document.getElementById("promo_button")) {
+                    document.getElementById("promo_button").style.display = "inline";
+                    }
+                    }
+
+                </script>
 
         </div>
 
