@@ -91,6 +91,7 @@ odoo.define("mcm_website_theme.mcm_website_sale", function (require) {
       }
     },
     verify_conditions: function (ev) {
+      console.log("input mcm change conditions ");
       var self = this;
       var condition = false;
       var conditions = document.getElementById("checkbox_conditions");
@@ -170,6 +171,7 @@ odoo.define("mcm_website_theme.mcm_website_sale", function (require) {
         //        'change input[id="checkbox_conditions"]': 'verify_conditions',
       }),
       verify_date_exam: function (ev) {
+        console.log("verify");
         var self = this;
         var center = false;
         var exam_date = document.getElementById("options-date");
@@ -215,11 +217,11 @@ odoo.define("mcm_website_theme.mcm_website_sale", function (require) {
       verify_centre: function (ev) {
         var self = this;
         var center = false;
-
+        console.log("verify center mcm");
         var center_exam = document.getElementById("region_examen");
         if (center_exam) {
           var center = document.getElementById("region_examen").value;
-
+          console.log(center);
           var id = center_exam.options[center_exam.selectedIndex].id;
         }
         if (center_exam) {
@@ -232,8 +234,9 @@ odoo.define("mcm_website_theme.mcm_website_sale", function (require) {
             }
           }
         }
-
+        console.log('$("#options-date").value', $("#options-date").value);
         if ($("#options-date").value) {
+          console.log($("#options-date").value);
           document
             .getElementById("date_insert")
             .removeChild("#date_insert select");
@@ -254,7 +257,8 @@ odoo.define("mcm_website_theme.mcm_website_sale", function (require) {
           }
           if (self.value === center) {
             var date = self.text;
-
+            console.log("if ===", self.value, center);
+            console.log(self.value, self.text);
             dateOptions += `<option value=${self.value} id=${self.id}>
              ${date}
             </option>`;
@@ -276,7 +280,7 @@ odoo.define("mcm_website_theme.mcm_website_sale", function (require) {
             }
           }
         });
-
+        console.log("dateOptions", dateOptions);
         if (dateOptions) {
           var select = `<select name="date_examen" id="options-date" class="form-control search-slt" onchange="onChangeCheckButton()">
           <option value="all" id="all">
@@ -299,6 +303,9 @@ odoo.define("mcm_website_theme.mcm_website_sale", function (require) {
           document
             .getElementById("pm_shop_checkout")
             .setAttribute("disabled", "disabled");
+          console.log(`document
+            .getElementById("pm_shop_checkout")
+            .setAttribute("disabled", "disabled")`);
         }
 
         if (center_exam) {

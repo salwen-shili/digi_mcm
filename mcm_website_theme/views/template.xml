@@ -602,9 +602,9 @@
 
             <div t-if="request.website.id == 1">
                 <script>
-                
+                    console.log("site 1");
                 function onchangeTextButton(){
-                  
+                    console.log("onchange mcm");
                 if(document.getElementById("pm_shop_text")){
                 document.getElementById("pm_shop_text").innerHTML = 'Mobiliser mon CPF';
                 document.getElementById("pm_shop_check_text").innerHTML = 'Mobiliser mon CPF';
@@ -629,7 +629,7 @@
                 }
                 };
                 function onchangeTextButton1(){
-              
+                    console.log("onchange1 mcm");
                 if(document.getElementById("pm_shop_text")){
                 document.getElementById("cpf-details").classList.add("hide");
 
@@ -852,7 +852,7 @@
             <div t-if="request.website.id==1">>
                 <script >
                 function verify_payment_method() {
-                
+                console.log("verify_payment_method MCM")
                 stripe_pm = document.getElementById("stripe_pm");
 
                 if (stripe_pm) {
@@ -878,7 +878,7 @@
                 if (cpf_pm) {
                 if (cpf_pm.checked == true) {
                 if (cpf_pm.value == "Formation à distance TAXI") {
-               
+                console.log("TAXI", cpf_pm.value);
                 document
                 .getElementById("pm_shop")
                 .setAttribute("href", "https://bit.ly/3DOiZG6");
@@ -888,7 +888,7 @@
                 "https://bit.ly/3DOiZG6";
                 }
                 if (cpf_pm.value == "Formation à distance VMDTR") {
-                
+                console.log("VMDTR", cpf_pm.value);
                 document
                 .getElementById("pm_shop")
                 .setAttribute("href", "https://bit.ly/3tbAxXw");
@@ -900,7 +900,7 @@
                 .setAttribute("href", "https://bit.ly/3tbAxXw");
                 }
                 if (cpf_pm.value == "Formation à distance VTC") {
-           
+                console.log("VTC", cpf_pm.value);
                 document.getElementById("pm_shop").href = "https://bit.ly/3mZoImh";
                 document.getElementById("pm_shop_check").href =
                 "https://bit.ly/3mZoImh";

@@ -95,7 +95,7 @@
             </a>
             <div t-if="request.website.id==2">
                 <script>
-                   
+                    console.log("site 2")
                     function verify_payment_method() {
                     var stripe_pm = document.getElementById("stripe_pm");
                     if (stripe_pm) {
@@ -119,7 +119,7 @@
                     (function(w,d,t,r,u){var f,n,i;w[u]=w[u]||[],f=function(){var o={ti:"<t t-esc="request.website.microsoft_tracking_key"/>
 "};o.q=w[u],w[u]=new
                     UET(o),w[u].push("pageLoad")},n=d.createElement(t),n.src=r,n.async=1,n.onload=n.onreadystatechange=function(){var s=this.readyState;s&amp;&amp;s!=="loaded"&amp;&amp; s!=="complete"||(f(),n.onload=n.onreadystatechange=null)},i=d.getElementsByTagName(t)[0],i.parentNode.insertBefore(n,i)})(window,document,"script","//bat.bing.com/bat.js","uetq");
-                   
+                    console.log('inside function');
                     window.uetq = window.uetq || [];
                     window.uetq.push('event', 'clic sur mobiliser mon cpf pro', {'event_category': 'CPF',
                     'event_label': 'Inscription CPF Pro', 'event_value': '680'});
@@ -143,7 +143,7 @@
                     }
 
                     function onchangeTextButton() {
-                    
+                    console.log("onchangeTextButton");
 
                     var stripe_pm = document.getElementById("stripe_pm");
                     if (stripe_pm) {
@@ -151,7 +151,7 @@
                     document.getElementById("pm_shop").href = "/shop/checkout?express=1";
                     document.getElementById("pm_shop_check").href =
                     "/shop/checkout?express=1";
-                    
+                    console.log(document.getElementById("a_pm_shop_checkout"))
                     document.getElementById("a_pm_shop_checkout").href =
                     "/shop/checkout?express=1";
                     }
@@ -181,7 +181,7 @@
                     }
                     }
 
-                  
+                    console.log("onchange digimoov")
                     if (document.getElementById("pm_shop_text")) {
                     //Hide CPF video and details
                     document.getElementById("cpf-details").classList.remove("hide");
@@ -213,7 +213,7 @@
                     }
 
                     function onchangeTextButton1() {
-                   
+                    console.log("onchange digimoov1");
 
                     var stripe_pm = document.getElementById("stripe_pm");
                     if (stripe_pm) {
@@ -221,7 +221,7 @@
                     document.getElementById("pm_shop").href = "/shop/checkout?express=1";
                     document.getElementById("pm_shop_check").href =
                     "/shop/checkout?express=1";
-                   
+                    console.log(document.getElementById("a_pm_shop_checkout"))
                     document.getElementById("a_pm_shop_checkout").href =
                     "/shop/checkout?express=1";
                     }
