@@ -116,7 +116,8 @@
                             "https://bit.ly/3nMlm2A";
                             document.getElementById("pm_shop_checkout").href =
                             "https://bit.ly/3nMlm2A";
-                            (function(w,d,t,r,u){var f,n,i;w[u]=w[u]||[],f=function(){var o={ti:""};o.q=w[u],w[u]=new
+                            (function(w,d,t,r,u){var f,n,i;w[u]=w[u]||[],f=function(){var o={ti:"<t t-esc="request.website.microsoft_tracking_key"/>
+"};o.q=w[u],w[u]=new
                 UET(o),w[u].push("pageLoad")},n=d.createElement(t),n.src=r,n.async=1,n.onload=n.onreadystatechange=function(){var s=this.readyState;s&amp;&amp;s!=="loaded"&amp;&amp; s!=="complete"||(f(),n.onload=n.onreadystatechange=null)},i=d.getElementsByTagName(t)[0],i.parentNode.insertBefore(n,i)})(window,document,"script","//bat.bing.com/bat.js","uetq");
                 console.log('inside function');
                 window.uetq = window.uetq || [];
@@ -130,7 +131,8 @@
                             document.getElementById("pm_shop_checkout").href =
                             "https://bit.ly/38IxvSa";
                             (function(w,d,t,r,u){var f,n,i;w[u]=w[u]||[],f=function(){
-                            var o={ti:""};o.q=w[u],w[u]=new
+                            var o={ti:"<t t-esc="request.website.microsoft_tracking_key"/>
+"};o.q=w[u],w[u]=new
                             UET(o),w[u].push("pageLoad")},n=d.createElement(t),n.src=r,n.async=1,n.onload=n.onreadystatechange=function(){var s=this.readyState;s&amp;&amp;s!=="loaded"&amp;&amp; s!=="complete"||(f(),n.onload=n.onreadystatechange=null)},i=d.getElementsByTagName(t)[0],i.parentNode.insertBefore(n,i)})(window,document,"script","//bat.bing.com/bat.js","uetq");
                             window.uetq = window.uetq || [];
                             window.uetq.push('event', 'clic sur mobiliser mon cpf premium', {'event_category': 'CPF',
@@ -264,30 +266,30 @@
                 }
                 }
             
-                </script>
+            </script>
 
-            </div>
+        </div>
 
-        </xpath>
-        <xpath expr="//a[@class='btn btn-primary float-right d-none d-xl-inline-block']" position="replace">
-            <a role="button" t-if="website_sale_order and website_sale_order.website_order_line" class="btn btn-primary float-right d-none d-xl-inline-block" href="" id="pm_shop_check">
-                <span id="pm_shop_check_text">Passer au paiement</span>
-                <span class="fa fa-chevron-right"/>
-            </a>
-        </xpath>
-        <xpath expr="//a[@href='/shop'][1]" position="replace">
-            <a role="button" href="/shop" class="btn btn-secondary mb32 d-none d-xl-inline-block" style="display: none !important">
-                <span class="fa fa-chevron-left"/>
-                <span class="">Continuer Vos achat</span>
-            </a>
-        </xpath>
-        <xpath expr="//div[@class='d-xl-none mt8']//a[1]" position="replace">
-        </xpath>
-        <xpath expr="//div[@class='col-12 col-xl-8 oe_cart']" position="inside">
+    </xpath>
+    <xpath expr="//a[@class='btn btn-primary float-right d-none d-xl-inline-block']" position="replace">
+        <a role="button" t-if="website_sale_order and website_sale_order.website_order_line" class="btn btn-primary float-right d-none d-xl-inline-block" href="" id="pm_shop_check">
+            <span id="pm_shop_check_text">Passer au paiement</span>
+            <span class="fa fa-chevron-right"/>
+        </a>
+    </xpath>
+    <xpath expr="//a[@href='/shop'][1]" position="replace">
+        <a role="button" href="/shop" class="btn btn-secondary mb32 d-none d-xl-inline-block" style="display: none !important">
+            <span class="fa fa-chevron-left"/>
+            <span class="">Continuer Vos achat</span>
+        </a>
+    </xpath>
+    <xpath expr="//div[@class='d-xl-none mt8']//a[1]" position="replace">
+    </xpath>
+    <xpath expr="//div[@class='col-12 col-xl-8 oe_cart']" position="inside">
 
 
 
-            <script>
+        <script>
                
                 function verify_checked(){
                 var x=document.getElementById('checkbox_instalment');
@@ -302,8 +304,8 @@
                 }
                 };
 
-            </script>
+        </script>
 
-        </xpath>
-    </template>
+    </xpath>
+</template>
 </odoo>
