@@ -13,15 +13,17 @@ odoo.define("digimoov_sessions_modules.website_sale", function (require) {
         'change select[name="date_examen"]': "verify_date_exam",
         'change input[id="checkbox_conditions"]': "verify_conditions",
       }),
+
       verify_date_exam: function (ev) {
+        console.log("call verify date_date_examen");
         var self = this;
         var center = false;
-        var exam_date = document.getElementById("exam_date");
+        var exam_date = document.getElementById("options-date");
         var center = document.getElementById("centre_examen").value;
         var exam_date_id = false;
 
         if (exam_date) {
-          var exam = document.getElementById("exam_date").value;
+          var exam = document.getElementById("options-date").value;
           if (exam == "all") {
             var error = document.getElementById("error_exam_date");
             if (error && exam_date.style.display == "inline-block") {
@@ -68,11 +70,22 @@ odoo.define("digimoov_sessions_modules.website_sale", function (require) {
             var t_modules = document.getElementById("exam_date");
             if (t_modules) {
               t_modules.style.display = "inline-block";
+              console.log("t_modules : ", t_modules.value);
             } else {
               t_modules.style.display = "none";
             }
           }
         }
+
+        console.log('$("#options-date").value', $("#options-date").value);
+        if ($("#options-date").value) {
+          console.log($("#options-date").value);
+          document
+            .getElementById("date_insert")
+            .removeChild("#date_insert select");
+        }
+
+        var dateOptions = "";
         $("#exam_date option").each(function () {
           var self = this;
           var select_option = $(this);
@@ -84,6 +97,18 @@ odoo.define("digimoov_sessions_modules.website_sale", function (require) {
           } else {
             ios = false;
           }
+
+          if (self.value === center) {
+            console.log("self.id", self.id, self);
+            var date = self.text;
+            console.log("if ===", self.value, center);
+            console.log(self.value, self.text);
+            dateOptions += `<option value=${self.value} id=${self.id}>
+             ${date}
+            </option>`;
+            // document.getElementById("options-date").appendChild(dateOptions);
+          }
+
           if (self.value == center || self.value == "all") {
             if (ios == true) {
               select_option.prop("disabled", false);
@@ -100,6 +125,34 @@ odoo.define("digimoov_sessions_modules.website_sale", function (require) {
             }
           }
         });
+        console.log("dateOptions", dateOptions);
+        if (dateOptions) {
+          var select = `<select name="date_examen" id="options-date" class="form-control search-slt">
+          <option value="all" id="all">
+                                    Sélectionnez votre date d'examen
+                                </option>                  
+          ${dateOptions}
+                            </select>`;
+          document.getElementById("select-date").innerHTML = select;
+          document
+            .getElementById("pm_shop_checkout")
+            .removeAttribute("disabled");
+          console.log(
+            "dateOPTions: button enable",
+            dateOptions,
+            document.getElementById("pm_shop_checkout")
+          );
+        } else {
+          document.getElementById("select-date").innerHTML =
+            "Pas de date disponible pour le moment.";
+          document
+            .getElementById("pm_shop_checkout")
+            .setAttribute("disabled", "disabled");
+          console.log(`document
+            .getElementById("pm_shop_checkout")
+            .setAttribute("disabled", "disabled")`);
+        }
+
         if (center_exam) {
           var center = document.getElementById("centre_examen").value;
           if (center == "all") {

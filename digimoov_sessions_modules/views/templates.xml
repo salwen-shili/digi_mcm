@@ -13,10 +13,10 @@
                 <p t-if="modules_digimoov">
                     <b>
                         <div style="margin-left: 0%" id="exam_center">
-                            <select name="centre_examen" id="centre_examen" class="form-control search-slt" t-if="modules_digimoov" onclick="enableButton()">
-                                >
+                            <select name="centre_examen" id="centre_examen" class="form-control search-slt" t-if="modules_digimoov">
+
                                 <option value="all" id="all">
-                                    Sélectionnez votre date d'examen
+                                    Sélectionnez votre ville d'examen
                                 </option>
                                 <t t-foreach="list_villes" t-as="ville">
                                     <t t-if="ville">
@@ -34,69 +34,12 @@
                         </div>
                     </b>
                 </p>
-                <!--                <p t-if="modules_digimoov">-->
-                <!--                    <b>-->
-                <!--                        <div style="margin-left:0%;" id="exam_center">-->
-                <!--                            <select name="centre_examen" id="centre_examen" class="form-control search-slt "-->
-                <!-- t-if="modules_digimoov">-->
-                <!--                                <option value="all">Sélectionnez votre centre d'examen</option>-->
-                <!--                                <b>-->
-                <!--                                    <option value="bordeaux">-->
-                <!--                                        Bordeaux-->
-                <!--                                    </option>-->
-                <!--                                    <option value="dijon">-->
-                <!--                                        Dijon-->
-                <!--                                    </option>-->
-                <!--                                    <option value="lille">-->
-                <!--                                        Lille-->
-                <!--                                    </option>-->
-                <!--                                    <option value="lyon">-->
-                <!--                                        Lyon-->
-                <!--                                    </option>-->
-                <!--                                    <option value="marseille">-->
-                <!--                                        Marseille-->
-                <!--                                    </option>-->
-                <!--                                    <option value="montpellier">-->
-                <!--                                        Montpellier-->
-                <!--                                    </option>-->
-                <!--                                    <option value="nantes">-->
-                <!--                                        Nantes-->
-                <!--                                    </option>-->
-                <!--                                    <option value="nice">-->
-                <!--                                        Nice-->
-                <!--                                    </option>-->
-                <!--                                    <option value="orleans">-->
-                <!--                                        Orléans-->
-                <!--                                    </option>-->
-                <!--                                    <option value="paris">-->
-                <!--                                        Paris-->
-                <!--                                    </option>-->
-                <!--                                    <option value="rennes">-->
-                <!--                                        Rennes-->
-                <!--                                    </option>-->
-                <!--                                    <option value="rouen">-->
-                <!--                                        Rouen-->
-                <!--                                    </option>-->
-                <!--                                    <option value="strasbourg">-->
-                <!--                                        Strasbourg-->
-                <!--                                    </option>-->
-                <!--                                    <option value="toulouse">-->
-                <!--                                        Toulouse-->
-                <!--                                    </option>-->
-                <!--                                </b>-->
-                <!--                            </select>-->
-                <!--                            <p t-if="website_sale_order.exam_center_error != ''" id="error_exam_center"-->
-                <!-- class="alert alert-warning" style="margin-left:0%;display:inline-block;">-->
-                <!--                                Vous devez Selectionnez une ville-->
-                <!--                            </p>-->
-                <!--                        </div>-->
-                <!--                    </b>-->
-                <!--                </p>-->
+
                 <br/>
                 <p t-if="modules_digimoov">
                     <b>
-                        <div style="margin-left: 0%">
-                            <select name="date_examen" id="exam_date" class="form-control search-slt" t-if="modules_digimoov" style="display: none" onclick="disableButton()">
+                        <div style="margin-left: 0%; display:none ">
+                            <select id="exam_date" class="form-control search-slt" t-if="modules_digimoov">
                                 <option value="all" id="all">
                                     Sélectionnez votre date d'examen
                                 </option>
@@ -115,6 +58,14 @@
                             <p t-if="website_sale_order.exam_date_error != ''" id="error_exam_date" class="alert alert-warning" style="margin-left: 0%; display: inline-block">
                                 Vous devez Selectionnez une date
                             </p>
+                        </div>
+                        <div id="select-date" style="margin-left: 0%">
+                            <select name="date_examen" id="options-date" class="form-control search-slt" style="display:none">
+                                <option value="all" id="all">
+                                    Sélectionnez votre date d'examen
+                                </option>
+
+                            </select>
                         </div>
                     </b>
                 </p>
@@ -138,28 +89,97 @@
 
     <template id="digimoov_website_sale_cart_script" inherit_id="website_sale.cart">
         <xpath expr="//a[@class='btn btn-primary float-right']" position="replace">
-            <a role="button" t-if="website_sale_order and website_sale_order.website_order_line" class="btn btn-primary float-right" href="" t-attf-onclick="verify_payment_method()" id="pm_shop">
+            <a role="button" t-if="website_sale_order and website_sale_order.website_order_line" class="btn btn-primary float-right" href="" id="pm_shop">
                 <span id="pm_shop_text">Passer au paiement</span>
                 <span class="fa fa-chevron-right"/>
             </a>
-        </xpath>
-        <xpath expr="//a[@class='btn btn-primary float-right d-none d-xl-inline-block']" position="replace">
-            <a role="button" t-if="website_sale_order and website_sale_order.website_order_line" class="btn btn-primary float-right d-none d-xl-inline-block" t-attf-onclick="verify_payment_method()" href="" id="pm_shop_check">
-                <span id="pm_shop_check_text">Passer au paiement</span>
-                <span class="fa fa-chevron-right"/>
-            </a>
-        </xpath>
-        <xpath expr="//a[@href='/shop'][1]" position="replace">
-            <a role="button" href="/shop" class="btn btn-secondary mb32 d-none d-xl-inline-block" style="display: none !important">
-                <span class="fa fa-chevron-left"/>
-                <span class="">Continuer Vos achat</span>
-            </a>
-        </xpath>
-        <xpath expr="//div[@class='d-xl-none mt8']//a[1]" position="replace">
-        </xpath>
-        <xpath expr="//div[@class='col-12 col-xl-8 oe_cart']" position="inside">
-            <script>
+            <div t-if="request.website.id==2">
+                <script>
+                console.log("site 2")
+                function verify_payment_method() {
+                    var stripe_pm = document.getElementById("stripe_pm");
+                    if (stripe_pm) {
+                        if (stripe_pm.checked == true) {
+                        document.getElementById("pm_shop").href = "/shop/checkout?express=1";
+                        document.getElementById("pm_shop_check").href =
+                            "/shop/checkout?express=1";
+                        document.getElementById("pm_shop_checkout").href =
+                            "/shop/checkout?express=1";
+                        }
+                    }
+                    var cpf_pm = document.getElementById("cpf_pm");
+                    if (cpf_pm) {
+                        if (cpf_pm.checked == true) {
+                        if (cpf_pm.value == "Formation pro") {
+                            document.getElementById("pm_shop").href = "https://bit.ly/3nMlm2A";
+                            document.getElementById("pm_shop_check").href =
+                            "https://bit.ly/3nMlm2A";
+                            document.getElementById("pm_shop_checkout").href =
+                            "https://bit.ly/3nMlm2A";
+                            (function(w,d,t,r,u){var f,n,i;w[u]=w[u]||[],f=function(){var o={ti:""};o.q=w[u],w[u]=new
+                UET(o),w[u].push("pageLoad")},n=d.createElement(t),n.src=r,n.async=1,n.onload=n.onreadystatechange=function(){var s=this.readyState;s&amp;&amp;s!=="loaded"&amp;&amp; s!=="complete"||(f(),n.onload=n.onreadystatechange=null)},i=d.getElementsByTagName(t)[0],i.parentNode.insertBefore(n,i)})(window,document,"script","//bat.bing.com/bat.js","uetq");
+                console.log('inside function');
+                window.uetq = window.uetq || [];
+                window.uetq.push('event', 'clic sur mobiliser mon cpf pro', {'event_category': 'CPF',
+                'event_label': 'Inscription CPF Pro', 'event_value': '680'});
+                        }
+                        if (cpf_pm.value == "Formation premium") {
+                            document.getElementById("pm_shop").href = "https://bit.ly/38IxvSa";
+                            document.getElementById("pm_shop_check").href =
+                            "https://bit.ly/38IxvSa";
+                            document.getElementById("pm_shop_checkout").href =
+                            "https://bit.ly/38IxvSa";
+                            (function(w,d,t,r,u){var f,n,i;w[u]=w[u]||[],f=function(){
+                            var o={ti:""};o.q=w[u],w[u]=new
+                            UET(o),w[u].push("pageLoad")},n=d.createElement(t),n.src=r,n.async=1,n.onload=n.onreadystatechange=function(){var s=this.readyState;s&amp;&amp;s!=="loaded"&amp;&amp; s!=="complete"||(f(),n.onload=n.onreadystatechange=null)},i=d.getElementsByTagName(t)[0],i.parentNode.insertBefore(n,i)})(window,document,"script","//bat.bing.com/bat.js","uetq");
+                            window.uetq = window.uetq || [];
+                            window.uetq.push('event', 'clic sur mobiliser mon cpf premium', {'event_category': 'CPF',
+                            'event_label': 'Inscription CPF Premium', 'event_value': '849'});
+                        }
+                        }
+                    }
+                }  
+                
                 function onchangeTextButton() {
+                    console.log("onchangeTextButton");
+     
+  var stripe_pm = document.getElementById("stripe_pm");
+  if (stripe_pm) {
+    if (stripe_pm.checked == true) {
+      document.getElementById("pm_shop").href = "/shop/checkout?express=1";
+      document.getElementById("pm_shop_check").href =
+        "/shop/checkout?express=1";
+      console.log(document.getElementById("a_pm_shop_checkout"))
+        document.getElementById("a_pm_shop_checkout").href =
+        "/shop/checkout?express=1";
+    }
+  }
+  cpf_pm = document.getElementById("cpf_pm");
+  if (cpf_pm) {
+    if (cpf_pm.checked == true) {
+      if (cpf_pm.value == "Formation pro") {
+        document.getElementById("pm_shop").href = "https://bit.ly/3nMlm2A";
+        document.getElementById("pm_shop_check").href =
+          "https://bit.ly/3nMlm2A";
+        document.getElementById("pm_shop_checkout").href =
+          "https://bit.ly/3nMlm2A";
+          document.getElementById("a_pm_shop_checkout").href =
+          "https://bit.ly/3nMlm2A";
+          
+      }
+      if (cpf_pm.value == "Formation premium") {
+        document.getElementById("pm_shop").href = "https://bit.ly/38IxvSa";
+        document.getElementById("pm_shop_check").href =
+          "https://bit.ly/38IxvSa";
+        document.getElementById("pm_shop_checkout").href =
+          "https://bit.ly/38IxvSa";
+          document.getElementById("a_pm_shop_checkout").href =
+          "https://bit.ly/38IxvSa";
+      }
+    }
+  }
+
+                    console.log("onchange digimoov")
                 if (document.getElementById("pm_shop_text")) {
                 //Hide CPF video and details
                 document.getElementById("cpf-details").classList.remove("hide");
@@ -190,6 +210,20 @@
                 }
                 }
                 function onchangeTextButton1() {
+                    console.log("onchange digimoov1");
+                    
+  var stripe_pm = document.getElementById("stripe_pm");
+  if (stripe_pm) {
+    if (stripe_pm.checked == true) {
+      document.getElementById("pm_shop").href = "/shop/checkout?express=1";
+      document.getElementById("pm_shop_check").href =
+        "/shop/checkout?express=1";
+      console.log(document.getElementById("a_pm_shop_checkout"))
+        document.getElementById("a_pm_shop_checkout").href =
+        "/shop/checkout?express=1";
+    }
+  }
+ 
                 if (document.getElementById("pm_shop_text")) {
                 document.getElementById("cpf-details").classList.add("hide");
                 document.getElementById("pm_shop_text").innerHTML =
@@ -229,6 +263,45 @@
                 document.getElementById("promo_button").style.display = "inline";
                 }
                 }
+            
+                </script>
+
+            </div>
+
+        </xpath>
+        <xpath expr="//a[@class='btn btn-primary float-right d-none d-xl-inline-block']" position="replace">
+            <a role="button" t-if="website_sale_order and website_sale_order.website_order_line" class="btn btn-primary float-right d-none d-xl-inline-block" href="" id="pm_shop_check">
+                <span id="pm_shop_check_text">Passer au paiement</span>
+                <span class="fa fa-chevron-right"/>
+            </a>
+        </xpath>
+        <xpath expr="//a[@href='/shop'][1]" position="replace">
+            <a role="button" href="/shop" class="btn btn-secondary mb32 d-none d-xl-inline-block" style="display: none !important">
+                <span class="fa fa-chevron-left"/>
+                <span class="">Continuer Vos achat</span>
+            </a>
+        </xpath>
+        <xpath expr="//div[@class='d-xl-none mt8']//a[1]" position="replace">
+        </xpath>
+        <xpath expr="//div[@class='col-12 col-xl-8 oe_cart']" position="inside">
+
+
+
+            <script>
+               
+                function verify_checked(){
+                var x=document.getElementById('checkbox_instalment');
+                if(x) {
+                if (document.getElementById('checkbox_instalment').checked==true) {
+                document.getElementById("order_amount_to_pay").style.visibility = 'visible';
+                document.getElementById("order_instalment_number").style.visibility = 'visible';
+                } else {
+                document.getElementById("order_amount_to_pay").style.visibility = 'hidden';
+                document.getElementById("order_instalment_number").style.visibility = 'hidden';
+                }
+                }
+                };
+
             </script>
 
         </xpath>
