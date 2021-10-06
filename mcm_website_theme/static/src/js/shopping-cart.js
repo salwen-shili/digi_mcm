@@ -39,3 +39,22 @@ document.addEventListener("DOMContentLoaded", function () {
 //       .setAttribute("disabled", "disabled");
 //   } else document.getElementById("pm_shop_checkout").removeAttribute("enabled");
 // }
+function onChangeCheckButton() {
+  console.log("onChangeCheckButton");
+  console.log(
+    'document.getElementById("options-date")',
+    document.getElementById("options-date")
+  );
+  if (document.getElementById("options-date").value !== "all") {
+    document.getElementById("pm_shop_checkout").removeAttribute("disabled");
+    console.log(
+      "dateOPTions: button enable",
+
+      document.getElementById("pm_shop_checkout")
+    );
+  } else {
+    document
+      .getElementById("pm_shop_checkout")
+      .setAttribute("disabled", "disabled");
+  }
+}

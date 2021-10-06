@@ -282,21 +282,21 @@ odoo.define("mcm_website_theme.mcm_website_sale", function (require) {
         });
         console.log("dateOptions", dateOptions);
         if (dateOptions) {
-          var select = `<select name="date_examen" id="options-date" class="form-control search-slt">
+          var select = `<select name="date_examen" id="options-date" class="form-control search-slt" onchange="onChangeCheckButton()">
           <option value="all" id="all">
                                     Sélectionnez votre date d'examen
                                 </option>                  
           ${dateOptions}
                             </select>`;
           document.getElementById("select-date").innerHTML = select;
-          document
-            .getElementById("pm_shop_checkout")
-            .removeAttribute("disabled");
-          console.log(
-            "dateOPTions: button enable",
-            dateOptions,
-            document.getElementById("pm_shop_checkout")
-          );
+          // document
+          //   .getElementById("pm_shop_checkout")
+          //   .removeAttribute("disabled");
+          // console.log(
+          //   "dateOPTions: button enable",
+          //   dateOptions,
+          //   document.getElementById("pm_shop_checkout")
+          // );
         } else {
           document.getElementById("select-date").innerHTML =
             "Pas de date disponible pour le moment.";
