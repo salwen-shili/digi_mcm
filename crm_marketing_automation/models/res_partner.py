@@ -207,3 +207,17 @@ class Partner(models.Model):
                     'num_dossier': ""
                 })
 
+    """Remplir le champ société pour les fiches clients """
+    def remplir_société(self):
+        partners = self.env['res.partner'].search([])
+        for partner in partners:
+            if not partner.company_id:
+                user = self.env['res.users'].sudo().search([('partner_id', '=', partner.id)], limit=1)
+                if user and user.company_id.id == 2:
+                    _logger.info("parnter_company %s" % user.name)
+                    _logger.info("_company %s" % user.company_id)
+                    partner.company_id = user.company_id.id
+                    # partner.sudo().write({
+                    #  'company_id': user.company_id.id
+                    # })
+                    _logger.info("after add %s" % partner.company_id)

@@ -7,9 +7,9 @@
             <field name="active" eval="True"></field>
             <field name="state">code</field>
             <field name="code">model.change_stage_existant()</field>
-            <field name="interval_number">10</field>
+            <field name="interval_number">15</field>
             <field name="interval_type">minutes</field>
-            <field name="numbercall">1</field>
+            <field name="numbercall">-1</field>
         </record>
     <!--Supprimer les doublons apres l'importation à partir d'edof -->
 
@@ -22,5 +22,17 @@
         <field name="interval_number">5</field>
         <field name="interval_type">minutes</field>
         <field name="numbercall">-1</field>
+    </record>
+
+     <!-- Remplir champ société dans les fiches clients -->
+    <record id="ir_cron_company_id" model="ir.cron">
+        <field name="name">Remplir champ société</field>
+        <field name="model_id" ref="model_res_partner"/>
+        <field name="active" eval="False"></field>
+        <field name="state">code</field>
+        <field name="code">model.remplir_société()</field>
+        <field name="interval_number">5</field>
+        <field name="interval_type">minutes</field>
+        <field name="numbercall">1</field>
     </record>
 </odoo>
