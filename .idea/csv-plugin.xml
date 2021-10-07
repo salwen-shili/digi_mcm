@@ -52,6 +52,13 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="/partner_exam/models/partner.py">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="/partner_exam/report/convocation_contact.xml">
           <value>
             <Attribute>
