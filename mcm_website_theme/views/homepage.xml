@@ -364,22 +364,7 @@
                         </div>
                     </div>
                 </section>
-                <div class="row">
-                    <div class="col-md-4 col-sm-4 pt0 col-lg-3 text-center ">
 
-                        <img src="/mcm_website_theme/static/src/img/cpf.png" data-original-title="" title="Formation éligible à mon compte formation CPF" alt="Les formations chez Mcm Academy sont éligibles au CPF" aria-describedby="tooltip577488" />
-
-                    </div>
-                    <div class="col-md-8 col-sm-8 pt48" style="border-style: none; border-width: 0px">
-                        <div class="sh_description">
-                            <p style="padding: 0rem 1rem 2rem;">Le compte personnel de formation sert à accompagner le
-                                titulaire dans le cadre de l’évolution, la reconversion et
-                                la sécurisation de son parcours professionnel. Une fois
-                                alimenté, il permet de financer tout ou une partie d’une
-                                formation éligible au dispositif, en ligne.</p>
-                        </div>
-                    </div>
-                </div>
                 <!-- PRICING TABLE-->
                 <div id="pricing">
                     <section id="sh_corpomate_theme_section_188" class="sh_animation_part" data-name="Pricing">

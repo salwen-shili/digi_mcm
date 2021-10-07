@@ -314,7 +314,7 @@ class Routes_Site(http.Controller):
         if request.website.id == 2:
             raise werkzeug.exceptions.NotFound()
         elif request.website.id == 1:
-            return request.render("mcm_website_theme.mcm_website_examen", {})
+            return request.render("mcm_website_theme.mcm_template_examen", {})
 
     @http.route('/coordonnées', type='http', auth='user', website=True,csrf=False)
     def validation_questionnaires(self, **kw):
