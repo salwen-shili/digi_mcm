@@ -1161,7 +1161,7 @@
                                                 </li>
                                             </a>
 
-                                            <a href="/faq">
+                                            <a href="/faq" style="cursor: pointer; color:#ffffff">
                                                 <li class="mb-2">
                                                     <span class="fa fa-question-circle" data-original-title="" title="" aria-describedby="tooltip437298"/>
                                                     Foire aux questions
