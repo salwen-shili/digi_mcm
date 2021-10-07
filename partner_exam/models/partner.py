@@ -42,18 +42,38 @@ class resComapny(models.Model):
         if report=True ===> user can edit session in partner view"""
         session = super(resComapny, self).write(values)
         if 'mcm_session_id' in values and self.report is not False:
-            self.env['partner.sessions'].sudo().create({
-                'client_id': self.id,
-                'session_id': self.mcm_session_id.id,
-                'company_id': self.company_id.id,
-                'justification': self.justification,
-                'paiement': self.paiement,
-                'attachment_ids': self.attachment_ids,
-                'autre_raison': self.autre_raison,
-            })
-            self.report = False
-            self.justification = False
-            self.paiement = False
-            self.attachment_ids = None
-            self.autre_raison = None
+            if self.env['partner.sessions'].search_count([('client_id', 'child_of', self.id)]) > 0:
+                print("first in")
+                # Add this bloc of code to Update data in old session if sum of sessions lines > 0
+                self.env['partner.sessions'].search([('client_id', 'child_of', self.id)], limit=1, order='id desc').sudo().update({
+                    'client_id': self.id,
+                    #'session_id': self.mcm_session_id.id,
+                    'company_id': self.company_id.id,
+                    'justification': self.justification,
+                    'paiement': self.paiement,
+                    'attachment_ids': self.attachment_ids,
+                    'autre_raison': self.autre_raison,
+                })
+                # Create new line in historic sessions
+                self.env['partner.sessions'].search([], limit=1, order='id desc').sudo().create({
+                    'client_id': self.id,
+                    'session_id': self.mcm_session_id.id,
+                })
+                print("twice in")
+                self.report = False
+                self.justification = False
+                self.paiement = False
+                self.attachment_ids = None
+                self.autre_raison = None
+            else:
+                print("third out")
+                self.env['partner.sessions'].search([], limit=1, order='id desc').sudo().create({
+                    'client_id': self.id,
+                    'session_id': self.mcm_session_id.id,
+                })
+                self.report = False
+                self.justification = False
+                self.paiement = False
+                self.attachment_ids = None
+                self.autre_raison = None
         return session
