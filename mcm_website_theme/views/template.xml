@@ -886,6 +886,14 @@
                 "https://bit.ly/3DOiZG6";
                 document.getElementById("a_pm_shop_checkout").href =
                 "https://bit.ly/3DOiZG6";
+                (function(w,d,t,r,u){var f,n,i;w[u]=w[u]||[],f=function(){
+                var o={ti:"<t t-esc="request.website.microsoft_tracking_key"/>"};o.q=w[u],w[u]=new
+                UET(o),w[u].push("pageLoad")},n=d.createElement(t),n.src=r,n.async=1,n.onload=n.onreadystatechange=function(){var
+                s=this.readyState;s&amp;&amp;s!=="loaded"&amp;&amp;
+                s!=="complete"||(f(),n.onload=n.onreadystatechange=null)},i=d.getElementsByTagName(t)[0],i.parentNode.insertBefore(n,i)})(window,document,"script","//bat.bing.com/bat.js","uetq");
+                window.uetq = window.uetq || [];
+                window.uetq.push('event', 'clic sur mobiliser mon cpf taxi', {'event_category': 'CPF',
+                'event_label': 'Inscription CPF Taxi', 'event_value': '680'});
                 }
                 if (cpf_pm.value == "Formation à distance VMDTR") {
                 console.log("VMDTR", cpf_pm.value);
@@ -898,6 +906,14 @@
                 document
                 .getElementById("a_pm_shop_checkout")
                 .setAttribute("href", "https://bit.ly/3tbAxXw");
+                (function(w,d,t,r,u){var f,n,i;w[u]=w[u]||[],f=function(){
+                var o={ti:"<t t-esc="request.website.microsoft_tracking_key"/>"};o.q=w[u],w[u]=new
+                UET(o),w[u].push("pageLoad")},n=d.createElement(t),n.src=r,n.async=1,n.onload=n.onreadystatechange=function(){var
+                s=this.readyState;s&amp;&amp;s!=="loaded"&amp;&amp;
+                s!=="complete"||(f(),n.onload=n.onreadystatechange=null)},i=d.getElementsByTagName(t)[0],i.parentNode.insertBefore(n,i)})(window,document,"script","//bat.bing.com/bat.js","uetq");
+                window.uetq = window.uetq || [];
+                window.uetq.push('event', 'clic sur mobiliser mon cpf vmdtr', {'event_category': 'CPF',
+                'event_label': 'Inscription CPF VMDTR', 'event_value': '849'});
                 }
                 if (cpf_pm.value == "Formation à distance VTC") {
                 console.log("VTC", cpf_pm.value);
@@ -906,6 +922,14 @@
                 "https://bit.ly/3mZoImh";
                 document.getElementById("a_pm_shop_checkout").href =
                 "https://bit.ly/3mZoImh";
+                 (function(w,d,t,r,u){var f,n,i;w[u]=w[u]||[],f=function(){
+                var o={ti:"<t t-esc="request.website.microsoft_tracking_key"/>"};o.q=w[u],w[u]=new
+                UET(o),w[u].push("pageLoad")},n=d.createElement(t),n.src=r,n.async=1,n.onload=n.onreadystatechange=function(){var
+                s=this.readyState;s&amp;&amp;s!=="loaded"&amp;&amp;
+                s!=="complete"||(f(),n.onload=n.onreadystatechange=null)},i=d.getElementsByTagName(t)[0],i.parentNode.insertBefore(n,i)})(window,document,"script","//bat.bing.com/bat.js","uetq");
+                window.uetq = window.uetq || [];
+                window.uetq.push('event', 'clic sur mobiliser mon cpf vtc', {'event_category': 'CPF',
+                'event_label': 'Inscription CPF VTC', 'event_value': '590'});
                 }
               
                 }
