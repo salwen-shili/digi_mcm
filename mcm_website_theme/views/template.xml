@@ -1188,16 +1188,26 @@
                                     <div class="contact-info">
                                         <ul class="contact-details">
                                             <li>
-                                                <span class="fa fa-facebook-square fa-2x" data-original-title="" title="" aria-describedby="tooltip139952"/>
-                                                <b/>
-                                                <span class="fa fa-2x fa-instagram" data-original-title="" title="" aria-describedby="tooltip799266"/>
-                                                <b/>
-                                                <span class="fa fa-twitter fa-2x" data-original-title="" title="" aria-describedby="tooltip617571"/>
-                                                <b/>
-                                                <span class="fa fa-youtube-play fa-2x" data-original-title="" title="" aria-describedby="tooltip749786"/>
-                                                <b>
-                                                    <br/>
-                                                </b>
+                                                <div style="display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 51%;">
+                                                    <a style="color: #ffffff" href="https://fr-fr.facebook.com/pg/formation.mcm.academy">
+                                                        <span class="fa fa-facebook-square fa-2x" data-original-title="" title="" aria-describedby="tooltip139952"/>
+
+                                                    </a>
+                                                    <a style="color: #ffffff" href="">
+                                                        <span class="fa fa-2x fa-instagram" data-original-title="" title="" aria-describedby="tooltip799266"/>
+
+                                                    </a>
+
+                                                    <a style="color: #ffffff" href="https://www.youtube.com/channel/UCYFC80fsylTETNppaBlAVkQ">
+                                                        <span class="fa fa-youtube-play fa-2x" data-original-title="" title="" aria-describedby="tooltip749786"/>
+
+                                                    </a>
+
+                                                </div>
+
                                                 <div class="contact-info" style="">
                                                     <ul class="contact-details" style="margin-bottom: 1rem; list-style-type: disc;">
                                                         <li style="font-weight: 400;">

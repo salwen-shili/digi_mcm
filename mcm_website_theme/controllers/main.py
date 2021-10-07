@@ -304,7 +304,7 @@ class Routes_Site(http.Controller):
         if request.website.id == 2:
             raise werkzeug.exceptions.NotFound()
         elif request.website.id == 1:
-            return request.render("mcm_website_theme.mcm_website_theme_vmdtr", values)
+            return request.render("mcm_website_theme.mcm_template_vmdtr", values)
 
     @http.route('/examen', type='http', auth='public', website=True)
     def examen(self):
@@ -1176,23 +1176,23 @@ class CustomerPortal(CustomerPortal):
         return request.render("account.portal_my_invoices", values)
 
 
-class MCMFORMATION(http.Controller):
+# class MCMFORMATION(http.Controller):
 
-    # @http.route('/formation-theorique-et-pratique-vtc', type='http', auth='public', website=True)
-    # def formvtc(self, **kw, ):
-    #     if request.website.id == 2:
-    #         return 0
-    #     elif request.website.id == 1:
-    #         return request.render("mcm_website_theme.mcm_website_formation_vtc")
+#     # @http.route('/formation-theorique-et-pratique-vtc', type='http', auth='public', website=True)
+#     # def formvtc(self, **kw, ):
+#     #     if request.website.id == 2:
+#     #         return 0
+#     #     elif request.website.id == 1:
+#     #         return request.render("mcm_website_theme.mcm_website_formation_vtc")
 
-    @http.route('/formation-taximoto-vmtdr', type='http', auth='public', website=True)
-    def formvmdtr(self, **kw, ):
+#     @http.route('/formation-taximoto-vmtdr', type='http', auth='public', website=True)
+#     def formvmdtr(self, **kw, ):
 
-        #Si site Digimoov, ne renvoie rien
-        if request.website.id == 2:
-            return 0
-        elif request.website.id == 1:
-            return request.render("mcm_website_theme.mcm_website_theme_vmdtr")
+#         #Si site Digimoov, ne renvoie rien
+#         if request.website.id == 2:
+#             return 0
+#         elif request.website.id == 1:
+#             return request.render("mcm_website_theme.mcm_website_theme_vmdtr")
 
 
 class MCM_SIGNUP(http.Controller):
