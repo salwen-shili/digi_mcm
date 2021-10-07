@@ -25,9 +25,11 @@ class CRM(models.Model):
         _logger.info('------------lead ')
         leads = self.env['crm.lead'].search([])
         duplicate_lead = []
+        """chercher la fiche client par num_dossier et 
+        attribuer cette fiche au crm lead de meme apprenant"""
         for lead in leads:
             num_dossier = lead.num_dossier
-            partners = self.env['res.partner'].search([('company_id.id', '=', 2)])
+            partners = self.env['res.partner'].search([])
             for partner in partners:
                 if lead.stage_id.name != "Plateforme 360":
                     if (partner.numero_cpf) and (partner.numero_cpf == lead.num_dossier):
@@ -53,17 +55,15 @@ class CRM(models.Model):
                             'mode_de_financement': 'cpf',
                             'module_id': partner.module_id,
                             'mcm_session_id': partner.mcm_session_id,
+                            'company_id': partner.company_id if partner.company_id else False
                         })
                         _logger.info("lead %s" % lead.name)
+            """Supprimer les doublons par num_dossier"""
             if lead.num_dossier and lead.id not in duplicate_lead:
                 duplicates = self.env['crm.lead'].search(
                     [('id', '!=', lead.id),
                      ('num_dossier', '=', lead.num_dossier)])
-                print(duplicates)
                 for dup in duplicates:
-                    print("dup", dup)
                     duplicate_lead.append(dup.id)
                     _logger.info("duplicate_contacts %s" % dup.name)
         self.browse(duplicate_lead).unlink()
-        _logger.info('supprimé')
-        new_leads = self.env['crm.lead'].search([])
