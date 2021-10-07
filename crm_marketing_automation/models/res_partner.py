@@ -212,7 +212,7 @@ class Partner(models.Model):
         partners = self.env['res.partner'].search([('company_id','=',False)])
         for partner in partners:
                 user = self.env['res.users'].sudo().search([('partner_id', '=', partner.id)],limit=1)
-                if user and user.company_id == 1:
+                if user and user.company_id.id == 1:
                     _logger.info("parnter_company %s" % user.name)
                     _logger.info("_company %s" % user.company_id)
                     partner.company_id = user.company_id.id
