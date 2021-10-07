@@ -209,9 +209,8 @@ class Partner(models.Model):
 
     """Remplir le champ société pour les fiches clients """
     def remplir_société(self):
-        partners = self.env['res.partner'].search([('company_id','=',False)],limit=1000)
+        partners = self.env['res.partner'].search([('company_id','=',False)])
         for partner in partners:
-            if not partner.company_id:
                 user = self.env['res.users'].sudo().search([('partner_id', '=', partner.id)],limit=1)
                 if user:
                     _logger.info("parnter_company %s" % user.name)
