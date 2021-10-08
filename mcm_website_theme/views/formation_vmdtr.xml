@@ -91,7 +91,7 @@
               <img class="img-fluid" style="width: 100px" src="/mcm_website_theme/static/src/img/cpf_.png"></img>
             </div>
             <div class=" col-md-2 col-sm-12 text-center mb-4 mb-md-0 ">
-              <img class="img-fluid" src="/mcm_website_theme/static/src/img/qualiopi.png"></img>
+              <img class="img-fluid" style="width: 190px;" src="/mcm_website_theme/static/src/img/qualiopi.png"></img>
 
             </div>
             <div class=" col-md-2 col-sm-12 text-center mb-4 mb-md-0 ">
