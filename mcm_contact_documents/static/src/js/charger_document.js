@@ -18,8 +18,6 @@ publicWidget.registry.digimoov_documents = publicWidget.Widget.extend({
         var identite_hebergeur_recto = document.getElementById('identite_hebergeur_recto_form');
         var identite_hebergeur_verso = document.getElementById('identite_hebergeur_verso_form');
         var attestation_hebergement = document.getElementById('attestation_hebergement_form');
-        var justificatif_domicile_oui = document.getElementById('justificatif_domicile_form_oui');
-        var justificatif_domicile_non = document.getElementById('justificatif_domicile_form_non');
         var identite_hebergeur_recto_input = document.getElementById('identite_hebergeur_recto_id');
         var identite_hebergeur_verso_input = document.getElementById('identite_hebergeur_verso_id');
         var attestation_hebergement_input = document.getElementById('attestation_hebergement_id');
@@ -44,16 +42,6 @@ publicWidget.registry.digimoov_documents = publicWidget.Widget.extend({
                 attestation_hebergement.className='form-group row form-field';
                 attestation_hebergement_input.required = false;
             }
-            if(justificatif_domicile_oui) {
-                justificatif_domicile_oui.style.display='block';
-                justificatif_domicile_oui.className='form-group row form-field o_website_form_required';
-                justificatif_domicile_input_oui.required = true;
-            }
-            if(justificatif_domicile_non) {
-                justificatif_domicile_non.style.display='none';
-                justificatif_domicile_non.className='form-group row form-field';
-                justificatif_domicile_input_non.required = false;
-            }
         }
         else if(domicile_personnel_non.checked){
             domicile_personnel_oui.false;
@@ -73,16 +61,6 @@ publicWidget.registry.digimoov_documents = publicWidget.Widget.extend({
                 attestation_hebergement.style.display='block';
                 attestation_hebergement.className='form-group row form-field o_website_form_required';
                 attestation_hebergement_input.required = true;
-            }
-            if(justificatif_domicile_non) {
-                justificatif_domicile_non.style.display='block';
-                justificatif_domicile_non.className='form-group row form-field';
-                justificatif_domicile_input_non.required = true;
-            }
-            if(justificatif_domicile_oui) {
-                justificatif_domicile_oui.style.display='none';
-                justificatif_domicile_oui.className='form-group row form-field o_website_form_required';
-                justificatif_domicile_input_oui.required = false;
             }
         }
 
@@ -114,7 +92,7 @@ publicWidget.registry.check_digimoov_files = publicWidget.Widget.extend({
                  if (file != null)
                  {
                     var type=file['type'];
-                    var types = ['image/png' , 'image/jpg' , 'image/jpeg' , 'image/bmp' , 'image/gif' , 'image/svg+xml' , 'application/pdf'];
+                    var types = ['image/png' , 'image/jpg' , 'image/jpeg' , 'application/pdf'];
                     if (types.includes(type)){
                         check_type=true;
                     }

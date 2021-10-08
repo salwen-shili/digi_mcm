@@ -441,7 +441,6 @@ class CustomerPortal(CustomerPortal):
             }
             vals_list.append(vals)
             folder_id = request.env['documents.folder'].sudo().create(vals_list)
-
         try:
             # Récupérer le justificatif de domicile
             fichier_justificatif = request.httprequest.files.getlist('justificatif_domicile')
@@ -482,9 +481,10 @@ class CustomerPortal(CustomerPortal):
         if (len(fichier_identite_recto) > 2 or len(fichier_identite_verso) > 2):
             name = http.request.env.user.name
             email = http.request.env.user.email
-            return request.redirect('/new_documents')
+            return request.redirect('/charger_mes_documents_1')
         if not fichier_identite_recto:
-            return request.redirect('/new_documents')
+            return request.redirect('/charger_mes_documents_1')
+
         try:
             # Récupérer l'identité de l'hébergeur
             fichier_identite_recto = request.httprequest.files.getlist('identite_hebergeur_recto')
@@ -510,9 +510,7 @@ class CustomerPortal(CustomerPortal):
                         {'owner_id': uid, 'partner_id': uid.partner_id,
                          'name': document.name + ' ' + str(uid.name)})
                     # ajout du champ mimetype  dans ir.attachement
-                if len(fichier_identite_recto) == 2:
                     datas_Carte_didentité_Recto = base64.encodebytes(fichier_identite_recto[0].read())
-                    datas_Carte_didentité_Verso = base64.encodebytes(fichier_identite_recto[1].read())
                     # Attachement Carte d'identité Recto
                     request.env['ir.attachment'].sudo().create({
                         'name': "Carte d'identité recto",
@@ -521,25 +519,7 @@ class CustomerPortal(CustomerPortal):
                         'res_model': 'documents.document',
                         'res_id': document.id
                     })
-                    # Attachement Carte d'identité Verso
-                    # ajout du champ mimetype  dans ir.attachement
-                    request.env['ir.attachment'].sudo().create({
-                        'name': "Carte d'identité Verso",
-                        'type': 'binary',
-                        'datas': datas_Carte_didentité_Verso,
-                        'res_model': 'documents.document',
-                        'res_id': document.id
-                    })
                     # Attachement Carte d'identité recto
-                elif len(fichier_identite_recto) == 1:
-                    datas_carte_didentiterecto = base64.encodebytes(fichier_identite_recto[0].read())
-                    request.env['ir.attachment'].sudo().create({
-                        'name': "Carte d'identité recto",
-                        'type': 'binary',
-                        'datas': datas_carte_didentiterecto,
-                        'res_model': 'documents.document',
-                        'res_id': document.id
-                    })
             if fichier_identite_verso and document:
                 datas_carte_didentite = base64.encodebytes(fichier_identite_verso[0].read())
                 # ajout du champ mimetype  dans ir.attachement
@@ -550,8 +530,7 @@ class CustomerPortal(CustomerPortal):
                     'res_model': 'documents.document',
                     'res_id': document.id
                 })
-                
-            document.sudo().write({'name': "Carte d'identité Recto/Verso"})
+            document.sudo().write({'name': "Carte d'identité hebergeur Recto/Verso"})
         except Exception as e:
             logger.exception("Fail to upload document Carte d'identité ")
 
@@ -633,12 +612,14 @@ class CustomerPortal(CustomerPortal):
     # Nouvelle page qui ressemble à la page précédente
     @http.route('/charger_mes_documents_1', type="http", auth="user", website=True)
     def create_documents_digimoov1(self, **kw):
-        name = http.request.env.user.name
-        email = http.request.env.user.email
-        partner_id = http.request.env.user.partner_id
-        return http.request.render('mcm_contact_documents.mcm_contact_document_charger_mes_documents1', {
-            'email': email, 'name': name, 'partner_id': partner_id, 'error_identity': '', 'error_permis': '',
-            'error_permis_number': '', 'error_domicile': ''})
+        if request.website.id == 1 :
+            raise werkzeug.exceptions.NotFound()
+        elif request.website.id == 2:
+            name = http.request.env.user.name
+            email = http.request.env.user.email
+            partner_id = http.request.env.user.partner_id
+            return http.request.render('mcm_contact_documents.mcm_contact_document_charger_mes_documents1', {
+                'email': email, 'name': name, 'partner_id': partner_id, 'error_identity': '', 'error_permis': '', 'error_permis_number': '', 'error_domicile': ''})
 
     @http.route('/charger_mes_documents', type="http", auth="user", website=True)
     def create_documents_digimoov(self, **kw):

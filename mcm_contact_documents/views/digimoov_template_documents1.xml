@@ -9,7 +9,9 @@
                         <div class="row m-0">
                             <div class="col-lg-6">
                                 <div class="card-shadow ">
-                                    <img src="/mcm_contact_documents/static/img/3 Dossier d'insciption Digimoov.webp" class="img-responsive img img-fluid" data-original-title="" title="" aria-describedby="tooltip508208"/>
+                                    <img src="/mcm_contact_documents/static/img/3 Dossier d'insciption Digimoov.webp"
+                                         class="img-responsive img img-fluid" data-original-title="" title=""
+                                         aria-describedby="tooltip508208"/>
                                 </div>
                             </div>
                             <div class="col-lg-6">
@@ -19,7 +21,10 @@
                                     </center>
                                     <br/>
                                     <!--Formulaire -->
-                                    <form action="/upload_my_files1" method="post" id="digimoov_my_documents_form1" class="s_website_form container-fluid mt32" enctype="multipart/form-data" data-model_name="partner.document" data-success_page="/submitted_documents" data-editable-form="false" hide-change-model="true">
+                                    <form action="/upload_my_files1" method="post" id="digimoov_my_documents_form1"
+                                          class="s_website_form container-fluid mt32" enctype="multipart/form-data"
+                                          data-model_name="partner.document" data-success_page="/submitted_documents"
+                                          data-editable-form="false" hide-change-model="true">
 
                                         <!-- Le client choisit s'il a un justificatif à domicile personnel -->
 
@@ -32,7 +37,9 @@
                                                     <label for="domicile_personnel_oui">Oui</label>
                                                 </div>
                                                 <div style="display: inline-block">
-                                                    <input type="radio" id="domicile_personnel_oui" name="domicile_personnel" selected="0" value="oui" required="1">
+                                                    <input type="radio" id="domicile_personnel_oui"
+                                                           name="domicile_personnel" selected="0" value="oui"
+                                                           required="1">
                                                     </input>
                                                 </div>
                                             </div>
@@ -41,28 +48,17 @@
                                                     <label for="domicile_personnel_non">Non</label>
                                                 </div>
                                                 <div style="display: inline-block">
-                                                    <input type="radio" id="domicile_personnel_non" name="domicile_personnel" selected="1" value="non" required="1">
+                                                    <input type="radio" id="domicile_personnel_non"
+                                                           name="domicile_personnel" selected="1" value="non"
+                                                           required="1">
                                                     </input>
                                                 </div>
                                             </div>
-                                            <script>
-                                                document.addEventListener("DOMContentLoaded", function () {
-                                                document.getElementById("domicile_personnel_oui").checked = true;
-                                                document.getElementById('identite_hebergeur_recto_form').style.display='none';
-                                                document.getElementById('identite_hebergeur_verso_form').style.display='none';
-                                                document.getElementById('attestation_hebergement_form').style.display='none';
-                                                document.getElementById('justificatif_domicile_form_non').style.display='none';
-                                                document.getElementById('identite_hebergeur_recto_id').required = 0;
-                                                document.getElementById('identite_hebergeur_verso_id').required = 0;
-                                                document.getElementById('attestation_hebergement_id').required = 0;
-                                                document.getElementById('justificatif_domicile_id_non').required = 0;
-                                                });
-                                            </script>
-
                                         </div>
 
                                         <!-- Charger le justificatif à domicile personnel dans la partie oui-->
-                                        <div class="form-group row form-field o_website_form_required" id="justificatif_domicile_form_oui">
+                                        <div class="form-group row form-field o_website_form_required"
+                                             id="justificatif_domicile_form">
                                             <div class="col-lg-9">
                                                 <label class="col-form-label" for="justificatif_domicile">Charger le
                                                     Justificatif à domicile (moins de trois mois)
@@ -70,56 +66,58 @@
                                             </div>
                                             <div class="col-lg-9 col-md-12 col-sm-12">
 
-                                                <input type="file" name="justificatif_domicile" required="1" id="justificatif_domicile_id_oui" placeholder="Veuillez charger un fichier" class="form-control o_website_form_input" accept="image/*,application/pdf"/>
+                                                <input type="file" name="justificatif_domicile"
+                                                       id="justificatif_domicile_id_oui"
+                                                       placeholder="Veuillez charger un fichier"
+                                                       class="form-control o_website_form_input"
+                                                       accept="image/*,application/pdf"/>
                                             </div>
                                         </div>
 
-                                         <!-- Charger le justificatif à domicile personnel dans la partie non-->
-                                        <div class="form-group row form-field o_website_form_required" id="justificatif_domicile_form_non">
-                                            <div class="col-lg-9">
-                                                <label class="col-form-label" for="justificatif_domicile">Charger le
-                                                    Justificatif à domicile (moins de trois mois)
-                                                </label>
-                                            </div>
-                                            <div class="col-lg-9 col-md-12 col-sm-12">
-
-                                                <input type="file" name="justificatif_domicile" required="1" id="justificatif_domicile_id_non" placeholder="Veuillez charger un fichier" class="form-control o_website_form_input" accept="image/*,application/pdf"/>
-                                            </div>
-                                        </div>
-
-                                        <!--Charger la pièce d'identité de l'hebergeur recto-->
-                                        <div class="form-group row form-field " id="identite_hebergeur_recto_form">
+                                        <div class="form-group row form-field" id="identite_hebergeur_recto_form" style="display:none">
                                             <div class="col-lg-9 col-md-9">
                                                 <label class="col-form-label" for="identite_hebergeur_recto">Charger la
                                                     pièce d'identité de l'hébergeur recto
                                                 </label>
                                             </div>
                                             <div class="col-lg-9 col-md-12 col-sm-12 o_website_form_required">
-                                                <input type="file" name="identite_hebergeur_recto" id="identite_hebergeur_recto_id" required="1" placeholder="Veuillez Charger un fichier" class="form-control o_website_form_input" accept="image/*,application/pdf"/>
+                                                <input type="file" name="identite_hebergeur_recto"
+                                                       id="identite_hebergeur_recto_id" required="1"
+                                                       placeholder="Veuillez Charger un fichier"
+                                                       class="form-control o_website_form_input"
+                                                       accept="image/*,application/pdf"/>
                                             </div>
                                         </div>
 
-                                          <!--Charger la pièce d'identité de l'hebergeur verso-->
-                                        <div class="form-group row form-field " id="identite_hebergeur_verso_form">
+                                        <!--Charger la pièce d'identité de l'hebergeur verso-->
+                                        <div class="form-group row form-field " id="identite_hebergeur_verso_form" style="display:none">
                                             <div class="col-lg-9 col-md-9">
                                                 <label class="col-form-label" for="identite_hebergeur_verso">Charger la
                                                     pièce d'identité de l'hébergeur verso
                                                 </label>
                                             </div>
                                             <div class="col-lg-9 col-md-12 col-sm-12 o_website_form_required">
-                                                <input type="file" name="identite_hebergeur_verso" id="identite_hebergeur_verso_id" required="1" placeholder="Veuillez Charger un fichier" class="form-control o_website_form_input" accept="image/*,application/pdf"/>
+                                                <input type="file" name="identite_hebergeur_verso"
+                                                       id="identite_hebergeur_verso_id" required="1"
+                                                       placeholder="Veuillez Charger un fichier"
+                                                       class="form-control o_website_form_input"
+                                                       accept="image/*,application/pdf"/>
                                             </div>
                                         </div>
 
                                         <!--Charger l'attestation d'hebergement -->
-                                        <div class="form-group row form-field" id="attestation_hebergement_form">
+                                        <div class="form-group row form-field" id="attestation_hebergement_form" style="display:none">
                                             <div class="col-lg-9 col-md-9">
                                                 <label class="col-form-label" for="attestation_hebergement">Charger
                                                     l'attestation de l'hébergement
                                                 </label>
                                             </div>
                                             <div class="col-lg-9 col-md-12 col-sm-12 o_website_form_required">
-                                                <input type="file" name="attestation_hebergement" required="1" id="attestation_hebergement_id" placeholder="Veuillez Charger un fichier" class="form-control o_website_form_input" accept="image/*,application/pdf"/>
+                                                <input type="file" name="attestation_hebergement" required="1"
+                                                       id="attestation_hebergement_id"
+                                                       placeholder="Veuillez Charger un fichier"
+                                                       class="form-control o_website_form_input"
+                                                       accept="image/*,application/pdf"/>
                                             </div>
                                         </div>
 
@@ -130,7 +128,10 @@
                                                 </label>
                                             </div>
                                             <div class="col-lg-9 col-md-12 col-sm-12">
-                                                <input type="file" name="cerfa" required="1" id="cerfa" placeholder="Veuillez Charger un fichier" class="form-control o_website_form_input" accept="image/*,application/pdf"/>
+                                                <input type="file" name="cerfa" required="1" id="cerfa"
+                                                       placeholder="Veuillez Charger un fichier"
+                                                       class="form-control o_website_form_input"
+                                                       accept="image/*,application/pdf"/>
                                             </div>
                                         </div>
 
@@ -138,29 +139,21 @@
                                         <!--Case à cocher pour confirmer -->
                                         <div class="form-group row form-field o_website_form_required">
                                             <div class="col-md-12 col-sm-12">
-                                                <input type="checkbox" name="confirm_identity" id="confirm_identity" required="1"/>
-                                                <label for="confirm_identity" style="margin-left:8px;font-weight:normal !important;display:unset !important;">
+                                                <input type="checkbox" name="confirm_identity" id="confirm_identity"
+                                                       required="1"/>
+                                                <label for="confirm_identity"
+                                                       style="margin-left:8px;font-weight:normal !important;display:unset !important;">
                                                     Je confirme avoir soumis le justificatif à domicile et le CERFA
                                                 </label>
                                             </div>
                                         </div>
 
                                         <!--Bouton Envoyer -->
-                                        <button type="submit" class="btn btn-primary centered-content" id="submit_documents" style="width: 75% !important;">
+                                        <button type="submit" class="btn btn-primary centered-content"
+                                                id="submit_documents" style="width: 75% !important;">
                                             Envoyer
                                             <span class="fa fa-1x fa-fw fa-long-arrow-right ml-1"></span>
-                                            <script>
-                                                document.addEventListener("click", function () {
-                                                console.log("identité hébergeur",identite_hebergeur_id.required);
-                                                console.log("attestation
-                                                hebergement",attestation_hebergement_id.required);
-                                                console.log("justificatif domicile",justificatif_domicile_id.required);
-                                                console.log("cerfa",document.getElementById('cerfa').required);
-                                                });
-                                            </script>
                                         </button>
-
-
                                         <span id="o_website_form_result"></span>
 
 
