@@ -1212,10 +1212,7 @@
                                     <div class="contact-info">
                                         <ul class="contact-details">
                                             <li>
-                                                <div style="display: flex;
-    justify-content: space-around;
-    align-items: center;
-    width: 51%;">
+                                                <div>
                                                     <a style="color: #ffffff" href="https://fr-fr.facebook.com/pg/formation.mcm.academy">
                                                         <span class="fa fa-facebook-square fa-2x" data-original-title="" title="" aria-describedby="tooltip139952"/>
 
