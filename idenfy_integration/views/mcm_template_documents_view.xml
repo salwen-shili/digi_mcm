@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="idenfy_integration_mcm_contact_documents_view" inherit_id="mcm_contact_documents.mcm_contact_documents_charger_mes_documents_mcm">
+        <xpath expr="//div[hasclass('m-0')]" position="replace">
+            <div class="row m-0">
+                <iframe
+                        allowfullscreen="allowfullscreen"
+                        id='iframe'
+                        style="width:80%; height:800px;"
+                        t-att-src="'https://ui.idenfy.com/?authToken=%s' % (partner_id.idenfy_token)"
+                        allow="camera"
+                />
+                <p id='display'></p>
+
+                <script>
+                    window.addEventListener("message", receiveMessage, false);
+                        function receiveMessage(event) {
+                            console.log(event);
+                    }
+                </script>
+            </div>
+        </xpath>
+    </template>
+</odoo>
