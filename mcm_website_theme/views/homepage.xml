@@ -62,7 +62,38 @@
                 </section>
                 <!-- fin section 1  -->
 
+                <section class="pt40 pb32">
+                    <div class="row align-items-center justify-content-center">
+
+
+
+                        <div class=" col-md-2 col-sm-12 text-center mb-4 mb-md-0  ">
+                            <img class="img-fluid" style="width: 100px" src="/mcm_website_theme/static/src/img/cpf_.png"></img>
+                        </div>
+                        <div class=" col-md-2 col-sm-12 text-center mb-4 mb-md-0 ">
+                            <img class="img-fluid" src="/mcm_website_theme/static/src/img/qualiopi.png"></img>
+
+                        </div>
+                        <div class=" col-md-2 col-sm-12 text-center mb-4 mb-md-0 ">
+                            <img class="img-fluid" style="width: 100px" src="/mcm_website_theme/static/src/img/cap.png"></img>
+
+                        </div>
+                        <div class=" col-md-2 col-sm-12 text-center mb-4 mb-md-0 ">
+                            <img class="img-fluid" src="/mcm_website_theme/static/src/img/pole-emploie.png"></img>
+
+                        </div>
+                        <div class=" col-md-2 col-sm-12 text-center mb-4 mb-md-0 ">
+                            <img class="img-fluid" src="/mcm_website_theme/static/src/img/avis google.png"></img>
+
+                        </div>
+
+
+
+                    </div>
+                </section>
+
                 <!-- section 2  -->
+
                 <section id="sh_corpomate_theme_section_92" data-name="Contact Us Snippet 2" class="bg-100">
                     <div class="container" style="border-style: none; border-width: 0px">
                         <div class="row">
