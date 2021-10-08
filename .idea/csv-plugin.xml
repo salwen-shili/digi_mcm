@@ -31,6 +31,13 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="/contact_deduplicate/data/ir_cron_data.xml">
+          <value>
+            <Attribute>
+              <option name="separator" value=":" />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="/examen_cma_fields/views/res_partner_sessions.xml">
           <value>
             <Attribute>
