@@ -48,9 +48,9 @@ class WebsiteSale(WebsiteSale):
         if (len(files_identity) > 2 or len(files_permis) > 2):
             name = http.request.env.user.name
             email = http.request.env.user.email
-            return request.redirect('/new_documents')
+            return request.redirect('/charger_mes_documents')
         if not files_identity:
-            return request.redirect('/new_documents')
+            return request.redirect('/charger_mes_documents')
         try:
             try:
                 files = request.httprequest.files.getlist('identity')
