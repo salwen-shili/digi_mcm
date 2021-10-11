@@ -98,20 +98,18 @@
             <span class="sr-only o_default_snippet_text">Next</span>
           </div>
         </div>
+        <!-- Logos-->
         <section class="pt40 pb32">
           <div class="row align-items-center justify-content-center">
-
-
-
             <div class=" col-md-2 col-sm-12 text-center mb-4 mb-md-0  ">
-              <img class="img-fluid" style="width: 100px" src="/mcm_website_theme/static/src/img/cpf_.png"></img>
+              <img class="img-fluid" style="width: 120px" src="/mcm_website_theme/static/src/img/cpf.png"></img>
             </div>
             <div class=" col-md-2 col-sm-12 text-center mb-4 mb-md-0 ">
-              <img class="img-fluid" style="width: 190px;" src="/mcm_website_theme/static/src/img/qualiopi.png"></img>
+              <img class="img-fluid" style="width: 200px;" src="/mcm_website_theme/static/src/img/qualiopi.png"></img>
 
             </div>
             <div class=" col-md-2 col-sm-12 text-center mb-4 mb-md-0 ">
-              <img class="img-fluid" style="width: 100px" src="/mcm_website_theme/static/src/img/cap.png"></img>
+              <img class="img-fluid" style="width: 120px" src="/mcm_website_theme/static/src/img/cap.png"></img>
 
             </div>
             <div class=" col-md-2 col-sm-12 text-center mb-4 mb-md-0 ">
@@ -120,13 +118,11 @@
             </div>
             <div class=" col-md-2 col-sm-12 text-center mb-4 mb-md-0 ">
               <img class="img-fluid" src="/mcm_website_theme/static/src/img/avis google.png"></img>
-
             </div>
-
-
 
           </div>
         </section>
+        <!-- fin LOGOS-->
         <section class="pt32 pb32" data-name="Title">
           <div class="container">
             <div class="row s_nb_column_fixed">
