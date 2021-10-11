@@ -28,36 +28,36 @@ class CRM(models.Model):
         """chercher la fiche client par num_dossier et 
         attribuer cette fiche au crm lead de meme apprenant"""
         for lead in leads:
-            num_dossier = lead.num_dossier
-            partners = self.env['res.partner'].search([])
-            for partner in partners:
-                if lead.stage_id.name != "Plateforme 360":
-                    if (partner.numero_cpf) and (partner.numero_cpf == lead.num_dossier):
-                        """Changer statut_cpf des fiches client selon
-                          statut de dossier nsur edof"""
-                        # if lead.stage_id.name == "En formation":
-                        #     partner.statut_cpf = "in_training"
-                        # if "Annulé" in lead.stage_id.name:
-                        #     partner.statut_cpf = "canceled"
-                        # if lead.stage_id.name == "Sortie de formation":
-                        #     partner.statut_cpf = "out_training"
-                        # if lead.stage_id.name == "Facturé":
-                        #     partner.statut_cpf = "bill"
-                        # if lead.stage_id.name == "Service fait déclaré":
-                        #     partner.statut_cpf = "service_declared"
-                        # if "Service fait validé" in lead.stage_id.name:
-                        #     partner.statut_cpf = "service_validated"
-                        # if lead.stage_id.name == "Annulation titulaire":
-                        #     partner.statut_cpf = "canceled"
-                        lead.sudo().write({
-                            'partner_id': partner,
-                            'name': partner.name,
-                            'mode_de_financement': 'cpf',
-                            'module_id': partner.module_id,
-                            'mcm_session_id': partner.mcm_session_id,
-                            'company_id': partner.company_id if partner.company_id else False
-                        })
-                        _logger.info("lead %s" % lead.name)
+            # num_dossier = lead.num_dossier
+            # partners = self.env['res.partner'].search([])
+            # for partner in partners:
+                # if lead.stage_id.name != "Plateforme 360":
+                #     if (partner.numero_cpf) and (partner.numero_cpf == lead.num_dossier):
+                #         """Changer statut_cpf des fiches client selon
+                #           statut de dossier nsur edof"""
+                #         # if lead.stage_id.name == "En formation":
+                #         #     partner.statut_cpf = "in_training"
+                #         # if "Annulé" in lead.stage_id.name:
+                #         #     partner.statut_cpf = "canceled"
+                #         # if lead.stage_id.name == "Sortie de formation":
+                #         #     partner.statut_cpf = "out_training"
+                #         # if lead.stage_id.name == "Facturé":
+                #         #     partner.statut_cpf = "bill"
+                #         # if lead.stage_id.name == "Service fait déclaré":
+                #         #     partner.statut_cpf = "service_declared"
+                #         # if "Service fait validé" in lead.stage_id.name:
+                #         #     partner.statut_cpf = "service_validated"
+                #         # if lead.stage_id.name == "Annulation titulaire":
+                #         #     partner.statut_cpf = "canceled"
+                #         lead.sudo().write({
+                #             'partner_id': partner,
+                #             'name': partner.name,
+                #             'mode_de_financement': 'cpf',
+                #             'module_id': partner.module_id,
+                #             'mcm_session_id': partner.mcm_session_id,
+                #             'company_id': partner.company_id if partner.company_id else False
+                #         })
+                #         _logger.info("lead %s" % lead.name)
             """Supprimer les doublons par num_dossier"""
             if lead.num_dossier and lead.id not in duplicate_lead:
                 duplicates = self.env['crm.lead'].search(
