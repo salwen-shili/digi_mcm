@@ -363,8 +363,7 @@ $(document).ready(function () {
       });
   });
   $("#first_form").submit(function (e) {
-    console.log(document.getElementById("request.website.id"));
-    if (document.getElementById("request.website.id").value === 1) {
+    if (document.getElementById("website").value === "1") {
       (function (w, d, t, r, u) {
         var f, n, i;
         (w[u] = w[u] || []),
