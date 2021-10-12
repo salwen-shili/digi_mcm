@@ -331,46 +331,8 @@
                         </div>
                     </div>
                 </section>
+                <!-- counter section-->
                 <section id="sh_corpomate_theme_section_229" class="sh_animation_part bg-900 oe_img_bg oe_custom_bg" data-name="Services counter" style="           background-image: url('/mcm_website_theme/static/src/img/homepage/fond.png');           background-position: 1.58% 78.71%;         ">
-                    <!-- <div class="container">
-                        <div class="row">
-                            <div class="col-md-3 col-sm-12 " style="border-style: none; border-width: 0px">
-                                <div class="sh_counter">
-                                    <p style="text-align: center">
-                                        <br/>
-                                        <br/>
-                                        <span style="font-size: 24px; color:#000">Pourquoi pas vous?</span>
-                                    </p>
-                                </div>
-                            </div>
-                            <div class="col-md-3 col-sm-12  pt32">
-                                <div class="sh_counter">
-                                    <h4 class="sh_count " style="color:#000">1500</h4>
-                                    <h3 style="font-weight: 600;font-size: 15px;color: rgb(255, 255, 255);background-color: rgba(0, 0, 0, 0.7);">
-                  STAGIAIRES FORMÉS*</h3>
-                                </div>
-                            </div>
-                            <div class="col-md-3 col-sm-12  pt32">
-                                <div class="sh_counter">
-                                    <h4>
-                                        <span class="sh_count" style="color:#000">96</span>
-                                        <span style="color:#000">%</span>
-                                    </h4>
-                                    <h3 style="font-weight: 600;font-size: 15px;color: rgb(255, 255, 255);background-color: rgba(0, 0, 0, 0.7);">
-                  CLIENTS SATISFAITS**</h3>
-                                </div>
-                            </div>
-                            <div class="col-md-3 col-sm-12  pt32">
-                                <div class="sh_counter">
-                                    <h4>
-                                        <span class="sh_count" style="color:#000">78</span>
-                                        <span style="color:#000">%</span>
-                                    </h4>
-                                    <h3 style="font-weight: 600;font-size: 15px;color: rgb(255, 255, 255);background-color: rgba(0, 0, 0, 0.7);"> MOYENNE DE TAUX DE RÉUSSITE***</h3>
-                                </div>
-                            </div>
-                        </div>
-                    </div> -->
                     <div class="container">
                         <div class="row clearfix">
                             <div class="title-column col-lg-5 col-md-12 col-sm-12">
@@ -425,6 +387,8 @@
                         </div>
                     </div>
                 </section>
+                <!-- End counter section-->
+                <!-- section under counter-->
                 <section id="sh_corpomate_theme_section_155" data-name="Heading" class="pb24 bg-100 pt16" style="">
                     <div class="container" style="border-style: none; border-width: 0px;">
                         <div class="row">
@@ -449,7 +413,7 @@
                         </div>
                     </div>
                 </section>
-
+                <!-- fin section under counter-->
                 <!-- PRICING TABLE-->
                 <div id="pricing">
                     <input t-att-value="request.website.microsoft_tracking_key" id="microsoft_tracking_key" type="hidden" />
