@@ -39,7 +39,7 @@
           
       </style>
       <div id="wrap" class="oe_structure oe_empty">
-        <input t-att-value="request.website.microsoft_tracking_key" id="microsoft_tracking_key" type="hidden" />
+
 
         <div id="myCarousel1629963079639" class="s_carousel carousel slide s_carousel_default" data-interval="10000" data-name="Carousel" style="border-style: none; border-width: 0px;">
           <ol class="carousel-indicators d-none">
@@ -504,6 +504,8 @@
 </section>
 <!-- PRICING TABLE-->
 <div id="pricing">
+<input t-att-value="request.website.microsoft_tracking_key" id="microsoft_tracking_key" type="hidden" />
+
 <section id="sh_corpomate_theme_section_188" class="sh_animation_part" data-name="Pricing">
   <div class="container">
     <div class="sh_title">

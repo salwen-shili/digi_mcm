@@ -686,6 +686,8 @@
 </section>
 <!-- PRICING TABLE-->
 <div id="pricing">
+<input t-att-value="request.website.microsoft_tracking_key" id="microsoft_tracking_key" type="hidden" />
+
 <section id="sh_corpomate_theme_section_188" class="sh_animation_part" data-name="Pricing">
 <div class="container">
 <div class="sh_title">
@@ -734,7 +736,7 @@
                             Je m'inscris
                                                 </a> -->
 <a href="#pricing">
-<button class="home-btn" onClick="(function(){packVtcPageFromationVtc;document.getElementById('form-1-1').submit();return false;})();return false;">
+<button class="home-btn" onClick="(function(){packVtcPageFromationVtc();document.getElementById('form-1-1').submit();return false;})();return false;">
                                 Je m'inscris
 </button>
 </a>
