@@ -19,6 +19,8 @@ class CRM(models.Model):
     ], string='Mode de financement')
     module_id = fields.Many2one('mcmacademy.module')
     mcm_session_id = fields.Many2one('mcmacademy.session')
+    numero_action = fields.Char(string="Identifiant interne d'action")
+
     """Affecter les crm lead aux apprenants convenables après l'importation
      Et supression des duplications"""
     def crm_import_data(self):
