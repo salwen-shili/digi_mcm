@@ -5,6 +5,8 @@
       <link href="/mcm_website_theme/static/src/css/theme.css" rel="stylesheet"/>
       <script defer="defer" type="text/javascript" src="/digimoov_website_templates/static/src/js/lazy-min.js"/>
       <link rel="stylesheet" href="/mcm_website_theme/static/src/css/homepage.css"/>
+      <script type="text/javascript" src="/mcm_website_theme/static/src/js/msAds.js"/>
+
 
       <style>
         .nav-pills .nav-link.active, .nav-pills .show &gt; .nav-link{
@@ -37,6 +39,8 @@
           
       </style>
       <div id="wrap" class="oe_structure oe_empty">
+        <input t-att-value="request.website.microsoft_tracking_key" id="microsoft_tracking_key" type="hidden" />
+
         <div id="myCarousel1629963079639" class="s_carousel carousel slide s_carousel_default" data-interval="10000" data-name="Carousel" style="border-style: none; border-width: 0px;">
           <ol class="carousel-indicators d-none">
             <li data-target="#myCarousel1629963079639" data-slide-to="0" class="active"/>
@@ -89,19 +93,19 @@
 
 
             <div class=" col-md-3 col-sm-12 text-center mb-4 mb-md-0  ">
-              <img class="img-fluid" style="width: 120px;" src="/mcm_website_theme/static/src/img/cpf_.png"/>
+              <img class="img-fluid" style="width: 100px;" src="/mcm_website_theme/static/src/img/cpf_.png"/>
             </div>
 
             <div class=" col-md-3 col-sm-12 text-center mb-4 mb-md-0 ">
-              <img class="img-fluid" style="width: 218px;" src="/mcm_website_theme/static/src/img/qualiopi.png"/>
+              <img class="img-fluid" style="width: 188px;" src="/mcm_website_theme/static/src/img/qualiopi.png"/>
 
             </div>
             <div class=" col-md-3 col-sm-12 text-center mb-4 mb-md-0 ">
-              <img class="img-fluid" style="width: 130px;" src="/mcm_website_theme/static/src/img/Logo-vert-sur-fond-blanc-en-.jpg.jpg"/>
+              <img class="img-fluid" style="width: 110px;" src="/mcm_website_theme/static/src/img/Logo-vert-sur-fond-blanc-en-.jpg.jpg"/>
 
             </div>
             <div class=" col-md-3 col-sm-12 text-center mb-4 mb-md-0 ">
-              <img class="img-fluid" style="width: 120px;" src="/mcm_website_theme/static/src/img/cap.png"/>
+              <img class="img-fluid" style="width: 100px;" src="/mcm_website_theme/static/src/img/cap.png"/>
 
             </div>
 
@@ -544,7 +548,7 @@
                             Je m'inscris
                                                 </a> -->
                   <a href="#pricing">
-                    <button class="home-btn" onClick="(function(){document.getElementById('form-1-3').submit();return false;})();return false;">Je m'inscris</button>
+                    <button class="home-btn" onClick="(function(){packVmdtrPageFormationTaxiMoto();document.getElementById('form-1-3').submit();return false;})();return false;">Je m'inscris</button>
                   </a>
                 </div>
               </form>
@@ -581,7 +585,7 @@
                             Je m'inscris
                                                 </a> -->
                   <a href="#pricing">
-                    <button class="home-btn" onClick="(function(){document.getElementById('form-1-1').submit();return false;})();return false;">Je m'inscris</button>
+                    <button class="home-btn" onClick="(function(){packVtcPageFormationTaxiMoto();document.getElementById('form-1-1').submit();return false;})();return false;">Je m'inscris</button>
                   </a>
                 </div>
               </form>
@@ -618,7 +622,7 @@
                             Je m'inscris
                                                 </a> -->
                   <a href="#pricing">
-                    <button class="home-btn" onClick="(function(){document.getElementById('form-1-2').submit();return false;})();return false;">Je m'inscris</button>
+                    <button class="home-btn" onClick="(function(){packVmdtrPageFormationTaxiMoto();document.getElementById('form-1-2').submit();return false;})();return false;">Je m'inscris</button>
                   </a>
                 </div>
               </form>
