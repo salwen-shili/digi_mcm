@@ -64,15 +64,15 @@ class Import(models.TransientModel):
                         if lead.stage_id.name == "Annulation titulaire":
                             partner.statut_cpf = "canceled"
 
-                        lead.sudo().write({
-                                'partner_id': partner,
-                                'name': partner.name,
-                                'mode_de_financement': 'cpf',
-                                'module_id': partner.module_id ,
-                                'mcm_session_id': partner.mcm_session_id,
-                                'company_id':partner.company_id.id if partner.company_id else False
-
-                            })
+                        # lead.sudo().write({
+                        #         'partner_id': partner,
+                        #         'name': partner.name,
+                        #         'mode_de_financement': 'cpf',
+                        #         'module_id': partner.module_id ,
+                        #         'mcm_session_id': partner.mcm_session_id,
+                        #         'company_id':partner.company_id.id if partner.company_id else False
+                        #
+                        #     })
 
 
         return result
