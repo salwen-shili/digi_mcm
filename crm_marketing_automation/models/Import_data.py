@@ -51,6 +51,8 @@ class Import(models.TransientModel):
                             partner.statut_cpf = "in_training"
                         if lead.stage_id.name == "Accepté":
                             partner.statut_cpf = "accepted"
+                            if not partner.id_edof:
+                                partner.id_edof=lead.numero_action
                         if "Annulé" in lead.stage_id.name:
                             partner.statut_cpf = "canceled"
                         if lead.stage_id.name == "Sortie de formation":
