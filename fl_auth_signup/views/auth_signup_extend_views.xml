@@ -323,7 +323,7 @@
                                                 <input t-att-value="request.website.id" id="website" type="hidden" />
 
 
-                                                <button onClick="(function(){packVtcHome(); document.getElementById('form-1-1').submit();return false;})();return false;" id="inscrire" type="submit" class="rkmd-btn btn-black ripple-effect ripple-yellow" data-oe-model="ir.ui.view" data-oe-id="1730" data-oe-field="arch" data-oe-xpath="/data/xpath[4]/div[2]/div[1]/div[1]/div[1]/div[1]/fieldset[1]/div[7]/button[1]">
+                                                <button id="inscrire" type="submit" class="rkmd-btn btn-black ripple-effect ripple-yellow" data-oe-model="ir.ui.view" data-oe-id="1730" data-oe-field="arch" data-oe-xpath="/data/xpath[4]/div[2]/div[1]/div[1]/div[1]/div[1]/fieldset[1]/div[7]/button[1]">
                                                 S'inscrire
                                                     <i class="material-icons right">send</i>
                                                 </button>
