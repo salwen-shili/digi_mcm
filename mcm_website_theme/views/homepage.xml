@@ -420,7 +420,6 @@
                 <!-- fin section under counter-->
                 <!-- PRICING TABLE-->
                 <div id="pricing">
-                    <input t-att-value="request.website.microsoft_tracking_key" id="microsoft_tracking_key" type="hidden" />
                     <section id="sh_corpomate_theme_section_188" class="sh_animation_part" data-name="Pricing">
                         <div class="container">
                             <div class="sh_title">
