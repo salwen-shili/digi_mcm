@@ -92,6 +92,8 @@ $(document).ready(function () {
           $(`#confirm_email_helper `).append("");
         }
       } else {
+        console.log("email !== confirm_email");
+        console.log(email, "  ", confirm_email);
         $(`#confirm_email_container `).addClass("error-input-field");
         $(`#confirm_email_helper span `).text(
           "L'email ne correspond pas au champs precedent! Veuillez confirmer votre email."
@@ -216,8 +218,8 @@ $(document).ready(function () {
     const toArray = Object.keys(valid).map((key, index) => {
       return valid[key];
     });
-    //
-    //
+    // console.log(valid);
+    // console.log("validation", toArray);
     for (let index = 0; index < toArray.length; index++) {
       if (toArray[index] === false) return false;
     }
@@ -225,12 +227,12 @@ $(document).ready(function () {
     return true;
   }
 
-  // //
+  // // console.log("valid submit en dehors  ", validSubmit);
   // $("#first_form").submit(function (e) {
-  // //
+  // //   console.log("valid  ", validSubmit);
   //   e.preventDefault();
 
-  // //
+  // //   console.log(checkValidationButton(validSubmit), "type");
   //   $(this).submit();
   // });
 
@@ -309,14 +311,14 @@ $(document).ready(function () {
 
   $(zipcode).on("blur", function () {
     var code = $(this).val();
-    //
+    //console.log(code);
     let url = apiCommunes + code + format;
-    //
+    //console.log(url);
 
     fetch(url, { method: "get" })
       .then((response) => response.json())
       .then((results) => {
-        //
+        //console.log(results);
         $(city).find("option").remove();
         if (results.length) {
           $(`#city_container `).removeClass("error-input-field");
@@ -327,8 +329,8 @@ $(document).ready(function () {
           $(voie).removeAttr("disabled");
           $(city).focus();
           $.each(results, function (key, value) {
-            //
-            //
+            //console.log(value);
+            // console.log(value.nom);
             $(city).removeAttr("disbaled");
 
             $(city).append(
@@ -356,15 +358,52 @@ $(document).ready(function () {
         }
       })
       .catch((err) => {
-        //
+        // console.log(err);
         $(city).find("option").remove();
       });
+  });
+  $("#first_form").submit(function (e) {
+    console.log("call submit");
+
+    (function (w, d, t, r, u) {
+      var f, n, i;
+      (w[u] = w[u] || []),
+        (f = function () {
+          var o = {
+            ti: document.getElementById("microsoft_tracking_key").value,
+          };
+          (o.q = w[u]), (w[u] = new UET(o)), w[u].push("pageLoad");
+        }),
+        (n = d.createElement(t)),
+        (n.src = r),
+        (n.async = 1),
+        (n.onload = n.onreadystatechange =
+          function () {
+            var s = this.readyState;
+            (s && s !== "loaded" && s !== "complete") ||
+              (f(), (n.onload = n.onreadystatechange = null));
+          }),
+        (i = d.getElementsByTagName(t)[0]),
+        i.parentNode.insertBefore(n, i);
+    })(window, document, "script", "//bat.bing.com/bat.js", "uetq");
+    console.log("inside script");
+    window.uetq = window.uetq || [];
+    window.uetq.push(
+      "event",
+      "click sur inscription a partir de vous n'avez pas de compte",
+      {
+        event_category: "Inscription",
+        event_label: "Inscription MCM",
+        event_value: "10",
+      }
+    );
+    console.log("after script");
   });
 
   //fetch voie address
   // $(typeVoie).on("blur", function () {
   //   let voieVal = $(this).val();
-  // //
+  // //   console.log(voieVal);
   //   // https://api-adresse.data.gouv.fr/search/?q=cour&type=street&postcode=75001
   //   let url =
   //     apiVoie +
@@ -373,7 +412,7 @@ $(document).ready(function () {
   //     zipcode.val() +
   //     "&city=" +
   //     city.val();
-  // //
+  // //   console.log(url);
 
   //   fetch(url, { method: "get" })
   //     .then((response) => response.json())
@@ -384,7 +423,7 @@ $(document).ready(function () {
   //           val.properties.name.split(" ")[0].toUpperCase() ===
   //           voieVal.toUpperCase()
   //       );
-  //       //
+  //       //console.log("filter", filteredResults);
   //       const finalResult = filteredResults.map((v) => {
   //         var values = v.properties.name.split(" ");
 
@@ -393,7 +432,7 @@ $(document).ready(function () {
   //           : "";
   //         return subs.charAt(0).toUpperCase() + subs.slice(1) + ` (${voieVal})`;
   //       });
-  // //
+  // //       console.log(finalResult, finalResult.length);
   //       if (finalResult.length) {
   //         $(`#nom_voie_container `).removeClass("error-input-field");
   //         $(`#nom_voie `).removeClass("error-input-field");
@@ -402,7 +441,7 @@ $(document).ready(function () {
   //         $(nom_voie).removeAttr("disabled");
   //         $(nom_voie).focus();
 
-  // //         //
+  // //         //   console.log("finalResult ", finalResult);
   //         $.each(finalResult, function (key, value) {
   //           $(nomVoie).append(
   //             '<option value="' + value + '">' + value + "</option>"
@@ -417,7 +456,7 @@ $(document).ready(function () {
   //       }
   //     })
   //     .catch((err) => {
-  // //
+  // //       console.log(err);
   //       $(nomVoie).find("option").remove();
   //     });
   // });
