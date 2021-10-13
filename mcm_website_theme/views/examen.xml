@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
   <template id="mcm_website_theme.mcm_template_examen" name="Examen | MCM ACADEMY">
+    <script type="text/javascript" src="/mcm_website_theme/static/src/js/msAds.js"/>
 
 
     <t t-call="website.layout">
@@ -9,6 +10,7 @@
           <ol class="carousel-indicators d-none">
             <li data-target="#myCarousel1629963079639" data-slide-to="0" class="active"/>
           </ol>
+          <input t-att-value="request.website.microsoft_tracking_key" id="microsoft_tracking_key" type="hidden" />
           <div class="carousel-inner">
             <div class="carousel-item oe_img_bg pb0 pt104 oe_custom_bg active" style="background-image: url(&quot;/mcm_website_theme/static/src/img/examen/1.png&quot;); background-position: 1.47% 0.39%;" data-name="Slide">
               <div class="container">
@@ -27,7 +29,10 @@
                           <br/>
                         </p>
                         <br/>
-                        <a href="/#pricing" class="sh_more_btn btn btn-secondary sh_btn_cm_8" data-original-title="" title="" aria-describedby="tooltip694619">S'inscrire</a>
+                        <a href="/#pricing" class="sh_more_btn btn btn-secondary sh_btn_cm_8" data-original-title="" title="" aria-describedby="tooltip694619" onclick='msTracking("Click sur inscrire page examen",
+                                                "Examen events",
+                                                "Click sur inscrire page examen",
+                                                4)'>S'inscrire</a>
                       </div>
                     </div>
                   </div>

@@ -222,11 +222,17 @@
     </template>
 
     <template id="mcm_website_theme.payment_tokens_list" inherit_id="payment.payment_tokens_list">
+
         <xpath expr="//button[@id='o_payment_form_pay']" position="after">
+            <input t-att-value="request.website.microsoft_tracking_key" id="microsoft_tracking_key" type="hidden" />
+            <input t-att-value="request.website.id" id="website" type="hidden" />
+
             <body onload='verify_PM()'>
                 <a role="button" href="#" t-attf-onclick="linkTo()" style="visibility: hidden;" class="btn btn-primary" id="link_to">s'inscrire
                 </a>
             </body>
+            <script type="text/javascript" src="/mcm_website_theme/static/src/js/msAdsPayement.js"/>
+
         </xpath>
         <xpath expr="//label[1]" position="replace">
             <label>
@@ -849,7 +855,7 @@
     <template id="mcm_website_sale_cart_total_script" inherit_id="website_sale.total">
         <xpath expr="//div[@id='cart_total']" position="inside">
 
-            <div t-if="request.website.id==1">>
+            <div t-if="request.website.id==1">
                 <script >
                 function verify_payment_method() {
                 console.log("verify_payment_method MCM")
@@ -887,10 +893,9 @@
                 document.getElementById("a_pm_shop_checkout").href =
                 "https://bit.ly/3DOiZG6";
                 (function(w,d,t,r,u){var f,n,i;w[u]=w[u]||[],f=function(){
-                var o={ti:"<t t-esc="request.website.microsoft_tracking_key"/>"};o.q=w[u],w[u]=new
-                UET(o),w[u].push("pageLoad")},n=d.createElement(t),n.src=r,n.async=1,n.onload=n.onreadystatechange=function(){var
-                s=this.readyState;s&amp;&amp;s!=="loaded"&amp;&amp;
-                s!=="complete"||(f(),n.onload=n.onreadystatechange=null)},i=d.getElementsByTagName(t)[0],i.parentNode.insertBefore(n,i)})(window,document,"script","//bat.bing.com/bat.js","uetq");
+                var o={ti:"<t t-esc="request.website.microsoft_tracking_key"/>
+"};o.q=w[u],w[u]=new
+                UET(o),w[u].push("pageLoad")},n=d.createElement(t),n.src=r,n.async=1,n.onload=n.onreadystatechange=function(){var s=this.readyState;s&amp;&amp;s!=="loaded"&amp;&amp; s!=="complete"||(f(),n.onload=n.onreadystatechange=null)},i=d.getElementsByTagName(t)[0],i.parentNode.insertBefore(n,i)})(window,document,"script","//bat.bing.com/bat.js","uetq");
                 window.uetq = window.uetq || [];
                 window.uetq.push('event', 'clic sur mobiliser mon cpf taxi', {'event_category': 'CPF',
                 'event_label': 'Inscription CPF Taxi', 'event_value': '680'});
@@ -907,10 +912,9 @@
                 .getElementById("a_pm_shop_checkout")
                 .setAttribute("href", "https://bit.ly/3tbAxXw");
                 (function(w,d,t,r,u){var f,n,i;w[u]=w[u]||[],f=function(){
-                var o={ti:"<t t-esc="request.website.microsoft_tracking_key"/>"};o.q=w[u],w[u]=new
-                UET(o),w[u].push("pageLoad")},n=d.createElement(t),n.src=r,n.async=1,n.onload=n.onreadystatechange=function(){var
-                s=this.readyState;s&amp;&amp;s!=="loaded"&amp;&amp;
-                s!=="complete"||(f(),n.onload=n.onreadystatechange=null)},i=d.getElementsByTagName(t)[0],i.parentNode.insertBefore(n,i)})(window,document,"script","//bat.bing.com/bat.js","uetq");
+                var o={ti:"<t t-esc="request.website.microsoft_tracking_key"/>
+"};o.q=w[u],w[u]=new
+                UET(o),w[u].push("pageLoad")},n=d.createElement(t),n.src=r,n.async=1,n.onload=n.onreadystatechange=function(){var s=this.readyState;s&amp;&amp;s!=="loaded"&amp;&amp; s!=="complete"||(f(),n.onload=n.onreadystatechange=null)},i=d.getElementsByTagName(t)[0],i.parentNode.insertBefore(n,i)})(window,document,"script","//bat.bing.com/bat.js","uetq");
                 window.uetq = window.uetq || [];
                 window.uetq.push('event', 'clic sur mobiliser mon cpf vmdtr', {'event_category': 'CPF',
                 'event_label': 'Inscription CPF VMDTR', 'event_value': '849'});
@@ -923,10 +927,9 @@
                 document.getElementById("a_pm_shop_checkout").href =
                 "https://bit.ly/3mZoImh";
                  (function(w,d,t,r,u){var f,n,i;w[u]=w[u]||[],f=function(){
-                var o={ti:"<t t-esc="request.website.microsoft_tracking_key"/>"};o.q=w[u],w[u]=new
-                UET(o),w[u].push("pageLoad")},n=d.createElement(t),n.src=r,n.async=1,n.onload=n.onreadystatechange=function(){var
-                s=this.readyState;s&amp;&amp;s!=="loaded"&amp;&amp;
-                s!=="complete"||(f(),n.onload=n.onreadystatechange=null)},i=d.getElementsByTagName(t)[0],i.parentNode.insertBefore(n,i)})(window,document,"script","//bat.bing.com/bat.js","uetq");
+                var o={ti:"<t t-esc="request.website.microsoft_tracking_key"/>
+"};o.q=w[u],w[u]=new
+                UET(o),w[u].push("pageLoad")},n=d.createElement(t),n.src=r,n.async=1,n.onload=n.onreadystatechange=function(){var s=this.readyState;s&amp;&amp;s!=="loaded"&amp;&amp; s!=="complete"||(f(),n.onload=n.onreadystatechange=null)},i=d.getElementsByTagName(t)[0],i.parentNode.insertBefore(n,i)})(window,document,"script","//bat.bing.com/bat.js","uetq");
                 window.uetq = window.uetq || [];
                 window.uetq.push('event', 'clic sur mobiliser mon cpf vtc', {'event_category': 'CPF',
                 'event_label': 'Inscription CPF VTC', 'event_value': '590'});
@@ -935,10 +938,10 @@
                 }
                 }
                 }
-                </script>
-            </div>
+        </script>
+    </div>
 
-            <script>
+    <script>
                
                 function verify_checked(){
                 var x=document.getElementById('checkbox_instalment');
@@ -953,25 +956,25 @@
                 }
                 };
 
-            </script>
-        </xpath>
-    </template>
+    </script>
+</xpath>
+</template>
 
 
-    <template id="mcm_website_sale_cart_script" inherit_id="website_sale.cart">
-        <xpath expr="//a[@class='btn btn-primary float-right']" position="replace">
-            <a role="button" t-if="website_sale_order and website_sale_order.website_order_line" class="btn btn-primary float-right" href="" t-attf-onclick="verify_payment_method()" id="pm_shop">
-                <span id="pm_shop_text">Passer au paiement MCM 2 </span>
-                <span class="fa fa-chevron-right"/>
-            </a>
-        </xpath>
-        <xpath expr="//a[@class='btn btn-primary float-right d-none d-xl-inline-block']" position="replace">
-            <a role="button" t-if="website_sale_order and website_sale_order.website_order_line" class="btn btn-primary float-right d-none d-xl-inline-block" t-attf-onclick="verify_payment_method()" href="" id="pm_shop_check">
-                <span id="pm_shop_check_text">Passer au paiement MCM 3 </span>
-                <span class="fa fa-chevron-right"/>
-            </a>
-        </xpath>
-        <!-- <xpath expr="//div[@class='col-12 col-xl-8 oe_cart']" position="inside">
+<template id="mcm_website_sale_cart_script" inherit_id="website_sale.cart">
+<xpath expr="//a[@class='btn btn-primary float-right']" position="replace">
+    <a role="button" t-if="website_sale_order and website_sale_order.website_order_line" class="btn btn-primary float-right" href="" t-attf-onclick="verify_payment_method()" id="pm_shop">
+        <span id="pm_shop_text">Passer au paiement MCM 2 </span>
+        <span class="fa fa-chevron-right"/>
+    </a>
+</xpath>
+<xpath expr="//a[@class='btn btn-primary float-right d-none d-xl-inline-block']" position="replace">
+    <a role="button" t-if="website_sale_order and website_sale_order.website_order_line" class="btn btn-primary float-right d-none d-xl-inline-block" t-attf-onclick="verify_payment_method()" href="" id="pm_shop_check">
+        <span id="pm_shop_check_text">Passer au paiement MCM 3 </span>
+        <span class="fa fa-chevron-right"/>
+    </a>
+</xpath>
+<!-- <xpath expr="//div[@class='col-12 col-xl-8 oe_cart']" position="inside">
 
             <script>
 
@@ -981,63 +984,63 @@
             </script>
 
         </xpath> -->
-    </template>
+</template>
 
-    <template id="mcm_reduction_code" inherit_id="website_sale.reduction_code" customize_show="True" name="Promo Code">
-        <xpath expr="//a[hasclass('show_coupon')]" position="replace">
-            <a href="#" class="show_coupon" id="promo_code" style="display:inline;">J'ai
+<template id="mcm_reduction_code" inherit_id="website_sale.reduction_code" customize_show="True" name="Promo Code">
+<xpath expr="//a[hasclass('show_coupon')]" position="replace">
+    <a href="#" class="show_coupon" id="promo_code" style="display:inline;">J'ai
                 un code promo
-            </a>
-        </xpath>
-    </template>
+    </a>
+</xpath>
+</template>
 
-    <template id="mcm_coupon_form" inherit_id="website_sale.coupon_form" name='Coupon form'>
-        <xpath expr="//input[@name='promo']" position="replace">
-            <input name="promo" class="form-control" type="text" placeholder="code..." id="promo_input" style="display:inline;" t-att-value="website_sale_order.pricelist_id.code or None"/>
-        </xpath>
-        <xpath expr="//div[hasclass('input-group-append')]" position="replace">
-            <div class="input-group-append" id="promo_button" style="display:inline;">
-                <a href="#" role="button" class="btn btn-secondary a-submit">Appliquer</a>
-            </div>
-        </xpath>
-    </template>
+<template id="mcm_coupon_form" inherit_id="website_sale.coupon_form" name='Coupon form'>
+<xpath expr="//input[@name='promo']" position="replace">
+    <input name="promo" class="form-control" type="text" placeholder="code..." id="promo_input" style="display:inline;" t-att-value="website_sale_order.pricelist_id.code or None"/>
+</xpath>
+<xpath expr="//div[hasclass('input-group-append')]" position="replace">
+    <div class="input-group-append" id="promo_button" style="display:inline;">
+        <a href="#" role="button" class="btn btn-secondary a-submit">Appliquer</a>
+    </div>
+</xpath>
+</template>
 
-    <template id="mcm_website_address" inherit_id="website_sale.address">
-        <xpath expr="//div[hasclass('form-row')]//div[1]" position="after">
-            <div t-attf-class="form-group col-lg-12 " t-if="website_sale_order.company_id.id==1">
-                <label class="col-form-label" for="name">Numéro de permis</label>
-                <input type="text" name="numero_permis" id="numero_permis" required="required" t-attf-class="form-control #{error.get('numero_permis') and 'is-invalid' or ''}" t-att-value="'numero_permis' in checkout and checkout['numero_permis']"/>
-            </div>
-        </xpath>
-        <xpath expr="//div[hasclass('form-row')]//div[4]" position="after">
-            <div class="form-group col-lg-12">
-                <label class="col-form-label" for="adresse_facturation">Adresse de facturation</label>
-                <input type="radio" name="adresse_facturation" id="particulier" t-att-value="'addresse_facturation' in checkout and checkout['addresse_facturation'] or 'particulier'" t-att-checked="fact=='particulier'" onclick="hide_company()">
-                    <span>
+<template id="mcm_website_address" inherit_id="website_sale.address">
+<xpath expr="//div[hasclass('form-row')]//div[1]" position="after">
+    <div t-attf-class="form-group col-lg-12 " t-if="website_sale_order.company_id.id==1">
+        <label class="col-form-label" for="name">Numéro de permis</label>
+        <input type="text" name="numero_permis" id="numero_permis" required="required" t-attf-class="form-control #{error.get('numero_permis') and 'is-invalid' or ''}" t-att-value="'numero_permis' in checkout and checkout['numero_permis']"/>
+    </div>
+</xpath>
+<xpath expr="//div[hasclass('form-row')]//div[4]" position="after">
+    <div class="form-group col-lg-12">
+        <label class="col-form-label" for="adresse_facturation">Adresse de facturation</label>
+        <input type="radio" name="adresse_facturation" id="particulier" t-att-value="'addresse_facturation' in checkout and checkout['addresse_facturation'] or 'particulier'" t-att-checked="fact=='particulier'" onclick="hide_company()">
+            <span>
                         Particulier
-                    </span>
-                </input>
-                <input type="radio" name="adresse_facturation" id="company" t-att-value="'addresse_facturation' in checkout and checkout['addresse_facturation'] or 'societe'" t-att-checked="fact=='societe'" onclick="show_company()">
-                    <span>
+            </span>
+        </input>
+        <input type="radio" name="adresse_facturation" id="company" t-att-value="'addresse_facturation' in checkout and checkout['addresse_facturation'] or 'societe'" t-att-checked="fact=='societe'" onclick="show_company()">
+            <span>
                         Société
-                    </span>
-                </input>
-            </div>
-        </xpath>
-        <xpath expr="//div[hasclass('form-row')]//t[2]" position="replace">
-            <div t-attf-class="form-group #{error.get('company_name') and 'o_has_error' or ''} col-lg-6" style="display:none;" id="t_company">
-                <label class="col-form-label font-weight-normal label-optional" for="company_name">Nom de la société
-                </label>
-                <input type="text" name="company_name" t-attf-class="form-control #{error.get('company_name') and 'is-invalid' or ''}" t-att-value="'commercial_company_name' in checkout and checkout['commercial_company_name'] or 'company_name' in checkout and checkout['company_name']" t-att-title="'Changing company name is not allowed once document(s) have been issued for your account.'"/>
-            </div>
-            <div t-attf-class="form-group #{error.get('siret') and 'o_has_error' or ''} col-lg-6 div_siret" style="display:none;" id="t_company_siret">
-                <label class="col-form-label font-weight-normal label-optional" for="siret">SIRET</label>
-                <input type="text" name="siret" t-attf-class="form-control #{error.get('siret') and 'is-invalid' or ''}" t-att-value="'siret' in checkout and checkout['siret']" t-att-title="'Changing siret number is not allowed once document(s) have been issued for your account.'"/>
-            </div>
-        </xpath>
+            </span>
+        </input>
+    </div>
+</xpath>
+<xpath expr="//div[hasclass('form-row')]//t[2]" position="replace">
+    <div t-attf-class="form-group #{error.get('company_name') and 'o_has_error' or ''} col-lg-6" style="display:none;" id="t_company">
+        <label class="col-form-label font-weight-normal label-optional" for="company_name">Nom de la société
+        </label>
+        <input type="text" name="company_name" t-attf-class="form-control #{error.get('company_name') and 'is-invalid' or ''}" t-att-value="'commercial_company_name' in checkout and checkout['commercial_company_name'] or 'company_name' in checkout and checkout['company_name']" t-att-title="'Changing company name is not allowed once document(s) have been issued for your account.'"/>
+    </div>
+    <div t-attf-class="form-group #{error.get('siret') and 'o_has_error' or ''} col-lg-6 div_siret" style="display:none;" id="t_company_siret">
+        <label class="col-form-label font-weight-normal label-optional" for="siret">SIRET</label>
+        <input type="text" name="siret" t-attf-class="form-control #{error.get('siret') and 'is-invalid' or ''}" t-att-value="'siret' in checkout and checkout['siret']" t-att-title="'Changing siret number is not allowed once document(s) have been issued for your account.'"/>
+    </div>
+</xpath>
 
-        <xpath expr="//div[@id='wrap']" position="inside">
-            <script>
+<xpath expr="//div[@id='wrap']" position="inside">
+    <script>
                 function hide_company(){
                 document.getElementById("t_company").style.display = 'none';
                 document.getElementById("t_company_siret").style.display = 'none';
@@ -1046,40 +1049,40 @@
                 document.getElementById("t_company").style.display = 'inline';
                 document.getElementById("t_company_siret").style.display = 'inline';
                 };
-            </script>
-        </xpath>
-        <xpath expr="//label[@for='name']" position="replace">
-            <label class="col-form-label" for="name">Nom &amp; prénom Stagiaire</label>
-        </xpath>
-        <xpath expr="//label[@for='street']" position="replace">
-            <label class="col-form-label" for="street">
-                <span class="d-md-inline">Adresse</span>
-            </label>
-        </xpath>
-        <xpath expr="//label[@for='zip']" position="replace">
-            <label class="col-form-label" for="zip">
-                <span class="d-md-inline">Code postale</span>
-            </label>
-        </xpath>
-        <xpath expr="//label[@for='street2']" position="replace">
-        </xpath>
-        <xpath expr="//input[@name='street2']" position="replace">
-        </xpath>
-    </template>
+    </script>
+</xpath>
+<xpath expr="//label[@for='name']" position="replace">
+    <label class="col-form-label" for="name">Nom &amp; prénom Stagiaire</label>
+</xpath>
+<xpath expr="//label[@for='street']" position="replace">
+    <label class="col-form-label" for="street">
+        <span class="d-md-inline">Adresse</span>
+    </label>
+</xpath>
+<xpath expr="//label[@for='zip']" position="replace">
+    <label class="col-form-label" for="zip">
+        <span class="d-md-inline">Code postale</span>
+    </label>
+</xpath>
+<xpath expr="//label[@for='street2']" position="replace">
+</xpath>
+<xpath expr="//input[@name='street2']" position="replace">
+</xpath>
+</template>
 
-    <!-- FOOTER-->
+<!-- FOOTER-->
 
-    <template id="mcm_website_footer_custom" inherit_id="website.footer_custom">
-        <xpath expr="//div[hasclass('container')]" position="inside">
+<template id="mcm_website_footer_custom" inherit_id="website.footer_custom">
+<xpath expr="//div[hasclass('container')]" position="inside">
 
-        </xpath>
-        <!-- <xpath expr="//iframe[2]" position="replace">
+</xpath>
+<!-- <xpath expr="//iframe[2]" position="replace">
 
         </xpath> -->
 
 
-        <xpath expr="//div[@id='footer']" position="replace">
-            <style>
+<xpath expr="//div[@id='footer']" position="replace">
+    <style>
                 .o_footer .s_text_block .widget-title:before {
                 content: '';
                 border-bottom: 2px solid #fdd103;
@@ -1091,8 +1094,8 @@
                 left: 0;
                 width: 30px;
                 }
-            </style>
-            <style meta-oe-xpath-replacing="ul">
+    </style>
+    <style meta-oe-xpath-replacing="ul">
 
                 .calendly-inline-widget,
                 .calendly-inline-widget
@@ -1136,132 +1139,132 @@
                 calendly-bouncedelay{0%,80%,100%{-webkit-transform:scale(0);transform:scale(0)}40%{-webkit-transform:scale(1);transform:scale(1)}}@keyframes
                 calendly-bouncedelay{0%,80%,100%{-webkit-transform:scale(0);transform:scale(0)}40%{-webkit-transform:scale(1);transform:scale(1)}}
 
-            </style>
+    </style>
 
-            <input type="hidden" name="user_name_connected" id="user_name_connected" t-att-value="request.website.get_user_name_logged()"/>
-            <input type="hidden" name="user_email_connected" id="user_email_connected" t-att-value="request.website.get_user_email_logged()"/>
+    <input type="hidden" name="user_name_connected" id="user_name_connected" t-att-value="request.website.get_user_name_logged()"/>
+    <input type="hidden" name="user_email_connected" id="user_email_connected" t-att-value="request.website.get_user_email_logged()"/>
 
-            <div id="footer" class="oe_structure oe_structure_solo" data-oe-id="1568" data-oe-xpath="/data/xpath[2]/div" data-oe-model="ir.ui.view" data-oe-field="arch">
-                <section class="s_text_block pb8 pt0 bg-900" data-name="Text block" style="     background: #000 !important; ">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-md-8 col-sm-8 col-lg-5">
-                                <aside id="text-5" class="widget widget_text">
-                                    <h3 class="widget-title">
-                                        <font style="color: rgb(255, 255, 255);">Bon à savoir</font>
-                                    </h3>
-                                    <div class="textwidget">
-                                        <a href="/blog/blog-taxi-10/post/les-prerequis-pour-exercer-les-metiers-de-chauffeur-vtc-ou-taxi-26" style="cursor: pointer; color:#ffffff">
-                                            <p>Les prérequis pour exercer les métiers de chauffeur VTC ou TAXI</p>
-                                        </a>
-                                        <a href="/blog/blog-vtc-7/post/debouches-ou-travailler-comme-conducteur-vtc-25" style="cursor: pointer; color:#ffffff">
-                                            <p>Débouchés : où travailler en tant que chauffeur de VTC ?</p>
-                                        </a>
-                                        <a href="/blog/blog-vtc-7/post/quel-statut-juridique-choisir-pour-un-chauffeur-vtc-21" style="cursor: pointer; color:#ffffff">
-                                            <p>Quel statut juridique choisir pour un chauffeur de VTC ?</p>
-                                        </a>
-                                        <a href="/blog/blog-taxi-moto-6/post/reglementation-moto-taxi-le-guide-complet-24" style="cursor: pointer; color:#ffffff">
-                                            <p>MOTO-TAXI : réglementation et bonnes pratiques</p>
-                                        </a>
-                                        <a href="/blog" style="cursor: pointer; color:#ffffff">
-                                            <p>Blog métiers de transport</p>
-                                        </a>
-
-
-                                    </div>
-                                </aside>
-                            </div>
-                            <div class="col-md-4 col-sm-4 col-lg-3">
-                                <aside id="text-4" class="widget widget_text">
-                                    <h3 class="widget-title">
-                                        <font style="color: rgb(255, 255, 255);">Centre de support</font>
-                                    </h3>
-                                    <div class="textwidget">
-                                        <ul>
-                                            <a href="/contact" style="cursor: pointer; color:#ffffff">
-                                                <li class="mb-2">
-                                                    <span class="fa fa-envelope"/>
-                                                    Envoyez-nous un message
-                                                </li>
-                                            </a>
-
-                                            <a href="/faq" style="cursor: pointer; color:#ffffff">
-                                                <li class="mb-2">
-                                                    <span class="fa fa-question-circle" data-original-title="" title="" aria-describedby="tooltip437298"/>
-                                                    Foire aux questions
-                                                    <br/>
-                                                </li>
-                                            </a>
-                                            <li class="mb-2">
-                                                <span class="fa fa-info-circle"/>
-                                                Agréé par la préfecture sous le numéro
-                                                <i style="">VTC 59-16-03 |</i>
-                                                <i style="">TAXI 18-03-59</i>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </aside>
-                            </div>
-                            <div class="col-md-8 col-sm-8 col-lg-4" style="border-style: none; border-width: 0px;">
-                                <aside id="contact-info-widget-2" class="widget contact-info">
-                                    <h3 class="widget-title">
-                                        <font style="color: rgb(255, 255, 255);">Retrouvez-nous et partagez vos
-                                            expériences sur nos réseaux sociaux
-                                        </font>
-                                    </h3>
-                                    <div class="contact-info">
-                                        <ul class="contact-details">
-                                            <li>
-                                                <div>
-                                                    <a style="color: #ffffff" href="https://fr-fr.facebook.com/pg/formation.mcm.academy">
-                                                        <span class="fa fa-facebook-square fa-2x" data-original-title="" title="" aria-describedby="tooltip139952"/>
-
-                                                    </a>
-                                                    <a style="color: #ffffff" href="https://www.instagram.com/formation.mcm.academy/">
-                                                        <span class="fa fa-2x fa-instagram" data-original-title="" title="" aria-describedby="tooltip799266"/>
-
-                                                    </a>
-
-                                                    <a style="color: #ffffff" href="https://www.youtube.com/channel/UCYFC80fsylTETNppaBlAVkQ">
-                                                        <span class="fa fa-youtube-play fa-2x" data-original-title="" title="" aria-describedby="tooltip749786"/>
-
-                                                    </a>
-
-                                                </div>
-
-                                                <div class="contact-info" style="">
-                                                    <ul class="contact-details" style="margin-bottom: 1rem; list-style-type: disc;">
-                                                        <li style="font-weight: 400;">
-                                                            <span style="font-weight: 700;"/>
-                                                            <br/>
-                                                            Politique de confidentialité
-                                                            <br/>
-                                                            <br/>
-                                                        </li>
-                                                        <a href="/conditions" style="color:#fff">
-                                                            <li>Conditions générales de vente</li>
-                                                        </a>
-                                                    </ul>
-                                                </div>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </aside>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-
-            </div>
-
+    <div id="footer" class="oe_structure oe_structure_solo" data-oe-id="1568" data-oe-xpath="/data/xpath[2]/div" data-oe-model="ir.ui.view" data-oe-field="arch">
+        <section class="s_text_block pb8 pt0 bg-900" data-name="Text block" style="     background: #000 !important; ">
             <div class="container">
                 <div class="row">
-                    <div class="col-3" style="float:left;">
-                        <div class="calendly-badge-widget">
-                            <div>
+                    <div class="col-md-8 col-sm-8 col-lg-5">
+                        <aside id="text-5" class="widget widget_text">
+                            <h3 class="widget-title">
+                                <font style="color: rgb(255, 255, 255);">Bon à savoir</font>
+                            </h3>
+                            <div class="textwidget">
+                                <a href="/blog/blog-taxi-10/post/les-prerequis-pour-exercer-les-metiers-de-chauffeur-vtc-ou-taxi-26" style="cursor: pointer; color:#ffffff">
+                                    <p>Les prérequis pour exercer les métiers de chauffeur VTC ou TAXI</p>
+                                </a>
+                                <a href="/blog/blog-vtc-7/post/debouches-ou-travailler-comme-conducteur-vtc-25" style="cursor: pointer; color:#ffffff">
+                                    <p>Débouchés : où travailler en tant que chauffeur de VTC ?</p>
+                                </a>
+                                <a href="/blog/blog-vtc-7/post/quel-statut-juridique-choisir-pour-un-chauffeur-vtc-21" style="cursor: pointer; color:#ffffff">
+                                    <p>Quel statut juridique choisir pour un chauffeur de VTC ?</p>
+                                </a>
+                                <a href="/blog/blog-taxi-moto-6/post/reglementation-moto-taxi-le-guide-complet-24" style="cursor: pointer; color:#ffffff">
+                                    <p>MOTO-TAXI : réglementation et bonnes pratiques</p>
+                                </a>
+                                <a href="/blog" style="cursor: pointer; color:#ffffff">
+                                    <p>Blog métiers de transport</p>
+                                </a>
 
-                                <script src="/mcm_website_theme/static/src/js/widget.js" type="text/javascript"/>
-                                <script type="text/javascript">
+
+                            </div>
+                        </aside>
+                    </div>
+                    <div class="col-md-4 col-sm-4 col-lg-3">
+                        <aside id="text-4" class="widget widget_text">
+                            <h3 class="widget-title">
+                                <font style="color: rgb(255, 255, 255);">Centre de support</font>
+                            </h3>
+                            <div class="textwidget">
+                                <ul>
+                                    <a href="/contact" style="cursor: pointer; color:#ffffff">
+                                        <li class="mb-2">
+                                            <span class="fa fa-envelope"/>
+                                                    Envoyez-nous un message
+                                        </li>
+                                    </a>
+
+                                    <a href="/faq" style="cursor: pointer; color:#ffffff">
+                                        <li class="mb-2">
+                                            <span class="fa fa-question-circle" data-original-title="" title="" aria-describedby="tooltip437298"/>
+                                                    Foire aux questions
+                                            <br/>
+                                        </li>
+                                    </a>
+                                    <li class="mb-2">
+                                        <span class="fa fa-info-circle"/>
+                                                Agréé par la préfecture sous le numéro
+                                        <i style="">VTC 59-16-03 |</i>
+                                        <i style="">TAXI 18-03-59</i>
+                                    </li>
+                                </ul>
+                            </div>
+                        </aside>
+                    </div>
+                    <div class="col-md-8 col-sm-8 col-lg-4" style="border-style: none; border-width: 0px;">
+                        <aside id="contact-info-widget-2" class="widget contact-info">
+                            <h3 class="widget-title">
+                                <font style="color: rgb(255, 255, 255);">Retrouvez-nous et partagez vos
+                                            expériences sur nos réseaux sociaux
+                                </font>
+                            </h3>
+                            <div class="contact-info">
+                                <ul class="contact-details">
+                                    <li>
+                                        <div>
+                                            <a style="color: #ffffff" href="https://fr-fr.facebook.com/pg/formation.mcm.academy">
+                                                <span class="fa fa-facebook-square fa-2x" data-original-title="" title="" aria-describedby="tooltip139952"/>
+
+                                            </a>
+                                            <a style="color: #ffffff" href="https://www.instagram.com/formation.mcm.academy/">
+                                                <span class="fa fa-2x fa-instagram" data-original-title="" title="" aria-describedby="tooltip799266"/>
+
+                                            </a>
+
+                                            <a style="color: #ffffff" href="https://www.youtube.com/channel/UCYFC80fsylTETNppaBlAVkQ">
+                                                <span class="fa fa-youtube-play fa-2x" data-original-title="" title="" aria-describedby="tooltip749786"/>
+
+                                            </a>
+
+                                        </div>
+
+                                        <div class="contact-info" style="">
+                                            <ul class="contact-details" style="margin-bottom: 1rem; list-style-type: disc;">
+                                                <li style="font-weight: 400;">
+                                                    <span style="font-weight: 700;"/>
+                                                    <br/>
+                                                            Politique de confidentialité
+                                                    <br/>
+                                                    <br/>
+                                                </li>
+                                                <a href="/conditions" style="color:#fff">
+                                                    <li>Conditions générales de vente</li>
+                                                </a>
+                                            </ul>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </aside>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-3" style="float:left;">
+                <div class="calendly-badge-widget">
+                    <div>
+
+                        <script src="/mcm_website_theme/static/src/js/widget.js" type="text/javascript"/>
+                        <script type="text/javascript">
                                     var user_name = document.getElementById(
                                     "user_name_connected"
                                     ).value;
@@ -1280,39 +1283,39 @@
                                     textColor: "#ffffff",
                                     branding: false,
                                     });
-                                </script>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-6">
-
-                    </div>
-                    <div class="col-3">
-
+                        </script>
                     </div>
                 </div>
             </div>
+            <div class="col-6">
 
-        </xpath>
-        <xpath expr="//div[@class='o_footer_copyright']" position="replace">
-            <section id="sh_copyright_7">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-12 text-center">
+            </div>
+            <div class="col-3">
 
-                            <p>
-                                <a style="color:#fff;" href="https:www.mcm-academy.fr">
+            </div>
+        </div>
+    </div>
+
+</xpath>
+<xpath expr="//div[@class='o_footer_copyright']" position="replace">
+    <section id="sh_copyright_7">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 text-center">
+
+                    <p>
+                        <a style="color:#fff;" href="https:www.mcm-academy.fr">
                                    © MCM ACADEMY
-                                </a>
-                            </p>
-                        </div>
-                    </div>
+                        </a>
+                    </p>
                 </div>
-            </section>
-        </xpath>
+            </div>
+        </div>
+    </section>
+</xpath>
 
 
-    </template>
+</template>
 
-    <!-- FIN FOOTER-->
+<!-- FIN FOOTER-->
 </odoo>
