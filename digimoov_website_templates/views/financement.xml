@@ -87,8 +87,12 @@
                                                 <font style="color: rgb(66, 66, 66);">&amp;nbsp;</font>
                                             </h3>
                                         </section>
+                                        <script type="text/javascript" src="/mcm_website_theme/static/src/js/msAds.js"/>
+
+                                        <input t-att-value="request.website.microsoft_tracking_key" id="microsoft_tracking_key" type="hidden" />
+
                                         <br/>
-                                        <a href="/blog/digimoov-3/post/le-compte-personnel-de-formation-cpf-tout-comprendre-7" class="bannerbtn mb32 btn btn-alpha rounded-circle" data-original-title="" title="" aria-describedby="tooltip117958">En-savoir plus
+                                        <a href="/blog/digimoov-3/post/le-compte-personnel-de-formation-cpf-tout-comprendre-7" class="bannerbtn mb32 btn btn-alpha rounded-circle" data-original-title="" title="" aria-describedby="tooltip117958" onClick="msTracking('clic sur le bouton en-savoir plus page financement','Click events','clic sur le bouton en-savoir plus page financement','80');">En-savoir plus
                                         </a>
                                     </div>
                                     <div class="col-lg-4 col-md-4 col-sm-4">
