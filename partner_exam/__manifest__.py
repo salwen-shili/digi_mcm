@@ -27,7 +27,6 @@
         'views/partner.xml',
         'views/notes_examens_partner.xml',
         'views/add_signature.xml',
-        'views/ir_cron.xml',
         'report/menu.xml',
         'report/generate_releve_de_notes.xml',
         'report/convocation_contact.xml',
@@ -35,6 +34,7 @@
         'report/mass_pdf_relevé_de_note_examen.xml',
         'report/attestation_suivi_formation.xml',
         'data/mail_template_suivi_formation.xml',
+        'data/ir_cron.xml',
     ],
     'qweb': [],
     'demo': [
