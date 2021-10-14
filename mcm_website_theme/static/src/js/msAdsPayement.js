@@ -32,7 +32,7 @@ document.addEventListener("DOMContentLoaded", function () {
   //trigger tracking on submit payment
   document
     .getElementById("o_payment_form_pay")
-    .addEventListener("submit", function (e) {
+    .addEventListener("click", function (e) {
       var event;
       var event_category;
       var event_label;
@@ -49,43 +49,43 @@ document.addEventListener("DOMContentLoaded", function () {
         case "Formation à distance TAXI":
           event = "vente taxi";
           event_category = "vente";
-          event_label = "vente taxi en cours";
+          event_label = "vente taxi initié";
           event_value = "690";
           break;
         case "Formation à distance VTC":
           event = "vente vtc";
           event_category = "vente";
-          event_label = "vente vtc en cours";
+          event_label = "vente vtc initié";
           event_value = "690";
           break;
         case "Formation à distance VMDTR":
           event = "vente vmdtr";
           event_category = "vente";
-          event_label = "vente vmdtr en cours";
+          event_label = "vente vmdtr initié";
           event_value = "690";
           break;
         case "Formation premium":
           event = "vente premuim";
           event_category = "vente";
-          event_label = "vente premuim en cours";
+          event_label = "vente premuim initié";
           event_value = "849";
           break;
         case "Formation pro":
           event = "vente Formation pro";
           event_category = "vente";
-          event_label = "vente Formation pro en cours";
+          event_label = "vente Formation pro initié";
           event_value = "680";
           break;
         case "Formation solo":
           event = "vente Formation solo";
           event_category = "vente";
-          event_label = "vente Formation solo en cours";
+          event_label = "vente Formation solo initié";
           event_value = "590";
           break;
         case "Repassage d'examen":
           event = "vente Repassage d'examen";
           event_category = "vente";
-          event_label = "vente Repassage d'examen en cours";
+          event_label = "vente Repassage d'examen initié";
           event_value = "200";
           break;
       }
