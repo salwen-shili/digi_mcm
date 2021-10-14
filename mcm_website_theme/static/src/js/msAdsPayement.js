@@ -32,7 +32,7 @@ document.addEventListener("DOMContentLoaded", function () {
   //trigger tracking on submit payment
   document
     .getElementById("o_payment_form_pay")
-    .addEventListener("click", function (e) {
+    .addEventListener("submit", function (e) {
       var event;
       var event_category;
       var event_label;
@@ -47,45 +47,45 @@ document.addEventListener("DOMContentLoaded", function () {
 
       switch (formation) {
         case "Formation à distance TAXI":
-          event = "vente taxi";
-          event_category = "vente";
-          event_label = "vente taxi initié";
+          event = "vente initié taxi";
+          event_category = "vente initié";
+          event_label = "vente initié taxi ";
           event_value = "690";
           break;
         case "Formation à distance VTC":
-          event = "vente vtc";
-          event_category = "vente";
-          event_label = "vente vtc initié";
+          event = "vente initié vtc";
+          event_category = "vente initié";
+          event_label = "vente initié vtc ";
           event_value = "690";
           break;
         case "Formation à distance VMDTR":
-          event = "vente vmdtr";
-          event_category = "vente";
-          event_label = "vente vmdtr initié";
+          event = "vente initié vmdtr ";
+          event_category = "vente initié";
+          event_label = "vente initié vmdtr ";
           event_value = "690";
           break;
         case "Formation premium":
-          event = "vente premuim";
-          event_category = "vente";
-          event_label = "vente premuim initié";
+          event = "vente initié premuim";
+          event_category = "vente initié";
+          event_label = "vente initié premuim ";
           event_value = "849";
           break;
         case "Formation pro":
-          event = "vente Formation pro";
-          event_category = "vente";
-          event_label = "vente Formation pro initié";
+          event = "vente initié Formation pro";
+          event_category = "vente initié";
+          event_label = "vente initié Formation pro ";
           event_value = "680";
           break;
         case "Formation solo":
-          event = "vente Formation solo";
-          event_category = "vente";
-          event_label = "vente Formation solo initié";
+          event = "vente initié Formation solo";
+          event_category = "vente initié";
+          event_label = "vente initié Formation solo ";
           event_value = "590";
           break;
         case "Repassage d'examen":
-          event = "vente Repassage d'examen";
-          event_category = "vente";
-          event_label = "vente Repassage d'examen initié";
+          event = "vente initié Repassage d'examen";
+          event_category = "vente initié";
+          event_label = "vente initié Repassage d'examen ";
           event_value = "200";
           break;
       }
