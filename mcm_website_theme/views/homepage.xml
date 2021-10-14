@@ -111,7 +111,7 @@
                                             </p>
                                             <div class="s_btn text-center pt16 pb16" data-name="Button">
                                                 <a href="/formation-chauffeur-taxi" class="btn btn-warning sh_btn_cm_4" style="margin-top: 0.4rem;
-                                                padding: 0.4rem 2rem;" data-original-title="" title="" aria-describedby="tooltip562914" onclick='msTracking("Click sur Devenez chauffeur de TAXI homepage",
+                                                padding: 0.4rem 2rem;" data-original-title="" title="" aria-describedby="tooltip562914" onclick='msTracking("clic sur Devenez chauffeur de TAXI homepage",
                                                 "Homepage events",
                                                 "Devenez chauffeur de TAXI homepage",
                                                 1)'>
@@ -139,7 +139,7 @@
                                             </p>
                                             <div class="s_btn text-center pt16 pb16" data-name="Button">
                                                 <a href="/formation-chauffeur-vtc" class="btn btn-warning sh_btn_cm_4" style="margin-top: 0.4rem;
-                                                padding: 0.4rem 2rem;" onclick='msTracking("Click sur Devenez chauffeur de VTC homepage",
+                                                padding: 0.4rem 2rem;" onclick='msTracking("clic sur Devenez chauffeur de VTC homepage",
                                                 "Homepage events",
                                                 "Devenez chauffeur de VTC homepage",
                                                 2)'>En savoir plus</a>
@@ -164,7 +164,7 @@
                                             </p>
                                             <div class="s_btn text-center pt16 pb16" data-name="Button">
                                                 <a href="/formation-taximoto-vmtdr" class="btn btn-warning sh_btn_cm_4" style="margin-top: 0.4rem;
-                                                padding: 0.4rem 2rem;" onclick='msTracking("Click sur Devenez chauffeur de Moto-Taxi homepage",
+                                                padding: 0.4rem 2rem;" onclick='msTracking("clic sur Devenez chauffeur de Moto-Taxi homepage",
                                                 "Homepage events",
                                                 "Devenez chauffeur de Moto-Taxi homepage",
                                                 3)'>En savoir plus</a>

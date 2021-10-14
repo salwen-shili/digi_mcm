@@ -290,7 +290,7 @@
                                                     <br/>
                                                 </p>
                                                 <div class="boosting-section tab-btn s_btn text-right">
-                                                    <a href="/blog/digimoov-3/post/bon-a-savoir-sur-la-formation-capacite-de-transport-leger-6#details-formation" class="
+                                                    <a onClick="msTracking('clic sur detail sur la formation Homepage','clic sur bouton','clic sur bouton detail sur la formation Homepage','66')" href="/blog/digimoov-3/post/bon-a-savoir-sur-la-formation-capacite-de-transport-leger-6#details-formation" class="
                             boosting-section
                             boostingbtn
                             btn btn-alpha
@@ -697,7 +697,7 @@
                                                     Paiement 1 fois
                                                     </p>
                                                     <br/>
-                                                    <button class="btn btn-block text-white" onClick="(function(){msTracking('click sur inscrire pack solo','Pricing Table events','Inscrire pack solo Homepage','590'); document.getElementById('form-1-1').submit();return false;})();return false;" style="background-color: #6e209f; border-radius: 25px">
+                                                    <button class="btn btn-block text-white" onClick="(function(){msTracking('clic sur inscrire pack solo','Pricing Table events','Inscrire pack solo Homepage','590'); document.getElementById('form-1-1').submit();return false;})();return false;" style="background-color: #6e209f; border-radius: 25px">
                                                     Je m'inscris
                                                     </button>
                                                 </div>
@@ -818,7 +818,7 @@
                                                     Paiement 1 ou 2 fois
                                                     </p>
                                                     <br/>
-                                                    <button class="btn btn-block text-white" onClick="(function(){msTracking('click sur inscrire pack pro','Pricing Table events','Inscrire pack pro Homepage','680'); document.getElementById('form-2-1').submit();return false;})();return false;" style="background-color: #6e209f; border-radius: 25px">
+                                                    <button class="btn btn-block text-white" onClick="(function(){msTracking('clic sur inscrire pack pro','Pricing Table events','Inscrire pack pro Homepage','680'); document.getElementById('form-2-1').submit();return false;})();return false;" style="background-color: #6e209f; border-radius: 25px">
                                                     Je m'inscris
                                                     </button>
                                                 </div>
@@ -939,7 +939,7 @@
                                                     Paiement 1 ou 3 fois
                                                     </p>
                                                     <br/>
-                                                    <button class="btn btn-block text-white" onClick="(function(){msTracking('click sur inscrire pack premuim','Pricing Table events','Inscrire pack premuim Homepage','849'); document.getElementById('form-3-1').submit();return false;})();return false;" style="background-color: #6e209f; border-radius: 25px">
+                                                    <button class="btn btn-block text-white" onClick="(function(){msTracking('clic sur inscrire pack premuim','Pricing Table events','Inscrire pack premuim Homepage','849'); document.getElementById('form-3-1').submit();return false;})();return false;" style="background-color: #6e209f; border-radius: 25px">
                                                     Je m'inscris
                                                     </button>
                                                 </div>

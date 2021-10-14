@@ -65,8 +65,8 @@
                                                     <input t-att-value="request.website.microsoft_tracking_key" id="microsoft_tracking_key" type="hidden" />
 
                                                     <div class="col-lg-12 s_name" data-name="Button">
-                                                        <button class="o_website_form_send btn btn-alpha rounded-circle m-t-20 arrow-btn" onClick="(function(){msTracking('click sur envoyer page contacter le service client','Contact','Contacter le service client page service-clientele','55'); document.getElementById('contact-form').submit();return false;})();return false;">
-                                                            ENVOYERs
+                                                        <button class="o_website_form_send btn btn-alpha rounded-circle m-t-20 arrow-btn" onClick="(function(){msTracking('clic sur envoyer page contacter le service client','Contact','Contacter le service client page service-clientele','55'); document.getElementById('contact-form').submit();return false;})();return false;">
+                                                            ENVOYER
                                                             <span class="fa fa-1x fa-fw fa-long-arrow-right ml-1"/>
                                                         </button>
                                                         <span id="o_website_form_result" class="text-danger ml8 mt16  mb16 col-md-12"/>

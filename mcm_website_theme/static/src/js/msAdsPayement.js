@@ -32,7 +32,7 @@ document.addEventListener("DOMContentLoaded", function () {
   //trigger tracking on submit payment
   document
     .getElementById("o_payment_form_pay")
-    .addEventListener("submit", function (e) {
+    .addEventListener("click", function (e) {
       var event;
       var event_category;
       var event_label;

@@ -29,9 +29,9 @@
                           <br/>
                         </p>
                         <br/>
-                        <a href="/#pricing" class="sh_more_btn btn btn-secondary sh_btn_cm_8" data-original-title="" title="" aria-describedby="tooltip694619" onclick='msTracking("Click sur inscrire page examen",
+                        <a href="/#pricing" class="sh_more_btn btn btn-secondary sh_btn_cm_8" data-original-title="" title="" aria-describedby="tooltip694619" onclick='msTracking("clic sur inscrire page examen",
                                                 "Examen events",
-                                                "Click sur inscrire page examen",
+                                                "clic sur inscrire page examen",
                                                 4)'>S'inscrire</a>
                       </div>
                     </div>

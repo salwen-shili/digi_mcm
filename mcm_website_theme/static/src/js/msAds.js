@@ -55,7 +55,7 @@ function packVtcHome() {
   })(window, document, "script", "//bat.bing.com/bat.js", "uetq");
 
   window.uetq = window.uetq || [];
-  window.uetq.push("event", "click sur s'inscrire pack vtc", {
+  window.uetq.push("event", "clic sur s'inscrire pack vtc", {
     event_category: "Pricing Table events",
     event_label: "Inscrire pack vtc Homepage",
     event_value: "590",
@@ -86,7 +86,7 @@ function packTaxiHome() {
   })(window, document, "script", "//bat.bing.com/bat.js", "uetq");
 
   window.uetq = window.uetq || [];
-  window.uetq.push("event", "click sur s'inscrire pack taxi", {
+  window.uetq.push("event", "clic sur s'inscrire pack taxi", {
     event_category: "Pricing Table events",
     event_label: "Inscrire pack taxi Homepage",
     event_value: "680",
@@ -117,7 +117,7 @@ function packVmdtrHome() {
   })(window, document, "script", "//bat.bing.com/bat.js", "uetq");
 
   window.uetq = window.uetq || [];
-  window.uetq.push("event", "click sur s'inscrire pack vmdtr", {
+  window.uetq.push("event", "clic sur s'inscrire pack vmdtr", {
     event_category: "Pricing Table events",
     event_label: "Inscrire pack vmdtr Homepage",
     event_value: "849",
@@ -149,7 +149,7 @@ function packVtcPageFormationTaxi() {
   })(window, document, "script", "//bat.bing.com/bat.js", "uetq");
 
   window.uetq = window.uetq || [];
-  window.uetq.push("event", "click sur s'inscrire pack vtc", {
+  window.uetq.push("event", "clic sur s'inscrire pack vtc", {
     event_category: "Pricing Table events",
     event_label: "Inscrire pack vtc Page Formation Taxi",
     event_value: "590",
@@ -180,7 +180,7 @@ function packTaxiPageFormationTaxi() {
   })(window, document, "script", "//bat.bing.com/bat.js", "uetq");
 
   window.uetq = window.uetq || [];
-  window.uetq.push("event", "click sur s'inscrire pack taxi", {
+  window.uetq.push("event", "clic sur s'inscrire pack taxi", {
     event_category: "Pricing Table events",
     event_label: "Inscrire pack taxi Page Formation Taxi",
     event_value: "680",
@@ -211,7 +211,7 @@ function packVmdtrPageFormationTaxi() {
   })(window, document, "script", "//bat.bing.com/bat.js", "uetq");
 
   window.uetq = window.uetq || [];
-  window.uetq.push("event", "click sur s'inscrire pack vmdtr", {
+  window.uetq.push("event", "clic sur s'inscrire pack vmdtr", {
     event_category: "Pricing Table events",
     event_label: "Inscrire pack vmdtr Page Formation Taxi ",
     event_value: "849",
@@ -243,7 +243,7 @@ function packVtcPageFromationVtc() {
   })(window, document, "script", "//bat.bing.com/bat.js", "uetq");
 
   window.uetq = window.uetq || [];
-  window.uetq.push("event", "click sur s'inscrire pack vtc", {
+  window.uetq.push("event", "clic sur s'inscrire pack vtc", {
     event_category: "Pricing Table events",
     event_label: "Inscrire pack vtc Page Formation VTC",
     event_value: "590",
@@ -274,7 +274,7 @@ function packTaxiPageFromationVtc() {
   })(window, document, "script", "//bat.bing.com/bat.js", "uetq");
 
   window.uetq = window.uetq || [];
-  window.uetq.push("event", "click sur s'inscrire pack taxi", {
+  window.uetq.push("event", "clic sur s'inscrire pack taxi", {
     event_category: "Pricing Table events",
     event_label: "Inscrire pack taxi Page Formation VTC",
     event_value: "680",
@@ -305,7 +305,7 @@ function packVmdtrPageFromationVtc() {
   })(window, document, "script", "//bat.bing.com/bat.js", "uetq");
 
   window.uetq = window.uetq || [];
-  window.uetq.push("event", "click sur s'inscrire pack vmdtr", {
+  window.uetq.push("event", "clic sur s'inscrire pack vmdtr", {
     event_category: "Pricing Table events",
     event_label: "Inscrire pack vmdtr Page Formation VTC ",
     event_value: "849",
@@ -337,7 +337,7 @@ function packVtcPageFormationTaxiMoto() {
   })(window, document, "script", "//bat.bing.com/bat.js", "uetq");
 
   window.uetq = window.uetq || [];
-  window.uetq.push("event", "click sur s'inscrire pack vtc", {
+  window.uetq.push("event", "clic sur s'inscrire pack vtc", {
     event_category: "Pricing Table events",
     event_label: "Inscrire pack vtc Page formation taxi moto",
     event_value: "590",
@@ -368,7 +368,7 @@ function packTaxiPageFormationTaxiMoto() {
   })(window, document, "script", "//bat.bing.com/bat.js", "uetq");
 
   window.uetq = window.uetq || [];
-  window.uetq.push("event", "click sur s'inscrire pack taxi", {
+  window.uetq.push("event", "clic sur s'inscrire pack taxi", {
     event_category: "Pricing Table events",
     event_label: "Inscrire pack taxi Page formation taxi moto",
     event_value: "680",
@@ -399,7 +399,7 @@ function packVmdtrPageFormationTaxiMoto() {
   })(window, document, "script", "//bat.bing.com/bat.js", "uetq");
 
   window.uetq = window.uetq || [];
-  window.uetq.push("event", "click sur s'inscrire pack vmdtr", {
+  window.uetq.push("event", "clic sur s'inscrire pack vmdtr", {
     event_category: "Pricing Table events",
     event_label: "Inscrire pack vmdtr Page formation taxi moto ",
     event_value: "849",

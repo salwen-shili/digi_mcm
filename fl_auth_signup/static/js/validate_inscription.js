@@ -389,7 +389,7 @@ $(document).ready(function () {
       window.uetq = window.uetq || [];
       window.uetq.push(
         "event",
-        "click sur inscription a partir de vous n'avez pas de compte",
+        "clic sur inscription a partir de vous n'avez pas de compte",
         {
           event_category: "Inscription",
           event_label: "Inscription MCM",
