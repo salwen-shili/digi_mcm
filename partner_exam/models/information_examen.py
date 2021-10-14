@@ -3,7 +3,7 @@
 
 from odoo import api, fields, models, _
 from odoo.tools import datetime, base64
-from odoo.exceptions import ValidationError
+from odoo.exceptions import ValidationError, _logger
 
 
 class NoteExamen(models.Model):
@@ -85,5 +85,17 @@ class NoteExamen(models.Model):
         resultat = super(NoteExamen, self).create(vals)
         resultat._compute_moyenne_generale()
         return resultat
+    
+    def _clear_duplicates_exams(self):
+        """ Cron Delete exams duplications based on id and date_exam """
+        duplicates_exams = []
+        for partner_exam in self.env['info.examen'].search([], order='id DESC'):
+            _logger.info("Delete exams duplications based on date_exam.")
+            if partner_exam.date_exam and partner_exam.id not in duplicates_exams:
+                duplicates = self.search([('id', '!=', partner_exam.id), ('date_exam', '=', partner_exam.date_exam),
+                                          ('partner_id', '=', partner_exam.partner_id.id)])
+                for dup in duplicates:
+                    duplicates_exams.append(dup.id)
+        self.browse(duplicates_exams).unlink()
 
 

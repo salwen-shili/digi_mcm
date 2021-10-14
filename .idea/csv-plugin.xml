@@ -59,6 +59,20 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="/partner_exam/__manifest__.py">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="/partner_exam/models/information_examen.py">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="/partner_exam/models/partner.py">
           <value>
             <Attribute>

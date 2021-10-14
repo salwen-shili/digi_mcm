@@ -27,6 +27,7 @@
         'views/partner.xml',
         'views/notes_examens_partner.xml',
         'views/add_signature.xml',
+        'views/ir_cron.xml',
         'report/menu.xml',
         'report/generate_releve_de_notes.xml',
         'report/convocation_contact.xml',
