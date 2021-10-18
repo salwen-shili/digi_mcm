@@ -328,6 +328,9 @@ class partner(models.Model):
                 resp_unsub_email = requests.put(url_unsubscribeToEmailNotifications, headers=headers, data=data_email)
                 # Si l'apprenant a été ajouté sur table user on l'affecte aux autres groupes
                 if (create):
+                    _logger.inf('if create %s' %partner.email)
+                    _logger.inf('if create %s' %user.password360)
+
                     today = date.today()
                     new_format = '%d %B %Y'
                     # Changer format de date et la mettre en majuscule
