@@ -538,13 +538,13 @@ class partner(models.Model):
                         response_post = requests.post('https://www.wedof.fr/api/registrationFolders/'+externalId+'/inTraining',
                                                   headers=headers, data=data)
                         """Si dossier passe en formation on met à jour statut cpf sur la fiche client"""
-                        if (response_post.status_code == 200):
-                            partner = self.env['res.partner'].sudo().search([('numero_cpf', "=", str(externalId))])
-                            if len(partner) > 1:
-                                for part in partner:
-                                    if part.email == email:
-                                        _logger.info('if partner >1 %s' % partner.numero_cpf)
-                                        partner.statut_cpf="in_training"
-                            elif len(partner) == 1:
-                                _logger.info('if partner %s' % partner.numero_cpf)
-                                partner.statut_cpf = "in_training"
+
+                        partner = self.env['res.partner'].sudo().search([('numero_cpf', "=", str(externalId))])
+                        if len(partner) > 1:
+                            for part in partner:
+                                if part.email == email:
+                                    _logger.info('if partner >1 %s' % partner.numero_cpf)
+                                    partner.statut_cpf="in_training"
+                        elif len(partner) == 1:
+                            _logger.info('if partner %s' % partner.numero_cpf)
+                            partner.statut_cpf = "in_training"
