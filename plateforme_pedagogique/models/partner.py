@@ -308,6 +308,7 @@ class partner(models.Model):
                 #     invit=True
                 # Si non si mot de passe récupéré on l'ajoute sur la plateforme avec le meme mot de passe
                 _logger.info('before if %s ' % user.email)
+                _logger.info('before if %s ' % user.password360)
                 if (user.password360) and (company == '2'):
                     partner.password360 = user.password360
                     _logger.info('if user product %s ' % user.email)
@@ -538,7 +539,6 @@ class partner(models.Model):
                         response_post = requests.post('https://www.wedof.fr/api/registrationFolders/'+externalId+'/inTraining',
                                                   headers=headers, data=data)
                         """Si dossier passe en formation on met à jour statut cpf sur la fiche client"""
-
                         partner = self.env['res.partner'].sudo().search([('numero_cpf', "=", str(externalId))])
                         if len(partner) > 1:
                             for part in partner:
