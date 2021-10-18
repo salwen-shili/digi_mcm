@@ -475,3 +475,76 @@ class partner(models.Model):
                 partner.lastName = partner.name
                 print('first', partner.firstName)
 
+    """recuperer les dossier avec état accepté apartir d'api wedof,
+    puis faire le parcours pour chaque dossier,
+    si tout les conditions sont vérifiés on Passe le dossier dans l'état 'en formation'"""
+
+    def wedof_api_integration(self):
+        headers = {
+            'accept': 'application/json',
+            'Content-Type': 'application/json',
+            'X-API-KEY': '026514d6bc7d880515a27eae4947bccef4fbbf03',
+        }
+        params_wedof = (
+            ('order', 'asc'),
+            ('type', 'all'),
+            ('state', 'accepted'),
+            ('billingState', 'all'),
+            ('certificationState', 'all'),
+            ('sort', 'lastUpdate'),
+        )
+        param_360 = (
+            ('company', '56f5520e11d423f46884d593'),
+            ('apiKey', 'cnkcbrhHKyfzKLx4zI7Ub2P5'),
+        )
+        data = '{}'
+        response = requests.get('https://www.wedof.fr/api/registrationFolders', headers=headers,
+                                params=params_wedof)
+        registrations = response.json()
+        for dossier in registrations:
+            externalId = dossier['externalId']
+            email = dossier['attendee']['email']
+            certificat = dossier['_links']['certification']['name']
+            certificat_info = dossier['_links']['certification']['certifInfo']
+            date_formation = dossier['trainingActionInfo']['sessionStartDate']
+            """convertir date de formatio """
+            date_split = date_formation[0:10]
+            date_ = datetime.strptime(date_split, "%Y-%m-%d")
+            dateFormation = date_.date()
+            today = date.today()
+            print('date', today, dateFormation, certificat)
+            """Si date de formation <= ajourdhui et s'il a choisi  la formation de transport  léger de marchandises
+            on cherche l'apprenant par email sur 360"""
+            if (
+                    certificat == "Formation à l'obtention de l'attestation de capacité professionnelle en transport léger de marchandises") \
+                    and (dateFormation <= today):
+                _logger.info('wedooooffffff %s' % certificat)
+                _logger.info('dateformation %s' % dateFormation)
+                _logger.info('email %s' % email)
+                response_plateforme = requests.get('https://app.360learning.com/api/v1/users', params=param_360)
+                users = response_plateforme.json()
+                for user in users:
+                    user_mail = user['mail']
+                    user_id = user['_id']
+                    response_user = requests.get('https://app.360learning.com/api/v1/users/' + user_id,
+                                                 params=param_360)
+                    table_user = response_user.json()
+                    totalTime = int(table_user['totalTimeSpentInMinutes'])
+                    """si l'apprenant connecté sur 360 
+                    on change le statut de son dossier sur wedof"""
+                    if (user_mail.upper() == email.upper()) and (totalTime >= 1):
+                        _logger.info('users %s ' % email.upper())
+                        _logger.info('user email %s' % user['mail'].upper())
+                        # response_post = requests.post('https://www.wedof.fr/api/registrationFolders/'+externalId+'/inTraining',
+                        #                          headers=headers, data=data)
+                        """Si dossier passe en formation on met à jour statut cpf sur la fiche client"""
+                        # if (response_post.status_code == 200):
+                        partner = self.env['res.partner'].sudo().search([('numero_cpf', "=", str(externalId))])
+                        if len(partner) > 1:
+                            for part in partner:
+                                if part.email == email:
+                                    _logger.info('if partner >1 %s' % partner.numero_cpf)
+                                    # partner.statut_cpf="in_training"
+                        elif len(partner) == 1:
+                            _logger.info('if partner %s' % partner.numero_cpf)
+                            # partner.statut_cpf = "in_training"
