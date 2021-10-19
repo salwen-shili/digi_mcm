@@ -2,23 +2,40 @@
 <odoo>
     <template id="idenfy_integration_mcm_contact_documents_view" inherit_id="mcm_contact_documents.mcm_contact_documents_charger_mes_documents_mcm">
         <xpath expr="//div[hasclass('m-0')]" position="replace">
-            <div class="row m-0">
-                <iframe
-                        allowfullscreen="allowfullscreen"
-                        id='iframe'
-                        style="width:80%; height:800px;"
-                        t-att-src="'https://ui.idenfy.com/?authToken=%s' % (partner_id.idenfy_token)"
-                        allow="camera"
-                />
-                <p id='display'></p>
-
-                <script>
-                    window.addEventListener("message", receiveMessage, false);
-                        function receiveMessage(event) {
-                            console.log(event);
-                    }
-                </script>
-            </div>
+<!--            <div class="row m-0">-->
+                <ul class="nav nav-tabs" role="tablist">
+                    <li class="nav-item" style="border-color: black;">
+                        <a class="nav-link active" data-toggle="tab" href="#other_documents" role="tab">Documents</a>
+                    </li>
+                    <li class="nav-item" style="border-color: black;">
+                        <a class="nav-link" data-toggle="tab" href="#driving_licence" role="tab">Driving Licence</a>
+                    </li>
+                </ul><!-- Tab panes -->
+                <br/>
+                <div class="tab-content">
+                    <div class="tab-pane active" id="other_documents" role="tabpanel">
+                        <iframe
+                                allowfullscreen="allowfullscreen"
+                                id='iframe1'
+                                style="width:800px; height:800px;"
+                                t-att-src="'https://ui.idenfy.com/?authToken=%s' % (partner_id.idenfy_document_data_id and partner_id.idenfy_document_data_id.token or '')"
+                                allow="camera"
+                                lang="fr_FR"
+                        />
+                        <p id='display'></p>
+                    </div>
+                    <div class="tab-pane" id="driving_licence" role="tabpanel">
+                        <iframe
+                                allowfullscreen="allowfullscreen"
+                                id='iframe2'
+                                style="width:800px; height:800px;"
+                                t-att-src="'https://ui.idenfy.com/?authToken=%s' % (partner_id.idenfy_dl_data_id and partner_id.idenfy_dl_data_id.token or '')"
+                                allow="camera"
+                                lang="fr_FR"
+                        />
+                        <p id='display2'></p>
+                    </div>
+                </div>
         </xpath>
     </template>
 </odoo>

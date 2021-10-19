@@ -12,7 +12,7 @@ class Website(models.Model):
     @api.model
     def _idenfy_send_request(self, request_url, request_data, params=False, method='GET'):
         if not self.idenfy_api_key:
-            raise ValidationError(_("sendinblue API key is not found!"))
+            raise ValidationError(_("Idenfy API/Secret key is not found!"))
 
         api_key = self.idenfy_api_key
         data = json.dumps(request_data)

@@ -200,7 +200,7 @@
                                             </a>
 
                                             <a href="/shop/cart" disabled="disabled" id="document_next">
-                                            <button type="button" style=" color: #fff; margin-top: 1rem;margin-bottom: 2rem;     margin-left: 1rem;  " class="float-right rkmd-btn btn-black ripple-effect ripple-yellow " id="submit_documents" disabled="disabled">
+                                            <button type="button" style=" color: #fff; margin-top: 1rem;margin-bottom: 2rem;     margin-left: 1rem;  " class="float-right rkmd-btn btn-black ripple-effect ripple-yellow " id="submit_documents_next_button" disabled="disabled">
                                                            Suivant </button>
                                             </a>
                                             <span id="o_website_form_result"/>
