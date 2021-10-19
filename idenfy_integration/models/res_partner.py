@@ -10,9 +10,9 @@ class ResPartner(models.Model):
             rec.idenfy_document_data_id = self.env['idenfy.data'].search([('id','in',rec.idenfy_data_ids.ids),('type','=','other_documents')],order='id desc',limit=1)
             rec.idenfy_dl_data_id = self.env['idenfy.data'].search([('id', 'in', rec.idenfy_data_ids.ids), ('type', '=', 'licence')], order='id desc',limit=1)
 
-    idenfy_token = fields.Char('Idenfy Token')
-    idenfy_scanref = fields.Char('Idenfy Scan Ref')
-    idenfy_id = fields.Char('Idenfy Id')
+    # idenfy_token = fields.Char('Idenfy Token')
+    # idenfy_scanref = fields.Char('Idenfy Scan Ref')
+    # idenfy_id = fields.Char('Idenfy Id')
     idenfy_document_data_id = fields.Many2one('idenfy.data','Idenfy Document',compute='_get_idenfy_document_data_id')
     idenfy_dl_data_id = fields.Many2one('idenfy.data', 'Idenfy Driving Licence', compute='_get_idenfy_document_data_id')
     idenfy_data_ids = fields.One2many('idenfy.data','partner_id','Idenfy Data')
