@@ -593,7 +593,7 @@ class Centre_Examen(http.Controller):
         return True
 
 
-@http.route(['/shop/cart/update_exam_date'], type='json', auth="public", methods=['POST'], website=True)
+    @http.route(['/shop/cart/update_exam_date'], type='json', auth="public", methods=['POST'], website=True)
     def cart_update_exam_center(self, exam_date_id):
         order = request.website.sale_get_order()
         if exam_date_id and exam_date_id!='all':
