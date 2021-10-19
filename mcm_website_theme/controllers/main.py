@@ -457,6 +457,7 @@ class WebsiteSale(WebsiteSale):
     ], type='http', auth="public", website=True, sitemap=False)
     def shop(self, page=0, category=None, state='', taxi_state='', vmdtr_state='', vtc_state='', search='', ppg=False,
              **post):
+        return request.redirect("/#pricing")
         add_qty = int(post.get('add_qty', 1))
         Category = request.env['product.public.category']
         if category and category != 'all':
