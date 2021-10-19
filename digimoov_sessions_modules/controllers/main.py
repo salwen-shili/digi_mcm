@@ -25,9 +25,9 @@ class WebsiteSale(WebsiteSale):
         revive: Revival method when abandoned cart. Can be 'merge' or 'squash'
         """
         order = request.website.sale_get_order()
-        # documents = False
-        # if order.partner_id:
-        #     documents = request.env['documents.document'].sudo().search([('partner_id', '=', order.partner_id.id)])
+        documents = False
+        if order.partner_id:
+            documents = request.env['documents.document'].sudo().search([('partner_id', '=', order.partner_id.id)])
         if order and order.company_id.id == 1 and order.partner_id:
             product_id = False
             if order:
@@ -37,8 +37,8 @@ class WebsiteSale(WebsiteSale):
                 questionnaire = request.env['questionnaire'].sudo().search([('partner_id', '=', order.partner_id.id),('product_id',"=",product_id.id)])
                 if not questionnaire :
                     return request.redirect("/coordonnées")
-        # if order and order.company_id.id == 1 and not documents:
-        #     return request.redirect("/charger_mes_documents")
+        if order and order.company_id.id == 1 and not documents:
+            return request.redirect("/charger_mes_documents")
         if order.company_id.id == 1 and (partenaire or product):
             return request.redirect("/shop/cart/")
         if order and order.company_id.id == 2:
