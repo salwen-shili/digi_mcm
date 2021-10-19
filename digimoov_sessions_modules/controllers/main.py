@@ -593,13 +593,36 @@ class Centre_Examen(http.Controller):
         return True
 
 
-class Date_Examen(http.Controller):
-    @http.route(['/shop/cart/update_exam_date'], type='json', auth="public", methods=['POST'], website=True)
+@http.route(['/shop/cart/update_exam_date'], type='json', auth="public", methods=['POST'], website=True)
     def cart_update_exam_center(self, exam_date_id):
         order = request.website.sale_get_order()
         if exam_date_id and exam_date_id!='all':
             module=request.env['mcmacademy.module'].sudo().search([('id', '=', exam_date_id)], limit=1)
             if module and order:
+                # vérifier si le client est gagné et rattaché avec une future session il ne sera pas considéré comme prospect sinon
+                # on le met comme prospect indécis dans la session qu'il a choisie en panier
+                check_partner_in_future_session = False
+                futures_sessions = request.env['mcmacademy.session'].sudo().search(
+                    [('date_exam', '>=', date.today())])
+                if futures_sessions:
+                    for session in futures_sessions :
+                        for client in session.client_ids :
+                            if client.id == order.partner_id.id :
+                                check_partner_in_future_session = True
+                if not check_partner_in_future_session :
+                    order.partner_id.statut = 'indecis'
+                    if futures_sessions :
+                        for session in futures_sessions:
+                            list_prospect = []
+                            for prospect in session.prospect_ids:
+                                if prospect.id != order.partner_id.id:
+                                    list_prospect.append(prospect.id)
+                            session.write({'prospect_ids': [(6, 0, list_prospect)]})
+                    list = []
+                    for prospect in module.session_id.prospect_ids:
+                        list.append(prospect.id)
+                    list.append(order.partner_id.id)
+                    module.session_id.write({'prospect_ids': [(6, 0, list)]})
                 order.module_id=module
                 order.session_id=module.session_id
                 if order.company_id.id == 1 :
