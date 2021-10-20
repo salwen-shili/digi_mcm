@@ -147,17 +147,74 @@ class partner(models.Model):
         record = super(partner, self).write(vals)
         return record
 
+    # Ajout automatique d' i-One sur 360learning
+    def Ajouter_iOne_auto(self):
+        for partner in self.env['res.partner'].sudo().search([('statut', "=", "won"),
+                                                              ('statut_cpf', "!=", "canceled")
+                                                              ]):
+            # Pour chaque apprenant chercher son contrat
+            sale_order = self.env['sale.order'].sudo().search([('partner_id', '=', partner.id),
+                                                               ('session_id', '=', partner.mcm_session_id.id),
+                                                               ('module_id', '=', partner.module_id.id),
+                                                               ('state', '=', 'sale'),
+                                                               ('session_id.date_exam', '>', date.today())
+                                                               ], limit=1, order="id desc")
+            # Pour chaque apprenant chercher sa facture
+            facture = self.env['account.move'].sudo().search([('session_id', '=', partner.mcm_session_id.id),
+                                                              ('module_id', '=', partner.module_id.id),
+                                                              ('state', '=', 'posted')
+                                                              ], order="invoice_date desc", limit=1)
+            date_facture = facture.invoice_date
+            today = datetime.today()
+            _logger.info('sale order %s ' % sale_order.name)
+            # Récupérer les documents et vérifier si ils sont validés ou non
+            documents = self.env['documents.document'].sudo().search([('partner_id', '=', partner.id)])
+            document_valide = False
+            count = 0
+            for document in documents:
+                if (document.state == "validated"):
+                    count = count + 1
+            if (count == len(documents) and count != 0):
+                document_valide = True
+            # Cas particulier on doit Vérifier si partner a choisi une formation et si ses documents sont validés
+            if partner.mode_de_financement == "particulier":
+                if ((sale_order) and (document_valide)):
+                    statut = partner.statut
+                    # Vérifier si contrat signé ou non
+                    if (sale_order.state == 'sale') and (sale_order.signature):
+                        # Si demande de renonce est coché donc l'apprenant est ajouté sans attendre 14jours
+                        if partner.renounce_request:
+                            self.ajouter_iOne(partner)
+                        # si non il doit attendre 14jours pour etre ajouté
+                        if not partner.renounce_request and date_facture and (date_facture + timedelta(days=14)) <= today:
+                            self.ajouter_iOne(partner)
+            """cas de cpf on vérifie la validation des document , la case de renonciation et la date d'examen qui doit etre au futur """
+            if partner.mode_de_financement == "cpf":
+                if document_valide and partner.mcm_session_id.date_exam and (
+                        partner.mcm_session_id.date_exam > date.today()):
+                    if partner.renounce_request:
+                        self.ajouter_iOne(partner)
+                    if not partner.renounce_request and date_facture and (date_facture + timedelta(days=14)) <= today:
+                        self.ajouter_iOne(partner)
+
     # Ajouter ione manuellement
     def ajouter_iOne_manuelle(self):
         # _logger.info("++++++++++++Cron ajouter_iOne_manuelle++++++++++++++++++++++")
         product_name = self.module_id.product_id.name
-
         sale_order = self.env['sale.order'].sudo().search([('partner_id', '=', self.id),
                                                            ('session_id', '=', self.mcm_session_id.id),
                                                            ('module_id', '=', self.module_id.id),
                                                            ('state', '=', 'sale'),
                                                            ], limit=1, order="id desc")
-        print('sale order', sale_order.name)
+        # Pour chaque apprenant chercher sa facture
+        facture = self.env['account.move'].sudo().search([('session_id', '=', self.mcm_session_id.id),
+                                                          ('module_id', '=', self.module_id.id),
+                                                          ('state', '=', 'posted')
+                                                          ], order="invoice_date desc", limit=1)
+        date_facture = facture.invoice_date
+        # Calculer date d'ajout apres 14jours de date facture
+        date_ajout = date_facture + timedelta(days=14)
+        today = datetime.today()
         # Récupérer les documents et vérifier si ils sont validés ou non
         documents = self.env['documents.document'].sudo().search([('partner_id', '=', self.id)])
         document_valide = False
@@ -170,93 +227,24 @@ class partner(models.Model):
         if (count == len(documents) and count != 0):
             # _logger.info("++++++++++++Cron DOC VALIDER++++++++++++++++++++++")
             document_valide = True
-        # Vérifier si partner a choisi une formation et si ses documents sont validés
-        if ((sale_order) and (document_valide)):
-            # delai de retractation
-            failure = sale_order.failures
-            statut = self.statut
-            # Vérifier si contrat signé ou non
-            if (sale_order.state == 'sale' and self.passage_exam == False):
-                # _logger.info("++++++++++++Cron sale contrat signé++++++++++++++++++++++")
-                print('contrat signé')
-                if  (product_name ) and (product_name != "Repassage d'examen"):
-                    if ((failure == True) and (statut == 'won')):
-                        # _logger.info("++++++++++++Cron failure++++++++++++++++++++++")
-                        print('it works')
-                        self.ajouter_iOne(self)
-                    # Vérifier si delai de retractaion et demande de renoncer  ne sont pas coché,
-                    # si aujourd'hui est la date d'ajout,et si le statut est gagné
-                    # alors on ajoute l'apprenant à 360
-                    if ((failure == False) and (statut == 'won')):
-                        # Si demande de renonce est coché donc l'apprenant est ajouté sans attendre 14jours
-                        if (self.renounce_request):
-                            print('renonce', self.name, 'failure', failure, 'statut', self.statut)
-                            self.ajouter_iOne(self)
-                        # Calculer date d'ajout apres 14jours de date de signature
-                        date_signature = sale_order.signed_on
-                        date_ajout = date_signature + timedelta(days=14)
-                        today = datetime.today()
-                        print('partner', self.name, 'sale_order', sale_order, 'date_ajout:', date_ajout, 'today:', today)
-                        # Si l'apprenant n'a pas demander une renonce de delai de retractation
-                        # il doit attendre 14jours pour etre ajouté
-                        if (not (self.renounce_request) and (date_ajout <= today)):
-                            print('not renonce', self.name, 'failure', failure, 'statut', self.statut, 'date_ajout',
-                                  date_ajout)
-                            self.ajouter_iOne(self)
-
-    # Ajouter i-One sur 360learning après 14jours
-    # si Délai de rétractation n'est pas coché
-    def Ajouter_iOne_auto(self):
-        for partner in self.env['res.partner'].sudo().search([('statut', "=", "won"),
-                                                              ('statut_cpf',"!=", "canceled")
-                                                              ]):
-            # Pour chaque apprenant extraire le delai de retractation
-            product_name = partner.module_id.product_id.name
-            sale_order = self.env['sale.order'].sudo().search([('partner_id', '=', partner.id),
-                                                               ('session_id', '=', partner.mcm_session_id.id),
-                                                               ('module_id', '=', partner.module_id.id),
-                                                               ('state', '=', 'sale'),
-                                                               ('session_id.date_exam', '>', date.today())
-                                                               ], limit=1, order="id desc")
-
-            _logger.info('sale order %s ' % sale_order.name)
-
-            # Récupérer les documents et vérifier si ils sont validés ou non
-            documents = self.env['documents.document'].sudo().search([('partner_id', '=', partner.id)])
-            document_valide = False
-            count = 0
-            for document in documents:
-                if (document.state == "validated"):
-                    count = count + 1
-            print('count', count, 'len', len(documents))
-            if (count == len(documents) and count != 0):
-                document_valide = True
-            # Vérifier si partner a choisi une formation et si ses documents sont validés
+        if self.mode_de_financement == "particulier":
             if ((sale_order) and (document_valide)):
-                # delai de retractation
-                failure = sale_order.failures
-                statut = partner.statut
                 # Vérifier si contrat signé ou non
-                if (sale_order.state == 'sale')  and (sale_order.signed_on) and (sale_order.signature) :
-
-                        if (failure == True):
-                            self.ajouter_iOne(partner)
-                        # Vérifier si delai de retractaion et demande de renoncer  ne sont pas coché,
-                        # si aujourd'hui est la date d'ajout,alors on ajoute l'apprenant à 360
-                        else:
-                            # Si demande de renonce est coché donc l'apprenant est ajouté sans attendre 14jours
-                            if (partner.renounce_request):
-                                self.ajouter_iOne(partner)
-
-                            # Calculer date d'ajout apres 14jours de date de signature
-                            date_signature = sale_order.signed_on
-                            date_ajout = date_signature + timedelta(days=14)
-                            today = datetime.today()
-
-                            # Si l'apprenant n'a pas demander une renonce de delai de retractation
-                            # il doit attendre 14jours pour etre ajouté
-                            if (not (partner.renounce_request) and (date_ajout <= today)):
-                                self.ajouter_iOne(partner)
+                if (sale_order.state == 'sale') and (sale_order.signature):
+                    # Si demande de renonce est coché donc l'apprenant est ajouté sans attendre 14jours
+                    if (self.renounce_request):
+                        self.ajouter_iOne(self)
+                    # si non il doit attendre 14jours pour etre ajouté
+                    if (not (self.renounce_request) and (date_ajout <= today)):
+                        self.ajouter_iOne(self)
+        """cas de cpf on vérifie la validation des document , la case de renonciation et la date d'examen qui doit etre au futur """
+        if self.mode_de_financement == "cpf":
+            if (document_valide) and (self.mcm_session_id.date_exam) and (
+                    self.mcm_session_id.date_exam > date.today()):
+                if (self.renounce_request):
+                    self.ajouter_iOne(self)
+                if not (self.renounce_request) and (date_ajout <= today):
+                    self.ajouter_iOne(self)
 
     def ajouter_iOne(self, partner):
         # Remplacez les paramètres régionaux de l'heure par le paramètre de langue actuel
@@ -282,7 +270,8 @@ class partner(models.Model):
 
             # Récuperer le mot de passe à partir de res.users
             user = self.env['res.users'].sudo().search([('partner_id', '=', partner.id)],limit=1)
-            _logger.info('before if user %s ' % user.email)
+            _logger.info('avant if login user %s' %user.login)
+            _logger.info('avant if partner email %s' %partner.email)
             if user:
                 id_Digimoov_bienvenue = '56f5520e11d423f46884d594'
                 id_Digimoov_Examen_Attestation = '5f9af8dae5769d1a2c9d5047'
@@ -307,11 +296,9 @@ class partner(models.Model):
                 # if(resp_invit.status_code == 200):
                 #     invit=True
                 # Si non si mot de passe récupéré on l'ajoute sur la plateforme avec le meme mot de passe
-                _logger.info('before if %s ' % user.email)
-                _logger.info('before if %s ' % user.password360)
                 if (user.password360) and (company == '2'):
                     partner.password360 = user.password360
-                    _logger.info('if user product %s ' % user.email)
+                    _logger.info('if user  %s ' % user.password360)
 
                     # Ajouter i-One to table user
                     data_user = '{"mail":"' + partner.email + '" , "password":"' + user.password360 + '" , "firstName":"' + partner.firstName + '", "lastName":"' + partner.lastName + '", "phone":"' + partner.phone + '", "sendCredentials":"true"}'
@@ -329,9 +316,7 @@ class partner(models.Model):
                 resp_unsub_email = requests.put(url_unsubscribeToEmailNotifications, headers=headers, data=data_email)
                 # Si l'apprenant a été ajouté sur table user on l'affecte aux autres groupes
                 if (create):
-                    _logger.inf('if create %s' %partner.email)
-                    _logger.inf('if create %s' %user.password360)
-
+                    _logger.info('create %s' %user.login)
                     today = date.today()
                     new_format = '%d %B %Y'
                     # Changer format de date et la mettre en majuscule
