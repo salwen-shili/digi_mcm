@@ -4,7 +4,7 @@
     "category": "Documents",
     'summary': 'Idenfy Integration',
 
-    "depends": ["mcm_contact_documents"],
+    "depends": ["mcm_contact_documents","mcm_session"],
 
     'data': [
             'views/assets.xml',

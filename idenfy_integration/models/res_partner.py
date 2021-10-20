@@ -43,18 +43,25 @@ class ResPartner(models.Model):
             return False
         for rec in self:
             #other documents
+            check_status = website._idenfy_send_request('status', request_data={"scanRef": rec.idenfy_document_data_id.scanref})
+            if check_status and check_status.get('status') in ['ACTIVE']:
+                return True
             rec._create_documents_idenfy(website)
             doc_response = website._idenfy_send_request('data', request_data={"scanRef":rec.idenfy_document_data_id.scanref})
+            if rec.numero_carte_identite == doc_response.get('docNumber'):
+                return True
             rec.idenfy_document_data_id.write({'res_data':doc_response})
             rec.write({
                 'birth_name' : doc_response.get('docLastName')+' '+doc_response.get('docFirstName'),
                 'nationality' : doc_response.get('docNationality'),
                 'birthday' : doc_response.get('docDob'),
-                'birth_city':doc_response.get('birthPlace')
+                'birth_city':doc_response.get('birthPlace'),
+                'numero_carte_identite':doc_response.get('docNumber'),
+                'title': self.env['res.partner.title'].search([('name','=','Monsieur'),('shortcut','=',False)],limit=1) if doc_response.get('docSex') == 'MALE' else self.env['res.partner.title'].search([('name','=','Madame')],limit=1)
+
             })
             # Driving Licence documents
             dl_response = website._idenfy_send_request('data', request_data={"scanRef": rec.idenfy_dl_data_id.scanref})
             rec.idenfy_document_data_id.write({'res_data': doc_response})
-            self._cr.commit()
 
 

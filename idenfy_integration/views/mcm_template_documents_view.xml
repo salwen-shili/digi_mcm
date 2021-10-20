@@ -13,22 +13,22 @@
                 </ul><!-- Tab panes -->
                 <br/>
                 <div class="tab-content">
-                    <div class="tab-pane active" id="other_documents" role="tabpanel">
+                    <div class="tab-pane active" id="other_documents" role="tabpanel" style="text-align: center;border-width: 0px;">
                         <iframe
                                 allowfullscreen="allowfullscreen"
                                 id='iframe1'
-                                style="width:800px; height:800px;"
+                                style="width:900px; height:700px;"
                                 t-att-src="'https://ui.idenfy.com/?authToken=%s' % (partner_id.idenfy_document_data_id and partner_id.idenfy_document_data_id.token or '')"
                                 allow="camera"
                                 lang="fr_FR"
                         />
                         <p id='display'></p>
                     </div>
-                    <div class="tab-pane" id="driving_licence" role="tabpanel">
+                    <div class="tab-pane" id="driving_licence" role="tabpanel" style="text-align: center;border-width: 0px;">
                         <iframe
                                 allowfullscreen="allowfullscreen"
                                 id='iframe2'
-                                style="width:800px; height:800px;"
+                                style="width:900px; height:700px;"
                                 t-att-src="'https://ui.idenfy.com/?authToken=%s' % (partner_id.idenfy_dl_data_id and partner_id.idenfy_dl_data_id.token or '')"
                                 allow="camera"
                                 lang="fr_FR"
