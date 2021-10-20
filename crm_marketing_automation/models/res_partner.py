@@ -145,7 +145,7 @@ class Partner(models.Model):
                                 self.changestage("Document non Validé", partner)
                             if document_valide:
                                 failure = sale_order.failures  # delai de retractation
-                                today = datetime.today()
+                                today = date.today()
                                 """Si Il n'as pas fait la renonciation au contrat et sur la fiche 
                                  on le classe sous retractation non coché et on doit vérifier la date de signature si n'as
                                      pas depassé 14jours"""
