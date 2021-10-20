@@ -165,7 +165,7 @@ class partner(models.Model):
                                                               ('state', '=', 'posted')
                                                               ], order="invoice_date desc", limit=1)
             date_facture = facture.invoice_date
-            today = datetime.today()
+            today = date.today()
             _logger.info('sale order %s ' % sale_order.name)
             # Récupérer les documents et vérifier si ils sont validés ou non
             documents = self.env['documents.document'].sudo().search([('partner_id', '=', partner.id)])
