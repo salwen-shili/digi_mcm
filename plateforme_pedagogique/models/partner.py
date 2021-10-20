@@ -272,6 +272,8 @@ class partner(models.Model):
             user = self.env['res.users'].sudo().search([('partner_id', '=', partner.id)],limit=1)
             _logger.info('avant if login user %s' %user.login)
             _logger.info('avant if partner email %s' %partner.email)
+            _logger.info('avant if password  %s ' % user.password360)
+
             if user:
                 id_Digimoov_bienvenue = '56f5520e11d423f46884d594'
                 id_Digimoov_Examen_Attestation = '5f9af8dae5769d1a2c9d5047'
