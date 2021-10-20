@@ -239,7 +239,7 @@ class WebsiteSale(WebsiteSale):
                 url = "/shop/product/" + str(slug(product))
                 values = self._prepare_product_values(product, category='', search='', **kw)
                 values['error_session'] = "error"
-                return request.render("website_sale.product", values)
+                return request.redirect("/#pricing")
 
             if module != '' and module != 'all':
                 module = request.env['mcmacademy.module'].sudo().search(

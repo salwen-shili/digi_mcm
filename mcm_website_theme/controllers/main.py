@@ -827,6 +827,13 @@ class WebsiteSale(WebsiteSale):
             'only_services': order and order.only_services,
         }
         return request.render("website_sale.address", render_values)
+    
+    @http.route(['/shop/product/<model("product.template"):product>'], type='http', auth="public", website=True)
+    def product(self, product, category='', search='', **kwargs):
+        return request.redirect('/#pricing')
+        portal_product = super(WebsiteSale,self).product(product,category,search,**kwargs)
+        return portal_product
+
 
     def checkout_form_validate(self, mode, all_form_values, data):
         # mode: tuple ('new|edit', 'billing|shipping')
