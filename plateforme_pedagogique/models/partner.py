@@ -301,7 +301,7 @@ class partner(models.Model):
                     _logger.info('if user  %s ' % user.password360)
 
                     # Ajouter i-One to table user
-                    data_user = '{"mail":"' + partner.email + '" , "password":"' + user.password360 + '" , "firstName":"' + partner.firstName + '", "lastName":"' + partner.lastName + '", "phone":"' + partner.phone + '", "sendCredentials":"true"}'
+                    data_user = '{"mail":"' + partner.email + '" , "password":"' + user.password360 + '", "firstName":"' + partner.firstName + '", "lastName":"' + partner.lastName + '", "phone":"' + partner.phone + '", "lang":"fr", "sendCredentials":"true"}'
                     resp = requests.post(urluser, headers=headers, data=data_user)
                     print(data_user, 'user', resp.status_code)
                     if (resp.status_code == 200):
