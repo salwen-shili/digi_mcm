@@ -12,5 +12,5 @@ class IdenfyData(models.Model):
     token = fields.Char('Idenfy Token')
     scanref = fields.Char('Idenfy Scan Ref')
     idenfy_id = fields.Char('Idenfy Id')
-
+    status = fields.Char('Status')
 
