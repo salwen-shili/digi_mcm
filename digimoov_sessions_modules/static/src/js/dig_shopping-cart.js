@@ -7,7 +7,7 @@ function onChangeCheckButton() {
   if (document.getElementById("options-date")) {
     if (
       document.getElementById("options-date").value === "all" ||
-      document.getElementById("region_examen").value === "all"
+      document.getElementById("centre_examen").value === "all"
     ) {
       document
         .getElementById("pm_shop_checkout")
@@ -15,7 +15,7 @@ function onChangeCheckButton() {
       document.getElementById("pm_shop_checkout").classList.add("disabled");
     } else if (
       document.getElementById("options-date").value !== "all" &&
-      document.getElementById("region_examen").value !== "all"
+      document.getElementById("centre_examen").value !== "all"
     ) {
       document
         .getElementById("pm_shop_checkout")
