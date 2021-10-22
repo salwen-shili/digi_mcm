@@ -181,6 +181,7 @@ odoo.define("digimoov_sessions_modules.website_sale", function (require) {
               document.getElementById("pm_shop_checkout");
           }
         }
+        onChangeCheckButton();
         this._rpc({
           route: "/shop/cart/update_exam_center",
           params: {

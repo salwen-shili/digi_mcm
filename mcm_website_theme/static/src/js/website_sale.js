@@ -336,6 +336,7 @@ odoo.define("mcm_website_theme.mcm_website_sale", function (require) {
               document.getElementById("pm_shop_checkout");
           }
         }
+        onChangeCheckButton();
         this._rpc({
           route: "/shop/cart/update_exam_center",
           params: {

@@ -160,22 +160,21 @@
                 document.getElementById("pm_shop").href = "/shop/checkout?express=1";
                 document.getElementById("pm_shop_check").href =
                 "/shop/checkout?express=1";
-                console.log(document.getElementById("a_pm_shop_checkout"))
-                document.getElementById("a_pm_shop_checkout").href =
+                console.log(document.getElementById("pm_shop_checkout"))
+                document.getElementById("pm_shop_checkout").href =
                 "/shop/checkout?express=1";
                 }
                 }
                 cpf_pm = document.getElementById("cpf_pm");
                 if (cpf_pm) {
                 if (cpf_pm.checked == true) {
-                if (cpf_pm.value == "Formation pro") {
+                if (cpf_pm.value == "[avancee] Formation pro") {
                 document.getElementById("pm_shop").href = "https://bit.ly/3nMlm2A";
                 document.getElementById("pm_shop_check").href =
                 "https://bit.ly/3nMlm2A";
                 document.getElementById("pm_shop_checkout").href =
                 "https://bit.ly/3nMlm2A";
-                document.getElementById("a_pm_shop_checkout").href =
-                "https://bit.ly/3nMlm2A";
+                
 
                 }
                 if (cpf_pm.value == "Formation premium") {
@@ -184,8 +183,7 @@
                 "https://bit.ly/38IxvSa";
                 document.getElementById("pm_shop_checkout").href =
                 "https://bit.ly/38IxvSa";
-                document.getElementById("a_pm_shop_checkout").href =
-                "https://bit.ly/38IxvSa";
+               
                 }
                 }
                 }
@@ -230,8 +228,8 @@
                 document.getElementById("pm_shop").href = "/shop/checkout?express=1";
                 document.getElementById("pm_shop_check").href =
                 "/shop/checkout?express=1";
-                console.log(document.getElementById("a_pm_shop_checkout"))
-                document.getElementById("a_pm_shop_checkout").href =
+                console.log(document.getElementById("pm_shop_checkout"))
+                document.getElementById("pm_shop_checkout").href =
                 "/shop/checkout?express=1";
                 }
                 }
