@@ -508,23 +508,50 @@
             <!--                </label>-->
             <!--            </div>-->
             <div class="card-body o_payment_acquirer_select" style="padding-top:0rem !important">
-                <div style="float:left;">
-                    <label for="cpf_pm" class="radio" style="display: inline-block;">
+                <div>
+                      <style>
+                        .positioncpf{
+                        
+                        }
+                        @media (min-width: 439px) {
+                .positioncpf{
+                        float:right;
+                       }
+                       }
+                          </style> 
+                    <label for="cpf_pm" class="radio" style="display: inline-block; width:100%">
                         <t t-foreach="website_sale_order.website_order_line" t-as="line">
                             <input type="radio" name="pm_method" data-acquirer-id="16" data-form-payment="True" t-if="line.product_id.product_tmpl_id.cpf_available" data-provider="transfer" class="hidden" id="cpf_pm" t-att-value="line.name_short" t-attf-onclick="onchangeTextButton()">
                                 <span class="label"></span>CPF
+
+
                                 <span class="col-lg-12 pt16 " style="">
                                 </span>
-                                <p style="font-style: italic;font-size: 12px; padding: 0.5rem 0rem 0rem 2rem;">Mon
+                               
+                                    <p style="font-style: italic;font-size: 12px; padding: 0.5rem 0rem 0rem 2rem;">Mon
                                     Compte personnel de formation
+
+
+                                    
+
+
                                 </p>
+                                <img style="max-width: 6rem;" class="img-fluid positioncpf" src="/mcm_website_theme/static/src/img/cpf.png"></img>
+                                                               
+
+
                             </input>
                         </t>
+                       
+                
+                        
+
+                 
+               
                     </label>
+
                 </div>
-                <div class="img-pos">
-                    <img style="max-width: 6rem;" class="img-fluid mb-4" src="/mcm_website_theme/static/src/img/cpf.png"></img>
-                </div>
+                
                 <div style="clear: left;"/>
                 <div id="cpf-details" class="hide">
                     <h5 style="margin-top: 5rem;
@@ -1314,6 +1341,17 @@
                     </div>
                 </div>
             </section>
+            <script>
+  window.intercomSettings = {
+    app_id: "ekqg4dck"
+  };
+    </script>
+
+    <script>
+// We pre-filled your app ID in the widget URL: 'https://widget.intercom.io/widget/ekqg4dck'
+(function(){var w=window;var ic=w.Intercom;if(typeof ic==="function"){ic('reattach_activator');ic('update',w.intercomSettings);}else{var d=document;var i=function(){i.c(arguments);};i.q=[];i.c=function(args){i.q.push(args);};w.Intercom=i;var l=function(){var s=d.createElement('script');s.type='text/javascript';s.async=true;s.src='https://widget.intercom.io/widget/ekqg4dck';var x=d.getElementsByTagName('script')[0];x.parentNode.insertBefore(s,x);};if(document.readyState==='complete'){l();}else if(w.attachEvent){w.attachEvent('onload',l);}else{w.addEventListener('load',l,false);}}})();
+    </script>
+    
              <script>
 window.axeptioSettings = {
   clientId: "616580784320854530dc346b",
