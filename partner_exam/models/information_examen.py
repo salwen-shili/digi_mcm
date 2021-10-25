@@ -144,9 +144,9 @@ class NoteExamen(models.Model):
             info_exam = self.env['info.examen'].sudo().search([('partner_id.numero_cpf', "=", externalId),
                                                                ('presence', "=", "present")], limit=1)
 
-            _logger.info('apprenant %s' % info_exam.partner_id.email)
-            _logger.info('apprenant %s' % externalId)
-            if info_exam and info_exam.partner_id.email=="benhamou.mehdi@yahoo.fr":
+            _logger.info('before if %s' % info_exam.partner_id.email)
+            _logger.info('before if %s' % externalId)
+            if info_exam and externalId=="4270885603":
                 _logger.info('apprenant %s' % info_exam.partner_id.email)
                 _logger.info('apprenant %s' % externalId)
                 # response1 = requests.post('https://www.wedof.fr/api/registrationFolders/' + externalId + '/terminate',
