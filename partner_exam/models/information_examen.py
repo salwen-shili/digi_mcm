@@ -146,7 +146,7 @@ class NoteExamen(models.Model):
 
             _logger.info('before if %s' % info_exam.partner_id.email)
             _logger.info('before if %s' % externalId)
-            if info_exam and externalId=="4270885603":
+            if info_exam and (externalId == "4270885603"):
                 _logger.info('apprenant %s' % info_exam.partner_id.email)
                 _logger.info('apprenant %s' % externalId)
                 # response1 = requests.post('https://www.wedof.fr/api/registrationFolders/' + externalId + '/terminate',
