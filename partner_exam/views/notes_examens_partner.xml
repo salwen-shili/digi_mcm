@@ -43,6 +43,7 @@
                                 <field name="nombre_de_passage"/>
                                 <field name="company_id"/>
                                 <field name="date_today"/>
+                                <field name="mode_de_financement"/>
                             </group>
                         </group>
                     </sheet>
@@ -61,6 +62,7 @@
             <field name="arch" type="xml">
                 <tree string="Notes des examens Tree" decoration-danger="(presence == 'Absent')" default_order="create_date desc">
                     <field name="partner_id"/>
+                    <field name="mode_de_financement"/>
                     <field name="date_exam"/>
                     <field name="epreuve_a" avg="Moy.QCM" />
                     <field name="epreuve_b" avg="Moy.QRO" />

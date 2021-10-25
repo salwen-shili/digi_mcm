@@ -85,6 +85,7 @@ class NoteExamen(models.Model):
     def create(self, vals):
         resultat = super(NoteExamen, self).create(vals)
         resultat._compute_moyenne_generale()
+        resultat.mise_ajour_mode_financement()
         return resultat
     
     def _clear_duplicates_exams(self):
@@ -98,5 +99,15 @@ class NoteExamen(models.Model):
                 for dup in duplicates:
                     duplicates_exams.append(dup.id)
         self.browse(duplicates_exams).unlink()
+
+    """ Mettre à jour le champ mode de financement selon la facture """
+    def mise_ajour_mode_financement(self):
+        for client in self:
+            facture = self.env['account.move'].sudo().search([('partner_id', '=', client.partner_id.id),
+                                                              ('state', "=", "posted"), ], limit=1)
+            _logger.info('facture %s', client.partner_id.email)
+            _logger.info('facture %s', facture.methodes_payment)
+            if facture:
+                client.mode_de_financement = facture.methodes_payment
 
 
