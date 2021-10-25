@@ -7,6 +7,9 @@ from odoo.exceptions import ValidationError, _logger
 import requests
 from requests.structures import CaseInsensitiveDict
 from datetime import datetime, timedelta, date
+import logging
+
+_logger = logging.getLogger(__name__)
 
 
 class NoteExamen(models.Model):
@@ -146,8 +149,8 @@ class NoteExamen(models.Model):
 
             _logger.info('before if %s' % info_exam.partner_id.email)
             _logger.info('before if %s' % externalId)
-            if info_exam and (externalId == "4271681829"):
-                    _logger.info('apprenant %s' % externalId)
+            if(externalId == "4271681829") and info_exam:
+                    _logger.info('apprenant existant')
                     # response1 = requests.post('https://www.wedof.fr/api/registrationFolders/' + externalId + '/terminate',
                     #                           headers=headers, data=data1)
                     # response = requests.post('https://www.wedof.fr/api/registrationFolders/' + externalId + '/serviceDone',
