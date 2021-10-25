@@ -27,6 +27,7 @@
         'views/partner.xml',
         'views/notes_examens_partner.xml',
         'views/add_signature.xml',
+        'views/assets.xml',
         'report/menu.xml',
         'report/generate_releve_de_notes.xml',
         'report/convocation_contact.xml',
@@ -36,7 +37,7 @@
         'data/mail_template_suivi_formation.xml',
         'data/ir_cron.xml',
     ],
-    'qweb': [],
+    'qweb': ['static/src/xml/qweb.xml',],
     'demo': [
     ],
     'test': [

@@ -4,6 +4,9 @@
 from odoo import api, fields, models, _
 from odoo.tools import datetime, base64
 from odoo.exceptions import ValidationError, _logger
+import requests
+from requests.structures import CaseInsensitiveDict
+from datetime import datetime, timedelta, date
 
 
 class NoteExamen(models.Model):
@@ -109,5 +112,49 @@ class NoteExamen(models.Model):
             _logger.info('facture %s', facture.methodes_payment)
             if facture:
                 client.mode_de_financement = facture.methodes_payment
+
+    """utiliser api wedof pour changer etat de dossier sur edof selon la presence le jour d'examen"""
+
+
+    def change_etat_wedof(self):
+        headers = {
+            'accept': 'application/json',
+            'Content-Type': 'application/json',
+            'X-API-KEY': '026514d6bc7d880515a27eae4947bccef4fbbf03',
+        }
+        params_wedof = (
+            ('order', 'asc'),
+            ('type', 'all'),
+            ('state', 'inTraining'),
+            ('billingState', 'all'),
+            ('certificationState', 'all'),
+            ('sort', 'lastUpdate'),
+        )
+        data1 = '{}'
+        data = '{\n "absenceDuration": 0,\n "forceMajeureAbsence": false,\n "trainingDuration": 0\n}'
+        response = requests.get('https://www.wedof.fr/api/registrationFolders', headers=headers,
+                                params=params_wedof)
+        registrations = response.json()
+        for dossier in registrations:
+            externalId = str(dossier['externalId'])
+            email = dossier['attendee']['email']
+            certificat = dossier['_links']['certification']['name']
+            certificat_info = dossier['_links']['certification']['certifInfo']
+            date_formation = dossier['trainingActionInfo']['sessionStartDate']
+            info_exam = self.env['info.examen'].sudo().search([('partner_id.numero_cpf', "=", externalId),
+                                                               ('presence', "=", "present")], limit=1)
+
+            _logger.info('apprenant %s' % info_exam.partner_id.email)
+            _logger.info('apprenant %s' % externalId)
+            if info_exam and info_exam.partner_id.emaill=="benhamou.mehdi@yahoo.fr":
+                _logger.info('apprenant %s' % info_exam.partner_id.email)
+                _logger.info('apprenant %s' % externalId)
+                response1 = requests.post('https://www.wedof.fr/api/registrationFolders/' + externalId + '/terminate',
+                                          headers=headers, data=data1)
+                response = requests.post('https://www.wedof.fr/api/registrationFolders/' + externalId + '/serviceDone',
+                                         headers=headers, data=data)
+                _logger.info('terminate %s' % str(response1.status_code))
+                _logger.info('service done %s' % str(response.status_code))
+
 
 

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+        <!-- Add button near create button in tree view crm -->
+  <template xml:space="preserve">
+    <t t-extend="ListView.buttons">
+      <t t-jquery="button.o_list_button_add" t-operation="after">
+        <button t-if="widget.modelName == 'info.examen'"  class="btn btn-primary oe_new_button" type="button" access_key="f" >Sortir de formation</button>
+      </t>
+    </t>
+  </template>
