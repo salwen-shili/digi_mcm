@@ -149,12 +149,12 @@ class NoteExamen(models.Model):
             if info_exam and info_exam.partner_id.emaill=="benhamou.mehdi@yahoo.fr":
                 _logger.info('apprenant %s' % info_exam.partner_id.email)
                 _logger.info('apprenant %s' % externalId)
-                response1 = requests.post('https://www.wedof.fr/api/registrationFolders/' + externalId + '/terminate',
-                                          headers=headers, data=data1)
-                response = requests.post('https://www.wedof.fr/api/registrationFolders/' + externalId + '/serviceDone',
-                                         headers=headers, data=data)
-                _logger.info('terminate %s' % str(response1.status_code))
-                _logger.info('service done %s' % str(response.status_code))
+                # response1 = requests.post('https://www.wedof.fr/api/registrationFolders/' + externalId + '/terminate',
+                #                           headers=headers, data=data1)
+                # response = requests.post('https://www.wedof.fr/api/registrationFolders/' + externalId + '/serviceDone',
+                #                          headers=headers, data=data)
+                # _logger.info('terminate %s' % str(response1.status_code))
+                # _logger.info('service done %s' % str(response.status_code))
 
 
 
