@@ -1352,34 +1352,14 @@
                             <i class="fa fa-check-circle fa-2x text-success" role="img" aria-label="Success"
                                title="Success"/>
                         </h3>
-                        <t t-if="partner">
-                            <t t-else="">
-                                <style>
-                                    .arrow1 {
-                                    animation: slide1 1s ease-in-out infinite;
-                                    margin-left: 9px;
-                                    }
-                                </style>
-                                <h3 class="text-center">
-                                    Merci !
-                                </h3>
-                                <h3 class="text-center">
-                                    Vous recevrez un email vous
-                                    invitant à la plateforme de formation dans 14 jours.
-                                    Vous pouvez réduire ce délais en renonçant à votre droit de rétractation
-                                    <i class="fa fa-arrow-right mr-1"/>
-                                    <a href="/my/home">ICI</a>
-                                    <i class="fa fa-arrow-left mr-1"/>
-                                </h3>
-                            </t>
-                        </t>
-                                <h3 class="text-center">
+                              <h3 class="text-center">
                                 <h3 class="text-center"> Merci !</h3>
                                 <br>
                                 </br>
                                 <h3  class="text-center">Vos documents sont en cours de traitement pour le dossier DRIEAT Île-de-France </h3>
-                            <img src="https://media.giphy.com/media/11uArCoB4fkRcQ/giphy.gif"
+                                <img src="https://media.giphy.com/media/11uArCoB4fkRcQ/giphy.gif"
                                  style="width:100%;height:auto;"/>
+
                         </h3>
                     </div>
                 </div>
