@@ -148,7 +148,7 @@ class NoteExamen(models.Model):
             for info in info_exam:
                 _logger.info('before if %s' % info.partner_id.email)
                 _logger.info('before if %s' % externalId)
-                if (info.partner_id.numero_cpf== externalId) and (info.presence == "present"):
+                if (info.partner_id.numero_cpf== externalId):
                         _logger.info('apprenant existant %s' %info.partner_id.numero_cpf)
                         # response1 = requests.post('https://www.wedof.fr/api/registrationFolders/' + externalId + '/terminate',
                         #                           headers=headers, data=data1)
