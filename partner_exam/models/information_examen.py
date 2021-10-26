@@ -132,6 +132,7 @@ class NoteExamen(models.Model):
             ('billingState', 'all'),
             ('certificationState', 'all'),
             ('sort', 'lastUpdate'),
+            ('limit','1000')
         )
         data1 = '{}'
         data = '{\n "absenceDuration": 0,\n "forceMajeureAbsence": false,\n "trainingDuration": 0\n}'
