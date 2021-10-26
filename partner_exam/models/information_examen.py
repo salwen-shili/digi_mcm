@@ -108,6 +108,7 @@ class NoteExamen(models.Model):
 
     """ Mettre à jour le champ mode de financement selon la facture """
     def mise_ajour_mode_financement(self):
+
         for client in self:
             facture = self.env['account.move'].sudo().search([('partner_id', '=', client.partner_id.id),
                                                               ('state', "=", "posted"), ], limit=1)
@@ -117,8 +118,6 @@ class NoteExamen(models.Model):
                 client.mode_de_financement = facture.methodes_payment
 
     """utiliser api wedof pour changer etat de dossier sur edof selon la presence le jour d'examen"""
-
-
     def change_etat_wedof(self):
         headers = {
             'accept': 'application/json',
@@ -143,18 +142,17 @@ class NoteExamen(models.Model):
             _logger.info('lengh api get %s' % str(len(registrations)))
             externalId = dossier['externalId']
             email = dossier['attendee']['email']
-            info_exam = self.env['info.examen'].sudo().search([('partner_id.numero_cpf',"=", str(externalId))],limit=1)
+            info_exam = self.env['info.examen'].sudo().search([('partner_id.numero_cpf',"=", str(externalId)),
+                                                               ('presence',"=","present")],limit=1)
 
-            _logger.info('before if %s' % info_exam.partner_id.email)
-            _logger.info('before if %s' % info_exam.partner_id.numero_cpf)
-            if (info_exam.presence == "present"):
+            if info_exam:
                         _logger.info('apprenant existant %s' %info_exam.partner_id.numero_cpf)
-                        # response1 = requests.post('https://www.wedof.fr/api/registrationFolders/' + externalId + '/terminate',
-                        #                           headers=headers, data=data1)
-                        # response = requests.post('https://www.wedof.fr/api/registrationFolders/' + externalId + '/serviceDone',
-                        #                          headers=headers, data=data)
-                        # _logger.info('terminate %s' % str(response1.status_code))
-                        # _logger.info('service done %s' % str(response.status_code))
+                        response1 = requests.post('https://www.wedof.fr/api/registrationFolders/' + externalId + '/terminate',
+                                                  headers=headers, data=data1)
+                        response = requests.post('https://www.wedof.fr/api/registrationFolders/' + externalId + '/serviceDone',
+                                                 headers=headers, data=data)
+                        _logger.info('terminate %s' % str(response1.status_code))
+                        _logger.info('service done %s' % str(response.status_code))
 
 
 
