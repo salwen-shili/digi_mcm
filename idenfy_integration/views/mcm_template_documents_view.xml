@@ -2,45 +2,29 @@
 <odoo>
     <template id="idenfy_integration_mcm_contact_documents_view" inherit_id="mcm_contact_documents.mcm_contact_documents_charger_mes_documents_mcm">
         <xpath expr="//div[hasclass('m-0')]" position="replace">
-<!--            <div class="row m-0">-->
-                <ul class="nav nav-tabs d-none" role="tablist">
-                    <li class="nav-item" style="border-color: black;">
-                        <a class="nav-link active" data-toggle="tab" href="#other_documents" role="tab">Documents</a>
-                    </li>
-                    <li class="nav-item" style="border-color: black;">
-                        <a class="nav-link" data-toggle="tab" href="#driving_licence" role="tab">Driving Licence</a>
-                    </li>
-                </ul><!-- Tab panes -->
-                <br/>
-                <div class="tab-content">
-                    <div class="tab-pane active" id="other_documents" role="tabpanel" style="text-align: center;border-width: 0px;">
-                        <iframe
+            <div t-if="expired_license" name="ex_warning" style="text-align: center;border-width: 0px;">
+                <p t-if="expired_license"
+                   class="alert alert-warning"
+                   style="margin-left:0%;">
+                    Votre permis de conduire semble être en période probatoire, vous ne pouvez donc pas continuer le processus d'inscription. Merci de contacter le service client avec le lien suivant. Please click here: <a href="https://www.mcm-academy.fr/service-clientele">https://www.mcm-academy.fr/service-clientele</a>
+                </p>
+            </div>
+            <div style="text-align: center;border-width: 0px;">
+                <iframe
                                 allowfullscreen="allowfullscreen"
                                 id='iframe1'
-                                style="width:80%; height:700px;"
-                                t-att-src="'https://ui.idenfy.com/?authToken=%s' % (partner_id.idenfy_document_data_id and partner_id.idenfy_document_data_id.token or '')"
-                                allow="camera"
-                                lang="fr_FR"
-                        />
-                        <p id='display'></p>
-                    </div>
-                    <div class="tab-pane" id="driving_licence" role="tabpanel" style="text-align: center;border-width: 0px;">
-                        <iframe
-                                allowfullscreen="allowfullscreen"
-                                id='iframe2'
                                 style="width:80%; height:700px;"
                                 t-att-src="'https://ui.idenfy.com/?authToken=%s' % (partner_id.idenfy_dl_data_id and partner_id.idenfy_dl_data_id.token or '')"
                                 allow="camera"
                                 lang="fr_FR"
                         />
-                        <p id='display2'></p>
-                    </div>
-                </div>
+                        <p id='display'></p>
+            </div>
         </xpath>
         <xpath expr="//a[@href='/shop/cart']" position="replace">
             <a href="/shop/cart" disabled="disabled" id="document_next">
                 <button type="button" style=" color: #fff; margin-top: 1rem;margin-bottom: 2rem;     margin-left: 1rem;  "
-                        class="float-right rkmd-btn btn-black ripple-effect ripple-yellow " id="submit_documents_next_button" t-att-disabled="not partner_id.is_idenfy_approved and 'disabled'">
+                        class="float-right rkmd-btn btn-black ripple-effect ripple-yellow " id="submit_documents_next_button" t-att-disabled="not partner_id.is_idenfy_approved and 'disabled' or None">
                     Suivant
                 </button>
             </a>
