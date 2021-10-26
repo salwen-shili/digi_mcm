@@ -11,4 +11,17 @@
         <field name="interval_type">minutes</field>
         <field name="numbercall">-1</field>
     </record>
+
+
+
+    <record model="ir.cron" id="mode_financement">
+        <field name="name">Info examen  :Remplir mode de financement</field>
+        <field name="model_id" ref="model_info_examen"/>
+        <field name="state">code</field>
+        <field name="code">model.mise_ajour_mode_financement()</field>
+        <field name="active" eval="False"/>
+        <field name="interval_number">30</field>
+        <field name="interval_type">minutes</field>
+        <field name="numbercall">1</field>
+    </record>
 </odoo>

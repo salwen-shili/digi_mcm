@@ -91,7 +91,7 @@ class NoteExamen(models.Model):
     def create(self, vals):
         resultat = super(NoteExamen, self).create(vals)
         resultat._compute_moyenne_generale()
-        resultat.mise_ajour_mode_financement()
+        # resultat.mise_ajour_mode_financement()
         return resultat
     
     def _clear_duplicates_exams(self):
@@ -108,7 +108,8 @@ class NoteExamen(models.Model):
 
     """ Mettre à jour le champ mode de financement selon la facture """
     def mise_ajour_mode_financement(self):
-        for client in self:
+        clients=self.env['info.examen'].sudo().search([])
+        for client in clients:
             facture = self.env['account.move'].sudo().search([('partner_id', '=', client.partner_id.id),
                                                               ('state', "=", "posted"), ], limit=1)
             _logger.info('facture %s', client.partner_id.email)
@@ -143,11 +144,10 @@ class NoteExamen(models.Model):
             _logger.info('lengh api get %s' % str(len(registrations)))
             externalId = dossier['externalId']
             email = dossier['attendee']['email']
-            info_exam = self.env['info.examen'].sudo().search([('partner_id.numero_cpf',"=", str(externalId))],limit=1)
+            info_exam = self.env['info.examen'].sudo().search([('partner_id.numero_cpf',"=", str(externalId)),
+                                                               ('presence',"=","present")],limit=1)
 
-            _logger.info('before if %s' % info_exam.partner_id.email)
-            _logger.info('before if %s' % info_exam.partner_id.numero_cpf)
-            if (info_exam.presence == "present"):
+            if info_exam:
                         _logger.info('apprenant existant %s' %info_exam.partner_id.numero_cpf)
                         # response1 = requests.post('https://www.wedof.fr/api/registrationFolders/' + externalId + '/terminate',
                         #                           headers=headers, data=data1)
