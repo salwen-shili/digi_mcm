@@ -91,7 +91,7 @@ class NoteExamen(models.Model):
     def create(self, vals):
         resultat = super(NoteExamen, self).create(vals)
         resultat._compute_moyenne_generale()
-        # resultat.mise_ajour_mode_financement()
+        resultat.mise_ajour_mode_financement()
         return resultat
     
     def _clear_duplicates_exams(self):
@@ -108,8 +108,8 @@ class NoteExamen(models.Model):
 
     """ Mettre à jour le champ mode de financement selon la facture """
     def mise_ajour_mode_financement(self):
-        clients=self.env['info.examen'].sudo().search([])
-        for client in clients:
+
+        for client in self:
             facture = self.env['account.move'].sudo().search([('partner_id', '=', client.partner_id.id),
                                                               ('state', "=", "posted"), ], limit=1)
             _logger.info('facture %s', client.partner_id.email)
@@ -118,8 +118,6 @@ class NoteExamen(models.Model):
                 client.mode_de_financement = facture.methodes_payment
 
     """utiliser api wedof pour changer etat de dossier sur edof selon la presence le jour d'examen"""
-
-
     def change_etat_wedof(self):
         headers = {
             'accept': 'application/json',
@@ -149,12 +147,12 @@ class NoteExamen(models.Model):
 
             if info_exam:
                         _logger.info('apprenant existant %s' %info_exam.partner_id.numero_cpf)
-                        # response1 = requests.post('https://www.wedof.fr/api/registrationFolders/' + externalId + '/terminate',
-                        #                           headers=headers, data=data1)
-                        # response = requests.post('https://www.wedof.fr/api/registrationFolders/' + externalId + '/serviceDone',
-                        #                          headers=headers, data=data)
-                        # _logger.info('terminate %s' % str(response1.status_code))
-                        # _logger.info('service done %s' % str(response.status_code))
+                        response1 = requests.post('https://www.wedof.fr/api/registrationFolders/' + externalId + '/terminate',
+                                                  headers=headers, data=data1)
+                        response = requests.post('https://www.wedof.fr/api/registrationFolders/' + externalId + '/serviceDone',
+                                                 headers=headers, data=data)
+                        _logger.info('terminate %s' % str(response1.status_code))
+                        _logger.info('service done %s' % str(response.status_code))
 
 
 
