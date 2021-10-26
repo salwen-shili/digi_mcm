@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <template id="mcm_contact_documents_new_documents" name="Document: Submit a Document">
         <t name="Document" priority="29" t-name="document">
@@ -1338,6 +1337,11 @@
                             </t>
                         </t>
                         <h3 class="text-center">
+                          <h3>Merci !</h3> <br>
+
+                        </br>
+                            Vos documents sont en cours de traitement pour le dossier DRIEAT Île-de-France
+
                             <img src="https://media.giphy.com/media/11uArCoB4fkRcQ/giphy.gif"
                                  style="width:100%;height:auto;"/>
                         </h3>
