@@ -139,17 +139,17 @@ class NoteExamen(models.Model):
                                 params=params_wedof)
         registrations = response.json()
         for dossier in registrations:
-            externalId = str(dossier['externalId'])
+            externalId = dossier['externalId']
             email = dossier['attendee']['email']
             certificat = dossier['_links']['certification']['name']
             certificat_info = dossier['_links']['certification']['certifInfo']
             date_formation = dossier['trainingActionInfo']['sessionStartDate']
-            info_exam = self.env['info.examen'].sudo().search([])
-            for info in info_exam:
-                _logger.info('before if %s' % info.partner_id.email)
-                _logger.info('before if %s' % externalId)
-                if (info.partner_id.numero_cpf== externalId):
-                        _logger.info('apprenant existant %s' %info.partner_id.numero_cpf)
+            info_exam = self.env['info.examen'].sudo().search([('partner_id.numero_cpf',"=", str(externalId))],limit=1)
+
+            _logger.info('before if %s' % info_exam.partner_id.email)
+            _logger.info('before if %s' % info_exam.partner_id.numero_cpf)
+            if (info_exam.partner_id.numero_cpf== externalId):
+                        _logger.info('apprenant existant %s' %info_exam.partner_id.numero_cpf)
                         # response1 = requests.post('https://www.wedof.fr/api/registrationFolders/' + externalId + '/terminate',
                         #                           headers=headers, data=data1)
                         # response = requests.post('https://www.wedof.fr/api/registrationFolders/' + externalId + '/serviceDone',
