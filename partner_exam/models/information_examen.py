@@ -139,6 +139,7 @@ class NoteExamen(models.Model):
                                 params=params_wedof)
         registrations = response.json()
         for dossier in registrations:
+            _logger.info('lengh api get %s' % str(len(registrations)))
             externalId = dossier['externalId']
             email = dossier['attendee']['email']
             info_exam = self.env['info.examen'].sudo().search([('partner_id.numero_cpf',"=", str(externalId))],limit=1)
