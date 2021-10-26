@@ -566,7 +566,7 @@ class CustomerPortal(CustomerPortal):
                          'name': document_cerfa.name + ' ' + str(uid.name)})
         except Exception as e:
             logger.exception("Erreur de téléchargement du document: CERFA")
-        return http.request.render('mcm_contact_documents.success_documents')
+        return http.request.render('mcm_contact_documents.success_documents_1')
 
     @http.route('/new_documents', type="http", auth="user", website=True)
     def create_documents(self, **kw):
