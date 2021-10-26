@@ -144,19 +144,18 @@ class NoteExamen(models.Model):
             certificat = dossier['_links']['certification']['name']
             certificat_info = dossier['_links']['certification']['certifInfo']
             date_formation = dossier['trainingActionInfo']['sessionStartDate']
-            info_exam = self.env['info.examen'].sudo().search([('partner_id.numero_cpf', "=", externalId),
-                                                               ('presence', "=", "present")], limit=1)
-
-            _logger.info('before if %s' % info_exam.partner_id.email)
-            _logger.info('before if %s' % externalId)
-            if info_exam:
-                    _logger.info('apprenant existant')
-                    response1 = requests.post('https://www.wedof.fr/api/registrationFolders/' + externalId + '/terminate',
-                                              headers=headers, data=data1)
-                    response = requests.post('https://www.wedof.fr/api/registrationFolders/' + externalId + '/serviceDone',
-                                             headers=headers, data=data)
-                    _logger.info('terminate %s' % str(response1.status_code))
-                    _logger.info('service done %s' % str(response.status_code))
+            info_exam = self.env['info.examen'].sudo().search([])
+            for info in info_exam:
+                _logger.info('before if %s' % info.partner_id.numero_cpf)
+                _logger.info('before if %s' % externalId)
+                if info.partner_id.numero_cpf and info.presence == "present":
+                        _logger.info('apprenant existant %s' %info.partner_id.numero_cpf)
+                        # response1 = requests.post('https://www.wedof.fr/api/registrationFolders/' + externalId + '/terminate',
+                        #                           headers=headers, data=data1)
+                        # response = requests.post('https://www.wedof.fr/api/registrationFolders/' + externalId + '/serviceDone',
+                        #                          headers=headers, data=data)
+                        # _logger.info('terminate %s' % str(response1.status_code))
+                        # _logger.info('service done %s' % str(response.status_code))
 
 
 
