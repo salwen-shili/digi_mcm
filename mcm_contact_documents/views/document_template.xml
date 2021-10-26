@@ -1335,10 +1335,10 @@
                             </t>
                         </t>
                         <h3 class="text-center">
-                          <h3>Merci !</h3> <br>
+                          <h3 class="text-center"> Merci !</h3> <br>
 
                         </br>
-                            Vos documents sont en cours de traitement pour le dossier DRIEAT Île-de-France
+                            <h3  class="text-center">Vos documents sont en cours de traitement pour le dossier DRIEAT Île-de-France </h3>
 
                             <img src="https://media.giphy.com/media/11uArCoB4fkRcQ/giphy.gif"
                                  style="width:100%;height:auto;"/>
