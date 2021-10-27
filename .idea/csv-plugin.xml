@@ -94,6 +94,13 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="/partner_exam/report/mass_pdf_relevé_de_note_examen.xml">
+          <value>
+            <Attribute>
+              <option name="separator" value=":" />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="/partner_exam/views/partner.xml">
           <value>
             <Attribute>
