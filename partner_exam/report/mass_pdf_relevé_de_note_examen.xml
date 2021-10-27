@@ -193,8 +193,7 @@
                                                             <th>À Paris,
                                                                 <span>le</span>
                                                                 <br/>
-                                                                <span t-field="o.date_today"
-                                                                      t-field-options='{"format": "dd/MM/yyyy"}'/>
+                                                                <span t-esc="context_timestamp(datetime.datetime.now()).strftime('%d/%m/%Y')"/>
                                                             </th>
                                                         </tr>
                                                     </thead>
@@ -410,8 +409,7 @@
                                                                 <th>À Paris,
                                                                     <span>le</span>
                                                                     <br/>
-                                                                    <span t-field="o.date_today"
-                                                                          t-field-options='{"format": "dd/MM/yyyy"}'/>
+                                                                    <span t-esc="context_timestamp(datetime.datetime.now()).strftime('%d/%m/%Y')"/>
                                                                 </th>
                                                             </tr>
                                                         </thead>
