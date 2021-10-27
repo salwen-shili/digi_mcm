@@ -412,7 +412,12 @@ class CustomerPortal(CustomerPortal):
         except Exception as e:
             logger.exception("Fail to upload document Carte d'identité")
         partner = http.request.env.user.partner_id
-        return http.request.render('mcm_contact_documents.success_documents', {'partner': partner})
+        partner.step = "financement"
+        order = request.website.sale_get_order()
+        if order:
+            return request.redirect('/shop/cart')
+        else:
+            return http.request.render('mcm_contact_documents.success_documents', {'partner': partner})
 
     @http.route('/upload_my_files1', type="http", auth="user", methods=['POST'], website=True, csrf=False)
     def upload_my_files1(self, **kw):
