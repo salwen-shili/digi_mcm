@@ -67,9 +67,9 @@ class ResPartner(models.Model):
                 return True
             rec.write({
                 'birth_name': doc_response.get('docLastName') + ' ' + doc_response.get('docFirstName'),
-                'nationality': doc_response.get('docNationality'),
+                'nationality': doc_response.get('orgNationality') or doc_response.get('docNationality'),
                 'birthday': doc_response.get('docDob'),
-                'birth_city': doc_response.get('birthPlace'),
+                'birth_city': doc_response.get('orgBirthPlace') or doc_response.get('birthPlace'),
                 'numero_carte_identite': doc_response.get('docNumber'),
                 'title': self.env['res.partner.title'].search([('name', '=', 'Monsieur'), ('shortcut', '=', False)], limit=1) if doc_response.get('docSex') == 'MALE' else self.env[
                     'res.partner.title'].search([('name', '=', 'Madame')], limit=1),
