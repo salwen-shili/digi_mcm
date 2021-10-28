@@ -36,32 +36,17 @@ class Website(models.Model):
             if partner.is_idenfy_approved:
                     return True
             idenfy_data_obj.search([('partner_id', '=', partner.id)]).unlink()
-            # idenfy_id = uuid.uuid4().hex[:8]
-            # req_data = {"clientId": '{}'.format(idenfy_id), 'documents': ['ID_CARD', 'PASSPORT', 'RESIDENCE_PERMIT'], "tokenType": "DOCUMENT"}
-            # res = website._idenfy_send_request('token', request_data=req_data)
-            # idenfy_data_obj.create(
-            #     {
-            #         'type': 'other_documents',
-            #         'req_data': req_data,
-            #         'res_data': res,
-            #         'idenfy_id': idenfy_id,
-            #         'token': res.get('authToken', ''),
-            #         'scanref': res.get('scanRef', ''),
-            #         'partner_id': partner.id,
-            #         'website_id': website.id
-            #     }
-            # )
-            dl_idenfy_id = uuid.uuid4().hex[:8]
-            drs_req_data = {"clientId": '{}'.format(dl_idenfy_id), 'documents': ['DRIVER_LICENSE'], "tokenType": "DOCUMENT"}
-            dl_res = website._idenfy_send_request('token', request_data=drs_req_data)
+            idenfy_id = uuid.uuid4().hex[:8]
+            req_data = {"clientId": '{}'.format(idenfy_id), 'documents': ['ID_CARD', 'PASSPORT', 'RESIDENCE_PERMIT'], "tokenType": "DOCUMENT"}
+            res = website._idenfy_send_request('token', request_data=req_data)
             idenfy_data_obj.create(
                 {
-                    'type': 'licence',
-                    'req_data': drs_req_data,
-                    'res_data': dl_res,
-                    'idenfy_id': dl_idenfy_id,
-                    'token': dl_res.get('authToken', ''),
-                    'scanref': dl_res.get('scanRef', ''),
+                    'type': 'other_documents',
+                    'req_data': req_data,
+                    'res_data': res,
+                    'idenfy_id': idenfy_id,
+                    'token': res.get('authToken', ''),
+                    'scanref': res.get('scanRef', ''),
                     'partner_id': partner.id,
                     'website_id': website.id
                 }

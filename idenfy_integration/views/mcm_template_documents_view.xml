@@ -14,7 +14,7 @@
                                 allowfullscreen="allowfullscreen"
                                 id='iframe1'
                                 style="width:80%; height:700px;"
-                                t-att-src="'https://ui.idenfy.com/?authToken=%s' % (partner_id.idenfy_dl_data_id and partner_id.idenfy_dl_data_id.token or '')"
+                                t-att-src="'https://ui.idenfy.com/?authToken=%s' % (partner_id.idenfy_document_data_id and partner_id.idenfy_document_data_id.token or '')"
                                 allow="camera"
                                 lang="fr_FR"
                         />
@@ -23,10 +23,18 @@
         </xpath>
         <xpath expr="//a[@href='/shop/cart']" position="replace">
             <a href="/shop/cart" disabled="disabled" id="document_next">
-                <button type="button" style=" color: #fff; margin-top: 1rem;margin-bottom: 2rem;     margin-left: 1rem;  "
-                        class="float-right rkmd-btn btn-black ripple-effect ripple-yellow " id="submit_documents_next_button" t-att-disabled="not partner_id.is_idenfy_approved and 'disabled' or None">
+                <t t-if="partner_id.is_idenfy_approved">
+                    <button type="button" style="color: #fff; margin-top: 1rem;margin-bottom: 2rem;     margin-left: 1rem;  "
+                        class="float-right rkmd-btn btn-black ripple-effect ripple-yellow " id="submit_documents_next_button">
                     Suivant
                 </button>
+                </t>
+                <t>
+                    <button type="button" style="color: #fff; margin-top: 1rem;margin-bottom: 2rem;     margin-left: 1rem;  "
+                        class="float-right rkmd-btn btn-black ripple-effect ripple-yellow " id="submit_documents_next_button" disabled="disabled">
+                    Suivant
+                </button>
+                </t>
             </a>
         </xpath>
     </template>

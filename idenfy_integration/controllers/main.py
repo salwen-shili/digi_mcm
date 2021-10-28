@@ -17,11 +17,10 @@ class IdenfyWebsiteSale(WebsiteSale):
         email = http.request.env.user.email
         if order.partner_id:
             order.partner_id.fetch_document_details_from_idenfy(request.website)
-        if order.partner_id.idenfy_dl_data_id and order.partner_id.idenfy_dl_data_id.res_data:
-            docExpiry = eval(order.partner_id.idenfy_dl_data_id.res_data).get('docExpiry', '')
-            future_date = fields.Date.today().replace(year=fields.Date.today().year+3)
-            if docExpiry and fields.Date.from_string(docExpiry) < future_date:
-                print(True)
+        if order.partner_id.idenfy_document_data_id and order.partner_id.idenfy_document_data_id.res_data:
+            docExpiry = eval(order.partner_id.idenfy_document_data_id.res_data).get('docExpiry', '')
+            current_date = fields.Date.today()
+            if docExpiry and fields.Date.from_string(docExpiry) < current_date:
                 if request.website.id == 2:  # id 2 of website in database means website DIGIMOOV
                     return http.request.render('mcm_contact_documents.mcm_contact_document_charger_mes_documents', {
                         'email': email, 'name': name, 'partner_id': order.partner_id, 'expired_license':'true', 'error_identity': '', 'error_permis': '', 'error_permis_number': '',
