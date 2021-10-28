@@ -17,10 +17,11 @@ class Facture(models.Model):
     de mode de financement sur la vue examen informations """
     @api.model
     def create(self, vals):
-        partner_id=vals['partner_id']
-        info_exam = self.env['info.examen'].sudo().search([('partner_id', '=', partner_id)])
-        if info_exam:
-             info_exam.mode_de_financement=vals['methodes_payment']
+        if 'methodes_payment' in vals:
+            partner_id=vals['partner_id']
+            info_exam = self.env['info.examen'].sudo().search([('partner_id', '=', partner_id)])
+            if info_exam:
+                 info_exam.mode_de_financement=vals['methodes_payment']
         res = super(Facture, self).create(vals)
         return res
 
