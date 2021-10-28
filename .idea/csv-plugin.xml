@@ -94,10 +94,31 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="/partner_exam/report/generate_releve_de_notes.xml">
+          <value>
+            <Attribute>
+              <option name="separator" value=":" />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="/partner_exam/report/mass_pdf_relevé_de_note_examen.xml">
           <value>
             <Attribute>
               <option name="separator" value=":" />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="/partner_exam/report/menu.xml">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="/partner_exam/report/print_releve_note_mass.xml">
+          <value>
+            <Attribute>
+              <option name="separator" value=";" />
             </Attribute>
           </value>
         </entry>

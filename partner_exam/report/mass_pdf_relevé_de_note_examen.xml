@@ -29,9 +29,7 @@
                                             numéro
                                             d'agrément 2019-0110, après délibération du Jury,
                                             <br/>
-                                            Atteste que :
-                                            <br></br>
-                                            Prénom et Nom :
+                                            Atteste que
                                             <strong>
                                                 <span t-raw="'%s' % o.partner_id.name if o.partner_id.name else ''"/>
                                             </strong>
@@ -236,9 +234,7 @@
                                                 d'agrément 2019-0110, après délibération du Jury,
                                                 <br></br>
 
-                                                Atteste que :
-                                                <br></br>
-                                                Prénom et Nom :
+                                                Atteste que
                                                 <strong>
                                                     <span t-raw="'%s' % o.partner_id.name if o.partner_id.name else ''"/>
                                                 </strong>
