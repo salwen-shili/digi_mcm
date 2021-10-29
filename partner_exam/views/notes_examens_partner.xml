@@ -28,6 +28,7 @@
                         <group>
                             <group name="note_examen" string="Notes QRO/QCM">
                                 <field name="active" invisible="1"/>
+                                <field name="session_id"/>
                                 <field name="date_exam"/>
                                 <field name="epreuve_a"/>
                                 <field name="epreuve_b"/>
@@ -63,6 +64,7 @@
                 <tree string="Notes des examens Tree" decoration-danger="(presence == 'Absent')" default_order="create_date desc">
                     <field name="partner_id"/>
                     <field name="mode_de_financement"/>
+                    <field name="session_id"/>
                     <field name="date_exam"/>
                     <field name="epreuve_a" avg="Moy.QCM" />
                     <field name="epreuve_b" avg="Moy.QRO" />
@@ -81,6 +83,7 @@
             <field name="arch" type="xml">
                 <search string="Search">
                     <field name="partner_id"/>
+                    <field name="session_id"/>
                     <field name="date_exam"/>
                     <field name="mention"/>
                     <field name="resultat"/>
