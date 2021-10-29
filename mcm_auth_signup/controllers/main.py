@@ -138,7 +138,7 @@ class Home(Home):
                     redirect='/charger_mes_documents'
                     #response = super(Home, self).web_login(redirect='/charger_mes_documents', **kw)
                 elif step == "coordonnées":
-                    redirect='/coordonnées'
+                    redirect='/coordonnees'
                     #response = super(Home, self).web_login(redirect='/coordonnées', **kw)
                 elif step == "financement":
                     redirect='/shop/cart'
