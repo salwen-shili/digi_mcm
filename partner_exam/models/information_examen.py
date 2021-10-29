@@ -50,6 +50,8 @@ class NoteExamen(models.Model):
     # Utilisation de ce champ pour une information dans le fichier xml de "attestation de suivi de formation
     etat = fields.Char(compute="etat_de_client_apres_examen")
     mode_de_financement = fields.Char(string="Mode de financement")
+    session_id = fields.Many2one('mcmacademy.session')
+
     @api.onchange('epreuve_a', 'epreuve_b', 'presence')
     def _compute_moyenne_generale(self):
         """ This function used to auto display some result
@@ -86,12 +88,22 @@ class NoteExamen(models.Model):
                 rec.etat = "avec succès"
             if not rec.resultat == "recu":
                 rec.etat = "sans succès"
+
+    @api.onchange("partner_id")
+    def dafault_values_examen(self):
+        """ Fonction pour ajouter date examen et ville
+        automatiquement lors de creation ou de l'importation"""
+        for rec in self:
+            rec.sudo().write({'session_id': self.partner_id.mcm_session_id,
+                              'date_exam': self.partner_id.mcm_session_id.date_exam,
+                              'ville_id': self.partner_id.mcm_session_id.session_ville_id.id})
                     
     @api.model
     def create(self, vals):
         resultat = super(NoteExamen, self).create(vals)
         resultat._compute_moyenne_generale()
         resultat.mise_ajour_mode_financement()
+        resultat.dafault_values_examen()
         return resultat
     
     def _clear_duplicates_exams(self):
