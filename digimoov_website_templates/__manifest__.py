@@ -37,6 +37,13 @@
         'views/cpf_thanks.xml',
         'views/portal_my_details.xml',
         'views/confidentialite.xml',
+        'views/feliciations.xml',
+        'views/validation.xml',
+        'views/contract_payment_notification.xml',
+        'views/my_account_progress.xml',
+        'views/cart_progressbar.xml',
+        'views/edit_info.xml',
+        # 'views/charger_mes_documents'
         # 'views/sitemap.xml',
 
     ],
