@@ -10,7 +10,7 @@ document.addEventListener("DOMContentLoaded", function () {
                                 <div class="col-10 text-center">
                                     <h5 class="purple-text text-center" style="line-height: 30px;margin-block-end: 2rem;">Vous êtes bien inscris chez <span style="font-weight: 600;">DIGIMOOV!</span>
                 <br/>
-     vous allez recevoir vos accès à la plateforme de formation très prochainement
+     Vous allez recevoir vos accès à la plateforme de formation très prochainement
             </h5>
                                     
                                     
