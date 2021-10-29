@@ -89,21 +89,21 @@ class NoteExamen(models.Model):
             if not rec.resultat == "recu":
                 rec.etat = "sans succès"
 
-    # @api.onchange("partner_id")
-    # def dafault_values_examen(self):
-    #     """ Fonction pour ajouter date examen et ville
-    #     automatiquement lors de creation ou de l'importation"""
-    #     for rec in self:
-    #         rec.sudo().write({'session_id': self.partner_id.mcm_session_id,
-    #                           'date_exam': self.partner_id.mcm_session_id.date_exam,
-    #                           'ville_id': self.partner_id.mcm_session_id.session_ville_id.id})
+    @api.onchange("partner_id")
+    def add_dafault_values_examen(self):
+        """ Fonction pour ajouter date examen et ville
+        automatiquement lors de creation ou de l'importation"""
+        for rec in self:
+            rec.sudo().write({'session_id': self.partner_id.mcm_session_id,
+                              'date_exam': self.partner_id.mcm_session_id.date_exam,
+                              'ville_id': self.partner_id.mcm_session_id.session_ville_id.id})
                     
     @api.model
     def create(self, vals):
         resultat = super(NoteExamen, self).create(vals)
         resultat._compute_moyenne_generale()
         resultat.mise_ajour_mode_financement()
-        #resultat.dafault_values_examen()
+        resultat.add_dafault_values_examen()
         return resultat
     
     def _clear_duplicates_exams(self):
