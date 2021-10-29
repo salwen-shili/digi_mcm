@@ -303,7 +303,7 @@
 
                                 </div>
 
-                                <div id="popup1" class="overlay">
+                                <div id="popup1" class="overlay_popup">
                                     <div class="popup">
                                         <h2 class="text-left">
                                             <i class="fa fa-info-circle" style="color: #152856;"></i>
