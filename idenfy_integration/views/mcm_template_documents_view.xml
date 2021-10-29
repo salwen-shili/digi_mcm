@@ -14,7 +14,7 @@
                                 allowfullscreen="allowfullscreen"
                                 id='iframe1'
                                 style="width:80%; height:700px;"
-                                t-att-src="'https://ui.idenfy.com/?authToken=%s' % (partner_id.idenfy_document_data_id and partner_id.idenfy_document_data_id.token or '')"
+                                t-att-src="'https://ui.idenfy.com/?authToken=%s&amp;lang=fr' % (partner_id.idenfy_document_data_id and partner_id.idenfy_document_data_id.token or '')"
                                 allow="camera"
                                 lang="fr_FR"
                         />
