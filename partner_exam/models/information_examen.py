@@ -94,7 +94,7 @@ class NoteExamen(models.Model):
         """ Fonction pour ajouter date examen et ville
         automatiquement lors de creation ou de l'importation"""
         for rec in self:
-            rec.sudo().write({'session_id': self.partner_id.mcm_session_id,
+            rec.sudo().write({
                               'date_exam': self.partner_id.mcm_session_id.date_exam,
                               'ville_id': self.partner_id.mcm_session_id.session_ville_id.id})
                     
