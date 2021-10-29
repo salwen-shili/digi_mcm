@@ -8,17 +8,14 @@ document.addEventListener("DOMContentLoaded", function () {
                             </div> <br><br>
                             <div class="row justify-content-center">
                                 <div class="col-10 text-center">
-                                    <h5 class="purple-text text-center" style="line-height: 30px;margin-block-end: 2rem;">Vous êtes bien inscris chez <span style="font-weight: 600;">MCM ACADEMY!</span> <br/>
-                                    Vous pouvez accéder à notre plateforme de formation en créant votre compte apprenant ci dessous <i class="fa fa-hand-o-down"></i>
+                                    <h5 class="purple-text text-center" style="line-height: 30px;margin-block-end: 2rem;">Vous êtes bien inscris chez <span style="font-weight: 600;">DIGIMOOV!</span> <br/>
+                                    
                                     </h5>
                                     
                                     
                                     
                                 </div>
-                                <a id ="button-continuer" href="https://formation.mcm-academy.fr/register?next=/dashboard">
-                                        <button class="rkmd-btn btn-black ripple-effect ripple-yellow" type="submit" style="font-size: 11px;">
-                                            <i class="material-icons right">send</i>continuer</button>
-                                    </a>
+                                
                                 </div>
                                 `;
 
