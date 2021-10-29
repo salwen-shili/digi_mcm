@@ -266,15 +266,17 @@
 
 
                     <!-- status messages -->
-                    <div t-if="message == 'sign_ok'" class="alert alert-success alert-dismissable d-print-none"
-                         role="status">
+                    <div t-if="message == 'sign_ok'" class="alert alert-success alert-dismissable d-print-none" role="status">
                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">&amp;times;</button>
                         <strong>Merci!</strong>
                         <br/>
-                        <t t-if="message == 'sign_ok' and sale_order.state in ['sale', 'done']">Votre contrat a été
-                            signé.
+                        <t t-if="message == 'sign_ok' and sale_order.state in ['sale', 'done']">
+                            Félicitation ! Votre contrat est bien signé, vous allez recevoir vos accès à la plateforme
+                            de formation très prochainement.
                         </t>
-                        <t t-else="">Votre contrat a été signé</t>
+                        <t t-else="">Félicitation ! Votre contrat est bien signé, vous allez recevoir vos accès à la
+                            plateforme de formation très prochainement.
+                        </t>
                     </div>
 
 
