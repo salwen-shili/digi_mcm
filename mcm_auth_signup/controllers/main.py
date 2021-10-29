@@ -128,35 +128,27 @@ class Home(Home):
         partner = request.env['res.partner'].sudo().search([('email', "=", login)], limit=1)
         order = request.env['sale.order'].sudo().search([('partner_id', "=", partner.id)], order='create_date desc', limit=1)
         order1 = request.website.sale_get_order()
-        print("order1",order1)
-        if request.website.id == 1:
+        if request.website.id == 1 or request.website.id == 2:
             step = partner.step
             print("step",step)
             if redirect == '/felicitations':
                 response = super(Home, self).web_login(redirect='/felicitations', **kw)
-            elif order or order1:
-                print("order exist")
+            elif order:
                 if step == "document":
-                    print("afficher document")
                     redirect='/charger_mes_documents'
                     #response = super(Home, self).web_login(redirect='/charger_mes_documents', **kw)
                 elif step == "coordonnées":
-                    print("afficher coordonnées")
                     redirect='/coordonnées'
                     #response = super(Home, self).web_login(redirect='/coordonnées', **kw)
                 elif step == "financement":
-                    print("afficher financement")
                     redirect='/shop/cart'
                     #response = super(Home, self).web_login(redirect='/shop/cart', **kw)
                 elif step == "finish":
-                    print("afficher espace client")
                     redirect='/my'
                     #response = super(Home, self).web_login(redirect='/my', **kw)
             else:
-                print("afficher pricelist")
                 redirect = '/#pricing'
                 response = super(Home, self).web_login(redirect='/#pricing', **kw)
-        print("redirect3", redirect)
         response = super(Home, self).web_login(redirect=redirect, **kw)
         return response
 

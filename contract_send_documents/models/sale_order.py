@@ -36,6 +36,8 @@ class SaleOrder(models.Model):
                 'subtype_id': subtype_id,
                 'body': 'Contrat signé par ' + str(values['signed_by']),
             })
+            for order in self:
+                order.partner_id.step = 'finish'
         if 'signed_by' in values and 'signed_on' in values and 'signature' in values and self.state != 'cancel' and self.state != 'draft' and self.company_id.id==2:
             if self.env.su:
                 # sending mail in sudo was meant for it being sent from superuser
@@ -74,4 +76,6 @@ class SaleOrder(models.Model):
                 'subtype_id': subtype_id,
                 'body': 'Contrat signé par ' + str(values['signed_by']),
             })
+            for order in self:
+                order.partner_id.step = 'finish'
         return order

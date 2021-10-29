@@ -6,5 +6,5 @@ from odoo import api, fields, models
 class Session(models.Model):
     _inherit = 'product.template'
 
-    formation_price=fields.Monetary('Prix Formation',compute='_compute_price_formation',store=True)
+    formation_price=fields.Monetary('Prix Formation',store=True)
 

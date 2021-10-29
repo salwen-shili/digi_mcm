@@ -14,6 +14,7 @@ add css and js files to website model
     'depends' : ['web','website','website_sale','sale','payment','mcm_session','mcm_cpf_partner'],
     'data': [
         'security/ir.model.access.csv',
+        'security/questionnaire_security.xml',
         # 'views/ressources.xml',
         'views/template.xml',
         'views/templates.xml',

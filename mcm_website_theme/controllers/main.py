@@ -69,7 +69,6 @@ class Website(Home):
 
         # Tarifs mcm
         mcm_products = request.env['product.product'].sudo().search([('company_id', '=', 1)], order="list_price")
-        print(mcm_products)
         taxi_price = False
         vtc_price = False
         vmdtr_price = False
@@ -113,6 +112,12 @@ class Website(Home):
             else:
                 values['promo'] = False
             return request.render("website.homepage", values)
+        else:
+            website_page = request.env['website.page'].sudo().search([('url', "=", '/' + str(partenaire)),('website_id',"=",2)])
+            if website_page:
+                return request.render(str(website_page.view_id.key), values)
+            else:
+                return request.render("website.homepage", values)
         if (request.website.id == 1):
             user= http.request.env.user
             partner = user.partner_id
@@ -135,13 +140,11 @@ class Website(Home):
                     values['promo'] = False
                 return request.render("website.homepage", values)
             else:
-                website_page = request.env['website.page'].sudo().search([('url', "=", '/'+str(partenaire))])
+                website_page = request.env['website.page'].search([('url', "=", '/' + str(partenaire)),('website_id',"=",1)])
                 if website_page:
-                    return request.render(str(website_page.view_id.key), {})
+                    return request.render(str(website_page.view_id.key), values)
                 else:
                     return request.render("website.homepage", values)
-
-
         # --------------------------------------------------------------------------
         # states Search Bar
         # --------------------------------------------------------------------------
@@ -161,14 +164,19 @@ class Routes_Site(http.Controller):
     @http.route('/continue_signup', type='http', auth='user', website=True)
     def get_form_values(self,**kw):
         order = request.website.sale_get_order()
-        print ("order",order)
         if request.website.id == 2:
-            raise werkzeug.exceptions.NotFound()
+            if order :
+                return request.redirect('/coordonnees')
+            else:
+                return request.redirect('/#pricing')
         elif request.website.id == 1:
             if order:
-                return request.render("mcm_website_theme.mcm_website_theme_validation", {})
+                return request.redirect('/coordonnees')
             else:
                 return werkzeug.utils.redirect('/#pricing')
+    
+    
+            
 
     @http.route('/update_partner', type='http', auth='user', website=True)
     def update_partner(self, **kw):
@@ -191,7 +199,7 @@ class Routes_Site(http.Controller):
     @http.route('/edit_info', type='http', auth='user', website=True)
     def editInfo(self):
         if request.website.id == 2:
-            raise werkzeug.exceptions.NotFound()
+            return request.render("digimoov_website_templates.digimoov_website_templates_edit_info", {})
         elif request.website.id == 1:
             return request.render("mcm_website_theme.mcm_website_theme_edit_info", {})
 
@@ -314,16 +322,25 @@ class Routes_Site(http.Controller):
         if request.website.id == 2:
             raise werkzeug.exceptions.NotFound()
         elif request.website.id == 1:
-            return request.render("mcm_website_theme.mcm_template_examen", {})
+            return request.render("mcm_website_theme.mcm_website_examen", {})
 
-    @http.route('/coordonnées', type='http', auth='user', website=True,csrf=False)
+    @http.route('/coordonnees', type='http', auth='user', website=True,csrf=False)
     def validation_questionnaires(self, **kw):
-
-        # La page n'est affichée que sur le site mcm
+        order = request.website.sale_get_order()
+        if not order:
+            return request.redirect("/pricing")
+        partner_has_documents = False
+        if order.partner_id:
+            documents = request.env['documents.document'].sudo().search([('partner_id', '=', order.partner_id.id)])
+            if documents:
+                partner_has_documents = True
+        values = {
+            'partner_has_documents': partner_has_documents,
+        }
         if request.website.id == 2:
-            raise werkzeug.exceptions.NotFound()
+            return request.render("digimoov_website_templates.digimoov_template_validation", values)
         elif request.website.id == 1:
-            return request.render("mcm_website_theme.mcm_website_theme_validation")
+            return request.render("mcm_website_theme.mcm_website_theme_validation", values)
 
     @http.route(['''/<string:product>/<string:partenaire>/felicitations''', '''/<string:product>/felicitations''',
                  '''/felicitations'''], type='http', auth='user', website=True)
@@ -399,7 +416,74 @@ class Routes_Site(http.Controller):
                             return request.redirect("/felicitations")
             return request.render("mcm_website_theme.mcm_template_felicitations", {})
         elif request.website.id == 2:
-            raise werkzeug.exceptions.NotFound()
+            order = request.website.sale_get_order()
+            if order and order.company_id.id == 2:
+                request.env.user.company_id = 2  # change default company
+                request.env.user.company_ids = [1, 2]  # change default companies
+                product_id = False
+                if order:
+                    for line in order.order_line:
+                        product_id = line.product_id
+
+                if not product and not partenaire and product_id:
+                    product = True
+                    partenaire = True
+                if product and not partenaire:
+                    if product_id:
+                        slugname = (product_id.name).strip().strip('-').replace(' ', '-').lower()
+                        if str(slugname) != str(product):
+                            if order.pricelist_id and order.pricelist_id.name in ['ubereats', 'deliveroo', 'coursierjob','box2home','coursier2roues']:
+                                return request.redirect("/%s/%s/felicitations/" % (slugname, order.pricelist_id.name))
+                            else:
+                                return request.redirect("/%s/felicitations/" % (slugname))
+                        else:
+                            if order.pricelist_id and order.pricelist_id.name in ['ubereats', 'deliveroo', 'coursierjob','box2home','coursier2roues']:
+                                return request.redirect("/%s/%s/felicitations/" % (slugname, order.pricelist_id.name))
+                    else:
+                        return request.redirect("/felicitations")
+                elif product and partenaire:
+                    if product_id:
+                        slugname = (product_id.name).strip().strip('-').replace(' ', '-').lower()
+                        if str(slugname) != str(product):
+                            pricelist = request.env['product.pricelist'].sudo().search(
+                                [('company_id', '=', 2), ('name', "=", str(partenaire))])
+                            if not pricelist:
+                                pricelist_id = order.pricelist_id
+                                if pricelist_id.name in ['ubereats', 'deliveroo', 'coursierjob','box2home','coursier2roues']:
+                                    return request.redirect("/%s/%s/felicitations/" % (slugname, pricelist_id.name))
+                                else:
+                                    return request.redirect("/%s/felicitations/" % (slugname))
+                            else:
+                                if pricelist.name in ['ubereats', 'deliveroo', 'coursierjob','box2home','coursier2roues']:
+                                    return request.redirect(
+                                        "/%s/%s/felicitations/" % (slugname, order.pricelist_id.name))
+                                else:
+                                    return request.redirect("/%s/felicitations/" % (slugname))
+                        else:
+                            pricelist = request.env['product.pricelist'].sudo().search(
+                                [('company_id', '=', 2), ('name', "=", str(partenaire))])
+
+                            if not pricelist:
+                                pricelist_id = order.pricelist_id
+                                if pricelist_id.name in ['bolt']:
+                                    return request.redirect("/%s/%s/felicitations/" % (slugname, pricelist_id.name))
+                                else:
+                                    return request.redirect("/%s/felicitations/" % (slugname))
+                            else:
+                                if pricelist.name in ['ubereats', 'deliveroo', 'coursierjob','box2home','coursier2roues']:
+                                    if pricelist.name != order.pricelist_id.name:
+                                        return request.redirect(
+                                            "/%s/%s/felicitations/" % (slugname, order.pricelist_id.name))
+                                else:
+                                    return request.redirect("/%s/felicitations/" % (slugname))
+                    else:
+                        pricelist = request.env['product.pricelist'].sudo().search(
+                            [('company_id', '=', 2), ('name', "=", str(partenaire))])
+                        if pricelist and pricelist.name in ['ubereats', 'deliveroo', 'coursierjob','box2home','coursier2roues']:
+                            return request.redirect("/%s" % (pricelist.name))
+                        else:
+                            return request.redirect("/felicitations")
+            return request.render("digimoov_website_templates.digimoov_template_felicitations", {})
 
     @http.route(['/validation/submit'], type='http', auth="user", website=True, csrf=False)
     def validation_submit(self, **kw):
@@ -420,6 +504,7 @@ class Routes_Site(http.Controller):
         #Récupérer le produit
         product = order.order_line[0].product_id
         vals['product_id'] = product.id
+        vals['company_id'] = partner.company_id.id
         new_quetionnaire = request.env['questionnaire'].sudo().create(vals)
         #Si le client a choisi un pack
         if order:
@@ -705,7 +790,7 @@ class WebsiteSale(WebsiteSale):
                 if product_id:
                     slugname = (product_id.name).strip().strip('-').replace(' ', '-').lower()
                     if order.pricelist_id and order.pricelist_id.name in ['ubereats', 'deliveroo', 'coursierjob',
-                                                                          'box2home','coursier2roues']:
+                                                                          'box2home']:
                         return request.redirect(
                             "/%s/%s/shop/confirmation/%s" % (slugname, order.pricelist_id.name, state))
                     else:
@@ -827,13 +912,6 @@ class WebsiteSale(WebsiteSale):
             'only_services': order and order.only_services,
         }
         return request.render("website_sale.address", render_values)
-    
-    @http.route(['/shop/product/<model("product.template"):product>'], type='http', auth="public", website=True)
-    def product(self, product, category='', search='', **kwargs):
-        return request.redirect('/#pricing')
-        portal_product = super(WebsiteSale,self).product(product,category,search,**kwargs)
-        return portal_product
-
 
     def checkout_form_validate(self, mode, all_form_values, data):
         # mode: tuple ('new|edit', 'billing|shipping')

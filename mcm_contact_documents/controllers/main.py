@@ -300,7 +300,13 @@ class CustomerPortal(CustomerPortal):
             logger.exception("Fail to upload documents")
         # suppression des documents qui ont mimetype de type octet_stream
         obj_attachment = request.env['ir.attachment']
-        return http.request.render('mcm_contact_documents.success_documents', {'partner': partner})
+        partner = http.request.env.user.partner_id
+        partner.step = "financement"
+        order = request.website.sale_get_order()
+        if order:
+            return request.redirect('/shop/cart')
+        else:
+            return request.redirect('/pricing')
 # Upload documents digimoov
     # Retour en arrière pour la version précédente pour les mimetype à cause d un problème service clientèle le 06/09/2021
     @http.route('/upload_my_files', type="http", auth="user", methods=['POST'], website=True, csrf=False)
@@ -417,7 +423,7 @@ class CustomerPortal(CustomerPortal):
         if order:
             return request.redirect('/shop/cart')
         else:
-            return http.request.render('mcm_contact_documents.success_documents', {'partner': partner})
+            return request.redirect('/pricing')
 
     @http.route('/upload_my_files1', type="http", auth="user", methods=['POST'], website=True, csrf=False)
     def upload_my_files1(self, **kw):
@@ -575,7 +581,6 @@ class CustomerPortal(CustomerPortal):
 
     @http.route('/new_documents', type="http", auth="user", website=True)
     def create_documents(self, **kw):
-        return request.redirect('/charger_mes_documents')
         name = http.request.env.user.name
         email = http.request.env.user.email
         partner_id = http.request.env.user.partner_id

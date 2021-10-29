@@ -17,6 +17,7 @@
                             <field name="raison_choix"/>
                             <field name="support_formation"/>
                             <field name="attentes"/>
+                            <field name="company_id"/>
                         </div>
                     </sheet>
                 </form>
@@ -36,6 +37,7 @@
                     <field name="raison_choix"/>
                     <field name="support_formation"/>
                     <field name="attentes"/>
+                    <field name="company_id"/>
                 </tree>
 
             </field>
