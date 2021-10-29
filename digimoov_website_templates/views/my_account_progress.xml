@@ -1,0 +1,90 @@
+<odoo>
+
+
+    <template id="digimoov_website_templates.my_account_progress" name="Mon compte" inherit_id="portal.portal_my_home">
+
+
+        <xpath expr="//h3" position="before">
+            <div t-if="request.website.id==2">
+                <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+                <link href="/mcm_contact_documents/static/src/css/button.css" rel="stylesheet" />
+                <script src="/digimoov_website_templates/static/src/js/continue_wizard.js" type="text/javascript"></script>
+                <link href="/digimoov_website_templates/static/src/css/register_form.css" rel="stylesheet" />
+
+                <div class="container-fluid">
+
+                    <div class="
+               
+                text-center
+                p-0
+                mt-3
+                mb-2
+              ">
+                        <div class="form-section">
+                            <div class="card px-0 pt-4 pb-0 mt-3 mb-3 bg-c">
+                                <h2 id="heading" style="font-size: 1.5rem;">Continuer votre inscription</h2>
+
+                                <br></br>
+                                <!-- progressbar -->
+                                <ul id="progressbar">
+                                    <li class="active" id="account">
+                                        <strong>Coordonnées</strong>
+                                    </li>
+                                    <li id="personal" class="">
+                                        <strong>Documents</strong>
+                                    </li>
+                                    <li id="payment" class="">
+                                        <strong>Financement</strong>
+                                    </li>
+                                    <li id="confirm" class="">
+                                        <strong>Validation</strong>
+                                    </li>
+                                </ul>
+                                <div class="progress">
+                                    <div class="
+                      progress-bar progress-bar-striped progress-bar-animated
+                    " role="progressbar" aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
+                                <br />
+
+                                <div class="mt-3" style="float: right" id="finished">
+                                    <a id ="button-continuer" href="#">
+                                        <button class="rkmd-btn btn-blue ripple-effect ripple-yellow" type="submit" style="font-size: 11px;">
+                                            <i class="material-icons right">send</i>Continuer</button>
+                                    </a>
+                                </div>
+
+
+
+
+
+                                <br/>
+
+
+                            </div>
+                        </div>
+
+
+
+                    </div>
+                </div>
+                <input id="step_value" t-att-value="user_id.partner_id.step" type="hidden" />
+
+
+
+                <!-- <input id="step_value2" value="finish" type="input"/> -->
+
+                <!-- <script>
+
+                document.getElementsByClassName("progress-bar")[0].style.width= "75%";
+
+            </script> -->
+
+
+
+
+            </div>
+
+        </xpath>
+    </template>
+</odoo>

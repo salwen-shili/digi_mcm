@@ -37,7 +37,7 @@ class WebsiteSale(WebsiteSale):
                 questionnaire = request.env['questionnaire'].sudo().search(
                     [('partner_id', '=', order.partner_id.id), ('product_id', "=", product_id.id)])
                 if not questionnaire:
-                    return request.redirect("/coordonnées")
+                    return request.redirect("/coordonnees")
         if order and order.company_id.id == 1 and not documents:
             return request.redirect("/charger_mes_documents")
         # if order.company_id.id == 1 and (partenaire or product):

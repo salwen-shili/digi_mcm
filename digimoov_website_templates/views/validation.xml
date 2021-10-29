@@ -1,0 +1,345 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="digimoov_website_templates.digimoov_template_validation">
+        <t t-call="website.layout">
+
+            <div id="wrap" class="oe_structure oe_empty">
+                <input type="hidden" t-att-value="partner_has_documents" id="hasdocument"></input>
+
+                <link href="/digimoov_website_templates/static/src/css/register_form.css" rel="stylesheet"/>
+                <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"/>
+                <link href="/digimoov_website_templates/static/src/css/material_form.css" rel="stylesheet"/>
+
+
+                <div class="container-fluid">
+                    <div class="row justify-content-center paper">
+                        <div class="
+                col-11 col-sm-10 col-md-10 col-lg-6 col-xl-8
+                text-center
+                p-0
+                mt-3
+                mb-2
+              ">
+                            <style>
+                                h4{
+                                font-weight: 600;
+                                margin-top: 1rem;
+                                margin-bottom:1rem;
+                                color:black;
+
+                                }
+                                textarea{
+                                width: inherit;
+                                }
+                            </style>
+                            <form id="msform" action="/validation/submit" method="POST">
+                                <div class="card px-0 pt-4 pb-0 mt-3 mb-3 bg-c">
+                                    <h2 id="heading">Inscription</h2>
+                                    <p class="p_class">Remplissez tous les champs du formulaire pour passer à l'étape suivante</p>
+
+                                    <!-- progressbar -->
+                                    <ul id="progressbar">
+                                        <li class="active" id="account">
+                                            <strong>Coordonnées</strong>
+                                        </li>
+                                        <li class="" id="personal">
+                                            <strong>Documents</strong>
+                                        </li>
+                                        <li class="" id="payment">
+                                            <strong>Financement</strong>
+                                        </li>
+                                        <li class="" id="confirm">
+                                            <strong>Validation</strong>
+                                        </li>
+                                    </ul>
+                                    <div class="progress">
+                                        <div class="
+                      progress-bar progress-bar-striped progress-bar-animated
+                    " role="progressbar" aria-valuemin="0" aria-valuemax="100"></div>
+                                    </div>
+                                    <br/>
+                                    <script>
+                                        document.getElementsByClassName("progress-bar")[0].style.width= "25%";
+
+                                    </script>
+
+
+                                    <div class="row" style="padding-left:15px">
+                                        <div class="col-7">
+                                            <h2 class="fs-title">Questionnaire</h2>
+                                        </div>
+                                    </div>
+
+
+                                    <fieldset class="col-12 text-left " id="group1">
+                                        <h4 style="font-size:500">Pour le bon déroulement de votre formation, avez-vous
+                                            des besoins particuliers ? (des vidéos avec sous-titrage, un
+                                            suivi par un référent handicap, etc.)
+                                        </h4>
+                                        <label for="rad-1" class="radio">
+                                            <input id="rad-1" type="radio" name="group1" value="Oui"/>
+                                            <span class="label">Oui</span>
+                                            <span class="col-lg-12 pt16 " style="">
+                                            </span>
+                                        </label>
+                                        <label for="rad-2" class="radio">
+                                            <input id="rad-2" type="radio" name="group1" value="Non"/>
+                                            <span class="label">Non</span>
+                                            <span class="col-lg-12 pt16 " style="">
+                                            </span>
+                                        </label>
+
+                                        <h5 style="font-size: 1.0rem;
+                                                    margin-top: 0.5rem;
+                                                    font-weight: 500;
+                                                    margin-bottom: 1rem;
+                                                    color: black;">Si oui, lesquels ?
+                                        </h5>
+                                        <input name="type_besoins" style="width: 96%;
+                                                padding: 10px;
+                                                margin: 10px 0px 24px;" id="text1">
+                                        </input>
+                                        <p style="    font-style: italic;
+                                            color: #000000;
+                                            background: #fff47d69;
+                                            margin: 0;
+                                            padding: 6px;
+                                            margin-right: 20px;
+                                            font-size: revert; display:none" id="error1">
+                                        </p>
+                                        <div class="btn-container">
+                                            <input type="button" name="next" class="next action-button" value="Suivant"/>
+                                        </div>
+
+
+                                    </fieldset>
+
+                                    <fieldset class="col-12 text-left " id="group2">
+                                        <h4>
+                                            Pourquoi avez-vous choisi cette formation ?
+                                        </h4>
+                                        <label for="rad-3" class="radio ">
+                                            <input id="rad-3" type="radio" value="En chômage" name="group2"/>
+                                            <span class="label">Je suis en chômage et je suis en recherche d'emploi</span>
+
+
+
+                                            <span class="col-lg-12 pt16 " style="">
+
+
+                                            </span>
+                                        </label>
+                                        <label for="rad-4" class="radio ">
+                                            <input id="rad-4" type="radio" value="Monter sa propre entreprise" name="group2"/>
+                                            <span class="label">Je veux monter ma propre entreprise et être
+                                            indépendant</span>
+
+
+                                            <span class="col-lg-12 pt16 " style="">
+
+
+                                            </span>
+                                        </label>
+                                        <label for="rad-5" class="radio ">
+                                            <input id="rad-5" type="radio" value="Passionné par le métier" name="group2"/>
+                                            <span class="label">Je suis passionné par le métier de chauffeur
+                                            </span>
+
+                                            <span class="col-lg-12 pt16 " style="">
+
+
+                                            </span>
+                                        </label>
+                                        <label for="rad-6" class="radio ">
+                                            <input id="rad-6" type="radio" value="En reconversion professionnelle" name="group2"/>
+                                            <span class="label">Je suis en reconversion professionnelle pour
+                                            être chauffeur</span>
+
+
+                                            <span class="col-lg-12 pt16 " style="">
+
+
+                                            </span>
+                                        </label>
+                                        <label for="rad-7" class="radio ">
+                                            <input id="rad-7" type="radio" value="Mettre à jour ses connaissances" name="group2"/>
+                                            <span class="label">Pour mettre à jour mes connaissances et
+                                            compétences du métier</span>
+
+
+                                            <span class="col-lg-12 pt16 " style="">
+
+
+                                            </span>
+                                        </label>
+                                        <label for="rad-8" class="radio ">
+                                            <input id="rad-8" type="radio" value="Arrondir ses fins du mois" name="group2"/>
+                                            <span class="label">Pour arrondir mes fins du mois
+                                            </span>
+
+                                            <span class="col-lg-12 pt16 " style="">
+
+
+                                            </span>
+                                        </label>
+                                        <p style="    font-style: italic;
+    color: #000000;
+    background: #fff47d69;
+    margin: 0;
+    padding: 6px;
+    margin-right: 20px;
+    font-size: revert; display:none" id="error2">
+                                        </p>
+                                        <div class="btn-container">
+                                            <input type="button" name="next" class="next action-button" value="Suivant"/>
+                                            <input type="button" name="previous" class="previous action-button-previous" value="Précédent"/>
+                                        </div>
+
+
+                                    </fieldset>
+                                    <fieldset class="col-12 text-left " id="group3">
+                                        <h4>
+                                            Comment préférez-vous suivre votre formation en ligne ?
+
+                                        </h4>
+                                        <label for="rad-9" class="radio ">
+                                            <input id="rad-9" type="radio" value="Vidéos préenregistrées" name="group3"/>
+                                            <span class="label">En visualisant des vidéos préenregistrées
+                                            </span>
+
+                                            <span class="col-lg-12 pt16 " style="">
+
+
+                                            </span>
+                                        </label>
+                                        <label for="rad-10" class="radio ">
+                                            <input id="rad-10" type="radio" value="Documents en ligne" name="group3"/>
+                                            <span class="label">En lisant des documents PDF en ligne
+                                            </span>
+
+                                            <span class="col-lg-12 pt16 " style="">
+
+
+                                            </span>
+                                        </label>
+                                        <label for="rad-11" class="radio ">
+                                            <input id="rad-11" type="radio" value="En mode audio" name="group3"/>
+                                            <span class="label">En écoutant les cours en mode audio
+                                            </span>
+
+                                            <span class="col-lg-12 pt16 " style="">
+
+
+                                            </span>
+                                        </label>
+                                        <label for="rad-13" class="radio ">
+                                            <input id="rad-13" type="radio" value="Alternance entre tous ces modes" name="group3"/>
+                                            <span class="label">En alternant entre tous ces modes
+                                            d’apprentissage</span>
+
+
+                                            <span class="col-lg-12 pt16 " style="">
+
+
+                                            </span>
+                                        </label>
+                                        <p style="    font-style: italic;
+    color: #000000;
+    background: #fff47d69;
+    margin: 0;
+    padding: 6px;
+    margin-right: 20px;
+    font-size: revert; display:none" id="error3">
+                                        </p>
+                                        <div class="btn-container">
+                                            <input type="button" name="next" class="next action-button" value="Suivant"/>
+                                            <input type="button" name="previous" class="previous action-button-previous" value="Précédent"/>
+                                        </div>
+
+
+                                    </fieldset>
+                                    <fieldset class="col-12 text-left " id="5">
+                                        <h4>
+                                            Qu’attendez vous de votre formation ?
+                                        </h4>
+                                        <input type="text" id="text2" name="attentes" style="width: 96%;
+    padding: 10px;
+    margin: 10px 0px 24px;">
+
+                                        </input>
+                                        <p style="    font-style: italic;
+                                        color: #000000;
+                                        background: #fff47d69;
+                                        margin: 0;
+                                        padding: 6px;
+                                        margin-right: 20px;
+                                        font-size: revert; display:none" id="error4">
+                                        </p>
+                                        <div class="btn-container">
+
+
+                                            <input type="button" class="next action-button" href="#popup1" value="Confirmer"/>
+                                            <input type="button" name="previous" class="previous action-button-previous" value="Précédent"/>
+
+                                        </div>
+                                        <script>
+                                        </script>
+                                    </fieldset>
+
+                                    <div style="text-align:center;margin-top:40px;">
+                                        <span class="step"></span>
+                                        <span class="step"></span>
+                                        <span class="step"></span>
+                                        <span class="step"></span>
+
+                                    </div>
+
+
+                                    <!-- <div class=" col-lg-12 col-md-12 col-sm-12" style="padding-top: calc(0.375rem + 1px); padding-bottom: calc(0.375rem + 1px); ">
+                                    <button type="submit" style=" color: #fff; margin-top: 1rem;margin-bottom: 2rem;  " class="float-right rkmd-btn btn-black ripple-effect ripple-yellow " d="submit_documents">Confirmer
+                                    </button>
+                                    <span id="o_website_form_result"/>
+                                </div> -->
+
+                                </div>
+
+                                <div id="popup1" class="overlay">
+                                    <div class="popup">
+                                        <h2 class="text-left">
+                                            <i class="fa fa-info-circle" style="color: #152856;"></i>
+                                        </h2>
+                                        <a class="close" href="#">
+                                            <i class="fa fa-times"></i>
+                                        </a>
+                                        <div class="content">
+                                            <p id="notifMessage">
+
+                                            </p>
+                                            <div class="" style="margin-block-start: 1.5rem;">
+                                                <input type="submit" class="text-center next action-button" style="float: unset !important;" value="Continuer" onclick="(function(){document.getElementById('msform').submit();;return false;})();return false;"/>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </form>
+
+                            <br/>
+
+
+                            <br/>
+
+
+                            <br/>
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <script defer="defer" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"/>
+            <script defer="defer" type="text/javascript" src="/digimoov_website_templates/static/src/js/feedback-form.js"/>
+        </t>
+    </template>
+</odoo>

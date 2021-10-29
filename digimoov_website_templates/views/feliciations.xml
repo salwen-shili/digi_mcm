@@ -1,0 +1,43 @@
+<odoo>
+    <template id="digimoov_website_templates.digimoov_template_felicitations" name="Inscription avec succès | DIGIMOOV">
+        <t t-call="website.layout">
+            <link href="/digimoov_website_templates/static/src/css/felicitations.css" rel="stylesheet"></link>
+            <div id="wrap" class="oe_structure oe_empty" data-oe-model="ir.ui.view" data-oe-id="11814" data-oe-field="arch" data-oe-xpath="/t[1]/t[1]/div[1]">
+                <div class="js-container-animation container-animation">
+                    <form method="post" action="/continue_signup">
+                        <div class="" style="
+                        /* width: max-content; */
+                        height: 90vh;
+                        position:absolute;
+                        left:0;
+                        right:0;
+                        top:0;
+                        bottom:0;
+                        margin:auto;
+                        max-width:100%;
+                        max-height: 52vh;
+                        text-align: center;
+                        overflow:auto;
+                        z-index: 2;
+                    ">
+                            <div class="checkmark-circle">
+                                <div class="background"></div>
+                                <div class="checkmark draw"></div>
+
+                            </div>
+                            <h1 style="color:#000000;margin-top:1rem">Votre compte a été créé <span style="font-weight:900;color:#3e96c8">avec succès !</span>
+                            </h1>
+                            <p style="color:#000000; font-size: 17px;">Vous pouvez désormais passer à l’étape suivante.</p>
+                            <button class="submit-btn" type="submit">Suivant</button>
+                        </div>
+
+                        <div class="confetti-container-animation">
+                        </div>
+                        <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                    </form>
+                </div>
+            </div>
+            <script type="text/javascript" src="/digimoov_website_templates/static/src/js/felicitations.js"></script>
+        </t>
+    </template>
+</odoo>

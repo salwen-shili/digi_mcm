@@ -191,7 +191,7 @@ class Routes_Site(http.Controller):
     @http.route('/edit_info', type='http', auth='user', website=True)
     def editInfo(self):
         if request.website.id == 2:
-            raise werkzeug.exceptions.NotFound()
+            return request.render("digimoov_website_templates.digimoov_website_templates_edit_info", {})
         elif request.website.id == 1:
             return request.render("mcm_website_theme.mcm_website_theme_edit_info", {})
 
@@ -316,7 +316,7 @@ class Routes_Site(http.Controller):
         elif request.website.id == 1:
             return request.render("mcm_website_theme.mcm_template_examen", {})
 
-    @http.route('/coordonnées', type='http', auth='user', website=True,csrf=False)
+    @http.route('/coordonnees', type='http', auth='user', website=True,csrf=False)
     def validation_questionnaires(self, **kw):
 
         # La page n'est affichée que sur le site mcm

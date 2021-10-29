@@ -1,0 +1,120 @@
+<odoo>
+
+    <template id="digimoov_website_templates.digimoov_contract_notification" inherit_id="portal.portal_record_sidebar">
+        <xpath expr="//div[@id='sidebar_content']" position="inside">
+            <script type="text/javascript" src="/digimoov_website_templates/static/src/js/contract_notif.js"></script>
+            <style>
+                .content {
+                color: #000;
+                margin-block-start: 1rem;
+                }
+
+                .overlay {
+                position: fixed;
+                top: 0;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                background: rgba(0, 0, 0, 0.7);
+                transition: opacity 500ms;
+                visibility: hidden;
+                opacity: 0;
+                }
+                .overlay:target {
+                visibility: visible;
+                opacity: 1;
+                z-index: 1;
+                }
+
+                .popup {
+                top: 33%;
+                margin: 70px auto;
+                padding: 20px;
+                background: #fff;
+                border-radius: 5px;
+                width: 40%;
+                position: relative;
+                transition: all 5s ease-in-out;
+                }
+
+                .popup h2 {
+                margin-top: 0;
+                color: #333;
+                font-family: Tahoma, Arial, sans-serif;
+                }
+                .popup .close {
+                position: absolute;
+                top: 20px;
+                right: 30px;
+                transition: all 200ms;
+                font-size: 30px;
+                font-weight: bold;
+                text-decoration: none;
+                color: #152856;
+                }
+                .popup .close:hover {
+                color: hsl(222, 61%, 41%);
+                }
+                .popup .content {
+                max-height: 30%;
+                overflow: auto;
+                }
+
+                @media screen and (max-width: 700px) {
+                .box {
+                    width: 70%;
+                }
+                .popup {
+                    width: 70%;
+                }
+                }
+                .action-button {
+  height: 40px;
+  width: 150px;
+  font-size: 15px;
+  background-color: #152856;
+  border: 1px solid hsl(240, 44%, 28%);
+  color: #ffffff;
+  font-weight: 600;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px 0 rgba(87, 71, 81, 0.2);
+  cursor: pointer;
+  transition: all 2s ease-out;
+  transition: all 0.2s ease-out;
+  float: right;
+}
+.action-button:hover,
+.action-button:focus {
+  background-color: #ffffff;
+  border: 1px solid hsl(240, 44%, 28%);
+  color: #000000;
+  transition: all 0.2s ease-out;
+}
+
+
+            </style>
+            <div id="popup1" class="overlay">
+                <div class="popup" style="">
+                    <h2 class="text-left">
+                        <i class="fa fa-info-circle" style="color: #152856;"></i>
+                    </h2>
+                    <a class="close" href="#">
+                        <i class="fa fa-times"></i>
+                    </a>
+                    <div class="content text-center">
+                        <p id="notifMessage">
+                            Nous vous remercions pour votre confiance, votre paiement a été effectué avec succès! <br/>
+                            Vous pouvez maintenant finaliser votre inscription en signant votre contrat pour avoir accès à notre plateforme de formation.               
+                        </p>
+                        <div class="" style="margin-block-start: 1.5rem;">
+                            <input type="submit" class=" next action-button" style="float: unset !important;" value="Continuer" onclick="(function(){document.getElementById('msform').submit();;return false;})();return false;"/>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </xpath>
+
+
+    </template>
+</odoo>

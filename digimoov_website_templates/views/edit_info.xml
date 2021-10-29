@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="digimoov_website_templates.digimoov_website_templates_edit_info" name="Editer">
+        <t t-call="website.layout">
+            <link href="/digimoov_website_templates/static/src/css/register_form.css" rel="stylesheet"/>
+            <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"/>
+            <link href="/digimoov_website_templates/static/src/css/material_form.css" rel="stylesheet"/>
+
+            <div id="wrap" class="oe_structure oe_empty">
+                <form action="/update_partner">
+                    <div class="container-fluid">
+
+                        <div class="row justify-content-center paper">
+
+                            <div id="form_input" class="col-11 col-sm-10 col-md-10 col-lg-6 col-xl-8
+                                    text-center
+                                    p-0
+                                    mt-3
+                                    mb-2
+                                    ">
+
+                                <div class="form-section">
+
+                                    <div class="card px-0 pt-4 pb-0 mt-3 mb-3 bg-c">
+
+                                        <h2 id="heading" style="margin-bottom: 2rem;">Modifier mes informations</h2>
+
+                                        <i class="fa fa-info-circle fa-5x" style="color:#152856"></i>
+
+                                        <br />
+
+                                        <fieldset>
+                                            <div class="row" style="
+    margin-block-start: 1rem;
+    margin-block-end: 1rem;
+">
+
+                                                <h2 class="fs-title" style="margin-left: 1rem;margin-bottom: 2rem;">Informations personnelles</h2>
+
+
+                                            </div>
+                                            <input type="hidden" name="user" t-att-value="user_id"/>
+
+
+                                            <!-- error-input-field -->
+                                            <div class="outlined-input-field bg-c" id="lastname_container">
+
+
+
+                                                <input disabled="disabled" style="background-color: #eee;" type="text" name="name" id="lastname" class="outlined-text-field" t-att-value="user_id.partner_id.lastName" autocomplete="off" pattern="[A-Z,a-z,À-ÿ '-]{2,}" required="required" inputmode="latin-name" />
+                                                <label for="lastname">Nom *</label>
+                                                <i class="material-icons error-icon">error_outline</i>
+                                                <div class="helper-text bg-c" id="lastname_helper">
+                                                    <span></span>
+                                                </div>
+
+                                            </div>
+                                            <br />
+
+
+                                            <div class="outlined-input-field bg-c" id="firstname_container">
+                                                <input disabled="disabled" style="background-color: #eee;" type="text" id="firstname" name="firstname" class="outlined-text-field" autocomplete="off" t-att-value="user_id.partner_id.firstname" pattern="[A-Z,a-z,À-ÿ '-]{2,}" required="required" inputmode="latin-name" />
+                                                <label for="firstname">Prénom *</label>
+                                                <i class="material-icons error-icon">error_outline</i>
+                                                <div class="helper-text bg-c" id="firstname_helper">
+                                                    <span></span>
+                                                </div>
+                                            </div>
+                                            <br />
+
+                                            <div class="outlined-input-field bg-c" id="phone_container">
+                                                <input type="text" id="phone" name="phone" class="outlined-text-field" t-att-value="user_id.partner_id.phone" autocomplete="off" maxlength="10" pattern="07|06)[1-9]\d{7}" required="required" inputmode="numeric" />
+                                                <label for="phone">Téléphone *</label>
+                                                <i class="material-icons error-icon">error_outline</i>
+                                                <div class="helper-text bg-c" id="phone_helper">
+                                                    <span></span>
+                                                </div>
+                                            </div>
+                                            <br />
+
+                                            <div class="outlined-input-field bg-c" id="email_container">
+                                                <input disabled="disabled" style="background-color: #eee;" type="text" id="email" class="outlined-text-field" autocomplete="off" value="" required="required" inputmode="email" name="login" t-att-value="user_id.login"/>
+                                                <label for="email">Email *</label>
+                                                <i class="material-icons error-icon">error_outline</i>
+                                                <div class="helper-text bg-c" id="email_helper">
+                                                    <span></span>
+                                                </div>
+                                            </div>
+                                            <br />
+
+
+                                            <br />
+                                        </fieldset>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Address Form -->
+
+                    <div class="container-fluid">
+                        <div class="row justify-content-center paper">
+                            <div class="
+                col-11 col-sm-10 col-md-10 col-lg-6 col-xl-8
+                text-center
+                p-0
+                mt-3
+                mb-2
+              ">
+                                <div class="form-section">
+                                    <div class="card px-0 pt-4 pb-0 mt-3 mb-3 bg-c">
+
+                                        <fieldset>
+                                            <div class="row">
+                                                <div class="col-7">
+                                                    <h2 class="fs-title">Adresse</h2>
+                                                    <br/>
+                                                </div>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-md-4 mgb outlined-input-field bg-c" id="zipcode_container">
+                                                    <input type="text" id="zipcode" name="zip" t-att-value="user_id.partner_id.zip" class="outlined-text-field" required="required" maxlength="5" pattern="[0-9]{5,5}" inputmode="numeric" autocomplete="off" value="" />
+                                                    <label for="zipcode" style="left: 2rem !important">Code Postal *</label
+                        >
+                                                    <i class="material-icons error-icon">error_outline</i>
+                                                    <div class="helper-text bg-c" id="zipcode_helper">
+                                                        <span></span>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-8 outlined-input-field bg-c" id="city_container" aria-disabled="true">
+
+                                                    <input class="outlined-text-field disabled" name="city" id="city" t-att-value="user_id.partner_id.city" />
+                                                    <label for="city" style="left: 2rem !important">Ville *</label
+                        >
+                                                    <i class="material-icons error-icon">error_outline</i>
+                                                    <div class="helper-text bg-c" id="city_helper">
+                                                        <span></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <br />
+
+                                            <div class="outlined-input-field bg-c" id="voie_container" aria-disabled="true">
+                                                <input class="outlined-text-field" name="voie" id="voie" t-att-value="user_id.partner_id.voie" required="true" />
+                                                <label for="voie">Type de voie *</label>
+                                                <i class="material-icons error-icon"></i>
+                                                <div class="helper-text bg-c" id="voie_helper">
+                                                    <span></span>
+                                                </div>
+                                            </div>
+
+                                            <br />
+
+                                            <div class="outlined-input-field bg-c" id="nom_voie_container" aria-disabled="true">
+
+                                                <input type="text" name="nom_voie" id="nom_voie" t-att-value="user_id.partner_id.nom_voie" class="outlined-text-field" autocomplete="off" />
+
+                                                <label for="nom_voie">Nom de voie *</label>
+                                                <i class="material-icons error-icon">error_outline</i>
+                                                <div class="helper-text bg-c" id="nom_voie_helper">
+                                                    <span></span>
+                                                </div>
+                                            </div>
+                                            <br />
+
+                                            <div class="outlined-input-field bg-c" id="num_voie_container">
+                                                <input type="text" id="num_voie" t-att-value="user_id.partner_id.num_voie" name="num_voie" class="outlined-text-field" autocomplete="off" />
+                                                <label for="num_voie">N° de voie * </label>
+                                                <i class="material-icons error-icon">error_outline</i>
+                                                <div class="helper-text bg-c" id="num_voie_helper">
+                                                    <span></span>
+                                                </div>
+                                            </div>
+                                            <br />
+
+                                            <div class="outlined-input-field bg-c" id="comp_address_container">
+                                                <input type="text" id="comp_address" name="street2" t-att-value="user_id.partner_id.street2" class="outlined-text-field" autocomplete="off" />
+                                                <label for="comp_address">Complément d'adresse </label>
+                                                <i class="material-icons error-icon">error_outline</i>
+                                                <div class="helper-text bg-c" id="comp_address_helper">
+                                                    <span></span>
+                                                </div>
+                                            </div>
+                                            <br />
+
+
+                                            <div class="text-center oe_login_buttons pt-5" style="margin-block-end: 3rem">
+
+                                                <button type="submit" class="rkmd-btn btn-blue ripple-effect ripple-yellow" data-oe-model="ir.ui.view" data-oe-id="1730" data-oe-field="arch" data-oe-xpath="/data/xpath[4]/div[2]/div[1]/div[1]/div[1]/div[1]/fieldset[1]/div[7]/button[1]">
+                         Confirmer <i class="material-icons right">send</i>
+                                                </button>
+
+                                                <div class="o_login_auth" data-oe-model="ir.ui.view" data-oe-id="1730" data-oe-field="arch" data-oe-xpath="/data/xpath[4]/div[2]/div[1]/div[1]/div[1]/div[1]/fieldset[1]/div[7]/div[1]"></div>
+                                            </div>
+                                            <link href="/mcm_contact_documents/static/src/css/button.css" rel="stylesheet" />
+
+
+
+
+                                        </fieldset>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <script defer="defer" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"/>
+            <script defer="defer" type="text/javascript" src="/mcm_website_theme/static/src/js/material_edit_info.js"/>
+        </t>
+    </template>
+</odoo>
