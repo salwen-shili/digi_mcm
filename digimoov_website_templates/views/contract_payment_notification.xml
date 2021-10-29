@@ -107,8 +107,7 @@
                             Vous pouvez maintenant finaliser votre inscription en signant votre contrat pour avoir accès à notre plateforme de formation.               
                         </p>
                         <div class="" style="margin-block-start: 1.5rem;">
-                            <input type="button" class=" next action-button" style="float: unset !important;" value="Continuer" onclick="(function(){window.location.herf='#';return false;})();return false;"/>
-
+                            <a type="button" href="#" class="next action-button" style="padding: 7px;float: unset !important;">Continuer</a>
                         </div>
                     </div>
                 </div>
