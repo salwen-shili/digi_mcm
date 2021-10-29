@@ -51,7 +51,9 @@ class NoteExamen(models.Model):
     etat = fields.Char(compute="etat_de_client_apres_examen")
     mode_de_financement = fields.Char(string="Mode de financement")
     session_id = fields.Many2one('mcmacademy.session')
-
+    #For automation action conditions use.
+    this_is_exam_technical_field = fields.Boolean(readonly=True, default=True)
+    
     @api.onchange('epreuve_a', 'epreuve_b', 'presence')
     def _compute_moyenne_generale(self):
         """ This function used to auto display some result
