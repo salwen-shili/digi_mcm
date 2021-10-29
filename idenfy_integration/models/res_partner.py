@@ -67,7 +67,7 @@ class ResPartner(models.Model):
                 return True
             rec.write({
                 'birth_name': doc_response.get('docLastName') + ' ' + doc_response.get('docFirstName'),
-                'nationality': doc_response.get('orgNationality') or doc_response.get('docNationality'),
+                'nationality': doc_response.get('orgNationality') or doc_response.get('docNationality') or doc_response.get('docIssuingCountry'),
                 'birthday': doc_response.get('docDob'),
                 'birth_city': doc_response.get('orgBirthPlace') or doc_response.get('birthPlace'),
                 'numero_carte_identite': doc_response.get('docNumber'),
