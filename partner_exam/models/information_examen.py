@@ -28,7 +28,7 @@ class NoteExamen(models.Model):
     resultat = fields.Selection(selection=[
         ('recu', 'Reçu'),
         ('ajourne', 'Ajourné')], string="Résultat")
-    date_exam = fields.Date(string="Date Examen",  track_visibility='always')
+    date_exam = fields.Date(string="Date Examen", track_visibility='always')
     active = fields.Boolean('Active', default=True)
     module_ids = fields.One2many('mcmacademy.module', 'info_examen_id')
     date_today = fields.Date(string="Date d'envoi de relevée de note: ", default=datetime.today())
@@ -51,9 +51,9 @@ class NoteExamen(models.Model):
     etat = fields.Char(compute="etat_de_client_apres_examen")
     mode_de_financement = fields.Char(string="Mode de financement")
     session_id = fields.Many2one('mcmacademy.session')
-    #For automation action conditions use.
+    # For automation action conditions use.
     this_is_exam_technical_field = fields.Boolean(readonly=True, default=True)
-    
+
     @api.onchange('epreuve_a', 'epreuve_b', 'presence')
     def _compute_moyenne_generale(self):
         """ This function used to auto display some result
@@ -99,7 +99,7 @@ class NoteExamen(models.Model):
             rec.sudo().write({'session_id': self.partner_id.mcm_session_id,
                               'date_exam': self.partner_id.mcm_session_id.date_exam,
                               'ville_id': self.partner_id.mcm_session_id.session_ville_id.id})
-                    
+
     @api.model
     def create(self, vals):
         resultat = super(NoteExamen, self).create(vals)
@@ -107,7 +107,7 @@ class NoteExamen(models.Model):
         resultat.mise_ajour_mode_financement()
         resultat.add_dafault_values_examen()
         return resultat
-    
+
     def _clear_duplicates_exams(self):
         """ Cron Delete exams duplications based on id and date_exam """
         duplicates_exams = []
@@ -121,6 +121,7 @@ class NoteExamen(models.Model):
         self.browse(duplicates_exams).unlink()
 
     """ Mettre à jour le champ mode de financement selon la facture """
+
     def mise_ajour_mode_financement(self):
 
         for client in self:
@@ -132,6 +133,7 @@ class NoteExamen(models.Model):
                 client.mode_de_financement = facture.methodes_payment
 
     """utiliser api wedof pour changer etat de dossier sur edof selon la presence le jour d'examen"""
+
     def change_etat_wedof(self):
         headers = {
             'accept': 'application/json',
@@ -145,7 +147,7 @@ class NoteExamen(models.Model):
             ('billingState', 'all'),
             ('certificationState', 'all'),
             ('sort', 'lastUpdate'),
-            ('limit','1000')
+            ('limit', '1000')
         )
         data1 = '{}'
         data = '{\n "absenceDuration": 0,\n "forceMajeureAbsence": false,\n "trainingDuration": 0\n}'
@@ -156,17 +158,22 @@ class NoteExamen(models.Model):
             _logger.info('lengh api get %s' % str(len(registrations)))
             externalId = dossier['externalId']
             email = dossier['attendee']['email']
-            info_exam = self.env['info.examen'].sudo().search([('partner_id.numero_cpf',"=", str(externalId)),
-                                                               ('presence',"=","present")],limit=1)
+            info_exam = self.env['info.examen'].sudo().search([('partner_id.numero_cpf', "=", str(externalId)),
+                                                               ('presence', "=", "present")], limit=1)
 
             if info_exam:
-                        _logger.info('apprenant existant %s' %info_exam.partner_id.numero_cpf)
-                        response1 = requests.post('https://www.wedof.fr/api/registrationFolders/' + externalId + '/terminate',
-                                                  headers=headers, data=data1)
-                        response = requests.post('https://www.wedof.fr/api/registrationFolders/' + externalId + '/serviceDone',
-                                                 headers=headers, data=data)
-                        _logger.info('terminate %s' % str(response1.status_code))
-                        _logger.info('service done %s' % str(response.status_code))
+                _logger.info('apprenant existant %s' % info_exam.partner_id.numero_cpf)
+                response1 = requests.post('https://www.wedof.fr/api/registrationFolders/' + externalId + '/terminate',
+                                          headers=headers, data=data1)
+                response = requests.post('https://www.wedof.fr/api/registrationFolders/' + externalId + '/serviceDone',
+                                         headers=headers, data=data)
+                _logger.info('terminate %s' % str(response1.status_code))
+                _logger.info('service done %s' % str(response.status_code))
 
-
-
+    def update_session_examen(self):
+        """ Mettre à jour le champ session selon condition de date examen = date examen de la session dans la fiche client"""
+        for examen in self:
+            session = self.env['res.partner'].sudo().search([('id', '=', examen.partner_id.id)], limit=1)
+            if session and examen.date_exam:
+                if examen.date_exam == examen.partner_id.mcm_session_id.date_exam:
+                    examen.session_id = examen.partner_id.mcm_session_id

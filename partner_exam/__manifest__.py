@@ -36,6 +36,7 @@
         'report/attestation_suivi_formation.xml',
         'data/mail_template_suivi_formation.xml',
         'data/ir_cron.xml',
+        'data/ir_actions.server.xml',
     ],
     'qweb': ['static/src/xml/qweb.xml',],
     'demo': [
