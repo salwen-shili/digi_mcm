@@ -194,7 +194,15 @@ class Routes_Site(http.Controller):
         user_id = request.uid
         partner = request.env['res.users'].sudo().search([('id', "=", user_id)]).partner_id
         partner.sudo().write(vals)
-        return request.render("mcm_contact_documents.mcm_contact_documents_charger_mes_documents_mcm", {})
+        order = request.website.sale_get_order()
+        if partner:
+            documents = request.env['documents.document'].sudo().search([('partner_id', '=', partner.id)])
+        if not documents:
+            return request.redirect('/charger_mes_documents')
+        if documents and order:
+            return request.redirect('/shop/cart')
+        if not order:
+            return request.redirect('/pricing')
 
     @http.route('/edit_info', type='http', auth='user', website=True)
     def editInfo(self):
