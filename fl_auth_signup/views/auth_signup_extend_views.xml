@@ -131,7 +131,7 @@
                                         <br t-if="not name"/>
 
                                         <div class="outlined-input-field bg-c" id="email_container" t-if="not name">
-                                            <input type="text" id="email" class="outlined-text-field" autocomplete="off" value="" required="required" inputmode="email" name="login"/>
+                                            <input type="email" id="email" class="outlined-text-field" autocomplete="off" value="" required="required" inputmode="email" name="login"/>
                                             <label for="email">Email *</label>
                                             <i class="material-icons error-icon">error_outline</i>
                                             <div class="helper-text bg-c" id="email_helper">
@@ -139,7 +139,7 @@
                                             </div>
                                         </div>
                                         <div class="outlined-input-field bg-c" id="email_container" t-if="name">
-                                            <input type="text" id="email" class="outlined-text-field" autocomplete="off" t-att-value="login" required="required" inputmode="email" name="login" t-att-readonly="'readonly' if login else None"/>
+                                            <input type="email" id="email" class="outlined-text-field" autocomplete="off" t-att-value="login" required="required" inputmode="email" name="login" t-att-readonly="'readonly' if login else None"/>
                                             <label for="email" style="top: -0.7rem;padding: 0.25rem;">Email *</label>
                                             <i class="material-icons error-icon">error_outline</i>
                                             <div class="helper-text bg-c" id="email_helper">
@@ -150,7 +150,7 @@
                                         <br/>
 
                                         <div class="outlined-input-field bg-c" id="confirm_email_container" t-if="not name">
-                                            <input type="text" id="confirm_email" class="outlined-text-field" name="confirm_email" autocomplete="off" value="" required="required" inputmode="email"/>
+                                            <input type="email" id="confirm_email" class="outlined-text-field" name="confirm_email" autocomplete="off" value="" required="required" inputmode="email"/>
                                             <label for="confirm_email">Confirmer votre email *</label>
                                             <i class="material-icons error-icon">error_outline</i>
                                             <div class="helper-text bg-c" id="confirm_email_helper">
@@ -158,7 +158,7 @@
                                             </div>
                                         </div>
                                         <div class="outlined-input-field bg-c" id="confirm_email_container" t-if="name" style="display:none">
-                                            <input type="text" id="confirm_email" class="outlined-text-field" name="confirm_email" autocomplete="off" t-att-value="login" required="required" inputmode="email"/>
+                                            <input type="email" id="confirm_email" class="outlined-text-field" name="confirm_email" autocomplete="off" t-att-value="login" required="required" inputmode="email"/>
                                             <label for="confirm_email">Confirmer votre email *</label>
                                             <i class="material-icons error-icon">error_outline</i>
                                             <div class="helper-text bg-c" id="confirm_email_helper">
@@ -171,7 +171,7 @@
                                             <input type="password" id="password" class="outlined-text-field" autocomplete="off" required="required" name="password"/>
                                             <label for="password">Mot de passe *</label>
                                             <i class="material-icons error-icon">error_outline</i>
-                                            <div class="helper-text bg-c" id="password_helper">
+                                            <div class="text-left helper-text bg-c" id="password_helper">
                                                 <span></span>
                                             </div>
                                         </div>

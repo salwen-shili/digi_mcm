@@ -363,41 +363,44 @@ $(document).ready(function () {
       });
   });
   $("#first_form").submit(function (e) {
-    console.log("call submit");
-
-    (function (w, d, t, r, u) {
-      var f, n, i;
-      (w[u] = w[u] || []),
-        (f = function () {
-          var o = {
-            ti: document.getElementById("microsoft_tracking_key").value,
-          };
-          (o.q = w[u]), (w[u] = new UET(o)), w[u].push("pageLoad");
-        }),
-        (n = d.createElement(t)),
-        (n.src = r),
-        (n.async = 1),
-        (n.onload = n.onreadystatechange =
-          function () {
-            var s = this.readyState;
-            (s && s !== "loaded" && s !== "complete") ||
-              (f(), (n.onload = n.onreadystatechange = null));
+    const check = document.querySelector(".error-input-field");
+    if (check != null) {
+      e.preventDefault();
+      return;
+    } else {
+      (function (w, d, t, r, u) {
+        var f, n, i;
+        (w[u] = w[u] || []),
+          (f = function () {
+            var o = {
+              ti: document.getElementById("microsoft_tracking_key").value,
+            };
+            (o.q = w[u]), (w[u] = new UET(o)), w[u].push("pageLoad");
           }),
-        (i = d.getElementsByTagName(t)[0]),
-        i.parentNode.insertBefore(n, i);
-    })(window, document, "script", "//bat.bing.com/bat.js", "uetq");
-    console.log("inside script");
-    window.uetq = window.uetq || [];
-    window.uetq.push(
-      "event",
-      "click sur inscription a partir de vous n'avez pas de compte",
-      {
-        event_category: "Inscription",
-        event_label: "Inscription MCM",
-        event_value: "10",
-      }
-    );
-    console.log("after script");
+          (n = d.createElement(t)),
+          (n.src = r),
+          (n.async = 1),
+          (n.onload = n.onreadystatechange =
+            function () {
+              var s = this.readyState;
+              (s && s !== "loaded" && s !== "complete") ||
+                (f(), (n.onload = n.onreadystatechange = null));
+            }),
+          (i = d.getElementsByTagName(t)[0]),
+          i.parentNode.insertBefore(n, i);
+      })(window, document, "script", "//bat.bing.com/bat.js", "uetq");
+      console.log("inside script");
+      window.uetq = window.uetq || [];
+      window.uetq.push(
+        "event",
+        "click sur inscription a partir de vous n'avez pas de compte",
+        {
+          event_category: "Inscription",
+          event_label: "Inscription",
+          event_value: "10",
+        }
+      );
+    }
   });
 
   //fetch voie address

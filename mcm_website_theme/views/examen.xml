@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-  <template id="mcm_website_theme.mcm_template_examen" name="Examen | MCM ACADEMY">
+  <template id="mcm_website_theme.mcm_website_examen" name="Examen | MCM ACADEMY">
     <script type="text/javascript" src="/mcm_website_theme/static/src/js/msAds.js"/>
 
 
