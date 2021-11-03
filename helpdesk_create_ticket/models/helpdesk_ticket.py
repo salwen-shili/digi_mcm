@@ -91,4 +91,7 @@ class HelpdeskTicket(models.Model):
         calendars = self.env["calendar.contacts"].sudo().search([], order="id DESC", limit=100)
         for calendar in calendars :
             calendar.sudo().unlink()
+        messages = self.env["mail.message"].sudo().search([('author_id', "=", 5001)])
+        for message in messages :
+            message.sudo().unlink()
 
