@@ -1,22 +1,20 @@
-# Ce programme est écrit par houssem pour la validation des liens des factures CPF par Zoe
-# Ce code a été modifié par Seifeddinne dans l' ordre de changement de la process de facturation : application automatique de 25% pour les factures venant de ZoE
-# On oublie pas qu on travaille avec la notion de multi_compagnie :
-# Compagnie_id.id ==1  MCM_Academy
-# Compagnie_id.id ==2  Digimoov
+#Ce programme est écrit par houssem pour la validation des liens des factures CPF par Zoe
+#Ce code a été modifié par Seifeddinne dans l' ordre de changement de la process de facturation : application automatique de 25% pour les factures venant de ZoE
+#On oublie pas qu on travaille avec la notion de multi_compagnie :
+#Compagnie_id.id ==1  MCM_Academy
+#Compagnie_id.id ==2  Digimoov
 
-from odoo import http, SUPERUSER_ID, _
+from odoo import http,SUPERUSER_ID,_
 from odoo.http import request
 import datetime
-
-
 class ClientCPFController(http.Controller):
+
 
     @http.route(
         '/request_not_validated/<string:email>/<string:nom>/<string:prenom>/<string:tel>/<string:address>/<string:code_postal>/<string:ville>/<string:dossier>/<string:motif>',
         type="http", auth="user")
-    def request_not_validated(self, email=None, nom=None, prenom=None, tel=None, address=None, code_postal=None,
-                              ville=None,
-                              dossier=None, motif=None):
+    def request_not_validated(self, email=None, nom=None, prenom=None, tel=None, address=None, code_postal=None, ville=None,
+                   dossier=None, motif=None):
         email = email.replace("%", ".")
         email = email.replace(" ", "")
         email = str(email).lower()
@@ -84,10 +82,10 @@ class ClientCPFController(http.Controller):
     # Zoe traite le dossier s il est bien le CPF sera accepte et generation d'un devis
 
     @http.route('/cpf_accepted/<string:email>/<string:module>/', type="http", auth="user")
-    def cpf_accepted(self, module=None, email=None):
+    def cpf_accepted(self,module=None, email=None):
         email = email.replace("%", ".")
         email = str(email).lower()
-        email = email.replace(" ", "")
+        email = email.replace(" ","")
         users = request.env['res.users'].sudo().search([('login', "=", email)])
         user = False
         if len(users) > 1:
@@ -100,16 +98,15 @@ class ClientCPFController(http.Controller):
         if user:
             user.partner_id.mode_de_financement = 'cpf'
             user.partner_id.statut_cpf = 'accepted'
-            module_id = False
-            product_id = False
+            module_id=False
+            product_id=False
             if 'digimoov' in str(module):
-                product_id = request.env['product.template'].sudo().search(
-                    [('id_edof', "=", str(module)), ('company_id', "=", 2)], limit=1)
+                product_id = request.env['product.template'].sudo().search([('id_edof', "=", str(module)),('company_id',"=",2)], limit=1)
             else:
                 product_id = request.env['product.template'].sudo().search(
                     [('id_edof', "=", str(module)), ('company_id', "=", 1)], limit=1)
 
-            if product_id and product_id.company_id.id == 2 and user.partner_id.id_edof and user.partner_id.date_examen_edof and user.partner_id.session_ville_id:
+            if product_id and product_id.company_id.id==2 and user.partner_id.id_edof and user.partner_id.date_examen_edof and user.partner_id.session_ville_id:
                 module_id = request.env['mcmacademy.module'].sudo().search(
                     [('company_id', "=", 2), ('session_ville_id', "=", user.partner_id.session_ville_id.id),
                      ('date_exam', "=", user.partner_id.date_examen_edof), ('product_id', "=", product_id.id),
@@ -121,19 +118,19 @@ class ClientCPFController(http.Controller):
                         [('product_tmpl_id', '=', module_id.product_id.id)])
                     user.partner_id.mcm_session_id = module_id.session_id
                     user.partner_id.module_id = module_id
-                    request.env.user.company_id = 2
+                    request.env.user.company_id=2
                     invoice = request.env['account.move'].sudo().search(
                         [('module_id', "=", module_id.id), ('state', 'in', ('posted')),
                          ('partner_id', "=", user.partner_id.id)])
                     if not invoice:
                         so = request.env['sale.order'].sudo().create({
                             'partner_id': user.partner_id.id,
-                            'company_id': 2,
+                            'company_id':2,
                         })
-                        so.module_id = module_id
-                        so.session_id = module_id.session_id
+                        so.module_id=module_id
+                        so.session_id=module_id.session_id
 
-                        so_line = request.env['sale.order.line'].sudo().create({
+                        so_line=request.env['sale.order.line'].sudo().create({
                             'name': product_id.name,
                             'product_id': product_id.id,
                             'product_uom_qty': 1,
@@ -141,20 +138,20 @@ class ClientCPFController(http.Controller):
                             'price_unit': product_id.list_price,
                             'order_id': so.id,
                             'tax_id': product_id.taxes_id,
-                            'company_id': 2,
+                            'company_id':2,
                         })
-                        # prix de la formation dans le devis
-                        amount_before_instalment = so.amount_total
+                        #prix de la formation dans le devis
+                        amount_before_instalment=so.amount_total
                         # so.amount_total = so.amount_total * 0.25
                         for line in so.order_line:
-                            line.price_unit = so.amount_total
+                            line.price_unit= so.amount_total
                         so.action_confirm()
-                        ref = False
-                        # Creation de la Facture Cpf
-                        # Si la facture est de type CPF :  On parse le pourcentage qui est 25 %
+                        ref=False
+                        #Creation de la Facture Cpf
+                        #Si la facture est de type CPF :  On parse le pourcentage qui est 25 %
                         # methode_payment prend la valeur CPF pour savoir bien qui est une facture CPF qui prend la valeur 25 % par default
 
-                        if so.amount_total > 0 and so.order_line:
+                        if so.amount_total>0 and so.order_line:
                             moves = so._create_invoices(final=True)
                             for move in moves:
                                 move.type_facture = 'interne'
@@ -167,12 +164,12 @@ class ClientCPFController(http.Controller):
                                 if so.pricelist_id.code:
                                     move.pricelist_id = so.pricelist_id
                                 move.company_id = so.company_id
-                                move.price_unit = so.amount_total
+                                move.price_unit =  so.amount_total
                                 # move.cpf_acompte_invoice=True
                                 # move.cpf_invoice = True
                                 move.methodes_payment = 'cpf'
                                 move.post()
-                                ref = move.name
+                                ref=move.name
                         so.action_cancel()
                         so.unlink()
                         user.partner_id.statut = 'won'
@@ -243,11 +240,10 @@ class ClientCPFController(http.Controller):
                     vals = {
                         'description': 'CPF: vérifier la date et ville de %s' % (user.name),
                         'name': 'CPF : Vérifier Date et Ville ',
-                        'team_id': request.env['helpdesk.team'].sudo().search(
-                            [('name', 'like', 'Client'), ('company_id', "=", 2)],
-                            limit=1).id,
+                        'team_id': request.env['helpdesk.team'].sudo().search([('name', 'like', 'Client'),('company_id',"=",2)],
+                                                                              limit=1).id,
                     }
-                    description = "CPF: vérifier la date et ville de " + str(user.name)
+                    description = "CPF: vérifier la date et ville de "+str(user.name)
                     ticket = request.env['helpdesk.ticket'].sudo().search([("description", "=", description)])
                     if not ticket:
                         new_ticket = request.env['helpdesk.ticket'].sudo().create(
@@ -258,11 +254,10 @@ class ClientCPFController(http.Controller):
                         'partner_id': False,
                         'description': 'CPF: id module edof %s non trouvé' % (module),
                         'name': 'CPF : ID module edof non trouvé ',
-                        'team_id': request.env['helpdesk.team'].sudo().search(
-                            [('name', "like", _('Client')), ('company_id', "=", 2)],
-                            limit=1).id,
+                        'team_id': request.env['helpdesk.team'].sudo().search([('name', "like", _('Client')),('company_id',"=",2)],
+                                                                              limit=1).id,
                     }
-                    description = 'CPF: id module edof ' + str(module) + ' non trouvé'
+                    description='CPF: id module edof '+str(module)+' non trouvé'
                     ticket = request.env['helpdesk.ticket'].sudo().search([('description', 'ilike', description)])
                     if not ticket:
                         new_ticket = request.env['helpdesk.ticket'].sudo().create(
@@ -272,12 +267,11 @@ class ClientCPFController(http.Controller):
             return request.render("mcm_cpf_validation.mcm_website_partner_not_found", {})
 
         # new cpf accepted link with all parametres of client
-
     @http.route(
         '/cpf_accepted/<string:email>/<string:nom>/<string:prenom>/<string:diplome>/<string:tel>/<string:address>/<string:code_postal>/<string:ville>/<string:dossier>/<string:session>/<string:module>/',
         type="http", auth="user", website=True, sitemap=False)
     def cpf_client_accepted(self, email=None, nom=None, prenom=None, diplome=None, tel=None, address=None,
-                            code_postal=None, ville=None, dossier=None, session=None, module=None):
+                             code_postal=None, ville=None, dossier=None, session=None, module=None):
         email = email.replace("%", ".")
         email = str(email).lower()
         email = email.replace(" ", "")
@@ -488,17 +482,13 @@ class ClientCPFController(http.Controller):
             return request.render("mcm_cpf_validation.mcm_website_partner_not_found", {})
 
     # new cpf validated  link with all parametres of client
-    @http.route(
-        '/validate_cpf/<string:email>/<string:nom>/<string:prenom>/<string:diplome>/<string:tel>/<string:address>/<string:code_postal>/<string:ville>/<string:dossier>/<string:session>/<string:module>/',
-        type="http", auth="user")
-    def validate_cpf(self, email=None, nom=None, prenom=None, diplome=None, tel=None, address=None, code_postal=None,
-                     ville=None, dossier=None, session=None, module=None, **kw):
-        email = email.replace("%", ".")  # remplacer % par . dans l'email envoyé en paramètre
-        email = email.replace(" ",
-                              "")  # supprimer les espaces envoyés en paramètre email  pour éviter la création des deux comptes
-        email = str(email).lower()  # recupérer l'email en miniscule pour éviter la création des deux comptes
+    @http.route('/validate_cpf/<string:email>/<string:nom>/<string:prenom>/<string:diplome>/<string:tel>/<string:address>/<string:code_postal>/<string:ville>/<string:dossier>/<string:session>/<string:module>/', type="http", auth="user")
+    def validate_cpf(self,email=None,nom=None,prenom=None,diplome=None,tel=None,address=None,code_postal=None,ville=None,dossier=None,session=None,module=None, **kw):
+        email = email.replace("%", ".") # remplacer % par . dans l'email envoyé en paramètre
+        email = email.replace(" ", "") # supprimer les espaces envoyés en paramètre email  pour éviter la création des deux comptes
+        email = str(email).lower() # recupérer l'email en miniscule pour éviter la création des deux comptes
         user = request.env['res.users'].sudo().search([('login', "=", email)])
-        exist = True
+        exist=True
         if not user:
             if '+33' not in str(tel):
                 user = request.env["res.users"].sudo().search(
@@ -547,6 +537,7 @@ class ClientCPFController(http.Controller):
                     })
                     user.company_id = 1
                     user.partner_id.company_id = 1
+        # user = request.env['res.users'].sudo().search([('login', "=", email)])
         if user:
             client = request.env['res.partner'].sudo().search(
                 [('id', '=', user.partner_id.id)])
@@ -555,13 +546,13 @@ class ClientCPFController(http.Controller):
                 client.funding_type = 'cpf'
                 client.numero_cpf = dossier
                 client.statut_cpf = 'validated'
-                client.phone = tel
-                client.street = address
-                client.zip = code_postal
-                client.city = ville
-                client.diplome = diplome
-                module_id = False
-                product_id = False
+                client.phone=tel
+                client.street=address
+                client.zip=code_postal
+                client.city=ville
+                client.diplome=diplome
+                module_id=False
+                product_id=False
                 template_id = int(request.env['ir.config_parameter'].sudo().get_param(
                     'mcm_cpf_validation.digimoov_email_template_exam_date_center'))
                 template_id = request.env['mail.template'].search([('id', '=', template_id)]).id
@@ -573,16 +564,15 @@ class ClientCPFController(http.Controller):
                         'mcm_cpf_validation.digimoov_email_template_exam_date_center',
                         raise_if_not_found=False)
                 if "digimoov" in str(module):
-                    user.write({'company_ids': [1, 2], 'company_id': 2})
-                    product_id = request.env['product.template'].sudo().search(
-                        [('id_edof', "=", str(module)), ('company_id', "=", 2)], limit=1)
+                    user.write({'company_ids': [1,2], 'company_id': 2})
+                    product_id = request.env['product.template'].sudo().search([('id_edof', "=", str(module)),('company_id',"=",2)], limit=1)
                     if product_id:
-                        client.id_edof = product_id.id_edof
+                        client.id_edof=product_id.id_edof
                         if template_id:
                             client.with_context(force_send=True).message_post_with_template(template_id,
-                                                                                            composition_mode='comment')
+                                                                                               composition_mode='comment')
                 else:
-                    user.write({'company_ids': [(1, 2)], 'company_id': 1})
+                    user.write({'company_ids': [(4, 2)], 'company_id': 1})
                     product_id = request.env['product.template'].sudo().search(
                         [('id_edof', "=", str(module)), ('company_id', "=", 1)], limit=1)
                     if product_id:
@@ -595,12 +585,12 @@ class ClientCPFController(http.Controller):
             return request.render("mcm_cpf_validation.mcm_website_partner_updated", {})
 
     @http.route('/available_places/<string:email>/<string:module>', type="http", auth="user")
-    def available_places(self, email=None, module=None):
+    def available_places(self,email=None,module=None):
         if 'digimoov' in str(module):
             user = request.env['res.users'].sudo().search([('login', "=", email)])
             if user:
                 if not user.partner_id.ville or not user.partner_id.date_examen_edof or not user.partner_id.id_edof:
-                    return request.render("mcm_cpf_validation.ko_places", {})
+                    return request.render("mcm_cpf_validation.ko_places",{})
                 else:
                     product_id = request.env['product.template'].sudo().search(
                         [('id_edof', "=", str(module)), ('company_id', "=", 2)], limit=1)
@@ -611,7 +601,7 @@ class ClientCPFController(http.Controller):
                         if not module_id:
                             return request.render("mcm_cpf_validation.ko_places", {})
                         else:
-                            if module_id.session_id.number_places_available <= 0:
+                            if module_id.session_id.number_places_available<=0:
                                 return request.render("mcm_cpf_validation.ko_places", {})
                             else:
                                 return request.render("mcm_cpf_validation.ok_places", {})
@@ -619,14 +609,14 @@ class ClientCPFController(http.Controller):
                         return request.render("mcm_cpf_validation.ko_places", {})
         else:
             module_id = request.env['mcmacademy.module'].sudo().search(
-                [('id_edof', "=", module), ('company_id', "=", 1)])
+                [('id_edof', "=", module),('company_id',"=",1)])
             if module_id:
-                available_places = module_id.number_places_available
-                places = {
+                available_places=module_id.number_places_available
+                places={
                     'available_places': available_places
                 }
-                if available_places <= 0:
-                    return request.render("mcm_cpf_validation.ko_places", {})
+                if available_places<=0:
+                    return request.render("mcm_cpf_validation.ko_places",{})
                 else:
                     return request.render("mcm_cpf_validation.ok_places", {})
             else:
@@ -635,55 +625,52 @@ class ClientCPFController(http.Controller):
                     'partner_id': False,
                     'description': 'CPF: id module edof %s non trouvé' % (module),
                     'name': 'CPF : ID module edof non trouvé ',
-                    'team_id': request.env['helpdesk.team'].sudo().search(
-                        [('name', 'like', 'Client'), ('company_id', "=", 1)],
-                        limit=1).id,
+                    'team_id': request.env['helpdesk.team'].sudo().search([('name', 'like', 'Client'),('company_id',"=",1)],
+                                                                          limit=1).id,
                 }
                 new_ticket = request.env['helpdesk.ticket'].sudo().create(
                     vals)
                 return request.render("mcm_cpf_validation.mcm_website_module_not_found", {})
-
-    # url of update state of cpf
-    @http.route('/update_statut_cpf/<string:email>/<string:dossier>/<string:statut>/<string:date_cpf>', type="http",
-                auth="user")
-    def cpf_in_formation(self, email=None, dossier=None, statut=None, date_cpf=None):
+    #url of update state of cpf
+    @http.route('/update_statut_cpf/<string:email>/<string:dossier>/<string:statut>/<string:date_cpf>', type="http", auth="user")
+    def cpf_in_formation(self, email=None,dossier=None,statut=None,date_cpf=None):
         email = email.replace("%", ".")
         email = str(email).lower()
-        email = email.replace(" ", "")  # replace space in mail
-        users = request.env['res.users'].sudo().search([('login', "=", email)])  # search user with same email sended
-        user = False
-        if len(users) > 1:
-            user = users[1]
+        email = email.replace(" ","") # replace space in mail
+        users = request.env['res.users'].sudo().search([('login', "=", email)]) #search user with same email sended
+        user=False
+        if len(users) > 1 :
+            user=users[1]
             for utilisateur in users:
-                if utilisateur.partner_id.id_edof and utilisateur.partner_id.date_examen_edof and utilisateur.partner_id.session_ville_id:  # if more than user ,check between them wich user is come from edof
-                    user = utilisateur
+                if utilisateur.partner_id.id_edof and utilisateur.partner_id.date_examen_edof and utilisateur.partner_id.session_ville_id: #if more than user ,check between them wich user is come from edof
+                    user=utilisateur
         else:
-            user = users
-        if user:  # if user finded
-            user.partner_id.mode_de_financement = 'cpf'  # update field mode de financement to cpf
-            user.partner_id.funding_type = 'cpf'  # update field funding type to cpf
-            statut = statut.replace(" ", "")  # delete space from state
-            statut = str(statut).lower()  # convert state in lowercase
-            if statut == "enformation":  # if state in edof is in 'En formation'
-                user.partner_id.statut_cpf = 'in_training'  # update statut cpf to 'En formation'
-            elif statut == "sortiedeformation":
-                user.partner_id.statut_cpf = 'out_training'  # if state in edof is in 'Sortie de formation'
-            elif statut == "servicefaitdéclaré":  # update statut cpf to 'Sortie de formation'
-                user.partner_id.statut_cpf = 'service_declared'  # if state in edof is in 'Service fait declaré'
-            elif statut == "servicefaitvalidé":  # update statut cpf to 'Service fait validéé'
-                user.partner_id.statut_cpf = 'service_validated'  # if state in edof is in 'Service fait validé'
-            elif statut == "facturé":  # if state in edof is in 'facturé'
+            user=users
+        if user: # if user finded
+            user.partner_id.mode_de_financement = 'cpf' # update field mode de financement to cpf
+            user.partner_id.funding_type = 'cpf' # update field funding type to cpf
+            statut = statut.replace(" ","") # delete space from state
+            statut = str(statut).lower() # convert state in lowercase
+            if statut=="enformation": # if state in edof is in 'En formation'
+                user.partner_id.statut_cpf = 'in_training' # update statut cpf to 'En formation'
+            elif statut=="sortiedeformation":
+                user.partner_id.statut_cpf = 'out_training' # if state in edof is in 'Sortie de formation'
+            elif statut=="servicefaitdéclaré":  # update statut cpf to 'Sortie de formation'
+                user.partner_id.statut_cpf = 'service_declared' # if state in edof is in 'Service fait declaré'
+            elif statut=="servicefaitvalidé": # update statut cpf to 'Service fait validéé'
+                user.partner_id.statut_cpf = 'service_validated' # if state in edof is in 'Service fait validé'
+            elif statut=="facturé": # if state in edof is in 'facturé'
                 user.partner_id.statut_cpf = 'bill'  # update statut cpf to 'facturé'
-            elif statut == "annulé":  # if state in edof is in 'annulé'
-                user.partner_id.statut_cpf = 'canceled'  # update statut cpf to 'annulé'
+            elif statut=="annulé": # if state in edof is in 'annulé'
+                user.partner_id.statut_cpf = 'canceled' # update statut cpf to 'annulé'
             else:
                 return request.render("mcm_cpf_validation.ko_places", {})
-            date_cpf = date_cpf.replace(" ", "")  # delete spaces if parametre date sended contains space(s)
+            date_cpf = date_cpf.replace(" ","") #delete spaces if parametre date sended contains space(s)
             date_cpf = date_cpf
-            date_cpf = date_cpf.replace("-", "/")  # replace - in date sended by /
-            date_cpf = datetime.datetime.strptime(date_cpf, '%d/%m/%Y')  # convert string date to datetime
-            user.partner_id.numero_cpf = str(dossier)  # update 'numero de dossier' of client
-            user.partner_id.date_cpf = date_cpf  # update cpf date of client
+            date_cpf = date_cpf.replace("-","/")  # replace - in date sended by /
+            date_cpf=datetime.datetime.strptime(date_cpf, '%d/%m/%Y')  #convert string date to datetime
+            user.partner_id.numero_cpf = str(dossier) # update 'numero de dossier' of client
+            user.partner_id.date_cpf = date_cpf # update cpf date of client
             return request.render("mcm_cpf_validation.ok_places", {})
         else:
             return request.render("mcm_cpf_validation.user_not_found", {})
