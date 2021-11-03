@@ -120,7 +120,7 @@ class ClientCPFController(http.Controller):
                     user.partner_id.module_id = module_id
                     request.env.user.company_id=2
                     invoice = request.env['account.move'].sudo().search(
-                        [('module_id', "=", module_id.id), ('state', 'in', ('posted')),
+                        [('module_id', "=", module_id.id), ('state', "=", 'posted'),
                          ('partner_id', "=", user.partner_id.id)])
                     if not invoice:
                         so = request.env['sale.order'].sudo().create({
@@ -190,7 +190,7 @@ class ClientCPFController(http.Controller):
                         user.partner_id.module_id = module_id
                         request.env.user.company_id = 1
                         invoice = request.env['account.move'].sudo().search(
-                            [('module_id', "=", module_id.id), ('state', 'in', ('posted')),
+                            [('module_id', "=", module_id.id), ('state', "=", 'posted'),
                              ('partner_id', "=", user.partner_id.id)])
                         
                         if not invoice:
@@ -334,7 +334,7 @@ class ClientCPFController(http.Controller):
                     user.partner_id.module_id = module_id
                     request.env.user.company_id = 2
                     invoice = request.env['account.move'].sudo().search(
-                        [('module_id', "=", module_id.id), ('state', 'in', ('posted')),
+                        [('module_id', "=", module_id.id), ('state', "=", 'posted'),
                          ('partner_id', "=", user.partner_id.id)])
                     if not invoice:
                         so = request.env['sale.order'].sudo().create({
@@ -404,7 +404,7 @@ class ClientCPFController(http.Controller):
                         user.partner_id.module_id = module_id
                         request.env.user.company_id = 1
                         invoice = request.env['account.move'].sudo().search(
-                            [('module_id', "=", module_id.id), ('state', 'in', ('posted')),
+                            [('module_id', "=", module_id.id), ('state', "=", 'posted'),
                              ('partner_id', "=", user.partner_id.id)])
                         if not invoice:
                             so = request.env['sale.order'].sudo().create({
