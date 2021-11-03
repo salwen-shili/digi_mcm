@@ -70,9 +70,21 @@
                                                        id="justificatif_domicile_id_oui"
                                                        placeholder="Veuillez charger un fichier"
                                                        class="form-control o_website_form_input"
-                                                       accept="image/*,application/pdf"/>
+                                                       accept="image/*,application/pdf" onClick="alert_Client_click()"/>
                                             </div>
                                         </div>
+                                        <script>
+                                            function alert_Client_click()
+                                            {
+                                               if(domicile_personnel_oui.checked){
+                                                  alert("Merci de vérifier que le justificatif est bien à votre nom et date de moins de trois mois.");
+                                                  }
+                                               else if(domicile_personnel_non.checked){
+                                                   alert("Merci de vérifier que le justificatif est bien au nom de votre hébergeur et date de moins de trois mois.");
+                                                    }
+
+                                            }
+                                        </script>
 
                                         <div class="form-group row form-field" id="identite_hebergeur_recto_form" style="display:none">
                                             <div class="col-lg-9 col-md-9">
