@@ -192,6 +192,7 @@ class ClientCPFController(http.Controller):
                         invoice = request.env['account.move'].sudo().search(
                             [('module_id', "=", module_id.id), ('state', 'in', ('posted')),
                              ('partner_id', "=", user.partner_id.id)])
+                        
                         if not invoice:
                             so = request.env['sale.order'].sudo().create({
                                 'partner_id': user.partner_id.id,
