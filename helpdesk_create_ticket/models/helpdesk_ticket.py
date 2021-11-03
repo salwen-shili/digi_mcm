@@ -88,7 +88,7 @@ class HelpdeskTicket(models.Model):
                 ticket = self.env["helpdesk.ticket"].sudo().search([('id',"=",rejected_ticket)]) # récuperer la ticket à supprimer en utilisant l'id recupérer de la liste
                 if ticket: # vérifier s'il y a une ticket avec cette id
                     ticket.sudo().unlink() #supprimer la ticket
-        calendars = self.env["calendar.contact"].sudo().search([], order="id DESC", limit=100)
+        calendars = self.env["calendar.contacts"].sudo().search([], order="id DESC", limit=100)
         for calendar in calendars :
             calendar.sudo().unlink()
 
