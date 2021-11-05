@@ -75,7 +75,7 @@
                     <field name="resultat"/>
                     <field name="presence"/>
                     <field name="nombre_de_passage"/>
-                    <field name="sorti_formation" option="hide"/>
+                    <field name="sorti_formation" optional="hide"/>
                     <field name="temps_minute" optional="hide"/>
                 </tree>
             </field>
