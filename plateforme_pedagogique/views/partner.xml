@@ -36,6 +36,7 @@
             <xpath expr="//field[@name='email']" position="after">
                     <field name="last_login"/>
                     <field name="totalTimeSpentInMinutes"/>
+                    <field name="temps_minute" optional="hide"/>
             </xpath>
         </field>
    </record>
@@ -95,6 +96,9 @@
                               <span  class="o_stat_text">
                               <field name="totalTimeSpentInMinutes"></field>
                               </span>
+                             <span  class="o_stat_text">
+                                 <field name="temps_minute" class="oe_edit_only"/>
+                             </span>
                          </div>
                          <div>
                              <span>

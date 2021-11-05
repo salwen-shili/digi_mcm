@@ -43,7 +43,7 @@ class partner(models.Model):
     toDeactivateAt = fields.Char("Date de suppression")
     passage_exam = fields.Boolean("Examen passé", default=False)
     stats_ids = fields.Many2one('plateforme_pedagogique.user_stats')
-
+    temps_minute = fields.Integer(string="Temps passé en minutes")  # Champs pour récuperer temps en minute par api360
     # Recuperer les utilisateurs de 360learning
     def getusers(self):
         locale.setlocale(locale.LC_TIME, str(self.env.user.lang) + '.utf8')
@@ -116,7 +116,8 @@ class partner(models.Model):
                         'totalTimeSpentInMinutes': times,
                         'assignedPrograms': table_user['assignedPrograms'],
                         'toDeactivateAt': table_user['toDeactivateAt'],
-                        'apprenant': True
+                        'apprenant': True,
+                        'temps_minute': time
 
                     })
                     print("partner", partner.name, partner.last_login)
