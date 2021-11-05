@@ -14,6 +14,7 @@ _logger = logging.getLogger(__name__)
 
 class NoteExamen(models.Model):
     _name = "info.examen"
+    _rec_name = 'partner_id'
     _inherit = ["mail.thread", "mail.activity.mixin"]
     _description = "Les Notes et les informations des examens"
 
