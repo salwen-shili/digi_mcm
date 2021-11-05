@@ -3,7 +3,10 @@
   <template xml:space="preserve">
     <t t-extend="ListView.buttons">
       <t t-jquery="button.o_list_button_add" t-operation="after">
-        <button t-if="widget.modelName == 'info.examen'"  class="btn btn-primary oe_new_button" type="button" access_key="f" >Sortir de formation</button>
+        <button t-if="widget.modelName == 'info.examen'"  class="btn btn-primary oe_new_button" type="button" access_key="f" >Sortir les presents</button>
+      </t>
+       <t t-jquery="button.o_list_button_add" t-operation="after">
+        <button t-if="widget.modelName == 'info.examen'"  class="btn btn-primary oe_absent_button" type="button" access_key="f" >Sortir les absents</button>
       </t>
     </t>
   </template>

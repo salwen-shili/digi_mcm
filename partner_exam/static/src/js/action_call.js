@@ -11,6 +11,7 @@ ListController.include({
    this._super.apply(this, arguments);
        if (this.$buttons) {
          this.$buttons.find('.oe_new_button').click(this.proxy('button_def'));
+         this.$buttons.find('.oe_absent_button').click(this.proxy('absent_def'));
        }
     },
     //--------------------------------------------------------------------------
@@ -30,5 +31,16 @@ ListController.include({
                     args:[""],
                 })
    },
+     absent_def: function (e) {
+        var self = this;
+        var active_id = this.model.get(this.handle).getContext()['active_ids'];
+        var model_name = this.model.get(this.handle).getContext()['active_model'];
+             this._rpc({
+                    model:'info.examen',
+                    method:'change_etat_wedof_absent',
+                    args:[""],
+                })
+   },
+
 });
 });

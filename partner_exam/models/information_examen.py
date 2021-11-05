@@ -54,6 +54,8 @@ class NoteExamen(models.Model):
     session_id = fields.Many2one('mcmacademy.session')
     # For automation action conditions use.
     this_is_exam_technical_field = fields.Boolean(readonly=True, default=True)
+    temps_minute = fields.Integer(related="partner_id.temps_minute")
+    sorti_formation =fields.Boolean(string="Sorti de formation")
 
     @api.onchange('epreuve_a', 'epreuve_b', 'presence')
     def _compute_moyenne_generale(self):
@@ -122,9 +124,7 @@ class NoteExamen(models.Model):
         self.browse(duplicates_exams).unlink()
 
     """ Mettre à jour le champ mode de financement selon la facture """
-
     def mise_ajour_mode_financement(self):
-
         for client in self:
             facture = self.env['account.move'].sudo().search([('partner_id', '=', client.partner_id.id),
                                                               ('state', "=", "posted"), ], limit=1)
@@ -134,7 +134,6 @@ class NoteExamen(models.Model):
                 client.mode_de_financement = facture.methodes_payment
 
     """utiliser api wedof pour changer etat de dossier sur edof selon la presence le jour d'examen"""
-
     def change_etat_wedof(self):
         headers = {
             'accept': 'application/json',
@@ -170,6 +169,63 @@ class NoteExamen(models.Model):
                                          headers=headers, data=data)
                 _logger.info('terminate %s' % str(response1.status_code))
                 _logger.info('service done %s' % str(response.status_code))
+
+    """utiliser api wedof pour changer etat de dossier sur edof selon l'absence le jour d'examen"""
+    def change_etat_wedof_absent(self):
+        headers = {
+            'accept': 'application/json',
+            'Content-Type': 'application/json',
+            'X-API-KEY': '026514d6bc7d880515a27eae4947bccef4fbbf03',
+        }
+        params_wedof = (
+            ('order', 'asc'),
+            ('type', 'all'),
+            ('state', 'inTraining'),
+            ('billingState', 'all'),
+            ('certificationState', 'all'),
+            ('sort', 'lastUpdate'),
+            ('limit', '1000')
+        )
+        param_360 = (
+            ('company', '56f5520e11d423f46884d593'),
+            ('apiKey', 'cnkcbrhHKyfzKLx4zI7Ub2P5'),
+            ('deleted', 'false')
+        )
+        data1 = '{}'
+        data = '{\n "absenceDuration": 0,\n "forceMajeureAbsence": false,\n "trainingDuration": 0\n}'
+        response_wedof = requests.get('https://www.wedof.fr/api/registrationFolders', headers=headers,
+                                      params=params_wedof)
+        registrations = response_wedof.json()
+        for dossier in registrations:
+            _logger.info('lengh api get %s' % str(len(registrations)))
+            externalId = dossier['externalId']
+            email = dossier['attendee']['email']
+            info_exam = self.env['info.examen'].sudo().search([('partner_id.numero_cpf', "=", str(externalId)),
+                                                               ('presence', "=", "Absent"),
+                                                               ('partner_id.temps_minute', '>=', 60)], limit=1)
+            if info_exam:
+                existe = False
+                """Chercher l'apprenant absent sur la plateforme"""
+                response_plateforme = requests.get('https://app.360learning.com/api/v1/users', params=param_360)
+                users = response_plateforme.json()
+                for user in users:
+                    user_mail = user['mail']
+                    if user_mail == info_exam.partner_id.email:
+                        existe = True
+                        _logger.info("partner in 360 %s" % info_exam.partner_id.email)
+                """si l'apprenant n'existe pas sur la plateforme on fait sortir de formation"""
+                if existe == False:
+                    _logger.info('non existant %s' % info_exam.partner_id.email)
+                    _logger.info('apprenant existant %s' % info_exam.partner_id.numero_cpf)
+                    response1 = requests.post(
+                        'https://www.wedof.fr/api/registrationFolders/' + externalId + '/terminate',
+                        headers=headers, data=data1)
+                    response = requests.post(
+                        'https://www.wedof.fr/api/registrationFolders/' + externalId + '/serviceDone',
+                        headers=headers, data=data)
+                    _logger.info('terminate %s' % str(response1.status_code))
+                    _logger.info('service done %s' % str(response.status_code))
+                    info_exam.sorti_formation=True
 
     def update_session_examen(self):
         """ Mettre à jour le champ session selon condition de date examen = date examen de la session dans la fiche client"""
