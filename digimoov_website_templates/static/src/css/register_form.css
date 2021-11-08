@@ -91,11 +91,38 @@ html {
   border: 1px solid #152856;
   outline-width: 0;
 }
+@keyframes shake {
+  0% {
+    left: 0;
+  }
+  1% {
+    left: -3px;
+  }
+  2% {
+    left: 5px;
+  }
+  3% {
+    left: -8px;
+  }
+  4% {
+    left: 8px;
+  }
+  5% {
+    left: -5px;
+  }
+  6% {
+    left: 3px;
+  }
+  7% {
+    left: 0;
+  }
+}
 
 #msform .action-button {
   height: 40px;
   width: 150px;
   font-size: 15px;
+
   background-color: #152856;
   border: 1px solid hsl(240, 44%, 28%);
   color: #ffffff;
@@ -106,6 +133,13 @@ html {
   transition: all 2s ease-out;
   transition: all 0.2s ease-out;
   float: right;
+}
+.shake {
+  position: relative;
+  animation-name: shake;
+  animation-duration: 5s;
+  animation-iteration-count: infinite;
+  animation-timing-function: ease-in;
 }
 .btn-container {
   margin-top: 28px;
