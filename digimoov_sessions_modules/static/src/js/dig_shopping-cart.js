@@ -96,7 +96,11 @@ function showPopup() {
   }
   document.getElementById("error_no_date").style.display = "none";
   var optionsDate = document.getElementById("options-date").value;
-  var cpfChecked = document.getElementById("cpf_pm").checked;
+  var cpfChecked = false;
+  if (document.getElementById("cpf_pm")) {
+    cpfChecked = document.getElementById("cpf_pm").checked;
+  }
+
   var continueBtn = document.getElementById("continueBtn");
   var textbtn;
   cpfChecked
