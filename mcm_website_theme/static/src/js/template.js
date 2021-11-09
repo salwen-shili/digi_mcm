@@ -1,5 +1,6 @@
 document.addEventListener("DOMContentLoaded", function () {
   //xmlhttprequest
+
   const sendHttpRequest = (method, url, data) => {
     const promise = new Promise((resolve, reject) => {
       const xhr = new XMLHttpRequest();
@@ -36,7 +37,14 @@ document.addEventListener("DOMContentLoaded", function () {
       .then((responseData) => {})
       .catch((err) => {});
   };
+  // fin xmlhttprequest
+
   onchangeTextButton1();
+
+  //event listener on change sale conditions input
+  // send post request to update sale conditions for the client on server
+  // disable button if the checkboxcondition is false
+
   document
     .getElementById("checkbox_conditions")
     .addEventListener("change", function () {
@@ -56,73 +64,14 @@ document.addEventListener("DOMContentLoaded", function () {
         sendData(condition);
       }
     });
-  //end
-
-  document
-    .getElementById("cpf_video")
-    .setAttribute("src", "https://www.youtube.com/embed/PN7gVHdT7x4");
 });
-
-function onChangeCheckButton() {
-  if (document.getElementById("options-date")) {
-    if (
-      document.getElementById("options-date").value === "all" ||
-      document.getElementById("centre_examen").value === "all"
-    ) {
-      document
-        .getElementById("pm_shop_checkout")
-        .setAttribute("disabled", "true");
-      document.getElementById("pm_shop_checkout").classList.add("disabled");
-    } else if (
-      document.getElementById("options-date").value !== "all" &&
-      document.getElementById("centre_examen").value !== "all"
-    ) {
-      document.getElementById("pm_shop_checkout").removeAttribute("disabled");
-      document.getElementById("pm_shop_checkout").classList.remove("disabled");
-    }
-  } else {
-    document;
-    document
-      .getElementById("pm_shop_checkout")
-      .setAttribute("disabled", "true");
-    document.getElementById("pm_shop_checkout").classList.add("disabled");
-  }
-}
-//show popup if date is selected
-function showPopup() {
-  if (!document.getElementById("options-date")) {
-    document.getElementById("error_no_date").style.display = "inline-block";
-    return;
-  }
-  document.getElementById("error_no_date").style.display = "none";
-  var optionsDate = document.getElementById("options-date").value;
-  var cpfChecked = false;
-  if (document.getElementById("cpf_pm")) {
-    cpfChecked = document.getElementById("cpf_pm").checked;
-  }
-
-  var continueBtn = document.getElementById("continueBtn");
-  var textbtn;
-  cpfChecked
-    ? (textbtn = "Mobiliser mon CPF")
-    : (textbtn = "Passer au paiement");
-
-  if (optionsDate != "all" && optionsDate != "") {
-    document.getElementById("error_choix_date_popup").style.display = "none";
-    continueBtn.innerText = textbtn;
-    window.location.href = "#popup1";
-  } else {
-    document.getElementById("error_choix_date").style.display = "inline-block";
-  }
-}
-
 function msTracking(event, event_category, event_label, event_value) {
   (function (w, d, t, r, u) {
     var f, n, i;
     (w[u] = w[u] || []),
       (f = function () {
         var o = {
-          ti: "134610618",
+          ti: "134601341",
         };
         (o.q = w[u]), (w[u] = new UET(o)), w[u].push("pageLoad");
       }),
@@ -138,7 +87,6 @@ function msTracking(event, event_category, event_label, event_value) {
       (i = d.getElementsByTagName(t)[0]),
       i.parentNode.insertBefore(n, i);
   })(window, document, "script", "//bat.bing.com/bat.js", "uetq");
-
   window.uetq = window.uetq || [];
   window.uetq.push("event", event, {
     event_category: event_category,
@@ -155,6 +103,7 @@ function verify_payment_method() {
       "inline-block");
   } else {
     var optionsDate = document.getElementById("options-date").value;
+    console.log("verify", optionsDate);
 
     if (optionsDate == "all" || optionsDate == "") {
       return (document.getElementById("error_choix_date_popup").style.display =
@@ -165,6 +114,7 @@ function verify_payment_method() {
   }
   //here we are sure that user has selected the date
   //if condition de vente (checkbox_conditions) is checked - passer ou paiment ou mobiliser mon cpf
+
   var conditionCheckbox = document.getElementById("checkbox_conditions");
   var error = document.getElementById("error_conditions");
   if (conditionCheckbox.checked == true) {
@@ -172,44 +122,88 @@ function verify_payment_method() {
     condition = true;
   } else {
     error.style.display = "inline-block";
+
     condition = false;
   }
+
   if (condition == false) {
     return;
   }
 
   stripe_pm = document.getElementById("stripe_pm");
-  console.log(stripe_pm, "stripe_pm");
+
   if (stripe_pm) {
     if (stripe_pm.checked == true) {
       window.location.href = "/shop/checkout?express=1";
-      return;
     }
   }
+  pole_emploi_pm = document.getElementById("pole_emploi_pm");
+  if (pole_emploi_pm) {
+    if (pole_emploi_pm.checked == true) {
+      window.location.href = "/new/ticket/pole_emploi";
+    }
+  }
+  cpf_pm = document.getElementById("cpf_pm");
 
   if (cpf_pm) {
-    console.log(cpf_pm, "cpf_pm");
     if (cpf_pm.checked == true) {
-      if (cpf_pm.value == "Formation pro") {
-        window.location.href = "https://bit.ly/3nMlm2A";
+      if (cpf_pm.value == "Formation à distance TAXI") {
+        window.location.href = "https://bit.ly/3DOiZG6";
         msTracking(
-          "clic sur mobiliser mon cpf pro",
+          "clic sur mobiliser mon cpf taxi",
           "CPF",
-          "Inscription CPF pro",
+          "Inscription CPF TAXI",
           "680"
         );
         return;
       }
-      if (cpf_pm.value == "Formation premium") {
-        window.location.href = "https://bit.ly/38IxvSa";
+      if (cpf_pm.value == "Formation à distance VMDTR") {
+        window.location.href = "https://bit.ly/3tbAxXw";
         msTracking(
-          "clic sur mobiliser mon cpf premium",
+          "clic sur mobiliser mon cpf vmdtr",
           "CPF",
-          "Inscription CPF Premium",
-          "680"
+          "Inscription CPF VMDTR",
+          "849"
+        );
+        return;
+      }
+      if (cpf_pm.value == "Formation à distance VTC") {
+        window.location.href = "https://bit.ly/3mZoImh";
+        msTracking(
+          "clic sur mobiliser mon cpf vtc",
+          "CPF",
+          "Inscription CPF VTC",
+          "590"
         );
         return;
       }
     }
+  }
+}
+
+//show popup if date is selected
+function showPopup() {
+  if (!document.getElementById("options-date")) {
+    document.getElementById("error_no_date").style.display = "inline-block";
+    return;
+  }
+  document.getElementById("error_no_date").style.display = "none";
+  var optionsDate = document.getElementById("options-date").value;
+  var cpfChecked = false;
+  if (document.getElementById("cpf_pm")) {
+    cpfChecked = document.getElementById("cpf_pm").checked;
+  }
+  var continueBtn = document.getElementById("continueBtn");
+  var textbtn;
+  cpfChecked
+    ? (textbtn = "Mobiliser mon CPF")
+    : (textbtn = "Passer au paiement");
+
+  if (optionsDate != "all" && optionsDate != "") {
+    document.getElementById("error_choix_date_popup").style.display = "none";
+    continueBtn.innerText = textbtn;
+    window.location.href = "#popup1";
+  } else {
+    document.getElementById("error_choix_date").style.display = "inline-block";
   }
 }

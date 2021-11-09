@@ -11,11 +11,10 @@ odoo.define("digimoov_sessions_modules.website_sale", function (require) {
       events: _.extend({}, VariantMixin.events || {}, {
         'change select[name="centre_examen"]': "verify_centre",
         'change select[name="date_examen"]': "verify_date_exam",
-        'change input[id="checkbox_conditions"]': "verify_conditions",
+        // 'change input[id="checkbox_conditions"]': "verify_conditions",
       }),
 
       verify_date_exam: function (ev) {
-        console.log("call verify date_date_examen");
         var self = this;
         var center = false;
         var exam_date = document.getElementById("options-date");
@@ -70,16 +69,13 @@ odoo.define("digimoov_sessions_modules.website_sale", function (require) {
             var t_modules = document.getElementById("exam_date");
             if (t_modules) {
               t_modules.style.display = "inline-block";
-              console.log("t_modules : ", t_modules.value);
             } else {
               t_modules.style.display = "none";
             }
           }
         }
 
-        console.log('$("#options-date").value', $("#options-date").value);
         if ($("#options-date").value) {
-          console.log($("#options-date").value);
           document
             .getElementById("date_insert")
             .removeChild("#date_insert select");
@@ -99,10 +95,8 @@ odoo.define("digimoov_sessions_modules.website_sale", function (require) {
           }
 
           if (self.value === center) {
-            console.log("self.id", self.id, self);
             var date = self.text;
-            console.log("if ===", self.value, center);
-            console.log(self.value, self.text);
+
             dateOptions += `<option value=${self.value} id=${self.id}>
              ${date}
             </option>`;
@@ -125,7 +119,7 @@ odoo.define("digimoov_sessions_modules.website_sale", function (require) {
             }
           }
         });
-        console.log("dateOptions", dateOptions);
+
         if (dateOptions) {
           var select = `<select name="date_examen" id="options-date" class="form-control search-slt" onchange="onChangeCheckButton()">
           <option value="all" id="all">
@@ -148,9 +142,6 @@ odoo.define("digimoov_sessions_modules.website_sale", function (require) {
           document
             .getElementById("pm_shop_checkout")
             .setAttribute("disabled", "disabled");
-          console.log(`document
-            .getElementById("pm_shop_checkout")
-            .setAttribute("disabled", "disabled")`);
         }
 
         if (center_exam) {
