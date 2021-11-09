@@ -584,7 +584,7 @@
                     <h2 class="text-left">
                         <i class="fa fa-info-circle" style="color: #152856;"></i>
                     </h2>
-                    <a class="close" href="#">
+                    <a class="close" href="##region_date_examen">
                         <i class="fa fa-times"></i>
                     </a>
                     <div class="content">
@@ -616,7 +616,7 @@
                             </p>
 
                             <p id="error_choix_date_popup" class="alert alert-warning" style="margin-left:0%;display:none;">
-                                Vous devez Selectionnez votre date d'examen
+                                Vous devez fermer cette fenêtre et selectionner votre date d'examen
                             </p>
                         </p>
 

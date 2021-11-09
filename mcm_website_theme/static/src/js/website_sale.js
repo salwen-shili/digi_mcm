@@ -8,6 +8,9 @@ odoo.define("mcm_website_theme.mcm_website_sale", function (require) {
   var session = require("web.session");
   var rpc = require("web.rpc");
   var QWeb = core.qweb;
+  //if user has comeback to the page after selecting cpf the input checkbox will be stuck on
+  // cpf and the btn will show passer au paiement so we force credit card payment is checked as default
+  document.getElementById("stripe_pm").checked = true;
 
   publicWidget.registry.WebsiteSale.include({
     events: _.extend({}, publicWidget.registry.WebsiteSale.prototype.events, {

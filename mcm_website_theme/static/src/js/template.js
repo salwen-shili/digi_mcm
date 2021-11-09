@@ -1,4 +1,4 @@
-window.location.href = "#";
+window.location.href = "#region_date_examen";
 document.addEventListener("DOMContentLoaded", function () {
   //xmlhttprequest
 
@@ -95,16 +95,25 @@ function msTracking(event, event_category, event_label, event_value) {
     event_value: event_value,
   });
 }
-function verify_payment_method() {
-  //user can put #popup1 to the url directly so we need to secure
-  //that he can't pass if he didn't choose a date
 
-  if (document.getElementById("options-date").value == "all") {
+function verify_payment_method() {
+  //user can navigate #popup1 to the url directly so we need to secure
+  //that he can't pass if he didn't choose a date
+  if (!document.getElementById("options-date")) {
     return (document.getElementById("error_choix_date_popup").style.display =
       "inline-block");
   } else {
-    document.getElementById("error_choix_date_popup").style.display = "none";
+    var optionsDate = document.getElementById("options-date").value;
+    console.log("verify", optionsDate);
+
+    if (optionsDate == "all" || optionsDate == "") {
+      return (document.getElementById("error_choix_date_popup").style.display =
+        "inline-block");
+    } else {
+      document.getElementById("error_choix_date_popup").style.display = "none";
+    }
   }
+  //here we are sure that user has selected the date
   //if condition de vente (checkbox_conditions) is checked - passer ou paiment ou mobiliser mon cpf
 
   var conditionCheckbox = document.getElementById("checkbox_conditions");
@@ -178,8 +187,8 @@ function showPopup() {
   var continueBtn = document.getElementById("continueBtn");
   var textbtn;
   cpfChecked
-    ? (textbtn = "Mobiliser mon cpf")
-    : (textbtn = "passer au paiement");
+    ? (textbtn = "Mobiliser mon CPF")
+    : (textbtn = "Passer au paiement");
   console.log(cpfChecked, textbtn);
   if (optionsDate != "all" && optionsDate != "") {
     document.getElementById("error_choix_date").style.display = "none";
