@@ -187,15 +187,15 @@ function verify_payment_method() {
           "680"
         );
       }
-    }
-    if (cpf_pm.value == "Formation premium") {
-      window.location.href = "https://bit.ly/38IxvSa";
-      msTracking(
-        "clic sur mobiliser mon cpf premium",
-        "CPF",
-        "Inscription CPF Premium",
-        "680"
-      );
+      if (cpf_pm.value == "Formation premium") {
+        window.location.href = "https://bit.ly/38IxvSa";
+        msTracking(
+          "clic sur mobiliser mon cpf premium",
+          "CPF",
+          "Inscription CPF Premium",
+          "680"
+        );
+      }
     }
   }
 }
