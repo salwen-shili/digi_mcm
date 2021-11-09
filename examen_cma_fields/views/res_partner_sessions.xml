@@ -16,7 +16,7 @@
                             <field name="company_id"/>
                             <field name="justification" string="Absence justifié"
                                    attrs="{'invisible': [('paiement', '=', True)]}"/>
-                            <field name="paiement" string="Prolongation formation"
+                            <field name="paiement" string="Changement de ville"
                                    attrs="{'invisible': [('justification', '=', True)]}"/>
                             <field name="attachment_ids" string="Justificatif" widget="many2many_binary" nolabel="1"
                                    attrs="{'invisible': [('justification', '=', False)]}"/>
@@ -38,7 +38,7 @@
                     <field name="client_id" string="Client"/>
                     <field name="session_id" string="Session"/>
                     <field name="justification" string="Absence justifié"/>
-                    <field name="paiement" string="Prolongation formation"/>
+                    <field name="paiement" string="Changement de ville"/>
                     <field name="attachment_ids" string="Justificatif" widget="many2many_binary"/>
                     <field name="autre_raison"/>
                 </tree>

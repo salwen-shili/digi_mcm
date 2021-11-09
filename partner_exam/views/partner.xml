@@ -51,7 +51,7 @@
                     <field name="report" string="Changement information session"/>
                     <field name="justification" string="Absence justifié"
                            attrs="{'invisible': ['|',('report', '=', False), ('paiement', '=', True)]}"/>
-                    <field name="paiement" string="Prolongation formation"
+                    <field name="paiement" string="Changement de ville"
                            attrs="{'invisible': ['|',('justification', '=', True), ('report', '=', False)]}"/>
                     <field name="attachment_ids" widget="many2many_binary" string="Attach a file" nolabel="1"
                            colspan="2" attrs="{'invisible': [('justification', '=', False)]}"/>
