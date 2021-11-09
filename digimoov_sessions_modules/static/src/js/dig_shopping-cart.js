@@ -170,22 +170,26 @@ function verify_payment_method() {
   }
 
   stripe_pm = document.getElementById("stripe_pm");
+  console.log(stripe_pm, "stripe_pm");
   if (stripe_pm) {
     if (stripe_pm.checked == true) {
       window.location.href = "/shop/checkout?express=1";
+      return;
     }
   }
 
   if (cpf_pm) {
+    console.log(cpf_pm, "cpf_pm");
     if (cpf_pm.checked == true) {
       if (cpf_pm.value == "Formation pro") {
-        // window.location.href = "https://bit.ly/3nMlm2A";
+        window.location.href = "https://bit.ly/3nMlm2A";
         msTracking(
           "clic sur mobiliser mon cpf pro",
           "CPF",
           "Inscription CPF pro",
           "680"
         );
+        return;
       }
       if (cpf_pm.value == "Formation premium") {
         window.location.href = "https://bit.ly/38IxvSa";
@@ -195,6 +199,7 @@ function verify_payment_method() {
           "Inscription CPF Premium",
           "680"
         );
+        return;
       }
     }
   }

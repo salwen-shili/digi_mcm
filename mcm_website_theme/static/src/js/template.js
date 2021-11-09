@@ -148,13 +148,14 @@ function verify_payment_method() {
   if (cpf_pm) {
     if (cpf_pm.checked == true) {
       if (cpf_pm.value == "Formation à distance TAXI") {
-        // window.location.href = "https://bit.ly/3DOiZG6";
+        window.location.href = "https://bit.ly/3DOiZG6";
         msTracking(
           "clic sur mobiliser mon cpf taxi",
           "CPF",
           "Inscription CPF TAXI",
           "680"
         );
+        return;
       }
       if (cpf_pm.value == "Formation à distance VMDTR") {
         window.location.href = "https://bit.ly/3tbAxXw";
@@ -164,6 +165,7 @@ function verify_payment_method() {
           "Inscription CPF VMDTR",
           "849"
         );
+        return;
       }
       if (cpf_pm.value == "Formation à distance VTC") {
         window.location.href = "https://bit.ly/3mZoImh";
@@ -173,6 +175,7 @@ function verify_payment_method() {
           "Inscription CPF VTC",
           "590"
         );
+        return;
       }
     }
   }
