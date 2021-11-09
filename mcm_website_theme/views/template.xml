@@ -339,7 +339,9 @@
         <xpath expr="//table[@id='cart_products']" position="after">
 
             <link href="/mcm_website_theme/static/src/css/cart.css" rel="stylesheet"/>
-
+            <p id="error_no_date" class="alert alert-warning" style="margin-left:0%;display:none;">
+              Pas de date disponible pour le moment.
+            </p>
 
             <t t-foreach="website_sale_order.website_order_line" t-as="line">
                 <!-- Mode de financement -->
