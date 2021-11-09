@@ -340,6 +340,7 @@
 
             <link href="/mcm_website_theme/static/src/css/cart.css" rel="stylesheet"/>
 
+
             <t t-foreach="website_sale_order.website_order_line" t-as="line">
                 <!-- Mode de financement -->
                 <h3 class="" style="margin-top: 1rem; font-weight: 600;">
@@ -500,9 +501,9 @@
 
             <div t-if="request.website.id == 1">
                 <script>
-                    console.log("site 1");
+                
                 function onchangeTextButton(){
-                    console.log("onchange mcm");
+                 
              
                 ;
                 if(document.getElementById("pm_shop_text")){
@@ -529,7 +530,7 @@
                 }
                 };
                 function onchangeTextButton1(){
-                    console.log("onchange1 mcm");
+                 
                 if(document.getElementById("pm_shop_text")){
                 document.getElementById("cpf-details").classList.add("hide");
 
@@ -580,11 +581,13 @@
     <template id="mcm_website_sale_cart_lines_date_and_region" inherit_id="website_sale.cart_lines">
         <xpath expr="//table[@id='cart_products']" position="after">
             <div id="popup1" class="overlay_popup">
+
+
                 <div class="popup" style="top: 20%;">
                     <h2 class="text-left">
                         <i class="fa fa-info-circle" style="color: #152856;"></i>
                     </h2>
-                    <a class="close" href="##region_date_examen">
+                    <a class="close" href="#">
                         <i class="fa fa-times"></i>
                     </a>
                     <div class="content">
@@ -618,12 +621,13 @@
                             <p id="error_choix_date_popup" class="alert alert-warning" style="margin-left:0%;display:none;">
                                 Vous devez fermer cette fenêtre et selectionner votre date d'examen
                             </p>
-                        </p>
 
+
+                        </p>
                         <style t-if="request.website.id==2">
                             .action-button {
                             height: 40px;
-                            width: 150px;
+                            width: 185px;
                             font-size: 15px;
                             background-color: #152856;
                             border: 1px solid hsl(240, 44%, 28%);
@@ -635,7 +639,6 @@
                             transition: all 2s ease-out;
                             transition: all 0.2s ease-out;
                             }
-
                             .action-button:hover,
                             .action-button:focus {
                             background-color: #ffffff;
@@ -690,9 +693,9 @@
                                     </t>
                                 </t>
                             </select>
-                            <p t-if="website_sale_order.exam_center_error != ''" id="error_exam_center" class="alert alert-warning" style="margin-left:0%;display:inline-block;">
+                            <!-- <p t-if="website_sale_order.exam_center_error != ''" id="error_exam_center" class="alert alert-warning" style="margin-left:0%;display:inline-block;">
                                 Vous devez Selectionnez une Région
-                            </p>
+                            </p> -->
                         </div>
                     </b>
                 </p>
@@ -715,9 +718,9 @@
                                     </t>
                                 </t>
                             </select>
-                            <p t-if="website_sale_order.exam_date_error != ''" id="error_exam_date" class="alert alert-warning" style="margin-left:0%;display:inline-block;">
+                            <!-- <p t-if="website_sale_order.exam_date_error != ''" id="error_exam_date" class="alert alert-warning" style="margin-left:0%;display:inline-block;">
                                 Vous devez Selectionnez une date
-                            </p>
+                            </p> -->
                         </div>
                         <div id="select-date" style="margin-left: 0%">
                             <select name="date_examen" id="options-date" class="form-control search-slt" style="display:none">
@@ -845,7 +848,7 @@
 
     <template id="mcm_website_sale_cart_total_script" inherit_id="website_sale.total">
         <xpath expr="//div[@id='cart_total']" position="inside">
-            <input t-att-value="request.website.microsoft_tracking_key" id="microsoft_tracking_key" type="hidden"/>
+
 
             <div t-if="request.website.id==1">
 

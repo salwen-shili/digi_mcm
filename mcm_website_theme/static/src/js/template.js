@@ -1,4 +1,3 @@
-window.location.href = "#region_date_examen";
 document.addEventListener("DOMContentLoaded", function () {
   //xmlhttprequest
 
@@ -72,7 +71,7 @@ function msTracking(event, event_category, event_label, event_value) {
     (w[u] = w[u] || []),
       (f = function () {
         var o = {
-          ti: document.getElementById("microsoft_tracking_key").value,
+          ti: "134601341",
         };
         (o.q = w[u]), (w[u] = new UET(o)), w[u].push("pageLoad");
       }),
@@ -117,9 +116,8 @@ function verify_payment_method() {
   //if condition de vente (checkbox_conditions) is checked - passer ou paiment ou mobiliser mon cpf
 
   var conditionCheckbox = document.getElementById("checkbox_conditions");
-
+  var error = document.getElementById("error_conditions");
   if (conditionCheckbox.checked == true) {
-    var error = document.getElementById("error_conditions");
     error.style.display = "none";
     condition = true;
   } else {
@@ -150,7 +148,7 @@ function verify_payment_method() {
   if (cpf_pm) {
     if (cpf_pm.checked == true) {
       if (cpf_pm.value == "[taxi] Formation à distance TAXI") {
-        window.location.href = "https://bit.ly/3DOiZG6";
+        // window.location.href = "https://bit.ly/3DOiZG6";
         msTracking(
           "clic sur mobiliser mon cpf taxi",
           "CPF",
@@ -189,9 +187,9 @@ function showPopup() {
   cpfChecked
     ? (textbtn = "Mobiliser mon CPF")
     : (textbtn = "Passer au paiement");
-  console.log(cpfChecked, textbtn);
+
   if (optionsDate != "all" && optionsDate != "") {
-    document.getElementById("error_choix_date").style.display = "none";
+    document.getElementById("error_choix_date_popup").style.display = "none";
     continueBtn.innerText = textbtn;
     window.location.href = "#popup1";
   } else {

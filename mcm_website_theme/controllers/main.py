@@ -1028,6 +1028,7 @@ class Conditions(http.Controller):
     def cart_update_condition(self, condition):
         """This route is called when changing quantity from the cart or adding
         a product from the wishlist."""
+        print("POST request @ /shop/payment/update_condition")
         order = request.website.sale_get_order(force_create=0)
         if order:
             if condition:

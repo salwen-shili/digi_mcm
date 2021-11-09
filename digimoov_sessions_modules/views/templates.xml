@@ -8,15 +8,12 @@
                 }
 
             </style>
-            <div style="margin: auto; background-color: #fff; border-color: #585959"
-                 t-if="request.website.is_public_user()==False and modules_digimoov" id="centre_date_examen">
+            <div style="margin: auto; background-color: #fff; border-color: #585959" t-if="request.website.is_public_user()==False and modules_digimoov" id="centre_date_examen">
                 <h3 t-if="modules_digimoov" class="mb24">Centre d'examen &amp; Date</h3>
                 <p t-if="modules_digimoov">
                     <b>
                         <div style="margin-left: 0%" id="exam_center">
-                            <select name="centre_examen" id="centre_examen" class="form-control search-slt"
-                                    t-if="modules_digimoov">
-
+                            <select name="centre_examen" id="centre_examen" class="form-control search-slt" t-if="modules_digimoov">
                                 <option value="all" id="all">
                                     Sélectionnez votre ville d'examen
                                 </option>
@@ -30,52 +27,48 @@
                                     </t>
                                 </t>
                             </select>
-                            <p t-if="website_sale_order.exam_center_error != ''" id="error_exam_center"
-                               class="alert alert-warning" style="margin-left: 0%; display: inline-block">
-                                Vous devez Selectionnez une ville
-                            </p>
                         </div>
                     </b>
                 </p>
 
-                <br/>
+
                 <p t-if="modules_digimoov">
-                    <b>
-                        <div style="margin-left: 0%; display:none ">
-                            <select id="exam_date" class="form-control search-slt" t-if="modules_digimoov">
-                                <option value="all" id="all">
+                    <div style="margin-left: 0%; display:none ">
+                        <select id="exam_date" class="form-control search-slt" t-if="modules_digimoov">
+                            <option value="all" id="all">
                                     Sélectionnez votre date d'examen
-                                </option>
-                                <t t-foreach="modules_digimoov" t-as="module">
-                                    <t t-if="module">
-                                        <t t-if="module.website_published==True">
-                                            <b>
-                                                <option t-att-value="module.session_ville_id.name_ville"
-                                                        t-att-id="module.id">
-                                                    <t t-esc="module.date_exam.strftime('%d/%m/%Y')"/>
-                                                </option>
-                                            </b>
-                                        </t>
+                            </option>
+                            <t t-foreach="modules_digimoov" t-as="module">
+                                <t t-if="module">
+                                    <t t-if="module.website_published==True">
+                                        <b>
+                                            <option t-att-value="module.session_ville_id.name_ville" t-att-id="module.id">
+                                                <t t-esc="module.date_exam.strftime('%d/%m/%Y')"/>
+                                            </option>
+                                        </b>
                                     </t>
                                 </t>
-                            </select>
-                            <p t-if="website_sale_order.exam_date_error != ''" id="error_exam_date"
-                               class="alert alert-warning" style="margin-left: 0%; display: inline-block">
-                                Vous devez Selectionnez une date
-                            </p>
-                        </div>
+                            </t>
+                        </select>
+
+                    </div>
+                    <b>
                         <div id="select-date" style="margin-left: 0%">
-                            <select name="date_examen" id="options-date" class="form-control search-slt"
-                                    style="display:none">
+                            <select name="date_examen" id="options-date" class="form-control search-slt" style="display:none">
                                 <option value="all" id="all">
                                     Sélectionnez votre date d'examen
                                 </option>
-
                             </select>
                         </div>
                     </b>
+
+                    <p id="error_choix_date" class="alert alert-warning" style="margin-left:0%;display:none;">
+                                Vous devez sélectionner votre date d'examen
+                    </p>
+
+
                 </p>
-                <br/>
+
             </div>
         </xpath>
         <!--        <xpath expr="//ol" position="replace">-->
@@ -95,64 +88,17 @@
 
     <template id="digimoov_website_sale_cart_script" inherit_id="website_sale.cart">
         <xpath expr="//a[@class='btn btn-primary float-right']" position="replace">
-            <a role="button" t-if="website_sale_order and website_sale_order.website_order_line"
-               class="btn btn-primary float-right" href="" id="pm_shop">
+            <a role="button" t-if="website_sale_order and website_sale_order.website_order_line" class="btn btn-primary float-right" href="" id="pm_shop">
                 <span id="pm_shop_text">Passer au paiement</span>
                 <span class="fa fa-chevron-right"/>
             </a>
             <div t-if="request.website.id==2">
                 <script>
-                console.log("site 2")
-                function verify_payment_method() {
-                var stripe_pm = document.getElementById("stripe_pm");
-                if (stripe_pm) {
-                if (stripe_pm.checked == true) {
-                document.getElementById("pm_shop").href = "/shop/checkout?express=1";
-                document.getElementById("pm_shop_check").href =
-                "/shop/checkout?express=1";
-                document.getElementById("pm_shop_checkout").href =
-                "/shop/checkout?express=1";
-                }
-                }
-                var cpf_pm = document.getElementById("cpf_pm");
-                if (cpf_pm) {
-                if (cpf_pm.checked == true) {
-                if (cpf_pm.value == "Formation pro") {
-                document.getElementById("pm_shop").href = "https://bit.ly/3nMlm2A";
-                document.getElementById("pm_shop_check").href =
-                "https://bit.ly/3nMlm2A";
-                document.getElementById("pm_shop_checkout").href =
-                "https://bit.ly/3nMlm2A";
-                (function(w,d,t,r,u){var f,n,i;w[u]=w[u]||[],f=function(){var o={ti:"<t t-esc="request.website.microsoft_tracking_key"/>"};o.q=w[u],w[u]=new
-                UET(o),w[u].push("pageLoad")},n=d.createElement(t),n.src=r,n.async=1,n.onload=n.onreadystatechange=function(){var
-                s=this.readyState;s&amp;&amp;s!=="loaded"&amp;&amp;
-                s!=="complete"||(f(),n.onload=n.onreadystatechange=null)},i=d.getElementsByTagName(t)[0],i.parentNode.insertBefore(n,i)})(window,document,"script","//bat.bing.com/bat.js","uetq");
-                console.log('inside function');
-                window.uetq = window.uetq || [];
-                window.uetq.push('event', 'clic sur mobiliser mon cpf pro', {'event_category': 'CPF',
-                'event_label': 'Inscription CPF Pro', 'event_value': '680'});
-                }
-                if (cpf_pm.value == "Formation premium") {
-                document.getElementById("pm_shop").href = "https://bit.ly/38IxvSa";
-                document.getElementById("pm_shop_check").href =
-                "https://bit.ly/38IxvSa";
-                document.getElementById("pm_shop_checkout").href =
-                "https://bit.ly/38IxvSa";
-                (function(w,d,t,r,u){var f,n,i;w[u]=w[u]||[],f=function(){
-                var o={ti:"<t t-esc="request.website.microsoft_tracking_key"/>"};o.q=w[u],w[u]=new
-                UET(o),w[u].push("pageLoad")},n=d.createElement(t),n.src=r,n.async=1,n.onload=n.onreadystatechange=function(){var
-                s=this.readyState;s&amp;&amp;s!=="loaded"&amp;&amp;
-                s!=="complete"||(f(),n.onload=n.onreadystatechange=null)},i=d.getElementsByTagName(t)[0],i.parentNode.insertBefore(n,i)})(window,document,"script","//bat.bing.com/bat.js","uetq");
-                window.uetq = window.uetq || [];
-                window.uetq.push('event', 'clic sur mobiliser mon cpf premium', {'event_category': 'CPF',
-                'event_label': 'Inscription CPF Premium', 'event_value': '849'});
-                }
-                }
-                }
-                }
+             
+                
 
                 function onchangeTextButton() {
-                console.log("onchangeTextButton");
+               
 
                 var stripe_pm = document.getElementById("stripe_pm");
                 if (stripe_pm) {
@@ -160,7 +106,7 @@
                 document.getElementById("pm_shop").href = "/shop/checkout?express=1";
                 document.getElementById("pm_shop_check").href =
                 "/shop/checkout?express=1";
-                console.log(document.getElementById("pm_shop_checkout"))
+               
                 document.getElementById("pm_shop_checkout").href =
                 "/shop/checkout?express=1";
                 }
@@ -188,7 +134,7 @@
                 }
                 }
 
-                console.log("onchange digimoov")
+              
                 if (document.getElementById("pm_shop_text")) {
                 //Hide CPF video and details
                 document.getElementById("cpf-details").classList.remove("hide");
@@ -220,7 +166,7 @@
                 }
 
                 function onchangeTextButton1() {
-                console.log("onchange digimoov1");
+              
 
                 var stripe_pm = document.getElementById("stripe_pm");
                 if (stripe_pm) {
@@ -228,7 +174,7 @@
                 document.getElementById("pm_shop").href = "/shop/checkout?express=1";
                 document.getElementById("pm_shop_check").href =
                 "/shop/checkout?express=1";
-                console.log(document.getElementById("pm_shop_checkout"))
+             
                 document.getElementById("pm_shop_checkout").href =
                 "/shop/checkout?express=1";
                 }
@@ -273,21 +219,19 @@
                 document.getElementById("promo_button").style.display = "inline";
                 }
                 }
-            </script>
+                </script>
 
             </div>
 
         </xpath>
         <xpath expr="//a[@class='btn btn-primary float-right d-none d-xl-inline-block']" position="replace">
-            <a role="button" t-if="website_sale_order and website_sale_order.website_order_line"
-               class="btn btn-primary float-right d-none d-xl-inline-block" href="" id="pm_shop_check">
+            <a role="button" t-if="website_sale_order and website_sale_order.website_order_line" class="btn btn-primary float-right d-none d-xl-inline-block" href="" id="pm_shop_check">
                 <span id="pm_shop_check_text">Passer au paiement</span>
                 <span class="fa fa-chevron-right"/>
             </a>
         </xpath>
         <xpath expr="//a[@href='/shop'][1]" position="replace">
-            <a role="button" href="/shop" class="btn btn-secondary mb32 d-none d-xl-inline-block"
-               style="display: none !important">
+            <a role="button" href="/shop" class="btn btn-secondary mb32 d-none d-xl-inline-block" style="display: none !important">
                 <span class="fa fa-chevron-left"/>
                 <span class="">Continuer Vos achat</span>
             </a>
