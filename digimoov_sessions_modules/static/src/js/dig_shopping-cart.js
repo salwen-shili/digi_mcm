@@ -178,7 +178,7 @@ function verify_payment_method() {
 
   if (cpf_pm) {
     if (cpf_pm.checked == true) {
-      if (cpf_pm.value == "[avancee] Formation pro") {
+      if (cpf_pm.value == "Formation pro") {
         // window.location.href = "https://bit.ly/3nMlm2A";
         msTracking(
           "clic sur mobiliser mon cpf pro",

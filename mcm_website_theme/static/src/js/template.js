@@ -147,7 +147,7 @@ function verify_payment_method() {
 
   if (cpf_pm) {
     if (cpf_pm.checked == true) {
-      if (cpf_pm.value == "[taxi] Formation à distance TAXI") {
+      if (cpf_pm.value == "Formation à distance TAXI") {
         // window.location.href = "https://bit.ly/3DOiZG6";
         msTracking(
           "clic sur mobiliser mon cpf taxi",
