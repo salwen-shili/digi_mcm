@@ -183,7 +183,10 @@ function verify_payment_method() {
 
 //show popup if date is selected
 function showPopup() {
-  if (!document.getElementById("options-date")) return;
+  if (!document.getElementById("options-date")) {
+    document.getElementById("error_choix_date").style.display = "inline-block";
+    return;
+  }
   var optionsDate = document.getElementById("options-date").value;
   var cpfChecked = document.getElementById("cpf_pm").checked;
   var continueBtn = document.getElementById("continueBtn");
