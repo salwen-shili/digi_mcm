@@ -50,7 +50,7 @@ class IdenfyCustomPortal(CustomerPortal):
         name = http.request.env.user.name
         email = http.request.env.user.email
         partner_id = http.request.env.user.partner_id
-        if partner_id and partner_id.check_status(request.website):
+        if partner_id and not partner_id.check_status(request.website):
             if request.website.id == 2:  # id 2 of website in database means website DIGIMOOV
                 return http.request.render('mcm_contact_documents.mcm_contact_document_charger_mes_documents', {
                     'email': email, 'name': name, 'partner_id': partner_id, 'ex_warning':'','error_identity': '', 'error_permis': '', 'error_permis_number': '', 'error_domicile': ''})

@@ -44,11 +44,19 @@ class ResPartner(models.Model):
                         self.env['documents.document'].create(vals)
         return True
 
+    # def uploaded_doc_after_check_status(self,website):
+    #     for rec in self:
+    #         doc_check_status = website._idenfy_send_request('status', request_data={"scanRef": rec.idenfy_document_data_id.scanref})
+    #         rec.idenfy_document_data_id.status = doc_check_status.get('status','')
+    #         if doc_check_status and doc_check_status.get('status') in ['ACTIVE']:
+    #             return True
+    #     return False
+
     def check_status(self,website):
         for rec in self:
             doc_check_status = website._idenfy_send_request('status', request_data={"scanRef": rec.idenfy_document_data_id.scanref})
             rec.idenfy_document_data_id.status = doc_check_status.get('status','')
-            if doc_check_status and doc_check_status.get('status') in ['ACTIVE']:
+            if doc_check_status and doc_check_status.get('status') in ['ACTIVE','APPROVED']:
                 return True
         return False
 
