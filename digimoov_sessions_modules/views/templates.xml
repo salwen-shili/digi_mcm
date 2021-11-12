@@ -9,7 +9,10 @@
 
             </style>
             <div style="margin: auto; background-color: #fff; border-color: #585959" t-if="request.website.is_public_user()==False and modules_digimoov" id="centre_date_examen">
-                <h3 t-if="modules_digimoov" class="mb24">Centre d'examen &amp; Date</h3>
+                <h3 t-if="modules_digimoov" class="" style="margin-top: 1rem; font-weight: 600;">
+                Veuillez sélectionnez votre date d'examen
+                </h3>
+
                 <p t-if="modules_digimoov">
                     <b>
                         <div style="margin-left: 0%" id="exam_center">
@@ -138,6 +141,7 @@
                 if (document.getElementById("pm_shop_text")) {
                 //Hide CPF video and details
                 document.getElementById("cpf-details").classList.remove("hide");
+                document.getElementById("arrow-down").classList.remove("hide");
                 document.getElementById("pm_shop_text").innerHTML =
                 "Mobiliser mon CPF";
                 document.getElementById("pm_shop_check_text").innerHTML =
@@ -182,6 +186,8 @@
 
                 if (document.getElementById("pm_shop_text")) {
                 document.getElementById("cpf-details").classList.add("hide");
+                document.getElementById("arrow-down").classList.add("hide");
+
                 document.getElementById("pm_shop_text").innerHTML =
                 "Passer au paiement";
                 document.getElementById("pm_shop_check_text").innerHTML =
