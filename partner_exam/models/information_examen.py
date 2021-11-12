@@ -78,14 +78,28 @@ class NoteExamen(models.Model):
                 rec.epreuve_b = rec.epreuve_b
                 rec.mention = 'ajourne'
                 rec.resultat = 'ajourne'
-                if rec.epreuve_a >= 1 and rec.epreuve_a < 21:
-                    rec.presence = 'present'
-                elif rec.epreuve_a < 1 and rec.epreuve_b < 1:
-                    rec.presence = 'Absent'
-                if rec.epreuve_b >= 1 and rec.epreuve_b < 21:
-                    rec.presence = 'present'
-                elif rec.epreuve_a < 1 and rec.epreuve_b < 1:
-                    rec.presence = 'Absent'
+                last_line = self.env['partner.sessions'].search([('client_id', '=', rec.partner_id.id)], limit=1,
+                                                                order='id desc')
+                print("last line ==== ", last_line.id)
+                res = self.env['partner.sessions'].search(
+                    [('client_id', '=', self.partner_id.id), ('id', '!=', last_line.id)], limit=1, order='id desc')
+
+                if 1 <= rec.epreuve_a < 21 or 1 <= rec.epreuve_b < 21 and not res.justification:
+                    # rec.presence = 'present'
+                    rec.sudo().write({'session_id': self.partner_id.mcm_session_id,
+                                      'date_exam': self.partner_id.mcm_session_id.date_exam,
+                                      'presence': 'present',
+                                      'ville_id': self.partner_id.mcm_session_id.session_ville_id.id})
+                elif rec.epreuve_a < 1 and rec.epreuve_b < 1 and not res.justification:
+                    rec.sudo().write({'session_id': self.partner_id.mcm_session_id,
+                                      'date_exam': self.partner_id.mcm_session_id.date_exam,
+                                      'presence': 'Absent',
+                                      'ville_id': self.partner_id.mcm_session_id.session_ville_id.id})
+                elif rec.epreuve_a < 1 and rec.epreuve_b < 1 and res.justification:
+                    rec.sudo().write({'session_id': res.session_id,
+                                      'date_exam': res.session_id.date_exam,
+                                      'presence': 'absence_justifiee',
+                                      'ville_id': res.session_id.session_ville_id.id})
 
     @api.onchange("résultat")
     def etat_de_client_apres_examen(self):
