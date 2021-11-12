@@ -32,6 +32,43 @@ class ResPartner(models.Model):
                 doc_file_res = website._idenfy_send_request('files', request_data={"scanRef": idenfy.scanref})
                 for document in ['FACE','BACK','FRONT']:
                     image_url = doc_file_res.get(document,'')
+                    if website.id == 1:
+                        folder_id = self.env['documents.folder'].sudo().search(
+                            [('name', "=", _('Documents MCM ACADEMY')), ('company_id', "=", 1)],limit=1)
+                        if not folder_id:
+                            vals_list = []
+                            vals = {
+                                'name': "Documents MCM ACADEMY"
+                            }
+                            vals_list.append(vals)
+                            folder_id = self.env['documents.folder'].sudo().create(vals_list)
+                            vals_list = []
+                            vals = {
+                                'name': "Statut document",
+                                'folder_id': folder_id.id,
+                            }
+                            vals_list.append(vals)
+                            facet = self.env['documents.facet'].sudo().create(vals_list)
+                    elif website.id == 2:
+                        folder_id = self.env['documents.folder'].sudo().search(
+                            [('name', "=", _('Documents Digimoov')), ('company_id', "=", 2)],limit=1)
+                        if not folder_id:
+                            vals_list = []
+                            vals = {
+                                'name': "Documents Digimoov",
+                                'company_id': 2
+                            }
+                            vals_list.append(vals)
+                            folder_id = self.env['documents.folder'].sudo().create(vals_list)
+                            vals_list = []
+                            vals = {
+                                'name': "Statut document",
+                                'folder_id': folder_id.id,
+                            }
+                            vals_list.append(vals)
+                            facet = self.env['documents.facet'].sudo().create(vals_list)
+                    else:
+                        folder_id = self.env['documents.folder'].search([],limit=1)
                     if image_url:
                         image_binary = base64.b64encode(requests.get(image_url).content)
                         vals = {
@@ -39,7 +76,7 @@ class ResPartner(models.Model):
                             'datas': image_binary,
                             'type':'binary',
                             'partner_id':rec.id,
-                            'folder_id':self.env['documents.folder'].search([],limit=1).id
+                            'folder_id':folder_id.id
                         }
                         self.env['documents.document'].create(vals)
         return True
