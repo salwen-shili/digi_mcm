@@ -129,6 +129,13 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="/partner_exam/views/notes_examens_partner.xml">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="/partner_exam/views/partner.xml">
           <value>
             <Attribute>
