@@ -370,7 +370,7 @@
                             </p>
                         </t>
                     </label>
-                    <ul class="float-right list-inline payment_icon_list">
+                    <ul class="float-right list-inline payment_icon_list" style="margin-top: 11px;">
                         <li class="list-inline-item">
                             <span data-oe-model="payment.icon" data-oe-id="1" data-oe-field="image_payment_form" data-oe-type="image" data-oe-expression="pm_icon.image_payment_form" data-oe-field-xpath="/t[1]/form[1]/div[1]/t[4]/div[1]/ul[1]/t[2]/li[1]/span[1]">
                                 <img src="/web/image/payment.icon/1/image_payment_form/VISA?unique=82297bd" class="img img-fluid img-res" alt="VISA"/>
@@ -440,6 +440,9 @@
                             float:right;
                         }
                         }
+                p{
+                    margin:0px !important;
+                }
             </style>
 
             <div class="card-body o_payment_acquirer_select" style="padding: 0px 0px 0px 20px !important;">
