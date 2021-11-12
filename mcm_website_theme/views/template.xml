@@ -441,26 +441,23 @@
                         }
                         }
             </style>
+
             <div class="card-body o_payment_acquirer_select" style="padding: 0px 0px 0px 20px !important;">
                 <t t-foreach="website_sale_order.website_order_line" t-as="line">
-                    <div t-if="line.product_id.product_tmpl_id.cpf_available">
-                        <label for="cpf_pm" class="radio ">
-                            <input type="radio" name="pm_method" data-acquirer-id="16" data-form-payment="True" data-provider="transfer" class="hidden" id="cpf_pm" t-att-value="line.name_short" t-attf-onclick="onchangeTextButton()">
-                                <span class="label"></span>CPF
-                                <p style="font-style: italic;font-size: 12px; padding: 0.5rem 0rem 0rem 2rem;">
+                    <label for="cpf_pm" class="radio " t-if="line.product_id.product_tmpl_id.cpf_available">
+                        <input type="radio" name="pm_method" data-acquirer-id="16" data-form-payment="True" data-provider="transfer" class="hidden" id="cpf_pm" t-att-value="line.name_short" t-attf-onclick="onchangeTextButton()" />
+                        <span class="label"></span>CPF
+                        <p style="font-style: italic;font-size: 12px; padding: 0.5rem 0rem 0rem 2rem;">
                             Mon Compte personnel de formation
-                                </p>
-                            </input>
-                            <ul class="cpf_position">
-                                <li class="list-inline-item">
-                                    <span data-oe-model="payment.icon" data-oe-id="8" data-oe-field="image_payment_form" data-oe-type="image" data-oe-expression="pm_icon.image_payment_form" data-oe-field-xpath="/t[1]/form[1]/div[1]/t[4]/div[1]/ul[1]/t[2]/li[1]/span[1]">
-                                        <img style="max-width: 4rem;" class="img-fluid positioncpf" src="/mcm_website_theme/static/src/img/cpf.png"></img>
-                                    </span>
-                                </li>
-                            </ul>
-                        </label>
-                    </div>
-
+                        </p>
+                    </label>
+                    <ul class="cpf_position" t-if="line.product_id.product_tmpl_id.cpf_available">
+                        <li class="list-inline-item">
+                            <span data-oe-model="payment.icon" data-oe-id="8" data-oe-field="image_payment_form" data-oe-type="image" data-oe-expression="pm_icon.image_payment_form" data-oe-field-xpath="/t[1]/form[1]/div[1]/t[4]/div[1]/ul[1]/t[2]/li[1]/span[1]">
+                                <img style="max-width: 3rem;" class="img-fluid positioncpf" src="/mcm_website_theme/static/src/img/cpf.png"></img>
+                            </span>
+                        </li>
+                    </ul>
                 </t>
             </div>
 
