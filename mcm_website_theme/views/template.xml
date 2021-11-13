@@ -978,7 +978,7 @@
                 width: 30px;
                 }
             </style>
-            <style meta-oe-xpath-replacing="ul">
+            <!-- <style meta-oe-xpath-replacing="ul">
 
                 .calendly-inline-widget,
                 .calendly-inline-widget
@@ -1022,7 +1022,7 @@
                 calendly-bouncedelay{0%,80%,100%{-webkit-transform:scale(0);transform:scale(0)}40%{-webkit-transform:scale(1);transform:scale(1)}}@keyframes
                 calendly-bouncedelay{0%,80%,100%{-webkit-transform:scale(0);transform:scale(0)}40%{-webkit-transform:scale(1);transform:scale(1)}}
 
-            </style>
+            </style> -->
 
             <input type="hidden" name="user_name_connected" id="user_name_connected" t-att-value="request.website.get_user_name_logged()"/>
             <input type="hidden" name="user_email_connected" id="user_email_connected" t-att-value="request.website.get_user_email_logged()"/>
@@ -1140,7 +1140,7 @@
 
             </div>
 
-            <div class="container">
+            <!-- <div class="container">
                 <div class="row">
                     <div class="col-3" style="float:left;">
                         <div class="calendly-badge-widget">
@@ -1177,8 +1177,20 @@
 
                     </div>
                 </div>
-            </div>
-
+            </div> -->
+            <!-- Début de widget de badge Calendly -->
+            <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet"/>
+            <style>
+        .calendly-badge-widget {
+        left: 20px !important;
+    }
+    .calendly-badge-content{
+        color: #fdd103 !important;
+    }
+            </style>
+            <script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async="async"></script>
+            <script type="text/javascript">window.onload = function() { Calendly.initBadgeWidget({ url: 'https://calendly.com/mcm-academy', text: 'Renseignements TAXI/VTC/VMDTR', color: '#1A1A1A', textColor: '#FFFFFF', branding: false }); }</script>
+            <!-- Fin de widget de badge Calendly -->
         </xpath>
         <xpath expr="//div[@class='o_footer_copyright']" position="replace">
             <section id="sh_copyright_7">
