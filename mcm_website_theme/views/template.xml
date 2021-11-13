@@ -1181,12 +1181,12 @@
             <!-- Début de widget de badge Calendly -->
             <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet"/>
             <style>
-        .calendly-badge-widget {
-        left: 20px !important;
-    }
-    .calendly-badge-content{
-        color: #fdd103 !important;
-    }
+            .calendly-badge-widget {
+            left: 20px !important;
+            }
+            .calendly-badge-content{
+                color: #fdd103 !important;
+            }
             </style>
             <script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async="async"></script>
             <script type="text/javascript">window.onload = function() { Calendly.initBadgeWidget({ url: 'https://calendly.com/mcm-academy', text: 'Renseignements TAXI/VTC/VMDTR', color: '#1A1A1A', textColor: '#FFFFFF', branding: false }); }</script>
