@@ -64,6 +64,7 @@ odoo.define("mcm_website_theme.mcm_website_sale", function (require) {
           cpf = true;
           //Hide CPF video and details
           document.getElementById("cpf-details").classList.remove("hide");
+          document.getElementById("arrow-down").classList.remove("hide");
           // document
           //   .getElementById("cpf-details")
           //   .scrollIntoView({ inline: "start" });

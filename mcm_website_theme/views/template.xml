@@ -337,12 +337,10 @@
             </td>
         </xpath>
         <xpath expr="//table[@id='cart_products']" position="after">
-
             <link href="/mcm_website_theme/static/src/css/cart.css" rel="stylesheet"/>
             <p id="error_no_date" class="alert alert-warning" style="margin-left:0%;display:none;">
               Pas de date disponible pour le moment.
             </p>
-
             <t t-foreach="website_sale_order.website_order_line" t-as="line">
                 <!-- Mode de financement -->
                 <h3 class="" style="margin-top: 1rem; font-weight: 600;">
@@ -350,84 +348,47 @@
                 </h3>
             </t>
             <div class="card-body o_payment_acquirer_select" style="padding:0px 0px 0px 20px !important">
-
                 <t t-foreach="website_sale_order.website_order_line" t-as="line">
                     <label for="stripe_pm" class="radio ">
                         <input id="stripe_pm" type="radio" name="pm_method" class="hidden" data-acquirer-id="8" data-form-payment="True" data-provider="stripe_pm" t-att-value="line.name_short" checked="True" t-attf-onclick="onchangeTextButton1()"/>
                         <span class="label"></span>Carte de crédit
                         <span class="col-lg-12  " style="">
-
-
                         </span>
                         <t t-if="website_sale_order.amount_total>1000 and website_sale_order.company_id.id==1">
                             <p style="font-style: italic;font-size: 12px;">Paiement en 1 ou 3 fois sans frais</p>
                         </t>
                         <t t-if="website_sale_order.instalment_number>1 and website_sale_order.company_id.id==2">
-                            <p style="font-style: italic;font-size: 12px;">
+                            <p style="font-style: italic;font-size: 12px; margin-bottom: 0rem !important">
                                 <span>Paiement en</span>
                                 <span t-field="website_sale_order.instalment_number"/>
                                 <span>fois sans frais</span>
                             </p>
                         </t>
                     </label>
-                    <ul class="float-right list-inline payment_icon_list">
+                    <ul class="list-inline payment_icon_list cpf_position" style="margin-top: 11px;">
                         <li class="list-inline-item">
                             <span data-oe-model="payment.icon" data-oe-id="1" data-oe-field="image_payment_form" data-oe-type="image" data-oe-expression="pm_icon.image_payment_form" data-oe-field-xpath="/t[1]/form[1]/div[1]/t[4]/div[1]/ul[1]/t[2]/li[1]/span[1]">
                                 <img src="/web/image/payment.icon/1/image_payment_form/VISA?unique=82297bd" class="img img-fluid img-res" alt="VISA"/>
                             </span>
                         </li>
-
-
                         <li class="list-inline-item">
                             <span data-oe-model="payment.icon" data-oe-id="2" data-oe-field="image_payment_form" data-oe-type="image" data-oe-expression="pm_icon.image_payment_form" data-oe-field-xpath="/t[1]/form[1]/div[1]/t[4]/div[1]/ul[1]/t[2]/li[1]/span[1]">
                                 <img src="/web/image/payment.icon/2/image_payment_form/American%20Express?unique=82297bd" class="img img-fluid img-res" alt="American Express"/>
                             </span>
                         </li>
-
-
-                        <li class="list-inline-item">
-                            <span data-oe-model="payment.icon" data-oe-id="4" data-oe-field="image_payment_form" data-oe-type="image" data-oe-expression="pm_icon.image_payment_form" data-oe-field-xpath="/t[1]/form[1]/div[1]/t[4]/div[1]/ul[1]/t[2]/li[1]/span[1]">
-                                <img src="/web/image/payment.icon/4/image_payment_form/Diners%20Club%20International?unique=82297bd" class="img img-fluid img-res" alt="Diners Club International"/>
-                            </span>
-                        </li>
-
-
-                        <li class="list-inline-item">
-                            <span data-oe-model="payment.icon" data-oe-id="5" data-oe-field="image_payment_form" data-oe-type="image" data-oe-expression="pm_icon.image_payment_form" data-oe-field-xpath="/t[1]/form[1]/div[1]/t[4]/div[1]/ul[1]/t[2]/li[1]/span[1]">
-                                <img src="/web/image/payment.icon/5/image_payment_form/Discover?unique=82297bd" class="img img-fluid img-res" alt="Discover"/>
-                            </span>
-                        </li>
-                        <li style="display:block;" class="list-inline-item d-none">
-                            <span class="float-right more_option text-info">
-                                <a href="#" class="o_payment_form_pay_icon_more" data-toggle="tooltip" data-oe-model="ir.ui.view" data-oe-id="888" data-oe-field="arch" data-oe-xpath="/t[1]/form[1]/div[1]/t[4]/div[1]/ul[1]/t[2]/li[2]/span[1]/a[1]" title="" data-original-title="Discover, JCB, Maestro, MasterCard">et plus
-                                </a>
-                            </span>
-                        </li>
-
-
-                        <li class="list-inline-item">
-                            <span data-oe-model="payment.icon" data-oe-id="6" data-oe-field="image_payment_form" data-oe-type="image" data-oe-expression="pm_icon.image_payment_form" data-oe-field-xpath="/t[1]/form[1]/div[1]/t[4]/div[1]/ul[1]/t[2]/li[1]/span[1]">
-                                <img src="/web/image/payment.icon/6/image_payment_form/JCB?unique=82297bd" class="img img-fluid img-res" alt="JCB"/>
-                            </span>
-                        </li>
-
-
                         <li class="list-inline-item">
                             <span data-oe-model="payment.icon" data-oe-id="7" data-oe-field="image_payment_form" data-oe-type="image" data-oe-expression="pm_icon.image_payment_form" data-oe-field-xpath="/t[1]/form[1]/div[1]/t[4]/div[1]/ul[1]/t[2]/li[1]/span[1]">
                                 <img src="/web/image/payment.icon/7/image_payment_form/Maestro?unique=82297bd" class="img img-fluid img-res" alt="Maestro"/>
                             </span>
                         </li>
-
                         <li class="list-inline-item">
-                            <span data-oe-model="payment.icon" data-oe-id="8" data-oe-field="image_payment_form" data-oe-type="image" data-oe-expression="pm_icon.image_payment_form" data-oe-field-xpath="/t[1]/form[1]/div[1]/t[4]/div[1]/ul[1]/t[2]/li[1]/span[1]">
+                            <span style="margin-right: 12px;" data-oe-model="payment.icon" data-oe-id="8" data-oe-field="image_payment_form" data-oe-type="image" data-oe-expression="pm_icon.image_payment_form" data-oe-field-xpath="/t[1]/form[1]/div[1]/t[4]/div[1]/ul[1]/t[2]/li[1]/span[1]">
                                 <img src="/web/image/payment.icon/8/image_payment_form/MasterCard?unique=82297bd" class="img img-fluid img-res" alt="MasterCard"/>
                             </span>
                         </li>
                     </ul>
                 </t>
-
             </div>
-
             <style>
                 html {
                 scroll-behavior: smooth;
@@ -439,9 +400,8 @@
                         .cpf_position {
                             float:right;
                         }
-                        }
+                }
             </style>
-
             <div class="card-body o_payment_acquirer_select" style="padding: 0px 0px 0px 20px !important;">
                 <t t-foreach="website_sale_order.website_order_line" t-as="line">
                     <label for="cpf_pm" class="radio " t-if="line.product_id.product_tmpl_id.cpf_available">
@@ -451,11 +411,24 @@
                             Mon Compte personnel de formation
                         </p>
                     </label>
+
                     <ul class="cpf_position" t-if="line.product_id.product_tmpl_id.cpf_available">
                         <li class="list-inline-item">
                             <span data-oe-model="payment.icon" data-oe-id="8" data-oe-field="image_payment_form" data-oe-type="image" data-oe-expression="pm_icon.image_payment_form" data-oe-field-xpath="/t[1]/form[1]/div[1]/t[4]/div[1]/ul[1]/t[2]/li[1]/span[1]">
                                 <img style="max-width: 3rem;" class="img-fluid positioncpf" src="/mcm_website_theme/static/src/img/cpf.png"></img>
                             </span>
+                        </li>
+                        <li class="list-inline-item">
+                            <div class="scroll-prompt" scroll-prompt="" ng-show="showPrompt" style="opacity: 1; margin-top: -38px;">
+                                <div class="scroll-prompt-arrow-container hide" id="arrow-down">
+                                    <div class="scroll-prompt-arrow">
+                                        <div></div>
+                                    </div>
+                                    <div class="scroll-prompt-arrow">
+                                        <div></div>
+                                    </div>
+                                </div>
+                            </div>
                         </li>
                     </ul>
                 </t>
@@ -471,7 +444,8 @@
                 </h5>
                 <!-- <p style="letter-spacing: 1.5px; text-align: justify;">Salariés, demandeurs d’emploi ou encore travailleurs indépendants ? Vous avez tous droit à la formation professionnelle. D’où la nécessité de la mise en place du Compte personnel de formation (CPF). Besoin de tuto? lancez cette vidéo !</p> -->
 
-                <style>.embed-container { position: relative; margin-top: 2rem; padding-bottom: 56.25%; height: 0;
+                <style>
+                    .embed-container { position: relative; margin-top: 2rem; padding-bottom: 56.25%; height: 0;
                         overflow: hidden; max-width: 100%; } .embed-container iframe, .embed-container object,
                         .embed-container embed { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
                         .hide-text-top {
@@ -497,14 +471,8 @@
                 </div>
             </div>
             <!-- FIN Mode de financement -->
-
-
-
-
-
             <div t-if="request.website.id == 1">
                 <script>
-                
                 function onchangeTextButton(){
                  
              
@@ -536,6 +504,8 @@
                  
                 if(document.getElementById("pm_shop_text")){
                 document.getElementById("cpf-details").classList.add("hide");
+                document.getElementById("arrow-down").classList.add("hide");
+
 
                 document.getElementById("pm_shop_text").innerHTML = 'Passer au paiement';
                 document.getElementById("pm_shop_check_text").innerHTML = 'Passer au paiement';
@@ -584,8 +554,6 @@
     <template id="mcm_website_sale_cart_lines_date_and_region" inherit_id="website_sale.cart_lines">
         <xpath expr="//table[@id='cart_products']" position="after">
             <div id="popup1" class="overlay_popup">
-
-
                 <div class="popup" style="top: 20%;">
                     <h2 class="text-left">
                         <i class="fa fa-info-circle" style="color: #152856;"></i>
@@ -624,8 +592,6 @@
                             <p id="error_choix_date_popup" class="alert alert-warning" style="margin-left:0%;display:none;">
                                 Vous devez fermer cette fenêtre et selectionner votre date d'examen
                             </p>
-
-
                         </p>
                         <style t-if="request.website.id==2">
                             .action-button {
@@ -651,7 +617,6 @@
                             }
 
                         </style>
-
                         <style t-if="request.website.id==1">
                             .action-button {
                             width: 153px;
@@ -680,7 +645,9 @@
                 </div>
             </div>
             <div style="margin:auto;background-color:#fff;border-color:#585959;" t-if="request.website.is_public_user()==False and modules_mcm" id="region_date_examen">
-                <h3 t-if="modules_mcm" class="mb24">Veuillez sélectionner votre Région et une date d’examen</h3>
+                <h3 t-if="modules_mcm" class="" style="margin-top: 1rem; font-weight: 600;">
+                Veuillez sélectionnez votre date d'examen
+                </h3>
                 <p t-if="modules_mcm">
                     <b>
                         <div style="margin-left:0%;" id="exam_center">
@@ -704,7 +671,6 @@
                 </p>
 
                 <p t-if="modules_mcm">
-
                     <b>
                         <div style="margin-left:0%; display:none">
                             <select id="exam_date" class="form-control search-slt " t-if="modules_mcm" style="display:none">
@@ -730,7 +696,6 @@
                                 <option value="all" id="all">
                                     Sélectionnez votre date d'examen
                                 </option>
-
                             </select>
                         </div>
                         <p id="error_choix_date" class="alert alert-warning" style="margin-left:0%;display:none;">
@@ -1013,7 +978,7 @@
                 width: 30px;
                 }
             </style>
-     
+
 
             <input type="hidden" name="user_name_connected" id="user_name_connected" t-att-value="request.website.get_user_name_logged()"/>
             <input type="hidden" name="user_email_connected" id="user_email_connected" t-att-value="request.website.get_user_email_logged()"/>
@@ -1133,17 +1098,17 @@
 
             <!-- Début de widget de badge Calendly -->
             <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet"/>
-                <style>
+            <style>
         .calendly-badge-widget {
         left: 20px !important;
     }
     .calendly-badge-content{
         color: #fdd103 !important;
     }
-                </style>
-                <script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async="async"></script>
-                <script type="text/javascript">window.onload = function() { Calendly.initBadgeWidget({ url: 'https://calendly.com/mcm-academy', text: 'Renseignements TAXI/VTC/VMDTR', color: '#1A1A1A', textColor: '#FFFFFF', branding: false }); }</script>
-                <!-- Fin de widget de badge Calendly -->
+            </style>
+            <script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async="async"></script>
+            <script type="text/javascript">window.onload = function() { Calendly.initBadgeWidget({ url: 'https://calendly.com/mcm-academy', text: 'Renseignements TAXI/VTC/VMDTR', color: '#1A1A1A', textColor: '#FFFFFF', branding: false }); }</script>
+            <!-- Fin de widget de badge Calendly -->
 
         </xpath>
         <xpath expr="//div[@class='o_footer_copyright']" position="replace">

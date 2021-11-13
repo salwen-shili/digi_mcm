@@ -425,9 +425,152 @@ html {
 
 @media screen and (max-width: 700px) {
   .box {
-    width: 70%;
+    width: 90%;
   }
   .popup {
-    width: 70%;
+    width: 90%;
+  }
+}
+
+/* arrow down animation */
+
+.scroll-prompt {
+  opacity: 1;
+  width: 171px;
+  height: 26px;
+  padding-left: 129px;
+}
+.scroll-prompt .scroll-prompt-arrow-container {
+  -webkit-animation-name: bounce;
+  animation-name: bounce;
+  -webkit-animation-duration: 1.5s;
+  animation-duration: 1.5s;
+  -webkit-animation-iteration-count: infinite;
+  animation-iteration-count: infinite;
+}
+.scroll-prompt .scroll-prompt-arrow {
+  -webkit-animation-name: opacity;
+  animation-name: opacity;
+  -webkit-animation-duration: 1.5s;
+  animation-duration: 1.5s;
+  -webkit-animation-iteration-count: infinite;
+  animation-iteration-count: infinite;
+}
+.scroll-prompt .scroll-prompt-arrow:last-child {
+  animation-direction: reverse;
+  margin-top: -6px;
+}
+.scroll-prompt .scroll-prompt-arrow > div {
+  width: 26px;
+  height: 26px;
+  border-right: 8px solid #152856;
+  border-bottom: 8px solid #152856;
+  transform: rotate(45deg) translateZ(1px);
+}
+
+@-webkit-keyframes opacity {
+  0% {
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.1;
+  }
+  20% {
+    opacity: 0.2;
+  }
+  30% {
+    opacity: 0.3;
+  }
+  40% {
+    opacity: 0.4;
+  }
+  50% {
+    opacity: 0.5;
+  }
+  60% {
+    opacity: 0.6;
+  }
+  70% {
+    opacity: 0.7;
+  }
+  80% {
+    opacity: 0.8;
+  }
+  90% {
+    opacity: 0.9;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@-webkit-keyframes bounce {
+  0% {
+    transform: translateY(0);
+  }
+  10% {
+    transform: translateY(2px);
+  }
+  20% {
+    transform: translateY(4px);
+  }
+  30% {
+    transform: translateY(6px);
+  }
+  40% {
+    transform: translateY(8px);
+  }
+  50% {
+    transform: translateY(10px);
+  }
+  60% {
+    transform: translateY(12px);
+  }
+  70% {
+    transform: translateY(14px);
+  }
+  80% {
+    transform: translateY(16px);
+  }
+  90% {
+    transform: translateY(18px);
+  }
+  100% {
+    transform: translateY(20px);
+  }
+}
+@keyframes bounce {
+  0% {
+    transform: translateY(0);
+  }
+  10% {
+    transform: translateY(2px);
+  }
+  20% {
+    transform: translateY(4px);
+  }
+  30% {
+    transform: translateY(6px);
+  }
+  40% {
+    transform: translateY(8px);
+  }
+  50% {
+    transform: translateY(10px);
+  }
+  60% {
+    transform: translateY(12px);
+  }
+  70% {
+    transform: translateY(14px);
+  }
+  80% {
+    transform: translateY(16px);
+  }
+  90% {
+    transform: translateY(18px);
+  }
+  100% {
+    transform: translateY(20px);
   }
 }
