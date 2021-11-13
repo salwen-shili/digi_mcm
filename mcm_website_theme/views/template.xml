@@ -37,7 +37,7 @@
                 mb-2
               ">
                         <div class="form-section">
-                            <div class="card px-0 pt-4 pb-0 mt-3 mb-3 bg-c">
+                            <div class="card px-0 pb-0 mt-1 mb-3 bg-c">
                                 <h2 id="heading">Inscription</h2>
                                 <p class="p_class">Remplissez tous les champs du formulaire pour passer à l'étape
                                     suivante
@@ -105,7 +105,7 @@
                 mb-2
               ">
                         <div class="form-section">
-                            <div class="card px-0 pt-4 pb-0 mt-3 mb-3 bg-c">
+                            <div class="card px-0 pb-0 mt-1 mb-3 bg-c">
                                 <h2 id="heading">Inscription</h2>
                                 <p class="p_class">Remplissez tous les champs du formulaire pour passer à l'étape
                                     suivante
@@ -179,7 +179,7 @@
                 mb-2
               ">
                         <div class="form-section">
-                            <div class="card px-0 pt-4 pb-0 mt-3 mb-3 bg-c">
+                            <div class="card px-0 pb-0 mt-1 mb-3 bg-c">
                                 <h2 id="heading">Inscription</h2>
                                 <p class="p_class">Remplissez tous les champs du formulaire pour passer à l'étape
                                     suivante
@@ -435,7 +435,7 @@
             </div>
 
             <div id="cpf-details" class="hide">
-                <h5 style="margin-top: 2rem;
+                <h5 style="
                 letter-spacing: 0.5px;
                 font-weight: 600;
                 display: inline-block;">
