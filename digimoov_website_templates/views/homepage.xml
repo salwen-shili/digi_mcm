@@ -1451,7 +1451,7 @@
                     </div>
                     <!-- page habiliation electrique-->
 
-                    <div id="habilitation_electrique" t-if="partenaire!='habilitation-electrique'">
+                    <div id="habilitation_electrique" t-if="partenaire=='habilitation-electrique'">
 
                         <section class="centric_template home-banner pt128 banner_padding" style="padding-bottom: 0px !important;" data-name="Banner">
                             <div class="container" style="border-style: none; border-width: 0px;">
