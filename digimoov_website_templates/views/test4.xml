@@ -7,9 +7,7 @@
                 <script type="text/javascript" src="/mcm_website_theme/static/src/js/msAds.js"/>
                 <div id="eco_conduite" style="border-style: none; border-width: 0px;">
                     <style>
-                        .h1-title {
-                        color: rgb(156, 0, 255);
-                        }
+                       
                         p {
                         font-size: 18px !important;
                         }
@@ -103,7 +101,7 @@
                                 </div>
                                 <div class="bannercol col-lg-6 col-md-12 image_padding" style="border-style: none; border-width: 0px">
                                     <div class="banner_image">
-                                        <img class="img img-fluid" src="/web/image/217904/formation-%C3%A9co-conduite-transport-digimoov.png" title="Devenir coursier en scooter" alt="formation coursier en scooter" aria-describedby="tooltip653698"/>
+                                        <img class="img img-fluid" src="/digimoov_website_templates/static/img/ecoconduite/1.png" title="Devenir coursier en scooter" alt="formation coursier en scooter" aria-describedby="tooltip653698"/>
                                     </div>
                                 </div>
                             </div>
@@ -128,7 +126,7 @@
                                 <div class="row">
                                     <div class="col-lg-6 col-md-12" style="border-style: none; border-width: 0px">
                                         <div class="aboutus-img">
-                                            <img class="img img-fluid" src="/web/image/217913/formation%20%C3%A9co%20conduite%20-%20digimoov.png" title="formation coursier en scooter en ligne" alt="formation en ligne capacité de transport de marchandise sur 2 roues" aria-describedby="tooltip664574"/>
+                                            <img class="img img-fluid" src="/digimoov_website_templates/static/img/ecoconduite/2.png" title="formation coursier en scooter en ligne" alt="formation en ligne capacité de transport de marchandise sur 2 roues" aria-describedby="tooltip664574"/>
                                         </div>
                                     </div>
                                     <div class="col-lg-6 col-md-12" style="border-style: none; border-width: 0px">
@@ -200,43 +198,34 @@
                                     <p/>
                                 </div>
                                 <div class="col-lg-6">
-                                    <img src="/web/image/217914/formation-%C3%A9co-conduite-digimoov.png" class="img img-fluid mx-auto" title="coursier sur 2 roues" alt="compétences pour exercer le métier de coursier en scooter"/>
+                                    <img src="/digimoov_website_templates/static/img/ecoconduite/3.png" class="img img-fluid mx-auto" title="coursier sur 2 roues" alt="compétences pour exercer le métier de coursier en scooter"/>
                                 </div>
                             </div>
                         </div>
                     </section>
 
-                    <section class="pt32 pb32" data-name="Title">
-                        <div class="container">
-                            <div class="row s_nb_column_fixed">
-                                <div class="col-lg-12 s_title pt16 pb16" style="text-align: center;">
-                                    <h2 class="s_title_default">LA FORMATION ECOCONDUITE</h2>
-                                </div>
-                            </div>
-                        </div>
-                    </section>
+
                     <section class="s_features pt32 pb0" data-name="Features">
                         <div class="container">
                             <div class="row">
+                                <div class="col-lg-12 s_title pt16 pb16" style="text-align: center;">
+                                    <h2 class="s_title_default">LA FORMATION ECOCONDUITE</h2>
+                                </div>
                                 <div class="col-lg-4 pt32 pb32 text-center">
                                     <i class="fa fa-3x fa-gear m-3 rounded-circle" data-original-title="" title="" aria-describedby="tooltip844367" style="background-color: rgb(156, 0, 255);"/>
                                     <h3>Les prérequis</h3>
                                     <h4>
-                                        <span style="border: 0px; color: rgb(66, 66, 66); font-family: &quot;Open Sans&quot;; font-size: 19px; font-stretch: inherit; font-variant-east-asian: inherit; font-variant-numeric: inherit; line-height: inherit; margin: 0px; outline: 0px; padding: 0px; text-align: start; transition: all 0.1s ease-in-out 0s; vertical-align: baseline;">Ê</span>
-                                        <span style="background-color: transparent; color: rgb(66, 66, 66); font-family: Arial; text-align: center; white-space: pre-wrap;">tre titulaire du permis B</span>
-                                    </h4> .                                    <p/>
+                                        <span style="background-color: transparent; color: rgb(66, 66, 66); font-family: Arial; text-align: center; white-space: pre-wrap;">Être titulaire du permis B</span>
+
+                                    </h4>
                                 </div>
                                 <div class="col-lg-4 pt32 pb32 text-center">
                                     <i class="fa fa-3x rounded bg-epsilon m-3 fa-user"/>
                                     <h3>Profils des stagiaires</h3>
-                                    <div style="text-align: left;">
-                                        <span id="docs-internal-guid-12379f68-7fff-4d55-dc50-673a1dc58c09">
-                                            <span style="background-color: transparent; color: rgb(0, 0, 0); font-family: Arial; font-variant-east-asian: normal; font-variant-numeric: normal; vertical-align: baseline; white-space: pre-wrap;">
-                                                <h4 style="text-align: center; ">Toute personne qui utilise un véhicule</h4>
-                                            </span>
-                                        </span>
-                                        <br/>
-                                    </div>
+                                    <h4>
+                                        <span style="background-color: transparent; color: rgb(66, 66, 66); font-family: Arial; text-align: center; white-space: pre-wrap;">Toute personne qui utilise un véhicule</span>
+
+                                    </h4>
                                     <p/>
                                 </div>
                                 <div class="col-lg-4 pt32 pb32 text-center">
@@ -257,10 +246,10 @@
                             <div class="row">
                                 <div class="col-lg-12 pt32 pb32" style="border-style: none; border-width: 0px;">
                                     <h4>
-                                        <span style="background-color: transparent; color: rgb(0, 0, 0); font-family: Arial; font-style: normal; font-variant: normal; font-weight: 400; text-decoration: none; vertical-align: baseline; white-space: pre-wrap;">Notre formation d’écoconduite est très complète. Elle est basée sur </span>
-                                        <span style="background-color: transparent; color: rgb(156, 0, 255); font-family: Arial; font-style: normal; font-variant: normal; text-decoration: none; vertical-align: baseline; white-space: pre-wrap;">
-                                            <b>les modules suivants : </b>
+                                        <span style="background-color: transparent; color: rgb(0, 0, 0); font-family: Arial; font-style: normal; font-variant: normal; font-weight: 400; text-decoration: none; vertical-align: baseline;">
+                                            Notre formation d’écoconduite est très complète. Elle est basée sur <span style="color: rgb(156, 0, 255) !important">les modules suivants :</span>
                                         </span>
+
                                     </h4>
                                     <h4>
                                         <span style="background-color: transparent; color: rgb(156, 0, 255); font-family: Arial; font-style: normal; font-variant: normal; font-weight: 400; text-decoration: none; vertical-align: baseline; white-space: pre-wrap;">-</span>
