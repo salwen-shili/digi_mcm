@@ -262,27 +262,29 @@ class WebsiteSale(WebsiteSale):
 
         return request.render("website_sale.cart", values)
 
-    def checkout_redirection(self, order):
-        redirection=super(WebsiteSale,self).checkout_redirection(order)
-        if order:
-            if (order.company_id.id==2):
-                check=False
-                if not order.session_ville_id:
-                    order.exam_center_error='error'
-                    check=True
-                else:
-                    order.exam_center_error = ''
-                if not order.module_id:
-                    order.exam_date_error='error'
-                    check = True
-                else:
-                    order.exam_date_error=''
-                #remove verify conditions in shop cart
-                # if not order.conditions:
-                #     order.conditions_error='error'
-                #     check = True
-                if check:
-                    return request.redirect('/shop/cart')
+    # def checkout_redirection(self, order):
+    #     redirection=super(WebsiteSale,self).checkout_redirection(order)
+    #     if order:
+    #         if (order.company_id.id==2):
+    #             check=False
+    #             if not order.session_ville_id:
+    #                 order.exam_center_error='error'
+    #                 check=True
+    #             else:
+    #                 order.exam_center_error = ''
+    #             if not order.module_id:
+    #                 order.exam_date_error='error'
+    #                 check = True
+    #             else:
+    #                 order.exam_date_error=''
+    #             #remove verify conditions in shop cart
+    #             # if not order.conditions:
+    #             #     order.conditions_error='error'
+    #             #     check = True
+    #             if check:
+    #                 return request.redirect('/shop/cart')
+    #     return redirection
+        
                    
 
 
