@@ -277,9 +277,10 @@ class WebsiteSale(WebsiteSale):
                     check = True
                 else:
                     order.exam_date_error=''
-                if not order.conditions:
-                    order.conditions_error='error'
-                    check = True
+                #remove verify conditions in shop cart
+                # if not order.conditions:
+                #     order.conditions_error='error'
+                #     check = True
                 if check:
                     return request.redirect('/shop/cart')
                    
