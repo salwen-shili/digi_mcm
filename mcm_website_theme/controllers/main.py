@@ -60,7 +60,7 @@ class Website(Home):
         promo = False
         user_connected = request.env.user
         user_connected.partner_from = False
-        if (request.website.id == 2 and partenaire in ['ubereats', 'deliveroo', 'coursierjob', 'box2home','coursier2roues', 'habilitation-electrique']):
+        if (request.website.id == 2 and partenaire in ['ubereats', 'deliveroo', 'coursierjob', 'box2home','coursier2roues', 'habilitation-electrique', 'eco-conduite']):
             user_connected.partner_from = str(partenaire)
             promo = request.env['product.pricelist'].sudo().search(
                 [('company_id', '=', 2), ('code', 'ilike', partenaire.upper())])
@@ -105,7 +105,7 @@ class Website(Home):
             values['last_ville'] = last_ville
         if list_villes:
             values['list_villes'] = list_villes
-        if (partenaire in ['', 'ubereats', 'deliveroo', 'coursierjob', 'box2home','coursier2roues', 'habilitation-electrique'] and request.website.id == 2):
+        if (partenaire in ['', 'ubereats', 'deliveroo', 'coursierjob', 'box2home','coursier2roues', 'habilitation-electrique', 'eco-conduite'] and request.website.id == 2):
             values['partenaire'] = partenaire
             if (promo):
                 values['promo'] = promo
@@ -440,12 +440,12 @@ class Routes_Site(http.Controller):
                     if product_id:
                         slugname = (product_id.name).strip().strip('-').replace(' ', '-').lower()
                         if str(slugname) != str(product):
-                            if order.pricelist_id and order.pricelist_id.name in ['ubereats', 'deliveroo', 'coursierjob','box2home','coursier2roues', 'habilitation-electrique']:
+                            if order.pricelist_id and order.pricelist_id.name in ['ubereats', 'deliveroo', 'coursierjob','box2home','coursier2roues', 'habilitation-electrique', 'eco-conduite']:
                                 return request.redirect("/%s/%s/felicitations/" % (slugname, order.pricelist_id.name))
                             else:
                                 return request.redirect("/%s/felicitations/" % (slugname))
                         else:
-                            if order.pricelist_id and order.pricelist_id.name in ['ubereats', 'deliveroo', 'coursierjob','box2home','coursier2roues', 'habilitation-electrique']:
+                            if order.pricelist_id and order.pricelist_id.name in ['ubereats', 'deliveroo', 'coursierjob','box2home','coursier2roues', 'habilitation-electrique', 'eco-conduite']:
                                 return request.redirect("/%s/%s/felicitations/" % (slugname, order.pricelist_id.name))
                     else:
                         return request.redirect("/felicitations")
@@ -457,12 +457,12 @@ class Routes_Site(http.Controller):
                                 [('company_id', '=', 2), ('name', "=", str(partenaire))])
                             if not pricelist:
                                 pricelist_id = order.pricelist_id
-                                if pricelist_id.name in ['ubereats', 'deliveroo', 'coursierjob','box2home','coursier2roues', 'habilitation-electrique']:
+                                if pricelist_id.name in ['ubereats', 'deliveroo', 'coursierjob','box2home','coursier2roues', 'habilitation-electrique', 'eco-conduite']:
                                     return request.redirect("/%s/%s/felicitations/" % (slugname, pricelist_id.name))
                                 else:
                                     return request.redirect("/%s/felicitations/" % (slugname))
                             else:
-                                if pricelist.name in ['ubereats', 'deliveroo', 'coursierjob','box2home','coursier2roues', 'habilitation-electrique']:
+                                if pricelist.name in ['ubereats', 'deliveroo', 'coursierjob','box2home','coursier2roues', 'habilitation-electrique', 'eco-conduite']:
                                     return request.redirect(
                                         "/%s/%s/felicitations/" % (slugname, order.pricelist_id.name))
                                 else:
@@ -478,7 +478,7 @@ class Routes_Site(http.Controller):
                                 else:
                                     return request.redirect("/%s/felicitations/" % (slugname))
                             else:
-                                if pricelist.name in ['ubereats', 'deliveroo', 'coursierjob','box2home','coursier2roues', 'habilitation-electrique']:
+                                if pricelist.name in ['ubereats', 'deliveroo', 'coursierjob','box2home','coursier2roues', 'habilitation-electrique', 'eco-conduite']:
                                     if pricelist.name != order.pricelist_id.name:
                                         return request.redirect(
                                             "/%s/%s/felicitations/" % (slugname, order.pricelist_id.name))
@@ -487,7 +487,7 @@ class Routes_Site(http.Controller):
                     else:
                         pricelist = request.env['product.pricelist'].sudo().search(
                             [('company_id', '=', 2), ('name', "=", str(partenaire))])
-                        if pricelist and pricelist.name in ['ubereats', 'deliveroo', 'coursierjob','box2home','coursier2roues', 'habilitation-electrique']:
+                        if pricelist and pricelist.name in ['ubereats', 'deliveroo', 'coursierjob','box2home','coursier2roues', 'habilitation-electrique', 'eco-conduite']:
                             return request.redirect("/%s" % (pricelist.name))
                         else:
                             return request.redirect("/felicitations")
@@ -798,7 +798,7 @@ class WebsiteSale(WebsiteSale):
                 if product_id:
                     slugname = (product_id.name).strip().strip('-').replace(' ', '-').lower()
                     if order.pricelist_id and order.pricelist_id.name in ['ubereats', 'deliveroo', 'coursierjob',
-                                                                          'box2home', 'coursier2roues', 'habilitation-electrique']:
+                                                                          'box2home', 'coursier2roues', 'habilitation-electrique', 'eco-conduite']:
                         return request.redirect(
                             "/%s/%s/shop/confirmation/%s" % (slugname, order.pricelist_id.name, state))
                     else:
