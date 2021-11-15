@@ -255,9 +255,9 @@ class WebsiteSale(WebsiteSale):
                 'list_villes_mcm': list_villes_mcm,
             })
 
-        if post.get('type') == 'popover':
-            # force no-cache so IE11 doesn't cache this XHR
-            return request.render("website_sale.cart_popover", values, headers={'Cache-Control': 'no-cache'})
+        # if post.get('type') == 'popover':
+        #     # force no-cache so IE11 doesn't cache this XHR
+        #     return request.render("website_sale.cart_popover", values, headers={'Cache-Control': 'no-cache'})
 
 
         return request.render("website_sale.cart", values)
