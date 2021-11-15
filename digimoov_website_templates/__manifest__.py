@@ -47,6 +47,7 @@
         'views/test2.xml',
         'views/test3.xml',
         'views/test4.xml',
+        'views/test5.xml',
         # 'views/charger_mes_documents'
         # 'views/sitemap.xml',
 
