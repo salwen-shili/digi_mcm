@@ -91,10 +91,14 @@
 
     <template id="digimoov_website_sale_cart_script" inherit_id="website_sale.cart">
         <xpath expr="//a[@class='btn btn-primary float-right']" position="replace">
-            <a role="button" t-if="website_sale_order and website_sale_order.website_order_line" class="btn btn-primary float-right" href="" id="pm_shop">
-                <span id="pm_shop_text">Passer au paiement</span>
+            <!-- <button role="button" t-if="website_sale_order and website_sale_order.website_order_line" class="btn btn-primary float-right" href="" id="pm_shop_checkout" onclick="showPopup()">
+                <span id="pm_shop_text">Passer au paiement khedmet</span>
                 <span class="fa fa-chevron-right"/>
-            </a>
+            </button> -->
+
+            <button role="button" t-if="website_sale_order and website_sale_order.website_order_line" class="btn btn-secondary float-right disabled" id="pm_shop_checkout2" onclick="showPopup()">
+                <span id="pm_shop_checkout_text">Passer au paiement 2</span>
+            </button>
             <div t-if="request.website.id==2">
                 <script>
              

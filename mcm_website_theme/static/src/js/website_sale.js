@@ -85,15 +85,18 @@ odoo.define("mcm_website_theme.mcm_website_sale", function (require) {
       stripe_pm = document.getElementById("stripe_pm");
       if (stripe_pm) {
         if (stripe_pm.checked == true) {
-          document.getElementById("pm_shop").href = "/shop/checkout?express=1";
+          document.getElementById().href = "/shop/checkout?express=1";
           document.getElementById("pm_shop_check").href =
             "/shop/checkout?express=1";
           document.getElementById("pm_shop_checkout").href =
+            "/shop/checkout?express=1";
+          document.getElementById("pm_shop_checkout2").href =
             "/shop/checkout?express=1";
         } else {
           document.getElementById("pm_shop").href = "/new/ticket";
           document.getElementById("pm_shop_check").href = "/new/ticket";
           document.getElementById("pm_shop_checkout").href = "/new/ticket";
+          document.getElementById("pm_shop_checkout2").href = "/new/ticket";
         }
       }
     },
@@ -296,11 +299,17 @@ odoo.define("mcm_website_theme.mcm_website_sale", function (require) {
           document
             .getElementById("pm_shop_checkout")
             .removeAttribute("disabled");
+          document
+            .getElementById("pm_shop_checkout2")
+            .removeAttribute("disabled");
         } else {
           document.getElementById("select-date").innerHTML =
             "Pas de date disponible pour le moment.";
           document
             .getElementById("pm_shop_checkout")
+            .setAttribute("disabled", "disabled");
+          document
+            .getElementById("pm_shop_checkout2")
             .setAttribute("disabled", "disabled");
         }
 

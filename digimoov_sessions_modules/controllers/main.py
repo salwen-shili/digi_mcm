@@ -24,10 +24,12 @@ class WebsiteSale(WebsiteSale):
         access_token: Abandoned cart SO access token
         revive: Revival method when abandoned cart. Can be 'merge' or 'squash'
         """
-        if post.get('type') == 'popover':
-            # force no-cache so IE11 doesn't cache this XHR
-            return request.render("website_sale.cart_popover", headers={'Cache-Control': 'no-cache'})
         
+       
+        if post.get('type') == 'popover':
+            print("*******(******************************************")
+            # force no-cache so IE11 doesn't cache this XHR
+            return request.render("website_sale.cart_popover", headers={'Cache-Control': 'no-cache'}) 
         order = request.website.sale_get_order()
         documents = False
         if order.partner_id:
@@ -260,10 +262,12 @@ class WebsiteSale(WebsiteSale):
             values.update({
                 'list_villes_mcm': list_villes_mcm,
             })
-
         
-        
+      
+       
         return request.render("website_sale.cart", values)
+        
+        
     
 
     def checkout_redirection(self, order):

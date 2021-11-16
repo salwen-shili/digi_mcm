@@ -142,6 +142,9 @@ odoo.define("digimoov_sessions_modules.website_sale", function (require) {
           document
             .getElementById("pm_shop_checkout")
             .setAttribute("disabled", "disabled");
+          document
+            .getElementById("pm_shop_checkout2")
+            .setAttribute("disabled", "disabled");
         }
 
         if (center_exam) {

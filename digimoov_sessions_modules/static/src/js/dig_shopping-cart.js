@@ -73,19 +73,28 @@ function onChangeCheckButton() {
         .getElementById("pm_shop_checkout")
         .setAttribute("disabled", "true");
       document.getElementById("pm_shop_checkout").classList.add("disabled");
+      document
+        .getElementById("pm_shop_checkout2")
+        .setAttribute("disabled", "true");
+      document.getElementById("pm_shop_checkout2").classList.add("disabled");
     } else if (
       document.getElementById("options-date").value !== "all" &&
       document.getElementById("centre_examen").value !== "all"
     ) {
       document.getElementById("pm_shop_checkout").removeAttribute("disabled");
       document.getElementById("pm_shop_checkout").classList.remove("disabled");
+      document.getElementById("pm_shop_checkout2").removeAttribute("disabled");
+      document.getElementById("pm_shop_checkout2").classList.remove("disabled");
     }
   } else {
-    document;
     document
       .getElementById("pm_shop_checkout")
       .setAttribute("disabled", "true");
     document.getElementById("pm_shop_checkout").classList.add("disabled");
+    document
+      .getElementById("pm_shop_checkout2")
+      .setAttribute("disabled", "true");
+    document.getElementById("pm_shop_checkout2").classList.add("disabled");
   }
 }
 //show popup if date is selected
