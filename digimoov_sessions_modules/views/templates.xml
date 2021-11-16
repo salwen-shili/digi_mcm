@@ -178,7 +178,9 @@
                 }
                 if (document.getElementById("cpf-details")){
                         document.getElementById("cpf-details").classList.add("hide");
-                        document.getElementById("arrow-down").classList.add("hide");                      
+                        if (document.getElementById("arrow-down")){
+                            document.getElementById("arrow-down").classList.add("hide");  ;
+                        }                    
                     }
                 var stripe_pm = document.getElementById("stripe_pm");
                 if (stripe_pm) {
