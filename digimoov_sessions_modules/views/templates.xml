@@ -185,8 +185,13 @@
                 }
 
                 if (document.getElementById("pm_shop_text")) {
-                document.getElementById("cpf-details").classList.add("hide");
-                document.getElementById("arrow-down").classList.add("hide");
+                    if (document.getElementById("cpf-details")){
+                        document.getElementById("cpf-details").classList.add("hide");
+                    }
+                
+                if (document.getElementById("arrow-down")){
+                    document.getElementById("arrow-down").classList.add("hide");
+                }
 
                 document.getElementById("pm_shop_text").innerHTML =
                 "Passer au paiement";
