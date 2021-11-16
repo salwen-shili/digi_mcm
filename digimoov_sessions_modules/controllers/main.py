@@ -24,6 +24,11 @@ class WebsiteSale(WebsiteSale):
         access_token: Abandoned cart SO access token
         revive: Revival method when abandoned cart. Can be 'merge' or 'squash'
         """
+
+        # if post.get('type') == 'popover':
+        #     print("*******(******************************************")
+        #     # force no-cache so IE11 doesn't cache this XHR
+        #     return request.render("website_sale.cart_popover", headers={'Cache-Control': 'no-cache'}) 
         order = request.website.sale_get_order()
         documents = False
         if order.partner_id:
@@ -202,6 +207,7 @@ class WebsiteSale(WebsiteSale):
             request.session['sale_order_id'] = None
             order = request.website.sale_get_order()
         values = {}
+        
         if access_token:
             abandoned_order = request.env['sale.order'].sudo().search([('access_token', '=', access_token)], limit=1)
             if not abandoned_order:  # wrong token (or SO has been deleted)
@@ -239,6 +245,7 @@ class WebsiteSale(WebsiteSale):
             'error_exam_date': '',
             'error_condition': '',
         })
+       
         # recuperer la liste des villes pour l'afficher dans la vue panier de siteweb digimoov pour que le client peut choisir une ville parmis la liste
         list_villes = request.env['session.ville'].sudo().search([('company_id', '=', 2)])
         if list_villes:
@@ -254,13 +261,13 @@ class WebsiteSale(WebsiteSale):
             values.update({
                 'list_villes_mcm': list_villes_mcm,
             })
-
-        # if post.get('type') == 'popover':
-        #     # force no-cache so IE11 doesn't cache this XHR
-        #     return request.render("website_sale.cart_popover", values, headers={'Cache-Control': 'no-cache'})
-
-
+        
+      
+       
         return request.render("website_sale.cart", values)
+        
+        
+    
 
     # def checkout_redirection(self, order):
     #     redirection=super(WebsiteSale,self).checkout_redirection(order)
@@ -652,3 +659,4 @@ class Date_Examen(http.Controller):
             if module and partner:
                 partner.date_examen_edof=module.date_exam
         return True
+    

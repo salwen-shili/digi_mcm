@@ -37,7 +37,7 @@
                 mb-2
               ">
                         <div class="form-section">
-                            <div class="card px-0 pt-4 pb-0 mt-3 mb-3 bg-c">
+                            <div class="card px-0 pb-0 mt-1 mb-3 bg-c">
                                 <h2 id="heading">Inscription</h2>
                                 <p class="p_class">Remplissez tous les champs du formulaire pour passer à l'étape
                                     suivante
@@ -105,7 +105,7 @@
                 mb-2
               ">
                         <div class="form-section">
-                            <div class="card px-0 pt-4 pb-0 mt-3 mb-3 bg-c">
+                            <div class="card px-0 pb-0 mt-1 mb-3 bg-c">
                                 <h2 id="heading">Inscription</h2>
                                 <p class="p_class">Remplissez tous les champs du formulaire pour passer à l'étape
                                     suivante
@@ -179,7 +179,7 @@
                 mb-2
               ">
                         <div class="form-section">
-                            <div class="card px-0 pt-4 pb-0 mt-3 mb-3 bg-c">
+                            <div class="card px-0 pb-0 mt-1 mb-3 bg-c">
                                 <h2 id="heading">Inscription</h2>
                                 <p class="p_class">Remplissez tous les champs du formulaire pour passer à l'étape
                                     suivante
@@ -223,13 +223,13 @@
 
     <template id="mcm_website_theme.payment_tokens_list" inherit_id="payment.payment_tokens_list">
         <xpath expr="//button[@id='o_payment_form_pay']" position="after">
-             <input t-att-value="request.website.microsoft_tracking_key" id="microsoft_tracking_key" type="hidden" />
+            <input t-att-value="request.website.microsoft_tracking_key" id="microsoft_tracking_key" type="hidden" />
             <input t-att-value="request.website.id" id="website" type="hidden" />
             <body onload='verify_PM()'>
                 <a role="button" href="#" t-attf-onclick="linkTo()" style="visibility: hidden;" class="btn btn-primary" id="link_to">s'inscrire
                 </a>
             </body>
-            <script type="text/javascript" src="/mcm_website_theme/static/src/js/msAdsPayement.js"/>
+            <!-- <script type="text/javascript" src="/mcm_website_theme/static/src/js/msAdsPayement.js"/> -->
         </xpath>
         <xpath expr="//label[1]" position="replace">
             <label>
@@ -288,9 +288,7 @@
                     </label>
                 </td>
                 <td class="text-xl-right border-0" id="order_instalment_checkbox" style="display:table-cell">
-
                     <input type="checkbox" id="checkbox_instalment" style="white-space: nowrap;" class="text-xl-right border-0" t-att-checked="website_sale_order.instalment" t-att-value="website_sale_order.instalment"/>
-
                 </td>
             </tr>
             <body onload="verify_checked()">
@@ -337,231 +335,115 @@
             </td>
         </xpath>
         <xpath expr="//table[@id='cart_products']" position="after">
-
             <link href="/mcm_website_theme/static/src/css/cart.css" rel="stylesheet"/>
-
+            <p id="error_no_date" class="alert alert-warning" style="margin-left:0%;display:none;">
+              Pas de date disponible pour le moment.
+            </p>
             <t t-foreach="website_sale_order.website_order_line" t-as="line">
-                <div class="card-body hide-text-top">
-                    <div class="input checkbox">
-                        <input type="checkbox" id="checkbox_failures" style="white-space: nowrap;" class="text-xl-left border-0" t-att-checked="website_sale_order.failures" t-att-value="website_sale_order.failures">
-                            <label for="failures" style="display:inline">
-                                Je souhaite accéder à la formation dès maintenant sans attendre 14 jours. Je reconnais
-                                que
-                                <span t-if="website_sale_order.company_id.id==2">DIGIMOOV</span>
-                                <span t-if="website_sale_order.company_id.id==1">MCM Academy</span>
-                                procédera à l'exécution immédiate de ma formation en ligne et à ce titre, je
-                                renonce expressément à exercer mon droit de rétractation conformément aux dispositions
-                                de
-                                l'article L.221-28 1° du code de la consommation.
-                            </label>
-                        </input>
-                    </div>
-                    <div class="input checkbox">
-                        <input type="checkbox" id="checkbox_conditions" style="white-space: nowrap;" class="text-xl-left border-0" t-att-checked="website_sale_order.conditions" t-att-value="website_sale_order.conditions">
-                            <label for="conditions" style="display:inline">
-                                J'ai lu et j'accepte les
-                                <a href="/conditions" target="blank" style="
-    font-weight: 600; color: #000;
-">conditions générales de vente
-                                </a>
-                            </label>
-                        </input>
-                    </div>
-                    <p t-if="website_sale_order.conditions_error != ''" id="error_conditions" class="alert alert-warning" style="margin-left:0%;display:inline-block;">
-                        Vous devez acceptez les conditions générales de ventes
-                    </p>
-
-                </div>
-                <h3 class="mb24" t-att-value="line.name_short" style="margin-top: 3rem;
-    font-weight: 600;">Mode de financement
+                <!-- Mode de financement -->
+                <h3 class="" style="margin-top: 1rem; font-weight: 600;font-size:19px">
+                Mode de financement
                 </h3>
             </t>
-
-
-            <div class="card-body o_payment_acquirer_select">
-
+            <div class="card-body o_payment_acquirer_select" style="padding:0px 0px 0px 20px !important">
                 <t t-foreach="website_sale_order.website_order_line" t-as="line">
                     <label for="stripe_pm" class="radio ">
                         <input id="stripe_pm" type="radio" name="pm_method" class="hidden" data-acquirer-id="8" data-form-payment="True" data-provider="stripe_pm" t-att-value="line.name_short" checked="True" t-attf-onclick="onchangeTextButton1()"/>
                         <span class="label"></span>Carte de crédit
-                        <span class="col-lg-12 pt16 " style="">
-
-
+                        <span class="col-lg-12  " style="">
                         </span>
                         <t t-if="website_sale_order.amount_total>1000 and website_sale_order.company_id.id==1">
                             <p style="font-style: italic;font-size: 12px;">Paiement en 1 ou 3 fois sans frais</p>
                         </t>
                         <t t-if="website_sale_order.instalment_number>1 and website_sale_order.company_id.id==2">
-                            <p style="font-style: italic;font-size: 12px;">
+                            <p style="font-style: italic;font-size: 12px; margin-bottom: 0rem !important;padding-left: 31px;">
                                 <span>Paiement en</span>
                                 <span t-field="website_sale_order.instalment_number"/>
                                 <span>fois sans frais</span>
                             </p>
                         </t>
                     </label>
-                    <ul class="float-right list-inline payment_icon_list">
-
-
+                    <ul class="list-inline payment_icon_list cpf_position" style="margin-top: 11px;">
                         <li class="list-inline-item">
                             <span data-oe-model="payment.icon" data-oe-id="1" data-oe-field="image_payment_form" data-oe-type="image" data-oe-expression="pm_icon.image_payment_form" data-oe-field-xpath="/t[1]/form[1]/div[1]/t[4]/div[1]/ul[1]/t[2]/li[1]/span[1]">
                                 <img src="/web/image/payment.icon/1/image_payment_form/VISA?unique=82297bd" class="img img-fluid img-res" alt="VISA"/>
                             </span>
                         </li>
-
-
                         <li class="list-inline-item">
                             <span data-oe-model="payment.icon" data-oe-id="2" data-oe-field="image_payment_form" data-oe-type="image" data-oe-expression="pm_icon.image_payment_form" data-oe-field-xpath="/t[1]/form[1]/div[1]/t[4]/div[1]/ul[1]/t[2]/li[1]/span[1]">
                                 <img src="/web/image/payment.icon/2/image_payment_form/American%20Express?unique=82297bd" class="img img-fluid img-res" alt="American Express"/>
                             </span>
                         </li>
-
-
-                        <li class="list-inline-item">
-                            <span data-oe-model="payment.icon" data-oe-id="4" data-oe-field="image_payment_form" data-oe-type="image" data-oe-expression="pm_icon.image_payment_form" data-oe-field-xpath="/t[1]/form[1]/div[1]/t[4]/div[1]/ul[1]/t[2]/li[1]/span[1]">
-                                <img src="/web/image/payment.icon/4/image_payment_form/Diners%20Club%20International?unique=82297bd" class="img img-fluid img-res" alt="Diners Club International"/>
-                            </span>
-                        </li>
-
-
-                        <li class="list-inline-item">
-                            <span data-oe-model="payment.icon" data-oe-id="5" data-oe-field="image_payment_form" data-oe-type="image" data-oe-expression="pm_icon.image_payment_form" data-oe-field-xpath="/t[1]/form[1]/div[1]/t[4]/div[1]/ul[1]/t[2]/li[1]/span[1]">
-                                <img src="/web/image/payment.icon/5/image_payment_form/Discover?unique=82297bd" class="img img-fluid img-res" alt="Discover"/>
-                            </span>
-                        </li>
-                        <li style="display:block;" class="list-inline-item d-none">
-                            <span class="float-right more_option text-info">
-                                <a href="#" class="o_payment_form_pay_icon_more" data-toggle="tooltip" data-oe-model="ir.ui.view" data-oe-id="888" data-oe-field="arch" data-oe-xpath="/t[1]/form[1]/div[1]/t[4]/div[1]/ul[1]/t[2]/li[2]/span[1]/a[1]" title="" data-original-title="Discover, JCB, Maestro, MasterCard">et plus
-                                </a>
-                            </span>
-                        </li>
-
-
-                        <li class="list-inline-item">
-                            <span data-oe-model="payment.icon" data-oe-id="6" data-oe-field="image_payment_form" data-oe-type="image" data-oe-expression="pm_icon.image_payment_form" data-oe-field-xpath="/t[1]/form[1]/div[1]/t[4]/div[1]/ul[1]/t[2]/li[1]/span[1]">
-                                <img src="/web/image/payment.icon/6/image_payment_form/JCB?unique=82297bd" class="img img-fluid img-res" alt="JCB"/>
-                            </span>
-                        </li>
-
-
                         <li class="list-inline-item">
                             <span data-oe-model="payment.icon" data-oe-id="7" data-oe-field="image_payment_form" data-oe-type="image" data-oe-expression="pm_icon.image_payment_form" data-oe-field-xpath="/t[1]/form[1]/div[1]/t[4]/div[1]/ul[1]/t[2]/li[1]/span[1]">
                                 <img src="/web/image/payment.icon/7/image_payment_form/Maestro?unique=82297bd" class="img img-fluid img-res" alt="Maestro"/>
                             </span>
                         </li>
-
                         <li class="list-inline-item">
-                            <span data-oe-model="payment.icon" data-oe-id="8" data-oe-field="image_payment_form" data-oe-type="image" data-oe-expression="pm_icon.image_payment_form" data-oe-field-xpath="/t[1]/form[1]/div[1]/t[4]/div[1]/ul[1]/t[2]/li[1]/span[1]">
+                            <span style="margin-right: 12px;" data-oe-model="payment.icon" data-oe-id="8" data-oe-field="image_payment_form" data-oe-type="image" data-oe-expression="pm_icon.image_payment_form" data-oe-field-xpath="/t[1]/form[1]/div[1]/t[4]/div[1]/ul[1]/t[2]/li[1]/span[1]">
                                 <img src="/web/image/payment.icon/8/image_payment_form/MasterCard?unique=82297bd" class="img img-fluid img-res" alt="MasterCard"/>
                             </span>
                         </li>
                     </ul>
-
-                    <!-- <label for="stripe_pm" class="radio">
-                            <input type="radio" name="pm_method" data-acquirer-id="8" data-form-payment="True" data-provider="stripe_pm" class="hidden" t-att-value="line.name_short" id="stripe_pm" checked="True" t-attf-onclick="onchangeTextButton1()">
-
-                                <span class="label">
-                                Carte de crédit
-                                </span>
-                                <t t-if="website_sale_order.amount_total>1000 and website_sale_order.company_id.id==1">
-                                    <p style="font-style: italic;font-size: 12px;">Paiement en 1 ou 3 fois sans frais</p>
-                                </t>
-                                <t t-if="website_sale_order.instalment_number>1 and website_sale_order.company_id.id==2">
-                                    <p style="font-style: italic;font-size: 12px;">
-                                        <span>Paiement en</span>
-                                        <span t-field="website_sale_order.instalment_number"/>
-                                        <span>fois sans frais</span>
-                                    </p>
-                                </t>
-                            </input>
-                        </label> -->
-
                 </t>
-
             </div>
-            <!--            <div class="card-body o_payment_acquirer_select">-->
-            <!--                <label>-->
-
-            <!--                    <input type="radio" name="pm_method" data-acquirer-id="15" data-form-payment="True"-->
-            <!-- data-provider="transfer"-->
-            <!-- class="" id="pole_emploi_pm" value="pole_emploi" t-attf-onclick="onchangeTextButton()">-->
-
-            <!--                        <span class="payment_option_name">-->
-            <!--                            Pôle emploi, Région-Haut-de-France-->
-
-            <!--                        </span>-->
-            <!--                        <p style="font-style: italic;font-size: 12px;">Demande de devis</p>-->
-            <!--                    </input>-->
-            <!--                </label>-->
-            <!--            </div>-->
-            <!--            <div class="card-body o_payment_acquirer_select">-->
-            <!--                <label>-->
-
-            <!--                    <input type="radio" name="pm_method" data-acquirer-id="16" data-form-payment="True"-->
-            <!-- data-provider="transfer" class="" id="region_pm" value="region"-->
-            <!-- t-attf-onclick="onchangeTextButton()">-->
-
-            <!--                        <span class="payment_option_name">-->
-            <!--                            Financement avec la region-->
-
-            <!--                        </span>-->
-            <!--                    </input>-->
-            <!--                </label>-->
-            <!--            </div>-->
-            <div class="card-body o_payment_acquirer_select" style="padding-top:0rem !important">
-                <div>
-                      <style>
-                        .positioncpf{
-                        
+            <style>
+                html {
+                scroll-behavior: smooth;
+                }
+                .cpf_position {
+                            text-align:center;
                         }
-                        @media (min-width: 439px) {
-                .positioncpf{
-                        float:right;
-                       }
-                       }
-                          </style> 
-                    <label for="cpf_pm" class="radio" style="display: inline-block; width:100%">
-                        <t t-foreach="website_sale_order.website_order_line" t-as="line">
-                            <input type="radio" name="pm_method" data-acquirer-id="16" data-form-payment="True" t-if="line.product_id.product_tmpl_id.cpf_available" data-provider="transfer" class="hidden" id="cpf_pm" t-att-value="line.name_short" t-attf-onclick="onchangeTextButton()">
-                                <span class="label"></span>CPF
-
-
-                                <span class="col-lg-12 pt16 " style="">
-                                </span>
-                               
-                                    <p style="font-style: italic;font-size: 12px; padding: 0.5rem 0rem 0rem 2rem;">Mon
-                                    Compte personnel de formation
-
-
-                                    
-
-
-                                </p>
-                                <img style="max-width: 6rem;" class="img-fluid positioncpf" src="/mcm_website_theme/static/src/img/cpf.png"></img>
-                                                               
-
-
-                            </input>
-                        </t>
-                       
-                
-                        
-
-                 
-               
+                @media screen and (min-width: 426px) {
+                        .cpf_position {
+                            float:right;
+                        }
+                }
+            </style>
+            <div class="card-body o_payment_acquirer_select" style="padding: 0px 0px 0px 20px !important;">
+                <t t-foreach="website_sale_order.website_order_line" t-as="line">
+                    <label for="cpf_pm" class="radio " t-if="line.product_id.product_tmpl_id.cpf_available">
+                        <input type="radio" name="pm_method" data-acquirer-id="16" data-form-payment="True" data-provider="transfer" class="hidden" id="cpf_pm" t-att-value="line.name_short" t-attf-onclick="onchangeTextButton()" />
+                        <span class="label"></span>CPF
+                        <p style="font-style: italic;font-size: 12px; padding: 0.5rem 0rem 0rem 2rem;">
+                            Mon Compte personnel de formation
+                        </p>
                     </label>
 
-                </div>
-                
-                <div style="clear: left;"/>
-                <div id="cpf-details" class="hide">
-                    <h5 style="margin-top: 5rem;
-    letter-spacing: 0.5px;
-    font-weight: 600;">Vous souhaitez mobiliser votre droit à la formation professionnelle mais vous n'avez pas encore
-                        créé votre compte CPF? Voici un tutoriel rapide pour vous guider à vous inscrire:
-                    </h5>
-                    <!-- <p style="letter-spacing: 1.5px; text-align: justify;">Salariés, demandeurs d’emploi ou encore travailleurs indépendants ? Vous avez tous droit à la formation professionnelle. D’où la nécessité de la mise en place du Compte personnel de formation (CPF). Besoin de tuto? lancez cette vidéo !</p> -->
+                    <ul class="cpf_position" t-if="line.product_id.product_tmpl_id.cpf_available">
+                        <li class="list-inline-item">
+                            <span data-oe-model="payment.icon" data-oe-id="8" data-oe-field="image_payment_form" data-oe-type="image" data-oe-expression="pm_icon.image_payment_form" data-oe-field-xpath="/t[1]/form[1]/div[1]/t[4]/div[1]/ul[1]/t[2]/li[1]/span[1]">
+                                <img style="max-width: 3rem;" class="img-fluid positioncpf" src="/mcm_website_theme/static/src/img/cpf.png"></img>
+                            </span>
+                        </li>
+                        <li class="list-inline-item">
+                            <div class="scroll-prompt" scroll-prompt="" ng-show="showPrompt" style="opacity: 1; margin-top: -38px;">
+                                <div class="scroll-prompt-arrow-container hide" id="arrow-down">
+                                    <div class="scroll-prompt-arrow">
+                                        <div></div>
+                                    </div>
+                                    <div class="scroll-prompt-arrow">
+                                        <div></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </t>
+            </div>
 
-                    <style>.embed-container { position: relative; margin-top: 2rem; padding-bottom: 56.25%; height: 0;
+            <div id="cpf-details" class="hide">
+                <h5 style="
+                letter-spacing: 0.5px;
+                font-weight: 600;
+                display: inline-block;">
+                Vous souhaitez mobiliser votre droit à la formation professionnelle mais vous n'avez pas encore
+                créé votre compte CPF? Voici un tutoriel rapide pour vous guider à vous inscrire:
+                </h5>
+                <!-- <p style="letter-spacing: 1.5px; text-align: justify;">Salariés, demandeurs d’emploi ou encore travailleurs indépendants ? Vous avez tous droit à la formation professionnelle. D’où la nécessité de la mise en place du Compte personnel de formation (CPF). Besoin de tuto? lancez cette vidéo !</p> -->
+
+                <style>
+                    .embed-container { position: relative; margin-top: 2rem; padding-bottom: 56.25%; height: 0;
                         overflow: hidden; max-width: 100%; } .embed-container iframe, .embed-container object,
                         .embed-container embed { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
                         .hide-text-top {
@@ -581,60 +463,16 @@
                             display: none;
                         }
                         }
-                    </style>
-                    <div class='embed-container'>
-                        <iframe id="cpf_video" frameborder='0' allowfullscreen="allow"></iframe>
-                    </div>
+                </style>
+                <div class='embed-container'>
+                    <iframe id="cpf_video" frameborder='0' allowfullscreen="allow"></iframe>
                 </div>
-
             </div>
-
-
-            <div class="card-body hide-text-bottom">
-                <div class="input checkbox">
-                    <input type="checkbox" id="checkbox_failures" style="white-space: nowrap;" class="text-xl-left border-0" t-att-checked="website_sale_order.failures" t-att-value="website_sale_order.failures">
-                        <label for="failures" style="display:inline">
-                            Je souhaite accéder à la formation dès maintenant sans attendre 14 jours. Je reconnais que
-                            <span t-if="website_sale_order.company_id.id==2">DIGIMOOV</span>
-                            <span t-if="website_sale_order.company_id.id==1">MCM Academy</span>
-                            procédera à l'exécution immédiate de ma formation en ligne et à ce titre, je
-                            renonce expressément à exercer mon droit de rétractation conformément aux dispositions de
-                            l'article L.221-28 1° du code de la consommation.
-                        </label>
-                    </input>
-                </div>
-                <div class="input checkbox">
-                    <input type="checkbox" id="checkbox_conditions" style="white-space: nowrap;" class="text-xl-left border-0" t-att-checked="website_sale_order.conditions" t-att-value="website_sale_order.conditions">
-                        <label for="conditions" style="display:inline">
-                            J'ai lu et j'accepte les
-                            <a href="/conditions" target="blank" style="
-    font-weight: 600; color: #000;
-">conditions générales de vente
-                            </a>
-                        </label>
-                    </input>
-                </div>
-                <p t-if="website_sale_order.conditions_error != ''" id="error_conditions" class="alert alert-warning" style="margin-left:0%;display:inline-block;">
-                    Vous devez acceptez les conditions générales de ventes
-                </p>
-                <!--                <div class="input checkbox">-->
-                <!--                    <input type="checkbox" id="checkbox_accompagnement" style="white-space: nowrap;"-->
-                <!-- class="text-xl-left border-0" t-att-checked="website_sale_order.accompagnement"-->
-                <!-- t-att-value="website_sale_order.accompagnement">-->
-                <!--                        <label for="accompagnement" style="display:inline">-->
-                <!--                            J'accepte les appels de suivi et de l'accompagnement-->
-                <!--                        </label>-->
-                <!--                    </input>-->
-
-                <!--                </div>-->
-            </div>
-
-
+            <!-- FIN Mode de financement -->
             <div t-if="request.website.id == 1">
                 <script>
-                    console.log("site 1");
                 function onchangeTextButton(){
-                    console.log("onchange mcm");
+                
                 if(document.getElementById("pm_shop_text")){
                 document.getElementById("pm_shop_text").innerHTML = 'Mobiliser mon CPF';
                 document.getElementById("pm_shop_check_text").innerHTML = 'Mobiliser mon CPF';
@@ -659,13 +497,27 @@
                 }
                 };
                 function onchangeTextButton1(){
-                    console.log("onchange1 mcm");
+                    if (document.getElementById("pm_shop_checkout")){
+                document.getElementById("pm_shop_checkout").innerText="Passer au paiement";
+                }
+                if (document.getElementById("pm_shop_checkout2")){
+                document.getElementById("pm_shop_checkout2").innerText="Passer au paiement";
+                }
+                if (document.getElementById("cpf-details")){
+                        document.getElementById("cpf-details").classList.add("hide");
+                        if (document.getElementById("arrow-down")){
+                            document.getElementById("arrow-down").classList.add("hide");  ;
+                        }                       
+                    }
+                
+                 
                 if(document.getElementById("pm_shop_text")){
                 document.getElementById("cpf-details").classList.add("hide");
-
-                document.getElementById("pm_shop_text").innerHTML = 'Passer au paiement';
-                document.getElementById("pm_shop_check_text").innerHTML = 'Passer au paiement';
-                document.getElementById("pm_shop_checkout_text").innerHTML = 'Passer au paiement';
+                if (document.getElementById("arrow-down")){
+                            document.getElementById("arrow-down").classList.add("hide");  ;
+                        } 
+                
+              
                 if(document.getElementById("promo_code")){
                 document.getElementById("promo_code").style.display = 'inline';
                 } else{
@@ -709,8 +561,101 @@
     <!-- FIN hide product link -->
     <template id="mcm_website_sale_cart_lines_date_and_region" inherit_id="website_sale.cart_lines">
         <xpath expr="//table[@id='cart_products']" position="after">
+            <div id="popup1" class="overlay_popup">
+                <div class="popup" style="top: 20%;">
+                    <h2 class="text-left">
+                        <i class="fa fa-info-circle" style="color: #152856;"></i>
+                    </h2>
+                    <a class="close" href="#">
+                        <i class="fa fa-times"></i>
+                    </a>
+                    <div class="content">
+                        <p id="notifMessage">
+                            <div class="input checkbox" style="width:90%">
+                                <input type="checkbox" id="checkbox_failures" style="white-space: nowrap;" class="text-xl-left border-0" t-att-checked="website_sale_order.failures" t-att-value="website_sale_order.failures">
+                                    <label for="failures" style="display:inline">
+                            Je souhaite accéder à la formation dès maintenant sans attendre 14 jours. Je reconnais que
+                                        <span t-if="website_sale_order.company_id.id==2">DIGIMOOV</span>
+                                        <span t-if="website_sale_order.company_id.id==1">MCM Academy</span>
+                            procédera à l'exécution immédiate de ma formation en ligne et à ce titre, je
+                            renonce expressément à exercer mon droit de rétractation conformément aux dispositions de
+                            l'article L.221-28 1° du code de la consommation.
+                                    </label>
+                                </input>
+                            </div>
+                            <div class="input checkbox" style="margin-top: 12px;">
+                                <input type="checkbox" id="checkbox_conditions" style="white-space: nowrap;" class="text-xl-left border-0" t-att-checked="website_sale_order.conditions" t-att-value="website_sale_order.conditions">
+                                    <label for="conditions" style="display:inline">
+                            J'ai lu et j'accepte les
+                                        <a href="/conditions" target="blank" style="font-weight: 600; color: #000;">
+                                            conditions générales de vente
+                                        </a>
+                                    </label>
+                                </input>
+                            </div>
+                            <p id="error_conditions" class="alert alert-warning" style="margin-left:0%;display:none;">
+                                Vous devez acceptez les conditions générales de ventes
+                            </p>
+
+                            <p id="error_choix_date_popup" class="alert alert-warning" style="margin-left:0%;display:none;">
+                                Vous devez fermer cette fenêtre et selectionner votre date d'examen
+                            </p>
+                        </p>
+                        <style t-if="request.website.id==2">
+                            .action-button {
+                            height: 40px;
+                            width: 185px;
+                            font-size: 15px;
+                            background-color: #152856;
+                            border: 1px solid hsl(240, 44%, 28%);
+                            color: #ffffff;
+                            font-weight: 600;
+                            border-radius: 5px;
+                            box-shadow: 0 2px 4px 0 rgba(87, 71, 81, 0.2);
+                            cursor: pointer;
+                            transition: all 2s ease-out;
+                            transition: all 0.2s ease-out;
+                            }
+                            .action-button:hover,
+                            .action-button:focus {
+                            background-color: #ffffff;
+                            border: 1px solid hsl(240, 44%, 28%);
+                            color: #000000;
+                            transition: all 0.2s ease-out;
+                            }
+
+                        </style>
+                        <style t-if="request.website.id==1">
+                            .action-button {
+                            width: 153px;
+                            background: #262223;
+                            font-weight: bold;
+                            color: white;
+                            border: 0 none;
+                            border-radius: 0px;
+                            padding: 10px 5px;
+                            }
+
+                            .action-button:hover,
+                            .action-button:focus {
+                            background: #e6e6e6;
+                            font-weight: bold;
+                            color: black;
+                            cursor: pointer;       
+                            }
+
+                        </style>
+
+                        <div style="text-align:center">
+                            <button type="button" class="btn btn-secondary action-button shake" id="continueBtn" onclick="verify_payment_method()">Continuer</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <div style="margin:auto;background-color:#fff;border-color:#585959;" t-if="request.website.is_public_user()==False and modules_mcm" id="region_date_examen">
-                <h3 t-if="modules_mcm" class="mb24">Veuillez sélectionner votre Région et une date d’examen</h3>
+                <h3 t-if="modules_mcm" class="" style="margin-top: 1rem; font-weight: 600;">
+                Veuillez sélectionnez votre date d'examen
+                </h3>
                 <p t-if="modules_mcm">
                     <b>
                         <div style="margin-left:0%;" id="exam_center">
@@ -726,15 +671,14 @@
                                     </t>
                                 </t>
                             </select>
-                            <p t-if="website_sale_order.exam_center_error != ''" id="error_exam_center" class="alert alert-warning" style="margin-left:0%;display:inline-block;">
+                            <!-- <p t-if="website_sale_order.exam_center_error != ''" id="error_exam_center" class="alert alert-warning" style="margin-left:0%;display:inline-block;">
                                 Vous devez Selectionnez une Région
-                            </p>
+                            </p> -->
                         </div>
                     </b>
                 </p>
-                <br/>
-                <p t-if="modules_mcm">
 
+                <p t-if="modules_mcm">
                     <b>
                         <div style="margin-left:0%; display:none">
                             <select id="exam_date" class="form-control search-slt " t-if="modules_mcm" style="display:none">
@@ -751,22 +695,24 @@
                                     </t>
                                 </t>
                             </select>
-                            <p t-if="website_sale_order.exam_date_error != ''" id="error_exam_date" class="alert alert-warning" style="margin-left:0%;display:inline-block;">
+                            <!-- <p t-if="website_sale_order.exam_date_error != ''" id="error_exam_date" class="alert alert-warning" style="margin-left:0%;display:inline-block;">
                                 Vous devez Selectionnez une date
-                            </p>
+                            </p> -->
                         </div>
                         <div id="select-date" style="margin-left: 0%">
                             <select name="date_examen" id="options-date" class="form-control search-slt" style="display:none">
                                 <option value="all" id="all">
                                     Sélectionnez votre date d'examen
                                 </option>
-
                             </select>
                         </div>
+                        <p id="error_choix_date" class="alert alert-warning" style="margin-left:0%;display:none;">
+                                Vous devez sélectionner votre date d'examen
+                        </p>
                     </b>
 
                 </p>
-                <br/>
+
             </div>
 
         </xpath>
@@ -774,14 +720,9 @@
 
     <template id="mcm_website_sale_short_cart_summary" inherit_id="website_sale.short_cart_summary">
         <xpath expr="//a[@class='btn btn-secondary float-right d-none d-xl-inline-block']" position="replace">
-            
-                <a role="button" t-if="website_sale_order and website_sale_order.website_order_line" class="btn btn-secondary float-right d-none d-xl-inline-block disabled"
-                    aria-disabled="true"
-                    href="#" id="pm_shop_checkout" t-attf-onclick="verify_payment_method()">
-                    <span id="pm_shop_checkout_text">Passer au paiement</span>
-                </a>
-            
-
+            <button role="button" t-if="website_sale_order and website_sale_order.website_order_line" class="btn btn-secondary float-right d-none d-xl-inline-block disabled" id="pm_shop_checkout" onclick="showPopup()">
+                <span id="pm_shop_checkout_text">Passer au paiement</span>
+            </button>
         </xpath>
     </template>
 
@@ -881,93 +822,11 @@
     <template id="mcm_website_sale_cart_total_script" inherit_id="website_sale.total">
         <xpath expr="//div[@id='cart_total']" position="inside">
 
+
             <div t-if="request.website.id==1">
-                <script >
-                function verify_payment_method() {
-                console.log("verify_payment_method MCM")
-                stripe_pm = document.getElementById("stripe_pm");
 
-                if (stripe_pm) {
-                if (stripe_pm.checked == true) {
-                document.getElementById("pm_shop").href = "/shop/checkout?express=1";
-                document.getElementById("pm_shop_check").href =
-                "/shop/checkout?express=1";
-                document.getElementById("pm_shop_checkout").href =
-                "/shop/checkout?express=1";
-                }
-                }
-                pole_emploi_pm = document.getElementById("pole_emploi_pm");
-                if (pole_emploi_pm) {
-                if (pole_emploi_pm.checked == true) {
-                document.getElementById("pm_shop").href = "/new/ticket/pole_emploi";
-                document.getElementById("pm_shop_check").href = "/new/ticket/pole_emploi";
-                document.getElementById("pm_shop_checkout").href =
-                "/new/ticket/pole_emploi";
-                }
-                }
-                cpf_pm = document.getElementById("cpf_pm");
 
-                if (cpf_pm) {
-                if (cpf_pm.checked == true) {
-                if (cpf_pm.value == "Formation à distance TAXI") {
-                console.log("TAXI", cpf_pm.value);
-                document
-                .getElementById("pm_shop")
-                .setAttribute("href", "https://bit.ly/3DOiZG6");
-                document.getElementById("pm_shop_check").href =
-                "https://bit.ly/3DOiZG6";
-                document.getElementById("pm_shop_checkout").href =
-                "https://bit.ly/3DOiZG6";
-                (function(w,d,t,r,u){var f,n,i;w[u]=w[u]||[],f=function(){
-                var o={ti:"<t t-esc="request.website.microsoft_tracking_key"/>"};o.q=w[u],w[u]=new
-                UET(o),w[u].push("pageLoad")},n=d.createElement(t),n.src=r,n.async=1,n.onload=n.onreadystatechange=function(){var
-                s=this.readyState;s&amp;&amp;s!=="loaded"&amp;&amp;
-                s!=="complete"||(f(),n.onload=n.onreadystatechange=null)},i=d.getElementsByTagName(t)[0],i.parentNode.insertBefore(n,i)})(window,document,"script","//bat.bing.com/bat.js","uetq");
-                window.uetq = window.uetq || [];
-                window.uetq.push('event', 'clic sur mobiliser mon cpf taxi', {'event_category': 'CPF',
-                'event_label': 'Inscription CPF Taxi', 'event_value': '680'});
-                }
-                if (cpf_pm.value == "Formation à distance VMDTR") {
-                console.log("VMDTR", cpf_pm.value);
-                document
-                .getElementById("pm_shop")
-                .setAttribute("href", "https://bit.ly/3tbAxXw");
-                document
-                .getElementById("pm_shop_check")
-                .setAttribute("href", "https://bit.ly/3tbAxXw");
-                document
-                .getElementById("a_pm_shop_checkout")
-                .setAttribute("href", "https://bit.ly/3tbAxXw");
-                (function(w,d,t,r,u){var f,n,i;w[u]=w[u]||[],f=function(){
-                var o={ti:"<t t-esc="request.website.microsoft_tracking_key"/>"};o.q=w[u],w[u]=new
-                UET(o),w[u].push("pageLoad")},n=d.createElement(t),n.src=r,n.async=1,n.onload=n.onreadystatechange=function(){var
-                s=this.readyState;s&amp;&amp;s!=="loaded"&amp;&amp;
-                s!=="complete"||(f(),n.onload=n.onreadystatechange=null)},i=d.getElementsByTagName(t)[0],i.parentNode.insertBefore(n,i)})(window,document,"script","//bat.bing.com/bat.js","uetq");
-                window.uetq = window.uetq || [];
-                window.uetq.push('event', 'clic sur mobiliser mon cpf vmdtr', {'event_category': 'CPF',
-                'event_label': 'Inscription CPF VMDTR', 'event_value': '849'});
-                }
-                if (cpf_pm.value == "Formation à distance VTC") {
-                console.log("VTC", cpf_pm.value);
-                document.getElementById("pm_shop").href = "https://bit.ly/3mZoImh";
-                document.getElementById("pm_shop_check").href =
-                "https://bit.ly/3mZoImh";
-                document.getElementById("pm_shop_checkout").href =
-                "https://bit.ly/3mZoImh";
-                 (function(w,d,t,r,u){var f,n,i;w[u]=w[u]||[],f=function(){
-                var o={ti:"<t t-esc="request.website.microsoft_tracking_key"/>"};o.q=w[u],w[u]=new
-                UET(o),w[u].push("pageLoad")},n=d.createElement(t),n.src=r,n.async=1,n.onload=n.onreadystatechange=function(){var
-                s=this.readyState;s&amp;&amp;s!=="loaded"&amp;&amp;
-                s!=="complete"||(f(),n.onload=n.onreadystatechange=null)},i=d.getElementsByTagName(t)[0],i.parentNode.insertBefore(n,i)})(window,document,"script","//bat.bing.com/bat.js","uetq");
-                window.uetq = window.uetq || [];
-                window.uetq.push('event', 'clic sur mobiliser mon cpf vtc', {'event_category': 'CPF',
-                'event_label': 'Inscription CPF VTC', 'event_value': '590'});
-                }
-              
-                }
-                }
-                }
-                </script>
+                <script type="text/javascript" src="/mcm_website_theme/static/src/js/template.js"></script>
             </div>
 
             <script>
@@ -991,15 +850,19 @@
 
 
     <template id="mcm_website_sale_cart_script" inherit_id="website_sale.cart">
+        <xpath expr="//a[@class='btn btn-secondary mb32']" position="replace">
+
+
+        </xpath>
         <xpath expr="//a[@class='btn btn-primary float-right']" position="replace">
-            <a role="button" t-if="website_sale_order and website_sale_order.website_order_line" class="btn btn-primary float-right" href="" t-attf-onclick="verify_payment_method()" id="pm_shop">
-                <span id="pm_shop_text">Passer au paiement MCM 2 </span>
-                <span class="fa fa-chevron-right"/>
-            </a>
+
+            <button role="button" t-if="website_sale_order and website_sale_order.website_order_line" class="btn btn-secondary float-right disabled" id="pm_shop_checkout2" onclick="showPopup()">
+                <span id="pm_shop_checkout_text">Passer au paiement 2</span>
+            </button>
         </xpath>
         <xpath expr="//a[@class='btn btn-primary float-right d-none d-xl-inline-block']" position="replace">
-            <a role="button" t-if="website_sale_order and website_sale_order.website_order_line" class="btn btn-primary float-right d-none d-xl-inline-block" t-attf-onclick="verify_payment_method()" href="" id="pm_shop_check">
-                <span id="pm_shop_check_text">Passer au paiement MCM 3 </span>
+            <a role="button" t-if="website_sale_order and website_sale_order.website_order_line" class="btn btn-primary float-right d-none d-xl-inline-block" onclick="verify_payment_method()" href="" id="pm_shop_check">
+                <span id="pm_shop_check_text">Passer au paiement </span>
                 <span class="fa fa-chevron-right"/>
             </a>
         </xpath>
@@ -1124,51 +987,7 @@
                 width: 30px;
                 }
             </style>
-            <style meta-oe-xpath-replacing="ul">
 
-                .calendly-inline-widget,
-                .calendly-inline-widget
-                *,.calendly-badge-widget,.calendly-badge-widget *,
-                .calendly-overlay,
-                .calendly-overlay *{font-size:16px;line-height:1.2em;}
-                .calendly-inline-widget iframe,.calendly-badge-widget iframe,
-                .calendly-popup-content{position:relative}.calendly-popup-content
-                .calendly-mobile{-webkit-overflow-scrolling:touch;overflow-y:auto}
-                .calendly-overlay{position:fixed;top:0;left:0;right:0;bottom:0;overflow:hidden;z-index:9999;background-color:#a5a5a5;background-color:rgba(31,31,31,0.4)}
-                .calendly-overlay .calendly-close-overlay{position:absolute;top:0;left:0;right:0;bottom:0}
-                .calendly-overlay
-                .calendly-popup{box-sizing:border-box;position:absolute;top:50%;left:50%;-webkit-transform:translateY(-50%)
-                translateX(-50%);transform:translateY(-50%)
-                translateX(-50%);width:80%;min-width:900px;max-width:1000px;height:90%;max-height:680px}@media
-                (max-width: 975px){
-                .calendly-overlay
-                .calendly-popup{top:50px;left:0;right:0;bottom:0;-webkit-transform:none;transform:none;width:100%;height:auto;min-width:0;max-height:none}}
-                .calendly-overlay .calendly-popup .calendly-popup-content{height:100%}
-                .calendly-overlay
-                .calendly-popup-close{position:absolute;top:25px;right:25px;color:#fff;width:19px;height:19px;cursor:pointer;background:url(//assets.calendly.com/assets/external/close-icon-77963382ab339573bb06b204699d4adf5ebbcbaaa51784f1d9f4b611723b42b0.svg)
-                no-repeat;background-size:contain}@media (max-width: 975px){
-                .calendly-overlay .calendly-popup-close{top:15px;right:15px}}
-                .calendly-badge-widget{float:left;bottom:15px;left:10px;z-index:9998;
-                transition: left 1s, transform 1s;
-                white-space: nowrap;
-
-                }
-                .calendly-badge-widget .calendly-badge-content{display:table-cell;width:auto;height:45px;padding:0
-                30px;border-radius:25px;box-shadow:rgba(0,0,0,0.25) 0 2px
-                5px;font-family:sans-serif;text-align:center;vertical-align:middle;font-weight:bold;font-size:14px;color:#fff;cursor:pointer;}
-                .calendly-badge-widget .calendly-badge-content.calendly-white{color:#666a73}
-                .calendly-badge-widget .calendly-badge-content span{display:block;font-size:12px}
-                .calendly-spinner{position:absolute;top:50%;left:0;right:0;-webkit-transform:translateY(-50%);transform:translateY(-50%);text-align:center;z-index:-1}
-                .calendly-spinner&gt;div{display:inline-block;width:18px;height:18px;background-color:#e1e1e1;border-radius:50%;vertical-align:middle;-webkit-animation:calendly-bouncedelay
-                1.4s infinite ease-in-out;animation:calendly-bouncedelay 1.4s infinite
-                ease-in-out;-webkit-animation-fill-mode:both;animation-fill-mode:both}
-                .calendly-spinner .calendly-bounce1{-webkit-animation-delay:-0.32s;animation-delay:-0.32s}
-                .calendly-spinner
-                .calendly-bounce2{-webkit-animation-delay:-0.16s;animation-delay:-0.16s}@-webkit-keyframes
-                calendly-bouncedelay{0%,80%,100%{-webkit-transform:scale(0);transform:scale(0)}40%{-webkit-transform:scale(1);transform:scale(1)}}@keyframes
-                calendly-bouncedelay{0%,80%,100%{-webkit-transform:scale(0);transform:scale(0)}40%{-webkit-transform:scale(1);transform:scale(1)}}
-
-            </style>
 
             <input type="hidden" name="user_name_connected" id="user_name_connected" t-att-value="request.website.get_user_name_logged()"/>
             <input type="hidden" name="user_email_connected" id="user_email_connected" t-att-value="request.website.get_user_email_logged()"/>
@@ -1286,44 +1105,19 @@
 
             </div>
 
-            <div class="container">
-                <div class="row">
-                    <div class="col-3" style="float:left;">
-                        <div class="calendly-badge-widget">
-                            <div>
-
-                                <script src="/mcm_website_theme/static/src/js/widget.js" type="text/javascript"/>
-                                <script type="text/javascript">
-                                    var user_name = document.getElementById(
-                                    "user_name_connected"
-                                    ).value;
-                                    var user_email = document.getElementById(
-                                    "user_email_connected"
-                                    ).value;
-                                    Calendly.initBadgeWidget({
-                                    url:
-                                    "https://calendly.com/mcm-academy/session-d-information-taxi-vtc-clone-02-28-2019",
-                                    prefill: {
-                                    name: user_name,
-                                    email: user_email,
-                                    },
-                                    text: "Obtenir Votre devis TAXI/VTC",
-                                    color: "#000",
-                                    textColor: "#ffffff",
-                                    branding: false,
-                                    });
-                                </script>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-6">
-
-                    </div>
-                    <div class="col-3">
-
-                    </div>
-                </div>
-            </div>
+            <!-- Début de widget de badge Calendly -->
+            <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet"/>
+            <style>
+        .calendly-badge-widget {
+        left: 20px !important;
+    }
+    .calendly-badge-content{
+        color: #fdd103 !important;
+    }
+            </style>
+            <script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async="async"></script>
+            <script type="text/javascript">window.onload = function() { Calendly.initBadgeWidget({ url: 'https://calendly.com/mcm-academy', text: 'Renseignements TAXI/VTC/VMDTR', color: '#1A1A1A', textColor: '#FFFFFF', branding: false }); }</script>
+            <!-- Fin de widget de badge Calendly -->
 
         </xpath>
         <xpath expr="//div[@class='o_footer_copyright']" position="replace">
@@ -1341,8 +1135,9 @@
                     </div>
                 </div>
             </section>
-    
-             <script>
+
+
+            <script>
 window.axeptioSettings = {
   clientId: "616580784320854530dc346b",
   cookiesVersion: "mcm-academy-base",
@@ -1353,7 +1148,7 @@ window.axeptioSettings = {
   e.async = true; e.src = "//static.axept.io/sdk.js";
   t.parentNode.insertBefore(e, t);
 })(document, "script");
-    </script>
+            </script>
         </xpath>
 
 

@@ -23,7 +23,6 @@ html {
 
 .fieldset-container {
   min-height: 357px;
-
   position: relative;
 }
 
@@ -310,4 +309,241 @@ html {
 
 .step.finish {
   background-color: #d9ff00;
+}
+.overlay_popup {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.7);
+  transition: opacity 500ms;
+  visibility: hidden;
+  opacity: 0;
+}
+.overlay_popup:target {
+  visibility: visible;
+  opacity: 1;
+  z-index: 1;
+}
+
+.popup {
+  top: 33%;
+  margin: 70px auto;
+  padding: 20px;
+  background: #fff;
+  border-radius: 5px;
+  width: 40%;
+  position: relative;
+  transition: all 5s ease-in-out;
+}
+
+.popup h2 {
+  margin-top: 0;
+  color: #333;
+  font-family: Tahoma, Arial, sans-serif;
+}
+.popup .close {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  transition: all 200ms;
+  font-size: 30px;
+  font-weight: bold;
+  text-decoration: none;
+  color: #152856;
+}
+.popup .close:hover {
+  color: hsl(222, 61%, 41%);
+}
+.popup .content {
+  max-height: 30%;
+  overflow: auto;
+}
+
+@media screen and (max-width: 700px) {
+  .box {
+    width: 90%;
+  }
+  .popup {
+    width: 90%;
+  }
+}
+
+/* arrow down animation */
+
+.scroll-prompt {
+  opacity: 1;
+  width: 171px;
+  height: 26px;
+  padding-left: 129px;
+}
+.scroll-prompt .scroll-prompt-arrow-container {
+  -webkit-animation-name: bounce;
+  animation-name: bounce;
+  -webkit-animation-duration: 1.5s;
+  animation-duration: 1.5s;
+  -webkit-animation-iteration-count: infinite;
+  animation-iteration-count: infinite;
+}
+.scroll-prompt .scroll-prompt-arrow {
+  -webkit-animation-name: opacity;
+  animation-name: opacity;
+  -webkit-animation-duration: 1.5s;
+  animation-duration: 1.5s;
+  -webkit-animation-iteration-count: infinite;
+  animation-iteration-count: infinite;
+}
+.scroll-prompt .scroll-prompt-arrow:last-child {
+  animation-direction: reverse;
+  margin-top: -6px;
+}
+.scroll-prompt .scroll-prompt-arrow > div {
+  width: 26px;
+  height: 26px;
+  border-right: 8px solid #000000;
+  border-bottom: 8px solid #000000;
+  transform: rotate(45deg) translateZ(1px);
+}
+
+@-webkit-keyframes opacity {
+  0% {
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.1;
+  }
+  20% {
+    opacity: 0.2;
+  }
+  30% {
+    opacity: 0.3;
+  }
+  40% {
+    opacity: 0.4;
+  }
+  50% {
+    opacity: 0.5;
+  }
+  60% {
+    opacity: 0.6;
+  }
+  70% {
+    opacity: 0.7;
+  }
+  80% {
+    opacity: 0.8;
+  }
+  90% {
+    opacity: 0.9;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes opacity {
+  0% {
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.1;
+  }
+  20% {
+    opacity: 0.2;
+  }
+  30% {
+    opacity: 0.3;
+  }
+  40% {
+    opacity: 0.4;
+  }
+  50% {
+    opacity: 0.5;
+  }
+  60% {
+    opacity: 0.6;
+  }
+  70% {
+    opacity: 0.7;
+  }
+  80% {
+    opacity: 0.8;
+  }
+  90% {
+    opacity: 0.9;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@-webkit-keyframes bounce {
+  0% {
+    transform: translateY(0);
+  }
+  10% {
+    transform: translateY(2px);
+  }
+  20% {
+    transform: translateY(4px);
+  }
+  30% {
+    transform: translateY(6px);
+  }
+  40% {
+    transform: translateY(8px);
+  }
+  50% {
+    transform: translateY(10px);
+  }
+  60% {
+    transform: translateY(12px);
+  }
+  70% {
+    transform: translateY(14px);
+  }
+  80% {
+    transform: translateY(16px);
+  }
+  90% {
+    transform: translateY(18px);
+  }
+  100% {
+    transform: translateY(20px);
+  }
+}
+@keyframes bounce {
+  0% {
+    transform: translateY(0);
+  }
+  10% {
+    transform: translateY(2px);
+  }
+  20% {
+    transform: translateY(4px);
+  }
+  30% {
+    transform: translateY(6px);
+  }
+  40% {
+    transform: translateY(8px);
+  }
+  50% {
+    transform: translateY(10px);
+  }
+  60% {
+    transform: translateY(12px);
+  }
+  70% {
+    transform: translateY(14px);
+  }
+  80% {
+    transform: translateY(16px);
+  }
+  90% {
+    transform: translateY(18px);
+  }
+  100% {
+    transform: translateY(20px);
+  }
 }

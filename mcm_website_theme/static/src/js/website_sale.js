@@ -8,11 +8,14 @@ odoo.define("mcm_website_theme.mcm_website_sale", function (require) {
   var session = require("web.session");
   var rpc = require("web.rpc");
   var QWeb = core.qweb;
+  //if user has comeback to the page after selecting cpf the input checkbox will be stuck on
+  // cpf and the btn will show passer au paiement so we force credit card payment is checked as default
+  document.getElementById("stripe_pm").checked = true;
 
   publicWidget.registry.WebsiteSale.include({
     events: _.extend({}, publicWidget.registry.WebsiteSale.prototype.events, {
       "click #checkbox_instalment": "verify_check",
-      "click #checkbox_conditions": "verify_conditions",
+      // "click #checkbox_conditions": "verify_conditions",
       "click #checkbox_failures": "verify_failures",
       "click #checkbox_accompagnement": "verify_accompagnement",
       "click #cpf_pm": "verify_cpf",
@@ -61,6 +64,18 @@ odoo.define("mcm_website_theme.mcm_website_sale", function (require) {
           cpf = true;
           //Hide CPF video and details
           document.getElementById("cpf-details").classList.remove("hide");
+          document.getElementById("arrow-down").classList.remove("hide");
+          if (document.getElementById("pm_shop_checkout")) {
+            document.getElementById("pm_shop_checkout").innerText =
+              "Mobiliser mon CPF";
+          }
+          if (document.getElementById("pm_shop_checkout2")) {
+            document.getElementById("pm_shop_checkout2").innerText =
+              "Mobiliser mon CPF";
+          }
+          // document
+          //   .getElementById("cpf-details")
+          //   .scrollIntoView({ inline: "start" });
         } else {
           cpf = false;
         }
@@ -78,47 +93,49 @@ odoo.define("mcm_website_theme.mcm_website_sale", function (require) {
       stripe_pm = document.getElementById("stripe_pm");
       if (stripe_pm) {
         if (stripe_pm.checked == true) {
-          document.getElementById("pm_shop").href = "/shop/checkout?express=1";
+          document.getElementById().href = "/shop/checkout?express=1";
           document.getElementById("pm_shop_check").href =
             "/shop/checkout?express=1";
           document.getElementById("pm_shop_checkout").href =
             "/shop/checkout?express=1";
+          document.getElementById("pm_shop_checkout2").href =
+            "/shop/checkout?express=1";
         } else {
-          document.getElementById("pm_shop").href = "/new/ticket";
           document.getElementById("pm_shop_check").href = "/new/ticket";
           document.getElementById("pm_shop_checkout").href = "/new/ticket";
+          document.getElementById("pm_shop_checkout2").href = "/new/ticket";
         }
       }
     },
-    verify_conditions: function (ev) {
-      console.log("input mcm change conditions ");
-      var self = this;
-      var condition = false;
-      var conditions = document.getElementById("checkbox_conditions");
-      if (document.getElementById("checkbox_conditions")) {
-        if (document.getElementById("checkbox_conditions").checked == true) {
-          var error = document.getElementById("error_conditions");
-          if (error) {
-            error.style.display = "none";
-          }
-          condition = true;
-        } else {
-          var error = document.getElementById("error_conditions");
-          if (error) {
-            error.style.display = "inline-block";
-          }
-          condition = false;
-        }
-      }
-      this._rpc({
-        route: "/shop/payment/update_condition",
-        params: {
-          condition: condition,
-        },
-      }).then(function () {
-        return true;
-      });
-    },
+    // verify_conditions: function (ev) {
+    //   console.log("input mcm change conditions ");
+    //   var self = this;
+    //   var condition = false;
+    //   var conditions = document.getElementById("checkbox_conditions");
+    //   if (document.getElementById("checkbox_conditions")) {
+    //     if (document.getElementById("checkbox_conditions").checked == true) {
+    //       var error = document.getElementById("error_conditions");
+    //       if (error) {
+    //         error.style.display = "none";
+    //       }
+    //       condition = true;
+    //     } else {
+    //       var error = document.getElementById("error_conditions");
+    //       if (error) {
+    //         error.style.display = "inline-block";
+    //       }
+    //       condition = false;
+    //     }
+    //   }
+    //   this._rpc({
+    //     route: "/shop/payment/update_condition",
+    //     params: {
+    //       condition: condition,
+    //     },
+    //   }).then(function () {
+    //     return true;
+    //   });
+    // },
     verify_failures: function (ev) {
       var self = this;
       var failures = false;
@@ -171,7 +188,6 @@ odoo.define("mcm_website_theme.mcm_website_sale", function (require) {
         //        'change input[id="checkbox_conditions"]': 'verify_conditions',
       }),
       verify_date_exam: function (ev) {
-        console.log("verify");
         var self = this;
         var center = false;
         var exam_date = document.getElementById("options-date");
@@ -217,11 +233,11 @@ odoo.define("mcm_website_theme.mcm_website_sale", function (require) {
       verify_centre: function (ev) {
         var self = this;
         var center = false;
-        console.log("verify center mcm");
+
         var center_exam = document.getElementById("region_examen");
         if (center_exam) {
           var center = document.getElementById("region_examen").value;
-          console.log(center);
+
           var id = center_exam.options[center_exam.selectedIndex].id;
         }
         if (center_exam) {
@@ -234,9 +250,8 @@ odoo.define("mcm_website_theme.mcm_website_sale", function (require) {
             }
           }
         }
-        console.log('$("#options-date").value', $("#options-date").value);
+
         if ($("#options-date").value) {
-          console.log($("#options-date").value);
           document
             .getElementById("date_insert")
             .removeChild("#date_insert select");
@@ -257,8 +272,7 @@ odoo.define("mcm_website_theme.mcm_website_sale", function (require) {
           }
           if (self.value === center) {
             var date = self.text;
-            console.log("if ===", self.value, center);
-            console.log(self.value, self.text);
+
             dateOptions += `<option value=${self.value} id=${self.id}>
              ${date}
             </option>`;
@@ -280,7 +294,7 @@ odoo.define("mcm_website_theme.mcm_website_sale", function (require) {
             }
           }
         });
-        console.log("dateOptions", dateOptions);
+
         if (dateOptions) {
           var select = `<select name="date_examen" id="options-date" class="form-control search-slt" onchange="onChangeCheckButton()">
           <option value="all" id="all">
@@ -289,23 +303,21 @@ odoo.define("mcm_website_theme.mcm_website_sale", function (require) {
           ${dateOptions}
                             </select>`;
           document.getElementById("select-date").innerHTML = select;
-          // document
-          //   .getElementById("pm_shop_checkout")
-          //   .removeAttribute("disabled");
-          // console.log(
-          //   "dateOPTions: button enable",
-          //   dateOptions,
-          //   document.getElementById("pm_shop_checkout")
-          // );
+          document
+            .getElementById("pm_shop_checkout")
+            .removeAttribute("disabled");
+          document
+            .getElementById("pm_shop_checkout2")
+            .removeAttribute("disabled");
         } else {
           document.getElementById("select-date").innerHTML =
             "Pas de date disponible pour le moment.";
           document
             .getElementById("pm_shop_checkout")
             .setAttribute("disabled", "disabled");
-          console.log(`document
-            .getElementById("pm_shop_checkout")
-            .setAttribute("disabled", "disabled")`);
+          document
+            .getElementById("pm_shop_checkout2")
+            .setAttribute("disabled", "disabled");
         }
 
         if (center_exam) {
