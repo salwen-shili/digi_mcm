@@ -474,9 +474,7 @@
             <div t-if="request.website.id == 1">
                 <script>
                 function onchangeTextButton(){
-                 
-             
-                ;
+                
                 if(document.getElementById("pm_shop_text")){
                 document.getElementById("pm_shop_text").innerHTML = 'Mobiliser mon CPF';
                 document.getElementById("pm_shop_check_text").innerHTML = 'Mobiliser mon CPF';
@@ -501,15 +499,23 @@
                 }
                 };
                 function onchangeTextButton1(){
+                    if (document.getElementById("pm_shop_checkout")){
+                document.getElementById("pm_shop_checkout").innerText="Passer au paiement";
+                }
+                if (document.getElementById("pm_shop_checkout2")){
+                document.getElementById("pm_shop_checkout2").innerText="Passer au paiement";
+                }
+                if (document.getElementById("cpf-details")){
+                        document.getElementById("cpf-details").classList.add("hide");
+                        document.getElementById("arrow-down").classList.add("hide");                      
+                    }
+                
                  
                 if(document.getElementById("pm_shop_text")){
                 document.getElementById("cpf-details").classList.add("hide");
                 document.getElementById("arrow-down").classList.add("hide");
-
-
-                document.getElementById("pm_shop_text").innerHTML = 'Passer au paiement';
-                document.getElementById("pm_shop_check_text").innerHTML = 'Passer au paiement';
-                document.getElementById("pm_shop_checkout_text").innerHTML = 'Passer au paiement';
+                
+              
                 if(document.getElementById("promo_code")){
                 document.getElementById("promo_code").style.display = 'inline';
                 } else{
@@ -845,8 +851,13 @@
 
 
     <template id="mcm_website_sale_cart_script" inherit_id="website_sale.cart">
+        <xpath expr="//a[@class='btn btn-secondary mb32']" position="replace">
+
+
+        </xpath>
         <xpath expr="//a[@class='btn btn-primary float-right']" position="replace">
-            <button role="button" t-if="website_sale_order and website_sale_order.website_order_line" class="btn btn-primary float-right disabled" id="pm_shop_checkout2" onclick="showPopup()">
+
+            <button role="button" t-if="website_sale_order and website_sale_order.website_order_line" class="btn btn-secondary float-right disabled" id="pm_shop_checkout2" onclick="showPopup()">
                 <span id="pm_shop_checkout_text">Passer au paiement 2</span>
             </button>
         </xpath>

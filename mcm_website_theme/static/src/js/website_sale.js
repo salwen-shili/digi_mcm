@@ -65,6 +65,14 @@ odoo.define("mcm_website_theme.mcm_website_sale", function (require) {
           //Hide CPF video and details
           document.getElementById("cpf-details").classList.remove("hide");
           document.getElementById("arrow-down").classList.remove("hide");
+          if (document.getElementById("pm_shop_checkout")) {
+            document.getElementById("pm_shop_checkout").innerText =
+              "Mobiliser mon CPF";
+          }
+          if (document.getElementById("pm_shop_checkout2")) {
+            document.getElementById("pm_shop_checkout2").innerText =
+              "Mobiliser mon CPF";
+          }
           // document
           //   .getElementById("cpf-details")
           //   .scrollIntoView({ inline: "start" });
@@ -93,7 +101,6 @@ odoo.define("mcm_website_theme.mcm_website_sale", function (require) {
           document.getElementById("pm_shop_checkout2").href =
             "/shop/checkout?express=1";
         } else {
-          document.getElementById("pm_shop").href = "/new/ticket";
           document.getElementById("pm_shop_check").href = "/new/ticket";
           document.getElementById("pm_shop_checkout").href = "/new/ticket";
           document.getElementById("pm_shop_checkout2").href = "/new/ticket";

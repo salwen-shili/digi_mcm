@@ -105,7 +105,7 @@
                 var stripe_pm = document.getElementById("stripe_pm");
                 if (stripe_pm) {
                 if (stripe_pm.checked == true) {
-                document.getElementById("pm_shop").href = "/shop/checkout?express=1";
+                
                 document.getElementById("pm_shop_check").href =
                 "/shop/checkout?express=1";
                
@@ -117,7 +117,7 @@
                 if (cpf_pm) {
                 if (cpf_pm.checked == true) {
                 if (cpf_pm.value == "[avancee] Formation pro") {
-                document.getElementById("pm_shop").href = "https://bit.ly/3nMlm2A";
+               
                 document.getElementById("pm_shop_check").href =
                 "https://bit.ly/3nMlm2A";
                 document.getElementById("pm_shop_checkout").href =
@@ -126,7 +126,7 @@
 
                 }
                 if (cpf_pm.value == "Formation premium") {
-                document.getElementById("pm_shop").href = "https://bit.ly/38IxvSa";
+                
                 document.getElementById("pm_shop_check").href =
                 "https://bit.ly/38IxvSa";
                 document.getElementById("pm_shop_checkout").href =
@@ -138,9 +138,10 @@
 
               
                 if (document.getElementById("pm_shop_text")) {
-                //Hide CPF video and details
+                //Show CPF video and details
                 document.getElementById("cpf-details").classList.remove("hide");
                 document.getElementById("arrow-down").classList.remove("hide");
+                
                 document.getElementById("pm_shop_text").innerHTML =
                 "Mobiliser mon CPF";
                 document.getElementById("pm_shop_check_text").innerHTML =
@@ -168,13 +169,21 @@
                 }
                 }
 
-                function onchangeTextButton1() {
-              
-
+                function onchangeTextButton1() {   
+                if (document.getElementById("pm_shop_checkout")){
+                document.getElementById("pm_shop_checkout").innerText="Passer au paiement";
+                }
+                if (document.getElementById("pm_shop_checkout2")){
+                document.getElementById("pm_shop_checkout2").innerText="Passer au paiement";
+                }
+                if (document.getElementById("cpf-details")){
+                        document.getElementById("cpf-details").classList.add("hide");
+                        document.getElementById("arrow-down").classList.add("hide");                      
+                    }
                 var stripe_pm = document.getElementById("stripe_pm");
                 if (stripe_pm) {
                 if (stripe_pm.checked == true) {
-                document.getElementById("pm_shop").href = "/shop/checkout?express=1";
+               
                 document.getElementById("pm_shop_check").href =
                 "/shop/checkout?express=1";
              
@@ -186,18 +195,20 @@
                 if (document.getElementById("pm_shop_text")) {
                     if (document.getElementById("cpf-details")){
                         document.getElementById("cpf-details").classList.add("hide");
+                        document.getElementById("arrow-down").classList.add("hide");
+                        if (document.getElementById("pm_shop_checkout")) {
+                           
+            document.getElementById("pm_shop_checkout").innerHTML =
+              "Passer au paiement";
+          }
+          if (document.getElementById("pm_shop_checkout2")) {
+            document.getElementById("pm_shop_checkout2").innerText =
+              "Passer au paiement";
+          }
                     }
-                
-                if (document.getElementById("arrow-down")){
-                    document.getElementById("arrow-down").classList.add("hide");
-                }
+               
 
-                document.getElementById("pm_shop_text").innerHTML =
-                "Passer au paiement";
-                document.getElementById("pm_shop_check_text").innerHTML =
-                "Passer au paiement";
-                document.getElementById("pm_shop_checkout_text").innerHTML =
-                "Passer au paiement";
+              
                 if (document.getElementById("promo_code")) {
                 document.getElementById("promo_code").style.display = "inline";
                 } else {
