@@ -1,6 +1,6 @@
 import base64
 import requests
-from odoo import fields,models,_
+from odoo import fields,models
 
 class ResPartner(models.Model):
     _inherit = 'res.partner'
