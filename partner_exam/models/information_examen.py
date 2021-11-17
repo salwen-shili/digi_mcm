@@ -45,7 +45,8 @@ class NoteExamen(models.Model):
 
     presence = fields.Selection(selection=[
         ('present', 'Présent'),
-        ('Absent', 'Absent')],
+        ('Absent', 'Absent'),
+        ('absence_justifiee', 'Absence justifiée')],
         string="Présence", default='present')
     # Ajout le champ etat qui sera invisible dans l'interface "notes & examen"
     # Utilisation de ce champ pour une information dans le fichier xml de "attestation de suivi de formation
@@ -67,7 +68,10 @@ class NoteExamen(models.Model):
                 rec.moyenne_generale = rec.moyenne_generale
                 rec.mention = 'recu'
                 rec.resultat = 'recu'
-                rec.presence = 'present'
+                rec.sudo().write({'session_id': self.partner_id.mcm_session_id,
+                                  'date_exam': self.partner_id.mcm_session_id.date_exam,
+                                  'presence': 'present',
+                                  'ville_id': self.partner_id.mcm_session_id.session_ville_id.id})
             else:
                 # reset your fields
                 rec.epreuve_a = rec.epreuve_a
@@ -94,21 +98,11 @@ class NoteExamen(models.Model):
             if not rec.resultat == "recu":
                 rec.etat = "sans succès"
 
-    @api.onchange("partner_id")
-    def add_dafault_values_examen(self):
-        """ Fonction pour ajouter date examen et ville
-        automatiquement lors de creation ou de l'importation"""
-        for rec in self:
-            rec.sudo().write({'session_id': self.partner_id.mcm_session_id,
-                              'date_exam': self.partner_id.mcm_session_id.date_exam,
-                              'ville_id': self.partner_id.mcm_session_id.session_ville_id.id})
-
     @api.model
     def create(self, vals):
         resultat = super(NoteExamen, self).create(vals)
         resultat._compute_moyenne_generale()
         resultat.mise_ajour_mode_financement()
-        resultat.add_dafault_values_examen()
         return resultat
 
     def _clear_duplicates_exams(self):
