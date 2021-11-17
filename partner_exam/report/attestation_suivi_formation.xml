@@ -62,7 +62,7 @@
                                             <t t-set="sales"
                                                t-value="o.sale_order_ids.filtered(lambda tx: tx.state == 'sale')"/>
                                             <t t-if="sales[0].signed_on">
-                                                <span t-esc="(sales[0].signed_on).strftime('%m/%d/%Y')"/>
+                                                <span t-esc="(sales[0].signed_on).strftime('%d/%m/%Y')"/>
                                             </t>
                                             <t t-else="not sales[0].signed_on">
                                                 <span t-esc="(o.date_cpf).strftime('%d/%m/%Y')"/>
@@ -367,7 +367,7 @@
                                             <t t-set="sales"
                                                t-value="o.sale_order_ids.filtered(lambda tx: tx.state == 'sale')"/>
                                             <t t-if="sales[0].signed_on">
-                                                <span t-esc="(sales[0].signed_on).strftime('%m/%d/%Y')"/>
+                                                <span t-esc="(sales[0].signed_on).strftime('%d/%m/%Y')"/>
                                             </t>
                                             <t t-else="not sales[0].signed_on">
                                                 <span t-esc="(o.date_cpf).strftime('%d/%m/%Y')"/>
