@@ -126,7 +126,7 @@
                 Mode de financement
                 </h3>
             </t>
-            <div class="card-body o_payment_acquirer_select cpf_spacing">
+            <div class="card-body o_payment_acquirer_select " style="padding-bottom: 0px !important;">
                 <t t-foreach="website_sale_order.website_order_line" t-as="line">
                     <label for="stripe_pm" class="radio ">
                         <input id="stripe_pm" type="radio" name="pm_method" class="hidden" data-acquirer-id="8" data-form-payment="True" data-provider="stripe_pm" t-att-value="line.name_short" checked="True" t-attf-onclick="onchangeTextButton1()"/>
