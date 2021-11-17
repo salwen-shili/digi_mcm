@@ -24,11 +24,6 @@ class WebsiteSale(WebsiteSale):
         access_token: Abandoned cart SO access token
         revive: Revival method when abandoned cart. Can be 'merge' or 'squash'
         """
-
-        # if post.get('type') == 'popover':
-        #     print("*******(******************************************")
-        #     # force no-cache so IE11 doesn't cache this XHR
-        #     return request.render("website_sale.cart_popover", headers={'Cache-Control': 'no-cache'}) 
         order = request.website.sale_get_order()
         documents = False
         if order.partner_id:
@@ -46,6 +41,35 @@ class WebsiteSale(WebsiteSale):
             return request.redirect("/charger_mes_documents")
         # if order.company_id.id == 1 and (partenaire or product):
         #     return request.redirect("/shop/cart/")
+        if order and order.state != 'draft':
+            request.session['sale_order_id'] = None
+            order = request.website.sale_get_order()
+        values = {}
+        if access_token:
+            abandoned_order = request.env['sale.order'].sudo().search([('access_token', '=', access_token)], limit=1)
+            if not abandoned_order:  # wrong token (or SO has been deleted)
+                raise NotFound()
+            if abandoned_order.state != 'draft':  # abandoned cart already finished
+                values.update({'abandoned_proceed': True})
+            elif revive == 'squash' or (revive == 'merge' and not request.session.get(
+                    'sale_order_id')):  # restore old cart or merge with unexistant
+                request.session['sale_order_id'] = abandoned_order.id
+                return request.redirect('/shop/cart')
+            elif revive == 'merge':
+                abandoned_order.order_line.write({'order_id': request.session['sale_order_id']})
+                abandoned_order.action_cancel()
+            elif abandoned_order.id != request.session.get(
+                    'sale_order_id'):  # abandoned cart found, user have to choose what to do
+                values.update({'access_token': abandoned_order.access_token})
+        values.update({
+            'website_sale_order': order,
+            'date': fields.Date.today(),
+            'suggested_products': [],
+        })
+        if post.get('type') == 'popover':
+            # force no-cache so IE11 doesn't cache this XHR
+            
+            return request.render("website_sale.cart_popover", values, headers={'Cache-Control': 'no-cache'})
         if order and order.company_id.id == 1:
             request.env.user.company_id = 1  # change default company
             request.env.user.company_ids = [1,2]  # change default companies
@@ -203,32 +227,6 @@ class WebsiteSale(WebsiteSale):
                     if (module.date_exam - today).days > int(
                             module.session_id.intervalle_jours) and module.session_id.website_published == True:
                         list_modules_mcm.append(module)
-        if order and order.state != 'draft':
-            request.session['sale_order_id'] = None
-            order = request.website.sale_get_order()
-        values = {}
-        
-        if access_token:
-            abandoned_order = request.env['sale.order'].sudo().search([('access_token', '=', access_token)], limit=1)
-            if not abandoned_order:  # wrong token (or SO has been deleted)
-                raise NotFound()
-            if abandoned_order.state != 'draft':  # abandoned cart already finished
-                values.update({'abandoned_proceed': True})
-            elif revive == 'squash' or (revive == 'merge' and not request.session.get(
-                    'sale_order_id')):  # restore old cart or merge with unexistant
-                request.session['sale_order_id'] = abandoned_order.id
-                return request.redirect('/shop/cart')
-            elif revive == 'merge':
-                abandoned_order.order_line.write({'order_id': request.session['sale_order_id']})
-                abandoned_order.action_cancel()
-            elif abandoned_order.id != request.session.get(
-                    'sale_order_id'):  # abandoned cart found, user have to choose what to do
-                values.update({'access_token': abandoned_order.access_token})
-        values.update({
-            'website_sale_order': order,
-            'date': fields.Date.today(),
-            'suggested_products': [],
-        })
         if order:
             order.order_line.filtered(lambda l: not l.product_id.active).unlink()
             _order = order
@@ -245,7 +243,6 @@ class WebsiteSale(WebsiteSale):
             'error_exam_date': '',
             'error_condition': '',
         })
-       
         # recuperer la liste des villes pour l'afficher dans la vue panier de siteweb digimoov pour que le client peut choisir une ville parmis la liste
         list_villes = request.env['session.ville'].sudo().search([('company_id', '=', 2)])
         if list_villes:
@@ -261,13 +258,8 @@ class WebsiteSale(WebsiteSale):
             values.update({
                 'list_villes_mcm': list_villes_mcm,
             })
-        
-      
-       
+
         return request.render("website_sale.cart", values)
-        
-        
-    
 
     # def checkout_redirection(self, order):
     #     redirection=super(WebsiteSale,self).checkout_redirection(order)
@@ -659,4 +651,3 @@ class Date_Examen(http.Controller):
             if module and partner:
                 partner.date_examen_edof=module.date_exam
         return True
-    
