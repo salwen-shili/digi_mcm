@@ -394,6 +394,12 @@ class Services(http.Controller):
             return request.render("digimoov_website_templates.digimoov_template_capacite_lourde", {})
         else:
             raise werkzeug.exceptions.NotFound()
+    @http.route('/test5', type='http', auth='public', website=True)
+    def test4(self, **kw, ):
+        if request.website.id == 2:
+            return request.render("digimoov_website_templates.digimoov_template_langues_2", {})
+        else:
+            raise werkzeug.exceptions.NotFound()
 
     # test a supprimer
     ##############################
