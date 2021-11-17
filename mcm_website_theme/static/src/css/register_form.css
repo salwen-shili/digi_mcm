@@ -374,7 +374,7 @@ html {
 
 .scroll-prompt {
   opacity: 1;
-  width: 149px;
+  width: 167px;
   height: 44px;
   padding-left: 127px;
 }
@@ -549,7 +549,6 @@ html {
 }
 
 .cpf_spacing {
-  padding: 1.25rem !important;
 }
 
 .cpf_position {
