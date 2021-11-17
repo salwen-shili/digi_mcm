@@ -85,6 +85,7 @@ function onChangeCheckButton() {
       document.getElementById("pm_shop_checkout").classList.remove("disabled");
       document.getElementById("pm_shop_checkout2").removeAttribute("disabled");
       document.getElementById("pm_shop_checkout2").classList.remove("disabled");
+      document.getElementById("error_choix_date").style.display = "none";
     }
   } else {
     document

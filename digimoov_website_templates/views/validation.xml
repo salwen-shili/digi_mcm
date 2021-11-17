@@ -10,7 +10,17 @@
                 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"/>
                 <link href="/digimoov_website_templates/static/src/css/material_form.css" rel="stylesheet"/>
 
-
+                <style>
+                    @media screen and (max-width: 374px) {
+  #msform .action-button-previous {
+        width:114px !important;
+    }
+    #msform .action-button { 
+        width:114px !important;
+    }
+}
+    
+                </style>
                 <div class="container-fluid">
                     <div class="row justify-content-center paper">
                         <div class="
@@ -337,9 +347,11 @@
                         </div>
                     </div>
                 </div>
+                <script defer="defer" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"/>
+                <script defer="defer" type="text/javascript" src="/digimoov_website_templates/static/src/js/feedback-form.js"/>
+
             </div>
-            <script defer="defer" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"/>
-            <script defer="defer" type="text/javascript" src="/digimoov_website_templates/static/src/js/feedback-form.js"/>
+
         </t>
     </template>
 </odoo>

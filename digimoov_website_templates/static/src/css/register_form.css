@@ -436,9 +436,9 @@ html {
 
 .scroll-prompt {
   opacity: 1;
-  width: 171px;
-  height: 26px;
-  padding-left: 129px;
+  width: 167px;
+  height: 51px;
+  padding-left: 127px;
 }
 .scroll-prompt .scroll-prompt-arrow-container {
   -webkit-animation-name: bounce;
@@ -572,5 +572,18 @@ html {
   }
   100% {
     transform: translateY(20px);
+  }
+}
+.cpf_spacing {
+  padding: 0px 0px 0px 20px !important;
+}
+
+.cpf_position {
+  text-align: left;
+  padding-left: 44px;
+}
+@media screen and (min-width: 426px) {
+  .cpf_position {
+    float: right;
   }
 }

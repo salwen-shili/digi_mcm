@@ -1,0 +1,191 @@
+<odoo>
+    <template id="mcm_website_footer_custom" inherit_id="website.footer_custom">
+        <xpath expr="//div[hasclass('container')]" position="inside">
+
+        </xpath>
+        <!-- <xpath expr="//iframe[2]" position="replace">
+
+        </xpath> -->
+
+
+        <xpath expr="//div[@id='footer']" position="replace">
+            <style>
+                .o_footer .s_text_block .widget-title:before {
+                content: '';
+                border-bottom: 2px solid #fdd103;
+                border-bottom-width: 2px;
+                border-bottom-style: solid;
+                border-bottom-color: rgb(253, 209, 3);
+                position: absolute;
+                bottom: -12px;
+                left: 0;
+                width: 30px;
+                }
+            </style>
+
+
+            <input type="hidden" name="user_name_connected" id="user_name_connected" t-att-value="request.website.get_user_name_logged()"/>
+            <input type="hidden" name="user_email_connected" id="user_email_connected" t-att-value="request.website.get_user_email_logged()"/>
+
+            <div id="footer" class="oe_structure oe_structure_solo" data-oe-id="1568" data-oe-xpath="/data/xpath[2]/div" data-oe-model="ir.ui.view" data-oe-field="arch">
+                <section class="s_text_block pb8 pt0 bg-900" data-name="Text block" style="     background: #000 !important; ">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-8 col-sm-8 col-lg-5">
+                                <aside id="text-5" class="widget widget_text">
+                                    <h3 class="widget-title">
+                                        <font style="color: rgb(255, 255, 255);">Bon à savoir</font>
+                                    </h3>
+                                    <div class="textwidget">
+                                        <a href="/blog/blog-taxi-10/post/les-prerequis-pour-exercer-les-metiers-de-chauffeur-vtc-ou-taxi-26" style="cursor: pointer; color:#ffffff">
+                                            <p>Les prérequis pour exercer les métiers de chauffeur VTC ou TAXI</p>
+                                        </a>
+                                        <a href="/blog/blog-vtc-7/post/debouches-ou-travailler-comme-conducteur-vtc-25" style="cursor: pointer; color:#ffffff">
+                                            <p>Débouchés : où travailler en tant que chauffeur de VTC ?</p>
+                                        </a>
+                                        <a href="/blog/blog-vtc-7/post/quel-statut-juridique-choisir-pour-un-chauffeur-vtc-21" style="cursor: pointer; color:#ffffff">
+                                            <p>Quel statut juridique choisir pour un chauffeur de VTC ?</p>
+                                        </a>
+                                        <a href="/blog/blog-taxi-moto-6/post/reglementation-moto-taxi-le-guide-complet-24" style="cursor: pointer; color:#ffffff">
+                                            <p>MOTO-TAXI : réglementation et bonnes pratiques</p>
+                                        </a>
+                                        <a href="/blog" style="cursor: pointer; color:#ffffff">
+                                            <p>Blog métiers de transport</p>
+                                        </a>
+
+
+                                    </div>
+                                </aside>
+                            </div>
+                            <div class="col-md-4 col-sm-4 col-lg-3">
+                                <aside id="text-4" class="widget widget_text">
+                                    <h3 class="widget-title">
+                                        <font style="color: rgb(255, 255, 255);">Centre de support</font>
+                                    </h3>
+                                    <div class="textwidget">
+                                        <ul>
+                                            <a href="/contact" style="cursor: pointer; color:#ffffff">
+                                                <li class="mb-2">
+                                                    <span class="fa fa-envelope"/>
+                                                    Envoyez-nous un message
+                                                </li>
+                                            </a>
+
+                                            <a href="/faq" style="cursor: pointer; color:#ffffff">
+                                                <li class="mb-2">
+                                                    <span class="fa fa-question-circle" data-original-title="" title="" aria-describedby="tooltip437298"/>
+                                                    Foire aux questions
+                                                    <br/>
+                                                </li>
+                                            </a>
+                                            <li class="mb-2">
+                                                <span class="fa fa-info-circle"/>
+                                                Agréé par la préfecture sous le numéro
+                                                <i style="">VTC 59-16-03 |</i>
+                                                <i style="">TAXI 18-03-59</i>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </aside>
+                            </div>
+                            <div class="col-md-8 col-sm-8 col-lg-4" style="border-style: none; border-width: 0px;">
+                                <aside id="contact-info-widget-2" class="widget contact-info">
+                                    <h3 class="widget-title">
+                                        <font style="color: rgb(255, 255, 255);">Retrouvez-nous et partagez vos
+                                            expériences sur nos réseaux sociaux
+                                        </font>
+                                    </h3>
+                                    <div class="contact-info">
+                                        <ul class="contact-details">
+                                            <li>
+                                                <div>
+                                                    <a style="color: #ffffff" href="https://fr-fr.facebook.com/pg/formation.mcm.academy">
+                                                        <span class="fa fa-facebook-square fa-2x" data-original-title="" title="" aria-describedby="tooltip139952"/>
+
+                                                    </a>
+                                                    <a style="color: #ffffff" href="https://www.instagram.com/formation.mcm.academy/">
+                                                        <span class="fa fa-2x fa-instagram" data-original-title="" title="" aria-describedby="tooltip799266"/>
+
+                                                    </a>
+
+                                                    <a style="color: #ffffff" href="https://www.youtube.com/channel/UCYFC80fsylTETNppaBlAVkQ">
+                                                        <span class="fa fa-youtube-play fa-2x" data-original-title="" title="" aria-describedby="tooltip749786"/>
+
+                                                    </a>
+
+                                                </div>
+
+                                                <div class="contact-info" style="">
+                                                    <ul class="contact-details" style="margin-bottom: 1rem; list-style-type: disc;">
+                                                        <li style="font-weight: 400;">
+                                                            <span style="font-weight: 700;"/>
+                                                            <br/>
+                                                            Politique de confidentialité
+                                                            <br/>
+                                                            <br/>
+                                                        </li>
+                                                        <a href="/conditions" style="color:#fff">
+                                                            <li>Conditions générales de vente</li>
+                                                        </a>
+                                                    </ul>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </aside>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+            </div>
+
+            <!-- Début de widget de badge Calendly -->
+            <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet"/>
+            <style>
+        .calendly-badge-widget {
+        left: 20px !important;
+    }
+    .calendly-badge-content{
+        color: #fdd103 !important;
+    }
+            </style>
+            <script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async="async"></script>
+            <script type="text/javascript">window.onload = function() { Calendly.initBadgeWidget({ url: 'https://calendly.com/mcm-academy', text: 'Renseignements TAXI/VTC/VMDTR', color: '#1A1A1A', textColor: '#FFFFFF', branding: false }); }</script>
+            <!-- Fin de widget de badge Calendly -->
+
+        </xpath>
+        <xpath expr="//div[@class='o_footer_copyright']" position="replace">
+            <section id="sh_copyright_7">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12 text-center">
+
+                            <p>
+                                <a style="color:#fff;" href="https:www.mcm-academy.fr">
+                                   © MCM ACADEMY
+                                </a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+
+            <script>
+window.axeptioSettings = {
+  clientId: "616580784320854530dc346b",
+  cookiesVersion: "mcm-academy-base",
+};
+ 
+(function(d, s) {
+  var t = d.getElementsByTagName(s)[0], e = d.createElement(s);
+  e.async = true; e.src = "//static.axept.io/sdk.js";
+  t.parentNode.insertBefore(e, t);
+})(document, "script");
+            </script>
+        </xpath>
+
+
+    </template>
+</odoo>

@@ -16,7 +16,7 @@ add css and js files to website model
         'security/ir.model.access.csv',
         'security/questionnaire_security.xml',
         # 'views/ressources.xml',
-        'views/template.xml',
+      
         'views/templates.xml',
         'views/product_public_category.xml',
         'views/payment_acquirer.xml',
@@ -38,6 +38,9 @@ add css and js files to website model
         'views/questionnaire.xml',
         'views/conditions.xml',
         'views/felicitations.xml',
+        'views/website_sale/cart_multistep_integration.xml',
+        'views/website_sale/template.xml',
+        'views/custom_footer.xml'
     ],
 
     'installable': True,

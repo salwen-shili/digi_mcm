@@ -1,0 +1,207 @@
+<odoo>
+
+    <template id="mcm_website_theme.mcm_step_progress1" inherit_id="website_sale.cart">
+        <xpath expr="//a[@href='/shop'][1]" position="replace">
+            <a role="button" href="/shop" class="btn btn-secondary mb32 d-none d-xl-inline-block" style="display:none !important">
+                <span class="fa fa-chevron-left"/>
+                <span class="">Continuer Vos achat</span>
+            </a>
+        </xpath>
+        <xpath expr="//div[hasclass('row')]" position="before">
+            <script src="/mcm_website_theme/static/src/js/shopping-cart.js"></script>
+            <style>
+                .wizard{
+                display:none !important;
+                }
+                .label {
+                padding: 0px !important;
+                }
+                #pm_shop_check{
+                visibility: hidden;
+                }
+            </style>
+            <link href="/mcm_website_theme/static/src/css/register_form.css" rel="stylesheet"/>
+
+            <div class="container-fluid">
+                <div class="row justify-content-center paper">
+                    <div class="
+                col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12
+                text-center
+                p-0
+                mt-3
+              
+              ">
+                        <div class="form-section">
+                            <div class="card px-0 pb-0 mt-1  bg-c">
+                                <h2 id="heading">Inscription</h2>
+                                <p class="p_class">Remplissez tous les champs du formulaire pour passer à l'étape
+                                    suivante
+                                </p>
+
+                                <!-- progressbar -->
+                                <ul id="progressbar">
+                                    <li class="active" id="account">
+                                        <strong>Coordonnées</strong>
+                                    </li>
+                                    <li id="personal" class="active">
+                                        <strong>Documents</strong>
+                                    </li>
+                                    <li id="payment" class="active">
+                                        <strong>Financement</strong>
+                                    </li>
+                                    <li id="confirm">
+                                        <strong>Validation</strong>
+                                    </li>
+                                </ul>
+                                <div class="progress">
+                                    <div class="
+                      progress-bar progress-bar-striped progress-bar-animated
+                    " role="progressbar" aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
+                                <br/>
+
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <script>
+
+                document.getElementsByClassName("progress-bar")[0].style.width= "75%";
+
+            </script>
+        </xpath>
+    </template>
+
+    <template id="mcm_website_theme.mcm_step_progress2" inherit_id="website_sale.checkout">
+
+
+
+        <xpath expr="//div[hasclass('row')]" position="before">
+            <style>
+                .wizard{
+                display:none !important;
+                }
+            </style>
+            <link href="/mcm_website_theme/static/src/css/register_form.css" rel="stylesheet"/>
+
+            <div class="container-fluid">
+                <div class="row justify-content-center paper">
+                    <div class="
+                col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12
+                text-center
+                p-0
+                mt-3
+                
+              ">
+                        <div class="form-section">
+                            <div class="card px-0 pb-0 mt-1  bg-c">
+                                <h2 id="heading">Inscription</h2>
+                                <p class="p_class">Remplissez tous les champs du formulaire pour passer à l'étape
+                                    suivante
+                                </p>
+
+                                <!-- progressbar -->
+                                <ul id="progressbar">
+                                    <li class="active" id="account">
+                                        <strong>Coordonnées</strong>
+                                    </li>
+                                    <li id="personal" class="active">
+                                        <strong>Documents</strong>
+                                    </li>
+                                    <li id="payment" class="active">
+                                        <strong>Financement</strong>
+                                    </li>
+                                    <li id="confirm">
+                                        <strong>Validation</strong>
+                                    </li>
+                                </ul>
+                                <div class="progress">
+                                    <div class="
+                      progress-bar progress-bar-striped progress-bar-animated
+                    " role="progressbar" aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
+                                <br/>
+
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <script>
+
+                document.getElementsByClassName("progress-bar")[0].style.width= "75%";
+
+            </script>
+        </xpath>
+    </template>
+
+    <template id="mcm_website_theme.mcm_step_progress3" inherit_id="website_sale.payment">
+        <xpath expr="//div[@id='shipping_and_billing']//a" position="replace">
+            <a class='float-right no-decoration' href='/shop/checkout' style="display:none !important">
+                <i class="fa fa-edit"/>
+                Edit
+            </a>
+        </xpath>
+
+        <xpath expr="//div[hasclass('row')]" position="before">
+            <style>
+                .wizard{
+                display:none !important;
+                }
+            </style>
+            <link href="/mcm_website_theme/static/src/css/register_form.css" rel="stylesheet"/>
+
+            <div class="container-fluid">
+                <div class="row justify-content-center paper">
+                    <div class="
+                col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12
+                text-center
+                p-0
+                mt-3
+                
+              ">
+                        <div class="form-section">
+                            <div class="card px-0 pb-0 mt-1  bg-c">
+                                <h2 id="heading">Inscription</h2>
+                                <p class="p_class">Remplissez tous les champs du formulaire pour passer à l'étape
+                                    suivante
+                                </p>
+
+                                <!-- progressbar -->
+                                <ul id="progressbar">
+                                    <li class="active" id="account">
+                                        <strong>Coordonnées</strong>
+                                    </li>
+                                    <li id="personal" class="active">
+                                        <strong>Documents</strong>
+                                    </li>
+                                    <li id="payment" class="active">
+                                        <strong>Financement</strong>
+                                    </li>
+                                    <li id="confirm">
+                                        <strong>Validation</strong>
+                                    </li>
+                                </ul>
+                                <div class="progress">
+                                    <div class="
+                      progress-bar progress-bar-striped progress-bar-animated
+                    " role="progressbar" aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
+                                <br/>
+
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <script>
+                document.getElementsByClassName("progress-bar")[0].style.width= "75%";
+            </script>
+        </xpath>
+    </template>
+
+</odoo>
