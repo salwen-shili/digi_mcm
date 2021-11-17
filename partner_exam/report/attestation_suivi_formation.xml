@@ -61,7 +61,12 @@
                                         <strong>En ligne, du
                                             <t t-set="sales"
                                                t-value="o.sale_order_ids.filtered(lambda tx: tx.state == 'sale')"/>
-                                            <span t-esc="(sales[0].signed_on).strftime('%m/%d/%Y')"/>
+                                            <t t-if="sales[0].signed_on">
+                                                <span t-esc="(sales[0].signed_on).strftime('%m/%d/%Y')"/>
+                                            </t>
+                                            <t t-else="not sales[0].signed_on">
+                                                <span t-esc="(o.date_cpf).strftime('%d/%m/%Y')"/>
+                                            </t>
                                             au
                                             <span t-field="o.module_id.date_exam"
                                                   t-field-options='{"format": "dd/MM/yyyy"}'/>
@@ -361,7 +366,12 @@
                                         <strong>En ligne, du
                                             <t t-set="sales"
                                                t-value="o.sale_order_ids.filtered(lambda tx: tx.state == 'sale')"/>
-                                            <span t-esc="(sales[0].signed_on).strftime('%m/%d/%Y')"/>
+                                            <t t-if="sales[0].signed_on">
+                                                <span t-esc="(sales[0].signed_on).strftime('%m/%d/%Y')"/>
+                                            </t>
+                                            <t t-else="not sales[0].signed_on">
+                                                <span t-esc="(o.date_cpf).strftime('%d/%m/%Y')"/>
+                                            </t>
                                             au
                                             <span t-field="o.module_id.date_exam"
                                                   t-field-options='{"format": "dd/MM/yyyy"}'/>
