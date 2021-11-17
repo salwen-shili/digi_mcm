@@ -258,7 +258,6 @@ class WebsiteSale(WebsiteSale):
             values.update({
                 'list_villes_mcm': list_villes_mcm,
             })
-
         return request.render("website_sale.cart", values)
 
     # def checkout_redirection(self, order):

@@ -1,232 +1,13 @@
 <odoo>
 
-    <template id="mcm_website_theme.mcm_step_progress1" inherit_id="website_sale.cart">
-        <!-- <xpath expr="//div[@id='oe_structure_website_sale_cart_2']" position="replace"></xpath> -->
-        <!-- <xpath expr="//div[@id='myCarousel1625733368598']" position="replace"></xpath> -->
-        <!-- <xpath expr="//a[@id='pm_shop_check']" position="replace">
 
-        </xpath> -->
-        <xpath expr="//a[@href='/shop'][1]" position="replace">
-            <a role="button" href="/shop" class="btn btn-secondary mb32 d-none d-xl-inline-block" style="display:none !important">
-                <span class="fa fa-chevron-left"/>
-                <span class="">Continuer Vos achat</span>
-            </a>
-        </xpath>
-        <xpath expr="//div[hasclass('row')]" position="before">
-            <script src="/mcm_website_theme/static/src/js/shopping-cart.js"></script>
-            <style>
-                .wizard{
-                display:none !important;
-                }
-                .label {
-                padding: 0px !important;
-                }
-                #pm_shop_check{
-                visibility: hidden;
-                }
-            </style>
-            <link href="/mcm_website_theme/static/src/css/register_form.css" rel="stylesheet"/>
-
-            <div class="container-fluid">
-                <div class="row justify-content-center paper">
-                    <div class="
-                col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12
-                text-center
-                p-0
-                mt-3
-                mb-2
-              ">
-                        <div class="form-section">
-                            <div class="card px-0 pb-0 mt-1 mb-3 bg-c">
-                                <h2 id="heading">Inscription</h2>
-                                <p class="p_class">Remplissez tous les champs du formulaire pour passer à l'étape
-                                    suivante
-                                </p>
-
-                                <!-- progressbar -->
-                                <ul id="progressbar">
-                                    <li class="active" id="account">
-                                        <strong>Coordonnées</strong>
-                                    </li>
-                                    <li id="personal" class="active">
-                                        <strong>Documents</strong>
-                                    </li>
-                                    <li id="payment" class="active">
-                                        <strong>Financement</strong>
-                                    </li>
-                                    <li id="confirm">
-                                        <strong>Validation</strong>
-                                    </li>
-                                </ul>
-                                <div class="progress">
-                                    <div class="
-                      progress-bar progress-bar-striped progress-bar-animated
-                    " role="progressbar" aria-valuemin="0" aria-valuemax="100"></div>
-                                </div>
-                                <br/>
-
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <script>
-
-                document.getElementsByClassName("progress-bar")[0].style.width= "75%";
-
-            </script>
-        </xpath>
-    </template>
-
-    <template id="mcm_website_theme.mcm_step_progress2" inherit_id="website_sale.checkout">
-        <!-- <xpath expr="//div[@id='oe_structure_website_sale_cart_2']" position="replace"></xpath> -->
-        <!-- <xpath expr="//div[@id='myCarousel1625733368598']" position="replace"></xpath> -->
-        <!-- <xpath expr="//a[@id='pm_shop_check']" position="replace">
-
-        </xpath> -->
-
-
-        <xpath expr="//div[hasclass('row')]" position="before">
-            <style>
-                .wizard{
-                display:none !important;
-                }
-            </style>
-            <link href="/mcm_website_theme/static/src/css/register_form.css" rel="stylesheet"/>
-
-            <div class="container-fluid">
-                <div class="row justify-content-center paper">
-                    <div class="
-                col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12
-                text-center
-                p-0
-                mt-3
-                mb-2
-              ">
-                        <div class="form-section">
-                            <div class="card px-0 pb-0 mt-1 mb-3 bg-c">
-                                <h2 id="heading">Inscription</h2>
-                                <p class="p_class">Remplissez tous les champs du formulaire pour passer à l'étape
-                                    suivante
-                                </p>
-
-                                <!-- progressbar -->
-                                <ul id="progressbar">
-                                    <li class="active" id="account">
-                                        <strong>Coordonnées</strong>
-                                    </li>
-                                    <li id="personal" class="active">
-                                        <strong>Documents</strong>
-                                    </li>
-                                    <li id="payment" class="active">
-                                        <strong>Financement</strong>
-                                    </li>
-                                    <li id="confirm">
-                                        <strong>Validation</strong>
-                                    </li>
-                                </ul>
-                                <div class="progress">
-                                    <div class="
-                      progress-bar progress-bar-striped progress-bar-animated
-                    " role="progressbar" aria-valuemin="0" aria-valuemax="100"></div>
-                                </div>
-                                <br/>
-
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <script>
-
-                document.getElementsByClassName("progress-bar")[0].style.width= "75%";
-
-            </script>
-        </xpath>
-    </template>
-
-    <template id="mcm_website_theme.mcm_step_progress3" inherit_id="website_sale.payment">
-        <!-- <xpath expr="//div[@id='oe_structure_website_sale_cart_2']" position="replace"></xpath> -->
-        <!-- <xpath expr="//div[@id='myCarousel1625733368598']" position="replace"></xpath> -->
-        <!-- <xpath expr="//a[@id='pm_shop_check']" position="replace">
-
-        </xpath> -->
-
-        <xpath expr="//div[@id='shipping_and_billing']//a" position="replace">
-            <a class='float-right no-decoration' href='/shop/checkout' style="display:none !important">
-                <i class="fa fa-edit"/>
-                Edit
-            </a>
-        </xpath>
-
-        <xpath expr="//div[hasclass('row')]" position="before">
-            <style>
-                .wizard{
-                display:none !important;
-                }
-            </style>
-            <link href="/mcm_website_theme/static/src/css/register_form.css" rel="stylesheet"/>
-
-            <div class="container-fluid">
-                <div class="row justify-content-center paper">
-                    <div class="
-                col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12
-                text-center
-                p-0
-                mt-3
-                mb-2
-              ">
-                        <div class="form-section">
-                            <div class="card px-0 pb-0 mt-1 mb-3 bg-c">
-                                <h2 id="heading">Inscription</h2>
-                                <p class="p_class">Remplissez tous les champs du formulaire pour passer à l'étape
-                                    suivante
-                                </p>
-
-                                <!-- progressbar -->
-                                <ul id="progressbar">
-                                    <li class="active" id="account">
-                                        <strong>Coordonnées</strong>
-                                    </li>
-                                    <li id="personal" class="active">
-                                        <strong>Documents</strong>
-                                    </li>
-                                    <li id="payment" class="active">
-                                        <strong>Financement</strong>
-                                    </li>
-                                    <li id="confirm">
-                                        <strong>Validation</strong>
-                                    </li>
-                                </ul>
-                                <div class="progress">
-                                    <div class="
-                      progress-bar progress-bar-striped progress-bar-animated
-                    " role="progressbar" aria-valuemin="0" aria-valuemax="100"></div>
-                                </div>
-                                <br/>
-
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <script>
-
-                document.getElementsByClassName("progress-bar")[0].style.width= "75%";
-
-            </script>
-        </xpath>
-    </template>
 
     <template id="mcm_website_theme.payment_tokens_list" inherit_id="payment.payment_tokens_list">
         <xpath expr="//button[@id='o_payment_form_pay']" position="after">
             <input t-att-value="request.website.microsoft_tracking_key" id="microsoft_tracking_key" type="hidden" />
             <input t-att-value="request.website.id" id="website" type="hidden" />
             <body onload='verify_PM()'>
-                <a role="button" href="#" t-attf-onclick="linkTo()" style="visibility: hidden;" class="btn btn-primary" id="link_to">s'inscrire
+                <a role="button" href="#" t-attf-onclick="linkTo()" style="display:none;" class="btn btn-primary" id="link_to">s'inscrire
                 </a>
             </body>
             <!-- <script type="text/javascript" src="/mcm_website_theme/static/src/js/msAdsPayement.js"/> -->
@@ -262,10 +43,10 @@
                 if(stripe) {
                 if (document.getElementById('stripe').checked) {
                 document.getElementById("o_payment_form_pay").style.visibility = "visible";
-                document.getElementById("link_to").style.visibility = "hidden";
+                document.getElementById("link_to").style.display = "none";
                 } else {
                 document.getElementById("o_payment_form_pay").style.visibility = 'hidden';
-                document.getElementById("link_to").style.visibility = 'visible';
+                document.getElementById("link_to").style.display = 'inline-block';
                 }
                 }
                 };
@@ -288,9 +69,7 @@
                     </label>
                 </td>
                 <td class="text-xl-right border-0" id="order_instalment_checkbox" style="display:table-cell">
-
                     <input type="checkbox" id="checkbox_instalment" style="white-space: nowrap;" class="text-xl-right border-0" t-att-checked="website_sale_order.instalment" t-att-value="website_sale_order.instalment"/>
-
                 </td>
             </tr>
             <body onload="verify_checked()">
@@ -343,11 +122,11 @@
             </p>
             <t t-foreach="website_sale_order.website_order_line" t-as="line">
                 <!-- Mode de financement -->
-                <h3 class="" style="margin-top: 1rem; font-weight: 600;">
+                <h3 class="" style="margin-top: 1rem; font-weight: 600;font-size:19px">
                 Mode de financement
                 </h3>
             </t>
-            <div class="card-body o_payment_acquirer_select" style="padding:0px 0px 0px 20px !important">
+            <div class="card-body o_payment_acquirer_select cpf_spacing">
                 <t t-foreach="website_sale_order.website_order_line" t-as="line">
                     <label for="stripe_pm" class="radio ">
                         <input id="stripe_pm" type="radio" name="pm_method" class="hidden" data-acquirer-id="8" data-form-payment="True" data-provider="stripe_pm" t-att-value="line.name_short" checked="True" t-attf-onclick="onchangeTextButton1()"/>
@@ -358,7 +137,7 @@
                             <p style="font-style: italic;font-size: 12px;">Paiement en 1 ou 3 fois sans frais</p>
                         </t>
                         <t t-if="website_sale_order.instalment_number>1 and website_sale_order.company_id.id==2">
-                            <p style="font-style: italic;font-size: 12px; margin-bottom: 0rem !important">
+                            <p style="font-style: italic;font-size: 12px; margin-bottom: 0rem !important;padding-left: 31px;">
                                 <span>Paiement en</span>
                                 <span t-field="website_sale_order.instalment_number"/>
                                 <span>fois sans frais</span>
@@ -389,20 +168,8 @@
                     </ul>
                 </t>
             </div>
-            <style>
-                html {
-                scroll-behavior: smooth;
-                }
-                .cpf_position {
-                            text-align:center;
-                        }
-                @media screen and (min-width: 426px) {
-                        .cpf_position {
-                            float:right;
-                        }
-                }
-            </style>
-            <div class="card-body o_payment_acquirer_select" style="padding: 0px 0px 0px 20px !important;">
+
+            <div class="card-body o_payment_acquirer_select cpf_spacing">
                 <t t-foreach="website_sale_order.website_order_line" t-as="line">
                     <label for="cpf_pm" class="radio " t-if="line.product_id.product_tmpl_id.cpf_available">
                         <input type="radio" name="pm_method" data-acquirer-id="16" data-form-payment="True" data-provider="transfer" class="hidden" id="cpf_pm" t-att-value="line.name_short" t-attf-onclick="onchangeTextButton()" />
@@ -414,7 +181,7 @@
 
                     <ul class="cpf_position" t-if="line.product_id.product_tmpl_id.cpf_available">
                         <li class="list-inline-item">
-                            <span data-oe-model="payment.icon" data-oe-id="8" data-oe-field="image_payment_form" data-oe-type="image" data-oe-expression="pm_icon.image_payment_form" data-oe-field-xpath="/t[1]/form[1]/div[1]/t[4]/div[1]/ul[1]/t[2]/li[1]/span[1]">
+                            <span  >
                                 <img style="max-width: 3rem;" class="img-fluid positioncpf" src="/mcm_website_theme/static/src/img/cpf.png"></img>
                             </span>
                         </li>
@@ -437,8 +204,9 @@
             <div id="cpf-details" class="hide">
                 <h5 style="
                 letter-spacing: 0.5px;
-                font-weight: 600;
-                display: inline-block;">
+                
+                display: inline-block;
+                font-size:17px">
                 Vous souhaitez mobiliser votre droit à la formation professionnelle mais vous n'avez pas encore
                 créé votre compte CPF? Voici un tutoriel rapide pour vous guider à vous inscrire:
                 </h5>
@@ -471,80 +239,11 @@
                 </div>
             </div>
             <!-- FIN Mode de financement -->
-            <div t-if="request.website.id == 1">
+            <!-- <div t-if="request.website.id == 1">
                 <script>
-                function onchangeTextButton(){
-                
-                if(document.getElementById("pm_shop_text")){
-                document.getElementById("pm_shop_text").innerHTML = 'Mobiliser mon CPF';
-                document.getElementById("pm_shop_check_text").innerHTML = 'Mobiliser mon CPF';
-                document.getElementById("pm_shop_checkout_text").innerHTML = 'Mobiliser mon CPF';
-                if(document.getElementById("promo_code")){
-                document.getElementById("promo_code").style.display = 'none';
-                }
-                if(document.getElementById("promo_button")){
-                document.getElementById("promo_button").style.display = 'none';
-                }
-                if(document.getElementById("promo_input")){
-                document.getElementById("promo_input").style.display = 'none';
-                }
-                if(document.getElementById("order_instalment")){
-                document.getElementById("order_instalment").style.display = 'none';
-                document.getElementById("order_instalment_checkbox").style.display = 'none';
-                document.getElementById("order_instalment_number").style.display = 'none';
-                document.getElementById("order_instalment_number_order").style.display = 'none';
-                document.getElementById("order_amount_to_pay").style.display = 'none';
-                document.getElementById("order_amount_to_pay_amount").style.display = 'none';
-                }
-                }
-                };
-                function onchangeTextButton1(){
-                    if (document.getElementById("pm_shop_checkout")){
-                document.getElementById("pm_shop_checkout").innerText="Passer au paiement";
-                }
-                if (document.getElementById("pm_shop_checkout2")){
-                document.getElementById("pm_shop_checkout2").innerText="Passer au paiement";
-                }
-                if (document.getElementById("cpf-details")){
-                        document.getElementById("cpf-details").classList.add("hide");
-                        if (document.getElementById("arrow-down")){
-                            document.getElementById("arrow-down").classList.add("hide");  ;
-                        }                       
-                    }
-                
-                 
-                if(document.getElementById("pm_shop_text")){
-                document.getElementById("cpf-details").classList.add("hide");
-                if (document.getElementById("arrow-down")){
-                            document.getElementById("arrow-down").classList.add("hide");  ;
-                        } 
-                
-              
-                if(document.getElementById("promo_code")){
-                document.getElementById("promo_code").style.display = 'inline';
-                } else{
-                document.getElementById("promo_input").style.display = 'inline';
-                document.getElementById("promo_button").style.display = 'inline';
-                }
 
-                if(document.getElementById("order_instalment")){
-                document.getElementById("order_instalment").style.display = 'block';
-                document.getElementById("order_instalment_checkbox").style.display = 'table-cell';
-                } instalment=document.getElementById("checkbox_instalment");
-                if(instalment){ if(instalment.checked==true){
-                document.getElementById("order_instalment_number").style.display = 'block';
-                document.getElementById("order_instalment_number_order").style.display = 'table-cell';
-                document.getElementById("order_amount_to_pay").style.display = 'block';
-                document.getElementById("order_amount_to_pay_amount").style.display = 'table-cell';
-                }
-                }
-                }
-                };
-                if(document.getElementById("promo_button")){
-                document.getElementById("promo_button").style.display = 'inline';
-                }
                 </script>
-            </div>
+            </div> -->
 
         </xpath>
     </template>
@@ -722,12 +421,9 @@
 
     <template id="mcm_website_sale_short_cart_summary" inherit_id="website_sale.short_cart_summary">
         <xpath expr="//a[@class='btn btn-secondary float-right d-none d-xl-inline-block']" position="replace">
-
             <button role="button" t-if="website_sale_order and website_sale_order.website_order_line" class="btn btn-secondary float-right d-none d-xl-inline-block disabled" id="pm_shop_checkout" onclick="showPopup()">
                 <span id="pm_shop_checkout_text">Passer au paiement</span>
             </button>
-
-
         </xpath>
     </template>
 
@@ -834,35 +530,19 @@
                 <script type="text/javascript" src="/mcm_website_theme/static/src/js/template.js"></script>
             </div>
 
-            <script>
-               
-                function verify_checked(){
-                var x=document.getElementById('checkbox_instalment');
-                if(x) {
-                if (document.getElementById('checkbox_instalment').checked==true) {
-                document.getElementById("order_amount_to_pay").style.visibility = 'visible';
-                document.getElementById("order_instalment_number").style.visibility = 'visible';
-                } else {
-                document.getElementById("order_amount_to_pay").style.visibility = 'hidden';
-                document.getElementById("order_instalment_number").style.visibility = 'hidden';
-                }
-                }
-                };
 
-            </script>
         </xpath>
     </template>
 
 
     <template id="mcm_website_sale_cart_script" inherit_id="website_sale.cart">
+        <!-- hide the second button return to shop on bottom-->
         <xpath expr="//a[@class='btn btn-secondary mb32']" position="replace">
-
-
         </xpath>
         <xpath expr="//a[@class='btn btn-primary float-right']" position="replace">
 
             <button role="button" t-if="website_sale_order and website_sale_order.website_order_line" class="btn btn-secondary float-right disabled" id="pm_shop_checkout2" onclick="showPopup()">
-                <span id="pm_shop_checkout_text">Passer au paiement 2</span>
+                <span id="pm_shop_checkout_text">Passer au paiement</span>
             </button>
         </xpath>
         <xpath expr="//a[@class='btn btn-primary float-right d-none d-xl-inline-block']" position="replace">
@@ -871,16 +551,7 @@
                 <span class="fa fa-chevron-right"/>
             </a>
         </xpath>
-        <!-- <xpath expr="//div[@class='col-12 col-xl-8 oe_cart']" position="inside">
 
-            <script>
-
-                
-               
-                
-            </script>
-
-        </xpath> -->
     </template>
 
     <template id="mcm_reduction_code" inherit_id="website_sale.reduction_code" customize_show="True" name="Promo Code">
@@ -893,11 +564,11 @@
 
     <template id="mcm_coupon_form" inherit_id="website_sale.coupon_form" name='Coupon form'>
         <xpath expr="//input[@name='promo']" position="replace">
-            <input name="promo" class="form-control" type="text" placeholder="code..." id="promo_input" style="display:inline;" t-att-value="website_sale_order.pricelist_id.code or None"/>
+            <input name="promo" class="form-control" type="text" placeholder="code..." id="promo_input" style="display:inline; height:40px" t-att-value="website_sale_order.pricelist_id.code or None"/>
         </xpath>
         <xpath expr="//div[hasclass('input-group-append')]" position="replace">
             <div class="input-group-append" id="promo_button" style="display:inline;">
-                <a href="#" role="button" class="btn btn-secondary a-submit">Appliquer</a>
+                <a href="#" role="button" class="btn btn-secondary a-submit" style="height:39px ; margin-left:4px">Appliquer</a>
             </div>
         </xpath>
     </template>
@@ -967,206 +638,5 @@
         </xpath>
     </template>
 
-    <!-- FOOTER-->
 
-    <template id="mcm_website_footer_custom" inherit_id="website.footer_custom">
-        <xpath expr="//div[hasclass('container')]" position="inside">
-
-        </xpath>
-        <!-- <xpath expr="//iframe[2]" position="replace">
-
-        </xpath> -->
-
-
-        <xpath expr="//div[@id='footer']" position="replace">
-            <style>
-                .o_footer .s_text_block .widget-title:before {
-                content: '';
-                border-bottom: 2px solid #fdd103;
-                border-bottom-width: 2px;
-                border-bottom-style: solid;
-                border-bottom-color: rgb(253, 209, 3);
-                position: absolute;
-                bottom: -12px;
-                left: 0;
-                width: 30px;
-                }
-            </style>
-
-
-            <input type="hidden" name="user_name_connected" id="user_name_connected" t-att-value="request.website.get_user_name_logged()"/>
-            <input type="hidden" name="user_email_connected" id="user_email_connected" t-att-value="request.website.get_user_email_logged()"/>
-
-            <div id="footer" class="oe_structure oe_structure_solo" data-oe-id="1568" data-oe-xpath="/data/xpath[2]/div" data-oe-model="ir.ui.view" data-oe-field="arch">
-                <section class="s_text_block pb8 pt0 bg-900" data-name="Text block" style="     background: #000 !important; ">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-md-8 col-sm-8 col-lg-5">
-                                <aside id="text-5" class="widget widget_text">
-                                    <h3 class="widget-title">
-                                        <font style="color: rgb(255, 255, 255);">Bon à savoir</font>
-                                    </h3>
-                                    <div class="textwidget">
-                                        <a href="/blog/blog-taxi-10/post/les-prerequis-pour-exercer-les-metiers-de-chauffeur-vtc-ou-taxi-26" style="cursor: pointer; color:#ffffff">
-                                            <p>Les prérequis pour exercer les métiers de chauffeur VTC ou TAXI</p>
-                                        </a>
-                                        <a href="/blog/blog-vtc-7/post/debouches-ou-travailler-comme-conducteur-vtc-25" style="cursor: pointer; color:#ffffff">
-                                            <p>Débouchés : où travailler en tant que chauffeur de VTC ?</p>
-                                        </a>
-                                        <a href="/blog/blog-vtc-7/post/quel-statut-juridique-choisir-pour-un-chauffeur-vtc-21" style="cursor: pointer; color:#ffffff">
-                                            <p>Quel statut juridique choisir pour un chauffeur de VTC ?</p>
-                                        </a>
-                                        <a href="/blog/blog-taxi-moto-6/post/reglementation-moto-taxi-le-guide-complet-24" style="cursor: pointer; color:#ffffff">
-                                            <p>MOTO-TAXI : réglementation et bonnes pratiques</p>
-                                        </a>
-                                        <a href="/blog" style="cursor: pointer; color:#ffffff">
-                                            <p>Blog métiers de transport</p>
-                                        </a>
-
-
-                                    </div>
-                                </aside>
-                            </div>
-                            <div class="col-md-4 col-sm-4 col-lg-3">
-                                <aside id="text-4" class="widget widget_text">
-                                    <h3 class="widget-title">
-                                        <font style="color: rgb(255, 255, 255);">Centre de support</font>
-                                    </h3>
-                                    <div class="textwidget">
-                                        <ul>
-                                            <a href="/contact" style="cursor: pointer; color:#ffffff">
-                                                <li class="mb-2">
-                                                    <span class="fa fa-envelope"/>
-                                                    Envoyez-nous un message
-                                                </li>
-                                            </a>
-
-                                            <a href="/faq" style="cursor: pointer; color:#ffffff">
-                                                <li class="mb-2">
-                                                    <span class="fa fa-question-circle" data-original-title="" title="" aria-describedby="tooltip437298"/>
-                                                    Foire aux questions
-                                                    <br/>
-                                                </li>
-                                            </a>
-                                            <li class="mb-2">
-                                                <span class="fa fa-info-circle"/>
-                                                Agréé par la préfecture sous le numéro
-                                                <i style="">VTC 59-16-03 |</i>
-                                                <i style="">TAXI 18-03-59</i>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </aside>
-                            </div>
-                            <div class="col-md-8 col-sm-8 col-lg-4" style="border-style: none; border-width: 0px;">
-                                <aside id="contact-info-widget-2" class="widget contact-info">
-                                    <h3 class="widget-title">
-                                        <font style="color: rgb(255, 255, 255);">Retrouvez-nous et partagez vos
-                                            expériences sur nos réseaux sociaux
-                                        </font>
-                                    </h3>
-                                    <div class="contact-info">
-                                        <ul class="contact-details">
-                                            <li>
-                                                <div>
-                                                    <a style="color: #ffffff" href="https://fr-fr.facebook.com/pg/formation.mcm.academy">
-                                                        <span class="fa fa-facebook-square fa-2x" data-original-title="" title="" aria-describedby="tooltip139952"/>
-
-                                                    </a>
-                                                    <a style="color: #ffffff" href="https://www.instagram.com/formation.mcm.academy/">
-                                                        <span class="fa fa-2x fa-instagram" data-original-title="" title="" aria-describedby="tooltip799266"/>
-
-                                                    </a>
-
-                                                    <a style="color: #ffffff" href="https://www.youtube.com/channel/UCYFC80fsylTETNppaBlAVkQ">
-                                                        <span class="fa fa-youtube-play fa-2x" data-original-title="" title="" aria-describedby="tooltip749786"/>
-
-                                                    </a>
-
-                                                </div>
-
-                                                <div class="contact-info" style="">
-                                                    <ul class="contact-details" style="margin-bottom: 1rem; list-style-type: disc;">
-                                                        <li style="font-weight: 400;">
-                                                            <span style="font-weight: 700;"/>
-                                                            <br/>
-                                                            Politique de confidentialité
-                                                            <br/>
-                                                            <br/>
-                                                        </li>
-                                                        <a href="/conditions" style="color:#fff">
-                                                            <li>Conditions générales de vente</li>
-                                                        </a>
-                                                    </ul>
-                                                </div>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </aside>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-
-            </div>
-
-            <!-- Début de widget de badge Calendly -->
-            <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet"/>
-            <style>
-        .calendly-badge-widget {
-        left: 20px !important;
-    }
-    .calendly-badge-content{
-        color: #fdd103 !important;
-    }
-            </style>
-            <script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async="async"></script>
-            <script type="text/javascript">window.onload = function() { Calendly.initBadgeWidget({ url: 'https://calendly.com/mcm-academy', text: 'Renseignements TAXI/VTC/VMDTR', color: '#1A1A1A', textColor: '#FFFFFF', branding: false }); }</script>
-            <!-- Fin de widget de badge Calendly -->
-
-        </xpath>
-        <xpath expr="//div[@class='o_footer_copyright']" position="replace">
-            <section id="sh_copyright_7">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-12 text-center">
-
-                            <p>
-                                <a style="color:#fff;" href="https:www.mcm-academy.fr">
-                                   © MCM ACADEMY
-                                </a>
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </section>
-            <script>
-  window.intercomSettings = {
-    app_id: "ekqg4dck"
-  };
-            </script>
-
-            <script>
-// We pre-filled your app ID in the widget URL: 'https://widget.intercom.io/widget/ekqg4dck'
-(function(){var w=window;var ic=w.Intercom;if(typeof ic==="function"){ic('reattach_activator');ic('update',w.intercomSettings);}else{var d=document;var i=function(){i.c(arguments);};i.q=[];i.c=function(args){i.q.push(args);};w.Intercom=i;var l=function(){var s=d.createElement('script');s.type='text/javascript';s.async=true;s.src='https://widget.intercom.io/widget/ekqg4dck';var x=d.getElementsByTagName('script')[0];x.parentNode.insertBefore(s,x);};if(document.readyState==='complete'){l();}else if(w.attachEvent){w.attachEvent('onload',l);}else{w.addEventListener('load',l,false);}}})();
-            </script>
-
-            <script>
-window.axeptioSettings = {
-  clientId: "616580784320854530dc346b",
-  cookiesVersion: "mcm-academy-base",
-};
- 
-(function(d, s) {
-  var t = d.getElementsByTagName(s)[0], e = d.createElement(s);
-  e.async = true; e.src = "//static.axept.io/sdk.js";
-  t.parentNode.insertBefore(e, t);
-})(document, "script");
-            </script>
-        </xpath>
-
-
-    </template>
-
-    <!-- FIN FOOTER-->
 </odoo>
