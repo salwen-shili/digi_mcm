@@ -60,8 +60,9 @@ class NoteExamen(models.Model):
 
     @api.onchange('epreuve_a', 'epreuve_b', 'presence')
     def _compute_moyenne_generale(self):
-        """ This function used to auto display some result
-        like the "Moyenne Generale" & "Mention" & "Resultat" """
+        """ This function used to auto display result
+        like the "Moyenne Generale" & "Mention" & "Resultat" 
+        also add to put "presence" based on sessions conditions"""
         for rec in self:
             rec.moyenne_generale = (rec.epreuve_a + rec.epreuve_b) / 2
             if rec.epreuve_a >= 10 and rec.epreuve_b >= 8 and rec.moyenne_generale >= 12:
