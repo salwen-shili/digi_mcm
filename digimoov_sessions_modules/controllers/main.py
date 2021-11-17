@@ -666,9 +666,5 @@ class Date_Examen(http.Controller):
         if exam_date_id and exam_date_id != 'all':
             module = request.env['mcmacademy.module'].sudo().search([('id', '=', exam_date_id)], limit=1)
             if module and partner:
-<<<<<<< HEAD
-                partner.date_examen_edof=module.date_exam
-=======
-                partner.date_examen_edof = module.date_exam
->>>>>>> hotfix-cart
+                partner.date_examen_edof= module.date_exam
         return True
