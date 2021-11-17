@@ -50,7 +50,7 @@ class IdenfyCustomPortal(CustomerPortal):
         name = http.request.env.user.name
         email = http.request.env.user.email
         partner_id = http.request.env.user.partner_id
-        status = partner_id.uploaded_doc_after_check_status(request.website)
+        status = partner_id.idenfy_document_data_id.status
         if not partner_id.check_status(request.website):
             request.website.generate_idenfy_token(user_id=http.request.env.user.id)
         if partner_id and status != 'APPROVED':
