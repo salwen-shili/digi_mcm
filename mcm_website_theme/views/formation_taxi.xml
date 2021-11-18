@@ -270,7 +270,7 @@ Métiers et de l'Artisanat (CMA) est obligatoire.<br/>
     <br/>
   </font>
   <span class="fa fa-chevron-right" data-original-title="" title="" aria-describedby="tooltip560396" style="   font-size: 15px;   text-align: left;color: rgb(8, 82, 148);"/>
-  <a href="/pdf/DEMARCHES_D'INSCRIPTION_A_LA_CMA_-_MCM_ACADEMY.pdf">
+  <a href="/mcm_website_theme/static/pdf/DEMARCHES_D'INSCRIPTION_A_LA_CMA_-_MCM_ACADEMY.pdf">
     <span style="text-align: left;color: rgb(8, 82, 148);font-family: Poppins, sans-serif;font-size: 14px;">&amp;nbsp;En savoir plus</span>
   </a>
   <br/>
@@ -297,7 +297,7 @@ site web.</font>
 <p>
   <font style="color: rgb(66, 66, 66)">
     <span class="fa fa-chevron-right" data-original-title="" title="" aria-describedby="tooltip560396" style="font-size: 15px; text-align: left; color: rgb(8, 82, 148);   "/>
-    <a href="/pdf/DEMARCHES_D'INSCRIPTION_SUR_LE_SITE_MCM_ACADEMY.pdf">
+    <a href="/mcm_website_theme/static/pdf/DEMARCHES_D'INSCRIPTION_SUR_LE_SITE_MCM_ACADEMY.pdf">
       <span style=" text-align: left; color: rgb(8, 82, 148); font-family: Poppins, sans-serif; font-size: 14px;   ">&amp;nbsp;En savoir plus</span>
     </a>
     <br/>
@@ -327,7 +327,7 @@ obtenu, il faut déposer un dossier à la préfecture.</font>
 <p>
   <font style="color: rgb(66, 66, 66)">
     <span class="fa fa-chevron-right" data-original-title="" title="" aria-describedby="tooltip560396" style=" font-size: 15px; text-align: left; color: rgb(8, 82, 148);   "/>
-    <a href="/pdf/Devenez_chauffeur_taxi_vtc_démarches_dépôt_dossier_préfecture.pdf">
+    <a href="/mcm_website_theme/static/pdf/Devenez_chauffeur_taxi_vtc_démarches_dépôt_dossier_préfecture.pdf">
       <span style=" text-align: left; color: rgb(8, 82, 148); font-family: Poppins, sans-serif; font-size: 14px;   ">&amp;nbsp;En savoir plus</span>
     </a>
     <br/>
@@ -432,7 +432,7 @@ obtenu, il faut déposer un dossier à la préfecture.</font>
 <div class="row s_nb_column_fixed">
 <div class="col-lg-12 s_title pt24 pb16" style="text-align: center">
 <div class="s_btn text-center pt16 pb16" data-name="Button">
-<a href="/pdf/programme_de_formation_MCM_ACADEMY_2021.pdf" class="btn btn-primary sh_btn_cm_8 btn-lg" data-original-title="" title="" aria-describedby="tooltip361278" target="_blank">TÉLÉCHARGER LE PROGRAMME DE LA FORMATION TAXI</a>
+<a href="/mcm_website_theme/static/pdf/programme_de_formation_MCM_ACADEMY_2021.pdf" class="btn btn-primary sh_btn_cm_8 btn-lg" data-original-title="" title="" aria-describedby="tooltip361278" target="_blank">TÉLÉCHARGER LE PROGRAMME DE LA FORMATION TAXI</a>
 </div>
 <h2 class="s_title_default">
 <b>

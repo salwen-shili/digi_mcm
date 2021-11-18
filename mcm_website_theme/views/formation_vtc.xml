@@ -250,7 +250,7 @@
                       font-family: Poppins, sans-serif;
                       font-size: 14px;
                     ">&amp;nbsp;
-        <a href="/pdf/programme_de_formation_MCM_ACADEMY_2021.pdf" target="_blank" data-original-title="" title="" style="color: #2667ae">En savoir plus</a
+        <a href="/mcm_website_theme/static/pdf/programme_de_formation_MCM_ACADEMY_2021.pdf" target="_blank" data-original-title="" title="" style="color: #2667ae">En savoir plus</a
                     >
       </span>
     </p>
@@ -326,7 +326,7 @@
         <br />
       </font>
       <span class="fa fa-chevron-right" />
-      <a href="/pdf/DEMARCHES_D'INSCRIPTION_A_LA_CMA_-_MCM_ACADEMY.pdf">
+      <a href="/mcm_website_theme/static/pdf/DEMARCHES_D'INSCRIPTION_A_LA_CMA_-_MCM_ACADEMY.pdf">
                         &amp;nbsp;
         <span style="
                             text-align: left;
@@ -382,7 +382,7 @@
                           text-align: left;
                           color: rgb(8, 82, 148);
                         " />
-      <a href="/pdf/DEMARCHES_D'INSCRIPTION_A_LA_CMA_-_MCM_ACADEMY.pdf">
+      <a href="/mcm_website_theme/static/pdf/DEMARCHES_D'INSCRIPTION_A_LA_CMA_-_MCM_ACADEMY.pdf">
                         &amp;nbsp;
         <span style="
                             text-align: left;
@@ -443,10 +443,10 @@
                           text-align: left;
                           color: rgb(8, 82, 148);
                         " />
-      <a href="/pdf/DEMARCHES_D'INSCRIPTION_SUR_LE_SITE_MCM_ACADEMY.pdf">
+      <a href="/mcm_website_theme/static/pdf/DEMARCHES_D'INSCRIPTION_SUR_LE_SITE_MCM_ACADEMY.pdf">
                         &amp;nbsp;
       </a>
-      <a href="/pdf/Devenez_chauffeur_taxi_vtc_démarches_dépôt_dossier_préfecture.pdf">
+      <a href="/mcm_website_theme/static/pdf/Devenez_chauffeur_taxi_vtc_démarches_dépôt_dossier_préfecture.pdf">
         <span style="
                             text-align: left;
                             color: rgb(8, 82, 148);
@@ -467,7 +467,7 @@
 <div class="row">
 <div class="pt8 pb16 col-lg-12" style="border-style: none; border-width: 0px">
 <div class="s_btn text-center pt16 pb16" data-name="Button">
-  <a href="/pdf/programme_de_formation_MCM_ACADEMY_2021.pdf" class="btn btn-primary sh_btn_cm_8 btn-lg" data-original-title="" title="" aria-describedby="tooltip710781" target="_blank">TÉLÉCHARGER LE PROGRAMME DE LA FORMATION VTC</a
+  <a href="/mcm_website_theme/static/pdf/programme_de_formation_MCM_ACADEMY_2021.pdf" class="btn btn-primary sh_btn_cm_8 btn-lg" data-original-title="" title="" aria-describedby="tooltip710781" target="_blank">TÉLÉCHARGER LE PROGRAMME DE LA FORMATION VTC</a
                   >
 </div>
 <p class="lead">
@@ -664,7 +664,7 @@
                       font-family: Poppins, sans-serif;
                       font-size: 18px;
                     ">
-<a href="/pdf/programme_de_formation_MCM_ACADEMY_2021.pdf" style="color: rgb(8, 82, 148)" target="_blank">Découvrez les modules en détail</a
+<a href="/mcm_website_theme/static/pdf/programme_de_formation_MCM_ACADEMY_2021.pdf" style="color: rgb(8, 82, 148)" target="_blank">Découvrez les modules en détail</a
                     >
 </span>
 <span style="
