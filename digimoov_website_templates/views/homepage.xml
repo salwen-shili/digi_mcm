@@ -2281,6 +2281,7 @@
 
                         <!-- page TRANSPORT ROUTIER -->
                      
+                      
                         <div id="transport-routier" t-if="partenaire=='transport-routier'" style="border-style: none; border-width: 0px;">
                             <style>
                                                 .h1-title {
@@ -2366,17 +2367,10 @@
                                 <div class="container">
                                     <div class="row">
                                         <div class="bannarcol col-lg-6 col-md-12" style="border-style: none; border-width: 0px">
-                                            <h1 style="text-align: center; ">
-                                        FORMATION <font style="color: rgb(231, 148, 57);">CAPACITÉ</font>
-                                            </h1>
-                                            <h1 style="text-align: center; ">
-                                                <font style="color: rgb(231, 148, 57);">DE TRANSPORT ROUTIER</font>
+                                            <h1 style="text-align: center; "> FORMATION CAPACITÉ TRANSPORT LOURD +3.5t
                                             </h1>
                                             <h4 class="paratext" style="text-align: center; ">
-                                                <span style="background-color: transparent; color: rgb(0, 0, 0); font-family: Arial; font-variant: normal; text-decoration: none; vertical-align: baseline; white-space: pre-wrap;">
-                                                    <b></b>
-                                                </span>
-                                                <span style="background-color: transparent; color: rgb(0, 0, 0); font-family: Arial; font-size: 18px; font-variant: normal; font-weight: 400; text-decoration: none; vertical-align: baseline; white-space: pre-wrap;">Optez pour notre formation 100% en ligne sur la capacité de transport lourd de marchandises !</span>
+                                                <span style="background-color: transparent; color: rgb(0, 0, 0); font-family: Arial; font-size: 18px; font-variant: normal; font-weight: 400; text-decoration: none; vertical-align: baseline; ">Optez pour notre formation 100% en ligne sur la capacité de transport lourd de marchandises !</span>
                                             </h4>
                                             <p class="paratext"/>
                                             <h4 style="text-align: center;">
@@ -2462,61 +2456,50 @@
                             <section class="s_features pt32 pb32" data-name="Features">
                                 <div class="container">
                                     <div class="row">
-                                        <div class="col-lg-4 pt32 pb32 text-center">
-                                            <i class="fa fa-3x fa-gear rounded-circle bg-gamma m-3"/>
+                                        <div class="pb32 text-center  col-lg-12">
+                                            <i class="bg-alpha fa fa-3x fa-gear m-3 rounded-circle" data-original-title="" title="" aria-describedby="tooltip299597" style=""/>
                                             <h3>
                                                 <font style="" class="text-alpha">Les prérequis</font>
                                             </h3>
                                             <h5>
-                                                <div style="text-align: left;">
-                                                    <span style="background-color: transparent; color: rgb(0, 0, 0); font-family: Arial; font-weight: 400; white-space: pre-wrap;">- Maitrise de la langue française</span>
+                                                <div style="text-align: center;">
+                                                    <span style="background-color: transparent; color: rgb(99, 99, 99); font-family: Arial; font-weight: 400; "> Maitrise de la langue française.</span>
                                                     <br/>
-                                                    <span style="/* background-color: transparent; */color: rgb(0, 0, 0);/* font-family: Arial; *//* font-size: 14px; *//* font-style: normal; *//* font-variant: normal; *//* font-weight: 400; *//* text-decoration: none; *//* vertical-align: baseline; *//* white-space: pre-wrap; */">
-                                        - Maitrise des opérations mathématique de base. 
-                                                    </span>
+                                                    <span style="background-color: transparent; color: rgb(99, 99, 99); font-family: Arial; font-weight: 400; "> Maitrise des opérations mathématique de base.</span>
                                                 </div>
                                             </h5>
                                         </div>
-                                        <div class="col-lg-4 pt32 pb32 text-center" style="border-style: none; border-width: 0px;">
-                                            <i class="fa fa-3x rounded bg-epsilon m-3 fa-group"/>
+                                        <div class="pb32 text-center col-lg-6 pt0" style="border-style: none; border-width: 0px;">
+                                            <i class="bg-alpha fa fa-3x fa-group m-3 rounded rounded-circle" data-original-title="" title="" aria-describedby="tooltip261570" style=""/>
                                             <h3>
                                                 <font style="" class="text-alpha">Le profil des stagiaires</font>
                                             </h3>
                                             <h5>
                                                 <div style="text-align: left;">
-                                                    <span style="/* background-color: transparent; */color: rgb(0, 0, 0);font-family: Arial;font-weight: 400;/* white-space: pre-wrap; */">- Personnes désirant devenir gestionnaire d'entreprise de transport routier de marchandises.</span>
+                                                    <span style="color: rgb(99, 99, 99); font-family: Arial; font-weight: 400;">Personnes désirant devenir gestionnaire d'entreprise de transport routier de marchandises.</span>
                                                     <br/>
-                                                    <span style="/* background-color: transparent; */color: rgb(0, 0, 0);/* font-family: Arial; */font-size: 14px;/* font-style: normal; *//* font-variant: normal; *//* font-weight: 400; *//* text-decoration: none; *//* vertical-align: baseline; *//* white-space: pre-wrap; */">
-
-                                                        <span style="background-color: transparent; font-size: 18px; font-weight: 400;">- Personnes souhaitant acquérir de nouvelles compétences en transport routier de marchandises. </span>
-
+                                                    <span style="*/; *//* font-variant: normal; *//* font-weight: 400; *//* text-decoration: none; *//* vertical-align: baseline; *//* white-space: pre-wrap; */color: rgb(0, 0, 0); */font-size: 14px; /* background-color: transparent; /* font-family: Arial; /* font-style: normal;">
+                                                        <span style="background-color: transparent; color: rgb(99, 99, 99); font-size: 18px; font-weight: 400;">Personnes souhaitant acquérir de nouvelles compétences en transport routier de marchandises.</span>
+                                                        <span style="background-color: transparent; font-size: 18px; font-weight: 400;"></span>
                                                     </span>
                                                 </div>
                                             </h5>
                                         </div>
-
-                                        <div class="col-lg-4 pt32 pb32 text-center" style="border-style: none; border-width: 0px;">
-                                            <i class="fa fa-3x rounded-leaf bg-primary m-3 fa-flag"/>
+                                        <div class="pb32 text-center col-lg-6 pt0" style="border-style: none; border-width: 0px;">
+                                            <i class="fa fa-3x rounded-leaf bg-primary m-3 fa-flag rounded-circle" data-original-title="" title="" aria-describedby="tooltip106707"/>
                                             <h3>
                                                 <font style="" class="text-alpha">Les Objectifs</font>
                                             </h3>
                                             <h5>
                                                 <div style="text-align: left;">
-                                                    <span style="/* background-color: transparent; */color: rgb(0, 0, 0);font-family: Arial;font-weight: 400;/* white-space: pre-wrap; */">
-                                            - Préparation à l'examen national pour l'obtention de l'attestation de capacité professionnelle.</span>
+                                                    <span style="color: rgb(99, 99, 99); font-family: Arial; font-weight: 400;">Préparation à l'examen national pour l'obtention de l'attestation de capacité professionnelle.</span>
                                                     <br/>
-                                                    <span style="color:#000;background-color: transparent; font-size: 18px; font-weight: 400;">
-    - Acquisition de connaissance en réglementation (Commerciale, Sociale, Transport). 
-                                                    </span>
+                                                    <span style="background-color: transparent; color: rgb(99, 99, 99); font-size: 18px; font-weight: 400;">Acquisition de connaissance en réglementation (Commerciale, Sociale, Transport). </span>
                                                     <br/>
-
-                                                    <span style="color:#000; font-size: 18px; font-weight: 400;">
-    - Acquisition de connaissances en gestion économique et financière d'entreprise. </span>
-
-
+                                                    <span style="color: rgb(99, 99, 99); font-size: 18px; font-weight: 400;">Acquisition de connaissances en gestion économique et financière d'entreprise.</span>
+                                                    <span style="color:#000; font-size: 18px; font-weight: 400;"></span>
                                                 </div>
                                             </h5>
-
                                         </div>
                                     </div>
                                 </div>
@@ -2539,6 +2522,42 @@
                                                 <span data-original-title="" title="" aria-describedby="tooltip254674">Télécharger</span>
                                                 <i class="fa fa-1x fa-fw fa-arrow-circle-right ml-1"/>
                                             </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
+
+                            <section class="s_text_block pt32 " data-name="Text block">
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="col-lg-12  pb32" style="border-style: none; border-width: 0px;">
+                                            <h1>
+                                                <span style="background-color: transparent; color: rgb(153, 0, 255); font-family: Arial; font-style: normal; font-variant: normal; font-weight: 700; text-decoration: none; vertical-align: baseline; white-space: pre-wrap;">Comment se déroule l’examen de la capacité de transport lourd de marchandise ?</span>
+                                            </h1>
+                                            <h5>
+                                                <span style="background-color: transparent; color: rgb(0, 0, 0); font-family: Arial; font-style: normal; font-variant: normal; font-weight: 400; text-decoration: none; vertical-align: baseline; white-space: pre-wrap;">C’est la DREAL de votre département qui s’occupera de la gestion de votre inscription et du déroulement de l’examen.</span>
+                                                <span style="background-color: transparent; color: rgb(0, 0, 0); font-family: Arial; font-style: normal; font-variant: normal; font-weight: 400; text-decoration: none; vertical-align: baseline; white-space: pre-wrap;">Pour vous inscrire, vous aurez à remplir un formulaire sur le site de</span>
+                                                <span style="background-color: transparent; color: rgb(0, 0, 255); font-family: Arial; font-style: normal; font-variant: normal; font-weight: 400; text-decoration: none; vertical-align: baseline; white-space: pre-wrap;"> evalbox</span>
+                                                <span style="background-color: transparent; color: rgb(0, 0, 0); font-family: Arial; font-style: normal; font-variant: normal; font-weight: 400; text-decoration: none; vertical-align: baseline; white-space: pre-wrap;"> , tout en sachant que les inscriptions sont généralement ouvertes jusqu'à la fin du mois de juillet de chaque année. Tandis que l’examen se déroule souvent au début du mois d’octobre. Si vous réussissez à l’examen, votre attestation de capacité professionnelle sera délivrée par le préfet de votre région ;</span>
+                                                <br/>
+                                                <span style="background-color: transparent; color: rgb(0, 0, 0); font-family: Arial; font-style: normal; font-variant: normal; font-weight: 400; text-decoration: none; vertical-align: baseline; white-space: pre-wrap;">L’examen se compose : d’un questionnaire sous la forme de questions à choix multiples portant sur l’ensemble des matières énoncées à </span>
+                                                <span style="background-color: transparent; color: rgb(0, 0, 255); font-family: Arial; font-style: normal; font-variant: normal; font-weight: 400; text-decoration: none; vertical-align: baseline; white-space: pre-wrap;">l’annexe 1 du règlement (CE) n° 1071 / 2009 </span>
+                                                <span style="background-color: transparent; color: rgb(99, 99, 99); font-family: Arial; font-style: normal; font-variant: normal; font-weight: 400; text-decoration: none; vertical-align: baseline; white-space: pre-wrap;">et</span>
+                                                <span style="background-color: transparent; color: rgb(0, 0, 0); font-family: Arial; font-style: normal; font-variant: normal; font-weight: 400; text-decoration: none; vertical-align: baseline; white-space: pre-wrap;"> d’une épreuve portant sur la gestion et l’exploitation de l’entreprise et pouvant faire appel à l’ensemble des connaissances énoncées à</span>
+                                                <span style="background-color: transparent; color: rgb(0, 0, 255); font-family: Arial; font-style: normal; font-variant: normal; font-weight: 400; text-decoration: none; vertical-align: baseline; white-space: pre-wrap;"> l’annexe 1 du règlement (CE) n° 1071 / 2009 </span>
+                                                <span style="background-color: transparent; color: rgb(0, 0, 0); font-family: Arial; font-style: normal; font-variant: normal; font-weight: 400; text-decoration: none; vertical-align: baseline; white-space: pre-wrap;">composées de questions et d’exercices exigeant une réponse rédigée.</span>
+                                                <br/>
+                                                <span style="background-color: transparent; color: rgb(0, 0, 0); font-family: Arial; font-style: normal; font-variant: normal; font-weight: 400; text-decoration: none; vertical-align: baseline; white-space: pre-wrap;">La durée totale des épreuves est fixée à quatre heures.</span>
+                                                <br/>
+                                                <span style="background-color: transparent; color: rgb(0, 0, 0); font-family: Arial; font-style: normal; font-variant: normal; font-weight: 400; text-decoration: none; vertical-align: baseline; white-space: pre-wrap;">Barème : le nombre total de points est de 200. Il se décompose comme suit </span>
+                                                <br/>
+                                                <span style="background-color: transparent; color: rgb(0, 0, 0); font-family: Arial; font-style: normal; font-variant: normal; font-weight: 400; text-decoration: none; vertical-align: baseline; white-space: pre-wrap;">- questionnaire à choix multiple : 100 points.</span>
+                                                <br/>
+                                                <span style="background-color: transparent; color: rgb(0, 0, 0); font-family: Arial; font-style: normal; font-variant: normal; font-weight: 400; text-decoration: none; vertical-align: baseline; white-space: pre-wrap;">- épreuve à réponses rédigées : 100 points.</span>
+                                                <br/>
+                                                <span style="background-color: transparent; color: rgb(0, 0, 0); font-family: Arial; font-style: normal; font-variant: normal; font-weight: 400; text-decoration: none; vertical-align: baseline; white-space: pre-wrap;">Sont déclarés reçus les candidats qui ont obtenu pour l’ensemble des épreuves une note au moins égale à 120 sur 200, sous réserve qu’ils aient obtenu au moins 50 points pour le questionnaire à choix multiple et 40 points pour l’épreuve à réponses rédigées.</span>
+                                            </h5>
+
                                         </div>
                                     </div>
                                 </div>
@@ -2632,16 +2651,15 @@
                                     </div>
                                 </div>
                             </section>
-                            <!-- pricing table-->
                             <div class="container pt64 pb32" id="pricing">
                                 <div class="row" style="place-content: center;">
                                     <div class="col-lg-6 col-md-8 col-sm-12">
                                         <div class="card border-0 shadow " style="border-radius: 25px 25px">
                                             <div class="text-center text-white border-0" style="
-                                            background-color: #6e209f;
-                                            border-top-left-radius: 25px;
-                                            border-top-right-radius: 25px;
-                                        ">
+                                                            background-color: #6e209f;
+                                                            border-top-left-radius: 25px;
+                                                            border-top-right-radius: 25px;
+                                                        ">
                                                 <br/>
                                                 <p>
                                                     <strong style="color: white">
@@ -2708,16 +2726,16 @@
 
                                                             </div>
                                                             <p class="
-                                                medium
-                                                text-center
-                                                font-weight-bolder
-                                                text-secondary
-                                            " style="color: red !important">
-                                                                            Paiement 1 fois
+                                                                medium
+                                                                text-center
+                                                                font-weight-bolder
+                                                                text-secondary
+                                                            " style="color: red !important">
+                                                                                            Paiement 1 fois
                                                             </p>
                                                             <br/>
                                                             <button class="btn btn-block text-white" onClick="(function(){msTracking('clic sur inscrire pack solo coursier2roues','Pricing Table events','Inscrire pack solo coursier2roues','590'); document.getElementById('form-coursier2roues').submit();return false;})();return false;" style="background-color: #6e209f; border-radius: 25px">
-                                                                            Je m'inscris
+                                                                                            Je m'inscris
                                                             </button>
                                                         </div>
                                                     </form>
@@ -2727,7 +2745,6 @@
                                     </div>
                                 </div>
                             </div>
-
                         </div>
                         <!-- page langues-->
                        
