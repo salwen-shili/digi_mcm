@@ -15,7 +15,8 @@ class IdenfyWebsiteSale(WebsiteSale):
         order = request.website.sale_get_order()
         name = http.request.env.user.name
         email = http.request.env.user.email
-        if order.partner_id:
+        status = order.partner_id.idenfy_document_data_id.status
+        if order.partner_id and not request.env.user.has_group('base.group_user') and status in ['ACTIVE','APPROVED']:
             order.partner_id.fetch_document_details_from_idenfy(request.website)
         if order.partner_id.idenfy_document_data_id and order.partner_id.idenfy_document_data_id.res_data:
             docExpiry = eval(order.partner_id.idenfy_document_data_id.res_data).get('docExpiry', '')
@@ -50,10 +51,11 @@ class IdenfyCustomPortal(CustomerPortal):
         name = http.request.env.user.name
         email = http.request.env.user.email
         partner_id = http.request.env.user.partner_id
-        status = partner_id.idenfy_document_data_id.status
         if not partner_id.check_status(request.website):
             request.website.generate_idenfy_token(user_id=http.request.env.user.id)
-        if partner_id and status != 'APPROVED':
+            partner_id.check_status(request.website) #called because updating status in the idenfy record.
+        status = partner_id.idenfy_document_data_id.status
+        if partner_id and status and (status != 'APPROVED' or status == 'ACTIVE'):
             if request.website.id == 2:  # id 2 of website in database means website DIGIMOOV
                 return http.request.render('mcm_contact_documents.mcm_contact_document_charger_mes_documents', {
                     'email': email, 'name': name, 'partner_id': partner_id, 'ex_warning':'','error_identity': '', 'error_permis': '', 'error_permis_number': '', 'error_domicile': ''})
