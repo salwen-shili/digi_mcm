@@ -249,7 +249,7 @@
               <p>
                 <font style="color: rgb(66, 66, 66);">
                   <span class="fa fa-chevron-right" data-original-title="" title="" aria-describedby="tooltip560396" style="font-size: 15px; text-align: left; color: rgb(8, 82, 148);"/>
-                  <a href="/pdf/DEMARCHES_D'INSCRIPTION_A_LA_CMA_-_MCM_ACADEMY.pdf">
+                  <a href="/mcm_website_theme/static/pdf/DEMARCHES_D'INSCRIPTION_A_LA_CMA_-_MCM_ACADEMY.pdf">
                     <span style="text-align: left; color: rgb(8, 82, 148); font-family: Poppins, sans-serif; font-size: 14px;">&amp;nbsp;En savoir plus</span>
                   </a>
                   <br/>
@@ -277,8 +277,8 @@
               <p>
                 <font style="color: rgb(66, 66, 66);">
                   <span class="fa fa-chevron-right" data-original-title="" title="" aria-describedby="tooltip560396" style="font-size: 15px; text-align: left; color: rgb(8, 82, 148);"/>
-                  <a href="/pdf/DEMARCHES_D'INSCRIPTION_SUR_LE_SITE_MCM_ACADEMY.pdf"/>
-&amp;nbsp;<a href="/pdf/DEMARCHES_D'INSCRIPTION_SUR_LE_SITE_MCM_ACADEMY.pdf" style="background-color: rgb(255, 255, 255);">
+                  <a href="/mcm_website_theme/static/pdf/DEMARCHES_D'INSCRIPTION_SUR_LE_SITE_MCM_ACADEMY.pdf"/>
+&amp;nbsp;<a href="/mcm_website_theme/static/pdf/DEMARCHES_D'INSCRIPTION_SUR_LE_SITE_MCM_ACADEMY.pdf" style="background-color: rgb(255, 255, 255);">
                   <span style="text-align: left; color: rgb(8, 82, 148); font-family: Poppins, sans-serif;" data-original-title="" title="" aria-describedby="tooltip275127">En savoir plus</span>
                 </a>
                 <br/>
@@ -393,7 +393,7 @@
         <span class="fa fa-chevron-right" data-original-title="" title="" aria-describedby="tooltip560396" style="font-size: 15px; color: rgb(8, 82, 148);"/>
         <span style="color: rgb(8, 82, 148); font-family: Poppins, sans-serif; font-size: 14px;">&amp;nbsp;</span>
         <span style="color: rgb(0, 0, 255); font-family: Poppins, sans-serif; font-size: 18px;">
-          <a href="/pdf/programme_de_formation_MCM_ACADEMY_2021.pdf" style="color: #0d5294;" target="_blank">Découvrez les modules en détail</a>
+          <a href="/mcm_website_theme/static/pdf/programme_de_formation_MCM_ACADEMY_2021.pdf" style="color: #0d5294;" target="_blank">Découvrez les modules en détail</a>
         </span>
         <font color="#000000" face="Poppins, sans-serif" style="font-size: 18px;">
           <br/>
