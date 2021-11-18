@@ -43,30 +43,30 @@ class Import(models.TransientModel):
                     partners = self.env['res.partner'].search([('numero_cpf',"=",num_dossier)])
                     _logger.info('lead %s' %lead.name)
                     for partner in partners:
-                #         # if (partner.numero_cpf) and (partner.numero_cpf == lead.num_dossier):
-                #         #     print('lead',lead.num_dossier,'partner',partner.numero_cpf)
-                #         """Changer statut_cpf des fiches client selon
-                #                                   statut de dossier nsur edof"""
-                #         partner.mode_de_financement = 'cpf'
-                #         if lead.stage_id.name == "En formation":
-                #             partner.statut_cpf = "in_training"
-                #         if lead.stage_id.name == "Accepté":
-                #             partner.statut_cpf = "accepted"
-                #             if not partner.id_edof:
-                #                 partner.id_edof=lead.numero_action
-                #             self.cpf_accpted(partner)
-                #         if "Annulé" in lead.stage_id.name:
-                #             partner.statut_cpf = "canceled"
-                #         if lead.stage_id.name == "Sortie de formation":
-                #             partner.statut_cpf = "out_training"
-                #         if lead.stage_id.name == "Facturé":
-                #             partner.statut_cpf = "bill"
-                #         if lead.stage_id.name == "Service fait déclaré":
-                #             partner.statut_cpf = "service_declared"
-                #         if "Service fait validé" in lead.stage_id.name:
-                #             partner.statut_cpf = "service_validated"
-                #         if lead.stage_id.name == "Annulation titulaire":
-                #             partner.statut_cpf = "canceled"
+                        # if (partner.numero_cpf) and (partner.numero_cpf == lead.num_dossier):
+                        #     print('lead',lead.num_dossier,'partner',partner.numero_cpf)
+                        """Changer statut_cpf des fiches client selon
+                                                  statut de dossier nsur edof"""
+                        # partner.mode_de_financement = 'cpf'
+                        # if lead.stage_id.name == "En formation":
+                        #     partner.statut_cpf = "in_training"
+                        if lead.stage_id.name == "Accepté":
+                            partner.statut_cpf = "accepted"
+                            if not partner.id_edof:
+                                partner.id_edof=lead.numero_action
+                            self.cpf_accpted(partner)
+                        # if "Annulé" in lead.stage_id.name:
+                        #     partner.statut_cpf = "canceled"
+                        # if lead.stage_id.name == "Sortie de formation":
+                        #     partner.statut_cpf = "out_training"
+                        # if lead.stage_id.name == "Facturé":
+                        #     partner.statut_cpf = "bill"
+                        # if lead.stage_id.name == "Service fait déclaré":
+                        #     partner.statut_cpf = "service_declared"
+                        # if "Service fait validé" in lead.stage_id.name:
+                        #     partner.statut_cpf = "service_validated"
+                        # if lead.stage_id.name == "Annulation titulaire":
+                        #     partner.statut_cpf = "canceled"
 
                         lead.sudo().write({
                                 'partner_id': partner,
