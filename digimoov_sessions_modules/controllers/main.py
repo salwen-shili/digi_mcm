@@ -27,23 +27,6 @@ class WebsiteSale(WebsiteSale):
         revive: Revival method when abandoned cart. Can be 'merge' or 'squash'
         """
         order = request.website.sale_get_order()
-        documents = False
-        if order.partner_id:
-            documents = request.env['documents.document'].sudo().search([('partner_id', '=', order.partner_id.id)])
-        if order and order.partner_id:
-            product_id = False
-            if order:
-                for line in order.order_line:
-                    product_id = line.product_id
-            if product_id:
-                questionnaire = request.env['questionnaire'].sudo().search(
-                    [('partner_id', '=', order.partner_id.id), ('product_id', "=", product_id.id)])
-                if not questionnaire:
-                    return request.redirect("/coordonnees")
-        if order and not documents:
-            return request.redirect("/charger_mes_documents")
-        # if order.company_id.id == 1 and (partenaire or product):
-        #     return request.redirect("/shop/cart/")
         if order and order.state != 'draft':
             request.session['sale_order_id'] = None
             order = request.website.sale_get_order()
@@ -71,8 +54,24 @@ class WebsiteSale(WebsiteSale):
         })
         if post.get('type') == 'popover':
             # force no-cache so IE11 doesn't cache this XHR
-            _logger.info(" post popover success")
             return request.render("website_sale.cart_popover", values, headers={'Cache-Control': 'no-cache'})
+        documents = False
+        if order.partner_id:
+            documents = request.env['documents.document'].sudo().search([('partner_id', '=', order.partner_id.id)])
+        if order and order.partner_id:
+            product_id = False
+            if order:
+                for line in order.order_line:
+                    product_id = line.product_id
+            if product_id:
+                questionnaire = request.env['questionnaire'].sudo().search(
+                    [('partner_id', '=', order.partner_id.id), ('product_id', "=", product_id.id)])
+                if not questionnaire:
+                    return request.redirect("/coordonnees")
+        if order and not documents:
+            return request.redirect("/charger_mes_documents")
+        # if order.company_id.id == 1 and (partenaire or product):
+        #     return request.redirect("/shop/cart/")
         if order and order.company_id.id == 1:
             request.env.user.company_id = 1  # change default company
             request.env.user.company_ids = [1, 2]  # change default companies

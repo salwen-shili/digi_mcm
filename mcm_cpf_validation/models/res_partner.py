@@ -152,6 +152,16 @@ class resPartner(models.Model):
                     if ((vals['statut'] == 'won') and (module.number_places_available <= 0)):
                         raise ValidationError(_(
                             'Le nombre de places disponibles est atteint, basculer le condidat vers la prochaine session.'))
+        check_report = False
+        if 'report' in vals:
+            if vals['report']==True:
+                check_report=True
+        previous_client_session = False
+        if self.mcm_session_id:
+            previous_client_session=self.mcm_session_id
+        previous_client_module = False
+        if self.module_id:
+            previous_client_module = self.module_id
         partner = super(resPartner, self).write(vals)
         if self.mcm_session_id:
             check_portal = False
@@ -163,6 +173,28 @@ class resPartner(models.Model):
                             check_portal = True
             if check_portal:
                 if self.statut == 'won' or self.statut == 'finalized':
+                    if check_report and self.mcm_session_id != previous_client_session:
+                        list= []
+                        for client in previous_client_session.client_ids:
+                            if client.id != self.id:
+                                list.append(client.id)
+                        previous_client_session.write({'client_ids': [(6, 0, list)]})
+                        sale = self.env['sale.order'].sudo().search([('session_id', "=", previous_client_session.id)])
+                        if sale:
+                            sale.session_id=self.mcm_session_id
+                            sale.module_id = self.module_id
+                        move = self.env['account.move'].sudo().search([('session_id', "=", previous_client_session.id)])
+                        if move:
+                            move.session_id = self.mcm_session_id
+                            move.module_id = self.module_id
+                        product_of_module = previous_client_module.product_id
+                        module = self.env['mcmacademy.module'].sudo().search([('product_id', "=", product_of_module.id),('session_id',"=",self.mcm_session_id.id)],limit=1)
+                        if module :
+                            self.module_id=module
+                        if move :
+                            move.module_id = module
+                        if sale :
+                            sale.module_id = module
                     list = []
                     for client in self.mcm_session_id.client_ids:
                         list.append(client.id)
