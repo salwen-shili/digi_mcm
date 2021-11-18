@@ -152,14 +152,12 @@ class WebsiteSale(WebsiteSale):
                 if product_id:
                     slugname = (product_id.name).strip().strip('-').replace(' ', '-').lower()
                     if str(slugname) != str(product):
-                        if order.pricelist_id and order.pricelist_id.name in ['ubereats', 'deliveroo', 'coursierjob',
-                                                                              'box2home', 'coursier2roues']:
+                        if order.pricelist_id and order.pricelist_id.name in ['ubereats', 'deliveroo', 'coursierjob','box2home','coursier2roues', 'habilitation-electrique', 'eco-conduite', 'transport-routier']:
                             return request.redirect("/%s/%s/shop/cart/" % (slugname, order.pricelist_id.name))
                         else:
                             return request.redirect("/%s/shop/cart/" % (slugname))
                     else:
-                        if order.pricelist_id and order.pricelist_id.name in ['ubereats', 'deliveroo', 'coursierjob',
-                                                                              'box2home', 'coursier2roues']:
+                        if order.pricelist_id and order.pricelist_id.name in ['ubereats', 'deliveroo', 'coursierjob','box2home','coursier2roues', 'habilitation-electrique', 'eco-conduite', 'transport-routier']:
                             return request.redirect("/%s/%s/shop/cart/" % (slugname, order.pricelist_id.name))
                 else:
                     return request.redirect("/pricing")
@@ -171,13 +169,12 @@ class WebsiteSale(WebsiteSale):
                             [('company_id', '=', 2), ('name', "=", str(partenaire))])
                         if not pricelist:
                             pricelist_id = order.pricelist_id
-                            if pricelist_id.name in ['ubereats', 'deliveroo', 'coursierjob', 'box2home',
-                                                     'coursier2roues']:
+                            if pricelist_id.name in ['ubereats', 'deliveroo', 'coursierjob','box2home','coursier2roues', 'habilitation-electrique', 'eco-conduite', 'transport-routier']:
                                 return request.redirect("/%s/%s/shop/cart/" % (slugname, pricelist_id.name))
                             else:
                                 return request.redirect("/%s/shop/cart/" % (slugname))
                         else:
-                            if pricelist.name in ['ubereats', 'deliveroo', 'coursierjob', 'box2home', 'coursier2roues']:
+                            if pricelist.name in ['ubereats', 'deliveroo', 'coursierjob','box2home','coursier2roues', 'habilitation-electrique', 'eco-conduite', 'transport-routier']:
                                 return request.redirect("/%s/%s/shop/cart/" % (slugname, order.pricelist_id.name))
                             else:
                                 return request.redirect("/%s/shop/cart/" % (slugname))
@@ -187,13 +184,12 @@ class WebsiteSale(WebsiteSale):
 
                         if not pricelist:
                             pricelist_id = order.pricelist_id
-                            if pricelist_id.name in ['ubereats', 'deliveroo', 'coursierjob', 'box2home',
-                                                     'coursier2roues']:
+                            if pricelist_id.name in ['ubereats', 'deliveroo', 'coursierjob','box2home','coursier2roues', 'habilitation-electrique', 'eco-conduite', 'transport-routier']:
                                 return request.redirect("/%s/%s/shop/cart/" % (slugname, pricelist_id.name))
                             else:
                                 return request.redirect("/%s/shop/cart/" % (slugname))
                         else:
-                            if pricelist.name in ['ubereats', 'deliveroo', 'coursierjob', 'box2home', 'coursier2roues']:
+                            if pricelist.name in ['ubereats', 'deliveroo', 'coursierjob','box2home','coursier2roues', 'habilitation-electrique', 'eco-conduite', 'transport-routier']:
                                 if pricelist.name != order.pricelist_id.name:
                                     return request.redirect("/%s/%s/shop/cart/" % (slugname, order.pricelist_id.name))
                             else:
@@ -201,8 +197,7 @@ class WebsiteSale(WebsiteSale):
                 else:
                     pricelist = request.env['product.pricelist'].sudo().search(
                         [('company_id', '=', 2), ('name', "=", str(partenaire))])
-                    if pricelist and pricelist.name in ['ubereats', 'deliveroo', 'coursierjob', 'box2home',
-                                                        'coursier2roues']:
+                    if pricelist and pricelist.name in ['ubereats', 'deliveroo', 'coursierjob','box2home','coursier2roues', 'habilitation-electrique', 'eco-conduite', 'transport-routier']:
                         return request.redirect("/%s" % (pricelist.name))
                     else:
                         return request.redirect("/pricing")
@@ -372,14 +367,12 @@ class WebsiteSale(WebsiteSale):
                 if product_id:
                     slugname = (product_id.name).strip().strip('-').replace(' ', '-').lower()
                     if str(slugname) != str(product):
-                        if order.pricelist_id and order.pricelist_id.name in ['ubereats', 'deliveroo', 'coursierjob',
-                                                                              'box2home', 'coursier2roues']:
+                        if order.pricelist_id and order.pricelist_id.name in ['ubereats', 'deliveroo', 'coursierjob','box2home','coursier2roues', 'habilitation-electrique', 'eco-conduite', 'transport-routier']:
                             return request.redirect("/%s/%s/shop/payment/" % (slugname, order.pricelist_id.name))
                         else:
                             return request.redirect("/%s/shop/payment/" % (slugname))
                     else:
-                        if order.pricelist_id and order.pricelist_id.name in ['ubereats', 'deliveroo', 'coursierjob',
-                                                                              'box2home', 'coursier2roues']:
+                        if order.pricelist_id and order.pricelist_id.name in ['ubereats', 'deliveroo', 'coursierjob','box2home','coursier2roues', 'habilitation-electrique', 'eco-conduite', 'transport-routier']:
                             return request.redirect("/%s/%s/shop/payment/" % (slugname, order.pricelist_id.name))
                 else:
                     return request.redirect("/pricing")
@@ -391,13 +384,12 @@ class WebsiteSale(WebsiteSale):
                             [('company_id', '=', 2), ('name', "=", str(partenaire))])
                         if not pricelist:
                             pricelist_id = order.pricelist_id
-                            if pricelist_id.name in ['ubereats', 'deliveroo', 'coursierjob', 'box2home',
-                                                     'coursier2roues']:
+                            if pricelist_id.name in ['ubereats', 'deliveroo', 'coursierjob','box2home','coursier2roues', 'habilitation-electrique', 'eco-conduite', 'transport-routier']:
                                 return request.redirect("/%s/%s/shop/payment/" % (slugname, pricelist_id.name))
                             else:
                                 return request.redirect("/%s/shop/payment/" % (slugname))
                         else:
-                            if pricelist.name in ['ubereats', 'deliveroo', 'coursierjob', 'box2home', 'coursier2roues']:
+                            if pricelist.name in ['ubereats', 'deliveroo', 'coursierjob','box2home','coursier2roues', 'habilitation-electrique', 'eco-conduite', 'transport-routier']:
                                 return request.redirect("/%s/%s/shop/payment/" % (slugname, order.pricelist_id.name))
                             else:
                                 return request.redirect("/%s/shop/payment/" % (slugname))
@@ -407,13 +399,12 @@ class WebsiteSale(WebsiteSale):
 
                         if not pricelist:
                             pricelist_id = order.pricelist_id
-                            if pricelist_id.name in ['ubereats', 'deliveroo', 'coursierjob', 'box2home',
-                                                     'coursier2roues']:
+                            if pricelist_id.name in ['ubereats', 'deliveroo', 'coursierjob','box2home','coursier2roues', 'habilitation-electrique', 'eco-conduite', 'transport-routier']:
                                 return request.redirect("/%s/%s/shop/payment/" % (slugname, pricelist_id.name))
                             else:
                                 return request.redirect("/%s/shop/payment/" % (slugname))
                         else:
-                            if pricelist.name in ['ubereats', 'deliveroo', 'coursierjob', 'box2home', 'coursier2roues']:
+                            if pricelist.name in ['ubereats', 'deliveroo', 'coursierjob', 'box2home', 'coursier2roues', 'habilitation-electrique', 'eco-conduite', 'transport-routier']:
                                 if pricelist.name != order.pricelist_id.name:
                                     return request.redirect(
                                         "/%s/%s/shop/payment/" % (slugname, order.pricelist_id.name))
@@ -423,7 +414,7 @@ class WebsiteSale(WebsiteSale):
                     pricelist = request.env['product.pricelist'].sudo().search(
                         [('company_id', '=', 2), ('name', "=", str(partenaire))])
                     if pricelist and pricelist.name in ['ubereats', 'deliveroo', 'coursierjob', 'box2home',
-                                                        'coursier2roues']:
+                                                        'coursier2roues', 'habilitation-electrique', 'eco-conduite', 'transport-routier']:
                         return request.redirect("/%s" % (pricelist.name))
                     else:
                         return request.redirect("/pricing")
@@ -523,16 +514,14 @@ class WebsiteSale(WebsiteSale):
                         slugname = (product_id.name).strip().strip('-').replace(' ', '-').lower()
                         if str(slugname) != str(product):
                             if order.pricelist_id and order.pricelist_id.name in ['ubereats', 'deliveroo',
-                                                                                  'coursierjob', 'box2home',
-                                                                                  'coursier2roues']:
+                                                                                  'coursierjob','box2home','coursier2roues', 'habilitation-electrique', 'eco-conduite', 'transport-routier']:
                                 return request.redirect(
                                     "/%s/%s/shop/confirmation/" % (slugname, order.pricelist_id.name))
                             else:
                                 return request.redirect("/%s/shop/confirmation/" % (slugname))
                         else:
                             if order.pricelist_id and order.pricelist_id.name in ['ubereats', 'deliveroo',
-                                                                                  'coursierjob', 'box2home',
-                                                                                  'coursier2roues']:
+                                                                                  'coursierjob','box2home','coursier2roues', 'habilitation-electrique', 'eco-conduite', 'transport-routier']:
                                 return request.redirect(
                                     "/%s/%s/shop/confirmation/" % (slugname, order.pricelist_id.name))
                     else:
@@ -545,14 +534,12 @@ class WebsiteSale(WebsiteSale):
                                 [('company_id', '=', 2), ('name', "=", str(partenaire))])
                             if not pricelist:
                                 pricelist_id = order.pricelist_id
-                                if pricelist_id.name in ['ubereats', 'deliveroo', 'coursierjob', 'box2home',
-                                                         'coursier2roues']:
+                                if pricelist_id.name in ['ubereats', 'deliveroo', 'coursierjob','box2home','coursier2roues', 'habilitation-electrique', 'eco-conduite', 'transport-routier']:
                                     return request.redirect("/%s/%s/shop/confirmation/" % (slugname, pricelist_id.name))
                                 else:
                                     return request.redirect("/%s/shop/confirmation/" % (slugname))
                             else:
-                                if pricelist.name in ['ubereats', 'deliveroo', 'coursierjob', 'box2home',
-                                                      'coursier2roues']:
+                                if pricelist.name in ['ubereats', 'deliveroo', 'coursierjob','box2home','coursier2roues', 'habilitation-electrique', 'eco-conduite', 'transport-routier']:
                                     return request.redirect(
                                         "/%s/%s/shop/confirmation/" % (slugname, order.pricelist_id.name))
                                 else:
@@ -563,14 +550,12 @@ class WebsiteSale(WebsiteSale):
 
                             if not pricelist:
                                 pricelist_id = order.pricelist_id
-                                if pricelist_id.name in ['ubereats', 'deliveroo', 'coursierjob', 'box2home',
-                                                         'coursier2roues']:
+                                if pricelist_id.name in ['ubereats', 'deliveroo', 'coursierjob','box2home','coursier2roues', 'habilitation-electrique', 'eco-conduite', 'transport-routier']:
                                     return request.redirect("/%s/%s/shop/confirmation/" % (slugname, pricelist_id.name))
                                 else:
                                     return request.redirect("/%s/shop/confirmation/" % (slugname))
                             else:
-                                if pricelist.name in ['ubereats', 'deliveroo', 'coursierjob', 'box2home',
-                                                      'coursier2roues']:
+                                if pricelist.name in ['ubereats', 'deliveroo', 'coursierjob','box2home','coursier2roues', 'habilitation-electrique', 'eco-conduite', 'transport-routier']:
                                     if pricelist.name != order.pricelist_id.name:
                                         return request.redirect(
                                             "/%s/%s/shop/confirmation/" % (slugname, order.pricelist_id.name))
@@ -579,8 +564,7 @@ class WebsiteSale(WebsiteSale):
                     else:
                         pricelist = request.env['product.pricelist'].sudo().search(
                             [('company_id', '=', 2), ('name', "=", str(partenaire))])
-                        if pricelist and pricelist.name in ['ubereats', 'deliveroo', 'coursierjob', 'box2home',
-                                                            'coursier2roues']:
+                        if pricelist and pricelist.name in ['ubereats', 'deliveroo', 'coursierjob','box2home','coursier2roues', 'habilitation-electrique', 'eco-conduite', 'transport-routier']:
                             return request.redirect("/%s" % (pricelist.name))
                         else:
                             return request.redirect("/pricing")

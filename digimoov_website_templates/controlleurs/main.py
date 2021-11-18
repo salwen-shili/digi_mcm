@@ -150,7 +150,7 @@ class FINANCEMENT(http.Controller):
             if user_connected.partner_id.partner_from and user_connected.partner_id.partner_from in ['ubereats',
                                                                                                      'deliveroo',
                                                                                                      'coursierjob',
-                                                                                                     'box2home','coursier2roues']:
+                                                                                                     'box2home','coursier2roues', 'habilitation-electrique', 'eco-conduite', 'transport-routier']:
                 return request.redirect("/%s#pricing" % str(user_connected.partner_id.partner_from))
             else:
                 return request.redirect("/#pricing")
@@ -392,6 +392,12 @@ class Services(http.Controller):
     def test4(self, **kw, ):
         if request.website.id == 2:
             return request.render("digimoov_website_templates.digimoov_template_capacite_lourde", {})
+        else:
+            raise werkzeug.exceptions.NotFound()
+    @http.route('/test5', type='http', auth='public', website=True)
+    def test4(self, **kw, ):
+        if request.website.id == 2:
+            return request.render("digimoov_website_templates.digimoov_template_langues_2", {})
         else:
             raise werkzeug.exceptions.NotFound()
 
