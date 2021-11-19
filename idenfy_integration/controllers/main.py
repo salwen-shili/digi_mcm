@@ -15,7 +15,9 @@ class IdenfyWebsiteSale(WebsiteSale):
         order = request.website.sale_get_order()
         name = http.request.env.user.name
         email = http.request.env.user.email
-        if order.partner_id:
+        order.partner_id.idenfy_document_data_id.status != 'APPROVED' and order.partner_id.check_status(request.website) or ''
+        status = order.partner_id.idenfy_document_data_id.status
+        if order.partner_id and not request.env.user.has_group('base.group_user') and status in ['APPROVED']:
             order.partner_id.fetch_document_details_from_idenfy(request.website)
         if order.partner_id.idenfy_document_data_id and order.partner_id.idenfy_document_data_id.res_data:
             docExpiry = eval(order.partner_id.idenfy_document_data_id.res_data).get('docExpiry', '')
