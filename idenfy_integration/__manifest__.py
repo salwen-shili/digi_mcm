@@ -10,6 +10,7 @@
             'views/assets.xml',
             'views/res_config_setting_view.xml',
             'views/mcm_template_documents_view.xml',
+            'views/digimoov_template_documents_view.xml',
             'security/ir.model.access.csv',
             'views/res_partner_views.xml'
     ],
