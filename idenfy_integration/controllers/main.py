@@ -15,8 +15,9 @@ class IdenfyWebsiteSale(WebsiteSale):
         order = request.website.sale_get_order()
         name = http.request.env.user.name
         email = http.request.env.user.email
+        order.partner_id.idenfy_document_data_id.status != 'APPROVED' and order.partner_id.check_status(request.website) or ''
         status = order.partner_id.idenfy_document_data_id.status
-        if order.partner_id and not request.env.user.has_group('base.group_user') and status in ['ACTIVE','APPROVED']:
+        if order.partner_id and not request.env.user.has_group('base.group_user') and status in ['APPROVED']:
             order.partner_id.fetch_document_details_from_idenfy(request.website)
         if order.partner_id.idenfy_document_data_id and order.partner_id.idenfy_document_data_id.res_data:
             docExpiry = eval(order.partner_id.idenfy_document_data_id.res_data).get('docExpiry', '')
@@ -53,7 +54,7 @@ class IdenfyCustomPortal(CustomerPortal):
         partner_id = http.request.env.user.partner_id
         if not partner_id.check_status(request.website):
             request.website.generate_idenfy_token(user_id=http.request.env.user.id)
-            partner_id.check_status(request.website) #called because updating status in the idenfy record.
+            partner_id.idenfy_document_data_id.write({'status':'ACTIVE'})#called because updating status in the idenfy record.
         status = partner_id.idenfy_document_data_id.status
         if partner_id and status and (status != 'APPROVED' or status == 'ACTIVE'):
             if request.website.id == 2:  # id 2 of website in database means website DIGIMOOV
