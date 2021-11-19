@@ -1,5 +1,5 @@
 from . import res_company
-from . import product_template
+# from . import product_template
 from . import action_formation
 from . import res_partner
 from . import session

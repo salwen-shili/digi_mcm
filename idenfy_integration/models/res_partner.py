@@ -1,6 +1,6 @@
 import base64
 import requests
-from odoo import fields,models
+from odoo import fields,models,_
 
 class ResPartner(models.Model):
     _inherit = 'res.partner'
@@ -88,9 +88,10 @@ class ResPartner(models.Model):
 
     def check_status(self,website):
         for rec in self:
-            doc_check_status = website._idenfy_send_request('status', request_data={"scanRef": rec.idenfy_document_data_id.scanref})
-            rec.idenfy_document_data_id.status = doc_check_status.get('status','')
-            if doc_check_status and doc_check_status.get('status') in ['ACTIVE','APPROVED']:
+            doc_check_status = rec.idenfy_document_data_id.status not in ['APPROVED'] and website._idenfy_send_request('status', request_data={"scanRef": rec.idenfy_document_data_id.scanref}).get('status','') or rec.idenfy_document_data_id.status
+            # website._idenfy_send_request('status', request_data={"scanRef": rec.idenfy_document_data_id.scanref})
+            rec.idenfy_document_data_id.status = doc_check_status
+            if doc_check_status in ['ACTIVE','APPROVED']:
                 return True
         return False
 
