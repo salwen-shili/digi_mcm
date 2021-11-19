@@ -199,9 +199,10 @@
                                                             Précédent </button>
                                             </a>
 
-
-                                            <button type="submit" style=" color: #fff; margin-top: 1rem;margin-bottom: 2rem;     margin-left: 1rem;  " class="float-right rkmd-btn btn-black ripple-effect ripple-yellow " id="submit_documents">
-                                                            Envoyer mes documents </button>
+                                            <a href="/shop/cart" disabled="disabled" id="document_next">
+                                            <button type="button" style=" color: #fff; margin-top: 1rem;margin-bottom: 2rem;     margin-left: 1rem;  " class="float-right rkmd-btn btn-black ripple-effect ripple-yellow " id="submit_documents_next_button" disabled="disabled">
+                                                           Suivant </button>
+                                            </a>
                                             <span id="o_website_form_result"/>
 
 
@@ -219,7 +220,7 @@
 
                     </div>
                 </div>
-                <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"/>
+<!--                <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"/>-->
                 <script type="text/javascript" src="mcm_contact_documents/static/src/js/upload_file.js"/>
                 <script> function onChangeCheck(){ console.log("click") } </script>
             </t>
