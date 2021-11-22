@@ -74,7 +74,7 @@
      <field name="active" eval="True"></field>
      <field name="state">code</field>
      <field name="code">model.change_state_wedof_validate()</field>
-     <field name="interval_number">15</field>
+     <field name="interval_number">5</field>
      <field name="interval_type">minutes</field>
      <field name="numbercall">-1</field>
      <field name="priority" eval="1" />
