@@ -7,7 +7,7 @@ import re
 import json
 from odoo import _
 import locale
-
+from dateutil.relativedelta import relativedelta
 from odoo import models, fields, api
 from odoo.exceptions import ValidationError
 from unidecode import unidecode
@@ -536,3 +536,40 @@ class partner(models.Model):
                         # elif len(partner) == 1:
                         #     _logger.info('if partner %s' % partner.numero_cpf)
                         #     partner.statut_cpf = "in_training"
+
+    """changer l'etat sur wedof de non traité vers validé à partir d'API"""
+
+    def change_state_wedof_validate(self):
+        params_wedof = (
+            ('order', 'asc'),
+            ('type', 'all'),
+            ('state', 'notProcessed'),
+            ('billingState', 'all'),
+            ('certificationState', 'all'),
+            ('sort', 'lastUpdate'),
+        )
+        headers = {
+            'accept': 'application/json',
+            'Content-Type': 'application/json',
+            'X-API-KEY': '026514d6bc7d880515a27eae4947bccef4fbbf03',
+        }
+        response = requests.get('https://www.wedof.fr/api/registrationFolders/', headers=headers,
+                                params=params_wedof)
+        registrations = response.json()
+        for dossier in registrations:
+            externalid = dossier['externalId']
+            today = date.today()
+            datedebut = today + timedelta(days=15)
+            datefin = str(datedebut + relativedelta(months=3) + timedelta(days=1))
+            datedebutstr = str(datedebut)
+            data = '{"trainingActionInfo":{"sessionStartDate":"' + datedebutstr + '","sessionEndDate":"' + datefin + '" }}'
+            dat = '{\n  "weeklyDuration": 14,\n  "indicativeDuration": 102\n}'
+            response_put = requests.put('https://www.wedof.fr/api/registrationFolders/' + externalid,
+                                        headers=headers, data=data)
+            response_post = requests.post('https://www.wedof.fr/api/registrationFolders/' + externalid + '/validate',
+                                          headers=headers, data=dat)
+
+            status = str(response_post.status_code)
+            put_status = str(response_put.status_code)
+            _logger.info("status put %s" % put_status)
+            _logger.info("status post %s" % status)
