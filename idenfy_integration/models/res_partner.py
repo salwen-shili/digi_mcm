@@ -88,7 +88,7 @@ class ResPartner(models.Model):
 
     def check_status(self,website):
         for rec in self:
-            doc_check_status = rec.idenfy_document_data_id.status not in ['APPROVED'] and website._idenfy_send_request('status', request_data={"scanRef": rec.idenfy_document_data_id.scanref}).get('status','') or rec.idenfy_document_data_id.status
+            doc_check_status = rec.idenfy_document_data_id.status not in ['APPROVED'] and rec.idenfy_document_data_id.scanref and website._idenfy_send_request('status', request_data={"scanRef": rec.idenfy_document_data_id.scanref}).get('status','') or rec.idenfy_document_data_id.status
             # website._idenfy_send_request('status', request_data={"scanRef": rec.idenfy_document_data_id.scanref})
             rec.idenfy_document_data_id.status = doc_check_status
             if doc_check_status in ['ACTIVE','APPROVED']:
@@ -100,9 +100,6 @@ class ResPartner(models.Model):
         if not website:
             return False
         for rec in self:
-            #other documents
-            if rec.check_status(website):
-                return True
             rec._create_documents_idenfy(website)
             doc_response = website._idenfy_send_request('data', request_data={"scanRef":rec.idenfy_document_data_id.scanref})
             rec.idenfy_document_data_id.write({'res_data': doc_response})
