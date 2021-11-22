@@ -563,7 +563,7 @@ class partner(models.Model):
             datefin = str(datedebut + relativedelta(months=3) + timedelta(days=1))
             datedebutstr = str(datedebut)
             data = '{"trainingActionInfo":{"sessionStartDate":"' + datedebutstr + '","sessionEndDate":"' + datefin + '" }}'
-            dat = '{}'
+            dat = '{\n  "weeklyDuration": 14,\n  "indicativeDuration": 102\n}'
             response_put = requests.put('https://www.wedof.fr/api/registrationFolders/' + externalid,
                                         headers=headers, data=data)
             response_post = requests.post('https://www.wedof.fr/api/registrationFolders/' + externalid + '/validate',
