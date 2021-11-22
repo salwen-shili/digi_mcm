@@ -373,6 +373,12 @@ class Services(http.Controller):
             return request.render("digimoov_website_templates.digimoov_template_habilitation_electrique", {})
         else:
             raise werkzeug.exceptions.NotFound()
+    @http.route('/test6', type='http', auth='public', website=True)
+    def test1(self, **kw, ):
+        if request.website.id == 2:
+            return request.render("digimoov_website_templates.digimoov_template_test6", {})
+        else:
+            raise werkzeug.exceptions.NotFound()
 
     @http.route('/test2', type='http', auth='public', website=True)
     def test2(self, **kw, ):
