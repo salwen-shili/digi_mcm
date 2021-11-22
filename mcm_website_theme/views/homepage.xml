@@ -22,6 +22,7 @@
 
 
             </style>
+            <script defer="defer" type="text/javascript" src="/digimoov_website_templates/static/src/js/lazy-min.js"/>
             <div id="wrap" class="oe_structure oe_empty">
 
                 <!-- section 1  -->
