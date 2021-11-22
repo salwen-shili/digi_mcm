@@ -2,38 +2,173 @@
 <odoo>
     <template id="idenfy_integration_digimoov_contact_documents_view" inherit_id="mcm_contact_documents.mcm_contact_document_charger_mes_documents">
         <xpath expr="//div[hasclass('m-0')]" position="replace">
+            <style>
+                .overlay_popup {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.7);
+  transition: opacity 500ms;
+  visibility: hidden;
+  opacity: 0;
+}
+.overlay_popup:target {
+  visibility: visible;
+  opacity: 1;
+  z-index: 1;
+}
+
+.popup {
+  top: 33%;
+  margin: 70px auto;
+  padding: 20px;
+  background: #fff;
+  border-radius: 5px;
+  width: 40%;
+  position: relative;
+  transition: all 5s ease-in-out;
+}
+
+.popup h2 {
+  margin-top: 0;
+  color: #333;
+  font-family: Tahoma, Arial, sans-serif;
+}
+.popup .close {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  transition: all 200ms;
+  font-size: 30px;
+  font-weight: bold;
+  text-decoration: none;
+  color: #152856;
+}
+.popup .close:hover {
+  color: hsl(222, 61%, 41%);
+}
+.popup .content {
+  max-height: 30%;
+  overflow: auto;
+}
+
+.slider{
+position:absolute;
+width:400px;
+height:2px;
+margin-top:-30px;
+}
+.line{
+position:absolute;
+background:#4a8df8;
+width:400px;
+height:2px;
+}
+.break{
+position:absolute;
+background:#222;
+width:6px;
+height:2px;
+}
+ 
+.dot1{
+-webkit-animation: loading 2s infinite;
+-moz-animation: loading 2s infinite;
+-ms-animation: loading 2s infinite;
+-o-animation: loading 2s infinite;
+animation: loading 2s infinite;
+}
+.dot2{
+-webkit-animation: loading 2s 0.5s infinite;
+-moz-animation: loading 2s 0.5s infinite;
+-ms-animation: loading 2s 0.5s infinite;
+-o-animation: loading 2s 0.5s infinite;
+animation: loading 2s 0.5s infinite;
+}
+.dot3{
+-webkit-animation: loading 2s 1s infinite;
+-moz-animation: loading 2s 1s infinite;
+-ms-animation: loading 2s 1s infinite;
+-o-animation: loading 2s 1s infinite;
+animation: loading 2s 1s infinite;
+}
+
+@keyframes "loading" {
+from { left: 0; }
+to { left: 400px; }
+}
+@-moz-keyframes loading {
+from { left: 0; }
+to { left: 400px; }
+}
+@-webkit-keyframes "loading" {
+from { left: 0; }
+to { left: 400px; }
+}
+@-ms-keyframes "loading" {
+from { left: 0; }
+to { left: 400px; }
+}
+@-o-keyframes "loading" {
+from { left: 0; }
+to { left: 400px; }
+
+@media screen and (max-width: 700px) {
+  .box {
+    width: 90%;
+  }
+  .popup {
+    width: 90%;
+  }
+}
+            </style>
+            <div id="popup1" class="overlay">
+                <div class="popup" style="">
+                    <h2 class="text-left">
+                        <i class="fa fa-info-circle" style="color: #152856;"></i>
+                    </h2>
+
+                    <div class="content text-center">
+                        <p id="notifMessage">
+                  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corrupti vel vero aut suscipit cupiditate quis laudantium, perferendis ullam facilis hic, reprehenderit eos quibusdam sunt magnam ea consequatur. Sint, vitae ex!              
+                        </p>
+
+                        <div class="" style="margin-block-start: 1.5rem;">
+                            <span id="spnSeconds">5</span>
+                            <div class="slider">
+                                <div class="line"></div>
+                                <div class="break dot1"></div>
+                                <div class="break dot2"></div>
+                                <div class="break dot3"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <div t-if="expired_license" name="ex_warning" style="text-align: center;border-width: 0px;">
-                <p t-if="expired_license"
-                   class="alert alert-warning"
-                   style="margin-left:0%;">
+                <p t-if="expired_license" class="alert alert-warning" style="margin-left:0%;">
                     Votre permis de conduire semble être en période probatoire, vous ne pouvez donc pas continuer le processus d'inscription. Merci de contacter le service client avec le lien suivant. Please click here: <a href="https://www.mcm-academy.fr/service-clientele">https://www.mcm-academy.fr/service-clientele</a>
                 </p>
             </div>
             <div style="text-align: center;border-width: 0px;">
-                <iframe
-                                allowfullscreen="allowfullscreen"
-                                id='iframe1'
-                                style="width:80%; height:700px;"
-                                t-att-src="'https://ui.idenfy.com/?authToken=%s&amp;lang=fr' % (partner_id.idenfy_document_data_id and partner_id.idenfy_document_data_id.token or '')"
-                                allow="camera"
-                                lang="fr_FR"
-                        />
-                        <p id='display'></p>
+                <input type="hidden" t-att-value="request.website.id" id="website"/>
+                <iframe allowfullscreen="allowfullscreen" id='iframe1' style="width:80%; height:700px;" t-att-src="'https://ui.idenfy.com/?authToken=%s&amp;lang=fr' % (partner_id.idenfy_document_data_id and partner_id.idenfy_document_data_id.token or '')" allow="camera" lang="fr_FR" />
+                <p id='display'></p>
             </div>
         </xpath>
         <xpath expr="//a[@href='/shop/cart']" position="replace">
             <a href="/shop/cart" disabled="disabled" id="document_next">
                 <t t-if="partner_id.is_idenfy_approved">
-                    <button type="button" style="color: #fff; margin-top: 1rem;margin-bottom: 2rem;     margin-left: 1rem;  "
-                        class="float-right rkmd-btn btn-black ripple-effect ripple-yellow " id="submit_documents_next_button">
+                    <button type="button" style="color: #fff; margin-top: 1rem;margin-bottom: 2rem;     margin-left: 1rem;  " class="float-right rkmd-btn btn-black ripple-effect ripple-yellow " id="submit_documents_next_button">
                     Suivant
-                </button>
+                    </button>
                 </t>
                 <t>
-                    <button type="button" style="color: #fff; margin-top: 1rem;margin-bottom: 2rem;     margin-left: 1rem;  "
-                        class="float-right rkmd-btn btn-black ripple-effect ripple-yellow " id="submit_documents_next_button" disabled="disabled">
+                    <button type="button" style="color: #fff; margin-top: 1rem;margin-bottom: 2rem;     margin-left: 1rem;  " class="float-right rkmd-btn btn-black ripple-effect ripple-yellow " id="submit_documents_next_button" disabled="disabled">
                     Suivant
-                </button>
+                    </button>
                 </t>
             </a>
         </xpath>
