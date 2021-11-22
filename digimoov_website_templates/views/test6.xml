@@ -1,5 +1,5 @@
 <odoo>
-    <template id="digimoov_website_templates.digimoov_template_langues_2" name="Digimoov | Langues">
+    <template id="digimoov_website_templates.digimoov_template_test6" name="Digimoov | Langues">
         <t t-call="website.layout">
             <script defer="defer" type="text/javascript" src="/digimoov_website_templates/static/src/js/lazy-min.js"/>
             <link href="/digimoov_website_templates/static/src/css/css-dist/home.min.css" rel="stylesheet"/>
