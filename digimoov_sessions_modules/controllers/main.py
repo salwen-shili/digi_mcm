@@ -216,10 +216,10 @@ class WebsiteSale(WebsiteSale):
         for product in list_products:
             all_mcm_modules = request.env['mcmacademy.module'].sudo().search(
                 [('product_id', '=', product.product_tmpl_id.id),
-                 ('company_id', '=', 1)])
+                 ('company_id', '=', 1)],order='date_exam asc')
             all_digimoov_modules = request.env['mcmacademy.module'].sudo().search(
                 [('product_id', '=', product.product_tmpl_id.id),
-                 ('company_id', '=', 2)])
+                 ('company_id', '=', 2)],order='date_exam asc')
         list_modules_digimoov = []
         list_modules_mcm = []
         today = date.today()
