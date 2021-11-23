@@ -150,20 +150,18 @@
 
                     <div id="idenfy_popup" class="overlay_popup">
 
-                        <div class="doc_popup" style="">
-                            <div style="position: relative">
-                                <h1 id="popup_counter">
-                                5
-                                </h1>
-                            </div>
+                        <div class="popup" style="">
+
                             <h2 class="text-left">
                                 <i class="fa fa-info-circle" style="color: #152856;"></i>
                             </h2>
 
                             <div class="content text-center">
-                                <p id="notifMessage">
+                                <p id="notifMessage" style="font-size: 17px">
                                 </p>
-
+                                <div style="text-align: -webkit-center;">
+                                    <div id="popup_counter">6</div>
+                                </div>
                                 <div class="" style="margin-block-start: 1.5rem;">
 
                                     <div class="slider">

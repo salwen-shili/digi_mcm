@@ -74,7 +74,7 @@
                                                                 <div class="file-select">
                                                                     <div class="file-select-button" id="fileName1">Choisir un fichier</div>
                                                                     <div class="file-select-name" id="noFile1">Aucun fichier choisi...</div>
-                                                                    <input type="file" name="identity" id="identity" required="required"/>
+                                                                    <input type="file" accept="image/png, image/jpeg, application/pdf" name="identity" id="identity" required="required"/>
                                                                 </div>
                                                             </div>
 
@@ -90,7 +90,7 @@
                                                                 <div class="file-select">
                                                                     <div class="file-select-button" id="fileName2">Choisir un fichier</div>
                                                                     <div class="file-select-name" id="noFile2">Aucun fichier choisi...</div>
-                                                                    <input type="file" name="identity2" id="identity2" required="required"/>
+                                                                    <input type="file" accept="image/png, image/jpeg, application/pdf" name="identity2" id="identity2" required="required"/>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -149,8 +149,7 @@
                     </div>
 
                 </div>
-                <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"/>
-                <script type="text/javascript" src="mcm_contact_documents/static/src/js/upload_file_dig.js"/>
+
                 <script> function onChangeCheck(){ console.log("click") } </script>
 
 

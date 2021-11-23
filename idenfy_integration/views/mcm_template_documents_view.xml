@@ -9,10 +9,10 @@
                     Votre permis de conduire semble être en période probatoire, vous ne pouvez donc pas continuer le processus d'inscription. Merci de contacter le service client avec le lien suivant. Please click here: <a href="https://www.mcm-academy.fr/service-clientele">https://www.mcm-academy.fr/service-clientele</a>
         </p>
       </div>
-      <div style="text-align: center;border-width: 0px;">
+      <!-- <div style="text-align: center;border-width: 0px;">
         <iframe allowfullscreen="allowfullscreen" id='iframe1' style="width:80%; height:700px;" t-att-src="'https://ui.idenfy.com/?authToken=%s&amp;lang=fr' % (partner_id.idenfy_document_data_id and partner_id.idenfy_document_data_id.token or '')" allow="camera" lang="fr_FR" />
         <p id='display'></p>
-      </div>
+      </div> -->
     </xpath>
     <xpath expr="//a[@href='/shop/cart']" position="replace">
       <a href="/shop/cart" disabled="disabled" id="document_next">

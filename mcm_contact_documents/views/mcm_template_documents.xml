@@ -219,21 +219,20 @@
                         <div class="loader"></div>
                     </div>
                     <div id="idenfy_popup" class="overlay_popup">
-                        <div class="counter_container">
-                            <h1 id="popup_counter">
-                                6
-                            </h1>
-                        </div>
-                        <div class="doc_popup" style="">
+
+                        <div class="popup" style="">
 
                             <h2 class="text-left">
                                 <i class="fa fa-info-circle" style="color: #152856;"></i>
                             </h2>
 
                             <div class="content text-center">
-                                <p id="notifMessage">
+                                <p id="notifMessage" style="font-size: 17px">
                                 </p>
-                                <div class="" style="margin-block-start: 1.5rem;">
+                                <div style="text-align: -webkit-center;">
+                                    <div id="popup_counter">6</div>
+                                </div>
+                                <div class="" style="margin-block-start: 0.5rem;">
 
                                     <div class="slider">
                                         <div class="line"></div>
