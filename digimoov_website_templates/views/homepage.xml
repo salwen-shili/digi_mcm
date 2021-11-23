@@ -2663,7 +2663,7 @@
                                                 <br/>
                                                 <p>
                                                     <strong style="color: white">
-                                                        <font style="font-size: 30px">SOLO</font>
+                                                        <font style="font-size: 30px">Capacité transport routier</font>
                                                     </strong>
                                                 </p>
                                                 <p>
@@ -2672,7 +2672,7 @@
                                                 <br/>
                                             </div>
                                             <t t-foreach="digimoov_products" t-as="product">
-                                                <t t-if="product.default_code=='basique'">
+                                                <t t-if="product.default_code=='transport-routier'">
                                                     <form action="/shop/cart/update" method="post" id="form-coursier2roues">
                                                         <input t-att-value="request.website.microsoft_tracking_key" id="microsoft_tracking_key" type="hidden"/>
 
@@ -2734,7 +2734,10 @@
                                                                                             Paiement 1 fois
                                                             </p>
                                                             <br/>
-                                                            <button class="btn btn-block text-white" onClick="(function(){msTracking('clic sur inscrire pack solo coursier2roues','Pricing Table events','Inscrire pack solo coursier2roues','590'); document.getElementById('form-coursier2roues').submit();return false;})();return false;" style="background-color: #6e209f; border-radius: 25px">
+<!--                                                            <button class="btn btn-block text-white" onClick="(function(){msTracking('clic sur inscrire pack solo coursier2roues','Pricing Table events','Inscrire pack solo coursier2roues','590'); document.getElementById('form-coursier2roues').submit();return false;})();return false;" style="background-color: #6e209f; border-radius: 25px">-->
+<!--                                                                                            Je m'inscris-->
+<!--                                                            </button>-->
+                                                            <button class="btn btn-block text-white" style="background-color: #6e209f; border-radius: 25px">
                                                                                             Je m'inscris
                                                             </button>
                                                         </div>
