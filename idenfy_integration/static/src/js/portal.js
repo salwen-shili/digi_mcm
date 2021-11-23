@@ -1,15 +1,13 @@
 odoo.define("idenfy_integration.portal", function (require) {
-  "use strict";
+  ("use strict");
 
   var publicWidget = require("web.public.widget");
 
   window.addEventListener("message", receiveMessage, false);
   function receiveMessage(event) {
-    var website = $("#website").val;
-    var url;
-    if (website == "1") {
-      url = "/charger_mes_documents";
-    } else url = "/charger_mes_documents";
+    var button = $("#submit_documents_next_button");
+    var button = $("#submit_documents_next_button");
+
     console.log("start");
     console.log(event);
     console.log(this);
@@ -22,18 +20,51 @@ odoo.define("idenfy_integration.portal", function (require) {
       button.removeAttr("disabled");
     }
     if (event.data.status == "failed") {
-      setTimeout(() => {
-        window.location.href = "#popup1";
-        window.setInterval(function () {
-          var remainingTime = $("#spnSeconds").html();
+      console.log(
+        "localstorage",
+        localStorage.getItem("failed_status_counter")
+      );
+      var popup = $("#idenfy_popup");
+      var statusCounter = localStorage.getItem("failed_status_counter");
+
+      //second try redirect to manual upload
+      if (parseInt(statusCounter) == 1) {
+        localStorage.setItem("failed_status_counter", 0);
+        console.log($("#notifMessage"));
+        $("#notifMessage").text(
+          "L'identification automatique et la vérification de l'authenticité vos documents n'a pas pu se faire. Vous serez redirigé pour charger vos documents manuellement"
+        );
+        popup.addClass("popup_show");
+        var counter = setInterval(function () {
+          var remainingTime = $("#popup_counter").html();
           remainingTime = parseInt(remainingTime);
           if (remainingTime == 0) {
-            location.href = url;
+            // window.location.href = "/charger_mes_documents_manual";
+            clearInterval(counter);
           } else {
-            $("#spnSeconds").html(remainingTime - 1);
+            $("#popup_counter").html(remainingTime - 1);
           }
         }, 1000);
-      }, 2000);
+      }
+      //first try
+      else {
+        localStorage.setItem("failed_status_counter", 1);
+        //refraichir la page
+        $("#notifMessage").text(
+          "L'identification automatique et la vérification de l'authenticité vos documents n'a pas pu se faire. Vous allez réessayer dans quelques instant"
+        );
+        popup.addClass("popup_show");
+        var counter = setInterval(function () {
+          var remainingTime = $("#popup_counter").html();
+          remainingTime = parseInt(remainingTime);
+          if (remainingTime == 0) {
+            window.location.reload();
+            clearInterval(counter);
+          } else {
+            $("#popup_counter").html(remainingTime - 1);
+          }
+        }, 1000);
+      }
     }
   }
 });

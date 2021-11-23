@@ -405,35 +405,39 @@ html {
   transition: all 5s ease-in-out;
 }
 
-.popup h2 {
-  margin-top: 0;
-  color: #333;
-  font-family: Tahoma, Arial, sans-serif;
+.doc_popup {
+  top: calc(100vh / 2 - 100vh / 7 - 14px);
+  margin: 70px auto;
+  padding: 20px;
+  background: #fff;
+  border-radius: 5px;
+  width: calc(100vw / 2 + 100vw / 3);
+  position: relative;
+  transition: all 5s ease-in-out;
 }
-.popup .close {
+.counter_container {
   position: absolute;
-  top: 20px;
-  right: 30px;
-  transition: all 200ms;
-  font-size: 30px;
-  font-weight: bold;
-  text-decoration: none;
-  color: #152856;
+  top: calc(100vh / 2 - 100vh / 7 + 1rem);
+  z-index: 1;
+  left: calc(100vw / 2 - 48px);
 }
-.popup .close:hover {
-  color: hsl(222, 61%, 41%);
-}
-.popup .content {
-  max-height: 30%;
-  overflow: auto;
+#popup_counter {
+  font-size: 11rem;
+  color: #0000000f;
 }
 
-@media screen and (max-width: 700px) {
-  .box {
-    width: 90%;
+@media screen and (min-width: 0px) and (max-width: 700px) {
+  .counter_container {
+    top: calc(100vh / 2 - 100vh / 7 + 3rem);
   }
-  .popup {
-    width: 90%;
+}
+
+@media screen and (min-width: 1210px) {
+  .counter_container {
+    top: calc(100vh / 2 - 100vh / 7 + 1.1rem);
+  }
+  #popup_counter {
+    font-size: 10rem;
   }
 }
 

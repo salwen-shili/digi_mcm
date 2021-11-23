@@ -218,18 +218,21 @@
                     <div class="spanner">
                         <div class="loader"></div>
                     </div>
-                    <input type="hidden" t-att-value="request.website.id" id="website"/>
                     <div id="idenfy_popup" class="overlay_popup">
-                        <div class="popup" style="">
+                        <div class="counter_container">
+                            <h1 id="popup_counter">
+                                6
+                            </h1>
+                        </div>
+                        <div class="doc_popup" style="">
+
                             <h2 class="text-left">
                                 <i class="fa fa-info-circle" style="color: #152856;"></i>
                             </h2>
 
                             <div class="content text-center">
                                 <p id="notifMessage">
-                  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corrupti vel vero aut suscipit cupiditate quis laudantium, perferendis ullam facilis hic, reprehenderit eos quibusdam sunt magnam ea consequatur. Sint, vitae ex!              
                                 </p>
-
                                 <div class="" style="margin-block-start: 1.5rem;">
 
                                     <div class="slider">
@@ -241,6 +244,8 @@
                                 </div>
                             </div>
                         </div>
+
+
                     </div>
                 </div>
                 <!--                <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"/>-->

@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <template id="mcm_contact_document_charger_mes_documents" name="Charger mes documents| Digimoov">
+    <template id="mcm_documents_manual" name="Document: Submit a Document">
         <t name="Document" priority="29" t-name="document">
             <t t-call="website.layout">
                 <t t-set="additional_title">Document</t>
-                <link href="/digimoov_website_templates/static/src/css/register_form.css" rel="stylesheet"/>
-                <link href="/mcm_contact_documents/static/src/css/upload_documents_dig.css" rel="stylesheet"/>
-
+                <link href="/mcm_website_theme/static/src/css/register_form.css" rel="stylesheet"/>
+                <link href="/mcm_contact_documents/static/src/css/upload_documents.css" rel="stylesheet"/>
                 <div class="container oe_website_sale py-2">
                     <div class="container-fluid">
                         <div class="row justify-content-center paper">
@@ -35,8 +34,6 @@
                                         </div>
                                         <br/>
                                         <script> document.getElementsByClassName("progress-bar")[0].style.width= "50%"; </script>
-
-
                                     </div>
                                 </div>
                             </div>
@@ -45,12 +42,11 @@
                             <div class="container" style="margin-block-end: 5rem;">
 
                                 <div class="row">
-                                    <form action="/upload_my_files" method="post" id="mcm_my_documents_form" class="s_website_form container-fluid mt32" enctype="multipart/form-data" data-model_name="partner.document" data-success_page="/submitted_documents" data-editable-form="false" hide-change-model="true">
-
+                                    <form action="/submitted/document" method="post" id="mcm_my_documents_form" class="s_website_form container-fluid mt32" enctype="multipart/form-data" data-model_name="partner.document" data-success_page="/submitted_documents" data-editable-form="false" hide-change-model="true">
                                         <div class="row m-0">
                                             <div class="col-lg-6">
                                                 <div class="card-shadow ">
-                                                    <img src="/mcm_contact_documents/static/img/3 Dossier d'insciption Digimoov.webp" class="img-responsive img img-fluid res-height" data-original-title="" title="" aria-describedby="tooltip508208"/>
+                                                    <img src="/mcm_contact_documents/static/img/CHARGER MES DOCUMENTS 2.png" class="img-responsive img img-fluid res-height" data-original-title="" title="" aria-describedby="tooltip508208"/>
                                                 </div>
                                             </div>
                                             <div class="col-lg-6">
@@ -99,8 +95,84 @@
                                                         <input class="styled-checkbox" id="styled-checkbox-1" type="checkbox" value="value1" required="required"/>
                                                         <label class="label-box" for="styled-checkbox-1">Je confirme avoir soumis le recto et le verso</label>
                                                     </div>
+                                                    <!-- <div class="form-group row form-field o_website_form_required">
+                                                        <div class="col-lg-12 col-md-12 col-sm-12">
+                                                            <label class="col-form-label" for="number">N°Pièce d'identité</label>
+                                                        </div>
+                                                        <div class="col-lg-12 col-md-12 col-sm-12">
+                                                            <input type="number" class="form-control o_website_form_input" name="identity_number" required="required"/>
+                                                        </div>
+                                                    </div> -->
+
+                                                    <!-- <div class="form-group row form-field o_website_form_required">
+                                                        <div class="col-lg-9 col-md-9">
+                                                            <label class="col-form-label" for="identity" style="font-weight:normal">Permis de
+                                                        conduire recto :(*.jpg,*.png,*.pdf)
+                                                            </label>
+                                                        </div>
+                                                        <div class="col-lg-9 col-md-12 col-sm-12">
+                                                            <input type="file" name="permis" required="1" id="permis" placeholder="Veuillez Charger 1 fichier Recto verso ou 2 fichiers " class="form-control o_website_form_input" accept="image/*,application/pdf"/>
+                                                        </div>
+                                                    </div> -->
+                                                    <div class="form-group row form-field o_website_form_required">
+                                                        <div class="col-lg-12 col-md-12">
+                                                            <label class="col-form-label" style="font-weight:600 ;     margin-bottom: 0.5rem;">Permis de
+                                                        conduire recto/verso</label>
+                                                        </div>
+                                                        <div class="col-lg-12 col-md-12">
+                                                            <label class="col-form-label" for="identity">Charger le permis de conduire recto :(*.jpg,*.png,*.pdf)  </label>
+                                                        </div>
+                                                        <div class="col-lg-12 col-md-12 col-sm-12">
+                                                            <!--  <input type="file" name="identity2" required="1" id="identity2" placeholder="Veuillez Charger 1 fichier Recto verso ou 2 fichiers " class="form-control o_website_form_input" accept="image/*,application/pdf"/>  -->
+                                                            <div class="file-upload" id="file-upload3">
+                                                                <div class="file-select">
+                                                                    <div class="file-select-button" id="fileName3">Choisir un fichier</div>
+                                                                    <div class="file-select-name" id="noFile3">Aucun fichier choisi...</div>
+                                                                    <input type="file" name="permis" required="required" id="permis" />
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
 
 
+                                                    <!-- <div class="form-group row form-field o_website_form_required">
+                                                        <div class="col-lg-9 col-md-9">
+                                                            <label class="col-form-label" for="identity" style="font-weight:normal">Permis de
+                                                        conduire verso :(*.jpg,*.png,*.pdf)
+                                                            </label>
+                                                        </div>
+                                                        <div class="col-lg-9 col-md-12 col-sm-12">
+                                                            <input type="file" name="permis1" required="1" id="permis1" placeholder="Veuillez Charger 1 fichier Recto verso ou 2 fichiers " class="form-control o_website_form_input" accept="image/*,application/pdf"/>
+                                                        </div>
+                                                    </div> -->
+                                                    <div class="form-group row form-field o_website_form_required">
+                                                        <div class="col-lg-12 col-md-12">
+                                                            <label class="col-form-label" for="identity">Charger le permis de conduire verso :(*.jpg,*.png,*.pdf)  </label>
+                                                        </div>
+                                                        <div class="col-lg-12 col-md-12 col-sm-12">
+                                                            <!--  <input type="file" name="identity2" required="1" id="identity2" placeholder="Veuillez Charger 1 fichier Recto verso ou 2 fichiers " class="form-control o_website_form_input" accept="image/*,application/pdf"/>  -->
+                                                            <div class="file-upload" id="file-upload4">
+                                                                <div class="file-select">
+                                                                    <div class="file-select-button" id="fileName4">Choisir un fichier</div>
+                                                                    <div class="file-select-name" id="noFile4">Aucun fichier choisi...</div>
+                                                                    <input type="file" name="permis1" required="1" id="permis1" />
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <!-- <div class="form-group row form-field o_website_form_required">
+                                                        <div class="col-lg-9 col-md-12 col-sm-12">
+                                                            <input type="checkbox" name="confirm_permis" id="confirm_permis" required="1"/>
+                                                            <label for="confirm_permis" style="margin-left:8px;font-weight:normal !important;display:unset !important;">
+                                                        Je confirme avoir soumis le recto et le verso
+                                                            </label>
+                                                        </div>
+                                                    </div> -->
+                                                    <div style="padding-top: calc(0.375rem + 1px); padding-bottom: calc(0.375rem + 1px); margin-bottom: 0;">
+                                                        <input class="styled-checkbox" type="checkbox" name="confirm_permis" id="confirm_permis" required="1"/>
+                                                        <label class="label-box" for="confirm_permis">Je confirme avoir soumis le recto et le verso</label>
+                                                    </div>
 
                                                     <!-- <div class="form-group row">
                                                         <div class="col-md-8 col-lg-7">
@@ -118,24 +190,23 @@
                                             </div>
                                         </div>
                                         <div class=" col-lg-12 col-md-12 col-sm-12" style="padding-top: calc(0.375rem + 8px);
-                                            padding-bottom: calc(0.375rem + 1px);
-                                            display: flex;
-                                            justify-content: center; 
-                                            flex-wrap: wrap;">
+    padding-bottom: calc(0.375rem + 1px);
+    display: flex;
+    justify-content: center; 
+    flex-wrap: wrap;">
                                             <a href="/edit_info">
                                                 <button type="button" style=" color: #fff; margin-top: 1rem;margin-bottom: 2rem;     margin-left: 1rem;  " class="float-right rkmd-btn btn-black ripple-effect ripple-yellow " id="submit_documents">
                                                             Précédent </button>
                                             </a>
 
                                             <a href="/shop/cart" disabled="disabled" id="document_next">
-                                                <button type="button" style=" color: #fff; margin-top: 1rem;margin-bottom: 2rem;     margin-left: 1rem;  " class="float-right rkmd-btn btn-black ripple-effect ripple-yellow " id="submit_documents_next_button" disabled="disabled">
+                                                <button type="button" style=" color: #fff; margin-top: 1rem;margin-bottom: 2rem;     margin-left: 1rem;  " class="float-right rkmd-btn btn-black ripple-effect ripple-yellow " id="submit_documents_next_button">
                                                            Suivant </button>
                                             </a>
                                             <span id="o_website_form_result"/>
 
 
                                         </div>
-
                                     </form>
                                 </div>
                             </div>
@@ -148,74 +219,10 @@
                         <div class="loader"></div>
                     </div>
 
-                    <div id="idenfy_popup" class="overlay_popup">
-
-                        <div class="doc_popup" style="">
-                            <div style="position: relative">
-                                <h1 id="popup_counter">
-                                5
-                                </h1>
-                            </div>
-                            <h2 class="text-left">
-                                <i class="fa fa-info-circle" style="color: #152856;"></i>
-                            </h2>
-
-                            <div class="content text-center">
-                                <p id="notifMessage">
-                                </p>
-
-                                <div class="" style="margin-block-start: 1.5rem;">
-
-                                    <div class="slider">
-                                        <div class="line"></div>
-                                        <div class="break dot1"></div>
-                                        <div class="break dot2"></div>
-                                        <div class="break dot3"></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-
-                    </div>
                 </div>
-                <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"/>
-                <script type="text/javascript" src="mcm_contact_documents/static/src/js/upload_file_dig.js"/>
+                <!--                <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"/>-->
+                <script type="text/javascript" src="mcm_contact_documents/static/src/js/upload_file.js"/>
                 <script> function onChangeCheck(){ console.log("click") } </script>
-
-
-                <script>
-                    function checkDomicile() {
-                    var domic_checked= document.getElementById('check_domicile_checked');
-                    var domic_not_checked= document.getElementById('check_domicile_not_checked');
-                    var domic_identity_hebergeur=
-                    document.getElementById('o_website_form_identity_hebergeur');
-                    var domic_attestation_hebergeur=
-                    document.getElementById('o_website_form_attestation_hebergeur');
-                    var identity_hebergeur = document.getElementById('identity_hebergeur');
-                    var attestation_hebergeur = document.getElementById('attestation_hebergeur');
-                    if(domic_checked.checked){
-                    if(domic_identity_hebergeur) { domic_identity_hebergeur.style.display='none'; domic_identity_hebergeur.className='form-group row form-field';
-                    identity_hebergeur.required = 0;
-                    }
-                    if(domic_attestation_hebergeur) { domic_attestation_hebergeur.style.display='none'; domic_attestation_hebergeur.className='form-group row form-field';
-                    attestation_hebergeur.required = 0;
-                    }
-                    }
-                    if(domic_not_checked.checked){
-                    if(domic_identity_hebergeur) { domic_identity_hebergeur.style.display='block'; domic_identity_hebergeur.className='form-group row form-field
-                    o_website_form_required';
-                    identity_hebergeur.required = 1;
-                    }
-                    if(domic_attestation_hebergeur) { domic_attestation_hebergeur.style.display='block'; domic_attestation_hebergeur.className='form-group row form-field
-                    o_website_form_required';
-                    attestation_hebergeur.required = 1;
-                    }
-                    }
-                    };
-                </script>
-
-
             </t>
         </t>
     </template>
