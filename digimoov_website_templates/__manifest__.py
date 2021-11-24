@@ -43,6 +43,12 @@
         'views/my_account_progress.xml',
         'views/cart_progressbar.xml',
         'views/edit_info.xml',
+        'views/test1.xml',
+        'views/test2.xml',
+        'views/test3.xml',
+        'views/test4.xml',
+        'views/test5.xml',
+        'views/test6.xml',
         # 'views/charger_mes_documents'
         # 'views/sitemap.xml',
 

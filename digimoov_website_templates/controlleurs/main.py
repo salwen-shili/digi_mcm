@@ -150,7 +150,7 @@ class FINANCEMENT(http.Controller):
             if user_connected.partner_id.partner_from and user_connected.partner_id.partner_from in ['ubereats',
                                                                                                      'deliveroo',
                                                                                                      'coursierjob',
-                                                                                                     'box2home','coursier2roues']:
+                                                                                                     'box2home','coursier2roues', 'habilitation-electrique', 'eco-conduite', 'transport-routier']:
                 return request.redirect("/%s#pricing" % str(user_connected.partner_id.partner_from))
             else:
                 return request.redirect("/#pricing")
@@ -365,7 +365,57 @@ class Services(http.Controller):
             return request.render("digimoov_website_templates.digimoov_template_contact", {})
         else:
             return request.render("mcm_website_theme.mcm_template_contact", {})
+      ##############################
+    #test routes a supprimer
+    @http.route('/test1', type='http', auth='public', website=True)
+    def test1(self, **kw, ):
+        if request.website.id == 2:
+            return request.render("digimoov_website_templates.digimoov_template_habilitation_electrique", {})
+        else:
+            raise werkzeug.exceptions.NotFound()
+    @http.route('/test6', type='http', auth='public', website=True)
+    def test1(self, **kw, ):
+        if request.website.id == 2:
+            return request.render("digimoov_website_templates.digimoov_template_test6", {})
+        else:
+            raise werkzeug.exceptions.NotFound()
 
+    @http.route('/test2', type='http', auth='public', website=True)
+    def test2(self, **kw, ):
+        if request.website.id == 2:
+            return request.render("digimoov_website_templates.digimoov_template_langues", {})
+        else:
+            raise werkzeug.exceptions.NotFound()
+
+    @http.route('/test3', type='http', auth='public', website=True)
+    def test3(self, **kw, ):
+        if request.website.id == 2:
+            return request.render("digimoov_website_templates.digimoov_template_eco_conduite", {})
+        else:
+            raise werkzeug.exceptions.NotFound()
+
+    @http.route('/test4', type='http', auth='public', website=True)
+    def test4(self, **kw, ):
+        if request.website.id == 2:
+            return request.render("digimoov_website_templates.digimoov_template_capacite_lourde", {})
+        else:
+            raise werkzeug.exceptions.NotFound()
+    @http.route('/test5', type='http', auth='public', website=True)
+    def test4(self, **kw, ):
+        if request.website.id == 2:
+            return request.render("digimoov_website_templates.digimoov_template_langues_2", {})
+        else:
+            raise werkzeug.exceptions.NotFound()
+
+    @http.route('/test5', type='http', auth='public', website=True)
+    def test5(self, **kw, ):
+        if request.website.id == 2:
+            return request.render("digimoov_website_templates.digimoov_template_langues_2", {})
+        else:
+            raise werkzeug.exceptions.NotFound()
+
+    # test a supprimer
+    ##############################
 
     @http.route('/maintenance', type='http', auth='public', website=True) # url of maintenance page 
     def maintenance(self, **kw, ):
