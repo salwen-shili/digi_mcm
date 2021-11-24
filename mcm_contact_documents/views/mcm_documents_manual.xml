@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <template id="mcm_contact_documents_charger_mes_documents_mcm" name="Document: Submit a Document">
+    <template id="mcm_documents_manual" name="Document: Submit a Document">
         <t name="Document" priority="29" t-name="document">
             <t t-call="website.layout">
                 <t t-set="additional_title">Document</t>
@@ -70,7 +70,7 @@
                                                                 <div class="file-select">
                                                                     <div class="file-select-button" id="fileName1">Choisir un fichier</div>
                                                                     <div class="file-select-name" id="noFile1">Aucun fichier choisi...</div>
-                                                                    <input type="file" name="identity" id="identity" required="required"/>
+                                                                    <input type="file" accept="image/png, image/jpeg, application/pdf" name="identity" id="identity" required="required" />
                                                                 </div>
                                                             </div>
 
@@ -86,7 +86,7 @@
                                                                 <div class="file-select">
                                                                     <div class="file-select-button" id="fileName2">Choisir un fichier</div>
                                                                     <div class="file-select-name" id="noFile2">Aucun fichier choisi...</div>
-                                                                    <input type="file" name="identity2" id="identity2" required="required"/>
+                                                                    <input type="file" accept="image/png, image/jpeg, application/pdf" name="identity2" id="identity2" required="required"/>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -128,7 +128,7 @@
                                                                 <div class="file-select">
                                                                     <div class="file-select-button" id="fileName3">Choisir un fichier</div>
                                                                     <div class="file-select-name" id="noFile3">Aucun fichier choisi...</div>
-                                                                    <input type="file" name="permis" required="required" id="permis" />
+                                                                    <input type="file" accept="image/png, image/jpeg, application/pdf" name="permis" required="required" id="permis" />
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -155,7 +155,7 @@
                                                                 <div class="file-select">
                                                                     <div class="file-select-button" id="fileName4">Choisir un fichier</div>
                                                                     <div class="file-select-name" id="noFile4">Aucun fichier choisi...</div>
-                                                                    <input type="file" name="permis1" required="1" id="permis1" />
+                                                                    <input type="file" accept="image/png, image/jpeg, application/pdf" name="permis1" required="1" id="permis1" />
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -199,10 +199,10 @@
                                                             Précédent </button>
                                             </a>
 
-                                            <a href="/shop/cart" disabled="disabled" id="document_next">
-                                                <button type="button" style=" color: #fff; margin-top: 1rem;margin-bottom: 2rem;     margin-left: 1rem;  " class="float-right rkmd-btn btn-black ripple-effect ripple-yellow " id="submit_documents_next_button" disabled="disabled">
+
+                                            <button type="submit" style=" color: #fff; margin-top: 1rem;margin-bottom: 2rem;     margin-left: 1rem;  " class="float-right rkmd-btn btn-black ripple-effect ripple-yellow " id="submit_documents_next_button">
                                                            Suivant </button>
-                                            </a>
+
                                             <span id="o_website_form_result"/>
 
 
@@ -218,36 +218,10 @@
                     <div class="spanner">
                         <div class="loader"></div>
                     </div>
-                    <div id="idenfy_popup" class="overlay_popup">
 
-                        <div class="popup_doc" style="">
-
-                            <h2 class="text-left">
-                                <i class="fa fa-info-circle" style="color: #152856;"></i>
-                            </h2>
-
-                            <div class=" text-center">
-                                <p id="notifMessage" style="font-size: 17px; color:#000">
-                                </p>
-                                <div style="text-align: -webkit-center;">
-                                    <div id="popup_counter">6</div>
-                                </div>
-                                <div class="" style="margin-block-start: 0.5rem;">
-
-                                    <div class="slider">
-                                        <div class="line"></div>
-                                        <div class="break dot1"></div>
-                                        <div class="break dot2"></div>
-                                        <div class="break dot3"></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-
-                    </div>
                 </div>
 
+                <script> function onChangeCheck(){ console.log("click") } </script>
             </t>
         </t>
     </template>
