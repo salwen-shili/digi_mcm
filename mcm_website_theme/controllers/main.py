@@ -1024,7 +1024,6 @@ class Payment3x(http.Controller):
     @http.route(['/shop/payment/update_cartebleu'], type='json', auth="public", methods=['POST'], website=True, csrf=False)
     def cart_update_cartebleu(self, cartebleu):
         order = request.website.sale_get_order(force_create=1)
-        print('update_cartebleu')
         if cartebleu and order.partner_id.statut != 'won':
             order.partner_id.mode_de_financement ='particulier'
         return True
