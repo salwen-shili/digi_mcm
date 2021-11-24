@@ -1,21 +1,21 @@
-$("#identity").bind("change", function () {
-  var filename = $("#identity").val();
+$('#identity').bind('change', function () {
+  var filename = $('#identity').val();
   if (/^\s*$/.test(filename)) {
-    $("#file-upload1").removeClass("active");
-    $("#noFile1").text("No file chosen...");
+    $('#file-upload1').removeClass('active');
+    $('#noFile1').text('No file chosen...');
   } else {
-    $("#file-upload1").addClass("active");
-    $("#noFile1").text(filename.replace("C:\\fakepath\\", ""));
+    $('#file-upload1').addClass('active');
+    $('#noFile1').text(filename.replace('C:\\fakepath\\', ''));
   }
 });
-$("#identity2").bind("change", function () {
-  var filename = $("#identity2").val();
+$('#identity2').bind('change', function () {
+  var filename = $('#identity2').val();
   if (/^\s*$/.test(filename)) {
-    $("#file-upload2").removeClass("active");
-    $("#noFile2").text("No file chosen...");
+    $('#file-upload2').removeClass('active');
+    $('#noFile2').text('No file chosen...');
   } else {
-    $("#file-upload2").addClass("active");
-    $("#noFile2").text(filename.replace("C:\\fakepath\\", ""));
+    $('#file-upload2').addClass('active');
+    $('#noFile2').text(filename.replace('C:\\fakepath\\', ''));
   }
 });
 // $("#permis").bind("change", function () {
@@ -40,14 +40,14 @@ $("#identity2").bind("change", function () {
 //   }
 // });
 
-$("#mcm_my_documents_form").submit(function (event) {
+$('#mcm_my_documents_form').submit(function (event) {
   event.preventDefault();
-  window.location.href = "#popup1";
+  window.location.href = '#popup1';
 });
 function onClickBtn() {
-  window.location.href = "#";
+  window.location.href = '#';
 
-  $("#mcm_my_documents_form").submit();
-  $("div.spanner").addClass("show");
-  $("div.overlay").addClass("show");
+  document.getElementById('mcm_my_documents_form').submit();
+  $('div.spanner').addClass('show');
+  $('div.overlay').addClass('show');
 }
