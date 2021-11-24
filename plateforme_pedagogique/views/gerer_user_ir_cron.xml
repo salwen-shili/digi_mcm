@@ -56,7 +56,7 @@
            <field name="priority" eval="0" />
         </record>
         <!--Changer etat de dossier sur edof avec api  !-->
-     <record id="ir_cron_wedof_api" model="ir.cron">
+     <record id="ir_cron_in_training" model="ir.cron">
      <field name="name">Mettre en formation les dossiers cpf </field>
      <field name="model_id" ref="model_res_partner"/>
      <field name="active" eval="True"></field>
