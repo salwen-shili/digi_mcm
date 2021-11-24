@@ -127,7 +127,7 @@
                                                             Précédent </button>
                                             </a>
 
-                                            <button type="submit" style=" color: #fff; margin-top: 1rem;margin-bottom: 2rem;     margin-left: 1rem;  " class="float-right rkmd-btn btn-black ripple-effect ripple-yellow " id="submit_documents_next_button" disabled="disabled">
+                                            <button type="submit" style=" color: #fff; margin-top: 1rem;margin-bottom: 2rem;     margin-left: 1rem;  " class="float-right rkmd-btn btn-black ripple-effect ripple-yellow " id="submit_documents_next_button">
                                                            Suivant </button>
 
                                             <span id="o_website_form_result"/>
