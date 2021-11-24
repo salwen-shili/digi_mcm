@@ -78,7 +78,11 @@ class ResPartner(models.Model):
                             'partner_id':rec.id,
                             'folder_id':folder_id.id
                         }
-                        self.env['documents.document'].create(vals)
+                        #search if the client has already a document with same name
+                        partner_document = self.env['documents.document'].sudo().search(
+                            [('name', "=", document), ('partner_id', "=", rec.id)])
+                        if not partner_document:
+                            self.env['documents.document'].create(vals)
         return True
 
     def uploaded_doc_after_check_status(self,website):
