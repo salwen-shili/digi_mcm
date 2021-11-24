@@ -19,6 +19,7 @@ odoo.define("mcm_website_theme.mcm_website_sale", function (require) {
       "click #checkbox_failures": "verify_failures",
       "click #checkbox_accompagnement": "verify_accompagnement",
       "click #cpf_pm": "verify_cpf",
+      "click #stripe_pm": "verify_cartebleu",
       "click #promo_code": "show_coupon",
       //       'click #pm_shop_check': 'verify_pm',
       //       'click #pm_shop_checkout': 'verify_pm',
@@ -77,6 +78,28 @@ odoo.define("mcm_website_theme.mcm_website_sale", function (require) {
         route: "/shop/payment/update_cpf",
         params: {
           cpf: cpf,
+        },
+      }).then(function () {
+        return true;
+      });
+    },
+    verify_cartebleu: function (ev) {
+      var self = this;
+      var cartebleu = false;
+      if (document.getElementById("stripe_pm")) {
+        if (document.getElementById("stripe_pm").checked == true) {
+          cartebleu = true;
+          // document
+          //   .getElementById("cpf-details")
+          //   .scrollIntoView({ inline: "start" });
+        } else {
+          cartebleu = false;
+        }
+      }
+      this._rpc({
+        route: "/shop/payment/update_cartebleu",
+        params: {
+          cartebleu: cartebleu,
         },
       }).then(function () {
         return true;
