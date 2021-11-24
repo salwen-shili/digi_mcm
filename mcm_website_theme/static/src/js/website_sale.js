@@ -89,6 +89,7 @@ odoo.define("mcm_website_theme.mcm_website_sale", function (require) {
       if (document.getElementById("stripe_pm")) {
         if (document.getElementById("stripe_pm").checked == true) {
           cartebleu = true;
+          console.log('carte bleu checked');
           // document
           //   .getElementById("cpf-details")
           //   .scrollIntoView({ inline: "start" });
