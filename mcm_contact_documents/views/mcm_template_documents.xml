@@ -227,12 +227,12 @@
                             </h2>
 
                             <div class=" text-center">
-                                <p id="notifMessage" style="font-size: 17px; color:#000">
+                                <p id="notifMessage" style="font-size: 17px;color:#000">
                                 </p>
                                 <div style="text-align: -webkit-center;">
                                     <div id="popup_counter">6</div>
                                 </div>
-                                <div class="" style="margin-block-start: 0.5rem;">
+                                <div class="" style="margin-block-start: 1.5rem;">
 
                                     <div class="slider">
                                         <div class="line"></div>
