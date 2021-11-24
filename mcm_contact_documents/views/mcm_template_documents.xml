@@ -220,14 +220,14 @@
                     </div>
                     <div id="idenfy_popup" class="overlay_popup">
 
-                        <div class="popup" style="">
+                        <div class="popup_doc" style="">
 
                             <h2 class="text-left">
                                 <i class="fa fa-info-circle" style="color: #152856;"></i>
                             </h2>
 
-                            <div class="content text-center">
-                                <p id="notifMessage" style="font-size: 17px">
+                            <div class=" text-center">
+                                <p id="notifMessage" style="font-size: 17px; color:#000">
                                 </p>
                                 <div style="text-align: -webkit-center;">
                                     <div id="popup_counter">6</div>
@@ -247,9 +247,7 @@
 
                     </div>
                 </div>
-                <!--                <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"/>-->
-                <script type="text/javascript" src="mcm_contact_documents/static/src/js/upload_file.js"/>
-                <script> function onChangeCheck(){ console.log("click") } </script>
+
             </t>
         </t>
     </template>

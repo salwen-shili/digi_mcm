@@ -3,49 +3,6 @@ odoo.define("idenfy_integration.portal", function (require) {
 
   var publicWidget = require("web.public.widget");
 
-  console.log("localstorage", localStorage.getItem("failed_status_counter"));
-  var popup = $("#idenfy_popup");
-  var statusCounter = localStorage.getItem("failed_status_counter");
-
-  //second try redirect to manual upload
-  if (parseInt(statusCounter) == 1) {
-    localStorage.setItem("failed_status_counter", 0);
-    console.log($("#notifMessage"));
-    $("#notifMessage").text(
-      "L'identification automatique et la vérification de l'authenticité vos documents n'a pas pu se faire. Vous serez redirigé pour charger vos documents manuellement"
-    );
-    popup.addClass("popup_show");
-    var counter = setInterval(function () {
-      var remainingTime = $("#popup_counter").html();
-      remainingTime = parseInt(remainingTime);
-      if (remainingTime == 0) {
-        // window.location.href = "/charger_mes_documents_manual";
-        clearInterval(counter);
-      } else {
-        $("#popup_counter").html(remainingTime - 1);
-      }
-    }, 1000);
-  }
-  //first try
-  else {
-    localStorage.setItem("failed_status_counter", 1);
-    //refraichir la page
-    $("#notifMessage").text(
-      `L'identification automatique et la vérification de l'authenticité vos documents n'a pas pu se faire.<br/> Vous allez réessayer dans quelques instant`
-    );
-    popup.addClass("popup_show");
-    var counter = setInterval(function () {
-      var remainingTime = $("#popup_counter").html();
-      remainingTime = parseInt(remainingTime);
-      if (remainingTime == 0) {
-        // window.location.reload();
-        clearInterval(counter);
-      } else {
-        $("#popup_counter").html(remainingTime - 1);
-      }
-    }, 1000);
-  }
-
   window.addEventListener("message", receiveMessage, false);
   function receiveMessage(event) {
     var button = $("#submit_documents_next_button");
@@ -63,50 +20,53 @@ odoo.define("idenfy_integration.portal", function (require) {
       button.removeAttr("disabled");
     }
     if (event.data.status == "failed") {
-      console.log(
-        "localstorage",
-        localStorage.getItem("failed_status_counter")
-      );
-      var popup = $("#idenfy_popup");
-      var statusCounter = localStorage.getItem("failed_status_counter");
-
-      //second try redirect to manual upload
-      if (parseInt(statusCounter) == 1) {
-        localStorage.setItem("failed_status_counter", 0);
-        console.log($("#notifMessage"));
-        $("#notifMessage").text(
-          "L'identification automatique et la vérification de l'authenticité vos documents n'a pas pu se faire. Vous serez redirigé pour charger vos documents manuellement"
+      if (window.location.pathname == "/charger_mes_documents") {
+        console.log(
+          "localstorage",
+          localStorage.getItem("failed_status_counter")
         );
-        popup.addClass("popup_show");
-        var counter = setInterval(function () {
-          var remainingTime = $("#popup_counter").html();
-          remainingTime = parseInt(remainingTime);
-          if (remainingTime == 0) {
-            window.location.href = "/charger_mes_documents_manual";
-            clearInterval(counter);
-          } else {
-            $("#popup_counter").html(remainingTime - 1);
-          }
-        }, 1000);
-      }
-      //first try
-      else {
-        localStorage.setItem("failed_status_counter", 1);
-        //refraichir la page
-        $("#notifMessage").text(
-          "L'identification automatique et la vérification de l'authenticité vos documents n'a pas pu se faire. Vous allez réessayer dans quelques instant"
-        );
-        popup.addClass("popup_show");
-        var counter = setInterval(function () {
-          var remainingTime = $("#popup_counter").html();
-          remainingTime = parseInt(remainingTime);
-          if (remainingTime == 0) {
-            window.location.reload();
-            clearInterval(counter);
-          } else {
-            $("#popup_counter").html(remainingTime - 1);
-          }
-        }, 1000);
+        var popup = $("#idenfy_popup");
+        var statusCounter = localStorage.getItem("failed_status_counter");
+        //second try redirect to manual upload
+        if (parseInt(statusCounter) == 1) {
+          localStorage.setItem("failed_status_counter", 0);
+          console.log($("#notifMessage"));
+          console.log("idenfy message");
+          $("#notifMessage").text(
+            "L'identification automatique et la vérification de l'authenticité vos documents n'a pas pu se faire. Vous serez redirigé pour charger vos documents manuellement"
+          );
+          popup.addClass("popup_show");
+          var counter = setInterval(function () {
+            var remainingTime = $("#popup_counter").html();
+            remainingTime = parseInt(remainingTime);
+            if (remainingTime == 0) {
+              window.location.href = "/charger_mes_documents_manual";
+              clearInterval(counter);
+            } else {
+              $("#popup_counter").html(remainingTime - 1);
+            }
+          }, 1000);
+        }
+        //first try
+        else {
+          localStorage.setItem("failed_status_counter", 1);
+          //refraichir la page
+          console.log("idenfy message");
+          $("#notifMessage").text(
+            `L'identification automatique et la vérification de l'authenticité vos documents n'a pas pu se faire. Vous allez réessayer dans quelques instant`
+          );
+          popup.addClass("popup_show");
+          var counter = setInterval(function () {
+            var remainingTime = $("#popup_counter").html();
+            remainingTime = parseInt(remainingTime);
+            if (remainingTime == 0) {
+              window.location.reload();
+              clearInterval(counter);
+            } else {
+              $("#popup_counter").html(remainingTime - 1);
+            }
+          }, 1000);
+        }
       }
     }
   }
