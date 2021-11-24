@@ -35,8 +35,6 @@
                                         </div>
                                         <br/>
                                         <script> document.getElementsByClassName("progress-bar")[0].style.width= "50%"; </script>
-
-
                                     </div>
                                 </div>
                             </div>
@@ -146,9 +144,28 @@
                     <div class="spanner">
                         <div class="loader"></div>
                     </div>
+                    <div id="popup1" class="overlay_popup">
+                        <div class="popup">
+                            <h2 class="text-left">
+                                <i class="fa fa-info-circle" style="color: #152856;"></i>
+                            </h2>
+                            <a class="close" href="#">
+                                <i class="fa fa-times"></i>
+                            </a>
+                            <div class="content text-center">
+                                <p id="notifMessage">
+Vous pourrez désormais choisir votre date et centre d'examen et financer votre formation.
+                                </p>
+                                <div class="" style="margin-block-start: 1.5rem;">
+                                    <input type="button" href="#" class="text-center next action-button" style="float: unset !important;" value="Continuer" onclick="onClickBtn()" />
 
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-
+                <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"/>
+                <script type="text/javascript" src="mcm_contact_documents/static/src/js/upload_file_dig.js"/>
                 <script> function onChangeCheck(){ console.log("click") } </script>
 
 
@@ -186,5 +203,6 @@
 
             </t>
         </t>
+
     </template>
 </odoo>
