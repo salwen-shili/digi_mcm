@@ -2,6 +2,8 @@
 <odoo>
 
      <!--        Get stat_users from 360learning-->
+     <!--        Get2 stat_users from 360learning-->
+
      <record id="ir_cron_get_stat_users" model="ir.cron">
           <field name="name">Géneration des statistiques</field>
           <field name="model_id" ref="model_res_partner"/>
