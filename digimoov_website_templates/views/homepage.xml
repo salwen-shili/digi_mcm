@@ -2733,8 +2733,11 @@
                                                                                             Paiement 1 fois
                                     </p>
                                     <br/>
-                                    <button class="btn btn-block text-white" onClick="(function(){msTracking('clic sur inscrire transport routier','Pricing Table events','Inscrire pack transport routier','660'); document.getElementById('form-transport-routie').submit();return false;})();return false;" style="background-color: #6e209f; border-radius: 25px">
+                                    <button class="btn btn-block text-white" 
+                                    style="background-color: #6e209f; border-radius: 25px">
+Je m'inscris
                                     </button>
+
 
                                 </div>
                             </form>

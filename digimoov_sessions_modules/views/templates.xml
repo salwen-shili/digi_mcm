@@ -36,8 +36,9 @@
 
 
                 <p t-if="modules_digimoov">
+
                     <div style="margin-left: 0%; display:none ">
-                        <select id="exam_date" class="form-control search-slt" t-if="modules_digimoov">
+                        <select id="exam_date" class="form-control search-slt" t-if="modules_digimoov" style="text-transform: capitalize;">
                             <option value="all" id="all">
                                 Sélectionnez votre date d'examen
                             </option>
@@ -63,7 +64,7 @@
                     </div>
                     <b>
                         <div id="select-date" style="margin-left: 0%">
-                            <select name="date_examen" id="options-date" class="form-control search-slt" style="display:none">
+                            <select name="date_examen" id="options-date" class="form-control search-slt" style="display:none; ">
                                 <option value="all" id="all">
                                     Sélectionnez votre date d'examen
                                 </option>
