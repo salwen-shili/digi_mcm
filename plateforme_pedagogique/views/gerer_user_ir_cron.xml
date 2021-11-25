@@ -2,6 +2,8 @@
 <odoo>
 
      <!--        Get stat_users from 360learning-->
+     <!--        Get2 stat_users from 360learning-->
+
      <record id="ir_cron_get_stat_users" model="ir.cron">
           <field name="name">Géneration des statistiques</field>
           <field name="model_id" ref="model_res_partner"/>
@@ -80,6 +82,19 @@
           <field name="numbercall">-1</field>
           <field name="priority" eval="1" />
      </record>
+     <!--Valider etat de dossier sur edof avec api !-->
+     <record id="ir_cron_wedof_api" model="ir.cron">
+          <field name="name">Valider les dossiers cpf</field>
+          <field name="model_id" ref="model_res_partner"/>
+          <field name="active" eval="True"></field>
+          <field name="state">code</field>
+          <field name="code">model.change_state_wedof_validate()</field>
+          <field name="interval_number">15</field>
+          <field name="interval_type">minutes</field>
+          <field name="numbercall">-1</field>
+          <field name="priority" eval="3" />
+     </record>
+
 
 
 </odoo>
