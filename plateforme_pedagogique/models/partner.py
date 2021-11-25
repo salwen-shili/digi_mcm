@@ -574,3 +574,54 @@ class partner(models.Model):
             _logger.info("status put %s" % put_status)
             _logger.info("status post %s" % status)
 
+    """Mettre à jour les statuts cpf sur la fiche client selon l'etat sur wedof """
+    def change_state_cpf_partner(self):
+        params_wedof = (
+            ('order', 'asc'),
+            ('type', 'all'),
+            ('state', 'all'),
+            ('billingState', 'all'),
+            ('certificationState', 'all'),
+            ('sort', 'lastUpdate'),
+            ('limit', '10000000000')
+        )
+        headers = {
+            'accept': 'application/json',
+            'Content-Type': 'application/json',
+            'X-API-KEY': '026514d6bc7d880515a27eae4947bccef4fbbf03',
+        }
+        response = requests.get('https://www.wedof.fr/api/registrationFolders/', headers=headers,
+                                params=params_wedof)
+        registrations = response.json()
+        for dossier in registrations:
+            externalId=dossier['externalId']
+            email = dossier['attendee']['email']
+            state=dossier['state']
+            lastupdatestr=str(dossier['lastUpdate'])
+
+
+            lastupdate=datetime.strptime(lastupdatestr, '%Y-%m-%dT%H:%M:%S.%fz')
+            newformat="%d/%m/%Y %H:%M:%S"
+            lastupdateform=lastupdate.strftime(newformat)
+
+            print('last update',lastupdate,lastupdateform)
+            user=self.env['res.users'].search([("login","=",email)],limit=1)
+            partner=self.env['res.partner'].search([("id","=",user.partner_id.id),("numero_cpf","=",externalId)])
+            print('partner',partner.numero_cpf,user.login)
+            if partner:
+                print(partner.date_cpf)
+                partner.numero_cpf = externalId
+                partner.date_cpf = lastupdateform
+                if state=="inTraining":
+                    partner.statut_cpf="in_training"
+                if state=="terminated":
+                    partner.statut_cpf="out_training"
+                if state=="serviceDoneDeclared":
+                    partner.statut_cpf="service_declared"
+                if state=="serviceDoneValidated":
+                    partner.statut_cpf="service_validated"
+                if state=="canceledByAttendee" or state=="canceledByAttendeeNotRealized" or state=="canceledByOrganism"  :
+                    partner.statut_cpf="canceled"
+
+
+        
