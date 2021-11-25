@@ -121,7 +121,7 @@ odoo.define('digimoov_sessions_modules.website_sale', function (require) {
         });
 
         if (dateOptions) {
-          var select = `<select name="date_examen" id="options-date" class="form-control search-slt" onchange="onChangeCheckButton()" style="text-transform: capitalize;">
+          var select = `<select name="date_examen" id="options-date" class="form-control search-slt" onchange="onChangeCheckButton()" style="text-transform: capitalize;" >
           <option value="all" id="all">
                                     Sélectionnez votre date d'examen
                                 </option>                  
