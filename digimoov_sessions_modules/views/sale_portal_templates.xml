@@ -183,11 +183,17 @@
                                         <span style="font-size:12px;">Centre d'examen de</span>
                                         <span style="font-size:12px"
                                               t-field="sale_order.module_id.session_ville_id.name_ville"/>
-                                        <span style="font-size:12px;">le</span>
-                                        <span style="font-size:12px"
-                                              t-field="sale_order.module_id.date_exam"/>
-
-
+                                        <t t-if="sale_order.module_id.product_id.default_code=='transport-routier'">
+                                            <span style="font-size:12px;">en</span>
+                                            <span style="font-size:12px;text-transform: capitalize"
+                                                  t-esc="datetime.datetime.strptime(str(sale_order.module_id.date_exam), '%Y-%m-%d').strftime('%B %Y')"
+                                                  />
+                                        </t>
+                                        <t t-else="">
+                                            <span style="font-size:12px;">le</span>
+                                            <span style="font-size:12px"
+                                                  t-field="sale_order.module_id.date_exam"/>
+                                        </t>
                                     </div>
                                     <div>
 
@@ -218,7 +224,7 @@
                                         </span>
                                         <span style="font-size:12px"
                                               t-field="sale_order.module_id.session_ville_id.name_ville"/>
-                                        <span style="font-size:12px"> à compterde la réception de vos
+                                        <span style="font-size:12px">à compterde la réception de vos
                                             identifiants pour effectuer les 102h de formation en ligne.Les formations en
                                             ligne consistent dans la fourniture d’un contenu numérique non fourni sur un
                                             support matériel accessible par le biais d’un espace électronique sécurisé
@@ -339,7 +345,8 @@
                                     </div>
                                     <div>
                                         <span style="font-size:12px">
-                                            Le paiement sera ou par CB ou par CPF à réception d'une facture émise par l'organisme de
+                                            Le paiement sera ou par CB ou par CPF à réception d'une facture émise par
+                                            l'organisme de
                                             formation à destination du bénéficiaire.Le bénéficiaire s’engage à verser la
                                             somme due selon les modalités de paiement suivantes :
                                         </span>

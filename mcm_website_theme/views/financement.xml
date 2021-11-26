@@ -40,8 +40,8 @@
                     <p class="heading text-center; color: rgb(0, 0, 0)" style="padding: 2rem 0rem">
                                             Chez MCM Academy nous offrons à nos candidats la possibilité de financer leurs formation Taxi VTC et VMDTR en mobilisant leurs Compte de formation Personnel ou par auto-financement avec des modalités assez flexibles !
                     </p>
-                    <a href="/qui-sommes-nous">
-                      <button class="home-btn">À propos</button>
+                    <a href="#pricing">
+                      <button class="home-btn">Je m'inscris</button>
                     </a>
                     <a href="/contact">
                       <button class="home-btn">Contactez-nous</button>
@@ -57,28 +57,35 @@
             </div>
           </div>
         </section>
-        <section class="s_text_block pt32 pb32" data-name="Text block">
+        <section class="s_text_image pt32 pb32" data-name="Image - Text">
           <div class="container">
-            <div class="row s_nb_column_fixed">
-              <div class="col-lg-12 s_title">
-                <h1>
-                  <span style="font-weight: 700;">
-                  Financer votre formation par Auto-financement
-                  </span>
-                </h1>
+            <div class="row align-items-center">
+              <div class="col-lg-6 pt16 pb16" style="border-style: none; border-width: 0px;">
+                <img src="/mcm_website_theme/static/src/img/financement/paiement -carte-bleu-formation-mcm-academy.png" class="img img-fluid mx-auto" alt="Odoo • Image et Texte" data-original-title="" title="" aria-describedby="tooltip559943" />
               </div>
-              <div class="col-lg-12 pb24">
-                <blockquote>
-                  <font style="font-size: 18px;">Et ce en payant directement votre formation en ligne par carte bleue .&amp;nbsp;&amp;nbsp;&amp;nbsp;
-                  </font>
+              <div class="col-lg-6 pt16 pb16" style="border-style: none; border-width: 0px;">
+                <h1 style="box-sizing: border-box; margin-top: 0px; margin-bottom: 0.5rem; font-family: Lato, &quot;Odoo Unicode Support Noto&quot;, sans-serif; font-weight: 500; line-height: 1.2; font-size: 2.1875rem;">
                   <br/>
-                  <font style="font-size: 18px;">En passant par ce mode de paiement , MCM Academy, vous offre le choix de financer votre formation en intégralité ou en répartissant votre paiement sur deux ou trois tranches .
-                  </font>
-                </blockquote>
-                <p>
-                  <font style="font-size: 18px;">*Vous pouvez consulter nos règlements pour plus d’informations ou détails.
-                  </font>
-                </p>
+                  <span style="box-sizing: border-box; font-weight: 700;">Financer votre formation par carte bleu :</span>
+                </h1>
+                <h2>
+                  <div class="col-lg-12 s_title" style="width: 1140px; font-size: 14px;"></div>
+                  <div class="col-lg-12 pb24" style="width: 1140px; font-size: 14px;">
+                    <blockquote>
+                      <font style="font-size: 18px;">Et ce en payant directement votre formation en ligne par carte bleue .</font>
+                      <br />
+                      <font style="font-size: 18px;">En passant par ce mode de paiement , MCM Academy, vous offre le choix de financer votre formation en intégralité ou en répartissant votre paiement sur deux ou trois tranches .</font>
+                    </blockquote>
+                    <p>
+                      <font style="font-size: 18px;">*Vous pouvez consulter nos règlements pour plus d’informations ou détails.</font>
+                    </p>
+                  </div>
+                </h2>
+                <div class="s_btn text-left pt16 pb16" data-name="Button">
+                  <a href="#pricing">
+                    <button class="home-btn">Je m'inscris</button>
+                  </a>
+                </div>
               </div>
               <div class="col-lg-8 offset-lg-2 pb12">
                 <figure class="figure">
