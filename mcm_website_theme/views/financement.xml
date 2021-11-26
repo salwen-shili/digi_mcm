@@ -2,51 +2,62 @@
 <odoo>
   <template id="mcm_website_theme_cpf" name="Financement | MCM ACADEMY">
     <t t-call="website.layout">
+      <link rel="stylesheet" href="/mcm_website_theme/static/src/css/homepage.css"/>
+      <script defer="defer" type="text/javascript" src="/digimoov_website_templates/static/src/js/lazy-min.js"/>
+      <script type="text/javascript" src="/mcm_website_theme/static/src/js/msAds.js"/>
+
+      <style>
+                #sh_corpomate_theme_section_184 .sh_content .sh_more_btn.sh_btn_cm_8 {
+                background: black;
+                border: 2px solid #0a0a0a;
+                padding: 8px 25px;
+                border-radius: 10px;
+                margin-right: 15px;
+                font-size: 16px;
+                letter-spacing: 1px;
+                }
+                @media (max-width: 410px) {
+                res-button{
+                margin-bottom: 1rem;
+                }
+
+
+      </style>
       <div id="wrap" class="oe_structure">
-        <div id="myCarousel1629103652119" class="carousel s_carousel s_carousel_default slide" data-interval="10000" data-name="Carousel" style="border-style: none; border-width: 0px;">
-          <div class="carousel-inner">
-            <div class="carousel-item oe_custom_bg oe_img_bg pt96 pb184 active" style="background-image: url(&quot;/mcm_website_theme/static/src/img/financement/Financer-formation-taxi-vtc-moto-taxi.png&quot;); background-position: 0.23% 23.99%;" data-name="Slide">
-              <div class="container">
-                <div class="content row">
-                  <div class="carousel-content col-lg-7">
-                    <div class="pb8 s_title" data-name="Title">
-                      <h2 class="s_title_default">
-                        <b>
-                          <span style="color: rgb(0, 0, 0); font-size: 48px;">Comment financer ma formation de chauffeur Taxi, VTC ou Taxi Moto? </span>&amp;nbsp; </b>
-                      </h2>
-                    </div>
-                    <p class="lead">
-                      <font style="color: rgb(66, 66, 66); font-size: 18px;">
-                        <b></b>
-                      </font>
-                      <font style="color: rgb(0, 0, 0); font-size: 18px;">
-                        <b>Chez MCM Academy nous offrons à nos candidats la possibilité de financer leurs formation Taxi VTC et VMDTR en mobilisant leurs Compte de formation Personnel ou par auto-financement avec des modalités assez flexibles !</b>
-                      </font>
-                      <font style="color: rgb(66, 66, 66); font-size: 18px;">
-                        <b></b>
-                      </font>
+        <section id="sh_corpomate_theme_section_258" class="sh_animation_part pt8" data-name="practice">
+          <div class="container-banner">
+            <div class="row">
+              <div class="col-lg-6 pb16 pt56" style="border-style: none; border-width: 0px;">
+                <div class="">
+                  <div class="text-center">
+                    <h1 class="title-mcm slider-text-info">
+                      Comment financer ma formation de chauffeur 
+                      <br/>
+                      <span class="subtitle-mcm">
+                                               TAXI, VTC ou VMDTR ?
+                      </span>
+                    </h1>
+                    <p class="heading text-center; color: rgb(0, 0, 0)" style="padding: 2rem 0rem">
+                                            Chez MCM Academy nous offrons à nos candidats la possibilité de financer leurs formation Taxi VTC et VMDTR en mobilisant leurs Compte de formation Personnel ou par auto-financement avec des modalités assez flexibles !
                     </p>
-                    <div class="pb16 pt16 s_btn text-left" data-name="Buttons">
-                      <a href="/qui-sommes-nous" class="btn btn-secondary flat" data-original-title="" title="" aria-describedby="tooltip168640">
-                        <font style="font-size: 12px;" data-original-title="" title="" aria-describedby="tooltip186579" class="text-epsilon">À                          <b data-original-title="" title="" aria-describedby="tooltip101712">propos </b>
-                        </font>
-                        <font style="color: rgb(66, 66, 66); font-size: 12px;" data-original-title="" title="" aria-describedby="tooltip186579">
-                          <b data-original-title="" title="" aria-describedby="tooltip101712"> &amp;nbsp; </b>
-                        </font>
-                      </a>
-                      <a href="/contact" class="btn btn-primary flat" data-original-title="" title="" aria-describedby="tooltip152664">
-                        <font style="font-size: 12px;" class="text-epsilon">
-                          <b data-original-title="" title="" aria-describedby="tooltip933487">&amp;nbsp;Contactez-nouS </b>
-                        </font>
-                      </a>
-                    </div>
+                    <a href="/qui-sommes-nous">
+                      <button class="home-btn">À propos</button>
+                    </a>
+                    <a href="/contact">
+                      <button class="home-btn">Contactez-nous</button>
+                    </a>
+
                   </div>
                 </div>
               </div>
+              <div class="col-lg-6 pb48 pt16">
+                <br/>
+                <img data-src="/mcm_website_theme/static/src/img/financement/1 PF.png" data-srcSafari="/mcm_website_theme/static/src/img/financement/1 PF.png" class="img img-fluid mx-auto lazy" alt="Devenir chauffeur professionnel VTC, Taxi ou Moto-Taxi" data-original-title="" title="Formation vtc taxi moto-taxi" aria-describedby="tooltip202025" style="text-align: center;max-width: 61%;"/>
+              </div>
             </div>
           </div>
-        </div>
-        <section class="bg-200 pt48 s_picture pb0" data-name="Picture">
+        </section>
+        <section class="s_text_block pt32 pb32" data-name="Text block">
           <div class="container">
             <div class="row s_nb_column_fixed">
               <div class="col-lg-12 s_title">
