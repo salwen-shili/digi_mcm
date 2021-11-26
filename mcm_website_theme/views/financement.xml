@@ -40,8 +40,8 @@
                     <p class="heading text-center; color: rgb(0, 0, 0)" style="padding: 2rem 0rem">
                                             Chez MCM Academy nous offrons à nos candidats la possibilité de financer leurs formation Taxi VTC et VMDTR en mobilisant leurs Compte de formation Personnel ou par auto-financement avec des modalités assez flexibles !
                     </p>
-                    <a href="/qui-sommes-nous">
-                      <button class="home-btn">À propos</button>
+                    <a href="#pricing">
+                      <button class="home-btn">Je m'inscris</button>
                     </a>
                     <a href="/contact">
                       <button class="home-btn">Contactez-nous</button>
@@ -57,100 +57,87 @@
             </div>
           </div>
         </section>
-        <section class="s_text_block pt32 pb32" data-name="Text block">
+        <section class="s_text_image pt32 pb32" data-name="Image - Text">
           <div class="container">
-            <div class="row">
-              <div class="pt32 pb32 col-lg-12">
-                <h2 style="text-align: center;">
-                  <font color="#000000" face="Poppins, sans-serif">
-                    <span style="font-size: 24px;">
-                      <b>Financer votre formation par Auto-financement</b>
-                    </span>
-                  </font>
+            <div class="row align-items-center">
+              <div class="col-lg-6 pt16 pb16" style="border-style: none; border-width: 0px;">
+                <img src="/mcm_website_theme/static/src/img/financement/paiement -carte-bleu-formation-mcm-academy.png" class="img img-fluid mx-auto" alt="Odoo • Image et Texte" data-original-title="" title="" aria-describedby="tooltip559943" />
+              </div>
+              <div class="col-lg-6 pt16 pb16" style="border-style: none; border-width: 0px;">
+                <h1 style="box-sizing: border-box; margin-top: 0px; margin-bottom: 0.5rem; font-family: Lato, &quot;Odoo Unicode Support Noto&quot;, sans-serif; font-weight: 500; line-height: 1.2; font-size: 2.1875rem;">
                   <br/>
-                </h2>
+                  <span style="box-sizing: border-box; font-weight: 700;">Financer votre formation par carte bleu :</span>
+                </h1>
                 <h2>
-                  <font color="#000000" face="Poppins, sans-serif">
-                    <span style="font-size: 24px;">&amp;nbsp;</span>
-                  </font>
+                  <div class="col-lg-12 s_title" style="width: 1140px; font-size: 14px;"></div>
+                  <div class="col-lg-12 pb24" style="width: 1140px; font-size: 14px;">
+                    <blockquote>
+                      <font style="font-size: 18px;">Et ce en payant directement votre formation en ligne par carte bleue .</font>
+                      <br />
+                      <font style="font-size: 18px;">En passant par ce mode de paiement , MCM Academy, vous offre le choix de financer votre formation en intégralité ou en répartissant votre paiement sur deux ou trois tranches .</font>
+                    </blockquote>
+                    <p>
+                      <font style="font-size: 18px;">*Vous pouvez consulter nos règlements pour plus d’informations ou détails.</font>
+                    </p>
+                  </div>
                 </h2>
-                <p>
-                  <font color="#000000" face="Poppins, sans-serif">
-                    <span style="font-size: 18px;">Et ce en payant directement votre formation en ligne par carte bleue .</span>&amp;nbsp;</font>
-                  <font color="#000000" face="Poppins, sans-serif" style="font-size: 18px;">&amp;nbsp;<br/>
-                  </font>
-                  <font color="#000000" face="Poppins, sans-serif">
-                    <span style="font-size: 18px;">En passant par ce mode de paiement , MCM Academy, vous offre le choix de financer votre formation en intégralité ou en répartissant votre paiement sur deux ou trois tranches .</span>
-                  </font>
-                </p>
-                <p>
-                  <font color="#000000" face="Poppins, sans-serif">
-                    <span style="font-size: 18px;">*Vous pouvez consulter nos règlements pour plus d’informations ou détails.</span>
-                  </font>
-                </p>
+                <div class="s_btn text-left pt16 pb16" data-name="Button">
+                  <a href="#pricing">
+                    <button class="home-btn">Je m'inscris</button>
+                  </a>
+                </div>
               </div>
             </div>
           </div>
         </section>
-        <section class="s_text_block pt32 pb4" data-name="Text block">
+        <section class="pb4 s_text_block pt0" data-name="Text block">
           <div class="container">
             <div class="row">
-              <div class="pt32 pb32 col-lg-12" style="border-style: none; border-width: 0px;">
-                <h2 style="text-align: center;">
-                  <font color="#000000" face="Poppins, sans-serif">
-                    <span style="font-size: 24px;">
-                      <b>Financer votre formation</b>
-                      <span style="font-weight: 700;">&amp;nbsp;</span>
-                      <b>en Mobilisant votre CPF<br/>
-                      <br/>
-                    </b>
+              <div class="col-lg-12 pb24" style="border-style: none; border-width: 0px;">
+                <h1>
+                  <b>
+                  Financer votre formation en mobilisant votre CPF <br/>
+                  </b>
+                </h1>
+                <h2>
+                  <span style="color: rgb(66, 66, 66); font-size: 24px;">
+                    <b>C’est quoi le CPF ?</b>&amp;nbsp;
+                
                   </span>
-                </font>
-              </h2>
-              <p>
-                <font color="#000000" face="Poppins, sans-serif">
-                  <span style="font-size: 18px;">
-                    <b>C’est quoi le CPF ?</b>&amp;nbsp;</span>
-                </font>
+
+                </h2>
+                <h4>
+                  <span style="color: rgb(66, 66, 66); font-size: 18px;">Le compte personnel de formation sert à accompagner le titulaire dans le cadre de l’évolution, la reconversion et la sécurisation de son parcours professionnel. Une fois alimenté, il permet de financer tout ou une partie d’une formation éligible au dispositif, en ligne ou en présentiel.&amp;nbsp;<br/>
+Salariés, demandeurs d’emploi ou encore travailleurs indépendants, vous avez tous des droits à la formation professionnelle. D’où la nécessité de la mise en place du Compte personnel de formation (CPF), qui a remplacé depuis le 1er janvier 2015 le Droit Individuel à la Formation (DIF).<br/>
+C’est un droit octroyé à ces catégories de personnes pour financer une formation professionnelle qualifiante ou certifiante.&amp;nbsp;
+                </span>
                 <br/>
-                <br/>
-                <font color="#000000" face="Poppins, sans-serif">
-                  <span style="font-size: 18px;">Le compte personnel de formation sert à accompagner le titulaire dans le cadre de l’évolution, la reconversion et la sécurisation de son parcours professionnel. Une fois alimenté, il permet de financer tout ou une partie d’une formation éligible au dispositif, en ligne ou en présentiel.&amp;nbsp;</span>
-                </font>
-                <br/>
-                <font color="#000000" face="Poppins, sans-serif">
-                  <span style="font-size: 18px;">Salariés, demandeurs d’emploi ou encore travailleurs indépendants, vous avez tous des droits à la formation professionnelle. D’où la nécessité de la mise en place du Compte personnel de formation (CPF), qui a remplacé depuis le 1er janvier 2015 le Droit Individuel à la Formation (DIF).</span>
-                </font>
-              </p>
+                <span style="color: rgb(66, 66, 66); font-size: 18px;">&amp;nbsp;L’objectif consiste à améliorer leur niveau de qualification et accroître leurs compétences.
+              
+                </span>
+              </h4>
               <p>
-                <font color="#000000" face="Poppins, sans-serif">
-                  <span style="font-size: 18px;">C’est un droit octroyé à ces catégories de personnes pour financer une formation professionnelle qualifiante ou certifiante.&amp;nbsp;</span>
-                </font>
-              </p>
-              <p>
-                <span class="fa fa-play-circle-o"/>
-                <font color="#000000" face="Poppins, sans-serif">
-                  <span style="font-size: 18px;">&amp;nbsp;L’objectif consiste à améliorer leur niveau de qualification et accroître leurs compétences.</span>
-                </font>
+                <span class="fa fa-play-circle-o" style="color: rgb(66, 66, 66); font-size: 24px;"/>
               </p>
             </div>
           </div>
         </div>
       </section>
-      <section class="s_three_columns bg-200 pt32 pb16" data-name="Columns">
+      <section class="bg-200 pb16 pt32 s_three_columns" data-name="Columns">
         <div class="container">
-          <div class="row d-flex align-items-stretch">
-            <div class="col-lg-4 s_col_no_bgcolor pt16 pb16">
-              <div class="card bg-white">
+          <div class="align-items-stretch d-flex row">
+            <div class="col-lg-4 pb16 pt16 s_col_no_bgcolor">
+              <div class="bg-white card">
                 <img class="card-img-top" src="/mcm_website_theme/static/src/img/financement/2.png" alt="Odoo - Echantillon n°1 pour trois colonnes " data-original-title="" title="" aria-describedby="tooltip14515"/>
                 <div class="card-body">
                   <h3 class="card-title">
                     <span style="background-color: rgb(255, 255, 255);">
-                      <font color="#000000" face="Poppins, sans-serif">
-                        <span style="font-size: 18px;">
-                          <b>CPF: Comment est-ce que ça fonctionne?</b>
-                        </span>
-                      </font>
+                      <span style="">
+                        <b>CPF: Comment est-ce que ça fonctionne?
+                      
+                    
+                        </b>
+                      </span>
                     </span>
                     <br/>
                   </h3>
@@ -158,56 +145,60 @@
                     <span id="docs-internal-guid-514cc604-7fff-a241-cf33-8446579fb26a"/>
                   </p>
                   <p dir="ltr" style="text-align: left; line-height: 1.88182; margin-top: 0pt; margin-bottom: 12pt;">
-                    <font color="#000000" face="Poppins, sans-serif">
-                      <span style="font-size: 18px;">Si vous avez un CPF depuis 2015 et que vous ne l'avez jamais utilisé, vous aurez à votre disposition 1440€. Vous pouvez également saisir vos heures de DIF (Droit individuel à la formation) s'il vous en reste.</span>
-                    </font>
+                    <span style="color: rgb(66, 66, 66); font-size: 18px;">Si vous avez un CPF depuis 2015 et que vous ne l'avez jamais utilisé, vous aurez à votre disposition 1440€. Vous pouvez également saisir vos heures de DIF (Droit individuel à la formation) s'il vous en reste.
+                    
+                    </span>
                     <br/>
                   </p>
                 </div>
               </div>
             </div>
-            <div class="col-lg-4 s_col_no_bgcolor pt16 pb16">
-              <div class="card bg-white">
+            <div class="col-lg-4 pb16 pt16 s_col_no_bgcolor">
+              <div class="bg-white card">
                 <img class="card-img-top" src="/mcm_website_theme/static/src/img/financement/3.png" alt="Odoo - Echantillon n°1 pour trois colonnes " data-original-title="" title="" aria-describedby="tooltip14515"/>
                 <div class="card-body">
-                  <h3 class="card-title" style="font-size: 1.64062rem;">
-                    <font color="#000000" face="Poppins, sans-serif">
-                      <span style="font-size: 18px;">
-                        <span style="font-weight: 700;">Mon compte de formation</span>
+                  <p class="card-title">
+                    <span style="">
+                      <span style="font-weight: 700;">
+                        <font style="font-size: 24px;">Mon compte de formation
+                      
+                    
+                  
+                        </font>
                       </span>
-                    </font>
-                  </h3>
+                    </span>
+                  </p>
                   <p class="card-text o_default_snippet_text">
                     <span id="docs-internal-guid-514cc604-7fff-a241-cf33-8446579fb26a"/>
                   </p>
                   <p dir="ltr" style="text-align: left; line-height: 1.88182; margin-top: 0pt; margin-bottom: 12pt;">
-                    <font color="#000000" face="Poppins, sans-serif">
-                      <span style="font-size: 18px;">Le Compte Personnel de Formation s'adresse à chaque actif désormais crédité de 500 € par an (somme versée autour du mois d'avril). Cela peut monter à 800 € pour les salariés moins qualifiés et les personnes en situation de handicap.&amp;nbsp;</span>
-                    </font>
+                    <span style="color: rgb(66, 66, 66); font-size: 18px;">Le Compte Personnel de Formation s'adresse à chaque actif désormais crédité de 500 € par an (somme versée autour du mois d'avril). Cela peut monter à 800 € pour les salariés moins qualifiés et les personnes en situation de handicap.&amp;nbsp;
+                    
+                    </span>
                     <br/>
                   </p>
                 </div>
               </div>
             </div>
-            <div class="col-lg-4 s_col_no_bgcolor pt16 pb16">
-              <div class="card bg-white">
+            <div class="col-lg-4 pb16 pt16 s_col_no_bgcolor">
+              <div class="bg-white card">
                 <img class="card-img-top" src="/mcm_website_theme/static/src/img/financement/4.png" alt="Odoo - Echantillon n°1 pour trois colonnes " data-original-title="" title="" aria-describedby="tooltip14515"/>
                 <div class="card-body">
-                  <h3 class="card-title">
-                    <font color="#000000" face="Poppins, sans-serif">
-                      <span style="font-size: 18px;">
-                        <b>Financer votre formation</b>
-                      </span>
-                    </font>
+                  <p class="card-title">
+                    <b>
+                      <font style="font-size: 24px;">Financer votre formation
+                    
+                      </font>
+                    </b>
                     <br/>
-                  </h3>
+                  </p>
                   <p class="card-text o_default_snippet_text">
                     <span id="docs-internal-guid-514cc604-7fff-a241-cf33-8446579fb26a"/>
                   </p>
                   <p dir="ltr" style="text-align: left; line-height: 1.88182; margin-top: 0pt; margin-bottom: 12pt;">
-                    <font color="#000000" face="Poppins, sans-serif">
-                      <span style="font-size: 18px;">Vous n'avez qu'à entrer votre numéro de sécurité sociale et une adresse mail valide. La page qui s'affiche ensuite vous donne les droits ainsi que le montant en euros (et non plus en heures) de votre capital formation.</span>
-                    </font>
+                    <span style="color: rgb(66, 66, 66); font-size: 18px;">Vous n'avez qu'à entrer votre numéro de sécurité sociale et une adresse mail valide. La page qui s'affiche ensuite vous donne les droits ainsi que le montant en euros (et non plus en heures) de votre capital formation.
+                    
+                    </span>
                     <br/>
                   </p>
                 </div>
@@ -216,7 +207,94 @@
           </div>
         </div>
       </section>
+      <section class="pb32 pt32 s_text_image" data-name="Image - Text">
+        <div class="container">
+          <div class="align-items-center row">
+            <div class="col-lg-6 pb16 pt16" style="border-style: none; border-width: 0px;">
+              <img src="/mcm_website_theme/static/src/img/financement/MCM-Acadmy-centre-de-renommée.png" class="img img-fluid mx-auto" alt="Odoo • Image et Texte" data-original-title="" title="" aria-describedby="tooltip604679"/>
+            </div>
+            <div class="col-lg-6 pb16 pt16" style="border-style: none; border-width: 0px;">
+              <h2>&amp;nbsp;<font style="color: rgb(0, 0, 0); font-size: 24px;">
+                <b>Qui peut bénéficier du CPF ?</b>
+                <br/>
+              </font>
+            </h2>
+            <h4>
+              <span style="color: rgb(66, 66, 66); font-size: 18px;">Le compte personnel de formation s’adresse à différentes catégories de personnes qui sont&amp;nbsp;en activité professionnelle&amp;nbsp;et qui sont âgés&amp;nbsp;plus de 16&amp;nbsp;ans&amp;nbsp;(15 ans pour un jeune qui a signé son premier contrat comme apprenti). Non rattaché au contrat de travail, il reste&amp;nbsp;valable tout au long de sa vie professionnelle&amp;nbsp;jusqu’à son départ à la retraite, même en période de chômage. De ce fait, le droit est ouvert&amp;nbsp;pour les catégories suivantes:&amp;nbsp;<br/>
+Les demandeurs d'emploi, les salariés et les travailleurs indépendants.
+              
+            
+          
+        
+      
+              </span>
+            </h4>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="pb32 s_text_image pt0" data-name="Text - Image">
+      <div class="container">
+        <div class="align-items-center row">
+          <div class="col-lg-12 pb16 pt16" style="border-style: none; border-width: 0px;">
+            <h2>
+              <font style="color: rgb(0, 0, 0); font-size: 24px;">
+                <b>Quelles sont les formations éligibles au CPF ?<br/>
+                </b>
+
+              </font>
+            </h2>
+            <h2>
+            </h2>
+            <h4>
+              <font style="color: rgb(0, 0, 0); font-size: 18px;">Le compte personnel de formation n’autorise et ne finance que les formations jugées « éligibles ».<br/>
+ Il s’agit uniquement des formations&amp;nbsp;<span style="font-weight: bolder;">qualifiantes</span>&amp;nbsp;ou&amp;nbsp;<span style="font-weight: bolder;">certifiantes</span>, qui satisfont les besoins du marché de l’emploi.<br/>
+ Soyez donc vigilant en choisissant votre formation.<br/>
+Pour qu’une formation soit éligible, elle doit respecter l’un des critères suivants de l’article&amp;nbsp;L6323-6&amp;nbsp;:<br/>
+L’obtention d’un titre professionnel, d’un diplôme ou d’un certificat de qualification
+        </font>
+        <br/>
+        <font style="color: rgb(0, 0, 0); font-size: 18px;">L’acquisition du socle commun de connaissances et de compétences
+        </font>
+        <br/>
+        <font style="color: rgb(0, 0, 0); font-size: 18px;">Le bilan de compétences
+        </font>
+        <br/>
+        <font style="color: rgb(0, 0, 0); font-size: 18px;">La validation des acquis de l’expérience ou la VAE
+        </font>
+        <br/>
+        <font style="color: rgb(0, 0, 0); font-size: 18px;">La création ou la reprise d’une entreprise.
+        </font>
+        <br/>
+        <font style="color: rgb(0, 0, 0); font-size: 18px;">L'interface&amp;nbsp;<a href="https://www.moncompteformation.gouv.fr/espace-prive/html/#/formation/recherche" target="_blank" style="color: rgb(52, 57, 150);">recherche de formation sur le site Mon compte Formation</a>.
+              
+            
+        </font>
+      </h4>
     </div>
-  </t>
+    <div class="col-lg-5 offset-lg-1 pb16 pt16"></div>
+  </div>
+</div>
+</section>
+<section id="sh_corpomate_theme_section_167" class="sh_animation_part" data-name="Call To Action" style="background-color: rgb(253, 209, 5);">
+<div class="container">
+  <h1>
+    <b>
+      <font class="text-alpha" style="font-size: 24px;">Comment mobiliser mon CPF ? </font>
+    </b>
+  </h1>
+  <p class="text">TELECHARGEZ NOTRE GUIDE&amp;nbsp;
+  </p>
+  <a href="/mcm_website_theme/static/pdf/comment mobiliser mon CPF - MCM.pdf" class="btn btn-alpha sh_btn_cm_6" data-original-title="" title="" aria-describedby="tooltip203896">
+    <font style="font-size: 14px;">JE TELECHARGE
+          
+        
+      
+    </font>
+  </a>
+</div>
+</section>
+</div>
+</t>
 </template>
 </odoo>
