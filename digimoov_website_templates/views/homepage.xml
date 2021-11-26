@@ -2681,15 +2681,23 @@
                                     <ul class="list-unstyled">
                                         <li class="mb-4">
                                             <i class="fa fa-check-circle fa-lg mr-2 text-success"/>
-                                            <b>Formation 280h</b>
+                                            <b>Une formation de 350h</b>
                                         </li>
                                         <li class="mb-4">
                                             <i class="fa fa-check-circle fa-lg mr-2 text-success"/>
-                                            <b>8 semaines de formation avec 140h en live</b>
+                                            <b>150h cours en ligne</b>
                                         </li>
                                         <li class="mb-4">
                                             <i class="fa fa-check-circle fa-lg mr-2 text-success"/>
-                                            <b>Accès à 4 examens d'entrainement</b>
+                                            <b>60h travail personnel</b>
+                                        </li>
+                                        <li class="mb-4">
+                                            <i class="fa fa-check-circle fa-lg mr-2 text-success"/>
+                                            <b>Livre d’entrainement version  électronique</b>
+                                        </li>
+                                        <li class="mb-4">
+                                            <i class="fa fa-check-circle fa-lg mr-2 text-success"/>
+                                            <b>Accès à 12+ examens d'entraînement</b>
                                         </li>
                                         <li class="mb-4">
                                             <i class="fa fa-check-circle fa-lg mr-2 text-success"/>
@@ -2701,15 +2709,19 @@
                                         </li>
                                         <li class="mb-4">
                                             <i class="fa fa-check-circle fa-lg mr-2 text-success"/>
-                                            <b>Révision du programme avant examen</b>
+                                            <b>Assistance par visioconférence </b>
                                         </li>
                                         <li class="mb-4">
                                             <i class="fa fa-check-circle fa-lg mr-2 text-success"/>
-                                            <b>Lives avec les formateurs pour explications</b>
+                                            <b>Directs pour explication avec les formateurs </b>
                                         </li>
                                         <li class="mb-4">
                                             <i class="fa fa-check-circle fa-lg mr-2 text-success"/>
-                                            <b>Examen Final</b>
+                                            <b>140h révision en live avant l'examen</b>
+                                        </li>
+                                        <li class="mb-4">
+                                            <i class="fa fa-check-circle fa-lg mr-2 text-success"/>
+                                            <b>Examen final en présentiel</b>
                                         </li>
                                     </ul>
                                     <div class="text-center ">
