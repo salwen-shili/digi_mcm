@@ -135,61 +135,7 @@ Pa</p>
                         </div>
                     </div>
                 </section>
-                <section class="s_software_with_three_blocks bg-light-1" data-name="Center Paragraph with three blocks">
-                    <div class=" spacer feature1">
-                        <div class="container">
-                            <div class="row m-t-40">
-                                <div class="col-md-4 wrap-feature1-box">
-                                    <section class="card card-shadow ">
-                                        <div class="card-body text-center">
-                                            <div class="icon-space">
-                                                <span class="text-alpha display-4 fa fa-euro"/>
-                                            </div>
-                                            <h3 id="feat" style="margin: 20px 0px 10px; font-weight: 600; font-size: 18px;">Comment en bénéficier ?</h3>
-                                            <p class="custom_p m-t-20">Si vous avez un CPF depuis 2015 et que vous ne l'avez jamais utilisé, vous aurez à votre disposition 1 440&amp;nbsp;€. Vous pouvez également saisir vos heures de DIF (Droit individuel à la formation) s'il vous en reste<span style="font-size: 18px;">.</span>
-                                                <br/>
-                                            </p>
-                                        </div>
-                                    </section>
-                                </div>
-                                <div class="col-md-4 wrap-feature1-box">
-                                    <section class="card card-shadow ">
-                                        <div class="card-body text-center">
-                                            <div class="icon-space">
-                                                <span class="fa display-4 text-alpha fa-gears"/>
-                                            </div>
-                                            <h3 id="feat" style="margin: 20px 0px 10px; font-weight: 600; font-size: 18px;">
-                                                <a href="https://www.digimoov.fr/blog/digimoov-3/post/le-compte-personnel-de-formation-cpf-tout-comprendre-7" data-original-title="" title="" aria-describedby="tooltip41144" style="color: rgb(32, 35, 93); text-decoration-line: underline;">
-                                                    <font style="color: rgb(66, 66, 66);" data-original-title="" title="" aria-describedby="tooltip516856">Comment cela fonctionne?&amp;nbsp;</font>
-                                                </a>
-                                            </h3>
-                                            <h3 id="feat" style="margin: 20px 0px 10px; font-size: 18px;">
-                                                <a href="https://www.digimoov.fr/blog/digimoov-3/post/le-compte-personnel-de-formation-cpf-tout-comprendre-7" data-original-title="" title="" aria-describedby="tooltip41144" style="color: rgb(32, 35, 93); text-decoration-line: underline;">
-                                                    <font data-original-title="" title="" aria-describedby="tooltip368095" style="color: rgb(66, 66, 66);">Le Compte Personnel de Formation s'adresse à chaque actif désormais crédité de 500&amp;nbsp;€ par an (somme versée autour du mois d'avril). Cela peut monter à 800&amp;nbsp;€ pour les salariés moins qualifiés et les personnes en situation de handicap.<b>&amp;nbsp;</b>
-                                                    </font>
-                                                </a>
-                                            </h3>
-                                        </div>
-                                    </section>
-                                </div>
-                                <div class="col-md-4 wrap-feature1-box" style="border-style: none; border-width: 0px;">
-                                    <section class="card card-shadow ">
-                                        <div class="card-body text-center">
-                                            <div class="icon-space">
-                                                <span class="text-alpha display-4 fa fa-star-o"/>
-                                            </div>
-                                            <h3 id="feat" style="margin: 20px 0px 10px; font-weight: 600; font-size: 18px;">A quoi sert t-il ?</h3>
-                                            <p class="custom_p m-t-20" style="text-align: center;">
-                                                <span style="color: rgb(0, 0, 0); text-align: justify;">Le compte personnel de formation sert à&amp;nbsp;accompagner<span style="font-weight: bolder;">&amp;nbsp;</span>le titulaire dans le cadre de l’évolution, la reconversion et la sécurisation de son parcours professionnel. Une fois alimenté, il permet de&amp;nbsp;financer tout ou une partie d’une formation&amp;nbsp;éligible au dispositif.</span>
-                                                <br/>
-                                            </p>
-                                        </div>
-                                    </section>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </section>
+
                 <!-- Pricing table-->
                 <section class="s_one_page_pricing_plan bg-light-1" data-name="Pricing plan two">
                     <div class="pricing1 spacer" id="pricing">
@@ -598,6 +544,59 @@ Pa</p>
                         </div>
                     </div>
                 </div>
+                <section class="s_faq_collapse pt48 pb32" data-name="Accordion">
+                    <div class="container">
+                        <div class="row s_col_no_bgcolor">
+                            <div class="pt16 pb16 col-lg-4" style="border-style: none; border-width: 0px">
+                                <div id="myCollapse" class="accordion" role="tablist">
+                                    <div class="card bg-white">
+                                        <a href="#" role="tab" data-toggle="collapse" aria-expanded="false" class="card-header collapsed" data-parent="#myCollapse" data-target="#myCollapseTab1616754726586" data-original-title="" title="" aria-describedby="tooltip5917">
+                                            Comment en bénéficier ?
+                                        </a>
+                                        <div class="collapse" role="tabpanel" id="myCollapseTab1616754726586">
+                                            <div class="card-body">
+                                                <p class="card-text">
+                                                        Si vous avez un CPF depuis 2015 et que vous ne l'avez jamais utilisé, vous aurez à votre disposition 1 440&amp;nbsp;€. Vous pouvez également saisir vos heures de DIF (Droit individuel à la formation) s'il vous en reste
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="pt16 pb16 col-lg-4" style="border-style: none; border-width: 0px">
+                                <div id="myCollapse" class="accordion" role="tablist">
+                                    <div class="card bg-white">
+                                        <a href="#" role="tab" data-toggle="collapse" aria-expanded="false" class="card-header collapsed" data-parent="#myCollapse" data-original-title="" title="" aria-describedby="tooltip5917" data-target="#myCollapseTab1616754743649">Comment cela fonctionne?
+                                        </a>
+                                        <div class="collapse" role="tabpanel" id="myCollapseTab1616754743649">
+                                            <div class="card-body">
+                                                <p class="card-text">
+                                                        Le Compte Personnel de Formation s'adresse à chaque actif désormais crédité de 500&amp;nbsp;€ par an (somme versée autour du mois d'avril). Cela peut monter à 800&amp;nbsp;€ pour les salariés moins qualifiés et les personnes en situation de handicap.
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="pt16 pb16 col-lg-4" style="border-style: none; border-width: 0px">
+                                <div id="myCollapse" class="accordion" role="tablist">
+                                    <div class="card bg-white">
+                                        <a href="#" role="tab" data-toggle="collapse" aria-expanded="false" class="card-header collapsed" data-parent="#myCollapse" data-original-title="" title="" aria-describedby="tooltip5917" data-target="#myCollapseTab1616754743646">A quoi sert t-il ?
+                                        </a>
+                                        <div class="collapse" role="tabpanel" id="myCollapseTab1616754743646">
+                                            <div class="card-body">
+                                                <p class="card-text">
+                                                        Le compte personnel de formation sert à&amp;nbsp;accompagner                                                        <span style="font-weight: bolder;">&amp;nbsp;</span>le titulaire dans le cadre de l’évolution, la reconversion et la sécurisation de son parcours professionnel. Une fois alimenté, il permet de&amp;nbsp;financer tout ou une partie d’une formation&amp;nbsp;éligible au dispositif.
+                                                    
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
             </div>
         </t>
 

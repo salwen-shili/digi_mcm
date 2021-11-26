@@ -40,10 +40,10 @@
                     <p class="heading text-center; color: rgb(0, 0, 0)" style="padding: 2rem 0rem">
                                             Chez MCM Academy nous offrons à nos candidats la possibilité de financer leurs formation Taxi VTC et VMDTR en mobilisant leurs Compte de formation Personnel ou par auto-financement avec des modalités assez flexibles !
                     </p>
-                    <a href="#pricing">
+                    <a href="/qui-sommes-nous">
                       <button class="home-btn">À propos</button>
                     </a>
-                    <a href="#pricing">
+                    <a href="/contact">
                       <button class="home-btn">Contactez-nous</button>
                     </a>
 
@@ -52,7 +52,7 @@
               </div>
               <div class="col-lg-6 pb48 pt16">
                 <br/>
-                <img data-src="/mcm_website_theme/static/src/img/financement/1 PF.png" data-srcSafari="/mcm_website_theme/static/src/img/financement/1 PF.png" class="img img-fluid mx-auto lazy" alt="Devenir chauffeur professionnel VTC, Taxi ou Moto-Taxi" data-original-title="" title="Formation vtc taxi moto-taxi" aria-describedby="tooltip202025" style="text-align: center;"/>
+                <img data-src="/mcm_website_theme/static/src/img/financement/1 PF.png" data-srcSafari="/mcm_website_theme/static/src/img/financement/1 PF.png" class="img img-fluid mx-auto lazy" alt="Devenir chauffeur professionnel VTC, Taxi ou Moto-Taxi" data-original-title="" title="Formation vtc taxi moto-taxi" aria-describedby="tooltip202025" style="text-align: center;max-width: 61%;"/>
               </div>
             </div>
           </div>
