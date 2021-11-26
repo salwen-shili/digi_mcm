@@ -224,7 +224,7 @@ function verify_payment_method() {
         cpf_pm.value ==
         '[transport-routier] Formation capacité transport routier'
       ) {
-        window.location.href = 'www.google.tn';
+        window.location.href = '/';
         msTracking(
           'clic sur mobiliser mon cpf Formation capacité transport routier',
           'CPF',

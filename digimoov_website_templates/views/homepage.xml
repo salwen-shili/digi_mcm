@@ -2662,7 +2662,7 @@
                         <br/>
                         <p>
                             <strong style="color: white">
-                                <font style="font-size: 30px">Capacité transport routier</font>
+                                <font style="font-size: 30px">Business</font>
                             </strong>
                         </p>
                         <p>
@@ -2681,7 +2681,11 @@
                                     <ul class="list-unstyled">
                                         <li class="mb-4">
                                             <i class="fa fa-check-circle fa-lg mr-2 text-success"/>
-                                            <b>Formation 35h (100% en ligne)</b>
+                                            <b>Formation 280h</b>
+                                        </li>
+                                        <li class="mb-4">
+                                            <i class="fa fa-check-circle fa-lg mr-2 text-success"/>
+                                            <b>8 semaines de formation avec 140h en live</b>
                                         </li>
                                         <li class="mb-4">
                                             <i class="fa fa-check-circle fa-lg mr-2 text-success"/>
