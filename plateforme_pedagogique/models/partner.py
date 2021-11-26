@@ -574,3 +574,182 @@ class partner(models.Model):
             _logger.info("status put %s" % put_status)
             _logger.info("status post %s" % status)
 
+    """Mettre à jour les statuts cpf sur la fiche client selon l'etat sur wedof """
+    def change_state_cpf_partner(self):
+        params_wedof = (
+            ('order', 'asc'),
+            ('type', 'all'),
+            ('state', 'validated,inTraining,serviceDoneDeclared,terminated'),
+            ('billingState', 'all'),
+            ('certificationState', 'all'),
+            ('sort', 'lastUpdate'),
+            ('limit', '10000000000')
+        )
+        headers = {
+            'accept': 'application/json',
+            'Content-Type': 'application/json',
+            'X-API-KEY': '026514d6bc7d880515a27eae4947bccef4fbbf03',
+        }
+        response = requests.get('https://www.wedof.fr/api/registrationFolders/', headers=headers,
+                                params=params_wedof)
+        registrations = response.json()
+        for dossier in registrations:
+            externalId=dossier['externalId']
+            email = dossier['attendee']['email']
+            email = email.replace("%", ".")  # remplacer % par .
+            email = email.replace(" ", "")  # supprimer les espaces envoyés en paramètre email
+            email = str(email).lower()  # recupérer l'email en miniscule pour éviter la création des deux comptes
+            print('dossier',dossier)
+            idform=dossier['trainingActionInfo']['trainingId']
+            training_id=""
+            if "_" in idform:
+                idforma = idform.split("_", 1)
+                if idforma:
+                    training_id = idforma[1]
+           
+            print('training',training_id)
+            state=dossier['state']
+            lastupdatestr=str(dossier['lastUpdate'])
+            lastupdate=datetime.strptime(lastupdatestr, '%Y-%m-%dT%H:%M:%S.%fz')
+            newformat="%d/%m/%Y %H:%M:%S"
+            lastupdateform=lastupdate.strftime(newformat)
+            lastupd=datetime.strptime(lastupdateform, "%d/%m/%Y %H:%M:%S")
+            address = dossier['attendee']['address']['roadName']
+            tel = dossier['attendee']['phoneNumber']
+            code_postal = dossier['attendee']['address']['zipCode']
+            ville = dossier['attendee']['address']['city']
+            diplome = dossier['trainingActionInfo']['title']
+            nom = dossier['attendee']['firstName']
+            prenom = dossier['attendee']['lastName']
+            if state=="validated":
+                print('validate',email)
+                self.cpf_validate(training_id,email,address,tel,code_postal,ville,diplome,nom,prenom,externalId,lastupd)
+            else:
+                users = self.env['res.users'].sudo().search(
+                    [('login', "=", email)])  # search user with same email sended
+                user = False
+                if len(users) > 1:
+                    user = users[1]
+                    print('userss', users)
+                    for utilisateur in users:
+                        if utilisateur.partner_id.id_edof and utilisateur.partner_id.date_examen_edof and utilisateur.partner_id.session_ville_id:  # if more than user ,check between them wich user is come from edof
+                            user = utilisateur
+                            print('if userssss', user.partner_id.email)
+                else:
+                    user = users
+                if user:  # if user finded
+                    print('if__________________user', user.partner_id.statut_cpf, user.partner_id.email)
+                    user.partner_id.mode_de_financement = 'cpf'  # update field mode de financement to cpf
+                    user.partner_id.funding_type = 'cpf'  # update field funding type to cpfprint('partner',partner.numero_cpf,user.login)
+                    print(user.partner_id.date_cpf)
+                    
+                if state=="inTraining":
+                    user.partner_id.statut_cpf="in_training"
+                if state=="terminated":
+                    user.partner_id.statut_cpf="out_training"
+                if state=="serviceDoneDeclared":
+                    user.partner_id.statut_cpf="service_declared"
+                if state=="serviceDoneValidated":
+                    user.partner_id.statut_cpf="service_validated"
+                if state=="canceledByAttendee" or state=="canceledByAttendeeNotRealized" or state=="canceledByOrganism"  :
+                    user.partner_id.statut_cpf="canceled"
+                user.partner_id.numero_cpf = externalId
+                user.partner_id.date_cpf = lastupd
+
+
+    def cpf_validate(self,module,email,address,tel,code_postal,ville,diplome,nom,prenom,dossier,lastupd):
+        user = self.env['res.users'].sudo().search([('login', "=", email)])
+        exist = True
+        if not user:
+            if '+33' not in str(tel):  # num edof
+                user = self.env["res.users"].sudo().search(
+                    [("phone", "=", str(tel).replace(' ', ''))], limit=1)
+                if not user:
+                    phone = str(tel)
+                    phone = phone[1:]
+                    phone = '+33' + str(phone)
+                    user = self.env["res.users"].sudo().search(
+                        [("phone", "=", phone.replace(' ', ''))], limit=1)
+            else:
+                user = self.env["res.users"].sudo().search(
+                    [("phone", "=", str(tel).replace(' ', ''))], limit=1)
+                if not user:
+                    phone = str(tel)
+                    phone = phone[3:]
+                    phone = '0' + str(phone)
+                    user = self.env["res.users"].sudo().search(
+                        [("phone", "=", phone.replace(' ', ''))], limit=1)
+            if not user:
+                # créer
+                exist = False
+                if "digimoov" in str(module):  # module from wedof
+                    user = self.env['res.users'].sudo().create({
+                        'name': str(prenom) + " " + str(nom),
+                        'login': str(email),
+                        'groups_id': [(6, 0, [self.env.ref('base.group_portal').id])],
+                        'email': email,
+                        'notification_type': 'email',
+                        'website_id': 2,
+                        'company_ids': [2],
+                        'company_id': 2
+                    })
+                    user.company_id = 2
+                    user.partner_id.company_id = 2
+                else:
+                    user = self.env['res.users'].sudo().create({
+                        'name': str(prenom) + " " + str(nom),
+                        'login': str(email),
+                        'groups_id': [(6, 0, [self.env.ref('base.group_portal').id])],
+                        'email': email,
+                        'notification_type': 'email',
+                        'website_id': 1,
+                        'company_ids': [1],
+                        'company_id': 1
+
+                    })
+                    user.company_id = 1
+                    user.partner_id.company_id = 1
+        # user = request.env['res.users'].sudo().search([('login', "=", email)])
+        if user:
+            client = self.env['res.partner'].sudo().search(
+                [('id', '=', user.partner_id.id)])
+            if client:
+                client.mode_de_financement = 'cpf'
+                client.funding_type = 'cpf'
+                client.numero_cpf = dossier
+                client.statut_cpf = 'validated'
+                client.phone = tel
+                client.street = address
+                client.zip = code_postal
+                client.city = ville
+                client.diplome = diplome  # attestation capacitév ....
+                client.date_cpf = lastupd
+                module_id = False
+                product_id = False
+                template_id = int(self.env['ir.config_parameter'].sudo().get_param(
+                    'mcm_cpf_validation.digimoov_email_template_exam_date_center'))
+                template_id = self.env['mail.template'].search([('id', '=', template_id)]).id
+                if not template_id:
+                    template_id = self.env['ir.model.data'].xmlid_to_res_id(
+                        'mcm_cpf_validation.digimoov_email_template_exam_date_center', raise_if_not_found=False)
+                if not template_id:
+                    template_id = self.env['ir.model.data'].xmlid_to_res_id(
+                        'mcm_cpf_validation.digimoov_email_template_exam_date_center',
+                        raise_if_not_found=False)
+                if "digimoov" in str(module):
+                    user.write({'company_ids': [1, 2], 'company_id': 2})
+                    product_id = self.env['product.template'].sudo().search(
+                        [('id_edof', "=", str(module)), ('company_id', "=", 2)], limit=1)
+                    if product_id:
+                        client.id_edof = product_id.id_edof
+                        if template_id:
+                            client.with_context(force_send=True).message_post_with_template(template_id,
+                                                                                            composition_mode='comment')
+                else:
+                    user.write({'company_ids': [(4, 2)], 'company_id': 1})
+                    product_id = self.env['product.template'].sudo().search(
+                        [('id_edof', "=", str(module)), ('company_id', "=", 1)], limit=1)
+                    if product_id:
+                        client.id_edof = product_id.id_edof
+
+        
