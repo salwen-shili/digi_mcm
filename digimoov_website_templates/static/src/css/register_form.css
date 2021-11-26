@@ -232,22 +232,22 @@ html {
 
 #progressbar #account:before {
   font-family: FontAwesome;
-  content: "1";
+  content: '1';
 }
 
 #progressbar #personal:before {
   font-family: FontAwesome;
-  content: "2";
+  content: '2';
 }
 
 #progressbar #payment:before {
   font-family: FontAwesome;
-  content: "3";
+  content: '3';
 }
 
 #progressbar #confirm:before {
   font-family: FontAwesome;
-  content: "4";
+  content: '4';
 }
 
 #progressbar li:before {
@@ -264,7 +264,7 @@ html {
 }
 
 #progressbar li:after {
-  content: "";
+  content: '';
   width: 100%;
   height: 2px;
   background: lightgray;
