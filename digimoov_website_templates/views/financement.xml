@@ -1,7 +1,8 @@
 <odoo>
     <template id="digimoov_website_templates.digimoov_template_financement" name="Financer votre formation avec le CPF | Digimoov">
         <t t-call="website.layout">
-            <style>
+            <div id="wrap" class="oe_structure oe_empty">
+                <style>
                 @media (min-width: 1024px){
                 .pt160{
                     padding-top: 160px !important;
@@ -12,111 +13,596 @@
                     padding-top: 20px !important;
                 }
                 }
-            </style>
-            <script defer="defer" type="text/javascript" src="/digimoov_website_templates/static/src/js/lazy-min.js" />
-
-            <section class="banner oe_img_bg oe_custom_bg">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-xs-12 mb32 col-lg-5">
-                            <img class="img-fluid o_we_custom_image lazy" data-src="/digimoov_website_templates/static/img/Financer-formtaion-digimoov-avec-cpf-mon-compte-formation.webp" data-srcSafari="/digimoov_website_templates/static/img/Financer-formtaion-digimoov-avec-cpf-mon-compte-formation (3).jpg" data-original-title="" alt="formation éligible à mon compte formation CPF" title="Formtaion chez digimoov éligible au CPF" aria-describedby="tooltip722494"/>
-                        </div>
-                        <div class="col-lg-6 col-xs-12 pt160">
-                            <h2 style="margin-bottom: 10px; font-weight: 600; line-height: 1.3; color: rgb(58, 58, 71); font-size: 28px;">
-                                <font style="color: rgb(0, 0, 0); font-size: 48px;">
-                                    <h3 class="text-alpha">FINANCER VOTRE FORMATION AVEC LE CPF</h3>
-                                </font>
-                            </h2>
-                        </div>
-                    </div>
-                </div>
-            </section>
-            <section class="theme-soft" data-name="Soft about us one">
-                <section class="about aboute_bgimg">
+                </style>
+                <script defer="defer" type="text/javascript" src="/digimoov_website_templates/static/src/js/lazy-min.js"/>
+                <section id="s_hero_banner" class="s_business_banner spacer bg-100" style="" data-name="Home Banner Two">
                     <div class="container">
                         <div class="row">
-                            <div class="col-sm-12 col-xs-12 mb32" id="HOW IT WORKS">
-                                <br/>
-                                <br/>
-                                <span class="font-weight-lighter o_default_snippet_text">
-                                    <h3>
-                                        <center>À QUI S'ADRESSE LE COMPTE PERSONNEL DE FORMATION ?</center>
-                                    </h3>
-                                </span>
+                            <div class="col-md-8 col-lg-6 align-self-center">
+                                <h2 class="font-bold text-white title">
+                                    <font class="text-alpha" style="">FINANCEZ VOTRE FORMATION AVEC VOTRE CPF</font>
+                                </h2>
+                                <p class="m-t-40 m-b-30 text-white op-8 custom_p">
+                                    <span style="color: rgb(0, 0, 0); font-family: opensans-regular, &quot;Lucida Grande&quot;, &quot;Lucida Sans Unicode&quot;, &quot;Lucida Sans&quot;, Geneva, Verdana, sans-serif; font-size: 16.0016px;">Vous souhaitez suivre une formation en capacité de transport léger de marchandises pour avoir votre licence et booster votre carrière professionnelle , mais vous n'avez pas assez de fond ? Pas de problème! Digimoov vous offre l'opportunité de financer votre formation en mobilisant votre compte CPF et ainsi démarrer votre projet.</span>
+                                    <br/>
+Pa</p>
                             </div>
-                            <div class="col-sm-12 col-xs-12 pb64">
-                                <div class="row text-center">
-                                    <div class="col-lg-4 col-md-4 col-sm-4">
-                                        <section class="feature-item2" style="background-color:#D7EAF2">
-                                            <div class="icon">
-                                                <div class="dotted-img2">
-                                                    <i class="fa fa-question-circle"/>
-                                                </div>
-                                            </div>
-                                            <h3 id="feat" class="o_default_snippet_text">Comment est-ce que ça
-                                                fonctionne&amp;nbsp;?
-                                            </h3>
-                                            <p class="o_default_snippet_text">Si vous avez un CPF depuis 2015 et que
-                                                vous ne l'avez jamais utilisé, vous aurez à votre disposition 1 440 €.
-                                                Vous pouvez également saisir vos heures de DIF (Droit individuel à la
-                                                formation) s'il vous en reste.
-                                            </p>
-                                        </section>
+                            <div class="col-md-4 col-lg-6 align-self-center ml-auto">
+                                <img src="/web/image/218375/Mon-compte-professionnel-formation-cpf-1%20%281%29.png" alt="We are Digital Agency" class="img-fluid" data-original-title="" title="" aria-describedby="tooltip641485"/>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <section class="s_text_image pt32 pb0" data-name="Image - Text">
+                    <div class="container">
+                        <div class="row align-items-center">
+                            <div class="col-lg-6 pt16 pb16">
+                                <img src="/web/image/218546/qu%27est%20ce%20que%20le%20cpf%20-%20digimoov.png" class="img img-fluid mx-auto" alt="Odoo • Image et Texte" data-original-title="" title="" aria-describedby="tooltip435863"/>
+                            </div>
+                            <div class="col-lg-6 pt16 pb16" style="border-style: none; border-width: 0px;">
+                                <h2 class="text-beta title" style="text-align: center;">
+                                    <span class="text-beta" style="text-align: left;">Qu’est-ce que le CPF ?</span>&amp;nbsp;</h2>
+                                <h6 class="subtitle" style="text-align: center;"/>
+                                <p style="margin-bottom: 1.55em; text-align: justify;">
+                                    <font style="color: rgb(0, 0, 0);">Suite à l’application de la&amp;nbsp;<a href="https://www.legifrance.gouv.fr/loda/id/JORFTEXT000028683576/">loi n°&amp;nbsp;2014-288 du 5&amp;nbsp;mars 2014</a>, qui concerne la réforme de la formation professionnelle, bon nombre de dispositifs sont mis en place. Entré en vigueur depuis le 1er&amp;nbsp;janvier 2015, le compte personnel de formation en fait partie.&amp;nbsp;</font>
+                                </p>
+                                <p style="margin-bottom: 1.55em; text-align: justify;">
+                                    <font style="color: rgb(0, 0, 0);">Il s’agit d’un dispositif de financement public relatif à la formation professionnelle continue. Ce droit offre l’<span style="font-weight: bolder;">opportunité</span>&amp;nbsp;à tous les actifs de bénéficier d’une action de&amp;nbsp;<span style="font-weight: bolder;">formations</span>&amp;nbsp;s’ils le souhaitent.&amp;nbsp;</font>
+                                </p>
+                                <p style="margin-bottom: 1.55em; text-align: justify;">
+                                    <font style="color: rgb(0, 0, 0);">Il peut accompagner son bénéficiaire depuis son intégration dans le monde professionnel, durant toute sa fonction jusqu’à son départ à la retraite. La gestion du compte personnel de formation relève de la&amp;nbsp;<a href="https://www.caissedesdepots.fr/la-caisse-des-depots-gestionnaire-de-mon-compte-formation">Caisse des Dépôts</a>&amp;nbsp;et consignations. Et il s’exprime en&amp;nbsp;<span style="font-weight: bolder;">fonds mobilisables</span>.
+                                    </font>
+                                </p>
+                                <p style="margin-bottom: 1.55em; text-align: justify;">
+                                    <font style="color: rgb(0, 0, 0);">Travailler toute l’année permet ainsi d’alimenter avec des euros votre compte. Pour obtenir cette faveur, différents facteurs sont pris en compte.</font>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <section class="s_restaurant_video_image" data-name="Two images with paragraph and video">
+                    <div class="spacer feature14">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-lg-4 col-md-4" style="border-style: none; border-width: 0px;">
+                                    <h2 class="font-stylish-1 m-b-30 m-t-20 text-beta">Comment créer mon CPF?</h2>
+                                    <p class="custom_p">
+                                        <span style="color: rgb(32, 33, 36); font-family: arial, sans-serif;"> Pour&amp;nbsp;</span>
+                                        <b style="color: rgb(32, 33, 36); font-family: arial, sans-serif;">le</b>
+                                        <span style="color: rgb(32, 33, 36); font-family: arial, sans-serif;">&amp;nbsp;créer votre compte&amp;nbsp;</span>
+                                        <span style="color: rgb(32, 33, 36); font-family: arial, sans-serif;">personnel&amp;nbsp;</span>
+                                        <span style="font-size: 1rem; color: rgb(32, 33, 36); font-family: arial, sans-serif;">de formation , il suffit de se rendre sur&amp;nbsp;</span>
+                                        <span style="font-size: 1rem;">
+                                        </span>
+                                        <b style="font-size: 1rem; color: rgb(32, 33, 36); font-family: arial, sans-serif;">le</b>
+                                        <span style="font-size: 1rem;">
+                                        </span>
+                                        <span style="font-size: 1rem; color: rgb(32, 33, 36); font-family: arial, sans-serif;">&amp;nbsp;site </span>
+                                        <span style="font-size: 1rem;">
+                                        </span>
+                                        <span style="font-size: 1rem; color: rgb(156, 0, 255); font-family: arial, sans-serif;">www.moncompteformation.gouv.fr</span>
+                                        <span style="font-size: 1rem;">
+                                        </span>
+                                        <span style="font-size: 1rem; color: rgb(32, 33, 36); font-family: arial, sans-serif;">, muni de&amp;nbsp;</span>
+                                        <span style="font-size: 1rem;">
+                                        </span>
+                                        <b style="font-size: 1rem; color: rgb(32, 33, 36); font-family: arial, sans-serif;">votre</b>
+                                        <span style="font-size: 1rem;">
+                                        </span>
+                                        <span style="font-size: 1rem; color: rgb(32, 33, 36); font-family: arial, sans-serif;">&amp;nbsp;numéro de sécurité sociale, et de renseigner&amp;nbsp;</span>
+                                        <span style="font-size: 1rem;">
+                                        </span>
+                                        <b style="font-size: 1rem; color: rgb(32, 33, 36); font-family: arial, sans-serif;">le</b>
+                                        <span style="font-size: 1rem;">
+                                        </span>
+                                        <span style="font-size: 1rem; color: rgb(32, 33, 36); font-family: arial, sans-serif;">&amp;nbsp;formulaire d'inscription avec l'aide du tutoriel si nécessaire. Une fois l'inscription validée,&amp;nbsp;</span>
+                                        <span style="font-size: 1rem;">
+                                        </span>
+                                        <b style="font-size: 1rem; color: rgb(32, 33, 36); font-family: arial, sans-serif;">le compte</b>
+                                        <span style="font-size: 1rem;">
+                                        </span>
+                                        <span style="font-size: 1rem; color: rgb(32, 33, 36); font-family: arial, sans-serif;">&amp;nbsp;est activé.</span>
+                                    </p>
+                                </div>
+                                <div class="col-lg-4 col-md-4 wrap-feature14-box" style="border-style: none; border-width: 0px;">
+                                    <div>
+                                        <div class="media_iframe_video video-img" data-oe-expression="//www.youtube.com/embed/PN7gVHdT7x4?autoplay=0&amp;rel=0&amp;loop=1&amp;playlist=PN7gVHdT7x4&amp;modestbranding=1">
+                                            <div class="css_editable_mode_display">&amp;nbsp;</div>
+                                            <div class="media_iframe_video_size">&amp;nbsp;</div>
+                                            <iframe src="//www.youtube.com/embed/PN7gVHdT7x4?autoplay=0&amp;rel=0&amp;loop=1&amp;playlist=PN7gVHdT7x4&amp;modestbranding=1" frameborder="0" allowfullscreen="allowfullscreen"/>
+                                        </div>
+                                        <div class="embed-responsive hide embed-responsive-16by9" data-animation="animated fadeIn">
+                                        </div>
+                                        <div class="m-t-30">
+                                            <h5 class="font-medium">
+                                                <br/>
+                                            </h5>
+                                            <h2 class="font-stylish-1 m-b-30 m-t-20 text-beta">&amp;nbsp;</h2>
+                                        </div>
                                     </div>
-                                    <div class="col-lg-4 col-md-4 col-sm-4">
-                                        <section class="feature-item1">
-                                            <div class="icon">
-                                                <div class="dotted-img">
-                                                    <a href="/blog/digimoov-3/post/le-compte-personnel-de-formation-cpf-tout-comprendre-7">
-                                                        <i class="fa fa-laptop" data-original-title="" title="" aria-describedby="tooltip609644"/>
-                                                    </a>
-                                                </div>
-                                            </div>
-                                            <h3 id="feat">
-                                                <a href="/blog/digimoov-3/post/le-compte-personnel-de-formation-cpf-tout-comprendre-7" data-original-title="" title="" aria-describedby="tooltip41144">
-                                                    <font style="color: rgb(66, 66, 66);">Mon compte de formation&amp;nbsp;</font>
-                                                    <br/>
-                                                    <br/>
-                                                    <font style="color: rgb(66, 66, 66);" data-original-title="" title="" aria-describedby="tooltip368095">Le Compte Personnel
-                                                        de Formation s'adresse à chaque actif désormais crédité de 500&amp;nbsp;€
-                                                        par an (somme versée autour du mois d'avril). Cela peut monter à
-                                                        800&amp;nbsp;€ pour les salariés moins qualifiés et les
-                                                        personnes en situation de handicap.
-                                                    </font>
-                                                </a>
-                                                <font style="color: rgb(66, 66, 66);">&amp;nbsp;</font>
-                                            </h3>
-                                        </section>
-                                        <script type="text/javascript" src="/mcm_website_theme/static/src/js/msAds.js"/>
-
-                                        <input t-att-value="request.website.microsoft_tracking_key" id="microsoft_tracking_key" type="hidden" />
-
-                                        <br/>
-                                        <a href="/blog/digimoov-3/post/le-compte-personnel-de-formation-cpf-tout-comprendre-7" class="bannerbtn mb32 btn btn-alpha rounded-circle" data-original-title="" title="" aria-describedby="tooltip117958" onClick="msTracking('clic sur le bouton en-savoir plus page financement','Click events','clic sur le bouton en-savoir plus page financement','80');">En-savoir plus
-                                        </a>
-                                    </div>
-                                    <div class="col-lg-4 col-md-4 col-sm-4">
-                                        <section class="feature-item3">
-                                            <div class="icon">
-                                                <div class="dotted-img3">
-                                                    <i class="fa fa-credit-card-alt"/>
-                                                </div>
-                                            </div>
-                                            <h3 id="feat" class="o_default_snippet_text">Financer votre formation</h3>
-                                            <p class="o_default_snippet_text">Vous n'avez qu'à entrer votre numéro de
-                                                sécurité sociale et une adresse mail valide. La page qui s'affiche
-                                                ensuite vous donne les droits ainsi que le montant en euros (et non plus
-                                                en heures) de votre capital formation.
-                                            </p>
-                                            <br/>
-                                        </section>
+                                </div>
+                                <div class="col-lg-4 col-md-4 wrap-feature14-box">
+                                    <div>
+                                        <img class="rounded img-responsive" src="/web/image/7452/Capacit%C3%A9%20de%20transport%20l%C3%A9ger%20de%20marchandise.gif" alt="bizople kit" data-original-title="" title="" aria-describedby="tooltip484413"/>
+                                        <div class="m-t-30">
+                                            <h5 class="font-medium">
+                                                <br/>
+                                            </h5>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </section>
-            </section>
+                <section class="s_software_with_three_blocks bg-light-1" data-name="Center Paragraph with three blocks">
+                    <div class=" spacer feature1">
+                        <div class="container">
+                            <div class="row m-t-40">
+                                <div class="col-md-4 wrap-feature1-box">
+                                    <section class="card card-shadow ">
+                                        <div class="card-body text-center">
+                                            <div class="icon-space">
+                                                <span class="text-alpha display-4 fa fa-euro"/>
+                                            </div>
+                                            <h3 id="feat" style="margin: 20px 0px 10px; font-weight: 600; font-size: 18px;">Comment en bénéficier ?</h3>
+                                            <p class="custom_p m-t-20">Si vous avez un CPF depuis 2015 et que vous ne l'avez jamais utilisé, vous aurez à votre disposition 1 440&amp;nbsp;€. Vous pouvez également saisir vos heures de DIF (Droit individuel à la formation) s'il vous en reste<span style="font-size: 18px;">.</span>
+                                                <br/>
+                                            </p>
+                                        </div>
+                                    </section>
+                                </div>
+                                <div class="col-md-4 wrap-feature1-box">
+                                    <section class="card card-shadow ">
+                                        <div class="card-body text-center">
+                                            <div class="icon-space">
+                                                <span class="fa display-4 text-alpha fa-gears"/>
+                                            </div>
+                                            <h3 id="feat" style="margin: 20px 0px 10px; font-weight: 600; font-size: 18px;">
+                                                <a href="https://www.digimoov.fr/blog/digimoov-3/post/le-compte-personnel-de-formation-cpf-tout-comprendre-7" data-original-title="" title="" aria-describedby="tooltip41144" style="color: rgb(32, 35, 93); text-decoration-line: underline;">
+                                                    <font style="color: rgb(66, 66, 66);" data-original-title="" title="" aria-describedby="tooltip516856">Comment cela fonctionne?&amp;nbsp;</font>
+                                                </a>
+                                            </h3>
+                                            <h3 id="feat" style="margin: 20px 0px 10px; font-size: 18px;">
+                                                <a href="https://www.digimoov.fr/blog/digimoov-3/post/le-compte-personnel-de-formation-cpf-tout-comprendre-7" data-original-title="" title="" aria-describedby="tooltip41144" style="color: rgb(32, 35, 93); text-decoration-line: underline;">
+                                                    <font data-original-title="" title="" aria-describedby="tooltip368095" style="color: rgb(66, 66, 66);">Le Compte Personnel de Formation s'adresse à chaque actif désormais crédité de 500&amp;nbsp;€ par an (somme versée autour du mois d'avril). Cela peut monter à 800&amp;nbsp;€ pour les salariés moins qualifiés et les personnes en situation de handicap.<b>&amp;nbsp;</b>
+                                                    </font>
+                                                </a>
+                                            </h3>
+                                        </div>
+                                    </section>
+                                </div>
+                                <div class="col-md-4 wrap-feature1-box" style="border-style: none; border-width: 0px;">
+                                    <section class="card card-shadow ">
+                                        <div class="card-body text-center">
+                                            <div class="icon-space">
+                                                <span class="text-alpha display-4 fa fa-star-o"/>
+                                            </div>
+                                            <h3 id="feat" style="margin: 20px 0px 10px; font-weight: 600; font-size: 18px;">A quoi sert t-il ?</h3>
+                                            <p class="custom_p m-t-20" style="text-align: center;">
+                                                <span style="color: rgb(0, 0, 0); text-align: justify;">Le compte personnel de formation sert à&amp;nbsp;accompagner<span style="font-weight: bolder;">&amp;nbsp;</span>le titulaire dans le cadre de l’évolution, la reconversion et la sécurisation de son parcours professionnel. Une fois alimenté, il permet de&amp;nbsp;financer tout ou une partie d’une formation&amp;nbsp;éligible au dispositif.</span>
+                                                <br/>
+                                            </p>
+                                        </div>
+                                    </section>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <!-- Pricing table-->
+                <section class="s_one_page_pricing_plan bg-light-1" data-name="Pricing plan two">
+                    <div class="pricing1 spacer" id="pricing">
+                        <div class="container">
+                            <div class="row justify-content-center">
+                                <div class="col-md-8 text-center col-lg-11">
+                                    <h2 class="text-beta title">
+                                                    LET'S GO !
+                                        <br/>
+                                                    Inscrivez-vous dès maintenant !
+                                    </h2>
+                                    <h3 class="subtitle">
+                                        <span style="color: rgb(66, 66, 66); font-size: 16px">
+                                                        Choisissez la formule qui vous convient</span
+                                                    >&amp;nbsp;
+                                        <span style="color: rgb(66, 66, 66); font-size: 16px">&amp;nbsp;
+                                        </span
+                                                    >
+                                        <br/>
+                                    </h3>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <div class="container">
+                    <input t-att-value="request.website.microsoft_tracking_key" id="microsoft_tracking_key" type="hidden"/>
+                    <div class="row">
+                        <!-- <div class="col-md-4 col-sm-6">
+                            <div class="card border-0 shadow" style="border-radius: 25px 25px">
+                                <div class="text-center text-white border-0" style="
+                    background-color: #6e209f;
+                    border-top-left-radius: 25px;
+                    border-top-right-radius: 25px;
+                  ">
+                                    <br/>
+
+                                    <p>
+                                        <strong style="color: white">
+                                            <font style="font-size: 30px">SOLO</font>
+                                        </strong>
+                                    </p>
+                                    <p>&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;</p>
+                                    <br/>
+                                </div>
+                                <t t-foreach="digimoov_products" t-as="product">
+                                    <t t-if="product.default_code=='basique'">
+                                        <form action="/shop/cart/update" method="post" id="form-1-1">
+                                            <input type="hidden" class="product_id" name="product_id" t-att-value="product.id"/>
+                                            <input type="hidden" name="promo" t-att-value="promo.id" t-if="promo"/>
+                                            <div class="card-body" style="background-color: white">
+                                                <ul class="list-unstyled">
+                                                    <li class="mb-4">
+                                                        <i class="fa fa-check-circle fa-lg mr-2 text-success"/>
+                                                        <b>Formation 102h (100% en ligne)</b>
+                                                    </li>
+                                                    <li class="mb-4">
+                                                        <i class="fa fa-check-circle fa-lg mr-2 text-success"/>
+                                                        <b>Examen final en présentiel</b>
+                                                    </li>
+                                                    <li class="mb-4">
+                                                        <i class="fa fa-check-circle fa-lg mr-2 text-success"/>
+                                                        <b>Accès à 4 examens d'entraînement</b>
+                                                    </li>
+                                                    <li class="mb-4">
+                                                        <i class="fa fa-check-circle fa-lg mr-2 text-success"/>
+                                                        <b>Coaching par mail</b>
+                                                    </li>
+                                                    <li class="mb-4">
+                                                        <i class="fa fa-lg fa-times-circle mr-2 text-danger"/>
+                                                                Coaching par téléphone
+                                                    </li>
+                                                    <li class="mb-4">
+                                                        <span class="fa fa-lg fa-times-circle mr-2 text-danger" style="font-size: 1.33333em"/>
+                                                                Coaching par visioconférence
+                                                        <br/>
+                                                    </li>
+                                                    <li class="mb-4">
+                                                        <i class="fa fa-lg fa-times-circle mr-2 text-danger"/>
+                                                                Livre d’entrainement version électronique
+                                                    </li>
+                                                    <li class="mb-4">
+                                                        <i class="fa fa-lg fa-times-circle mr-2 text-danger"/>
+                                                                Directs pour explication avec les formateurs
+                                                    </li>
+                                                    <li class="mb-4">
+                                                        <i class="fa fa-lg fa-times-circle mr-2 text-danger"/>
+                                                                Révision du programme avant examen &amp;nbsp;
+                                                                &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;
+                                                                &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;
+                                                                &amp;nbsp; &amp;nbsp; &amp;nbsp;
+                                                                &amp;nbsp;&amp;nbsp;
+                                                    </li>
+                                                    <li>
+                                                        <i/>
+                                                    </li>
+                                                </ul>
+                                                <p class="
+                            text-center
+                            font-weight-bolder
+                            text-dark
+                            h1
+                            display-4
+                            mb-0
+                          ">
+                                                    <font>
+                                                        <p class="
+                                text-center
+                                font-weight-bolder
+                                text-dark
+                                h1
+                                display-4
+                                mb-0
+                              " t-if="not promo">
+                                                            <span t-esc="round(product.list_price)"/>
+                                                            <span t-esc="product.currency_id.symbol"/>
+                                                        </p>
+                                                        <p class="
+                                text-center
+                                font-weight-bolder
+                                text-dark
+                                h1
+                                display-4
+                                mb-0
+                              " t-if="promo">
+                                                            <t t-foreach="promo.item_ids" t-as="item">
+                                                                <t t-if="item.product_id.id==product.id">
+                                                                    <span t-esc="round(item.fixed_price)"/>
+                                                                    <span t-esc="product.currency_id.symbol"/>
+                                                                </t>
+                                                            </t>
+                                                        </p>
+                                                    </font>
+                                                </p>
+                                                <t t-if="promo and promo.name!='box2home'">
+                                                    <p class="
+                              text-center
+                              font-weight-bolder
+                              text-secondary
+                            ">
+                                                        <b style="font-size: 80%">
+                                                            <t>avec le code</t>
+                                                            <t t-esc="promo.code"/>
+                                                        </b>
+                                                    </p>
+                                                </t>
+                                                <p class="
+                            medium
+                            text-center
+                            font-weight-bolder
+                            text-secondary
+                          " style="color: red !important">
+                                                            Paiement 1 fois
+                                                </p>
+                                                <br/>
+                                                <button class="btn btn-block text-white" onClick="(function(){msTracking('clic sur inscrire pack solo','Pricing Table events','Inscrire pack solo Homepage','590'); document.getElementById('form-1-1').submit();return false;})();return false;" style="background-color: #6e209f; border-radius: 25px">
+                                                            Je m'inscris
+                                                </button>
+                                            </div>
+                                        </form>
+                                    </t>
+                                </t>
+                            </div>
+                        </div> -->
+                        <div class="col-md-4 col-sm-6">
+                            <div class="card border-0 shadow" style="border-radius: 25px 25px">
+                                <div class="text-center text-white border-0" style="
+                    background-color: #6e209f;
+                    border-top-left-radius: 25px;
+                    border-top-right-radius: 25px;
+                  ">
+                                    <br/>
+                                    <p>
+                                        <strong style="color: white">
+                                            <font style="font-size: 30px">PRO</font>
+                                        </strong>
+                                    </p>
+                                    <p>
+                                        <b>Éligible au CPF</b>
+                                    </p>
+                                    <br/>
+                                </div>
+                                <t t-foreach="digimoov_products" t-as="product">
+                                    <t t-if="product.default_code=='avancee'">
+                                        <form action="/shop/cart/update" method="post" id="form-2-1">
+                                            <input type="hidden" class="product_id" name="product_id" t-att-value="product.id"/>
+                                            <input type="hidden" name="promo" t-att-value="promo.id" t-if="promo"/>
+                                            <div class="card-body" style="background-color: white">
+                                                <ul class="list-unstyled">
+                                                    <li class="mb-4">
+                                                        <i class="fa fa-check-circle fa-lg mr-2 text-success"/>
+                                                        <b>Formation 102h (100% en ligne)</b>
+                                                    </li>
+                                                    <li class="mb-4">
+                                                        <i class="fa fa-check-circle fa-lg mr-2 text-success"/>
+                                                        <b>Examen final en présentiel &amp;nbsp;</b>
+                                                    </li>
+                                                    <li class="mb-4">
+                                                        <i class="fa fa-check-circle fa-lg mr-2 text-success"/>
+                                                        <b>Livre d’entrainement version électronique</b>
+                                                    </li>
+                                                    <li class="mb-4">
+                                                        <i class="fa fa-check-circle fa-lg mr-2 text-success"/>
+                                                        <b>Accès à 8 examens d'entraînement</b>
+                                                    </li>
+                                                    <li class="mb-4">
+                                                        <i class="fa fa-check-circle fa-lg mr-2 text-success" data-original-title="" title="" aria-describedby="tooltip131000"/>
+                                                        <b>Coaching par mail</b>
+                                                    </li>
+                                                    <li class="mb-4">
+                                                        <span class="fa fa-check-circle fa-lg mr-2 text-success" style="font-size: 1.33333em" data-original-title="" title="" aria-describedby="tooltip96053"/>
+                                                        <b>Coaching par téléphone</b>
+                                                    </li>
+                                                    <li class="mb-4">
+                                                        <span class="fa fa-lg fa-times-circle text-danger mr-2" style="font-size: 1.33333em" data-original-title="" title="" aria-describedby="tooltip288722"/>
+                                                                Coaching par visioconférence
+                                                    </li>
+                                                    <li class="mb-4">
+                                                        <i class="fa fa-lg fa-times-circle text-danger mr-2"/>
+                                                                Directs pour explication avec les formateurs
+                                                    </li>
+                                                    <li class="mb-4">
+                                                        <i class="fa fa-lg fa-times-circle text-danger mr-2"/>
+                                                                &amp;nbsp;Révision du programme avant examen
+                                                                &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;
+                                                                &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;
+                                                                &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;
+                                                                &amp;nbsp;&amp;nbsp;
+                                                    </li>
+                                                    <li>
+                                                        <i/>
+                                                    </li>
+                                                </ul>
+                                                <p class="
+                            text-center
+                            font-weight-bolder
+                            text-dark
+                            h1
+                            display-4
+                            mb-0
+                          ">
+                                                    <font>
+                                                        <p class="
+                                text-center
+                                font-weight-bolder
+                                text-dark
+                                h1
+                                display-4
+                                mb-0
+                              ">
+                                                            <span t-esc="round(product.list_price)"/>
+
+                                                            <span t-esc="product.currency_id.symbol"/>
+                                                        </p>
+                                                    </font>
+                                                </p>
+                                                <t t-if="promo and promo.name!='box2home'">
+                                                    <p class="
+                              text-center
+                              font-weight-bolder
+                              text-secondary
+                            ">
+                                                        <b style="font-size: 80%">
+                                                            <t>&amp;nbsp; &amp;nbsp; &amp;nbsp;&amp;nbsp;</t>
+                                                        </b>
+                                                    </p>
+                                                </t>
+                                                <p class="
+                            medium
+                            text-center
+                            font-weight-bolder
+                            text-secondary
+                          " style="color: red !important">
+                                                            Paiement 1 ou 2 fois
+                                                </p>
+                                                <br/>
+                                                <button class="btn btn-block text-white" onClick="(function(){msTracking('clic sur inscrire pack pro','Pricing Table events','Inscrire pack pro Homepage','680'); document.getElementById('form-2-1').submit();return false;})();return false;" style="background-color: #6e209f; border-radius: 25px">
+                                                            Je m'inscris
+                                                </button>
+                                            </div>
+                                        </form>
+                                    </t>
+                                </t>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-sm-12">
+                            <div class="card border-0 shadow" style="border-radius: 25px 25px">
+                                <div class="text-center text-white border-0" style="
+                    background-color: #6e209f;
+                    border-top-left-radius: 25px;
+                    border-top-right-radius: 25px;
+                  ">
+                                    <br/>
+                                    <h2>
+                                        <strong style="color: white">PREMIUM</strong>
+                                    </h2>
+                                    <p>
+                                        <b>Éligible au CPF</b>
+                                    </p>
+                                    <br/>
+                                </div>
+                                <t t-foreach="digimoov_products" t-as="product">
+                                    <t t-if="product.default_code=='premium'">
+                                        <form action="/shop/cart/update" method="post" id="form-3-1">
+                                            <input type="hidden" class="product_id" name="product_id" t-att-value="product.id"/>
+                                            <input type="hidden" name="promo" t-att-value="promo.id" t-if="promo"/>
+                                            <div class="card-body">
+                                                <ul class="list-unstyled">
+                                                    <li class="mb-4">
+                                                        <i class="fa fa-check-circle fa-lg mr-2 text-success"/>
+                                                        <b>Formation 102h (100% en ligne)</b>
+                                                    </li>
+                                                    <li class="mb-4">
+                                                        <i class="fa fa-check-circle fa-lg mr-2 text-success"/>
+                                                        <b>Examen final en présentiel</b>
+                                                    </li>
+                                                    <li class="mb-4">
+                                                        <i class="fa fa-check-circle fa-lg mr-2 text-success"/>
+                                                        <b>Livre d’entrainement version&amp;nbsp;</b>
+                                                        <span style="font-weight: bolder">électronique
+                                                        </span>
+                                                        <br/>
+                                                    </li>
+                                                    <li class="mb-4">
+                                                        <i class="fa fa-check-circle fa-lg mr-2 text-success"/>
+                                                        <b>Accès à 12+ examens d'entraînement</b>
+                                                        <br/>
+                                                    </li>
+                                                    <li class="mb-4">
+                                                        <i class="fa fa-check-circle fa-lg mr-2 text-success"/>
+                                                        <b>Coaching par mail</b>
+                                                        <br/>
+                                                    </li>
+                                                    <li class="mb-4">
+                                                        <i class="fa fa-check-circle fa-lg mr-2 text-success"/>
+                                                        <b>Coaching par téléphone</b>
+                                                        <br/>
+                                                    </li>
+                                                    <li class="mb-4">
+                                                        <i class="fa fa-check-circle fa-lg mr-2 text-success"/>
+                                                        <b>Coaching par visioconférence</b>
+                                                        <b>&amp;nbsp;</b>
+                                                        <br/>
+                                                    </li>
+                                                    <li class="mb-4">
+                                                        <i class="fa fa-check-circle fa-lg mr-2 text-success"/>
+                                                        <b>Directs pour explication avec les formateurs</b>
+                                                    </li>
+                                                    <li class="mb-4">
+                                                        <span class="fa fa-check-circle fa-lg mr-2 text-success" style="font-size: 1.33333em"/>
+                                                        <b>Révision du programme avant examen</b>
+                                                        <br/>
+                                                        <br/>
+                                                    </li>
+                                                </ul>
+                                                <p class="
+                            text-center
+                            font-weight-bolder
+                            text-dark
+                            h1
+                            display-4
+                            mb-0
+                          ">
+                                                    <font>
+                                                        <p class="
+                                text-center
+                                font-weight-bolder
+                                text-dark
+                                h1
+                                display-4
+                                mb-0
+                              ">
+                                                            <span t-esc="round(product.list_price)"/>
+                                                            <span t-esc="product.currency_id.symbol"/>
+                                                        </p>
+                                                    </font>
+                                                </p>
+                                                <t t-if="promo">
+                                                    <p class="
+                              text-center
+                              font-weight-bolder
+                              text-secondary
+                            ">
+                                                        <b style="font-size: 80%">
+                                                            <t>&amp;nbsp; &amp;nbsp; &amp;nbsp;&amp;nbsp;</t>
+                                                        </b>
+                                                    </p>
+                                                </t>
+                                                <p class="
+                            medium
+                            text-center
+                            font-weight-bolder
+                            text-secondary
+                          " style="color: red !important">
+                                                            Paiement 1 ou 3 fois
+                                                </p>
+                                                <br/>
+                                                <button class="btn btn-block text-white" onClick="(function(){msTracking('clic sur inscrire pack premuim','Pricing Table events','Inscrire pack premuim Homepage','849'); document.getElementById('form-3-1').submit();return false;})();return false;" style="background-color: #6e209f; border-radius: 25px">
+                                                            Je m'inscris
+                                                </button>
+                                            </div>
+                                        </form>
+                                    </t>
+                                </t>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </t>
+
+
+
+
     </template>
 </odoo>
