@@ -5,6 +5,7 @@ from odoo.addons.portal.controllers.web import Home
 import werkzeug
 import base64
 from odoo.addons.website.controllers.main import Website  # import website controller
+import locale
 
 
 class Website(Website):
