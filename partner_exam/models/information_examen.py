@@ -161,6 +161,8 @@ class NoteExamen(models.Model):
                                           headers=headers, data=data1)
                 response = requests.post('https://www.wedof.fr/api/registrationFolders/' + externalId + '/serviceDone',
                                          headers=headers, data=data)
+                
+                info_exam.sorti_formation=True
                 _logger.info('terminate %s' % str(response1.status_code))
                 _logger.info('service done %s' % str(response.status_code))
 
