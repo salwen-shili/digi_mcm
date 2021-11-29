@@ -196,11 +196,11 @@ class QUISOMMESNOUS(http.Controller):
     @http.route('/qui-sommes-nous', type='http', auth='public', website=True)
     def quisommesnous(self, **kw, ):
         if request.website.id == 2:
-            # recuperer la liste des villes pour l'afficher dans la page qui sommes nous de siteweb digimoov
+            # recuperer la liste des villes pour l'afficher dans la page qui sommes nous de siteweb digimoov 
             last_ville = request.env['session.ville'].sudo().search(
-                [],order='name_ville desc',limit=1)
+                [('company_id', '=', 2)],order='name_ville desc',limit=1)
             list_villes = request.env['session.ville'].sudo().search(
-                [('id',"!=",last_ville.id)],order='name_ville asc')
+                [('id',"!=",last_ville.id),('company_id', '=', 2)],order='name_ville asc')
             values = {
                 'list_villes': list_villes,
                 'last_ville':last_ville
