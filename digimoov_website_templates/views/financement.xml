@@ -166,7 +166,7 @@ Pa</p>
                 </section>
                 <div class="container">
                     <input t-att-value="request.website.microsoft_tracking_key" id="microsoft_tracking_key" type="hidden"/>
-                    <div class="row">
+                    <div class="row" style="place-content: center;">
                         <!-- <div class="col-md-4 col-sm-6">
                             <div class="card border-0 shadow" style="border-radius: 25px 25px">
                                 <div class="text-center text-white border-0" style="
