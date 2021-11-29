@@ -29,6 +29,19 @@ class Website(Website):
         if demande_renonce:  # testé si l'utilisateur a cocher la demande de renonce dans son portal client
             user.partner_id.renounce_request = True  # mettre la demande de renonce cocher dans la fiche client
 
+    @http.route('/attestation-transport-leger-marchandises', type='http', auth='public', website=True)
+    def attestation_transport_leger_marchandises(self, **kw,):
+        if request.website.id == 2:
+            digimoov_products = request.env['product.product'].sudo().search([('company_id', '=', 2)],
+                                                                             order="list_price")
+            values = {
+                'digimoov_products': digimoov_products,
+            }
+            return request.render("digimoov_website_templates.digimoov_template_test6", values)
+        else:
+            raise werkzeug.exceptions.NotFound()
+
+
 
 class FAQ(http.Controller):
 
