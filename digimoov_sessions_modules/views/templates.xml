@@ -37,7 +37,7 @@
 
                 <p t-if="modules_digimoov">
                     <div style="margin-left: 0%; display:none ">
-                        <select id="exam_date" class="form-control search-slt" t-if="modules_digimoov">
+                        <select id="exam_date" class="form-control search-slt" t-if="modules_digimoov" style="text-transform: capitalize;">
                             <option value="all" id="all">
                                     Sélectionnez votre date d'examen
                             </option>
@@ -46,7 +46,7 @@
                                     <t t-if="module.website_published==True">
                                         <b>
                                             <option t-att-value="module.session_ville_id.name_ville" t-att-id="module.id">
-                                                <t t-esc="module.date_exam.strftime('%d/%m/%Y')"/>
+                                                <t t-esc="module.date_exam.strftime('%d %B %Y')"/>
                                             </option>
                                         </b>
                                     </t>
