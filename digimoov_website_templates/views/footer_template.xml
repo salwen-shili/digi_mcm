@@ -2,15 +2,43 @@
 <odoo>
     <template id="digimoov_website_templates.digimoov_footer_template" inherit_id="website.footer_custom" active="True">
         <xpath expr="//div[@id='footer']" position="replace">
+
+
             <t t-if="request.website.is_public_user()==True">
                 <script type="text/javascript" src="/digimoov_website_templates/static/src/js/intercom-bot.js"/>
                 <script type="text/javascript" src="/digimoov_website_templates/static/src/js/intercom-bot-config.js"/>
+                <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet" />
+                <script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async="async"></script>
+                <script type="text/javascript">window.onload = function() { Calendly.initBadgeWidget({ url: 'https://calendly.com/digimoov', text: 'Planifier du temps avec moi', color: '#0069FF', textColor: '#FFFFFF', branding: false }); }</script>
             </t>
             <t t-if="request.website.is_public_user()==False">
+
                 <input type="hidden" name="intercom_user_name_connected" id="intercom_user_name_connected" t-att-value="request.website.get_user_name_logged()"/>
                 <input type="hidden" name="intercom_user_email_connected" id="intercom_user_email_connected" t-att-value="request.website.get_user_email_logged()"/>
                 <script type="text/javascript" src="/digimoov_website_templates/static/src/js/intercom-user.js"/>
                 <script type="text/javascript" src="/digimoov_website_templates/static/src/js/intercom-user-config.js"/>
+                <!-- calendly-->
+                <input type="hidden" name="user_name_connected" id="user_name_connected" t-att-value="request.website.get_user_name_logged()"/>
+                <input type="hidden" name="user_email_connected" id="user_email_connected" t-att-value="request.website.get_user_email_logged()"/>
+
+                <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet" />
+                <style>
+        .calendly-badge-widget {
+        left: 20px !important;
+    }
+                        <!-- .calendly-badge-content{
+        color: #fdd103 !important;
+    } -->
+                </style>
+                <script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async="async"></script>
+                <script type="text/javascript">
+                    var user_name=document.getElementById("user_name_connected").value;
+                    var user_email=document.getElementById("user_email_connected").value;
+                    window.onload = function() { Calendly.initBadgeWidget({ url: 'https://calendly.com/digimoov',  prefill: {
+                    name: user_name,
+                    email: user_email,
+                    },  text: 'Planifier du temps avec moi', color: '#0069FF', textColor: '#FFFFFF', branding: false }); }
+                </script>
             </t>
             <style>
                 @import url("//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css");
