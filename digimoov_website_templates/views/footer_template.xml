@@ -1,355 +1,401 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
-    <template id="digimoov_website_templates.digimoov_footer_template" inherit_id="website.footer_custom" active="True">
-        <xpath expr="//div[@id='footer']" position="replace">
-            <style>
+  <template id="digimoov_website_templates.digimoov_footer_template" inherit_id="website.footer_custom" active="True">
+    <xpath expr="//div[@id='footer']" position="replace">
+      <style>
         .calendly-badge-widget {
-        left: 20px !important;
-    }
+          left: 20px !important;
+        }
+      </style>
 
+      <t t-if="request.website.is_public_user()==True">
+        <script type="text/javascript" src="/digimoov_website_templates/static/src/js/intercom-bot.js" />
+        <script type="text/javascript" src="/digimoov_website_templates/static/src/js/intercom-bot-config.js" />
+        <!-- Début de widget de badge Calendly -->
+        <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet" />
+        <script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async="async"></script>
+        <script type="text/javascript">
+          window.onload = function () {
+            Calendly.initBadgeWidget({
+              url: 'https://calendly.com/digimoov/attestation-de-capacite-marchandise',
+              text: 'Infos téléphone',
+              color: '#9e6cde',
+              textColor: '#FFFFFF',
+              branding: false,
+            });
+          };
+        </script>
+        <!-- Fin de widget de badge Calendly -->
+      </t>
+      <t t-if="request.website.is_public_user()==False">
+        <input type="hidden" name="intercom_user_name_connected" id="intercom_user_name_connected" t-att-value="request.website.get_user_name_logged()" />
+        <input type="hidden" name="intercom_user_email_connected" id="intercom_user_email_connected" t-att-value="request.website.get_user_email_logged()" />
+        <script type="text/javascript" src="/digimoov_website_templates/static/src/js/intercom-user.js" />
+        <script type="text/javascript" src="/digimoov_website_templates/static/src/js/intercom-user-config.js" />
+        <!-- calendly-->
+        <input type="hidden" name="user_name_connected" id="user_name_connected" t-att-value="request.website.get_user_name_logged()" />
+        <input type="hidden" name="user_email_connected" id="user_email_connected" t-att-value="request.website.get_user_email_logged()" />
 
-            </style>
+        <!-- Début de widget de badge Calendly -->
+        <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet" />
+        <script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async="async"></script>
+        <script type="text/javascript">
+          window.onload = function () {
+            var user_name = document.getElementById(
+              'user_name_connected'
+            ).value;
+            var user_email = document.getElementById(
+              'user_email_connected'
+            ).value;
+            Calendly.initBadgeWidget({
+              url: 'https://calendly.com/digimoov/attestation-de-capacite-marchandise',
+              prefill: {
+                name: user_name,
+                email: user_email,
+              },
+              text: 'Infos téléphone',
+              color: '#9e6cde',
+              textColor: '#ffffff',
+              branding: false,
+            });
+          };
+        </script>
+        <!-- Fin de widget de badge Calendly -->
+      </t>
+      <style>
+        @import url('//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css');
+        .social-icons {
+          list-style-type: none;
+          margin: 0 auto 20px;
+          padding: 0;
+          width: 100%;
+          height: 100%;
+        }
 
-            <t t-if="request.website.is_public_user()==True">
-                <script type="text/javascript" src="/digimoov_website_templates/static/src/js/intercom-bot.js"/>
-                <script type="text/javascript" src="/digimoov_website_templates/static/src/js/intercom-bot-config.js"/>
-                <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet" />
-                <script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async="async"></script>
-                <script type="text/javascript">window.onload = function() { Calendly.initBadgeWidget({ url: 'https://calendly.com/digimoov', text: 'Infos téléphone', color: '#9e6cde', textColor: '#FFFFFF', branding: false }); }</script>
-            </t>
-            <t t-if="request.website.is_public_user()==False">
+        .tab {
+          margin-right: 10px;
+          border-radius: 0 0 25px 25px;
+          float: left;
+        }
 
-                <input type="hidden" name="intercom_user_name_connected" id="intercom_user_name_connected" t-att-value="request.website.get_user_name_logged()"/>
-                <input type="hidden" name="intercom_user_email_connected" id="intercom_user_email_connected" t-att-value="request.website.get_user_email_logged()"/>
-                <script type="text/javascript" src="/digimoov_website_templates/static/src/js/intercom-user.js"/>
-                <script type="text/javascript" src="/digimoov_website_templates/static/src/js/intercom-user-config.js"/>
-                <!-- calendly-->
-                <input type="hidden" name="user_name_connected" id="user_name_connected" t-att-value="request.website.get_user_name_logged()"/>
-                <input type="hidden" name="user_email_connected" id="user_email_connected" t-att-value="request.website.get_user_email_logged()"/>
+        .circle {
+          padding: 10px 10px;
+          width: 40px;
+          font-size: 20px;
+          text-align: center;
+          background: #fff;
+          border-radius: 20px;
+          border: solid 1px;
+        }
+        .fa-facebook {
+          color: hsl(221, 44%, 41%);
+          border-color: hsl(221, 44%, 41%);
+        }
 
-                <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet" />
-                <script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async="async"></script>
-                <script type="text/javascript">
-                    var user_name=document.getElementById("user_name_connected").value;
-                    var user_email=document.getElementById("user_email_connected").value;
-                    window.onload = function() { Calendly.initBadgeWidget({ url: 'https://calendly.com/digimoov',  prefill: {
-                    name: user_name,
-                    email: user_email,
-                    },  text: 'Infos téléphone', color: '#9e6cde', textColor: '#FFFFFF', branding: false }); }
-                </script>
-            </t>
-            <style>
-       
-    
-                @import url("//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css");
-                .social-icons {
-                list-style-type: none;
-                margin: 0 auto 20px;
-                padding: 0;
-                width: 100%;
-                height: 100%;
-                }
+        .fa-facebook:hover {
+          background-color: hsl(221, 44%, 41%);
+        }
+        .fa-instagram {
+          color: hsl(221, 44%, 41%);
+          border-color: hsl(221, 44%, 41%);
+        }
 
-                .tab {
-                margin-right: 10px;
-                border-radius: 0 0 25px 25px;
-                float: left;
-                }
+        .fa-instagram:hover {
+          background-color: hsl(221, 44%, 41%);
 
-                .circle {
-                padding: 10px 10px;
-                width: 40px;
-                font-size: 20px;
-                text-align: center;
-                background: #fff;
-                border-radius: 20px;
-                border: solid 1px;
-                }
-                .fa-facebook {
-                color: hsl(221, 44%, 41%);
-                border-color: hsl(221, 44%, 41%);
-                }
+          color: hsl(221, 44%, 41%);
+          border-color: hsl(221, 44%, 41%);
+        }
 
-                .fa-facebook:hover {
-                background-color: hsl(221, 44%, 41%);
-                }
-                .fa-instagram {
-                color: hsl(221, 44%, 41%);
-                border-color: hsl(221, 44%, 41%);
-                }
+        .fa-instagram:hover {
+          background: linear-gradient(
+            0deg,
+            rgba(192, 195, 34, 1) 0%,
+            rgba(199, 200, 35, 1) 10%,
+            rgba(204, 99, 36, 1) 20%,
+            rgba(170, 39, 221, 1) 47%,
+            rgba(152, 45, 253, 1) 100%
+          );
+        }
+        .fa-twitter {
+          color: hsl(195, 100%, 60%);
+          border-color: hsl(195, 100%, 60%);
+        }
 
-                .fa-instagram:hover {
-                background-color: hsl(221, 44%, 41%);
+        .fa-twitter:hover {
+          background-color: hsl(195, 100%, 60%);
+        }
 
-                color: hsl(221, 44%, 41%);
-                border-color: hsl(221, 44%, 41%);
-                }
+        .fa-google-plus {
+          color: hsl(7, 71%, 55%);
+          border-color: hsl(7, 71%, 55%);
+        }
 
-                .fa-instagram:hover {
-                background: linear-gradient(0deg, rgba(192,195,34,1) 0%, rgba(199,200,35,1) 10%, rgba(204,99,36,1) 20%,
-                rgba(170,39,221,1) 47%, rgba(152,45,253,1) 100%);}
-                .fa-twitter {
-                color: hsl(195, 100%, 60%);
-                border-color: hsl(195, 100%, 60%);
-                }
+        .fa-google-plus:hover {
+          background-color: hsl(7, 71%, 55%);
+        }
 
-                .fa-twitter:hover {
-                background-color: hsl(195, 100%, 60%);
-                }
+        .fa-linkedin {
+          color: hsl(199, 85%, 36%);
+          border-color: hsl(199, 85%, 36%);
+        }
 
-                .fa-google-plus {
-                color: hsl(7, 71%, 55%);
-                border-color: hsl(7, 71%, 55%);
-                }
+        .fa-linkedin:hover {
+          background-color: hsl(199, 85%, 36%);
+        }
 
-                .fa-google-plus:hover {
-                background-color: hsl(7, 71%, 55%);
-                }
+        .fa-facebook:hover,
+        .fa-twitter:hover,
+        .fa-google-plus:hover,
+        .fa-linkedin:hover,
+        .fa-instagram:hover {
+          color: hsl(0, 0%, 100%);
+        }
 
-                .fa-linkedin {
-                color: hsl(199, 85%, 36%);
-                border-color: hsl(199, 85%, 36%);
-                }
+        .screen-reader {
+          position: absolute;
+          left: -9999px;
+          top: -9999px;
+        }
 
-                .fa-linkedin:hover {
-                background-color: hsl(199, 85%, 36%);
-                }
+        .shadow .tab {
+          background: none;
+        }
 
-                .fa-facebook:hover, .fa-twitter:hover, .fa-google-plus:hover, .fa-linkedin:hover, .fa-instagram:hover {
-                color: hsl(0, 0%, 100%);
-                }
+        .shadow .circle {
+          box-shadow: 1px 1px 3px hsla(0, 0%, 0%, 0.4);
+        }
 
-                .screen-reader {
-                position: absolute;
-                left: -9999px;
-                top: -9999px;
-                }
+        .shadow .fa-facebook,
+        .shadow .fa-twitter,
+        .shadow .fa-instagram,
+        .shadow .fa-google-plus,
+        .shadow .fa-linkedin {
+          border-color: hsl(0, 0%, 100%);
+          border: none;
+          padding: 11px;
+        }
 
-                .shadow .tab {
-                background: none;
-                }
+        .squares .tab {
+          background: none;
+        }
 
-                .shadow .circle {
-                box-shadow: 1px 1px 3px hsla(0, 0%, 0%, .4);
-                }
+        .square {
+          padding: 9px 9px;
+          width: 20px;
+          font-size: 20px;
+          text-align: center;
+          background: #fff;
+        }
 
-                .shadow .fa-facebook,
-                .shadow .fa-twitter,
-                .shadow .fa-instagram,
-                .shadow .fa-google-plus,
-                .shadow .fa-linkedin {
-                border-color: hsl(0, 0%, 100%);
-                border: none;
-                padding: 11px;
+        .fa-facebook.square {
+          background-color: hsl(221, 44%, 41%);
+          border: 1px solid hsl(221, 44%, 41%);
+          color: #fff;
+        }
 
-                }
+        .fa-facebook.square:hover {
+          background-color: hsl(0, 0%, 100%);
+          border-color: hsl(221, 44%, 41%);
+          color: hsl(221, 44%, 41%);
+        }
 
-                .squares .tab {
-                background: none;
-                }
+        .fa-twitter.square {
+          background-color: hsl(195, 100%, 60%);
+          border: 1px solid hsl(195, 100%, 60%);
+          color: #fff;
+        }
 
-                .square {
-                padding: 9px 9px;
-                width: 20px;
-                font-size: 20px;
-                text-align: center;
-                background: #fff;
-                }
+        .fa-twitter.square:hover {
+          background-color: hsl(0, 0%, 100%);
+          border-color: hsl(195, 100%, 60%);
+          color: hsl(195, 100%, 60%);
+        }
 
-                .fa-facebook.square {
-                background-color: hsl(221, 44%, 41%);
-                border: 1px solid hsl(221, 44%, 41%);
-                color: #fff;
-                }
+        .fa-google-plus.square {
+          background-color: hsl(7, 71%, 55%);
+          border: 1px solid hsl(7, 71%, 55%);
+          color: #fff;
+        }
 
-                .fa-facebook.square:hover {
-                background-color: hsl(0, 0%, 100%);
-                border-color: hsl(221, 44%, 41%);
-                color: hsl(221, 44%, 41%);
-                }
+        .fa-google-plus.square:hover {
+          background-color: hsl(0, 0%, 100%);
+          border-color: hsl(7, 71%, 55%);
+          color: hsl(7, 71%, 55%);
+        }
 
-                .fa-twitter.square {
-                background-color: hsl(195, 100%, 60%);
-                border: 1px solid hsl(195, 100%, 60%);
-                color: #fff;
-                }
+        .fa-linkedin.square {
+          background-color: hsl(199, 85%, 36%);
+          border: 1px solid hsl(199, 85%, 36%);
+          color: #fff;
+        }
 
-                .fa-twitter.square:hover {
-                background-color: hsl(0, 0%, 100%);
-                border-color: hsl(195, 100%, 60%);
-                color: hsl(195, 100%, 60%);
-                }
-
-                .fa-google-plus.square {
-                background-color: hsl(7, 71%, 55%);
-                border: 1px solid hsl(7, 71%, 55%);
-                color: #fff;
-                }
-
-                .fa-google-plus.square:hover {
-                background-color: hsl(0, 0%, 100%);
-                border-color: hsl(7, 71%, 55%);
-                color: hsl(7, 71%, 55%);
-                }
-
-
-                .fa-linkedin.square {
-                background-color: hsl(199, 85%, 36%);
-                border: 1px solid hsl(199, 85%, 36%);
-                color: #fff;
-                }
-
-                .fa-linkedin.square:hover {
-                background-color: hsl(0, 0%, 100%);
-                border-color: hsl(199, 85%, 36%);
-                color: hsl(199, 85%, 36%);
-                }
-
-
-            </style>
-            <section class="footer-page align-items-left text-left d-flex min-vh-40 oe_img_bg oe_custom_bg" style="background-position: 0.85% 97.33%;" id="footer_page">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-lg-4 col-md-4">
-                            <div class="footer-area">
-                                <div class="footer-head">
-                                    <h3>
-                                        <font style="color: rgb(255, 255, 255); font-size: 18px;">Bon à savoir</font>
-                                    </h3>
-                                    <h3>
-                                        <font style="color: rgb(255, 255, 255); font-size: 14px; font-weight: normal;">
-                                            <a href="/blog/digimoov-3/post/tout-savoir-sur-la-capacite-de-transport-leger-de-marchandises-5?anim" style="color:white;" data-original-title="" title="" aria-describedby="tooltip225935">Tout savoir sur la Capacité de
-                                                Marchandises
-                                            </a>
-                                        </font>
-                                        <br/>
-                                    </h3>
-                                    <h3>
-                                        <font style="font-size: 14px; font-weight: normal;">
-                                            <a href="/blog/digimoov-3/post/bon-a-savoir-sur-la-formation-capacite-de-transport-leger-6" data-original-title="" title="" aria-describedby="tooltip65497" style="color:#FFF;">Bon à
-                                                savoir sur la formation capacité de transport léger&amp;nbsp;
-                                            </a>
-                                        </font>
-                                    </h3>
-                                    <h3>
-                                        <font style="font-size: 14px; font-weight: normal;">
-                                            <a href="/blog/digimoov-3/post/a-quoi-sert-l-attestation-de-capacite-en-transport-leger-3" data-original-title="" title="" aria-describedby="tooltip65497" style="color:#FFF;">À quoi sert l'attestation de capacité en transport
-                                                léger ?
-                                                <br/>
-                                            </a>
-                                        </font>
-                                    </h3>
-                                    <h3>
-                                        <font style="font-size: 14px; font-weight: normal;">
-                                            <a href="/blog/digimoov-3/post/preparer-lexamen-de-capacite-en-transport-de-marchandises-et-la-creation-d-une-entreprise-de-transport-4" data-original-title="" title="" aria-describedby="tooltip65497" style="color:#FFF;">Les démarches administratives pour créer son
-                                                entreprise de transport de marchandises
-                                            </a>
-                                        </font>
-                                    </h3>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-4 col-md-4">
-                            <div class="footer-area2">
-                                <div class="footer-head">
-                                    <h3 style="text-align: left;">
-                                        <a style="color:white;" href="/contact" data-original-title="" title="" aria-describedby="tooltip408616">
-                                            <font style="font-size: 18px;" data-original-title="" title="" aria-describedby="tooltip948479">&amp;nbsp;Contacter Digimoov
-                                            </font>
-                                        </a>
-                                        <font style="font-size: 18px;">&amp;nbsp;</font>
-                                    </h3>
-                                </div>
-                                <ul class="footer-links" style="text-align: center;">
-                                    <li>
-                                        <a href="tel:+33 9 86 87 88 66">
-                                            <span class="fa fa-phone float-left" data-original-title="" title="" aria-describedby="tooltip853200" style="color: rgb(255, 255, 255);"/>
-                                        </a>
-                                        <div style="text-align: left;">
-                                            <span style="font-size: 0.875rem;">&amp;nbsp;</span>
-                                            <font style="color: rgb(255, 255, 255); text-align: left;">
-                                                <a href="tel:+33 9 86 87 88 66" data-original-title="" title="" aria-describedby="tooltip757473">+33 9 86 87 88 66</a>&amp;nbsp;
-                                            </font>
-                                        </div>
-                                    </li>
-                                    <li style="text-align: left">
-                                        <a href="/contact">
-                                            <span class="fa fa-envelope float-left" data-original-title="" title="" aria-describedby="tooltip920610" style="color: white;"/>
-                                        </a>
-                                        <font style="color: white;text-align: left">
-                                            <a href="/contact" data-original-title="" title="" aria-describedby="tooltip754257">&amp;nbsp; Envoyez nous un message
-                                            </a>
-                                        </font>
-                                    </li>
-                                    <li style="text-align: left">
-                                        <span class="fa fa-info-circle" data-original-title="" title="" aria-describedby="tooltip590995" style="color: rgb(255, 255, 255);"/>
-                                        <font style="color: white; text-align: left;">
-                                            <a href="/contact" data-original-title="" title="" aria-describedby="tooltip754257">
-                                                &amp;nbsp;</a>Digimoov est un nom commercial de la société MCM Academy. Numéro d’agrément : DRIEAT IDF N°2019-0110 </font>
-                                    </li>
-                                </ul>
-                                <p>
-                                    <br/>
-                                </p>
-                            </div>
-                        </div>
-                        <div class="col-lg-4 col-md-4">
-                            <div class="contactus">
-                                <div class="footer-contact">
-                                    <ul class="footer-links">
-                                        <li>
-                                            <h3>
-                                                <a href="/politique-de-confidentialite">Politique de Confidentialité</a>
-                                            </h3>
-                                            <h3>
-                                                <br/>
-                                                <a href="/conditions" data-original-title="" title="" aria-describedby="tooltip767819">Conditions Générales de Vente
-                                                </a>
-                                            </h3>
-                                        </li>
-                                        <li>
-                                            <h3>
-                                                <a href="/faq" data-original-title="" title="" aria-describedby="tooltip324872">Foire Aux Questions
-                                                </a>
-                                            </h3>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <footer>
-                                <ul class="social-icons shadow">
-                                    <li class="tab">
-                                        <a href="https://www.facebook.com/Digimoov" data-original-title="" title="" aria-describedby="tooltip67821" target="_blank">
-                                            <i class="fa fa-facebook circle" data-original-title="" title="" aria-describedby="tooltip741703"/>
-                                            &amp;nbsp;
-                                        </a>
-                                    </li>
-                                    <li class="tab">
-                                        <a href="https://www.instagram.com/digimoov.formation/" data-original-title="" title="" aria-describedby="tooltip9968">
-                                            <i class="circle fa fa-instagram" data-original-title="" title="" aria-describedby="tooltip864579"/>
-                                            &amp;nbsp;&amp;nbsp;
-                                        </a>
-                                    </li>
-                                </ul>
-                            </footer>
-                            <a href="javascript:showAxeptioButton()" data-original-title="" title="" aria-describedby="tooltip366530">&amp;nbsp;
-                            </a>
-                        </div>
-                    </div>
+        .fa-linkedin.square:hover {
+          background-color: hsl(0, 0%, 100%);
+          border-color: hsl(199, 85%, 36%);
+          color: hsl(199, 85%, 36%);
+        }
+      </style>
+      <section class="
+          footer-page
+          align-items-left
+          text-left
+          d-flex
+          min-vh-40
+          oe_img_bg oe_custom_bg
+        " style="background-position: 0.85% 97.33%" id="footer_page">
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-4 col-md-4">
+              <div class="footer-area">
+                <div class="footer-head">
+                  <h3>
+                    <font style="color: rgb(255, 255, 255); font-size: 18px">Bon à savoir</font
+                    >
+                  </h3>
+                  <h3>
+                    <font style="
+                        color: rgb(255, 255, 255);
+                        font-size: 14px;
+                        font-weight: normal;
+                      ">
+                      <a href="/blog/digimoov-3/post/tout-savoir-sur-la-capacite-de-transport-leger-de-marchandises-5?anim" style="color: white" data-original-title="" title="" aria-describedby="tooltip225935">Tout savoir sur la Capacité de Marchandises
+                      </a>
+                    </font>
+                    <br />
+                  </h3>
+                  <h3>
+                    <font style="font-size: 14px; font-weight: normal">
+                      <a href="/blog/digimoov-3/post/bon-a-savoir-sur-la-formation-capacite-de-transport-leger-6" data-original-title="" title="" aria-describedby="tooltip65497" style="color: #fff">Bon à savoir sur la formation capacité de transport
+                        léger&amp;nbsp;
+                      </a>
+                    </font>
+                  </h3>
+                  <h3>
+                    <font style="font-size: 14px; font-weight: normal">
+                      <a href="/blog/digimoov-3/post/a-quoi-sert-l-attestation-de-capacite-en-transport-leger-3" data-original-title="" title="" aria-describedby="tooltip65497" style="color: #fff">À quoi sert l'attestation de capacité en transport
+                        léger ?
+                        <br />
+                      </a>
+                    </font>
+                  </h3>
+                  <h3>
+                    <font style="font-size: 14px; font-weight: normal">
+                      <a href="/blog/digimoov-3/post/preparer-lexamen-de-capacite-en-transport-de-marchandises-et-la-creation-d-une-entreprise-de-transport-4" data-original-title="" title="" aria-describedby="tooltip65497" style="color: #fff">Les démarches administratives pour créer son entreprise
+                        de transport de marchandises
+                      </a>
+                    </font>
+                  </h3>
                 </div>
-                <script>
-                    window.axeptioSettings = {
-                    clientId: "60005024632ebb7d2482c2d6",
-                    cookiesVersion: "digimoov-base",
-                    };
-                    (function(d, s) {
-                    var t = d.getElementsByTagName(s)[0], e = d.createElement(s);
-                    e.async = true; e.src = "//static.axept.io/sdk.js";
-                    t.parentNode.insertBefore(e, t);
-                    })(document, "script");
-                </script>
-            </section>
-
-        </xpath>
-    </template>
+              </div>
+            </div>
+            <div class="col-lg-4 col-md-4">
+              <div class="footer-area2">
+                <div class="footer-head">
+                  <h3 style="text-align: left">
+                    <a style="color: white" href="/contact" data-original-title="" title="" aria-describedby="tooltip408616">
+                      <font style="font-size: 18px" data-original-title="" title="" aria-describedby="tooltip948479">&amp;nbsp;Contacter Digimoov
+                      </font>
+                    </a>
+                    <font style="font-size: 18px">&amp;nbsp;</font>
+                  </h3>
+                </div>
+                <ul class="footer-links" style="text-align: center">
+                  <li>
+                    <a href="tel:+33 9 86 87 88 66">
+                      <span class="fa fa-phone float-left" data-original-title="" title="" aria-describedby="tooltip853200" style="color: rgb(255, 255, 255)" />
+                    </a>
+                    <div style="text-align: left">
+                      <span style="font-size: 0.875rem">&amp;nbsp;</span>
+                      <font style="color: rgb(255, 255, 255); text-align: left">
+                        <a href="tel:+33 9 86 87 88 66" data-original-title="" title="" aria-describedby="tooltip757473">+33 9 86 87 88 66</a
+                        >&amp;nbsp;
+                      </font>
+                    </div>
+                  </li>
+                  <li style="text-align: left">
+                    <a href="/contact">
+                      <span class="fa fa-envelope float-left" data-original-title="" title="" aria-describedby="tooltip920610" style="color: white" />
+                    </a>
+                    <font style="color: white; text-align: left">
+                      <a href="/contact" data-original-title="" title="" aria-describedby="tooltip754257">&amp;nbsp; Envoyez nous un message
+                      </a>
+                    </font>
+                  </li>
+                  <li style="text-align: left">
+                    <span class="fa fa-info-circle" data-original-title="" title="" aria-describedby="tooltip590995" style="color: rgb(255, 255, 255)" />
+                    <font style="color: white; text-align: left">
+                      <a href="/contact" data-original-title="" title="" aria-describedby="tooltip754257">
+                        &amp;nbsp;</a
+                      >Digimoov est un nom commercial de la société MCM Academy.
+                      Numéro d’agrément : DRIEAT IDF N°2019-0110
+                    </font>
+                  </li>
+                </ul>
+                <p>
+                  <br />
+                </p>
+              </div>
+            </div>
+            <div class="col-lg-4 col-md-4">
+              <div class="contactus">
+                <div class="footer-contact">
+                  <ul class="footer-links">
+                    <li>
+                      <h3>
+                        <a href="/politique-de-confidentialite">Politique de Confidentialité</a
+                        >
+                      </h3>
+                      <h3>
+                        <br />
+                        <a href="/conditions" data-original-title="" title="" aria-describedby="tooltip767819">Conditions Générales de Vente
+                        </a>
+                      </h3>
+                    </li>
+                    <li>
+                      <h3>
+                        <a href="/faq" data-original-title="" title="" aria-describedby="tooltip324872">Foire Aux Questions
+                        </a>
+                      </h3>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+              <footer>
+                <ul class="social-icons shadow">
+                  <li class="tab">
+                    <a href="https://www.facebook.com/Digimoov" data-original-title="" title="" aria-describedby="tooltip67821" target="_blank">
+                      <i class="fa fa-facebook circle" data-original-title="" title="" aria-describedby="tooltip741703" />
+                      &amp;nbsp;
+                    </a>
+                  </li>
+                  <li class="tab">
+                    <a href="https://www.instagram.com/digimoov.formation/" data-original-title="" title="" aria-describedby="tooltip9968">
+                      <i class="circle fa fa-instagram" data-original-title="" title="" aria-describedby="tooltip864579" />
+                      &amp;nbsp;&amp;nbsp;
+                    </a>
+                  </li>
+                </ul>
+              </footer>
+              <a href="javascript:showAxeptioButton()" data-original-title="" title="" aria-describedby="tooltip366530">&amp;nbsp;
+              </a>
+            </div>
+          </div>
+        </div>
+        <script>
+          window.axeptioSettings = {
+            clientId: '60005024632ebb7d2482c2d6',
+            cookiesVersion: 'digimoov-base',
+          };
+          (function (d, s) {
+            var t = d.getElementsByTagName(s)[0],
+              e = d.createElement(s);
+            e.async = true;
+            e.src = '//static.axept.io/sdk.js';
+            t.parentNode.insertBefore(e, t);
+          })(document, 'script');
+        </script>
+      </section>
+    </xpath>
+  </template>
 </odoo>
