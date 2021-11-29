@@ -613,15 +613,15 @@
                                                                 </li>
                                                                 <li class="mb-4">
                                                                     <i class="fa fa-check-circle fa-lg mr-2 text-success"/>
-                                                                    <b>Coaching par mail</b>
+                                                                    <b>Assistance par mail</b>
                                                                 </li>
                                                                 <li class="mb-4">
                                                                     <i class="fa fa-lg fa-times-circle mr-2 text-danger"/>
-                                                                Coaching par téléphone
+                                                                Assistance par téléphone
                                                                 </li>
                                                                 <li class="mb-4">
                                                                     <span class="fa fa-lg fa-times-circle mr-2 text-danger" style="font-size: 1.33333em"/>
-                                                                Coaching par visioconférence
+                                                                Assistance par visioconférence
                                                                     <br/>
                                                                 </li>
                                                                 <li class="mb-4">
@@ -754,15 +754,15 @@
                                                                 </li>
                                                                 <li class="mb-4">
                                                                     <i class="fa fa-check-circle fa-lg mr-2 text-success" data-original-title="" title="" aria-describedby="tooltip131000"/>
-                                                                    <b>Coaching par mail</b>
+                                                                    <b>Assistance par mail</b>
                                                                 </li>
                                                                 <li class="mb-4">
                                                                     <span class="fa fa-check-circle fa-lg mr-2 text-success" style="font-size: 1.33333em" data-original-title="" title="" aria-describedby="tooltip96053"/>
-                                                                    <b>Coaching par téléphone</b>
+                                                                    <b>Assistance par téléphone</b>
                                                                 </li>
                                                                 <li class="mb-4">
                                                                     <span class="fa fa-lg fa-times-circle text-danger mr-2" style="font-size: 1.33333em" data-original-title="" title="" aria-describedby="tooltip288722"/>
-                                                                Coaching par visioconférence
+                                                                Assistance par visioconférence
                                                                 </li>
                                                                 <li class="mb-4">
                                                                     <i class="fa fa-lg fa-times-circle text-danger mr-2"/>
@@ -877,17 +877,17 @@
                                                                 </li>
                                                                 <li class="mb-4">
                                                                     <i class="fa fa-check-circle fa-lg mr-2 text-success"/>
-                                                                    <b>Coaching par mail</b>
+                                                                    <b>Assistance par mail</b>
                                                                     <br/>
                                                                 </li>
                                                                 <li class="mb-4">
                                                                     <i class="fa fa-check-circle fa-lg mr-2 text-success"/>
-                                                                    <b>Coaching par téléphone</b>
+                                                                    <b>Assistance par téléphone</b>
                                                                     <br/>
                                                                 </li>
                                                                 <li class="mb-4">
                                                                     <i class="fa fa-check-circle fa-lg mr-2 text-success"/>
-                                                                    <b>Coaching par visioconférence</b>
+                                                                    <b>Assistance par visioconférence</b>
                                                                     <b>&amp;nbsp;</b>
                                                                     <br/>
                                                                 </li>
