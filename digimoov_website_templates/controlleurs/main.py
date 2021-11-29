@@ -54,7 +54,21 @@ class FINANCEMENT(http.Controller):
     @http.route('/mon-compte-de-formation-cpf', type='http', auth='public', website=True)
     def financement(self, **kw, ):
         if request.website.id == 2:
-            return request.render("digimoov_website_templates.digimoov_template_financement", {})
+            #get digimoov products to send them to pricing table
+            digimoov_products = request.env['product.product'].sudo().search([('company_id', '=', 2)],
+                                                                             order="list_price")
+            promo = False
+            values = {
+                'digimoov_products': digimoov_products,
+            }
+            if (partenaire in ['', 'ubereats', 'deliveroo', 'coursierjob', 'box2home',
+                               'coursier2roues'] and request.website.id == 2):
+                values['partenaire'] = partenaire
+                if (promo):
+                    values['promo'] = promo
+                else:
+                    values['promo'] = False
+            return request.render("digimoov_website_templates.digimoov_template_financement", values)
         elif request.website.id == 1:
             return request.render("mcm_website_theme.mcm_website_theme_cpf", {})
 
