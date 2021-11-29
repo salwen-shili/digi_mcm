@@ -579,7 +579,7 @@ class partner(models.Model):
         params_wedof = (
             ('order', 'asc'),
             ('type', 'all'),
-            ('state', 'canceledByAttendee,canceledByAttendeeNotRealized,serviceDoneDeclared'
+            ('state', 'canceledByAttendee,canceledByAttendeeNotRealized,canceledByOrganism'
                       ''),
             ('billingState', 'all'),
             ('certificationState', 'all'),
@@ -615,13 +615,34 @@ class partner(models.Model):
             newformat="%d/%m/%Y %H:%M:%S"
             lastupdateform=lastupdate.strftime(newformat)
             lastupd=datetime.strptime(lastupdateform, "%d/%m/%Y %H:%M:%S")
-            address = dossier['attendee']['address']['roadName']
-            tel = dossier['attendee']['phoneNumber']
-            code_postal = dossier['attendee']['address']['zipCode']
-            ville = dossier['attendee']['address']['city']
+            if "roadName" in dossier['attendee']['address']:
+                address = dossier['attendee']['address']['roadName']
+            else:
+                address = ""
+            if "phoneNumber" in  dossier['attendee']:
+                tel = dossier['attendee']['phoneNumber']
+            else :
+                tel = ""
+            if "zipCode" in dossier['attendee']['address']:
+                code_postal = dossier['attendee']['address']['zipCode']
+            else :
+                code_postal = ""
+            if "city" in dossier['attendee']['address']:
+                ville = dossier['attendee']['address']['city']
+            else :
+                ville =""
+            if 'firstName' in dossier['attendee']['firstName']:
+                nom = dossier['attendee']['firstName']
+            else :
+                nom=""
+            
+            if "lastName" in dossier['attendee']['lastName']:
+                prenom = dossier['attendee']['lastName']
+            else :
+                prenom=""
             diplome = dossier['trainingActionInfo']['title']
-            nom = dossier['attendee']['firstName']
-            prenom = dossier['attendee']['lastName']
+            
+            
             if state=="validated":
                 print('validate',email)
                 self.cpf_validate(training_id,email,address,tel,code_postal,ville,diplome,nom,prenom,externalId,lastupd)
