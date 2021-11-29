@@ -6,12 +6,14 @@ from datetime import datetime, date, time
 from odoo.addons.mcm_website_theme.controllers.main import Routes_Site
 from odoo.addons.mcm_contact_documents.controllers.main import CustomerPortal
 from odoo.addons.digimoov_sessions_modules.controllers.main import WebsiteSale
+import locale
 
 class IdenfyWebsiteSale(WebsiteSale):
     @http.route(
         ['''/<string:product>/<string:partenaire>/shop/cart''', '''/<string:product>/shop/cart''', '''/shop/cart'''],
         type='http', auth="user", website=True, sitemap=False)
     def cart(self, access_token=None, product=None, revive='', partenaire=None, **post):
+        locale.setlocale(locale.LC_TIME, str(request.env.user.lang) + '.utf8')
         order = request.website.sale_get_order()
         name = http.request.env.user.name
         email = http.request.env.user.email
