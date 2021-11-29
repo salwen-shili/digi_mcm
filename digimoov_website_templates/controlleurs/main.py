@@ -38,7 +38,7 @@ class Website(Website):
             values = {
                 'digimoov_products': digimoov_products,
             }
-            return request.render("digimoov_website_templates.digimoov_template_test6", values)
+            return request.render("digimoov_website_templates.digimoov_template_transport_leger_marchandises", values)
         else:
             raise werkzeug.exceptions.NotFound()
 
