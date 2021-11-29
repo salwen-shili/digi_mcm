@@ -27,7 +27,6 @@ class WebsiteSale(WebsiteSale):
         revive: Revival method when abandoned cart. Can be 'merge' or 'squash'
         """
         locale.setlocale(locale.LC_TIME, str(request.env.user.lang) + '.utf8')
-        locale.setlocale(locale.LANG, str(request.env.user.lang) + '.utf8')
         order = request.website.sale_get_order()
         if order and order.state != 'draft':
             request.session['sale_order_id'] = None
