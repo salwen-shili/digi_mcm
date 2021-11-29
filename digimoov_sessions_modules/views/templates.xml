@@ -51,7 +51,7 @@
                                                     <t t-esc="module.date_exam.strftime('%B %Y')"/>
                                                 </t>
                                                 <t t-else="">
-                                                    <t t-esc="module.date_exam.strftime('%d/%m/%Y')"/>
+                                                    <t t-esc="module.date_exam.strftime('%d %B %Y')"/>
                                                 </t>
 
                                             </option>
