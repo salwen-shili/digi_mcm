@@ -19,7 +19,7 @@
             Calendly.initBadgeWidget({
               url: 'https://calendly.com/digimoov/attestation-de-capacite-marchandise',
               text: 'Infos téléphone',
-              color: '#9e6cde',
+              color: '#724c9f',
               textColor: '#FFFFFF',
               branding: false,
             });
@@ -54,7 +54,7 @@
                 email: user_email,
               },
               text: 'Infos téléphone',
-              color: '#9e6cde',
+              color: '#724c9f',
               textColor: '#ffffff',
               branding: false,
             });
