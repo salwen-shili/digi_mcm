@@ -6,7 +6,8 @@
         .calendly-badge-widget {
         left: 20px !important;
     }
- 
+
+
             </style>
 
             <t t-if="request.website.is_public_user()==True">
@@ -14,7 +15,7 @@
                 <script type="text/javascript" src="/digimoov_website_templates/static/src/js/intercom-bot-config.js"/>
                 <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet" />
                 <script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async="async"></script>
-                <script type="text/javascript">window.onload = function() { Calendly.initBadgeWidget({ url: 'https://calendly.com/digimoov', text: 'Planifier du temps avec moi', color: '#0069FF', textColor: '#FFFFFF', branding: false }); }</script>
+                <script type="text/javascript">window.onload = function() { Calendly.initBadgeWidget({ url: 'https://calendly.com/digimoov', text: 'Infos téléphone', color: '#9e6cde', textColor: '#FFFFFF', branding: false }); }</script>
             </t>
             <t t-if="request.website.is_public_user()==False">
 
@@ -35,10 +36,12 @@
                     window.onload = function() { Calendly.initBadgeWidget({ url: 'https://calendly.com/digimoov',  prefill: {
                     name: user_name,
                     email: user_email,
-                    },  text: 'Planifier du temps avec moi', color: '#0069FF', textColor: '#FFFFFF', branding: false }); }
+                    },  text: 'Infos téléphone', color: '#9e6cde', textColor: '#FFFFFF', branding: false }); }
                 </script>
             </t>
             <style>
+       
+    
                 @import url("//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css");
                 .social-icons {
                 list-style-type: none;
