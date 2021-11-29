@@ -13,8 +13,8 @@ class IdenfyWebsiteSale(WebsiteSale):
         ['''/<string:product>/<string:partenaire>/shop/cart''', '''/<string:product>/shop/cart''', '''/shop/cart'''],
         type='http', auth="user", website=True, sitemap=False)
     def cart(self, access_token=None, product=None, revive='', partenaire=None, **post):
-        locale.setlocale(locale.LC_TIME, str(self.env.user.lang) + '.utf8')
-        locale.setlocale(locale.LANG, str(self.env.user.lang) + '.utf8')
+        locale.setlocale(locale.LC_TIME, str(request.env.user.lang) + '.utf8')
+        locale.setlocale(locale.LANG, str(request.env.user.lang) + '.utf8')
         order = request.website.sale_get_order()
         name = http.request.env.user.name
         email = http.request.env.user.email
