@@ -2,7 +2,12 @@
 <odoo>
     <template id="digimoov_website_templates.digimoov_footer_template" inherit_id="website.footer_custom" active="True">
         <xpath expr="//div[@id='footer']" position="replace">
-
+            <style>
+        .calendly-badge-widget {
+        left: 20px !important;
+    }
+ 
+            </style>
 
             <t t-if="request.website.is_public_user()==True">
                 <script type="text/javascript" src="/digimoov_website_templates/static/src/js/intercom-bot.js"/>
@@ -22,14 +27,6 @@
                 <input type="hidden" name="user_email_connected" id="user_email_connected" t-att-value="request.website.get_user_email_logged()"/>
 
                 <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet" />
-                <style>
-        .calendly-badge-widget {
-        left: 20px !important;
-    }
-                                            <!-- .calendly-badge-content{
-        color: #fdd103 !important;
-    } -->
-                </style>
                 <script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async="async"></script>
                 <script type="text/javascript">
                     var user_name=document.getElementById("user_name_connected").value;
