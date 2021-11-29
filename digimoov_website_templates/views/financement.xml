@@ -1,6 +1,8 @@
 <odoo>
     <template id="digimoov_website_templates.digimoov_template_financement" name="Financer votre formation avec le CPF | Digimoov">
         <t t-call="website.layout">
+            <script type="text/javascript" src="/mcm_website_theme/static/src/js/msAds.js"/>
+
             <div id="wrap" class="oe_structure oe_empty">
                 <style>
                 @media (min-width: 1024px){
@@ -140,7 +142,8 @@ Pa</p>
                 <section class="s_one_page_pricing_plan bg-light-1" data-name="Pricing plan two">
                     <div class="pricing1 spacer" id="pricing">
                         <div class="container">
-                            <div class="row justify-content-center">
+                            <div class="row justify-content-center" style="justify-content: center;
+">
                                 <div class="col-md-8 text-center col-lg-11">
                                     <h2 class="text-beta title">
                                                     LET'S GO !
@@ -163,7 +166,7 @@ Pa</p>
                 </section>
                 <div class="container">
                     <input t-att-value="request.website.microsoft_tracking_key" id="microsoft_tracking_key" type="hidden"/>
-                    <div class="row">
+                    <div class="row" style="place-content: center;">
                         <!-- <div class="col-md-4 col-sm-6">
                             <div class="card border-0 shadow" style="border-radius: 25px 25px">
                                 <div class="text-center text-white border-0" style="
