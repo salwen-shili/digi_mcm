@@ -54,7 +54,7 @@ class FINANCEMENT(http.Controller):
     @http.route('/mon-compte-de-formation-cpf', type='http', auth='public', website=True)
     def financement(self, **kw, ):
         if request.website.id == 2:
-            #get digimoov products to send them to pricing table
+            #get digimoov products to send them to pricing table 
             digimoov_products = request.env['product.product'].sudo().search([('company_id', '=', 2)],
                                                                              order="list_price")
             values = {
