@@ -43,7 +43,7 @@
         'views/my_account_progress.xml',
         'views/cart_progressbar.xml',
         'views/edit_info.xml',
-        'views/test6.xml'
+        'views/attestation-transport-leger-marchandises-carte-bleu.xml.xml',
         # 'views/charger_mes_documents'
         # 'views/sitemap.xml',
 
