@@ -431,8 +431,8 @@ class partner(models.Model):
                 if (date_suppression <= today):
                     email = partner['email']
                     print('date_sup', email, date_suppression, today)
-                    # url = 'https://app.360learning.com/api/v1/users/tmejri@digimoov.fr?company=' + company_id + '&apiKey=' + api_key
-                    # resp = requests.delete(url)
+                    url = 'https://app.360learning.com/api/v1/users/' + email + '?company=' + company_id + '&apiKey=' + api_key
+                    resp = requests.delete(url)
 
             else:
                 print('date incompatible')
@@ -527,19 +527,20 @@ class partner(models.Model):
                         _logger.info('user email %s' % user['mail'].upper())
                         response_post = requests.post('https://www.wedof.fr/api/registrationFolders/'+externalId+'/inTraining',
                                                   headers=headers, data=data)
-                        # """Si dossier passe en formation on met à jour statut cpf sur la fiche client"""
-                        # partner = self.env['res.partner'].sudo().search([('numero_cpf', "=", str(externalId))])
-                        # if len(partner) > 1:
-                        #     for part in partner:
-                        #         if part.email == email:
-                        #             _logger.info('if partner >1 %s' % partner.numero_cpf)
-                        #             partner.statut_cpf="in_training"
-                        # elif len(partner) == 1:
-                        #     _logger.info('if partner %s' % partner.numero_cpf)
-                        #     partner.statut_cpf = "in_training"
+                        print('response post',response_post.status_code)
+                        """Si dossier passe en formation on met à jour statut cpf sur la fiche client"""
+                        # if response_post.status_code == 200:
+                        #     partner = self.env['res.partner'].sudo().search([('numero_cpf', "=", str(externalId))])
+                        #     if len(partner) > 1:
+                        #         for part in partner:
+                        #             if part.email == email:
+                        #                 _logger.info('if partner >1 %s' % partner.numero_cpf)
+                        #                 partner.statut_cpf="in_training"
+                        #     elif len(partner) == 1:
+                        #         _logger.info('if partner %s' % partner.numero_cpf)
+                        #         partner.statut_cpf = "in_training"
 
     """changer l'etat sur wedof de non traité vers validé à partir d'API"""
-
     def change_state_wedof_validate(self):
         params_wedof = (
             ('order', 'asc'),
@@ -570,17 +571,29 @@ class partner(models.Model):
             response_post = requests.post('https://www.wedof.fr/api/registrationFolders/' + externalid + '/validate',
                                           headers=headers, data=dat)
             status = str(response_post.status_code)
-            put_status = str(response_put.status_code)
-            _logger.info("status put %s" % put_status)
-            _logger.info("status post %s" % status)
+            # if status == '200':
+            #     """Si dossier passe à validé on met à jour statut cpf sur la fiche client"""
+            #     if response_post.status_code == 200:
+            #         self.cpf_validate()
+            #         partner = self.env['res.partner'].sudo().search([('numero_cpf', "=", str(externalId))])
+            #         if len(partner) > 1:
+            #             for part in partner:
+            #                 if part.email == email:
+            #                     _logger.info('if partner >1 %s' % partner.numero_cpf)
+            #                     partner.statut_cpf = "in_training"
+            #         elif len(partner) == 1:
+            #             _logger.info('if partner %s' % partner.numero_cpf)
+            #             partner.statut_cpf = "in_training"
+            # put_status = str(response_put.status_code)
+            # _logger.info("status put %s" % put_status)
+            # _logger.info("status post %s" % status)
 
     """Mettre à jour les statuts cpf sur la fiche client selon l'etat sur wedof """
     def change_state_cpf_partner(self):
         params_wedof = (
             ('order', 'asc'),
             ('type', 'all'),
-            ('state', 'canceledByAttendee,canceledByAttendeeNotRealized,canceledByOrganism'
-                      ''),
+            ('state', 'canceledByAttendee,canceledByAttendeeNotRealized,canceledByOrganism'),
             ('billingState', 'all'),
             ('certificationState', 'all'),
             ('sort', 'lastUpdate'),
@@ -774,4 +787,251 @@ class partner(models.Model):
                     if product_id:
                         client.id_edof = product_id.id_edof
 
-        
+
+    """Changer statut cpf vers accepté selon l'etat récupéré avec api wedof"""
+    def change_statut_accepte(self):
+        params_wedof = (
+            ('order', 'asc'),
+            ('type', 'all'),
+            ('state', 'accepted'),
+            ('billingState', 'all'),
+            ('certificationState', 'all'),
+            ('sort', 'lastUpdate'),
+            ('limit', '10000000000')
+        )
+        headers = {
+            'accept': 'application/json',
+            'Content-Type': 'application/json',
+            'X-API-KEY': '026514d6bc7d880515a27eae4947bccef4fbbf03',
+        }
+        response = requests.get('https://www.wedof.fr/api/registrationFolders/', headers=headers,
+                                params=params_wedof)
+        registrations = response.json()
+        for dossier in registrations:
+            externalId = dossier['externalId']
+            email = dossier['attendee']['email']
+            email = email.replace("%", ".")  # remplacer % par .
+            email = email.replace(" ", "")  # supprimer les espaces envoyés en paramètre email
+            email = str(email).lower()  # recupérer l'email en miniscule pour éviter la création des deux comptes
+            print('dossier', dossier)
+            idform = dossier['trainingActionInfo']['trainingId']
+            training_id = ""
+            if "_" in idform:
+                idforma = idform.split("_", 1)
+                if idforma:
+                    training_id = idforma[1]
+            state = dossier['state']
+            lastupdatestr = str(dossier['lastUpdate'])
+            lastupdate = datetime.strptime(lastupdatestr, '%Y-%m-%dT%H:%M:%S.%fz')
+            newformat = "%d/%m/%Y %H:%M:%S"
+            lastupdateform = lastupdate.strftime(newformat)
+            lastupd = datetime.strptime(lastupdateform, "%d/%m/%Y %H:%M:%S")
+
+            if "phoneNumber" in dossier['attendee']:
+                tel = dossier['attendee']['phoneNumber']
+            else:
+                tel = ""
+            diplome = dossier['trainingActionInfo']['title']
+            print('training', training_id)
+            users = self.env['res.users'].sudo().search([('login', "=", email)])
+            # redirect link to generate validate cpf link to create the client with all info of client
+            if not users:
+                if '+33' not in str(tel):
+                    users = self.env["res.users"].sudo().search(
+                        [("phone", "=", str(tel).replace(' ', ''))], limit=1)
+                    if not users:
+                        phone = str(tel)
+                        phone = phone[1:]
+                        phone = '+33' + str(phone)
+                        users = self.env["res.users"].sudo().search(
+                            [("phone", "=", phone.replace(' ', ''))], limit=1)
+                else:
+                    users = self.env["res.users"].sudo().search(
+                        [("phone", "=", str(tel).replace(' ', ''))], limit=1)
+                    if not users:
+                        phone = str(tel)
+                        phone = phone[3:]
+                        phone = '0' + str(phone)
+                        users = self.env["res.users"].sudo().search(
+                            [("phone", "=", phone.replace(' ', ''))], limit=1)
+
+            user = False
+            if len(users) > 1:
+                user = users[1]
+                for utilisateur in users:
+                    if utilisateur.partner_id.id_edof and utilisateur.partner_id.date_examen_edof and utilisateur.partner_id.ville:
+                        user = utilisateur
+            else:
+                user = users
+            if user:
+                print("if user", user.login,user.partner_id.statut_cpf)
+                user.partner_id.mode_de_financement = 'cpf'
+                user.partner_id.statut_cpf = 'accepted'
+                user.partner_id.date_cpf= lastupd
+                module_id = False
+                product_id = False
+                if 'digimoov' in str(training_id):
+                    product_id = self.env['product.template'].sudo().search(
+                        [('id_edof', "=", str(training_id)), ('company_id', "=", 2)], limit=1)
+                else:
+                    product_id = self.env['product.template'].sudo().search(
+                        [('id_edof', "=", str(training_id)), ('company_id', "=", 1)], limit=1)
+
+                if product_id and product_id.company_id.id == 2 and user.partner_id.id_edof and user.partner_id.date_examen_edof and user.partner_id.session_ville_id:
+                    module_id = self.env['mcmacademy.module'].sudo().search(
+                        [('company_id', "=", 2), ('session_ville_id', "=", user.partner_id.session_ville_id.id),
+                         ('date_exam', "=", user.partner_id.date_examen_edof), ('product_id', "=", product_id.id),
+                         ('session_id.number_places_available', '>', 0)], limit=1)
+                    if module_id:
+                        user.partner_id.module_id = module_id
+                        user.partner_id.mcm_session_id = module_id.session_id
+                        product_id = self.env['product.product'].sudo().search(
+                            [('product_tmpl_id', '=', module_id.product_id.id)])
+                        user.partner_id.mcm_session_id = module_id.session_id
+                        user.partner_id.module_id = module_id
+                        self.env.user.company_id = 2
+                        invoice = self.env['account.move'].sudo().search(
+                            [('module_id', "=", module_id.id), ('state', "=", 'posted'),
+                             ('partner_id', "=", user.partner_id.id)])
+                        if not invoice:
+                            so = self.env['sale.order'].sudo().create({
+                                'partner_id': user.partner_id.id,
+                                'company_id': 2,
+                            })
+                            so.module_id = module_id
+                            so.session_id = module_id.session_id
+
+                            so_line = self.env['sale.order.line'].sudo().create({
+                                'name': product_id.name,
+                                'product_id': product_id.id,
+                                'product_uom_qty': 1,
+                                'product_uom': product_id.uom_id.id,
+                                'price_unit': product_id.list_price,
+                                'order_id': so.id,
+                                'tax_id': product_id.taxes_id,
+                                'company_id': 2,
+                            })
+                            # prix de la formation dans le devis
+                            amount_before_instalment = so.amount_total
+                            # so.amount_total = so.amount_total * 0.25
+                            for line in so.order_line:
+                                line.price_unit = so.amount_total
+                            so.action_confirm()
+                            ref = False
+                            # Creation de la Facture Cpf
+                            # Si la facture est de type CPF :  On parse le pourcentage qui est 25 %
+                            # methode_payment prend la valeur CPF pour savoir bien qui est une facture CPF qui prend la valeur 25 % par default
+
+                            if so.amount_total > 0 and so.order_line:
+                                moves = so._create_invoices(final=True)
+                                for move in moves:
+                                    move.type_facture = 'interne'
+                                    # move.cpf_acompte_invoice= True
+                                    # move.cpf_invoice =True
+                                    move.methodes_payment = 'cpf'
+                                    move.pourcentage_acompte = 25
+                                    move.module_id = so.module_id
+                                    move.session_id = so.session_id
+                                    if so.pricelist_id.code:
+                                        move.pricelist_id = so.pricelist_id
+                                    move.company_id = so.company_id
+                                    move.price_unit = so.amount_total
+                                    # move.cpf_acompte_invoice=True
+                                    # move.cpf_invoice = True
+                                    move.methodes_payment = 'cpf'
+                                    move.post()
+                                    ref = move.name
+                            so.action_cancel()
+                            so.unlink()
+                            user.partner_id.statut = 'won'
+
+                    elif product_id and product_id.company_id.id == 1 and user.partner_id.id_edof and user.partner_id.date_examen_edof and user.partner_id.session_ville_id:
+                        module_id = self.env['mcmacademy.module'].sudo().search(
+                            [('company_id', "=", 1), ('session_ville_id', "=", user.partner_id.session_ville_id.id),
+                             ('date_exam', "=", user.partner_id.date_examen_edof), ('product_id', "=", product_id.id),
+                             ('session_id.number_places_available', '>', 0)], limit=1)
+                        if module_id:
+                            user.partner_id.module_id = module_id
+                            user.partner_id.mcm_session_id = module_id.session_id
+                            product_id = self.env['product.product'].sudo().search(
+                                [('product_tmpl_id', '=', module_id.product_id.id)])
+                            user.partner_id.mcm_session_id = module_id.session_id
+                            user.partner_id.module_id = module_id
+                            self.env.user.company_id = 1
+                            invoice = self.env['account.move'].sudo().search(
+                                [('module_id', "=", module_id.id), ('state', "=", 'posted'),
+                                 ('partner_id', "=", user.partner_id.id)])
+                            if not invoice:
+                                so = self.env['sale.order'].sudo().create({
+                                    'partner_id': user.partner_id.id,
+                                    'company_id': 1,
+                                })
+                                self.env['sale.order.line'].sudo().create({
+                                    'name': product_id.name,
+                                    'product_id': product_id.id,
+                                    'product_uom_qty': 1,
+                                    'product_uom': product_id.uom_id.id,
+                                    'price_unit': product_id.list_price,
+                                    'order_id': so.id,
+                                    'tax_id': product_id.taxes_id,
+                                    'company_id': 1
+                                })
+                                # Enreggistrement des valeurs de la facture
+                                # Parser le pourcentage d'acompte
+                                # Creation de la fcture étape Finale
+                                # Facture comptabilisée
+                                so.action_confirm()
+                                so.module_id = module_id
+                                so.session_id = module_id.session_id
+                                moves = so._create_invoices(final=True)
+                                for move in moves:
+                                    move.type_facture = 'interne'
+                                    move.module_id = so.module_id
+                                    # move.cpf_acompte_invoice=True
+                                    # move.cpf_invoice =True
+                                    move.methodes_payment = 'cpf'
+                                    move.pourcentage_acompte = 25
+                                    move.session_id = so.session_id
+                                    move.company_id = so.company_id
+                                    move.website_id = 1
+                                    for line in move.invoice_line_ids:
+                                        if line.account_id != line.product_id.property_account_income_id and line.product_id.property_account_income_id:
+                                            line.account_id = line.product_id.property_account_income_id
+                                    move.post()
+                                so.action_cancel()
+                                so.unlink()
+                                user.partner_id.statut = 'won'
+
+                else:
+                    if 'digimoov' in str(training_id):
+                        vals = {
+                            'description': 'CPF: vérifier la date et ville de %s' % (user.name),
+                            'name': 'CPF : Vérifier Date et Ville ',
+                            'team_id': self.env['helpdesk.team'].sudo().search(
+                                [('name', 'like', 'Client'), ('company_id', "=", 2)],
+                                limit=1).id,
+                        }
+                        description = "CPF: vérifier la date et ville de " + str(user.name)
+                        ticket = self.env['helpdesk.ticket'].sudo().search([("description", "=", description)])
+                        if not ticket:
+                            new_ticket = self.env['helpdesk.ticket'].sudo().create(
+                                vals)
+                    else:
+                        vals = {
+                            'partner_email': '',
+                            'partner_id': False,
+                            'description': 'CPF: id module edof %s non trouvé' % (training_id),
+                            'name': 'CPF : ID module edof non trouvé ',
+                            'team_id': self.env['helpdesk.team'].sudo().search(
+                                [('name', "like", _('Client')), ('company_id', "=", 1)],
+                                limit=1).id,
+                        }
+                        description = 'CPF: id module edof ' + str(training_id) + ' non trouvé'
+                        ticket = self.env['helpdesk.ticket'].sudo().search([('description', 'ilike', description)])
+                        if not ticket:
+                            new_ticket = self.env['helpdesk.ticket'].sudo().create(
+                                vals)
+
+
+
+

@@ -150,12 +150,29 @@
         color: #fdd103 !important;
     }
             </style>
-            <script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async="async"></script>
-            <script type="text/javascript">
+            <t t-if="request.website.is_public_user()==True">
+                <!-- Début de widget de badge Calendly -->
+                <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet" />
+                <script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async="async"></script>
+                <script type="text/javascript">window.onload = function() { Calendly.initBadgeWidget({ url: 'https://calendly.com/mcm-academy/taxi-vtc-taxi_moto', text: 'Infos téléphone', color: '#1A1A1A', textColor: '#FFFFFF', }); }</script>
+                <!-- Fin de widget de badge Calendly -->
+            </t>
+            <t t-if="request.website.is_public_user()==False">
+                <input type="hidden" name="user_name_connected" id="user_name_connected" t-att-value="request.website.get_user_name_logged()"/>
+                <input type="hidden" name="user_email_connected" id="user_email_connected" t-att-value="request.website.get_user_email_logged()"/>
+
+                <script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async="async"></script>
+                <script type="text/javascript">
                 var user_name=document.getElementById("user_name_connected").value;
                     var user_email=document.getElementById("user_email_connected").value;
-                window.onload = function() { Calendly.initBadgeWidget({ url: 'https://calendly.com/mcm-academy', text: 'Infos téléphone', color: '#1A1A1A', textColor: '#FFFFFF', branding: false }); }</script>
-            <!-- Fin de widget de badge Calendly -->
+                window.onload = function() { Calendly.initBadgeWidget({ url: 'https://calendly.com/mcm-academy/taxi-vtc-taxi_moto',
+                prefill: {
+                    name: user_name,
+                    email: user_email,
+                    },
+                text: 'Infos téléphone', color: '#1A1A1A', textColor: '#FFFFFF', branding: false }); }</script>
+                <!-- Fin de widget de badge Calendly --></t>
+
 
         </xpath>
         <xpath expr="//div[@class='o_footer_copyright']" position="replace">
