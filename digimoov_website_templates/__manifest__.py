@@ -49,7 +49,7 @@
         'views/test4.xml',
         'views/test5.xml',
         'views/test6.xml',
-         'views/digimoov_template_transport_leger_marchandises.xml'
+        'views/attestation-transport-leger-marchandises-carte-bleu.xml.xml',
         # 'views/charger_mes_documents'
         # 'views/sitemap.xml',
 

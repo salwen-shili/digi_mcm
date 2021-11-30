@@ -5,7 +5,6 @@
       <link rel="stylesheet" href="/mcm_website_theme/static/src/css/homepage.css"/>
       <script defer="defer" type="text/javascript" src="/digimoov_website_templates/static/src/js/lazy-min.js"/>
       <script type="text/javascript" src="/mcm_website_theme/static/src/js/msAds.js"/>
-
       <style>
                 #sh_corpomate_theme_section_184 .sh_content .sh_more_btn.sh_btn_cm_8 {
                 background: black;
@@ -28,7 +27,7 @@
           <div class="container-banner">
             <div class="row">
               <div class="col-lg-6 pb16 pt56" style="border-style: none; border-width: 0px;">
-                <div class="">
+                <div>
                   <div class="text-center">
                     <h1 class="title-mcm slider-text-info">
                       Comment financer ma formation de chauffeur 
@@ -46,13 +45,12 @@
                     <a href="/contact">
                       <button class="home-btn">Contactez-nous</button>
                     </a>
-
                   </div>
                 </div>
               </div>
               <div class="col-lg-6 pb48 pt16">
                 <br/>
-                <img data-src="/mcm_website_theme/static/src/img/financement/1 PF.png" data-srcSafari="/mcm_website_theme/static/src/img/financement/1 PF.png" class="img img-fluid mx-auto lazy" alt="Devenir chauffeur professionnel VTC, Taxi ou Moto-Taxi" data-original-title="" title="Formation vtc taxi moto-taxi" aria-describedby="tooltip202025" style="text-align: center;max-width: 61%;"/>
+                <img data-src="/mcm_website_theme/static/src/img/financement/1 PF.png" data-srcsafari="/mcm_website_theme/static/src/img/financement/1 PF.png" class="img img-fluid mx-auto" alt="Devenir chauffeur professionnel VTC, Taxi ou Moto-Taxi" data-original-title="" title="Formation vtc taxi moto-taxi" aria-describedby="tooltip202025" style="text-align: center;max-width: 61%;" src="/mcm_website_theme/static/src/img/financement/1 PF.png"/>
               </div>
             </div>
           </div>
@@ -61,7 +59,7 @@
           <div class="container">
             <div class="row align-items-center">
               <div class="col-lg-6 pt16 pb16" style="border-style: none; border-width: 0px;">
-                <img src="/mcm_website_theme/static/src/img/financement/paiement -carte-bleu-formation-mcm-academy.png" class="img img-fluid mx-auto" alt="Odoo • Image et Texte" data-original-title="" title="" aria-describedby="tooltip559943" />
+                <img src="/mcm_website_theme/static/src/img/financement/paiement -carte-bleu-formation-mcm-academy.png" class="img img-fluid mx-auto" alt="Odoo • Image et Texte" data-original-title="" title="" aria-describedby="tooltip559943"/>
               </div>
               <div class="col-lg-6 pt16 pb16" style="border-style: none; border-width: 0px;">
                 <h1 style="box-sizing: border-box; margin-top: 0px; margin-bottom: 0.5rem; font-family: Lato, &quot;Odoo Unicode Support Noto&quot;, sans-serif; font-weight: 500; line-height: 1.2; font-size: 2.1875rem;">
@@ -69,11 +67,11 @@
                   <span style="box-sizing: border-box; font-weight: 700;">Financer votre formation par carte bleu :</span>
                 </h1>
                 <h2>
-                  <div class="col-lg-12 s_title" style="width: 1140px; font-size: 14px;"></div>
+                  <div class="col-lg-12 s_title" style="width: 1140px; font-size: 14px;"/>
                   <div class="col-lg-12 pb24" style="width: 1140px; font-size: 14px;">
                     <blockquote>
                       <font style="font-size: 18px;">Et ce en payant directement votre formation en ligne par carte bleue .</font>
-                      <br />
+                      <br/>
                       <font style="font-size: 18px;">En passant par ce mode de paiement , MCM Academy, vous offre le choix de financer votre formation en intégralité ou en répartissant votre paiement sur deux ou trois tranches .</font>
                     </blockquote>
                     <p>
@@ -86,11 +84,6 @@
                     <button class="home-btn">Je m'inscris</button>
                   </a>
                 </div>
-              </div>
-              <div class="col-lg-8 offset-lg-2 pb12">
-                <figure class="figure">
-                  <img src="/mcm_website_theme/static/src/img/financement/paiement -carte-bleu-formation-mcm-academy.png" class="figure-img img-fluid img-thumbnail padding-large rounded" alt="Odoo • une photo avec une légende" data-original-title="" title="" aria-describedby="tooltip879387"/>
-                </figure>
               </div>
             </div>
           </div>
@@ -109,7 +102,6 @@
                     <b>C’est quoi le CPF ?</b>&amp;nbsp;
                 
                   </span>
-
                 </h2>
                 <h4>
                   <span style="color: rgb(66, 66, 66); font-size: 18px;">Le compte personnel de formation sert à accompagner le titulaire dans le cadre de l’évolution, la reconversion et la sécurisation de son parcours professionnel. Une fois alimenté, il permet de financer tout ou une partie d’une formation éligible au dispositif, en ligne ou en présentiel.&amp;nbsp;<br/>
@@ -122,7 +114,7 @@ C’est un droit octroyé à ces catégories de personnes pour financer une form
                 </span>
               </h4>
               <p>
-                <span class="fa fa-play-circle-o" style="color: rgb(66, 66, 66); font-size: 24px;"/>
+
               </p>
             </div>
           </div>
@@ -246,7 +238,6 @@ Les demandeurs d'emploi, les salariés et les travailleurs indépendants.
               <font style="color: rgb(0, 0, 0); font-size: 24px;">
                 <b>Quelles sont les formations éligibles au CPF ?<br/>
                 </b>
-
               </font>
             </h2>
             <h2>
@@ -277,7 +268,7 @@ L’obtention d’un titre professionnel, d’un diplôme ou d’un certificat d
         </font>
       </h4>
     </div>
-    <div class="col-lg-5 offset-lg-1 pb16 pt16"></div>
+    <div class="col-lg-5 offset-lg-1 pb16 pt16"/>
   </div>
 </div>
 </section>
