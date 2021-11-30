@@ -431,8 +431,8 @@ class partner(models.Model):
                 if (date_suppression <= today):
                     email = partner['email']
                     print('date_sup', email, date_suppression, today)
-                    # url = 'https://app.360learning.com/api/v1/users/tmejri@digimoov.fr?company=' + company_id + '&apiKey=' + api_key
-                    # resp = requests.delete(url)
+                    url = 'https://app.360learning.com/api/v1/users/' + email + '?company=' + company_id + '&apiKey=' + api_key
+                    resp = requests.delete(url)
 
             else:
                 print('date incompatible')
@@ -529,16 +529,16 @@ class partner(models.Model):
                                                   headers=headers, data=data)
                         print('response post',response_post.status_code)
                         """Si dossier passe en formation on met à jour statut cpf sur la fiche client"""
-                        if response_post.status_code == 200:
-                            partner = self.env['res.partner'].sudo().search([('numero_cpf', "=", str(externalId))])
-                            if len(partner) > 1:
-                                for part in partner:
-                                    if part.email == email:
-                                        _logger.info('if partner >1 %s' % partner.numero_cpf)
-                                        partner.statut_cpf="in_training"
-                            elif len(partner) == 1:
-                                _logger.info('if partner %s' % partner.numero_cpf)
-                                partner.statut_cpf = "in_training"
+                        # if response_post.status_code == 200:
+                        #     partner = self.env['res.partner'].sudo().search([('numero_cpf', "=", str(externalId))])
+                        #     if len(partner) > 1:
+                        #         for part in partner:
+                        #             if part.email == email:
+                        #                 _logger.info('if partner >1 %s' % partner.numero_cpf)
+                        #                 partner.statut_cpf="in_training"
+                        #     elif len(partner) == 1:
+                        #         _logger.info('if partner %s' % partner.numero_cpf)
+                        #         partner.statut_cpf = "in_training"
 
     """changer l'etat sur wedof de non traité vers validé à partir d'API"""
     def change_state_wedof_validate(self):
