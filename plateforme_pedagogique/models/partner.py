@@ -431,8 +431,10 @@ class partner(models.Model):
                 if (date_suppression <= today):
                     email = partner['email']
                     print('date_sup', email, date_suppression, today)
-                    url = 'https://app.360learning.com/api/v1/users/' + email + '?company=' + company_id + '&apiKey=' + api_key
-                    resp = requests.delete(url)
+                    _logger.info('liste à supprimé %s' %str(email))
+                    # url = 'https://app.360learning.com/api/v1/users/' + email + '?company=' + company_id + '&apiKey=' + api_key
+                    # resp = requests.delete(url)
+                    print('ress resp.status_code')
 
             else:
                 print('date incompatible')
@@ -529,16 +531,16 @@ class partner(models.Model):
                                                   headers=headers, data=data)
                         print('response post',response_post.status_code)
                         """Si dossier passe en formation on met à jour statut cpf sur la fiche client"""
-                        # if response_post.status_code == 200:
-                        #     partner = self.env['res.partner'].sudo().search([('numero_cpf', "=", str(externalId))])
-                        #     if len(partner) > 1:
-                        #         for part in partner:
-                        #             if part.email == email:
-                        #                 _logger.info('if partner >1 %s' % partner.numero_cpf)
-                        #                 partner.statut_cpf="in_training"
-                        #     elif len(partner) == 1:
-                        #         _logger.info('if partner %s' % partner.numero_cpf)
-                        #         partner.statut_cpf = "in_training"
+                        # 
+                        # partner = self.env['res.partner'].sudo().search([('numero_cpf', "=", str(externalId))])
+                        # if len(partner) > 1:
+                        #     for part in partner:
+                        #         if part.email == email:
+                        #             _logger.info('if partner >1 %s' % partner.numero_cpf)
+                        #             partner.statut_cpf="in_training"
+                        # elif len(partner) == 1:
+                        #     _logger.info('if partner %s' % partner.numero_cpf)
+                        #     partner.statut_cpf = "in_training"
 
     """changer l'etat sur wedof de non traité vers validé à partir d'API"""
     def change_state_wedof_validate(self):
@@ -560,6 +562,52 @@ class partner(models.Model):
         registrations = response.json()
         for dossier in registrations:
             externalid = dossier['externalId']
+            email = dossier['attendee']['email']
+            email = email.replace("%", ".")  # remplacer % par .
+            email = email.replace(" ", "")  # supprimer les espaces envoyés en paramètre email
+            email = str(email).lower()  # recupérer l'email en miniscule pour éviter la création des deux comptes
+            print('dossier', dossier)
+            idform = dossier['trainingActionInfo']['trainingId']
+            training_id = ""
+            if "_" in idform:
+                idforma = idform.split("_", 1)
+                if idforma:
+                    training_id = idforma[1]
+
+            print('training', training_id)
+            state = dossier['state']
+            lastupdatestr = str(dossier['lastUpdate'])
+            lastupdate = datetime.strptime(lastupdatestr, '%Y-%m-%dT%H:%M:%S.%fz')
+            newformat = "%d/%m/%Y %H:%M:%S"
+            lastupdateform = lastupdate.strftime(newformat)
+            lastupd = datetime.strptime(lastupdateform, "%d/%m/%Y %H:%M:%S")
+            if "roadName" in dossier['attendee']['address']:
+                address = dossier['attendee']['address']['roadName']
+            else:
+                address = ""
+            if "phoneNumber" in dossier['attendee']:
+                tel = dossier['attendee']['phoneNumber']
+            else:
+                tel = ""
+            if "zipCode" in dossier['attendee']['address']:
+                code_postal = dossier['attendee']['address']['zipCode']
+            else:
+                code_postal = ""
+            if "city" in dossier['attendee']['address']:
+                ville = dossier['attendee']['address']['city']
+            else:
+                ville = ""
+            if 'firstName' in dossier['attendee']['firstName']:
+                nom = dossier['attendee']['firstName']
+            else:
+                nom = ""
+
+            if "lastName" in dossier['attendee']['lastName']:
+                prenom = dossier['attendee']['lastName']
+            else:
+                prenom = ""
+            diplome = dossier['trainingActionInfo']['title']
+
             today = date.today()
             datedebut = today + timedelta(days=15)
             datefin = str(datedebut + relativedelta(months=3) + timedelta(days=1))
@@ -571,19 +619,20 @@ class partner(models.Model):
             response_post = requests.post('https://www.wedof.fr/api/registrationFolders/' + externalid + '/validate',
                                           headers=headers, data=dat)
             status = str(response_post.status_code)
-            # if status == '200':
-            #     """Si dossier passe à validé on met à jour statut cpf sur la fiche client"""
-            #     if response_post.status_code == 200:
-            #         self.cpf_validate()
-            #         partner = self.env['res.partner'].sudo().search([('numero_cpf', "=", str(externalId))])
-            #         if len(partner) > 1:
-            #             for part in partner:
-            #                 if part.email == email:
-            #                     _logger.info('if partner >1 %s' % partner.numero_cpf)
-            #                     partner.statut_cpf = "in_training"
-            #         elif len(partner) == 1:
-            #             _logger.info('if partner %s' % partner.numero_cpf)
+
+            """Si dossier passe à l'etat validé on met à jour statut cpf sur la fiche client"""
+            print('validate', email)
+            # self.cpf_validate(training_id, email, address, tel, code_postal, ville, diplome, nom, prenom,
+            #                       externalid, lastupd)
+            # partner = self.env['res.partner'].sudo().search([('numero_cpf', "=", str(externalId))])
+            # if len(partner) > 1:
+            #     for part in partner:
+            #         if part.email == email:
+            #             _logger.info('if partner >1 %s' % partner.numero_cpf)
             #             partner.statut_cpf = "in_training"
+            # elif len(partner) == 1:
+            #     _logger.info('if partner %s' % partner.numero_cpf)
+            #     partner.statut_cpf = "in_training"
             # put_status = str(response_put.status_code)
             # _logger.info("status put %s" % put_status)
             # _logger.info("status post %s" % status)
