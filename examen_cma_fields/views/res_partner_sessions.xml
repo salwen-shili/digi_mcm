@@ -21,7 +21,7 @@
                             <field name="attachment_ids" string="Justificatif" widget="many2many_binary" nolabel="1"
                                    attrs="{'invisible': [('justification', '=', False)]}"/>
                             <field name="autre_raison"
-                                   attrs="{'invisible': ['|',('justification', '=', True), ('paiement', '=', True)]}"/>
+                                   attrs="{'invisible': ['|',('justification', '=', True), ('paiement', '=', True)]}" string="Notes"/>
 
                         </group>
                     </sheet>
@@ -40,7 +40,7 @@
                     <field name="justification" string="Absence justifié"/>
                     <field name="paiement" string="Changement de ville"/>
                     <field name="attachment_ids" string="Justificatif" widget="many2many_binary"/>
-                    <field name="autre_raison"/>
+                    <field name="autre_raison" string="Notes"/>
                 </tree>
             </field>
         </record>
