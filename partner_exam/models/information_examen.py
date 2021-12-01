@@ -19,9 +19,9 @@ class NoteExamen(models.Model):
     _description = "Les Notes et les informations des examens"
 
     partner_id = fields.Many2one('res.partner', string="Client")
-    epreuve_a = fields.Float(string="Epreuve A(QCM):", track_visibility='always')
-    epreuve_b = fields.Float(string="Epreuve B(QRO)", track_visibility='always', default=1)
-    moyenne_generale = fields.Float(string="Moyenne Générale", track_visibility='always', store=True)
+    epreuve_a = fields.Float(string="Epreuve A(QCM):", track_visibility='always', group_operator='avg')
+    epreuve_b = fields.Float(string="Epreuve B(QRO)", track_visibility='always', default=1, group_operator='avg')
+    moyenne_generale = fields.Float(string="Moyenne Générale", track_visibility='always', store=True, group_operator='avg')
     mention = fields.Selection(selection=[
         ('recu', 'reçu'),
         ('ajourne', 'ajourné')],
