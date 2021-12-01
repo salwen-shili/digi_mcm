@@ -55,7 +55,7 @@
                            attrs="{'invisible': ['|',('justification', '=', True), ('report', '=', False)]}"/>
                     <field name="attachment_ids" widget="many2many_binary" string="Attach a file" nolabel="1"
                            colspan="2" attrs="{'invisible': [('justification', '=', False)]}"/>
-                    <field name="autre_raison"
+                    <field name="autre_raison" string="Notes"
                            attrs="{'invisible': ['|','|',('report', '=', False),('justification', '=', True), ('paiement', '=', True)]}"/>
                 </group>
             </xpath>
