@@ -36,7 +36,7 @@
   position: relative;
 }
 .subtitle-mcm::before {
-  content: "";
+  content: '';
   border-bottom: 4px solid #fdd103;
   position: absolute;
   bottom: -12px;
