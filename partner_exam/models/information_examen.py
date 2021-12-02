@@ -255,3 +255,34 @@ class NoteExamen(models.Model):
             if session and examen.date_exam:
                 if examen.date_exam == examen.partner_id.mcm_session_id.date_exam:
                     examen.session_id = examen.partner_id.mcm_session_id
+
+    def write(self, values):
+        res = super(NoteExamen, self).write(values)
+        # Add condition based on checkbox field paiement != True
+        # to put auto value in "nombre de passage" based on sum of historic sessions
+        if 'partner_id' in values or 'epreuve_a' in values:
+            session_one = self.env['partner.sessions'].search_count(
+                [('client_id', '=', self.partner_id.id), ('paiement', '!=', True)])
+            if session_one == 1:
+                self.nombre_de_passage = "premier"
+            session_two = self.env['partner.sessions'].search_count(
+                [('client_id', '=', self.partner_id.id), ('paiement', '!=', True)])
+            if session_two == 2:
+                self.nombre_de_passage = "deuxieme"
+            session_three = self.env['partner.sessions'].search_count(
+                [('client_id', '=', self.partner_id.id), ('paiement', '!=', True)])
+            if session_three == 3:
+                self.nombre_de_passage = "troisieme"
+            session_four = self.env['partner.sessions'].search_count(
+                [('client_id', '=', self.partner_id.id), ('paiement', '!=', True)])
+            if session_four == 4:
+                self.nombre_de_passage = "premier"
+            session_five = self.env['partner.sessions'].search_count(
+                [('client_id', '=', self.partner_id.id), ('paiement', '!=', True)])
+            if session_five == 5:
+                self.nombre_de_passage = "deuxieme"
+            session_six = self.env['partner.sessions'].search_count(
+                [('client_id', '=', self.partner_id.id), ('paiement', '!=', True)])
+            if session_six == 6:
+                self.nombre_de_passage = "troisieme"
+        return res
