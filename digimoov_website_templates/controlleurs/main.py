@@ -465,9 +465,12 @@ class Services(http.Controller):
                 # 'company_id': 2
             })
         if user and name_company:
-            user.sudo().write({'company_id': 1, 'company_ids': [1, 2]})
-            user.partner_id.sudo().write({'phone': phone, 'website_id': 2, 'email': email_from})
-
+            if request.website.id == 1:
+                user.sudo().write({'company_id': 1, 'company_ids': [1, 2]})
+                user.partner_id.sudo().write({'phone': phone, 'website_id': 1, 'email': email_from})
+            elif request.website.id == 2:
+                user.sudo().write({'company_id': 2, 'company_ids': [1, 2]})
+                user.partner_id.sudo().write({'phone': phone, 'website_id': 2, 'email': email_from})
             user.partner_id.company_name = name_company
         if user:
             ticket_name = 'Digimoov : ' + str(name)
