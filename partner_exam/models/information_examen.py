@@ -167,7 +167,7 @@ class NoteExamen(models.Model):
                 _logger.info('service done %s' % str(response.status_code))
                 if response.status_code == 200:
                     """si statut est changé sur wedof on change statut_cpf sur fiche client """
-                    _logger.info('if service done %s' % partner.numero_cpf)
+                    _logger.info('if service done %s' % info_exam.partner_id.numero_cpf)
                     info_exam.partner_id.statut_cpf = "service_declared"
                     info_exam.sorti_formation = True
 
@@ -228,7 +228,7 @@ class NoteExamen(models.Model):
                     _logger.info('service done %s' % str(response.status_code))
                     if response.status_code == 200:
                         """si statut est changé sur wedof on change statut_cpf sur fiche client """
-                        _logger.info('if service done %s' % partner.numero_cpf)
+                        _logger.info('if service done %s' % info_exam.partner_id.numero_cpf)
                         info_exam.partner_id.statut_cpf = "service_declared"
                         info_exam.sorti_formation=True
 
