@@ -61,11 +61,13 @@
                                         <strong>En ligne, du
                                             <t t-set="sales"
                                                t-value="o.sale_order_ids.filtered(lambda tx: tx.state == 'sale')"/>
-                                            <t t-if="sales[0].signed_on">
-                                                <span t-esc="(sales[0].signed_on).strftime('%d/%m/%Y')"/>
-                                            </t>
-                                            <t t-else="">
-                                                <span t-esc="(o.date_cpf).strftime('%d/%m/%Y')"/>
+                                            <t t-if="sales[0]">
+                                                <t t-if="sales[0].signed_on">
+                                                    <span t-esc="(sales[0].signed_on).strftime('%d/%m/%Y')"/>
+                                                </t>
+                                                <t t-else="not sales">
+                                                    <span t-esc="(o.date_cpf).strftime('%d/%m/%Y')"/>
+                                                </t>
                                             </t>
                                             au
                                             <span t-field="o.module_id.date_exam"
@@ -91,7 +93,7 @@
                                         <br/>
                                         Le directeur du centre de formation, organisateur du premier examen,
                                         agrée par le préfet de la région
-                                        <b> Ile de France </b>
+                                        <b>Ile de France</b>
                                         (n° d’agrément <strong>IDF 2019-0110</strong>), déclare
                                         que
                                         M/Mme
@@ -408,11 +410,13 @@
                                         <strong>En ligne, du
                                             <t t-set="sales"
                                                t-value="o.sale_order_ids.filtered(lambda tx: tx.state == 'sale')"/>
-                                            <t t-if="sales[0].signed_on">
-                                                <span t-esc="(sales[0].signed_on).strftime('%d/%m/%Y')"/>
-                                            </t>
-                                            <t t-else="">
-                                                <span t-esc="(o.date_cpf).strftime('%d/%m/%Y')"/>
+                                            <t t-if="sales[0]">
+                                                <t t-if="sales[0].signed_on">
+                                                    <span t-esc="(sales[0].signed_on).strftime('%d/%m/%Y')"/>
+                                                </t>
+                                                <t t-else="not sales">
+                                                    <span t-esc="(o.date_cpf).strftime('%d/%m/%Y')"/>
+                                                </t>
                                             </t>
                                             au
                                             <span t-field="o.module_id.date_exam"
@@ -441,7 +445,7 @@
                                         <br/>
                                         Le directeur du centre de formation, organisateur du premier examen,
                                         agrée par le préfet de la région
-                                        <b> Ile de France </b>
+                                        <b>Ile de France</b>
                                         (n° d’agrément <strong>IDF 2019-0110</strong>),déclare que
                                         M/Mme
                                         <t t-if="len(val_4) &gt; 3">
