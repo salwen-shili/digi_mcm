@@ -37,7 +37,7 @@ class Website(models.Model):
                     return True
             idenfy_data_obj.search([('partner_id', '=', partner.id)]).unlink()
             idenfy_id = uuid.uuid4().hex[:8]
-            req_data = {"clientId": '{}'.format(idenfy_id), 'documents': ['ID_CARD', 'PASSPORT', 'RESIDENCE_PERMIT'], "tokenType": "DOCUMENT","locale":"fr"}
+            req_data = {"clientId": '{}'.format(idenfy_id), 'documents': ['ID_CARD', 'PASSPORT', 'RESIDENCE_PERMIT'], "tokenType": "IDENTIFICATION","locale":"fr"}
             res = website._idenfy_send_request('token', request_data=req_data)
             idenfy_data_obj.create(
                 {
