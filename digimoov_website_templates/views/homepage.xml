@@ -1159,17 +1159,12 @@
                                         <text class="h1-title">Simple!</text>
                                     </h1>
                                     <p class="paratext">
-                                        Vous êtes étudiant(e)? Vous avez besoin d'arrondir vos fins du
-                mois? Chez Digimoov on vous propose&amp;nbsp;
-                                        <text class="text-delta">
-                                            <b>une formation 100% en ligne </b>
-                                            assez pertinente
-                                            <b>&amp;nbsp;</b>
-                                        </text>
-                                        pour devenir
-                                        <text style="color: rgb(156, 0, 255)">
-                                            <b>Livreur sur scooter en 35 Heures ! </b>
-                                        </text>
+                                       Vous souhaitez devenir coursier en scooter, vélo ou vélo 
+                                       cargo ? Optez pour <b>une formation 100% en ligne</b> avec 
+                                       Digimoov ! Une formation de 35h organisée par des 
+                                       experts du métiers pour garantir votre réussite à 
+                                       l'examen et entamer une nouvelle carrière professionnelle.
+                                      
                                     </p>
                                     <div class="banner-btn s_btn" data-name="Button">
                                         <a href="#pricing" class="bannerbtn btn btn-alpha rounded-circle" title="je m'inscirs" alt="boutton je m'inscris">Je m'inscris maintenant !
@@ -1191,9 +1186,6 @@
                             </div>
                             <div class="col-md-4 col-sm-12 mb-4 mb-md-0 text-center">
                                 <img class="img-fluid" style="width: 110px" src="/mcm_website_theme/static/src/img/Logo-vert-sur-fond-blanc-en-.jpg.jpg" />
-                            </div>
-                            <div class="col-md-4 col-sm-12 mb-4 mb-md-0 text-center">
-                                <img class="img-fluid" style="width: 188px" src="/digimoov_website_templates/static/img/coursier2roues/logo-DREAL.png" />
                             </div>
                         </div>
                     </section>
