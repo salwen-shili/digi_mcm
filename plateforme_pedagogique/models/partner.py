@@ -141,13 +141,13 @@ class partner(models.Model):
 
     # En cas de changement de statut de client cette methode est exécutée
 
-    def write(self, vals):
-        if 'statut' in vals:
-            # Si statut annulé on supprime i-One
-            if vals['statut'] == 'canceled':
-                self.supprimer_ione_manuelle()
-        record = super(partner, self).write(vals)
-        return record
+    # def write(self, vals):
+    #     if 'statut' in vals:
+    #         # Si statut annulé on supprime i-One
+    #         if vals['statut'] == 'canceled':
+    #             self.supprimer_ione_manuelle()
+    #     record = super(partner, self).write(vals)
+    #     return record
 
     # Ajout automatique d' i-One sur 360learning
     def Ajouter_iOne_auto(self):
@@ -630,13 +630,14 @@ class partner(models.Model):
     """Mettre à jour les statuts cpf sur la fiche client selon l'etat sur wedof """
     def change_state_cpf_partner(self):
         params_wedof = (
-            ('order', 'asc'),
+            ('order', 'desc'),
             ('type', 'all'),
-            ('state', 'canceledByAttendee,canceledByAttendeeNotRealized,canceledByOrganism'),
+            ('state', 'validated,inTraining,serviceDoneDeclared,canceledByAttendee,canceledByAttendeeNotRealized,canceledByOrganism'),
             ('billingState', 'all'),
             ('certificationState', 'all'),
             ('sort', 'lastUpdate'),
-            ('limit', '10000000000')
+            ('limit', '100'),
+            ('page','1')
         )
         headers = {
             'accept': 'application/json',
@@ -694,7 +695,9 @@ class partner(models.Model):
                 prenom=""
             diplome = dossier['trainingActionInfo']['title']
             
-            
+            if state=="accepted":
+                self.change_statut_accepte()
+                print('accepted', email)
             if state=="validated":
                 print('validate',email)
                 self.cpf_validate(training_id,email,address,tel,code_postal,ville,diplome,nom,prenom,externalId,lastupd)
@@ -718,15 +721,21 @@ class partner(models.Model):
                     print(user.partner_id.date_cpf)
                     
                 if state=="inTraining":
+                    print('intraining', email)
                     user.partner_id.statut_cpf="in_training"
                 if state=="terminated":
+                    print('terminated', email)
                     user.partner_id.statut_cpf="out_training"
                 if state=="serviceDoneDeclared":
+                    print('serviceDoneDeclared', email)
                     user.partner_id.statut_cpf="service_declared"
                 if state=="serviceDoneValidated":
+                    print('serviceDoneValidated', email)
+
                     user.partner_id.statut_cpf="service_validated"
                 if state=="canceledByAttendee" or state=="canceledByAttendeeNotRealized" or state=="canceledByOrganism"  :
                     user.partner_id.statut_cpf="canceled"
+                    user.partner_id.statut="canceled"
                 user.partner_id.numero_cpf = externalId
                 user.partner_id.date_cpf = lastupd
 
@@ -836,7 +845,7 @@ class partner(models.Model):
             ('billingState', 'all'),
             ('certificationState', 'all'),
             ('sort', 'lastUpdate'),
-            ('limit', '10000000000')
+            ('limit', '100')
         )
         headers = {
             'accept': 'application/json',
