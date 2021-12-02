@@ -1153,33 +1153,10 @@
                         <div class="container" style="border-style: none; border-width: 0px">
                             <div class="row">
                                 <div class="bannarcol col-lg-6 col-md-12" style="border-style: none; border-width: 0px">
-                                    <h1 style="
-                  font-size: 62px !important;
-                  font-weight: 700 !important;
-                  color: #343996 !important;
-                ">
-                                        <span style="
-                    color: rgb(156, 0, 255);
-                    font-size: 62px;
-                    font-weight: 700;
-                  ">
-                  Transporter
-                                        </span>
-                                        des marchandises sur un
-                                        <span style="
-                    color: rgb(156, 0, 255);
-                    font-size: 62px;
-                    font-weight: 700;
-                  ">véhicule électrique
-                                        </span>
-                                        à
-                                        <span style="
-                    color: rgb(156, 0, 255);
-                    font-size: 62px;
-                    font-weight: 700;
-                  ">
-                  2/3 roues
-                                        </span>
+                                    <h1>
+                                        <text class="h1-title">Devenir Coursier en Scooter</text>
+                                        n'a jamais été aussi
+                                        <text class="h1-title">Simple!</text>
                                     </h1>
                                     <p class="paratext">
                                         Vous êtes étudiant(e)? Vous avez besoin d'arrondir vos fins du
@@ -1411,7 +1388,7 @@
                       Paiement 1 fois
                                                 </p>
                                                 <br />
-                                                <button class="btn btn-block text-white" onClick="(function(){msTracking('clic sur inscrire pack solo coursier2roues','Pricing Table events','Clic pack solo coursier2roues','590'); window.location.href='/contact'; return false;})();return false;" style="background-color: #6e209f; border-radius: 25px">
+                                                <button class="btn btn-block text-white" onClick="(function(){msTracking('clic sur inscrire pack solo coursier2roues','Pricing Table events','Clic pack solo coursier2roues','590'); window.location.href='/service-clientele'; return false;})();return false;" style="background-color: #6e209f; border-radius: 25px">
                       Je m'inscris
                                                 </button>
                                             </div>
