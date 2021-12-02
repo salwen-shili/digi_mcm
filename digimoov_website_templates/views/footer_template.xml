@@ -18,7 +18,7 @@
           window.onload = function () {
             Calendly.initBadgeWidget({
               url: 'https://calendly.com/digimoov/attestation-de-capacite-marchandise',
-              text: 'Infos téléphone',
+              text: 'Besoin d’aide',
               color: '#724c9f',
               textColor: '#FFFFFF',
               branding: false,
@@ -53,7 +53,7 @@
                 name: user_name,
                 email: user_email,
               },
-              text: 'Infos téléphone',
+              text: 'Besoin d’aide',
               color: '#724c9f',
               textColor: '#ffffff',
               branding: false,
