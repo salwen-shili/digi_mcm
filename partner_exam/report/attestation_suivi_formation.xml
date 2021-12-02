@@ -61,13 +61,11 @@
                                         <strong>En ligne, du
                                             <t t-set="sales"
                                                t-value="o.sale_order_ids.filtered(lambda tx: tx.state == 'sale')"/>
-                                            <t t-if="sales[0]">
-                                                <t t-if="sales[0].signed_on">
-                                                    <span t-esc="(sales[0].signed_on).strftime('%d/%m/%Y')"/>
-                                                </t>
-                                                <t t-else="not sales">
-                                                    <span t-esc="(o.date_cpf).strftime('%d/%m/%Y')"/>
-                                                </t>
+                                            <t t-if="sales[0].signed_on">
+                                                <span t-esc="(sales[0].signed_on).strftime('%d/%m/%Y')"/>
+                                            </t>
+                                            <t t-else="not sales">
+                                                <span t-esc="(o.date_cpf).strftime('%d/%m/%Y')"/>
                                             </t>
                                             au
                                             <span t-field="o.module_id.date_exam"
@@ -410,13 +408,11 @@
                                         <strong>En ligne, du
                                             <t t-set="sales"
                                                t-value="o.sale_order_ids.filtered(lambda tx: tx.state == 'sale')"/>
-                                            <t t-if="sales[0]">
-                                                <t t-if="sales[0].signed_on">
-                                                    <span t-esc="(sales[0].signed_on).strftime('%d/%m/%Y')"/>
-                                                </t>
-                                                <t t-else="not sales">
-                                                    <span t-esc="(o.date_cpf).strftime('%d/%m/%Y')"/>
-                                                </t>
+                                            <t t-if="sales[0].signed_on">
+                                                <span t-esc="(sales[0].signed_on).strftime('%d/%m/%Y')"/>
+                                            </t>
+                                            <t t-else="not sales">
+                                                <span t-esc="(o.date_cpf).strftime('%d/%m/%Y')"/>
                                             </t>
                                             au
                                             <span t-field="o.module_id.date_exam"
