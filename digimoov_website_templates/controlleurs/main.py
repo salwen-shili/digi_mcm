@@ -358,6 +358,19 @@ class Services(http.Controller):
         return request.render("digimoov_website_templates.digimoov_template_service_partenariat",
                               {'email_from': email_from, 'phone': phone, 'contact_last_name': nom,
                                'contact_name': prenom})
+    
+    @http.route('/service-presse', type='http', auth='public', website=True)
+    def partenariat(self, **kw, ):
+        if request.website.is_public_user():
+            values = {
+                'partner_id': False
+            }
+        else:
+            values = {
+                'partner_id': http.request.env.user.partner_id
+            }
+        return request.render("digimoov_website_templates.digimoov_template_service_presse",
+                              values)
 
     @http.route('/service-comptabilite', type='http', auth='user', website=True)
     def comptabilite(self, **kw, ):
@@ -502,9 +515,12 @@ class Services(http.Controller):
                 # 'company_id': 2
             })
         if user and name_company:
-            user.sudo().write({'company_id': 1, 'company_ids': [1, 2]})
-            user.partner_id.sudo().write({'phone': phone, 'website_id': 2, 'email': email_from})
-
+            if request.website.id == 1:
+                user.sudo().write({'company_id': 1, 'company_ids': [1, 2]})
+                user.partner_id.sudo().write({'phone': phone, 'website_id': 1, 'email': email_from})
+            elif request.website.id == 2:
+                user.sudo().write({'company_id': 2, 'company_ids': [1, 2]})
+                user.partner_id.sudo().write({'phone': phone, 'website_id': 2, 'email': email_from})
             user.partner_id.company_name = name_company
         if user:
             ticket_name = 'Digimoov : ' + str(name)
@@ -596,6 +612,30 @@ class Services(http.Controller):
             new_ticket = request.env['helpdesk.ticket'].sudo().create(
                 vals)
             return request.render("digimoov_website_templates.administration_thank_you")
+        elif service == 'presse':
+            if request.website.id == 2 :
+                vals = {
+                    'partner_email': str(email_from),
+                    'partner_id': user.partner_id.id,
+                    'description': str(description),
+                    'name': 'Digimoov : ' + str(name),
+                    'team_id': request.env['helpdesk.team'].sudo().search(
+                        [('name', 'like', 'Presse'), ('company_id', "=", 2)],
+                        limit=1).id,
+                }
+            elif request.website.id == 1 :
+                vals = {
+                    'partner_email': str(email_from),
+                    'partner_id': user.partner_id.id,
+                    'description': str(description),
+                    'name': str(name),
+                    'team_id': request.env['helpdesk.team'].sudo().search(
+                        [('name', 'like', 'Presse'), ('company_id', "=", 1)],
+                        limit=1).id,
+                }
+            new_ticket = request.env['helpdesk.ticket'].sudo().create(
+                vals)
+            return request.render("digimoov_website_templates.presse_thank_you")
         elif service == 'Comptabilité':
             if request.website.id == 2 :
                 vals = {
