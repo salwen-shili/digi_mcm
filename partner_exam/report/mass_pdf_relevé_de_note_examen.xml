@@ -12,14 +12,21 @@
                             }
                         </style>
                         <t style="line-height:1.5;font-family:Montserrat;font-size:12%;page-break-before:always;">
-                            <t t-if="o.resultat == 'recu'">
+                            <t t-if="o.presence == 'present'">
                                 <div class="page">
                                     <div class="oe_structure"/>
                                     <div class="row">
                                         <div class="col-12">
                                             <br></br>
-                                            <img src='/partner_exam/static/src/img/new_reussite.png' height="260"
-                                                 width="970"/>
+                                            <t t-if="o.resultat == recu">
+                                                <img src='/partner_exam/static/src/img/new_reussite.png' height="260"
+                                                     width="970"/>
+                                            </t>
+                                            <t t-else="">
+                                                <img src='/partner_exam/static/src/img/attestation_ajournement.png'
+                                                     height="260"
+                                                     width="970"/>
+                                            </t>
                                             <br></br>
                                             Je soussigné <b>Nasserddine Cherih</b> agissant en tant que Directeur
                                             Général du
@@ -46,24 +53,40 @@
                                                 <span t-raw="'%s' % o.partner_id.city if o.partner_id.city else ''"/>
                                             </strong>
                                             <br></br>
-                                            A été
-                                            <strong>
-                                                <t t-esc="{False: False, 'recu': 'reçu', 'ajourne': 'ajourné'}[o.mention]"/>
-                                            </strong>
+
+                                            <t t-if="o.presence == 'present' or o.presence == 'Absent'">
+                                                A été
+                                                <strong>
+                                                    <t t-esc="{False: False, 'recu': 'reçu(e)', 'ajourne': 'ajourné(e)'}[o.mention]"></t>
+                                                </strong>
+                                            </t>
+                                            <t t-if="o.presence == 'absence_justifiee'">
+                                                <strong>
+                                                    a une absence justifiée
+                                                </strong>
+                                            </t>
+
                                             aux épreuves d’examen pour l’obtention de
                                             l’attestation de capacité de transport léger de marchandises
                                             organisé au centre d’examen situé au
                                             <strong>
-                                                <t t-if="o.partner_id.mcm_session_id.adresse_examen">
-                                                    <span t-field='o.partner_id.mcm_session_id[0].adresse_examen'/>
+                                                <t t-if="o.partner_id.mcm_session_id[0].session_adresse_examen.adresse_centre_examen">
+                                                    <span t-field="o.partner_id.mcm_session_id[0].session_adresse_examen.adresse_centre_examen"/>
+                                                </t>
+                                                <t t-else="">
+                                                    <span>
+                                                        .........................................................................
+                                                    </span>
                                                 </t>
                                             </strong>
-                                            <br></br>
                                             le
                                             <strong>
                                                 <t t-if="o.partner_id.mcm_session_id.date_exam">
                                                     <span t-field='o.partner_id.mcm_session_id[0].date_exam'
                                                           t-field-options='{"format": "dd/MM/yyyy"}'/>
+                                                </t>
+                                                <t t-else="">
+                                                    <span>...............</span>
                                                 </t>
                                             </strong>
                                             pour son
@@ -101,11 +124,8 @@
                                                                 </td>
                                                                 <td align="center">
                                                                     <strong>
-                                                                        <t t-if="o.epreuve_a &gt; 0">
-                                                                            <span t-raw="'%s' % o.epreuve_a if o.epreuve_a else 'Absent'"/>
-                                                                        </t>
-                                                                        <t t-if="not o.epreuve_a &gt; 0">
-                                                                            <span>Absent</span>
+                                                                        <t t-if="o.epreuve_a &gt; 0 or o.epreuve_b &gt; 0">
+                                                                            <span t-raw="'%s' % o.epreuve_a "/>
                                                                         </t>
                                                                     </strong>
                                                                 </td>
@@ -146,9 +166,8 @@
                                                                 <td align="center">
                                                                     <strong>
                                                                         <t style="line-height:1.5;font-family:Montserrat;font-size:12%;page-break-before:always;">
-                                                                            <t t-if="o.resultat == 'recu'">
-                                                                                <!--                                                                                <span t-raw="'%s' % o.resultat"/>-->
-                                                                                <t t-esc="{False: False, 'recu': 'Reçu', 'ajourne': 'Ajourné'}[o.resultat]"/>
+                                                                            <t t-if="o.presence == 'present'">
+                                                                                <t t-esc="{False: False, 'recu': 'Reçu(e)', 'ajourne': 'Ajourné(e)'}[o.resultat]"/>
                                                                             </t>
                                                                             <t t-else=""></t>
                                                                         </t>
@@ -212,7 +231,7 @@
                         <t t-if="docs">
                             <!--  Using the foreach with [-1] to get the last line in list-->
                             <t style="line-height:1.5;font-family:Montserrat;font-size:12%;page-break-before:always;">
-                                <t t-if="not o.resultat == 'recu'">
+                                <t t-if="not o.resultat == 'recu' and not o.presence == 'present'">
                                     <style type="text/css">
                                         .page {
                                         line-height: 2 !important;
@@ -251,22 +270,39 @@
                                                     <span t-raw="'%s' % o.partner_id.city if o.partner_id.city else ''"/>
                                                 </strong>
                                                 <br></br>
-                                                A été
-                                                <strong>
-                                                    <t t-esc="{False: False, 'recu': 'reçu', 'ajourne': 'ajourné'}[o.mention]"/>
-                                                </strong>
+                                                <t t-if="o.resultat == 'ajourne' and o.presence == 'Absent' or o.presence == 'present'">
+                                                    A été
+                                                    <strong>
+                                                        <t t-esc="{False: False,'Absent': 'absent(e)'}[o.presence]"></t>
+                                                    </strong>
+                                                </t>
+                                                <t t-if="o.presence == 'absence_justifiee'">
+                                                    a une
+                                                    <strong>
+                                                        absence justifiée
+                                                    </strong>
+                                                </t>
                                                 aux épreuves d’examen pour l’obtention de
                                                 l’attestation de capacité de transport léger de marchandises
                                                 organisé au centre d’examen situé au
-                                                <strong>
-                                                    <span t-field='o.partner_id.mcm_session_id[0].adresse_examen'/>
-                                                </strong>
-                                                <br></br>
+                                                <t t-if="o.partner_id.mcm_session_id[0].session_adresse_examen.adresse_centre_examen">
+                                                    <strong>
+                                                        <span t-field='o.partner_id.mcm_session_id[0].session_adresse_examen.adresse_centre_examen'/>
+                                                    </strong>
+                                                </t>
+                                                <t t-else="">
+                                                    <span>
+                                                        ........................................................................................
+                                                    </span>
+                                                </t>
                                                 le
                                                 <strong>
                                                     <t t-if="o.partner_id.mcm_session_id.date_exam">
                                                         <span t-field='o.partner_id.mcm_session_id[0].date_exam'
                                                               t-field-options='{"format": "dd/MM/yyyy"}'/>
+                                                    </t>
+                                                    <t t-else="not o.partner_id.mcm_session_id.date_exam">
+                                                        <span>...............</span>
                                                     </t>
                                                 </strong>
                                                 pour son
@@ -305,12 +341,14 @@
                                                                     <td align="center">
                                                                         <strong>
                                                                             <t t-if="o.epreuve_a &gt; 0">
-                                                                                <span t-raw="'%s' % o.epreuve_a if o.epreuve_a else 'Absent'"/>
+                                                                                <span t-raw="'%s' % o.epreuve_a if o.epreuve_a else ''"/>
                                                                             </t>
                                                                             <t t-if="not o.epreuve_a &gt; 0">
-                                                                                <span>Absent</span>
+                                                                                <span t-field="o.presence"/>
+                                                                                <t t-if="o.presence == 'Absent'">
+                                                                                    <span>(e)</span>
+                                                                                </t>
                                                                             </t>
-
                                                                         </strong>
                                                                     </td>
                                                                 </tr>
@@ -324,7 +362,10 @@
                                                                                 <span t-raw="'%s' % o.epreuve_b"/>
                                                                             </t>
                                                                             <t t-if="not o.epreuve_b &gt; 0">
-                                                                                <span>Absent</span>
+                                                                                <span t-field="o.presence"/>
+                                                                                <t t-if="o.presence == 'Absent'">
+                                                                                    <span>(e)</span>
+                                                                                </t>
                                                                             </t>
                                                                         </strong>
                                                                     </td>
@@ -349,7 +390,10 @@
                                                                                 <span t-raw="'%s' % o.moyenne_generale"/>
                                                                             </t>
                                                                             <t t-if="not o.moyenne_generale &gt; 0">
-                                                                                <span>Absent</span>
+                                                                                <span t-field="o.presence"/>
+                                                                                <t t-if="o.presence == 'Absent'">
+                                                                                    <span>(e)</span>
+                                                                                </t>
                                                                             </t>
                                                                         </strong>
                                                                     </td>
@@ -360,10 +404,13 @@
                                                                     </td>
                                                                     <td align="center">
                                                                         <strong>
-                                                                            <t t-if="o.resultat == 'ajourne'">
-                                                                                <t t-esc="{False: False, 'recu': 'Reçu', 'ajourne': 'Ajourné'}[o.resultat]"/>
+                                                                            <t t-if="o.resultat == 'ajourne' and o.presence == 'Absent'">
+                                                                                <span t-field="o.presence"/>
+                                                                                <span>(e)</span>
                                                                             </t>
-                                                                            <t t-else=""></t>
+                                                                            <t t-else="o.presence == 'absence_justifiee'">
+                                                                                <span t-field="o.presence"/>
+                                                                            </t>
                                                                         </strong>
                                                                     </td>
                                                                 </tr>
