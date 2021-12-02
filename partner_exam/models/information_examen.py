@@ -162,9 +162,14 @@ class NoteExamen(models.Model):
                 response = requests.post('https://www.wedof.fr/api/registrationFolders/' + externalId + '/serviceDone',
                                          headers=headers, data=data)
                 
-                info_exam.sorti_formation=True
+
                 _logger.info('terminate %s' % str(response1.status_code))
                 _logger.info('service done %s' % str(response.status_code))
+                if response.status_code == 200:
+                    """si statut est changé sur wedof on change statut_cpf sur fiche client """
+                    _logger.info('if service done %s' % info_exam.partner_id.numero_cpf)
+                    info_exam.partner_id.statut_cpf = "service_declared"
+                    info_exam.sorti_formation = True
 
     """utiliser api wedof pour changer etat de dossier sur edof selon l'absence le jour d'examen"""
     def change_etat_wedof_absent(self):
@@ -221,7 +226,12 @@ class NoteExamen(models.Model):
                         headers=headers, data=data)
                     _logger.info('terminate %s' % str(response1.status_code))
                     _logger.info('service done %s' % str(response.status_code))
-                    info_exam.sorti_formation=True
+                    if response.status_code == 200:
+                        """si statut est changé sur wedof on change statut_cpf sur fiche client """
+                        _logger.info('if service done %s' % info_exam.partner_id.numero_cpf)
+                        info_exam.partner_id.statut_cpf = "service_declared"
+                        info_exam.sorti_formation=True
+
 
     def update_session_examen(self):
         """ Mettre à jour le champ session selon condition de date examen = date examen de la session dans la fiche client"""
