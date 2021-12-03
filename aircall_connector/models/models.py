@@ -123,9 +123,7 @@ class ResUser(models.Model):
         return list(tags), notes
 
     def create_contact(self, contact, calls,company_name):
-
         res_user = self.env['res.users']
-
         odoo_contact = res_user.search([('air_contact_id', '=', contact['id'])])
 
         tags, notes = self.get_tags_and_notes(calls, contact)
@@ -151,7 +149,54 @@ class ResUser(models.Model):
         elif 'emails' in contact and contact['emails'] and contact['emails'][0]['value']:
             email = contact['emails'][0]['value']
             odoo_contact = res_user.search([('login', "=", str(email).lower().replace(' ',''))],limit=1)
-            if not odoo_contact:
+        if not odoo_contact:
+            if contact['phone_numbers']:
+                odoo_contact = self.env["res.users"].sudo().search(
+                    [("phone", "=",str(contact['phone_numbers'][0]['value']))], limit=1)
+                if not odoo_contact:
+                    phone_number = str(contact['phone_numbers'][0]['value']).replace(' ', '')
+                    if '+33' not in str(phone_number): # check if aircall api send the number of client with +33
+                        phone = phone_number[0:2]
+                        if str(phone) == '33' and ' ' not in str(contact['phone_numbers'][0]['value']): # check if aircall api send the number of client in this format (number_format: 33xxxxxxx)
+                            phone = '+' + str(contact['phone_numbers'][0]['value'])
+                            odoo_contact = self.env["res.users"].sudo().search( [("phone", "=", phone)], limit=1)
+                            if not odoo_contact:
+                                phone = phone[0:3]+' '+phone[3:4] + ' ' + phone[4:6] + ' '+phone[6:8]+' '+phone[8:10]+' '+phone[10:]
+                                odoo_contact = self.env["res.users"].sudo().search([("phone", "=", phone)], limit=1)
+                        phone = phone_number[0:2]
+                        if str(phone) == '33' and ' ' in str(contact['phone_numbers'][0]['value']): # check if aircall api send the number of client in this format (number_format: 33 x xx xx xx)
+                            phone = '+' + str(contact['phone_numbers'][0]['value'])
+                            odoo_contact = self.env["res.users"].sudo().search(['|',("phone", "=", phone),("phone","=",phone.replace(' ', ''))], limit=1)
+                        phone = phone_number[0:2]
+                        if str(phone) in ['06','07'] and ' ' not in str(contact['phone_numbers'][0]['value']): # check if aircall api send the number of client in this format (number_format: 07xxxxxx)
+                            odoo_contact = self.env["res.users"].sudo().search([("phone", "=", str(contact['phone_numbers'][0]['value']))], limit=1)
+                            print('odoo_contact5 :', odoo_contact.partner_id.name)
+                            if not odoo_contact:
+                                phone = phone[0:2] + ' ' + phone[2:4] + ' ' + phone[4:6] + ' ' + phone[6:8] + ' ' + phone[8:]
+                                odoo_contact = self.env["res.users"].sudo().search([("phone", "=", phone)], limit=1)
+                        phone = phone_number[0:2]
+                        if str(phone) in ['06', '07'] and ' ' in str(contact['phone_numbers'][0]['value']): # check if aircall api send the number of client in this format (number_format: 07 xx xx xx)
+                            odoo_contact = self.env["res.users"].sudo().search(
+                                ['|',("phone", "=", str(contact['phone_numbers'][0]['value'])),str(contact['phone_numbers'][0]['value']).replace(' ', '')], limit=1)
+                    else:  # check if aircall api send the number of client with+33
+                        if ' ' not in str(contact['phone_numbers'][0]['value']):
+                            phone = str(contact['phone_numbers'][0]['value'])
+                            phone = phone[0:3] + ' ' + phone[3:4] + ' ' + phone[4:6] + ' ' + phone[6:8] + ' ' + phone[8:10] + ' ' + phone[10:]
+                            odoo_contact = self.env["res.users"].sudo().search(
+                                [("phone", "=", phone)], limit=1)
+                        if not odoo_contact :
+                            odoo_contact = self.env["res.users"].sudo().search(
+                                [("phone", "=", str(phone_number).replace(' ', ''))], limit=1)
+                            if not odoo_contact:
+                                phone = str(phone_number)
+                                phone = phone[3:]
+                                phone = '0' + str(phone)
+                                odoo_contact = self.env["res.users"].sudo().search(
+                                    [("phone", "like", phone.replace(' ', ''))], limit=1)
+        if not odoo_contact:
+            if 'emails' in contact and contact['emails'] and contact['emails'][0]['value'] :
+                email = contact['emails'][0]['value']
+                email = str(email).lower().replace(' ','')
                 if company_name == 'DIGIMOOV':
                     #Create new user for DIGIMOOV using email,name from aircall
                     odoo_contact = self.env['res.users'].sudo().create({
@@ -174,13 +219,15 @@ class ResUser(models.Model):
                         'company_id': 1,
                         'company_ids': [1, 2]
                     })
-                if odoo_contact:
-                    odoo_contact.partner_id.phone = contact['phone_numbers'][0]['value'] if contact[
-                        'phone_numbers'] else False
-                    odoo_contact.partner_id.email = contact['emails'][0]['value'].lower().replace(' ','')
+            if odoo_contact:
+                if contact['phone_numbers']:
+                    phone_number = str(contact['phone_numbers'][0]['value']).replace(' ', '')
+                    odoo_contact.partner_id.phone = phone_number
+                odoo_contact.partner_id.email = contact['emails'][0]['value'].lower().replace(' ','')
 
             else:
                 name=odoo_contact.partner_id.name
+
                 odoo_contact.partner_id.sudo().write({'name':(contact['first_name'] + ' ' + contact['last_name']) if not name else name,
                                                'air_contact_id': contact['id'],
                                                'email': contact['emails'][0]['value'].lower().replace(' ','') if contact['emails'] else False,
@@ -195,7 +242,8 @@ class ResUser(models.Model):
                     odoo_contact.sudo().write({'company_id': 1,
                                                'company_ids': [1, 2]
                                                })
-
+        print('odoo_contact_final')
+        print(odoo_contact.partner_id.name)
         if odoo_contact:
             return odoo_contact.partner_id
         else:
@@ -275,7 +323,6 @@ class ResUser(models.Model):
                                     message = self.env['mail.message'].sudo().search(
                                         [('subtype_id', "=", subtype_id), ('model', "=", 'res.partner'),
                                          ('res_id', '=', odoo_contact.id), ('body', "ilike", comment)])
-                                print('message')
                                 str(content)
                                 str( str(note['content']))
 
@@ -323,8 +370,6 @@ class ResUser(models.Model):
                                 message = self.env['mail.message'].sudo().search(
                                     [('subtype_id', "=", subtype_id), ('model', "=", 'res.partner'),
                                      ('res_id', '=', odoo_contact.id), ('body', "ilike", comment)])
-                                print('message3')
-                                print(str(note['content']))
                                 if not message:
                                     # Create new Note in view contact
                                     message = self.env['mail.message'].sudo().create({
@@ -389,9 +434,6 @@ class ResUser(models.Model):
                                     message = self.env['mail.message'].sudo().search(
                                         [('subtype_id', "=", subtype_id), ('model', "=", 'res.partner'),
                                          ('res_id', '=', odoo_contact.id), ('body', "ilike", comment)])
-                                print('message1')
-                                print(str(content))
-                                print(str(note['content']))
 
                                 if not message and odoo_contact:
                                     # Create new Note in view contact
@@ -428,15 +470,12 @@ class ResUser(models.Model):
                             call_rec.write({'notes':comment+'\n'})
                             # subtype_id = self.env['ir.model.data'].xmlid_to_res_id('mt_note')
                             subtype_id = self.env['ir.model.data'].xmlid_to_res_id('mail.mt_note')
-                            print(odoo_contact)
-                            print(subtype_id)
                             entrant_sortant = ''
                             if (call['direction']) and call['direction'] == 'inbound':
                                 entrant_sortant = 'Appel Entrant'
                             if (call['direction']) and call['direction'] == 'outbound':
                                 entrant_sortant = 'Appel Sortant'
                             content = "<b>" + user_name + " " + entrant_sortant + " " + " " + started_at + " " + ended_at + "</b><br/>"
-                            print(content)
                             entrant_sortant = ''
                             if (call['direction']) and call['direction'] == 'inbound':
                                 entrant_sortant = 'Appel Entrant'
@@ -446,8 +485,6 @@ class ResUser(models.Model):
                                 message = self.env['mail.message'].sudo().search(
                                     [('subtype_id', "=", subtype_id), ('model', "=", 'res.partner'),
                                      ('res_id', '=', odoo_contact.id), ('body', "ilike", comment)])
-                                print('message4')
-                                print(str(note['content']))
                                 if not message:
                                     #Create new Note in view contact
                                     message = self.env['mail.message'].sudo().create({
