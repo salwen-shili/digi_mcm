@@ -1246,7 +1246,7 @@
                             </div>
                         </section>
                     </section>
-                    <section class="s_text_image pb0" data-name="Text - Image">
+                    <section class="about-us centric_template section-padding" data-name="Text - Image">
                         <div class="container" style="border-style: none; border-width: 0px">
                             <div class="align-items-center row">
                                 <div class="col-lg-6 pb16 pt16" style="border-style: none; border-width: 0px">
@@ -1254,16 +1254,17 @@
                                         Quelles compétences dois-je avoir pour exercer le métier de
                                         <span class="h1-title"> Livreur en scooter ? </span>
                                     </h2>
-                                    <p>
+
+                                    <p >
                                         Pour exercer le métier de livreur ou
                                         <b>coursier sur 2 roues</b>
                                         , vous devez avoir la Capacité de
-                transport de marchandise sur un véhicule électrique de deux
-                roues.
-                                    </p>
-                                    <p>
-                Voici les différentes compétences que vous allez acquérir lors
-                de notre formation:
+                                        transport de marchandise sur un véhicule électrique de deux
+                                        roues. 
+                                        <br/>
+             
+                                        Voici les différentes compétences que vous allez acquérir lors
+                                        de notre formation:
                                     </p>
                                     <ul>
                                         <li>Le cadre réglementaire de l’activité de transport.</li>
