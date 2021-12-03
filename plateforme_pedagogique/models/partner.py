@@ -478,7 +478,7 @@ class partner(models.Model):
             'X-API-KEY': '026514d6bc7d880515a27eae4947bccef4fbbf03',
         }
         params_wedof = (
-            ('order', 'asc'),
+            ('order', 'desc'),
             ('type', 'all'),
             ('state', 'accepted'),
             ('billingState', 'all'),
@@ -503,6 +503,12 @@ class partner(models.Model):
             date_split = date_formation[0:10]
             date_ = datetime.strptime(date_split, "%Y-%m-%d")
             dateFormation = date_.date()
+            idform = dossier['trainingActionInfo']['trainingId']
+            module = ""
+            if "_" in idform:
+                idforma = idform.split("_", 1)
+                if idforma:
+                    module = idforma[1]
             today = date.today()
             print('date', today, dateFormation, certificat)
             """Si date de formation <= ajourdhui et s'il a choisi  la formation de transport  léger de marchandises
@@ -532,21 +538,33 @@ class partner(models.Model):
                         print('response post',response_post.status_code)
                         """Si dossier passe en formation on met à jour statut cpf sur la fiche client"""
 
-                        partner = self.env['res.partner'].sudo().search([('numero_cpf', "=", str(externalId))])
-                        if len(partner) > 1:
-                            for part in partner:
-                                part_email=part.email
-                                if part_email.upper() == email.upper():
-                                    _logger.info('if partner >1 %s' % partner.numero_cpf)
-                                    partner.statut_cpf="in_training"
-                        elif len(partner) == 1:
-                            _logger.info('if partner %s' % partner.numero_cpf)
-                            partner.statut_cpf = "in_training"
+
+                        product_id = self.env['product.template'].sudo().search(
+                            [('id_edof', "=", str(module)), ('company_id', "=", 2)], limit=1)
+
+                        if response_post.status_code==200:
+
+                            partner = self.env['res.partner'].sudo().search([('numero_cpf', "=", str(externalId))])
+
+                            if len(partner) > 1:
+                                for part in partner:
+                                    part_email=part.email
+                                    if part_email.upper() == email.upper():
+                                        _logger.info('if partner >1 %s' % partner.numero_cpf)
+                                        partner.statut_cpf="in_training"
+                                        if product_id:
+                                            partner.id_edof = product_id.id_edof
+
+                            elif len(partner) == 1:
+                                _logger.info('if partner %s' % partner.numero_cpf)
+                                partner.statut_cpf = "in_training"
+                                if product_id:
+                                    partner.id_edof = product_id.id_edof
 
     """changer l'etat sur wedof de non traité vers validé à partir d'API"""
     def change_state_wedof_validate(self):
         params_wedof = (
-            ('order', 'asc'),
+            ('order', 'desc'),
             ('type', 'all'),
             ('state', 'notProcessed'),
             ('billingState', 'all'),
@@ -623,7 +641,7 @@ class partner(models.Model):
 
             """Si dossier passe à l'etat validé on met à jour statut cpf sur la fiche client"""
             print('validate', email)
-            self.cpf_validate(training_id, email, address, tel, code_postal, ville, diplome, nom, prenom,
+            self.cpf_validate(training_id, email, address, tel, code_postal, ville, diplome, dossier['attendee']['lastName'], dossier['attendee']['firstName'],
                                   externalid, lastupd)
 
 
@@ -686,21 +704,22 @@ class partner(models.Model):
                 ville =""
             if 'firstName' in dossier['attendee']['firstName']:
                 nom = dossier['attendee']['firstName']
+                nom=unidecode(nom)
             else :
                 nom=""
             
             if "lastName" in dossier['attendee']['lastName']:
                 prenom = dossier['attendee']['lastName']
+                prenom=unidecode(prenom)
             else :
                 prenom=""
             diplome = dossier['trainingActionInfo']['title']
-            
-            if state=="accepted":
-                self.change_statut_accepte()
-                print('accepted', email)
+            product_id = self.env['product.template'].sudo().search(
+                [('id_edof', "=", str(training_id))], limit=1)
+
             if state=="validated":
-                print('validate',email)
-                self.cpf_validate(training_id,email,address,tel,code_postal,ville,diplome,nom,prenom,externalId,lastupd)
+                print('validate',email,dossier['attendee']['lastName'],dossier['attendee']['firstName'])
+                self.cpf_validate(training_id,email,address,tel,code_postal,ville,diplome,dossier['attendee']['lastName'],dossier['attendee']['firstName'],externalId,lastupd)
             else:
                 users = self.env['res.users'].sudo().search(
                     [('login', "=", email)])  # search user with same email sended
@@ -723,19 +742,31 @@ class partner(models.Model):
                 if state=="inTraining":
                     print('intraining', email)
                     user.partner_id.statut_cpf="in_training"
+                    if product_id:
+                        user.partner_id.id_edof = product_id.id_edof
+
                 if state=="terminated":
                     print('terminated', email)
                     user.partner_id.statut_cpf="out_training"
+                    if product_id:
+                        user.partner_id.id_edof = product_id.id_edof
                 if state=="serviceDoneDeclared":
                     print('serviceDoneDeclared', email)
                     user.partner_id.statut_cpf="service_declared"
+                    if product_id:
+                        user.partner_id.id_edof=product_id.id_edof
+
                 if state=="serviceDoneValidated":
                     print('serviceDoneValidated', email)
 
                     user.partner_id.statut_cpf="service_validated"
+                    if product_id:
+                        user.partner_id.id_edof = product_id.id_edof
                 if state=="canceledByAttendee" or state=="canceledByAttendeeNotRealized" or state=="canceledByOrganism"  :
                     user.partner_id.statut_cpf="canceled"
                     user.partner_id.statut="canceled"
+                    if product_id:
+                        user.partner_id.id_edof = product_id.id_edof
                 user.partner_id.numero_cpf = externalId
                 user.partner_id.date_cpf = lastupd
 
@@ -807,6 +838,7 @@ class partner(models.Model):
                 client.city = ville
                 client.diplome = diplome  # attestation capacitév ....
                 client.date_cpf = lastupd
+                client.name=str(prenom) + " " + str(nom)
                 module_id = False
                 product_id = False
                 template_id = int(self.env['ir.config_parameter'].sudo().get_param(
@@ -839,7 +871,7 @@ class partner(models.Model):
     """Changer statut cpf vers accepté selon l'etat récupéré avec api wedof"""
     def change_statut_accepte(self):
         params_wedof = (
-            ('order', 'asc'),
+            ('order', 'desc'),
             ('type', 'all'),
             ('state', 'accepted'),
             ('billingState', 'all'),
@@ -1103,7 +1135,5 @@ class partner(models.Model):
                         if not ticket:
                             new_ticket = self.env['helpdesk.ticket'].sudo().create(
                                 vals)
-
-
 
 
