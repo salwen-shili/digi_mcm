@@ -585,8 +585,6 @@ class Services(http.Controller):
                 }
             new_ticket = request.env['helpdesk.ticket'].sudo().create(
                 vals)
-            print('files')
-            print(files)
             if files:
                 for ufile in files:
                     datas = base64.encodebytes(ufile.read())
