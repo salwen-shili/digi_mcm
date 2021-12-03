@@ -1153,46 +1153,18 @@
                         <div class="container" style="border-style: none; border-width: 0px">
                             <div class="row">
                                 <div class="bannarcol col-lg-6 col-md-12" style="border-style: none; border-width: 0px">
-                                    <h1 style="
-                  font-size: 62px !important;
-                  font-weight: 700 !important;
-                  color: #343996 !important;
-                ">
-                                        <span style="
-                    color: rgb(156, 0, 255);
-                    font-size: 62px;
-                    font-weight: 700;
-                  ">
-                  Transporter
-                                        </span>
-                                        des marchandises sur un
-                                        <span style="
-                    color: rgb(156, 0, 255);
-                    font-size: 62px;
-                    font-weight: 700;
-                  ">véhicule électrique
-                                        </span>
-                                        à
-                                        <span style="
-                    color: rgb(156, 0, 255);
-                    font-size: 62px;
-                    font-weight: 700;
-                  ">
-                  2/3 roues
-                                        </span>
+                                    <h1>
+                                        <text class="h1-title">Devenir Coursier en Scooter</text>
+                                        n'a jamais été aussi
+                                        <text class="h1-title">Simple!</text>
                                     </h1>
                                     <p class="paratext">
-                                        Vous êtes étudiant(e)? Vous avez besoin d'arrondir vos fins du
-                mois? Chez Digimoov on vous propose&amp;nbsp;
-                                        <text class="text-delta">
-                                            <b>une formation 100% en ligne </b>
-                                            assez pertinente
-                                            <b>&amp;nbsp;</b>
-                                        </text>
-                                        pour devenir
-                                        <text style="color: rgb(156, 0, 255)">
-                                            <b>Livreur sur scooter en 35 Heures ! </b>
-                                        </text>
+                                       Vous souhaitez devenir coursier en scooter, vélo ou vélo 
+                                       cargo ? Optez pour <b>une formation 100% en ligne</b> avec 
+                                       Digimoov ! Une formation de 35h organisée par des 
+                                       experts du métiers pour garantir votre réussite à 
+                                       l'examen et entamer une nouvelle carrière professionnelle.
+                                      
                                     </p>
                                     <div class="banner-btn s_btn" data-name="Button">
                                         <a href="#pricing" class="bannerbtn btn btn-alpha rounded-circle" title="je m'inscirs" alt="boutton je m'inscris">Je m'inscris maintenant !
@@ -1214,9 +1186,6 @@
                             </div>
                             <div class="col-md-4 col-sm-12 mb-4 mb-md-0 text-center">
                                 <img class="img-fluid" style="width: 110px" src="/mcm_website_theme/static/src/img/Logo-vert-sur-fond-blanc-en-.jpg.jpg" />
-                            </div>
-                            <div class="col-md-4 col-sm-12 mb-4 mb-md-0 text-center">
-                                <img class="img-fluid" style="width: 188px" src="/digimoov_website_templates/static/img/coursier2roues/logo-DREAL.png" />
                             </div>
                         </div>
                     </section>
@@ -1411,7 +1380,7 @@
                       Paiement 1 fois
                                                 </p>
                                                 <br />
-                                                <button class="btn btn-block text-white" onClick="(function(){msTracking('clic sur inscrire pack solo coursier2roues','Pricing Table events','Clic pack solo coursier2roues','590'); window.location.href='/contact'; return false;})();return false;" style="background-color: #6e209f; border-radius: 25px">
+                                                <button class="btn btn-block text-white" onClick="(function(){msTracking('clic sur inscrire pack solo coursier2roues','Pricing Table events','Clic pack solo coursier2roues','590'); window.location.href='/service-clientele'; return false;})();return false;" style="background-color: #6e209f; border-radius: 25px">
                       Je m'inscris
                                                 </button>
                                             </div>
