@@ -1343,16 +1343,15 @@
                   background-color: #6e209f;
                   border-top-left-radius: 25px;
                   border-top-right-radius: 25px;
+                  padding-bottom: 14px;
                 ">
-                                            <br />
-                                            <p>
-                                                <span style="font-size: 30px; font-weight: 700">SOLO</span>
-                                            </p>
-                                            <p>
-                                                <b>Éligible au CPF</b>
-                                            </p>
-                                            <br />
-                                        </div>
+                                        <br />
+                                        <p>
+                                            <span style="font-size: 30px; font-weight: 700; padding-bottom: 10px">SOLO</span>
+                                        </p>
+
+                                        <br />
+                                    </div>
                                         <t t-foreach="digimoov_products" t-as="product">
                                             <t t-if="product.default_code=='basique'">
                                                 <input t-att-value="request.website.microsoft_tracking_key" id="microsoft_tracking_key" type="hidden" />
