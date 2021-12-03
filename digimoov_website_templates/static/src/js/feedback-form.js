@@ -1,18 +1,18 @@
 $(document).ready(function () {
   //popup's message depends with partner has documents
-  document.getElementById("hasdocument").value == "True"
-    ? (document.getElementById("notifMessage").textContent =
+  document.getElementById('hasdocument').value == 'True'
+    ? (document.getElementById('notifMessage').textContent =
         "Vous pourrez désormais choisir votre date et centre d'examen et financer votre formation.")
-    : (document.getElementById("notifMessage").textContent =
-        "Pour passer à l'étape suivante merci de vous munir d'une copie originale de votre carte d'identité.");
-  console.log(hasdocument, document.getElementById("hasdocument").value);
+    : (document.getElementById('notifMessage').textContent =
+        "Pour passer à l'étape suivante merci de vous munir d'une copie originale de votre carte d'identité. Le processus d'identification peut prendre jusqu'à 20 minutes.");
+  console.log(hasdocument, document.getElementById('hasdocument').value);
   console.log(
-    window.location.href.includes("/coordonnees#popup1"),
+    window.location.href.includes('/coordonnees#popup1'),
     window.location.href
   );
-  if (window.location.href.includes("/coordonnees#popup1")) {
-    console.log("enter");
-    window.location.href = "/coordonnees";
+  if (window.location.href.includes('/coordonnees#popup1')) {
+    console.log('enter');
+    window.location.href = '/coordonnees';
   }
   var current_fs, next_fs, previous_fs; //fieldsets
   var opacity;
@@ -22,32 +22,32 @@ $(document).ready(function () {
   //   var steps = $("fieldset").length;
   var pass;
 
-  const group1 = $("input[type=radio][name=group1]");
-  const group2 = $("input[type=radio][name=group2]");
-  const group3 = $("input[type=radio][name=group3]");
+  const group1 = $('input[type=radio][name=group1]');
+  const group2 = $('input[type=radio][name=group2]');
+  const group3 = $('input[type=radio][name=group3]');
   //   const textarea1 = $("#text1");
-  const textarea2 = $("#text2");
+  const textarea2 = $('#text2');
   var error;
 
-  $(".next").click(function (event) {
+  $('.next').click(function (event) {
     event.preventDefault();
 
     switch (current) {
       case 1:
-        pass = check("group1");
-        error = $("#error1");
+        pass = check('group1');
+        error = $('#error1');
         break;
       case 2:
-        pass = check("group2");
-        error = $("#error2");
+        pass = check('group2');
+        error = $('#error2');
         break;
       case 3:
-        pass = check("group3");
-        error = $("#error3");
+        pass = check('group3');
+        error = $('#error3');
         break;
       case 4:
         pass = textarea2.val();
-        error = $("#error4");
+        error = $('#error4');
         break;
     }
 
@@ -59,10 +59,10 @@ $(document).ready(function () {
       // if partner has documents submit the form if not show the notification popup
       if (current == 4) {
         pass = 0;
-        error.text("");
+        error.text('');
         error.hide();
         //show popup
-        window.location.href = "#popup1";
+        window.location.href = '#popup1';
         return false;
       }
       if (current == 4) return;
@@ -76,8 +76,8 @@ $(document).ready(function () {
             opacity = 1 - now;
 
             current_fs.css({
-              display: "none",
-              position: "relative",
+              display: 'none',
+              position: 'relative',
             });
             next_fs.css({ opacity: opacity });
           },
@@ -90,20 +90,20 @@ $(document).ready(function () {
       fixStepIndicator(current - 1);
 
       pass = 0;
-      error.text("");
+      error.text('');
       error.hide();
     }
 
     // if (pass.length > 1 && current === 4) {
     //   console.log(pass.length);
     else {
-      error.text("Veuillez répondre à la question");
+      error.text('Veuillez répondre à la question');
       error.show();
     }
   });
 
   //determine which filedset is the previous
-  $(".previous").click(function () {
+  $('.previous').click(function () {
     current_fs = $(this).parent().parent();
     previous_fs = $(this).parent().parent().prev();
 
@@ -121,8 +121,8 @@ $(document).ready(function () {
           opacity = 1 - now;
 
           current_fs.css({
-            display: "none",
-            position: "relative",
+            display: 'none',
+            position: 'relative',
           });
           previous_fs.css({ opacity: opacity });
         },
@@ -149,11 +149,11 @@ $(document).ready(function () {
   function fixStepIndicator(n) {
     // Removes the "active" class of all steps...
     var i,
-      x = document.getElementsByClassName("step");
+      x = document.getElementsByClassName('step');
     for (i = 0; i < x.length; i++) {
-      x[i].className = x[i].className.replace(" active", "");
+      x[i].className = x[i].className.replace(' active', '');
     }
     //... and adds the "active" class on the current step:
-    x[n].className += " active";
+    x[n].className += ' active';
   }
 });
