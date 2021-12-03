@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
   <template id="mcm_website_theme_qui_sommes_nous" name="Qui Sommes Nous | MCM ACADEMY">
+
     <t t-call="website.layout">
       <div id="wrap" class="oe_structure oe_empty">
         <style>
@@ -109,8 +110,8 @@
                   <b>&amp;nbsp;Nos prix :</b>&amp;nbsp;Un rapport qualité prix imbattable.</p>
                 <p>
                   <span class="fa fa-check"/>
-                  <b>&amp;nbsp;Une formation e-learning très complète :&amp;nbsp;</b>e nous vous offrons, c’est une formation 100 % en ligne, à organiser à votre rythme selon vos disponibilités, et à un prix raisonnable que vous pouvez financer en mobilisant votre CPF.</p>
-                <p>Nous vous donnons accès à des vidéos, des documents PDF, un livre d'entraînement en version électronique pour bien vous préparer. Nous vous assurons un suivi après la formation – avec des coachings par mail, par téléphone et par visioconférence avec les formateurs pour les explications éventuelles – et la révision du programme avant examen.&amp;nbsp;</p>
+                  <b>&amp;nbsp;Une formation e-learning experte :&amp;nbsp;</b>e nous vous offrons, c’est une formation 100 % en ligne, à organiser à votre rythme selon vos disponibilités, et à un prix raisonnable que vous pouvez financer en mobilisant votre CPF.</p>
+                <p>Nous vous donnons accès à des vidéos, des cours en visioconférence, un livre d'entraînement en version électronique pour bien vous préparer. Nous vous assurons un suivi après la formation – avec des coachings par mail, par téléphone et par visioconférence avec les formateurs pour les explications éventuelles – et la révision du programme avant examen.&amp;nbsp;</p>
               </div>
             </div>
           </div>
@@ -119,7 +120,7 @@
           <div class="container">
             <div class="row s_nb_column_fixed">
               <div class="col-lg-12 s_title pb32 pt8" style="text-align: center; border-style: none; border-width: 0px;">
-                <h1 class="s_title_lines" style="text-align: left; ">Une équipe pédagogique compétente&amp;nbsp;</h1>
+                <h1 class="s_title_lines" style="text-align: left; ">Une équipe pédagogique experte&amp;nbsp;</h1>
               </div>
             </div>
           </div>
@@ -440,7 +441,7 @@
           </div>
           <div class="owl-carousel owl-theme owl-loaded owl-drag">
             <div class="owl-stage-outer">
-              <div class="owl-stage" style="width: 3920px; transform: translate3d(-1120px, 0px, 0px); transition: all 2s ease 0s;">
+              <div class="owl-stage" style="width: 8400px; transform: translate3d(-2800px, 0px, 0px); transition: all 2s ease 0s;">
                 <div class="owl-item cloned" style="width: 550px; margin-right: 10px;">
                   <div class="item">
                     <div class="sh_content">
@@ -477,7 +478,44 @@
                     </div>
                   </div>
                 </div>
-                <div class="owl-item active" style="width: 550px; margin-right: 10px;">
+                <div class="owl-item cloned" style="width: 550px; margin-right: 10px;">
+                  <div class="item">
+                    <div class="sh_content">
+                      <div class="sh_des">
+                        <p>"MCM ACADEMY est un très bon centre de formation, les formateurs sont à l'écoute et de très bons pédagogues.Merci à Nasser et son équipe pour leurs disponibilités et leurs écoutes ainsi que leurs paroles rassurantes et encourageantes.
+Je vous recommande ce centre de formation les yeux fermés"</p>
+                      </div>
+                      <div class="sh_img_part">
+                        <div class="sh_img">
+                          <img src="/mcm_website_theme/static/src/img/testimonial/cathy e.png"/>
+                        </div>
+                        <div class="sh_text">
+                          <h3>Cathy E</h3>
+                          <h6>Jan 2018</h6>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="owl-item cloned" style="width: 550px; margin-right: 10px;">
+                  <div class="item">
+                    <div class="sh_content">
+                      <div class="sh_des">
+                        <p>"Centre de formation agréable qui nous apporte tous les éléments nécessaires pour réussir, formateurs compétents et sympathiques. Les cours sont très enrichissant, j’ai appris beaucoup de choses en peu de temps. Je recommande à 100%"</p>
+                      </div>
+                      <div class="sh_img_part">
+                        <div class="sh_img">
+                          <img src="/mcm_website_theme/static/src/img/testimonial/omar saadaoui.png"/>
+                        </div>
+                        <div class="sh_text">
+                          <h3>Omar Saadaoui</h3>
+                          <h6>Nov 2020</h6>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="owl-item" style="width: 550px; margin-right: 10px;">
                   <div class="item">
                     <div class="sh_content">
                       <div class="sh_des">
@@ -514,7 +552,43 @@ Je vous recommande ce centre de formation les yeux fermés"</p>
                     </div>
                   </div>
                 </div>
-                <div class="owl-item" style="width: 550px; margin-right: 10px;">
+                <div class="owl-item active" style="width: 550px; margin-right: 10px;">
+                  <div class="item">
+                    <div class="sh_content">
+                      <div class="sh_des">
+                        <p>"Formation extrêmement complète, avec d'excellents profs et des modules en ligne très complets . A noter le sérieux et le suivi de l'équipe MCM qui s'est toujours montré disponible"</p>
+                      </div>
+                      <div class="sh_img_part">
+                        <div class="sh_img">
+                          <img src="/mcm_website_theme/static/src/img/testimonial/henry serda.png"/>
+                        </div>
+                        <div class="sh_text">
+                          <h3>Henry Serda</h3>
+                          <h6>Nov 2020</h6>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="owl-item cloned" style="width: 550px; margin-right: 10px;">
+                  <div class="item">
+                    <div class="sh_content">
+                      <div class="sh_des">
+                        <p>"Centre de formation agréable qui nous apporte tous les éléments nécessaires pour réussir, formateurs compétents et sympathiques. Les cours sont très enrichissant, j’ai appris beaucoup de choses en peu de temps. Je recommande à 100%"</p>
+                      </div>
+                      <div class="sh_img_part">
+                        <div class="sh_img">
+                          <img src="/mcm_website_theme/static/src/img/testimonial/omar saadaoui.png"/>
+                        </div>
+                        <div class="sh_text">
+                          <h3>Omar Saadaoui</h3>
+                          <h6>Nov 2020</h6>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="owl-item cloned" style="width: 550px; margin-right: 10px;">
                   <div class="item">
                     <div class="sh_content">
                       <div class="sh_des">
@@ -571,6 +645,15 @@ Je vous recommande ce centre de formation les yeux fermés"</p>
                 </div>
               </div>
             </div>
+            <div class="owl-nav disabled">
+              <button type="button" role="presentation" class="owl-prev">
+                <span aria-label="Previous">‹</span>
+              </button>
+              <button type="button" role="presentation" class="owl-next">
+                <span aria-label="Next">›</span>
+              </button>
+            </div>
+            <div class="owl-dots disabled"/>
             <div class="owl-nav disabled">
               <button type="button" role="presentation" class="owl-prev">
                 <span aria-label="Previous">‹</span>
@@ -690,6 +773,10 @@ Je vous recommande ce centre de formation les yeux fermés"</p>
         </div>
       </section>
     </div>
+
   </t>
+
+
+
 </template>
 </odoo>
