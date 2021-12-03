@@ -64,6 +64,15 @@ class resComapny(models.Model):
                         'epreuve_b': 0,
                         'presence': 'absence_justifiee',
                         'ville_id': self.mcm_session_id.session_ville_id.id})
+                if self.paiement is True:
+                    self.env['info.examen'].search([], limit=1, order='id desc').sudo().update({
+                        'partner_id': self.id,
+                        'session_id': self.mcm_session_id.id,
+                        'date_exam': self.mcm_session_id.date_exam,
+                        'epreuve_a': 0,
+                        'epreuve_b': 0,
+                        #'presence': 'absence_justifiee',
+                        'ville_id': self.mcm_session_id.session_ville_id.id})
                 # Create new line in historic sessions
                 self.env['partner.sessions'].search([], limit=1, order='id desc').sudo().create({
                     'client_id': self.id,
