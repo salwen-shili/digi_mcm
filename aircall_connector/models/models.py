@@ -155,38 +155,44 @@ class ResUser(models.Model):
                     [("phone", "=",str(contact['phone_numbers'][0]['value']))], limit=1)
                 if not odoo_contact:
                     phone_number = str(contact['phone_numbers'][0]['value']).replace(' ', '')
-                    if '+33' not in str(phone_number):
+                    if '+33' not in str(phone_number): # check if aircall api send the number of client with +33
                         phone = phone_number[0:2]
-                        if str(phone) == '33' and ' ' not in str(contact['phone_numbers'][0]['value']):
+                        if str(phone) == '33' and ' ' not in str(contact['phone_numbers'][0]['value']): # check if aircall api send the number of client in this format (number_format: 33xxxxxxx)
                             phone = '+' + str(contact['phone_numbers'][0]['value'])
                             odoo_contact = self.env["res.users"].sudo().search( [("phone", "=", phone)], limit=1)
                             if not odoo_contact:
                                 phone = phone[0:3]+' '+phone[3:4] + ' ' + phone[4:6] + ' '+phone[6:8]+' '+phone[8:10]+' '+phone[10:]
                                 odoo_contact = self.env["res.users"].sudo().search([("phone", "=", phone)], limit=1)
                         phone = phone_number[0:2]
-                        if str(phone) == '33' and ' ' in str(contact['phone_numbers'][0]['value']):
+                        if str(phone) == '33' and ' ' in str(contact['phone_numbers'][0]['value']): # check if aircall api send the number of client in this format (number_format: 33 x xx xx xx)
                             phone = '+' + str(contact['phone_numbers'][0]['value'])
                             odoo_contact = self.env["res.users"].sudo().search(['|',("phone", "=", phone),("phone","=",phone.replace(' ', ''))], limit=1)
                         phone = phone_number[0:2]
-                        if str(phone) in ['06','07'] and ' ' not in str(contact['phone_numbers'][0]['value']):
+                        if str(phone) in ['06','07'] and ' ' not in str(contact['phone_numbers'][0]['value']): # check if aircall api send the number of client in this format (number_format: 07xxxxxx)
                             odoo_contact = self.env["res.users"].sudo().search([("phone", "=", str(contact['phone_numbers'][0]['value']))], limit=1)
                             print('odoo_contact5 :', odoo_contact.partner_id.name)
                             if not odoo_contact:
                                 phone = phone[0:2] + ' ' + phone[2:4] + ' ' + phone[4:6] + ' ' + phone[6:8] + ' ' + phone[8:]
                                 odoo_contact = self.env["res.users"].sudo().search([("phone", "=", phone)], limit=1)
                         phone = phone_number[0:2]
-                        if str(phone) in ['06', '07'] and ' ' in str(contact['phone_numbers'][0]['value']):
+                        if str(phone) in ['06', '07'] and ' ' in str(contact['phone_numbers'][0]['value']): # check if aircall api send the number of client in this format (number_format: 07 xx xx xx)
                             odoo_contact = self.env["res.users"].sudo().search(
                                 ['|',("phone", "=", str(contact['phone_numbers'][0]['value'])),str(contact['phone_numbers'][0]['value']).replace(' ', '')], limit=1)
-                    else:
-                        odoo_contact = self.env["res.users"].sudo().search(
-                            [("phone", "=", str(phone_number).replace(' ', ''))], limit=1)
-                        if not odoo_contact:
-                            phone = str(phone_number)
-                            phone = phone[3:]
-                            phone = '0' + str(phone)
+                    else:  # check if aircall api send the number of client with+33
+                        if ' ' not in str(contact['phone_numbers'][0]['value']):
+                            phone = str(contact['phone_numbers'][0]['value'])
+                            phone = phone[0:3] + ' ' + phone[3:4] + ' ' + phone[4:6] + ' ' + phone[6:8] + ' ' + phone[8:10] + ' ' + phone[10:]
                             odoo_contact = self.env["res.users"].sudo().search(
-                                [("phone", "like", phone.replace(' ', ''))], limit=1)
+                                [("phone", "=", phone)], limit=1)
+                        if not odoo_contact :
+                            odoo_contact = self.env["res.users"].sudo().search(
+                                [("phone", "=", str(phone_number).replace(' ', ''))], limit=1)
+                            if not odoo_contact:
+                                phone = str(phone_number)
+                                phone = phone[3:]
+                                phone = '0' + str(phone)
+                                odoo_contact = self.env["res.users"].sudo().search(
+                                    [("phone", "like", phone.replace(' ', ''))], limit=1)
         if not odoo_contact:
             if 'emails' in contact and contact['emails'] and contact['emails'][0]['value'] :
                 email = contact['emails'][0]['value']
@@ -221,6 +227,7 @@ class ResUser(models.Model):
 
             else:
                 name=odoo_contact.partner_id.name
+
                 odoo_contact.partner_id.sudo().write({'name':(contact['first_name'] + ' ' + contact['last_name']) if not name else name,
                                                'air_contact_id': contact['id'],
                                                'email': contact['emails'][0]['value'].lower().replace(' ','') if contact['emails'] else False,
