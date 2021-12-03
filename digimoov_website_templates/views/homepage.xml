@@ -1159,12 +1159,13 @@
                                         <text class="h1-title">Simple!</text>
                                     </h1>
                                     <p class="paratext">
-                                       Vous souhaitez devenir coursier en scooter, vélo ou vélo 
-                                       cargo ? Optez pour <b>une formation 100% en ligne</b> avec 
+                                        Vous souhaitez devenir coursier en scooter, vélo ou vélo 
+                                       cargo ? Optez pour
+                                        <b>une formation 100% en ligne</b>
+                                        avec 
                                        Digimoov ! Une formation de 35h organisée par des 
                                        experts du métiers pour garantir votre réussite à 
                                        l'examen et entamer une nouvelle carrière professionnelle.
-                                      
                                     </p>
                                     <div class="banner-btn s_btn" data-name="Button">
                                         <a href="#pricing" class="bannerbtn btn btn-alpha rounded-circle" title="je m'inscirs" alt="boutton je m'inscris">Je m'inscris maintenant !
@@ -1255,14 +1256,13 @@
                                         <span class="h1-title"> Livreur en scooter ? </span>
                                     </h2>
 
-                                    <p >
+                                    <p>
                                         Pour exercer le métier de livreur ou
                                         <b>coursier sur 2 roues</b>
                                         , vous devez avoir la Capacité de
                                         transport de marchandise sur un véhicule électrique de deux
-                                        roues. 
-                                        <br/>
-             
+                                        roues.
+                                        <br />
                                         Voici les différentes compétences que vous allez acquérir lors
                                         de notre formation:
                                     </p>
@@ -1311,14 +1311,13 @@
                   background-color: #6e209f;
                   border-top-left-radius: 25px;
                   border-top-right-radius: 25px;
+                  padding-bottom: 14px;
                 ">
                                         <br />
                                         <p>
-                                            <span style="font-size: 30px; font-weight: 700">SOLO</span>
+                                            <span style="font-size: 30px; font-weight: 700; padding-bottom: 10px">SOLO</span>
                                         </p>
-                                        <p>
-                                            <b>Éligible au CPF</b>
-                                        </p>
+
                                         <br />
                                     </div>
                                     <t t-foreach="digimoov_products" t-as="product">
