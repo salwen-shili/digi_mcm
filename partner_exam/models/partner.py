@@ -54,6 +54,16 @@ class resComapny(models.Model):
                     'attachment_ids': self.attachment_ids,
                     'autre_raison': self.autre_raison,
                 })
+                # Add new line in examen if mcm_session_id changed
+                if self.justification is True:
+                    self.env['info.examen'].search([], limit=1, order='id desc').sudo().create({
+                        'partner_id': self.id,
+                        'session_id': self.mcm_session_id.id,
+                        'date_exam': self.mcm_session_id.date_exam,
+                        'epreuve_a': 0,
+                        'epreuve_b': 0,
+                        'presence': 'absence_justifiee',
+                        'ville_id': self.mcm_session_id.session_ville_id.id})
                 # Create new line in historic sessions
                 self.env['partner.sessions'].search([], limit=1, order='id desc').sudo().create({
                     'client_id': self.id,
