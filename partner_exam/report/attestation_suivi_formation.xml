@@ -139,7 +139,7 @@
                                                 Date :
                                                 <t t-if="val[0].session_id[0].date_exam.strftime('%m/%d/%Y') &lt; context_timestamp(datetime.datetime.now()).strftime('%m/%d/%Y')">
 
-                                                    <span t-esc="((o.note_exam_id[0].date_today) + datetime.timedelta(days=2)).strftime('%d/%m/%Y')"
+                                                    <span t-esc="((o.session_id[0].date_exam) + datetime.timedelta(days=2)).strftime('%d/%m/%Y')"
                                                           />
                                                 </t>
                                                 &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;
@@ -241,7 +241,7 @@
                                                 <t t-if="len(o.note_exam_id) &gt; 1">
                                                     <t t-if="val_2[1].session_id[0].date_exam.strftime('%m/%d/%Y') &lt; context_timestamp(datetime.datetime.now()).strftime('%m/%d/%Y')">
 
-                                                        <span t-esc="((o.note_exam_id[1].date_today) + datetime.timedelta(days=2)).strftime('%d/%m/%Y')"
+                                                        <span t-esc="((o.session_id[1].date_exam) + datetime.timedelta(days=2)).strftime('%d/%m/%Y')"
                                                               />
                                                     </t>
                                                 </t>
@@ -341,7 +341,7 @@
                                                 <t t-if="len(o.note_exam_id) &gt; 2">
                                                     <t t-if="val_3[2].session_id[0].date_exam.strftime('%m/%d/%Y') &lt; context_timestamp(datetime.datetime.now()).strftime('%m/%d/%Y')">
 
-                                                        <span t-esc="((o.note_exam_id[2].date_today) + datetime.timedelta(days=2)).strftime('%d/%m/%Y')"/>
+                                                        <span t-esc="((o.session_id[2].date_exam) + datetime.timedelta(days=2)).strftime('%d/%m/%Y')"/>
                                                     </t>
                                                     <t t-else="">
                                                         <span>........</span>
@@ -489,7 +489,7 @@
                                                 Date :
                                                 <t t-if="len(o.note_exam_id) &gt; 3">
                                                     <t t-if="val_4[3].session_id[0].date_exam.strftime('%m/%d/%Y') &lt; context_timestamp(datetime.datetime.now()).strftime('%m/%d/%Y')">
-                                                        <span t-esc="((o.note_exam_id[3].date_today) + datetime.timedelta(days=2)).strftime('%d/%m/%Y')"
+                                                        <span t-esc="((o.session_id[3].date_exam) + datetime.timedelta(days=2)).strftime('%d/%m/%Y')"
                                                               />
                                                     </t>
                                                 </t>
@@ -598,7 +598,7 @@
                                                 Date :
                                                 <t t-if="len(o.note_exam_id) &gt; 4">
                                                     <t t-if="val_5[4].session_id[0].date_exam.strftime('%m/%d/%Y') &lt; context_timestamp(datetime.datetime.now()).strftime('%m/%d/%Y')">
-                                                        <span t-esc="((o.note_exam_id[4].date_today) + datetime.timedelta(days=2)).strftime('%d/%m/%Y')"
+                                                        <span t-esc="((o.session_id[4].date_exam) + datetime.timedelta(days=2)).strftime('%d/%m/%Y')"
                                                               />
                                                     </t>
                                                 </t>
@@ -713,8 +713,7 @@
                                                 <t t-if="len(o.note_exam_id) &gt; 5">
                                                     <t t-if="val_6[5].session_id[0].date_exam.strftime('%m/%d/%Y') &lt; context_timestamp(datetime.datetime.now()).strftime('%m/%d/%Y')">
 
-                                                        <span t-esc="((o.note_exam_id[5].date_today) + datetime.timedelta(days=2)).strftime('%d/%m/%Y')"
-                                                              />
+                                                        <span t-esc="((o.session_id[5].date_exam) + datetime.timedelta(days=2)).strftime('%d/%m/%Y')"/>
                                                     </t>
                                                     <t t-else="">
                                                         <span>.............</span>
