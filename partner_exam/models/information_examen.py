@@ -32,7 +32,6 @@ class NoteExamen(models.Model):
     date_exam = fields.Date(string="Date Examen", track_visibility='always')
     active = fields.Boolean('Active', default=True)
     module_ids = fields.One2many('mcmacademy.module', 'info_examen_id')
-    date_today = fields.Date(string="Date d'envoi de relevée de note: ", default=datetime.today())
     company_id = fields.Many2one(
         'res.company', string='Company', change_default=True,
         default=lambda self: self.env.company,
