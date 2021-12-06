@@ -2,13 +2,25 @@
 <odoo>
   <template id="mcm_website_theme_vtc" name="Formation VTC">
     <t t-call="website.layout">
-      <link href="/mcm_website_theme/static/src/css/theme.css" rel="stylesheet" />
-      <script defer="defer" type="text/javascript" src="/digimoov_website_templates/static/src/js/lazy-min.js"/>
-      <link rel="stylesheet" href="/mcm_website_theme/static/src/css/homepage.css"/>
-      <script type="text/javascript" src="/mcm_website_theme/static/src/js/msAds.js"/>
+      <div id="wrap" class="oe_structure oe_empty">
+        <link href="/mcm_website_theme/static/src/css/theme.css" rel="stylesheet" />
+        <script defer="defer" type="text/javascript" src="/digimoov_website_templates/static/src/js/lazy-min.js" />
+        <link rel="stylesheet" href="/mcm_website_theme/static/src/css/homepage.css" />
+        <script type="text/javascript" src="/mcm_website_theme/static/src/js/msAds.js" />
+        <link rel="stylesheet" href="/mcm_website_theme/static/src/css/cta-button.css" />
 
 
-      <style>
+
+        <style>
+          #sh_corpomate_theme_section_258 {
+              padding:  0 !important;
+          }
+          p{
+            font-size: 17px; 
+            line-height:28px;
+            color: #000;
+          }
+          
         .nav-pills .nav-link.active,
         .nav-pills .show &gt;
         .nav-link {
@@ -30,79 +42,105 @@
         }
 
         #sh_corpomate_theme_section_290 .sh_feature_box p {
-          margin-bottom: 25px;
+          margin-bottom: 0px !important;
           transition: 0.5s;
           font-size: 17px;
           line-height: 1.8;
           display: block !important;
-          -webkit-line-clamp: 3;
-          -webkit-box-orient: vertical;
+          -webkit-line-clamp: 6 !important;
+          -webkit-box-orient: initital;
           overflow: hidden;
           color: #616161;
           font-family: "Poppins", sans-serif;
         }
-      </style>
+        .feature_container{
+         
+          flex-direction: column;
+          justify-content: space-between;
+        }
+       .read_more{
+         color: #2667ae !important;
+         font: inherit !important;
+         font-size: 16px px !important;
+       }
+       #sh_corpomate_theme_section_76 .sh_content .sh_num_icon {
+    font-size: 30px;
+    color: #000000;
+    border: 1px solid #cecece;
+    border-radius: 50%;
+    padding: 25px 20px 20px 20px;
+    width: 90px;
+    height: 90px;
+    margin-top: -15px;
+    position: relative;
+    margin: 0 auto;
+    background: #fdd125;
+}
+#sh_corpomate_theme_section_76 .sh_content:hover .sh_num_icon {
+    font-size: 30px;
+    color: #fff;
+    border: 1px solid #cecece;
+    border-radius: 50%;
+    padding: 25px 20px 20px 20px;
+    width: 90px;
+    height: 90px;
+    margin-top: -15px;
+    position: relative;
+    margin: 0 auto;
+    background: #000000;
+}
+#sh_corpomate_theme_section_76 .sh_content p {
+    padding: 0 0 !important;
+    overflow: visible;
+    -webkit-box-orient: horizontal;
+}
+.res_height {
+    height: 423px;
+} 
 
-      <div id="wrap" class="oe_structure oe_empty">
-        <input t-att-value="request.website.microsoft_tracking_key" id="microsoft_tracking_key" type="hidden" />
+@media (max-width: 467.98px){
+.res_height {
+    height: 243px;
+} 
+}
 
-        <div id="myCarousel1629963079639" class="s_carousel carousel slide s_carousel_default" data-interval="10000" data-name="Carousel" style="border-style: none; border-width: 0px">
-          <ol class="carousel-indicators d-none">
-            <li data-target="#myCarousel1629963079639" data-slide-to="0" class="active" />
-          </ol>
-          <div class="carousel-inner">
-            <div class="carousel-item oe_img_bg pb0 pt104 oe_custom_bg active" style="
-                background-image: url('/mcm_website_theme/static/src/img/formation_vtc/1.png');
-                background-size: cover;
-                background-position: 1.81% 53.84%;
-              " data-name="Slide">
-              <div class="container">
-                <div class="row content">
-                  <div class="carousel-content pb120 col-lg-6">
-                    <div class="sh_content">
-                      <div class="container sh_content_text text-center">
-                        <h1 style="
-                            margin: auto auto 40px;
-                            font-size: 50px;
-                            color: rgb(255, 255, 255);
-                            max-width: 70%;
-                          ">
-                          <font style="color: rgb(0, 0, 0)">Formation chauffeur de VTC</font
-                          >
-                        </h1>
-                        <h1 />
-                        <p class="heading text-center" style="">
-                          <font color="#000000">Vous voulez devenir chauffeur de VTC ? Nous vous
-                            félicitons, car vous avez frappé à la bonne porte !
-                            En tant que centre de formation doté d’une
-                            expérience de plus de 10 ans dans le domaine, vous
-                            ne pourrez qu’être satisfait. Ce que nous vous
-                            offrons, c’est plus qu’une formation à distance :
-                            c’est un accompagnement et un suivi personnalisé
-                            pour garantir votre réussite.&amp;nbsp;</font
-                          >
-                          <br />
-                        </p>
-                        <br />
-                        <!-- <a href="#" class="btn btn-primary sh_btn_cm_8 sh_more_btn" data-original-title="" title="" aria-describedby="tooltip878772">En savoir plus</a> -->
-                        <a href="#" class="btn btn-primary sh_btn_cm_8 sh_more_btn" data-original-title="" title="" aria-describedby="tooltip694619">S'inscrire</a
-                        >
-                      </div>
-                    </div>
+
+        </style>
+        <section id="sh_corpomate_theme_section_258" class="sh_animation_part pt8" data-name="Formation Chauffeur de Taxi">
+          <div class="container-banner">
+            <div class="row">
+              <div class="col-lg-6 pb16 pt56" style="border-style: none; border-width: 0px;">
+                <div class="">
+                  <div class="text-center">
+                    <h1 class="title-mcm slider-text-info">
+                      Formation chauffeur
+                      <br />
+                      de
+                      <span class="subtitle-mcm-formation">VTC</span>
+                    </h1>
+                    <br />
+
+                    <p class="heading text-center">
+                   Vous voulez devenir chauffeur de VTC ? Nous vous félicitons, car vous avez frappé à la bonne porte ! En tant que centre de formation doté d’une expérience de plus de 10 ans dans le domaine, vous ne pourrez qu’être satisfait. Ce que nous vous offrons, c’est plus qu’une formation à distance : c’est un accompagnement et un suivi personnalisé pour garantir votre réussite. 
+                    </p>
+
+                    <br />
+
+                    <a href="#pricing">
+                      <button class="home-btn">S'inscrire</button>
+                    </a>
+
                   </div>
                 </div>
               </div>
+              <div class="col-lg-6 pb48 pt16">
+                <br />
+                <img data-src="/mcm_website_theme/static/src/img/formation_vtc/formation-chauffeur-vtc.webp" data-srcSafari="/mcm_website_theme/static/src/img/formation_vtc/formation-chauffeur-vtc.png" class="img img-fluid mx-auto lazy" alt="Devenir chauffeur professionnel VTC, Taxi ou Moto-Taxi" data-original-title="" title="Chauffeur vtc devant sa voiture" aria-describedby="tooltip202025" style="text-align: center;" />
+              </div>
             </div>
           </div>
-          <div class="carousel-control-prev d-none" data-target="#myCarousel1629963079639" data-slide="prev" role="img" aria-label="Previous" title="Previous">
-            <span class="carousel-control-prev-icon" />
-            <span class="sr-only o_default_snippet_text">Previous</span>
-          </div>
-          <div class="carousel-control-next d-none" data-target="#myCarousel1629963079639" data-slide="next" role="img" aria-label="Next" title="Next">
-            <span class="carousel-control-next-icon" />
-            <span class="sr-only o_default_snippet_text">Next</span>
-          </div>
-        </div>
+        </section>
+
         <!-- Logos-->
         <section class="container pt40 pb32">
 
@@ -110,788 +148,527 @@
 
 
             <div class=" col-md-3 col-sm-12 text-center mb-4 mb-md-0  ">
-              <img class="img-fluid" style="width: 100px;" src="/mcm_website_theme/static/src/img/cpf_.png"/>
+              <img class="img-fluid" style="width: 100px;" src="/mcm_website_theme/static/src/img/cpf_.png" />
             </div>
 
             <div class=" col-md-3 col-sm-12 text-center mb-4 mb-md-0 ">
-              <img class="img-fluid" style="width: 188px;" src="/mcm_website_theme/static/src/img/qualiopi.png"/>
+              <img class="img-fluid" style="width: 188px;" src="/mcm_website_theme/static/src/img/qualiopi.png" />
 
             </div>
             <div class=" col-md-3 col-sm-12 text-center mb-4 mb-md-0 ">
-              <img class="img-fluid" style="width: 110px;" src="/mcm_website_theme/static/src/img/Logo-vert-sur-fond-blanc-en-.jpg.jpg"/>
+              <img class="img-fluid" style="width: 110px;" src="/mcm_website_theme/static/src/img/Logo-vert-sur-fond-blanc-en-.jpg.jpg" />
 
             </div>
             <div class=" col-md-3 col-sm-12 text-center mb-4 mb-md-0 ">
-              <img class="img-fluid" style="width: 100px;" src="/mcm_website_theme/static/src/img/cap.png"/>
+              <img class="img-fluid" style="width: 100px;" src="/mcm_website_theme/static/src/img/cap.png" />
 
             </div>
-
-
 
 
           </div>
         </section>
         <!-- fin LOGOS-->
-        <section class="pt32 pb32" data-name="Title">
-          <div class="container">
-            <div class="row s_nb_column_fixed">
-              <div class="col-lg-12 s_title pt16 pb16" style="text-align: center">
-                <h2 class="s_title_default">
-                  <span style="font-weight: 700">
-                    <font style="font-size: 36px">Devenir chauffeur de VTC</font
-                    >
-                  </span>
-                </h2>
-              </div>
-            </div>
+
+        <section class="container s_text_block pt32 pb16" data-name="Text block">
+          <div class="offset-lg-1 col-lg-10 pt0 pb0">
+            <h2 class="s_title_default text-center pb16" style="font-size: 36px; font-weight:700">
+                 Devenir chauffeur de VTC
+            </h2>
+            <p>
+              Notre formation théorique à l’examen VTC vous permettra de mieux comprendre le métier de chauffeur de VTC, d'en maîtriser le fonctionnement et les principales règles, de vous préparer au mieux pour réussir l'examen VTC et, ainsi, obtenir votre carte professionnelle.          
+            </p>
           </div>
         </section>
-        <section class="s_text_block pb0 pt16" data-name="Text block">
-          <div class="container" style="border-style: none; border-width: 0px">
-            <div class="row">
-              <div class="pt8 offset-lg-1 col-lg-10 pb16" style="border-style: none; border-width: 0px">
-                <p class="lead">
-                  <font color="#000000" face="Poppins, sans-serif">
-                    <span style="font-size: 17px">Notre formation théorique à l’examen VTC vous permettra
-                      de mieux comprendre le métier de chauffeur de VTC, d'en
-                      maîtriser le fonctionnement et les principales règles, de
-                      vous préparer au mieux pour réussir l'examen VTC et,
-                      ainsi, obtenir votre carte professionnelle.</span
-                    >
-                  </font>
-                  <br />
-                </p>
-              </div>
-            </div>
-          </div>
-        </section>
-        <section class="s_text_image pt32 pb0" data-name="Image - Text">
+
+
+        <section class="s_text_image pt0 pb4" data-name="Image - Text">
           <div class="container">
             <div class="row align-items-center">
-              <div class="col-lg-6 pt16 pb16">
-                <img src="/mcm_website_theme/static/src/img/formation_vtc/2.png" class="img img-fluid mx-auto" alt="Odoo • Image et Texte" data-original-title="" title="" aria-describedby="tooltip38510" />
+              <div class="col-lg-6 pb24 pt0">
+                <img data-src="/mcm_website_theme/static/src/img/formation_vtc/profil-candidat-chauffeur-vtc.webp" data-srcSafari="/mcm_website_theme/static/src/img/formation_vtc/profil-candidat-chauffeur-vtc.png" class="img img-fluid mx-auto lazy res_height" alt="Devenir chauffeur professionnel VTC" title="Chauffeur vtc dans sa voiture" style="text-align: center;" />
               </div>
-              <div class="col-lg-6 pt16 pb16">
+              <div class="col-lg-6" style="border-style: none; border-width: 0px">
+                <h3 style="font-size: 26px; font-weight:700; color: #000; margin-block-end: 1.2rem; ">
+                  À qui s’adresse cette formation ?
+                </h3>
+                <p>
+                Notre formation VTC à distance concerne toute personne majeure qui souhaite devenir entrepreneur, en reconversion professionnelle, passionné par les métiers de transport, et qui répond à ces prérequis :
+                </p>
+                <p>
+                  <ul class="fa-ul" style="font-size:16.5px; line-height: 1.5rem;">
+                    <li>
+                      <i class="fa-li fa fa-square" style="margin-top:2px;"></i>
+                      Permis B non probatoire
+                    </li>
+                    <li>
+                      <i class="fa-li fa fa-square" style="margin-top:2px;"></i>
+                      Attestation d’aptitude médicale auprès d’un médecin agréé                                                        par la préfecture
+                    </li>
+                    <li>
+                      <i class="fa-li fa fa-square" style="margin-top:2px;"></i>
+                      Casier judiciaire B2 non affecté de certaines condamnations
+                    </li>
+                    <li>
+                      <i class="fa-li fa fa-square" style="margin-top:2px;"></i>
+                      Réussite à l’examen blanc MCM Academy
+                    </li>
+                  </ul>
+                </p>
+                <h3 style="font-size: 26px; font-weight:700; color: #000; margin-block-end: 1.2rem; ">
+                  Ses Objectifs :
+                </h3>
+
+                <p>
+                  <ul class="fa-ul" style="font-size:16.5px; line-height: 1.5rem;">
+                    <li>
+                      <i class="fa-li fa fa-square" style="margin-top:2px;"></i>
+                      Acquérir les savoirs, savoir-être et savoir-faire nécessaires à la réussite de l’examen VTC
+                    </li>
+                    <li>
+                      <i class="fa-li fa fa-square" style="margin-top:2px;"></i>
+                      Préparation aux épreuves d’admissibilité de l’examen VTC (théorie)
+                    </li>
+                    <li>
+                      <i class="fa-li fa fa-square" style="margin-top:2px;"></i>
+                      <a class="read_more" href="/mcm_website_theme/static/mcm_website_theme/static/pdf/programme_de_formation_MCM_ACADEMY_2021.pdf">En savoir plus</a>
+                    </li>
+                  </ul>
+                </p>
+              </div>
+              <div class="s_title col-lg-12 pt12 pb0" style="                   text-align: center;                   border-style: none;                   border-width: 0px;                 ">
+                <div class="s_alert clearfix w-100 s_alert_sm alert-100" data-name="Alert" style="">
+                  <i class="fa fa-2x fa-info-circle s_alert_icon" />
+                  <div class="s_alert_content">
+                    <p style="text-align: left">
+                      Nos formations incluent les personnes en situation
+                d'handicap. Bien entendu, nous restons à votre disposition
+                pour répondre à toutes vos questions, en contactant notre
+                référent handicap sur notre espace client accessible sur
+                notre site web
+                      <a href="https://dev.mcm-academy.fr/service-clientele" style="background-color: rgb(255, 255, 255)">
+                        <span style="color: rgb(0, 0, 255)">par ici</span>
+                      </a>
+                      .
+                      <br />
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+
+        <!-- Etapes new-->
+        <section id="sh_corpomate_theme_section_76" class="" data-name="About Snippet 3">
+          <div class="container">
+            <div class="row">
+              <div class="container pt16 pb16" style="border-style: none; border-width: 0px;">
+                <div class="col-lg-12 s_title pt24 pb16" style="text-align: center">
+                  <h2 class="font-weight-bold display-4 " style="font-size: 32px">
+                    Les démarches à suivre pour souscrire à la formation VTC
+                  </h2>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="sh_content">
+                  <div class="sh_num_icon">
+                    <span class="sh_icon">1</span>
+                  </div>
+                  <div class="feature_container">
+                    <h3 style="font-weight: 600;">              
+                  1. Souscrire à la formation en ligne à la Chambre des
+                  Métiers et de l'Artisanat (CMA)
+                    </h3>
+                    <p class="font-weight-light my-3">
+                      Une inscription sur la plateforme de la Chambre 
+                      des Métiers et de l'Artisanat (CMA) est obligatoire.
+                    </p>
+                    <div class="text-center">
+                      <a class="read_more" href="/mcm_website_theme/static/pdf/DEMARCHES_D'INSCRIPTION_A_LA_CMA_-_MCM_ACADEMY.pdf">
+                          En savoir plus
+                        <i class="fa fa-info-circle"></i>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-md-4">
+                <div class="sh_content sh_second_content">
+                  <div class="sh_num_icon">
+                    <span class="sh_icon">2</span>
+                  </div>
+                  <div class="feature_container">
+                    <h3 style="font-weight: 600;">              
+                  2. Souscrire à la formation en ligne chez MCM Academy
+                    </h3>
+                    <p class="font-weight-light my-3">
+                      Inscription facile en 3 étapes : tout se passe sur notre site web.
+                    </p>
+                    <div class="text-center">
+                      <a class="read_more" href="/mcm_website_theme/static/pdf/DEMARCHES_D'INSCRIPTION_SUR_LE_SITE_MCM_ACADEMY.pdf">
+                          En savoir plus
+                        <i class="fa fa-info-circle"></i>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-md-4">
+                <div class="sh_content sh_last_content">
+                  <div class="sh_num_icon">
+                    <span class="sh_icon">3</span>
+                  </div>
+                  <div class="feature_container">
+                    <h3 style="font-weight: 600;">              
+                  3. Déposer votre dossier à la préfecture pour obtenir votre carte professionnelle
+                    </h3>
+                    <p class="font-weight-light my-3">
+                      Une fois l’examen passé et votre certificat de réussite obtenu, il faut déposer un dossier 
+                      à la préfecture.
+                    </p>
+                    <div class="text-center">
+                      <a class="read_more" href="/mcm_website_theme/static/pdf/Devenez_chauffeur_taxi_vtc_démarches_dépôt_dossier_préfecture.pdf">
+                          En savoir plus
+                        <i class="fa fa-info-circle"></i>
+                      </a>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+
+            </div>
+
+          </div>
+        </section>
+        <!-- Telecharger-->
+        <section id="sh_corpomate_theme_section_167" class="sh_animation_part" data-name="Call To Action" style="background-color: rgb(253, 209, 5); margin : 46px 0px;">
+          <div class="container">
+            <h3 style="color: rgb(0, 0, 0); font-size: 24px">
+            TÉLÉCHARGER LE PROGRAMME DE LA FORMATION VTC
+            </h3>
+
+            <a class="animated-button-black" href="/mcm_website_theme/static/pdf/programme_de_formation_MCM_ACADEMY_2021.pdf" title="Programme de la formation VTC">
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
+              JE TELECHARGE
+            </a>
+          </div>
+        </section>
+        <!-- -->
+        <section class="s_text_image mt12 mb12" data-name="Image - Text">
+          <div class="container">
+            <div class="row align-items-center">
+
+              <div class="col-lg-6" style="border-style: none; border-width: 0px">
+                <h2 style="font-size: 26px; font-weight:700; color: #000; margin-block-end: 1.2rem; ">
+                 Déroulement de la formation VTC : 
+                </h2>
+                <p>
+                Une formation VTC à distance de 70 h :
+                </p>
+
+                <ul class="fa-ul" style="font-size:16.5px; line-height: 1.5rem;">
+                  <li style=" padding-block-end: 20px;">
+                    <i class="fa-li fa fa-square" style="margin-top:2px;"></i>
+                      Des vidéos préenregistrées bien détaillées
+                  </li>
+                  <li style=" padding-block-end: 20px;">
+                    <i class="fa-li fa fa-square" style="margin-top:2px;"></i>
+                      Des programmes de révision bien étudiés                                                         par la préfecture
+                  </li>
+                  <li style=" padding-block-end: 20px;">
+                    <i class="fa-li fa fa-square" style="margin-top:2px;"></i>
+                      Des "Lives" avec les formateurs pour les explications
+                  </li>
+                  <li style=" padding-block-end: 20px;">
+                    <i class="fa-li fa fa-square" style="margin-top:2px;"></i>
+                      Du coaching par mail, téléphone et visioconférence  
+                  </li>
+                </ul>
+              </div>
+              <div class="col-lg-6 pb24 pt0">
+                <img data-src="/mcm_website_theme/static/src/img/formation_vtc/formation-en-ligne-vtc.webp" data-srcSafari="/mcm_website_theme/static/src/img/formation_vtc/formation-en-ligne-vtc.png" class="img img-fluid mx-auto lazy" alt="Candidat vtc suit une formation en ligne sur pc" title="Candidat vtc suit une formation en ligne sur pc" style="text-align: center;" />
+              </div>
+            </div>
+          </div>
+        </section>
+        <!-- -->
+        <section class="s_text_image mt12 mb12" data-name="Image - Text">
+          <div class="container">
+            <div class="row align-items-center">
+              <div class="col-lg-6 pb24 pt0">
+                <img data-src="/mcm_website_theme/static/src/img/formation_vtc/programme-de-formation-vtc.webp" data-srcSafari="/mcm_website_theme/static/src/img/formation_vtc/programme-de-formation-vtc.png" class="img img-fluid lazy" alt="Candidat suit sa formation vtc sur tablette" title="Candidat suit sa formation vtc sur tablette" style="text-align: center;" />
+              </div>
+              <div class="col-lg-6" style="border-style: none; border-width: 0px">
+                <h2 style="font-size: 26px; font-weight:700; color: #000; margin-block-end: 1.2rem; ">
+                 LES MODULES DE LA FORMATION VTC
+                </h2>
+                <p>
+               Pendant votre formation, nous allons vous apprendre à maîtriser les modules suivants :  
+                </p>
+                <ul class="fa-ul" style="font-size:16.5px; line-height: 1.5rem;">
+                  <li style=" padding-block-end: 20px;">
+                    <i class="fa-li fa fa-square" style="margin-top:2px;"></i>
+                      Réglementation du transport public particulier de personnes
+                  </li>
+                  <li style=" padding-block-end: 20px;">
+                    <i class="fa-li fa fa-square" style="margin-top:2px;"></i>
+                      Sécurité routière
+                  </li>
+                  <li style=" padding-block-end: 20px;">
+                    <i class="fa-li fa fa-square" style="margin-top:2px;"></i>
+                      Gestion
+                  </li>
+                  <li style=" padding-block-end: 20px;">
+                    <i class="fa-li fa fa-square" style="margin-top:2px;"></i>
+                      Français
+                  </li>
+                  <li style=" padding-block-end: 20px;">
+                    <i class="fa-li fa fa-square" style="margin-top:2px;"></i>
+                      Anglais
+                  </li>
+                  <li style=" padding-block-end: 20px;">
+                    <i class="fa-li fa fa-square" style="margin-top:2px;"></i>
+                      Développement commercial
+                  </li>
+                  <li style=" padding-block-end: 20px;">
+                    <i class="fa-li fa fa-square" style="margin-top:2px;"></i>
+                      Réglementation vtc
+                  </li>
+                  <li style=" padding-block-end: 20px;">
+                    <i class="fa-li fa fa-square" style="margin-top:2px;; color: #2667ae !important"></i>
+                    <a class="read_more" href="/mcm_website_theme/static/pdf/programme_de_formation_MCM_ACADEMY_2021.pdf">En savoir plus</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <div id="pricing">
+          <input t-att-value="request.website.microsoft_tracking_key" id="microsoft_tracking_key" type="hidden" />
+
+          <section id="sh_corpomate_theme_section_188" class="sh_animation_part" data-name="Pricing">
+            <div class="container">
+              <div class="sh_title">
                 <h2>
-                  <font color="#000000" face="Poppins, sans-serif">
-                    <span style="font-size: 24px">
-                      <b>À qui s’adresse cette formation ?</b>
-                    </span>
-                  </font>
+                  <b>Inscrivez-vous dès maintenant !</b>
                   <br />
                 </h2>
-                <h2 />
-                <p style="">
-                  <font color="#000000" face="Poppins, sans-serif">
-                    <span style="font-size: 14px">Notre formation VTC à distance concerne toute personne
-                      majeure qui souhaite devenir entrepreneur, en reconversion
-                      professionnelle, passionné par les métiers de transport,
-                      et qui répond à ces prérequis :</span
-                    >
-                  </font>
-                  <br />
-                </p>
-                <p style="">
-                  &amp;nbsp;<span class="fa fa-check" style="font-size: 15px" data-original-title="" title="" aria-describedby="tooltip648341" />
-                <font style="">&amp;nbsp;<span style="
-                        color: rgb(0, 0, 0);
-                        font-family: Poppins, sans-serif;
-                        font-size: 14px;
-                      ">Permis B non probatoire<br />
-                </span>
-              </font
-                  >&amp;nbsp;<span class="fa fa-check" style="font-size: 15px" />
-            <span style="font-size: 14px">&amp;nbsp;Attestation d’aptitude médicale auprès d’un
-                    médecin agréé par la préfecture</span
-                  >&amp;nbsp;<br />
-                  &amp;nbsp;<span class="fa fa-check" style="font-size: 15px" data-original-title="" title="" aria-describedby="tooltip400723" />
-                  &amp;nbsp;<span style="font-size: 14px">Casier judiciaire B2 non affecté de certaines
-                    condamnations</span
-                  >
-        <br />
-        <span class="fa fa-check" data-original-title="" title="" aria-describedby="tooltip792804" style="font-size: 15px" />
-        <span style="font-size: 14px">
-          <font color="#000000" face="Poppins, sans-serif">&amp;nbsp;</font
-                    >Réussite à l’examen blanc MCM Academy</span
-                  >
-        <br />
-      </p>
-      <p style="">
-        <span style="
-                      font-size: 24px;
-                      color: rgb(0, 0, 0);
-                      font-family: Poppins, sans-serif;
-                    ">
-          <span style="font-weight: 700">Ses objectifs:</span
-                    >&amp;nbsp;<br />
-        </span>
-        <span class="fa fa-chevron-right" style="font-size: 15px" data-original-title="" title="" aria-describedby="tooltip774032" />
-        <font color="#000000" face="Poppins, sans-serif" style="">
-          <span style="font-size: 14px">&amp;nbsp;Acquérir les savoirs, savoir-être et
-                      savoir-faire nécessaires à la réussite de l’examen
-                      VTC&amp;nbsp;</span
-                    >
-          <br />
-        </font>
-        <span class="fa fa-chevron-right" style="font-size: 15px" />
-        <font color="#000000" face="Poppins, sans-serif" style="font-size: 15px">
-          <span style="font-size: 14px">&amp;nbsp;</span>
-        </font>
-        <font color="#000000" face="Poppins, sans-serif">
-          <span style="font-size: 14px">Préparation aux épreuves d’admissibilité de l’examen VTC
-                      (théorie)</span
-                    >
-        </font>
-        <br />
-        <br />
-        <span class="fa fa-chevron-right" data-original-title="" title="" aria-describedby="tooltip560396" style="font-size: 15px; color: rgb(8, 82, 148)" />
-                  &amp;nbsp;<span style="
-                      color: rgb(0, 0, 255);
-                      font-family: Poppins, sans-serif;
-                      font-size: 14px;
-                    ">&amp;nbsp;
-        <a href="/mcm_website_theme/static/pdf/programme_de_formation_MCM_ACADEMY_2021.pdf" target="_blank" data-original-title="" title="" style="color: #2667ae">En savoir plus</a
-                    >
-      </span>
-    </p>
-  </div>
-</div>
-</div>
-</section>
-<section id="sh_corpomate_theme_section_258" class="sh_animation_part" data-name="practice" style="padding: 0px">
-<div class="container">
-<div class="row">
-  <div class="s_alert clearfix w-100 s_alert_sm alert-100" data-name="Alert" style="">
-    <i class="fa fa-2x fa-info-circle s_alert_icon" />
-    <div class="s_alert_content">
-      <p style="text-align: left">
-        <span style="font-size: 0.75rem">Nos formations incluent les personnes en situation
-                      d'handicap.&amp;nbsp;</span
-                    >
-        <span style="font-size: 0.75rem">Bien entendu, nous restons à votre disposition pour
-                      répondre à toutes vos questions, en contactant notre
-                      référent handicap sur notre espace client accessible sur
-                      notre site web</span
-                    >&amp;nbsp;<a href="https://dev.mcm-academy.fr/service-clientele" style="background-color: rgb(255, 255, 255)">
-        <font style="color: rgb(0, 0, 255)">par ici</font>
-      </a
-                    >.      <br />
-    </p>
-  </div>
-</div>
-<div class="col-lg-12 s_title pt16 pb48" style="text-align: center">
-  <h2>
-    <font color="#000000" face="Poppins, sans-serif">
-      <span style="font-size: 24px">
-        <span style="font-weight: 700">Les démarches à suivre pour souscrire à la formation
-                        VTC</span
-                      >
-      </span>
-    </font>
-  </h2>
-</div>
-<div class="col-md-6 col-sm-6 col-12 sh_animation_part col-lg-4" style="border-style: none; border-width: 0px">
-  <div class="sh_content">
-    <div class="sh_icon">
-      <span class="fa fa-star" data-original-title="" title="" aria-describedby="tooltip285245" style="
-                        background-color: rgb(255, 227, 71);
-                        color: rgb(0, 0, 0);
-                      " />
-    </div>
-    <h4 class="o_default_snippet_text">
-      <br />
-    </h4>
-    <div>
-      <h4>
-        <span style="
-                          background-color: rgba(255, 255, 255, 0.9);
-                          color: rgb(0, 0, 0);
-                          font-family: Poppins, sans-serif;
-                          text-align: left;
-                          text-transform: none;
-                        ">1.&amp;nbsp;</span
-                      >&amp;nbsp;<font color="#000000" face="Poppins, sans-serif">
-        <span style="text-transform: none">Souscrire à la formation en ligne à la Chambre des
-                          Métiers et de l’Artisanat</span
-                        >
-      </font>
-    </h4>
-    <p>
-      <font style="color: rgb(66, 66, 66)">Une inscription sur la plateforme de la Chambre des
-                        Métiers et de l'Artisanat (CMA) est obligatoire.</font
-                      >
-    </p>
-    <p>
-      <font style="color: rgb(66, 66, 66)">
-        <br />
-      </font>
-      <span class="fa fa-chevron-right" />
-      <a href="/mcm_website_theme/static/pdf/DEMARCHES_D'INSCRIPTION_A_LA_CMA_-_MCM_ACADEMY.pdf">
-                        &amp;nbsp;
-        <span style="
-                            text-align: left;
-                            color: rgb(8, 82, 148);
-                            font-family: Poppins, sans-serif;
-                            font-size: 14px;
-                          ">&amp;nbsp;En savoir plus</span
-                        >
-      </a>
-    </p>
-  </div>
-</div>
-</div>
-<div class="col-md-6 col-sm-6 col-12 sh_animation_part col-lg-4">
-<div class="sh_content">
-  <div class="sh_icon">
-    <span class="fa fa-star" data-original-title="" title="" aria-describedby="tooltip830561" style="
-                        background-color: rgb(255, 227, 71);
-                        color: rgb(0, 0, 0);
-                      " />
-  </div>
-  <h3 style="
-                      margin: 25px 0px 15px;
-                      font-weight: 700;
-                      font-size: 22px;
-                      transition: all 0.4s ease 0s;
-                      color: rgb(255, 255, 255);
-                      font-family: Poppins, sans-serif;
-                    ">
-    <font style="color: rgb(0, 0, 0); font-size: 18px">2. Souscrire à la formation en ligne chez MCM
-                      Academy</font
-                    >
-  </h3>
-  <h4 />
-  <p style="
-                      font-size: 15px;
-                      font-weight: 400;
-                      text-transform: none;
-                    ">
-    <font style="color: rgb(66, 66, 66)">Inscription facile en 3 étapes : tout tout se passe sur
-                      notre site web.</font
-                    >
-  </p>
-  <p style="
-                      font-size: 15px;
-                      font-weight: 400;
-                      text-transform: none;
-                    ">
-    <font style="color: rgb(66, 66, 66)">
-      <br />
-      <span class="fa fa-chevron-right" data-original-title="" title="" aria-describedby="tooltip560396" style="
-                          font-size: 15px;
-                          text-align: left;
-                          color: rgb(8, 82, 148);
-                        " />
-      <a href="/mcm_website_theme/static/pdf/DEMARCHES_D'INSCRIPTION_A_LA_CMA_-_MCM_ACADEMY.pdf">
-                        &amp;nbsp;
-        <span style="
-                            text-align: left;
-                            color: rgb(8, 82, 148);
-                            font-family: Poppins, sans-serif;
-                            font-size: 14px;
-                          ">&amp;nbsp;En savoir plus</span
-                        >
-      </a>
-    </font>
-  </p>
-</div>
-</div>
-<div class="col-md-6 col-sm-6 col-12 sh_animation_part col-lg-4">
-<div class="sh_content">
-  <div class="sh_icon">
-    <span class="fa fa-star" data-original-title="" title="" aria-describedby="tooltip707054" style="
-                        background-color: rgb(255, 227, 71);
-                        color: rgb(0, 0, 0);
-                      " />
-  </div>
-  <h3 style="
-                      margin: 25px 0px 15px;
-                      font-weight: 700;
-                      font-size: 22px;
-                      transition: all 0.4s ease 0s;
-                      color: rgb(255, 255, 255);
-                      font-family: Poppins, sans-serif;
-                    ">
-    <font style="color: rgb(0, 0, 0); font-size: 18px">3. Déposer votre dossier à la préfecture pour obtenir
-                      votre carte professionnelle</font
-                    >
-  </h3>
-  <h4 />
-  <p>
-    <font color="#424242">Une fois l’examen passé et votre certificat de réussite
-                      obtenu, il faut déposer un dossier à la préfecture.</font
-                    >
-    <br />
-  </p>
-  <p style="
-                      font-size: 15px;
-                      font-weight: 400;
-                      text-transform: none;
-                    ">
-    <font style="color: rgb(66, 66, 66)">
-      <br />
-    </font>
-  </p>
-  <p style="
-                      font-size: 15px;
-                      font-weight: 400;
-                      text-transform: none;
-                    ">
-    <font style="color: rgb(66, 66, 66)">
-      <span class="fa fa-chevron-right" data-original-title="" title="" aria-describedby="tooltip560396" style="
-                          font-size: 15px;
-                          text-align: left;
-                          color: rgb(8, 82, 148);
-                        " />
-      <a href="/mcm_website_theme/static/pdf/DEMARCHES_D'INSCRIPTION_SUR_LE_SITE_MCM_ACADEMY.pdf">
-                        &amp;nbsp;
-      </a>
-      <a href="/mcm_website_theme/static/pdf/Devenez_chauffeur_taxi_vtc_démarches_dépôt_dossier_préfecture.pdf">
-        <span style="
-                            text-align: left;
-                            color: rgb(8, 82, 148);
-                            font-family: Poppins, sans-serif;
-                            font-size: 14px;
-                          ">&amp;nbsp;En savoir plus</span
-                        >
-      </a>
-    </font>
-  </p>
-</div>
-</div>
-</div>
-</div>
-</section>
-<section id="sh_corpomate_theme_section_258" class="sh_animation_part pt8" data-name="practice">
-<div class="container">
-<div class="row">
-<div class="pt8 pb16 col-lg-12" style="border-style: none; border-width: 0px">
-<div class="s_btn text-center pt16 pb16" data-name="Button">
-  <a href="/mcm_website_theme/static/pdf/programme_de_formation_MCM_ACADEMY_2021.pdf" class="btn btn-primary sh_btn_cm_8 btn-lg" data-original-title="" title="" aria-describedby="tooltip710781" target="_blank">TÉLÉCHARGER LE PROGRAMME DE LA FORMATION VTC</a
-                  >
-</div>
-<p class="lead">
-  <font color="#000000" face="Poppins, sans-serif">
-    <span style="font-size: 17px">&amp;nbsp;</span>
-  </font>
-  <br />
-</p>
-</div>
-<div class="col-lg-6 pb16 pt56" style="border-style: none; border-width: 0px">
-<h2>
-  <font color="#000000" face="Poppins, sans-serif">
-    <span style="font-size: 24px">
-      <b>Déroulement de la formation VTC</b>
-    </span>
-    <b>
-      <span style="font-size: 24px">:&amp;nbsp;</span>
-    </b>
-  </font>
-  <br />
-  <font color="#000000" face="Poppins, sans-serif">
-    <b />
-  </font>
-</h2>
-<p>
-  <font color="#000000" face="Poppins, sans-serif">
-    <span style="font-size: 18px">Une formation VTC à distance de 70 h</span
-                    >&amp;nbsp;<span style="font-size: 14px">:</span>
-  </font>
-  <br />
-  <font color="#000000" face="Poppins, sans-serif" />
-</p>
-<p>
-  <span id="docs-internal-guid-389a209e-7fff-75ad-6a97-97dbfa311600" />
-</p>
-<p>
-                  &amp;nbsp;<span class="fa fa-check" />
- &amp;nbsp;<font color="#000000" face="Poppins, sans-serif">
-<span style="font-size: 14px">Des vidéos préenregistrées bien détaillées</span
-                    >
-</font>
-</p>
-<p>
-                  &amp;nbsp;<span class="fa fa-check" />
- &amp;nbsp;<font color="#000000" face="Poppins, sans-serif">
-<span style="font-size: 14px">Des programmes de révision bien étudiés</span
-                    ></font
-                  >&amp;nbsp;
-</p>
-<p>
-                  &amp;nbsp;<span class="fa fa-check" />
- &amp;nbsp;<font color="#000000" face="Poppins, sans-serif">
-<span style="font-size: 14px">Des examens blancs pour s’entraîner</span
-                    >
-<br />
-</font>
-<br />
-<span class="fa fa-check" />
-<font color="#000000" face="Poppins, sans-serif">
-<span style="font-size: 14px">&amp;nbsp;Des "Lives" avec les formateurs pour les
-                      explications</span
-                    >
-<br />
-</font>
-<br />
-<span class="fa fa-check" data-original-title="" title="" aria-describedby="tooltip967430" />
-                  &amp;nbsp;<font color="#000000" face="Poppins, sans-serif">
-<span style="font-size: 14px">Du coaching par mail, téléphone et visioconférence</span
-                    >
-</font>
-                  &amp;nbsp;
-</p>
-</div>
-<div class="col-lg-6 pb48 pt16">
-<br />
-<img src="/mcm_website_theme/static/src/img/formation_vtc/3.png" class="img img-fluid mx-auto" alt="Odoo • Texte et Image" data-original-title="" title="" aria-describedby="tooltip202025" style="text-align: center" />
-</div>
-</div>
-</div>
-</section>
-<section class="pt32 pb0" data-name="Title">
-<div class="container">
-<div class="row s_nb_column_fixed">
-<div class="col-lg-12 s_title pb8 pt0" style="text-align: center">
-<h2>
-<font color="#000000" face="Poppins, sans-serif">
-<span style="font-size: 24px">
-<span style="font-weight: 700">LES MODULES DE LA FORMATION&amp;nbsp;VTC</span
-                      >
-</span>
-</font>
-</h2>
-</div>
-</div>
-</div>
-</section>
-<section class="s_text_block pt0 pb0" data-name="Text block">
-<div class="container">
-<div class="row"></div>
-</div>
-</section>
-<section id="sh_corpomate_theme_section_238" class="pt16" data-name="Practice Area">
-<div class="container">
-<div class="row">
-<div class="pt16 pb16 col-lg-7" style="border-style: none; border-width: 0px">
-<h2>
-<font style="color: rgb(0, 0, 0); font-size: 18px">
-<br />
-</font>
-</h2>
-<p>
-<font color="#000000" face="Poppins, sans-serif">
-<span style="font-size: 18px">Pendant votre formation, nous allons vous apprendre à
-                      maîtriser les modules suivants :</span
-                    >
-</font>
-<font color="#000000" face="Poppins, sans-serif" style="font-size: 18px">&amp;nbsp;</font
-                  >
-</p>
-<p>
-<span class="fa fa-chevron-right" style="font-size: 14px" />
-                  &amp;nbsp;<span style="
-                      color: rgb(0, 0, 0);
-                      font-family: Poppins, sans-serif;
-                      font-size: 14px;
-                    ">RÉGLEMENTATION DU TRANSPORT PUBLIC PARTICULIER DE
-                    PERSONNES</span
-                  >
-</p>
-<p>
-<span class="fa fa-chevron-right" style="font-size: 14px" />
-                  &amp;nbsp;<span style="
-                      color: rgb(0, 0, 0);
-                      font-family: Poppins, sans-serif;
-                      font-size: 14px;
-                    ">SÉCURITÉ ROUTIÈRE</span
-                  >
-</p>
-<p>
-<span class="fa fa-chevron-right" style="font-size: 14px" />
-                  &amp;nbsp;<span style="
-                      color: rgb(0, 0, 0);
-                      font-family: Poppins, sans-serif;
-                      font-size: 14px;
-                    ">GESTION</span
-                  >
-</p>
-<p>
-<span class="fa fa-chevron-right" style="font-size: 14px" />
-                  &amp;nbsp;<span style="
-                      color: rgb(0, 0, 0);
-                      font-family: Poppins, sans-serif;
-                      font-size: 14px;
-                    ">FRANÇAIS</span
-                  >
-</p>
-<p>
-<span class="fa fa-chevron-right" style="font-size: 14px" />
-                  &amp;nbsp;<span style="
-                      color: rgb(0, 0, 0);
-                      font-family: Poppins, sans-serif;
-                      font-size: 14px;
-                    ">ANGLAIS</span
-                  >
-</p>
-<p>
-<span class="fa fa-chevron-right" style="font-size: 14px" />
-                  &amp;nbsp;<span style="
-                      color: rgb(0, 0, 0);
-                      font-family: Poppins, sans-serif;
-                      font-size: 14px;
-                    ">DÉVELOPPEMENT COMMERCIAL</span
-                  >
-</p>
-<p>
-<span class="fa fa-chevron-right" style="font-size: 14px" />
-                  &amp;nbsp;<span style="
-                      color: rgb(0, 0, 0);
-                      font-family: Poppins, sans-serif;
-                      font-size: 14px;
-                    ">RÉGLEMENTATION VTC</span
-                  >
-<br />
-<br />
-<span class="fa fa-chevron-right" data-original-title="" title="" aria-describedby="tooltip560396" style="font-size: 15px; color: rgb(8, 82, 148)" />
-<span style="
-                      color: rgb(8, 82, 148);
-                      font-family: Poppins, sans-serif;
-                      font-size: 14px;
-                    ">&amp;nbsp;
-</span>
-<span style="
-                      color: rgb(0, 0, 255);
-                      font-family: Poppins, sans-serif;
-                      font-size: 18px;
-                    ">
-<a href="/mcm_website_theme/static/pdf/programme_de_formation_MCM_ACADEMY_2021.pdf" style="color: rgb(8, 82, 148)" target="_blank">Découvrez les modules en détail</a
-                    >
-</span>
-<span style="
-                      color: rgb(0, 0, 0);
-                      font-family: Poppins, sans-serif;
-                      font-size: 18px;
-                    ">
-<br />
-</span>
-</p>
-</div>
-<div class="col-lg-5 col-12">
-<div class="sh_img">
-<img src="/mcm_website_theme/static/src/img/formation_vtc/4.png" data-original-title="" title="" aria-describedby="tooltip859873" />
-</div>
-</div>
-</div>
-</div>
-</section>
-<!-- PRICING TABLE-->
-<div id="pricing">
-<input t-att-value="request.website.microsoft_tracking_key" id="microsoft_tracking_key" type="hidden" />
-
-<section id="sh_corpomate_theme_section_188" class="sh_animation_part" data-name="Pricing">
-<div class="container">
-<div class="sh_title">
-<h2>
-<b>Inscrivez-vous dès maintenant !</b>
-<br />
-</h2>
-<h4 style="
+                <h4 style="
                     margin-top: 20px;
                     margin-bottom: 0.5rem;
                     font-size: 18px;
                   ">
                   Choisissez le pack qui vous convient&amp;nbsp;
-</h4>
-<p>
-<br />
-</p>
-</div>
-<div class="row">
-<div class="col-md-4 sh_animation_part" style="border-style: none; border-width: 0px">
-<div class="sh_pricing">
-<t t-foreach="mcm_products" t-as="product">
-<t t-if="product.default_code=='vtc'">
-<form action="/shop/cart/update" method="post" id="form-1-1">
-<input type="hidden" class="product_id" name="product_id" id="vtc_product" t-att-value="product.id" />
-<input type="hidden" name="promo" t-att-value="promo.id" t-if="promo" />
-<h4>PACK VTC</h4>
-<h4>
-<span t-esc="round(product.list_price)" />
-<span style="color: #fdd105" t-esc="product.currency_id.symbol" />
-</h4>
-<ul class="">
-<li>Formation 70 h (100 % en ligne)</li>
-<li>Accès à + de 12 examens d'entraînement</li>
-<li>Assistance par mail</li>
-<li>Assistance&amp;nbsp;par téléphone</li>
-<li>Assistance&amp;nbsp;par visioconférence</li>
-<li>
+                </h4>
+                <p>
+                  <br />
+                </p>
+              </div>
+              <div class="row">
+                <div class="col-md-4 sh_animation_part" style="border-style: none; border-width: 0px">
+                  <div class="sh_pricing">
+                    <t t-foreach="mcm_products" t-as="product">
+                      <t t-if="product.default_code=='vtc'">
+                        <form action="/shop/cart/update" method="post" id="form-1-1">
+                          <input type="hidden" class="product_id" name="product_id" id="vtc_product" t-att-value="product.id" />
+                          <input type="hidden" name="promo" t-att-value="promo.id" t-if="promo" />
+                          <h4>PACK VTC</h4>
+                          <h5 style="color: #636161">Éligible au CPF</h5>
+                          <h4>
+                            <span t-esc="round(product.list_price)" />
+                            <span style="color: #fdd105" t-esc="product.currency_id.symbol" />
+                          </h4>
+                          <ul class="">
+                            <li>Formation 70 h (100 % en ligne)</li>
+                            <li>Accès à + de 12 examens d'entraînement</li>
+                            <li>Assistance par mail</li>
+                            <li>Assistance&amp;nbsp;par téléphone</li>
+                            <li>Assistance&amp;nbsp;par visioconférence</li>
+                            <li>
                               Lives&amp;nbsp;avec les formateurs pour
                               explications
-</li>
-<li>Révision du programme avant examen</li>
-</ul>
-<div class="sh_btn">
-<!-- <a class="btn btn-primary sh_btn_cm_8" data-original-title="" title="" aria-describedby="tooltip357369" onClick="(function(){document.getElementById('form-1-1').submit();return false;})();return false;">
+                            </li>
+                            <li>Révision du programme avant examen</li>
+                          </ul>
+                          <div class="sh_btn">
+                            <!-- <a class="btn btn-primary sh_btn_cm_8" data-original-title="" title="" aria-describedby="tooltip357369" onClick="(function(){document.getElementById('form-1-1').submit();return false;})();return false;">
                             Je m'inscris
                                                 </a> -->
-<a href="#pricing">
-<button class="home-btn" onClick="(function(){packVtcPageFromationVtc();document.getElementById('form-1-1').submit();return false;})();return false;">
+                            <a href="#pricing">
+                              <button class="home-btn" onClick="(function(){packVtcPageFormationTaxi();document.getElementById('form-1-1').submit();return false;})();return false;">
                                 Je m'inscris
-</button>
-</a>
-</div>
-</form>
-</t>
-</t>
-</div>
-</div>
-<div class="col-md-4 sh_animation_part">
-<div class="sh_pricing">
-<t t-foreach="mcm_products" t-as="product">
-<t t-if="product.default_code=='taxi'">
-<form action="/shop/cart/update" method="post" id="form-1-2">
-<input type="hidden" class="product_id" name="product_id" id="taxi_product" t-att-value="product.id" />
-<input type="hidden" name="promo" t-att-value="promo.id" t-if="promo" />
-<h4>PACK TAXI</h4>
-<h4>
-<span t-esc="round(product.list_price)" />
-<span style="color: #fdd105" t-esc="product.currency_id.symbol" />
-</h4>
-<ul class="">
-<li>Formation 70 h (100 % en ligne)</li>
-<li>Accès à + de 12 examens d'entraînement</li>
-<li>Assistance&amp;nbsp;par mail</li>
-<li>Assistance&amp;nbsp;par téléphone</li>
-<li>Assistance&amp;nbsp;par visioconférence</li>
-<li>
+                              </button>
+                            </a>
+                          </div>
+                        </form>
+                      </t>
+                    </t>
+                  </div>
+                </div>
+                <div class="col-md-4 sh_animation_part">
+                  <div class="sh_pricing">
+                    <t t-foreach="mcm_products" t-as="product">
+                      <t t-if="product.default_code=='taxi'">
+                        <form action="/shop/cart/update" method="post" id="form-1-2">
+                          <input type="hidden" class="product_id" name="product_id" id="taxi_product" t-att-value="product.id" />
+                          <input type="hidden" name="promo" t-att-value="promo.id" t-if="promo" />
+                          <h4>PACK TAXI</h4>
+                          <h5 style="color: #636161">Éligible au CPF</h5>
+                          <h4>
+                            <span t-esc="round(product.list_price)" />
+                            <span style="color: #fdd105" t-esc="product.currency_id.symbol" />
+                          </h4>
+                          <ul class="">
+                            <li>Formation 70 h (100 % en ligne)</li>
+                            <li>Accès à + de 12 examens d'entraînement</li>
+                            <li>Assistance&amp;nbsp;par mail</li>
+                            <li>Assistance&amp;nbsp;par téléphone</li>
+                            <li>Assistance&amp;nbsp;par visioconférence</li>
+                            <li>
                               Lives&amp;nbsp;avec les formateurs pour
                               explications
-</li>
-<li>Révision du programme avant examen</li>
-</ul>
-<div class="sh_btn">
-<!-- <a class="btn btn-primary sh_btn_cm_8" data-original-title="" title="" aria-describedby="tooltip209445" onClick="(function(){document.getElementById('form-1-2').submit();return false;})();return false;">
+                            </li>
+                            <li>Révision du programme avant examen</li>
+
+                          </ul>
+                          <div class="sh_btn">
+                            <!-- <a class="btn btn-primary sh_btn_cm_8" data-original-title="" title="" aria-describedby="tooltip209445" onClick="(function(){document.getElementById('form-1-2').submit();return false;})();return false;">
                             Je m'inscris
                                                 </a> -->
-<a href="#pricing">
-<button class="home-btn" onClick="(function(){packTaxiPageFromationVtc();document.getElementById('form-1-2').submit();return false;})();return false;">
+
+                            <a href="#pricing">
+                              <button class="home-btn" onClick="(function(){packTaxiPageFormationTaxi();document.getElementById('form-1-2').submit();return false;})();return false;">
                                 Je m'inscris
-</button>
-</a>
-</div>
-</form>
-</t>
-</t>
-</div>
-</div>
-<div class="col-md-4 sh_animation_part">
-<div class="sh_pricing">
-<t t-foreach="mcm_products" t-as="product">
-<t t-if="product.default_code=='vmdtr'">
-<form action="/shop/cart/update" method="post" id="form-1-3">
-<input type="hidden" class="product_id" name="product_id" id="vmdtr_product" t-att-value="product.id" />
-<input type="hidden" name="promo" t-att-value="promo.id" t-if="promo" />
-<h4>PACK TAXI-MOTO</h4>
-<h4>
-<span t-esc="round(product.list_price)" />
-<span style="color: #fdd105" t-esc="product.currency_id.symbol" />
-</h4>
-<ul class="">
-<li>Formation 70 h (100 % en ligne)</li>
-<li>Accès à + de 12 examens d'entraînement</li>
-<li>Assistance&amp;nbsp;par mail</li>
-<li>Assistance&amp;nbsp;par téléphone</li>
-<li>Assistance&amp;nbsp;par visioconférence</li>
-<li>
+                              </button>
+                            </a>
+                          </div>
+                        </form>
+                      </t>
+                    </t>
+                  </div>
+                </div>
+
+                <div class="col-md-4 sh_animation_part">
+                  <div class="sh_pricing">
+                    <t t-foreach="mcm_products" t-as="product">
+                      <t t-if="product.default_code=='vmdtr'">
+                        <form action="/shop/cart/update" method="post" id="form-1-3">
+                          <input type="hidden" class="product_id" name="product_id" id="vmdtr_product" t-att-value="product.id" />
+                          <input type="hidden" name="promo" t-att-value="promo.id" t-if="promo" />
+                          <h4>PACK TAXI-MOTO</h4>
+                          <h5 style="color: #636161">Éligible au CPF</h5>
+                          <h4>
+                            <span t-esc="round(product.list_price)" />
+                            <span style="color: #fdd105" t-esc="product.currency_id.symbol" />
+                          </h4>
+                          <ul class="">
+                            <li>Formation 70 h (100 % en ligne)</li>
+                            <li>Accès à + de 12 examens d'entraînement</li>
+                            <li>Assistance&amp;nbsp;par mail</li>
+                            <li>Assistance&amp;nbsp;par téléphone</li>
+                            <li>Assistance&amp;nbsp;par visioconférence</li>
+                            <li>
                               Lives&amp;nbsp;avec les formateurs pour
                               explications
-</li>
-<li>Révision du programme avant examen</li>
-</ul>
-<div class="sh_btn">
-<!-- <a class="btn btn-primary sh_btn_cm_8" data-original-title="" title="" aria-describedby="tooltip196298">
+                            </li>
+                            <li>Révision du programme avant examen</li>
+                          </ul>
+                          <div class="sh_btn">
+                            <!-- <a class="btn btn-primary sh_btn_cm_8" data-original-title="" title="" aria-describedby="tooltip196298">
                             Je m'inscris
                                                 </a> -->
-<a href="#pricing">
-<button class="home-btn" onClick="(function(){packVmdtrPageFromationVtc();document.getElementById('form-1-3').submit();return false;})();return false;">
+                            <a href="#pricing">
+                              <button class="home-btn" onClick="(function(){packVmdtrPageFormationTaxi();document.getElementById('form-1-3').submit();return false;})();return false;">
                                 Je m'inscris
-</button>
-</a>
-</div>
-</form>
-</t>
-</t>
-</div>
-</div>
-</div>
-</div>
-</section>
-</div>
-<!-- FIN PRICING TABLE-->
-<section class="clients s_references bg-200 pt16 pb16" data-name="References">
-<center>
-<div class="container">
-<div class="center-logo">
-<!-- <div t-if="partenaire=='' or not partenaire or partenaire=='bolt'">
+                              </button>
+                            </a>
+                          </div>
+                        </form>
+                      </t>
+                    </t>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+        </div>
+        <!-- FIN PRICING TABLE-->
+        <section class="clients s_references bg-200 pt16 pb32 " data-name="References">
+          <div class="container text-center">
+            <div class="center-logo">
+              <!-- <div t-if="partenaire=='' or not partenaire or partenaire=='bolt'">
                                     <a href="https://www.digimoov.fr/">
                                         <img data-src="/mcm_website_theme/static/src/img/partenaires/digimoov.png" data-srcSafari="/mcm_website_theme/static/src/img/partenaires/digimoov.png" class="img img-fluid lazy" alt="Logo partenaire Digimoov" data-original-title="" title="Digimoov partenaire MCM ACADEMY" aria-describedby="tooltip843653" style="margin-top: 30px; width: 72%"/>
                                     </a>
                                 </div> -->
 
-<div t-if="partenaire=='' or partenaire !='bolt'">
-<a href="#">
-<img data-src="/mcm_website_theme/static/src/img/partenaires/cma.png" data-srcSafari="/mcm_website_theme/static/src/img/partenaires/cma.png" class="img img-fluid lazy" alt="Logo partenaire CMA" data-original-title="" title="CMA partenaire MCM ACADEMY" aria-describedby="tooltip623872" style="margin-top: 30px; width: 50%" />
-</a>
-</div>
+              <div t-if="partenaire=='' or partenaire !='bolt'">
+                <a href="#">
+                  <img data-src="/mcm_website_theme/static/src/img/partenaires/cma.png" data-srcSafari="/mcm_website_theme/static/src/img/partenaires/cma.png" class="img img-fluid lazy" alt="Logo partenaire CMA" data-original-title="" title="CMA partenaire MCM ACADEMY" aria-describedby="tooltip623872" style="margin-top: 30px; width: 50%" />
+                </a>
+              </div>
 
-<div t-if="partenaire=='' or not partenaire ">
-<a href="https://bolt.eu/fr/">
-<img data-src="/mcm_website_theme/static/src/img/partenaires/bolt.png" data-srcSafari="/mcm_website_theme/static/src/img/partenaires/bolt.png" class="img img-fluid lazy" alt="Logo partenaire bolt" data-original-title="" title="Bolt partenaire MCM ACADEMY" aria-describedby="tooltip843653" style="margin-top: 30px; width: 38%" />
-</a>
-</div>
-<div t-if="partenaire=='bolt' ">
-<a href="https://bolt.eu/fr/">
-<img data-src="/mcm_website_theme/static/src/img/partenaires/Bolt_logo.svg.png" data-srcSafari="/mcm_website_theme/static/src/img/partenaires/Bolt_logo.svg.png" class="img img-fluid lazy" alt="Logo partenaire bolt" data-original-title="" title="Bolt partenaire MCM ACADEMY" aria-describedby="tooltip843653" style="margin-top: 30px; width: 38%" />
-</a>
-</div>
-<div t-if="partenaire=='' or partenaire !='bolt'">
-<a href="https://www.uber.com/fr/fr/">
-<img data-src="/mcm_website_theme/static/src/img/partenaires/uber.png" data-srcSafari="/mcm_website_theme/static/src/img/partenaires/uber.png" class="img img-fluid lazy" alt="Logo partenaire uber" data-original-title="" title="Uber partenaire MCM ACADEMY" aria-describedby="tooltip843653" style="margin-top: 30px; width: 50%" />
-</a>
-</div>
+              <div t-if="partenaire=='' or not partenaire ">
+                <a href="https://bolt.eu/fr/">
+                  <img data-src="/mcm_website_theme/static/src/img/partenaires/bolt.png" data-srcSafari="/mcm_website_theme/static/src/img/partenaires/bolt.png" class="img img-fluid lazy" alt="Logo partenaire bolt" data-original-title="" title="Bolt partenaire MCM ACADEMY" aria-describedby="tooltip843653" style="margin-top: 30px; width: 38%" />
+                </a>
+              </div>
+              <div t-if="partenaire=='bolt' ">
+                <a href="https://bolt.eu/fr/">
+                  <img data-src="/mcm_website_theme/static/src/img/partenaires/Bolt_logo.svg.png" data-srcSafari="/mcm_website_theme/static/src/img/partenaires/Bolt_logo.svg.png" class="img img-fluid lazy" alt="Logo partenaire bolt" data-original-title="" title="Bolt partenaire MCM ACADEMY" aria-describedby="tooltip843653" style="margin-top: 30px; width: 38%" />
+                </a>
+              </div>
+              <div t-if="partenaire=='' or partenaire !='bolt'">
+                <a href="https://www.uber.com/fr/fr/">
+                  <img data-src="/mcm_website_theme/static/src/img/partenaires/uber.png" data-srcSafari="/mcm_website_theme/static/src/img/partenaires/uber.png" class="img img-fluid lazy" alt="Logo partenaire uber" data-original-title="" title="Uber partenaire MCM ACADEMY" aria-describedby="tooltip843653" style="margin-top: 30px; width: 50%" />
+                </a>
+              </div>
 
-<div t-if="partenaire=='' or not partenaire ">
-<a href="https://www.comptable-douai.com/">
-<img data-src="/mcm_website_theme/static/src/img/partenaires/joel.png" data-srcSafari="/mcm_website_theme/static/src/img/partenaires/joel.png" class="img img-fluid lazy" alt="Logo partenaire Cabinet Comptable Joël Pruvost" data-original-title="" title="Cabinet Comptable Joël Pruvost partenaire Digimoov" aria-describedby="tooltip175558" style="margin-top: 30px; width: 68%" />
-</a>
-</div>
-<div t-if="partenaire=='bolt'">
-<a href="https://www.digimoov.fr/">
-<img data-src="/mcm_website_theme/static/src/img/partenaires/digimoov.png" data-srcSafari="/mcm_website_theme/static/src/img/partenaires/digimoov.png" class="img img-fluid lazy" alt="Logo partenaire Digimoov" data-original-title="" title="Digimoov partenaire MCM ACADEMY" aria-describedby="tooltip843653" style="margin-top: 30px; width: 46%" />
-</a>
-</div>
-</div>
-</div>
-</center>
-</section>
+              <div t-if="partenaire=='' or not partenaire ">
+                <a href="https://www.comptable-douai.com/">
+                  <img data-src="/mcm_website_theme/static/src/img/partenaires/joel.png" data-srcSafari="/mcm_website_theme/static/src/img/partenaires/joel.png" class="img img-fluid lazy" alt="Logo partenaire Cabinet Comptable Joël Pruvost" data-original-title="" title="Cabinet Comptable Joël Pruvost partenaire Digimoov" aria-describedby="tooltip175558" style="margin-top: 30px; width: 68%" />
+                </a>
+              </div>
+              <div t-if="partenaire=='bolt'">
+                <a href="https://www.digimoov.fr/">
+                  <img data-src="/mcm_website_theme/static/src/img/partenaires/digimoov.png" data-srcSafari="/mcm_website_theme/static/src/img/partenaires/digimoov.png" class="img img-fluid lazy" alt="Logo partenaire Digimoov" data-original-title="" title="Digimoov partenaire MCM ACADEMY" aria-describedby="tooltip843653" style="margin-top: 30px; width: 46%" />
+                </a>
+              </div>
+            </div>
 
-<section class="s_text_block pt32 pb32" data-name="Text block">
-<div class="container">
-<div class="row">
-<div class="col-lg-12 pb0 pt0">
-<p class="lead">
-<br />
-</p>
-</div>
-</div>
-</div>
-</section>
-<section id="main-container">
-<div class="gap-60" />
-<div class="gap-60" />
-</section>
-</div>
-</t>
-</template>
+          </div>
+
+
+        </section>
+
+
+      </div>
+    </t>
+  </template>
 </odoo>
