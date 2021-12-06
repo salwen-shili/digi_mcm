@@ -503,7 +503,7 @@ class partner(models.Model):
             date_split = date_formation[0:10]
             date_ = datetime.strptime(date_split, "%Y-%m-%d")
             dateFormation = date_.date()
-            idform = dossier['trainingActionInfo']['trainingId']
+            idform = dossier['trainingActionInfo']['externalId']
             module = ""
             if "_" in idform:
                 idforma = idform.split("_", 1)
@@ -586,7 +586,7 @@ class partner(models.Model):
             email = email.replace(" ", "")  # supprimer les espaces envoyés en paramètre email
             email = str(email).lower()  # recupérer l'email en miniscule pour éviter la création des deux comptes
             print('dossier', dossier)
-            idform = dossier['trainingActionInfo']['trainingId']
+            idform = dossier['trainingActionInfo']['externalId']
             training_id = ""
             if "_" in idform:
                 idforma = idform.split("_", 1)
@@ -672,7 +672,7 @@ class partner(models.Model):
             email = email.replace(" ", "")  # supprimer les espaces envoyés en paramètre email
             email = str(email).lower()  # recupérer l'email en miniscule pour éviter la création des deux comptes
             print('dossier',dossier)
-            idform=dossier['trainingActionInfo']['trainingId']
+            idform=dossier['trainingActionInfo']['externalId']
             training_id=""
             if "_" in idform:
                 idforma = idform.split("_", 1)
@@ -765,6 +765,8 @@ class partner(models.Model):
                 if state=="canceledByAttendee" or state=="canceledByAttendeeNotRealized" or state=="canceledByOrganism"  :
                     user.partner_id.statut_cpf="canceled"
                     user.partner_id.statut="canceled"
+                    print("product id annulé digi",product_id.id_edof)
+
                     if product_id:
                         user.partner_id.id_edof = product_id.id_edof
                 user.partner_id.numero_cpf = externalId
@@ -855,6 +857,7 @@ class partner(models.Model):
                     user.write({'company_ids': [1, 2], 'company_id': 2})
                     product_id = self.env['product.template'].sudo().search(
                         [('id_edof', "=", str(module)), ('company_id', "=", 2)], limit=1)
+                    print("product id validate digi",product_id.id_edof)
                     if product_id:
                         client.id_edof = product_id.id_edof
                         if template_id:
@@ -864,6 +867,7 @@ class partner(models.Model):
                     user.write({'company_ids': [(4, 2)], 'company_id': 1})
                     product_id = self.env['product.template'].sudo().search(
                         [('id_edof', "=", str(module)), ('company_id', "=", 1)], limit=1)
+                    print("product id validate mcm",product_id.id_edof)
                     if product_id:
                         client.id_edof = product_id.id_edof
 
@@ -894,7 +898,7 @@ class partner(models.Model):
             email = email.replace(" ", "")  # supprimer les espaces envoyés en paramètre email
             email = str(email).lower()  # recupérer l'email en miniscule pour éviter la création des deux comptes
             print('dossier', dossier)
-            idform = dossier['trainingActionInfo']['trainingId']
+            idform = dossier['trainingActionInfo']['externalId']
             training_id = ""
             if "_" in idform:
                 idforma = idform.split("_", 1)
