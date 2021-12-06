@@ -48,6 +48,7 @@
         'views/test3.xml',
         'views/test4.xml',
         'views/test5.xml',
+        'views/test7.xml',
        
         'views/attestation-transport-leger-marchandises-carte-bleu.xml',
         # 'views/charger_mes_documents'
