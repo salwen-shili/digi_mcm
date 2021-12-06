@@ -43,7 +43,6 @@
                             <group name="other">
                                 <field name="nombre_de_passage"/>
                                 <field name="company_id"/>
-                                <field name="date_today"/>
                                 <field name="mode_de_financement"/>
                                 <field name="temps_minute"/>
                                 <field name="sorti_formation"/>
