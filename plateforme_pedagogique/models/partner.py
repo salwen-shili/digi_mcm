@@ -423,13 +423,15 @@ class partner(models.Model):
             email = user['mail']
             # Pour chaque partner verifier si date_suppression est aujourd'hui
             # pour assurer la suppresion automatique
-            partner = self.env['info.examen'].sudo().search([('partner_id.email', "=", email)],order='id desc',limit=1)
-            if (partner and partner.date_exam):
+            partner = self.env['res.partner'].sudo().search([('email', "=", email),
+                                                             ('est_surveillant',"=",False),
+                                                             ('est_intervenant',"=",False)],order='id desc',limit=1)
+            if (partner and partner.mcm_session_id.date_exam):
                 # date de suppression est date d'examen + 4jours
-                date_suppression = partner.date_exam + timedelta(days=4)
+                date_suppression = partner.mcm_session_id.date_exam + timedelta(days=4)
                 today = date.today()
                 if (date_suppression <= today):
-                    email = partner.partner_id.email
+                    email = partner.email
                     print('date_sup', email, date_suppression, today,email)
                     _logger.info('liste à supprimé %s' %str(email))
                     # url = 'https://app.360learning.com/api/v1/users/' + email + '?company=' + company_id + '&apiKey=' + api_key
