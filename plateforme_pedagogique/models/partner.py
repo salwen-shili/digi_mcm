@@ -510,6 +510,11 @@ class partner(models.Model):
                 if idforma:
                     module = idforma[1]
             today = date.today()
+            lastupdatestr = str(dossier['lastUpdate'])
+            lastupdate = datetime.strptime(lastupdatestr, '%Y-%m-%dT%H:%M:%S.%fz')
+            newformat = "%d/%m/%Y %H:%M:%S"
+            lastupdateform = lastupdate.strftime(newformat)
+            lastupd = datetime.strptime(lastupdateform, "%d/%m/%Y %H:%M:%S")
             print('date', today, dateFormation, certificat)
             """Si date de formation <= ajourdhui et s'il a choisi  la formation de transport  léger de marchandises
             on cherche l'apprenant par email sur 360"""
@@ -552,12 +557,14 @@ class partner(models.Model):
                                     if part_email.upper() == email.upper():
                                         _logger.info('if partner >1 %s' % partner.numero_cpf)
                                         partner.statut_cpf="in_training"
+                                        partner.date_cpf = lastupd
                                         if product_id:
                                             partner.id_edof = product_id.id_edof
 
                             elif len(partner) == 1:
                                 _logger.info('if partner %s' % partner.numero_cpf)
                                 partner.statut_cpf = "in_training"
+                                partner.date_cpf =  lastupd
                                 if product_id:
                                     partner.id_edof = product_id.id_edof
 
@@ -640,9 +647,10 @@ class partner(models.Model):
             status = str(response_post.status_code)
 
             """Si dossier passe à l'etat validé on met à jour statut cpf sur la fiche client"""
-            print('validate', email)
-            self.cpf_validate(training_id, email, address, tel, code_postal, ville, diplome, dossier['attendee']['lastName'], dossier['attendee']['firstName'],
-                                  externalid, lastupd)
+            if status == "200":
+                print('validate', email)
+                self.cpf_validate(training_id, email, address, tel, code_postal, ville, diplome, dossier['attendee']['lastName'], dossier['attendee']['firstName'],
+                                      externalid, lastupd)
 
 
     """Mettre à jour les statuts cpf sur la fiche client selon l'etat sur wedof """
@@ -742,17 +750,21 @@ class partner(models.Model):
                 if state=="inTraining":
                     print('intraining', email)
                     user.partner_id.statut_cpf="in_training"
+                    user.partner_id.numero_cpf = externalId
                     if product_id:
                         user.partner_id.id_edof = product_id.id_edof
 
                 if state=="terminated":
                     print('terminated', email)
                     user.partner_id.statut_cpf="out_training"
+                    user.partner_id.numero_cpf = externalId
                     if product_id:
                         user.partner_id.id_edof = product_id.id_edof
                 if state=="serviceDoneDeclared":
                     print('serviceDoneDeclared', email)
                     user.partner_id.statut_cpf="service_declared"
+                    user.partner_id.numero_cpf = externalId
+
                     if product_id:
                         user.partner_id.id_edof=product_id.id_edof
 
@@ -760,16 +772,18 @@ class partner(models.Model):
                     print('serviceDoneValidated', email)
 
                     user.partner_id.statut_cpf="service_validated"
+                    user.partner_id.numero_cpf = externalId
                     if product_id:
                         user.partner_id.id_edof = product_id.id_edof
                 if state=="canceledByAttendee" or state=="canceledByAttendeeNotRealized" or state=="canceledByOrganism"  :
-                    user.partner_id.statut_cpf="canceled"
-                    user.partner_id.statut="canceled"
-                    print("product id annulé digi",product_id.id_edof)
+                    if user.partner_id.numero_cpf==externalId:
+                        user.partner_id.statut_cpf="canceled"
+                        user.partner_id.statut="canceled"
+                        print("product id annulé digi",user.partner_id.id_edof,training_id)
 
-                    if product_id:
-                        user.partner_id.id_edof = product_id.id_edof
-                user.partner_id.numero_cpf = externalId
+                        if product_id:
+                            user.partner_id.id_edof = product_id.id_edof
+
                 user.partner_id.date_cpf = lastupd
 
 
