@@ -164,10 +164,17 @@ class NoteExamen(models.Model):
             _logger.info('lengh api get %s' % str(len(registrations)))
             externalId = dossier['externalId']
             email = dossier['attendee']['email']
+            lastupdatestr = str(dossier['lastUpdate'])
+            lastupdate = datetime.strptime(lastupdatestr, '%Y-%m-%dT%H:%M:%S.%fz')
+            newformat = "%d/%m/%Y %H:%M:%S"
+            lastupdateform = lastupdate.strftime(newformat)
+            lastupd = datetime.strptime(lastupdateform, "%d/%m/%Y %H:%M:%S")
             info_exam = self.env['info.examen'].sudo().search([('partner_id.numero_cpf', "=", str(externalId)),
                                                                ('presence', "=", "present")], limit=1)
 
             if info_exam:
+                product_id = self.env['product.template'].sudo().search(
+                    [('id_edof', "=", str(training_id))], limit=1)
                 _logger.info('apprenant existant %s' % info_exam.partner_id.numero_cpf)
                 response1 = requests.post('https://www.wedof.fr/api/registrationFolders/' + externalId + '/terminate',
                                           headers=headers, data=data1)
@@ -182,6 +189,10 @@ class NoteExamen(models.Model):
                     _logger.info('if service done %s' % info_exam.partner_id.numero_cpf)
                     info_exam.partner_id.statut_cpf = "service_declared"
                     info_exam.sorti_formation = True
+                    info_exam.partner_id.date_cpf=lastupd
+                    if product_id:
+                        info_exam.partner_id.id_edof=product_id.id_edof
+
 
     """utiliser api wedof pour changer etat de dossier sur edof selon l'absence le jour d'examen"""
     def change_etat_wedof_absent(self):
@@ -213,10 +224,23 @@ class NoteExamen(models.Model):
             _logger.info('lengh api get %s' % str(len(registrations)))
             externalId = dossier['externalId']
             email = dossier['attendee']['email']
+            lastupdatestr = str(dossier['lastUpdate'])
+            lastupdate = datetime.strptime(lastupdatestr, '%Y-%m-%dT%H:%M:%S.%fz')
+            newformat = "%d/%m/%Y %H:%M:%S"
+            lastupdateform = lastupdate.strftime(newformat)
+            lastupd = datetime.strptime(lastupdateform, "%d/%m/%Y %H:%M:%S")
+            idform = dossier['trainingActionInfo']['externalId']
+            training_id = ""
+            if "_" in idform:
+                idforma = idform.split("_", 1)
+                if idforma:
+                    training_id = idforma[1]
             info_exam = self.env['info.examen'].sudo().search([('partner_id.numero_cpf', "=", str(externalId)),
                                                                ('presence', "=", "Absent"),
                                                                ('partner_id.temps_minute', '>=', 60)], limit=1)
             if info_exam:
+                product_id = self.env['product.template'].sudo().search(
+                    [('id_edof', "=", str(training_id))], limit=1)
                 existe = False
                 """Chercher l'apprenant absent sur la plateforme"""
                 response_plateforme = requests.get('https://app.360learning.com/api/v1/users', params=param_360)
@@ -243,6 +267,9 @@ class NoteExamen(models.Model):
                         _logger.info('if service done %s' % info_exam.partner_id.numero_cpf)
                         info_exam.partner_id.statut_cpf = "service_declared"
                         info_exam.sorti_formation=True
+                        info_exam.partner_id.date_cpf = lastupd
+                        if product_id:
+                            info_exam.partner_id.id_edof = product_id.id_edof
 
 
     def update_session_examen(self):
