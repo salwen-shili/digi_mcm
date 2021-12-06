@@ -170,14 +170,12 @@
         <!-- fin LOGOS-->
 
         <section class="container s_text_block pt32 pb16" data-name="Text block">
-          <div class="offset-lg-1 col-lg-10 pt0 pb0">
-            <h2 class="s_title_default text-center pb16" style="font-size: 36px; font-weight:700">
+          <h2 class="s_title_default text-center pb16" style="font-size: 36px; font-weight:700">
                  Devenir chauffeur de VTC
-            </h2>
-            <p>
+          </h2>
+          <p>
               Notre formation théorique à l’examen VTC vous permettra de mieux comprendre le métier de chauffeur de VTC, d'en maîtriser le fonctionnement et les principales règles, de vous préparer au mieux pour réussir l'examen VTC et, ainsi, obtenir votre carte professionnelle.          
-            </p>
-          </div>
+          </p>
         </section>
 
 
