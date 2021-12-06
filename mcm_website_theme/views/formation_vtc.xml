@@ -103,6 +103,12 @@
     height: 243px;
 } 
 }
+#sh_corpomate_theme_section_76 .sh_content {
+  padding-top: 0;
+}
+#sh_corpomate_theme_section_76 .sh_content p:after {
+  top: 20px;
+}
 
 
         </style>
