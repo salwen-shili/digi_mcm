@@ -23,6 +23,7 @@ class resPartnerSessions(models.Model):
     paiement = fields.Boolean(string="Paiement")
     attachment_ids = fields.Many2many('ir.attachment', string="Attachment", required=True)
     autre_raison = fields.Text()
+    date_exam = fields.Date(related="session_id.date_exam")
     
     def remove_double_session_same_session(self):
         """ Add this function to remove duplicate
