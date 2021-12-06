@@ -7,14 +7,20 @@
         <script defer="defer" type="text/javascript" src="/digimoov_website_templates/static/src/js/lazy-min.js" />
         <link rel="stylesheet" href="/mcm_website_theme/static/src/css/homepage.css" />
         <script type="text/javascript" src="/mcm_website_theme/static/src/js/msAds.js" />
+        <link rel="stylesheet" href="/mcm_website_theme/static/src/css/cta-button.css" />
+
 
 
         <style>
+          #sh_corpomate_theme_section_258 {
+              padding:  0 !important;
+          }
           p{
             font-size: 17px; 
             line-height:28px;
             color: #000;
           }
+          
         .nav-pills .nav-link.active,
         .nav-pills .show &gt;
         .nav-link {
@@ -88,6 +94,16 @@
     overflow: visible;
     -webkit-box-orient: horizontal;
 }
+.res_height {
+    height: 423px;
+} 
+
+@media (max-width: 467.98px){
+.res_height {
+    height: 243px;
+} 
+}
+
 
         </style>
         <section id="sh_corpomate_theme_section_258" class="sh_animation_part pt8" data-name="Formation Chauffeur de Taxi">
@@ -119,7 +135,7 @@
               </div>
               <div class="col-lg-6 pb48 pt16">
                 <br />
-                <img data-src="/mcm_website_theme/static/src/img/formation_taxi/1.png" data-srcSafari="/mcm_website_theme/static/src/img/formation_taxi/1.png" class="img img-fluid mx-auto lazy" alt="Devenir chauffeur professionnel VTC, Taxi ou Moto-Taxi" data-original-title="" title="Formation vtc taxi moto-taxi" aria-describedby="tooltip202025" style="text-align: center;" />
+                <img data-src="/mcm_website_theme/static/src/img/formation_vtc/formation-chauffeur-vtc.webp" data-srcSafari="/mcm_website_theme/static/src/img/formation_vtc/formation-chauffeur-vtc.png" class="img img-fluid mx-auto lazy" alt="Devenir chauffeur professionnel VTC, Taxi ou Moto-Taxi" data-original-title="" title="Chauffeur vtc devant sa voiture" aria-describedby="tooltip202025" style="text-align: center;" />
               </div>
             </div>
           </div>
@@ -154,17 +170,13 @@
         <!-- fin LOGOS-->
 
         <section class="container s_text_block pt32 pb16" data-name="Text block">
-
           <div class="offset-lg-1 col-lg-10 pt0 pb0">
             <h2 class="s_title_default text-center pb16" style="font-size: 36px; font-weight:700">
-        
                  Devenir chauffeur de VTC
-         
             </h2>
             <p>
-Notre formation théorique à l’examen VTC vous permettra de mieux comprendre le métier de chauffeur de VTC, d'en maîtriser le fonctionnement et les principales règles, de vous préparer au mieux pour réussir l'examen VTC et, ainsi, obtenir votre carte professionnelle.          </p>
-
-
+              Notre formation théorique à l’examen VTC vous permettra de mieux comprendre le métier de chauffeur de VTC, d'en maîtriser le fonctionnement et les principales règles, de vous préparer au mieux pour réussir l'examen VTC et, ainsi, obtenir votre carte professionnelle.          
+            </p>
           </div>
         </section>
 
@@ -173,58 +185,57 @@ Notre formation théorique à l’examen VTC vous permettra de mieux comprendre 
           <div class="container">
             <div class="row align-items-center">
               <div class="col-lg-6 pb24 pt0">
-                <img src="/mcm_website_theme/static/src/img/formation_taxi/2.png" class="img img-fluid mx-auto" alt="Odoo • Image et Texte" data-original-title="" title="" aria-describedby="tooltip38510" />
+                <img data-src="/mcm_website_theme/static/src/img/formation_vtc/profil-candidat-chauffeur-vtc.webp" data-srcSafari="/mcm_website_theme/static/src/img/formation_vtc/profil-candidat-chauffeur-vtc.png" class="img img-fluid mx-auto lazy res_height" alt="Devenir chauffeur professionnel VTC" title="Chauffeur vtc dans sa voiture" style="text-align: center;" />
               </div>
               <div class="col-lg-6" style="border-style: none; border-width: 0px">
-                <h2 style="font-size: 26px; font-weight:700; color: #000; margin-block-end: 1.2rem; ">
+                <h3 style="font-size: 26px; font-weight:700; color: #000; margin-block-end: 1.2rem; ">
                   À qui s’adresse cette formation ?
-                </h2>
+                </h3>
                 <p>
                 Notre formation VTC à distance concerne toute personne majeure qui souhaite devenir entrepreneur, en reconversion professionnelle, passionné par les métiers de transport, et qui répond à ces prérequis :
                 </p>
                 <p>
-                  <ul class="fa-ul" style="font-size:15px; line-height: 1.5rem;">
+                  <ul class="fa-ul" style="font-size:16.5px; line-height: 1.5rem;">
                     <li>
-                      <i class="fa-li fa fa-square" style="margin-top:2px"></i>
+                      <i class="fa-li fa fa-square" style="margin-top:2px;"></i>
                       Permis B non probatoire
                     </li>
                     <li>
-                      <i class="fa-li fa fa-square" style="margin-top:2px"></i>
+                      <i class="fa-li fa fa-square" style="margin-top:2px;"></i>
                       Attestation d’aptitude médicale auprès d’un médecin agréé                                                        par la préfecture
                     </li>
                     <li>
-                      <i class="fa-li fa fa-square" style="margin-top:2px"></i>
+                      <i class="fa-li fa fa-square" style="margin-top:2px;"></i>
                       Casier judiciaire B2 non affecté de certaines condamnations
                     </li>
                     <li>
-                      <i class="fa-li fa fa-square" style="margin-top:2px"></i>
+                      <i class="fa-li fa fa-square" style="margin-top:2px;"></i>
                       Réussite à l’examen blanc MCM Academy
                     </li>
                   </ul>
                 </p>
-                <h2 style="font-size: 26px; font-weight:700; color: #000; ">
+                <h3 style="font-size: 26px; font-weight:700; color: #000; margin-block-end: 1.2rem; ">
                   Ses Objectifs :
-                </h2>
+                </h3>
+
                 <p>
-
-
-                  <ul class="fa-ul" style="font-size:15px; line-height: 1.5rem;">
+                  <ul class="fa-ul" style="font-size:16.5px; line-height: 1.5rem;">
                     <li>
-                      <i class="fa-li fa fa-square" style="margin-top:2px"></i>
+                      <i class="fa-li fa fa-square" style="margin-top:2px;"></i>
                       Acquérir les savoirs, savoir-être et savoir-faire nécessaires à la réussite de l’examen VTC
                     </li>
                     <li>
-                      <i class="fa-li fa fa-square" style="margin-top:2px"></i>
+                      <i class="fa-li fa fa-square" style="margin-top:2px;"></i>
                       Préparation aux épreuves d’admissibilité de l’examen VTC (théorie)
                     </li>
                     <li>
-                      <i class="fa-li fa fa-square" style="margin-top:2px"></i>
+                      <i class="fa-li fa fa-square" style="margin-top:2px;"></i>
                       <a class="read_more" href="/mcm_website_theme/static/mcm_website_theme/static/pdf/programme_de_formation_MCM_ACADEMY_2021.pdf">En savoir plus</a>
                     </li>
                   </ul>
                 </p>
               </div>
-              <div class="s_title col-lg-12 pt24 pb0" style="                   text-align: center;                   border-style: none;                   border-width: 0px;                 ">
+              <div class="s_title col-lg-12 pt12 pb0" style="                   text-align: center;                   border-style: none;                   border-width: 0px;                 ">
                 <div class="s_alert clearfix w-100 s_alert_sm alert-100" data-name="Alert" style="">
                   <i class="fa fa-2x fa-info-circle s_alert_icon" />
                   <div class="s_alert_content">
@@ -255,8 +266,7 @@ Notre formation théorique à l’examen VTC vous permettra de mieux comprendre 
               <div class="container pt16 pb16" style="border-style: none; border-width: 0px;">
                 <div class="col-lg-12 s_title pt24 pb16" style="text-align: center">
                   <h2 class="font-weight-bold display-4 " style="font-size: 32px">
-                    <span class="subtitle-mcm-formation">Les démarches </span>
-                    à suivre pour souscrire à la formation VTC
+                    Les démarches à suivre pour souscrire à la formation VTC
                   </h2>
                 </div>
               </div>
@@ -266,10 +276,10 @@ Notre formation théorique à l’examen VTC vous permettra de mieux comprendre 
                     <span class="sh_icon">1</span>
                   </div>
                   <div class="feature_container">
-                    <h4 style="font-weight: 600;">              
+                    <h3 style="font-weight: 600;">              
                   1. Souscrire à la formation en ligne à la Chambre des
                   Métiers et de l'Artisanat (CMA)
-                    </h4>
+                    </h3>
                     <p class="font-weight-light my-3">
                       Une inscription sur la plateforme de la Chambre 
                       des Métiers et de l'Artisanat (CMA) est obligatoire.
@@ -290,9 +300,9 @@ Notre formation théorique à l’examen VTC vous permettra de mieux comprendre 
                     <span class="sh_icon">2</span>
                   </div>
                   <div class="feature_container">
-                    <h4 style="font-weight: 600;">              
+                    <h3 style="font-weight: 600;">              
                   2. Souscrire à la formation en ligne chez MCM Academy
-                    </h4>
+                    </h3>
                     <p class="font-weight-light my-3">
                       Inscription facile en 3 étapes : tout se passe sur notre site web.
                     </p>
@@ -312,9 +322,9 @@ Notre formation théorique à l’examen VTC vous permettra de mieux comprendre 
                     <span class="sh_icon">3</span>
                   </div>
                   <div class="feature_container">
-                    <h4 style="font-weight: 600;">              
+                    <h3 style="font-weight: 600;">              
                   3. Déposer votre dossier à la préfecture pour obtenir votre carte professionnelle
-                    </h4>
+                    </h3>
                     <p class="font-weight-light my-3">
                       Une fois l’examen passé et votre certificat de réussite obtenu, il faut déposer un dossier 
                       à la préfecture.
@@ -334,6 +344,127 @@ Notre formation théorique à l’examen VTC vous permettra de mieux comprendre 
 
           </div>
         </section>
+        <!-- Telecharger-->
+        <section id="sh_corpomate_theme_section_167" class="sh_animation_part" data-name="Call To Action" style="background-color: rgb(253, 209, 5); margin : 46px 0px;">
+          <div class="container">
+            <h3 style="color: rgb(0, 0, 0); font-size: 24px">
+            TÉLÉCHARGER LE PROGRAMME DE LA FORMATION VTC
+            </h3>
+
+            <a class="animated-button-black" href="/mcm_website_theme/static/pdf/programme_de_formation_MCM_ACADEMY_2021.pdf" title="Programme de la formation VTC">
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
+              JE TELECHARGE
+            </a>
+          </div>
+        </section>
+        <!-- -->
+        <section class="s_text_image mt12 mb12" data-name="Image - Text">
+          <div class="container">
+            <div class="row align-items-center">
+
+              <div class="col-lg-6" style="border-style: none; border-width: 0px">
+                <h2 style="font-size: 26px; font-weight:700; color: #000; margin-block-end: 1.2rem; ">
+                 Déroulement de la formation VTC : 
+                </h2>
+                <p>
+                Une formation VTC à distance de 70 h :
+                </p>
+
+                <ul class="fa-ul" style="font-size:16.5px; line-height: 1.5rem;">
+                  <li style=" padding-block-end: 20px;">
+                    <i class="fa-li fa fa-square" style="margin-top:2px;"></i>
+                      Des vidéos préenregistrées bien détaillées
+                  </li>
+                  <li style=" padding-block-end: 20px;">
+                    <i class="fa-li fa fa-square" style="margin-top:2px;"></i>
+                      Des programmes de révision bien étudiés                                                         par la préfecture
+                  </li>
+                  <li style=" padding-block-end: 20px;">
+                    <i class="fa-li fa fa-square" style="margin-top:2px;"></i>
+                      Des "Lives" avec les formateurs pour les explications
+                  </li>
+                  <li style=" padding-block-end: 20px;">
+                    <i class="fa-li fa fa-square" style="margin-top:2px;"></i>
+                      Du coaching par mail, téléphone et visioconférence  
+                  </li>
+                </ul>
+              </div>
+              <div class="col-lg-6 pb24 pt0">
+                <img data-src="/mcm_website_theme/static/src/img/formation_vtc/formation-en-ligne-vtc.webp" data-srcSafari="/mcm_website_theme/static/src/img/formation_vtc/formation-en-ligne-vtc.png" class="img img-fluid mx-auto lazy" alt="Candidat vtc suit une formation en ligne sur pc" title="Candidat vtc suit une formation en ligne sur pc" style="text-align: center;" />
+              </div>
+            </div>
+          </div>
+        </section>
+        <!-- -->
+        <section class="s_text_image mt12 mb12" data-name="Image - Text">
+          <div class="container">
+            <div class="row align-items-center">
+              <div class="col-lg-6 pb24 pt0">
+                <img data-src="/mcm_website_theme/static/src/img/formation_vtc/programme-de-formation-vtc.webp" data-srcSafari="/mcm_website_theme/static/src/img/formation_vtc/programme-de-formation-vtc.png" class="img img-fluid lazy" alt="Candidat suit sa formation vtc sur tablette" title="Candidat suit sa formation vtc sur tablette" style="text-align: center;" />
+              </div>
+              <div class="col-lg-6" style="border-style: none; border-width: 0px">
+                <h2 style="font-size: 26px; font-weight:700; color: #000; margin-block-end: 1.2rem; ">
+                 LES MODULES DE LA FORMATION VTC
+                </h2>
+                <p>
+               Pendant votre formation, nous allons vous apprendre à maîtriser les modules suivants :  
+                </p>
+                <ul class="fa-ul" style="font-size:16.5px; line-height: 1.5rem;">
+                  <li style=" padding-block-end: 20px;">
+                    <i class="fa-li fa fa-square" style="margin-top:2px;"></i>
+                      Réglementation du transport public particulier de personnes
+                  </li>
+                  <li style=" padding-block-end: 20px;">
+                    <i class="fa-li fa fa-square" style="margin-top:2px;"></i>
+                      Sécurité routière
+                  </li>
+                  <li style=" padding-block-end: 20px;">
+                    <i class="fa-li fa fa-square" style="margin-top:2px;"></i>
+                      Gestion
+                  </li>
+                  <li style=" padding-block-end: 20px;">
+                    <i class="fa-li fa fa-square" style="margin-top:2px;"></i>
+                      Français
+                  </li>
+                  <li style=" padding-block-end: 20px;">
+                    <i class="fa-li fa fa-square" style="margin-top:2px;"></i>
+                      Anglais
+                  </li>
+                  <li style=" padding-block-end: 20px;">
+                    <i class="fa-li fa fa-square" style="margin-top:2px;"></i>
+                      Développement commercial
+                  </li>
+                  <li style=" padding-block-end: 20px;">
+                    <i class="fa-li fa fa-square" style="margin-top:2px;"></i>
+                      Réglementation vtc
+                  </li>
+                  <li style=" padding-block-end: 20px;">
+                    <i class="fa-li fa fa-square" style="margin-top:2px;; color: #2667ae !important"></i>
+                    <a class="read_more" href="/mcm_website_theme/static/pdf/programme_de_formation_MCM_ACADEMY_2021.pdf">En savoir plus</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -360,47 +491,6 @@ Notre formation théorique à l’examen VTC vous permettra de mieux comprendre 
                 </p>
               </div>
               <div class="row">
-                <div class="col-md-4 sh_animation_part">
-                  <div class="sh_pricing">
-                    <t t-foreach="mcm_products" t-as="product">
-                      <t t-if="product.default_code=='taxi'">
-                        <form action="/shop/cart/update" method="post" id="form-1-2">
-                          <input type="hidden" class="product_id" name="product_id" id="taxi_product" t-att-value="product.id" />
-                          <input type="hidden" name="promo" t-att-value="promo.id" t-if="promo" />
-                          <h4>PACK TAXI</h4>
-                          <h4>
-                            <span t-esc="round(product.list_price)" />
-                            <span style="color: #fdd105" t-esc="product.currency_id.symbol" />
-                          </h4>
-                          <ul class="">
-                            <li>Formation 70 h (100 % en ligne)</li>
-                            <li>Accès à + de 12 examens d'entraînement</li>
-                            <li>Assistance&amp;nbsp;par mail</li>
-                            <li>Assistance&amp;nbsp;par téléphone</li>
-                            <li>Assistance&amp;nbsp;par visioconférence</li>
-                            <li>
-                              Lives&amp;nbsp;avec les formateurs pour
-                              explications
-                            </li>
-                            <li>Révision du programme avant examen</li>
-
-                          </ul>
-                          <div class="sh_btn">
-                            <!-- <a class="btn btn-primary sh_btn_cm_8" data-original-title="" title="" aria-describedby="tooltip209445" onClick="(function(){document.getElementById('form-1-2').submit();return false;})();return false;">
-                            Je m'inscris
-                                                </a> -->
-
-                            <a href="#pricing">
-                              <button class="home-btn" onClick="(function(){packTaxiPageFormationTaxi();document.getElementById('form-1-2').submit();return false;})();return false;">
-                                Je m'inscris
-                              </button>
-                            </a>
-                          </div>
-                        </form>
-                      </t>
-                    </t>
-                  </div>
-                </div>
                 <div class="col-md-4 sh_animation_part" style="border-style: none; border-width: 0px">
                   <div class="sh_pricing">
                     <t t-foreach="mcm_products" t-as="product">
@@ -409,6 +499,7 @@ Notre formation théorique à l’examen VTC vous permettra de mieux comprendre 
                           <input type="hidden" class="product_id" name="product_id" id="vtc_product" t-att-value="product.id" />
                           <input type="hidden" name="promo" t-att-value="promo.id" t-if="promo" />
                           <h4>PACK VTC</h4>
+                          <h5 style="color: #636161">Éligible au CPF</h5>
                           <h4>
                             <span t-esc="round(product.list_price)" />
                             <span style="color: #fdd105" t-esc="product.currency_id.symbol" />
@@ -443,11 +534,55 @@ Notre formation théorique à l’examen VTC vous permettra de mieux comprendre 
                 <div class="col-md-4 sh_animation_part">
                   <div class="sh_pricing">
                     <t t-foreach="mcm_products" t-as="product">
+                      <t t-if="product.default_code=='taxi'">
+                        <form action="/shop/cart/update" method="post" id="form-1-2">
+                          <input type="hidden" class="product_id" name="product_id" id="taxi_product" t-att-value="product.id" />
+                          <input type="hidden" name="promo" t-att-value="promo.id" t-if="promo" />
+                          <h4>PACK TAXI</h4>
+                          <h5 style="color: #636161">Éligible au CPF</h5>
+                          <h4>
+                            <span t-esc="round(product.list_price)" />
+                            <span style="color: #fdd105" t-esc="product.currency_id.symbol" />
+                          </h4>
+                          <ul class="">
+                            <li>Formation 70 h (100 % en ligne)</li>
+                            <li>Accès à + de 12 examens d'entraînement</li>
+                            <li>Assistance&amp;nbsp;par mail</li>
+                            <li>Assistance&amp;nbsp;par téléphone</li>
+                            <li>Assistance&amp;nbsp;par visioconférence</li>
+                            <li>
+                              Lives&amp;nbsp;avec les formateurs pour
+                              explications
+                            </li>
+                            <li>Révision du programme avant examen</li>
+
+                          </ul>
+                          <div class="sh_btn">
+                            <!-- <a class="btn btn-primary sh_btn_cm_8" data-original-title="" title="" aria-describedby="tooltip209445" onClick="(function(){document.getElementById('form-1-2').submit();return false;})();return false;">
+                            Je m'inscris
+                                                </a> -->
+
+                            <a href="#pricing">
+                              <button class="home-btn" onClick="(function(){packTaxiPageFormationTaxi();document.getElementById('form-1-2').submit();return false;})();return false;">
+                                Je m'inscris
+                              </button>
+                            </a>
+                          </div>
+                        </form>
+                      </t>
+                    </t>
+                  </div>
+                </div>
+
+                <div class="col-md-4 sh_animation_part">
+                  <div class="sh_pricing">
+                    <t t-foreach="mcm_products" t-as="product">
                       <t t-if="product.default_code=='vmdtr'">
                         <form action="/shop/cart/update" method="post" id="form-1-3">
                           <input type="hidden" class="product_id" name="product_id" id="vmdtr_product" t-att-value="product.id" />
                           <input type="hidden" name="promo" t-att-value="promo.id" t-if="promo" />
                           <h4>PACK TAXI-MOTO</h4>
+                          <h5 style="color: #636161">Éligible au CPF</h5>
                           <h4>
                             <span t-esc="round(product.list_price)" />
                             <span style="color: #fdd105" t-esc="product.currency_id.symbol" />
