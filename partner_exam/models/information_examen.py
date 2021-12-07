@@ -169,6 +169,12 @@ class NoteExamen(models.Model):
             newformat = "%d/%m/%Y %H:%M:%S"
             lastupdateform = lastupdate.strftime(newformat)
             lastupd = datetime.strptime(lastupdateform, "%d/%m/%Y %H:%M:%S")
+            idform = dossier['trainingActionInfo']['externalId']
+            training_id = ""
+            if "_" in idform:
+                idforma = idform.split("_", 1)
+                if idforma:
+                    training_id = idforma[1]
             info_exam = self.env['info.examen'].sudo().search([('partner_id.numero_cpf', "=", str(externalId)),
                                                                ('presence', "=", "present")], limit=1)
 
