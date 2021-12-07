@@ -58,7 +58,7 @@ class NoteExamen(models.Model):
     sorti_formation =fields.Boolean(string="Sorti de formation")
 
     @api.onchange('partner_id', 'epreuve_a', 'epreuve_b', 'presence')
-    def _compute_moyenne_generale(self):
+    def compute_moyenne_generale(self):
         """ This function used to auto display some result
         like the "Moyenne Generale" & "Mention" & "Resultat" """
         for rec in self:
@@ -67,10 +67,10 @@ class NoteExamen(models.Model):
                 rec.moyenne_generale = rec.moyenne_generale
                 rec.mention = 'recu'
                 rec.resultat = 'recu'
-                rec.sudo().write({'session_id': self.partner_id.mcm_session_id,
-                                  'date_exam': self.partner_id.mcm_session_id.date_exam,
-                                  'presence': 'present',
-                                  'ville_id': self.partner_id.mcm_session_id.session_ville_id.id})
+                self.session_id = self.partner_id.mcm_session_id
+                self.date_exam = self.partner_id.mcm_session_id.date_exam
+                self.presence = 'present'
+                self.ville_id = self.partner_id.mcm_session_id.session_ville_id.id
             else:
                 # reset your fields
                 rec.epreuve_a = rec.epreuve_a
@@ -81,23 +81,21 @@ class NoteExamen(models.Model):
                 last_line = self.env['partner.sessions'].search(
                     [('client_id', '=', rec.partner_id.id), ('date_exam', '<', date.today())], limit=1,
                     order='id desc')
-                # res = self.env['partner.sessions'].search(
-                #     [('client_id', '=', self.partner_id.id), ('id', '!=', last_line.id)], limit=1, order='id desc')
                 if 1 <= rec.epreuve_a < 21 or 1 <= rec.epreuve_b < 21 and not last_line.justification:
-                    rec.sudo().write({'session_id': self.partner_id.mcm_session_id,
-                                      'date_exam': self.partner_id.mcm_session_id.date_exam,
-                                      'presence': 'present',
-                                      'ville_id': self.partner_id.mcm_session_id.session_ville_id.id})
+                    self.session_id = self.partner_id.mcm_session_id
+                    self.date_exam = self.partner_id.mcm_session_id.date_exam
+                    self.presence = 'present'
+                    self.ville_id = self.partner_id.mcm_session_id.session_ville_id.id
                 elif rec.epreuve_a < 1 and rec.epreuve_b < 1 and not last_line.justification:
-                    rec.sudo().write({'session_id': self.partner_id.mcm_session_id,
-                                      'date_exam': self.partner_id.mcm_session_id.date_exam,
-                                      'presence': 'Absent',
-                                      'ville_id': self.partner_id.mcm_session_id.session_ville_id.id})
+                    self.session_id = self.partner_id.mcm_session_id
+                    self.date_exam = self.partner_id.mcm_session_id.date_exam
+                    self.presence = 'Absent'
+                    self.ville_id = self.partner_id.mcm_session_id.session_ville_id.id
                 elif rec.epreuve_a < 1 and rec.epreuve_b < 1 and last_line.justification is True:
-                    rec.sudo().write({'session_id': last_line.session_id,
-                                      'date_exam': last_line.session_id.date_exam,
-                                      'presence': 'absence_justifiee',
-                                      'ville_id': last_line.session_id.session_ville_id.id})
+                    self.session_id = last_line.session_id
+                    self.date_exam = last_line.session_id.date_exam
+                    self.presence = 'absence_justifiee'
+                    self.ville_id = last_line.session_id.session_ville_id.id
 
     @api.onchange("résultat")
     def etat_de_client_apres_examen(self):
@@ -113,7 +111,7 @@ class NoteExamen(models.Model):
     @api.model
     def create(self, vals):
         resultat = super(NoteExamen, self).create(vals)
-        resultat._compute_moyenne_generale()
+        resultat.compute_moyenne_generale()
         resultat.mise_ajour_mode_financement()
         return resultat
 
