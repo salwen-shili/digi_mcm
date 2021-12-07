@@ -434,8 +434,8 @@ class partner(models.Model):
                     email = partner.email
                     print('date_sup', email, date_suppression, today,email)
                     _logger.info('liste à supprimé %s' %str(email))
-                    # url = 'https://app.360learning.com/api/v1/users/' + email + '?company=' + company_id + '&apiKey=' + api_key
-                    # resp = requests.delete(url)
+                    url = 'https://app.360learning.com/api/v1/users/' + email + '?company=' + company_id + '&apiKey=' + api_key
+                    resp = requests.delete(url)
                     print('ress resp.status_code')
 
             else:
