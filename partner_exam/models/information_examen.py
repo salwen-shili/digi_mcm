@@ -111,7 +111,7 @@ class NoteExamen(models.Model):
     @api.model
     def create(self, vals):
         resultat = super(NoteExamen, self).create(vals)
-        resultat._compute_moyenne_generale()
+        resultat.compute_moyenne_generale()
         resultat.mise_ajour_mode_financement()
         return resultat
 
