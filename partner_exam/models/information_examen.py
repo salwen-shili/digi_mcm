@@ -289,28 +289,18 @@ class NoteExamen(models.Model):
         # Add condition based on checkbox field paiement != True
         # to put auto value in "nombre de passage" based on sum of historic sessions
         if 'partner_id' in values or 'epreuve_a' in values:
-            session_one = self.env['partner.sessions'].search_count(
+            session_count = self.env['partner.sessions'].search_count(
                 [('client_id', '=', self.partner_id.id), ('paiement', '!=', True)])
-            if session_one == 1:
+            if session_count == 1:
                 self.nombre_de_passage = "premier"
-            session_two = self.env['partner.sessions'].search_count(
-                [('client_id', '=', self.partner_id.id), ('paiement', '!=', True)])
-            if session_two == 2:
+            if session_count == 2:
                 self.nombre_de_passage = "deuxieme"
-            session_three = self.env['partner.sessions'].search_count(
-                [('client_id', '=', self.partner_id.id), ('paiement', '!=', True)])
-            if session_three == 3:
+            if session_count == 3:
                 self.nombre_de_passage = "troisieme"
-            session_four = self.env['partner.sessions'].search_count(
-                [('client_id', '=', self.partner_id.id), ('paiement', '!=', True)])
-            if session_four == 4:
+            if session_count == 4:
                 self.nombre_de_passage = "premier"
-            session_five = self.env['partner.sessions'].search_count(
-                [('client_id', '=', self.partner_id.id), ('paiement', '!=', True)])
-            if session_five == 5:
+            if session_count == 5:
                 self.nombre_de_passage = "deuxieme"
-            session_six = self.env['partner.sessions'].search_count(
-                [('client_id', '=', self.partner_id.id), ('paiement', '!=', True)])
-            if session_six == 6:
+            if session_count == 6:
                 self.nombre_de_passage = "troisieme"
         return res
