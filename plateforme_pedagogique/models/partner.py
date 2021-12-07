@@ -497,6 +497,7 @@ class partner(models.Model):
         registrations = response.json()
         for dossier in registrations:
             externalId = dossier['externalId']
+            diplome = dossier['trainingActionInfo']['title']
             email = dossier['attendee']['email']
             certificat = dossier['_links']['certification']['name']
             certificat_info = dossier['_links']['certification']['certifInfo']
@@ -567,6 +568,7 @@ class partner(models.Model):
                                 _logger.info('if partner %s' % partner.numero_cpf)
                                 partner.statut_cpf = "in_training"
                                 partner.date_cpf =  lastupd
+                                partner.diplome=diplome
                                 if product_id:
                                     partner.id_edof = product_id.id_edof
 
@@ -753,6 +755,8 @@ class partner(models.Model):
                     print('intraining', email)
                     user.partner_id.statut_cpf="in_training"
                     user.partner_id.numero_cpf = externalId
+                    user.partner_id.date_cpf = lastupd
+                    user.partner_id.diplome=diplome
                     if product_id:
                         user.partner_id.id_edof = product_id.id_edof
 
@@ -760,13 +764,16 @@ class partner(models.Model):
                     print('terminated', email)
                     user.partner_id.statut_cpf="out_training"
                     user.partner_id.numero_cpf = externalId
+                    user.partner_id.diplome = diplome
+                    user.partner_id.date_cpf = lastupd
                     if product_id:
                         user.partner_id.id_edof = product_id.id_edof
                 if state=="serviceDoneDeclared":
                     print('serviceDoneDeclared', email)
                     user.partner_id.statut_cpf="service_declared"
                     user.partner_id.numero_cpf = externalId
-
+                    user.partner_id.date_cpf = lastupd
+                    user.partner_id.diplome = diplome
                     if product_id:
                         user.partner_id.id_edof=product_id.id_edof
 
@@ -775,18 +782,22 @@ class partner(models.Model):
 
                     user.partner_id.statut_cpf="service_validated"
                     user.partner_id.numero_cpf = externalId
+                    user.partner_id.date_cpf = lastupd
+                    user.partner_id.diplome = diplome
                     if product_id:
                         user.partner_id.id_edof = product_id.id_edof
                 if state=="canceledByAttendee" or state=="canceledByAttendeeNotRealized" or state=="canceledByOrganism"  :
                     if user.partner_id.numero_cpf==externalId:
                         user.partner_id.statut_cpf="canceled"
                         user.partner_id.statut="canceled"
+                        user.partner_id.date_cpf = lastupd
+                        user.partner_id.diplome = diplome
                         print("product id annulé digi",user.partner_id.id_edof,training_id)
 
                         if product_id:
                             user.partner_id.id_edof = product_id.id_edof
 
-                user.partner_id.date_cpf = lastupd
+
 
 
     def cpf_validate(self,module,email,address,tel,code_postal,ville,diplome,nom,prenom,dossier,lastupd):
