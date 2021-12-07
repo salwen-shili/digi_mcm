@@ -43,8 +43,7 @@ class resComapny(models.Model):
         session = super(resComapny, self).write(values)
         if 'mcm_session_id' in values and self.report is not False:
             if self.env['partner.sessions'].search_count([('client_id', 'child_of', self.id)]) > 0:
-                print("first in")
-                # Add this bloc of code to Update data in old session if sum of sessions lines > 0
+                # Update data in old session if sum of sessions lines > 0
                 self.env['partner.sessions'].search([('client_id', 'child_of', self.id)], limit=1, order='id desc').sudo().update({
                     'client_id': self.id,
                     #'session_id': self.mcm_session_id.id,
@@ -69,14 +68,13 @@ class resComapny(models.Model):
                     'client_id': self.id,
                     'session_id': self.mcm_session_id.id,
                 })
-                print("twice in")
+                #Reset fields
                 self.report = False
                 self.justification = False
                 self.paiement = False
                 self.attachment_ids = None
                 self.autre_raison = None
             else:
-                print("third out")
                 self.env['partner.sessions'].search([], limit=1, order='id desc').sudo().create({
                     'client_id': self.id,
                     'session_id': self.mcm_session_id.id,
