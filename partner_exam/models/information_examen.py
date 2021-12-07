@@ -92,10 +92,10 @@ class NoteExamen(models.Model):
                     self.presence = 'Absent'
                     self.ville_id = self.partner_id.mcm_session_id.session_ville_id.id
                 elif rec.epreuve_a < 1 and rec.epreuve_b < 1 and last_line.justification is True:
-                    self.session_id = last_line.partner_id.mcm_session_id
-                    self.date_exam = last_line.partner_id.mcm_session_id.date_exam
+                    self.session_id = last_line.session_id
+                    self.date_exam = last_line.session_id.date_exam
                     self.presence = 'absence_justifiee'
-                    self.ville_id = last_line.partner_id.mcm_session_id.session_ville_id.id
+                    self.ville_id = last_line.session_id.session_ville_id.id
 
     @api.onchange("résultat")
     def etat_de_client_apres_examen(self):
