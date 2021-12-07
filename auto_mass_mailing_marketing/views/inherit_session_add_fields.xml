@@ -17,9 +17,6 @@
                     </button>
                 </div>
             </xpath>
-            <xpath expr="//form/div/group/group[@name='dates']" position="inside">
-                <field name="adresse_examen" attrs="{'invisible':[('company_id','!=', 2)]}"/>
-            </xpath>
             <xpath expr="//form/div/group/group[@name='dates']" position="after">
                 <group name="horaire" string="Horaire">
                     <field name="date_exam"/>
