@@ -1212,10 +1212,10 @@
                         <section class="container pb32 pt40 section-padding">
                             <div class="align-items-center justify-content-center row">
                                 <div class="col-md-4 col-sm-12 mb-4 mb-md-0 text-center">
-                                    <img class="img-fluid" style="width: 188px" src="/mcm_website_theme/static/src/img/qualiopi.png" />
+                                    <img class="img-fluid" style="width: 188px" src="/mcm_website_theme/static/src/img/formation-taxi-vtc-certifiée-qualiopi.png" />
                                 </div>
                                 <div class="col-md-4 col-sm-12 mb-4 mb-md-0 text-center">
-                                    <img class="img-fluid" style="width: 110px" src="/mcm_website_theme/static/src/img/Logo-vert-sur-fond-blanc-en-.jpg.jpg" />
+                                    <img class="img-fluid" style="width: 110px" src="/mcm_website_theme/static/src/img/mcm academy-partenaire-france-relance.jpg" />
                                 </div>
                                 <div class="col-md-4 col-sm-12 mb-4 mb-md-0 text-center">
                                     <img class="img-fluid" style="width: 188px" src="/digimoov_website_templates/static/img/coursier2roues/logo-DREAL.png" />
@@ -1345,13 +1345,13 @@
                   border-top-right-radius: 25px;
                   padding-bottom: 14px;
                 ">
-                                        <br />
-                                        <p>
-                                            <span style="font-size: 30px; font-weight: 700; padding-bottom: 10px">SOLO</span>
-                                        </p>
+                                            <br />
+                                            <p>
+                                                <span style="font-size: 30px; font-weight: 700; padding-bottom: 10px">SOLO</span>
+                                            </p>
 
-                                        <br />
-                                    </div>
+                                            <br />
+                                        </div>
                                         <t t-foreach="digimoov_products" t-as="product">
                                             <t t-if="product.default_code=='basique'">
                                                 <input t-att-value="request.website.microsoft_tracking_key" id="microsoft_tracking_key" type="hidden" />
@@ -1515,10 +1515,10 @@
                 <section class="container pt40 pb32 section-padding">
                     <div class="row align-items-center justify-content-center">
                         <div class=" col-md-4 col-sm-12 text-center mb-4 mb-md-0 ">
-                            <img class="img-fluid" style="width: 188px;" src="/mcm_website_theme/static/src/img/qualiopi.png"/>
+                            <img class="img-fluid" style="width: 188px;" src="/mcm_website_theme/static/src/img/formation-taxi-vtc-certifiée-qualiopi.png"/>
                         </div>
                         <div class=" col-md-4 col-sm-12 text-center mb-4 mb-md-0 ">
-                            <img class="img-fluid" style="width: 110px;" src="/mcm_website_theme/static/src/img/Logo-vert-sur-fond-blanc-en-.jpg.jpg"/>
+                            <img class="img-fluid" style="width: 110px;" src="/mcm_website_theme/static/src/img/mcm academy-partenaire-france-relance.jpg"/>
                         </div>
                         <div class=" col-md-4 col-sm-12 text-center mb-4 mb-md-0  ">
                             <img class="img-fluid" style="width: 188px;" src="/digimoov_website_templates/static/img/coursier2roues/logo-DREAL.png"/>
@@ -1963,10 +1963,10 @@
             <section class="container pt40 pb32 section-padding">
                 <div class="row align-items-center justify-content-center">
                     <div class=" col-md-4 col-sm-12 text-center mb-4 mb-md-0 ">
-                        <img class="img-fluid" style="width: 188px;" src="/mcm_website_theme/static/src/img/qualiopi.png"/>
+                        <img class="img-fluid" style="width: 188px;" src="/mcm_website_theme/static/src/img/formation-taxi-vtc-certifiée-qualiopi.png"/>
                     </div>
                     <div class=" col-md-4 col-sm-12 text-center mb-4 mb-md-0 ">
-                        <img class="img-fluid" style="width: 110px;" src="/mcm_website_theme/static/src/img/Logo-vert-sur-fond-blanc-en-.jpg.jpg"/>
+                        <img class="img-fluid" style="width: 110px;" src="/mcm_website_theme/static/src/img/mcm academy-partenaire-france-relance.jpg"/>
                     </div>
                     <div class=" col-md-4 col-sm-12 text-center mb-4 mb-md-0  ">
                         <img class="img-fluid" style="width: 188px;" src="/digimoov_website_templates/static/img/coursier2roues/logo-DREAL.png"/>
@@ -2386,10 +2386,10 @@
             <section class="container pt40 pb32 section-padding">
                 <div class="row align-items-center justify-content-center">
                     <div class=" col-md-4 col-sm-12 text-center mb-4 mb-md-0 ">
-                        <img class="img-fluid" style="width: 188px;" src="/mcm_website_theme/static/src/img/qualiopi.png"/>
+                        <img class="img-fluid" style="width: 188px;" src="/mcm_website_theme/static/src/img/formation-taxi-vtc-certifiée-qualiopi.png"/>
                     </div>
                     <div class=" col-md-4 col-sm-12 text-center mb-4 mb-md-0 ">
-                        <img class="img-fluid" style="width: 110px;" src="/mcm_website_theme/static/src/img/Logo-vert-sur-fond-blanc-en-.jpg.jpg"/>
+                        <img class="img-fluid" style="width: 110px;" src="/mcm_website_theme/static/src/img/mcm academy-partenaire-france-relance.jpg"/>
                     </div>
                     <div class=" col-md-4 col-sm-12 text-center mb-4 mb-md-0  ">
                         <img class="img-fluid" style="width: 188px;" src="/digimoov_website_templates/static/img/coursier2roues/logo-DREAL.png"/>
@@ -2815,10 +2815,10 @@ Je m'inscris
 <section class="container pt40 pb32 section-padding">
     <div class="row align-items-center justify-content-center">
         <div class=" col-md-4 col-sm-12 text-center mb-4 mb-md-0 ">
-            <img class="img-fluid" style="width: 188px;" src="/mcm_website_theme/static/src/img/qualiopi.png"/>
+            <img class="img-fluid" style="width: 188px;" src="/mcm_website_theme/static/src/img/formation-taxi-vtc-certifiée-qualiopi.png"/>
         </div>
         <div class=" col-md-4 col-sm-12 text-center mb-4 mb-md-0 ">
-            <img class="img-fluid" style="width: 110px;" src="/mcm_website_theme/static/src/img/Logo-vert-sur-fond-blanc-en-.jpg.jpg"/>
+            <img class="img-fluid" style="width: 110px;" src="/mcm_website_theme/static/src/img/mcm academy-partenaire-france-relance.jpg"/>
         </div>
         <div class=" col-md-4 col-sm-12 text-center mb-4 mb-md-0  ">
             <img class="img-fluid" style="width: 188px;" src="/digimoov_website_templates/static/img/coursier2roues/logo-DREAL.png"/>
