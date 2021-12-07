@@ -18,9 +18,6 @@ class AccountMove(models.Model):
     heure_examen_apres_midi = fields.Char(default="14H00")
     date_exam = fields.Date(string="Date d'examen")
 
-    # Add adresse field pour l'afficher dans la convocation
-    adresse_examen = fields.Char(string="Adresse d'examen", help="Ajouter l'adresse d'examen, "
-                                                                 "cette information sera affiché dans les rapports PDF")
     # date_convocation = fields.Date(string="Date d'envoi de convocation", default=datetime.today())
     horaire_email = fields.Char(compute="_compute_auto_horaire_email", string="Horaire Email",
                                 help="Heure d'examen qui sera affiché "
