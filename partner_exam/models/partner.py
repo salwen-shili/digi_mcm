@@ -52,8 +52,7 @@ class resComapny(models.Model):
                     'justification': self.justification,
                     'paiement': self.paiement,
                     'attachment_ids': self.attachment_ids,
-                    'autre_raison': self.autre_raison,
-                })
+                    'autre_raison': self.autre_raison})
                 # Add new line in examen if mcm_session_id changed
                 if self.justification is True:
                     self.env['info.examen'].search([], limit=1, order='id desc').sudo().create({
