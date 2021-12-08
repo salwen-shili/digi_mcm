@@ -2,7 +2,7 @@ $(document).ready(function () {
   //popup's message depends with partner has documents
   document.getElementById('hasdocument').value == 'True'
     ? (document.getElementById('notifMessage').textContent =
-        "Vous pourrez désormais choisir votre date et centre d'examen et financer votre formation.")
+        "Vous pouvez désormais choisir votre date et centre d'examen et financer votre formation.")
     : (document.getElementById('notifMessage').textContent =
         "Pour passer à l'étape suivante merci de vous munir d'une copie originale de votre carte d'identité.");
   console.log(hasdocument, document.getElementById('hasdocument').value);
