@@ -151,53 +151,55 @@ class partner(models.Model):
 
     # Ajout automatique d' i-One sur 360learning
     def Ajouter_iOne_auto(self):
-        for partner in self.env['res.partner'].sudo().search([('statut', "=", "won"),
-                                                              ('statut_cpf', "!=", "canceled")
-                                                              ]):
-            # Pour chaque apprenant chercher son contrat
-            sale_order = self.env['sale.order'].sudo().search([('partner_id', '=', partner.id),
-                                                               ('session_id', '=', partner.mcm_session_id.id),
-                                                               ('module_id', '=', partner.module_id.id),
-                                                               ('state', '=', 'sale'),
-                                                               ('session_id.date_exam', '>', date.today())
-                                                               ], limit=1, order="id desc")
-            # Pour chaque apprenant chercher sa facture
-            facture = self.env['account.move'].sudo().search([('session_id', '=', partner.mcm_session_id.id),
-                                                              ('module_id', '=', partner.module_id.id),
-                                                              ('state', '=', 'posted')
-                                                              ], order="invoice_date desc", limit=1)
-            date_facture = facture.invoice_date
-            today = date.today()
-            _logger.info('sale order %s ' % sale_order.name)
-            # Récupérer les documents et vérifier si ils sont validés ou non
-            documents = self.env['documents.document'].sudo().search([('partner_id', '=', partner.id)])
-            document_valide = False
-            count = 0
-            for document in documents:
-                if (document.state == "validated"):
-                    count = count + 1
-            if (count == len(documents) and count != 0):
-                document_valide = True
-            # Cas particulier on doit Vérifier si partner a choisi une formation et si ses documents sont validés
-            if partner.mode_de_financement == "particulier":
-                if ((sale_order) and (document_valide)):
-                    statut = partner.statut
-                    # Vérifier si contrat signé ou non
-                    if (sale_order.state == 'sale') and (sale_order.signature):
-                        # Si demande de renonce est coché donc l'apprenant est ajouté sans attendre 14jours
+        base_url = self.env['ir.config_parameter'].sudo().get_param('web.base.url')
+        if "localhost" not in str(base_url):
+            for partner in self.env['res.partner'].sudo().search([('statut', "=", "won"),
+                                                                  ('statut_cpf', "!=", "canceled")
+                                                                  ]):
+                # Pour chaque apprenant chercher son contrat
+                sale_order = self.env['sale.order'].sudo().search([('partner_id', '=', partner.id),
+                                                                   ('session_id', '=', partner.mcm_session_id.id),
+                                                                   ('module_id', '=', partner.module_id.id),
+                                                                   ('state', '=', 'sale'),
+                                                                   ('session_id.date_exam', '>', date.today())
+                                                                   ], limit=1, order="id desc")
+                # Pour chaque apprenant chercher sa facture
+                facture = self.env['account.move'].sudo().search([('session_id', '=', partner.mcm_session_id.id),
+                                                                  ('module_id', '=', partner.module_id.id),
+                                                                  ('state', '=', 'posted')
+                                                                  ], order="invoice_date desc", limit=1)
+                date_facture = facture.invoice_date
+                today = date.today()
+                _logger.info('sale order %s ' % sale_order.name)
+                # Récupérer les documents et vérifier si ils sont validés ou non
+                documents = self.env['documents.document'].sudo().search([('partner_id', '=', partner.id)])
+                document_valide = False
+                count = 0
+                for document in documents:
+                    if (document.state == "validated"):
+                        count = count + 1
+                if (count == len(documents) and count != 0):
+                    document_valide = True
+                # Cas particulier on doit Vérifier si partner a choisi une formation et si ses documents sont validés
+                if partner.mode_de_financement == "particulier":
+                    if ((sale_order) and (document_valide)):
+                        statut = partner.statut
+                        # Vérifier si contrat signé ou non
+                        if (sale_order.state == 'sale') and (sale_order.signature):
+                            # Si demande de renonce est coché donc l'apprenant est ajouté sans attendre 14jours
+                            if partner.renounce_request:
+                                self.ajouter_iOne(partner)
+                            # si non il doit attendre 14jours pour etre ajouté
+                            if not partner.renounce_request and date_facture and (date_facture + timedelta(days=14)) <= today:
+                                self.ajouter_iOne(partner)
+                """cas de cpf on vérifie la validation des document , la case de renonciation et la date d'examen qui doit etre au futur """
+                if partner.mode_de_financement == "cpf":
+                    if document_valide and partner.mcm_session_id.date_exam and (
+                            partner.mcm_session_id.date_exam > date.today()):
                         if partner.renounce_request:
                             self.ajouter_iOne(partner)
-                        # si non il doit attendre 14jours pour etre ajouté
                         if not partner.renounce_request and date_facture and (date_facture + timedelta(days=14)) <= today:
                             self.ajouter_iOne(partner)
-            """cas de cpf on vérifie la validation des document , la case de renonciation et la date d'examen qui doit etre au futur """
-            if partner.mode_de_financement == "cpf":
-                if document_valide and partner.mcm_session_id.date_exam and (
-                        partner.mcm_session_id.date_exam > date.today()):
-                    if partner.renounce_request:
-                        self.ajouter_iOne(partner)
-                    if not partner.renounce_request and date_facture and (date_facture + timedelta(days=14)) <= today:
-                        self.ajouter_iOne(partner)
 
     # Ajouter ione manuellement
     def ajouter_iOne_manuelle(self):
@@ -408,46 +410,48 @@ class partner(models.Model):
                                 print(existe, 'ajouter à son session', respsession.status_code)
 
     def supprimer_ione_auto(self):
-        company_id = '56f5520e11d423f46884d593'
-        api_key = 'cnkcbrhHKyfzKLx4zI7Ub2P5'
-        headers = CaseInsensitiveDict()
-        headers["Accept"] = "*/*"
-        params = (
-            ('company', '56f5520e11d423f46884d593'),
-            ('apiKey', 'cnkcbrhHKyfzKLx4zI7Ub2P5'),
-        )
-        response = requests.get('https://app.360learning.com/api/v1/users', params=params)
-        users = response.json()
-        for user in users:
-            iduser = user['_id']
-            email = user['mail']
-            # Pour chaque partner verifier si date_suppression est aujourd'hui
-            # pour assurer la suppresion automatique
-            partner = self.env['res.partner'].sudo().search([('email', "=", email),
-                                                             ('est_surveillant',"=",False),
-                                                             ('est_intervenant',"=",False)],order='id desc',limit=1)
-            if (partner and partner.mcm_session_id.date_exam):
-                # date de suppression est date d'examen + 4jours
-                date_suppression = partner.mcm_session_id.date_exam + timedelta(days=4)
-                today = date.today()
-                if (date_suppression <= today):
-                    email = partner.email
-                    print('date_sup', email, date_suppression, today,email)
-                    _logger.info('liste à supprimé %s' %str(email))
-                    url = 'https://app.360learning.com/api/v1/users/' + email + '?company=' + company_id + '&apiKey=' + api_key
-                    resp = requests.delete(url)
-                    print('ress resp.status_code')
+        base_url = self.env['ir.config_parameter'].sudo().get_param('web.base.url')
+        if "localhost" not in str(base_url):
+            company_id = '56f5520e11d423f46884d593'
+            api_key = 'cnkcbrhHKyfzKLx4zI7Ub2P5'
+            headers = CaseInsensitiveDict()
+            headers["Accept"] = "*/*"
+            params = (
+                ('company', '56f5520e11d423f46884d593'),
+                ('apiKey', 'cnkcbrhHKyfzKLx4zI7Ub2P5'),
+            )
+            response = requests.get('https://app.360learning.com/api/v1/users', params=params)
+            users = response.json()
+            for user in users:
+                iduser = user['_id']
+                email = user['mail']
+                # Pour chaque partner verifier si date_suppression est aujourd'hui
+                # pour assurer la suppresion automatique
+                partner = self.env['res.partner'].sudo().search([('email', "=", email),
+                                                                 ('est_surveillant',"=",False),
+                                                                 ('est_intervenant',"=",False)],order='id desc',limit=1)
+                if (partner and partner.mcm_session_id.date_exam):
+                    # date de suppression est date d'examen + 4jours
+                    date_suppression = partner.mcm_session_id.date_exam + timedelta(days=4)
+                    today = date.today()
+                    if (date_suppression <= today):
+                        email = partner.email
+                        print('date_sup', email, date_suppression, today,email)
+                        _logger.info('liste à supprimé %s' %str(email))
+                        url = 'https://app.360learning.com/api/v1/users/' + email + '?company=' + company_id + '&apiKey=' + api_key
+                        resp = requests.delete(url)
+                        print('ress resp.status_code')
 
-            else:
-                print('date incompatible')
+                else:
+                    print('date incompatible')
 
-    def supprimer_ione_manuelle(self):
-        company_id = '56f5520e11d423f46884d593'
-        api_key = 'cnkcbrhHKyfzKLx4zI7Ub2P5'
-        headers = CaseInsensitiveDict()
-        headers["Accept"] = "*/*"
-        url = 'https://app.360learning.com/api/v1/users/' + self.email + '?company=' + company_id + '&apiKey=' + api_key
-        resp = requests.delete(url)
+        def supprimer_ione_manuelle(self):
+            company_id = '56f5520e11d423f46884d593'
+            api_key = 'cnkcbrhHKyfzKLx4zI7Ub2P5'
+            headers = CaseInsensitiveDict()
+            headers["Accept"] = "*/*"
+            url = 'https://app.360learning.com/api/v1/users/' + self.email + '?company=' + company_id + '&apiKey=' + api_key
+            resp = requests.delete(url)
 
 
     # Extraire firstName et lastName à partir du champs name
@@ -474,328 +478,334 @@ class partner(models.Model):
     si tout les conditions sont vérifiés on Passe le dossier dans l'état 'en formation'"""
 
     def wedof_api_integration(self):
-        headers = {
-            'accept': 'application/json',
-            'Content-Type': 'application/json',
-            'X-API-KEY': '026514d6bc7d880515a27eae4947bccef4fbbf03',
-        }
-        params_wedof = (
-            ('order', 'desc'),
-            ('type', 'all'),
-            ('state', 'accepted'),
-            ('billingState', 'all'),
-            ('certificationState', 'all'),
-            ('sort', 'lastUpdate'),
-        )
-        param_360 = (
-            ('company', '56f5520e11d423f46884d593'),
-            ('apiKey', 'cnkcbrhHKyfzKLx4zI7Ub2P5'),
-        )
-        data = '{}'
-        response = requests.get('https://www.wedof.fr/api/registrationFolders', headers=headers,
-                                params=params_wedof)
-        registrations = response.json()
-        for dossier in registrations:
-            externalId = dossier['externalId']
-            diplome = dossier['trainingActionInfo']['title']
-            email = dossier['attendee']['email']
-            certificat = dossier['_links']['certification']['name']
-            certificat_info = dossier['_links']['certification']['certifInfo']
-            date_formation = dossier['trainingActionInfo']['sessionStartDate']
-            """convertir date de formatio """
-            date_split = date_formation[0:10]
-            date_ = datetime.strptime(date_split, "%Y-%m-%d")
-            dateFormation = date_.date()
-            idform = dossier['trainingActionInfo']['externalId']
-            module = ""
-            if "_" in idform:
-                idforma = idform.split("_", 1)
-                if idforma:
-                    module = idforma[1]
-            today = date.today()
-            lastupdatestr = str(dossier['lastUpdate'])
-            lastupdate = datetime.strptime(lastupdatestr, '%Y-%m-%dT%H:%M:%S.%fz')
-            newformat = "%d/%m/%Y %H:%M:%S"
-            lastupdateform = lastupdate.strftime(newformat)
-            lastupd = datetime.strptime(lastupdateform, "%d/%m/%Y %H:%M:%S")
-            print('date', today, dateFormation, certificat)
-            """Si date de formation <= ajourdhui et s'il a choisi  la formation de transport  léger de marchandises
-            on cherche l'apprenant par email sur 360"""
-            if (
-                    certificat == "Formation à l'obtention de l'attestation de capacité professionnelle en transport léger de marchandises") \
-                    and (dateFormation <= today):
-                _logger.info('wedooooffffff %s' % certificat)
-                _logger.info('dateformation %s' % dateFormation)
-                _logger.info('email %s' % email)
-                response_plateforme = requests.get('https://app.360learning.com/api/v1/users', params=param_360)
-                users = response_plateforme.json()
-                for user in users:
-                    user_mail = user['mail']
-                    user_id = user['_id']
-                    response_user = requests.get('https://app.360learning.com/api/v1/users/' + user_id,
-                                                 params=param_360)
-                    table_user = response_user.json()
-                    totalTime = int(table_user['totalTimeSpentInMinutes'])
-                    """si l'apprenant connecté sur 360 
-                    on change le statut de son dossier sur wedof"""
-                    if (user_mail.upper() == email.upper()) and (totalTime >= 1):
-                        _logger.info('users %s ' % email.upper())
-                        _logger.info('user email %s' % user['mail'].upper())
-                        response_post = requests.post('https://www.wedof.fr/api/registrationFolders/'+externalId+'/inTraining',
-                                                  headers=headers, data=data)
-                        print('response post',response_post.status_code)
-                        """Si dossier passe en formation on met à jour statut cpf sur la fiche client"""
+        base_url = self.env['ir.config_parameter'].sudo().get_param('web.base.url')
+        if "localhost" not in str(base_url):
+            headers = {
+                'accept': 'application/json',
+                'Content-Type': 'application/json',
+                'X-API-KEY': '026514d6bc7d880515a27eae4947bccef4fbbf03',
+            }
+            params_wedof = (
+                ('order', 'desc'),
+                ('type', 'all'),
+                ('state', 'accepted'),
+                ('billingState', 'all'),
+                ('certificationState', 'all'),
+                ('sort', 'lastUpdate'),
+            )
+            param_360 = (
+                ('company', '56f5520e11d423f46884d593'),
+                ('apiKey', 'cnkcbrhHKyfzKLx4zI7Ub2P5'),
+            )
+            data = '{}'
+            response = requests.get('https://www.wedof.fr/api/registrationFolders', headers=headers,
+                                    params=params_wedof)
+            registrations = response.json()
+            for dossier in registrations:
+                externalId = dossier['externalId']
+                diplome = dossier['trainingActionInfo']['title']
+                email = dossier['attendee']['email']
+                certificat = dossier['_links']['certification']['name']
+                certificat_info = dossier['_links']['certification']['certifInfo']
+                date_formation = dossier['trainingActionInfo']['sessionStartDate']
+                """convertir date de formatio """
+                date_split = date_formation[0:10]
+                date_ = datetime.strptime(date_split, "%Y-%m-%d")
+                dateFormation = date_.date()
+                idform = dossier['trainingActionInfo']['externalId']
+                module = ""
+                if "_" in idform:
+                    idforma = idform.split("_", 1)
+                    if idforma:
+                        module = idforma[1]
+                today = date.today()
+                lastupdatestr = str(dossier['lastUpdate'])
+                lastupdate = datetime.strptime(lastupdatestr, '%Y-%m-%dT%H:%M:%S.%fz')
+                newformat = "%d/%m/%Y %H:%M:%S"
+                lastupdateform = lastupdate.strftime(newformat)
+                lastupd = datetime.strptime(lastupdateform, "%d/%m/%Y %H:%M:%S")
+                print('date', today, dateFormation, certificat)
+                """Si date de formation <= ajourdhui et s'il a choisi  la formation de transport  léger de marchandises
+                on cherche l'apprenant par email sur 360"""
+                if (
+                        certificat == "Formation à l'obtention de l'attestation de capacité professionnelle en transport léger de marchandises") \
+                        and (dateFormation <= today):
+                    _logger.info('wedooooffffff %s' % certificat)
+                    _logger.info('dateformation %s' % dateFormation)
+                    _logger.info('email %s' % email)
+                    response_plateforme = requests.get('https://app.360learning.com/api/v1/users', params=param_360)
+                    users = response_plateforme.json()
+                    for user in users:
+                        user_mail = user['mail']
+                        user_id = user['_id']
+                        response_user = requests.get('https://app.360learning.com/api/v1/users/' + user_id,
+                                                     params=param_360)
+                        table_user = response_user.json()
+                        totalTime = int(table_user['totalTimeSpentInMinutes'])
+                        """si l'apprenant connecté sur 360 
+                        on change le statut de son dossier sur wedof"""
+                        if (user_mail.upper() == email.upper()) and (totalTime >= 1):
+                            _logger.info('users %s ' % email.upper())
+                            _logger.info('user email %s' % user['mail'].upper())
+                            response_post = requests.post('https://www.wedof.fr/api/registrationFolders/'+externalId+'/inTraining',
+                                                      headers=headers, data=data)
+                            print('response post',response_post.status_code)
+                            """Si dossier passe en formation on met à jour statut cpf sur la fiche client"""
 
 
-                        product_id = self.env['product.template'].sudo().search(
-                            [('id_edof', "=", str(module)), ('company_id', "=", 2)], limit=1)
+                            product_id = self.env['product.template'].sudo().search(
+                                [('id_edof', "=", str(module)), ('company_id', "=", 2)], limit=1)
 
-                        if response_post.status_code==200:
+                            if response_post.status_code==200:
 
-                            partner = self.env['res.partner'].sudo().search([('numero_cpf', "=", str(externalId))])
+                                partner = self.env['res.partner'].sudo().search([('numero_cpf', "=", str(externalId))])
 
-                            if len(partner) > 1:
-                                for part in partner:
-                                    part_email=part.email
-                                    if part_email.upper() == email.upper():
-                                        _logger.info('if partner >1 %s' % partner.numero_cpf)
-                                        partner.statut_cpf="in_training"
-                                        partner.date_cpf = lastupd
-                                        if product_id:
-                                            partner.id_edof = product_id.id_edof
+                                if len(partner) > 1:
+                                    for part in partner:
+                                        part_email=part.email
+                                        if part_email.upper() == email.upper():
+                                            _logger.info('if partner >1 %s' % partner.numero_cpf)
+                                            partner.statut_cpf="in_training"
+                                            partner.date_cpf = lastupd
+                                            if product_id:
+                                                partner.id_edof = product_id.id_edof
 
-                            elif len(partner) == 1:
-                                _logger.info('if partner %s' % partner.numero_cpf)
-                                partner.statut_cpf = "in_training"
-                                partner.date_cpf =  lastupd
-                                partner.diplome=diplome
-                                if product_id:
-                                    partner.id_edof = product_id.id_edof
+                                elif len(partner) == 1:
+                                    _logger.info('if partner %s' % partner.numero_cpf)
+                                    partner.statut_cpf = "in_training"
+                                    partner.date_cpf =  lastupd
+                                    partner.diplome=diplome
+                                    if product_id:
+                                        partner.id_edof = product_id.id_edof
 
     """changer l'etat sur wedof de non traité vers validé à partir d'API"""
     def change_state_wedof_validate(self):
-        params_wedof = (
-            ('order', 'desc'),
-            ('type', 'all'),
-            ('state', 'notProcessed'),
-            ('billingState', 'all'),
-            ('certificationState', 'all'),
-            ('sort', 'lastUpdate'),
-        )
-        headers = {
-            'accept': 'application/json',
-            'Content-Type': 'application/json',
-            'X-API-KEY': '026514d6bc7d880515a27eae4947bccef4fbbf03',
-        }
-        response = requests.get('https://www.wedof.fr/api/registrationFolders/', headers=headers,
-                                params=params_wedof)
-        registrations = response.json()
-        for dossier in registrations:
-            externalid = dossier['externalId']
-            email = dossier['attendee']['email']
-            email = email.replace("%", ".")  # remplacer % par .
-            email = email.replace(" ", "")  # supprimer les espaces envoyés en paramètre email
-            email = str(email).lower()  # recupérer l'email en miniscule pour éviter la création des deux comptes
-            print('dossier', dossier)
-            idform = dossier['trainingActionInfo']['externalId']
-            training_id = ""
-            if "_" in idform:
-                idforma = idform.split("_", 1)
-                if idforma:
-                    training_id = idforma[1]
+        base_url = self.env['ir.config_parameter'].sudo().get_param('web.base.url')
+        if "localhost" not in str(base_url):
+            params_wedof = (
+                ('order', 'desc'),
+                ('type', 'all'),
+                ('state', 'notProcessed'),
+                ('billingState', 'all'),
+                ('certificationState', 'all'),
+                ('sort', 'lastUpdate'),
+            )
+            headers = {
+                'accept': 'application/json',
+                'Content-Type': 'application/json',
+                'X-API-KEY': '026514d6bc7d880515a27eae4947bccef4fbbf03',
+            }
+            response = requests.get('https://www.wedof.fr/api/registrationFolders/', headers=headers,
+                                    params=params_wedof)
+            registrations = response.json()
+            for dossier in registrations:
+                externalid = dossier['externalId']
+                email = dossier['attendee']['email']
+                email = email.replace("%", ".")  # remplacer % par .
+                email = email.replace(" ", "")  # supprimer les espaces envoyés en paramètre email
+                email = str(email).lower()  # recupérer l'email en miniscule pour éviter la création des deux comptes
+                print('dossier', dossier)
+                idform = dossier['trainingActionInfo']['externalId']
+                training_id = ""
+                if "_" in idform:
+                    idforma = idform.split("_", 1)
+                    if idforma:
+                        training_id = idforma[1]
 
-            print('training', training_id)
-            state = dossier['state']
-            lastupdatestr = str(dossier['lastUpdate'])
-            lastupdate = datetime.strptime(lastupdatestr, '%Y-%m-%dT%H:%M:%S.%fz')
-            newformat = "%d/%m/%Y %H:%M:%S"
-            lastupdateform = lastupdate.strftime(newformat)
-            lastupd = datetime.strptime(lastupdateform, "%d/%m/%Y %H:%M:%S")
-            if "roadName" in dossier['attendee']['address']:
-                address = dossier['attendee']['address']['roadName']
-            else:
-                address = ""
-            if "phoneNumber" in dossier['attendee']:
-                tel = dossier['attendee']['phoneNumber']
-            else:
-                tel = ""
-            if "zipCode" in dossier['attendee']['address']:
-                code_postal = dossier['attendee']['address']['zipCode']
-            else:
-                code_postal = ""
-            if "city" in dossier['attendee']['address']:
-                ville = dossier['attendee']['address']['city']
-            else:
-                ville = ""
-            if 'firstName' in dossier['attendee']['firstName']:
-                nom = dossier['attendee']['firstName']
-            else:
-                nom = ""
+                print('training', training_id)
+                state = dossier['state']
+                lastupdatestr = str(dossier['lastUpdate'])
+                lastupdate = datetime.strptime(lastupdatestr, '%Y-%m-%dT%H:%M:%S.%fz')
+                newformat = "%d/%m/%Y %H:%M:%S"
+                lastupdateform = lastupdate.strftime(newformat)
+                lastupd = datetime.strptime(lastupdateform, "%d/%m/%Y %H:%M:%S")
+                if "roadName" in dossier['attendee']['address']:
+                    address = dossier['attendee']['address']['roadName']
+                else:
+                    address = ""
+                if "phoneNumber" in dossier['attendee']:
+                    tel = dossier['attendee']['phoneNumber']
+                else:
+                    tel = ""
+                if "zipCode" in dossier['attendee']['address']:
+                    code_postal = dossier['attendee']['address']['zipCode']
+                else:
+                    code_postal = ""
+                if "city" in dossier['attendee']['address']:
+                    ville = dossier['attendee']['address']['city']
+                else:
+                    ville = ""
+                if 'firstName' in dossier['attendee']['firstName']:
+                    nom = dossier['attendee']['firstName']
+                else:
+                    nom = ""
 
-            if "lastName" in dossier['attendee']['lastName']:
-                prenom = dossier['attendee']['lastName']
-            else:
-                prenom = ""
-            diplome = dossier['trainingActionInfo']['title']
+                if "lastName" in dossier['attendee']['lastName']:
+                    prenom = dossier['attendee']['lastName']
+                else:
+                    prenom = ""
+                diplome = dossier['trainingActionInfo']['title']
 
-            today = date.today()
-            datedebut = today + timedelta(days=15)
-            datefin = str(datedebut + relativedelta(months=3) + timedelta(days=1))
-            datedebutstr = str(datedebut)
-            data = '{"trainingActionInfo":{"sessionStartDate":"' + datedebutstr + '","sessionEndDate":"' + datefin + '" }}'
-            dat = '{\n  "weeklyDuration": 14,\n  "indicativeDuration": 102\n}'
-            response_put = requests.put('https://www.wedof.fr/api/registrationFolders/' + externalid,
-                                        headers=headers, data=data)
-            response_post = requests.post('https://www.wedof.fr/api/registrationFolders/' + externalid + '/validate',
-                                          headers=headers, data=dat)
-            status = str(response_post.status_code)
+                today = date.today()
+                datedebut = today + timedelta(days=15)
+                datefin = str(datedebut + relativedelta(months=3) + timedelta(days=1))
+                datedebutstr = str(datedebut)
+                data = '{"trainingActionInfo":{"sessionStartDate":"' + datedebutstr + '","sessionEndDate":"' + datefin + '" }}'
+                dat = '{\n  "weeklyDuration": 14,\n  "indicativeDuration": 102\n}'
+                response_put = requests.put('https://www.wedof.fr/api/registrationFolders/' + externalid,
+                                            headers=headers, data=data)
+                response_post = requests.post('https://www.wedof.fr/api/registrationFolders/' + externalid + '/validate',
+                                              headers=headers, data=dat)
+                status = str(response_post.status_code)
 
-            """Si dossier passe à l'etat validé on met à jour statut cpf sur la fiche client"""
-            if status == "200":
-                print('validate', email)
-                self.cpf_validate(training_id, email, address, tel, code_postal, ville, diplome, dossier['attendee']['lastName'], dossier['attendee']['firstName'],
-                                      externalid, lastupd)
+                """Si dossier passe à l'etat validé on met à jour statut cpf sur la fiche client"""
+                if status == "200":
+                    print('validate', email)
+                    self.cpf_validate(training_id, email, address, tel, code_postal, ville, diplome, dossier['attendee']['lastName'], dossier['attendee']['firstName'],
+                                          externalid, lastupd)
 
 
     """Mettre à jour les statuts cpf sur la fiche client selon l'etat sur wedof """
     def change_state_cpf_partner(self):
-        params_wedof = (
-            ('order', 'desc'),
-            ('type', 'all'),
-            ('state', 'validated,inTraining,serviceDoneDeclared,canceledByAttendee,canceledByAttendeeNotRealized,canceledByOrganism'),
-            ('billingState', 'all'),
-            ('certificationState', 'all'),
-            ('sort', 'lastUpdate'),
-            ('limit', '100'),
-            ('page','1')
-        )
-        headers = {
-            'accept': 'application/json',
-            'Content-Type': 'application/json',
-            'X-API-KEY': '026514d6bc7d880515a27eae4947bccef4fbbf03',
-        }
-        response = requests.get('https://www.wedof.fr/api/registrationFolders/', headers=headers,
-                                params=params_wedof)
-        registrations = response.json()
-        for dossier in registrations:
-            externalId=dossier['externalId']
-            email = dossier['attendee']['email']
-            email = email.replace("%", ".")  # remplacer % par .
-            email = email.replace(" ", "")  # supprimer les espaces envoyés en paramètre email
-            email = str(email).lower()  # recupérer l'email en miniscule pour éviter la création des deux comptes
-            print('dossier',dossier)
-            idform=dossier['trainingActionInfo']['externalId']
-            training_id=""
-            if "_" in idform:
-                idforma = idform.split("_", 1)
-                if idforma:
-                    training_id = idforma[1]
-           
-            print('training',training_id)
-            state=dossier['state']
-            lastupdatestr=str(dossier['lastUpdate'])
-            lastupdate=datetime.strptime(lastupdatestr, '%Y-%m-%dT%H:%M:%S.%fz')
-            newformat="%d/%m/%Y %H:%M:%S"
-            lastupdateform=lastupdate.strftime(newformat)
-            lastupd=datetime.strptime(lastupdateform, "%d/%m/%Y %H:%M:%S")
-            if "roadName" in dossier['attendee']['address']:
-                address = dossier['attendee']['address']['roadName']
-            else:
-                address = ""
-            if "phoneNumber" in  dossier['attendee']:
-                tel = dossier['attendee']['phoneNumber']
-            else :
-                tel = ""
-            if "zipCode" in dossier['attendee']['address']:
-                code_postal = dossier['attendee']['address']['zipCode']
-            else :
-                code_postal = ""
-            if "city" in dossier['attendee']['address']:
-                ville = dossier['attendee']['address']['city']
-            else :
-                ville =""
-            if 'firstName' in dossier['attendee']['firstName']:
-                nom = dossier['attendee']['firstName']
-                nom=unidecode(nom)
-            else :
-                nom=""
-            
-            if "lastName" in dossier['attendee']['lastName']:
-                prenom = dossier['attendee']['lastName']
-                prenom=unidecode(prenom)
-            else :
-                prenom=""
-            diplome = dossier['trainingActionInfo']['title']
-            product_id = self.env['product.template'].sudo().search(
-                [('id_edof', "=", str(training_id))], limit=1)
+        base_url = self.env['ir.config_parameter'].sudo().get_param('web.base.url')
+        if "localhost" not in str(base_url):
+            params_wedof = (
+                ('order', 'desc'),
+                ('type', 'all'),
+                ('state', 'validated,inTraining,serviceDoneDeclared,canceledByAttendee,canceledByAttendeeNotRealized,canceledByOrganism'),
+                ('billingState', 'all'),
+                ('certificationState', 'all'),
+                ('sort', 'lastUpdate'),
+                ('limit', '100'),
+                ('page','1')
+            )
+            headers = {
+                'accept': 'application/json',
+                'Content-Type': 'application/json',
+                'X-API-KEY': '026514d6bc7d880515a27eae4947bccef4fbbf03',
+            }
+            response = requests.get('https://www.wedof.fr/api/registrationFolders/', headers=headers,
+                                    params=params_wedof)
+            registrations = response.json()
+            for dossier in registrations:
+                externalId=dossier['externalId']
+                email = dossier['attendee']['email']
+                email = email.replace("%", ".")  # remplacer % par .
+                email = email.replace(" ", "")  # supprimer les espaces envoyés en paramètre email
+                email = str(email).lower()  # recupérer l'email en miniscule pour éviter la création des deux comptes
+                print('dossier',dossier)
+                idform=dossier['trainingActionInfo']['externalId']
+                training_id=""
+                if "_" in idform:
+                    idforma = idform.split("_", 1)
+                    if idforma:
+                        training_id = idforma[1]
 
-            if state=="validated":
-                print('validate',email,dossier['attendee']['lastName'],dossier['attendee']['firstName'])
-                self.cpf_validate(training_id,email,address,tel,code_postal,ville,diplome,dossier['attendee']['lastName'],dossier['attendee']['firstName'],externalId,lastupd)
-            else:
-                users = self.env['res.users'].sudo().search(
-                    [('login', "=", email)])  # search user with same email sended
-                user = False
-                if len(users) > 1:
-                    user = users[1]
-                    print('userss', users)
-                    for utilisateur in users:
-                        if utilisateur.partner_id.id_edof and utilisateur.partner_id.date_examen_edof and utilisateur.partner_id.session_ville_id:  # if more than user ,check between them wich user is come from edof
-                            user = utilisateur
-                            print('if userssss', user.partner_id.email)
+                print('training',training_id)
+                state=dossier['state']
+                lastupdatestr=str(dossier['lastUpdate'])
+                lastupdate=datetime.strptime(lastupdatestr, '%Y-%m-%dT%H:%M:%S.%fz')
+                newformat="%d/%m/%Y %H:%M:%S"
+                lastupdateform=lastupdate.strftime(newformat)
+                lastupd=datetime.strptime(lastupdateform, "%d/%m/%Y %H:%M:%S")
+                if "roadName" in dossier['attendee']['address']:
+                    address = dossier['attendee']['address']['roadName']
                 else:
-                    user = users
-                if user:  # if user finded
-                    print('if__________________user', user.partner_id.statut_cpf, user.partner_id.email)
-                    user.partner_id.mode_de_financement = 'cpf'  # update field mode de financement to cpf
-                    user.partner_id.funding_type = 'cpf'  # update field funding type to cpfprint('partner',partner.numero_cpf,user.login)
-                    print(user.partner_id.date_cpf)
-                    
-                if state=="inTraining":
-                    print('intraining', email)
-                    user.partner_id.statut_cpf="in_training"
-                    user.partner_id.numero_cpf = externalId
-                    user.partner_id.date_cpf = lastupd
-                    user.partner_id.diplome=diplome
-                    if product_id:
-                        user.partner_id.id_edof = product_id.id_edof
+                    address = ""
+                if "phoneNumber" in  dossier['attendee']:
+                    tel = dossier['attendee']['phoneNumber']
+                else :
+                    tel = ""
+                if "zipCode" in dossier['attendee']['address']:
+                    code_postal = dossier['attendee']['address']['zipCode']
+                else :
+                    code_postal = ""
+                if "city" in dossier['attendee']['address']:
+                    ville = dossier['attendee']['address']['city']
+                else :
+                    ville =""
+                if 'firstName' in dossier['attendee']['firstName']:
+                    nom = dossier['attendee']['firstName']
+                    nom=unidecode(nom)
+                else :
+                    nom=""
 
-                if state=="terminated":
-                    print('terminated', email)
-                    user.partner_id.statut_cpf="out_training"
-                    user.partner_id.numero_cpf = externalId
-                    user.partner_id.diplome = diplome
-                    user.partner_id.date_cpf = lastupd
-                    if product_id:
-                        user.partner_id.id_edof = product_id.id_edof
-                if state=="serviceDoneDeclared":
-                    print('serviceDoneDeclared', email)
-                    user.partner_id.statut_cpf="service_declared"
-                    user.partner_id.numero_cpf = externalId
-                    user.partner_id.date_cpf = lastupd
-                    user.partner_id.diplome = diplome
-                    if product_id:
-                        user.partner_id.id_edof=product_id.id_edof
+                if "lastName" in dossier['attendee']['lastName']:
+                    prenom = dossier['attendee']['lastName']
+                    prenom=unidecode(prenom)
+                else :
+                    prenom=""
+                diplome = dossier['trainingActionInfo']['title']
+                product_id = self.env['product.template'].sudo().search(
+                    [('id_edof', "=", str(training_id))], limit=1)
 
-                if state=="serviceDoneValidated":
-                    print('serviceDoneValidated', email)
+                if state=="validated":
+                    print('validate',email,dossier['attendee']['lastName'],dossier['attendee']['firstName'])
+                    self.cpf_validate(training_id,email,address,tel,code_postal,ville,diplome,dossier['attendee']['lastName'],dossier['attendee']['firstName'],externalId,lastupd)
+                else:
+                    users = self.env['res.users'].sudo().search(
+                        [('login', "=", email)])  # search user with same email sended
+                    user = False
+                    if len(users) > 1:
+                        user = users[1]
+                        print('userss', users)
+                        for utilisateur in users:
+                            if utilisateur.partner_id.id_edof and utilisateur.partner_id.date_examen_edof and utilisateur.partner_id.session_ville_id:  # if more than user ,check between them wich user is come from edof
+                                user = utilisateur
+                                print('if userssss', user.partner_id.email)
+                    else:
+                        user = users
+                    if user:  # if user finded
+                        print('if__________________user', user.partner_id.statut_cpf, user.partner_id.email)
+                        user.partner_id.mode_de_financement = 'cpf'  # update field mode de financement to cpf
+                        user.partner_id.funding_type = 'cpf'  # update field funding type to cpfprint('partner',partner.numero_cpf,user.login)
+                        print(user.partner_id.date_cpf)
 
-                    user.partner_id.statut_cpf="service_validated"
-                    user.partner_id.numero_cpf = externalId
-                    user.partner_id.date_cpf = lastupd
-                    user.partner_id.diplome = diplome
-                    if product_id:
-                        user.partner_id.id_edof = product_id.id_edof
-                if state=="canceledByAttendee" or state=="canceledByAttendeeNotRealized" or state=="canceledByOrganism"  :
-                    if user.partner_id.numero_cpf==externalId:
-                        user.partner_id.statut_cpf="canceled"
-                        user.partner_id.statut="canceled"
+                    if state=="inTraining":
+                        print('intraining', email)
+                        user.partner_id.statut_cpf="in_training"
+                        user.partner_id.numero_cpf = externalId
                         user.partner_id.date_cpf = lastupd
-                        user.partner_id.diplome = diplome
-                        print("product id annulé digi",user.partner_id.id_edof,training_id)
-
+                        user.partner_id.diplome=diplome
                         if product_id:
                             user.partner_id.id_edof = product_id.id_edof
+
+                    if state=="terminated":
+                        print('terminated', email)
+                        user.partner_id.statut_cpf="out_training"
+                        user.partner_id.numero_cpf = externalId
+                        user.partner_id.diplome = diplome
+                        user.partner_id.date_cpf = lastupd
+                        if product_id:
+                            user.partner_id.id_edof = product_id.id_edof
+                    if state=="serviceDoneDeclared":
+                        print('serviceDoneDeclared', email)
+                        user.partner_id.statut_cpf="service_declared"
+                        user.partner_id.numero_cpf = externalId
+                        user.partner_id.date_cpf = lastupd
+                        user.partner_id.diplome = diplome
+                        if product_id:
+                            user.partner_id.id_edof=product_id.id_edof
+
+                    if state=="serviceDoneValidated":
+                        print('serviceDoneValidated', email)
+
+                        user.partner_id.statut_cpf="service_validated"
+                        user.partner_id.numero_cpf = externalId
+                        user.partner_id.date_cpf = lastupd
+                        user.partner_id.diplome = diplome
+                        if product_id:
+                            user.partner_id.id_edof = product_id.id_edof
+                    if state=="canceledByAttendee" or state=="canceledByAttendeeNotRealized" or state=="canceledByOrganism"  :
+                        if user.partner_id.numero_cpf==externalId:
+                            user.partner_id.statut_cpf="canceled"
+                            user.partner_id.statut="canceled"
+                            user.partner_id.date_cpf = lastupd
+                            user.partner_id.diplome = diplome
+                            print("product id annulé digi",user.partner_id.id_edof,training_id)
+
+                            if product_id:
+                                user.partner_id.id_edof = product_id.id_edof
 
 
 
@@ -901,270 +911,272 @@ class partner(models.Model):
 
     """Changer statut cpf vers accepté selon l'etat récupéré avec api wedof"""
     def change_statut_accepte(self):
-        params_wedof = (
-            ('order', 'desc'),
-            ('type', 'all'),
-            ('state', 'accepted'),
-            ('billingState', 'all'),
-            ('certificationState', 'all'),
-            ('sort', 'lastUpdate'),
-            ('limit', '100')
-        )
-        headers = {
-            'accept': 'application/json',
-            'Content-Type': 'application/json',
-            'X-API-KEY': '026514d6bc7d880515a27eae4947bccef4fbbf03',
-        }
-        response = requests.get('https://www.wedof.fr/api/registrationFolders/', headers=headers,
-                                params=params_wedof)
-        registrations = response.json()
-        for dossier in registrations:
-            externalId = dossier['externalId']
-            email = dossier['attendee']['email']
-            email = email.replace("%", ".")  # remplacer % par .
-            email = email.replace(" ", "")  # supprimer les espaces envoyés en paramètre email
-            email = str(email).lower()  # recupérer l'email en miniscule pour éviter la création des deux comptes
-            print('dossier', dossier)
-            idform = dossier['trainingActionInfo']['externalId']
-            training_id = ""
-            if "_" in idform:
-                idforma = idform.split("_", 1)
-                if idforma:
-                    training_id = idforma[1]
-            state = dossier['state']
-            lastupdatestr = str(dossier['lastUpdate'])
-            lastupdate = datetime.strptime(lastupdatestr, '%Y-%m-%dT%H:%M:%S.%fz')
-            newformat = "%d/%m/%Y %H:%M:%S"
-            lastupdateform = lastupdate.strftime(newformat)
-            lastupd = datetime.strptime(lastupdateform, "%d/%m/%Y %H:%M:%S")
+        base_url = self.env['ir.config_parameter'].sudo().get_param('web.base.url')
+        if "localhost" not in str(base_url):
+            params_wedof = (
+                ('order', 'desc'),
+                ('type', 'all'),
+                ('state', 'accepted'),
+                ('billingState', 'all'),
+                ('certificationState', 'all'),
+                ('sort', 'lastUpdate'),
+                ('limit', '100')
+            )
+            headers = {
+                'accept': 'application/json',
+                'Content-Type': 'application/json',
+                'X-API-KEY': '026514d6bc7d880515a27eae4947bccef4fbbf03',
+            }
+            response = requests.get('https://www.wedof.fr/api/registrationFolders/', headers=headers,
+                                    params=params_wedof)
+            registrations = response.json()
+            for dossier in registrations:
+                externalId = dossier['externalId']
+                email = dossier['attendee']['email']
+                email = email.replace("%", ".")  # remplacer % par .
+                email = email.replace(" ", "")  # supprimer les espaces envoyés en paramètre email
+                email = str(email).lower()  # recupérer l'email en miniscule pour éviter la création des deux comptes
+                print('dossier', dossier)
+                idform = dossier['trainingActionInfo']['externalId']
+                training_id = ""
+                if "_" in idform:
+                    idforma = idform.split("_", 1)
+                    if idforma:
+                        training_id = idforma[1]
+                state = dossier['state']
+                lastupdatestr = str(dossier['lastUpdate'])
+                lastupdate = datetime.strptime(lastupdatestr, '%Y-%m-%dT%H:%M:%S.%fz')
+                newformat = "%d/%m/%Y %H:%M:%S"
+                lastupdateform = lastupdate.strftime(newformat)
+                lastupd = datetime.strptime(lastupdateform, "%d/%m/%Y %H:%M:%S")
 
-            if "phoneNumber" in dossier['attendee']:
-                tel = dossier['attendee']['phoneNumber']
-            else:
-                tel = ""
-            diplome = dossier['trainingActionInfo']['title']
-            print('training', training_id)
-            users = self.env['res.users'].sudo().search([('login', "=", email)])
-            """si apprenant non trouvé par email on cherche par numero telephone"""
-            if not users:
-                if '+33' not in str(tel):
-                    users = self.env["res.users"].sudo().search(
-                        [("phone", "=", str(tel).replace(' ', ''))], limit=1)
-                    if not users:
-                        phone = str(tel)
-                        phone = phone[1:]
-                        phone = '+33' + str(phone)
-                        users = self.env["res.users"].sudo().search(
-                            [("phone", "=", phone.replace(' ', ''))], limit=1)
+                if "phoneNumber" in dossier['attendee']:
+                    tel = dossier['attendee']['phoneNumber']
                 else:
-                    users = self.env["res.users"].sudo().search(
-                        [("phone", "=", str(tel).replace(' ', ''))], limit=1)
-                    if not users:
-                        phone = str(tel)
-                        phone = phone[3:]
-                        phone = '0' + str(phone)
+                    tel = ""
+                diplome = dossier['trainingActionInfo']['title']
+                print('training', training_id)
+                users = self.env['res.users'].sudo().search([('login', "=", email)])
+                """si apprenant non trouvé par email on cherche par numero telephone"""
+                if not users:
+                    if '+33' not in str(tel):
                         users = self.env["res.users"].sudo().search(
-                            [("phone", "=", phone.replace(' ', ''))], limit=1)
+                            [("phone", "=", str(tel).replace(' ', ''))], limit=1)
+                        if not users:
+                            phone = str(tel)
+                            phone = phone[1:]
+                            phone = '+33' + str(phone)
+                            users = self.env["res.users"].sudo().search(
+                                [("phone", "=", phone.replace(' ', ''))], limit=1)
+                    else:
+                        users = self.env["res.users"].sudo().search(
+                            [("phone", "=", str(tel).replace(' ', ''))], limit=1)
+                        if not users:
+                            phone = str(tel)
+                            phone = phone[3:]
+                            phone = '0' + str(phone)
+                            users = self.env["res.users"].sudo().search(
+                                [("phone", "=", phone.replace(' ', ''))], limit=1)
 
-            user = False
-            if len(users) > 1:
-                user = users[1]
-                for utilisateur in users:
-                    if utilisateur.partner_id.id_edof and utilisateur.partner_id.date_examen_edof and utilisateur.partner_id.ville:
-                        user = utilisateur
-            else:
-                user = users
-            if user:
-                print("if user", user.login,user.partner_id.statut_cpf)
-                user.partner_id.mode_de_financement = 'cpf'
-                user.partner_id.statut_cpf = 'accepted'
-                user.partner_id.date_cpf= lastupd
-                module_id = False
-                product_id = False
-                if 'digimoov' in str(training_id):
-
-                    product_id = self.env['product.template'].sudo().search(
-                        [('id_edof', "=", str(training_id)), ('company_id', "=", 2)], limit=1)
+                user = False
+                if len(users) > 1:
+                    user = users[1]
+                    for utilisateur in users:
+                        if utilisateur.partner_id.id_edof and utilisateur.partner_id.date_examen_edof and utilisateur.partner_id.ville:
+                            user = utilisateur
                 else:
-                    product_id = self.env['product.template'].sudo().search(
-                        [('id_edof', "=", str(training_id)), ('company_id', "=", 1)], limit=1)
-                print('if digi ',product_id)
-                if product_id and product_id.company_id.id == 2 and user.partner_id.id_edof and user.partner_id.date_examen_edof and user.partner_id.session_ville_id:
-                    print('if product_id digimoov',product_id,user.login)
-                    module_id = self.env['mcmacademy.module'].sudo().search(
-                        [('company_id', "=", 2), ('session_ville_id', "=", user.partner_id.session_ville_id.id),
-                         ('date_exam', "=", user.partner_id.date_examen_edof), ('product_id', "=", product_id.id),
-                         ('session_id.number_places_available', '>', 0)], limit=1)
-                    print('before if modulee', module_id)
-                    if module_id:
-                        print('if modulee',module_id)
-                        user.partner_id.module_id = module_id
-                        user.partner_id.mcm_session_id = module_id.session_id
-                        product_id = self.env['product.product'].sudo().search(
-                            [('product_tmpl_id', '=', module_id.product_id.id)])
-                        user.partner_id.mcm_session_id = module_id.session_id
-                        user.partner_id.module_id = module_id
-                        self.env.user.company_id = 2
-                        invoice = self.env['account.move'].sudo().search(
-                            [('module_id', "=", module_id.id), ('state', "=", 'posted'),
-                             ('partner_id', "=", user.partner_id.id)])
-                        if not invoice:
-                            so = self.env['sale.order'].sudo().create({
-                                'partner_id': user.partner_id.id,
-                                'company_id': 2,
-                            })
-                            so.module_id = module_id
-                            so.session_id = module_id.session_id
+                    user = users
+                if user:
+                    print("if user", user.login,user.partner_id.statut_cpf)
+                    user.partner_id.mode_de_financement = 'cpf'
+                    user.partner_id.statut_cpf = 'accepted'
+                    user.partner_id.date_cpf= lastupd
+                    module_id = False
+                    product_id = False
+                    if 'digimoov' in str(training_id):
 
-                            so_line = self.env['sale.order.line'].sudo().create({
-                                'name': product_id.name,
-                                'product_id': product_id.id,
-                                'product_uom_qty': 1,
-                                'product_uom': product_id.uom_id.id,
-                                'price_unit': product_id.list_price,
-                                'order_id': so.id,
-                                'tax_id': product_id.taxes_id,
-                                'company_id': 2,
-                            })
-                            # prix de la formation dans le devis
-                            amount_before_instalment = so.amount_total
-                            # so.amount_total = so.amount_total * 0.25
-                            for line in so.order_line:
-                                line.price_unit = so.amount_total
-                            so.action_confirm()
-                            ref = False
-                            # Creation de la Facture Cpf
-                            # Si la facture est de type CPF :  On parse le pourcentage qui est 25 %
-                            # methode_payment prend la valeur CPF pour savoir bien qui est une facture CPF qui prend la valeur 25 % par default
+                        product_id = self.env['product.template'].sudo().search(
+                            [('id_edof', "=", str(training_id)), ('company_id', "=", 2)], limit=1)
+                    else:
+                        product_id = self.env['product.template'].sudo().search(
+                            [('id_edof', "=", str(training_id)), ('company_id', "=", 1)], limit=1)
+                    print('if digi ',product_id)
+                    if product_id and product_id.company_id.id == 2 and user.partner_id.id_edof and user.partner_id.date_examen_edof and user.partner_id.session_ville_id:
+                        print('if product_id digimoov',product_id,user.login)
+                        module_id = self.env['mcmacademy.module'].sudo().search(
+                            [('company_id', "=", 2), ('session_ville_id', "=", user.partner_id.session_ville_id.id),
+                             ('date_exam', "=", user.partner_id.date_examen_edof), ('product_id', "=", product_id.id),
+                             ('session_id.number_places_available', '>', 0)], limit=1)
+                        print('before if modulee', module_id)
+                        if module_id:
+                            print('if modulee',module_id)
+                            user.partner_id.module_id = module_id
+                            user.partner_id.mcm_session_id = module_id.session_id
+                            product_id = self.env['product.product'].sudo().search(
+                                [('product_tmpl_id', '=', module_id.product_id.id)])
+                            user.partner_id.mcm_session_id = module_id.session_id
+                            user.partner_id.module_id = module_id
+                            self.env.user.company_id = 2
+                            invoice = self.env['account.move'].sudo().search(
+                                [('module_id', "=", module_id.id), ('state', "=", 'posted'),
+                                 ('partner_id', "=", user.partner_id.id)])
+                            if not invoice:
+                                so = self.env['sale.order'].sudo().create({
+                                    'partner_id': user.partner_id.id,
+                                    'company_id': 2,
+                                })
+                                so.module_id = module_id
+                                so.session_id = module_id.session_id
 
-                            if so.amount_total > 0 and so.order_line:
+                                so_line = self.env['sale.order.line'].sudo().create({
+                                    'name': product_id.name,
+                                    'product_id': product_id.id,
+                                    'product_uom_qty': 1,
+                                    'product_uom': product_id.uom_id.id,
+                                    'price_unit': product_id.list_price,
+                                    'order_id': so.id,
+                                    'tax_id': product_id.taxes_id,
+                                    'company_id': 2,
+                                })
+                                # prix de la formation dans le devis
+                                amount_before_instalment = so.amount_total
+                                # so.amount_total = so.amount_total * 0.25
+                                for line in so.order_line:
+                                    line.price_unit = so.amount_total
+                                so.action_confirm()
+                                ref = False
+                                # Creation de la Facture Cpf
+                                # Si la facture est de type CPF :  On parse le pourcentage qui est 25 %
+                                # methode_payment prend la valeur CPF pour savoir bien qui est une facture CPF qui prend la valeur 25 % par default
+
+                                if so.amount_total > 0 and so.order_line:
+                                    moves = so._create_invoices(final=True)
+                                    for move in moves:
+                                        move.type_facture = 'interne'
+                                        # move.cpf_acompte_invoice= True
+                                        # move.cpf_invoice =True
+                                        move.methodes_payment = 'cpf'
+                                        move.pourcentage_acompte = 25
+                                        move.module_id = so.module_id
+                                        move.session_id = so.session_id
+                                        if so.pricelist_id.code:
+                                            move.pricelist_id = so.pricelist_id
+                                        move.company_id = so.company_id
+                                        move.price_unit = so.amount_total
+                                        # move.cpf_acompte_invoice=True
+                                        # move.cpf_invoice = True
+                                        move.methodes_payment = 'cpf'
+                                        move.post()
+                                        ref = move.name
+
+
+                                so.action_cancel()
+                                so.unlink()
+                                user.partner_id.statut = 'won'
+                            session=self.env['partner.sessions'].search([('client_id','=',user.partner_id.id),
+                                                                         ('session_id','=',module_id.session_id.id)])
+                            if not session:
+                                new_history=self.env['partner.sessions'].sudo().create({
+                                    'client_id':user.partner_id.id,
+                                    'session_id':module_id.session_id.id,
+                                    'company_id':2,
+                                })
+
+                    elif product_id and product_id.company_id.id == 1 and user.partner_id.id_edof and user.partner_id.date_examen_edof and user.partner_id.session_ville_id:
+                        print('if product_id mcm', product_id, user.login)
+
+                        module_id = self.env['mcmacademy.module'].sudo().search(
+                            [('company_id', "=", 1), ('session_ville_id', "=", user.partner_id.session_ville_id.id),
+                             ('date_exam', "=", user.partner_id.date_examen_edof), ('product_id', "=", product_id.id),
+                             ('session_id.number_places_available', '>', 0)], limit=1)
+                        if module_id:
+                            user.partner_id.module_id = module_id
+                            user.partner_id.mcm_session_id = module_id.session_id
+                            product_id = self.env['product.product'].sudo().search(
+                                [('product_tmpl_id', '=', module_id.product_id.id)])
+                            user.partner_id.mcm_session_id = module_id.session_id
+                            user.partner_id.module_id = module_id
+                            self.env.user.company_id = 1
+                            invoice = self.env['account.move'].sudo().search(
+                                [('module_id', "=", module_id.id), ('state', "=", 'posted'),
+                                 ('partner_id', "=", user.partner_id.id)])
+                            if not invoice:
+                                so = self.env['sale.order'].sudo().create({
+                                    'partner_id': user.partner_id.id,
+                                    'company_id': 1,
+                                })
+                                self.env['sale.order.line'].sudo().create({
+                                    'name': product_id.name,
+                                    'product_id': product_id.id,
+                                    'product_uom_qty': 1,
+                                    'product_uom': product_id.uom_id.id,
+                                    'price_unit': product_id.list_price,
+                                    'order_id': so.id,
+                                    'tax_id': product_id.taxes_id,
+                                    'company_id': 1
+                                })
+                                # Enreggistrement des valeurs de la facture
+                                # Parser le pourcentage d'acompte
+                                # Creation de la fcture étape Finale
+                                # Facture comptabilisée
+                                so.action_confirm()
+                                so.module_id = module_id
+                                so.session_id = module_id.session_id
                                 moves = so._create_invoices(final=True)
                                 for move in moves:
                                     move.type_facture = 'interne'
-                                    # move.cpf_acompte_invoice= True
+                                    move.module_id = so.module_id
+                                    # move.cpf_acompte_invoice=True
                                     # move.cpf_invoice =True
                                     move.methodes_payment = 'cpf'
                                     move.pourcentage_acompte = 25
-                                    move.module_id = so.module_id
                                     move.session_id = so.session_id
-                                    if so.pricelist_id.code:
-                                        move.pricelist_id = so.pricelist_id
                                     move.company_id = so.company_id
-                                    move.price_unit = so.amount_total
-                                    # move.cpf_acompte_invoice=True
-                                    # move.cpf_invoice = True
-                                    move.methodes_payment = 'cpf'
+                                    move.website_id = 1
+                                    for line in move.invoice_line_ids:
+                                        if line.account_id != line.product_id.property_account_income_id and line.product_id.property_account_income_id:
+                                            line.account_id = line.product_id.property_account_income_id
                                     move.post()
-                                    ref = move.name
+                                so.action_cancel()
+                                so.unlink()
+                                user.partner_id.statut = 'won'
+                            session = self.env['partner.sessions'].search([('client_id', '=', user.partner_id.id),
+                                                                           ('session_id', '=', module_id.session_id.id)])
+                            if not session:
+                                new_history = self.env['partner.sessions'].sudo().create({
+                                    'client_id': user.partner_id.id,
+                                    'session_id': module_id.session_id.id,
+                                    'company_id':1,
+                                })
 
-                        
-                            so.action_cancel()
-                            so.unlink()
-                            user.partner_id.statut = 'won'
-                        session=self.env['partner.sessions'].search([('client_id','=',user.partner_id.id),
-                                                                     ('session_id','=',module_id.session_id.id)])
-                        if not session:
-                            new_history=self.env['partner.sessions'].sudo().create({
-                                'client_id':user.partner_id.id,
-                                'session_id':module_id.session_id.id,
-                                'company_id':2,
-                            })
-
-                elif product_id and product_id.company_id.id == 1 and user.partner_id.id_edof and user.partner_id.date_examen_edof and user.partner_id.session_ville_id:
-                    print('if product_id mcm', product_id, user.login)
-
-                    module_id = self.env['mcmacademy.module'].sudo().search(
-                        [('company_id', "=", 1), ('session_ville_id', "=", user.partner_id.session_ville_id.id),
-                         ('date_exam', "=", user.partner_id.date_examen_edof), ('product_id', "=", product_id.id),
-                         ('session_id.number_places_available', '>', 0)], limit=1)
-                    if module_id:
-                        user.partner_id.module_id = module_id
-                        user.partner_id.mcm_session_id = module_id.session_id
-                        product_id = self.env['product.product'].sudo().search(
-                            [('product_tmpl_id', '=', module_id.product_id.id)])
-                        user.partner_id.mcm_session_id = module_id.session_id
-                        user.partner_id.module_id = module_id
-                        self.env.user.company_id = 1
-                        invoice = self.env['account.move'].sudo().search(
-                            [('module_id', "=", module_id.id), ('state', "=", 'posted'),
-                             ('partner_id', "=", user.partner_id.id)])
-                        if not invoice:
-                            so = self.env['sale.order'].sudo().create({
-                                'partner_id': user.partner_id.id,
-                                'company_id': 1,
-                            })
-                            self.env['sale.order.line'].sudo().create({
-                                'name': product_id.name,
-                                'product_id': product_id.id,
-                                'product_uom_qty': 1,
-                                'product_uom': product_id.uom_id.id,
-                                'price_unit': product_id.list_price,
-                                'order_id': so.id,
-                                'tax_id': product_id.taxes_id,
-                                'company_id': 1
-                            })
-                            # Enreggistrement des valeurs de la facture
-                            # Parser le pourcentage d'acompte
-                            # Creation de la fcture étape Finale
-                            # Facture comptabilisée
-                            so.action_confirm()
-                            so.module_id = module_id
-                            so.session_id = module_id.session_id
-                            moves = so._create_invoices(final=True)
-                            for move in moves:
-                                move.type_facture = 'interne'
-                                move.module_id = so.module_id
-                                # move.cpf_acompte_invoice=True
-                                # move.cpf_invoice =True
-                                move.methodes_payment = 'cpf'
-                                move.pourcentage_acompte = 25
-                                move.session_id = so.session_id
-                                move.company_id = so.company_id
-                                move.website_id = 1
-                                for line in move.invoice_line_ids:
-                                    if line.account_id != line.product_id.property_account_income_id and line.product_id.property_account_income_id:
-                                        line.account_id = line.product_id.property_account_income_id
-                                move.post()
-                            so.action_cancel()
-                            so.unlink()
-                            user.partner_id.statut = 'won'
-                        session = self.env['partner.sessions'].search([('client_id', '=', user.partner_id.id),
-                                                                       ('session_id', '=', module_id.session_id.id)])
-                        if not session:
-                            new_history = self.env['partner.sessions'].sudo().create({
-                                'client_id': user.partner_id.id,
-                                'session_id': module_id.session_id.id,
-                                'company_id':1,
-                            })
-
-                else:
-                    if 'digimoov' in str(training_id):
-                        vals = {
-                            'description': 'CPF: vérifier la date et ville de %s' % (user.name),
-                            'name': 'CPF : Vérifier Date et Ville ',
-                            'team_id': self.env['helpdesk.team'].sudo().search(
-                                [('name', 'like', 'Client'), ('company_id', "=", 2)],
-                                limit=1).id,
-                        }
-                        description = "CPF: vérifier la date et ville de " + str(user.name)
-                        ticket = self.env['helpdesk.ticket'].sudo().search([("description", "=", description)])
-                        if not ticket:
-                            new_ticket = self.env['helpdesk.ticket'].sudo().create(
-                                vals)
                     else:
-                        vals = {
-                            'partner_email': '',
-                            'partner_id': False,
-                            'description': 'CPF: id module edof %s non trouvé' % (training_id),
-                            'name': 'CPF : ID module edof non trouvé ',
-                            'team_id': self.env['helpdesk.team'].sudo().search(
-                                [('name', "like", _('Client')), ('company_id', "=", 1)],
-                                limit=1).id,
-                        }
-                        description = 'CPF: id module edof ' + str(training_id) + ' non trouvé'
-                        ticket = self.env['helpdesk.ticket'].sudo().search([('description', 'ilike', description)])
-                        if not ticket:
-                            new_ticket = self.env['helpdesk.ticket'].sudo().create(
-                                vals)
+                        if 'digimoov' in str(training_id):
+                            vals = {
+                                'description': 'CPF: vérifier la date et ville de %s' % (user.name),
+                                'name': 'CPF : Vérifier Date et Ville ',
+                                'team_id': self.env['helpdesk.team'].sudo().search(
+                                    [('name', 'like', 'Client'), ('company_id', "=", 2)],
+                                    limit=1).id,
+                            }
+                            description = "CPF: vérifier la date et ville de " + str(user.name)
+                            ticket = self.env['helpdesk.ticket'].sudo().search([("description", "=", description)])
+                            if not ticket:
+                                new_ticket = self.env['helpdesk.ticket'].sudo().create(
+                                    vals)
+                        else:
+                            vals = {
+                                'partner_email': '',
+                                'partner_id': False,
+                                'description': 'CPF: id module edof %s non trouvé' % (training_id),
+                                'name': 'CPF : ID module edof non trouvé ',
+                                'team_id': self.env['helpdesk.team'].sudo().search(
+                                    [('name', "like", _('Client')), ('company_id', "=", 1)],
+                                    limit=1).id,
+                            }
+                            description = 'CPF: id module edof ' + str(training_id) + ' non trouvé'
+                            ticket = self.env['helpdesk.ticket'].sudo().search([('description', 'ilike', description)])
+                            if not ticket:
+                                new_ticket = self.env['helpdesk.ticket'].sudo().create(
+                                    vals)
 
 
