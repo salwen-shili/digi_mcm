@@ -10,48 +10,48 @@ navigator.saysWho = (() => {
   if (/trident/i.test(match[1])) {
     temp = /\brv[ :]+(\d+)/g.exec(userAgent) || [];
 
-    return `IE ${temp[1] || ""}`;
+    return `IE ${temp[1] || ''}`;
   }
 
-  if (match[1] === "Chrome") {
+  if (match[1] === 'Chrome') {
     temp = userAgent.match(/\b(OPR|Edge)\/(\d+)/);
 
     if (temp !== null) {
-      return temp.slice(1).join(" ").replace("OPR", "Opera");
+      return temp.slice(1).join(' ').replace('OPR', 'Opera');
     }
 
     temp = userAgent.match(/\b(Edg)\/(\d+)/);
 
     if (temp !== null) {
-      return temp.slice(1).join(" ").replace("Edg", "Edge (Chromium)");
+      return temp.slice(1).join(' ').replace('Edg', 'Edge (Chromium)');
     }
   }
 
   match = match[2]
     ? [match[1], match[2]]
-    : [navigator.appName, navigator.appVersion, "-?"];
+    : [navigator.appName, navigator.appVersion, '-?'];
   temp = userAgent.match(/version\/(\d+)/i);
 
   if (temp !== null) {
     match.splice(1, 1, temp[1]);
   }
 
-  return match.join(" ");
+  return match.join(' ');
 })();
 
-var nav = navigator.saysWho.substr(0, navigator.saysWho.indexOf(" "));
+var nav = navigator.saysWho.substr(0, navigator.saysWho.indexOf(' '));
 
 //Safari Browser
 
-if (nav.toUpperCase() == "SAFARI") {
+if (nav.toUpperCase() == 'SAFARI') {
   // console.log("Browser: ", nav.toUpperCase());
   const fondImageUrl = `url("/digimoov_website_templates/static/img/fond.jpg")`;
 
-  if (window.location.pathname == "/examen-capacite-transport-marchandises") {
+  if (window.location.pathname == '/examen-capacite-transport-marchandises') {
     const examenUrl = `url("/digimoov_website_templates/static/img/Examen_de_capacité_de_transport_léger_de_marchandise.jpg")`;
 
-    if (document.getElementById("examen-fond")) {
-      document.getElementById("examen-fond").style.backgroundImage =
+    if (document.getElementById('examen-fond')) {
+      document.getElementById('examen-fond').style.backgroundImage =
         fondImageUrl;
 
       // console.log(
@@ -59,8 +59,8 @@ if (nav.toUpperCase() == "SAFARI") {
       //   document.getElementById("examen-fond").style.backgroundImage
       // );
     }
-    if (document.getElementById("examen-fond-2")) {
-      document.getElementById("examen-fond-2").style.backgroundImage =
+    if (document.getElementById('examen-fond-2')) {
+      document.getElementById('examen-fond-2').style.backgroundImage =
         fondImageUrl;
 
       // console.log(
@@ -68,9 +68,9 @@ if (nav.toUpperCase() == "SAFARI") {
       //   document.getElementById("examen-fond-2").style.backgroundImage
       // );
     }
-    if (document.getElementById("examen-background-examen")) {
+    if (document.getElementById('examen-background-examen')) {
       document.getElementById(
-        "examen-background-examen"
+        'examen-background-examen'
       ).style.backgroundImage = examenUrl;
 
       // console.log(
@@ -79,10 +79,10 @@ if (nav.toUpperCase() == "SAFARI") {
       //     .backgroundImage
       // );
     }
-  } else if (window.location.pathname == "/qui-sommes-nous") {
+  } else if (window.location.pathname == '/qui-sommes-nous') {
     const quisommesnousUrl = `url("/digimoov_website_templates/static/img/quisommenous.png")`;
-    if (document.getElementById("img-quisommenous")) {
-      document.getElementById("img-quisommenous").style.backgroundImage =
+    if (document.getElementById('img-quisommenous')) {
+      document.getElementById('img-quisommenous').style.backgroundImage =
         quisommesnousUrl;
 
       // console.log(
@@ -90,8 +90,8 @@ if (nav.toUpperCase() == "SAFARI") {
       //   document.getElementById("img-quisommenous").style.backgroundImage
       // );
     }
-    if (document.getElementById("img-fond")) {
-      document.getElementById("img-fond").style.backgroundImage = fondImageUrl;
+    if (document.getElementById('img-fond')) {
+      document.getElementById('img-fond').style.backgroundImage = fondImageUrl;
 
       //   console.log(
       //     "change",
@@ -99,30 +99,45 @@ if (nav.toUpperCase() == "SAFARI") {
       //   );
     }
   }
-  let allImgs = [].slice.call(document.getElementsByTagName("IMG"));
+  let allImgs = [].slice.call(document.getElementsByTagName('IMG'));
   allImgs.forEach((element) => {
     // console.log(element.getAttribute("data-srcSafari"));
-    if (element.getAttribute("data-srcSafari")) {
-      element.dataset.src = element.getAttribute("data-srcSafari");
+    if (element.getAttribute('data-srcSafari')) {
+      element.dataset.src = element.getAttribute('data-srcSafari');
     }
   });
 } else {
-  console.log("Navigateur: ", nav); // log browser
+  console.log('Navigateur: ', nav); // log browser
 }
 
-document.addEventListener("DOMContentLoaded", function () {
-  var e = [].slice.call(document.querySelectorAll("img.lazy"));
-  if ("IntersectionObserver" in window) {
+document.addEventListener('DOMContentLoaded', function () {
+  var e = [].slice.call(document.querySelectorAll('img.lazy'));
+
+  if ('IntersectionObserver' in window) {
+    //lazyload images
     let n = new IntersectionObserver(function (e, t) {
       e.forEach(function (e) {
         if (e.isIntersecting) {
           let t = e.target;
-          (t.src = t.dataset.src), t.classList.remove("lazy"), n.unobserve(t);
+          (t.src = t.dataset.src), t.classList.remove('lazy'), n.unobserve(t);
         }
       });
     });
     e.forEach(function (e) {
       n.observe(e);
+    });
+    //intersection animation
+    var scrollEleemnts = [].slice.call(document.querySelectorAll('.js-scroll'));
+    let intersection = new IntersectionObserver(function (scrollEleemnts, t) {
+      scrollEleemnts.forEach(function (scrollEleemnts) {
+        if (scrollEleemnts.isIntersecting) {
+          let t = scrollEleemnts.target;
+          (t.src = t.dataset.src), t.classList.add('scrolled'), n.unobserve(t);
+        }
+      });
+    });
+    scrollEleemnts.forEach(function (scrollEleemnts) {
+      intersection.observe(scrollEleemnts);
     });
   }
 });

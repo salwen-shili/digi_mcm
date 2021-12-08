@@ -8,7 +8,7 @@
         <link rel="stylesheet" href="/mcm_website_theme/static/src/css/homepage.css" />
         <script type="text/javascript" src="/mcm_website_theme/static/src/js/msAds.js"></script>
         <link rel="stylesheet" href="/mcm_website_theme/static/src/css/cta-button.css" />
-
+        <!-- <script type="text/javascript" src="/mcm_website_theme/static/src/js/scrollAnimation.js"></script> -->
         <style>
             #sh_corpomate_theme_section_258 {
                 padding: 0 !important;
@@ -128,10 +128,10 @@
             }
         </style>
 
-        <section id="sh_corpomate_theme_section_258" class="sh_animation_part pt8" data-name="Formation Chauffeur de Taxi">
+        <section id="sh_corpomate_theme_section_258 " class="sh_animation_part pt8 " data-name="Formation Chauffeur de Taxi">
           <div class="container-banner">
             <div class="row">
-              <div class="col-lg-6 pb16 pt56" style="border-style: none; border-width: 0px;">
+              <div class="col-lg-6 pb16 pt56 js-scroll slide-left" style="border-style: none; border-width: 0px;">
                 <div class="">
                   <div class="text-center">
                     <h1 class="title-mcm slider-text-info">
@@ -153,7 +153,7 @@
                   </div>
                 </div>
               </div>
-              <div class="col-lg-6 pb48 pt16">
+              <div class="col-lg-6 pb48 pt16 js-scroll slide-right">
                 <br />
                 <img data-src="/mcm_website_theme/static/src/img/fornmation_taxi_moto/1.png" data-srcSafari="/mcm_website_theme/static/src/img/fornmation_taxi_moto/1.webp" class="img img-fluid mx-auto lazy" alt="Devenir chauffeur Taxi, VTC ou Moto-Taxi" title="Taxi chauffeur" style="text-align: center;" />
               </div>
@@ -162,7 +162,7 @@
         </section>
 
         <!-- Logos-->
-        <section class="container pt40 pb32">
+        <section class="container pt40 pb32 js-scroll fade-in-bottom  ">
           <div class="row align-items-center justify-content-center">
             <div class=" col-md-3 col-sm-12 text-center mb-4 mb-md-0  ">
               <img data-src="/mcm_website_theme/static/src/img/formation-éligible-au-compte-personnel-de-formation.webp" data-srcSafari="/mcm_website_theme/static/src/img/formation-éligible-au-compte-personnel-de-formation.png" class="img-fluid lazy" style="width: 100px;" title="Formation éligible au CPF" alt="logo mon compte de formation" />
@@ -180,8 +180,8 @@
         </section>
         <!-- fin LOGOS-->
         <!-- INTRO-->
-        <section class="container s_text_block pt32 pb24" data-name="Text block">
-          <h2 class="s_title_default text-center pb16" style="font-size: 36px; font-weight:700">
+        <section class="container s_text_block pt32 pb24  js-scroll fade-in-bottom" data-name="Text block">
+          <h2 class="s_title_default text-center pb16 " style="font-size: 36px; font-weight:700">
                  Devenir chauffeur de MOTO-TAXI (VMDTR)
           </h2>
           <p>
@@ -193,10 +193,10 @@
         <section class="s_text_image pt0 pb4">
           <div class="container">
             <div class="row align-items-center">
-              <div class="col-lg-6 pb24 pt0">
+              <div class="col-lg-6 pb24 pt0 js-scroll slide-left">
                 <img data-src="/mcm_website_theme/static/src/img/fornmation_taxi_moto/Formation-Moto-Taxi-en-ligne.webp" data-srcSafari="/mcm_website_theme/static/src/img/fornmation_taxi_moto/Formation-Moto-Taxi-en-ligne.png" class="img img-fluid mx-auto lazy" alt="Devenir conducteur taxi" title="Devenir conducteur taxi" style="text-align: center;" />
               </div>
-              <div class="col-lg-6" style="border-style: none; border-width: 0px">
+              <div class="col-lg-6 js-scroll slide-right" style="border-style: none; border-width: 0px">
                 <h2 class="s_title_default pb16" style="font-size: 36px; font-weight:700">
                             À qui s’adresse notre formation ? 
                 </h2>
@@ -204,29 +204,31 @@
                             Notre formation s’adresse à toute personne majeure :
                 </p>
 
-                <ul class="fa-ul" style="font-size:16.5px; line-height: 1.5rem;">
-                  <li>
+
+
+                <ul class="fa-ul " style="font-size:16.5px; line-height: 1.5rem;">
+                  <li style="    padding-block-end: 10px;">
                     <i class="fa-li fa fa-square" style="margin-top:2px;"></i>
                                 Qui souhaite devenir entrepreneur
                   </li>
-                  <li>
+                  <li style="    padding-block-end: 10px;">
                     <i class="fa-li fa fa-square" style="margin-top:2px;"></i>
                                 Qui est en situation de reconversion professionnelle
                   </li>
-                  <li>
+                  <li style="    padding-block-end: 10px;">
                     <i class="fa-li fa fa-square" style="margin-top:2px;"></i>
                                 Qui a réussi l’examen blanc de MCM Academy
                   </li>
-                  <li>
+                  <li style="    padding-block-end: 10px;">
                     <i class="fa-li fa fa-square" style="margin-top:2px;"></i>
                                 Qui dispose d’un permis de conduire catégorie A depuis plus de 3 ans
                   </li>
 
-                  <li>
+                  <li style="    padding-block-end: 10px;">
                     <i class="fa-li fa fa-square" style="margin-top:2px;"></i>
                                 Qui a eu un retrait définitif de la carte professionnelle
                   </li>
-                  <li>
+                  <li style="    padding-block-end: 10px;">
                     <i class="fa-li fa fa-square" style="margin-top:2px;"></i>
                                 Qui a un casier judiciaire B2 non affecté de certaines condamnations
                   </li>
@@ -234,7 +236,7 @@
 
 
               </div>
-              <div class="s_title col-lg-12 pt24 pb0" style="text-align: center;                   border-style: none;                   border-width: 0px;                 ">
+              <div class="s_title col-lg-12 pt24 pb0 js-scroll fade-in-bottom" style="text-align: center;                   border-style: none;                   border-width: 0px;                 ">
                 <div class="s_alert clearfix w-100 s_alert_sm alert-100" data-name="Alert">
                   <i class="fa fa-2x fa-info-circle s_alert_icon" />
                   <div class="s_alert_content">
@@ -259,14 +261,14 @@
         <section id="sh_corpomate_theme_section_76">
           <div class="container">
             <div class="row mt24 mb24">
-              <div class="container pt16 pb16" style="border-style: none; border-width: 0px;">
+              <div class="container pt16 pb16 js-scroll fade-in-bottom" style="border-style: none; border-width: 0px;">
                 <div class="col-lg-12 s_title pt24 pb16" style="text-align: center">
                   <h2 class="font-weight-bold display-4 " style="font-size: 32px">
                                 Les démarches à suivre pour souscrire à la formation MOTO TAXI
                   </h2>
                 </div>
               </div>
-              <div class="col-md-6 col-sm-6">
+              <div class="col-md-6 col-sm-6 js-scroll slide-left">
                 <div class="sh_content sh_second_content">
                   <div class="sh_num_icon">
                     <span class="sh_icon">1</span>
@@ -279,7 +281,7 @@
                                     Une inscription sur la plateforme de la Chambre des Métiers et de l'Artisanat (CMA)
                                     est obligatoire.
                     </p>
-                    <div class="text-center">
+                    <div class="text-center mb24">
                       <a class="read_more" href="/mcm_website_theme/static/pdf/DEMARCHES_D'INSCRIPTION_A_LA_CMA_-_MCM_ACADEMY.pdf">
                                         En savoir plus
                         <i class="fa fa-info-circle"></i>
@@ -288,7 +290,7 @@
                   </div>
                 </div>
               </div>
-              <div class="col-md-6 col-sm-6">
+              <div class="col-md-6 col-sm-6 js-scroll  slide-right">
                 <div class="sh_content sh_second_content">
                   <div class="sh_num_icon">
                     <span class="sh_icon">2</span>
@@ -317,11 +319,11 @@
 
 
         <!-- La Formation MOTO-TAXI -->
-        <section class="s_text_image pt0 pb4">
+        <section class="s_text_image pt0 pb4 ">
           <div class="container">
             <div class="row align-items-center">
 
-              <div class="col-lg-6" style="border-style: none; border-width: 0px">
+              <div class="col-lg-6 js-scroll slide-left" style="border-style: none; border-width: 0px">
                 <h2 class="s_title_default pb16" style="font-size: 36px; font-weight:700">
                             La formation MOTO-TAXI
                 </h2>
@@ -331,12 +333,12 @@
                             passage d’un examen VMDTR.
                             Désormais, l’examen VMDTR se déroule en deux parties :
                 </p>
-                <ul class="fa-ul" style="font-size:16.5px; line-height: 1.5rem;">
-                  <li>
+                <ul class="fa-ul " style="font-size:16.5px; line-height: 1.5rem;">
+                  <li style="    padding-block-end: 10px;">
                     <i class="fa fa-chevron-right" style="margin-top:2px;"></i>
                                 Une épreuve théorique
                   </li>
-                  <li>
+                  <li style="    padding-block-end: 10px;">
                     <i class="fa fa-chevron-right" style="margin-top:2px;"></i>
                                 une épreuve pratique
                   </li>
@@ -350,46 +352,46 @@
 
 
               </div>
-              <div class="col-lg-6 pb24 pt0">
-                <img data-src="/mcm_website_theme/static/src/img/fornmation_taxi_moto/3.webp" data-srcSafari="/mcm_website_theme/static/src/img/fornmation_taxi_moto/3.png" class="img img-fluid mx-auto lazy res_height" alt="Devenir conducteur taxi" title="Devenir conducteur taxi" style="text-align: center;" />
+              <div class="col-lg-6 pb24 pt0 js-scroll slide-right">
+                <img data-src="/mcm_website_theme/static/src/img/fornmation_taxi_moto/5.webp" data-srcSafari="/mcm_website_theme/static/src/img/fornmation_taxi_moto/5.png" class="img img-fluid mx-auto lazy res_height" alt="Devenir conducteur taxi" title="Devenir conducteur taxi" style="text-align: center;" />
               </div>
 
             </div>
           </div>
         </section>
-        <section class="s_text_image pt0 pb4">
+        <section class="s_text_image pt0 pb4 ">
           <div class="container">
             <div class="row align-items-center">
-              <div class="col-lg-6 pb24 pt0">
+              <div class="col-lg-6 pb24 pt0 js-scroll slide-right">
                 <img data-src="/mcm_website_theme/static/src/img/fornmation_taxi_moto/4.webp" data-srcSafari="/mcm_website_theme/static/src/img/fornmation_taxi_moto/4.png" class="img img-fluid mx-auto lazy res_height" alt="Devenir conducteur taxi" title="Devenir conducteur taxi" style="text-align: center;" />
               </div>
-              <div class="col-lg-6" style="border-style: none; border-width: 0px">
+              <div class="col-lg-6 js-scroll slide-left" style="border-style: none; border-width: 0px">
                 <p>
                             Pendant votre formation, nous allons vous apprendre à maîtriser les modules suivants :
                 </p>
                 <ul class="fa-ul" style="font-size:16.5px; line-height: 1.5rem;">
-                  <li>
+                  <li style="    padding-block-end: 10px;">
                     <i class="fa-li fa fa-square" style="margin-top:2px;"></i>
                                 RÉGLEMENTATION DU TRANSPORT PUBLIC PARTICULIER DE PERSONNES
                   </li>
-                  <li>
+                  <li style="    padding-block-end: 10px;">
                     <i class="fa-li fa fa-square" style="margin-top:2px;"></i>
                                 SÉCURITÉ ROUTIÈRE
                   </li>
-                  <li>
+                  <li style="    padding-block-end: 10px;">
                     <i class="fa-li fa fa-square" style="margin-top:2px;"></i>
                                 GESTION
                   </li>
-                  <li>
+                  <li style="    padding-block-end: 10px;">
                     <i class="fa-li fa fa-square" style="margin-top:2px;"></i>
                                 FRANÇAIS
                   </li>
 
-                  <li>
+                  <li style="    padding-block-end: 10px;">
                     <i class="fa-li fa fa-square" style="margin-top:2px;"></i>
                                 ANGLAIS
                   </li>
-                  <li>
+                  <li style="    padding-block-end: 10px;">
                     <i class="fa-li fa fa-square" style="margin-top:2px; color: #0d5294;"></i>
                     <a href="/mcm_website_theme/static/pdf/programme_de_formation_MCM_ACADEMY_2021.pdf" style="color: #0d5294;" target="_blank">Découvrez les modules en détail</a>
                   </li>
@@ -401,66 +403,67 @@
           </div>
         </section>
         <!-- La Formation MOTO-TAXI -->
+
         <section class="s_text_image pt0 pb4">
           <div class="container">
             <div class="row align-items-center">
 
               <div class="col-lg-6" style="border-style: none; border-width: 0px">
-                <h2 class="s_title_default pb16" style="font-size: 36px; font-weight:700">
-                            Les supports qu'on vous offrent :
+                <h2 class="s_title_default pb16 js-scroll slide-left" style="font-size: 36px; font-weight:700">
+                            Les supports qu'on vous offrent:
                 </h2>
-                <ul class="fa-ul" style="font-size:16.5px; line-height: 1.5rem;">
-                  <li>
+                <ul class="fa-ul js-scroll slide-left " style="font-size:16.5px; line-height: 1.5rem;">
+                  <li style="    padding-block-end: 10px;">
                     <i class="fa fa-chevron-right" style="margin-top:2px;"></i>
                                 Des vidéos de cours
                   </li>
-                  <li>
+                  <li style="    padding-block-end: 10px;">
                     <i class="fa fa-chevron-right" style="margin-top:2px;"></i>
                                 Des supports de cours en PDF
                   </li>
-                  <li>
+                  <li style="    padding-block-end: 10px;">
                     <i class="fa fa-chevron-right" style="margin-top:2px;"></i>
                                 Des quiz en ligne avec correction
 
                   </li>
-                  <li>
+                  <li style="    padding-block-end: 10px;">
                     <i class="fa fa-chevron-right" style="margin-top:2px;"></i>
                                 Des examens blancs avec corrections
                   </li>
                 </ul>
-                <h2 class="s_title_default pb16" style="font-size: 36px; font-weight:700">
+                <h2 class="s_title_default pb16 js-scroll slide-left" style="font-size: 36px; font-weight:700">
                             Modalités d’accompagnement :
                 </h2>
-                <p>
+                <p class="js-scroll slide-left ">
                             Une fois votre formation terminée, MCM Academy vous offre un suivi et un accompagnement
                             personnalisé pour répondre à vos questions et combler vos lacunes, et ceci par le biais de
                 </p>
-                <ul class="fa-ul" style="font-size:16.5px; line-height: 1.5rem;">
-                  <li>
+                <ul class="fa-ul js-scroll slide-left " style="font-size:16.5px; line-height: 1.5rem;">
+                  <li style="    padding-block-end: 10px;">
                     <i class="fa fa-chevron-right" style="margin-top:2px;"></i>
                                 Assistance par mail
                   </li>
-                  <li>
+                  <li style="    padding-block-end: 10px;">
                     <i class="fa fa-chevron-right" style="margin-top:2px;"></i>
                                 Assistance par téléphone
                   </li>
-                  <li>
+                  <li style="    padding-block-end: 10px;">
                     <i class="fa fa-chevron-right" style="margin-top:2px;"></i>
                                 Assistance par visioconférence
 
                   </li>
-                  <li>
+                  <li style="    padding-block-end: 10px;">
                     <i class="fa fa-chevron-right" style="margin-top:2px;"></i>
                                 Livre d’entrainement version électronique
                   </li>
-                  <li>
+                  <li style="    padding-block-end: 10px;">
                     <i class="fa fa-chevron-right" style="margin-top:2px;"></i>
                                 Révision du programme avant examen
                   </li>
                 </ul>
               </div>
-              <div class="col-lg-6 pb24 pt0">
-                <img data-src="/mcm_website_theme/static/src/img/fornmation_taxi_moto/5.webp" data-srcSafari="/mcm_website_theme/static/src/img/fornmation_taxi_moto/5.png" class="img img-fluid mx-auto lazy res_height" alt="Devenir conducteur taxi" title="Devenir conducteur taxi" style="text-align: center;" />
+              <div class="col-lg-6 pb24 pt0 js-scroll slide-right">
+                <img data-src="/mcm_website_theme/static/src/img/fornmation_taxi_moto/3.webp" data-srcSafari="/mcm_website_theme/static/src/img/fornmation_taxi_moto/3.png" class="img img-fluid mx-auto lazy res_height" alt="Devenir conducteur taxi" title="Devenir conducteur taxi" style="text-align: center;" />
               </div>
             </div>
           </div>
@@ -470,7 +473,7 @@
           <input t-att-value="request.website.microsoft_tracking_key" id="microsoft_tracking_key" type="hidden" />
           <section id="sh_corpomate_theme_section_188" class="sh_animation_part" data-name="Pricing">
             <div class="container">
-              <div class="sh_title mt48">
+              <div class="sh_title mt48 js-scroll fade-in-top">
                 <h2>
                   <b>Un tout pour garantir votre réussite et avoir un résultat à la hauteur de vos ambitions !
                                 Maintenant, à vous de jouer!</b>
@@ -487,7 +490,7 @@
                 </p>
               </div>
               <div class="row">
-                <div class="col-md-4 sh_animation_part">
+                <div class="col-md-4 sh_animation_part js-scroll slide-left">
                   <div class="sh_pricing">
                     <t t-foreach="mcm_products" t-as="product">
                       <t t-if="product.default_code=='taxi'">
@@ -529,7 +532,7 @@
                     </t>
                   </div>
                 </div>
-                <div class="col-md-4 sh_animation_part" style="border-style: none; border-width: 0px">
+                <div class="col-md-4 sh_animation_part js-scroll fade-in-bottom " style="border-style: none; border-width: 0px">
                   <div class="sh_pricing">
                     <t t-foreach="mcm_products" t-as="product">
                       <t t-if="product.default_code=='vtc'">
@@ -569,7 +572,7 @@
                     </t>
                   </div>
                 </div>
-                <div class="col-md-4 sh_animation_part">
+                <div class="col-md-4 sh_animation_part js-scroll slide-right">
                   <div class="sh_pricing">
                     <t t-foreach="mcm_products" t-as="product">
                       <t t-if="product.default_code=='vmdtr'">
@@ -614,7 +617,7 @@
           </section>
         </div>
         <!-- FIN PRICING TABLE-->
-        <section class="clients s_references bg-200 pt16 pb32 " data-name="References">
+        <section class="clients s_references bg-200 pt16 pb32 js-scroll fade-in-top " data-name="References">
           <div class="container text-center">
             <div class="center-logo">
               <!-- <div t-if="partenaire=='' or not partenaire or partenaire=='bolt'">
@@ -657,6 +660,7 @@
             </div>
           </div>
         </section>
+
       </div>
     </t>
   </template>
