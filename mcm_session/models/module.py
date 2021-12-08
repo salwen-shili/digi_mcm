@@ -51,8 +51,6 @@ class Module(models.Model):
     ], string='Modalité Pédagogique')
     website_published = fields.Boolean('Publié en site web', default=True)
     contract_price=fields.Monetary('Prix Affiché en contrat',default=lambda self: self.product_id.list_price)
-    info_examen_id = fields.Many2one('info.examen')
-
 
     @api.depends('duree')
     def _get_display_duration(self):
