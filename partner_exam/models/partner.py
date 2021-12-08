@@ -44,9 +44,10 @@ class resComapny(models.Model):
         if 'mcm_session_id' in values and self.report is not False:
             if self.env['partner.sessions'].search_count([('client_id', 'child_of', self.id)]) > 0:
                 # Update data in old session if sum of sessions lines > 0
-                self.env['partner.sessions'].search([('client_id', 'child_of', self.id)], limit=1, order='id desc').sudo().update({
+                self.env['partner.sessions'].search([('client_id', 'child_of', self.id)], limit=1,
+                                                    order='id desc').sudo().update({
                     'client_id': self.id,
-                    #'session_id': self.mcm_session_id.id,
+                    # 'session_id': self.mcm_session_id.id,
                     'company_id': self.company_id.id,
                     'justification': self.justification,
                     'paiement': self.paiement,
@@ -63,27 +64,18 @@ class resComapny(models.Model):
                         'epreuve_b': 0,
                         'presence': 'absence_justifiee',
                         'ville_id': self.mcm_session_id.session_ville_id.id})
-                # Create new line in historic sessions
-                self.env['partner.sessions'].search([('client_id', '=', self.id), ('session_id', '=', self.mcm_session_id.id)],
-                                                    limit=1, order='id desc').sudo().create({
+            # Create new line in historic sessions
+            sessions = self.env['partner.sessions'].search(
+                [('client_id', '=', self.id), ('session_id', '=', self.mcm_session_id.id)])
+            if not sessions:
+                sessions.sudo().create({
                     'client_id': self.id,
                     'session_id': self.mcm_session_id.id,
                 })
-                #Reset fields
-                self.report = False
-                self.justification = False
-                self.paiement = False
-                self.attachment_ids = None
-                self.autre_raison = None
-            else:
-                self.env['partner.sessions'].search([('client_id', '=', self.id),
-                                               ('session_id', '=', self.mcm_session_id.id)], limit=1, order='id desc').sudo().create({
-                    'client_id': self.id,
-                    'session_id': self.mcm_session_id.id,
-                })
-                self.report = False
-                self.justification = False
-                self.paiement = False
-                self.attachment_ids = None
-                self.autre_raison = None
+            # Reset fields
+            self.report = False
+            self.justification = False
+            self.paiement = False
+            self.attachment_ids = None
+            self.autre_raison = None
         return session
