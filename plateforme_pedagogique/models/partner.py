@@ -867,6 +867,8 @@ class partner(models.Model):
             client = self.env['res.partner'].sudo().search(
                 [('id', '=', user.partner_id.id)])
             if client:
+                _logger.info("if client %s" %str(client.email))
+                _logger.info("dossier %s" % str(dossier))
                 client.mode_de_financement = 'cpf'
                 client.funding_type = 'cpf'
                 client.numero_cpf = dossier
@@ -999,13 +1001,17 @@ class partner(models.Model):
 
                         product_id = self.env['product.template'].sudo().search(
                             [('id_edof', "=", str(training_id)), ('company_id', "=", 2)], limit=1)
+                        if product_id:
+                            user.partner_id.id_edof=product_id.id_edof
                     else:
                         product_id = self.env['product.template'].sudo().search(
                             [('id_edof', "=", str(training_id)), ('company_id', "=", 1)], limit=1)
+                        if product_id:
+                            user.partner_id.id_edof=product_id.id_edof
                     print('if digi ',product_id)
                     if product_id and product_id.company_id.id == 2 and user.partner_id.id_edof and user.partner_id.date_examen_edof and user.partner_id.session_ville_id:
-                        user.partner_id.id_edof=product_id.id_edof
-                        print('if product_id digimoov',product_id,user.login)
+
+                        print('if product_id digimoov',product_id.id_edof,user.login)
                         module_id = self.env['mcmacademy.module'].sudo().search(
                             [('company_id', "=", 2), ('session_ville_id', "=", user.partner_id.session_ville_id.id),
                              ('date_exam', "=", user.partner_id.date_examen_edof), ('product_id', "=", product_id.id),
