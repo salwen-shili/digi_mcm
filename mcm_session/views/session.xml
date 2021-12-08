@@ -180,7 +180,7 @@
                             <div class="col-8">
 
                                 <field name="client_ids" string="" mode="tree,kanban"
-                                       domain="['|',('statut', '=', 'won'),('statut', '=', 'finalized')]">
+                                       domain="['|',('statut', '=', 'won'),('statut', '=', 'finalized')]" >
                                     <tree>
                                         <control>
                                             <create name="add_line_control" string="Ajouter un stagiaire"/>

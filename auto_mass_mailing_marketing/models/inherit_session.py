@@ -4,7 +4,7 @@ from datetime import date, datetime, tzinfo, timedelta
 from odoo import api, fields, models, _
 
 
-class AccountMove(models.Model):
+class Session(models.Model):
     _inherit = "mcmacademy.session"
     _description = "Add fields in session view"
 
@@ -16,7 +16,7 @@ class AccountMove(models.Model):
 
     heure_examen_matin = fields.Char(default="09H00")
     heure_examen_apres_midi = fields.Char(default="14H00")
-    date_exam = fields.Date(string="Date d'examen")
+    date_exam = fields.Date(string="Date d'examen",copy=False,required=True)
 
     # Add adresse field pour l'afficher dans la convocation
     adresse_examen = fields.Char(string="Adresse d'examen", help="Ajouter l'adresse d'examen, "
@@ -79,3 +79,12 @@ class AccountMove(models.Model):
             'domain': [('id', 'in', [x.id for x in self.client_ids])],
             'context': "{'create': True}"
         }
+    def write(self,values):
+        session=super(Session,self).write(values)
+        modules = self.env['mcmacademy.module'].search([('session_id', "=",self.id)]) #get list of modules linked to self session
+        if modules:
+            for module in modules :
+                module.date_exam = self.date_exam #copy date exam of session in module
+                module.ville = self.ville #copy ville of session in module
+                module.max_number_places = self.max_number_places #copy nombre des places disponibles of session in module
+        return session

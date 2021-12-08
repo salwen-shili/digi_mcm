@@ -22,7 +22,7 @@
             </xpath>
             <xpath expr="//form/div/group/group[@name='dates']" position="after">
                 <group name="horaire" string="Horaire">
-                    <field name="date_exam"/>
+                    <field name="date_exam" options="{'no_create_edit': False, 'no_quick_create': False}"/>
                     <field name="temps_convocation"/>
                     <field name="horaire_email" invisible="1"/>
                     <field name="heure_examen_matin" string="Heure"
