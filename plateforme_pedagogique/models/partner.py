@@ -427,6 +427,7 @@ class partner(models.Model):
                 email = user['mail']
                 # Pour chaque partner verifier si date_suppression est aujourd'hui
                 # pour assurer la suppresion automatique
+                user = self.env['res.users'].sudo().search([('login',"=",email)],limit=1)
                 partner = self.env['res.partner'].sudo().search([('email', "=", email),
                                                                  ('est_surveillant',"=",False),
                                                                  ('est_intervenant',"=",False)],order='id desc',limit=1)
@@ -661,8 +662,7 @@ class partner(models.Model):
                 """Si dossier passe à l'etat validé on met à jour statut cpf sur la fiche client"""
                 if status == "200":
                     print('validate', email)
-                    self.cpf_validate(training_id, email, address, tel, code_postal, ville, diplome, dossier['attendee']['lastName'], dossier['attendee']['firstName'],
-                                          externalid, lastupd)
+                    self.cpf_validate(training_id, email, address, tel, code_postal, ville, diplome, dossier['attendee']['lastName'], dossier['attendee']['firstName'], dossier['externalId'], lastupd)
 
 
     """Mettre à jour les statuts cpf sur la fiche client selon l'etat sur wedof """
@@ -741,7 +741,7 @@ class partner(models.Model):
 
                 if state=="validated":
                     print('validate',email,dossier['attendee']['lastName'],dossier['attendee']['firstName'])
-                    self.cpf_validate(training_id,email,address,tel,code_postal,ville,diplome,dossier['attendee']['lastName'],dossier['attendee']['firstName'],externalId,lastupd)
+                    self.cpf_validate(training_id,email,address,tel,code_postal,ville,diplome,dossier['attendee']['lastName'],dossier['attendee']['firstName'],dossier['externalId'],lastupd)
                 else:
                     users = self.env['res.users'].sudo().search(
                         [('login', "=", email)])  # search user with same email sended
@@ -991,6 +991,8 @@ class partner(models.Model):
                     user.partner_id.mode_de_financement = 'cpf'
                     user.partner_id.statut_cpf = 'accepted'
                     user.partner_id.date_cpf= lastupd
+                    user.partner_id.numero_cpf=externalId
+                    user.partner_id.diplome=diplome
                     module_id = False
                     product_id = False
                     if 'digimoov' in str(training_id):
@@ -1002,6 +1004,7 @@ class partner(models.Model):
                             [('id_edof', "=", str(training_id)), ('company_id', "=", 1)], limit=1)
                     print('if digi ',product_id)
                     if product_id and product_id.company_id.id == 2 and user.partner_id.id_edof and user.partner_id.date_examen_edof and user.partner_id.session_ville_id:
+                        user.partner_id.id_edof=product_id.id_edof
                         print('if product_id digimoov',product_id,user.login)
                         module_id = self.env['mcmacademy.module'].sudo().search(
                             [('company_id', "=", 2), ('session_ville_id', "=", user.partner_id.session_ville_id.id),
@@ -1084,7 +1087,7 @@ class partner(models.Model):
 
                     elif product_id and product_id.company_id.id == 1 and user.partner_id.id_edof and user.partner_id.date_examen_edof and user.partner_id.session_ville_id:
                         print('if product_id mcm', product_id, user.login)
-
+                        user.partner_id.id_edof = product_id.id_edof
                         module_id = self.env['mcmacademy.module'].sudo().search(
                             [('company_id', "=", 1), ('session_ville_id', "=", user.partner_id.session_ville_id.id),
                              ('date_exam', "=", user.partner_id.date_examen_edof), ('product_id', "=", product_id.id),
