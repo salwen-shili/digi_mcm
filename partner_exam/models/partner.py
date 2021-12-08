@@ -64,7 +64,8 @@ class resComapny(models.Model):
                         'presence': 'absence_justifiee',
                         'ville_id': self.mcm_session_id.session_ville_id.id})
                 # Create new line in historic sessions
-                self.env['partner.sessions'].search([], limit=1, order='id desc').sudo().create({
+                self.env['partner.sessions'].search([('client_id', '=', self.id), ('session_id', '=', self.mcm_session_id.id)],
+                                                    limit=1, order='id desc').sudo().create({
                     'client_id': self.id,
                     'session_id': self.mcm_session_id.id,
                 })
@@ -75,7 +76,8 @@ class resComapny(models.Model):
                 self.attachment_ids = None
                 self.autre_raison = None
             else:
-                self.env['partner.sessions'].search([], limit=1, order='id desc').sudo().create({
+                self.env['partner.sessions'].search([('client_id', '=', self.id),
+                                               ('session_id', '=', self.mcm_session_id.id)], limit=1, order='id desc').sudo().create({
                     'client_id': self.id,
                     'session_id': self.mcm_session_id.id,
                 })
