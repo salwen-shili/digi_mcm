@@ -31,7 +31,6 @@ class NoteExamen(models.Model):
         ('ajourne', 'Ajourné')], string="Résultat")
     date_exam = fields.Date(string="Date Examen", track_visibility='always')
     active = fields.Boolean('Active', default=True)
-    module_ids = fields.One2many('mcmacademy.module', 'info_examen_id')
     company_id = fields.Many2one(
         'res.company', string='Company', change_default=True,
         default=lambda self: self.env.company,
@@ -63,7 +62,7 @@ class NoteExamen(models.Model):
         like the "Moyenne Generale" & "Mention" & "Resultat" """
         for rec in self:
             rec.moyenne_generale = (rec.epreuve_a + rec.epreuve_b) / 2
-            if rec.epreuve_a >= 10 and rec.epreuve_b >= 8 and rec.moyenne_generale >= 12:
+            if rec.epreuve_a >= 10 and rec.epreuve_b >= 8 and rec.moyenne_generale >= 12 and rec.partner_id:
                 rec.moyenne_generale = rec.moyenne_generale
                 rec.mention = 'recu'
                 rec.resultat = 'recu'
@@ -81,17 +80,17 @@ class NoteExamen(models.Model):
                 last_line = self.env['partner.sessions'].search(
                     [('client_id', '=', rec.partner_id.id), ('date_exam', '<', date.today())], limit=1,
                     order='id desc')
-                if 1 <= rec.epreuve_a < 21 or 1 <= rec.epreuve_b < 21 and not last_line.justification:
+                if 1 <= rec.epreuve_a < 21 or 1 <= rec.epreuve_b < 21 and not last_line.justification and rec.partner_id:
                     self.session_id = self.partner_id.mcm_session_id
                     self.date_exam = self.partner_id.mcm_session_id.date_exam
                     self.presence = 'present'
                     self.ville_id = self.partner_id.mcm_session_id.session_ville_id.id
-                elif rec.epreuve_a < 1 and rec.epreuve_b < 1 and not last_line.justification:
+                elif rec.epreuve_a < 1 and rec.epreuve_b < 1 and not last_line.justification and rec.partner_id:
                     self.session_id = self.partner_id.mcm_session_id
                     self.date_exam = self.partner_id.mcm_session_id.date_exam
                     self.presence = 'Absent'
                     self.ville_id = self.partner_id.mcm_session_id.session_ville_id.id
-                elif rec.epreuve_a < 1 and rec.epreuve_b < 1 and last_line.justification is True:
+                elif rec.epreuve_a < 1 and rec.epreuve_b < 1 and last_line.justification is True and rec.partner_id:
                     self.session_id = last_line.session_id
                     self.date_exam = last_line.session_id.date_exam
                     self.presence = 'absence_justifiee'

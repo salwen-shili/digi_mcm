@@ -22,7 +22,7 @@ class Sale(models.Model):
         record = super(Sale, self).write(vals)
         # Si le contrat a changé d'état
         # on change le statut de l'apprenant dans le lead
-        company = self.partner_id.user_id.company_id.id
+        #company = self.partner_id.user_id.company_id.id
         if 'state' in vals:
             if vals['state'] == 'sent':
                 partner = self.partner_id
