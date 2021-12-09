@@ -8,7 +8,7 @@ class resPartnerSessions(models.Model):
     _name = "partner.sessions"
     _rec_name = 'session_id'
     _inherit = ["mail.thread", "mail.activity.mixin"]
-    _description = "historique sessions"
+    _description = "Historique sessions"
 
     client_id = fields.Many2one('res.partner', 'Client')
     session_id = fields.Many2one('mcmacademy.session', 'Session', track_visibility='always')
