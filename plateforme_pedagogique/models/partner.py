@@ -668,7 +668,7 @@ class partner(models.Model):
     """Mettre à jour les statuts cpf sur la fiche client selon l'etat sur wedof """
     def change_state_cpf_partner(self):
         base_url = self.env['ir.config_parameter'].sudo().get_param('web.base.url')
-        if "localhost" not in str(base_url):
+        if "localhost"  in str(base_url):
             params_wedof = (
                 ('order', 'desc'),
                 ('type', 'all'),
@@ -873,6 +873,7 @@ class partner(models.Model):
                 client.funding_type = 'cpf'
                 client.numero_cpf = dossier
                 client.statut_cpf = 'validated'
+                client.statut ='indecis'
                 client.phone = tel
                 client.street = address
                 client.zip = code_postal
