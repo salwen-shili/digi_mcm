@@ -250,6 +250,9 @@ class resPartnerWizard(models.TransientModel):
             self.session_id.write({'prospect_ids': [(6, 0, list)]})
 
         if self.statut == 'perdu' or self.statut == 'canceled' :
+            """désactiver l'annulation de statut pour cpf"""
+            if self.partner_id.mode_de_financement=="cpf" and self.partner_id.statut_cpf != "canceled":
+                raise UserError(_("L'apprenant doit annuler son inscription sur son compte cpf'."))
             list = []
             for partner in self.session_id.canceled_prospect_ids:
                 list.append(partner.id)
