@@ -672,7 +672,7 @@ class partner(models.Model):
             params_wedof = (
                 ('order', 'desc'),
                 ('type', 'all'),
-                ('state', 'validated,inTraining,serviceDoneDeclared,canceledByAttendee,canceledByAttendeeNotRealized,canceledByOrganism'),
+                ('state', 'validated,inTraining,refusedByAttendee,refusedByOrganism,serviceDoneDeclared,canceledByAttendee,canceledByAttendeeNotRealized,canceledByOrganism'),
                 ('billingState', 'all'),
                 ('certificationState', 'all'),
                 ('sort', 'lastUpdate'),
@@ -796,7 +796,7 @@ class partner(models.Model):
                         user.partner_id.diplome = diplome
                         if product_id:
                             user.partner_id.id_edof = product_id.id_edof
-                    if state=="canceledByAttendee" or state=="canceledByAttendeeNotRealized" or state=="canceledByOrganism"  :
+                    if state=="canceledByAttendee" or state=="canceledByAttendeeNotRealized" or state=="canceledByOrganism" or state=="refusedByAttendee" or state=="refusedByOrganism"  :
                         if user.partner_id.numero_cpf==externalId:
                             user.partner_id.statut_cpf="canceled"
                             user.partner_id.statut="canceled"
