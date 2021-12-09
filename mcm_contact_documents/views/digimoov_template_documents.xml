@@ -4,7 +4,7 @@
         <t name="Document" priority="29" t-name="document">
             <t t-call="website.layout">
                 <t t-set="additional_title">Document</t>
-                <link href="/digimoov_website_templates/static/src/css/register_form.css" rel="stylesheet"/>
+                <link href="/digimoov_website_templates/static/src/css/register_form_2.css" rel="stylesheet"/>
                 <link href="/mcm_contact_documents/static/src/css/upload_documents_dig.css" rel="stylesheet"/>
 
                 <div class="container oe_website_sale py-2">
@@ -102,15 +102,15 @@
 
 
 
-<!--                                                   <div class="form-group row">-->
-<!--                                                        <div class="col-md-8 col-lg-7">-->
-<!--                                                            <button type="submit" class="btn btn-primary centered-content" id="submit_documents" style="width: 100% !important;">-->
-<!--                                                        Envoyer-->
-<!--                                                                <span class="fa fa-1x fa-fw fa-long-arrow-right ml-1"></span>-->
-<!--                                                            </button>-->
-<!--                                                            <span id="o_website_form_result"></span>-->
-<!--                                                        </div>-->
-<!--                                                    </div>-->
+                                                    <!--                                                   <div class="form-group row">-->
+                                                    <!--                                                        <div class="col-md-8 col-lg-7">-->
+                                                    <!--                                                            <button type="submit" class="btn btn-primary centered-content" id="submit_documents" style="width: 100% !important;">-->
+                                                    <!--                                                        Envoyer-->
+                                                    <!--                                                                <span class="fa fa-1x fa-fw fa-long-arrow-right ml-1"></span>-->
+                                                    <!--                                                            </button>-->
+                                                    <!--                                                            <span id="o_website_form_result"></span>-->
+                                                    <!--                                                        </div>-->
+                                                    <!--                                                    </div>-->
 
 
 

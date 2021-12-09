@@ -221,6 +221,12 @@ html {
   color: #152856;
 }
 
+@media screen and (max-width: 390px) {
+  #progressbar li {
+    font-size: 12px !important;
+  }
+}
+
 #progressbar li {
   list-style-type: none;
   font-size: 15px;
@@ -388,11 +394,6 @@ html {
   opacity: 1;
   z-index: 1;
 }
-.popup_show {
-  visibility: visible;
-  opacity: 1;
-  z-index: 1;
-}
 
 .popup {
   top: 33%;
@@ -404,34 +405,13 @@ html {
   position: relative;
   transition: all 5s ease-in-out;
 }
-.popup_doc {
-  top: 33%;
-  margin: 70px auto;
-  padding: 20px 20px 1px;
-  background: #fff;
-  border-radius: 5px;
-  width: 80%;
-  position: relative;
-  transition: all 5s ease-in-out;
-}
 
-#popup_counter {
-  font-size: 1.5rem;
-  width: 2.5rem;
-  height: 2.5rem;
-  border-radius: 2.5rem;
-  border: solid 1px #152856;
-  background: #152856;
-  color: #ffffff;
-}
-.popup h2,
-.popup_doc h2 {
+.popup h2 {
   margin-top: 0;
   color: #333;
   font-family: Tahoma, Arial, sans-serif;
 }
-.popup .close,
-.popup_doc .close {
+.popup .close {
   position: absolute;
   top: 20px;
   right: 30px;
@@ -441,107 +421,20 @@ html {
   text-decoration: none;
   color: #152856;
 }
-.popup .close:hover,
-.popup_doc .close:hover {
+.popup .close:hover {
   color: hsl(222, 61%, 41%);
 }
-.popup .content,
-.popup_doc .content {
+.popup .content {
   max-height: 30%;
   overflow: auto;
 }
 
-@media screen and (max-width: 769px) {
+@media screen and (max-width: 700px) {
   .box {
-    width: 70%;
-  }
-  .popup,
-  .popup_doc {
     width: 90%;
   }
-}
-
-/*slider animation */
-.slider {
-  position: absolute;
-  width: 100%;
-  height: 4px;
-  margin-top: -3px;
-  left: 0px;
-}
-.line {
-  position: absolute;
-  background: #152856;
-  width: 100%;
-  height: 4px;
-}
-.break {
-  position: absolute;
-  background: #fff;
-  width: 2px;
-  height: 4px;
-}
-
-.dot1 {
-  -webkit-animation: loading 2s infinite;
-  -moz-animation: loading 2s infinite;
-  -ms-animation: loading 2s infinite;
-  -o-animation: loading 2s infinite;
-  animation: loading 2s infinite;
-}
-.dot2 {
-  -webkit-animation: loading 2s 0.5s infinite;
-  -moz-animation: loading 2s 0.5s infinite;
-  -ms-animation: loading 2s 0.5s infinite;
-  -o-animation: loading 2s 0.5s infinite;
-  animation: loading 2s 0.5s infinite;
-}
-.dot3 {
-  -webkit-animation: loading 2s 1s infinite;
-  -moz-animation: loading 2s 1s infinite;
-  -ms-animation: loading 2s 1s infinite;
-  -o-animation: loading 2s 1s infinite;
-  animation: loading 2s 1s infinite;
-}
-
-@keyframes loading {
-  from {
-    left: 0;
-  }
-  to {
-    left: 99%;
-  }
-}
-@-moz-keyframes loading {
-  from {
-    left: 0;
-  }
-  to {
-    left: 99%;
-  }
-}
-@-webkit-keyframes loading {
-  from {
-    left: 0;
-  }
-  to {
-    left: 99%;
-  }
-}
-@-ms-keyframes loading {
-  from {
-    left: 0;
-  }
-  to {
-    left: 99%;
-  }
-}
-@-o-keyframes loading {
-  from {
-    left: 0;
-  }
-  to {
-    left: 99%;
+  .popup {
+    width: 90%;
   }
 }
 
@@ -549,7 +442,7 @@ html {
 
 .scroll-prompt {
   opacity: 1;
-  width: 188px;
+  width: 167px;
   height: 51px;
   padding-left: 127px;
 }
