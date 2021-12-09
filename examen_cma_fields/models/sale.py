@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 # Part of Odoo. See LICENSE file for full copyright and licensing details.
 
-from odoo import api, fields, models, SUPERUSER_ID
+from odoo import api, fields, models,SUPERUSER_ID
 
 
 class SaleOrder(models.Model):
@@ -19,3 +19,4 @@ class SaleOrder(models.Model):
                     'company_id': self.company_id.id
                 })
         return order
+
