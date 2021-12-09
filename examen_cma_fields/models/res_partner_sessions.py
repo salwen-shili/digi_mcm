@@ -2,6 +2,8 @@
 # Part of Odoo. See LICENSE file for full copyright and licensing details.
 
 from odoo import api, fields, models
+import logging
+_logger = logging.getLogger(__name__)
 
 
 class resPartnerSessions(models.Model):
@@ -31,15 +33,15 @@ class resPartnerSessions(models.Model):
     def remove_double_session_same_session(self):
         """ Add this function to remove duplicate
         sessions in partner interface"""
+        _logger.info('----------Double sessions in historic sessions-----------')
+        sessions = self.env['partner.sessions'].search([])
         duplicate_sessions = []
-        for partner_sessions in self:
+        for partner_sessions in sessions:
             if partner_sessions.session_id.id and partner_sessions.id not in duplicate_sessions:
                 duplicates = self.env['partner.sessions'].search(
                     [('client_id', '=', partner_sessions.client_id.id), ('id', '!=', partner_sessions.id),
                      ('session_id', '=', partner_sessions.session_id.id)])
-                print(duplicates)
                 for dup in duplicates:
-                    print("dup", dup)
                     duplicate_sessions.append(dup.id)
-                    print("duplicate_contacts", duplicate_sessions)
+                    print("duplicate_sessions", duplicate_sessions)
         self.browse(duplicate_sessions).unlink()
