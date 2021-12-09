@@ -6,6 +6,7 @@ from odoo import api, fields, models
 
 class resPartnerSessions(models.Model):
     _name = "partner.sessions"
+    _rec_name = 'session_id'
     _inherit = ["mail.thread", "mail.activity.mixin"]
     _description = "historique sessions"
 
