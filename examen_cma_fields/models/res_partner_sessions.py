@@ -3,12 +3,14 @@
 
 from odoo import api, fields, models
 
+
 class resPartnerSessions(models.Model):
     _name = "partner.sessions"
+    _inherit = ["mail.thread", "mail.activity.mixin"]
     _description = "historique sessions"
 
-    client_id= fields.Many2one('res.partner','Client')
-    session_id= fields.Many2one('mcmacademy.session','Session')
+    client_id = fields.Many2one('res.partner', 'Client')
+    session_id = fields.Many2one('mcmacademy.session', 'Session', track_visibility='always')
     theoretic = fields.Selection(selection=[
         ('adjourned', 'Ajourné'),
         ('admitted', 'Admis'),
@@ -19,19 +21,21 @@ class resPartnerSessions(models.Model):
     ], string='Pratique')
     company_id = fields.Many2one('res.company', string='Company', default=lambda self: self.env.company)
     # Add new field pour la justification de report
-    justification = fields.Boolean(string="Justification")
-    paiement = fields.Boolean(string="Paiement")
+    justification = fields.Boolean(string="Absence justifié", track_visibility='always')
+    paiement = fields.Boolean(string="Changement de ville", track_visibility='always')
     attachment_ids = fields.Many2many('ir.attachment', string="Attachment", required=True)
-    autre_raison = fields.Text()
+    autre_raison = fields.Text(track_visibility='always')
     date_exam = fields.Date(related="session_id.date_exam")
-    
+
     def remove_double_session_same_session(self):
         """ Add this function to remove duplicate
         sessions in partner interface"""
         duplicate_sessions = []
         for partner_sessions in self:
             if partner_sessions.session_id.id and partner_sessions.id not in duplicate_sessions:
-                duplicates = self.env['partner.sessions'].search([('client_id', '=', partner_sessions.client_id.id), ('id', '!=', partner_sessions.id), ('session_id', '=', partner_sessions.session_id.id)])
+                duplicates = self.env['partner.sessions'].search(
+                    [('client_id', '=', partner_sessions.client_id.id), ('id', '!=', partner_sessions.id),
+                     ('session_id', '=', partner_sessions.session_id.id)])
                 print(duplicates)
                 for dup in duplicates:
                     print("dup", dup)
