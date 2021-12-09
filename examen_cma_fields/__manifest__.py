@@ -21,6 +21,7 @@
         'views/res_partner_sessions.xml',
         'views/res_partner.xml',
         'data/ir_actions.server.xml',
+        'data/ir_cron.xml',
 
     ],
     'qweb': [],
