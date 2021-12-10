@@ -5,9 +5,16 @@ from odoo import fields, models,api
 
 class Session(models.Model):
     _inherit = "mcmacademy.session"
+    
+    def get_default_number_place_by_company(self):
+            if self.env.company.id == 1:
+                return 100
+            else:
+                return 20
 
+    
     id_edof=fields.Char("ID Sesssion EDOF")
-    max_number_places = fields.Integer("Nombre des places maximales",default='get_default_number_place_by_company')
+    max_number_places = fields.Integer("Nombre des places maximales",default=get_default_number_place_by_company,copy=False)
     number_places_available = fields.Integer("Nombre des places disponibles", compute='get_number_places_available',
                                              store=True, default=0)
     website_published=fields.Boolean('Publié en site web',default=True)

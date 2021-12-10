@@ -87,6 +87,7 @@ class Session(models.Model):
                 module.date_exam = self.date_exam #copy date exam of session in module
                 module.ville = self.ville #copy ville of session in module
                 module.max_number_places = self.max_number_places #copy nombre des places disponibles of session in module
-                module.date_debut = self.date_exam - timedelta(days=60) #start_date = date_exam - 60 days
+                if self.date_exam:
+                    module.date_debut = self.date_exam - timedelta(days=60) #start_date = date_exam - 60 days
                 module.date_fin = self.date_exam #end_date  = date_exam 
         return session
