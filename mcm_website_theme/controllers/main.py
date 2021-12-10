@@ -30,6 +30,8 @@ class Website(Home):
         , type='http', auth="public", website=True)
     def index(self, state='', partenaire='', **kw, ):
         # homepage=super(Website, self).index()
+        if not request.env.user.lang:
+            request.env.user.lang ='fr_FR'
         locale.setlocale(locale.LC_TIME, str(request.env.user.lang) + '.utf8')
         all_categs = request.env['product.public.category'].sudo().search([('parent_id', '=', False)])
         all_states = request.env['res.country.state'].sudo().search([('country_id.code', 'ilike', 'FR')],

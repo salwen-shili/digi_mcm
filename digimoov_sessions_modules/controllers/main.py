@@ -26,6 +26,8 @@ class WebsiteSale(WebsiteSale):
         access_token: Abandoned cart SO access token
         revive: Revival method when abandoned cart. Can be 'merge' or 'squash'
         """
+        if not request.env.user.lang:
+            request.env.user.lang ='fr_FR'
         locale.setlocale(locale.LC_TIME, str(request.env.user.lang) + '.utf8') #get local time of partner
         order = request.website.sale_get_order()
         if order and order.state != 'draft':
