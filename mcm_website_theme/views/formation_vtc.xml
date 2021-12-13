@@ -109,7 +109,12 @@
 #sh_corpomate_theme_section_76 .sh_content p:after {
   top: 20px;
 }
-
+h1{
+  text-transform: uppercase;
+}
+h2{
+  text-transform: uppercase;
+}
 
         </style>
         <section id="sh_corpomate_theme_section_258" class="sh_animation_part pt8" data-name="Formation Chauffeur de Taxi">
@@ -166,7 +171,7 @@
         </section>
         <!-- fin LOGOS-->
 
-        <section class="container s_text_block pt32 pb24" data-name="Text block">
+        <section class="container s_text_block pt32 pb64" data-name="Text block">
           <h2 class="s_title_default text-center pb16" style="font-size: 36px; font-weight:700">
                  Devenir chauffeur de VTC
           </h2>
@@ -223,10 +228,13 @@
                       <i class="fa-li fa fa-square" style="margin-top:2px;"></i>
                       Préparation aux épreuves d’admissibilité de l’examen VTC (théorie)
                     </li>
-                    <li>
-                      <i class="fa-li fa fa-square" style="margin-top:2px;; color: #2667ae !important"></i>
-                      <a class="read_more" href="/mcm_website_theme/static/mcm_website_theme/static/pdf/programme_de_formation_MCM_ACADEMY_2021.pdf">En savoir plus</a>
-                    </li>
+
+                    <div style="margin-block-start: 20px; margin-left: -39px;">
+                      <a href="/mcm_website_theme/static/mcm_website_theme/static/pdf/programme_de_formation_MCM_ACADEMY_2021.pdf">
+                        <button class="home-btn">En savoir plus</button>
+                      </a>
+
+                    </div>
                   </ul>
                 </p>
               </div>
@@ -255,13 +263,14 @@
 
 
         <!-- Etapes new-->
-        <section id="sh_corpomate_theme_section_76" class="" data-name="About Snippet 3">
+        <!-- Etapes new-->
+        <section id="sh_corpomate_theme_section_76">
           <div class="container">
             <div class="row">
               <div class="container pt16 pb16" style="border-style: none; border-width: 0px;">
                 <div class="col-lg-12 s_title pt24 pb16" style="text-align: center">
                   <h2 class="font-weight-bold display-4 " style="font-size: 32px">
-                    Les démarches à suivre pour souscrire à la formation VTC
+                                les étapes à suivre pour devenir chauffeur de taxi
                   </h2>
                 </div>
               </div>
@@ -271,72 +280,69 @@
                     <span class="sh_icon">1</span>
                   </div>
                   <div class="feature_container">
-                    <h3 style="font-weight: 600;">              
-                  1. Souscrire à la formation en ligne à la Chambre des
-                  Métiers et de l'Artisanat (CMA)
+                    <h3 style="font-weight: 600; font-size:20px !important">
+                                    1. Souscrire à la formation en ligne à la Chambre des
+                                    Métiers et de l'Artisanat (CMA)
                     </h3>
                     <p class="font-weight-light my-3">
-                      Une inscription sur la plateforme de la Chambre 
-                      des Métiers et de l'Artisanat (CMA) est obligatoire.
+                                    Une inscription sur la plateforme de la Chambre
+                                    des Métiers et de l'Artisanat (CMA) est obligatoire.
                     </p>
                     <div class="text-center">
                       <a class="read_more" href="/mcm_website_theme/static/pdf/DEMARCHES_D'INSCRIPTION_A_LA_CMA_-_MCM_ACADEMY.pdf">
-                          En savoir plus
+                                        En savoir plus
                         <i class="fa fa-info-circle"></i>
                       </a>
                     </div>
+
                   </div>
                 </div>
               </div>
-
               <div class="col-md-4">
                 <div class="sh_content sh_second_content">
                   <div class="sh_num_icon">
                     <span class="sh_icon">2</span>
                   </div>
                   <div class="feature_container">
-                    <h3 style="font-weight: 600;">              
-                  2. Souscrire à la formation en ligne chez MCM Academy
+                    <h3 style="font-weight: 600; font-size:20px !important">
+                                    2. Souscrire à la formation en ligne chez MCM Academy
                     </h3>
                     <p class="font-weight-light my-3">
-                      Inscription facile en 3 étapes : tout se passe sur notre site web.
+                                    Inscription facile en 3 étapes : tout se passe sur notre site web.
                     </p>
                     <div class="text-center">
                       <a class="read_more" href="/mcm_website_theme/static/pdf/DEMARCHES_D'INSCRIPTION_SUR_LE_SITE_MCM_ACADEMY.pdf">
-                          En savoir plus
+                                        En savoir plus
                         <i class="fa fa-info-circle"></i>
                       </a>
                     </div>
                   </div>
                 </div>
               </div>
-
               <div class="col-md-4">
                 <div class="sh_content sh_last_content">
                   <div class="sh_num_icon">
                     <span class="sh_icon">3</span>
                   </div>
                   <div class="feature_container">
-                    <h3 style="font-weight: 600;">              
-                  3. Déposer votre dossier à la préfecture pour obtenir votre carte professionnelle
+                    <h3 style="font-weight: 600; font-size:20px !important">
+                                    3. Déposer votre dossier à la préfecture pour obtenir votre carte professionnelle
                     </h3>
                     <p class="font-weight-light my-3">
-                      Une fois l’examen passé et votre certificat de réussite obtenu, il faut déposer un dossier 
-                      à la préfecture.
+                                    Une fois l’examen passé et votre certificat de réussite obtenu, il faut déposer un
+                                    dossier
+                                    à la préfecture.
                     </p>
                     <div class="text-center">
                       <a class="read_more" href="/mcm_website_theme/static/pdf/Devenez_chauffeur_taxi_vtc_démarches_dépôt_dossier_préfecture.pdf">
-                          En savoir plus
+                                        En savoir plus
                         <i class="fa fa-info-circle"></i>
                       </a>
                     </div>
                   </div>
-
                 </div>
               </div>
-
             </div>
-
           </div>
         </section>
         <!-- Telecharger-->
@@ -436,10 +442,13 @@
                     <i class="fa-li fa fa-square" style="margin-top:2px;"></i>
                       Réglementation vtc
                   </li>
-                  <li style=" padding-block-end: 20px;">
-                    <i class="fa-li fa fa-square" style="margin-top:2px;; color: #2667ae !important"></i>
-                    <a class="read_more" href="/mcm_website_theme/static/pdf/programme_de_formation_MCM_ACADEMY_2021.pdf">En savoir plus</a>
-                  </li>
+
+                  <div style="margin-block-start: 20px; margin-left: -39px;">
+                    <a href="/mcm_website_theme/static/pdf/programme_de_formation_MCM_ACADEMY_2021.pdf">
+                      <button class="home-btn">En savoir plus</button>
+                    </a>
+
+                  </div>
                 </ul>
               </div>
             </div>
@@ -469,8 +478,8 @@
                   <br />
                 </p>
               </div>
-              <div class="row">
-                <div class="col-md-4 sh_animation_part" style="border-style: none; border-width: 0px">
+              <div class="row" style="justify-content: center !important">
+                <div class="col-md-5 sh_animation_part" style="border-style: none; border-width: 0px">
                   <div class="sh_pricing">
                     <t t-foreach="mcm_products" t-as="product">
                       <t t-if="product.default_code=='vtc'">
@@ -499,11 +508,15 @@
                             <!-- <a class="btn btn-primary sh_btn_cm_8" data-original-title="" title="" aria-describedby="tooltip357369" onClick="(function(){document.getElementById('form-1-1').submit();return false;})();return false;">
                             Je m'inscris
                                                 </a> -->
-                            <a href="#pricing">
-                              <button class="home-btn" onClick="(function(){packVtcPageFormationTaxi();document.getElementById('form-1-1').submit();return false;})();return false;">
-                                Je m'inscris
-                              </button>
+
+                            <a class="animated-button-black" href="#pricing" onClick="(function(){packVtcPageFormationTaxi();document.getElementById('form-1-1').submit();return false;})();return false;">
+                              <span></span>
+                              <span></span>
+                              <span></span>
+                              <span></span>
+              Je m'inscris
                             </a>
+
                           </div>
                         </form>
                       </t>

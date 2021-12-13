@@ -9,6 +9,12 @@
       <script type="text/javascript" src="/mcm_website_theme/static/src/js/msAds.js" async="async"/>
 
       <style>
+        h1{
+  text-transform: uppercase;
+}
+h2{
+  text-transform: uppercase;
+}
         #sh_corpomate_theme_section_184 .sh_content .sh_more_btn.sh_btn_cm_8 {
           background: black;
           border: 2px solid #0a0a0a;
