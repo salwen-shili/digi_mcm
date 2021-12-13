@@ -11,6 +11,12 @@
         <link rel="stylesheet" href="/mcm_website_theme/static/src/css/cta-button.css" />
         <!-- <script type="text/javascript" src="/mcm_website_theme/static/src/js/scrollAnimation.js"></script> -->
         <style>
+          h1{
+  text-transform: uppercase;
+}
+h2{
+  text-transform: uppercase;
+}
         #sh_corpomate_theme_section_258 {
           padding: 0 !important;
         }

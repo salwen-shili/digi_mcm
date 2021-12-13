@@ -11,6 +11,12 @@
         <link rel="stylesheet" href="/mcm_website_theme/static/src/css/cta-button.css" />
 
         <style>
+          h1{
+  text-transform: uppercase;
+}
+h2{
+  text-transform: uppercase;
+}
             #sh_corpomate_theme_section_258 {
                 padding: 0 !important;
             }
@@ -229,7 +235,7 @@
                     <span class="sh_icon">1</span>
                   </div>
                   <div class="feature_container">
-                    <h3 style="font-weight: 600;">
+                    <h3 style="font-weight: 600; font-size:20px !important">
                                     1. Souscrire à la formation en ligne à la Chambre des
                                     Métiers et de l'Artisanat (CMA)
                     </h3>
@@ -252,7 +258,7 @@
                     <span class="sh_icon">2</span>
                   </div>
                   <div class="feature_container">
-                    <h3 style="font-weight: 600;">
+                    <h3 style="font-weight: 600; font-size:20px !important">
                                     2. Souscrire à la formation en ligne chez MCM Academy
                     </h3>
                     <p class="font-weight-light my-3">
@@ -273,7 +279,7 @@
                     <span class="sh_icon">3</span>
                   </div>
                   <div class="feature_container">
-                    <h3 style="font-weight: 600;">
+                    <h3 style="font-weight: 600; font-size:20px !important">
                                     3. Déposer votre dossier à la préfecture pour obtenir votre carte professionnelle
                     </h3>
                     <p class="font-weight-light my-3">
@@ -554,8 +560,8 @@
                   <br />
                 </p>
               </div>
-              <div class="row">
-                <div class="col-md-4 sh_animation_part">
+              <div class="row" style="justify-content: center !important">
+                <div class="col-md-5 sh_animation_part">
                   <div class="sh_pricing">
                     <t t-foreach="mcm_products" t-as="product">
                       <t t-if="product.default_code=='taxi'">
@@ -586,10 +592,13 @@
                             Je m'inscris
                                                 </a> -->
 
-                            <a href="#pricing">
-                              <button class="home-btn" onClick="(function(){packTaxiPageFormationTaxi();document.getElementById('form-1-2').submit();return false;})();return false;">
-                                                        Je m'inscris
-                              </button>
+
+                            <a class="animated-button-black" href="#pricing" onClick="(function(){packTaxiPageFormationTaxi();document.getElementById('form-1-2').submit();return false;})();return false;">
+                              <span></span>
+                              <span></span>
+                              <span></span>
+                              <span></span>
+              Je m'inscris
                             </a>
                           </div>
                         </form>
