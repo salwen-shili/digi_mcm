@@ -16,7 +16,7 @@ class Session(models.Model):
 
     heure_examen_matin = fields.Char(default="09H00")
     heure_examen_apres_midi = fields.Char(default="14H00")
-    date_exam = fields.Date(string="Date d'examen",copy=False,required=True)
+    date_exam = fields.Date(string="Date d'examen",copy=False,required=True,track_visibility='always')
 
     # Add adresse field pour l'afficher dans la convocation
     adresse_examen = fields.Char(string="Adresse d'examen", help="Ajouter l'adresse d'examen, "
