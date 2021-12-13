@@ -12,22 +12,22 @@
         <!-- <script type="text/javascript" src="/mcm_website_theme/static/src/js/scrollAnimation.js"></script> -->
         <style>
           h1{
-  text-transform: uppercase;
-}
-h2{
-  text-transform: uppercase;
-}
+          text-transform: uppercase;
+        }
+        h2{
+          text-transform: uppercase;
+        }
         #sh_corpomate_theme_section_258 {
           padding: 0 !important;
         }
        
           .fa-ul {
-    padding-left: 0;
-    margin-left: 8px;
-    list-style-type: none;
-    font-size: 16.5px; 
-    line-height: 27px !important;
-}
+          padding-left: 0;
+          margin-left: 8px;
+          list-style-type: none;
+          font-size: 16.5px; 
+          line-height: 27px !important;
+        }
        
 
         p {
@@ -227,12 +227,12 @@ h2{
                   <i class="fa fa-chevron-right" style="margin-top: 2px"></i>
                   101 € de frais d'inscription à une 2e ou 3e présentation à l'épreuve pratique d'admission.
                 </li>
-                <li style="padding-block-end: 10px">
-                  <i class="fa fa-chevron-right" style="margin-top: 2px;"></i>
-                  <a style="color:#085294" href="/blog/blog-taxi-10/post/tout-savoir-sur-l-examen-taxi-vtc-moto-taxi-27">
-                    Plus de détails
-                  </a>
-                </li>
+
+
+
+                <a href="/blog/blog-taxi-10/post/tout-savoir-sur-l-examen-taxi-vtc-moto-taxi-27">
+                  <button class="home-btn">Plus de détails</button>
+                </a>
 
               </ul>
             </div>
