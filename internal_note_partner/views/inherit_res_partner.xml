@@ -41,7 +41,7 @@
                 <field name="last_internal_log" widget="html" optional="show"/>
             </xpath>
             <xpath expr="//tree/field[@name='last_internal_log']" position="before">
-                <field name="presence" widget="html" optional="show"/>
+                <field name="presence" optional="show"/>
             </xpath>
             <xpath expr="//tree/field[@name='last_login']" position="replace">
                 <field name="last_login" optional="hide"/>
