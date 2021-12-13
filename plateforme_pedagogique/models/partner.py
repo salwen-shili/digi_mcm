@@ -410,6 +410,7 @@ class partner(models.Model):
                                 print(existe, 'ajouter à son session', respsession.status_code)
 
     def supprimer_ione_auto(self):
+               
         base_url = self.env['ir.config_parameter'].sudo().get_param('web.base.url')
         if "localhost" not in str(base_url):
             company_id = '56f5520e11d423f46884d593'
@@ -425,13 +426,20 @@ class partner(models.Model):
             for user in users:
                 iduser = user['_id']
                 email = user['mail']
-                # Pour chaque partner verifier si date_suppression est aujourd'hui
-                # pour assurer la suppresion automatique
-                user = self.env['res.users'].sudo().search([('login',"=",email)],limit=1)
+                # Pour chaque partner vérifier qu'il n'est pas un formateur ou surveillant           
                 partner = self.env['res.partner'].sudo().search([('email', "=", email),
                                                                  ('est_surveillant',"=",False),
                                                                  ('est_intervenant',"=",False)],order='id desc',limit=1)
-                if (partner and partner.mcm_session_id.date_exam):
+                groupe = self.env.ref('base.group_user')
+                print('groupe user', groupe.users)
+                existe = False 
+                for user in groupe.users:
+                    if user.partner_id == partner:
+                        existe=True
+                        print("if partner ", partner.name,existe)
+                #verifier si date_suppression est aujourd'hui
+                # pour assurer la suppresion automatique
+                if partner and partner.mcm_session_id.date_exam and not existe :
                     # date de suppression est date d'examen + 4jours
                     date_suppression = partner.mcm_session_id.date_exam + timedelta(days=4)
                     today = date.today()
@@ -441,12 +449,9 @@ class partner(models.Model):
                         _logger.info('liste à supprimé %s' %str(email))
                         url = 'https://app.360learning.com/api/v1/users/' + email + '?company=' + company_id + '&apiKey=' + api_key
                         resp = requests.delete(url)
-                        print('ress resp.status_code')
+ 
 
-                else:
-                    print('date incompatible')
-
-        def supprimer_ione_manuelle(self):
+    def supprimer_ione_manuelle(self):
             company_id = '56f5520e11d423f46884d593'
             api_key = 'cnkcbrhHKyfzKLx4zI7Ub2P5'
             headers = CaseInsensitiveDict()
