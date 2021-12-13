@@ -7,6 +7,12 @@ class InheritResPartner(models.Model):
     composer_ids = fields.Many2one('mail.message', string='Composer')
     last_internal_log = fields.Char(compute="_compute_get_last_internal_log", string="Commentaire Interne")
     company_id = fields.Many2one('res.company', default=lambda self: self.env.company)
+    presence = fields.Char(readonly=True, compute="_compute_get_last_presence_values")
+
+    def _compute_get_last_presence_values(self):
+        for rec in self:
+            last_line = rec.env['info.examen'].sudo().search([('partner_id', "=", rec.id)], limit=1)
+            rec.presence = last_line.presence
 
     def _compute_get_last_internal_log(self):
         for record in self:
