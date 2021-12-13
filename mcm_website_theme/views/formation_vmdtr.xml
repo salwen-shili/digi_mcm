@@ -498,6 +498,7 @@ h2{
             </div>
           </div>
         </section>
+
         <!-- -->
         <div id="pricing">
           <input t-att-value="request.website.microsoft_tracking_key" id="microsoft_tracking_key" type="hidden" />
