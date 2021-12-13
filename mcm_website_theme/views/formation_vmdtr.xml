@@ -427,17 +427,13 @@ h2{
                     <a href="/mcm_website_theme/static/pdf/programme_de_formation_MCM_ACADEMY_2021.pdf" target="_blank">
                       <button class="home-btn">En savoir plus</button>
                     </a>
-
                   </div>
                 </ul>
               </div>
-
-
             </div>
           </div>
         </section>
         <!-- La Formation MOTO-TAXI -->
-
         <section class="s_text_image pt0 pb4">
           <div class="container">
             <div class="row align-items-center">
