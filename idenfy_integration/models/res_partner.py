@@ -70,13 +70,20 @@ class ResPartner(models.Model):
                     else:
                         folder_id = self.env['documents.folder'].search([],limit=1)
                     if image_url:
+                        if document=='FRONT':
+                            document = "Carte d'identité Recto"
+                        elif document=='BACK' :
+                            document = "Carte d'identité Verso"
+                        elif document=='FACE' :
+                            document = "Visage"
                         image_binary = base64.b64encode(requests.get(image_url).content)
                         vals = {
                             'name':document,
                             'datas': image_binary,
                             'type':'binary',
                             'partner_id':rec.id,
-                            'folder_id':folder_id.id
+                            'folder_id':folder_id.id,
+                            'state':'validated',
                         }
                         #search if the client has already a document with same name
                         partner_document = self.env['documents.document'].sudo().search(
