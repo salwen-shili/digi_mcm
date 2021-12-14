@@ -1,32 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-  <template
-    id="mcm_website_theme_qui_sommes_nous"
-    name="Qui Sommes Nous | MCM ACADEMY"
-  >
+  <template id="mcm_website_theme_qui_sommes_nous" name="Qui Sommes Nous | MCM ACADEMY">
     <t t-call="website.layout">
       <div id="wrap" class="oe_structure oe_empty">
-        <link
-          href="/mcm_website_theme/static/src/css/theme.css"
-          rel="stylesheet"
-        />
-        <script
-          defer="defer"
-          type="text/javascript"
-          src="/digimoov_website_templates/static/src/js/lazy-min.js"
-        ></script>
-        <link
-          rel="stylesheet"
-          href="/mcm_website_theme/static/src/css/homepage.css"
-        />
-        <script
-          type="text/javascript"
-          src="/mcm_website_theme/static/src/js/msAds.js"
-        ></script>
-        <link
-          rel="stylesheet"
-          href="/mcm_website_theme/static/src/css/cta-button.css"
-        />
+        <link href="/mcm_website_theme/static/src/css/theme.css" rel="stylesheet" />
+        <script defer="defer" type="text/javascript" src="/digimoov_website_templates/static/src/js/lazy-min.js"></script>
+        <link rel="stylesheet" href="/mcm_website_theme/static/src/css/homepage.css" />
+        <script type="text/javascript" src="/mcm_website_theme/static/src/js/msAds.js"></script>
+        <link rel="stylesheet" href="/mcm_website_theme/static/src/css/cta-button.css" />
         <!-- <script type="text/javascript" src="/mcm_website_theme/static/src/js/scrollAnimation.js"></script> -->
         <style>
           #sh_corpomate_theme_section_258 {
@@ -155,17 +136,10 @@
           }
         </style>
         <!-- cover-->
-        <section
-          id="sh_corpomate_theme_section_258 "
-          class="sh_animation_part pt8"
-          data-name="Formation Chauffeur de Taxi"
-        >
+        <section id="sh_corpomate_theme_section_258 " class="sh_animation_part pt8" data-name="Formation chauffeur TAXI">
           <div class="container-banner">
             <div class="row">
-              <div
-                class="col-lg-6 pb16 pt56 js-scroll slide-left"
-                style="border-style: none; border-width: 0px"
-              >
+              <div class="col-lg-6 pb16 pt56 js-scroll slide-left" style="border-style: none; border-width: 0px">
                 <div class="">
                   <div class="text-center">
                     <h1 class="title-mcm slider-text-info">MCM Academy</h1>
@@ -182,14 +156,7 @@
               </div>
               <div class="col-lg-6 pb48 pt16 js-scroll slide-right">
                 <br />
-                <img
-                  data-src="/mcm_website_theme/static/src/img/examen/1.png"
-                  data-srcSafari="/mcm_website_theme/static/src/img/examen/1.webp"
-                  class="img img-fluid mx-auto lazy"
-                  alt="Devenir chauffeur Taxi, VTC ou Moto-Taxi"
-                  title="Taxi chauffeur"
-                  style="text-align: center"
-                />
+                <img data-src="/mcm_website_theme/static/src/img/examen/1.png" data-srcSafari="/mcm_website_theme/static/src/img/examen/1.webp" class="img img-fluid mx-auto lazy" alt="Devenir chauffeur Taxi, VTC ou Moto-Taxi" title="Taxi chauffeur" style="text-align: center" />
               </div>
             </div>
           </div>
@@ -201,19 +168,13 @@
           <div class="container">
             <div class="row s_nb_column_fixed">
               <div class="col-lg-12 s_title" style="padding: 0px">
-                <h3
-                  class="s_title_lines"
-                  style="font-size: 36px; font-weight: 700; text-align: left"
-                >
+                <h3 class="s_title_lines" style="font-size: 36px; font-weight: 700; text-align: left">
                   Notre histoire
                 </h3>
               </div>
             </div>
             <div class="row align-items-center">
-              <div
-                class="pt16 pb16 col-lg-7"
-                style="border-style: none; border-width: 0px"
-              >
+              <div class="pt16 pb16 col-lg-7" style="border-style: none; border-width: 0px">
                 <p>
                   Créée en 2015, <b>MCM Academy</b> est une structure
                   spécialisée dans la formation des métiers de chauffeurs de
@@ -239,18 +200,8 @@
                   bout de votre projet.
                 </p>
               </div>
-              <div
-                class="pt16 pb16 col-lg-5"
-                style="border-style: none; border-width: 0px"
-              >
-                <img
-                  src="/mcm_website_theme/static/src/img/quisommesnous/choisir-MCM-Academy.png"
-                  class="img img-fluid mx-auto"
-                  alt="Odoo • Texte et Image"
-                  data-original-title=""
-                  title=""
-                  aria-describedby="tooltip771176"
-                />
+              <div class="pt16 pb16 col-lg-5" style="border-style: none; border-width: 0px">
+                <img src="/mcm_website_theme/static/src/img/quisommesnous/choisir-MCM-Academy.png" class="img img-fluid mx-auto" alt="Odoo • Texte et Image" data-original-title="" title="" aria-describedby="tooltip771176" />
               </div>
             </div>
           </div>
@@ -262,36 +213,17 @@
           <div class="container">
             <div class="row s_nb_column_fixed">
               <div class="col-lg-12 s_title" style="padding: 0px">
-                <h2
-                  class="s_title_lines"
-                  style="font-size: 36px; font-weight: 700; text-align: left"
-                >
+                <h2 class="s_title_lines" style="font-size: 36px; font-weight: 700; text-align: left">
                   Pourquoi nous choisir ?
                 </h2>
               </div>
             </div>
             <div class="row align-items-center">
-              <div
-                class="pt16 pb16 col-lg-5"
-                style="border-style: none; border-width: 0px"
-              >
-                <img
-                  src="/mcm_website_theme/static/src/img/quisommesnous/MCM-Acadmy-centre-de-renommée.png"
-                  class="img img-fluid mx-auto"
-                  alt="Odoo • Texte et Image"
-                  data-original-title=""
-                  title=""
-                  aria-describedby="tooltip771176"
-                />
+              <div class="pt16 pb16 col-lg-5" style="border-style: none; border-width: 0px">
+                <img src="/mcm_website_theme/static/src/img/quisommesnous/MCM-Acadmy-centre-de-renommée.png" class="img img-fluid mx-auto" alt="Odoo • Texte et Image" data-original-title="" title="" aria-describedby="tooltip771176" />
               </div>
-              <div
-                class="pt16 pb16 col-lg-7"
-                style="border-style: none; border-width: 0px"
-              >
-                <ul
-                  class="fa-ul"
-                  style="font-size: 16.5px; line-height: 1.2rem"
-                >
+              <div class="pt16 pb16 col-lg-7" style="border-style: none; border-width: 0px">
+                <ul class="fa-ul" style="font-size: 16.5px; line-height: 1.2rem">
                   <li style="padding-block-end: 10px">
                     <i class="fa fa-chevron-right" style="margin-top: 2px"></i>
                     <b>Notre expérience</b> : En tant qu’anciens chauffeurs de
@@ -332,10 +264,7 @@
           <div class="container">
             <div class="row s_nb_column_fixed">
               <div class="col-lg-12 s_title" style="padding: 0px">
-                <h2
-                  class="s_title_lines"
-                  style="font-size: 36px; font-weight: 700; text-align: left"
-                >
+                <h2 class="s_title_lines" style="font-size: 36px; font-weight: 700; text-align: left">
                   Une équipe pédagogique experte
                 </h2>
               </div>
@@ -353,69 +282,53 @@
                     </div>
                     <div class="sh_right_content">
                       <h5>DAVID L.</h5>
-                      <p
-                        style="
+                      <p style="
                           margin-right: 0px;
                           margin-left: 0px;
                           line-height: 1.9;
-                        "
-                      >
+                        ">
                         <font color="#9c9c94" style="color: rgb(66, 66, 66)">
                           <b>COMPÉTENCES</b>
                         </font>
                         <br />
                       </p>
-                      <p
-                        style="
+                      <p style="
                           margin-right: 0px;
                           margin-left: 0px;
                           line-height: 1.9;
-                        "
-                      >
-                        <font color="#9c9c94" style="color: rgb(66, 66, 66)"
-                          >Gestion administrative</font
+                        ">
+                        <font color="#9c9c94" style="color: rgb(66, 66, 66)">Gestion administrative</font
                         >
                       </p>
-                      <p
-                        style="
+                      <p style="
                           margin-right: 0px;
                           margin-left: 0px;
                           line-height: 1.9;
-                        "
-                      >
-                        <font color="#9c9c94" style="color: rgb(66, 66, 66)"
-                          >Gestion des ressources humaines Gestion de
+                        ">
+                        <font color="#9c9c94" style="color: rgb(66, 66, 66)">Gestion des ressources humaines Gestion de
                           trésorerie, recouvrement Audit, contrôle de
                           gestion</font
                         >
                       </p>
-                      <p
-                        style="
+                      <p style="
                           margin-right: 0px;
                           margin-left: 0px;
                           line-height: 1.9;
-                        "
-                      >
-                        <font color="#9c9c94" style="color: rgb(66, 66, 66)"
-                          >Comptabilité analytique</font
+                        ">
+                        <font color="#9c9c94" style="color: rgb(66, 66, 66)">Comptabilité analytique</font
                         >
                       </p>
-                      <p
-                        style="
+                      <p style="
                           margin-right: 0px;
                           margin-left: 0px;
                           line-height: 1.9;
-                        "
-                      />
-                      <p
-                        style="
+                        " />
+                      <p style="
                           margin-right: 0px;
                           margin-left: 0px;
                           line-height: 1.9;
-                        "
-                      >
-                        <font color="#9c9c94" style="color: rgb(66, 66, 66)"
-                          >Certification et procédure</font
+                        ">
+                        <font color="#9c9c94" style="color: rgb(66, 66, 66)">Certification et procédure</font
                         >
                       </p>
                     </div>
@@ -430,88 +343,64 @@
                     </div>
                     <div class="sh_right_content">
                       <h5>ÉRIC B.</h5>
-                      <p
-                        style="
+                      <p style="
                           margin-right: 0px;
                           margin-left: 0px;
                           line-height: 1.9;
-                        "
-                      >
+                        ">
                         <font color="#9c9c94" style="color: rgb(66, 66, 66)">
                           <b>COMPÉTENCES</b>
                         </font>
                       </p>
-                      <p
-                        style="
+                      <p style="
                           margin-right: 0px;
                           margin-left: 0px;
                           line-height: 1.9;
-                        "
-                      >
-                        <font color="#9c9c94" style="color: rgb(66, 66, 66)"
-                          >Chef de la brigade des transports Spécialisé dans
+                        ">
+                        <font color="#9c9c94" style="color: rgb(66, 66, 66)">Chef de la brigade des transports Spécialisé dans
                           :</font
                         >
                       </p>
-                      <p
-                        style="
+                      <p style="
                           margin-right: 0px;
                           margin-left: 0px;
                           line-height: 1.9;
-                        "
-                      >
-                        <font color="#9c9c94" style="color: rgb(66, 66, 66)"
-                          >T3P</font
+                        ">
+                        <font color="#9c9c94" style="color: rgb(66, 66, 66)">T3P</font
                         >
                       </p>
-                      <p
-                        style="
+                      <p style="
                           margin-right: 0px;
                           margin-left: 0px;
                           line-height: 1.9;
-                        "
-                      >
-                        <font color="#9c9c94" style="color: rgb(66, 66, 66)"
-                          >Réglementation VTC</font
+                        ">
+                        <font color="#9c9c94" style="color: rgb(66, 66, 66)">Réglementation VTC</font
                         >
                       </p>
-                      <p
-                        style="
+                      <p style="
                           margin-right: 0px;
                           margin-left: 0px;
                           line-height: 1.9;
-                        "
-                      >
-                        <font color="#9c9c94" style="color: rgb(66, 66, 66)"
-                          >Réglementation TAXI</font
+                        ">
+                        <font color="#9c9c94" style="color: rgb(66, 66, 66)">Réglementation TAXI</font
                         >
                       </p>
-                      <p
-                        style="
+                      <p style="
                           margin-right: 0px;
                           margin-left: 0px;
                           line-height: 1.9;
-                        "
-                      >
-                        <font color="#9c9c94" style="color: rgb(66, 66, 66)"
-                          >Réglementation locale</font
+                        ">
+                        <font color="#9c9c94" style="color: rgb(66, 66, 66)">Réglementation locale</font
                         >
-                        <span
-                          style="color: rgb(107, 123, 144); font-size: 15px"
-                        />
-                        <font
-                          style="color: rgb(156, 156, 148); font-size: 15px"
-                        />
+                        <span style="color: rgb(107, 123, 144); font-size: 15px" />
+                        <font style="color: rgb(156, 156, 148); font-size: 15px" />
                         <br />
                       </p>
                     </div>
                   </div>
                 </div>
               </div>
-              <div
-                class="col-lg-4 col-md-6"
-                style="border-style: none; border-width: 0px"
-              >
+              <div class="col-lg-4 col-md-6" style="border-style: none; border-width: 0px">
                 <div class="sh_content">
                   <div class="sh_left_content">
                     <div class="sh_left_icon">
@@ -519,59 +408,45 @@
                     </div>
                     <div class="sh_right_content">
                       <h5>MOUNIR T.</h5>
-                      <p
-                        style="
+                      <p style="
                           margin-right: 0px;
                           margin-left: 0px;
                           line-height: 1.9;
-                        "
-                      >
+                        ">
                         <font color="#9c9c94" style="color: rgb(66, 66, 66)">
                           <b>COMPÉTENCES</b>
                         </font>
                       </p>
-                      <p
-                        style="
+                      <p style="
                           margin-right: 0px;
                           margin-left: 0px;
                           line-height: 1.9;
-                        "
-                      >
-                        <font color="#9c9c94" style="color: rgb(66, 66, 66)"
-                          >Gérant d'auto-école</font
+                        ">
+                        <font color="#9c9c94" style="color: rgb(66, 66, 66)">Gérant d'auto-école</font
                         >
                       </p>
-                      <p
-                        style="
+                      <p style="
                           margin-right: 0px;
                           margin-left: 0px;
                           line-height: 1.9;
-                        "
-                      >
-                        <font color="#9c9c94" style="color: rgb(66, 66, 66)"
-                          >Conduite d'un véhicule léger</font
+                        ">
+                        <font color="#9c9c94" style="color: rgb(66, 66, 66)">Conduite d'un véhicule léger</font
                         >
                       </p>
-                      <p
-                        style="
+                      <p style="
                           margin-right: 0px;
                           margin-left: 0px;
                           line-height: 1.9;
-                        "
-                      >
-                        <font color="#9c9c94" style="color: rgb(66, 66, 66)"
-                          >Sécurité routière</font
+                        ">
+                        <font color="#9c9c94" style="color: rgb(66, 66, 66)">Sécurité routière</font
                         >
                       </p>
-                      <p
-                        style="
+                      <p style="
                           margin-right: 0px;
                           margin-left: 0px;
                           line-height: 1.9;
-                        "
-                      >
-                        <font color="#9c9c94" style="color: rgb(66, 66, 66)"
-                          >Organisation des tournées</font
+                        ">
+                        <font color="#9c9c94" style="color: rgb(66, 66, 66)">Organisation des tournées</font
                         >
                       </p>
                     </div>
@@ -586,37 +461,29 @@
                     </div>
                     <div class="sh_right_content">
                       <h5>Priscilla D.</h5>
-                      <p
-                        style="
+                      <p style="
                           margin-right: 0px;
                           margin-left: 0px;
                           line-height: 1.9;
-                        "
-                      >
+                        ">
                         <font color="#9c9c94" style="color: rgb(66, 66, 66)">
                           <b>COMPÉTENCES</b>
                         </font>
                       </p>
-                      <p
-                        style="
+                      <p style="
                           margin-right: 0px;
                           margin-left: 0px;
                           line-height: 1.9;
-                        "
-                      >
-                        <font color="#9c9c94" style="color: rgb(66, 66, 66)"
-                          >Développement commercial</font
+                        ">
+                        <font color="#9c9c94" style="color: rgb(66, 66, 66)">Développement commercial</font
                         >
                       </p>
-                      <p
-                        style="
+                      <p style="
                           margin-right: 0px;
                           margin-left: 0px;
                           line-height: 1.9;
-                        "
-                      >
-                        <font color="#9c9c94" style="color: rgb(66, 66, 66)"
-                          >Économie et gestion des entreprises Marketing</font
+                        ">
+                        <font color="#9c9c94" style="color: rgb(66, 66, 66)">Économie et gestion des entreprises Marketing</font
                         >
                         <span style="color: rgb(66, 66, 66); font-size: 15px" />
                         <br />
@@ -639,8 +506,7 @@
                         </span>
                       </p>
                       <p>
-                        <span style="color: rgb(66, 66, 66); font-size: 16px"
-                          >Formation en langues française et anglaise.</span
+                        <span style="color: rgb(66, 66, 66); font-size: 16px">Formation en langues française et anglaise.</span
                         >
                       </p>
                     </div>
@@ -655,33 +521,19 @@
           <div class="container">
             <div class="row s_nb_column_fixed">
               <div class="col-lg-12 s_title" style="padding: 0px">
-                <h3
-                  class="s_title_lines"
-                  style="font-size: 36px; font-weight: 700; text-align: left"
-                >
+                <h3 class="s_title_lines" style="font-size: 36px; font-weight: 700; text-align: left">
                   Nos formations
                 </h3>
               </div>
             </div>
             <div class="row d-flex align-items-stretch">
-              <div
-                class="col-lg-4 s_col_no_bgcolor pt16 pb16"
-                style="border-style: none; border-width: 0px"
-              >
+              <div class="col-lg-4 s_col_no_bgcolor pt16 pb16" style="border-style: none; border-width: 0px">
                 <div class="card bg-white">
-                  <img
-                    class="card-img-top"
-                    src="/mcm_website_theme/static/src/img/quisommesnous/Formation-chauffeur-vtc.png"
-                    alt="Odoo - Echantillon n°1 pour trois colonnes "
-                    data-original-title=""
-                    title=""
-                    aria-describedby="tooltip160830"
-                  />
+                  <img class="card-img-top" src="/mcm_website_theme/static/src/img/quisommesnous/Formation-chauffeur-vtc.png" alt="Odoo - Echantillon n°1 pour trois colonnes " data-original-title="" title="" aria-describedby="tooltip160830" />
                   <div class="card-body">
                     <h4 class="card-title" style="text-align: center">
                       <b>
-                        <font style="color: rgb(66, 66, 66)"
-                          >Formation VTC</font
+                        <font style="color: rgb(66, 66, 66)">Formation VTC</font
                         >
                       </b>
                     </h4>
@@ -691,35 +543,19 @@
                       pour garantir votre réussite.
                     </p>
                     <div class="s_btn text-center pt16 pb16" data-name="Button">
-                      <a
-                        href="#"
-                        class="btn btn-secondary"
-                        data-original-title=""
-                        title=""
-                        >En savoir plus</a
+                      <a href="#" class="btn btn-secondary" data-original-title="" title="">En savoir plus</a
                       >
                     </div>
                   </div>
                 </div>
               </div>
-              <div
-                class="col-lg-4 s_col_no_bgcolor pt16 pb16"
-                style="border-style: none; border-width: 0px"
-              >
+              <div class="col-lg-4 s_col_no_bgcolor pt16 pb16" style="border-style: none; border-width: 0px">
                 <div class="card bg-white">
-                  <img
-                    class="card-img-top"
-                    src="/mcm_website_theme/static/src/img/quisommesnous/Formation-chauffeur-taxi.png"
-                    alt="Odoo- Echantillon n° 3 pour trois colonnes"
-                    data-original-title=""
-                    title=""
-                    aria-describedby="tooltip67402"
-                  />
+                  <img class="card-img-top" src="/mcm_website_theme/static/src/img/quisommesnous/Formation-chauffeur-taxi.png" alt="Odoo- Echantillon n° 3 pour trois colonnes" data-original-title="" title="" aria-describedby="tooltip67402" />
                   <div class="card-body">
                     <h4 class="card-title" style="text-align: center">
                       <b>
-                        <font style="color: rgb(66, 66, 66)"
-                          >Formation TAXI</font
+                        <font style="color: rgb(66, 66, 66)">Formation TAXI</font
                         >
                       </b>
                     </h4>
@@ -735,24 +571,13 @@
                   </div>
                 </div>
               </div>
-              <div
-                class="col-lg-4 s_col_no_bgcolor pt16 pb16"
-                style="border-style: none; border-width: 0px"
-              >
+              <div class="col-lg-4 s_col_no_bgcolor pt16 pb16" style="border-style: none; border-width: 0px">
                 <div class="card bg-white">
-                  <img
-                    class="card-img-top"
-                    src="/mcm_website_theme/static/src/img/quisommesnous/Formation-chauffeur-mototaxi.png"
-                    alt="Odoo- Echantillon n° 3 pour trois colonnes"
-                    data-original-title=""
-                    title=""
-                    aria-describedby="tooltip67402"
-                  />
+                  <img class="card-img-top" src="/mcm_website_theme/static/src/img/quisommesnous/Formation-chauffeur-mototaxi.png" alt="Odoo- Echantillon n° 3 pour trois colonnes" data-original-title="" title="" aria-describedby="tooltip67402" />
                   <div class="card-body">
                     <h4 class="card-title" style="text-align: center">
                       <b>
-                        <font style="color: rgb(66, 66, 66)"
-                          >Formation&amp;nbsp;</font
+                        <font style="color: rgb(66, 66, 66)">Formation&amp;nbsp;</font
                         >
                       </b>
                       <font color="#424242">
@@ -778,10 +603,7 @@
         <section id="sh_corpomate_theme_section_58" data-name="About Snippet 7">
           <div class="container">
             <div class="row">
-              <div
-                class="col-lg-3 col-md-6 col-sm-6"
-                style="border-style: none; border-width: 0px"
-              >
+              <div class="col-lg-3 col-md-6 col-sm-6" style="border-style: none; border-width: 0px">
                 <div class="sh_content">
                   <div class="sh_number">
                     <section class="sh_num o_default_snippet_text">1</section>
@@ -863,18 +685,12 @@
         <section class="pt24 pb24" data-name="Title">
           <div class="container">
             <div class="row s_nb_column_fixed">
-              <div
-                class="col-lg-12 s_title"
-                style="
+              <div class="col-lg-12 s_title" style="
                   text-align: center;
                   border-style: none;
                   border-width: 0px;
-                "
-              >
-                <h3
-                  class="s_title_lines"
-                  style="font-size: 18px; text-align: left; color: #424242"
-                >
+                ">
+                <h3 class="s_title_lines" style="font-size: 18px; text-align: left; color: #424242">
                   <i
                     >Chez MCM Academy, nous croyons en ce que nous faisons, en
                     nos valeurs, et en vous !</i
@@ -884,21 +700,15 @@
             </div>
           </div>
         </section>
-        <section
-          id="sh_corpomate_theme_section_394"
-          class="
+        <section id="sh_corpomate_theme_section_394" class="
             js_cls_sh_corpomate_theme_section_394
             oe_img_bg
             o_colored_level
             oe_custom_bg
-          "
-          data-snippet="sh_corpomate_theme_tmpl_394"
-          data-name="testimonial"
-          style="
+          " data-snippet="sh_corpomate_theme_tmpl_394" data-name="testimonial" style="
             background-image: url('/mcm_website_theme/static/src/img/quisommesnous/apprenants-satisfaits.png');
             background-position: 0.56% 96.76%;
-          "
-        >
+          ">
           <div class="container">
             <div class="sh_title">
               <h4>TEMOIGNAGES</h4>
@@ -906,18 +716,12 @@
             </div>
             <div class="owl-carousel owl-theme owl-loaded owl-drag">
               <div class="owl-stage-outer">
-                <div
-                  class="owl-stage"
-                  style="
+                <div class="owl-stage" style="
                     width: 8400px;
                     transform: translate3d(-2800px, 0px, 0px);
                     transition: all 2s ease 0s;
-                  "
-                >
-                  <div
-                    class="owl-item cloned"
-                    style="width: 550px; margin-right: 10px"
-                  >
+                  ">
+                  <div class="owl-item cloned" style="width: 550px; margin-right: 10px">
                     <div class="item">
                       <div class="sh_content">
                         <div class="sh_des">
@@ -931,9 +735,7 @@
                         </div>
                         <div class="sh_img_part">
                           <div class="sh_img">
-                            <img
-                              src="/mcm_website_theme/static/src/img/testimonial/omar saadaoui.png"
-                            />
+                            <img src="/mcm_website_theme/static/src/img/testimonial/omar saadaoui.png" />
                           </div>
                           <div class="sh_text">
                             <h3>Omar Saadaoui</h3>
@@ -943,10 +745,7 @@
                       </div>
                     </div>
                   </div>
-                  <div
-                    class="owl-item cloned"
-                    style="width: 550px; margin-right: 10px"
-                  >
+                  <div class="owl-item cloned" style="width: 550px; margin-right: 10px">
                     <div class="item">
                       <div class="sh_content">
                         <div class="sh_des">
@@ -959,9 +758,7 @@
                         </div>
                         <div class="sh_img_part">
                           <div class="sh_img">
-                            <img
-                              src="/mcm_website_theme/static/src/img/testimonial/henry serda.png"
-                            />
+                            <img src="/mcm_website_theme/static/src/img/testimonial/henry serda.png" />
                           </div>
                           <div class="sh_text">
                             <h3>Henry Serda</h3>
@@ -971,10 +768,7 @@
                       </div>
                     </div>
                   </div>
-                  <div
-                    class="owl-item cloned"
-                    style="width: 550px; margin-right: 10px"
-                  >
+                  <div class="owl-item cloned" style="width: 550px; margin-right: 10px">
                     <div class="item">
                       <div class="sh_content">
                         <div class="sh_des">
@@ -989,9 +783,7 @@
                         </div>
                         <div class="sh_img_part">
                           <div class="sh_img">
-                            <img
-                              src="/mcm_website_theme/static/src/img/testimonial/cathy e.png"
-                            />
+                            <img src="/mcm_website_theme/static/src/img/testimonial/cathy e.png" />
                           </div>
                           <div class="sh_text">
                             <h3>Cathy E</h3>
@@ -1001,10 +793,7 @@
                       </div>
                     </div>
                   </div>
-                  <div
-                    class="owl-item cloned"
-                    style="width: 550px; margin-right: 10px"
-                  >
+                  <div class="owl-item cloned" style="width: 550px; margin-right: 10px">
                     <div class="item">
                       <div class="sh_content">
                         <div class="sh_des">
@@ -1018,9 +807,7 @@
                         </div>
                         <div class="sh_img_part">
                           <div class="sh_img">
-                            <img
-                              src="/mcm_website_theme/static/src/img/testimonial/omar saadaoui.png"
-                            />
+                            <img src="/mcm_website_theme/static/src/img/testimonial/omar saadaoui.png" />
                           </div>
                           <div class="sh_text">
                             <h3>Omar Saadaoui</h3>
@@ -1030,10 +817,7 @@
                       </div>
                     </div>
                   </div>
-                  <div
-                    class="owl-item"
-                    style="width: 550px; margin-right: 10px"
-                  >
+                  <div class="owl-item" style="width: 550px; margin-right: 10px">
                     <div class="item">
                       <div class="sh_content">
                         <div class="sh_des">
@@ -1048,9 +832,7 @@
                         </div>
                         <div class="sh_img_part">
                           <div class="sh_img">
-                            <img
-                              src="/mcm_website_theme/static/src/img/testimonial/cathy e.png"
-                            />
+                            <img src="/mcm_website_theme/static/src/img/testimonial/cathy e.png" />
                           </div>
                           <div class="sh_text">
                             <h3>Cathy E</h3>
@@ -1060,10 +842,7 @@
                       </div>
                     </div>
                   </div>
-                  <div
-                    class="owl-item active"
-                    style="width: 550px; margin-right: 10px"
-                  >
+                  <div class="owl-item active" style="width: 550px; margin-right: 10px">
                     <div class="item">
                       <div class="sh_content">
                         <div class="sh_des">
@@ -1077,9 +856,7 @@
                         </div>
                         <div class="sh_img_part">
                           <div class="sh_img">
-                            <img
-                              src="/mcm_website_theme/static/src/img/testimonial/omar saadaoui.png"
-                            />
+                            <img src="/mcm_website_theme/static/src/img/testimonial/omar saadaoui.png" />
                           </div>
                           <div class="sh_text">
                             <h3>Omar Saadaoui</h3>
@@ -1089,10 +866,7 @@
                       </div>
                     </div>
                   </div>
-                  <div
-                    class="owl-item active"
-                    style="width: 550px; margin-right: 10px"
-                  >
+                  <div class="owl-item active" style="width: 550px; margin-right: 10px">
                     <div class="item">
                       <div class="sh_content">
                         <div class="sh_des">
@@ -1105,9 +879,7 @@
                         </div>
                         <div class="sh_img_part">
                           <div class="sh_img">
-                            <img
-                              src="/mcm_website_theme/static/src/img/testimonial/henry serda.png"
-                            />
+                            <img src="/mcm_website_theme/static/src/img/testimonial/henry serda.png" />
                           </div>
                           <div class="sh_text">
                             <h3>Henry Serda</h3>
@@ -1117,10 +889,7 @@
                       </div>
                     </div>
                   </div>
-                  <div
-                    class="owl-item cloned"
-                    style="width: 550px; margin-right: 10px"
-                  >
+                  <div class="owl-item cloned" style="width: 550px; margin-right: 10px">
                     <div class="item">
                       <div class="sh_content">
                         <div class="sh_des">
@@ -1134,9 +903,7 @@
                         </div>
                         <div class="sh_img_part">
                           <div class="sh_img">
-                            <img
-                              src="/mcm_website_theme/static/src/img/testimonial/omar saadaoui.png"
-                            />
+                            <img src="/mcm_website_theme/static/src/img/testimonial/omar saadaoui.png" />
                           </div>
                           <div class="sh_text">
                             <h3>Omar Saadaoui</h3>
@@ -1146,10 +913,7 @@
                       </div>
                     </div>
                   </div>
-                  <div
-                    class="owl-item cloned"
-                    style="width: 550px; margin-right: 10px"
-                  >
+                  <div class="owl-item cloned" style="width: 550px; margin-right: 10px">
                     <div class="item">
                       <div class="sh_content">
                         <div class="sh_des">
@@ -1162,9 +926,7 @@
                         </div>
                         <div class="sh_img_part">
                           <div class="sh_img">
-                            <img
-                              src="/mcm_website_theme/static/src/img/testimonial/henry serda.png"
-                            />
+                            <img src="/mcm_website_theme/static/src/img/testimonial/henry serda.png" />
                           </div>
                           <div class="sh_text">
                             <h3>Henry Serda</h3>
@@ -1174,10 +936,7 @@
                       </div>
                     </div>
                   </div>
-                  <div
-                    class="owl-item cloned"
-                    style="width: 550px; margin-right: 10px"
-                  >
+                  <div class="owl-item cloned" style="width: 550px; margin-right: 10px">
                     <div class="item">
                       <div class="sh_content">
                         <div class="sh_des">
@@ -1192,9 +951,7 @@
                         </div>
                         <div class="sh_img_part">
                           <div class="sh_img">
-                            <img
-                              src="/mcm_website_theme/static/src/img/testimonial/cathy e.png"
-                            />
+                            <img src="/mcm_website_theme/static/src/img/testimonial/cathy e.png" />
                           </div>
                           <div class="sh_text">
                             <h3>Cathy E</h3>
@@ -1204,10 +961,7 @@
                       </div>
                     </div>
                   </div>
-                  <div
-                    class="owl-item cloned"
-                    style="width: 550px; margin-right: 10px"
-                  >
+                  <div class="owl-item cloned" style="width: 550px; margin-right: 10px">
                     <div class="item">
                       <div class="sh_content">
                         <div class="sh_des">
@@ -1221,9 +975,7 @@
                         </div>
                         <div class="sh_img_part">
                           <div class="sh_img">
-                            <img
-                              src="/mcm_website_theme/static/src/img/testimonial/omar saadaoui.png"
-                            />
+                            <img src="/mcm_website_theme/static/src/img/testimonial/omar saadaoui.png" />
                           </div>
                           <div class="sh_text">
                             <h3>Omar Saadaoui</h3>
@@ -1265,10 +1017,7 @@
             </div>
           </div>
         </section>
-        <section
-          class="clients s_references bg-200 pt16 pb16"
-          data-name="References"
-        >
+        <section class="clients s_references bg-200 pt16 pb16" data-name="References">
           <center>
             <div class="container">
               <div class="center-logo">
@@ -1280,45 +1029,18 @@
 
                 <div t-if="partenaire=='' or partenaire !='bolt'">
                   <a href="#">
-                    <img
-                      data-src="/mcm_website_theme/static/src/img/partenaires/cma.png"
-                      data-srcSafari="/mcm_website_theme/static/src/img/partenaires/cma.png"
-                      class="img img-fluid lazy"
-                      alt="Logo partenaire CMA"
-                      data-original-title=""
-                      title="CMA partenaire MCM ACADEMY"
-                      aria-describedby="tooltip623872"
-                      style="margin-top: 30px; width: 50%"
-                    />
+                    <img data-src="/mcm_website_theme/static/src/img/partenaires/cma.png" data-srcSafari="/mcm_website_theme/static/src/img/partenaires/cma.png" class="img img-fluid lazy" alt="Logo partenaire CMA" data-original-title="" title="CMA partenaire MCM ACADEMY" aria-describedby="tooltip623872" style="margin-top: 30px; width: 50%" />
                   </a>
                 </div>
 
                 <div t-if="partenaire=='' or not partenaire ">
                   <a href="https://bolt.eu/fr/">
-                    <img
-                      data-src="/mcm_website_theme/static/src/img/partenaires/bolt.png"
-                      data-srcSafari="/mcm_website_theme/static/src/img/partenaires/bolt.png"
-                      class="img img-fluid lazy"
-                      alt="Logo partenaire bolt"
-                      data-original-title=""
-                      title="Bolt partenaire MCM ACADEMY"
-                      aria-describedby="tooltip843653"
-                      style="margin-top: 30px; width: 38%"
-                    />
+                    <img data-src="/mcm_website_theme/static/src/img/partenaires/bolt.png" data-srcSafari="/mcm_website_theme/static/src/img/partenaires/bolt.png" class="img img-fluid lazy" alt="Logo partenaire bolt" data-original-title="" title="Bolt partenaire MCM ACADEMY" aria-describedby="tooltip843653" style="margin-top: 30px; width: 38%" />
                   </a>
                 </div>
                 <div t-if="partenaire=='bolt' ">
                   <a href="https://bolt.eu/fr/">
-                    <img
-                      data-src="/mcm_website_theme/static/src/img/partenaires/Bolt_logo.svg.png"
-                      data-srcSafari="/mcm_website_theme/static/src/img/partenaires/Bolt_logo.svg.png"
-                      class="img img-fluid lazy"
-                      alt="Logo partenaire bolt"
-                      data-original-title=""
-                      title="Bolt partenaire MCM ACADEMY"
-                      aria-describedby="tooltip843653"
-                      style="margin-top: 30px; width: 38%"
-                    />
+                    <img data-src="/mcm_website_theme/static/src/img/partenaires/Bolt_logo.svg.png" data-srcSafari="/mcm_website_theme/static/src/img/partenaires/Bolt_logo.svg.png" class="img img-fluid lazy" alt="Logo partenaire bolt" data-original-title="" title="Bolt partenaire MCM ACADEMY" aria-describedby="tooltip843653" style="margin-top: 30px; width: 38%" />
                   </a>
                 </div>
                 <!-- <div t-if="partenaire=='' or partenaire !='bolt'">
@@ -1329,30 +1051,12 @@
 
                 <div t-if="partenaire=='' or not partenaire ">
                   <a href="https://www.comptable-douai.com/">
-                    <img
-                      data-src="/mcm_website_theme/static/src/img/partenaires/joel.png"
-                      data-srcSafari="/mcm_website_theme/static/src/img/partenaires/joel.png"
-                      class="img img-fluid lazy"
-                      alt="Logo partenaire Cabinet Comptable Joël Pruvost"
-                      data-original-title=""
-                      title="Cabinet Comptable Joël Pruvost partenaire Digimoov"
-                      aria-describedby="tooltip175558"
-                      style="margin-top: 30px; width: 68%"
-                    />
+                    <img data-src="/mcm_website_theme/static/src/img/partenaires/joel.png" data-srcSafari="/mcm_website_theme/static/src/img/partenaires/joel.png" class="img img-fluid lazy" alt="Logo partenaire Cabinet Comptable Joël Pruvost" data-original-title="" title="Cabinet Comptable Joël Pruvost partenaire Digimoov" aria-describedby="tooltip175558" style="margin-top: 30px; width: 68%" />
                   </a>
                 </div>
                 <div t-if="partenaire=='bolt'">
                   <a href="https://www.digimoov.fr/">
-                    <img
-                      data-src="/mcm_website_theme/static/src/img/partenaires/digimoov.png"
-                      data-srcSafari="/mcm_website_theme/static/src/img/partenaires/digimoov.png"
-                      class="img img-fluid lazy"
-                      alt="Logo partenaire Digimoov"
-                      data-original-title=""
-                      title="Digimoov partenaire MCM ACADEMY"
-                      aria-describedby="tooltip843653"
-                      style="margin-top: 30px; width: 46%"
-                    />
+                    <img data-src="/mcm_website_theme/static/src/img/partenaires/digimoov.png" data-srcSafari="/mcm_website_theme/static/src/img/partenaires/digimoov.png" class="img img-fluid lazy" alt="Logo partenaire Digimoov" data-original-title="" title="Digimoov partenaire MCM ACADEMY" aria-describedby="tooltip843653" style="margin-top: 30px; width: 46%" />
                   </a>
                 </div>
               </div>

@@ -7,20 +7,19 @@
             <!-- test-->
             <style>
                 #sh_corpomate_theme_section_184 .sh_content .sh_more_btn.sh_btn_cm_8 {
-                background: black;
-                border: 2px solid #0a0a0a;
-                padding: 8px 25px;
-                border-radius: 10px;
-                margin-right: 15px;
-                font-size: 16px;
-                letter-spacing: 1px;
+                    background: black;
+                    border: 2px solid #0a0a0a;
+                    padding: 8px 25px;
+                    border-radius: 10px;
+                    margin-right: 15px;
+                    font-size: 16px;
+                    letter-spacing: 1px;
                 }
+
                 @media (max-width: 410px) {
-                res-button{
-                margin-bottom: 1rem;
-                }
-
-
+                    res-button {
+                        margin-bottom: 1rem;
+                    }
             </style>
             <script defer="defer" type="text/javascript" src="/digimoov_website_templates/static/src/js/lazy-min.js" />
             <div id="wrap" class="oe_structure oe_empty">
@@ -31,24 +30,24 @@
                     <div class="container-banner">
                         <div class="row">
                             <div class="col-lg-6 pb16 pt56" style="border-style: none; border-width: 0px;">
-                                <div class="">
+                                <div class="js-scroll slide-left">
                                     <div class="text-center">
                                         <h1 class="title-mcm slider-text-info">
                                             FORMATION VTC, TAXI et TAXI MOTO
                                             <br />
                                             <span class="subtitle-mcm">
-                                               100 % en ligne
+                                                100 % en ligne
                                             </span>
                                         </h1>
                                         <p class="heading text-center; color: rgb(0, 0, 0)" style="padding: 2rem 0rem">
-                                            Besoin de formation pour devenir chauffeur de TAXI,
+                                            Besoin de formation pour devenir chauffeur TAXI,
                                             de VTC ou de VMDTR, pour renouveler
                                             votre carte professionnelle, ou encore pour une
                                             passerelle TAXI-VTC ?
                                             <br />
                                             MCM Academy a tout pour satisfaire vos
                                             besoins en formation avec un programme riche,
-                       flexible et pertinent.
+                                            flexible et pertinent.
                                         </p>
                                         <a href="#pricing">
                                             <button class="home-btn">S'inscrire</button>
@@ -57,7 +56,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-lg-6 pb48 pt16">
+                            <div class="col-lg-6 pb48 pt16 js-scroll slide-right">
                                 <br />
                                 <img data-src="/mcm_website_theme/static/src/img/homepage/1'''.webp" data-srcSafari="/mcm_website_theme/static/src/img/homepage/1'''.png" class="img img-fluid mx-auto lazy" alt="Devenir chauffeur professionnel VTC, Taxi ou Moto-Taxi" data-original-title="" title="Formation vtc taxi moto-taxi" aria-describedby="tooltip202025" style="text-align: center;" />
                             </div>
@@ -66,7 +65,7 @@
                 </section>
                 <!-- fin section 1  -->
                 <!-- Logos-->
-                <section class="container pt40 pb32">
+                <section class="container pt40 pb32 js-scroll fade-in-bottom">
 
                     <div class="row align-items-center justify-content-center">
 
@@ -103,21 +102,22 @@
                                     <div class="sh_content_box">
                                         <div class="sh_description">
                                             <h2>
-                                                Devenez chauffeur de TAXI
+                                                Devenez chauffeur TAXI
                                                 <br />
                                             </h2>
                                             <p style="font-size: 14px">
-                                            Le métier de chauffeur de TAXI consiste à transporter
-                                            des personnes vers leurs destinations, mais également à rentabiliser son activité en se trouvant au bon endroit
-                                            et au bon moment.
+                                                Le métier de chauffeur TAXI consiste à transporter
+                                                des personnes vers leurs destinations, mais également à rentabiliser son
+                                                activité en se trouvant au bon endroit
+                                                et au bon moment.
                                             </p>
                                             <div class="s_btn text-center pt16 pb16" data-name="Button">
                                                 <a href="/formation-chauffeur-taxi" class="btn btn-warning sh_btn_cm_4" style="margin-top: 0.4rem;
-                                                padding: 0.4rem 2rem;" data-original-title="" title="" aria-describedby="tooltip562914" onclick='msTracking("clic sur Devenez chauffeur de TAXI homepage",
+                                                padding: 0.4rem 2rem;" data-original-title="" title="" aria-describedby="tooltip562914" onclick='msTracking("clic sur Devenez chauffeur TAXI homepage",
                                                 "Homepage events",
-                                                "Devenez chauffeur de TAXI homepage",
+                                                "Devenez chauffeur TAXI homepage",
                                                 1)'>
-                                                En savoir plus
+                                                    En savoir plus
                                                 </a>
                                             </div>
 
@@ -130,22 +130,22 @@
                                     <div class="sh_content_box">
                                         <div class="sh_description">
                                             <h2>
-                                                Devenez chauffeur de VTC
+                                                Devenez chauffeur VTC
                                                 <br />
                                             </h2>
                                             <p style="font-size: 14px">
-                                            Le chauffeur VTC (Voiture de Transport avec Chauffeur)
-                                            transporte des particuliers lors de leurs déplacements
-                                            personnels ou professionnels après réservation ;
-                                            l’exercice de son métier est strictement encadré par la
-                                            loi.
+                                                Le chauffeur VTC (Voiture de Transport avec Chauffeur)
+                                                transporte des particuliers lors de leurs déplacements
+                                                personnels ou professionnels après réservation ;
+                                                l’exercice de son métier est strictement encadré par la
+                                                loi.
 
                                             </p>
                                             <div class="s_btn text-center pt16 pb16" data-name="Button">
                                                 <a href="/formation-chauffeur-vtc" class="btn btn-warning sh_btn_cm_4" style="margin-top: 0.4rem;
-                                                padding: 0.4rem 2rem;" onclick='msTracking("clic sur Devenez chauffeur de VTC homepage",
+                                                padding: 0.4rem 2rem;" onclick='msTracking("clic sur Devenez chauffeur VTC homepage",
                                                 "Homepage events",
-                                                "Devenez chauffeur de VTC homepage",
+                                                "Devenez chauffeur VTC homepage",
                                                 2)'>En savoir plus</a>
                                             </div>
                                         </div>
@@ -157,21 +157,21 @@
                                     <div class="sh_content_box">
                                         <div class="sh_description">
                                             <h2>
-                                                Devenez chauffeur de MOTO-TAXI
+                                                Devenez chauffeur MOTO-TAXI
                                                 <br />
                                             </h2>
                                             <p style="font-size: 14px">
-                                                Le chauffeur de VMDTR propose, sous réservation
-                                            préalable et au moyen d'un véhicule motorisé à deux ou
-                                            trois roues, des prestations de transport public
-                                            particulier de personnes et de leurs bagages.
+                                                Le chauffeur VMDTR propose, sous réservation
+                                                préalable et au moyen d'un véhicule motorisé à deux ou
+                                                trois roues, des prestations de transport public
+                                                particulier de personnes et de leurs bagages.
                                                 <br />
                                             </p>
                                             <div class="s_btn text-center pt16 pb16" data-name="Button">
                                                 <a href="/formation-taximoto-vmtdr" class="btn btn-warning sh_btn_cm_4" style="margin-top: 0.4rem;
-                                                padding: 0.4rem 2rem;" onclick='msTracking("clic sur Devenez chauffeur de Moto-Taxi homepage",
+                                                padding: 0.4rem 2rem;" onclick='msTracking("clic sur Devenez chauffeur MOTO-Taxi homepage",
                                                 "Homepage events",
-                                                "Devenez chauffeur de Moto-Taxi homepage",
+                                                "Devenez chauffeur MOTO-Taxi homepage",
                                                 3)'>En savoir plus</a>
                                             </div>
                                         </div>
@@ -201,9 +201,10 @@
                                         <br />
                                     </span>
 
-                                    <span style="font-size: 18px">Formez-vous à votre rythme, où vous voulez et quand vous
-                    voulez : vous n’avez besoin que d’une connexion internet
-                    pour vous lancer !</span>
+                                    <span style="font-size: 18px">Formez-vous à votre rythme, où vous voulez et quand
+                                        vous
+                                        voulez : vous n’avez besoin que d’une connexion internet
+                                        pour vous lancer !</span>
 
                                     <br />
                                 </p>
@@ -220,8 +221,8 @@
                                     <br />
 
                                     <span style="font-size: 18px">Formation animée par des experts du métier, avec des
-                    programmes de révision bien étudiés pour se préparer
-                    correctement à l’examen.</span>
+                                        programmes de révision bien étudiés pour se préparer
+                                        correctement à l’examen.</span>
 
                                     <br />
                                 </p>
@@ -235,7 +236,7 @@
                     <div class="container">
                         <div class="sh_title sh_animation_part">
                             <h2>
-              La démarche à suivre pour obtenir votre carte professionnelle
+                                La démarche à suivre pour obtenir votre carte professionnelle
                             </h2>
                         </div>
                     </div>
@@ -250,9 +251,9 @@
                                     </div>
                                     <h3 style="font-size: 1.3rem;">1. Inscription</h3>
                                     <p style="color: rgb(0, 0, 0)">
-                                       Vous vous inscrivez en ligne sur le site de la CMA et vous
-                    y déposez votre dossier ; ensuite, vous vous inscrivez sur
-                    le site de MCM Academy.
+                                        Vous vous inscrivez en ligne sur le site de la CMA et vous
+                                        y déposez votre dossier ; ensuite, vous vous inscrivez sur
+                                        le site de MCM Academy.
                                     </p>
                                 </div>
                             </div>
@@ -264,8 +265,8 @@
                                     <h3 style="font-size: 1.3rem;">2. Suivre la formation à distance&amp;nbsp;</h3>
                                     <p style="color: rgb(0, 0, 0)">
                                         Maintenant que vous êtes inscrit sur notre plateforme, vous
-                    disposez d'un mois pour suivre nos cours en illimité et
-                    utiliser tout nos supports de révision.
+                                        disposez d'un mois pour suivre nos cours en illimité et
+                                        utiliser tout nos supports de révision.
                                     </p>
                                 </div>
                             </div>
@@ -276,7 +277,9 @@
                                     </div>
                                     <h3 style="font-size: 1.3rem;">3. Passer l'examen</h3>
                                     <p style=" color:#000000">
-                                    Vous allez passer un examen comprenant une épreuve d’admissibilité et une épreuve d'admission. L'épreuve se déroulera dans un centre d'examen de votre région que vous choisirez lors de votre inscription.
+                                        Vous allez passer un examen comprenant une épreuve d’admissibilité et une
+                                        épreuve d'admission. L'épreuve se déroulera dans un centre d'examen de votre
+                                        région que vous choisirez lors de votre inscription.
 
                                     </p>
                                 </div>
@@ -288,9 +291,9 @@
                                     </div>
                                     <h3 style="font-size: 1.3rem;">4. Récupérer votre carte professionnelle</h3>
                                     <p style="color: rgb(0, 0, 0)">
-                                  Vous avez réussi votre examen ? Félicitations ! L’étape
-                    suivante est le dépôt de votre dossier à la préfecture pour
-                    récupérer votre carte professionnelle.
+                                        Vous avez réussi votre examen ? Félicitations ! L’étape
+                                        suivante est le dépôt de votre dossier à la préfecture pour
+                                        récupérer votre carte professionnelle.
                                     </p>
                                 </div>
                             </div>
@@ -319,7 +322,7 @@
                                 </h3>
                                 <p>
                                     Vous avez la liberté de choisir quand et durant combien de temps
-                vous souhaitez travailler.
+                                    vous souhaitez travailler.
                                     <br />
                                 </p>
                             </div>
@@ -331,7 +334,7 @@
                                 </h3>
                                 <p>
                                     Nos experts pédagogiques vous accompagneront durant tout le
-                cursus de formation.
+                                    cursus de formation.
                                     <br />
                                 </p>
                             </div>
@@ -341,8 +344,8 @@
                                     <b>Expertise</b>
                                 </h3>
                                 <p>
-                Notre centre de formation est doté d’une expérience de plus de
-                10 ans dans le domaine !
+                                    Notre centre de formation est doté d’une expérience de plus de
+                                    10 ans dans le domaine !
                                 </p>
                             </div>
                         </div>
@@ -355,11 +358,11 @@
                             <div class="title-column col-lg-5 col-md-12 col-sm-12">
                                 <div class="inner-column">
                                     <h4 style="font-size: 35px">
-                                       
-                                                Des centaines de
-                                                personnes ont déjà fait confiance à
-                                                MCM ACADEMY
-                                     
+
+                                        Des centaines de
+                                        personnes ont déjà fait confiance à
+                                        MCM ACADEMY
+
                                     </h4>
                                     <h5 style="font-size: 26px">
                                         Pourquoi pas vous ?
@@ -375,7 +378,7 @@
                                             <div class="sh_counter">
                                                 <h4 class="sh_count ">1500</h4>
                                                 <h3 style="font-weight: 600;font-size: 15px;color: rgb(255, 255, 255);">
-                  STAGIAIRES FORMÉS</h3>
+                                                    STAGIAIRES FORMÉS</h3>
                                             </div>
                                         </div>
                                         <div class="col-md-4 col-sm-12  pt32">
@@ -385,7 +388,7 @@
                                                     <span>%</span>
                                                 </h4>
                                                 <h3 style="font-weight: 600;font-size: 15px;color: rgb(255, 255, 255);">
-                  CLIENTS SATISFAITS</h3>
+                                                    CLIENTS SATISFAITS</h3>
                                             </div>
                                         </div>
                                         <div class="col-md-4 col-sm-12  pt32">
@@ -394,7 +397,8 @@
                                                     <span class="sh_count">78</span>
                                                     <span>%</span>
                                                 </h4>
-                                                <h3 style="font-weight: 600;font-size: 15px;color: rgb(255, 255, 255);"> MOYENNE DE TAUX DE RÉUSSITE</h3>
+                                                <h3 style="font-weight: 600;font-size: 15px;color: rgb(255, 255, 255);">
+                                                    MOYENNE DE TAUX DE RÉUSSITE</h3>
                                             </div>
                                         </div>
                                     </div>
@@ -414,21 +418,24 @@
                             <div class="col-md-9 col-sm-12 s_title pt16 pb0" style="text-align: center; border-style: none; border-width: 0px">
                                 <div style="text-align: left;">
                                     <b style="font-size: 15px;">
-                                        - Le nombre de stagiaires formés depuis l'ouverture de centre et jusqu'à Septembre 2021
+                                        - Le nombre de stagiaires formés depuis l'ouverture de centre et jusqu'à
+                                        Septembre 2021
                                         <br />
                                     </b>
                                     <b style=" font-size: 15px;">
                                         - Selon l'avis de la majorité de nos apprenants sur google.
                                         <a style="color:#2d74f7;" href="https://www.google.com/search?q=mcm+academy&amp;rlz=1C1CHBF_frTN911TN916&amp;sxsrf=AOaemvLXgPjmp_LUdcBr_VYoZZbfCUXnQQ%3A1632154532783&amp;ei=pLNIYZv4LoTDlwT8z6igCw&amp;oq=mcm+a&amp;gs_lcp=Cgdnd3Mtd2l6EAMYADIECCMQJzIFCAAQgAQyCwguEIAEEMcBEK8BMgUIABCABDIFCAAQgAQyBQgAEIAEMgUIABCABDIFCAAQgAQyBQgAEIAEMgUIABCABDoHCCMQsAMQJzoHCAAQRxCwAzoQCC4QxwEQ0QMQyAMQsAMQQzoHCAAQsQMQQzoECAAQQzoKCAAQsQMQgwEQQzoLCAAQgAQQsQMQgwE6CAgAEIAEELEDOgoILhDHARDRAxBDOgQILhBDOg4ILhCABBCxAxDHARDRAzoLCC4QgAQQxwEQ0QM6CAguEIAEELEDOgUILhCABEoFCDgSATFKBAhBGABQpOQLWIbqC2Dc8AtoAXACeACAAcMBiAGbBpIBAzAuNZgBAKABAcgBC8ABAQ&amp;sclient=gws-wiz#lrd=0x47c2d584b3f426a3:0x8c9722c8da9f4da3,1,,,">
-                                        Cliquez ici pour lire les avis
+                                            Cliquez ici pour lire les avis
                                         </a>
                                         .
                                         <br />
                                     </b>
                                     <b style="font-size: 15px;">- Moyenne de taux de réussite de&amp;nbsp;</b>
-                                    <b style="font-size: 15px;">Novembre 2020 à juillet 2021 ( VTC : 71%, TAXI : 85%, VMDTR : 80%).&amp;nbsp;</b>
+                                    <b style="font-size: 15px;">Novembre 2020 à juillet 2021 ( VTC : 71%, TAXI : 85%,
+                                        VMDTR : 80%).&amp;nbsp;</b>
                                     <span style="font-weight: 700; font-size: 15px;">
-                                        Pour connaître les statistiques détaillées (données brutes et formules de calcul),
+                                        Pour connaître les statistiques détaillées (données brutes et formules de
+                                        calcul),
                                         <a href="https://www.mcm-academy.fr/service-clientele" target="_blank" data-original-title="" title="" aria-describedby="tooltip12353">contactez-nous</a>
                                         .
                                     </span>
@@ -451,7 +458,7 @@
                                     <br />
                                 </h2>
                                 <h4 style="                   margin-top: 20px;                   margin-bottom: 0.5rem;                   font-size: 18px;                                   ">
-                Choisissez le pack qui vous convient&amp;nbsp;
+                                    Choisissez le pack qui vous convient&amp;nbsp;
                                 </h4>
                                 <p>
                                     <br />
@@ -498,7 +505,8 @@
                                                             <b style="font-size: 50%">
                                                                 <t>90</t>
                                                                 <span t-esc="product.currency_id.symbol" style="color: #fdd105;" />
-                                                                <span style="text-transform: none !important;">avec le code</span>
+                                                                <span style="text-transform: none !important;">avec le
+                                                                    code</span>
                                                                 <t t-esc="promo.code" />
                                                             </b>
                                                         </p>
@@ -509,7 +517,8 @@
                                                 </a> -->
                                                         <!-- Call Mircorsoft ads script onclick-->
                                                         <a href="#pricing">
-                                                            <button class="home-btn" onClick="(function(){packVtcHome(); document.getElementById('form-1-1').submit();return false;})();return false;">Je m'inscris</button>
+                                                            <button class="home-btn" onClick="(function(){packVtcHome(); document.getElementById('form-1-1').submit();return false;})();return false;">Je
+                                                                m'inscris</button>
                                                         </a>
                                                     </div>
                                                 </form>
@@ -558,7 +567,8 @@
                             Je m'inscris
                                                 </a> -->
                                                         <a href="#pricing">
-                                                            <button class="home-btn" onClick="(function(){packTaxiHome();document.getElementById('form-1-2').submit();return false;})();return false;">Je m'inscris</button>
+                                                            <button class="home-btn" onClick="(function(){packTaxiHome();document.getElementById('form-1-2').submit();return false;})();return false;">Je
+                                                                m'inscris</button>
                                                         </a>
                                                     </div>
                                                 </form>
@@ -606,7 +616,8 @@
                             Je m'inscris
                                                 </a> -->
                                                         <a href="#pricing">
-                                                            <button class="home-btn" onClick="(function(){packVmdtrHome(); document.getElementById('form-1-3').submit();return false;})();return false;">Je m'inscris</button>
+                                                            <button class="home-btn" onClick="(function(){packVmdtrHome(); document.getElementById('form-1-3').submit();return false;})();return false;">Je
+                                                                m'inscris</button>
                                                         </a>
                                                     </div>
                                                 </form>
@@ -666,6 +677,69 @@
                         </div>
                     </center>
 
+                </section>
+
+                <section class="s_faq_collapse pt48 pb32" data-name="Accordion">
+                    <div class="container">
+                        <div class="row s_col_no_bgcolor">
+                            <div class="pt16 pb16 col-lg-4" style="border-style: none; border-width: 0px">
+                                <div id="myCollapse" class="accordion" role="tablist">
+                                    <div class="card bg-white">
+                                        <a href="#" role="tab" data-toggle="collapse" aria-expanded="false" class="card-header collapsed" data-parent="#myCollapse" data-target="#myCollapseTab1616754726586" data-original-title="" title="" aria-describedby="tooltip5917">
+                                            Formation VTC
+                                        </a>
+                                        <div class="collapse" role="tabpanel" id="myCollapseTab1616754726586">
+                                            <div class="card-body">
+                                                <p class="card-text">
+                                                    Nous vous offrons non seulement une formation à distance, mais
+                                                    également un accompagnement et un suivi personnalisé pour garantir
+                                                    votre réussite.
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="pt16 pb16 col-lg-4" style="border-style: none; border-width: 0px">
+                                <div id="myCollapse" class="accordion" role="tablist">
+                                    <div class="card bg-white">
+                                        <a href="#" role="tab" data-toggle="collapse" aria-expanded="false" class="card-header collapsed" data-parent="#myCollapse" data-original-title="" title="" aria-describedby="tooltip5917" data-target="#myCollapseTab1616754743649">
+                                            Formation TAXI
+                                        </a>
+                                        <div class="collapse" role="tabpanel" id="myCollapseTab1616754743649">
+                                            <div class="card-body">
+                                                <p class="card-text">
+                                                    MCM Academy a tout pour satisfaire vos besoins en formation TAXI et
+                                                    vous offre un suivi complet du jour de l'inscription à l'obtention
+                                                    de votre carte professionnelle.
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="pt16 pb16 col-lg-4" style="border-style: none; border-width: 0px">
+                                <div id="myCollapse" class="accordion" role="tablist">
+                                    <div class="card bg-white">
+                                        <a href="#" role="tab" data-toggle="collapse" aria-expanded="false" class="card-header collapsed" data-parent="#myCollapse" data-original-title="" title="" aria-describedby="tooltip5917" data-target="#myCollapseTab1616754743646">
+                                            Formation MOTO-TAXI
+                                        </a>
+                                        <div class="collapse" role="tabpanel" id="myCollapseTab1616754743646">
+                                            <div class="card-body">
+                                                <p class="card-text">
+                                                    Passionné de motos, vous adorez circuler en milieu urbain ?
+                                                    Indépendant de nature, vous voulez lancer votre carrière
+                                                    professionnelle ? C'est simple : devenez chauffeur de MOTO-TAXI avec
+                                                    MCM Academy !
+
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </section>
 
                 <!-- <section id="sh_corpomate_theme_section_178" class="js_cls_sh_corpomate_theme_section_178 sh_animation_part">
