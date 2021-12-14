@@ -10,19 +10,24 @@
 								<h1>Information</h1>
 								<ul class="list-unstyled">
 									<li>
-										<i class="fa fa-caret-right"></i><a href="#">About us I</a>
+										<i class="fa-li fa fa-square"></i>
+										<a href="#">About us I</a>
 									</li>
 									<li>
-										<i class="fa fa-caret-right"></i><a href="#">About us II</a>
+										<i class="fa-li fa fa-square"></i>
+										<a href="#">About us II</a>
 									</li>
 									<li>
-										<i class="fa fa-caret-right"></i><a href="#">Services I</a>
+										<i class="fa-li fa fa-square"></i>
+										<a href="#">Services I</a>
 									</li>
 									<li>
-										<i class="fa fa-caret-right"></i><a href="#">Services II</a>
+										<i class="fa-li fa fa-square"></i>
+										<a href="#">Services II</a>
 									</li>
 									<li>
-										<i class="fa fa-caret-right"></i><a href="#">Our Team</a>
+										<i class="fa-li fa fa-square"></i>
+										<a href="#">Our Team</a>
 									</li>
 								</ul>
 							</div>
@@ -32,19 +37,24 @@
 								<h1>Miscellaneous</h1>
 								<ul class="list-unstyled">
 									<li>
-										<i class="fa fa-caret-right"></i><a href="#">404 error</a>
+										<i class="fa-li fa fa-square"></i>
+										<a href="#">404 error</a>
 									</li>
 									<li>
-										<i class="fa fa-caret-right"></i><a href="#">404 error II</a>
+										<i class="fa-li fa fa-square"></i>
+										<a href="#">404 error II</a>
 									</li>
 									<li>
-										<i class="fa fa-caret-right"></i><a href="#">pricing tables</a>
+										<i class="fa-li fa fa-square"></i>
+										<a href="#">pricing tables</a>
 									</li>
 									<li>
-										<i class="fa fa-caret-right"></i><a href="#">comming soon</a>
+										<i class="fa-li fa fa-square"></i>
+										<a href="#">comming soon</a>
 									</li>
 									<li>
-										<i class="fa fa-caret-right"></i><a href="#">comming soon II</a>
+										<i class="fa-li fa fa-square"></i>
+										<a href="#">comming soon II</a>
 									</li>
 								</ul>
 							</div>
@@ -54,19 +64,24 @@
 								<h1>portfolio</h1>
 								<ul class="list-unstyled">
 									<li>
-										<i class="fa fa-caret-right"></i><a href="#">portfolio II column</a>
+										<i class="fa-li fa fa-square"></i>
+										<a href="#">portfolio II column</a>
 									</li>
 									<li>
-										<i class="fa fa-caret-right"></i><a href="#">portfolio III column</a>
+										<i class="fa-li fa fa-square"></i>
+										<a href="#">portfolio III column</a>
 									</li>
 									<li>
-										<i class="fa fa-caret-right"></i><a href="#">portfolio IV column</a>
+										<i class="fa-li fa fa-square"></i>
+										<a href="#">portfolio IV column</a>
 									</li>
 									<li>
-										<i class="fa fa-caret-right"></i><a href="#">portfolio masonry grid</a>
+										<i class="fa-li fa fa-square"></i>
+										<a href="#">portfolio masonry grid</a>
 									</li>
 									<li>
-										<i class="fa fa-caret-right"></i><a href="#">portfolio details</a>
+										<i class="fa-li fa fa-square"></i>
+										<a href="#">portfolio details</a>
 									</li>
 								</ul>
 							</div>
@@ -76,19 +91,24 @@
 								<h1>blog pages</h1>
 								<ul class="list-unstyled">
 									<li>
-										<i class="fa fa-caret-right"></i><a href="#">blog width sidebar</a>
+										<i class="fa-li fa fa-square"></i>
+										<a href="#">blog width sidebar</a>
 									</li>
 									<li>
-										<i class="fa fa-caret-right"></i><a href="#">blog full width</a>
+										<i class="fa-li fa fa-square"></i>
+										<a href="#">blog full width</a>
 									</li>
 									<li>
-										<i class="fa fa-caret-right"></i><a href="#">blog III column</a>
+										<i class="fa-li fa fa-square"></i>
+										<a href="#">blog III column</a>
 									</li>
 									<li>
-										<i class="fa fa-caret-right"></i><a href="#">blog II column</a>
+										<i class="fa-li fa fa-square"></i>
+										<a href="#">blog II column</a>
 									</li>
 									<li>
-										<i class="fa fa-caret-right"></i><a href="#">blog single</a>
+										<i class="fa-li fa fa-square"></i>
+										<a href="#">blog single</a>
 									</li>
 								</ul>
 							</div>

@@ -11,12 +11,14 @@
         <link rel="stylesheet" href="/mcm_website_theme/static/src/css/cta-button.css" />
 
         <style>
-          h1{
-  text-transform: uppercase;
-}
-h2{
-  text-transform: uppercase;
-}
+            h1 {
+                text-transform: uppercase;
+            }
+
+            h2 {
+                text-transform: uppercase;
+            }
+
             #sh_corpomate_theme_section_258 {
                 padding: 0 !important;
             }
@@ -80,9 +82,9 @@ h2{
                 color: #000000;
                 border: 1px solid #cecece;
                 border-radius: 50%;
-                padding: 25px 20px 20px 20px;
-                width: 90px;
-                height: 90px;
+                padding: 16px 20px 20px 19px;
+                width: 78px;
+                height: 78px;
                 margin-top: -15px;
                 position: relative;
                 margin: 0 auto;
@@ -94,9 +96,9 @@ h2{
                 color: #fff;
                 border: 1px solid #cecece;
                 border-radius: 50%;
-                padding: 25px 20px 20px 20px;
-                width: 90px;
-                height: 90px;
+                padding: 18px 20px 20px 19px;
+                width: 83px;
+                height: 83px;
                 margin-top: -15px;
                 position: relative;
                 margin: 0 auto;
@@ -343,6 +345,7 @@ h2{
                       <i class="fa-li fa fa-square" style="margin-top:2px;"></i>
                                 Permis B non probatoire
                     </li>
+                    <i class="fa-li fa fa-square" aria-hidden="true"></i>
                     <li>
                       <i class="fa-li fa fa-square" style="margin-top:2px;"></i>
                                 Attestation d’aptitude médicale auprès d’un médecin agréé par la préfecture par la
@@ -398,8 +401,13 @@ h2{
         <section class="s_three_columns bg-200 pb32 pt0" data-name="Columns">
           <div class="container">
 
-            <h3 style="font-size: 26px; font-weight:700; color: #000; margin-block-end: 1.2rem; ">
-                            Les différentes formations taxi
+            <h3 style="font-size: 36px;
+    font-weight: 700;
+    color: #000;
+    margin-block-end: 1.2rem;
+    margin: 26px 0px;
+    text-align: center;">
+                    Les différentes formations taxi
             </h3>
             <div class="row d-flex align-items-stretch">
 
@@ -469,7 +477,12 @@ h2{
 
         <section class="s_text_block pt0 pb0" data-name="Text block">
           <div class="container">
-            <h3 style="text-align: center;     margin: 23px;     font-weight: 600;">
+            <h3 style="font-size: 36px;
+    font-weight: 700;
+    color: #000;
+    margin-block-end: 1.2rem;
+    margin: 26px 0px;
+    text-align: center;">
                     Déroulement de la formation
             </h3>
             <div class="row">
@@ -487,29 +500,33 @@ h2{
                 </p>
                 <ul class="fa-ul" style="font-size:16.5px; line-height: 1.5rem;">
                   <li>
-                    <i class="fa-li fa fa-square" style="margin-top:2px;"></i>Une formation complète
+                    <i class="fa fa-chevron-right" style="    font-size: 13px; margin: 0px 7px 5px -17px;"></i>Une formation complète
                   </li>
                   <li>
-                    <i class="fa-li fa fa-square" style="margin-top:2px;"></i>A votre rythme
+                    <i class="fa fa-chevron-right" style="    font-size: 13px; margin: 0px 7px 5px -17px;"></i>A votre rythme
                   </li>
                   <li>
-                    <i class="fa-li fa fa-square" style="margin-top:2px;"></i>Présentée sous différents
+                    <i class="fa fa-chevron-right" style="    font-size: 13px; margin: 0px 7px 5px -17px;"></i>Présentée sous
+                                différents
                                 supports
                   </li>
                   <li>
-                    <i class="fa-li fa fa-square" style="margin-top:2px;"></i>Organisés par des experts du
+                    <i class="fa fa-chevron-right" style="    font-size: 13px; margin: 0px 7px 5px -17px;"></i>Organisés par des
+                                experts du
                                 métiers
                   </li>
                   <li>
-                    <i class="fa-li fa fa-square" style="margin-top:2px;"></i>Avec des programmes de
+                    <i class="fa fa-chevron-right" style="    font-size: 13px; margin: 0px 7px 5px -17px;"></i>Avec des programmes de
                                 révisions bien étudiés
                   </li>
                   <li>
-                    <i class="fa-li fa fa-square" style="margin-top:2px;"></i>Un accès à des examens blancs
+                    <i class="fa fa-chevron-right" style="    font-size: 13px; margin: 0px 7px 5px -17px;"></i>Un accès à des examens
+                                blancs
                                 pour s'entraîner
                   </li>
                   <li>
-                    <i class="fa-li fa fa-square" style="margin-top:2px;"></i>Et un suivi personnalisé afin
+                    <i class="fa fa-chevron-right" style="    font-size: 13px; margin: 0px 7px 5px -17px;"></i>Et un suivi personnalisé
+                                afin
                                 de bien vous préparer à l'examen.
                   </li>
                 </ul>
@@ -522,16 +539,17 @@ h2{
                 </h4>
                 <ul class="fa-ul" style="font-size:16.5px; line-height: 1.5rem;">
                   <li>
-                    <i class="fa-li fa fa-square" style="margin-top:2px;"></i>Vidéos
+                    <i class="fa fa-chevron-right" style="    font-size: 13px; margin: 0px 7px 5px -17px;"></i>Vidéos
                   </li>
                   <li>
-                    <i class="fa-li fa fa-square" style="margin-top:2px;"></i>Cours en visioconférences
+                    <i class="fa fa-chevron-right" style="    font-size: 13px; margin: 0px 7px 5px -17px;"></i>Cours en
+                                visioconférences
                   </li>
                   <li>
-                    <i class="fa-li fa fa-square" style="margin-top:2px;"></i>Quizz en lignes
+                    <i class="fa fa-chevron-right" style="    font-size: 13px; margin: 0px 7px 5px -17px;"></i>Quizz en lignes
                   </li>
                   <li>
-                    <i class="fa-li fa fa-square" style="margin-top:2px;"></i>Examens blancs en ligne
+                    <i class="fa fa-chevron-right" style="    font-size: 13px; margin: 0px 7px 5px -17px;"></i>Examens blancs en ligne
                   </li>
                 </ul>
               </div>
@@ -597,7 +615,7 @@ h2{
                               <span></span>
                               <span></span>
                               <span></span>
-              Je m'inscris
+                                                    Je m'inscris
                             </a>
                           </div>
                         </form>
