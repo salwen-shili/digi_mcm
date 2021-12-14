@@ -224,9 +224,9 @@ h2{
             <div class="row">
               <div class="container pt16 pb16" style="border-style: none; border-width: 0px;">
                 <div class="col-lg-12 s_title pt24 pb16" style="text-align: center">
-                  <h2 class="font-weight-bold display-4 " style="font-size: 32px">
-                                les étapes à suivre pour devenir chauffeur de taxi
-                  </h2>
+                  <h3 class="font-weight-bold display-4 " style="font-size: 28px">
+                                Les étapes à suivre pour devenir chauffeur de taxi
+                  </h3>
                 </div>
               </div>
               <div class="col-md-4">
@@ -235,10 +235,10 @@ h2{
                     <span class="sh_icon">1</span>
                   </div>
                   <div class="feature_container">
-                    <h3 style="font-weight: 600; font-size:20px !important">
+                    <h4 style="font-weight: 600; font-size:20px !important">
                                     1. Souscrire à la formation en ligne à la Chambre des
                                     Métiers et de l'Artisanat (CMA)
-                    </h3>
+                    </h4>
                     <p class="font-weight-light my-3">
                                     Une inscription sur la plateforme de la Chambre
                                     des Métiers et de l'Artisanat (CMA) est obligatoire.
@@ -258,9 +258,9 @@ h2{
                     <span class="sh_icon">2</span>
                   </div>
                   <div class="feature_container">
-                    <h3 style="font-weight: 600; font-size:20px !important">
+                    <h4 style="font-weight: 600; font-size:20px !important">
                                     2. Souscrire à la formation en ligne chez MCM Academy
-                    </h3>
+                    </h4>
                     <p class="font-weight-light my-3">
                                     Inscription facile en 3 étapes : tout se passe sur notre site web.
                     </p>
@@ -279,9 +279,9 @@ h2{
                     <span class="sh_icon">3</span>
                   </div>
                   <div class="feature_container">
-                    <h3 style="font-weight: 600; font-size:20px !important">
+                    <h4 style="font-weight: 600; font-size:20px !important">
                                     3. Déposer votre dossier à la préfecture pour obtenir votre carte professionnelle
-                    </h3>
+                    </h4>
                     <p class="font-weight-light my-3">
                                     Une fois l’examen passé et votre certificat de réussite obtenu, il faut déposer un
                                     dossier
@@ -355,7 +355,7 @@ h2{
                   </ul>
                 </p>
                 <h3 style="font-size: 26px; font-weight:700; color: #000; margin-block-end: 1.2rem; ">
-                            Ses Objectifs :
+                            Ses objectifs :
                 </h3>
 
                 <p>
@@ -397,11 +397,10 @@ h2{
         <!-- 3 columns -->
         <section class="s_three_columns bg-200 pb32 pt0" data-name="Columns">
           <div class="container">
-            <h2 style="text-align: center;
-    margin: 23px;
-    font-weight: 600;">
-                    LES DIFFÉRENTES FORMATIONS TAXI
-            </h2>
+
+            <h3 style="font-size: 26px; font-weight:700; color: #000; margin-block-end: 1.2rem; ">
+                            Les différentes formations taxi
+            </h3>
             <div class="row d-flex align-items-stretch">
 
               <div class="col-lg-4 s_col_no_bgcolor pt16 pb16" style="border-style: none; border-width: 0px">
@@ -409,9 +408,9 @@ h2{
                 <div class="card bg-white">
                   <img class="card-img-top lazy" data-src="/mcm_website_theme/static/src/img/formation_taxi/Formation-initiale-au-métier-de-TAXI.webp" data-srcSafari="/mcm_website_theme/static/src/img/formation_vtc/Formation-initiale-au-métier-de-TAXI.png" alt="formation taxi" title="Formation taxi" />
                   <div class="card-body">
-                    <h3 class="card-title">
+                    <h4 class="card-title">
                                     Formation initiale au métier de TAXI
-                    </h3>
+                    </h4>
                     <p>
                                     Afin d'exercer la profession de chauffeur de TAXI en toute
                                     légalité, le passage d'un examen théorique et pratique
@@ -428,9 +427,9 @@ h2{
                 <div class="card bg-white">
                   <img class="card-img-top lazy" data-src="/mcm_website_theme/static/src/img/formation_taxi/Formation-passerelle-VTC-TAXI.webp" data-srcSafari="/mcm_website_theme/static/src/img/formation_vtc/Formation-passerelle-VTC-TAXI.png" alt="Rétroviseur taxi" title="Rétroviseur taxi" />
                   <div class="card-body">
-                    <h3 class="card-title">
+                    <h4 class="card-title">
                                     Formation passerelle VTC-TAXI
-                    </h3>
+                    </h4>
                     <p>
                                     Depuis mai 2017, il est possible pour un stagiaire qui a
                                     réussi l’examen VTC de tronc commun de bénéficier d’une
@@ -448,9 +447,9 @@ h2{
                 <div class="card bg-white">
                   <img class="card-img-top lazy" data-src="/mcm_website_theme/static/src/img/formation_taxi/Formation-continue-au-métier-de-TAXI.webp" data-srcSafari="/mcm_website_theme/static/src/img/formation_vtc/Formation-continue-au-métier-de-TAXI.png" alt="Candidat et formateur au métier de taxi" title="Candidat et formateur au métier de taxi" />
                   <div class="card-body">
-                    <h3 class="card-title">
+                    <h4 class="card-title">
                                     Formation continue au métier de TAXI
-                    </h3>
+                    </h4>
                     <p>
                                     Cette formation est obligatoire et doit être suivie tous les 5 ans.
                                     Nous vous conseillons d'effectuer un stage de remise à niveau dans
@@ -470,17 +469,17 @@ h2{
 
         <section class="s_text_block pt0 pb0" data-name="Text block">
           <div class="container">
-            <h2 style="text-align: center;     margin: 23px;     font-weight: 600;">
+            <h3 style="text-align: center;     margin: 23px;     font-weight: 600;">
                     Déroulement de la formation
-            </h2>
+            </h3>
             <div class="row">
 
               <div class="pt32 col-lg-6 pb0" style="border-style: none; border-width: 0px">
-                <h3 style="font-size: 23px;
+                <h4 style="font-size: 23px;
     font-weight: 700;
     margin-block-end: 18px;">
                             Une formation Taxi théorique à distance de 70 H
-                </h3>
+                </h4>
                 <p>
                             Suivre une formation en ligne c'est"
                             Savoir s'organiser pour réussir".
@@ -516,11 +515,11 @@ h2{
                 </ul>
               </div>
               <div class="pt32 col-lg-6 pb0" style="border-style: none; border-width: 0px">
-                <h3 style="font-size: 23px;
+                <h4 style="font-size: 23px;
     font-weight: 700;
     margin-block-end: 18px;">
                             Les supports de formation seront présentés sous formes de
-                </h3>
+                </h4>
                 <ul class="fa-ul" style="font-size:16.5px; line-height: 1.5rem;">
                   <li>
                     <i class="fa-li fa fa-square" style="margin-top:2px;"></i>Vidéos
