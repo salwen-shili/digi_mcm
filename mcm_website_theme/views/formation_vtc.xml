@@ -155,9 +155,14 @@
 
                     <br />
 
-                    <a href="#pricing">
-                      <button class="home-btn">S'inscrire</button>
+                    <a class="animated-button-yellow" href="#pricing" title="Inscription">
+                      <span></span>
+                      <span></span>
+                      <span></span>
+                      <span></span>
+              S'inscrire
                     </a>
+
 
                   </div>
                 </div>
@@ -527,7 +532,7 @@
                             Je m'inscris
                                                 </a> -->
 
-                            <a class="animated-button-black" href="#pricing" onClick="(function(){packVtcPageFormationTaxi();document.getElementById('form-1-1').submit();return false;})();return false;">
+                            <a class="animated-button-yellow" href="#pricing" onClick="(function(){packVtcPageFormationTaxi();document.getElementById('form-1-1').submit();return false;})();return false;">
                               <span></span>
                               <span></span>
                               <span></span>
