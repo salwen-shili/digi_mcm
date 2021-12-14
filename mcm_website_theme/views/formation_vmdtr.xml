@@ -203,9 +203,9 @@ h2{
                 <img data-src="/mcm_website_theme/static/src/img/fornmation_taxi_moto/Formation-Moto-Taxi-en-ligne.webp" data-srcSafari="/mcm_website_theme/static/src/img/fornmation_taxi_moto/Formation-Moto-Taxi-en-ligne.png" class="img img-fluid mx-auto lazy" alt="Devenir conducteur taxi" title="Devenir conducteur taxi" style="text-align: center;" />
               </div>
               <div class="col-lg-6 js-scroll slide-right" style="border-style: none; border-width: 0px">
-                <h2 class="s_title_default pb16" style="font-size: 36px; font-weight:700">
+                <h3 class="s_title_default pb16" style="font-size: 36px; font-weight:700">
                             À qui s’adresse notre formation ? 
-                </h2>
+                </h3>
                 <p>
                             Notre formation s’adresse à toute personne majeure :
                 </p>
@@ -270,9 +270,9 @@ h2{
             <div class="row">
               <div class="container pt16 pb16" style="border-style: none; border-width: 0px;">
                 <div class="col-lg-12 s_title pt24 pb16" style="text-align: center">
-                  <h2 class="font-weight-bold display-4 " style="font-size: 32px">
-                                les étapes à suivre pour devenir chauffeur de taxi
-                  </h2>
+                  <h3 class="font-weight-bold display-4 " style="font-size: 28px">
+                                Les étapes à suivre pour devenir chauffeur de taxi
+                  </h3>
                 </div>
               </div>
               <div class="col-md-4">
@@ -281,10 +281,10 @@ h2{
                     <span class="sh_icon">1</span>
                   </div>
                   <div class="feature_container">
-                    <h3 style="font-weight: 600; font-size:20px !important">
+                    <h4 style="font-weight: 600; font-size:20px !important">
                                     1. Souscrire à la formation en ligne à la Chambre des
                                     Métiers et de l'Artisanat (CMA)
-                    </h3>
+                    </h4>
                     <p class="font-weight-light my-3">
                                     Une inscription sur la plateforme de la Chambre
                                     des Métiers et de l'Artisanat (CMA) est obligatoire.
@@ -304,9 +304,9 @@ h2{
                     <span class="sh_icon">2</span>
                   </div>
                   <div class="feature_container">
-                    <h3 style="font-weight: 600; font-size:20px !important">
+                    <h4 style="font-weight: 600; font-size:20px !important">
                                     2. Souscrire à la formation en ligne chez MCM Academy
-                    </h3>
+                    </h4>
                     <p class="font-weight-light my-3">
                                     Inscription facile en 3 étapes : tout se passe sur notre site web.
                     </p>
@@ -325,9 +325,9 @@ h2{
                     <span class="sh_icon">3</span>
                   </div>
                   <div class="feature_container">
-                    <h3 style="font-weight: 600; font-size:20px !important">
+                    <h4 style="font-weight: 600; font-size:20px !important">
                                     3. Déposer votre dossier à la préfecture pour obtenir votre carte professionnelle
-                    </h3>
+                    </h4>
                     <p class="font-weight-light my-3">
                                     Une fois l’examen passé et votre certificat de réussite obtenu, il faut déposer un
                                     dossier
@@ -354,9 +354,9 @@ h2{
             <div class="row align-items-center">
 
               <div class="col-lg-6 js-scroll slide-left" style="border-style: none; border-width: 0px">
-                <h2 class="s_title_default pb16" style="font-size: 36px; font-weight:700">
+                <h3 class="s_title_default pb16" style="font-size: 36px; font-weight:700">
                             La formation MOTO-TAXI
-                </h2>
+                </h3>
 
                 <p>
                             Selon la loi Grandguillaume de 2017, devenir chauffeur de VMDTR passe inévitablement par le
@@ -439,9 +439,9 @@ h2{
             <div class="row align-items-center">
 
               <div class="col-lg-6" style="border-style: none; border-width: 0px">
-                <h2 class="s_title_default pb16 js-scroll slide-left" style="font-size: 36px; font-weight:700">
+                <h3 class="s_title_default pb16 js-scroll slide-left" style="font-size: 36px; font-weight:700">
                             Les supports qu'on vous offrent:
-                </h2>
+                </h3>
                 <ul class="fa-ul js-scroll slide-left " style="font-size:16.5px; line-height: 1.5rem;">
                   <li style="    padding-block-end: 10px;">
                     <i class="fa fa-chevron-right" style="margin-top:2px;"></i>
@@ -461,9 +461,9 @@ h2{
                                 Des examens blancs avec corrections
                   </li>
                 </ul>
-                <h2 class="s_title_default pb16 js-scroll slide-left" style="font-size: 36px; font-weight:700">
+                <h3 class="s_title_default pb16 js-scroll slide-left" style="font-size: 36px; font-weight:700">
                             Modalités d’accompagnement :
-                </h2>
+                </h3>
                 <p class="js-scroll slide-left ">
                             Une fois votre formation terminée, MCM Academy vous offre un suivi et un accompagnement
                             personnalisé pour répondre à vos questions et combler vos lacunes, et ceci par le biais de
