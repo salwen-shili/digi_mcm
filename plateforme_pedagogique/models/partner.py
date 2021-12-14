@@ -838,8 +838,7 @@ class partner(models.Model):
                             user = self.env["res.users"].sudo().search(['|',("phone", "=", phone),("phone","=",phone.replace(' ', ''))], limit=1)
                         phone = phone_number[0:2]
                         if str(phone) in ['06','07'] and ' ' not in str(tel): # check if aircall api send the number of client in this format (number_format: 07xxxxxx)
-                            user = self.env["res.users"].sudo().search([("phone", "=", str(tel))], limit=1)
-                            print('user5 :', user.partner_id.name)
+                            user = self.env["res.users"].sudo().search(['|',("phone", "=", str(tel)),("phone", "=", str('+33'+tel.replace(' ','')[-9:]))], limit=1)
                             if not user:
                                 phone = phone[0:2] + ' ' + phone[2:4] + ' ' + phone[4:6] + ' ' + phone[6:8] + ' ' + phone[8:]
                                 user = self.env["res.users"].sudo().search([("phone", "=", phone)], limit=1)
@@ -847,6 +846,11 @@ class partner(models.Model):
                         if str(phone) in ['06', '07'] and ' ' in str(tel): # check if aircall api send the number of client in this format (number_format: 07 xx xx xx)
                             user = self.env["res.users"].sudo().search(
                                 ['|',("phone", "=", str(tel)),str(tel).replace(' ', '')], limit=1)
+                            if not user:
+                                phone_number = str(tel[1:])
+                                user = self.env["res.users"].sudo().search(
+                                    ['|', ("phone", "=", str('+33' + phone_number)),
+                                     ("phone", "=", ('+33' + phone_number.replace(' ', '')))], limit=1)
                     else:  # check if aircall api send the number of client with+33
                         if ' ' not in str(tel):
                             phone = str(tel)
@@ -905,7 +909,7 @@ class partner(models.Model):
                 client.numero_cpf = dossier
                 client.statut_cpf = 'validated'
                 client.statut ='indecis'
-                client.phone = '0'+str(tel[-9:])
+                client.phone = '0'+str(tel.replace(' ',''))[-9:]
                 client.street = address
                 client.zip = code_postal
                 client.city = ville
