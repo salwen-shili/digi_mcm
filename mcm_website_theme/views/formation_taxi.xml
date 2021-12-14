@@ -160,8 +160,12 @@
                       professionnelle, et en vous accompagnant dans la création de votre entreprise.
                     </p>
                     <br />
-                    <a href="#pricing">
-                      <button class="home-btn">S'inscrire</button>
+                    <a class="animated-button-yellow" href="#pricing" title="Inscription">
+                      <span></span>
+                      <span></span>
+                      <span></span>
+                      <span></span>
+              S'inscrire
                     </a>
 
                   </div>
@@ -619,7 +623,7 @@
                                                 </a> -->
 
 
-                            <a class="animated-button-black" href="#pricing" onClick="(function(){packTaxiPageFormationTaxi();document.getElementById('form-1-2').submit();return false;})();return false;">
+                            <a class="animated-button-yellow" href="#pricing" onClick="(function(){packTaxiPageFormationTaxi();document.getElementById('form-1-2').submit();return false;})();return false;">
                               <span></span>
                               <span></span>
                               <span></span>

@@ -148,8 +148,12 @@
                       CENTRE DE FORMATION EN LIGNE DES MÉTIERS DE TRANSPORT.
                     </p>
                     <br />
-                    <a href="#pricing">
-                      <button class="home-btn">S'inscrire</button>
+                    <a class="animated-button-yellow" href="#pricing" title="Inscription">
+                      <span></span>
+                      <span></span>
+                      <span></span>
+                      <span></span>
+              S'inscrire
                     </a>
                   </div>
                 </div>
