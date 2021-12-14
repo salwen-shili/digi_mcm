@@ -416,7 +416,7 @@
                   cliquant sur le bouton ci-dessous :
               </p>
               <a href="/mcm_website_theme/static/src/img/examen/GRILLE_DE_NOTATION_EXAMEN_TAXI_VTC_MCMACADEMY.png">
-                <button class="home-btn">En savoir plus</button>
+                <button class="home-btn mb32">En savoir plus</button>
               </a>
             </div>
             <div class="col-lg-6 pb24 pt0 js-scroll slide-right">
@@ -478,7 +478,7 @@
             margin-block-end: 51px;
           ">
         <div class="container js-scroll fade-in-top">
-          <h3 style="color: rgb(0, 0, 0); font-size: 20px">
+          <h3 style="color: rgb(0, 0, 0); font-size: 18px">
               MCM Academy propose des formations VTC, TAXI et VMDTR
               d’excellence, basées sur l'expertise de nos formateurs et la
               dédication de toute l'équipe. Toutes nos formations sont éligibles

@@ -10,6 +10,15 @@
         <link rel="stylesheet" href="/mcm_website_theme/static/src/css/cta-button.css" />
         <!-- <script type="text/javascript" src="/mcm_website_theme/static/src/js/scrollAnimation.js"></script> -->
         <style>
+          h1{
+            font-size: 54px !important;
+          }
+          h2{
+            font-size: 26px !important;
+          }
+          h3{
+            font-size: 26px !important;
+          }
           #sh_corpomate_theme_section_258 {
             padding: 0 !important;
           }
@@ -168,13 +177,13 @@
 
         <!--Notre histoire -->
 
-        <section class="s_text_image pt32 pb0" data-name="Text - Image">
-          <div class="container">
+        <section class="s_text_image pt32 pb0 " data-name="Text - Image">
+          <div class="container js-scroll fade-in-top">
             <div class="row s_nb_column_fixed">
               <div class="col-lg-12 s_title" style="padding: 0px">
-                <h3 class="s_title_lines" style="font-size: 36px; font-weight: 700; text-align: left">
+                <h2 class="s_title_lines" style="font-size: 36px; font-weight: 700; text-align: left">
                   Notre histoire
-                </h3>
+                </h2>
               </div>
             </div>
             <div class="row align-items-center">
@@ -214,7 +223,7 @@
         <!--Pourquoi nous choisir ? -->
 
         <section class="s_text_image pt32 pb0" data-name="Text - Image">
-          <div class="container">
+          <div class="container js-scroll fade-in-top">
             <div class="row s_nb_column_fixed">
               <div class="col-lg-12 s_title" style="padding: 0px">
                 <h2 class="s_title_lines" style="font-size: 36px; font-weight: 700; text-align: left">
@@ -265,7 +274,7 @@
         </section>
 
         <section class="" data-name="Title">
-          <div class="container">
+          <div class="container js-scroll fade-in-top">
             <div class="row s_nb_column_fixed">
               <div class="col-lg-12 s_title" style="padding: 0px">
                 <h2 class="s_title_lines" style="font-size: 36px; font-weight: 700; text-align: left">
