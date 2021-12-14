@@ -295,7 +295,6 @@
             <div class="col-lg-4 s_col_no_bgcolor pt16 pb16" style="border-style: none; border-width: 0px">
               <div class="card bg-white js-scroll slide-left">
                 <img class="card-img-top lazy" data-src="/mcm_website_theme/static/src/img/formation_taxi/Formation-initiale-au-métier-de-TAXI.webp" data-srcSafari="/mcm_website_theme/static/src/img/formation_vtc/Formation-initiale-au-métier-de-TAXI.png" alt="formation taxi" title="Formation taxi" />
-
                 <div class="card-body js-scroll">
                   <h3 class="card-title">
                       Les modules théoriques communs d’admissibilité pour les
