@@ -52,7 +52,7 @@
                                             <i class="mdi mdi-help-circle"/>
                                         </b>
                                         <font style="font-size: 16px;" data-original-title="" title="" aria-describedby="tooltip487201">
-                                            <i class="fa fa-caret-right" style="font-weight: bold;" data-original-title="" title="" aria-describedby="tooltip83044"/>
+                                            <i class="fa-li fa fa-square" style="font-weight: bold;" data-original-title="" title="" aria-describedby="tooltip83044"/>
                                             <b data-original-title="" title="" aria-describedby="tooltip700574">Digimoov
                                             </b>
                                         </font>
@@ -61,7 +61,7 @@
                                         <b>
                                             <i class="mdi mdi-account"/>
                                             <font style="font-size: 16px;" data-original-title="" title="" aria-describedby="tooltip935360">
-                                                <i class="fa fa-caret-right" data-original-title="" title="" aria-describedby="tooltip582712"/>
+                                                <i class="fa-li fa fa-square" data-original-title="" title="" aria-describedby="tooltip582712"/>
                                                 La formation
                                             </font>
                                         </b>
@@ -70,7 +70,7 @@
                                         <b>
                                             <i class="mdi mdi-account-settings"/>
                                             <font style="font-size: 16px;">
-                                                <i class="fa fa-caret-right" data-original-title="" title="" aria-describedby="tooltip566849"/>
+                                                <i class="fa-li fa fa-square" data-original-title="" title="" aria-describedby="tooltip566849"/>
                                                 L’examen
                                             </font>
                                         </b>
@@ -79,7 +79,7 @@
                                         <b>
                                             <i class="mdi mdi-heart"/>
                                             <font style="font-size: 16px;">
-                                                <i class="fa fa-caret-right" data-original-title="" title="" aria-describedby="tooltip219938"/>
+                                                <i class="fa-li fa fa-square" data-original-title="" title="" aria-describedby="tooltip219938"/>
                                                 L’attestation de Capacité de transport de marchandise léger
 
                                             </font>
@@ -88,7 +88,7 @@
                                     <a href="#tab5" class="nav-link" data-toggle="pill" role="tab" aria-controls="tab5" aria-selected="false" data-original-title="" title="" aria-describedby="tooltip230958">
                                         <i class="mdi mdi-coin"/>
                                         <font style="font-size: 16px;">
-                                            <i class="fa fa-caret-right" data-original-title="" title="" aria-describedby="tooltip582122"/>
+                                            <i class="fa-li fa fa-square" data-original-title="" title="" aria-describedby="tooltip582122"/>
                                             <b>Le financement</b>
                                         </font>
                                     </a>
@@ -96,7 +96,7 @@
                                         <b>
                                             <i class="mdi mdi-help"/>
                                             <font style="font-size: 16px;">
-                                                <i class="fa fa-caret-right" data-original-title="" title="" aria-describedby="tooltip340701"/>
+                                                <i class="fa-li fa fa-square" data-original-title="" title="" aria-describedby="tooltip340701"/>
                                                 Divers
                                             </font>
                                         </b>

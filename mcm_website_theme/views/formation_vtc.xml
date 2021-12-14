@@ -13,111 +13,127 @@
 
         <style>
           #sh_corpomate_theme_section_258 {
-              padding:  0 !important;
+            padding: 0 !important;
           }
-          p{
-            font-size: 17px; 
-            line-height:28px;
+
+          p {
+            font-size: 17px;
+            line-height: 28px;
             color: #000;
           }
-          
-        .nav-pills .nav-link.active,
-        .nav-pills .show &gt;
-        .nav-link {
-          background-color: #000;
-        }
-        a {
-          color: #000;
-        }
-        a:hover {
-          color: #000;
-        }
-        .btn {
-          background-color: #000;
-          border-color: #000;
-          color: #fff;
-        }
-        .btn:hover {
-          background-color: #7f7e7e;
-        }
 
-        #sh_corpomate_theme_section_290 .sh_feature_box p {
-          margin-bottom: 0px !important;
-          transition: 0.5s;
-          font-size: 17px;
-          line-height: 1.8;
-          display: block !important;
-          -webkit-line-clamp: 6 !important;
-          -webkit-box-orient: initital;
-          overflow: hidden;
-          color: #616161;
-          font-family: "Poppins", sans-serif;
-        }
-        .feature_container{
-          margin-block-start: 15px;
-          flex-direction: column;
-          justify-content: space-between;
-        }
-       .read_more{
-         color: #2667ae !important;
-         font: inherit !important;
-         font-size: 16px !important;
-       }
-       #sh_corpomate_theme_section_76 .sh_content .sh_num_icon {
-    font-size: 30px;
-    color: #000000;
-    border: 1px solid #cecece;
-    border-radius: 50%;
-    padding: 25px 20px 20px 20px;
-    width: 90px;
-    height: 90px;
-    margin-top: -15px;
-    position: relative;
-    margin: 0 auto;
-    background: #fdd125;
-}
-#sh_corpomate_theme_section_76 .sh_content:hover .sh_num_icon {
-    font-size: 30px;
-    color: #fff;
-    border: 1px solid #cecece;
-    border-radius: 50%;
-    padding: 25px 20px 20px 20px;
-    width: 90px;
-    height: 90px;
-    margin-top: -15px;
-    position: relative;
-    margin: 0 auto;
-    background: #000000;
-}
-#sh_corpomate_theme_section_76 .sh_content p {
-    padding: 0 0 !important;
-    overflow: visible;
-    -webkit-box-orient: horizontal;
-}
-.res_height {
-    height: 423px;
-} 
+          .nav-pills .nav-link.active,
+          .nav-pills .show &gt;
 
-@media (max-width: 467.98px){
-.res_height {
-    height: 243px;
-} 
-}
-#sh_corpomate_theme_section_76 .sh_content {
-  padding-top: 0;
-}
-#sh_corpomate_theme_section_76 .sh_content p:after {
-  top: 20px;
-}
-h1{
-  text-transform: uppercase;
-}
-h2{
-  text-transform: uppercase;
-}
+          .nav-link {
+            background-color: #000;
+          }
 
+          a {
+            color: #000;
+          }
+
+          a:hover {
+            color: #000;
+          }
+
+          .btn {
+            background-color: #000;
+            border-color: #000;
+            color: #fff;
+          }
+
+          .btn:hover {
+            background-color: #7f7e7e;
+          }
+
+          #sh_corpomate_theme_section_290 .sh_feature_box p {
+            margin-bottom: 0px !important;
+            transition: 0.5s;
+            font-size: 17px;
+            line-height: 1.8;
+            display: block !important;
+            -webkit-line-clamp: 6 !important;
+            -webkit-box-orient: initital;
+            overflow: hidden;
+            color: #616161;
+            font-family: "Poppins", sans-serif;
+          }
+
+          .feature_container {
+            margin-block-start: 15px;
+            flex-direction: column;
+            justify-content: space-between;
+          }
+
+          .read_more {
+            color: #2667ae !important;
+            font: inherit !important;
+            font-size: 16px !important;
+          }
+
+          #sh_corpomate_theme_section_76 .sh_content .sh_num_icon {
+            font-size: 30px;
+            color: #000000;
+            border: 1px solid #cecece;
+            border-radius: 50%;
+            padding: 16px 20px 20px 19px;
+            width: 78px;
+            height: 78px;
+            margin-top: -15px;
+            position: relative;
+            margin: 0 auto;
+            background: #fdd125;
+          }
+
+          #sh_corpomate_theme_section_76 .sh_content:hover .sh_num_icon {
+            font-size: 30px;
+            color: #fff;
+            border: 1px solid #cecece;
+            border-radius: 50%;
+            padding: 18px 20px 20px 19px;
+            width: 83px;
+            height: 83px;
+            margin-top: -15px;
+            position: relative;
+            margin: 0 auto;
+            background: #000000;
+          }
+
+          #sh_corpomate_theme_section_76 .sh_content p {
+            padding: 0 0 !important;
+            overflow: visible;
+            -webkit-box-orient: horizontal;
+          }
+
+          .res_height {
+            height: 423px;
+          }
+
+          @media (max-width: 467.98px) {
+            .res_height {
+              height: 243px;
+            }
+          }
+
+          #sh_corpomate_theme_section_76 .sh_content {
+            padding-top: 0;
+          }
+
+          #sh_corpomate_theme_section_76 .sh_content p:after {
+            top: 20px;
+          }
+
+          h1 {
+            text-transform: uppercase;
+          }
+
+          h2 {
+            text-transform: uppercase;
+          }
         </style>
-        <section id="sh_corpomate_theme_section_258" class="sh_animation_part pt8" data-name="Formation Chauffeur de Taxi">
+        <section id="sh_corpomate_theme_section_258" class="sh_animation_part pt8"
+          data-name="Formation Chauffeur de Taxi">
           <div class="container-banner">
             <div class="row">
               <div class="col-lg-6 pb16 pt56" style="border-style: none; border-width: 0px;">
@@ -132,7 +148,10 @@ h2{
                     <br />
 
                     <p class="heading text-center">
-                   Vous voulez devenir chauffeur de VTC ? Nous vous félicitons, car vous avez frappé à la bonne porte ! En tant que centre de formation doté d’une expérience de plus de 10 ans dans le domaine, vous ne pourrez qu’être satisfait. Ce que nous vous offrons, c’est plus qu’une formation à distance : c’est un accompagnement et un suivi personnalisé pour garantir votre réussite. 
+                      Vous voulez devenir chauffeur de VTC ? Nous vous félicitons, car vous avez frappé à la bonne porte
+                      ! En tant que centre de formation doté d’une expérience de plus de 10 ans dans le domaine, vous ne
+                      pourrez qu’être satisfait. Ce que nous vous offrons, c’est plus qu’une formation à distance :
+                      c’est un accompagnement et un suivi personnalisé pour garantir votre réussite.
                     </p>
 
                     <br />
@@ -146,7 +165,11 @@ h2{
               </div>
               <div class="col-lg-6 pb48 pt16">
                 <br />
-                <img data-src="/mcm_website_theme/static/src/img/formation_vtc/formation-chauffeur-vtc.webp" data-srcSafari="/mcm_website_theme/static/src/img/formation_vtc/formation-chauffeur-vtc.png" class="img img-fluid mx-auto lazy" alt="Devenir chauffeur professionnel VTC, Taxi ou Moto-Taxi" data-original-title="" title="Chauffeur vtc devant sa voiture" aria-describedby="tooltip202025" style="text-align: center;" />
+                <img data-src="/mcm_website_theme/static/src/img/formation_vtc/formation-chauffeur-vtc.webp"
+                  data-srcSafari="/mcm_website_theme/static/src/img/formation_vtc/formation-chauffeur-vtc.png"
+                  class="img img-fluid mx-auto lazy" alt="Devenir chauffeur professionnel VTC, Taxi ou Moto-Taxi"
+                  data-original-title="" title="Chauffeur vtc devant sa voiture" aria-describedby="tooltip202025"
+                  style="text-align: center;" />
               </div>
             </div>
           </div>
@@ -156,16 +179,28 @@ h2{
         <section class="container pt40 pb32">
           <div class="row align-items-center justify-content-center">
             <div class=" col-md-3 col-sm-12 text-center mb-4 mb-md-0  ">
-              <img data-src="/mcm_website_theme/static/src/img/formation-éligible-au-compte-personnel-de-formation.webp" data-srcSafari="/mcm_website_theme/static/src/img/formation-éligible-au-compte-personnel-de-formation.png" class="img-fluid lazy" style="width: 100px;" title="Formation éligible au CPF" alt="logo mon compte de formation"/>
+              <img data-src="/mcm_website_theme/static/src/img/formation-éligible-au-compte-personnel-de-formation.webp"
+                data-srcSafari="/mcm_website_theme/static/src/img/formation-éligible-au-compte-personnel-de-formation.png"
+                class="img-fluid lazy" style="width: 100px;" title="Formation éligible au CPF"
+                alt="logo mon compte de formation" />
             </div>
             <div class=" col-md-3 col-sm-12 text-center mb-4 mb-md-0 ">
-              <img class="img-fluid lazy" style="width: 188px;" data-src="/mcm_website_theme/static/src/img/formation-taxi-vtc-certifiée-qualiopi.webp" data-srcSafari="/mcm_website_theme/static/src/img/formation-taxi-vtc-certifiée-qualiopi.png" title="qualiopi" alt="qualiopi"/>
+              <img class="img-fluid lazy" style="width: 188px;"
+                data-src="/mcm_website_theme/static/src/img/formation-taxi-vtc-certifiée-qualiopi.webp"
+                data-srcSafari="/mcm_website_theme/static/src/img/formation-taxi-vtc-certifiée-qualiopi.png"
+                title="qualiopi" alt="qualiopi" />
             </div>
             <div class=" col-md-3 col-sm-12 text-center mb-4 mb-md-0 ">
-              <img class="img-fluid lazy" style="width: 110px;" data-srcSafari="/mcm_website_theme/static/src/img/mcm academy-partenaire-france-relance.jpg" data-src="/mcm_website_theme/static/src/img/mcm academy-partenaire-france-relance.webp" title="logo france relance" alt="logo france relance"/>
+              <img class="img-fluid lazy" style="width: 110px;"
+                data-srcSafari="/mcm_website_theme/static/src/img/mcm academy-partenaire-france-relance.jpg"
+                data-src="/mcm_website_theme/static/src/img/mcm academy-partenaire-france-relance.webp"
+                title="logo france relance" alt="logo france relance" />
             </div>
             <div class=" col-md-3 col-sm-12 text-center mb-4 mb-md-0 ">
-              <img class="img-fluid lazy" style="width: 100px;" data-src="/mcm_website_theme/static/src/img/mcm academy-centre-de-formation-taxi-vtc-carte pro-préfecture.webp" data-srcSafari="/mcm_website_theme/static/src/img/mcm academy-centre-de-formation-taxi-vtc-carte pro-préfecture.png" title="Centre agrée de la préfecture" alt="Centre agrée de la préfecture"/>
+              <img class="img-fluid lazy" style="width: 100px;"
+                data-src="/mcm_website_theme/static/src/img/mcm academy-centre-de-formation-taxi-vtc-carte pro-préfecture.webp"
+                data-srcSafari="/mcm_website_theme/static/src/img/mcm academy-centre-de-formation-taxi-vtc-carte pro-préfecture.png"
+                title="Centre agrée de la préfecture" alt="Centre agrée de la préfecture" />
             </div>
           </div>
         </section>
@@ -173,10 +208,12 @@ h2{
 
         <section class="container s_text_block pt32 pb64" data-name="Text block">
           <h2 class="s_title_default text-center pb16" style="font-size: 36px; font-weight:700">
-                 Devenir chauffeur de VTC
+            Devenir chauffeur de VTC
           </h2>
           <p>
-              Notre formation théorique à l’examen VTC vous permettra de mieux comprendre le métier de chauffeur de VTC, d'en maîtriser le fonctionnement et les principales règles, de vous préparer au mieux pour réussir l'examen VTC et, ainsi, obtenir votre carte professionnelle.          
+            Notre formation théorique à l’examen VTC vous permettra de mieux comprendre le métier de chauffeur de VTC,
+            d'en maîtriser le fonctionnement et les principales règles, de vous préparer au mieux pour réussir l'examen
+            VTC et, ainsi, obtenir votre carte professionnelle.
           </p>
         </section>
 
@@ -185,70 +222,77 @@ h2{
           <div class="container">
             <div class="row align-items-center">
               <div class="col-lg-6 pb24 pt0">
-                <img data-src="/mcm_website_theme/static/src/img/formation_vtc/profil-candidat-chauffeur-vtc.webp" data-srcSafari="/mcm_website_theme/static/src/img/formation_vtc/profil-candidat-chauffeur-vtc.png" class="img img-fluid mx-auto lazy" alt="Devenir chauffeur professionnel VTC" title="Chauffeur vtc dans sa voiture" style="text-align: center;" />
+                <img data-src="/mcm_website_theme/static/src/img/formation_vtc/profil-candidat-chauffeur-vtc.webp"
+                  data-srcSafari="/mcm_website_theme/static/src/img/formation_vtc/profil-candidat-chauffeur-vtc.png"
+                  class="img img-fluid mx-auto lazy" alt="Devenir chauffeur professionnel VTC"
+                  title="Chauffeur vtc dans sa voiture" style="text-align: center;" />
               </div>
               <div class="col-lg-6" style="border-style: none; border-width: 0px">
                 <h3 style="font-size: 26px; font-weight:700; color: #000; margin-block-end: 1.2rem; ">
                   À qui s’adresse cette formation ?
                 </h3>
                 <p>
-                Notre formation VTC à distance concerne toute personne majeure qui souhaite devenir entrepreneur, en reconversion professionnelle, passionné par les métiers de transport, et qui répond à ces prérequis :
+                  Notre formation VTC à distance concerne toute personne majeure qui souhaite devenir entrepreneur, en
+                  reconversion professionnelle, passionné par les métiers de transport, et qui répond à ces prérequis :
                 </p>
                 <p>
-                  <ul class="fa-ul" style="font-size:16.5px; line-height: 1.5rem;">
-                    <li>
-                      <i class="fa-li fa fa-square" style="margin-top:2px;"></i>
-                      Permis B non probatoire
-                    </li>
-                    <li>
-                      <i class="fa-li fa fa-square" style="margin-top:2px;"></i>
-                      Attestation d’aptitude médicale auprès d’un médecin agréé                                                        par la préfecture
-                    </li>
-                    <li>
-                      <i class="fa-li fa fa-square" style="margin-top:2px;"></i>
-                      Casier judiciaire B2 non affecté de certaines condamnations
-                    </li>
-                    <li>
-                      <i class="fa-li fa fa-square" style="margin-top:2px;"></i>
-                      Réussite à l’examen blanc MCM Academy
-                    </li>
-                  </ul>
+                <ul class="fa-ul" style="font-size:16.5px; line-height: 1.5rem;">
+                  <li>
+                    <i class="fa-li fa fa-square" style="margin-top:2px;"></i>
+                    Permis B non probatoire
+                  </li>
+                  <li>
+                    <i class="fa-li fa fa-square" style="margin-top:2px;"></i>
+                    Attestation d’aptitude médicale auprès d’un médecin agréé par la préfecture
+                  </li>
+                  <li>
+                    <i class="fa-li fa fa-square" style="margin-top:2px;"></i>
+                    Casier judiciaire B2 non affecté de certaines condamnations
+                  </li>
+                  <li>
+                    <i class="fa-li fa fa-square" style="margin-top:2px;"></i>
+                    Réussite à l’examen blanc MCM Academy
+                  </li>
+                </ul>
                 </p>
                 <h3 style="font-size: 26px; font-weight:700; color: #000; margin-block-end: 1.2rem; ">
                   Ses objectifs :
                 </h3>
 
                 <p>
-                  <ul class="fa-ul" style="font-size:16.5px; line-height: 1.5rem;">
-                    <li>
-                      <i class="fa-li fa fa-square" style="margin-top:2px;"></i>
-                      Acquérir les savoirs, savoir-être et savoir-faire nécessaires à la réussite de l’examen VTC
-                    </li>
-                    <li>
-                      <i class="fa-li fa fa-square" style="margin-top:2px;"></i>
-                      Préparation aux épreuves d’admissibilité de l’examen VTC (théorie)
-                    </li>
+                <ul class="fa-ul" style="font-size:16.5px; line-height: 1.5rem;">
+                  <li>
+                    <i class="fa-li fa fa-square" style="margin-top:2px;"></i>
+                    Acquérir les savoirs, savoir-être et savoir-faire nécessaires à la réussite de l’examen VTC
+                  </li>
+                  <li>
+                    <i class="fa-li fa fa-square" style="margin-top:2px;"></i>
+                    Préparation aux épreuves d’admissibilité de l’examen VTC (théorie)
+                  </li>
 
-                    <div style="margin-block-start: 20px; margin-left: -39px;">
-                      <a href="/mcm_website_theme/static/mcm_website_theme/static/pdf/programme_de_formation_MCM_ACADEMY_2021.pdf">
-                        <button class="home-btn">En savoir plus</button>
-                      </a>
+                  <div style="margin-block-start: 20px; margin-left: -39px;">
+                    <a
+                      href="/mcm_website_theme/static/mcm_website_theme/static/pdf/programme_de_formation_MCM_ACADEMY_2021.pdf">
+                      <button class="home-btn">En savoir plus</button>
+                    </a>
 
-                    </div>
-                  </ul>
+                  </div>
+                </ul>
                 </p>
               </div>
-              <div class="s_title col-lg-12 pt24 pb0" style="                   text-align: center;                   border-style: none;                   border-width: 0px;                 ">
+              <div class="s_title col-lg-12 pt24 pb0"
+                style="                   text-align: center;                   border-style: none;                   border-width: 0px;                 ">
                 <div class="s_alert clearfix w-100 s_alert_sm alert-100" data-name="Alert" style="">
                   <i class="fa fa-2x fa-info-circle s_alert_icon" />
                   <div class="s_alert_content">
                     <p style="text-align: left">
                       Nos formations incluent les personnes en situation
-                d'handicap. Bien entendu, nous restons à votre disposition
-                pour répondre à toutes vos questions, en contactant notre
-                référent handicap sur notre espace client accessible sur
-                notre site web
-                      <a href="https://dev.mcm-academy.fr/service-clientele" style="background-color: rgb(255, 255, 255)">
+                      d'handicap. Bien entendu, nous restons à votre disposition
+                      pour répondre à toutes vos questions, en contactant notre
+                      référent handicap sur notre espace client accessible sur
+                      notre site web
+                      <a href="https://dev.mcm-academy.fr/service-clientele"
+                        style="background-color: rgb(255, 255, 255)">
                         <span style="color: rgb(0, 0, 255)">par ici</span>
                       </a>
                       .
@@ -269,7 +313,7 @@ h2{
               <div class="container pt16 pb16" style="border-style: none; border-width: 0px;">
                 <div class="col-lg-12 s_title pt24 pb16" style="text-align: center">
                   <h3 class="font-weight-bold display-4 " style="font-size: 28px">
-                                Les étapes à suivre pour devenir chauffeur de taxi
+                    Les étapes à suivre pour devenir chauffeur de taxi
                   </h3>
                 </div>
               </div>
@@ -280,16 +324,17 @@ h2{
                   </div>
                   <div class="feature_container">
                     <h4 style="font-weight: 600; font-size:20px !important">
-                                    1. Souscrire à la formation en ligne à la Chambre des
-                                    Métiers et de l'Artisanat (CMA)
+                      1. Souscrire à la formation en ligne à la Chambre des
+                      Métiers et de l'Artisanat (CMA)
                     </h4>
                     <p class="font-weight-light my-3">
-                                    Une inscription sur la plateforme de la Chambre
-                                    des Métiers et de l'Artisanat (CMA) est obligatoire.
+                      Une inscription sur la plateforme de la Chambre
+                      des Métiers et de l'Artisanat (CMA) est obligatoire.
                     </p>
                     <div class="text-center">
-                      <a class="read_more" href="/mcm_website_theme/static/pdf/DEMARCHES_D'INSCRIPTION_A_LA_CMA_-_MCM_ACADEMY.pdf">
-                                        En savoir plus
+                      <a class="read_more"
+                        href="/mcm_website_theme/static/pdf/DEMARCHES_D'INSCRIPTION_A_LA_CMA_-_MCM_ACADEMY.pdf">
+                        En savoir plus
                         <i class="fa fa-info-circle"></i>
                       </a>
                     </div>
@@ -303,14 +348,15 @@ h2{
                   </div>
                   <div class="feature_container">
                     <h4 style="font-weight: 600; font-size:20px !important">
-                                    2. Souscrire à la formation en ligne chez MCM Academy
+                      2. Souscrire à la formation en ligne chez MCM Academy
                     </h4>
                     <p class="font-weight-light my-3">
-                                    Inscription facile en 3 étapes : tout se passe sur notre site web.
+                      Inscription facile en 3 étapes : tout se passe sur notre site web.
                     </p>
                     <div class="text-center">
-                      <a class="read_more" href="/mcm_website_theme/static/pdf/DEMARCHES_D'INSCRIPTION_SUR_LE_SITE_MCM_ACADEMY.pdf">
-                                        En savoir plus
+                      <a class="read_more"
+                        href="/mcm_website_theme/static/pdf/DEMARCHES_D'INSCRIPTION_SUR_LE_SITE_MCM_ACADEMY.pdf">
+                        En savoir plus
                         <i class="fa fa-info-circle"></i>
                       </a>
                     </div>
@@ -324,16 +370,17 @@ h2{
                   </div>
                   <div class="feature_container">
                     <h4 style="font-weight: 600; font-size:20px !important">
-                                    3. Déposer votre dossier à la préfecture pour obtenir votre carte professionnelle
+                      3. Déposer votre dossier à la préfecture pour obtenir votre carte professionnelle
                     </h4>
                     <p class="font-weight-light my-3">
-                                    Une fois l’examen passé et votre certificat de réussite obtenu, il faut déposer un
-                                    dossier
-                                    à la préfecture.
+                      Une fois l’examen passé et votre certificat de réussite obtenu, il faut déposer un
+                      dossier
+                      à la préfecture.
                     </p>
                     <div class="text-center">
-                      <a class="read_more" href="/mcm_website_theme/static/pdf/Devenez_chauffeur_taxi_vtc_démarches_dépôt_dossier_préfecture.pdf">
-                                        En savoir plus
+                      <a class="read_more"
+                        href="/mcm_website_theme/static/pdf/Devenez_chauffeur_taxi_vtc_démarches_dépôt_dossier_préfecture.pdf">
+                        En savoir plus
                         <i class="fa fa-info-circle"></i>
                       </a>
                     </div>
@@ -344,13 +391,16 @@ h2{
           </div>
         </section>
         <!-- Telecharger-->
-        <section id="sh_corpomate_theme_section_167" class="sh_animation_part" data-name="Call To Action" style="background-color: rgb(253, 209, 5); margin : 76px 0px;">
+        <section id="sh_corpomate_theme_section_167" class="sh_animation_part" data-name="Call To Action"
+          style="background-color: rgb(253, 209, 5); margin : 76px 0px;">
           <div class="container">
             <h3 style="color: rgb(0, 0, 0); font-size: 24px">
-            TÉLÉCHARGER LE PROGRAMME DE LA FORMATION VTC
+              TÉLÉCHARGER LE PROGRAMME DE LA FORMATION VTC
             </h3>
 
-            <a class="animated-button-black" href="/mcm_website_theme/static/pdf/programme_de_formation_MCM_ACADEMY_2021.pdf" title="Programme de la formation VTC">
+            <a class="animated-button-black"
+              href="/mcm_website_theme/static/pdf/programme_de_formation_MCM_ACADEMY_2021.pdf"
+              title="Programme de la formation VTC">
               <span></span>
               <span></span>
               <span></span>
@@ -366,33 +416,36 @@ h2{
 
               <div class="col-lg-6" style="border-style: none; border-width: 0px">
                 <h3 style="font-size: 26px; font-weight:700; color: #000; margin-block-end: 1.2rem; ">
-                 Déroulement de la formation VTC : 
+                  Déroulement de la formation VTC :
                 </h3>
                 <p>
-                Une formation VTC à distance de 70 h :
+                  Une formation VTC à distance de 70 h :
                 </p>
 
                 <ul class="fa-ul" style="font-size:16.5px; line-height: 1.5rem;">
                   <li style=" padding-block-end: 20px;">
                     <i class="fa-li fa fa-square" style="margin-top:2px;"></i>
-                      Des vidéos préenregistrées bien détaillées
+                    Des vidéos préenregistrées bien détaillées
                   </li>
                   <li style=" padding-block-end: 20px;">
                     <i class="fa-li fa fa-square" style="margin-top:2px;"></i>
-                      Des programmes de révision bien étudiés                                                         par la préfecture
+                    Des programmes de révision bien étudiés par la préfecture
                   </li>
                   <li style=" padding-block-end: 20px;">
                     <i class="fa-li fa fa-square" style="margin-top:2px;"></i>
-                      Des "Lives" avec les formateurs pour les explications
+                    Des "Lives" avec les formateurs pour les explications
                   </li>
                   <li style=" padding-block-end: 20px;">
                     <i class="fa-li fa fa-square" style="margin-top:2px;"></i>
-                      Du Assistance par mail, téléphone et visioconférence  
+                    Du Assistance par mail, téléphone et visioconférence
                   </li>
                 </ul>
               </div>
               <div class="col-lg-6 pb24 pt0">
-                <img data-src="/mcm_website_theme/static/src/img/formation_vtc/formation-en-ligne-vtc.webp" data-srcSafari="/mcm_website_theme/static/src/img/formation_vtc/formation-en-ligne-vtc.png" class="img img-fluid mx-auto lazy" alt="Candidat vtc suit une formation en ligne sur pc" title="Candidat vtc suit une formation en ligne sur pc" style="text-align: center;" />
+                <img data-src="/mcm_website_theme/static/src/img/formation_vtc/formation-en-ligne-vtc.webp"
+                  data-srcSafari="/mcm_website_theme/static/src/img/formation_vtc/formation-en-ligne-vtc.png"
+                  class="img img-fluid mx-auto lazy" alt="Candidat vtc suit une formation en ligne sur pc"
+                  title="Candidat vtc suit une formation en ligne sur pc" style="text-align: center;" />
               </div>
             </div>
           </div>
@@ -402,44 +455,46 @@ h2{
           <div class="container">
             <div class="row align-items-center">
               <div class="col-lg-6 pb24 pt0">
-                <img data-src="/mcm_website_theme/static/src/img/formation_vtc/programme-de-formation-vtc.webp" data-srcSafari="/mcm_website_theme/static/src/img/formation_vtc/programme-de-formation-vtc.png" class="img img-fluid lazy" alt="Candidat suit sa formation vtc sur tablette" title="Candidat suit sa formation vtc sur tablette" style="text-align: center;" />
+                <img data-src="/mcm_website_theme/static/src/img/formation_vtc/programme-de-formation-vtc.webp"
+                  data-srcSafari="/mcm_website_theme/static/src/img/formation_vtc/programme-de-formation-vtc.png"
+                  class="img img-fluid lazy" alt="Candidat suit sa formation vtc sur tablette"
+                  title="Candidat suit sa formation vtc sur tablette" style="text-align: center;" />
               </div>
               <div class="col-lg-6" style="border-style: none; border-width: 0px">
                 <h3 style="font-size: 26px; font-weight:700; color: #000; margin-block-end: 1.2rem; ">
-                 
-                 Les modules de la formation VTC
+                  Les modules de la formation VTC
                 </h3>
                 <p>
-               Pendant votre formation, nous allons vous apprendre à maîtriser les modules suivants :  
+                  Pendant votre formation, nous allons vous apprendre à maîtriser les modules suivants :
                 </p>
                 <ul class="fa-ul" style="font-size:16.5px; line-height: 1.5rem;">
-                  <li style=" padding-block-end: 20px;">
-                    <i class="fa-li fa fa-square" style="margin-top:2px;"></i>
-                      Réglementation du transport public particulier de personnes
+                  <li style=" padding-block-end: 8px;">
+                    <i class="fa fa-chevron-right" style="    font-size: 13px; margin: 0px 7px 5px -17px;"></i>
+                    Réglementation du transport public particulier de personnes
                   </li>
-                  <li style=" padding-block-end: 20px;">
-                    <i class="fa-li fa fa-square" style="margin-top:2px;"></i>
-                      Sécurité routière
+                  <li style=" padding-block-end: 8px;">
+                    <i class="fa fa-chevron-right" style="    font-size: 13px; margin: 0px 7px 5px -17px;"></i>
+                    Sécurité routière
                   </li>
-                  <li style=" padding-block-end: 20px;">
-                    <i class="fa-li fa fa-square" style="margin-top:2px;"></i>
-                      Gestion
+                  <li style=" padding-block-end: 8px;">
+                    <i class="fa fa-chevron-right" style="    font-size: 13px; margin: 0px 7px 5px -17px;"></i>
+                    Gestion
                   </li>
-                  <li style=" padding-block-end: 20px;">
-                    <i class="fa-li fa fa-square" style="margin-top:2px;"></i>
-                      Français
+                  <li style=" padding-block-end: 8px;">
+                    <i class="fa fa-chevron-right" style="    font-size: 13px; margin: 0px 7px 5px -17px;"></i>
+                    Français
                   </li>
-                  <li style=" padding-block-end: 20px;">
-                    <i class="fa-li fa fa-square" style="margin-top:2px;"></i>
-                      Anglais
+                  <li style=" padding-block-end: 8px;">
+                    <i class="fa fa-chevron-right" style="    font-size: 13px; margin: 0px 7px 5px -17px;"></i>
+                    Anglais
                   </li>
-                  <li style=" padding-block-end: 20px;">
-                    <i class="fa-li fa fa-square" style="margin-top:2px;"></i>
-                      Développement commercial
+                  <li style=" padding-block-end: 8px;">
+                    <i class="fa fa-chevron-right" style="    font-size: 13px; margin: 0px 7px 5px -17px;"></i>
+                    Développement commercial
                   </li>
-                  <li style=" padding-block-end: 20px;">
-                    <i class="fa-li fa fa-square" style="margin-top:2px;"></i>
-                      Réglementation vtc
+                  <li style=" padding-block-end: 8px;">
+                    <i class="fa fa-chevron-right" style="    font-size: 13px; margin: 0px 7px 5px -17px;"></i>
+                    Réglementation vtc
                   </li>
 
                   <div style="margin-block-start: 20px; margin-left: -39px;">
@@ -483,7 +538,8 @@ h2{
                     <t t-foreach="mcm_products" t-as="product">
                       <t t-if="product.default_code=='vtc'">
                         <form action="/shop/cart/update" method="post" id="form-1-1">
-                          <input type="hidden" class="product_id" name="product_id" id="vtc_product" t-att-value="product.id" />
+                          <input type="hidden" class="product_id" name="product_id" id="vtc_product"
+                            t-att-value="product.id" />
                           <input type="hidden" name="promo" t-att-value="promo.id" t-if="promo" />
                           <h4>PACK VTC</h4>
                           <h5 style="color: #636161">Éligible au CPF</h5>
@@ -508,12 +564,13 @@ h2{
                             Je m'inscris
                                                 </a> -->
 
-                            <a class="animated-button-black" href="#pricing" onClick="(function(){packVtcPageFormationTaxi();document.getElementById('form-1-1').submit();return false;})();return false;">
+                            <a class="animated-button-black" href="#pricing"
+                              onClick="(function(){packVtcPageFormationTaxi();document.getElementById('form-1-1').submit();return false;})();return false;">
                               <span></span>
                               <span></span>
                               <span></span>
                               <span></span>
-              Je m'inscris
+                              Je m'inscris
                             </a>
 
                           </div>
@@ -539,34 +596,55 @@ h2{
 
               <div t-if="partenaire=='' or partenaire !='bolt'">
                 <a href="#">
-                  <img data-src="/mcm_website_theme/static/src/img/partenaires/cma.png" data-srcSafari="/mcm_website_theme/static/src/img/partenaires/cma.png" class="img img-fluid lazy" alt="Logo partenaire CMA" data-original-title="" title="CMA partenaire MCM ACADEMY" aria-describedby="tooltip623872" style="margin-top: 30px; width: 50%" />
+                  <img data-src="/mcm_website_theme/static/src/img/partenaires/cma.png"
+                    data-srcSafari="/mcm_website_theme/static/src/img/partenaires/cma.png" class="img img-fluid lazy"
+                    alt="Logo partenaire CMA" data-original-title="" title="CMA partenaire MCM ACADEMY"
+                    aria-describedby="tooltip623872" style="margin-top: 30px; width: 50%" />
                 </a>
               </div>
 
               <div t-if="partenaire=='' or not partenaire ">
                 <a href="https://bolt.eu/fr/">
-                  <img data-src="/mcm_website_theme/static/src/img/partenaires/bolt.png" data-srcSafari="/mcm_website_theme/static/src/img/partenaires/bolt.png" class="img img-fluid lazy" alt="Logo partenaire bolt" data-original-title="" title="Bolt partenaire MCM ACADEMY" aria-describedby="tooltip843653" style="margin-top: 30px; width: 38%" />
+                  <img data-src="/mcm_website_theme/static/src/img/partenaires/bolt.png"
+                    data-srcSafari="/mcm_website_theme/static/src/img/partenaires/bolt.png" class="img img-fluid lazy"
+                    alt="Logo partenaire bolt" data-original-title="" title="Bolt partenaire MCM ACADEMY"
+                    aria-describedby="tooltip843653" style="margin-top: 30px; width: 38%" />
                 </a>
               </div>
               <div t-if="partenaire=='bolt' ">
                 <a href="https://bolt.eu/fr/">
-                  <img data-src="/mcm_website_theme/static/src/img/partenaires/Bolt_logo.svg.png" data-srcSafari="/mcm_website_theme/static/src/img/partenaires/Bolt_logo.svg.png" class="img img-fluid lazy" alt="Logo partenaire bolt" data-original-title="" title="Bolt partenaire MCM ACADEMY" aria-describedby="tooltip843653" style="margin-top: 30px; width: 38%" />
+                  <img data-src="/mcm_website_theme/static/src/img/partenaires/Bolt_logo.svg.png"
+                    data-srcSafari="/mcm_website_theme/static/src/img/partenaires/Bolt_logo.svg.png"
+                    class="img img-fluid lazy" alt="Logo partenaire bolt" data-original-title=""
+                    title="Bolt partenaire MCM ACADEMY" aria-describedby="tooltip843653"
+                    style="margin-top: 30px; width: 38%" />
                 </a>
               </div>
               <div t-if="partenaire=='' or partenaire !='bolt'">
                 <a href="https://www.uber.com/fr/fr/">
-                  <img data-src="/mcm_website_theme/static/src/img/partenaires/uber.png" data-srcSafari="/mcm_website_theme/static/src/img/partenaires/uber.png" class="img img-fluid lazy" alt="Logo partenaire uber" data-original-title="" title="Uber partenaire MCM ACADEMY" aria-describedby="tooltip843653" style="margin-top: 30px; width: 50%" />
+                  <img data-src="/mcm_website_theme/static/src/img/partenaires/uber.png"
+                    data-srcSafari="/mcm_website_theme/static/src/img/partenaires/uber.png" class="img img-fluid lazy"
+                    alt="Logo partenaire uber" data-original-title="" title="Uber partenaire MCM ACADEMY"
+                    aria-describedby="tooltip843653" style="margin-top: 30px; width: 50%" />
                 </a>
               </div>
 
               <div t-if="partenaire=='' or not partenaire ">
                 <a href="https://www.comptable-douai.com/">
-                  <img data-src="/mcm_website_theme/static/src/img/partenaires/joel.png" data-srcSafari="/mcm_website_theme/static/src/img/partenaires/joel.png" class="img img-fluid lazy" alt="Logo partenaire Cabinet Comptable Joël Pruvost" data-original-title="" title="Cabinet Comptable Joël Pruvost partenaire Digimoov" aria-describedby="tooltip175558" style="margin-top: 30px; width: 68%" />
+                  <img data-src="/mcm_website_theme/static/src/img/partenaires/joel.png"
+                    data-srcSafari="/mcm_website_theme/static/src/img/partenaires/joel.png" class="img img-fluid lazy"
+                    alt="Logo partenaire Cabinet Comptable Joël Pruvost" data-original-title=""
+                    title="Cabinet Comptable Joël Pruvost partenaire Digimoov" aria-describedby="tooltip175558"
+                    style="margin-top: 30px; width: 68%" />
                 </a>
               </div>
               <div t-if="partenaire=='bolt'">
                 <a href="https://www.digimoov.fr/">
-                  <img data-src="/mcm_website_theme/static/src/img/partenaires/digimoov.png" data-srcSafari="/mcm_website_theme/static/src/img/partenaires/digimoov.png" class="img img-fluid lazy" alt="Logo partenaire Digimoov" data-original-title="" title="Digimoov partenaire MCM ACADEMY" aria-describedby="tooltip843653" style="margin-top: 30px; width: 46%" />
+                  <img data-src="/mcm_website_theme/static/src/img/partenaires/digimoov.png"
+                    data-srcSafari="/mcm_website_theme/static/src/img/partenaires/digimoov.png"
+                    class="img img-fluid lazy" alt="Logo partenaire Digimoov" data-original-title=""
+                    title="Digimoov partenaire MCM ACADEMY" aria-describedby="tooltip843653"
+                    style="margin-top: 30px; width: 46%" />
                 </a>
               </div>
             </div>
