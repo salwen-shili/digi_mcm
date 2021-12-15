@@ -161,7 +161,7 @@
                       <span></span>
                       <span></span>
                       <span></span>
-              S'inscrire
+                      S'inscrire
                     </a>
                   </div>
                 </div>
@@ -433,8 +433,13 @@
                   </li>
 
                   <div style="margin-block-start: 20px; margin-left: -39px">
-                    <a href="/mcm_website_theme/static/pdf/programme_de_formation_MCM_ACADEMY_2021.pdf" target="_blank">
-                      <button class="home-btn">En savoir plus</button>
+
+                    <a class="animated-button-black" href="/mcm_website_theme/static/pdf/programme_de_formation_MCM_ACADEMY_2021.pdf" target="_blank">
+                      <span></span>
+                      <span></span>
+                      <span></span>
+                      <span></span>
+                      En savoir plus
                     </a>
                   </div>
                 </ul>
@@ -513,11 +518,9 @@
             <div class="container">
               <div class="sh_title mt48 js-scroll fade-in-top">
                 <h3>
-                  <b
-                    >Un tout pour garantir votre réussite et avoir un résultat à
+                  <b>Un tout pour garantir votre réussite et avoir un résultat à
                     la hauteur de vos ambitions ! Maintenant, à vous de
-                    jouer!</b
-                  >
+                    jouer!</b>
                   <br />
                 </h3>
                 <h4 style="
