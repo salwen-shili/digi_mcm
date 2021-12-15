@@ -6,15 +6,13 @@
       <link rel="stylesheet" href="/mcm_website_theme/static/src/css/cta-button.css" />
 
       <script defer="defer" type="text/javascript" src="/digimoov_website_templates/static/src/js/lazy-min.js" />
-      <script type="text/javascript" src="/mcm_website_theme/static/src/js/msAds.js" async="async"/>
+      <script type="text/javascript" src="/mcm_website_theme/static/src/js/msAds.js" async="async" />
 
       <style>
         h1{
-  text-transform: uppercase;
-}
-h2{
-  text-transform: uppercase;
-}
+        text-transform: uppercase;
+      }
+    
         #sh_corpomate_theme_section_184 .sh_content .sh_more_btn.sh_btn_cm_8 {
           background: black;
           border: 2px solid #0a0a0a;
@@ -32,8 +30,10 @@ h2{
      
           
         .h2 {
-          font-size: 2.1875rem !important;
-          font-weight: 700 !important;
+          
+          text-transform: uppercase;
+            font-size: 30px !important;
+            font-weight: 700 !important;
         }
         .p {
           color: rgb(66, 66, 66);
@@ -165,7 +165,7 @@ h2{
                 <div class="bg-white card">
                   <img class="card-img-top lazy" data-srcSafari="/mcm_website_theme/static/src/img/financement/CPF_comment_ça_fonctionne.png" data-src="/mcm_website_theme/static/src/img/financement/CPF_comment_ça_fonctionne.webp" alt="Interface mon compte de formation" title="Interface mon compte de formation" aria-describedby="tooltip14515" />
                   <div class="card-body">
-                    <h3 class="card-title" style="font-size: 24px; font-weight: 600">
+                    <h3 class="card-title" style="font-size: 22px; font-weight: 600">
                       CPF: Comment est-ce que ça fonctionne?
                     </h3>
 
@@ -182,7 +182,7 @@ h2{
                 <div class="bg-white card">
                   <img class="card-img-top lazy" data-src="/mcm_website_theme/static/src/img/financement/Mon-compte-de-formation.webp" data-srcSafari="/mcm_website_theme/static/src/img/financement/Mon-compte-de-formation.png" alt="interface mobile mon compte de formation" title="Interface mobile mon compte de formation" aria-describedby="tooltip14515" />
                   <div class="card-body">
-                    <h3 class="card-title" style="font-size: 24px; font-weight: 600">
+                    <h3 class="card-title" style="font-size: 22px; font-weight: 600">
                       Mon compte de formation
                     </h3>
 
@@ -199,7 +199,7 @@ h2{
                 <div class="bg-white card">
                   <img class="card-img-top lazy" data-srcSafari="/mcm_website_theme/static/src/img/financement/Financer-votre-formation-cpf.webp" data-src="/mcm_website_theme/static/src/img/financement/Financer-votre-formation-cpf.webp" alt="Interface mobile financement formation taxi cpf" title="Interface mobile financement formation taxi cpf" aria-describedby="tooltip14515" />
                   <div class="card-body">
-                    <h3 class="card-title" style="font-size: 24px; font-weight: 600">
+                    <h3 class="card-title" style="font-size: 22px; font-weight: 600">
                       Financer votre formation
                     </h3>
                     <p class="p" style="line-height: 1.88182">
@@ -260,7 +260,8 @@ h2{
           <div class="container">
             <div class="align-items-center row">
               <div class="col-lg-12 pb16 pt16" style="border-style: none; border-width: 0px">
-                <h3 style="color: rgb(0, 0, 0); font-size: 24px">
+
+                <h3 style="color: rgb(0, 0, 0); font-size: 24px; font-weight: 700">
                   Quelles sont les formations éligibles au CPF ?
                 </h3>
 
@@ -278,7 +279,9 @@ h2{
                   Soyez donc vigilant en choisissant votre formation.
                   <br />
                   Pour qu’une formation soit éligible, elle doit respecter l’un
-                  des critères suivants de l’article <b>L6323-6</b> :
+                  des critères suivants de l’article
+                  <b>L6323-6</b>
+                  :
                   <br />
                   <ul>
                     <li style="font-size: 18px;">L’obtention d’un titre professionnel, d’un diplôme ou d’un
