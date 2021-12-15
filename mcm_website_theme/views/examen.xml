@@ -246,10 +246,13 @@
                     l'épreuve pratique d'admission.
                   </li>
 
-                  <a href="/blog/blog-taxi-10/post/tout-savoir-sur-l-examen-taxi-vtc-moto-taxi-27">
-                    <button class="home-btn" style="margin: 20px 0px 30px">
-                      Plus de détails
-                  </button>
+
+                  <a class="animated-button-yellow" href="/blog/blog-taxi-10/post/tout-savoir-sur-l-examen-taxi-vtc-moto-taxi-27">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    Plus de détails
                   </a>
                 </ul>
               </div>
@@ -284,10 +287,13 @@
                     En capacité physique de devenir chauffeur professionnel.
                   </li>
 
-                  <a href="/blog/blog-taxi-10/post/tout-savoir-sur-l-examen-taxi-vtc-moto-taxi-27">
-                    <button class="home-btn" style="margin: 17px 0px">
-                      En savoir plus
-                  </button>
+
+                  <a class="animated-button-yellow" href="/blog/blog-taxi-10/post/tout-savoir-sur-l-examen-taxi-vtc-moto-taxi-27">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    En savoir plus
                   </a>
                 </ul>
               </div>
@@ -423,8 +429,13 @@
                   coefficients, la notation et les modalités d'évaluation en
                   cliquant sur le bouton ci-dessous :
               </p>
-                <a href="/mcm_website_theme/static/src/img/examen/GRILLE_DE_NOTATION_EXAMEN_TAXI_VTC_MCMACADEMY.png">
-                  <button class="home-btn mb32">En savoir plus</button>
+
+                <a class="animated-button-yellow" href="/mcm_website_theme/static/src/img/examen/GRILLE_DE_NOTATION_EXAMEN_TAXI_VTC_MCMACADEMY.png">
+                  <span></span>
+                  <span></span>
+                  <span></span>
+                  <span></span>
+                  En savoir plus
                 </a>
               </div>
               <div class="col-lg-6 pb24 pt0 js-scroll slide-right">
@@ -475,6 +486,8 @@
                 <a href="#">
                   <button class="home-btn">En Savoir plus</button>
                 </a>
+
+
               </div>
             </div>
           </div>

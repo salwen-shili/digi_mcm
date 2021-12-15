@@ -10,7 +10,6 @@
         <link rel="stylesheet" href="/mcm_website_theme/static/src/css/cta-button.css" />
 
 
-
         <style>
           #sh_corpomate_theme_section_258 {
             padding: 0 !important;
@@ -160,7 +159,7 @@
                       <span></span>
                       <span></span>
                       <span></span>
-              S'inscrire
+                      S'inscrire
                     </a>
 
 
@@ -224,19 +223,19 @@
                   <ul class="fa-ul" style="font-size:16.5px; line-height: 1.5rem;">
                     <li>
                       <i class="fa fa-chevron-right" style="font-size: 13px; margin: 0px 7px 5px -17px"></i>
-                    Permis B non probatoire
+                      Permis B non probatoire
                     </li>
                     <li>
                       <i class="fa fa-chevron-right" style="font-size: 13px; margin: 0px 7px 5px -17px"></i>
-                    Attestation d’aptitude médicale auprès d’un médecin agréé par la préfecture
+                      Attestation d’aptitude médicale auprès d’un médecin agréé par la préfecture
                     </li>
                     <li>
                       <i class="fa fa-chevron-right" style="font-size: 13px; margin: 0px 7px 5px -17px"></i>
-                    Casier judiciaire B2 non affecté de certaines condamnations
+                      Casier judiciaire B2 non affecté de certaines condamnations
                     </li>
                     <li>
                       <i class="fa fa-chevron-right" style="font-size: 13px; margin: 0px 7px 5px -17px"></i>
-                    Réussite à l’examen blanc MCM Academy
+                      Réussite à l’examen blanc MCM Academy
                     </li>
                   </ul>
                 </p>
@@ -248,16 +247,21 @@
                   <ul class="fa-ul" style="font-size:16.5px; line-height: 1.5rem;">
                     <li>
                       <i class="fa fa-chevron-right" style="font-size: 13px; margin: 0px 7px 5px -17px"></i>
-                    Acquérir les savoirs, savoir-être et savoir-faire nécessaires à la réussite de l’examen VTC
+                      Acquérir les savoirs, savoir-être et savoir-faire nécessaires à la réussite de l’examen VTC
                     </li>
                     <li>
                       <i class="fa fa-chevron-right" style="font-size: 13px; margin: 0px 7px 5px -17px"></i>
-                    Préparation aux épreuves d’admissibilité de l’examen VTC (théorie)
+                      Préparation aux épreuves d’admissibilité de l’examen VTC (théorie)
                     </li>
 
                     <div style="margin-block-start: 20px; margin-left: -39px;">
-                      <a href="/mcm_website_theme/static/mcm_website_theme/static/pdf/programme_de_formation_MCM_ACADEMY_2021.pdf">
-                        <button class="home-btn">En savoir plus</button>
+
+                      <a class="animated-button-yellow" href="/mcm_website_theme/static/mcm_website_theme/static/pdf/programme_de_formation_MCM_ACADEMY_2021.pdf">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        En savoir plus
                       </a>
 
                     </div>
@@ -467,17 +471,20 @@
                   </li>
 
                   <div style="margin-block-start: 20px; margin-left: -39px;">
-                    <a href="/mcm_website_theme/static/pdf/programme_de_formation_MCM_ACADEMY_2021.pdf">
-                      <button class="home-btn">En savoir plus</button>
-                    </a>
 
+                    <a class="animated-button-black" href="/mcm_website_theme/static/pdf/programme_de_formation_MCM_ACADEMY_2021.pdf">
+                      <span></span>
+                      <span></span>
+                      <span></span>
+                      <span></span>
+                      En savoir plus
+                    </a>
                   </div>
                 </ul>
               </div>
             </div>
           </div>
         </section>
-
 
 
         <div id="pricing" class="js-scroll fade-in-top">
