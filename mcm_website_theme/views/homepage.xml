@@ -68,8 +68,6 @@
                 <section class="container pt40 pb32 js-scroll fade-in-bottom">
 
                     <div class="row align-items-center justify-content-center">
-
-
                         <div class=" col-md-3 col-sm-12 text-center mb-4 mb-md-0  ">
                             <img class="img-fluid" style="width: 100px;" src="/mcm_website_theme/static/src/img/formation-éligible-au-compte-personnel-de-formation.png" />
                         </div>
@@ -97,7 +95,7 @@
                 <section id="sh_corpomate_theme_section_92" data-name="Contact Us Snippet 2" class="bg-100">
                     <div class="container" style="border-style: none; border-width: 0px">
                         <div class="row">
-                            <div class="col-md-6 col-sm-6 col-12 col-lg-4" style="border-style: none; border-width: 0px">
+                            <div class="col-md-6 col-sm-6 col-12 col-lg-4 js-scroll fade-in-top" style="border-style: none; border-width: 0px">
                                 <div class="sh_content">
                                     <div class="sh_content_box">
                                         <div class="sh_description">
@@ -125,7 +123,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-6 col-sm-6 col-12 col-lg-4" style="border-style: none; border-width: 0px">
+                            <div class="col-md-6 col-sm-6 col-12 col-lg-4 js-scroll fade-in-top" style="border-style: none; border-width: 0px">
                                 <div class="sh_content">
                                     <div class="sh_content_box">
                                         <div class="sh_description">
@@ -150,7 +148,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-6 col-sm-6 col-12 col-lg-4" style="border-style: none; border-width: 0px">
+                            <div class="col-md-6 col-sm-6 col-12 col-lg-4 js-scroll fade-in-top" style="border-style: none; border-width: 0px">
                                 <div class="sh_content">
                                     <div class="sh_content_box">
                                         <div class="sh_description">
@@ -185,14 +183,14 @@
                 <!-- section 3  -->
                 <section class="pt32 pb0" data-name="Title">
                     <div class="container">
-                        <div class="row s_nb_column_fixed">
-                            <div class="col-lg-12 s_title pt16 pb16" style="text-align: center">
+                        <div class="row s_nb_column_fixed ">
+                            <div class="col-lg-12 s_title pt16 pb16 js-scroll fade-in-top" style="text-align: center">
                                 <h2 class="s_title_default">
                                     <b>Une formation flexible et pertinente</b>
                                     <br />
                                 </h2>
                             </div>
-                            <div class="pt32 pb32 col-lg-4" style="border-style: none; border-width: 0px">
+                            <div class="pt32 pb32 col-lg-4 js-scroll slide-left" style="border-style: none; border-width: 0px">
                                 <p class="lead">
                                     <span class="d-block fa fa-rocket mx-auto fa-2x" data-original-title="" title="" aria-describedby="tooltip803873" style="color: rgb(0, 0, 0)" />
                                     <span style="color: rgb(0, 0, 0); font-size: 18px">
@@ -207,13 +205,13 @@
                                     <br />
                                 </p>
                             </div>
-                            <div class="pt32 pb32 col-lg-4" style="border-style: none; border-width: 0px">
+                            <div class="pt32 pb32 col-lg-4 js-scroll fade-in-top" style="border-style: none; border-width: 0px">
                                 <p class="lead">
                                     <img class="img-fluid o_we_custom_image lazy" data-srcSafari="/mcm_website_theme/static/src/img/homepage/im 1.png" data-src="/mcm_website_theme/static/src/img/homepage/im 1.webp" data-original-title="" title="Formation Flexible et Pertinente chez Mcm Academy" alt="Passer formation VTC, Taxi ou Moto-Taxi chez Mcm Academy" aria-describedby="tooltip951588" />
                                     <br />
                                 </p>
                             </div>
-                            <div class="pt32 pb32 col-lg-4" style="border-style: none; border-width: 0px">
+                            <div class="pt32 pb32 col-lg-4 js-scroll slide-right" style="border-style: none; border-width: 0px">
                                 <p class="lead">
                                     <span class="d-block fa fa-flag mx-auto fa-2x" data-original-title="" title="" aria-describedby="tooltip879316" style="color: rgb(0, 0, 0)" />
                                     <br />
@@ -232,7 +230,7 @@
 
                 <section id="sh_corpomate_theme_section_151" data-name="Heading" class="bg-100 pb8 pt32">
                     <div class="container">
-                        <div class="sh_title sh_animation_part">
+                        <div class="sh_title sh_animation_part js-scroll fade-in-top">
                             <h2>
                                 La démarche à suivre pour obtenir votre carte professionnelle
                             </h2>
@@ -241,7 +239,7 @@
                 </section>
                 <section id="sh_corpomate_theme_section_258" class="sh_animation_part bg-100 pb32" data-name="practice" style="">
                     <div class="container">
-                        <div class="row">
+                        <div class="row js-scroll fade-in-left">
                             <div class="col-lg-3 col-md-6 col-sm-6 col-12 sh_animation_part" style="border-style: none; border-width: 0px">
                                 <div class="sh_content">
                                     <div class="sh_icon">
@@ -300,7 +298,7 @@
                 </section>
                 <section class="pt32 pb4 bg-200" data-name="Title">
                     <div class="container">
-                        <div class="row s_nb_column_fixed">
+                        <div class="row s_nb_column_fixed js-scroll fade-in-top">
                             <div class="col-lg-12 s_title pt16 pb8" style="text-align: center; border-style: none; border-width: 0px">
                                 <h2 class="s_title_default">
                                     <b>Avec MCM Academy,&amp;nbsp;vous choisissez le meilleur !</b>
@@ -311,7 +309,7 @@
                 </section>
                 <section class="s_features pt32 pb32" data-name="Features">
                     <div class="container">
-                        <div class="row">
+                        <div class="row js-scroll fade-in-top">
                             <div class="pb32 text-center pt0 col-lg-4" style="border-style: none; border-width: 0px">
                                 <i class="fa fa-2x fa-clock-o m-3 rounded-circle" data-original-title="" title="" aria-describedby="tooltip924651" style="                   background-color: rgb(255, 255, 255);                   color: rgb(0, 0, 0);                 " />
                                 <h3>
@@ -354,7 +352,7 @@
                     <div class="container">
                         <div class="row clearfix">
                             <div class="title-column col-lg-5 col-md-12 col-sm-12">
-                                <div class="inner-column">
+                                <div class="inner-column js-scroll slide-left">
                                     <h4 style="font-size: 35px">
 
                                         Des centaines de
@@ -370,7 +368,7 @@
                                 </div>
                             </div>
                             <div class="content-column col-lg-7 col-md-12 col-sm-12">
-                                <div class="inner-column">
+                                <div class="inner-column js-scroll slide-left">
                                     <div class="row clearfix">
                                         <div class="col-md-4 col-sm-12  pt32">
                                             <div class="sh_counter">
@@ -409,7 +407,7 @@
                 <!-- section under counter-->
                 <section id="sh_corpomate_theme_section_155" data-name="Heading" class="pb24 bg-100 pt16" style="">
                     <div class="container" style="border-style: none; border-width: 0px;">
-                        <div class="row">
+                        <div class="row js-scroll fade-in-top">
                             <div class=" col-md-3 col-sm-12 text-center mb-4 mb-md-0 ">
                                 <img class="img-fluid" src="/mcm_website_theme/static/src/img/avis_google.png" style="width: 182px;" />
                             </div>
@@ -450,7 +448,7 @@
                     <input t-att-value="request.website.microsoft_tracking_key" id="microsoft_tracking_key" type="hidden" />
                     <section id="sh_corpomate_theme_section_188" class="sh_animation_part" data-name="Pricing">
                         <div class="container">
-                            <div class="sh_title">
+                            <div class="sh_title js-scroll fade-in-top">
                                 <h2>
                                     <b>Inscrivez-vous dès maintenant !</b>
                                     <br />
@@ -463,7 +461,7 @@
                                 </p>
                             </div>
                             <div class="row">
-                                <div class="col-md-4 sh_animation_part" style="border-style: none; border-width: 0px">
+                                <div class="col-md-4 sh_animation_part js-scroll slide-left" style="border-style: none; border-width: 0px">
                                     <div class="sh_pricing">
                                         <t t-foreach="mcm_products" t-as="product">
                                             <t t-if="product.default_code=='vtc'">
@@ -524,7 +522,7 @@
                                         </t>
                                     </div>
                                 </div>
-                                <div class="col-md-4 sh_animation_part">
+                                <div class="col-md-4 sh_animation_part js-scroll fade-in-top">
                                     <div class="sh_pricing">
                                         <t t-foreach="mcm_products" t-as="product">
                                             <t t-if="product.default_code=='taxi'">
@@ -574,7 +572,7 @@
                                         </t>
                                     </div>
                                 </div>
-                                <div class="col-md-4 sh_animation_part">
+                                <div class="col-md-4 sh_animation_part js-scroll slide-right">
                                     <div class="sh_pricing">
                                         <t t-foreach="mcm_products" t-as="product">
                                             <t t-if="product.default_code=='vmdtr'">
@@ -630,7 +628,7 @@
                 <!-- FIN PRICING TABLE-->
                 <section class="clients s_references bg-200 pt16 pb16" data-name="References">
                     <center>
-                        <div class="container">
+                        <div class="container js-scroll fade-in-top">
                             <div class="center-logo">
                                 <!-- <div t-if="partenaire=='' or not partenaire or partenaire=='bolt'">
                                     <a href="https://www.digimoov.fr/">

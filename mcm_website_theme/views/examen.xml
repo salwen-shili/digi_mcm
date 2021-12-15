@@ -154,8 +154,11 @@
                     <h1 class="title-mcm slider-text-info">
                       EXAMEN
                       <br />
-                      <span class="subtitle-mcm-formation">TAXI/VTC/<br/>
-VMDTR</span>
+                      <span class="subtitle-mcm-formation">
+                        TAXI/VTC/
+                        <br />
+                        VMDTR
+                      </span>
                     </h1>
                     <br />
                     <p class="heading text-center">
@@ -169,7 +172,7 @@ VMDTR</span>
                       <span></span>
                       <span></span>
                       <span></span>
-              S'inscrire
+                      S'inscrire
                     </a>
                   </div>
                 </div>
@@ -213,233 +216,232 @@ VMDTR</span>
                   <li style="padding-block-end: 10px">
                     <i class="fa fa-chevron-right" style="margin-top: 2px"></i>
                     Vous devez joindre vos pièces justificatives directement en
-                    ligne. <br />
-                  <a style="color: #085294" href="/mcm_website_theme/static/pdf/EVALBOX INSCRIPTION ET REINSCRIPTION.pdf">
+                    ligne.
+                    <br />
+                    <a style="color: #085294" href="/mcm_website_theme/static/pdf/EVALBOX INSCRIPTION ET REINSCRIPTION.pdf">
                       ► liste des pièces à télécharger
                   </a>
                     (attention: ne télécharger que les originaux. Les
                     photocopies déchirées seront automatiquement refusées.)
-                </li>
-                <li style="padding-block-end: 10px">
-                  <i class="fa fa-chevron-right" style="margin-top: 2px"></i>
+                  </li>
+                  <li style="padding-block-end: 10px">
+                    <i class="fa fa-chevron-right" style="margin-top: 2px"></i>
                     Pour les candidats se présentant à l'ensemble des épreuves
                     d'admissibilité et à l'épreuve d'admission, il faut prévoir
                     :
-                </li>
-                <li style="padding-block-end: 10px">
-                  <i class="fa fa-chevron-right" style="margin-top: 2px"></i>
+                  </li>
+                  <li style="padding-block-end: 10px">
+                    <i class="fa fa-chevron-right" style="margin-top: 2px"></i>
                     206 € de frais d'inscription aux 7 épreuves théoriques
                     d'admissibilité et à l'épreuve pratique.
-                </li>
-                <li style="padding-block-end: 10px">
-                  <i class="fa fa-chevron-right" style="margin-top: 2px"></i>
+                  </li>
+                  <li style="padding-block-end: 10px">
+                    <i class="fa fa-chevron-right" style="margin-top: 2px"></i>
                     101 € de frais d'inscription à une 2e ou 3e présentation à
                     l'épreuve pratique d'admission.
-                </li>
+                  </li>
 
-                <a href="/blog/blog-taxi-10/post/tout-savoir-sur-l-examen-taxi-vtc-moto-taxi-27">
-                  <button class="home-btn" style="margin: 20px 0px">
+                  <a href="/blog/blog-taxi-10/post/tout-savoir-sur-l-examen-taxi-vtc-moto-taxi-27">
+                    <button class="home-btn" style="margin: 20px 0px 30px">
                       Plus de détails
                   </button>
-                </a>
-              </ul>
+                  </a>
+                </ul>
+              </div>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      <!-- La Formation MOTO-TAXI -->
-      <section class="s_text_image pt0 pb4">
-        <div class="container">
-          <div class="row align-items-center">
-            <div class="col-lg-6 js-scroll slide-left" style="border-style: none; border-width: 0px">
-              <h3 class="s_title_default pb16" style="font-size: 26px; font-weight: 700">
+        <!-- La Formation MOTO-TAXI -->
+        <section class="s_text_image pt0 pb4">
+          <div class="container">
+            <div class="row align-items-center">
+              <div class="col-lg-6 js-scroll slide-left" style="border-style: none; border-width: 0px">
+                <h3 class="s_title_default pb16" style="font-size: 26px; font-weight: 700">
                   Quelles sont les conditions pour passer l'examen TAXI/VTC ?
               </h3>
-              <p>
+                <p>
                   Pour s'inscrire à l'examen TAXI/VTC, le candidat doit être :
               </p>
-              <ul class="fa-ul" style="font-size: 16.5px; line-height: 1.5rem">
-                <li style="padding-block-end: 10px">
-                  <i class="fa fa-chevron-right" style="margin-top: 2px"></i>
+                <ul class="fa-ul" style="font-size: 16.5px; line-height: 1.5rem">
+                  <li style="padding-block-end: 10px">
+                    <i class="fa fa-chevron-right" style="margin-top: 2px"></i>
                     Européen ou avoir un titre de séjour lui permettant
                     d'exercer en France.
-                </li>
-                <li style="padding-block-end: 10px">
-                  <i class="fa fa-chevron-right" style="margin-top: 2px"></i>
+                  </li>
+                  <li style="padding-block-end: 10px">
+                    <i class="fa fa-chevron-right" style="margin-top: 2px"></i>
                     Titulaire d'un permis B depuis au moins 3 ans et non soumis
                     à une période probatoire.
-                </li>
-                <li style="padding-block-end: 10px">
-                  <i class="fa fa-chevron-right" style="margin-top: 2px"></i>
+                  </li>
+                  <li style="padding-block-end: 10px">
+                    <i class="fa fa-chevron-right" style="margin-top: 2px"></i>
                     En capacité physique de devenir chauffeur professionnel.
-                </li>
+                  </li>
 
-                <a href="/blog/blog-taxi-10/post/tout-savoir-sur-l-examen-taxi-vtc-moto-taxi-27">
-                  <button class="home-btn" style="margin: 17px 0px">
+                  <a href="/blog/blog-taxi-10/post/tout-savoir-sur-l-examen-taxi-vtc-moto-taxi-27">
+                    <button class="home-btn" style="margin: 17px 0px">
                       En savoir plus
                   </button>
-                </a>
-              </ul>
-            </div>
-            <div class="col-lg-6 pb24 pt0 js-scroll slide-right">
-              <img data-src="/mcm_website_theme/static/src/img/examen/3.webp" data-srcSafari="//mcm_website_theme/static/src/img/examen/3.png" class="img img-fluid mx-auto lazy res_height" alt="Devenir conducteur taxi" title="Devenir conducteur taxi" style="text-align: center" />
+                  </a>
+                </ul>
+              </div>
+              <div class="col-lg-6 pb24 pt0 js-scroll slide-right">
+                <img data-src="/mcm_website_theme/static/src/img/examen/3.webp" data-srcSafari="//mcm_website_theme/static/src/img/examen/3.png" class="img img-fluid mx-auto lazy res_height" alt="Devenir conducteur taxi" title="Devenir conducteur taxi" style="text-align: center" />
+              </div>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      <!-- Les modules -->
-      <section class="s_three_columns bg-200 pb32 pt32" data-name="Columns">
-        <div class="container">
-          <h3 style="text-align: center; margin: 26px; font-weight: 600">
+        <!-- Les modules -->
+        <section class="s_three_columns bg-200 pb32 pt32" data-name="Columns">
+          <div class="container">
+            <h3 style="text-align: center; margin: 26px; font-weight: 600">
               Quels sont les modules d’examens pour obtenir le Certificat de
               Capacité Professionnelle ?
           </h3>
-          <div class="row d-flex align-items-stretch">
-            <div class="col-lg-4 s_col_no_bgcolor pt16 pb16" style="border-style: none; border-width: 0px">
-              <div class="card bg-white js-scroll slide-left">
-                <img class="card-img-top lazy" data-src="/mcm_website_theme/static/src/img/formation_taxi/Formation-initiale-au-métier-de-TAXI.webp" data-srcSafari="/mcm_website_theme/static/src/img/formation_vtc/Formation-initiale-au-métier-de-TAXI.png" alt="formation taxi" title="Formation taxi" />
-                <div class="card-body js-scroll">
-                  <h3 class="card-title">
+            <div class="row d-flex align-items-stretch">
+              <div class="col-lg-4 s_col_no_bgcolor pt16 pb16" style="border-style: none; border-width: 0px">
+                <div class="card bg-white js-scroll slide-left">
+                  <img class="card-img-top lazy" data-src="/mcm_website_theme/static/src/img/formation_taxi/Formation-initiale-au-métier-de-TAXI.webp" data-srcSafari="/mcm_website_theme/static/src/img/formation_vtc/Formation-initiale-au-métier-de-TAXI.png" alt="formation taxi" title="Formation taxi" />
+                  <div class="card-body js-scroll">
+                    <h3 class="card-title">
                       Les modules théoriques communs d’admissibilité pour les
                       formations Taxi, VTC , et Taxi Moto sont les suivants :
                   </h3>
-                  <p class="">
+                    <p class="">
                       Pendant votre formation, nous allons vous apprendre à
                       maîtriser les modules suivants :
                   </p>
-                  <ul class="fa-ul" style="font-size: 16.5px; line-height: 1.5rem">
-                    <li style="padding-block-end: 10px">
-                      <i class="fa fa-chevron-right" style="margin-top: 2px"></i>
+                    <ul class="fa-ul" style="font-size: 16.5px; line-height: 1.5rem">
+                      <li style="padding-block-end: 10px">
+                        <i class="fa fa-chevron-right" style="margin-top: 2px"></i>
                         Gestion
-                    </li>
-                    <li style="padding-block-end: 10px">
-                      <i class="fa fa-chevron-right" style="margin-top: 2px"></i>
+                      </li>
+                      <li style="padding-block-end: 10px">
+                        <i class="fa fa-chevron-right" style="margin-top: 2px"></i>
                         Sécurité
-                    </li>
-                    <li style="padding-block-end: 10px">
-                      <i class="fa fa-chevron-right" style="margin-top: 2px"></i>
-
+                      </li>
+                      <li style="padding-block-end: 10px">
+                        <i class="fa fa-chevron-right" style="margin-top: 2px"></i>
                         Français
-                    </li>
-                    <li style="padding-block-end: 10px">
-                      <i class="fa fa-chevron-right" style="margin-top: 2px"></i>
+                      </li>
+                      <li style="padding-block-end: 10px">
+                        <i class="fa fa-chevron-right" style="margin-top: 2px"></i>
                         Anglais
-                    </li>
-                  </ul>
+                      </li>
+                    </ul>
+                  </div>
                 </div>
               </div>
-            </div>
-            <div class="col-lg-4 s_col_no_bgcolor pt16 pb16" style="border-style: none; border-width: 0px">
-              <div class="card bg-white js-scroll fade-in-top">
-                <img class="card-img-top lazy" data-src="/mcm_website_theme/static/src/img/formation_taxi/Formation-passerelle-VTC-TAXI.webp" data-srcSafari="/mcm_website_theme/static/src/img/formation_vtc/Formation-passerelle-VTC-TAXI.png" alt="Rétroviseur taxi" title="Rétroviseur taxi" />
-                <div class="card-body">
-                  <h3 class="card-title">Modules spécifiques VTC</h3>
+              <div class="col-lg-4 s_col_no_bgcolor pt16 pb16" style="border-style: none; border-width: 0px">
+                <div class="card bg-white js-scroll fade-in-top">
+                  <img class="card-img-top lazy" data-src="/mcm_website_theme/static/src/img/formation_taxi/Formation-passerelle-VTC-TAXI.webp" data-srcSafari="/mcm_website_theme/static/src/img/formation_vtc/Formation-passerelle-VTC-TAXI.png" alt="Rétroviseur taxi" title="Rétroviseur taxi" />
+                  <div class="card-body">
+                    <h3 class="card-title">Modules spécifiques VTC</h3>
 
-                  <p class="">
+                    <p class="">
                       Les modules spécifiques d'accès à la profession de
                       conducteur de VTC sont les suivants :
                   </p>
-                  <ul class="fa-ul" style="font-size: 16.5px; line-height: 1.5rem">
-                    <li style="padding-block-end: 10px">
-                      <i class="fa fa-chevron-right" style="margin-top: 2px"></i>
+                    <ul class="fa-ul" style="font-size: 16.5px; line-height: 1.5rem">
+                      <li style="padding-block-end: 10px">
+                        <i class="fa fa-chevron-right" style="margin-top: 2px"></i>
                         Développement commercial en gestion propre à l’activité
                         de VTC
-                    </li>
-                    <li style="padding-block-end: 10px">
-                      <i class="fa fa-chevron-right" style="margin-top: 2px"></i>
+                      </li>
+                      <li style="padding-block-end: 10px">
+                        <i class="fa fa-chevron-right" style="margin-top: 2px"></i>
                         Réglementation nationale spécifique de l’activité de VTC
-                    </li>
-                  </ul>
+                      </li>
+                    </ul>
+                  </div>
                 </div>
               </div>
-            </div>
-            <div class="col-lg-4 s_col_no_bgcolor pt16 pb16" style="border-style: none; border-width: 0px">
-              <div class="card bg-white js-scroll slide-right">
-                <img class="card-img-top lazy" data-src="/mcm_website_theme/static/src/img/formation_taxi/Formation-continue-au-métier-de-TAXI.webp" data-srcSafari="/mcm_website_theme/static/src/img/formation_vtc/Formation-continue-au-métier-de-TAXI.png" alt="Candidat et formateur au métier de taxi" title="Candidat et formateur au métier de taxi" />
-                <div class="card-body">
-                  <h3 class="card-title">Modules spécifiques TAXI</h3>
+              <div class="col-lg-4 s_col_no_bgcolor pt16 pb16" style="border-style: none; border-width: 0px">
+                <div class="card bg-white js-scroll slide-right">
+                  <img class="card-img-top lazy" data-src="/mcm_website_theme/static/src/img/formation_taxi/Formation-continue-au-métier-de-TAXI.webp" data-srcSafari="/mcm_website_theme/static/src/img/formation_vtc/Formation-continue-au-métier-de-TAXI.png" alt="Candidat et formateur au métier de taxi" title="Candidat et formateur au métier de taxi" />
+                  <div class="card-body">
+                    <h3 class="card-title">Modules spécifiques TAXI</h3>
 
-                  <p class="">
+                    <p class="">
                       Les épreuves spécifiques d'accès à la profession de
                       conducteur de TAXI sont les suivantes :
                   </p>
-                  <ul class="fa-ul" style="font-size: 16.5px; line-height: 1.5rem">
-                    <li style="padding-block-end: 10px">
-                      <i class="fa fa-chevron-right" style="margin-top: 2px"></i>
+                    <ul class="fa-ul" style="font-size: 16.5px; line-height: 1.5rem">
+                      <li style="padding-block-end: 10px">
+                        <i class="fa fa-chevron-right" style="margin-top: 2px"></i>
                         Connaissance du territoire et de la réglementation
                         locale
-                    </li>
-                    <li style="padding-block-end: 10px">
-                      <i class="fa fa-chevron-right" style="margin-top: 2px"></i>
+                      </li>
+                      <li style="padding-block-end: 10px">
+                        <i class="fa fa-chevron-right" style="margin-top: 2px"></i>
                         Réglementation nationale de l’activité de TAXI et
                         gestion propre à cette activité
-                    </li>
-                  </ul>
+                      </li>
+                    </ul>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      <section class="s_text_image pt0 pb4">
-        <div class="container">
-          <div class="row align-items-center">
-            <div class="col-lg-6 js-scroll js-scroll slide-left" style="border-style: none; border-width: 0px">
-              <h3 class="s_title_default pb16" style="font-size: 26px; font-weight: 700">
+        <section class="s_text_image pt0 pb4">
+          <div class="container">
+            <div class="row align-items-center">
+              <div class="col-lg-6 js-scroll js-scroll slide-left" style="border-style: none; border-width: 0px">
+                <h3 class="s_title_default pb16" style="font-size: 26px; font-weight: 700">
                   Les épreuves pratiques communs d’admission des formations Taxi
                   et VTC :
               </h3>
-              <ul class="fa-ul" style="font-size: 16.5px; line-height: 1.5rem">
-                <li style="padding-block-end: 10px">
-                  <i class="fa fa-chevron-right" style="margin-top: 2px"></i>
-                    1 - PREPARATION ET REALISATION DU PARCOURS
-                </li>
-                <li style="padding-block-end: 10px">
-                  <i class="fa fa-chevron-right" style="margin-top: 2px"></i>
-                    2 - SECURITE ET SOUPLESSE DU PARCOURS, RESPECT DU CODE DE LA
-                    ROUTE
-                </li>
-                <li style="padding-block-end: 10px">
-                  <i class="fa fa-chevron-right" style="margin-top: 2px"></i>
-                    3 -QUALITE DE LA PRISE EN CHARGE ET DE LA RELATION CLIENT
-                </li>
-                <li style="padding-block-end: 10px">
-                  <i class="fa fa-chevron-right" style="margin-top: 2px"></i>
-                    4 - FACTURATION ET UTILISATION DES EQUIPEMENTS SPECIAUX
-                </li>
-              </ul>
-              <p>
+                <ul class="fa-ul" style="font-size: 16.5px; line-height: 1.5rem">
+                  <li style="padding-block-end: 10px">
+                    <i class="fa fa-chevron-right" style="margin-top: 2px"></i>
+                    Préparation et realisation du parcours
+                  </li>
+                  <li style="padding-block-end: 10px">
+                    <i class="fa fa-chevron-right" style="margin-top: 2px"></i>
+                    Sécurite et souplesse du parcours, respect du code de la route
+                  </li>
+                  <li style="padding-block-end: 10px">
+                    <i class="fa fa-chevron-right" style="margin-top: 2px"></i>
+                    Qualite de la prise en charge et de la relation client
+                  </li>
+                  <li style="padding-block-end: 10px">
+                    <i class="fa fa-chevron-right" style="margin-top: 2px"></i>
+                    Facturation et utilisation des equipements speciaux
+                  </li>
+                </ul>
+                <p>
                   Retrouvez plus d'informations sur la durée des épreuves, les
                   coefficients, la notation et les modalités d'évaluation en
                   cliquant sur le bouton ci-dessous :
               </p>
-              <a href="/mcm_website_theme/static/src/img/examen/GRILLE_DE_NOTATION_EXAMEN_TAXI_VTC_MCMACADEMY.png">
-                <button class="home-btn mb32">En savoir plus</button>
-              </a>
-            </div>
-            <div class="col-lg-6 pb24 pt0 js-scroll slide-right">
-              <img data-src="/mcm_website_theme/static/src/img/examen/6.webp" data-srcSafari="/mcm_website_theme/static/src/img/examen/6.png" class="img img-fluid mx-auto lazy res_height" alt="Devenir conducteur taxi" title="Devenir conducteur taxi" style="text-align: center" />
+                <a href="/mcm_website_theme/static/src/img/examen/GRILLE_DE_NOTATION_EXAMEN_TAXI_VTC_MCMACADEMY.png">
+                  <button class="home-btn mb32">En savoir plus</button>
+                </a>
+              </div>
+              <div class="col-lg-6 pb24 pt0 js-scroll slide-right">
+                <img data-src="/mcm_website_theme/static/src/img/examen/6.webp" data-srcSafari="/mcm_website_theme/static/src/img/examen/6.png" class="img img-fluid mx-auto lazy res_height" alt="Devenir conducteur taxi" title="Devenir conducteur taxi" style="text-align: center" />
+              </div>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      <!-- La Formation MOTO-TAXI -->
+        <!-- La Formation MOTO-TAXI -->
 
-      <section class="s_text_image pt0 pb4">
-        <div class="container">
-          <div class="row align-items-center">
-            <div class="col-lg-6 pb24 pt0 js-scroll slide-right">
-              <img data-src="/mcm_website_theme/static/src/img/examen/5.webp" data-srcSafari="//mcm_website_theme/static/src/img/examen/5.png" class="img img-fluid mx-auto lazy res_height" alt="Devenir conducteur taxi" title="Devenir conducteur taxi" style="text-align: center" />
-            </div>
-            <div class="col-lg-6 js-scroll slide-left" style="border-style: none; border-width: 0px">
-              <h3 class="s_title_default pb16" style="font-size: 26px; font-weight: 700">
+        <section class="s_text_image pt0 pb4">
+          <div class="container">
+            <div class="row align-items-center">
+              <div class="col-lg-6 pb24 pt0 js-scroll slide-right">
+                <img data-src="/mcm_website_theme/static/src/img/examen/5.webp" data-srcSafari="//mcm_website_theme/static/src/img/examen/5.png" class="img img-fluid mx-auto lazy res_height" alt="Devenir conducteur taxi" title="Devenir conducteur taxi" style="text-align: center" />
+              </div>
+              <div class="col-lg-6 js-scroll slide-left" style="border-style: none; border-width: 0px">
+                <h3 class="s_title_default pb16" style="font-size: 26px; font-weight: 700">
                   Comment vous inscrire à l’examen Taxi-Moto ?
               </h3>
-              <p class="js-scroll slide-left">
+                <p class="js-scroll slide-left">
                   Comme c’est le cas pour les examens TAXI et VTC, pour l’examen
                   VMDTR, le candidat doit passer une épreuve théorique et une
                   épreuve pratique. L'examen sera organisé dans un centre
@@ -448,53 +450,53 @@ VMDTR</span>
                   l'Île-de-France.
               </p>
 
-              <ul class="fa-ul js-scroll slide-left" style="font-size: 16.5px; line-height: 1.5rem">
-                <li style="padding-block-end: 10px">
-                  <i class="fa fa-chevron-right" style="margin-top: 2px"></i>
+                <ul class="fa-ul js-scroll slide-left" style="font-size: 16.5px; line-height: 1.5rem">
+                  <li style="padding-block-end: 10px">
+                    <i class="fa fa-chevron-right" style="margin-top: 2px"></i>
                     Pour réussir l’examen théorique VMDTR, une moyenne générale
                     d’au moins 10/20 est obligatoire. Aussi, chaque épreuve est
                     soumise à une note éliminatoire propre. Le candidat se verra
                     éliminé s'il obtient une note inférieure à celle-ci.
-                </li>
-                <li style="padding-block-end: 10px">
-                  <i class="fa fa-chevron-right" style="margin-top: 2px"></i>
+                  </li>
+                  <li style="padding-block-end: 10px">
+                    <i class="fa fa-chevron-right" style="margin-top: 2px"></i>
                     Les résultats de l’examen VMDTR théorique vous seront
                     communiqués par la Chambre des Métiers et de l'Artisanat
                     (CMA) dans les semaines qui suivent l’épreuve, par mail et
                     SMS, mais aussi en ligne sur le site web de la CMA.
-                </li>
-              </ul>
+                  </li>
+                </ul>
 
-              <a href="#">
-                <button class="home-btn">En Savoir plus</button>
-              </a>
+                <a href="#">
+                  <button class="home-btn">En Savoir plus</button>
+                </a>
+              </div>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      <section id="sh_corpomate_theme_section_167" class="sh_animation_part" data-name="Call To Action" style="
+        <section id="sh_corpomate_theme_section_167" class="sh_animation_part" data-name="Call To Action" style="
             background-color: rgb(253, 209, 5);
             margin-block-start: 51px;
             margin-block-end: 51px;
           ">
-        <div class="container js-scroll fade-in-top">
-          <h3 style="color: rgb(0, 0, 0); font-size: 18px">
+          <div class="container js-scroll fade-in-top">
+            <h3 style="color: rgb(0, 0, 0); font-size: 18px">
               MCM Academy propose des formations VTC, TAXI et VMDTR
               d’excellence, basées sur l'expertise de nos formateurs et la
               dédication de toute l'équipe. Toutes nos formations sont éligibles
               au CPF !
           </h3>
-          <a class="animated-button-black" href="/#pricing" data-original-title="" title="Comment mobiliser mon CPF">
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
+            <a class="animated-button-black" href="/#pricing" data-original-title="" title="Comment mobiliser mon CPF">
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
               Je m'inscris
-          </a>
-        </div>
-      </section>
-    </div>
-  </t>
-</template>
+            </a>
+          </div>
+        </section>
+      </div>
+    </t>
+  </template>
 </odoo>
