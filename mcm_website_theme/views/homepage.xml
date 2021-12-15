@@ -444,7 +444,8 @@
                 </section>
                 <!-- fin section under counter-->
                 <!-- PRICING TABLE-->
-                <div id="pricing">
+                <!-- PRICING TABLE-->
+                <div id="pricing" class="pb32">
                     <input t-att-value="request.website.microsoft_tracking_key" id="microsoft_tracking_key" type="hidden" />
                     <section id="sh_corpomate_theme_section_188" class="sh_animation_part" data-name="Pricing">
                         <div class="container">
@@ -512,10 +513,15 @@
                             Je m'inscris
                                                 </a> -->
                                                         <!-- Call Mircorsoft ads script onclick-->
-                                                        <a href="#pricing">
-                                                            <button class="home-btn" onClick="(function(){packVtcHome(); document.getElementById('form-1-1').submit();return false;})();return false;">Je
-                                                                m'inscris</button>
+
+                                                        <a class="animated-button-yellow" href="#pricing" onClick="(function(){packVtcHome(); document.getElementById('form-1-1').submit();return false;})();return false;">
+                                                            <span></span>
+                                                            <span></span>
+                                                            <span></span>
+                                                            <span></span>
+                                                            Je m'inscris
                                                         </a>
+
                                                     </div>
                                                 </form>
                                             </t>
@@ -559,12 +565,12 @@
                                                         </p>
                                                     </t>
                                                     <div class="sh_btn">
-                                                        <!-- <a class="btn btn-primary sh_btn_cm_8" data-original-title="" title="" aria-describedby="tooltip209445" onClick="(function(){document.getElementById('form-1-2').submit();return false;})();return false;">
-                            Je m'inscris
-                                                </a> -->
-                                                        <a href="#pricing">
-                                                            <button class="home-btn" onClick="(function(){packTaxiHome();document.getElementById('form-1-2').submit();return false;})();return false;">Je
-                                                                m'inscris</button>
+                                                        <a class="animated-button-yellow" href="#pricing" onClick="(function(){packTaxiHome();document.getElementById('form-1-2').submit();return false;})();return false;">
+                                                            <span></span>
+                                                            <span></span>
+                                                            <span></span>
+                                                            <span></span>
+                                                            Je m'inscris
                                                         </a>
                                                     </div>
                                                 </form>
@@ -611,9 +617,13 @@
                                                         <!-- <a class="btn btn-primary sh_btn_cm_8" data-original-title="" title="" aria-describedby="tooltip196298">
                             Je m'inscris
                                                 </a> -->
-                                                        <a href="#pricing">
-                                                            <button class="home-btn" onClick="(function(){packVmdtrHome(); document.getElementById('form-1-3').submit();return false;})();return false;">Je
-                                                                m'inscris</button>
+
+                                                        <a class="animated-button-yellow" href="#pricing" onClick="(function(){packVmdtrHome(); document.getElementById('form-1-3').submit();return false;})();return false;">
+                                                            <span></span>
+                                                            <span></span>
+                                                            <span></span>
+                                                            <span></span>
+                                                            Je m'inscris
                                                         </a>
                                                     </div>
                                                 </form>
