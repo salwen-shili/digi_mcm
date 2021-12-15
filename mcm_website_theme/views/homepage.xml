@@ -102,14 +102,14 @@
                                     <div class="sh_content_box">
                                         <div class="sh_description">
                                             <h2>
-                                                Devenez chauffeur TAXI
+                                                Formation TAXI
                                                 <br />
                                             </h2>
                                             <p style="font-size: 14px">
-                                                Le métier de chauffeur TAXI consiste à transporter
-                                                des personnes vers leurs destinations, mais également à rentabiliser son
-                                                activité en se trouvant au bon endroit
-                                                et au bon moment.
+                                                MCM Academy a tout pour satisfaire vos besoins en
+                                                formation TAXI et vous offre un suivi complet du jour de
+                                                l'inscription à l'obtention de votre carte
+                                                professionnelle.
                                             </p>
                                             <div class="s_btn text-center pt16 pb16" data-name="Button">
                                                 <a href="/formation-chauffeur-taxi" class="btn btn-warning sh_btn_cm_4" style="margin-top: 0.4rem;
@@ -130,15 +130,13 @@
                                     <div class="sh_content_box">
                                         <div class="sh_description">
                                             <h2>
-                                                Devenez chauffeur VTC
+                                                Formation VTC
                                                 <br />
                                             </h2>
                                             <p style="font-size: 14px">
-                                                Le chauffeur VTC (Voiture de Transport avec Chauffeur)
-                                                transporte des particuliers lors de leurs déplacements
-                                                personnels ou professionnels après réservation ;
-                                                l’exercice de son métier est strictement encadré par la
-                                                loi.
+                                                Nous vous offrons non seulement une formation à distance,
+                                                mais également un accompagnement et un suivi personnalisé
+                                                pour garantir votre réussite.
 
                                             </p>
                                             <div class="s_btn text-center pt16 pb16" data-name="Button">
@@ -157,14 +155,14 @@
                                     <div class="sh_content_box">
                                         <div class="sh_description">
                                             <h2>
-                                                Devenez chauffeur MOTO-TAXI
+                                                Formation MOTO-TAXI
                                                 <br />
                                             </h2>
                                             <p style="font-size: 14px">
-                                                Le chauffeur VMDTR propose, sous réservation
-                                                préalable et au moyen d'un véhicule motorisé à deux ou
-                                                trois roues, des prestations de transport public
-                                                particulier de personnes et de leurs bagages.
+                                                MCM Academy a tout pour satisfaire vos besoins en
+                                                formation TAXI et vous offre un suivi complet du jour de
+                                                l'inscription à l'obtention de votre carte
+                                                professionnelle.
                                                 <br />
                                             </p>
                                             <div class="s_btn text-center pt16 pb16" data-name="Button">
@@ -686,15 +684,26 @@
                                 <div id="myCollapse" class="accordion" role="tablist">
                                     <div class="card bg-white">
                                         <a href="#" role="tab" data-toggle="collapse" aria-expanded="false" class="card-header collapsed" data-parent="#myCollapse" data-target="#myCollapseTab1616754726586" data-original-title="" title="" aria-describedby="tooltip5917">
-                                            Formation VTC
+                                            Devenez chauffeur TAXI
                                         </a>
                                         <div class="collapse" role="tabpanel" id="myCollapseTab1616754726586">
                                             <div class="card-body">
                                                 <p class="card-text">
-                                                    Nous vous offrons non seulement une formation à distance, mais
-                                                    également un accompagnement et un suivi personnalisé pour garantir
-                                                    votre réussite.
+                                                    Le métier de chauffeur TAXI consiste à transporter
+                                                    des personnes vers leurs destinations, mais également à rentabiliser
+                                                    son
+                                                    activité en se trouvant au bon endroit
+                                                    et au bon moment.
                                                 </p>
+                                                <div class="s_btn text-center pt16 pb16" data-name="Button">
+                                                    <a href="/formation-chauffeur-taxi" class="btn btn-warning sh_btn_cm_4" style="margin-top: 0.4rem;
+                                                padding: 0.4rem 2rem;" data-original-title="" title="" aria-describedby="tooltip562914" onclick='msTracking("clic sur Devenez chauffeur TAXI homepage",
+                                                "Homepage events",
+                                                "Devenez chauffeur TAXI homepage",
+                                                1)'>
+                                                        En savoir plus
+                                                    </a>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -704,15 +713,24 @@
                                 <div id="myCollapse" class="accordion" role="tablist">
                                     <div class="card bg-white">
                                         <a href="#" role="tab" data-toggle="collapse" aria-expanded="false" class="card-header collapsed" data-parent="#myCollapse" data-original-title="" title="" aria-describedby="tooltip5917" data-target="#myCollapseTab1616754743649">
-                                            Formation TAXI
+                                            Devenez chauffeur VTC
                                         </a>
                                         <div class="collapse" role="tabpanel" id="myCollapseTab1616754743649">
                                             <div class="card-body">
                                                 <p class="card-text">
-                                                    MCM Academy a tout pour satisfaire vos besoins en formation TAXI et
-                                                    vous offre un suivi complet du jour de l'inscription à l'obtention
-                                                    de votre carte professionnelle.
+                                                    Le chauffeur VTC (Voiture de Transport avec Chauffeur)
+                                                    transporte des particuliers lors de leurs déplacements
+                                                    personnels ou professionnels après réservation ;
+                                                    l’exercice de son métier est strictement encadré par la
+                                                    loi.
                                                 </p>
+                                                <div class="s_btn text-center pt16 pb16" data-name="Button">
+                                                    <a href="/formation-chauffeur-vtc" class="btn btn-warning sh_btn_cm_4" style="margin-top: 0.4rem;
+                                                padding: 0.4rem 2rem;" onclick='msTracking("clic sur Devenez chauffeur VTC homepage",
+                                                "Homepage events",
+                                                "Devenez chauffeur VTC homepage",
+                                                2)'>En savoir plus</a>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -722,17 +740,26 @@
                                 <div id="myCollapse" class="accordion" role="tablist">
                                     <div class="card bg-white">
                                         <a href="#" role="tab" data-toggle="collapse" aria-expanded="false" class="card-header collapsed" data-parent="#myCollapse" data-original-title="" title="" aria-describedby="tooltip5917" data-target="#myCollapseTab1616754743646">
-                                            Formation MOTO-TAXI
+                                            Devenez chauffeur MOTO-TAXI
                                         </a>
                                         <div class="collapse" role="tabpanel" id="myCollapseTab1616754743646">
                                             <div class="card-body">
                                                 <p class="card-text">
-                                                    Passionné de motos, vous adorez circuler en milieu urbain ?
-                                                    Indépendant de nature, vous voulez lancer votre carrière
-                                                    professionnelle ? C'est simple : devenez chauffeur de MOTO-TAXI avec
-                                                    MCM Academy !
+                                                    Le chauffeur VMDTR propose, sous réservation
+                                                    préalable et au moyen d'un véhicule motorisé à deux ou
+                                                    trois roues, des prestations de transport public
+                                                    particulier de personnes et de leurs bagages.
+                                                    <br />
+
 
                                                 </p>
+                                                <div class="s_btn text-center pt16 pb16" data-name="Button">
+                                                    <a href="/formation-taximoto-vmtdr" class="btn btn-warning sh_btn_cm_4" style="margin-top: 0.4rem;
+                                                padding: 0.4rem 2rem;" onclick='msTracking("clic sur Devenez chauffeur MOTO-Taxi homepage",
+                                                "Homepage events",
+                                                "Devenez chauffeur MOTO-Taxi homepage",
+                                                3)'>En savoir plus</a>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
