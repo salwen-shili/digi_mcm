@@ -18,7 +18,7 @@ class resPartner(models.Model):
         ('finalized', 'Finalisé'),
     ], string='Statut Client', domain="[('customer_rank', '>', 0)]", default="indecis")
     module_id = fields.Many2one('mcmacademy.module')
-    mcm_session_id = fields.Many2one('mcmacademy.session')
+    mcm_session_id = fields.Many2one('mcmacademy.session', track_visibility='always')
     mode_de_financement = fields.Selection(selection=[
         ('particulier', 'Personnel'),
         ('cpf', 'Mon Compte Formation, CPF'),
