@@ -832,16 +832,27 @@ class partner(models.Model):
                             if not user:
                                 phone = phone[0:3]+' '+phone[3:4] + ' ' + phone[4:6] + ' '+phone[6:8]+' '+phone[8:10]+' '+phone[10:]
                                 user = self.env["res.users"].sudo().search([("phone", "=", phone)], limit=1)
+                            if not user :
+                                phone = '0' +str(phone[4:])
+                                user = request.env["res.users"].sudo().search(['|',("phone", "=", phone),("phone", "=",phone.replace(' ',''))], limit=1)
                         phone = phone_number[0:2]
                         if str(phone) == '33' and ' ' in str(tel): # check if aircall api send the number of client in this format (number_format: 33 x xx xx xx)
                             phone = '+' + str(tel)
                             user = self.env["res.users"].sudo().search(['|',("phone", "=", phone),("phone","=",phone.replace(' ', ''))], limit=1)
+                            if not user:
+                                phone = '0' + str(phone[4:])
+                                user = request.env["res.users"].sudo().search(
+                                    ['|', ("phone", "=", phone), ("phone", "=", phone.replace(' ', ''))], limit=1)
                         phone = phone_number[0:2]
                         if str(phone) in ['06','07'] and ' ' not in str(tel): # check if aircall api send the number of client in this format (number_format: 07xxxxxx)
                             user = self.env["res.users"].sudo().search(['|',("phone", "=", str(tel)),("phone", "=", str('+33'+tel.replace(' ','')[-9:]))], limit=1)
                             if not user:
                                 phone = phone[0:2] + ' ' + phone[2:4] + ' ' + phone[4:6] + ' ' + phone[6:8] + ' ' + phone[8:]
                                 user = self.env["res.users"].sudo().search([("phone", "=", phone)], limit=1)
+                            if not user:
+                                phone = '0' + str(phone[4:])
+                                user = request.env["res.users"].sudo().search(
+                                    ['|', ("phone", "=", phone), ("phone", "=", phone.replace(' ', ''))], limit=1)
                         phone = phone_number[0:2]
                         if str(phone) in ['06', '07'] and ' ' in str(tel): # check if aircall api send the number of client in this format (number_format: 07 xx xx xx)
                             user = self.env["res.users"].sudo().search(
