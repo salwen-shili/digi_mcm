@@ -49,8 +49,14 @@
                                             besoins en formation avec un programme riche,
                                             flexible et pertinent.
                                         </p>
-                                        <a href="#pricing">
-                                            <button class="home-btn">S'inscrire</button>
+
+                                        <a class="animated-button-yellow" href="#pricing">
+                                            >
+                                            <span></span>
+                                            <span></span>
+                                            <span></span>
+                                            <span></span>
+                                            S'inscrire
                                         </a>
 
                                     </div>

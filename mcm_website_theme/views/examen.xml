@@ -247,7 +247,7 @@
                   </li>
 
 
-                  <a class="animated-button-yellow" href="/blog/blog-taxi-10/post/tout-savoir-sur-l-examen-taxi-vtc-moto-taxi-27">
+                  <a class="animated-button-black" href="/blog/blog-taxi-10/post/tout-savoir-sur-l-examen-taxi-vtc-moto-taxi-27">
                     <span></span>
                     <span></span>
                     <span></span>
@@ -288,7 +288,7 @@
                   </li>
 
 
-                  <a class="animated-button-yellow" href="/blog/blog-taxi-10/post/tout-savoir-sur-l-examen-taxi-vtc-moto-taxi-27">
+                  <a class="animated-button-black" href="/blog/blog-taxi-10/post/tout-savoir-sur-l-examen-taxi-vtc-moto-taxi-27">
                     <span></span>
                     <span></span>
                     <span></span>
@@ -483,8 +483,13 @@
                   </li>
                 </ul>
 
-                <a href="#">
-                  <button class="home-btn">En Savoir plus</button>
+
+                <a class="animated-button-black">
+                  <span></span>
+                  <span></span>
+                  <span></span>
+                  <span></span>
+                  En Savoir plus
                 </a>
 
 
