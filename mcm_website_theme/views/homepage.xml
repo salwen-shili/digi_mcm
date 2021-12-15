@@ -245,8 +245,8 @@
                 </section>
                 <section id="sh_corpomate_theme_section_258" class="sh_animation_part bg-100 pb32" data-name="practice" style="">
                     <div class="container">
-                        <div class="row js-scroll fade-in-left">
-                            <div class="col-lg-3 col-md-6 col-sm-6 col-12 sh_animation_part" style="border-style: none; border-width: 0px">
+                        <div class="row ">
+                            <div class="col-lg-3 col-md-6 col-sm-6 col-12 sh_animation_part js-scroll slide-left" style="border-style: none; border-width: 0px">
                                 <div class="sh_content">
                                     <div class="sh_icon">
                                         <span class="fa fa-desktop" data-original-title="" title="" aria-describedby="tooltip309396" style="                       background-color: #fdd105;                       color: rgb(0, 0, 0);                     " />
@@ -259,7 +259,7 @@
                                     </p>
                                 </div>
                             </div>
-                            <div class="col-lg-3 col-md-6 col-sm-6 col-12 sh_animation_part pb4">
+                            <div class="col-lg-3 col-md-6 col-sm-6 col-12 sh_animation_part pb4 js-scroll slide-left">
                                 <div class="sh_content">
                                     <div class="sh_icon">
                                         <span class="fa fa-edit" data-original-title="" title="" aria-describedby="tooltip255152" style="                       background-color: #fdd105;                       color: rgb(0, 0, 0);                     " />
@@ -272,7 +272,7 @@
                                     </p>
                                 </div>
                             </div>
-                            <div class="col-lg-3 col-md-6 col-sm-6 col-12 sh_animation_part">
+                            <div class="col-lg-3 col-md-6 col-sm-6 col-12 sh_animation_part js-scroll slide-left">
                                 <div class="sh_content">
                                     <div class="sh_icon">
                                         <span class="fa fa-mortar-board" data-original-title="" title="" aria-describedby="tooltip343085" style="                       background-color: #fdd105;                       color: rgb(0, 0, 0);                     " />
@@ -286,7 +286,7 @@
                                     </p>
                                 </div>
                             </div>
-                            <div class="col-lg-3 col-md-6 col-sm-6 col-12 sh_animation_part">
+                            <div class="col-lg-3 col-md-6 col-sm-6 col-12 sh_animation_part js-scroll slide-left">
                                 <div class="sh_content">
                                     <div class="sh_icon">
                                         <span class="fa fa-list-alt" data-original-title="" title="" aria-describedby="tooltip501034" style="                       background-color: #fdd105;                       color: rgb(0, 0, 0);                     " />
