@@ -331,7 +331,7 @@ class WebsiteSale(WebsiteSale):
     #                 return request.redirect('/shop/cart')
     #     return redirection
     """Changer statut cpf vers accepté selon l'etat récupéré avec api wedof"""
-    @http.route(['/cpf_accepted'], type='json', auth="public", methods=['POST'], website=True)
+    @http.route(['/shop/cpf_accepted'], type='json', auth="public", methods=['POST'], website=True)
     def accepted_cpf(self):
         partner = request.env.user.partner_id
         if partner.numero_cpf:
@@ -568,7 +568,7 @@ class WebsiteSale(WebsiteSale):
                             vals)
 
     """ajouter l'apprenant sur 360 par api360"""
-    @http.route(['/adduser_plateform'], type='json', auth="public")
+    @http.route(['/shop/adduser_plateform'], type='json', auth="public")
     def add_partner_plateforme(self):
         user = request.env.user
         partner = user.partner_id
