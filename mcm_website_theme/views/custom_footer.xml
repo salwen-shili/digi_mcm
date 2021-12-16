@@ -1,8 +1,6 @@
 <odoo>
     <template id="mcm_website_footer_custom" inherit_id="website.footer_custom">
-        <xpath expr="//div[hasclass('container')]" position="inside">
-
-        </xpath>
+        <xpath expr="//div[hasclass('container')]" position="inside"></xpath>
         <!-- <xpath expr="//iframe[2]" position="replace">
 
         </xpath> -->
@@ -24,8 +22,8 @@
             </style>
 
 
-            <input type="hidden" name="user_name_connected" id="user_name_connected" t-att-value="request.website.get_user_name_logged()"/>
-            <input type="hidden" name="user_email_connected" id="user_email_connected" t-att-value="request.website.get_user_email_logged()"/>
+            <input type="hidden" name="user_name_connected" id="user_name_connected" t-att-value="request.website.get_user_name_logged()" />
+            <input type="hidden" name="user_email_connected" id="user_email_connected" t-att-value="request.website.get_user_email_logged()" />
 
             <div id="footer" class="oe_structure oe_structure_solo" data-oe-id="1568" data-oe-xpath="/data/xpath[2]/div" data-oe-model="ir.ui.view" data-oe-field="arch">
                 <section class="s_text_block pb8 pt0 bg-900" data-name="Text block" style="     background: #000 !important; ">
@@ -66,20 +64,20 @@
                                         <ul>
                                             <a href="/contact" style="cursor: pointer; color:#ffffff">
                                                 <li class="mb-2">
-                                                    <span class="fa fa-envelope"/>
+                                                    <span class="fa fa-envelope" />
                                                     Envoyez-nous un message
                                                 </li>
                                             </a>
 
                                             <a href="/faq" style="cursor: pointer; color:#ffffff">
                                                 <li class="mb-2">
-                                                    <span class="fa fa-question-circle" data-original-title="" title="" aria-describedby="tooltip437298"/>
+                                                    <span class="fa fa-question-circle" data-original-title="" title="" aria-describedby="tooltip437298" />
                                                     Foire aux questions
-                                                    <br/>
+                                                    <br />
                                                 </li>
                                             </a>
                                             <li class="mb-2">
-                                                <span class="fa fa-info-circle"/>
+                                                <span class="fa fa-info-circle" />
                                                 Agréé par la préfecture sous le numéro
                                                 <i style="">VTC 59-16-03 |</i>
                                                 <i style="">TAXI 18-03-59</i>
@@ -100,16 +98,16 @@
                                             <li>
                                                 <div>
                                                     <a style="color: #ffffff" href="https://fr-fr.facebook.com/pg/formation.mcm.academy">
-                                                        <span class="fa fa-facebook-square fa-2x" data-original-title="" title="" aria-describedby="tooltip139952"/>
+                                                        <span class="fa fa-facebook-square fa-2x" data-original-title="" title="" aria-describedby="tooltip139952" />
 
                                                     </a>
                                                     <a style="color: #ffffff" href="https://www.instagram.com/formation.mcm.academy/">
-                                                        <span class="fa fa-2x fa-instagram" data-original-title="" title="" aria-describedby="tooltip799266"/>
+                                                        <span class="fa fa-2x fa-instagram" data-original-title="" title="" aria-describedby="tooltip799266" />
 
                                                     </a>
 
                                                     <a style="color: #ffffff" href="https://www.youtube.com/channel/UCYFC80fsylTETNppaBlAVkQ">
-                                                        <span class="fa fa-youtube-play fa-2x" data-original-title="" title="" aria-describedby="tooltip749786"/>
+                                                        <span class="fa fa-youtube-play fa-2x" data-original-title="" title="" aria-describedby="tooltip749786" />
 
                                                     </a>
 
@@ -118,11 +116,11 @@
                                                 <div class="contact-info" style="">
                                                     <ul class="contact-details" style="margin-bottom: 1rem; list-style-type: disc;">
                                                         <li style="font-weight: 400;">
-                                                            <span style="font-weight: 700;"/>
-                                                            <br/>
+                                                            <span style="font-weight: 700;" />
+                                                            <br />
                                                             Politique de confidentialité
-                                                            <br/>
-                                                            <br/>
+                                                            <br />
+                                                            <br />
                                                         </li>
                                                         <a href="/conditions" style="color:#fff">
                                                             <li>Conditions générales de vente</li>
@@ -141,7 +139,7 @@
             </div>
 
             <!-- Début de widget de badge Calendly -->
-            <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet"/>
+            <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet" />
             <style>
         .calendly-badge-widget {
         left: 20px !important;
@@ -158,20 +156,13 @@
                 <!-- Fin de widget de badge Calendly -->
             </t>
             <t t-if="request.website.is_public_user()==False">
-                <input type="hidden" name="user_name_connected" id="user_name_connected" t-att-value="request.website.get_user_name_logged()"/>
-                <input type="hidden" name="user_email_connected" id="user_email_connected" t-att-value="request.website.get_user_email_logged()"/>
+                <input type="hidden" name="user_name_connected" id="user_name_connected" t-att-value="request.website.get_user_name_logged()" />
+                <input type="hidden" name="user_email_connected" id="user_email_connected" t-att-value="request.website.get_user_email_logged()" />
 
                 <script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async="async"></script>
-                <script type="text/javascript">
-                var user_name=document.getElementById("user_name_connected").value;
-                    var user_email=document.getElementById("user_email_connected").value;
-                window.onload = function() { Calendly.initBadgeWidget({ url: 'https://calendly.com/mcm-academy/taxi-vtc-taxi_moto',
-                prefill: {
-                    name: user_name,
-                    email: user_email,
-                    },
-                text: 'Rendez-vous par téléphone', color: '#1A1A1A', textColor: '#FFFFFF', branding: false }); }</script>
-                <!-- Fin de widget de badge Calendly --></t>
+                <script type="text/javascript" src="/mcm_website_theme/static/src/js/calendly.js"></script>
+                <!-- Fin de widget de badge Calendly -->
+            </t>
 
 
         </xpath>
