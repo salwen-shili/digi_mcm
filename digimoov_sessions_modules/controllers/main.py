@@ -571,7 +571,6 @@ class WebsiteSale(WebsiteSale):
     def add_partner_plateforme(self):
         user = request.env.user
         partner = user.partner_id
-        print('adddddddddd', user.company_id)
         if partner.statut == "won" and partner.statut_cpf != "canceled" and user.company_id.id == 2:
             print('if parnter adddddddddd')
             # chercher son contrat
@@ -612,21 +611,20 @@ class WebsiteSale(WebsiteSale):
             #             #     self.ajouter_iOne(partner)
             """cas de cpf on vérifie la validation des document , la case de renonciation et la date d'examen qui doit etre au future """
             if partner.mode_de_financement == "cpf":
-                message = ""
                 if document_valide and partner.mcm_session_id.date_exam and (
                         partner.mcm_session_id.date_exam > date.today()):
                     if partner.renounce_request:
                         print("ajouterrrr ione")
                         self.ajouter_iOne(partner)
                     if not partner.renounce_request:
-                        message = "Renonce"
-                        print(message)
+                        print("Renonce")
+                        return {'ajout': 'Vous devez attendre 14 jours pour commencer  votre formation'}
 
                     # if not partner.renounce_request and date_facture and (date_facture + timedelta(days=14)) <= today:
                     #     self.ajouter_iOne(partner)
                 if not document_valide:
-                    message = "Documents"
-                    print(message)
+                    print("Documents")
+                    return {'ajout': 'Vous devez attendre la validation de vos documents pour commencer la formation'}
 
     def ajouter_iOne(self, partner):
         # Remplacez les paramètres régionaux de l'heure par le paramètre de langue actuel
@@ -702,7 +700,6 @@ class WebsiteSale(WebsiteSale):
                 })
                 resp_unsub_email = requests.put(url_unsubscribeToEmailNotifications, headers=headers, data=data_email)
                 # Si l'apprenant a été ajouté sur table user on l'affecte aux autres groupes
-                ajout = False
                 if (create):
                     _logger.info('create %s' % user.login)
                     today = date.today()
@@ -733,6 +730,8 @@ class WebsiteSale(WebsiteSale):
                                 id_Digimoov_Examen_Attestation = id_groupe
                                 urlsession = 'https://app.360learning.com/api/v1/groups/' + id_groupe + '/users/' + partner.email + '?company=' + company_id + '&apiKey=' + api_key
                                 respsession = requests.put(urlsession, headers=headers, data=data_group)
+                                if respsession.status_code==200:
+                                    ajout_exam =True
 
                                 # Affecter à un pack solo
                             packsolo = "Digimoov - Pack Solo"
@@ -790,9 +789,12 @@ class WebsiteSale(WebsiteSale):
                                 urlsession = 'https://app.360learning.com/api/v1/groups/' + id_groupe + '/users/' + partner.email + '?company=' + company_id + '&apiKey=' + api_key
                                 respsession = requests.put(urlsession, headers=headers, data=data_group)
                                 print(existe, 'ajouter à son session', respsession.status_code)
-                    "si créer envoyer true si non false"
-                    ajout = True
-                    return request.render("website_sale.ajouter_iOne", ajout)
+                    "si créer envoyer le lien de la plateforme si non false"
+                    return {'ajout': 'https://digimoov.360learning.com' }
+                if not (create):
+                    return {'ajout': 'False'}
+
+
 
 
     # Extraire firstName et lastName à partir du champs name
