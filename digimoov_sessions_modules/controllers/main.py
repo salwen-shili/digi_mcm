@@ -32,6 +32,7 @@ class WebsiteSale(WebsiteSale):
         access_token: Abandoned cart SO access token
         revive: Revival method when abandoned cart. Can be 'merge' or 'squash'
         """
+        statut =False
         if not request.env.user.lang:
             request.env.user.lang ='fr_FR'
         locale.setlocale(locale.LC_TIME, str(request.env.user.lang) + '.utf8') #get local time of partner
@@ -276,7 +277,7 @@ class WebsiteSale(WebsiteSale):
             registration = response.json()
             print('registration',registration['state'],registration['externalId'])
             state =registration['state']
-            statut="False"
+            
             if state=="validated":
                 statut='https://www.moncompteformation.gouv.fr/espace-prive/html/#/dossiers/v2/'+numero_cpf+'/detail/financement'
             if state=="accepted":
@@ -567,7 +568,7 @@ class WebsiteSale(WebsiteSale):
                             vals)
 
     """ajouter l'apprenant sur 360 par api360"""
-    @http.route(['/adduser_plateform'], type='json', auth="public", methods=['POST'], website=True)
+    @http.route(['/adduser_plateform'], type='json', auth="public")
     def add_partner_plateforme(self):
         user = request.env.user
         partner = user.partner_id
