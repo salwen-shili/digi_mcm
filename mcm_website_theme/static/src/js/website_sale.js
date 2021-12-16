@@ -274,9 +274,8 @@ odoo.define('mcm_website_theme.mcm_website_sale', function (require) {
         }
 
         var dateOptions = '';
-        var counter = 0;
+
         $('#exam_date option').each(function () {
-          counter += 1;
           var self = this;
           var select_option = $(this);
 
@@ -288,7 +287,7 @@ odoo.define('mcm_website_theme.mcm_website_sale', function (require) {
           } else {
             ios = false;
           }
-          if (self.value === center && counter <= 2) {
+          if (self.value === center) {
             var date = self.text;
 
             dateOptions += `<option value=${self.value} id=${self.id}>
