@@ -3,7 +3,13 @@ window.onload = function () {
   var user_email = document.getElementById('user_email_connected').value;
   var url = window.location.pathname;
   console.log(!url.includes('/coordonnees'));
-  if (!(url.includes('/coordonnees') || url.includes('/shop'))) {
+  if (
+    !(
+      url.includes('/coordonnees') ||
+      url.includes('/shop') ||
+      url.includes('/charger')
+    )
+  ) {
     var user_name = document.getElementById('user_name_connected').value;
     var user_email = document.getElementById('user_email_connected').value;
     window.onload = function () {
