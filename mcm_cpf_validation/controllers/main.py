@@ -607,16 +607,16 @@ class ClientCPFController(http.Controller):
                 client.diplome=diplome
                 module_id=False
                 product_id=False
-                # template_id = int(request.env['ir.config_parameter'].sudo().get_param(
-                #     'mcm_cpf_validation.digimoov_email_template_exam_date_center'))
-                # template_id = request.env['mail.template'].search([('id', '=', template_id)]).id
-                # if not template_id:
-                #     template_id = request.env['ir.model.data'].xmlid_to_res_id(
-                #         'mcm_cpf_validation.digimoov_email_template_exam_date_center', raise_if_not_found=False)
-                # if not template_id:
-                #     template_id = request.env['ir.model.data'].xmlid_to_res_id(
-                #         'mcm_cpf_validation.digimoov_email_template_exam_date_center',
-                #         raise_if_not_found=False)
+                template_id = int(request.env['ir.config_parameter'].sudo().get_param(
+                    'mcm_cpf_validation.digimoov_email_template_exam_date_center'))
+                template_id = request.env['mail.template'].search([('id', '=', template_id)]).id
+                if not template_id:
+                    template_id = request.env['ir.model.data'].xmlid_to_res_id(
+                        'mcm_cpf_validation.digimoov_email_template_exam_date_center', raise_if_not_found=False)
+                if not template_id:
+                    template_id = request.env['ir.model.data'].xmlid_to_res_id(
+                        'mcm_cpf_validation.digimoov_email_template_exam_date_center',
+                        raise_if_not_found=False)
                 if "digimoov" in str(module):
                     user.write({'company_ids': [1,2], 'company_id': 2})
                     product_id = request.env['product.template'].sudo().search([('id_edof', "=", str(module)),('company_id',"=",2)], limit=1)
