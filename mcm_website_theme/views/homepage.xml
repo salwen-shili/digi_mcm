@@ -635,11 +635,11 @@
                                     </a>
                                 </div>
 
-                                <div t-if="partenaire=='' or not partenaire ">
-                                    <a href="https://bolt.eu/fr/">
-                                        <img data-src="/mcm_website_theme/static/src/img/partenaires/bolt.png" data-srcSafari="/mcm_website_theme/static/src/img/partenaires/bolt.png" class="img img-fluid lazy" alt="Logo partenaire bolt" data-original-title="" title="Bolt partenaire MCM ACADEMY" aria-describedby="tooltip843653" style="margin-top: 30px; width: 38%" />
-                                    </a>
-                                </div>
+<!--                                <div t-if="partenaire=='' or not partenaire ">-->
+<!--                                    <a href="https://bolt.eu/fr/">-->
+<!--                                        <img data-src="/mcm_website_theme/static/src/img/partenaires/bolt.png" data-srcSafari="/mcm_website_theme/static/src/img/partenaires/bolt.png" class="img img-fluid lazy" alt="Logo partenaire bolt" data-original-title="" title="Bolt partenaire MCM ACADEMY" aria-describedby="tooltip843653" style="margin-top: 30px; width: 38%" />-->
+<!--                                    </a>-->
+<!--                                </div>-->
                                 <div t-if="partenaire=='bolt' ">
                                     <a href="https://bolt.eu/fr/">
                                         <img data-src="/mcm_website_theme/static/src/img/partenaires/Bolt_logo.svg.png" data-srcSafari="/mcm_website_theme/static/src/img/partenaires/Bolt_logo.svg.png" class="img img-fluid lazy" alt="Logo partenaire bolt" data-original-title="" title="Bolt partenaire MCM ACADEMY" aria-describedby="tooltip843653" style="margin-top: 30px; width: 38%" />
