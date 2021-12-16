@@ -69,6 +69,15 @@ const addUserPlateform = () => {
   sendHttpRequest('POST', '/shop/adduser_plateform', {})
     .then((responseData) => {
       console.log({ responseData });
+      if (responseData.includes('https://')) {
+        window.location.href = responseData;
+      } else {
+        document.getElementById('popupcontent').innerHTML = `
+         <p id="notifMessage">
+         ${responseData}
+         </p>
+         `;
+      }
     })
     .catch((err) => {});
 };
