@@ -305,7 +305,6 @@ class WebsiteSale(WebsiteSale):
             values.update({
                 'list_villes_mcm': list_villes_mcm,
             })
-
         return request.render("website_sale.cart", values)
 
     # def checkout_redirection(self, order):
@@ -331,7 +330,6 @@ class WebsiteSale(WebsiteSale):
     #                 return request.redirect('/shop/cart')
     #     return redirection
     """Changer statut cpf vers accepté selon l'etat récupéré avec api wedof"""
-
     @http.route(['/cpf_accepted'], type='json', auth="public", methods=['POST'], website=True)
     def accepted_cpf(self):
         partner = request.env.user.partner_id
@@ -654,11 +652,12 @@ class WebsiteSale(WebsiteSale):
             datesession = str(date_exam.strftime(new_format).upper())
             date_session = unidecode(datesession)
 
-            # Récuperer le mot de passe à partir de res.users
+            #Récuperer le mot de passe à partir de res.users
             user = request.env.user
             _logger.info('avant if login user %s' % user.login)
             _logger.info('avant if partner email %s' % partner.email)
-            _logger.info('avant if password  %s ' % user.password360)
+            if user.password360 == False:
+                _logger.info(' if password  %s ' % user.password360)
 
             if user:
                 print('iffff userrrrrr')
@@ -687,7 +686,6 @@ class WebsiteSale(WebsiteSale):
                 # Si non si mot de passe récupéré on l'ajoute sur la plateforme avec le meme mot de passe
                 if (user.password360) and (company == '2'):
                     partner.password360 = user.password360
-                    _logger.info('if user  %s ' % user.password360)
 
                     # Ajouter i-One to table user
                     data_user = '{"mail":"' + partner.email + '" , "password":"' + user.password360 + '", "firstName":"' + partner.firstName + '", "lastName":"' + partner.lastName + '", "phone":"' + partner.phone + '", "lang":"fr","sendCredentials":"true"}'
@@ -704,7 +702,7 @@ class WebsiteSale(WebsiteSale):
                 })
                 resp_unsub_email = requests.put(url_unsubscribeToEmailNotifications, headers=headers, data=data_email)
                 # Si l'apprenant a été ajouté sur table user on l'affecte aux autres groupes
-                value = False
+                ajout = False
                 if (create):
                     _logger.info('create %s' % user.login)
                     today = date.today()
@@ -793,7 +791,8 @@ class WebsiteSale(WebsiteSale):
                                 respsession = requests.put(urlsession, headers=headers, data=data_group)
                                 print(existe, 'ajouter à son session', respsession.status_code)
                     "si créer envoyer true si non false"
-                    value = True
+                    ajout = True
+                    return request.render("website_sale.ajouter_iOne", ajout)
 
 
     # Extraire firstName et lastName à partir du champs name
