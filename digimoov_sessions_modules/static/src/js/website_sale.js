@@ -82,7 +82,9 @@ odoo.define('digimoov_sessions_modules.website_sale', function (require) {
         }
 
         var dateOptions = '';
+        var counter = 0;
         $('#exam_date option').each(function () {
+          counter += 1;
           var self = this;
           var select_option = $(this);
           var isIOS =
@@ -94,7 +96,7 @@ odoo.define('digimoov_sessions_modules.website_sale', function (require) {
             ios = false;
           }
 
-          if (self.value === center) {
+          if (self.value === center && counter <= 2) {
             var date = self.text;
 
             dateOptions += `<option value=${self.value} id=${self.id}>
