@@ -298,7 +298,7 @@
                 </ul>
               </div>
               <div class="col-lg-6 pb24 pt0 js-scroll slide-right">
-                <img data-src="/mcm_website_theme/static/src/img/examen/3.webp" data-srcSafari="//mcm_website_theme/static/src/img/examen/3.png" class="img img-fluid mx-auto lazy res_height" alt="Devenir conducteur taxi" title="Devenir conducteur taxi" style="text-align: center" />
+                <img data-src="/mcm_website_theme/static/src/img/examen/3.webp" data-srcSafari="/mcm_website_theme/static/src/img/examen/3.png" class="img img-fluid mx-auto lazy res_height" alt="Devenir conducteur taxi" title="Devenir conducteur taxi" style="text-align: center" />
               </div>
             </div>
           </div>
@@ -314,7 +314,7 @@
             <div class="row d-flex align-items-stretch">
               <div class="col-lg-4 s_col_no_bgcolor pt16 pb16" style="border-style: none; border-width: 0px">
                 <div class="card bg-white js-scroll slide-left">
-                  <img class="card-img-top lazy" data-src="/mcm_website_theme/static/src/img/formation_taxi/Formation-initiale-au-métier-de-TAXI.webp" data-srcSafari="/mcm_website_theme/static/src/img/formation_vtc/Formation-initiale-au-métier-de-TAXI.png" alt="formation taxi" title="Formation taxi" />
+                  <img class="card-img-top lazy" data-src="/mcm_website_theme/static/src/img/formation_taxi/Formation-initiale-au-métier-de-TAXI.webp" data-srcSafari="/mcm_website_theme/static/src/img/formation_taxi/Formation-initiale-au-métier-de-TAXI.png" alt="formation taxi" title="Formation taxi" />
                   <div class="card-body js-scroll">
                     <h3 class="card-title">
                       Les modules théoriques communs d’admissibilité pour les
@@ -347,7 +347,7 @@
               </div>
               <div class="col-lg-4 s_col_no_bgcolor pt16 pb16" style="border-style: none; border-width: 0px">
                 <div class="card bg-white js-scroll fade-in-top">
-                  <img class="card-img-top lazy" data-src="/mcm_website_theme/static/src/img/formation_taxi/Formation-passerelle-VTC-TAXI.webp" data-srcSafari="/mcm_website_theme/static/src/img/formation_vtc/Formation-passerelle-VTC-TAXI.png" alt="Rétroviseur taxi" title="Rétroviseur taxi" />
+                  <img class="card-img-top lazy" data-src="/mcm_website_theme/static/src/img/formation_taxi/Formation-passerelle-VTC-TAXI.webp" data-srcSafari="/mcm_website_theme/static/src/img/formation_taxi/Formation-passerelle-VTC-TAXI.png" alt="Rétroviseur taxi" title="Rétroviseur taxi" />
                   <div class="card-body">
                     <h3 class="card-title">Modules spécifiques VTC</h3>
 
@@ -371,7 +371,7 @@
               </div>
               <div class="col-lg-4 s_col_no_bgcolor pt16 pb16" style="border-style: none; border-width: 0px">
                 <div class="card bg-white js-scroll slide-right">
-                  <img class="card-img-top lazy" data-src="/mcm_website_theme/static/src/img/formation_taxi/Formation-continue-au-métier-de-TAXI.webp" data-srcSafari="/mcm_website_theme/static/src/img/formation_vtc/Formation-continue-au-métier-de-TAXI.png" alt="Candidat et formateur au métier de taxi" title="Candidat et formateur au métier de taxi" />
+                  <img class="card-img-top lazy" data-src="/mcm_website_theme/static/src/img/formation_taxi/Formation-continue-au-métier-de-TAXI.webp" data-srcSafari="/mcm_website_theme/static/src/img/formation_taxi/Formation-continue-au-métier-de-TAXI.png" alt="Candidat et formateur au métier de taxi" title="Candidat et formateur au métier de taxi" />
                   <div class="card-body">
                     <h3 class="card-title">Modules spécifiques TAXI</h3>
 
@@ -451,7 +451,7 @@
           <div class="container">
             <div class="row align-items-center">
               <div class="col-lg-6 pb24 pt0 js-scroll slide-right">
-                <img data-src="/mcm_website_theme/static/src/img/examen/5.webp" data-srcSafari="//mcm_website_theme/static/src/img/examen/5.png" class="img img-fluid mx-auto lazy res_height" alt="Devenir conducteur taxi" title="Devenir conducteur taxi" style="text-align: center" />
+                <img data-src="/mcm_website_theme/static/src/img/examen/5.webp" data-srcSafari="/mcm_website_theme/static/src/img/examen/5.png" class="img img-fluid mx-auto lazy res_height" alt="Devenir conducteur taxi" title="Devenir conducteur taxi" style="text-align: center" />
               </div>
               <div class="col-lg-6 js-scroll slide-left" style="border-style: none; border-width: 0px">
                 <h3 class="s_title_default pb16" style="font-size: 26px; font-weight: 700">

@@ -165,7 +165,7 @@
                       <span></span>
                       <span></span>
                       <span></span>
-              S'inscrire
+                      S'inscrire
                     </a>
 
                   </div>
@@ -173,7 +173,7 @@
               </div>
               <div class="col-lg-6 pb48 pt16 js-scroll slide-right">
                 <br />
-                <img data-src="/mcm_website_theme/static/src/img/formation_taxi/devenir_chauffeur_taxi.webp" data-srcSafari="/mcm_website_theme/static/src/img/formation_vtc/devenir_chauffeur_taxi.png" class="img img-fluid mx-auto lazy" alt="Devenir chauffeur Taxi, VTC ou Moto-Taxi" title="Taxi chauffeur" style="text-align: center;" />
+                <img data-src="/mcm_website_theme/static/src/img/formation_taxi/devenir_chauffeur_taxi.webp" data-srcSafari="/mcm_website_theme/static/src/img/formation_taxi/devenir_chauffeur_taxi.png" class="img img-fluid mx-auto lazy" alt="Devenir chauffeur Taxi, VTC ou Moto-Taxi" title="Taxi chauffeur" style="text-align: center;" />
               </div>
             </div>
           </div>
@@ -219,7 +219,7 @@
                 </p>
               </div>
               <div class="col-lg-6 pb24 pt0 js-scroll slide-right">
-                <img data-src="/mcm_website_theme/static/src/img/formation_taxi/comment-devenir-chauffeur-taxi.webp" data-srcSafari="/mcm_website_theme/static/src/img/formation_vtc/comment-devenir-chauffeur-taxi.png" class="img img-fluid mx-auto lazy" alt="devenir conducteur taxi" title="Devenir conducteur taxi" style="text-align: center;" />
+                <img data-src="/mcm_website_theme/static/src/img/formation_taxi/comment-devenir-chauffeur-taxi.webp" data-srcsafari="/mcm_website_theme/static/src/img/formation_taxi/comment-devenir-chauffeur-taxi.png" class="img img-fluid mx-auto lazy" alt="devenir conducteur taxi" title="Devenir conducteur taxi" style="text-align: center;" />
               </div>
             </div>
           </div>
@@ -347,17 +347,17 @@
                   <ul class="fa-ul" style="font-size:16.5px; line-height: 1.5rem;">
                     <li>
                       <i class="fa fa-chevron-right" style="font-size: 13px; margin: 0px 7px 5px -17px"></i>
-                    Permis B non probatoire
+                      Permis B non probatoire
                     </li>
                     <i class="fa-li fa fa-square" aria-hidden="true"></i>
                     <li>
                       <i class="fa fa-chevron-right" style="font-size: 13px; margin: 0px 7px 5px -17px"></i>
-                    Attestation d’aptitude médicale auprès d’un médecin agréé par la préfecture par la
+                      Attestation d’aptitude médicale auprès d’un médecin agréé par la préfecture par la
                     préfecture
                     </li>
                     <li>
                       <i class="fa fa-chevron-right" style="font-size: 13px; margin: 0px 7px 5px -17px"></i>
-                    Casier judiciaire B2 non affecté de certaines condamnations
+                      Casier judiciaire B2 non affecté de certaines condamnations
                     </li>
                   </ul>
                 </p>
@@ -369,11 +369,11 @@
                   <ul class="fa-ul" style="font-size:16.5px; line-height: 1.5rem;">
                     <li>
                       <i class="fa fa-chevron-right" style="font-size: 13px; margin: 0px 7px 5px -17px"></i>
-                    Acquérir les savoirs nécessaires à la réussite de l’examen TAXI
+                      Acquérir les savoirs nécessaires à la réussite de l’examen TAXI
                     </li>
                     <li>
                       <i class="fa fa-chevron-right" style="font-size: 13px; margin: 0px 7px 5px -17px"></i>
-                    Préparation aux épreuves d’admissibilité de l’examen TAXI (théorie)
+                      Préparation aux épreuves d’admissibilité de l’examen TAXI (théorie)
                     </li>
 
                   </ul>
@@ -418,7 +418,7 @@
               <div class="col-lg-4 s_col_no_bgcolor pt16 pb16" style="border-style: none; border-width: 0px">
 
                 <div class="card bg-white">
-                  <img class="card-img-top lazy" data-src="/mcm_website_theme/static/src/img/formation_taxi/Formation-initiale-au-métier-de-TAXI.webp" data-srcSafari="/mcm_website_theme/static/src/img/formation_vtc/Formation-initiale-au-métier-de-TAXI.png" alt="formation taxi" title="Formation taxi" />
+                  <img class="card-img-top lazy" data-src="/mcm_website_theme/static/src/img/formation_taxi/Formation-initiale-au-métier-de-TAXI.webp" data-srcSafari="/mcm_website_theme/static/src/img/formation_taxi/Formation-initiale-au-métier-de-TAXI.png" alt="formation taxi" title="Formation taxi" />
                   <div class="card-body">
                     <h4 class="card-title">
                       Formation initiale au métier de TAXI
@@ -437,7 +437,7 @@
               </div>
               <div class="col-lg-4 s_col_no_bgcolor pt16 pb16" style="border-style: none; border-width: 0px">
                 <div class="card bg-white">
-                  <img class="card-img-top lazy" data-src="/mcm_website_theme/static/src/img/formation_taxi/Formation-passerelle-VTC-TAXI.webp" data-srcSafari="/mcm_website_theme/static/src/img/formation_vtc/Formation-passerelle-VTC-TAXI.png" alt="Rétroviseur taxi" title="Rétroviseur taxi" />
+                  <img class="card-img-top lazy" data-src="/mcm_website_theme/static/src/img/formation_taxi/Formation-passerelle-VTC-TAXI.webp" data-srcSafari="/mcm_website_theme/static/src/img/formation_taxi/Formation-passerelle-VTC-TAXI.png" alt="Rétroviseur taxi" title="Rétroviseur taxi" />
                   <div class="card-body">
                     <h4 class="card-title">
                       Formation passerelle VTC-TAXI
@@ -457,7 +457,7 @@
               </div>
               <div class="col-lg-4 s_col_no_bgcolor pt16 pb16" style="border-style: none; border-width: 0px">
                 <div class="card bg-white">
-                  <img class="card-img-top lazy" data-src="/mcm_website_theme/static/src/img/formation_taxi/Formation-continue-au-métier-de-TAXI.webp" data-srcSafari="/mcm_website_theme/static/src/img/formation_vtc/Formation-continue-au-métier-de-TAXI.png" alt="Candidat et formateur au métier de taxi" title="Candidat et formateur au métier de taxi" />
+                  <img class="card-img-top lazy" data-src="/mcm_website_theme/static/src/img/formation_taxi/Formation-continue-au-métier-de-TAXI.webp" data-srcSafari="/mcm_website_theme/static/src/img/formation_taxi/Formation-continue-au-métier-de-TAXI.png" alt="Candidat et formateur au métier de taxi" title="Candidat et formateur au métier de taxi" />
                   <div class="card-body">
                     <h4 class="card-title">
                       Formation continue au métier de TAXI
@@ -504,38 +504,45 @@
                 </p>
                 <ul class="fa-ul" style="font-size:16.5px; line-height: 1.5rem;">
                   <li>
-                    <i class="fa fa-chevron-right" style="    font-size: 13px; margin: 0px 7px 5px -17px;"></i>Une
+                    <i class="fa fa-chevron-right" style="    font-size: 13px; margin: 0px 7px 5px -17px;"></i>
+                    Une
                     formation complète
                   </li>
                   <li>
-                    <i class="fa fa-chevron-right" style="    font-size: 13px; margin: 0px 7px 5px -17px;"></i>A votre
+                    <i class="fa fa-chevron-right" style="    font-size: 13px; margin: 0px 7px 5px -17px;"></i>
+                    A votre
                     rythme
                   </li>
                   <li>
-                    <i class="fa fa-chevron-right" style="    font-size: 13px; margin: 0px 7px 5px -17px;"></i>Présentée
+                    <i class="fa fa-chevron-right" style="    font-size: 13px; margin: 0px 7px 5px -17px;"></i>
+                    Présentée
                     sous
                     différents
                     supports
                   </li>
                   <li>
-                    <i class="fa fa-chevron-right" style="    font-size: 13px; margin: 0px 7px 5px -17px;"></i>Organisés
+                    <i class="fa fa-chevron-right" style="    font-size: 13px; margin: 0px 7px 5px -17px;"></i>
+                    Organisés
                     par des
                     experts du
                     métiers
                   </li>
                   <li>
-                    <i class="fa fa-chevron-right" style="    font-size: 13px; margin: 0px 7px 5px -17px;"></i>Avec des
+                    <i class="fa fa-chevron-right" style="    font-size: 13px; margin: 0px 7px 5px -17px;"></i>
+                    Avec des
                     programmes de
                     révisions bien étudiés
                   </li>
                   <li>
-                    <i class="fa fa-chevron-right" style="    font-size: 13px; margin: 0px 7px 5px -17px;"></i>Un accès
+                    <i class="fa fa-chevron-right" style="    font-size: 13px; margin: 0px 7px 5px -17px;"></i>
+                    Un accès
                     à des examens
                     blancs
                     pour s'entraîner
                   </li>
                   <li>
-                    <i class="fa fa-chevron-right" style="    font-size: 13px; margin: 0px 7px 5px -17px;"></i>Et un
+                    <i class="fa fa-chevron-right" style="    font-size: 13px; margin: 0px 7px 5px -17px;"></i>
+                    Et un
                     suivi personnalisé
                     afin
                     de bien vous préparer à l'examen.
@@ -550,18 +557,22 @@
                 </h4>
                 <ul class="fa-ul" style="font-size:16.5px; line-height: 1.5rem;">
                   <li>
-                    <i class="fa fa-chevron-right" style="    font-size: 13px; margin: 0px 7px 5px -17px;"></i>Vidéos
+                    <i class="fa fa-chevron-right" style="    font-size: 13px; margin: 0px 7px 5px -17px;"></i>
+                    Vidéos
                   </li>
                   <li>
-                    <i class="fa fa-chevron-right" style="    font-size: 13px; margin: 0px 7px 5px -17px;"></i>Cours en
+                    <i class="fa fa-chevron-right" style="    font-size: 13px; margin: 0px 7px 5px -17px;"></i>
+                    Cours en
                     visioconférences
                   </li>
                   <li>
-                    <i class="fa fa-chevron-right" style="    font-size: 13px; margin: 0px 7px 5px -17px;"></i>Quizz en
+                    <i class="fa fa-chevron-right" style="    font-size: 13px; margin: 0px 7px 5px -17px;"></i>
+                    Quizz en
                     lignes
                   </li>
                   <li>
-                    <i class="fa fa-chevron-right" style="    font-size: 13px; margin: 0px 7px 5px -17px;"></i>Examens
+                    <i class="fa fa-chevron-right" style="    font-size: 13px; margin: 0px 7px 5px -17px;"></i>
+                    Examens
                     blancs en ligne
                   </li>
                 </ul>
