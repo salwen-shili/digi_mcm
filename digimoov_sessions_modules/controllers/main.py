@@ -32,7 +32,7 @@ class WebsiteSale(WebsiteSale):
         access_token: Abandoned cart SO access token
         revive: Revival method when abandoned cart. Can be 'merge' or 'squash'
         """
-        statut =False
+        statut ="False"
         if not request.env.user.lang:
             request.env.user.lang ='fr_FR'
         locale.setlocale(locale.LC_TIME, str(request.env.user.lang) + '.utf8') #get local time of partner
@@ -306,6 +306,7 @@ class WebsiteSale(WebsiteSale):
             values.update({
                 'list_villes_mcm': list_villes_mcm,
             })
+        print("(**********************",values)
         return request.render("website_sale.cart", values)
 
     # def checkout_redirection(self, order):
