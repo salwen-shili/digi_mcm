@@ -282,6 +282,7 @@ class WebsiteSale(WebsiteSale):
                 statut='https://www.moncompteformation.gouv.fr/espace-prive/html/#/dossiers/v2/'+numero_cpf+'/detail/financement'
             if state=="accepted":
                 statut="accepted"
+            
 
         values.update({
             'modules_digimoov': list_modules_digimoov,
@@ -306,6 +307,7 @@ class WebsiteSale(WebsiteSale):
             values.update({
                 'list_villes_mcm': list_villes_mcm,
             })
+        print('valuuuuuuuue',values)
         return request.render("website_sale.cart", values)
 
     # def checkout_redirection(self, order):
@@ -331,7 +333,7 @@ class WebsiteSale(WebsiteSale):
     #                 return request.redirect('/shop/cart')
     #     return redirection
     """Changer statut cpf vers accepté selon l'etat récupéré avec api wedof"""
-    @http.route(['/cpf_accepted'], type='json', auth="public", methods=['POST'], website=True)
+    @http.route(['/shop/cpf_accepted'], type='json', auth="user", methods=['POST'], website=True)
     def accepted_cpf(self):
         partner = request.env.user.partner_id
         if partner.numero_cpf:
@@ -568,7 +570,7 @@ class WebsiteSale(WebsiteSale):
                             vals)
 
     """ajouter l'apprenant sur 360 par api360"""
-    @http.route(['/adduser_plateform'], type='json', auth="public")
+    @http.route(['/shop/adduser_plateform'], type='json', auth="user",methods=['POST'], website=True)
     def add_partner_plateforme(self):
         user = request.env.user
         partner = user.partner_id
@@ -619,19 +621,60 @@ class WebsiteSale(WebsiteSale):
                         self.ajouter_iOne(partner)
                     if not partner.renounce_request:
                         print("Renonce")
-                        return {'ajout': 'Vous devez attendre 14 jours pour commencer  votre formation'}
-
+                        # return {'ajout': 'Vous devez attendre 14 jours pour commencer  votre formation'}
+                        """créer ticket pour service client"""
+                        vals = {
+                            'description': 'CPF: Apprenant non ajouté sur 360 %s' % (partner.name),
+                            'name': 'CPF : case de renonciation non coché  ',
+                            'team_id': request.env['helpdesk.team'].sudo().search(
+                                [('name', 'like', 'Client'), ('company_id', "=", 2)],
+                                limit=1).id,
+                        }
+                        description = "CPF: Apprenant non ajouté sur 360 " + str(partner.name)
+                        ticket = request.env['helpdesk.ticket'].sudo().search([("description", "=", description)])
+                        if not ticket:
+                            new_ticket = request.env['helpdesk.ticket'].sudo().create(
+                                vals)
                     # if not partner.renounce_request and date_facture and (date_facture + timedelta(days=14)) <= today:
                     #     self.ajouter_iOne(partner)
                 if not document_valide:
                     print("Documents")
                     return {'ajout': 'Vous devez attendre la validation de vos documents pour commencer la formation'}
+                    """créer ticket pour service client"""
+                    vals = {
+                        'description': 'CPF: Apprenant non ajouté sur 360 %s' % (partner.name),
+                        'name': 'CPF : Valider les documents ',
+                        'team_id': request.env['helpdesk.team'].sudo().search(
+                            [('name', 'like', 'Client'), ('company_id', "=", 2)],
+                            limit=1).id,
+                    }
+                    description = "CPF: Apprenant non ajouté sur 360 " + str(partner.name)
+                    ticket = request.env['helpdesk.ticket'].sudo().search([("description", "=", description)])
+                    if not ticket:
+                        new_ticket = request.env['helpdesk.ticket'].sudo().create(
+                            vals)
 
     def ajouter_iOne(self, partner):
-        # Remplacez les paramètres régionaux de l'heure par le paramètre de langue actuel
-        # du compte dans odoo
-        if not request.env.user.lang:
-            request.env.user.lang = 'fr_FR'
+        params = (
+            ('company', '56f5520e11d423f46884d593'),
+            ('apiKey', 'cnkcbrhHKyfzKLx4zI7Ub2P5'),
+        )
+        company_id = '56f5520e11d423f46884d593'
+        api_key = 'cnkcbrhHKyfzKLx4zI7Ub2P5'
+        headers = CaseInsensitiveDict()
+        headers["Content-Type"] = "application/json"
+
+        """Vérifier la presence d'apprenant sur 360 """
+        url_user = 'https://app.360learning.com/api/v1/users/' + partner.email + '?company=' + company_id + '&apiKey=' + api_key
+        resp = requests.get(url_user, headers=headers)
+        """s'il est présent on lui envoie le lien pour se connecter si non on lui ajoute """
+        print('get user', resp.status_code)
+        if resp.status_code == 200:
+            return {'ajout': 'Vous êtes déja sur la plateforme, cliquez sur le lien ci-dessous pour se connecter'}
+
+        elif not request.env.user.lang:
+            request.env.user.lang = 'fr_FR'  # Remplacez les paramètres régionaux de l'heure par le paramètre de langue actuel
+                                             # du compte dans odoo
         locale.setlocale(locale.LC_TIME, str(request.env.user.lang) + '.utf8')
         company = str(partner.module_id.company_id.id)
         product_name = partner.module_id.product_id.name
@@ -662,18 +705,10 @@ class WebsiteSale(WebsiteSale):
                 print('iffff userrrrrr')
                 id_Digimoov_bienvenue = '56f5520e11d423f46884d594'
                 id_Digimoov_Examen_Attestation = '5f9af8dae5769d1a2c9d5047'
-                params = (
-                    ('company', '56f5520e11d423f46884d593'),
-                    ('apiKey', 'cnkcbrhHKyfzKLx4zI7Ub2P5'),
-                )
-                company_id = '56f5520e11d423f46884d593'
-                api_key = 'cnkcbrhHKyfzKLx4zI7Ub2P5'
                 urluser = 'https://app.360learning.com/api/v1/users?company=' + company_id + '&apiKey=' + api_key
                 urlgroup_Bienvenue = 'https://app.360learning.com/api/v1/groups/' + id_Digimoov_bienvenue + '/users/' + partner.email + '?company=' + company_id + '&apiKey=' + api_key
                 url_groups = 'https://app.360learning.com/api/v1/groups'
                 url_unsubscribeToEmailNotifications = 'https://app.360learning.com/api/v1/users/unsubscribeToEmailNotifications?company=' + company_id + '&apiKey=' + api_key
-                headers = CaseInsensitiveDict()
-                headers["Content-Type"] = "application/json"
                 invit = False
                 create = False
                 # Si le mot de passe n'est pas récupérée au moment d'inscrit on invite l'apprennant
@@ -791,10 +826,36 @@ class WebsiteSale(WebsiteSale):
                                 respsession = requests.put(urlsession, headers=headers, data=data_group)
                                 print(existe, 'ajouter à son session', respsession.status_code)
                     "si créer envoyer le lien de la plateforme si non false"
-                    return {'ajout': 'https://digimoov.360learning.com' }
+                    return {'ajout': 'https://digimoov.360learning.com'}
                 if not (create):
-                    return {'ajout': 'False'}
+                        return {'ajout': 'Vous allez bientôt recevoir une invitation à la plateforme par courrier.'}
 
+                        vals = {
+                            'description': 'CPF: Apprenant non ajouté sur 360 %s' % (partner.name),
+                            'name': 'CPF : Vérifier La fiche client ',
+                            'team_id': request.env['helpdesk.team'].sudo().search(
+                                [('name', 'like', 'IT'), ('company_id', "=", 2)],
+                                limit=1).id,
+                        }
+                        description = "CPF: Apprenant non ajouté sur 360 " + str(partner.name)
+                        ticket = request.env['helpdesk.ticket'].sudo().search([("description", "=", description),
+                                                                            ("team_id.name",'like', 'IT')])
+                        if not ticket:
+                            new_ticket = request.env['helpdesk.ticket'].sudo().create(
+                                vals)
+                        vals_client = {
+                            'description': 'CPF: Apprenant non ajouté sur 360 %s' % (partner.name),
+                            'name': 'CPF : Vérifier La fiche client ',
+                            'team_id': request.env['helpdesk.team'].sudo().search(
+                                [('name', 'like', 'Client'), ('company_id', "=", 2)],
+                                limit=1).id,
+                        }
+                        description_client = "CPF: Apprenant non ajouté sur 360 " + str(partner.name)
+                        ticket_client = request.env['helpdesk.ticket'].sudo().search([("description", "=", description_client),
+                                                                                   ("team_id.name",'like', 'Client')])
+                        if not ticket_client:
+                            new_ticket_client = request.env['helpdesk.ticket'].sudo().create(
+                                vals_client)
 
 
 
