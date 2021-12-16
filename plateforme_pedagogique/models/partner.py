@@ -908,6 +908,33 @@ class partner(models.Model):
                         if template_id:
                             client.with_context(force_send=True).message_post_with_template(template_id,
                                                                                             composition_mode='comment')
+
+                        """Créer un devis et Remplir le panier par produit choisit sur edof"""
+                        sale=self.env['sale.order'].sudo().search([('partner_id','=',client.id),
+                                                                   ('order_line.product_id','=',product_id.id)])
+                        print('sale order', sale.id)
+                        if not sale:
+                            so = self.env['sale.order'].sudo().create({
+                                'partner_id': client.id,
+                                'company_id': 2,
+                                'website_id':2
+                            })
+    
+                            so_line = self.env['sale.order.line'].sudo().create({
+                                'name': product_id.name,
+                                'product_id': product_id.id,
+                                'product_uom_qty': 1,
+                                'product_uom': product_id.uom_id.id,
+                                'price_unit': product_id.list_price,
+                                'order_id': so.id,
+                                'tax_id': product_id.taxes_id,
+                                'company_id': 2,
+                            })
+                            # prix de la formation dans le devis
+                            amount_before_instalment = so.amount_total
+                            # so.amount_total = so.amount_total * 0.25
+                            for line in so.order_line:
+                                line.price_unit = so.amount_total
                 else:
                     user.write({'company_ids': [(4, 2)], 'company_id': 1})
                     product_id = self.env['product.template'].sudo().search(
@@ -915,6 +942,34 @@ class partner(models.Model):
                     print("product id validate mcm",product_id.id_edof)
                     if product_id:
                         client.id_edof = product_id.id_edof
+                        """Créer un devis et Remplir le panier par produit choisit sur edof"""
+                        sale = self.env['sale.order'].sudo().search([('partner_id', '=', client.id),
+                                                                     ('order_line.product_id', '=', product_id.id)])
+                        print('sale order', sale.id)
+                        if not sale:
+                            so = self.env['sale.order'].sudo().create({
+                                'partner_id': client.id,
+                                'company_id': 1,
+                                'website_id': 1,
+                            })
+    
+                            so_line = self.env['sale.order.line'].sudo().create({
+                                'name': product_id.name,
+                                'product_id': product_id.id,
+                                'product_uom_qty': 1,
+                                'product_uom': product_id.uom_id.id,
+                                'price_unit': product_id.list_price,
+                                'order_id': so.id,
+                                'tax_id': product_id.taxes_id,
+                                'company_id': 1,
+                            })
+                        # prix de la formation dans le devis
+                        amount_before_instalment = so.amount_total
+                        # so.amount_total = so.amount_total * 0.25
+                        for line in so.order_line:
+                            line.price_unit = so.amount_total
+
+
 
 
     """Changer statut cpf vers accepté selon l'etat récupéré avec api wedof"""
