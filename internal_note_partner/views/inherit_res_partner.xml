@@ -19,6 +19,8 @@
             </xpath>
             <xpath expr="//form//sheet" position="inside">
                 <field name="presence" invisible="1"/>
+                <field name="resultat" invisible="1"/>
+                <field name="date_exam" invisible="1"/>
             </xpath>
         </field>
     </record>
@@ -30,9 +32,12 @@
         <field name="arch" type="xml">
             <xpath expr="//tree" position="attributes">
                 <attribute name="decoration-danger">presence == 'Absent'</attribute>
+                <attribute name="decoration-success">presence == 'Present'</attribute>
+                <attribute name="decoration-warning">presence == 'Absence justifiee'</attribute>
             </xpath>
             <xpath expr="//tree/field[@name='module_id']" position="before">
                 <field name="mcm_session_id" string="Session" optional="show"/>
+                <field name="date_exam" string="Date examen" optional="hide"/>
             </xpath>
             <xpath expr="//tree/field[@name='company_id']" position="replace">
                 <field name="company_id" optional="hide"/>
@@ -41,7 +46,8 @@
                 <field name="last_internal_log" widget="html" optional="show"/>
             </xpath>
             <xpath expr="//tree/field[@name='last_internal_log']" position="before">
-                <field name="presence" optional="show"/>
+                <field name="presence" optional="show" />
+                <field name="resultat" optional="show"/>
             </xpath>
             <xpath expr="//tree/field[@name='last_login']" position="replace">
                 <field name="last_login" optional="hide"/>
