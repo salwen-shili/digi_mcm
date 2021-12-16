@@ -32,8 +32,9 @@
         <field name="arch" type="xml">
             <xpath expr="//tree" position="attributes">
                 <attribute name="decoration-danger">presence == 'Absent'</attribute>
-                <attribute name="decoration-success">presence == 'Present'</attribute>
+                <attribute name="decoration-success">(presence == 'Present' and resultat == 'Recu')</attribute>
                 <attribute name="decoration-warning">presence == 'Absence justifiee'</attribute>
+                <attribute name="decoration-warning">(presence == 'Present' and resultat == 'Ajourne')</attribute>
             </xpath>
             <xpath expr="//tree/field[@name='module_id']" position="before">
                 <field name="mcm_session_id" string="Session" optional="show"/>
