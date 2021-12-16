@@ -489,31 +489,82 @@ class ClientCPFController(http.Controller):
         email = email.replace(" ", "") # supprimer les espaces envoyés en paramètre email  pour éviter la création des deux comptes
         email = str(email).lower() # recupérer l'email en miniscule pour éviter la création des deux comptes
         user = request.env['res.users'].sudo().search([('login', "=", email)])
-
-        exist = True
+        exist=True
         if not user:
-            if '+33' not in str(tel):  # num edof
+            if tel:
                 user = request.env["res.users"].sudo().search(
-                    [("phone", "=", str(tel).replace(' ', ''))], limit=1)
+                    [("phone", "=", str(tel))], limit=1)
+
                 if not user:
-                    phone = str(tel)
-                    phone = phone[1:]
-                    phone = '+33' + str(phone)
-                    user = request.env["res.users"].sudo().search(
-                        [("phone", "=", phone.replace(' ', ''))], limit=1)
-            else:
-                user = request.env["res.users"].sudo().search(
-                    [("phone", "=", str(tel).replace(' ', ''))], limit=1)
-                if not user:
-                    phone = str(tel)
-                    phone = phone[3:]
-                    phone = '0' + str(phone)
-                    user = request.env["res.users"].sudo().search(
-                        [("phone", "=", phone.replace(' ', ''))], limit=1)
+                    phone_number = str(tel).replace(' ', '')
+                    if '+33' not in str(phone_number):  # check if aircall api send the number of client with +33
+                        phone = phone_number[0:2]
+                        if str(phone) == '33' and ' ' not in str(
+                                tel):  # check if aircall api send the number of client in this format (number_format: 33xxxxxxx)
+                            phone = '+' + str(tel)
+                            user = request.env["res.users"].sudo().search([("phone", "=", phone)], limit=1)
+                            if not user:
+                                phone = phone[0:3] + ' ' + phone[3:4] + ' ' + phone[4:6] + ' ' + phone[
+                                                                                                 6:8] + ' ' + phone[
+                                                                                                              8:10] + ' ' + phone[
+                                                                                                                            10:]
+                                user = request.env["res.users"].sudo().search([("phone", "=", phone)], limit=1)
+                            if not user :
+                                phone = '0' +str(phone[4:])
+                                user = request.env["res.users"].sudo().search(['|',("phone", "=", phone),("phone", "=",phone.replace(' ',''))], limit=1)
+                        phone = phone_number[0:2]
+                        if str(phone) == '33' and ' ' in str(
+                                tel):  # check if aircall api send the number of client in this format (number_format: 33 x xx xx xx)
+                            phone = '+' + str(tel)
+                            user = request.env["res.users"].sudo().search(
+                                ['|', ("phone", "=", phone), ("phone", "=", phone.replace(' ', ''))], limit=1)
+                            if not user:
+                                phone = '0' + str(phone[4:])
+                                user = request.env["res.users"].sudo().search(
+                                    ['|', ("phone", "=", phone), ("phone", "=", phone.replace(' ', ''))], limit=1)
+                        phone = phone_number[0:2]
+                        if str(phone) in ['06', '07'] and ' ' not in str(
+                                tel):  # check if aircall api send the number of client in this format (number_format: 07xxxxxx)
+                            user = request.env["res.users"].sudo().search(['|',("phone", "=", str(tel)),("phone", "=", str('+33'+tel.replace(' ','')[-9:]))], limit=1)
+                            if not user:
+
+                                phone = phone[0:2] + ' ' + phone[2:4] + ' ' + phone[4:6] + ' ' + phone[
+                                                                                                 6:8] + ' ' + phone[8:] # 07 xx xx xx
+
+                                user = request.env["res.users"].sudo().search([("phone", "=", phone)], limit=1)
+                                if not user :
+                                    phone = '0' + str(phone[4:])
+                                    user = request.env["res.users"].sudo().search(
+                                        ['|', ("phone", "=", phone), ("phone", "=", phone.replace(' ', ''))], limit=1)
+                        phone = phone_number[0:2]
+                        if str(phone) in ['06', '07'] and ' ' in str(
+                                tel):  # check if aircall api send the number of client in this format (number_format: 07 xx xx xx)
+                            user = request.env["res.users"].sudo().search(
+                                ['|', ("phone", "=", str(tel)), ("phone", "=",str(tel).replace(' ', ''))], limit=1)
+                            if not user:
+                                phone_number = str(tel[1:])
+                                user = request.env["res.users"].sudo().search(
+                                    ['|', ("phone", "=", str('+33'+phone_number)), ("phone", "=", ('+33'+phone_number.replace(' ', '')))], limit=1)
+                    else:  # check if aircall api send the number of client with+33
+                        if ' ' not in str(tel):
+                            phone = str(tel)
+                            phone = phone[0:3] + ' ' + phone[3:4] + ' ' + phone[4:6] + ' ' + phone[6:8] + ' ' + phone[
+                                                                                                                8:10] + ' ' + phone[
+                                                                                                                              10:]
+                            user = request.env["res.users"].sudo().search(
+                                [("phone", "=", phone)], limit=1)
+                        if not user:
+                            user = request.env["res.users"].sudo().search(
+                                [("phone", "=", str(phone_number).replace(' ', ''))], limit=1)
+                            if not user:
+                                phone = str(phone_number)
+                                phone = phone[3:]
+                                phone = '0' + str(phone)
+                                user = request.env["res.users"].sudo().search(
+                                    [("phone", "like", phone.replace(' ', ''))], limit=1)
             if not user:
-                # créer
                 exist = False
-                if "digimoov" in str(module):  # module from wedof
+                if "digimoov" in str(module):
                     user = request.env['res.users'].sudo().create({
                         'name': str(prenom) + " " + str(nom),
                         'login': str(email),
@@ -545,21 +596,17 @@ class ClientCPFController(http.Controller):
             client = request.env['res.partner'].sudo().search(
                 [('id', '=', user.partner_id.id)])
             if client:
-              
                 client.mode_de_financement = 'cpf'
                 client.funding_type = 'cpf'
                 client.numero_cpf = dossier
                 client.statut_cpf = 'validated'
-                client.statut = 'indecis'
-                client.phone = tel
-                client.street = address
-                client.zip = code_postal
-                client.city = ville
-                client.diplome = diplome  # attestation capacitév ....
-                # client.date_cpf = lastupd
-                client.name = str(prenom) + " " + str(nom)
-                module_id = False
-                product_id = False
+                client.phone='0'+str(tel.replace(' ',''))[-9:]
+                client.street=address
+                client.zip=code_postal
+                client.city=ville
+                client.diplome=diplome
+                module_id=False
+                product_id=False
                 template_id = int(request.env['ir.config_parameter'].sudo().get_param(
                     'mcm_cpf_validation.digimoov_email_template_exam_date_center'))
                 template_id = request.env['mail.template'].search([('id', '=', template_id)]).id
@@ -571,76 +618,25 @@ class ClientCPFController(http.Controller):
                         'mcm_cpf_validation.digimoov_email_template_exam_date_center',
                         raise_if_not_found=False)
                 if "digimoov" in str(module):
-                    user.write({'company_ids': [1, 2], 'company_id': 2})
-                    product_id = request.env['product.template'].sudo().search(
-                        [('id_edof', "=", str(module)), ('company_id', "=", 2)], limit=1)
-                    print("product id validate digi", product_id.id_edof)
+                    user.write({'company_ids': [1,2], 'company_id': 2})
+                    product_id = request.env['product.template'].sudo().search([('id_edof', "=", str(module)),('company_id',"=",2)], limit=1)
                     if product_id:
-                        client.id_edof = product_id.id_edof
-                        if template_id:
-                            client.with_context(force_send=True).message_post_with_template(template_id,
-                                                                                            composition_mode='comment')
-
-                        """Créer un devis et Remplir le panier par produit choisit sur edof"""
-                        sale = request.env['sale.order'].sudo().search([('partner_id', '=', client.id),
-                                                                     ('order_line.product_id', '=', product_id.id)])
-                        print('sale order', sale.id)
-                        if not sale:
-                            so = request.env['sale.order'].sudo().create({
-                                'partner_id': client.id,
-                                'company_id': 2,
-                                'website_id': 2,
-                            })
-                            print('sale order :',so)
-                            so_line = request.env['sale.order.line'].sudo().create({
-                                'name': product_id.name,
-                                'product_id': product_id.id,
-                                'product_uom_qty': 1,
-                                'product_uom': product_id.uom_id.id,
-                                'price_unit': product_id.list_price,
-                                'order_id': so.id,
-                                'tax_id': product_id.taxes_id,
-                                'company_id': 2,
-                            })
-                            print('sale_order_line :',so_line)
-                            # prix de la formation dans le devis
-                            amount_before_instalment = so.amount_total
-                            # so.amount_total = so.amount_total * 0.25
-                            for line in so.order_line:
-                                line.price_unit = so.amount_total
+                        client.id_edof=product_id.id_edof
+                        # if template_id:
+                        #     client.with_context(force_send=True).message_post_with_template(template_id,
+                        #                                                                        composition_mode='comment')
                 else:
                     user.write({'company_ids': [(4, 2)], 'company_id': 1})
                     product_id = request.env['product.template'].sudo().search(
                         [('id_edof', "=", str(module)), ('company_id', "=", 1)], limit=1)
-                    print("product id validate mcm", product_id.id_edof)
                     if product_id:
                         client.id_edof = product_id.id_edof
-                        """Créer un devis et Remplir le panier par produit choisit sur edof"""
-                        sale = request.env['sale.order'].sudo().search([('partner_id', '=', client.id),
-                                                                     ('order_line.product_id', '=', product_id.id)])
-                        print('sale order', sale.id)
-                        if not sale:
-                            so = request.env['sale.order'].sudo().create({
-                                'partner_id': client.id,
-                                'company_id': 1,
-                                'website_id': 1,
-                            })
-
-                            so_line = request.env['sale.order.line'].sudo().create({
-                                'name': product_id.name,
-                                'product_id': product_id.id,
-                                'product_uom_qty': 1,
-                                'product_uom': product_id.uom_id.id,
-                                'price_unit': product_id.list_price,
-                                'order_id': so.id,
-                                'tax_id': product_id.taxes_id,
-                                'company_id': 1,
-                            })
-                            # prix de la formation dans le devis
-                            amount_before_instalment = so.amount_total
-                            # so.amount_total = so.amount_total * 0.25
-                            for line in so.order_line:
-                                line.price_unit = so.amount_total
+            else:
+                return request.render("mcm_cpf_validation.mcm_website_partner_not_found", {})
+        if not exist:
+            return request.render("mcm_cpf_validation.mcm_website_new_partner_created", {})
+        else:
+            return request.render("mcm_cpf_validation.mcm_website_partner_updated", {})
 
     @http.route('/available_places/<string:email>/<string:module>', type="http", auth="user")
     def available_places(self,email=None,module=None):
