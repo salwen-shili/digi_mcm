@@ -31,10 +31,10 @@
         <field name="inherit_id" ref="base.view_partner_tree"/>
         <field name="arch" type="xml">
             <xpath expr="//tree" position="attributes">
-                <attribute name="decoration-danger">presence == 'Absent'</attribute>
-                <attribute name="decoration-success">(presence == 'Present' and resultat == 'Recu')</attribute>
+                <attribute name="decoration-danger">presence == 'Absent(e)'</attribute>
+                <attribute name="decoration-success">(presence == 'Présent(e)' and resultat == 'Admis(e)')</attribute>
                 <attribute name="decoration-warning">presence == 'Absence justifiee'</attribute>
-                <attribute name="decoration-warning">(presence == 'Present' and resultat == 'Ajourne')</attribute>
+                <attribute name="decoration-warning">(presence == 'Présent(e)' and resultat == 'Ajourné(e)')</attribute>
             </xpath>
             <xpath expr="//tree/field[@name='module_id']" position="before">
                 <field name="mcm_session_id" string="Session" optional="show"/>
