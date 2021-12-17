@@ -310,8 +310,8 @@ class partner(models.Model):
                     data_user = '{"mail":"' + partner.email + '" , "password":"' + user.password360 + '", "firstName":"' + partner.firstName + '", "lastName":"' + partner.lastName + '", "phone":"' + partner.phone + '", "lang":"fr","sendCredentials":"true"}'
                     resp = requests.post(urluser, headers=headers, data=data_user)
                     print(data_user, 'user', resp.status_code)
-                    respoo= str(json.loads(resp.text))
-                    _logger.info("response  add user%s" %respoo)
+                    respo = str(json.loads(resp.text))
+                    _logger.info('response addd  %s' %respo)
                     if (resp.status_code == 200):
                         create = True
                 data_group = {}
@@ -677,11 +677,11 @@ class partner(models.Model):
     """Mettre à jour les statuts cpf sur la fiche client selon l'etat sur wedof """
     def change_state_cpf_partner(self):
         base_url = self.env['ir.config_parameter'].sudo().get_param('web.base.url')
-        if "localhost" not in str(base_url) and "dev.odoo" not in str(base_url):
+        if "localhost"  in str(base_url) and "dev.odoo" not in str(base_url):
             params_wedof = (
                 ('order', 'desc'),
                 ('type', 'all'),
-                ('state', 'validated,inTraining,refusedByAttendee,refusedByOrganism,serviceDoneDeclared,canceledByAttendee,canceledByAttendeeNotRealized,canceledByOrganism'),
+                ('state', 'validated,inTraining,refusedByAttendee,refusedByOrganism,serviceDoneDeclared,serviceDoneValidated,canceledByAttendee,canceledByAttendeeNotRealized,canceledByOrganism'),
                 ('billingState', 'all'),
                 ('certificationState', 'all'),
                 ('sort', 'lastUpdate'),
@@ -855,7 +855,7 @@ class partner(models.Model):
                                 user = self.env["res.users"].sudo().search([("phone", "=", phone)], limit=1)
                             if not user:
                                 phone = '0' + str(phone[4:])
-                                user = request.env["res.users"].sudo().search(
+                                user = self.env["res.users"].sudo().search(
                                     ['|', ("phone", "=", phone), ("phone", "=", phone.replace(' ', ''))], limit=1)
                         phone = phone_number[0:2]
                         if str(phone) in ['06', '07'] and ' ' in str(tel): # check if edof api send the number of client in this format (number_format: 07 xx xx xx)
@@ -953,33 +953,6 @@ class partner(models.Model):
                         if template_id:
                             client.with_context(force_send=True).message_post_with_template(template_id,
                                                                                             composition_mode='comment')
-
-                        """Créer un devis et Remplir le panier par produit choisit sur edof"""
-                        sale=self.env['sale.order'].sudo().search([('partner_id','=',client.id),
-                                                                   ('order_line.product_id','=',product_id.id)])
-                        print('sale order', sale.id)
-                        if not sale:
-                            so = self.env['sale.order'].sudo().create({
-                                'partner_id': client.id,
-                                'company_id': 2,
-                                'website_id':2
-                            })
-    
-                            so_line = self.env['sale.order.line'].sudo().create({
-                                'name': product_id.name,
-                                'product_id': product_id.id,
-                                'product_uom_qty': 1,
-                                'product_uom': product_id.uom_id.id,
-                                'price_unit': product_id.list_price,
-                                'order_id': so.id,
-                                'tax_id': product_id.taxes_id,
-                                'company_id': 2,
-                            })
-                            # prix de la formation dans le devis
-                            amount_before_instalment = so.amount_total
-                            # so.amount_total = so.amount_total * 0.25
-                            for line in so.order_line:
-                                line.price_unit = so.amount_total
                 else:
                     user.write({'company_ids': [(4, 2)], 'company_id': 1})
                     product_id = self.env['product.template'].sudo().search(
@@ -987,34 +960,6 @@ class partner(models.Model):
                     print("product id validate mcm",product_id.id_edof)
                     if product_id:
                         client.id_edof = product_id.id_edof
-                        """Créer un devis et Remplir le panier par produit choisit sur edof"""
-                        sale = self.env['sale.order'].sudo().search([('partner_id', '=', client.id),
-                                                                     ('order_line.product_id', '=', product_id.id)])
-                        print('sale order', sale.id)
-                        if not sale:
-                            so = self.env['sale.order'].sudo().create({
-                                'partner_id': client.id,
-                                'company_id': 1,
-                                'website_id': 1,
-                            })
-    
-                            so_line = self.env['sale.order.line'].sudo().create({
-                                'name': product_id.name,
-                                'product_id': product_id.id,
-                                'product_uom_qty': 1,
-                                'product_uom': product_id.uom_id.id,
-                                'price_unit': product_id.list_price,
-                                'order_id': so.id,
-                                'tax_id': product_id.taxes_id,
-                                'company_id': 1,
-                            })
-                        # prix de la formation dans le devis
-                        amount_before_instalment = so.amount_total
-                        # so.amount_total = so.amount_total * 0.25
-                        for line in so.order_line:
-                            line.price_unit = so.amount_total
-
-
 
 
     """Changer statut cpf vers accepté selon l'etat récupéré avec api wedof"""
