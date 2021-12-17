@@ -18,8 +18,8 @@
                 <field name="last_internal_log" invisible="1"/>
             </xpath>
             <xpath expr="//form//sheet" position="inside">
-                <field name="presence" invisible="1"/>
-                <field name="resultat" invisible="1"/>
+                <field name="presence" invisible="0"/>
+                <field name="resultat" invisible="0"/>
                 <field name="date_exam" invisible="1"/>
             </xpath>
         </field>
