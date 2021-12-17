@@ -152,7 +152,7 @@ class partner(models.Model):
     # Ajout automatique d' i-One sur 360learning
     def Ajouter_iOne_auto(self):
         base_url = self.env['ir.config_parameter'].sudo().get_param('web.base.url')
-        if "localhost" not in str(base_url):
+        if "localhost" not in str(base_url) and "dev.odoo" not in str(base_url):
             for partner in self.env['res.partner'].sudo().search([('statut', "=", "won"),
                                                                   ('statut_cpf', "!=", "canceled")
                                                                   ]):
@@ -412,7 +412,7 @@ class partner(models.Model):
     def supprimer_ione_auto(self):
                
         base_url = self.env['ir.config_parameter'].sudo().get_param('web.base.url')
-        if "localhost" not in str(base_url):
+        if "localhost" not in str(base_url) and "dev.odoo" not in str(base_url):
             company_id = '56f5520e11d423f46884d593'
             api_key = 'cnkcbrhHKyfzKLx4zI7Ub2P5'
             headers = CaseInsensitiveDict()
@@ -452,6 +452,8 @@ class partner(models.Model):
  
 
     def supprimer_ione_manuelle(self):
+        base_url = self.env['ir.config_parameter'].sudo().get_param('web.base.url')
+        if "localhost" not in str(base_url) and "dev.odoo" not in str(base_url):
             company_id = '56f5520e11d423f46884d593'
             api_key = 'cnkcbrhHKyfzKLx4zI7Ub2P5'
             headers = CaseInsensitiveDict()
@@ -485,7 +487,7 @@ class partner(models.Model):
 
     def wedof_api_integration(self):
         base_url = self.env['ir.config_parameter'].sudo().get_param('web.base.url')
-        if "localhost" not in str(base_url):
+        if "localhost" not in str(base_url) and "dev.odoo" not in str(base_url):
             headers = {
                 'accept': 'application/json',
                 'Content-Type': 'application/json',
@@ -587,7 +589,7 @@ class partner(models.Model):
     """changer l'etat sur wedof de non traité vers validé à partir d'API"""
     def change_state_wedof_validate(self):
         base_url = self.env['ir.config_parameter'].sudo().get_param('web.base.url')
-        if "localhost" not in str(base_url):
+        if "localhost" not in str(base_url) and "dev.odoo" not in str(base_url):
             params_wedof = (
                 ('order', 'desc'),
                 ('type', 'all'),
@@ -673,7 +675,7 @@ class partner(models.Model):
     """Mettre à jour les statuts cpf sur la fiche client selon l'etat sur wedof """
     def change_state_cpf_partner(self):
         base_url = self.env['ir.config_parameter'].sudo().get_param('web.base.url')
-        if "localhost" not in str(base_url):
+        if "localhost" not in str(base_url) and "dev.odoo" not in str(base_url):
             params_wedof = (
                 ('order', 'desc'),
                 ('type', 'all'),
@@ -766,51 +768,51 @@ class partner(models.Model):
                         user.partner_id.funding_type = 'cpf'  # update field funding type to cpfprint('partner',partner.numero_cpf,user.login)
                         print(user.partner_id.date_cpf)
 
-                    if state=="inTraining":
-                        print('intraining', email)
-                        user.partner_id.statut_cpf="in_training"
-                        user.partner_id.numero_cpf = externalId
-                        user.partner_id.date_cpf = lastupd
-                        user.partner_id.diplome=diplome
-                        if product_id:
-                            user.partner_id.id_edof = product_id.id_edof
-
-                    if state=="terminated":
-                        print('terminated', email)
-                        user.partner_id.statut_cpf="out_training"
-                        user.partner_id.numero_cpf = externalId
-                        user.partner_id.diplome = diplome
-                        user.partner_id.date_cpf = lastupd
-                        if product_id:
-                            user.partner_id.id_edof = product_id.id_edof
-                    if state=="serviceDoneDeclared":
-                        print('serviceDoneDeclared', email)
-                        user.partner_id.statut_cpf="service_declared"
-                        user.partner_id.numero_cpf = externalId
-                        user.partner_id.date_cpf = lastupd
-                        user.partner_id.diplome = diplome
-                        if product_id:
-                            user.partner_id.id_edof=product_id.id_edof
-
-                    if state=="serviceDoneValidated":
-                        print('serviceDoneValidated', email)
-
-                        user.partner_id.statut_cpf="service_validated"
-                        user.partner_id.numero_cpf = externalId
-                        user.partner_id.date_cpf = lastupd
-                        user.partner_id.diplome = diplome
-                        if product_id:
-                            user.partner_id.id_edof = product_id.id_edof
-                    if state=="canceledByAttendee" or state=="canceledByAttendeeNotRealized" or state=="canceledByOrganism" or state=="refusedByAttendee" or state=="refusedByOrganism"  :
-                        if user.partner_id.numero_cpf==externalId:
-                            user.partner_id.statut_cpf="canceled"
-                            user.partner_id.statut="canceled"
+                        if state=="inTraining":
+                            print('intraining', email)
+                            user.partner_id.statut_cpf="in_training"
+                            user.partner_id.numero_cpf = externalId
                             user.partner_id.date_cpf = lastupd
-                            user.partner_id.diplome = diplome
-                            print("product id annulé digi",user.partner_id.id_edof,training_id)
-
+                            user.partner_id.diplome=diplome
                             if product_id:
                                 user.partner_id.id_edof = product_id.id_edof
+
+                        if state=="terminated":
+                            print('terminated', email)
+                            user.partner_id.statut_cpf="out_training"
+                            user.partner_id.numero_cpf = externalId
+                            user.partner_id.diplome = diplome
+                            user.partner_id.date_cpf = lastupd
+                            if product_id:
+                                user.partner_id.id_edof = product_id.id_edof
+                        if state=="serviceDoneDeclared":
+                            print('serviceDoneDeclared', email)
+                            user.partner_id.statut_cpf="service_declared"
+                            user.partner_id.numero_cpf = externalId
+                            user.partner_id.date_cpf = lastupd
+                            user.partner_id.diplome = diplome
+                            if product_id:
+                                user.partner_id.id_edof=product_id.id_edof
+
+                        if state=="serviceDoneValidated":
+                            print('serviceDoneValidated', email)
+
+                            user.partner_id.statut_cpf="service_validated"
+                            user.partner_id.numero_cpf = externalId
+                            user.partner_id.date_cpf = lastupd
+                            user.partner_id.diplome = diplome
+                            if product_id:
+                                user.partner_id.id_edof = product_id.id_edof
+                        if state=="canceledByAttendee" or state=="canceledByAttendeeNotRealized" or state=="canceledByOrganism" or state=="refusedByAttendee" or state=="refusedByOrganism"  :
+                            if user.partner_id.numero_cpf==externalId:
+                                user.partner_id.statut_cpf="canceled"
+                                user.partner_id.statut="canceled"
+                                user.partner_id.date_cpf = lastupd
+                                user.partner_id.diplome = diplome
+                                print("product id annulé digi",user.partner_id.id_edof,training_id)
+
+                                if product_id:
+                                    user.partner_id.id_edof = product_id.id_edof
 
 
 
@@ -961,7 +963,7 @@ class partner(models.Model):
     """Changer statut cpf vers accepté selon l'etat récupéré avec api wedof"""
     def change_statut_accepte(self):
         base_url = self.env['ir.config_parameter'].sudo().get_param('web.base.url')
-        if "localhost" not in str(base_url):
+        if "localhost" not in str(base_url) and "dev.odoo" not in str(base_url):
             params_wedof = (
                 ('order', 'desc'),
                 ('type', 'all'),
