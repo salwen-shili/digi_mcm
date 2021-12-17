@@ -310,6 +310,8 @@ class partner(models.Model):
                     data_user = '{"mail":"' + partner.email + '" , "password":"' + user.password360 + '", "firstName":"' + partner.firstName + '", "lastName":"' + partner.lastName + '", "phone":"' + partner.phone + '", "lang":"fr","sendCredentials":"true"}'
                     resp = requests.post(urluser, headers=headers, data=data_user)
                     print(data_user, 'user', resp.status_code)
+                    respoo= str(json.loads(resp.text))
+                    _logger.info("response  add user%s" %respoo)
                     if (resp.status_code == 200):
                         create = True
                 data_group = {}
