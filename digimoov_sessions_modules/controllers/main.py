@@ -670,192 +670,214 @@ class WebsiteSale(WebsiteSale):
         """s'il est présent on lui envoie le lien pour se connecter si non on lui ajoute """
         print('get user', resp.status_code)
         if resp.status_code == 200:
+            
             return {'ajout': 'Vous êtes déja sur la plateforme, cliquez sur le lien ci-dessous pour se connecter'}
 
-        elif not request.env.user.lang:
-            request.env.user.lang = 'fr_FR'  # Remplacez les paramètres régionaux de l'heure par le paramètre de langue actuel
+        else :
+            if not request.env.user.lang:
+                request.env.user.lang = 'fr_FR'  # Remplacez les paramètres régionaux de l'heure par le paramètre de langue actuel
                                              # du compte dans odoo
-        locale.setlocale(locale.LC_TIME, str(request.env.user.lang) + '.utf8')
-        company = str(partner.module_id.company_id.id)
-        product_name = partner.module_id.product_id.name
-        if (not (product_name)):
-            product_name = ''
-        if not (partner.phone):
-            partner.phone = ''
-        # Extraire firstName et lastName à partir du champs name
-        self.diviser_nom(partner)
+            locale.setlocale(locale.LC_TIME, str(request.env.user.lang) + '.utf8')
+            company = str(partner.module_id.company_id.id)
+            product_name = partner.module_id.product_id.name
+            if (not (product_name)):
+                product_name = ''
+            if not (partner.phone):
+                partner.phone = ''
+            # Extraire firstName et lastName à partir du champs name
+            self.diviser_nom(partner)
 
-        new_format = '%d %B %Y'
-        if (partner.mcm_session_id.date_exam) and (partner.mcm_session_id.session_ville_id.name_ville):
-            ville = str(partner.mcm_session_id.session_ville_id.name_ville).upper()
-            _logger.info('----ville %s' % ville)
-            date_exam = partner.mcm_session_id.date_exam
-            # Changer format de date et la mettre en majuscule
-            datesession = str(date_exam.strftime(new_format).upper())
-            date_session = unidecode(datesession)
+            new_format = '%d %B %Y'
+            if (partner.mcm_session_id.date_exam) and (partner.mcm_session_id.session_ville_id.name_ville):
+                ville = str(partner.mcm_session_id.session_ville_id.name_ville).upper()
+                _logger.info('----ville %s' % ville)
+                date_exam = partner.mcm_session_id.date_exam
+                # Changer format de date et la mettre en majuscule
+                datesession = str(date_exam.strftime(new_format).upper())
+                date_session = unidecode(datesession)
 
-            #Récuperer le mot de passe à partir de res.users
-            user = request.env.user
-            _logger.info('avant if login user %s' % user.login)
-            _logger.info('avant if partner email %s' % partner.email)
-            if user.password360 == False:
-                _logger.info(' if password  %s ' % user.password360)
+                #Récuperer le mot de passe à partir de res.users
+                user = request.env.user
+                _logger.info('avant if login user %s' % user.login)
+                _logger.info('avant if partner email %s' % partner.email)
+                if user.password360 == False:
+                    _logger.info(' if password  %s ' % user.password360)
 
-            if user:
-                print('iffff userrrrrr')
-                id_Digimoov_bienvenue = '56f5520e11d423f46884d594'
-                id_Digimoov_Examen_Attestation = '5f9af8dae5769d1a2c9d5047'
-                urluser = 'https://app.360learning.com/api/v1/users?company=' + company_id + '&apiKey=' + api_key
-                urlgroup_Bienvenue = 'https://app.360learning.com/api/v1/groups/' + id_Digimoov_bienvenue + '/users/' + partner.email + '?company=' + company_id + '&apiKey=' + api_key
-                url_groups = 'https://app.360learning.com/api/v1/groups'
-                url_unsubscribeToEmailNotifications = 'https://app.360learning.com/api/v1/users/unsubscribeToEmailNotifications?company=' + company_id + '&apiKey=' + api_key
-                invit = False
-                create = False
-                # Si le mot de passe n'est pas récupérée au moment d'inscrit on invite l'apprennant
-                # if user.password360==False:
-                # data_user ='{"mail":"' + partner.email + '"}'
-                # resp_invit = requests.post(urluser, headers=headers, data=data_user)
-                # if(resp_invit.status_code == 200):
-                #     invit=True
-                # Si non si mot de passe récupéré on l'ajoute sur la plateforme avec le meme mot de passe
-                if (user.password360) and (company == '2'):
-                    partner.password360 = user.password360
+                if user:
+                    print('iffff userrrrrr')
+                    id_Digimoov_bienvenue = '56f5520e11d423f46884d594'
+                    id_Digimoov_Examen_Attestation = '5f9af8dae5769d1a2c9d5047'
+                    urluser = 'https://app.360learning.com/api/v1/users?company=' + company_id + '&apiKey=' + api_key
+                    urlgroup_Bienvenue = 'https://app.360learning.com/api/v1/groups/' + id_Digimoov_bienvenue + '/users/' + partner.email + '?company=' + company_id + '&apiKey=' + api_key
+                    url_groups = 'https://app.360learning.com/api/v1/groups'
+                    url_unsubscribeToEmailNotifications = 'https://app.360learning.com/api/v1/users/unsubscribeToEmailNotifications?company=' + company_id + '&apiKey=' + api_key
+                    invit = False
+                    create = False
+                    responce_api =False
+                    # Si le mot de passe n'est pas récupérée au moment d'inscrit on invite l'apprennant
+                    # if user.password360==False:
+                    # data_user ='{"mail":"' + partner.email + '"}'
+                    # resp_invit = requests.post(urluser, headers=headers, data=data_user)
+                    # if(resp_invit.status_code == 200):
+                    #     invit=True
+                    # Si non si mot de passe récupéré on l'ajoute sur la plateforme avec le meme mot de passe
+                    if (user.password360) and (company == '2'):
+                        partner.password360 = user.password360
 
-                    # Ajouter i-One to table user
-                    data_user = '{"mail":"' + partner.email + '" , "password":"' + user.password360 + '", "firstName":"' + partner.firstName + '", "lastName":"' + partner.lastName + '", "phone":"' + partner.phone + '", "lang":"fr","sendCredentials":"true"}'
-                    resp = requests.post(urluser, headers=headers, data=data_user)
-                    print(data_user, 'user', resp.status_code)
-                    if (resp.status_code == 200):
-                        create = True
-                data_group = {}
-                # Désactiver les notifications par email
-                data_email = json.dumps({
-                    "usersEmails": [
-                        partner.email
-                    ]
-                })
-                resp_unsub_email = requests.put(url_unsubscribeToEmailNotifications, headers=headers, data=data_email)
-                # Si l'apprenant a été ajouté sur table user on l'affecte aux autres groupes
-                if (create):
-                    _logger.info('create %s' % user.login)
-                    today = date.today()
-                    new_format = '%d %B %Y'
-                    # Changer format de date et la mettre en majuscule
-                    date_ajout = today.strftime(new_format)
-                    partner.date_creation = date_ajout
-                    # Affecter i-One to groupe digimoov-bienvenue
-                    respgroupe = requests.put(urlgroup_Bienvenue, headers=headers, data=data_group)
-                    print('bienvenue ', respgroupe.status_code, partner.date_creation)
-                    partner.apprenant = True
-                    # Affecter i-One à un pack et session choisi
-                    response_grps = requests.get(url_groups, params=params)
-                    existe = False
-                    groupes = response_grps.json()
-                    # print(response_grps.json())
-                    company = str(partner.module_id.company_id.id)
-                    for groupe in groupes:
-                        # Convertir le nom en majuscule
-                        nom_groupe = str(groupe['name']).upper()
-                        print('nom groupe', groupe)
-                        id_groupe = groupe['_id']
-                        # affecter à groupe digimoov
-                        digimoov_examen = "Digimoov - Attestation de capacité de transport de marchandises de moins de 3.5t"
-                        # Si la company est digimoov on ajoute i-One sur 360
-                        if (company == '2'):
-                            if (nom_groupe == digimoov_examen.upper()):
-                                id_Digimoov_Examen_Attestation = id_groupe
-                                urlsession = 'https://app.360learning.com/api/v1/groups/' + id_groupe + '/users/' + partner.email + '?company=' + company_id + '&apiKey=' + api_key
-                                respsession = requests.put(urlsession, headers=headers, data=data_group)
-                                if respsession.status_code==200:
-                                    ajout_exam =True
-
-                                # Affecter à un pack solo
-                            packsolo = "Digimoov - Pack Solo"
-                            if (("solo" in product_name) and (nom_groupe == packsolo.upper())):
-                                print(partner.module_id.name)
-                                urlgrp_solo = 'https://app.360learning.com/api/v1/groups/' + id_groupe + '/users/' + partner.email + '?company=' + company_id + '&apiKey=' + api_key
-                                respgrp_solo = requests.put(urlgrp_solo, headers=headers, data=data_group)
-                                print('affecté à solo', respgrp_solo.status_code)
-
-                            # Affecter à un pack pro
-                            pack_pro = "Digimoov - Pack Pro"
-                            if (("pro" in product_name) and (nom_groupe == pack_pro.upper())):
-                                print(partner.module_id.name)
-                                urlgrp_pro = 'https://app.360learning.com/api/v1/groups/' + id_groupe + '/users/' + partner.email + '?company=' + company_id + '&apiKey=' + api_key
-                                respgrp_pro = requests.put(urlgrp_pro, headers=headers, data=data_group)
-                            # Affecter à unpremium
-                            packprem = "Digimoov - Pack Premium"
-                            if (("premium" in product_name) and (nom_groupe == packprem.upper())):
-                                print(partner.module_id.name)
-                                urlgrp_prim = 'https://app.360learning.com/api/v1/groups/' + id_groupe + '/users/' + partner.email + '?company=' + company_id + '&apiKey=' + api_key
-                                respgrp_prim = requests.put(urlgrp_prim, headers=headers, data=data_group)
-
-                            # Affecter apprenant à Digimoov-Révision
-                            revision = "Digimoov - Pack Repassage Examen"
-                            if (("Repassage d'examen" in product_name) and (nom_groupe == revision.upper())):
-                                urlgrp_revision = 'https://app.360learning.com/api/v1/groups/' + id_groupe + '/users/' + partner.email + '?company=' + company_id + '&apiKey=' + api_key
-                                respgrp_revision = requests.put(urlgrp_revision, headers=headers, data=data_group)
-
-                            # Affecter apprenant à une session d'examen
-                            print('date, ville', ville, date_session)
-                            if (ville in nom_groupe) and (date_session in nom_groupe):
-                                existe = True
-                                urlsession = 'https://app.360learning.com/api/v1/groups/' + id_groupe + '/users/' + partner.email + '?company=' + company_id + '&apiKey=' + api_key
-                                respsession = requests.put(urlsession, headers=headers, data=data_group)
-
-                    # Si la session n'est pas trouvée sur 360 on l'ajoute
-                    print('exist', existe)
-                    if not (existe):
-                        nom = ville + ' - ' + date_session
-                        nomgroupe = unidecode(nom)
-                        print(nomgroupe)
-                        urlgroups = 'https://app.360learning.com/api/v1/groups?company=' + company_id + '&apiKey=' + api_key
-                        data_session = '{"name":"' + nomgroupe + '","parent":"' + id_Digimoov_Examen_Attestation + '"  , "public":"false" }'
-                        create_session = requests.post(urlgroups, headers=headers, data=data_session)
-                        print('creer  une session', create_session.status_code)
-                        response_grpss = requests.get(url_groups, params=params)
-                        groupess = response_grpss.json()
-                        for groupe in groupess:
+                        # Ajouter i-One to table user
+                        data_user = '{"mail":"' + partner.email + '" , "password":"' + user.password360 + '", "firstName":"' + partner.firstName + '", "lastName":"' + partner.lastName + '", "phone":"' + partner.phone + '", "lang":"fr","sendCredentials":"true"}'
+                        resp = requests.post(urluser, headers=headers, data=data_user)
+                        print(data_user, 'user', resp.status_code)
+                        responce_api=json.loads(resp.text)
+                        if (resp.status_code == 200):
+                            create = True
+                    data_group = {}
+                    # Désactiver les notifications par email
+                    data_email = json.dumps({
+                        "usersEmails": [
+                            partner.email
+                        ]
+                    })
+                    resp_unsub_email = requests.put(url_unsubscribeToEmailNotifications, headers=headers, data=data_email)
+                    # Si l'apprenant a été ajouté sur table user on l'affecte aux autres groupes
+                    if (create):
+                        _logger.info('create %s' % user.login)
+                        today = date.today()
+                        new_format = '%d %B %Y'
+                        # Changer format de date et la mettre en majuscule
+                        date_ajout = today.strftime(new_format)
+                        partner.date_creation = date_ajout
+                        # Affecter i-One to groupe digimoov-bienvenue
+                        respgroupe = requests.put(urlgroup_Bienvenue, headers=headers, data=data_group)
+                        print('bienvenue ', respgroupe.status_code, partner.date_creation)
+                        partner.apprenant = True
+                        # Affecter i-One à un pack et session choisi
+                        response_grps = requests.get(url_groups, params=params)
+                        existe = False
+                        groupes = response_grps.json()
+                        # print(response_grps.json())
+                        company = str(partner.module_id.company_id.id)
+                        for groupe in groupes:
                             # Convertir le nom en majuscule
                             nom_groupe = str(groupe['name']).upper()
+                            print('nom groupe', groupe)
                             id_groupe = groupe['_id']
-                            # Affecter apprenant à la nouvelle session d'examen
-                            if (ville in nom_groupe) and (date_session in nom_groupe):
-                                existe = True
-                                urlsession = 'https://app.360learning.com/api/v1/groups/' + id_groupe + '/users/' + partner.email + '?company=' + company_id + '&apiKey=' + api_key
-                                respsession = requests.put(urlsession, headers=headers, data=data_group)
-                                print(existe, 'ajouter à son session', respsession.status_code)
-                    "si créer envoyer le lien de la plateforme si non false"
-                    return {'ajout': 'https://digimoov.360learning.com'}
-                if not (create):
-                        return {'ajout': 'Vous allez bientôt recevoir une invitation à la plateforme par courrier.'}
+                            # affecter à groupe digimoov
+                            digimoov_examen = "Digimoov - Attestation de capacité de transport de marchandises de moins de 3.5t"
+                            # Si la company est digimoov on ajoute i-One sur 360
+                            if (company == '2'):
+                                if (nom_groupe == digimoov_examen.upper()):
+                                    id_Digimoov_Examen_Attestation = id_groupe
+                                    urlsession = 'https://app.360learning.com/api/v1/groups/' + id_groupe + '/users/' + partner.email + '?company=' + company_id + '&apiKey=' + api_key
+                                    respsession = requests.put(urlsession, headers=headers, data=data_group)
+                                    if respsession.status_code==200:
+                                        ajout_exam =True
 
-                        vals = {
-                            'description': 'CPF: Apprenant non ajouté sur 360 %s' % (partner.name),
-                            'name': 'CPF : Vérifier La fiche client ',
-                            'team_id': request.env['helpdesk.team'].sudo().search(
-                                [('name', 'like', 'IT'), ('company_id', "=", 2)],
-                                limit=1).id,
-                        }
-                        description = "CPF: Apprenant non ajouté sur 360 " + str(partner.name)
-                        ticket = request.env['helpdesk.ticket'].sudo().search([("description", "=", description),
-                                                                            ("team_id.name",'like', 'IT')])
-                        if not ticket:
-                            new_ticket = request.env['helpdesk.ticket'].sudo().create(
-                                vals)
-                        vals_client = {
-                            'description': 'CPF: Apprenant non ajouté sur 360 %s' % (partner.name),
-                            'name': 'CPF : Vérifier La fiche client ',
-                            'team_id': request.env['helpdesk.team'].sudo().search(
-                                [('name', 'like', 'Client'), ('company_id', "=", 2)],
-                                limit=1).id,
-                        }
-                        description_client = "CPF: Apprenant non ajouté sur 360 " + str(partner.name)
-                        ticket_client = request.env['helpdesk.ticket'].sudo().search([("description", "=", description_client),
-                                                                                   ("team_id.name",'like', 'Client')])
-                        if not ticket_client:
-                            new_ticket_client = request.env['helpdesk.ticket'].sudo().create(
-                                vals_client)
+                                    # Affecter à un pack solo
+                                packsolo = "Digimoov - Pack Solo"
+                                if (("solo" in product_name) and (nom_groupe == packsolo.upper())):
+                                    print(partner.module_id.name)
+                                    urlgrp_solo = 'https://app.360learning.com/api/v1/groups/' + id_groupe + '/users/' + partner.email + '?company=' + company_id + '&apiKey=' + api_key
+                                    respgrp_solo = requests.put(urlgrp_solo, headers=headers, data=data_group)
+                                    print('affecté à solo', respgrp_solo.status_code)
+
+                                # Affecter à un pack pro
+                                pack_pro = "Digimoov - Pack Pro"
+                                if (("pro" in product_name) and (nom_groupe == pack_pro.upper())):
+                                    print(partner.module_id.name)
+                                    urlgrp_pro = 'https://app.360learning.com/api/v1/groups/' + id_groupe + '/users/' + partner.email + '?company=' + company_id + '&apiKey=' + api_key
+                                    respgrp_pro = requests.put(urlgrp_pro, headers=headers, data=data_group)
+                                # Affecter à unpremium
+                                packprem = "Digimoov - Pack Premium"
+                                if (("premium" in product_name) and (nom_groupe == packprem.upper())):
+                                    print(partner.module_id.name)
+                                    urlgrp_prim = 'https://app.360learning.com/api/v1/groups/' + id_groupe + '/users/' + partner.email + '?company=' + company_id + '&apiKey=' + api_key
+                                    respgrp_prim = requests.put(urlgrp_prim, headers=headers, data=data_group)
+
+                                # Affecter apprenant à Digimoov-Révision
+                                revision = "Digimoov - Pack Repassage Examen"
+                                if (("Repassage d'examen" in product_name) and (nom_groupe == revision.upper())):
+                                    urlgrp_revision = 'https://app.360learning.com/api/v1/groups/' + id_groupe + '/users/' + partner.email + '?company=' + company_id + '&apiKey=' + api_key
+                                    respgrp_revision = requests.put(urlgrp_revision, headers=headers, data=data_group)
+
+                                # Affecter apprenant à une session d'examen
+                                print('date, ville', ville, date_session)
+                                if (ville in nom_groupe) and (date_session in nom_groupe):
+                                    existe = True
+                                    urlsession = 'https://app.360learning.com/api/v1/groups/' + id_groupe + '/users/' + partner.email + '?company=' + company_id + '&apiKey=' + api_key
+                                    respsession = requests.put(urlsession, headers=headers, data=data_group)
+
+                        # Si la session n'est pas trouvée sur 360 on l'ajoute
+                        print('exist', existe)
+                        if not (existe):
+                            nom = ville + ' - ' + date_session
+                            nomgroupe = unidecode(nom)
+                            print(nomgroupe)
+                            urlgroups = 'https://app.360learning.com/api/v1/groups?company=' + company_id + '&apiKey=' + api_key
+                            data_session = '{"name":"' + nomgroupe + '","parent":"' + id_Digimoov_Examen_Attestation + '"  , "public":"false" }'
+                            create_session = requests.post(urlgroups, headers=headers, data=data_session)
+                            print('creer  une session', create_session.status_code)
+                            response_grpss = requests.get(url_groups, params=params)
+                            groupess = response_grpss.json()
+                            for groupe in groupess:
+                                # Convertir le nom en majuscule
+                                nom_groupe = str(groupe['name']).upper()
+                                id_groupe = groupe['_id']
+                                # Affecter apprenant à la nouvelle session d'examen
+                                if (ville in nom_groupe) and (date_session in nom_groupe):
+                                    existe = True
+                                    urlsession = 'https://app.360learning.com/api/v1/groups/' + id_groupe + '/users/' + partner.email + '?company=' + company_id + '&apiKey=' + api_key
+                                    respsession = requests.put(urlsession, headers=headers, data=data_group)
+                                    print(existe, 'ajouter à son session', respsession.status_code)
+                        "si créer envoyer le lien de la plateforme si non false"
+                        return {'ajout': 'https://digimoov.360learning.com'}
+                    if not (create):
+                            if str(responce_api)=="{'error': 'unavailableEmails'}":
+                                return {'ajout': 'Email non valide.'}
+
+                                vals = {
+                                    'description': 'CPF: Apprenant non ajouté sur 360 %s %s' % (partner.name) ,
+                                    'name': 'CPF : Email non valide ',
+                                    'team_id': request.env['helpdesk.team'].sudo().search(
+                                        [('name', 'like', 'Client'), ('company_id', "=", 2)],
+                                        limit=1).id,
+                                }
+                                description = "CPF: Apprenant non ajouté sur 360 " + str(partner.name)
+                                ticket = request.env['helpdesk.ticket'].sudo().search([("description", "=", description),
+                                                                                       ("team_id.name", 'like', 'Client')])
+                                if not ticket:
+                                    new_ticket = request.env['helpdesk.ticket'].sudo().create(
+                                        vals)
+
+                            else :
+                                return {'ajout': 'Vous allez bientôt recevoir une invitation à la plateforme par courrier.'}
+
+                                vals = {
+                                    'description': 'CPF: Apprenant non ajouté sur 360 %s %s' % (partner.name) % responce_api,
+                                    'name': 'CPF : Apprenant non ajouté sur 360 ',
+                                    'team_id': request.env['helpdesk.team'].sudo().search(
+                                        [('name', 'like', 'IT'), ('company_id', "=", 2)],
+                                        limit=1).id,
+                                }
+                                description = "CPF: Apprenant non ajouté sur 360 " + str(partner.name) + str(responce_api)
+                                ticket = request.env['helpdesk.ticket'].sudo().search([("description", "=", description),
+                                                                                    ("team_id.name",'like', 'IT')])
+                                if not ticket:
+                                    new_ticket = request.env['helpdesk.ticket'].sudo().create(
+                                        vals)
+                                vals_client = {
+                                    'description': 'CPF: Apprenant non ajouté sur 360 %s %s' % (partner.name) % responce_api,
+                                    'name': 'CPF : Apprenant non ajouté sur 360 ',
+                                    'team_id': request.env['helpdesk.team'].sudo().search(
+                                        [('name', 'like', 'Client'), ('company_id', "=", 2)],
+                                        limit=1).id,
+                                }
+                                description_client = "CPF: Apprenant non ajouté sur 360 " + str(partner.name) + str(responce_api)
+                                ticket_client = request.env['helpdesk.ticket'].sudo().search([("description", "=", description_client),
+                                                                                           ("team_id.name",'like', 'Client')])
+                                if not ticket_client:
+                                    new_ticket_client = request.env['helpdesk.ticket'].sudo().create(
+                                        vals_client)
 
 
 
