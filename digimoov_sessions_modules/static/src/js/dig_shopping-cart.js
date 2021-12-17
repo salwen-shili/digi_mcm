@@ -66,33 +66,40 @@ const sendData = (condition) => {
 
 const addUserPlateform = () => {
   console.log('call add user plateform');
+  document.getElementById(
+    'popupcontent'
+  ).innerHTML = `<div style="text-align: -webkit-center;"><div class="spinner"></div></div>`;
   sendHttpRequest('POST', '/shop/adduser_plateform', {})
-    .then((responseData) => {
-      console.log({ responseData });
-      if (responseData.includes('https://')) {
-        window.location.href = responseData;
+    .then((res) => {
+      console.log(res.result.ajout);
+      if (res.result.ajout.includes('https://')) {
+        window.location.href = res.result.ajout;
       } else {
         document.getElementById('popupcontent').innerHTML = `
-         <p id="notifMessage">
-         ${responseData}
-         </p>
+                            <p style="margin-top: 12px;    text-align: center;">
+                              
+                                 ${res.result.ajout}     
+                                </p>
+                          
+                        
+                         <div style="text-align:center">
+                            <a href="#"> <button type="button" class="btn btn-secondary action-button" onclick="closepopup()" > Fermer </button></a>
+                        </div>
+                   
+       
          `;
       }
     })
-    .catch((err) => {});
+
+    .catch((err) => {
+      console.log('error addUser', err);
+    });
 };
 const cpfAccepted = () => {
   console.log('call cpf accepted');
-  sendHttpRequest('POST', '/shop/cpf_accepted', {})
-    .then((responseData) => {
-      console.log({ responseData });
-      if (responseData.includes('https://')) {
-        console.log('url');
-      } else {
-        console.log("message d'erruer");
-      }
-    })
-    .catch((err) => {});
+  sendHttpRequest('POST', '/shop/cpf_accepted', {}).catch((err) => {
+    console.log(err);
+  });
 };
 
 function onChangeCheckButton() {
@@ -221,17 +228,19 @@ function verify_payment_method() {
   }
   //redirection stripe
   stripe_pm = document.getElementById('stripe_pm');
-  console.log(stripe_pm, 'stripe_pm');
+  // console.log(stripe_pm, 'stripe_pm');
   if (stripe_pm) {
     if (stripe_pm.checked == true) {
       window.location.href = '/shop/checkout?express=1';
       return;
     }
   }
-  var state = 'accepted';
+  // var state = 'accepted';
+  var state = document.getElementById('state').value;
+  console.log('***************state', state);
 
   if (cpf_pm) {
-    console.log(cpf_pm, 'cpf_pm');
+    // console.log(cpf_pm, 'cpf_pm');
     if (cpf_pm.checked == true) {
       if (cpf_pm.value == '[avancee] Formation pro') {
         switch (true) {
@@ -242,11 +251,9 @@ function verify_payment_method() {
               'Inscription CPF pro',
               '680'
             );
+            window.location.href = state;
             break;
           case state == 'accepted':
-            document.getElementById(
-              'popupcontent'
-            ).innerHTML = `<div style="text-align: -webkit-center;"><div class="spinner"></div></div>`;
             cpfAccepted();
             addUserPlateform();
             // document.getElementById('popupcontent').innerHTML = 'finished...';
@@ -293,4 +300,69 @@ function verify_payment_method() {
       }
     }
   }
+}
+
+function closepopup() {
+  console.log('closepopup');
+  document.getElementById('popupcontent').innerHTML = `
+  <p id="notifMessage">
+                            <div class="input checkbox" style="width:90%">
+                                <input type="checkbox" id="checkbox_failures" style="white-space: nowrap;" class="text-xl-left border-0" t-att-checked="website_sale_order.failures" t-att-value="website_sale_order.failures">
+                                    <label for="failures" style="display:inline">
+                                        Je souhaite accéder à la formation dès maintenant sans attendre 14 jours. Je reconnais que
+                                        <span t-if="website_sale_order.company_id.id==2">DIGIMOOV</span>
+                                        <span t-if="website_sale_order.company_id.id==1">MCM Academy</span>
+                                        procédera à l'exécution immédiate de ma formation en ligne et à ce titre, je
+                            renonce expressément à exercer mon droit de rétractation conformément aux dispositions de
+                            l'article L.221-28 1° du code de la consommation.
+                                    </label>
+                                </input>
+                            </div>
+                            <div class="input checkbox" style="margin-top: 12px;">
+                                <input type="checkbox" id="checkbox_conditions" style="white-space: nowrap;" class="text-xl-left border-0" t-att-checked="website_sale_order.conditions" t-att-value="website_sale_order.conditions">
+                                    <label for="conditions" style="display:inline">
+                                        J'ai lu et j'accepte les
+                                        <a href="/conditions" target="blank" style="font-weight: 600; color: #000;">
+                                            conditions générales de vente
+                                        </a>
+                                    </label>
+                                </input>
+                            </div>
+                            <p id="error_conditions" class="alert alert-warning" style="margin-left:0%;display:none;">
+                                Vous devez acceptez les conditions générales de ventes
+                            </p>
+
+                            <p id="error_choix_date_popup" class="alert alert-warning" style="margin-left:0%;display:none;">
+                                Vous devez fermer cette fenêtre et selectionner votre date d'examen
+                            </p>
+                        </p>
+                        <style>
+                            .action-button {
+                            height: 40px;
+                            width: 185px;
+                            font-size: 15px;
+                            background-color: #152856;
+                            border: 1px solid hsl(240, 44%, 28%);
+                            color: #ffffff;
+                            font-weight: 600;
+                            border-radius: 5px;
+                            box-shadow: 0 2px 4px 0 rgba(87, 71, 81, 0.2);
+                            cursor: pointer;
+                            transition: all 2s ease-out;
+                            transition: all 0.2s ease-out;
+                            }
+                            .action-button:hover,
+                            .action-button:focus {
+                            background-color: #ffffff;
+                            border: 1px solid hsl(240, 44%, 28%);
+                            color: #000000;
+                            transition: all 0.2s ease-out;
+                            }
+
+                        </style>
+                        
+
+                        <div style="text-align:center">
+                            <button type="button" class="btn btn-secondary action-button shake" id="continueBtn" onclick="verify_payment_method()">Continuer</button>
+                        </div>`;
 }

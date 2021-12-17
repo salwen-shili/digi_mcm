@@ -2,9 +2,9 @@
   width: 8rem;
   height: 8rem;
   border-radius: 50%;
-  background: conic-gradient(rgba(29, 185, 84, 25%), #1db954);
+  background: conic-gradient(rgb(21 40 86 / 30%), #152856);
   position: relative;
-  animation: spin 1.4s linear infinite;
+  animation: spin 2.6s linear infinite;
   transform: translateZ(0);
 }
 
