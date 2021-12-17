@@ -310,8 +310,8 @@ class partner(models.Model):
                     data_user = '{"mail":"' + partner.email + '" , "password":"' + user.password360 + '", "firstName":"' + partner.firstName + '", "lastName":"' + partner.lastName + '", "phone":"' + partner.phone + '", "lang":"fr","sendCredentials":"true"}'
                     resp = requests.post(urluser, headers=headers, data=data_user)
                     print(data_user, 'user', resp.status_code)
-                    respoo= str(json.loads(resp.text))
-                    _logger.info("response  add user%s" %respoo)
+                    respo = str(json.loads(resp.text))
+                    _logger.info('response addd  %s' %respo)
                     if (resp.status_code == 200):
                         create = True
                 data_group = {}
@@ -677,11 +677,11 @@ class partner(models.Model):
     """Mettre à jour les statuts cpf sur la fiche client selon l'etat sur wedof """
     def change_state_cpf_partner(self):
         base_url = self.env['ir.config_parameter'].sudo().get_param('web.base.url')
-        if "localhost" not in str(base_url) and "dev.odoo" not in str(base_url):
+        if "localhost"  in str(base_url) and "dev.odoo" not in str(base_url):
             params_wedof = (
                 ('order', 'desc'),
                 ('type', 'all'),
-                ('state', 'validated,inTraining,refusedByAttendee,refusedByOrganism,serviceDoneDeclared,canceledByAttendee,canceledByAttendeeNotRealized,canceledByOrganism'),
+                ('state', 'validated,inTraining,refusedByAttendee,refusedByOrganism,serviceDoneDeclared,serviceDoneValidated,canceledByAttendee,canceledByAttendeeNotRealized,canceledByOrganism'),
                 ('billingState', 'all'),
                 ('certificationState', 'all'),
                 ('sort', 'lastUpdate'),
@@ -855,7 +855,7 @@ class partner(models.Model):
                                 user = self.env["res.users"].sudo().search([("phone", "=", phone)], limit=1)
                             if not user:
                                 phone = '0' + str(phone[4:])
-                                user = request.env["res.users"].sudo().search(
+                                user = self.env["res.users"].sudo().search(
                                     ['|', ("phone", "=", phone), ("phone", "=", phone.replace(' ', ''))], limit=1)
                         phone = phone_number[0:2]
                         if str(phone) in ['06', '07'] and ' ' in str(tel): # check if edof api send the number of client in this format (number_format: 07 xx xx xx)
