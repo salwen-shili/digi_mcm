@@ -172,21 +172,36 @@ class resPartner(models.Model):
                         if (group.name == _('Portail')):
                             check_portal = True
             if check_portal:
+                sale = False
+                move = False
                 if self.statut == 'won' or self.statut == 'finalized':
                     if check_report and self.mcm_session_id != previous_client_session:
                         list= []
-                        for client in previous_client_session.client_ids:
-                            if client.id != self.id:
-                                list.append(client.id)
-                        previous_client_session.write({'client_ids': [(6, 0, list)]})
-                        sale = self.env['sale.order'].sudo().search([('session_id', "=", previous_client_session.id)])
-                        if sale:
-                            sale.session_id=self.mcm_session_id
-                            sale.module_id = self.module_id
-                        move = self.env['account.move'].sudo().search([('session_id', "=", previous_client_session.id)])
-                        if move:
-                            move.session_id = self.mcm_session_id
-                            move.module_id = self.module_id
+                        if previous_client_session :
+                            for client in previous_client_session.client_ids:
+                                if client.id != self.id:
+                                    list.append(client.id)
+                            previous_client_session.write({'client_ids': [(6, 0, list)]})
+                        if previous_client_session:
+                            sale = self.env['sale.order'].sudo().search([('session_id', "=", previous_client_session.id)])
+                            if sale:
+                                sale.session_id = self.mcm_session_id
+                                sale.module_id = self.module_id
+                        else:
+                            sales = self.env['sale.order'].sudo().search([('session_id', "=", False)])
+                            for sale in sales :
+                                sale.session_id = self.mcm_session_id
+                                sale.module_id = self.module_id
+                        if previous_client_session:
+                            move = self.env['account.move'].sudo().search([('session_id', "=", previous_client_session.id)])
+                            if move:
+                                move.session_id = self.mcm_session_id
+                                move.module_id = self.module_id
+                        else:
+                            moves = self.env['account.move'].sudo().search([('session_id', "=", False)])
+                            for move in moves :
+                                move.session_id = self.mcm_session_id
+                                move.module_id = self.module_id
                         product_of_module = previous_client_module.product_id
                         module = self.env['mcmacademy.module'].sudo().search([('product_id', "=", product_of_module.id),('session_id',"=",self.mcm_session_id.id)],limit=1)
                         if module :
