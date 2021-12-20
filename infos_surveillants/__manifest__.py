@@ -26,7 +26,7 @@
         'views/inherit_partner_view.xml',
         'views/surveillants_view.xml',
         'views/inherit_session_view.xml',
-        'views/inherit_views_partner_set_invisible_fields.xml',
+        # 'views/inherit_views_partner_set_invisible_fields.xml',
     ],
     'qweb': [],
     'images': [],
