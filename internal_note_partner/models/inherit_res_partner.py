@@ -7,7 +7,7 @@ class InheritResPartner(models.Model):
     composer_ids = fields.Many2one('mail.message', string='Composer')
     last_internal_log = fields.Char(compute="_compute_get_last_internal_log", string="Commentaire Interne")
     company_id = fields.Many2one('res.company', default=lambda self: self.env.company)
-    presence = fields.Char(readonly=True, compute="_compute_get_last_presence_values")
+    presence = fields.Char(readonly=True, compute="")
     resultat = fields.Char(readonly=True, compute="_compute_get_last_resultat_values")
     date_exam = fields.Date(related="mcm_session_id.date_exam", string="Date d'examen")
 
@@ -15,37 +15,29 @@ class InheritResPartner(models.Model):
         """ Function to get presence value of last session in tree partner view"""
         for rec in self:
             last_line = rec.env['info.examen'].sudo().search([('partner_id', "=", rec.id)], limit=1, order="id desc")
-            if last_line.presence == 'present':
-                rec.sudo().write({
-                    'presence': 'Présent(e)',
-                })
-            if last_line.presence == 'Absent':
-                rec.sudo().write({
-                    'presence': 'Absent(e)',
-                })
-            if last_line.presence == 'absence_justifiee':
-                rec.sudo().write({
-                    'presence': 'Absence justifiee',
-                })
-            elif not last_line.presence:
-                rec.sudo().write({
-                    'presence': '_______',
-                })
+            for line in last_line:
+                if line.presence == 'present':
+                    rec.presence = "Présent(e)"
+                if line.presence == 'Absent':
+                    rec.presence = "Absent(e)"
+                if line.presence == 'absence_justifiee':
+                    rec.presence = "Absence justifiee"
+                elif not line.presence:
+                    rec.presence = "_______",
 
     def _compute_get_last_resultat_values(self):
         """ Function to get result value of last session in tree partner view"""
         for rec in self:
             last_line = rec.env['info.examen'].sudo().search([('partner_id', "=", rec.id)], limit=1, order="id desc")
-            if last_line.resultat == 'ajourne':
-                rec.sudo().write({'resultat': 'Ajourné(e)'})
-            if last_line.resultat == 'recu':
-                rec.sudo().write({
-                    'resultat': 'Admis(e)',
-                })
-            elif not last_line.resultat:
-                rec.sudo().write({
-                    'resultat': '_______',
-                })
+            for line in last_line:
+                if line.resultat == 'ajourne':
+                    rec.resultat = "Ajourné(e)"
+                if line.resultat == 'recu':
+                    rec.resultat = "Admis(e)"
+                elif not line.resultat:
+                    rec.sudo().write({
+                        'resultat': '_______',
+                    })
 
     def _compute_get_last_internal_log(self):
         for record in self:
