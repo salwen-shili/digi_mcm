@@ -8,7 +8,57 @@ $(document).ready(function () {
   let voie = $('#voie');
   let typeVoie = $('#voie');
   let nomVoie = $('#nom_voie');
+  //test password
 
+  function checkPhone(prop, value) {
+    if (value.length > 0) {
+      const pattern = /^(07|06)[0-9]\d{7}$/;
+      if (value.match(pattern)) return false;
+      else
+        return `Votre numéro de téléphone doit commencer par 06 ou 07 suivie par 8 chiffres`;
+    } else return 'Ce champs est obligatoire!';
+  }
+  $(`#phone`).keyup(function (e) {
+    const phone = $('#phone').val();
+    const errorMessage = checkPhone('numero de téléphone', phone);
+    if (errorMessage === false) {
+      $(`#phone_container `).removeClass('error-input-field');
+      $(`#phone_helper `).append('');
+    } else {
+      // buttonInscrire.setAttribute("disabled", "disabled");
+
+      $(`#phone_container `).addClass('error-input-field');
+      $(`#phone_helper span `).text(errorMessage);
+    }
+  });
+
+  $(`#password`).keyup(function (e) {
+    const password = $('#password').val();
+    const errorMessage = checkPassword(password);
+    if (errorMessage === false) {
+      $(`#password_container `).removeClass('error-input-field');
+      $(`#password_helper `).append('');
+    } else {
+      // buttonInscrire.setAttribute("disabled", "disabled");
+
+      $(`#password_container `).addClass('error-input-field');
+      $(`#password_helper span `).text(errorMessage);
+    }
+  });
+
+  function checkPassword(value) {
+    if (value.length > 0) {
+      if (value.length < 8)
+        return 'Votre mot de passe doit contenir au minimum 8 caractères';
+      else {
+        const pattern =
+          /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!/+/='":;(){}[|@$ %^&*-]).{8,}$/;
+        if (value.match(pattern)) return false;
+        else
+          return `Votre mot de passe doit contenir une combinaison de chiffres, caractères spéciaux, lettres majuscules et minuscules!`;
+      }
+    } else return 'Ce champs est obligatoire!';
+  }
   //Validate Address
 
   $(zipcode).on('blur', function () {
