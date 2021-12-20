@@ -508,8 +508,8 @@ class CustomerPortal(CustomerPortal):
                         'res_model': 'documents.document',
                         'res_id': document_identite_hebergeur.id
                     })
-            if document_identite_hebergeur:
-                document_identite_hebergeur.sudo().write({'name': "Carte d'identité de l'hébergeur"})
+                if document_identite_hebergeur:
+                    document_identite_hebergeur.sudo().write({'name': "Carte d'identité de l'hébergeur"})
         except Exception as e:
             logger.exception("Erreur de chargement du document: Carte d'identité de l'hébergeur")
         try:
