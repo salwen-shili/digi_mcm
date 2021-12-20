@@ -446,6 +446,13 @@ class Services(http.Controller):
             return request.render("digimoov_website_templates.digimoov_template_test7", {})
         else:
             raise werkzeug.exceptions.NotFound()
+    
+    @http.route('/test8', type='http', auth='public', website=True)
+    def test8(self, **kw, ):
+        if request.website.id == 2:
+            return request.render("digimoov_website_templates.digimoov_template_test8", {})
+        else:
+            raise werkzeug.exceptions.NotFound()
 
     @http.route('/test2', type='http', auth='public', website=True)
     def test2(self, **kw, ):
