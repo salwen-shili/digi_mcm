@@ -146,15 +146,15 @@
                     }
 
                     }
-                
+
             </style>
             <section class="container pb32 pt40 section-padding">
                 <div class="align-items-center justify-content-center row">
                     <div class="col-md-4 col-sm-12 mb-4 mb-md-0 text-center">
-                        <img class="img-fluid" style="width: 188px;" src="/mcm_website_theme/static/src/img/formation-taxi-vtc-certifiée-qualiopi.png"/>
+                        <img class="img-fluid" style="width: 188px;" src="/mcm_website_theme/static/src/img/qualiopi.png"/>
                     </div>
                     <div class="col-md-4 col-sm-12 mb-4 mb-md-0 text-center">
-                        <img class="img-fluid" style="width: 110px;" src="/mcm_website_theme/static/src/img/mcm academy-partenaire-france-relance.jpg"/>
+                        <img class="img-fluid" style="width: 110px;" src="/mcm_website_theme/static/src/img/Logo-vert-sur-fond-blanc-en-.jpg.jpg"/>
                     </div>
                     <div class="col-md-4 col-sm-12 mb-4 mb-md-0 text-center">
                         <img class="img-fluid" style="width: 188px;" src="/digimoov_website_templates/static/img/coursier2roues/logo-DREAL.png"/>
@@ -182,7 +182,7 @@
                                         </b>
                                         <font style="color: rgb(57, 132, 198);">,</font> que vous pourrez suivre
                                                             où vous voulez , quand vous voulez , à votre rythme.
-                                                        
+
                                     </p>
                                     <p> Tout ce qu'il vous faut c'est une connexion internet stable pour suivre la formation en ligne.</p>
                                     <p>
@@ -199,13 +199,13 @@
                                         nos partenaires
                                                             leaders du domaine de la livraison
                                                             .
-                                                        
-                            
-                            
-                        
-                        
-                    
-                    
+
+
+
+
+
+
+
                                 </p>
                                 <div class="s_btn text-center pt16 pb16" data-name="Button">
                                     <a href="#pricing" class="btn btn-success" data-original-title="" title="" aria-describedby="tooltip819548">Je m'inscris !</a>
@@ -224,7 +224,7 @@
                             <text class="h1-title">
                                 <font color="#000000">Comment se déroule la </font>
                                 <font color="#000000" style="color: rgb(156, 0, 255);">formation capacité de transport</font>?
-                                                
+
                             </text>
                         </h2>
                         <blockquote>
@@ -413,9 +413,9 @@
                                                             dans les meilleures conditions&amp;nbsp; nous avons
                                                             développé de nombreux partenariats avec les leaders du
                                                             marché de la livraison à domicile&amp;nbsp;
-                                                        
-                                
-                            
+
+
+
                 </p>
             </div>
         </div>

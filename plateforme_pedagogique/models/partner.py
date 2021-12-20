@@ -152,7 +152,7 @@ class partner(models.Model):
     # Ajout automatique d' i-One sur 360learning
     def Ajouter_iOne_auto(self):
         base_url = self.env['ir.config_parameter'].sudo().get_param('web.base.url')
-        if "localhost" not in str(base_url):
+        if "localhost" not in str(base_url) and "dev.odoo" not in str(base_url):
             for partner in self.env['res.partner'].sudo().search([('statut', "=", "won"),
                                                                   ('statut_cpf', "!=", "canceled")
                                                                   ]):
@@ -310,6 +310,8 @@ class partner(models.Model):
                     data_user = '{"mail":"' + partner.email + '" , "password":"' + user.password360 + '", "firstName":"' + partner.firstName + '", "lastName":"' + partner.lastName + '", "phone":"' + partner.phone + '", "lang":"fr","sendCredentials":"true"}'
                     resp = requests.post(urluser, headers=headers, data=data_user)
                     print(data_user, 'user', resp.status_code)
+                    respo = str(json.loads(resp.text))
+                    _logger.info('response addd  %s' %respo)
                     if (resp.status_code == 200):
                         create = True
                 data_group = {}
@@ -412,7 +414,7 @@ class partner(models.Model):
     def supprimer_ione_auto(self):
                
         base_url = self.env['ir.config_parameter'].sudo().get_param('web.base.url')
-        if "localhost" not in str(base_url):
+        if "localhost" not in str(base_url) and "dev.odoo" not in str(base_url):
             company_id = '56f5520e11d423f46884d593'
             api_key = 'cnkcbrhHKyfzKLx4zI7Ub2P5'
             headers = CaseInsensitiveDict()
@@ -452,6 +454,8 @@ class partner(models.Model):
  
 
     def supprimer_ione_manuelle(self):
+        base_url = self.env['ir.config_parameter'].sudo().get_param('web.base.url')
+        if "localhost" not in str(base_url) and "dev.odoo" not in str(base_url):
             company_id = '56f5520e11d423f46884d593'
             api_key = 'cnkcbrhHKyfzKLx4zI7Ub2P5'
             headers = CaseInsensitiveDict()
@@ -485,7 +489,7 @@ class partner(models.Model):
 
     def wedof_api_integration(self):
         base_url = self.env['ir.config_parameter'].sudo().get_param('web.base.url')
-        if "localhost" not in str(base_url):
+        if "localhost" not in str(base_url) and "dev.odoo" not in str(base_url):
             headers = {
                 'accept': 'application/json',
                 'Content-Type': 'application/json',
@@ -587,7 +591,7 @@ class partner(models.Model):
     """changer l'etat sur wedof de non traité vers validé à partir d'API"""
     def change_state_wedof_validate(self):
         base_url = self.env['ir.config_parameter'].sudo().get_param('web.base.url')
-        if "localhost" not in str(base_url):
+        if "localhost" not in str(base_url) and "dev.odoo" not in str(base_url):
             params_wedof = (
                 ('order', 'desc'),
                 ('type', 'all'),
@@ -673,11 +677,11 @@ class partner(models.Model):
     """Mettre à jour les statuts cpf sur la fiche client selon l'etat sur wedof """
     def change_state_cpf_partner(self):
         base_url = self.env['ir.config_parameter'].sudo().get_param('web.base.url')
-        if "localhost" not in str(base_url):
+        if "localhost" not in str(base_url) and "dev.odoo" not in str(base_url):
             params_wedof = (
                 ('order', 'desc'),
                 ('type', 'all'),
-                ('state', 'validated,inTraining,refusedByAttendee,refusedByOrganism,serviceDoneDeclared,canceledByAttendee,canceledByAttendeeNotRealized,canceledByOrganism'),
+                ('state', 'validated,inTraining,refusedByAttendee,refusedByOrganism,serviceDoneDeclared,serviceDoneValidated,canceledByAttendee,canceledByAttendeeNotRealized,canceledByOrganism'),
                 ('billingState', 'all'),
                 ('certificationState', 'all'),
                 ('sort', 'lastUpdate'),
@@ -766,51 +770,51 @@ class partner(models.Model):
                         user.partner_id.funding_type = 'cpf'  # update field funding type to cpfprint('partner',partner.numero_cpf,user.login)
                         print(user.partner_id.date_cpf)
 
-                    if state=="inTraining":
-                        print('intraining', email)
-                        user.partner_id.statut_cpf="in_training"
-                        user.partner_id.numero_cpf = externalId
-                        user.partner_id.date_cpf = lastupd
-                        user.partner_id.diplome=diplome
-                        if product_id:
-                            user.partner_id.id_edof = product_id.id_edof
-
-                    if state=="terminated":
-                        print('terminated', email)
-                        user.partner_id.statut_cpf="out_training"
-                        user.partner_id.numero_cpf = externalId
-                        user.partner_id.diplome = diplome
-                        user.partner_id.date_cpf = lastupd
-                        if product_id:
-                            user.partner_id.id_edof = product_id.id_edof
-                    if state=="serviceDoneDeclared":
-                        print('serviceDoneDeclared', email)
-                        user.partner_id.statut_cpf="service_declared"
-                        user.partner_id.numero_cpf = externalId
-                        user.partner_id.date_cpf = lastupd
-                        user.partner_id.diplome = diplome
-                        if product_id:
-                            user.partner_id.id_edof=product_id.id_edof
-
-                    if state=="serviceDoneValidated":
-                        print('serviceDoneValidated', email)
-
-                        user.partner_id.statut_cpf="service_validated"
-                        user.partner_id.numero_cpf = externalId
-                        user.partner_id.date_cpf = lastupd
-                        user.partner_id.diplome = diplome
-                        if product_id:
-                            user.partner_id.id_edof = product_id.id_edof
-                    if state=="canceledByAttendee" or state=="canceledByAttendeeNotRealized" or state=="canceledByOrganism" or state=="refusedByAttendee" or state=="refusedByOrganism"  :
-                        if user.partner_id.numero_cpf==externalId:
-                            user.partner_id.statut_cpf="canceled"
-                            user.partner_id.statut="canceled"
+                        if state=="inTraining":
+                            print('intraining', email)
+                            user.partner_id.statut_cpf="in_training"
+                            user.partner_id.numero_cpf = externalId
                             user.partner_id.date_cpf = lastupd
-                            user.partner_id.diplome = diplome
-                            print("product id annulé digi",user.partner_id.id_edof,training_id)
-
+                            user.partner_id.diplome=diplome
                             if product_id:
                                 user.partner_id.id_edof = product_id.id_edof
+
+                        if state=="terminated":
+                            print('terminated', email)
+                            user.partner_id.statut_cpf="out_training"
+                            user.partner_id.numero_cpf = externalId
+                            user.partner_id.diplome = diplome
+                            user.partner_id.date_cpf = lastupd
+                            if product_id:
+                                user.partner_id.id_edof = product_id.id_edof
+                        if state=="serviceDoneDeclared":
+                            print('serviceDoneDeclared', email)
+                            user.partner_id.statut_cpf="service_declared"
+                            user.partner_id.numero_cpf = externalId
+                            user.partner_id.date_cpf = lastupd
+                            user.partner_id.diplome = diplome
+                            if product_id:
+                                user.partner_id.id_edof=product_id.id_edof
+
+                        if state=="serviceDoneValidated":
+                            print('serviceDoneValidated', email)
+
+                            user.partner_id.statut_cpf="service_validated"
+                            user.partner_id.numero_cpf = externalId
+                            user.partner_id.date_cpf = lastupd
+                            user.partner_id.diplome = diplome
+                            if product_id:
+                                user.partner_id.id_edof = product_id.id_edof
+                        if state=="canceledByAttendee" or state=="canceledByAttendeeNotRealized" or state=="canceledByOrganism" or state=="refusedByAttendee" or state=="refusedByOrganism"  :
+                            if user.partner_id.numero_cpf==externalId:
+                                user.partner_id.statut_cpf="canceled"
+                                user.partner_id.statut="canceled"
+                                user.partner_id.date_cpf = lastupd
+                                user.partner_id.diplome = diplome
+                                print("product id annulé digi",user.partner_id.id_edof,training_id)
+
+                                if product_id:
+                                    user.partner_id.id_edof = product_id.id_edof
 
 
 
@@ -819,27 +823,68 @@ class partner(models.Model):
         user = self.env['res.users'].sudo().search([('login', "=", email)])
         exist = True
         if not user:
-            if '+33' not in str(tel):  # num edof
+            if tel:
                 user = self.env["res.users"].sudo().search(
-                    [("phone", "=", str(tel).replace(' ', ''))], limit=1)
+                    [("phone", "=",str(tel))], limit=1)
                 if not user:
-                    phone = str(tel)
-                    phone = phone[1:]
-                    phone = '+33' + str(phone)
-                    user = self.env["res.users"].sudo().search(
-                        [("phone", "=", phone.replace(' ', ''))], limit=1)
-            else:
-                user = self.env["res.users"].sudo().search(
-                    [("phone", "=", str(tel).replace(' ', ''))], limit=1)
-                if not user:
-                    phone = str(tel)
-                    phone = phone[3:]
-                    phone = '0' + str(phone)
-                    user = self.env["res.users"].sudo().search(
-                        [("phone", "=", phone.replace(' ', ''))], limit=1)
+                    phone_number = str(tel).replace(' ', '')
+                    if '+33' not in str(phone_number): # check if edof api send the number of client with +33
+                        phone = phone_number[0:2]
+                        if str(phone) == '33' and ' ' not in str(tel): # check if edof api send the number of client in this format (number_format: 33xxxxxxx)
+                            phone = '+' + str(tel)
+                            user = self.env["res.users"].sudo().search( [("phone", "=", phone)], limit=1)
+                            if not user:
+                                phone = phone[0:3]+' '+phone[3:4] + ' ' + phone[4:6] + ' '+phone[6:8]+' '+phone[8:10]+' '+phone[10:]
+                                user = self.env["res.users"].sudo().search([("phone", "=", phone)], limit=1)
+                            if not user :
+                                phone = '0' +str(phone[4:])
+                                user = request.env["res.users"].sudo().search(['|',("phone", "=", phone),("phone", "=",phone.replace(' ',''))], limit=1)
+                        phone = phone_number[0:2]
+                        if str(phone) == '33' and ' ' in str(tel): # check if edof api send the number of client in this format (number_format: 33 x xx xx xx)
+                            phone = '+' + str(tel)
+                            user = self.env["res.users"].sudo().search(['|',("phone", "=", phone),("phone","=",phone.replace(' ', ''))], limit=1)
+                            if not user:
+                                phone = '0' + str(phone[4:])
+                                user = request.env["res.users"].sudo().search(
+                                    ['|', ("phone", "=", phone), ("phone", "=", phone.replace(' ', ''))], limit=1)
+                        phone = phone_number[0:2]
+                        if str(phone) in ['06','07'] and ' ' not in str(tel): # check if edof api send the number of client in this format (number_format: 07xxxxxx)
+                            user = self.env["res.users"].sudo().search(['|',("phone", "=", str(tel)),("phone", "=", str('+33'+tel.replace(' ','')[-9:]))], limit=1)
+                            if not user:
+                                phone = phone[0:2] + ' ' + phone[2:4] + ' ' + phone[4:6] + ' ' + phone[6:8] + ' ' + phone[8:]
+                                user = self.env["res.users"].sudo().search([("phone", "=", phone)], limit=1)
+                            if not user:
+                                phone = '0' + str(phone[4:])
+                                user = self.env["res.users"].sudo().search(
+                                    ['|', ("phone", "=", phone), ("phone", "=", phone.replace(' ', ''))], limit=1)
+                        phone = phone_number[0:2]
+                        if str(phone) in ['06', '07'] and ' ' in str(tel): # check if edof api send the number of client in this format (number_format: 07 xx xx xx)
+                            user = self.env["res.users"].sudo().search(
+                                ['|',("phone", "=", str(tel)),str(tel).replace(' ', '')], limit=1)
+                            if not user:
+                                phone_number = str(tel[1:])
+                                user = self.env["res.users"].sudo().search(
+                                    ['|', ("phone", "=", str('+33' + phone_number)),
+                                     ("phone", "=", ('+33' + phone_number.replace(' ', '')))], limit=1)
+                    else:  # check if edof api send the number of client with+33
+                        if ' ' not in str(tel):
+                            phone = str(tel)
+                            phone = phone[0:3] + ' ' + phone[3:4] + ' ' + phone[4:6] + ' ' + phone[6:8] + ' ' + phone[8:10] + ' ' + phone[10:]
+                            user = self.env["res.users"].sudo().search(
+                                [("phone", "=", phone)], limit=1)
+                        if not user :
+                            user = self.env["res.users"].sudo().search(
+                                [("phone", "=", str(phone_number).replace(' ', ''))], limit=1)
+                            if not user:
+                                phone = str(phone_number)
+                                phone = phone[3:]
+                                phone = '0' + str(phone)
+                                user = self.env["res.users"].sudo().search(
+                                    [("phone", "like", phone.replace(' ', ''))], limit=1)
             if not user:
                 # créer
                 exist = False
+
                 if "digimoov" in str(module):  # module from wedof
                     user = self.env['res.users'].sudo().create({
                         'name': str(prenom) + " " + str(nom),
@@ -879,7 +924,7 @@ class partner(models.Model):
                 client.numero_cpf = dossier
                 client.statut_cpf = 'validated'
                 client.statut ='indecis'
-                client.phone = tel
+                client.phone = '0'+str(tel.replace(' ',''))[-9:]
                 client.street = address
                 client.zip = code_postal
                 client.city = ville
@@ -908,33 +953,6 @@ class partner(models.Model):
                         if template_id:
                             client.with_context(force_send=True).message_post_with_template(template_id,
                                                                                             composition_mode='comment')
-
-                        """Créer un devis et Remplir le panier par produit choisit sur edof"""
-                        sale=self.env['sale.order'].sudo().search([('partner_id','=',client.id),
-                                                                   ('order_line.product_id','=',product_id.id)])
-                        print('sale order', sale.id)
-                        if not sale:
-                            so = self.env['sale.order'].sudo().create({
-                                'partner_id': client.id,
-                                'company_id': 2,
-                                'website_id':2
-                            })
-    
-                            so_line = self.env['sale.order.line'].sudo().create({
-                                'name': product_id.name,
-                                'product_id': product_id.id,
-                                'product_uom_qty': 1,
-                                'product_uom': product_id.uom_id.id,
-                                'price_unit': product_id.list_price,
-                                'order_id': so.id,
-                                'tax_id': product_id.taxes_id,
-                                'company_id': 2,
-                            })
-                            # prix de la formation dans le devis
-                            amount_before_instalment = so.amount_total
-                            # so.amount_total = so.amount_total * 0.25
-                            for line in so.order_line:
-                                line.price_unit = so.amount_total
                 else:
                     user.write({'company_ids': [(4, 2)], 'company_id': 1})
                     product_id = self.env['product.template'].sudo().search(
@@ -942,40 +960,12 @@ class partner(models.Model):
                     print("product id validate mcm",product_id.id_edof)
                     if product_id:
                         client.id_edof = product_id.id_edof
-                        """Créer un devis et Remplir le panier par produit choisit sur edof"""
-                        sale = self.env['sale.order'].sudo().search([('partner_id', '=', client.id),
-                                                                     ('order_line.product_id', '=', product_id.id)])
-                        print('sale order', sale.id)
-                        if not sale:
-                            so = self.env['sale.order'].sudo().create({
-                                'partner_id': client.id,
-                                'company_id': 1,
-                                'website_id': 1,
-                            })
-    
-                            so_line = self.env['sale.order.line'].sudo().create({
-                                'name': product_id.name,
-                                'product_id': product_id.id,
-                                'product_uom_qty': 1,
-                                'product_uom': product_id.uom_id.id,
-                                'price_unit': product_id.list_price,
-                                'order_id': so.id,
-                                'tax_id': product_id.taxes_id,
-                                'company_id': 1,
-                            })
-                        # prix de la formation dans le devis
-                        amount_before_instalment = so.amount_total
-                        # so.amount_total = so.amount_total * 0.25
-                        for line in so.order_line:
-                            line.price_unit = so.amount_total
-
-
 
 
     """Changer statut cpf vers accepté selon l'etat récupéré avec api wedof"""
     def change_statut_accepte(self):
         base_url = self.env['ir.config_parameter'].sudo().get_param('web.base.url')
-        if "localhost" not in str(base_url):
+        if "localhost" not in str(base_url) and "dev.odoo" not in str(base_url):
             params_wedof = (
                 ('order', 'desc'),
                 ('type', 'all'),
