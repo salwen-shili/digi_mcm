@@ -220,12 +220,12 @@
                 mb-2
               ">
                             <div class="form-section">
-                                <div class="card px-0 pt-4 pb-0 mt-3 mb-3 bg-c">
+                                <div class="card px-0 pt-4 pb-0 mt-3 mb-3 bg-c" style="marging: 0 !important; padding: 0 !important">
                                     <!-- fieldsets -->
                                     <fieldset>
                                         <div class="row">
                                             <div class="col-7">
-                                                <h2 class="fs-title">Votre adresse</h2>
+                                                <h2 class="fs-title" style="margin-block-end: 19px">Votre adresse</h2>
                                             </div>
                                         </div>
                                         <!-- error-input-field -->
@@ -307,7 +307,7 @@
                                         </div>
                                         <div class="outlined-input-field bg-c" id="voie_container" aria-disabled="true" t-if="name">
                                             <input class="outlined-text-field" name="voie" id="voie" t-att-value="voie" required="true" />
-                                            <label for="voie" style="top: -0.7rem;padding: 0.25rem;">Type de voie *</label>
+                                            <label for="voie">Type de voie *</label>
                                             <i class="material-icons error-icon"></i>
                                             <div class="helper-text bg-c" id="voie_helper">
                                                 <span></span>
@@ -438,6 +438,7 @@
                     },
                     80
                     );
+                    if (('#voie').val){
                     $(`#voie`).animate(
                     {
                     fontSize: "0.8rem",
@@ -446,6 +447,7 @@
                     },
                     80
                     );
+                    }
                     $(`#nom_voie`).animate(
                     {
                     fontSize: "0.8rem",
