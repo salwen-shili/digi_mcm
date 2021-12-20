@@ -1,6 +1,4 @@
 $(document).ready(function () {
-  //Validate Address
-
   const apiCommunes = 'https://geo.api.gouv.fr/communes?codePostal=';
 
   const format = '&format=json';
@@ -10,6 +8,8 @@ $(document).ready(function () {
   let voie = $('#voie');
   let typeVoie = $('#voie');
   let nomVoie = $('#nom_voie');
+
+  //Validate Address
 
   $(zipcode).on('blur', function () {
     var code = $(this).val();
@@ -88,6 +88,17 @@ $(document).ready(function () {
         $(city).find('option').remove();
       });
   });
+
+  if (voie.val()) {
+    $(`#voie ~ label`).animate(
+      {
+        fontSize: '0.8rem',
+        top: '-0.7rem',
+        padding: '0.25rem',
+      },
+      80
+    );
+  }
   $('#first_form').submit(function (e) {
     const check = document.querySelector('.error-input-field');
     if (check != null) {
@@ -117,15 +128,11 @@ $(document).ready(function () {
       })(window, document, 'script', '//bat.bing.com/bat.js', 'uetq');
       console.log('inside script');
       window.uetq = window.uetq || [];
-      window.uetq.push(
-        'event',
-        "click sur inscription a partir de vous n'avez pas de compte",
-        {
-          event_category: 'Inscription',
-          event_label: 'Inscription',
-          event_value: '10',
-        }
-      );
+      window.uetq.push('event', 'click sur inscription wedof', {
+        event_category: 'Inscription wedof',
+        event_label: 'Inscription wedof',
+        event_value: '10',
+      });
     }
   });
 });
