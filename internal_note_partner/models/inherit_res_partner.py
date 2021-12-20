@@ -15,22 +15,15 @@ class InheritResPartner(models.Model):
         """ Function to get presence value of last session in tree partner view"""
         for rec in self:
             last_line = rec.env['info.examen'].sudo().search([('partner_id', "=", rec.id)], limit=1, order="id desc")
-            if last_line.presence == 'present':
-                rec.sudo().write({
-                    'presence': 'Présent(e)',
-                })
-            if last_line.presence == 'Absent':
-                rec.sudo().write({
-                    'presence': 'Absent(e)',
-                })
-            if last_line.presence == 'absence_justifiee':
-                rec.sudo().write({
-                    'presence': 'Absence justifiee',
-                })
-            elif not last_line.presence:
-                rec.sudo().write({
-                    'presence': '_______',
-                })
+            for line in last_line:
+                if line.presence == 'present':
+                    rec.presence = "Présent(e)"
+                if line.presence == 'Absent':
+                    rec.presence = "Absent(e)"
+                if line.presence == 'absence_justifiee':
+                    rec.presence = "Absence justifiee"
+                elif not line.presence:
+                    rec.presence = "_______"
 
     def _compute_get_last_resultat_values(self):
         """ Function to get result value of last session in tree partner view"""
