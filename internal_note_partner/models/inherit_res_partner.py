@@ -55,7 +55,7 @@ class InheritResPartner(models.Model):
         }
 
     def write(self, values):
-        """ Update this function """
+        """ Mettre à jour presence & resultat fields pour chaque mise à jour"""
         val = super(InheritResPartner, self).write(values)
         print("Hello")
         if 'note_exam_id' in values:

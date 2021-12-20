@@ -21,6 +21,7 @@
     ],
     'data': [
         'views/inherit_res_partner.xml',
+        'data/ir_cron.xml',
     ],
     'qweb': [],
     'images': [],
