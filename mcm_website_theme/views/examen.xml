@@ -219,7 +219,7 @@
                 </p>
                 <ul class="fa-ul" style="font-size: 16.5px; line-height: 1.2rem">
                   <li style="padding-block-end: 10px">
-                    <i class="fa fa-chevron-right" style="margin-top: 2px"></i>
+                    <i class="fa fa-chevron-right" style="font-size: 13px; margin: 0px 7px 5px -17px"></i>
                     Vous devez joindre vos pièces justificatives directement en
                     ligne.
                     <br />
@@ -230,18 +230,18 @@
                     photocopies déchirées seront automatiquement refusées.)
                   </li>
                   <li style="padding-block-end: 10px">
-                    <i class="fa fa-chevron-right" style="margin-top: 2px"></i>
+                    <i class="fa fa-chevron-right" style="font-size: 13px; margin: 0px 7px 5px -17px"></i>
                     Pour les candidats se présentant à l'ensemble des épreuves
                     d'admissibilité et à l'épreuve d'admission, il faut prévoir
                     :
                   </li>
                   <li style="padding-block-end: 10px">
-                    <i class="fa fa-chevron-right" style="margin-top: 2px"></i>
+                    <i class="fa fa-chevron-right" style="font-size: 13px; margin: 0px 7px 5px -17px"></i>
                     206 € de frais d'inscription aux 7 épreuves théoriques
                     d'admissibilité et à l'épreuve pratique.
                   </li>
                   <li style="padding-block-end: 10px">
-                    <i class="fa fa-chevron-right" style="margin-top: 2px"></i>
+                    <i class="fa fa-chevron-right" style="font-size: 13px; margin: 0px 7px 5px -17px"></i>
                     101 € de frais d'inscription à une 2e ou 3e présentation à
                     l'épreuve pratique d'admission.
                   </li>
@@ -273,17 +273,17 @@
               </p>
                 <ul class="fa-ul" style="font-size: 16.5px; line-height: 1.5rem">
                   <li style="padding-block-end: 10px">
-                    <i class="fa fa-chevron-right" style="margin-top: 2px"></i>
+                    <i class="fa fa-chevron-right" style="font-size: 13px; margin: 0px 7px 5px -17px"></i>
                     Européen ou avoir un titre de séjour lui permettant
                     d'exercer en France.
                   </li>
                   <li style="padding-block-end: 10px">
-                    <i class="fa fa-chevron-right" style="margin-top: 2px"></i>
+                    <i class="fa fa-chevron-right" style="font-size: 13px; margin: 0px 7px 5px -17px"></i>
                     Titulaire d'un permis B depuis au moins 3 ans et non soumis
                     à une période probatoire.
                   </li>
                   <li style="padding-block-end: 10px">
-                    <i class="fa fa-chevron-right" style="margin-top: 2px"></i>
+                    <i class="fa fa-chevron-right" style="font-size: 13px; margin: 0px 7px 5px -17px"></i>
                     En capacité physique de devenir chauffeur professionnel.
                   </li>
 
@@ -326,19 +326,19 @@
                   </p>
                     <ul class="fa-ul" style="font-size: 16.5px; line-height: 1.5rem">
                       <li style="padding-block-end: 10px">
-                        <i class="fa fa-chevron-right" style="margin-top: 2px"></i>
+                        <i class="fa fa-chevron-right" style="font-size: 13px; margin: 0px 7px 5px -17px"></i>
                         Gestion
                       </li>
                       <li style="padding-block-end: 10px">
-                        <i class="fa fa-chevron-right" style="margin-top: 2px"></i>
+                        <i class="fa fa-chevron-right" style="font-size: 13px; margin: 0px 7px 5px -17px"></i>
                         Sécurité
                       </li>
                       <li style="padding-block-end: 10px">
-                        <i class="fa fa-chevron-right" style="margin-top: 2px"></i>
+                        <i class="fa fa-chevron-right" style="font-size: 13px; margin: 0px 7px 5px -17px"></i>
                         Français
                       </li>
                       <li style="padding-block-end: 10px">
-                        <i class="fa fa-chevron-right" style="margin-top: 2px"></i>
+                        <i class="fa fa-chevron-right" style="font-size: 13px; margin: 0px 7px 5px -17px"></i>
                         Anglais
                       </li>
                     </ul>
@@ -357,12 +357,12 @@
                   </p>
                     <ul class="fa-ul" style="font-size: 16.5px; line-height: 1.5rem">
                       <li style="padding-block-end: 10px">
-                        <i class="fa fa-chevron-right" style="margin-top: 2px"></i>
+                        <i class="fa fa-chevron-right" style="font-size: 13px; margin: 0px 7px 5px -17px"></i>
                         Développement commercial en gestion propre à l’activité
                         de VTC
                       </li>
                       <li style="padding-block-end: 10px">
-                        <i class="fa fa-chevron-right" style="margin-top: 2px"></i>
+                        <i class="fa fa-chevron-right" style="font-size: 13px; margin: 0px 7px 5px -17px"></i>
                         Réglementation nationale spécifique de l’activité de VTC
                       </li>
                     </ul>
@@ -381,12 +381,12 @@
                   </p>
                     <ul class="fa-ul" style="font-size: 16.5px; line-height: 1.5rem">
                       <li style="padding-block-end: 10px">
-                        <i class="fa fa-chevron-right" style="margin-top: 2px"></i>
+                        <i class="fa fa-chevron-right" style="font-size: 13px; margin: 0px 7px 5px -17px"></i>
                         Connaissance du territoire et de la réglementation
                         locale
                       </li>
                       <li style="padding-block-end: 10px">
-                        <i class="fa fa-chevron-right" style="margin-top: 2px"></i>
+                        <i class="fa fa-chevron-right" style="font-size: 13px; margin: 0px 7px 5px -17px"></i>
                         Réglementation nationale de l’activité de TAXI et
                         gestion propre à cette activité
                       </li>
@@ -408,19 +408,19 @@
               </h3>
                 <ul class="fa-ul" style="font-size: 16.5px; line-height: 1.5rem">
                   <li style="padding-block-end: 10px">
-                    <i class="fa fa-chevron-right" style="margin-top: 2px"></i>
+                    <i class="fa fa-chevron-right" style="font-size: 13px; margin: 0px 7px 5px -17px"></i>
                     Préparation et realisation du parcours
                   </li>
                   <li style="padding-block-end: 10px">
-                    <i class="fa fa-chevron-right" style="margin-top: 2px"></i>
+                    <i class="fa fa-chevron-right" style="font-size: 13px; margin: 0px 7px 5px -17px"></i>
                     Sécurite et souplesse du parcours, respect du code de la route
                   </li>
                   <li style="padding-block-end: 10px">
-                    <i class="fa fa-chevron-right" style="margin-top: 2px"></i>
+                    <i class="fa fa-chevron-right" style="font-size: 13px; margin: 0px 7px 5px -17px"></i>
                     Qualite de la prise en charge et de la relation client
                   </li>
                   <li style="padding-block-end: 10px">
-                    <i class="fa fa-chevron-right" style="margin-top: 2px"></i>
+                    <i class="fa fa-chevron-right" style="font-size: 13px; margin: 0px 7px 5px -17px"></i>
                     Facturation et utilisation des equipements speciaux
                   </li>
                 </ul>
@@ -468,14 +468,14 @@
 
                 <ul class="fa-ul js-scroll slide-left" style="font-size: 16.5px; line-height: 1.5rem">
                   <li style="padding-block-end: 10px">
-                    <i class="fa fa-chevron-right" style="margin-top: 2px"></i>
+                    <i class="fa fa-chevron-right" style="font-size: 13px; margin: 0px 7px 5px -17px"></i>
                     Pour réussir l’examen théorique VMDTR, une moyenne générale
                     d’au moins 10/20 est obligatoire. Aussi, chaque épreuve est
                     soumise à une note éliminatoire propre. Le candidat se verra
                     éliminé s'il obtient une note inférieure à celle-ci.
                   </li>
                   <li style="padding-block-end: 10px">
-                    <i class="fa fa-chevron-right" style="margin-top: 2px"></i>
+                    <i class="fa fa-chevron-right" style="font-size: 13px; margin: 0px 7px 5px -17px"></i>
                     Les résultats de l’examen VMDTR théorique vous seront
                     communiqués par la Chambre des Métiers et de l'Artisanat
                     (CMA) dans les semaines qui suivent l’épreuve, par mail et
