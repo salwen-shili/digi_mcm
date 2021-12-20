@@ -629,10 +629,17 @@ class partner(models.Model):
                 newformat = "%d/%m/%Y %H:%M:%S"
                 lastupdateform = lastupdate.strftime(newformat)
                 lastupd = datetime.strptime(lastupdateform, "%d/%m/%Y %H:%M:%S")
+                num_voie = ""
+                if "number" in dossier['attendee']['address']:
+                    num_voie = dossier['attendee']['address']['number']
+
+                voie = ""
+                if "roadTypeLabel" in dossier['attendee']['address']:
+                    voie = dossier['attendee']['address']['roadTypeLabel']
+                nom_voie = ""
                 if "roadName" in dossier['attendee']['address']:
-                    address = dossier['attendee']['address']['roadName']
-                else:
-                    address = ""
+                    nom_voie = dossier['attendee']['address']['roadName']
+                street = num_voie + ' ' + voie + ' ' + nom_voie
                 if "phoneNumber" in dossier['attendee']:
                     tel = dossier['attendee']['phoneNumber']
                 else:
@@ -671,7 +678,7 @@ class partner(models.Model):
                 """Si dossier passe à l'etat validé on met à jour statut cpf sur la fiche client"""
                 if status == "200":
                     print('validate', email)
-                    self.cpf_validate(training_id, email, address, tel, code_postal, ville, diplome, dossier['attendee']['lastName'], dossier['attendee']['firstName'], dossier['externalId'], lastupd)
+                    self.cpf_validate(training_id, email, num_voie,nom_voie,voie,street, tel, code_postal, ville, diplome, dossier['attendee']['lastName'], dossier['attendee']['firstName'], dossier['externalId'], lastupd)
 
 
     """Mettre à jour les statuts cpf sur la fiche client selon l'etat sur wedof """
@@ -717,10 +724,17 @@ class partner(models.Model):
                 newformat="%d/%m/%Y %H:%M:%S"
                 lastupdateform=lastupdate.strftime(newformat)
                 lastupd=datetime.strptime(lastupdateform, "%d/%m/%Y %H:%M:%S")
+                num_voie = ""
+                if "number" in dossier['attendee']['address']:
+                    num_voie = dossier['attendee']['address']['number']
+
+                voie = ""
+                if "roadTypeLabel" in dossier['attendee']['address']:
+                    voie = dossier['attendee']['address']['roadTypeLabel']
+                nom_voie = ""
                 if "roadName" in dossier['attendee']['address']:
-                    address = dossier['attendee']['address']['roadName']
-                else:
-                    address = ""
+                    nom_voie = dossier['attendee']['address']['roadName']
+                street = num_voie + ' ' + voie + ' ' + nom_voie
                 if "phoneNumber" in  dossier['attendee']:
                     tel = dossier['attendee']['phoneNumber']
                 else :
@@ -750,7 +764,7 @@ class partner(models.Model):
 
                 if state=="validated":
                     print('validate',email,dossier['attendee']['lastName'],dossier['attendee']['firstName'])
-                    self.cpf_validate(training_id,email,address,tel,code_postal,ville,diplome,dossier['attendee']['lastName'],dossier['attendee']['firstName'],dossier['externalId'],lastupd)
+                    self.cpf_validate(training_id,email,num_voie,nom_voie,voie,street,tel,code_postal,ville,diplome,dossier['attendee']['lastName'],dossier['attendee']['firstName'],dossier['externalId'],lastupd)
                 else:
                     users = self.env['res.users'].sudo().search(
                         [('login', "=", email)])  # search user with same email sended
@@ -819,7 +833,7 @@ class partner(models.Model):
 
 
 
-    def cpf_validate(self,module,email,address,tel,code_postal,ville,diplome,nom,prenom,dossier,lastupd):
+    def cpf_validate(self,module,email,num_voie,nom_voie,voie,street,tel,code_postal,ville,diplome,nom,prenom,dossier,lastupd):
         user = self.env['res.users'].sudo().search([('login', "=", email)])
         exist = True
         if not user:
@@ -924,8 +938,13 @@ class partner(models.Model):
                 client.numero_cpf = dossier
                 client.statut_cpf = 'validated'
                 client.statut ='indecis'
+             
+               
                 client.phone = '0'+str(tel.replace(' ',''))[-9:]
-                client.street = address
+                client.street = street
+                client.num_voie =num_voie
+                client.nom_voie=nom_voie
+                client.voie=voie
                 client.zip = code_postal
                 client.city = ville
                 client.diplome = diplome  # attestation capacitév ....
