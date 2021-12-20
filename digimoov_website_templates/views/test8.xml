@@ -5,7 +5,7 @@
             <link href="/digimoov_website_templates/static/src/css/css-dist/home.min.css" rel="stylesheet" />
             <script type="text/javascript" src="/mcm_website_theme/static/src/js/msAds.js" />
             <div id="wrap" class="oe_empty oe_structure">
-                <div id="homepage" t-if="partenaire!='coursier2roues' and partenaire!='habilitation-electrique' and partenaire!='eco-conduite' and partenaire!='transport-routier'">
+                <div id="homepage">
                     <section class="s_one_page_banner static-slider2" data-name="Home Banner Ten" style="">
                         <div class="container">
                             <div class="row align-items-center">
