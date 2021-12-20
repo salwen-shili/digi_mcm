@@ -7,11 +7,11 @@ class InheritResPartner(models.Model):
     composer_ids = fields.Many2one('mail.message', string='Composer')
     last_internal_log = fields.Char(compute="_compute_get_last_internal_log", string="Commentaire Interne")
     company_id = fields.Many2one('res.company', default=lambda self: self.env.company)
-    presence = fields.Char(readonly=True, compute="_compute_get_last_presence_values", store=True)
+    presence = fields.Char(readonly=True, store=True)
     resultat = fields.Char(readonly=True, store=True)
     date_exam = fields.Date(related="mcm_session_id.date_exam", string="Date d'examen")
 
-    def _compute_get_last_presence_values(self):
+    def _compute_get_last_presence_resultat_values(self):
         """ Function to get presence value of last session in tree partner view"""
         for rec in self:
             last_line = rec.env['info.examen'].sudo().search([('partner_id', "=", rec.id)], limit=1, order="id desc")
@@ -21,24 +21,18 @@ class InheritResPartner(models.Model):
                 if line.presence == 'Absent':
                     rec.presence = "Absent(e)"
                 if line.presence == 'absence_justifiee':
-                    rec.presence = "Absence justifiee"
+                    rec.presence = "Absence justifiée"
                 elif not line.presence:
                     rec.presence = "_______"
-
-    def _compute_get_last_resultat_values(self):
-        """ Function to get result value of last session in tree partner view"""
         for rec in self:
-            last_line = rec.env['info.examen'].sudo().search([('partner_id', "=", rec.id)], limit=1, order="id desc")
-            if last_line.resultat == 'ajourne':
-                rec.sudo().write({'resultat': 'Ajourné(e)'})
-            if last_line.resultat == 'recu':
-                rec.sudo().write({
-                    'resultat': 'Admis(e)',
-                })
-            elif not last_line.resultat:
-                rec.sudo().write({
-                    'resultat': '_______',
-                })
+            last_line_resultat = rec.env['info.examen'].sudo().search([('partner_id', "=", rec.id)], limit=1, order="id desc")
+            for resultat in last_line_resultat:
+                if resultat.resultat == 'ajourne':
+                    rec.resultat = "Ajourné(e)"
+                if resultat.resultat == 'recu':
+                    rec.resultat = "Admis(e)"
+                elif not resultat.resultat:
+                    rec.resultat = "_______"
 
     def _compute_get_last_internal_log(self):
         for record in self:
@@ -59,3 +53,31 @@ class InheritResPartner(models.Model):
                        ('subtype_id', '=', 'Note')],
             'context': "{'create': False, 'edit':False}"
         }
+
+    def write(self, values):
+        """ Update this function """
+        val = super(InheritResPartner, self).write(values)
+        print("Hello")
+        if 'note_exam_id' in values:
+            for rec in self:
+                last_line = rec.env['info.examen'].sudo().search([('partner_id', "=", rec.id)], limit=1, order="id desc")
+                for line in last_line:
+                    if line.presence == 'present':
+                        rec.presence = "Présent(e)"
+                    if line.presence == 'Absent':
+                        rec.presence = "Absent(e)"
+                    if line.presence == 'absence_justifiee':
+                        rec.presence = "Absence justifiée"
+                    elif not line.presence:
+                        rec.presence = "_______"
+            for rec in self:
+                last_line_resultat = rec.env['info.examen'].sudo().search([('partner_id', "=", rec.id)], limit=1,
+                                                                          order="id desc")
+                for resultat in last_line_resultat:
+                    if resultat.resultat == 'ajourne':
+                        rec.resultat = "Ajourné(e)"
+                    if resultat.resultat == 'recu':
+                        rec.resultat = "Admis(e)"
+                    elif not resultat.resultat:
+                        rec.resultat = "_______"
+        return val
