@@ -571,7 +571,10 @@ class WebsiteSale(WebsiteSale):
 
     """ajouter l'apprenant sur 360 par api360"""
     @http.route(['/shop/adduser_plateform'], type='json', auth="user",methods=['POST'], website=True)
-    def add_partner_plateforme(self):
+    def add_partner_plateforme(self): 
+       
+        
+       
         user = request.env.user
         partner = user.partner_id
         if partner.statut == "won" and partner.statut_cpf != "canceled" and user.company_id.id == 2:
@@ -617,11 +620,10 @@ class WebsiteSale(WebsiteSale):
                 if document_valide and partner.mcm_session_id.date_exam and (
                         partner.mcm_session_id.date_exam > date.today()):
                     if partner.renounce_request:
-                        print("ajouterrrr ione")
-                        self.ajouter_iOne(partner)
+                        print("****************************************ajouterrrr ione")
+                        return self.ajouter_iOne(partner)
                     if not partner.renounce_request:
                         print("Renonce")
-                        # return {'ajout': 'Vous devez attendre 14 jours pour commencer  votre formation'}
                         """créer ticket pour service client"""
                         vals = {
                             'description': 'CPF: Apprenant non ajouté sur 360 %s' % (partner.name),
@@ -635,11 +637,13 @@ class WebsiteSale(WebsiteSale):
                         if not ticket:
                             new_ticket = request.env['helpdesk.ticket'].sudo().create(
                                 vals)
+                        return {'ajout': 'Vous devez attendre 14 jours pour commencer  votre formation'}
+
                     # if not partner.renounce_request and date_facture and (date_facture + timedelta(days=14)) <= today:
                     #     self.ajouter_iOne(partner)
                 if not document_valide:
                     print("Documents")
-                    return {'ajout': 'Vous devez attendre la validation de vos documents pour commencer la formation'}
+                    
                     """créer ticket pour service client"""
                     vals = {
                         'description': 'CPF: Apprenant non ajouté sur 360 %s' % (partner.name),
@@ -653,7 +657,8 @@ class WebsiteSale(WebsiteSale):
                     if not ticket:
                         new_ticket = request.env['helpdesk.ticket'].sudo().create(
                             vals)
-
+                    return {'ajout': 'Vous devez attendre la validation de vos documents pour commencer la formation'}
+    
     def ajouter_iOne(self, partner):
         params = (
             ('company', '56f5520e11d423f46884d593'),
@@ -833,10 +838,10 @@ class WebsiteSale(WebsiteSale):
                         return {'ajout': 'https://digimoov.360learning.com'}
                     if not (create):
                             if str(responce_api)=="{'error': 'unavailableEmails'}":
-                                return {'ajout': 'Email non valide.'}
+                               
 
                                 vals = {
-                                    'description': 'CPF: Apprenant non ajouté sur 360 %s %s' % (partner.name) ,
+                                    'description': 'CPF: Apprenant non ajouté sur 360 %s' % (partner.name) ,
                                     'name': 'CPF : Email non valide ',
                                     'team_id': request.env['helpdesk.team'].sudo().search(
                                         [('name', 'like', 'Client'), ('company_id', "=", 2)],
@@ -848,12 +853,12 @@ class WebsiteSale(WebsiteSale):
                                 if not ticket:
                                     new_ticket = request.env['helpdesk.ticket'].sudo().create(
                                         vals)
+                                return {'ajout': 'Email non valide.'}
 
                             else :
-                                return {'ajout': 'Vous allez bientôt recevoir une invitation à la plateforme par courrier.'}
 
                                 vals = {
-                                    'description': 'CPF: Apprenant non ajouté sur 360 %s %s' % (partner.name) % responce_api,
+                                    'description': 'CPF: Apprenant non ajouté sur 360 %s %s' % (partner.name ,responce_api),
                                     'name': 'CPF : Apprenant non ajouté sur 360 ',
                                     'team_id': request.env['helpdesk.team'].sudo().search(
                                         [('name', 'like', 'IT'), ('company_id', "=", 2)],
@@ -862,11 +867,12 @@ class WebsiteSale(WebsiteSale):
                                 description = "CPF: Apprenant non ajouté sur 360 " + str(partner.name) + str(responce_api)
                                 ticket = request.env['helpdesk.ticket'].sudo().search([("description", "=", description),
                                                                                     ("team_id.name",'like', 'IT')])
+                                
                                 if not ticket:
                                     new_ticket = request.env['helpdesk.ticket'].sudo().create(
                                         vals)
                                 vals_client = {
-                                    'description': 'CPF: Apprenant non ajouté sur 360 %s %s' % (partner.name) % responce_api,
+                                    'description': 'CPF: Apprenant non ajouté sur 360 %s %s' % (partner.name, responce_api),
                                     'name': 'CPF : Apprenant non ajouté sur 360 ',
                                     'team_id': request.env['helpdesk.team'].sudo().search(
                                         [('name', 'like', 'Client'), ('company_id', "=", 2)],
@@ -878,6 +884,8 @@ class WebsiteSale(WebsiteSale):
                                 if not ticket_client:
                                     new_ticket_client = request.env['helpdesk.ticket'].sudo().create(
                                         vals_client)
+                                return {'ajout': 'Vous allez bientôt recevoir une invitation à la plateforme par courrier.'}
+
 
 
 
