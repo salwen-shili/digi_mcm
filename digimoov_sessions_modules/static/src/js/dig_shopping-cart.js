@@ -81,7 +81,7 @@ const addUserPlateform = () => {
                           
                         
                          <div style="text-align:center">
-                            <a href="${res.result.url}"> <button type="button" class="btn btn-secondary action-button shake"> Continuer </button></a>
+                            <a href="${res.result.url}"> <button type="button" class="btn btn-secondary action-button shake" style="padding: 6px 34px;"> Continuer </button></a>
                         </div>
                    
        
