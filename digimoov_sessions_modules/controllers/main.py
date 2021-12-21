@@ -533,6 +533,7 @@ class WebsiteSale(WebsiteSale):
                             'session_id': module_id.session_id.id,
                             'company_id': 1,
                         })
+                    return {'ajout':'Vous allez recevoir une invitation pour accéder à votre formation'}
 
             else:
                 if 'digimoov' in str(training_id):
