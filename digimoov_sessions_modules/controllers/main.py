@@ -331,6 +331,7 @@ class WebsiteSale(WebsiteSale):
     @http.route(['/shop/cpf_accepted'], type='json', auth="user", methods=['POST'], website=True)
     def accepted_cpf(self):
         partner = request.env.user.partner_id
+        ajout = ""
         if partner.numero_cpf:
             params_wedof = (
                 ('order', 'desc'),
@@ -533,7 +534,7 @@ class WebsiteSale(WebsiteSale):
                             'session_id': module_id.session_id.id,
                             'company_id': 1,
                         })
-                    return {'ajout':'Vous allez recevoir une invitation pour accéder à votre formation'}
+                    ajout = 'Vous allez recevoir une invitation pour accéder à votre formation'
 
             else:
                 if 'digimoov' in str(training_id):
@@ -564,7 +565,7 @@ class WebsiteSale(WebsiteSale):
                     if not ticket:
                         new_ticket = request.env['helpdesk.ticket'].sudo().create(
                             vals)
-        return {'state':'finished'}
+        return {'state':'finished', 'ajout':ajout}
 
     """ajouter l'apprenant sur 360 par api360"""
     @http.route(['/shop/adduser_plateform'], type='json', auth="user",methods=['POST'], website=True)
