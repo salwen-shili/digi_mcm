@@ -82,7 +82,7 @@ const addUserPlateform = () => {
                           
                         
                          <div style="text-align:center">
-                            <a href="#"> <button type="button" class="btn btn-secondary action-button" onclick="closepopup()" > Fermer </button></a>
+                            <a href="${res.result.url}"> <button type="button" class="btn btn-secondary action-button" onclick="()=>window.location.href=${res.result.url} > Continuer </button></a>
                         </div>
                    
        
