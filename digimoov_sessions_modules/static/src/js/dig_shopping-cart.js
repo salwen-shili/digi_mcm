@@ -68,17 +68,39 @@ const addUserPlateform = () => {
   document.getElementById(
     'popupcontent'
   ).innerHTML = `<div style="text-align: -webkit-center;"><div class="spinner"></div></div>`;
-  // sendHttpRequest('POST', '/shop/adduser_plateform', {})
-  //   .then((res) => {
-  //     console.log(res.result.ajout);
-  //     console.log(res.result.url);
-  //     if (res.result.url.includes('https://')) {
-  //       document.getElementById('popupcontent').innerHTML = `
-  //                           <p style="margin-top: 12px;    text-align: center;">
-  //                                ${res.result.ajout}
-  //                                <br/>
-  //                                  <a href="${res.result.url}"> ${res.result.url}</a>
-  //                               </p>
+  sendHttpRequest('POST', '/shop/adduser_plateform', {}).then((res) => {
+    console.log(res.result.ajout);
+    console.log(res.result.url);
+    if (res.result.url.includes('https://')) {
+      document.getElementById('popupcontent').innerHTML = `
+                            <p style="margin-top: 12px;    text-align: center;">                              
+                                 ${res.result.ajout}
+                                 <br/>
+                                   <a href="${res.result.url}"> ${res.result.url}</a>
+                                </p>
+                          
+                        
+                         <div style="text-align:center">
+                            <a href="${res.result.url}"> <button type="button" class="btn btn-secondary action-button"  > Continuer </button></a>
+                        </div>
+                   
+       
+         `;
+    } else {
+      document.getElementById('popupcontent').innerHTML = `
+                            <p style="margin-top: 12px;    text-align: center;">                              
+                                 ${res.result.ajout}     
+                                </p>
+                          
+                        
+                         <div style="text-align:center">
+                            <a href="#"> <button type="button" class="btn btn-secondary action-button" onclick="closepopup()" > Fermer </button></a>
+                        </div>
+                   
+       
+         `;
+    }
+  });
 
   //                        <div style="text-align:center">
   //                           <a href="${res.result.url}"> <button type="button" class="btn btn-secondary action-button" onclick="()=>window.location.href=${res.result.url} > Continuer </button></a>
