@@ -81,7 +81,8 @@ const cpfAccepted = () => {
   sendHttpRequest('POST', '/shop/cpf_accepted', {})
     .then((res) => {
       if (res.result.ajout) {
-        console.log(res.result.ajout);
+        console.log(res);
+        console.log(res.result.state);
         document.getElementById('popupcontent').innerHTML = `
                             <p style="margin-top: 12px;    text-align: center;">                              
                                  ${res.result.ajout}     
