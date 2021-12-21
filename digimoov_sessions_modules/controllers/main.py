@@ -533,6 +533,7 @@ class WebsiteSale(WebsiteSale):
                             'session_id': module_id.session_id.id,
                             'company_id': 1,
                         })
+                    return {'ajout':'Lorem ipsum dolor sit amet consectetur adipisicing elit. Modi, voluptas. Recusandae architecto obcaecati sed quae!'}
 
             else:
                 if 'digimoov' in str(training_id):
