@@ -930,6 +930,7 @@ class partner(models.Model):
                                 'tax_id': product_id.taxes_id,
                                 'company_id': 2,
                             })
+                            #
                             # prix de la formation dans le devis
                             amount_before_instalment = so.amount_total
                             # so.amount_total = so.amount_total * 0.25
