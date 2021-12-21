@@ -1,4 +1,6 @@
 from odoo import api, fields, models
+import logging
+_logger = logging.getLogger(__name__)
 
 
 class InheritResPartner(models.Model):
@@ -11,28 +13,30 @@ class InheritResPartner(models.Model):
     resultat = fields.Char(readonly=True, store=True)
     date_exam = fields.Date(related="mcm_session_id.date_exam", string="Date d'examen")
 
-    def _compute_get_last_presence_resultat_values(self):
-        """ Function to get presence value of last session in tree partner view"""
-        for rec in self:
+    @api.onchange('note_exam_id')
+    def _get_last_presence_resultat_values(self):
+        """ Function to get presence and resultat values of last session in tree partner view"""
+        for rec in self.env['res.partner'].sudo().search([]):
             last_line = rec.env['info.examen'].sudo().search([('partner_id', "=", rec.id)], limit=1, order="id desc")
-            for line in last_line:
-                if line.presence == 'present':
-                    rec.presence = "Présent(e)"
-                if line.presence == 'Absent':
-                    rec.presence = "Absent(e)"
-                if line.presence == 'absence_justifiee':
-                    rec.presence = "Absence justifiée"
-                elif not line.presence:
-                    rec.presence = "_______"
-        for rec in self:
-            last_line_resultat = rec.env['info.examen'].sudo().search([('partner_id', "=", rec.id)], limit=1, order="id desc")
-            for resultat in last_line_resultat:
-                if resultat.resultat == 'ajourne':
-                    rec.resultat = "Ajourné(e)"
-                if resultat.resultat == 'recu':
-                    rec.resultat = "Admis(e)"
-                elif not resultat.resultat:
-                    rec.resultat = "_______"
+            if len(rec.note_exam_id) > 0:
+                _logger.info('-------Cron Partner presence and resultat------- %s', rec.note_exam_id.partner_id.display_name)
+                for line in last_line:
+                    if line.presence == 'present':
+                        rec.presence = "Présent(e)"
+                    if line.presence == 'Absent':
+                        rec.presence = "Absent(e)"
+                    if line.presence == 'absence_justifiee':
+                        rec.presence = "Absence justifiée"
+                    elif not line.presence:
+                        rec.presence = "_______"
+                # Remplir le champ resultat par valeur de dernier examen
+                for resultat in last_line:
+                    if resultat.resultat == 'ajourne':
+                        rec.resultat = "Ajourné(e)"
+                    if resultat.resultat == 'recu':
+                        rec.resultat = "Admis(e)"
+                    elif not resultat.resultat:
+                        rec.resultat = "_______"
 
     def _compute_get_last_internal_log(self):
         for record in self:
@@ -57,27 +61,7 @@ class InheritResPartner(models.Model):
     def write(self, values):
         """ Mettre à jour presence & resultat fields pour chaque mise à jour"""
         val = super(InheritResPartner, self).write(values)
-        print("Hello")
         if 'note_exam_id' in values:
-            for rec in self:
-                last_line = rec.env['info.examen'].sudo().search([('partner_id', "=", rec.id)], limit=1, order="id desc")
-                for line in last_line:
-                    if line.presence == 'present':
-                        rec.presence = "Présent(e)"
-                    if line.presence == 'Absent':
-                        rec.presence = "Absent(e)"
-                    if line.presence == 'absence_justifiee':
-                        rec.presence = "Absence justifiée"
-                    elif not line.presence:
-                        rec.presence = "_______"
-            for rec in self:
-                last_line_resultat = rec.env['info.examen'].sudo().search([('partner_id', "=", rec.id)], limit=1,
-                                                                          order="id desc")
-                for resultat in last_line_resultat:
-                    if resultat.resultat == 'ajourne':
-                        rec.resultat = "Ajourné(e)"
-                    if resultat.resultat == 'recu':
-                        rec.resultat = "Admis(e)"
-                    elif not resultat.resultat:
-                        rec.resultat = "_______"
+            self._get_last_presence_resultat_values()
         return val
+
