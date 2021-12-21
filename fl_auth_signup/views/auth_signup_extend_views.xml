@@ -35,8 +35,8 @@
               ">
                             <div class="form-section">
                                 <div class="card px-0 pt-4 pb-0 mt-3 mb-3 bg-c">
-                                    <h2 id="heading" t-if="not name">Inscription</h2>
-                                    <p class="p_class" t-if="not name">Remplissez tous les champs du formulaire pour
+                                    <h2 id="heading" t-if="not name or not last_login">Inscription</h2>
+                                    <p class="p_class" t-if="not name or not last_login">Remplissez tous les champs du formulaire pour
                                         passer à l'étape suivante
                                     </p>
 
@@ -51,7 +51,7 @@
                                         <link href="/digimoov_website_templates/static/src/css/material_form.css" rel="stylesheet" />
                                         <link href="/digimoov_website_templates/static/src/css/register_form.css" rel="stylesheet" />
                                     </t>
-                                    <ul id="progressbar" t-if="not name">
+                                    <ul id="progressbar" t-if="not name or not last_login">
                                         <li class="active" id="account">
                                             <strong>Coordonnées</strong>
                                         </li>
@@ -65,13 +65,13 @@
                                             <strong>Validation</strong>
                                         </li>
                                     </ul>
-                                    <div class="progress" t-if="not name">
+                                    <div class="progress" t-if="not name or not last_login">
                                         <div class="
                                             progress-bar progress-bar-striped progress-bar-animated
                                             " role="progressbar" aria-valuemin="0" aria-valuemax="100"></div>
                                     </div>
 
-                                    <br t-if="not name" />
+                                    <br t-if="not name or not last_login" />
 
                                     <div class="alert alert-danger" t-if="error" role="alert">
                                         <t t-esc="error" />
@@ -84,7 +84,7 @@
                                         </p>
                                     </div>
                                     <fieldset>
-                                        <div class="row" t-if="not login">
+                                        <div class="row" t-if="not login or not last_login">
                                             <div class="col-7">
                                                 <h2 class="fs-title">Informations personnelles:</h2>
                                             </div>
@@ -104,9 +104,9 @@
                                             </div>
 
                                         </div>
-                                        <br t-if="not name" />
+                                        <br t-if="not name or not last_login" />
 
-                                        <div class="outlined-input-field bg-c" id="firstname_container" t-if=" not name">
+                                        <div class="outlined-input-field bg-c" id="firstname_container" t-if="not name">
                                             <input type="text" id="firstname" name="firstname" class="outlined-text-field" autocomplete="off" t-att-value="firstname" pattern="[A-Z,a-z,À-ÿ '-]{2,}" required="required" inputmode="latin-name" />
                                             <label for="firstname">Prénom *</label>
                                             <i class="material-icons error-icon">error_outline</i>
@@ -482,7 +482,7 @@
 
                 <!-- <script defer="defer" type="text/javascript" src="/mcm_website_theme/static/src/js/register_form.js" /> -->
 
-                <script defer="defer" type="text/javascript" src="/fl_auth_signup/static/js/validate_inscription.js" t-if="not name" />
+                <script defer="defer" type="text/javascript" src="/fl_auth_signup/static/js/validate_inscription.js" t-if="not name or not last_login" />
 
                 <script defer="defer" type="text/javascript" src="/fl_auth_signup/static/js/validate_inscription_reset.js" t-if="name" />
                 <script defer="defer" type="text/javascript" src="/mcm_website_theme/static/src/js/material.js" t-if="name" />
