@@ -80,6 +80,9 @@ const sendData = (condition) => {
 const cpfAccepted = () => {
   sendHttpRequest('POST', '/shop/cpf_accepted', {})
     .then((res) => {
+      console.log(res);
+      console.log(res.result);
+      console.log(res.result.state);
       if (res.result.ajout) {
         console.log(res);
         console.log(res.result.state);
