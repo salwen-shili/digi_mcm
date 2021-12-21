@@ -95,11 +95,12 @@ const addUserPlateform = () => {
       console.log('error addUser', err);
     });
 };
-const cpfAccepted = () => {
-  console.log('call cpf accepted');
-  sendHttpRequest('POST', '/shop/cpf_accepted', {}).catch((err) => {
-    console.log(err);
-  });
+const cpfAccepted = async () => {
+  await sendHttpRequest('POST', '/shop/cpf_accepted', {})
+    .then(() => console.log('cpf_accepted'))
+    .catch((err) => {
+      console.log(err);
+    });
 };
 
 function onChangeCheckButton() {

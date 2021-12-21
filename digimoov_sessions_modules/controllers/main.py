@@ -568,6 +568,7 @@ class WebsiteSale(WebsiteSale):
                     if not ticket:
                         new_ticket = request.env['helpdesk.ticket'].sudo().create(
                             vals)
+        return {'state':'finished'}
 
     """ajouter l'apprenant sur 360 par api360"""
     @http.route(['/shop/adduser_plateform'], type='json', auth="user",methods=['POST'], website=True)
