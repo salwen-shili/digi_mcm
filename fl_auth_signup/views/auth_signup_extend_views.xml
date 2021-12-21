@@ -485,7 +485,7 @@
                 <script defer="defer" type="text/javascript" src="/fl_auth_signup/static/js/validate_inscription.js" t-if="not name or not last_login" />
 
                 <script defer="defer" type="text/javascript" src="/fl_auth_signup/static/js/validate_inscription_reset.js" t-if="name" />
-                <script defer="defer" type="text/javascript" src="/mcm_website_theme/static/src/js/material.js" />
+                <script defer="defer" type="text/javascript" src="/mcm_website_theme/static/src/js/material.js" t-if="name" />
 
             </xpath>
 
