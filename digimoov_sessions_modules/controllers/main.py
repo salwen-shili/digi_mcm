@@ -675,7 +675,14 @@ class WebsiteSale(WebsiteSale):
         
     def ajouter_iOne(self, partner):
         
-        
+        params = (
+            ('company', '56f5520e11d423f46884d593'),
+            ('apiKey', 'cnkcbrhHKyfzKLx4zI7Ub2P5'),
+            )
+        company_id = '56f5520e11d423f46884d593'
+        api_key = 'cnkcbrhHKyfzKLx4zI7Ub2P5'
+        headers = CaseInsensitiveDict()
+        headers["Content-Type"] = "application/json"
         if not request.env.user.lang:
             request.env.user.lang = 'fr_FR'  # Remplacez les paramètres régionaux de l'heure par le paramètre de langue actuel
                                             # du compte dans odoo
