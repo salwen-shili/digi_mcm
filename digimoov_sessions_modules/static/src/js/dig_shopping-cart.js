@@ -74,13 +74,10 @@ const addUserPlateform = () => {
     if (res.result.url) {
       if (res.result.url.includes('https://')) {
         document.getElementById('popupcontent').innerHTML = `
-                            <p style="margin-top: 12px;    text-align: center;">                              
+                            <p style="margin-top: 12px; text-align: center;">                              
                                  ${res.result.ajout}
                                  <br/>
-                                  
                                 </p>
-                          
-                        
                          <div style="text-align:center">
                             <a href="${res.result.url}"> <button type="button" class="btn btn-secondary action-button shake" style="padding: 6px 34px;"> Continuer </button></a>
                         </div>
