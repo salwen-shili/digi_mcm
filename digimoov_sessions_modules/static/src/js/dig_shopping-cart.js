@@ -304,6 +304,7 @@ function verify_payment_method() {
             );
             break;
         }
+        return;
       }
       if (cpf_pm.value == 'Formation premium') {
         switch (state) {
@@ -332,6 +333,7 @@ function verify_payment_method() {
             );
             break;
         }
+        return;
       }
     }
   }

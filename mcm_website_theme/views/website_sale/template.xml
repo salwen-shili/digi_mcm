@@ -355,9 +355,12 @@
                 </div>
             </div>
             <div style="margin:auto;background-color:#fff;border-color:#585959;" t-if="request.website.is_public_user()==False and modules_mcm" id="region_date_examen">
+
                 <h3 t-if="modules_mcm" class="" style="margin-top: 1rem; font-weight: 600;">
                 Veuillez sélectionnez votre date d'examen
                 </h3>
+                <!-- state from backend-->
+                <input id="state" type="hidden" t-att-value="state" />
                 <p t-if="modules_mcm">
                     <b>
                         <div style="margin-left:0%;" id="exam_center">
