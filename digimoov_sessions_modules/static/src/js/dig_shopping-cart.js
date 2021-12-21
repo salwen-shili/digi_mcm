@@ -71,8 +71,9 @@ const addUserPlateform = () => {
   sendHttpRequest('POST', '/shop/adduser_plateform', {}).then((res) => {
     console.log(res.result.ajout);
     console.log(res.result.url);
-    if (res.result.url.includes('https://')) {
-      document.getElementById('popupcontent').innerHTML = `
+    if (res.result.url) {
+      if (res.result.url.includes('https://')) {
+        document.getElementById('popupcontent').innerHTML = `
                             <p style="margin-top: 12px;    text-align: center;">                              
                                  ${res.result.ajout}
                                  <br/>
@@ -86,6 +87,7 @@ const addUserPlateform = () => {
                    
        
          `;
+      }
     } else {
       document.getElementById('popupcontent').innerHTML = `
                             <p style="margin-top: 12px;    text-align: center;">                              
