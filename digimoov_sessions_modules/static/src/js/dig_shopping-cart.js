@@ -71,12 +71,25 @@ const addUserPlateform = () => {
   sendHttpRequest('POST', '/shop/adduser_plateform', {})
     .then((res) => {
       console.log(res.result.ajout);
-      if (res.result.ajout.includes('https://')) {
-        window.location.href = res.result.ajout;
+      console.log(res.result.url);
+      if (res.result.url.includes('https://')) {
+        document.getElementById('popupcontent').innerHTML = `
+                            <p style="margin-top: 12px;    text-align: center;">                              
+                                 ${res.result.ajout}
+                                 <br/>
+                                    ${res.result.url}
+                                </p>
+                          
+                        
+                         <div style="text-align:center">
+                            <a href="#"> <button type="button" class="btn btn-secondary action-button" onclick="closepopup()" > Fermer </button></a>
+                        </div>
+                   
+       
+         `;
       } else {
         document.getElementById('popupcontent').innerHTML = `
-                            <p style="margin-top: 12px;    text-align: center;">
-                              
+                            <p style="margin-top: 12px;    text-align: center;">                              
                                  ${res.result.ajout}     
                                 </p>
                           
