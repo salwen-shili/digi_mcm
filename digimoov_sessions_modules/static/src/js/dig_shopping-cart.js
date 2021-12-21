@@ -64,12 +64,11 @@ const sendData = (condition) => {
     .catch((err) => {});
 };
 
-const addUserPlateform = () => {
-  console.log('call add user plateform');
+const addUserPlateform = async () => {
   document.getElementById(
     'popupcontent'
   ).innerHTML = `<div style="text-align: -webkit-center;"><div class="spinner"></div></div>`;
-  sendHttpRequest('POST', '/shop/adduser_plateform', {})
+  await sendHttpRequest('POST', '/shop/adduser_plateform', {})
     .then((res) => {
       console.log(res.result.ajout);
       if (res.result.ajout.includes('https://')) {
@@ -97,7 +96,7 @@ const addUserPlateform = () => {
 };
 const cpfAccepted = async () => {
   await sendHttpRequest('POST', '/shop/cpf_accepted', {})
-    .then(() => console.log('cpf_accepted'))
+    .then((res) => console.log('cpf_accepted', res.result.state))
     .catch((err) => {
       console.log(err);
     });
