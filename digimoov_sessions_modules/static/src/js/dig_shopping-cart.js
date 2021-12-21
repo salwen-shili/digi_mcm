@@ -77,7 +77,7 @@ const addUserPlateform = () => {
                             <p style="margin-top: 12px;    text-align: center;">                              
                                  ${res.result.ajout}
                                  <br/>
-                                    ${res.result.url}
+                                   <a href="${res.result.url}"> ${res.result.url}</a>
                                 </p>
                           
                         
