@@ -672,7 +672,7 @@ class WebsiteSale(WebsiteSale):
         print('get user', resp.status_code)
         if resp.status_code == 200:
             
-            return {'ajout': 'Vous êtes déja sur la plateforme, cliquez sur le lien ci-dessous pour se connecter','url':'https://digimoov.360learning.com'}
+            return {'ajout': 'Vous êtes déja sur la plateforme, cliquez sur continuer pour se connecter','url':'https://digimoov.360learning.com'}
 
         else :
             if not request.env.user.lang:
@@ -831,7 +831,7 @@ class WebsiteSale(WebsiteSale):
                                     respsession = requests.put(urlsession, headers=headers, data=data_group)
                                     print(existe, 'ajouter à son session', respsession.status_code)
                         "si créer envoyer le lien de la plateforme si non false"
-                        return {'ajout':'Cliquez sur le lien ci dessous pour commencer la formation.','url': 'https://digimoov.360learning.com'}
+                        return {'ajout':'Cliquez sur continuer pour commencer la formation. Vous devez utiliser les même identifiants pour accéder à la plateforme','url': 'https://digimoov.360learning.com'}
                     if not (create):
                             if str(responce_api)=="{'error': 'unavailableEmails'}":
                                
