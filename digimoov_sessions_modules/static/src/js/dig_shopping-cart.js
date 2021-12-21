@@ -77,12 +77,12 @@ const addUserPlateform = () => {
                             <p style="margin-top: 12px;    text-align: center;">                              
                                  ${res.result.ajout}
                                  <br/>
-                                   <a href="${res.result.url}"> ${res.result.url}</a>
+                                  
                                 </p>
                           
                         
                          <div style="text-align:center">
-                            <a href="${res.result.url}"> <button type="button" class="btn btn-secondary action-button"  > Continuer </button></a>
+                            <a href="${res.result.url}"> <button type="button" class="btn btn-secondary action-button shake"> Continuer </button></a>
                         </div>
                    
        
