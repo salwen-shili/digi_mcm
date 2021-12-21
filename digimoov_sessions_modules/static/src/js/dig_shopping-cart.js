@@ -65,7 +65,6 @@ const sendData = (condition) => {
 };
 
 const addUserPlateform = () => {
-  console.log('call add user plateform');
   document.getElementById(
     'popupcontent'
   ).innerHTML = `<div style="text-align: -webkit-center;"><div class="spinner"></div></div>`;
@@ -95,9 +94,14 @@ const addUserPlateform = () => {
       console.log('error addUser', err);
     });
 };
-const cpfAccepted = async () => {
-  await sendHttpRequest('POST', '/shop/cpf_accepted', {})
-    .then(() => console.log('cpf_accepted'))
+const cpfAccepted = () => {
+  sendHttpRequest('POST', '/shop/cpf_accepted', {})
+    .then((res) => {
+      console.log('cpf_accepted', res.result.state);
+      if (res.result.state) {
+        addUserPlateform();
+      }
+    })
     .catch((err) => {
       console.log(err);
     });
@@ -243,7 +247,7 @@ function verify_payment_method() {
   if (cpf_pm) {
     // console.log(cpf_pm, 'cpf_pm');
     if (cpf_pm.checked == true) {
-      if (cpf_pm.value == '[avancee] Formation pro') {
+      if (cpf_pm.value == 'Formation pro') {
         switch (true) {
           case state.includes('https://www.moncompteformation.gouv.fr/'):
             msTracking(
@@ -256,8 +260,8 @@ function verify_payment_method() {
             break;
           case state == 'accepted':
             cpfAccepted();
-            addUserPlateform();
-            // document.getElementById('popupcontent').innerHTML = 'finished...';
+
+            //
             break;
 
           default:
@@ -282,10 +286,8 @@ function verify_payment_method() {
             );
             break;
           case state == 'accepted':
-            document.getElementById('popupcontent').innerHTML = 'wait...';
             cpfAccepted();
-            addUserPlateform();
-            document.getElementById('popupcontent').innerHTML = 'finished...';
+
             break;
 
           default:
