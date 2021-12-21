@@ -163,14 +163,12 @@ class WebsiteSale(WebsiteSale):
                 if product_id:
                     slugname = (product_id.name).strip().strip('-').replace(' ', '-').lower()
                     if str(slugname) != str(product):
-                        if order.pricelist_id and order.pricelist_id.name in ['ubereats', 'deliveroo', 'coursierjob',
-                                                                              'box2home', 'coursier2roues']:
+                        if order.pricelist_id and order.pricelist_id.name in ['ubereats', 'deliveroo', 'coursierjob','box2home','coursier2roues', 'habilitation-electrique', 'eco-conduite', 'transport-routier']:
                             return request.redirect("/%s/%s/shop/cart/" % (slugname, order.pricelist_id.name))
                         else:
                             return request.redirect("/%s/shop/cart/" % (slugname))
                     else:
-                        if order.pricelist_id and order.pricelist_id.name in ['ubereats', 'deliveroo', 'coursierjob',
-                                                                              'box2home', 'coursier2roues']:
+                        if order.pricelist_id and order.pricelist_id.name in ['ubereats', 'deliveroo', 'coursierjob','box2home','coursier2roues', 'habilitation-electrique', 'eco-conduite', 'transport-routier']:
                             return request.redirect("/%s/%s/shop/cart/" % (slugname, order.pricelist_id.name))
                 else:
                     return request.redirect("/pricing")
@@ -182,13 +180,12 @@ class WebsiteSale(WebsiteSale):
                             [('company_id', '=', 2), ('name', "=", str(partenaire))])
                         if not pricelist:
                             pricelist_id = order.pricelist_id
-                            if pricelist_id.name in ['ubereats', 'deliveroo', 'coursierjob', 'box2home',
-                                                     'coursier2roues']:
+                            if pricelist_id.name in ['ubereats', 'deliveroo', 'coursierjob','box2home','coursier2roues', 'habilitation-electrique', 'eco-conduite', 'transport-routier']:
                                 return request.redirect("/%s/%s/shop/cart/" % (slugname, pricelist_id.name))
                             else:
                                 return request.redirect("/%s/shop/cart/" % (slugname))
                         else:
-                            if pricelist.name in ['ubereats', 'deliveroo', 'coursierjob', 'box2home', 'coursier2roues']:
+                            if pricelist.name in ['ubereats', 'deliveroo', 'coursierjob','box2home','coursier2roues', 'habilitation-electrique', 'eco-conduite', 'transport-routier']:
                                 return request.redirect("/%s/%s/shop/cart/" % (slugname, order.pricelist_id.name))
                             else:
                                 return request.redirect("/%s/shop/cart/" % (slugname))
@@ -198,13 +195,12 @@ class WebsiteSale(WebsiteSale):
 
                         if not pricelist:
                             pricelist_id = order.pricelist_id
-                            if pricelist_id.name in ['ubereats', 'deliveroo', 'coursierjob', 'box2home',
-                                                     'coursier2roues']:
+                            if pricelist_id.name in ['ubereats', 'deliveroo', 'coursierjob','box2home','coursier2roues', 'habilitation-electrique', 'eco-conduite', 'transport-routier']:
                                 return request.redirect("/%s/%s/shop/cart/" % (slugname, pricelist_id.name))
                             else:
                                 return request.redirect("/%s/shop/cart/" % (slugname))
                         else:
-                            if pricelist.name in ['ubereats', 'deliveroo', 'coursierjob', 'box2home', 'coursier2roues']:
+                            if pricelist.name in ['ubereats', 'deliveroo', 'coursierjob','box2home','coursier2roues', 'habilitation-electrique', 'eco-conduite', 'transport-routier']:
                                 if pricelist.name != order.pricelist_id.name:
                                     return request.redirect("/%s/%s/shop/cart/" % (slugname, order.pricelist_id.name))
                             else:
@@ -212,8 +208,7 @@ class WebsiteSale(WebsiteSale):
                 else:
                     pricelist = request.env['product.pricelist'].sudo().search(
                         [('company_id', '=', 2), ('name', "=", str(partenaire))])
-                    if pricelist and pricelist.name in ['ubereats', 'deliveroo', 'coursierjob', 'box2home',
-                                                        'coursier2roues']:
+                    if pricelist and pricelist.name in ['ubereats', 'deliveroo', 'coursierjob','box2home','coursier2roues', 'habilitation-electrique', 'eco-conduite', 'transport-routier']:
                         return request.redirect("/%s" % (pricelist.name))
                     else:
                         return request.redirect("/pricing")
@@ -671,13 +666,13 @@ class WebsiteSale(WebsiteSale):
         headers["Content-Type"] = "application/json"
 
         """Vérifier la presence d'apprenant sur 360 """
-        url_user = 'https://app.360learning.com/api/v1/users/' + partner.email + '?company=' + company_id + '&apiKey=' + api_key
+        url_user = 'https://staging.360learning-dev.com/api/v1/users/' + partner.email + '?company=' + company_id + '&apiKey=' + api_key
         resp = requests.get(url_user, headers=headers)
         """s'il est présent on lui envoie le lien pour se connecter si non on lui ajoute """
         print('get user', resp.status_code)
         if resp.status_code == 200:
             
-            return {'ajout': 'Vous êtes déja sur la plateforme, cliquez sur le lien ci-dessous pour se connecter'}
+            return {'ajout': 'Vous êtes déja sur la plateforme, cliquez sur le lien ci-dessous pour se connecter','url':'https://digimoov.360learning.com'}
 
         else :
             if not request.env.user.lang:
@@ -713,10 +708,10 @@ class WebsiteSale(WebsiteSale):
                     print('iffff userrrrrr')
                     id_Digimoov_bienvenue = '56f5520e11d423f46884d594'
                     id_Digimoov_Examen_Attestation = '5f9af8dae5769d1a2c9d5047'
-                    urluser = 'https://app.360learning.com/api/v1/users?company=' + company_id + '&apiKey=' + api_key
-                    urlgroup_Bienvenue = 'https://app.360learning.com/api/v1/groups/' + id_Digimoov_bienvenue + '/users/' + partner.email + '?company=' + company_id + '&apiKey=' + api_key
-                    url_groups = 'https://app.360learning.com/api/v1/groups'
-                    url_unsubscribeToEmailNotifications = 'https://app.360learning.com/api/v1/users/unsubscribeToEmailNotifications?company=' + company_id + '&apiKey=' + api_key
+                    urluser = 'https://staging.360learning-dev.com/api/v1/users?company=' + company_id + '&apiKey=' + api_key
+                    urlgroup_Bienvenue = 'https://staging.360learning-dev.com/api/v1/groups/' + id_Digimoov_bienvenue + '/users/' + partner.email + '?company=' + company_id + '&apiKey=' + api_key
+                    url_groups = 'https://staging.360learning-dev.com/api/v1/groups'
+                    url_unsubscribeToEmailNotifications = 'https://staging.360learning-dev.com/api/v1/users/unsubscribeToEmailNotifications?company=' + company_id + '&apiKey=' + api_key
                     invit = False
                     create = False
                     responce_api =False
@@ -774,7 +769,7 @@ class WebsiteSale(WebsiteSale):
                             if (company == '2'):
                                 if (nom_groupe == digimoov_examen.upper()):
                                     id_Digimoov_Examen_Attestation = id_groupe
-                                    urlsession = 'https://app.360learning.com/api/v1/groups/' + id_groupe + '/users/' + partner.email + '?company=' + company_id + '&apiKey=' + api_key
+                                    urlsession = 'https://staging.360learning-dev.com/api/v1/groups/' + id_groupe + '/users/' + partner.email + '?company=' + company_id + '&apiKey=' + api_key
                                     respsession = requests.put(urlsession, headers=headers, data=data_group)
                                     if respsession.status_code==200:
                                         ajout_exam =True
@@ -783,7 +778,7 @@ class WebsiteSale(WebsiteSale):
                                 packsolo = "Digimoov - Pack Solo"
                                 if (("solo" in product_name) and (nom_groupe == packsolo.upper())):
                                     print(partner.module_id.name)
-                                    urlgrp_solo = 'https://app.360learning.com/api/v1/groups/' + id_groupe + '/users/' + partner.email + '?company=' + company_id + '&apiKey=' + api_key
+                                    urlgrp_solo = 'https://staging.360learning-dev.com/api/v1/groups/' + id_groupe + '/users/' + partner.email + '?company=' + company_id + '&apiKey=' + api_key
                                     respgrp_solo = requests.put(urlgrp_solo, headers=headers, data=data_group)
                                     print('affecté à solo', respgrp_solo.status_code)
 
@@ -791,26 +786,26 @@ class WebsiteSale(WebsiteSale):
                                 pack_pro = "Digimoov - Pack Pro"
                                 if (("pro" in product_name) and (nom_groupe == pack_pro.upper())):
                                     print(partner.module_id.name)
-                                    urlgrp_pro = 'https://app.360learning.com/api/v1/groups/' + id_groupe + '/users/' + partner.email + '?company=' + company_id + '&apiKey=' + api_key
+                                    urlgrp_pro = 'https://staging.360learning-dev.com/api/v1/groups/' + id_groupe + '/users/' + partner.email + '?company=' + company_id + '&apiKey=' + api_key
                                     respgrp_pro = requests.put(urlgrp_pro, headers=headers, data=data_group)
                                 # Affecter à unpremium
                                 packprem = "Digimoov - Pack Premium"
                                 if (("premium" in product_name) and (nom_groupe == packprem.upper())):
                                     print(partner.module_id.name)
-                                    urlgrp_prim = 'https://app.360learning.com/api/v1/groups/' + id_groupe + '/users/' + partner.email + '?company=' + company_id + '&apiKey=' + api_key
+                                    urlgrp_prim = 'https://staging.360learning-dev.com/api/v1/groups/' + id_groupe + '/users/' + partner.email + '?company=' + company_id + '&apiKey=' + api_key
                                     respgrp_prim = requests.put(urlgrp_prim, headers=headers, data=data_group)
 
                                 # Affecter apprenant à Digimoov-Révision
                                 revision = "Digimoov - Pack Repassage Examen"
                                 if (("Repassage d'examen" in product_name) and (nom_groupe == revision.upper())):
-                                    urlgrp_revision = 'https://app.360learning.com/api/v1/groups/' + id_groupe + '/users/' + partner.email + '?company=' + company_id + '&apiKey=' + api_key
+                                    urlgrp_revision = 'https://staging.360learning-dev.com/api/v1/groups/' + id_groupe + '/users/' + partner.email + '?company=' + company_id + '&apiKey=' + api_key
                                     respgrp_revision = requests.put(urlgrp_revision, headers=headers, data=data_group)
 
                                 # Affecter apprenant à une session d'examen
                                 print('date, ville', ville, date_session)
                                 if (ville in nom_groupe) and (date_session in nom_groupe):
                                     existe = True
-                                    urlsession = 'https://app.360learning.com/api/v1/groups/' + id_groupe + '/users/' + partner.email + '?company=' + company_id + '&apiKey=' + api_key
+                                    urlsession = 'https://staging.360learning-dev.com/api/v1/groups/' + id_groupe + '/users/' + partner.email + '?company=' + company_id + '&apiKey=' + api_key
                                     respsession = requests.put(urlsession, headers=headers, data=data_group)
 
                         # Si la session n'est pas trouvée sur 360 on l'ajoute
@@ -819,7 +814,7 @@ class WebsiteSale(WebsiteSale):
                             nom = ville + ' - ' + date_session
                             nomgroupe = unidecode(nom)
                             print(nomgroupe)
-                            urlgroups = 'https://app.360learning.com/api/v1/groups?company=' + company_id + '&apiKey=' + api_key
+                            urlgroups = 'https://staging.360learning-dev.com/api/v1/groups?company=' + company_id + '&apiKey=' + api_key
                             data_session = '{"name":"' + nomgroupe + '","parent":"' + id_Digimoov_Examen_Attestation + '"  , "public":"false" }'
                             create_session = requests.post(urlgroups, headers=headers, data=data_session)
                             print('creer  une session', create_session.status_code)
@@ -832,11 +827,11 @@ class WebsiteSale(WebsiteSale):
                                 # Affecter apprenant à la nouvelle session d'examen
                                 if (ville in nom_groupe) and (date_session in nom_groupe):
                                     existe = True
-                                    urlsession = 'https://app.360learning.com/api/v1/groups/' + id_groupe + '/users/' + partner.email + '?company=' + company_id + '&apiKey=' + api_key
+                                    urlsession = 'https://staging.360learning-dev.com/api/v1/groups/' + id_groupe + '/users/' + partner.email + '?company=' + company_id + '&apiKey=' + api_key
                                     respsession = requests.put(urlsession, headers=headers, data=data_group)
                                     print(existe, 'ajouter à son session', respsession.status_code)
                         "si créer envoyer le lien de la plateforme si non false"
-                        return {'ajout': 'https://digimoov.360learning.com'}
+                        return {'ajout':'Cliquez sur le lien ci dessous pour commencer la formation.','url': 'https://digimoov.360learning.com'}
                     if not (create):
                             if str(responce_api)=="{'error': 'unavailableEmails'}":
                                
@@ -991,14 +986,12 @@ class WebsiteSale(WebsiteSale):
                 if product_id:
                     slugname = (product_id.name).strip().strip('-').replace(' ', '-').lower()
                     if str(slugname) != str(product):
-                        if order.pricelist_id and order.pricelist_id.name in ['ubereats', 'deliveroo', 'coursierjob',
-                                                                              'box2home', 'coursier2roues']:
+                        if order.pricelist_id and order.pricelist_id.name in ['ubereats', 'deliveroo', 'coursierjob','box2home','coursier2roues', 'habilitation-electrique', 'eco-conduite', 'transport-routier']:
                             return request.redirect("/%s/%s/shop/payment/" % (slugname, order.pricelist_id.name))
                         else:
                             return request.redirect("/%s/shop/payment/" % (slugname))
                     else:
-                        if order.pricelist_id and order.pricelist_id.name in ['ubereats', 'deliveroo', 'coursierjob',
-                                                                              'box2home', 'coursier2roues']:
+                        if order.pricelist_id and order.pricelist_id.name in ['ubereats', 'deliveroo', 'coursierjob','box2home','coursier2roues', 'habilitation-electrique', 'eco-conduite', 'transport-routier']:
                             return request.redirect("/%s/%s/shop/payment/" % (slugname, order.pricelist_id.name))
                 else:
                     return request.redirect("/pricing")
@@ -1010,13 +1003,12 @@ class WebsiteSale(WebsiteSale):
                             [('company_id', '=', 2), ('name', "=", str(partenaire))])
                         if not pricelist:
                             pricelist_id = order.pricelist_id
-                            if pricelist_id.name in ['ubereats', 'deliveroo', 'coursierjob', 'box2home',
-                                                     'coursier2roues']:
+                            if pricelist_id.name in ['ubereats', 'deliveroo', 'coursierjob','box2home','coursier2roues', 'habilitation-electrique', 'eco-conduite', 'transport-routier']:
                                 return request.redirect("/%s/%s/shop/payment/" % (slugname, pricelist_id.name))
                             else:
                                 return request.redirect("/%s/shop/payment/" % (slugname))
                         else:
-                            if pricelist.name in ['ubereats', 'deliveroo', 'coursierjob', 'box2home', 'coursier2roues']:
+                            if pricelist.name in ['ubereats', 'deliveroo', 'coursierjob','box2home','coursier2roues', 'habilitation-electrique', 'eco-conduite', 'transport-routier']:
                                 return request.redirect("/%s/%s/shop/payment/" % (slugname, order.pricelist_id.name))
                             else:
                                 return request.redirect("/%s/shop/payment/" % (slugname))
@@ -1026,13 +1018,12 @@ class WebsiteSale(WebsiteSale):
 
                         if not pricelist:
                             pricelist_id = order.pricelist_id
-                            if pricelist_id.name in ['ubereats', 'deliveroo', 'coursierjob', 'box2home',
-                                                     'coursier2roues']:
+                            if pricelist_id.name in ['ubereats', 'deliveroo', 'coursierjob','box2home','coursier2roues', 'habilitation-electrique', 'eco-conduite', 'transport-routier']:
                                 return request.redirect("/%s/%s/shop/payment/" % (slugname, pricelist_id.name))
                             else:
                                 return request.redirect("/%s/shop/payment/" % (slugname))
                         else:
-                            if pricelist.name in ['ubereats', 'deliveroo', 'coursierjob', 'box2home', 'coursier2roues']:
+                            if pricelist.name in ['ubereats', 'deliveroo', 'coursierjob', 'box2home', 'coursier2roues', 'habilitation-electrique', 'eco-conduite', 'transport-routier']:
                                 if pricelist.name != order.pricelist_id.name:
                                     return request.redirect(
                                         "/%s/%s/shop/payment/" % (slugname, order.pricelist_id.name))
@@ -1042,7 +1033,7 @@ class WebsiteSale(WebsiteSale):
                     pricelist = request.env['product.pricelist'].sudo().search(
                         [('company_id', '=', 2), ('name', "=", str(partenaire))])
                     if pricelist and pricelist.name in ['ubereats', 'deliveroo', 'coursierjob', 'box2home',
-                                                        'coursier2roues']:
+                                                        'coursier2roues', 'habilitation-electrique', 'eco-conduite', 'transport-routier']:
                         return request.redirect("/%s" % (pricelist.name))
                     else:
                         return request.redirect("/pricing")
@@ -1142,16 +1133,14 @@ class WebsiteSale(WebsiteSale):
                         slugname = (product_id.name).strip().strip('-').replace(' ', '-').lower()
                         if str(slugname) != str(product):
                             if order.pricelist_id and order.pricelist_id.name in ['ubereats', 'deliveroo',
-                                                                                  'coursierjob', 'box2home',
-                                                                                  'coursier2roues']:
+                                                                                  'coursierjob','box2home','coursier2roues', 'habilitation-electrique', 'eco-conduite', 'transport-routier']:
                                 return request.redirect(
                                     "/%s/%s/shop/confirmation/" % (slugname, order.pricelist_id.name))
                             else:
                                 return request.redirect("/%s/shop/confirmation/" % (slugname))
                         else:
                             if order.pricelist_id and order.pricelist_id.name in ['ubereats', 'deliveroo',
-                                                                                  'coursierjob', 'box2home',
-                                                                                  'coursier2roues']:
+                                                                                  'coursierjob','box2home','coursier2roues', 'habilitation-electrique', 'eco-conduite', 'transport-routier']:
                                 return request.redirect(
                                     "/%s/%s/shop/confirmation/" % (slugname, order.pricelist_id.name))
                     else:
@@ -1164,14 +1153,12 @@ class WebsiteSale(WebsiteSale):
                                 [('company_id', '=', 2), ('name', "=", str(partenaire))])
                             if not pricelist:
                                 pricelist_id = order.pricelist_id
-                                if pricelist_id.name in ['ubereats', 'deliveroo', 'coursierjob', 'box2home',
-                                                         'coursier2roues']:
+                                if pricelist_id.name in ['ubereats', 'deliveroo', 'coursierjob','box2home','coursier2roues', 'habilitation-electrique', 'eco-conduite', 'transport-routier']:
                                     return request.redirect("/%s/%s/shop/confirmation/" % (slugname, pricelist_id.name))
                                 else:
                                     return request.redirect("/%s/shop/confirmation/" % (slugname))
                             else:
-                                if pricelist.name in ['ubereats', 'deliveroo', 'coursierjob', 'box2home',
-                                                      'coursier2roues']:
+                                if pricelist.name in ['ubereats', 'deliveroo', 'coursierjob','box2home','coursier2roues', 'habilitation-electrique', 'eco-conduite', 'transport-routier']:
                                     return request.redirect(
                                         "/%s/%s/shop/confirmation/" % (slugname, order.pricelist_id.name))
                                 else:
@@ -1182,14 +1169,12 @@ class WebsiteSale(WebsiteSale):
 
                             if not pricelist:
                                 pricelist_id = order.pricelist_id
-                                if pricelist_id.name in ['ubereats', 'deliveroo', 'coursierjob', 'box2home',
-                                                         'coursier2roues']:
+                                if pricelist_id.name in ['ubereats', 'deliveroo', 'coursierjob','box2home','coursier2roues', 'habilitation-electrique', 'eco-conduite', 'transport-routier']:
                                     return request.redirect("/%s/%s/shop/confirmation/" % (slugname, pricelist_id.name))
                                 else:
                                     return request.redirect("/%s/shop/confirmation/" % (slugname))
                             else:
-                                if pricelist.name in ['ubereats', 'deliveroo', 'coursierjob', 'box2home',
-                                                      'coursier2roues']:
+                                if pricelist.name in ['ubereats', 'deliveroo', 'coursierjob','box2home','coursier2roues', 'habilitation-electrique', 'eco-conduite', 'transport-routier']:
                                     if pricelist.name != order.pricelist_id.name:
                                         return request.redirect(
                                             "/%s/%s/shop/confirmation/" % (slugname, order.pricelist_id.name))
@@ -1198,8 +1183,7 @@ class WebsiteSale(WebsiteSale):
                     else:
                         pricelist = request.env['product.pricelist'].sudo().search(
                             [('company_id', '=', 2), ('name', "=", str(partenaire))])
-                        if pricelist and pricelist.name in ['ubereats', 'deliveroo', 'coursierjob', 'box2home',
-                                                            'coursier2roues']:
+                        if pricelist and pricelist.name in ['ubereats', 'deliveroo', 'coursierjob','box2home','coursier2roues', 'habilitation-electrique', 'eco-conduite', 'transport-routier']:
                             return request.redirect("/%s" % (pricelist.name))
                         else:
                             return request.redirect("/pricing")
