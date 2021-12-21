@@ -77,27 +77,11 @@ const sendData = (condition) => {
     .catch((err) => {});
 };
 
-const addUserPlateform = () => {
-  document.getElementById(
-    'popupcontent'
-  ).innerHTML = `<div style="text-align: -webkit-center;"><div class="spinner"></div></div>`;
-  sendHttpRequest('POST', '/shop/adduser_plateform', {}).then((res) => {
-    if (res.result.url) {
-      if (res.result.url.includes('https://')) {
-        document.getElementById('popupcontent').innerHTML = `
-                            <p style="margin-top: 12px; text-align: center;">                              
-                                 ${res.result.ajout}
-                                 <br/>
-                                </p>
-                         <div style="text-align:center">
-                            <a href="${res.result.url}"> <button type="button" class="btn btn-secondary action-button shake" style="padding: 6px 34px;"> Continuer </button></a>
-                        </div>
-                   
-       
-         `;
-      }
-    } else {
+const cpfAccepted = () => {
+  sendHttpRequest('POST', '/shop/cpf_accepted', {})
+    .then((res) => {
       if (res.result.ajout) {
+        console.log(res.result.ajout);
         document.getElementById('popupcontent').innerHTML = `
                             <p style="margin-top: 12px;    text-align: center;">                              
                                  ${res.result.ajout}     
@@ -111,13 +95,10 @@ const addUserPlateform = () => {
        
          `;
       }
-    }
-  });
-};
-const cpfAccepted = () => {
-  sendHttpRequest('POST', '/shop/cpf_accepted', {}).catch((err) => {
-    console.log(err);
-  });
+    })
+    .catch((err) => {
+      console.log(err);
+    });
 };
 
 function onChangeCheckButton() {
