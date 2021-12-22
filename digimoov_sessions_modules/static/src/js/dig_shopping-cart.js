@@ -105,7 +105,7 @@ const addUserPlateform = () => {
       if (
         res.result.ajout &&
         res.result.ajout ==
-          'Vous devez attendre 14 jours pour commencer  votre formation'
+          'Vous avez choisi de préserver votre droit de rétractation sous un délai de 14 jours. Si vous vous souhaitez renoncer à ce droit et commencer votre formation dés maintenant, veuillez cliquer sur continuer.'
       ) {
         document.getElementById('popupcontent').innerHTML = `
                             <p style="margin-top: 12px;text-align: center;">                              
