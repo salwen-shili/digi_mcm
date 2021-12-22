@@ -697,7 +697,7 @@ class partner(models.Model):
             params_wedof = (
                 ('order', 'desc'),
                 ('type', 'all'),
-                ('state', 'validated,accepted'),
+                ('state', 'validated'),
                 ('billingState', 'all'),
                 ('certificationState', 'all'),
                 ('sort', 'lastUpdate'),
