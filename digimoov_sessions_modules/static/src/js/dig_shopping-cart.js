@@ -355,6 +355,7 @@ function verify_payment_method() {
             break;
           case state == 'accepted':
             cpfAccepted();
+            console.log('cpf accepted');
             break;
 
           default:
