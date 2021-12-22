@@ -69,7 +69,8 @@ const addUserPlateform = () => {
     'popupcontent'
   ).innerHTML = `<div style="text-align: -webkit-center;"><div class="spinner"></div></div>`;
   sendHttpRequest('POST', '/shop/adduser_plateform', {}).then((res) => {
-    console.log(res);
+  console.log("res.result.url");
+
     if (res.result.url) {
       if (res.result.url.includes('https://')) {
         document.getElementById('popupcontent').innerHTML = `
@@ -140,7 +141,7 @@ const addUserPlateform = () => {
 const cpfAccepted = () => {
   sendHttpRequest('POST', '/shop/cpf_accepted', {})
     .then((res) => {
-      console.log('cpf_accepted', res.result.state);
+      console.log('res.result.state', res.result.state);
       if (res.result.state) {
         addUserPlateform();
       }
@@ -290,7 +291,7 @@ function verify_payment_method() {
   if (cpf_pm) {
     // console.log(cpf_pm, 'cpf_pm');
     if (cpf_pm.checked == true) {
-      if (cpf_pm.value == 'Formation pro') {
+      if (cpf_pm.value == '[avancee] Formation pro') {
         switch (true) {
           case state.includes('https://www.moncompteformation.gouv.fr/'):
             msTracking(
@@ -302,7 +303,9 @@ function verify_payment_method() {
             window.location.href = state;
             break;
           case state == 'accepted':
+
             cpfAccepted();
+            console.log("cpf accepted");
 
             // document.getElementById('popupcontent').innerHTML = 'finished...';
             break;
