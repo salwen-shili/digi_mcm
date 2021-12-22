@@ -93,16 +93,22 @@ const addUserPlateform = () => {
             .classList.add('js-container-animation');
         }
         document.getElementById('popupcontent').innerHTML = `
-                            <p style="margin-top: 12px;    text-align: center;">                              
+                            <p style="margin-top: 12px;text-align: center;">                              
                                  ${res.result.ajout}     
-                                </p>
-                          
-                        
-                         <div style="text-align:center">
-                            <a href="#"> <button type="button" class="btn btn-secondary action-button" onclick="closepopup()" > Fermer </button></a>
-                        </div>
-                   
-       
+                            </p>
+                            <div style="text-align:center">
+                                <a href="#"> <button type="button" class="btn btn-secondary action-button" onclick="closepopup()" > Fermer </button></a>
+                            </div>
+         `;
+      }
+      if (res.result.ajout == '') {
+        document.getElementById('popupcontent').innerHTML = `
+                            <p style="margin-top: 12px;text-align: center;">                              
+                                 ${res.result.ajout}     
+                            </p>
+                            <div style="text-align:center">
+                                <button type="button" class="btn btn-secondary action-button" onclick="renonce()" > Continuer </button>
+                            </div>
          `;
       }
     }
@@ -409,4 +415,25 @@ function closepopup() {
                         <div style="text-align:center">
                             <button type="button" class="btn btn-secondary action-button shake" id="continueBtn" onclick="verify_payment_method()">Continuer</button>
                         </div>`;
+}
+
+function renonce() {
+  document.getElementById('popupcontent').innerHTML = `
+                                                     
+                                 <div class="input checkbox" style="width:90%">
+                                <input type="checkbox" id="checkbox_failures" style="white-space: nowrap;" class="text-xl-left border-0" t-att-checked="website_sale_order.failures" t-att-value="website_sale_order.failures">
+                                    <label for="failures" style="display:inline">
+                                        Je souhaite accéder à la formation dès maintenant sans attendre 14 jours. Je reconnais que
+                                        DIGIMOOV
+                                        procédera à l'exécution immédiate de ma formation en ligne et à ce titre, je
+                            renonce expressément à exercer mon droit de rétractation conformément aux dispositions de
+                            l'article L.221-28 1° du code de la consommation.
+                                    </label>
+                                </input>
+                            </div>   
+                          
+                             <div style="text-align:center">
+                            <button type="button" class="btn btn-secondary action-button shake" id="continueBtn" onclick="verify_payment_method()">Continuer</button>
+                        </div>
+         `;
 }

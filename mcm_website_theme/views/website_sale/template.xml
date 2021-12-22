@@ -280,6 +280,7 @@
                     </a>
                     <div class="content" id="popupcontent">
                         <p id="notifMessage">
+
                             <div class="input checkbox" style="width:90%">
                                 <input type="checkbox" id="checkbox_failures" style="white-space: nowrap;" class="text-xl-left border-0" t-att-checked="website_sale_order.failures" t-att-value="website_sale_order.failures">
                                     <label for="failures" style="display:inline">
