@@ -70,6 +70,7 @@ const addUserPlateform = () => {
   ).innerHTML = `<div style="text-align: -webkit-center;"><div class="spinner"></div></div>`;
   sendHttpRequest('POST', '/shop/adduser_plateform', {}).then((res) => {
   console.log("res.result.url");
+
     if (res.result.url) {
       if (res.result.url.includes('https://')) {
         document.getElementById('popupcontent').innerHTML = `
