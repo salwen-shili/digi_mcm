@@ -454,16 +454,7 @@ function renonce() {
                                     </label>
                                 </input>
                             </div>
-                            <div class="input checkbox" style="margin-top: 12px;">
-                                <input type="checkbox" id="checkbox_conditions" style="white-space: nowrap;" class="text-xl-left border-0" t-att-checked="website_sale_order.conditions" t-att-value="website_sale_order.conditions">
-                                    <label for="conditions" style="display:inline">
-                                        J'ai lu et j'accepte les
-                                        <a href="/conditions" target="blank" style="font-weight: 600; color: #000;">
-                                            conditions générales de vente
-                                        </a>
-                                    </label>
-                                </input>
-                            </div>
+                            
                             <p id="error_conditions" class="alert alert-warning" style="margin-left:0%;display:none;">
                                 Vous devez acceptez les conditions générales de ventes
                             </p>
