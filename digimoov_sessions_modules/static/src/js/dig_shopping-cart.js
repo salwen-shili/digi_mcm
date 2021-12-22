@@ -69,7 +69,7 @@ const addUserPlateform = () => {
     'popupcontent'
   ).innerHTML = `<div style="text-align: -webkit-center;"><div class="spinner"></div></div>`;
   sendHttpRequest('POST', '/shop/adduser_plateform', {}).then((res) => {
-  console.log("res.result.url");
+    console.log('res.result.url');
 
     if (res.result.url) {
       if (res.result.url.includes('https://')) {
@@ -102,7 +102,11 @@ const addUserPlateform = () => {
                             </div>
          `;
       }
-      if (res.result.ajout == '') {
+      if (
+        res.result.ajout &&
+        res.result.ajout ==
+          'Vous devez attendre 14 jours pour commencer  votre formation'
+      ) {
         document.getElementById('popupcontent').innerHTML = `
                             <p style="margin-top: 12px;text-align: center;">                              
                                  ${res.result.ajout}     
@@ -303,9 +307,8 @@ function verify_payment_method() {
             window.location.href = state;
             break;
           case state == 'accepted':
-
             cpfAccepted();
-            console.log("cpf accepted");
+            console.log('cpf accepted');
 
             // document.getElementById('popupcontent').innerHTML = 'finished...';
             break;
