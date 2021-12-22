@@ -28,7 +28,7 @@
                     <div class="row justify-content-center paper">
                         <div class="
                 col-11 col-sm-10 col-md-10 col-lg-6 col-xl-8
-                text-center
+               
                 p-0
                 mt-3
                 mb-2
@@ -51,7 +51,7 @@
                                         <link href="/digimoov_website_templates/static/src/css/material_form.css" rel="stylesheet" />
                                         <link href="/digimoov_website_templates/static/src/css/register_form.css" rel="stylesheet" />
                                     </t>
-                                    <ul id="progressbar" t-if="not name">
+                                    <ul id="progressbar" t-if="not name or not last_login" style="text-align: center;">
                                         <li class="active" id="account">
                                             <strong>Coordonnées</strong>
                                         </li>
@@ -124,7 +124,16 @@
                                                 <span></span>
                                             </div>
                                         </div>
-                                        <br t-if="not name" />
+                                        <div class="outlined-input-field bg-c" id="phone_container" t-if="phone">
+                                            <input type="text" id="phone" name="phone" class="outlined-text-field" autocomplete="off" t-att-value="phone" maxlength="10" pattern="(07|06)[0-9]\d{7}" required="required" inputmode="numeric" t-att-readonly="'readonly' if phone else None" />
+                                            <label for="phone" style="top: -0.7rem;padding: 0.25rem;">Téléphone *
+                                            </label>
+                                            <i class="material-icons error-icon">error_outline</i>
+
+                                            <span>Vous ne pouvez pas modifier ce champs.</span>
+
+                                        </div>
+                                        <br />
 
                                         <div class="outlined-input-field bg-c" id="email_container" t-if="not name">
                                             <input type="email" id="email" class="outlined-text-field" autocomplete="off" value="" required="required" inputmode="email" name="login" />
@@ -138,9 +147,7 @@
                                             <input type="email" id="email" class="outlined-text-field" autocomplete="off" t-att-value="login" required="required" inputmode="email" name="login" t-att-readonly="'readonly' if login else None" />
                                             <label for="email" style="top: -0.7rem;padding: 0.25rem;">Email *</label>
                                             <i class="material-icons error-icon">error_outline</i>
-                                            <div class="helper-text bg-c" id="email_helper">
-                                                <span></span>
-                                            </div>
+                                            <span>Vous ne pouvez pas modifier ce champs.</span>
                                         </div>
 
                                         <br />
@@ -205,7 +212,7 @@
                     <div class="row justify-content-center paper">
                         <div class="
                 col-11 col-sm-10 col-md-10 col-lg-6 col-xl-8
-                text-center
+               
                 p-0
                 mt-3
                 mb-2
