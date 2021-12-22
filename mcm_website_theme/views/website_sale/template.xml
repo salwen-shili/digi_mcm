@@ -263,8 +263,15 @@
     <!-- FIN hide product link -->
     <template id="mcm_website_sale_cart_lines_date_and_region" inherit_id="website_sale.cart_lines">
         <xpath expr="//table[@id='cart_products']" position="after">
-            <div id="popup1" class="overlay_popup">
-                <div class="popup" style="top: 20%;">
+            <div id="popup1" class="overlay_popup " style="position: fixed !important;">
+                <div class="popup onfetti-container-animation" style="top: 20%;z-index:999;">
+                    <link href="/digimoov_website_templates/static/src/css/felicitations.css" rel="stylesheet"></link>
+
+
+                    <div class="confetti-container-animation" style="position: unset !important;"></div>
+                    <script type="text/javascript" src="/mcm_website_theme/static/src/js/felicitations-popup.js"></script>
+
+
                     <h2 class="text-left">
                         <i class="fa fa-info-circle" style="color: #152856;"></i>
                     </h2>
@@ -273,6 +280,7 @@
                     </a>
                     <div class="content" id="popupcontent">
                         <p id="notifMessage">
+
                             <div class="input checkbox" style="width:90%">
                                 <input type="checkbox" id="checkbox_failures" style="white-space: nowrap;" class="text-xl-left border-0" t-att-checked="website_sale_order.failures" t-att-value="website_sale_order.failures">
                                     <label for="failures" style="display:inline">
@@ -359,8 +367,9 @@
                 <h3 t-if="modules_mcm" class="" style="margin-top: 1rem; font-weight: 600;">
                 Veuillez sélectionnez votre date d'examen
                 </h3>
+
                 <!-- state from backend-->
-                <input id="state" type="hidden" t-att-value="state" />
+                <input id="state" type="" t-att-value="state" />
                 <p t-if="modules_mcm">
                     <b>
                         <div style="margin-left:0%;" id="exam_center">

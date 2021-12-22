@@ -23,11 +23,13 @@ class Session(models.Model):
     _order = 'date_debut desc'
 
 
+
 class Module(models.Model):
     _inherit = 'mcmacademy.module'
 
     prix_normal = fields.Monetary('Tarif',default=lambda self:self.product_id.list_price,store=True)
     lieu = fields.Many2one('res.country.state', string="Ville")
+
 
 
 

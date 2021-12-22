@@ -1,39 +1,39 @@
 // move label on focus
 
 const listId = [
-  "lastname",
-  "firstname",
-  "phone",
-  "address",
-  "email",
-  "confirm_email",
-  "password",
-  "zipcode",
-  "city",
-  "voie",
-  "voie_input",
-  "nom_voie",
-  "num_voie",
-  "comp_address",
-  "login",
+  'lastname',
+  'firstname',
+  'phone',
+  'address',
+  'email',
+  'confirm_email',
+  'password',
+  'zipcode',
+  'city',
+  'voie',
+  'voie_input',
+  'nom_voie',
+  'num_voie',
+  'comp_address',
+  'login',
 ];
 listId.map((id) => {
   $(`#${id}`).focusin(function () {
     $(`#${id} ~ label`).animate(
       {
-        fontSize: "0.8rem",
-        top: "-0.7rem",
-        padding: "0.25rem",
+        fontSize: '0.8rem',
+        top: '-0.7rem',
+        padding: '0.25rem',
       },
       80
     );
   });
   $(`#${id}`).focusout(function () {
-    if ($(this).val() === "") {
+    if ($(this).val() === '') {
       $(`#${id} ~ label`).animate(
         {
-          fontSize: "1rem",
-          top: "1rem",
+          fontSize: '1rem',
+          top: '1rem',
           padding: 0,
         },
         80
@@ -46,16 +46,16 @@ listId.map((id) => {
   Material Design Buttons
 -------------------------------------------------------- */
 $(document).ready(function () {
-  $(".ripple-effect").rkmd_rippleEffect();
+  $('.ripple-effect').rkmd_rippleEffect();
 });
 
 (function ($) {
   $.fn.rkmd_rippleEffect = function () {
     var btn, self, ripple, size, rippleX, rippleY, eWidth, eHeight;
 
-    btn = $(this).not("[disabled], .disabled");
+    btn = $(this).not('[disabled], .disabled');
 
-    btn.on("mousedown", function (e) {
+    btn.on('mousedown', function (e) {
       self = $(this);
 
       // Disable right click
@@ -63,11 +63,11 @@ $(document).ready(function () {
         return false;
       }
 
-      if (self.find(".ripple").length === 0) {
+      if (self.find('.ripple').length === 0) {
         self.prepend('<span class="ripple"></span>');
       }
-      ripple = self.find(".ripple");
-      ripple.removeClass("animated");
+      ripple = self.find('.ripple');
+      ripple.removeClass('animated');
 
       eWidth = self.outerWidth();
       eHeight = self.outerHeight();
@@ -78,8 +78,8 @@ $(document).ready(function () {
       rippleY = parseInt(e.pageY - self.offset().top) - size / 2;
 
       ripple
-        .css({ top: rippleY + "px", left: rippleX + "px" })
-        .addClass("animated");
+        .css({ top: rippleY + 'px', left: rippleX + 'px' })
+        .addClass('animated');
 
       setTimeout(function () {
         ripple.remove();
@@ -87,3 +87,15 @@ $(document).ready(function () {
     });
   };
 })(jQuery);
+
+$('.toggle-password').click(function () {
+  $(this).html() == 'visibility'
+    ? $(this).html('visibility_off')
+    : $(this).html('visibility');
+  input = $(this).parent().find('input');
+  if (input.attr('type') == 'password') {
+    input.attr('type', 'text');
+  } else {
+    input.attr('type', 'password');
+  }
+});

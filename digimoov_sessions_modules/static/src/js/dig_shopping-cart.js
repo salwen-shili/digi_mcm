@@ -69,6 +69,8 @@ const addUserPlateform = () => {
     'popupcontent'
   ).innerHTML = `<div style="text-align: -webkit-center;"><div class="spinner"></div></div>`;
   sendHttpRequest('POST', '/shop/adduser_plateform', {}).then((res) => {
+    console.log('res.result.url');
+
     if (res.result.url) {
       if (res.result.url.includes('https://')) {
         document.getElementById('popupcontent').innerHTML = `
@@ -85,17 +87,39 @@ const addUserPlateform = () => {
       }
     } else {
       if (res.result.ajout) {
-        document.getElementById('popupcontent').innerHTML = `
-                            <p style="margin-top: 12px;    text-align: center;">                              
+        //js-container-animation to animate
+        if (res.result.url) {
+          document.getElementById('popupcontent').innerHTML = `
+                            <p class="js-container-animation" style="margin-top: 12px;text-align: center;">                              
                                  ${res.result.ajout}     
-                                </p>
-                          
-                        
-                         <div style="text-align:center">
-                            <a href="#"> <button type="button" class="btn btn-secondary action-button" onclick="closepopup()" > Fermer </button></a>
-                        </div>
-                   
-       
+                            </p>
+                            <div style="text-align:center">
+                                <a href="#"> <button type="button" class="btn btn-secondary action-button" onclick="closepopup()" > Fermer </button></a>
+                            </div>
+         `;
+          console.log('res.result.url', res.result.url);
+        }
+        document.getElementById('popupcontent').innerHTML = `
+                            <p style="margin-top: 12px;text-align: center;">                              
+                                 ${res.result.ajout}     
+                            </p>
+                            <div style="text-align:center">
+                                <a href="#"> <button type="button" class="btn btn-secondary action-button" onclick="closepopup()" > Fermer </button></a>
+                            </div>
+         `;
+      }
+      if (
+        res.result.ajout &&
+        res.result.ajout ==
+          'Vous avez choisi de préserver votre droit de rétractation sous un délai de 14 jours. Si vous vous souhaitez renoncer à ce droit et commencer votre formation dés maintenant, veuillez cliquer sur continuer.'
+      ) {
+        document.getElementById('popupcontent').innerHTML = `
+                            <p style="margin-top: 12px;text-align: center;">                              
+                                 ${res.result.ajout}     
+                            </p>
+                            <div style="text-align:center">
+                                <button type="button" class="btn btn-secondary action-button" onclick="renonce()" > Continuer </button>
+                            </div>
          `;
       }
     }
@@ -127,7 +151,7 @@ const addUserPlateform = () => {
 const cpfAccepted = () => {
   sendHttpRequest('POST', '/shop/cpf_accepted', {})
     .then((res) => {
-      console.log('cpf_accepted', res.result.state);
+      console.log('res.result.state', res.result.state);
       if (res.result.state) {
         addUserPlateform();
       }
@@ -192,11 +216,17 @@ function showPopup() {
     : (textbtn = 'Passer au paiement');
 
   if (optionsDate != 'all' && optionsDate != '') {
-    document.getElementById('error_choix_date_popup').style.display = 'none';
+    if (document.getElementById('error_choix_date_popup')) {
+      document.getElementById('error_choix_date_popup').style.display = 'none';
+    }
+
     continueBtn.innerText = textbtn;
     window.location.href = '#popup1';
   } else {
-    document.getElementById('error_choix_date').style.display = 'inline-block';
+    if (document.getElementById('error_choix_date')) {
+      document.getElementById('error_choix_date').style.display =
+        'inline-block';
+    }
   }
 }
 
@@ -244,23 +274,31 @@ function verify_payment_method() {
       return (document.getElementById('error_choix_date_popup').style.display =
         'inline-block');
     } else {
-      document.getElementById('error_choix_date_popup').style.display = 'none';
+      if (document.getElementById('error_choix_date_popup')) {
+        document.getElementById('error_choix_date_popup').style.display =
+          'none';
+      }
     }
   }
   //here we are sure that user has selected the date
   //if condition de vente (checkbox_conditions) is checked - passer ou paiment ou mobiliser mon cpf
-  var conditionCheckbox = document.getElementById('checkbox_conditions');
-  var error = document.getElementById('error_conditions');
-  if (conditionCheckbox.checked == true) {
-    error.style.display = 'none';
-    condition = true;
-  } else {
-    error.style.display = 'inline-block';
-    condition = false;
+  var conditionCheckbox;
+  var error;
+  if (document.getElementById('checkbox_conditions')) {
+    conditionCheckbox = document.getElementById('checkbox_conditions');
+    error = document.getElementById('error_conditions');
+    if (conditionCheckbox.checked == true) {
+      error.style.display = 'none';
+      condition = true;
+    } else {
+      error.style.display = 'inline-block';
+      condition = false;
+    }
+    if (condition == false) {
+      return;
+    }
   }
-  if (condition == false) {
-    return;
-  }
+
   //redirection stripe
   stripe_pm = document.getElementById('stripe_pm');
   // console.log(stripe_pm, 'stripe_pm');
@@ -277,7 +315,7 @@ function verify_payment_method() {
   if (cpf_pm) {
     // console.log(cpf_pm, 'cpf_pm');
     if (cpf_pm.checked == true) {
-      if (cpf_pm.value == 'Formation pro') {
+      if (cpf_pm.value == '[avancee] Formation pro') {
         switch (true) {
           case state.includes('https://www.moncompteformation.gouv.fr/'):
             msTracking(
@@ -290,6 +328,7 @@ function verify_payment_method() {
             break;
           case state == 'accepted':
             cpfAccepted();
+            console.log('cpf accepted');
 
             // document.getElementById('popupcontent').innerHTML = 'finished...';
             break;
@@ -402,4 +441,37 @@ function closepopup() {
                         <div style="text-align:center">
                             <button type="button" class="btn btn-secondary action-button shake" id="continueBtn" onclick="verify_payment_method()">Continuer</button>
                         </div>`;
+}
+
+function renonce() {
+  document.getElementById('popupcontent').innerHTML = `
+                                                     
+                                 <p id="notifMessage">
+
+                            <div class="input checkbox" style="width:90%">
+                                <input type="checkbox" id="checkbox_failures" style="white-space: nowrap;" class="text-xl-left border-0" t-att-checked="website_sale_order.failures" t-att-value="website_sale_order.failures">
+                                    <label for="failures" style="display:inline">
+                                        Je souhaite accéder à la formation dès maintenant sans attendre 14 jours. Je reconnais que
+                                        <span t-if="website_sale_order.company_id.id==2">DIGIMOOV</span>
+                                        <span t-if="website_sale_order.company_id.id==1">MCM Academy</span>
+                                        procédera à l'exécution immédiate de ma formation en ligne et à ce titre, je
+                            renonce expressément à exercer mon droit de rétractation conformément aux dispositions de
+                            l'article L.221-28 1° du code de la consommation.
+                                    </label>
+                                </input>
+                            </div>
+                            
+                            <p id="error_conditions" class="alert alert-warning" style="margin-left:0%;display:none;">
+                                Vous devez acceptez les conditions générales de ventes
+                            </p>
+
+                            <p id="error_choix_date_popup" class="alert alert-warning" style="margin-left:0%;display:none;">
+                                Vous devez fermer cette fenêtre et selectionner votre date d'examen
+                            </p>
+                        </p> 
+                          
+                             <div style="text-align:center">
+                            <button type="button" class="btn btn-secondary action-button shake" id="continueBtn" onclick="verify_payment_method()">Continuer</button>
+                        </div>
+         `;
 }
