@@ -45,6 +45,7 @@ class partner(models.Model):
     passage_exam = fields.Boolean("Examen passé", default=False)
     stats_ids = fields.Many2one('plateforme_pedagogique.user_stats')
     temps_minute = fields.Integer(string="Temps passé en minutes")  # Champs pour récuperer temps en minute par api360
+
     # Recuperer les utilisateurs de 360learning
     def getusers(self):
         locale.setlocale(locale.LC_TIME, str(self.env.user.lang) + '.utf8')
@@ -152,7 +153,7 @@ class partner(models.Model):
     # Ajout automatique d' i-One sur 360learning
     def Ajouter_iOne_auto(self):
         base_url = self.env['ir.config_parameter'].sudo().get_param('web.base.url')
-        if "localhost" not in str(base_url):
+        if "localhost" not in str(base_url) and "dev.odoo" not in str(base_url):
             for partner in self.env['res.partner'].sudo().search([('statut', "=", "won"),
                                                                   ('statut_cpf', "!=", "canceled")
                                                                   ]):
@@ -190,7 +191,8 @@ class partner(models.Model):
                             if partner.renounce_request:
                                 self.ajouter_iOne(partner)
                             # si non il doit attendre 14jours pour etre ajouté
-                            if not partner.renounce_request and date_facture and (date_facture + timedelta(days=14)) <= today:
+                            if not partner.renounce_request and date_facture and (
+                                    date_facture + timedelta(days=14)) <= today:
                                 self.ajouter_iOne(partner)
                 """cas de cpf on vérifie la validation des document , la case de renonciation et la date d'examen qui doit etre au futur """
                 if partner.mode_de_financement == "cpf":
@@ -198,7 +200,8 @@ class partner(models.Model):
                             partner.mcm_session_id.date_exam > date.today()):
                         if partner.renounce_request:
                             self.ajouter_iOne(partner)
-                        if not partner.renounce_request and date_facture and (date_facture + timedelta(days=14)) <= today:
+                        if not partner.renounce_request and date_facture and (
+                                date_facture + timedelta(days=14)) <= today:
                             self.ajouter_iOne(partner)
 
     # Ajouter ione manuellement
@@ -273,9 +276,9 @@ class partner(models.Model):
             date_session = unidecode(datesession)
 
             # Récuperer le mot de passe à partir de res.users
-            user = self.env['res.users'].sudo().search([('partner_id', '=', partner.id)],limit=1)
-            _logger.info('avant if login user %s' %user.login)
-            _logger.info('avant if partner email %s' %partner.email)
+            user = self.env['res.users'].sudo().search([('partner_id', '=', partner.id)], limit=1)
+            _logger.info('avant if login user %s' % user.login)
+            _logger.info('avant if partner email %s' % partner.email)
             _logger.info('avant if password  %s ' % user.password360)
 
             if user:
@@ -310,6 +313,8 @@ class partner(models.Model):
                     data_user = '{"mail":"' + partner.email + '" , "password":"' + user.password360 + '", "firstName":"' + partner.firstName + '", "lastName":"' + partner.lastName + '", "phone":"' + partner.phone + '", "lang":"fr","sendCredentials":"true"}'
                     resp = requests.post(urluser, headers=headers, data=data_user)
                     print(data_user, 'user', resp.status_code)
+                    respo = str(json.loads(resp.text))
+                    _logger.info('response addd  %s' % respo)
                     if (resp.status_code == 200):
                         create = True
                 data_group = {}
@@ -322,7 +327,7 @@ class partner(models.Model):
                 resp_unsub_email = requests.put(url_unsubscribeToEmailNotifications, headers=headers, data=data_email)
                 # Si l'apprenant a été ajouté sur table user on l'affecte aux autres groupes
                 if (create):
-                    _logger.info('create %s' %user.login)
+                    _logger.info('create %s' % user.login)
                     today = date.today()
                     new_format = '%d %B %Y'
                     # Changer format de date et la mettre en majuscule
@@ -386,7 +391,7 @@ class partner(models.Model):
                                 urlsession = 'https://app.360learning.com/api/v1/groups/' + id_groupe + '/users/' + partner.email + '?company=' + company_id + '&apiKey=' + api_key
                                 respsession = requests.put(urlsession, headers=headers, data=data_group)
 
-                  # Si la session n'est pas trouvée sur 360 on l'ajoute
+                    # Si la session n'est pas trouvée sur 360 on l'ajoute
                     print('exist', existe)
                     if not (existe):
                         nom = ville + ' - ' + date_session
@@ -410,9 +415,9 @@ class partner(models.Model):
                                 print(existe, 'ajouter à son session', respsession.status_code)
 
     def supprimer_ione_auto(self):
-               
+
         base_url = self.env['ir.config_parameter'].sudo().get_param('web.base.url')
-        if "localhost" not in str(base_url):
+        if "localhost" not in str(base_url) and "dev.odoo" not in str(base_url):
             company_id = '56f5520e11d423f46884d593'
             api_key = 'cnkcbrhHKyfzKLx4zI7Ub2P5'
             headers = CaseInsensitiveDict()
@@ -426,39 +431,40 @@ class partner(models.Model):
             for user in users:
                 iduser = user['_id']
                 email = user['mail']
-                # Pour chaque partner vérifier qu'il n'est pas un formateur ou surveillant           
+                # Pour chaque partner vérifier qu'il n'est pas un formateur ou surveillant
                 partner = self.env['res.partner'].sudo().search([('email', "=", email),
-                                                                 ('est_surveillant',"=",False),
-                                                                 ('est_intervenant',"=",False)],order='id desc',limit=1)
+                                                                 ('est_surveillant', "=", False),
+                                                                 ('est_intervenant', "=", False)], order='id desc',
+                                                                limit=1)
                 groupe = self.env.ref('base.group_user')
                 print('groupe user', groupe.users)
-                existe = False 
+                existe = False
                 for user in groupe.users:
                     if user.partner_id == partner:
-                        existe=True
-                        print("if partner ", partner.name,existe)
-                #verifier si date_suppression est aujourd'hui
+                        existe = True
+                        print("if partner ", partner.name, existe)
+                # verifier si date_suppression est aujourd'hui
                 # pour assurer la suppresion automatique
-                if partner and partner.mcm_session_id.date_exam and not existe :
+                if partner and partner.mcm_session_id.date_exam and not existe:
                     # date de suppression est date d'examen + 4jours
                     date_suppression = partner.mcm_session_id.date_exam + timedelta(days=4)
                     today = date.today()
                     if (date_suppression <= today):
                         email = partner.email
-                        print('date_sup', email, date_suppression, today,email)
-                        _logger.info('liste à supprimé %s' %str(email))
+                        print('date_sup', email, date_suppression, today, email)
+                        _logger.info('liste à supprimé %s' % str(email))
                         url = 'https://app.360learning.com/api/v1/users/' + email + '?company=' + company_id + '&apiKey=' + api_key
                         resp = requests.delete(url)
- 
 
     def supprimer_ione_manuelle(self):
+        base_url = self.env['ir.config_parameter'].sudo().get_param('web.base.url')
+        if "localhost" not in str(base_url) and "dev.odoo" not in str(base_url):
             company_id = '56f5520e11d423f46884d593'
             api_key = 'cnkcbrhHKyfzKLx4zI7Ub2P5'
             headers = CaseInsensitiveDict()
             headers["Accept"] = "*/*"
             url = 'https://app.360learning.com/api/v1/users/' + self.email + '?company=' + company_id + '&apiKey=' + api_key
             resp = requests.delete(url)
-
 
     # Extraire firstName et lastName à partir du champs name
     def diviser_nom(self, partner):
@@ -485,7 +491,7 @@ class partner(models.Model):
 
     def wedof_api_integration(self):
         base_url = self.env['ir.config_parameter'].sudo().get_param('web.base.url')
-        if "localhost" not in str(base_url):
+        if "localhost" not in str(base_url) and "dev.odoo" not in str(base_url):
             headers = {
                 'accept': 'application/json',
                 'Content-Type': 'application/json',
@@ -553,25 +559,25 @@ class partner(models.Model):
                         if (user_mail.upper() == email.upper()) and (totalTime >= 1):
                             _logger.info('users %s ' % email.upper())
                             _logger.info('user email %s' % user['mail'].upper())
-                            response_post = requests.post('https://www.wedof.fr/api/registrationFolders/'+externalId+'/inTraining',
-                                                      headers=headers, data=data)
-                            print('response post',response_post.status_code)
+                            response_post = requests.post(
+                                'https://www.wedof.fr/api/registrationFolders/' + externalId + '/inTraining',
+                                headers=headers, data=data)
+                            print('response post', response_post.status_code)
                             """Si dossier passe en formation on met à jour statut cpf sur la fiche client"""
-
 
                             product_id = self.env['product.template'].sudo().search(
                                 [('id_edof', "=", str(module)), ('company_id', "=", 2)], limit=1)
 
-                            if response_post.status_code==200:
+                            if response_post.status_code == 200:
 
                                 partner = self.env['res.partner'].sudo().search([('numero_cpf', "=", str(externalId))])
 
                                 if len(partner) > 1:
                                     for part in partner:
-                                        part_email=part.email
+                                        part_email = part.email
                                         if part_email.upper() == email.upper():
                                             _logger.info('if partner >1 %s' % partner.numero_cpf)
-                                            partner.statut_cpf="in_training"
+                                            partner.statut_cpf = "in_training"
                                             partner.date_cpf = lastupd
                                             if product_id:
                                                 partner.id_edof = product_id.id_edof
@@ -579,15 +585,16 @@ class partner(models.Model):
                                 elif len(partner) == 1:
                                     _logger.info('if partner %s' % partner.numero_cpf)
                                     partner.statut_cpf = "in_training"
-                                    partner.date_cpf =  lastupd
-                                    partner.diplome=diplome
+                                    partner.date_cpf = lastupd
+                                    partner.diplome = diplome
                                     if product_id:
                                         partner.id_edof = product_id.id_edof
 
     """changer l'etat sur wedof de non traité vers validé à partir d'API"""
+
     def change_state_wedof_validate(self):
         base_url = self.env['ir.config_parameter'].sudo().get_param('web.base.url')
-        if "localhost" not in str(base_url):
+        if "localhost" not in str(base_url) and "dev.odoo" not in str(base_url):
             params_wedof = (
                 ('order', 'desc'),
                 ('type', 'all'),
@@ -625,10 +632,17 @@ class partner(models.Model):
                 newformat = "%d/%m/%Y %H:%M:%S"
                 lastupdateform = lastupdate.strftime(newformat)
                 lastupd = datetime.strptime(lastupdateform, "%d/%m/%Y %H:%M:%S")
+                num_voie = ""
+                if "number" in dossier['attendee']['address']:
+                    num_voie = dossier['attendee']['address']['number']
+
+                voie = ""
+                if "roadTypeLabel" in dossier['attendee']['address']:
+                    voie = dossier['attendee']['address']['roadTypeLabel']
+                nom_voie = ""
                 if "roadName" in dossier['attendee']['address']:
-                    address = dossier['attendee']['address']['roadName']
-                else:
-                    address = ""
+                    nom_voie = dossier['attendee']['address']['roadName']
+                street = num_voie + ' ' + voie + ' ' + nom_voie
                 if "phoneNumber" in dossier['attendee']:
                     tel = dossier['attendee']['phoneNumber']
                 else:
@@ -660,29 +674,32 @@ class partner(models.Model):
                 dat = '{\n  "weeklyDuration": 14,\n  "indicativeDuration": 102\n}'
                 response_put = requests.put('https://www.wedof.fr/api/registrationFolders/' + externalid,
                                             headers=headers, data=data)
-                response_post = requests.post('https://www.wedof.fr/api/registrationFolders/' + externalid + '/validate',
-                                              headers=headers, data=dat)
+                response_post = requests.post(
+                    'https://www.wedof.fr/api/registrationFolders/' + externalid + '/validate',
+                    headers=headers, data=dat)
                 status = str(response_post.status_code)
 
                 """Si dossier passe à l'etat validé on met à jour statut cpf sur la fiche client"""
                 if status == "200":
                     print('validate', email)
-                    self.cpf_validate(training_id, email, address, tel, code_postal, ville, diplome, dossier['attendee']['lastName'], dossier['attendee']['firstName'], dossier['externalId'], lastupd)
-
+                    self.cpf_validate(training_id, email, num_voie, nom_voie, voie, street, tel, code_postal, ville,
+                                      diplome, dossier['attendee']['lastName'], dossier['attendee']['firstName'],
+                                      dossier['externalId'], lastupd)
 
     """Mettre à jour les statuts cpf sur la fiche client selon l'etat sur wedof """
+
     def change_state_cpf_partner(self):
         base_url = self.env['ir.config_parameter'].sudo().get_param('web.base.url')
-        if "localhost" not in str(base_url):
+        if "localhost" not in str(base_url) and "dev.odoo" in str(base_url):
             params_wedof = (
                 ('order', 'desc'),
                 ('type', 'all'),
-                ('state', 'validated,inTraining,refusedByAttendee,refusedByOrganism,serviceDoneDeclared,canceledByAttendee,canceledByAttendeeNotRealized,canceledByOrganism'),
+                ('state', 'validated'),
                 ('billingState', 'all'),
                 ('certificationState', 'all'),
                 ('sort', 'lastUpdate'),
                 ('limit', '100'),
-                ('page','1')
+                ('page', '1')
             )
             headers = {
                 'accept': 'application/json',
@@ -693,60 +710,69 @@ class partner(models.Model):
                                     params=params_wedof)
             registrations = response.json()
             for dossier in registrations:
-                externalId=dossier['externalId']
+                externalId = dossier['externalId']
                 email = dossier['attendee']['email']
                 email = email.replace("%", ".")  # remplacer % par .
                 email = email.replace(" ", "")  # supprimer les espaces envoyés en paramètre email
                 email = str(email).lower()  # recupérer l'email en miniscule pour éviter la création des deux comptes
-                print('dossier',dossier)
-                idform=dossier['trainingActionInfo']['externalId']
-                training_id=""
+                print('dossier', dossier)
+                idform = dossier['trainingActionInfo']['externalId']
+                training_id = ""
                 if "_" in idform:
                     idforma = idform.split("_", 1)
                     if idforma:
                         training_id = idforma[1]
 
-                print('training',training_id)
-                state=dossier['state']
-                lastupdatestr=str(dossier['lastUpdate'])
-                lastupdate=datetime.strptime(lastupdatestr, '%Y-%m-%dT%H:%M:%S.%fz')
-                newformat="%d/%m/%Y %H:%M:%S"
-                lastupdateform=lastupdate.strftime(newformat)
-                lastupd=datetime.strptime(lastupdateform, "%d/%m/%Y %H:%M:%S")
+                print('training', training_id)
+                state = dossier['state']
+                lastupdatestr = str(dossier['lastUpdate'])
+                lastupdate = datetime.strptime(lastupdatestr, '%Y-%m-%dT%H:%M:%S.%fz')
+                newformat = "%d/%m/%Y %H:%M:%S"
+                lastupdateform = lastupdate.strftime(newformat)
+                lastupd = datetime.strptime(lastupdateform, "%d/%m/%Y %H:%M:%S")
+                num_voie = ""
+                if "number" in dossier['attendee']['address']:
+                    num_voie = dossier['attendee']['address']['number']
+
+                voie = ""
+                if "roadTypeLabel" in dossier['attendee']['address']:
+                    voie = dossier['attendee']['address']['roadTypeLabel']
+                nom_voie = ""
                 if "roadName" in dossier['attendee']['address']:
-                    address = dossier['attendee']['address']['roadName']
-                else:
-                    address = ""
-                if "phoneNumber" in  dossier['attendee']:
+                    nom_voie = dossier['attendee']['address']['roadName']
+                street = num_voie + ' ' + voie + ' ' + nom_voie
+                if "phoneNumber" in dossier['attendee']:
                     tel = dossier['attendee']['phoneNumber']
-                else :
+                else:
                     tel = ""
                 if "zipCode" in dossier['attendee']['address']:
                     code_postal = dossier['attendee']['address']['zipCode']
-                else :
+                else:
                     code_postal = ""
                 if "city" in dossier['attendee']['address']:
                     ville = dossier['attendee']['address']['city']
-                else :
-                    ville =""
+                else:
+                    ville = ""
                 if 'firstName' in dossier['attendee']['firstName']:
                     nom = dossier['attendee']['firstName']
-                    nom=unidecode(nom)
-                else :
-                    nom=""
+                    nom = unidecode(nom)
+                else:
+                    nom = ""
 
                 if "lastName" in dossier['attendee']['lastName']:
                     prenom = dossier['attendee']['lastName']
-                    prenom=unidecode(prenom)
-                else :
-                    prenom=""
+                    prenom = unidecode(prenom)
+                else:
+                    prenom = ""
                 diplome = dossier['trainingActionInfo']['title']
                 product_id = self.env['product.template'].sudo().search(
                     [('id_edof', "=", str(training_id))], limit=1)
 
-                if state=="validated":
-                    print('validate',email,dossier['attendee']['lastName'],dossier['attendee']['firstName'])
-                    self.cpf_validate(training_id,email,address,tel,code_postal,ville,diplome,dossier['attendee']['lastName'],dossier['attendee']['firstName'],dossier['externalId'],lastupd)
+                if state == "validated":
+                    print('validate', email, dossier['attendee']['lastName'], dossier['attendee']['firstName'])
+                    self.cpf_validate(training_id, email, num_voie, nom_voie, voie, street, tel, code_postal, ville,
+                                      diplome, dossier['attendee']['lastName'], dossier['attendee']['firstName'],
+                                      dossier['externalId'], lastupd)
                 else:
                     users = self.env['res.users'].sudo().search(
                         [('login', "=", email)])  # search user with same email sended
@@ -766,80 +792,133 @@ class partner(models.Model):
                         user.partner_id.funding_type = 'cpf'  # update field funding type to cpfprint('partner',partner.numero_cpf,user.login)
                         print(user.partner_id.date_cpf)
 
-                    if state=="inTraining":
-                        print('intraining', email)
-                        user.partner_id.statut_cpf="in_training"
-                        user.partner_id.numero_cpf = externalId
-                        user.partner_id.date_cpf = lastupd
-                        user.partner_id.diplome=diplome
-                        if product_id:
-                            user.partner_id.id_edof = product_id.id_edof
-
-                    if state=="terminated":
-                        print('terminated', email)
-                        user.partner_id.statut_cpf="out_training"
-                        user.partner_id.numero_cpf = externalId
-                        user.partner_id.diplome = diplome
-                        user.partner_id.date_cpf = lastupd
-                        if product_id:
-                            user.partner_id.id_edof = product_id.id_edof
-                    if state=="serviceDoneDeclared":
-                        print('serviceDoneDeclared', email)
-                        user.partner_id.statut_cpf="service_declared"
-                        user.partner_id.numero_cpf = externalId
-                        user.partner_id.date_cpf = lastupd
-                        user.partner_id.diplome = diplome
-                        if product_id:
-                            user.partner_id.id_edof=product_id.id_edof
-
-                    if state=="serviceDoneValidated":
-                        print('serviceDoneValidated', email)
-
-                        user.partner_id.statut_cpf="service_validated"
-                        user.partner_id.numero_cpf = externalId
-                        user.partner_id.date_cpf = lastupd
-                        user.partner_id.diplome = diplome
-                        if product_id:
-                            user.partner_id.id_edof = product_id.id_edof
-                    if state=="canceledByAttendee" or state=="canceledByAttendeeNotRealized" or state=="canceledByOrganism" or state=="refusedByAttendee" or state=="refusedByOrganism"  :
-                        if user.partner_id.numero_cpf==externalId:
-                            user.partner_id.statut_cpf="canceled"
-                            user.partner_id.statut="canceled"
+                        if state == "inTraining":
+                            print('intraining', email)
+                            user.partner_id.statut_cpf = "in_training"
+                            user.partner_id.numero_cpf = externalId
                             user.partner_id.date_cpf = lastupd
                             user.partner_id.diplome = diplome
-                            print("product id annulé digi",user.partner_id.id_edof,training_id)
-
                             if product_id:
                                 user.partner_id.id_edof = product_id.id_edof
 
+                        if state == "terminated":
+                            print('terminated', email)
+                            user.partner_id.statut_cpf = "out_training"
+                            user.partner_id.numero_cpf = externalId
+                            user.partner_id.diplome = diplome
+                            user.partner_id.date_cpf = lastupd
+                            if product_id:
+                                user.partner_id.id_edof = product_id.id_edof
+                        if state == "serviceDoneDeclared":
+                            print('serviceDoneDeclared', email)
+                            user.partner_id.statut_cpf = "service_declared"
+                            user.partner_id.numero_cpf = externalId
+                            user.partner_id.date_cpf = lastupd
+                            user.partner_id.diplome = diplome
+                            if product_id:
+                                user.partner_id.id_edof = product_id.id_edof
 
+                        if state == "serviceDoneValidated":
+                            print('serviceDoneValidated', email)
 
+                            user.partner_id.statut_cpf = "service_validated"
+                            user.partner_id.numero_cpf = externalId
+                            user.partner_id.date_cpf = lastupd
+                            user.partner_id.diplome = diplome
+                            if product_id:
+                                user.partner_id.id_edof = product_id.id_edof
+                        if state == "canceledByAttendee" or state == "canceledByAttendeeNotRealized" or state == "canceledByOrganism" or state == "refusedByAttendee" or state == "refusedByOrganism":
+                            if user.partner_id.numero_cpf == externalId:
+                                user.partner_id.statut_cpf = "canceled"
+                                user.partner_id.statut = "canceled"
+                                user.partner_id.date_cpf = lastupd
+                                user.partner_id.diplome = diplome
+                                print("product id annulé digi", user.partner_id.id_edof, training_id)
 
-    def cpf_validate(self,module,email,address,tel,code_postal,ville,diplome,nom,prenom,dossier,lastupd):
+                                if product_id:
+                                    user.partner_id.id_edof = product_id.id_edof
+
+    def cpf_validate(self, module, email, num_voie, nom_voie, voie, street, tel, code_postal, ville, diplome, nom,
+                     prenom, dossier, lastupd):
         user = self.env['res.users'].sudo().search([('login', "=", email)])
         exist = True
         if not user:
-            if '+33' not in str(tel):  # num edof
+            if tel:
                 user = self.env["res.users"].sudo().search(
-                    [("phone", "=", str(tel).replace(' ', ''))], limit=1)
+                    [("phone", "=", str(tel))], limit=1)
                 if not user:
-                    phone = str(tel)
-                    phone = phone[1:]
-                    phone = '+33' + str(phone)
-                    user = self.env["res.users"].sudo().search(
-                        [("phone", "=", phone.replace(' ', ''))], limit=1)
-            else:
-                user = self.env["res.users"].sudo().search(
-                    [("phone", "=", str(tel).replace(' ', ''))], limit=1)
-                if not user:
-                    phone = str(tel)
-                    phone = phone[3:]
-                    phone = '0' + str(phone)
-                    user = self.env["res.users"].sudo().search(
-                        [("phone", "=", phone.replace(' ', ''))], limit=1)
+                    phone_number = str(tel).replace(' ', '')
+                    if '+33' not in str(phone_number):  # check if edof api send the number of client with +33
+                        phone = phone_number[0:2]
+                        if str(phone) == '33' and ' ' not in str(
+                                tel):  # check if edof api send the number of client in this format (number_format: 33xxxxxxx)
+                            phone = '+' + str(tel)
+                            user = self.env["res.users"].sudo().search([("phone", "=", phone)], limit=1)
+                            if not user:
+                                phone = phone[0:3] + ' ' + phone[3:4] + ' ' + phone[4:6] + ' ' + phone[
+                                                                                                 6:8] + ' ' + phone[
+                                                                                                              8:10] + ' ' + phone[
+                                                                                                                            10:]
+                                user = self.env["res.users"].sudo().search([("phone", "=", phone)], limit=1)
+                            if not user:
+                                phone = '0' + str(phone[4:])
+                                user = self.env["res.users"].sudo().search(
+                                    ['|', ("phone", "=", phone), ("phone", "=", phone.replace(' ', ''))], limit=1)
+                        phone = phone_number[0:2]
+                        if str(phone) == '33' and ' ' in str(
+                                tel):  # check if edof api send the number of client in this format (number_format: 33 x xx xx xx)
+                            phone = '+' + str(tel)
+                            user = self.env["res.users"].sudo().search(
+                                ['|', ("phone", "=", phone), ("phone", "=", phone.replace(' ', ''))], limit=1)
+                            if not user:
+                                phone = '0' + str(phone[4:])
+                                user = self.env["res.users"].sudo().search(
+                                    ['|', ("phone", "=", phone), ("phone", "=", phone.replace(' ', ''))], limit=1)
+                        phone = phone_number[0:2]
+                        if str(phone) in ['06', '07'] and ' ' not in str(
+                                tel):  # check if edof api send the number of client in this format (number_format: 07xxxxxx)
+                            user = self.env["res.users"].sudo().search(
+                                ['|', ("phone", "=", str(tel)), ("phone", "=", str('+33' + tel.replace(' ', '')[-9:]))],
+                                limit=1)
+                            if not user:
+                                phone = phone[0:2] + ' ' + phone[2:4] + ' ' + phone[4:6] + ' ' + phone[
+                                                                                                 6:8] + ' ' + phone[8:]
+                                user = self.env["res.users"].sudo().search([("phone", "=", phone)], limit=1)
+                            if not user:
+                                phone = '0' + str(phone[4:])
+                                user = self.env["res.users"].sudo().search(
+                                    ['|', ("phone", "=", phone), ("phone", "=", phone.replace(' ', ''))], limit=1)
+                        phone = phone_number[0:2]
+                        if str(phone) in ['06', '07'] and ' ' in str(
+                                tel):  # check if edof api send the number of client in this format (number_format: 07 xx xx xx)
+                            user = self.env["res.users"].sudo().search(
+                                ['|', ("phone", "=", str(tel)), str(tel).replace(' ', '')], limit=1)
+                            if not user:
+                                phone_number = str(tel[1:])
+                                user = self.env["res.users"].sudo().search(
+                                    ['|', ("phone", "=", str('+33' + phone_number)),
+                                     ("phone", "=", ('+33' + phone_number.replace(' ', '')))], limit=1)
+                    else:  # check if edof api send the number of client with+33
+                        if ' ' not in str(tel):
+                            phone = str(tel)
+                            phone = phone[0:3] + ' ' + phone[3:4] + ' ' + phone[4:6] + ' ' + phone[6:8] + ' ' + phone[
+                                                                                                                8:10] + ' ' + phone[
+                                                                                                                              10:]
+                            user = self.env["res.users"].sudo().search(
+                                [("phone", "=", phone)], limit=1)
+                        if not user:
+                            user = self.env["res.users"].sudo().search(
+                                [("phone", "=", str(phone_number).replace(' ', ''))], limit=1)
+                            if not user:
+                                phone = str(phone_number)
+                                phone = phone[3:]
+                                phone = '0' + str(phone)
+                                user = self.env["res.users"].sudo().search(
+                                    [("phone", "like", phone.replace(' ', ''))], limit=1)
             if not user:
                 # créer
                 exist = False
+
                 if "digimoov" in str(module):  # module from wedof
                     user = self.env['res.users'].sudo().create({
                         'name': str(prenom) + " " + str(nom),
@@ -872,55 +951,106 @@ class partner(models.Model):
             client = self.env['res.partner'].sudo().search(
                 [('id', '=', user.partner_id.id)])
             if client:
-                _logger.info("if client %s" %str(client.email))
+                _logger.info("if client %s" % str(client.email))
                 _logger.info("dossier %s" % str(dossier))
                 client.mode_de_financement = 'cpf'
                 client.funding_type = 'cpf'
                 client.numero_cpf = dossier
                 client.statut_cpf = 'validated'
-                client.statut ='indecis'
-                client.phone = tel
-                client.street = address
+                client.statut = 'indecis'
+
+                client.phone = '0' + str(tel.replace(' ', ''))[-9:]
+                client.street = street
+                client.num_voie = num_voie
+                client.nom_voie = nom_voie
+                client.voie = voie
                 client.zip = code_postal
                 client.city = ville
                 client.diplome = diplome  # attestation capacitév ....
                 client.date_cpf = lastupd
-                client.name=str(prenom) + " " + str(nom)
+                client.name = str(prenom) + " " + str(nom)
                 module_id = False
                 product_id = False
-                template_id = int(self.env['ir.config_parameter'].sudo().get_param(
-                    'mcm_cpf_validation.digimoov_email_template_exam_date_center'))
-                template_id = self.env['mail.template'].search([('id', '=', template_id)]).id
-                if not template_id:
-                    template_id = self.env['ir.model.data'].xmlid_to_res_id(
-                        'mcm_cpf_validation.digimoov_email_template_exam_date_center', raise_if_not_found=False)
-                if not template_id:
-                    template_id = self.env['ir.model.data'].xmlid_to_res_id(
-                        'mcm_cpf_validation.digimoov_email_template_exam_date_center',
-                        raise_if_not_found=False)
                 if "digimoov" in str(module):
                     user.write({'company_ids': [1, 2], 'company_id': 2})
                     product_id = self.env['product.template'].sudo().search(
                         [('id_edof', "=", str(module)), ('company_id', "=", 2)], limit=1)
-                    print("product id validate digi",product_id.id_edof)
+                    print("product id validate digi", product_id.id_edof)
                     if product_id:
                         client.id_edof = product_id.id_edof
-                        if template_id:
-                            client.with_context(force_send=True).message_post_with_template(template_id,
-                                                                                            composition_mode='comment')
+
+                        """Créer un devis et Remplir le panier par produit choisit sur edof"""
+                        sale = self.env['sale.order'].sudo().search([('partner_id', '=', client.id),
+                                                                     ('company_id', '=', 2),
+                                                                     ('website_id', '=', 2),
+                                                                     ('order_line.product_id', '=', product_id.id)])
+                        print('sale order', sale.id)
+                        if not sale:
+                            so = self.env['sale.order'].sudo().create({
+                                'partner_id': client.id,
+                                'company_id': 2,
+                                'website_id': 2
+                            })
+
+                            so_line = self.env['sale.order.line'].sudo().create({
+                                'name': product_id.name,
+                                'product_id': product_id.id,
+                                'product_uom_qty': 1,
+                                'product_uom': product_id.uom_id.id,
+                                'price_unit': product_id.list_price,
+                                'order_id': so.id,
+                                'tax_id': product_id.taxes_id,
+                                'company_id': 2,
+                            })
+                            #
+                            # prix de la formation dans le devis
+                            amount_before_instalment = so.amount_total
+                            # so.amount_total = so.amount_total * 0.25
+                            for line in so.order_line:
+                                line.price_unit = so.amount_total
                 else:
                     user.write({'company_ids': [(4, 2)], 'company_id': 1})
                     product_id = self.env['product.template'].sudo().search(
                         [('id_edof', "=", str(module)), ('company_id', "=", 1)], limit=1)
-                    print("product id validate mcm",product_id.id_edof)
+                    print("product id validate mcm", product_id.id_edof)
                     if product_id:
                         client.id_edof = product_id.id_edof
 
+                        """Créer un devis et Remplir le panier par produit choisit sur edof"""
+                        sale = self.env['sale.order'].sudo().search([('partner_id', '=', client.id),
+                                                                     ('company_id', '=', 1),
+                                                                     ('website_id', '=', 1),
+                                                                     ('order_line.product_id', '=', product_id.id)])
+                        print('sale order', sale.id)
+                        if not sale:
+                            so = self.env['sale.order'].sudo().create({
+                                'partner_id': client.id,
+                                'company_id': 1,
+                                'website_id': 1
+                            })
+
+                            so_line = self.env['sale.order.line'].sudo().create({
+                                'name': product_id.name,
+                                'product_id': product_id.id,
+                                'product_uom_qty': 1,
+                                'product_uom': product_id.uom_id.id,
+                                'price_unit': product_id.list_price,
+                                'order_id': so.id,
+                                'tax_id': product_id.taxes_id,
+                                'company_id': 1,
+                            })
+                            #
+                            # prix de la formation dans le devis
+                            amount_before_instalment = so.amount_total
+                            # so.amount_total = so.amount_total * 0.25
+                            for line in so.order_line:
+                                line.price_unit = so.amount_total
 
     """Changer statut cpf vers accepté selon l'etat récupéré avec api wedof"""
+
     def change_statut_accepte(self):
         base_url = self.env['ir.config_parameter'].sudo().get_param('web.base.url')
-        if "localhost" not in str(base_url):
+        if "localhost" not in str(base_url) and "dev.odoo" in str(base_url):
             params_wedof = (
                 ('order', 'desc'),
                 ('type', 'all'),
@@ -995,12 +1125,12 @@ class partner(models.Model):
                 else:
                     user = users
                 if user:
-                    print("if user", user.login,user.partner_id.statut_cpf)
+                    print("if user", user.login, user.partner_id.statut_cpf)
                     user.partner_id.mode_de_financement = 'cpf'
                     user.partner_id.statut_cpf = 'accepted'
-                    user.partner_id.date_cpf= lastupd
-                    user.partner_id.numero_cpf=externalId
-                    user.partner_id.diplome=diplome
+                    user.partner_id.date_cpf = lastupd
+                    user.partner_id.numero_cpf = externalId
+                    user.partner_id.diplome = diplome
                     module_id = False
                     product_id = False
                     if 'digimoov' in str(training_id):
@@ -1008,23 +1138,23 @@ class partner(models.Model):
                         product_id = self.env['product.template'].sudo().search(
                             [('id_edof', "=", str(training_id)), ('company_id', "=", 2)], limit=1)
                         if product_id:
-                            user.partner_id.id_edof=product_id.id_edof
+                            user.partner_id.id_edof = product_id.id_edof
                     else:
                         product_id = self.env['product.template'].sudo().search(
                             [('id_edof', "=", str(training_id)), ('company_id', "=", 1)], limit=1)
                         if product_id:
-                            user.partner_id.id_edof=product_id.id_edof
-                    print('if digi ',product_id)
+                            user.partner_id.id_edof = product_id.id_edof
+                    print('if digi ', product_id)
                     if product_id and product_id.company_id.id == 2 and user.partner_id.id_edof and user.partner_id.date_examen_edof and user.partner_id.session_ville_id:
 
-                        print('if product_id digimoov',product_id.id_edof,user.login)
+                        print('if product_id digimoov', product_id.id_edof, user.login)
                         module_id = self.env['mcmacademy.module'].sudo().search(
                             [('company_id', "=", 2), ('session_ville_id', "=", user.partner_id.session_ville_id.id),
                              ('date_exam', "=", user.partner_id.date_examen_edof), ('product_id', "=", product_id.id),
                              ('session_id.number_places_available', '>', 0)], limit=1)
                         print('before if modulee', module_id)
                         if module_id:
-                            print('if modulee',module_id)
+                            print('if modulee', module_id)
                             user.partner_id.module_id = module_id
                             user.partner_id.mcm_session_id = module_id.session_id
                             product_id = self.env['product.product'].sudo().search(
@@ -1084,17 +1214,17 @@ class partner(models.Model):
                                         move.post()
                                         ref = move.name
 
-
                                 so.action_cancel()
                                 so.unlink()
                                 user.partner_id.statut = 'won'
-                            session=self.env['partner.sessions'].search([('client_id','=',user.partner_id.id),
-                                                                         ('session_id','=',module_id.session_id.id)])
+                            session = self.env['partner.sessions'].search([('client_id', '=', user.partner_id.id),
+                                                                           (
+                                                                           'session_id', '=', module_id.session_id.id)])
                             if not session:
-                                new_history=self.env['partner.sessions'].sudo().create({
-                                    'client_id':user.partner_id.id,
-                                    'session_id':module_id.session_id.id,
-                                    'company_id':2,
+                                new_history = self.env['partner.sessions'].sudo().create({
+                                    'client_id': user.partner_id.id,
+                                    'session_id': module_id.session_id.id,
+                                    'company_id': 2,
                                 })
 
                     elif product_id and product_id.company_id.id == 1 and user.partner_id.id_edof and user.partner_id.date_examen_edof and user.partner_id.session_ville_id:
@@ -1156,12 +1286,13 @@ class partner(models.Model):
                                 so.unlink()
                                 user.partner_id.statut = 'won'
                             session = self.env['partner.sessions'].search([('client_id', '=', user.partner_id.id),
-                                                                           ('session_id', '=', module_id.session_id.id)])
+                                                                           (
+                                                                           'session_id', '=', module_id.session_id.id)])
                             if not session:
                                 new_history = self.env['partner.sessions'].sudo().create({
                                     'client_id': user.partner_id.id,
                                     'session_id': module_id.session_id.id,
-                                    'company_id':1,
+                                    'company_id': 1,
                                 })
 
                     else:
