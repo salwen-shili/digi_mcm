@@ -97,7 +97,6 @@ const addUserPlateform = () => {
                                 <a href="#"> <button type="button" class="btn btn-secondary action-button" onclick="closepopup()" > Fermer </button></a>
                             </div>
          `;
-          console.log('res.result.url', res.result.url);
         }
         document.getElementById('popupcontent').innerHTML = `
                             <p style="margin-top: 12px;text-align: center;">                              
@@ -151,7 +150,6 @@ const addUserPlateform = () => {
 const cpfAccepted = () => {
   sendHttpRequest('POST', '/shop/cpf_accepted', {})
     .then((res) => {
-      console.log('res.result.state', res.result.state);
       if (res.result.state) {
         addUserPlateform();
       }
