@@ -253,7 +253,7 @@
                                                     <span></span>
                                                 </div>
                                             </div>
-                                            <div class="col-md-8 outlined-input-field bg-c" id="city_container" aria-disabled="true" t-if="not name or not last_login">
+                                            <div class="col-md-8 outlined-input-field bg-c" id="city_container" aria-disabled="true" t-if="not name">
                                                 <!-- <input type="text" id="city" class="outlined-text-field" autocomplete="off" /> -->
                                                 <select class="outlined-text-field disabled" name="city" id="city" type="hidden" required="required"></select>
                                                 <label for="city" style="left: 2rem !important">Ville *
@@ -263,8 +263,18 @@
                                                     <span></span>
                                                 </div>
                                             </div>
+                                            <div class="col-md-8 outlined-input-field bg-c" id="city_container" aria-disabled="true" t-if="name">
+
+                                                <input class="outlined-text-field disabled" name="city" id="city" t-att-value="city" />
+                                                <label for="city" style="left: 2rem !important;top: -0.7rem;padding: 0.25rem;">Ville *</label>
+                                                <i class="material-icons error-icon">error_outline</i>
+                                                <div class="helper-text bg-c" id="city_helper">
+                                                    <span></span>
+                                                </div>
+                                            </div>
                                         </div>
                                         <br />
+
 
                                         <div class="outlined-input-field bg-c" id="voie_container" aria-disabled="true" t-if="not name">
                                             <select class="outlined-text-field" name="voie" id="voie" disabled="true" required="required">
@@ -320,9 +330,17 @@
                                                 <span></span>
                                             </div>
                                         </div>
+                                        <div class="outlined-input-field bg-c" id="nom_voie_container" aria-disabled="true" t-if="nom_voie">
+                                            <input type="text" name="nom_voie" id="nom_voie" t-att-value="nom_voie" class="outlined-text-field" autocomplete="off" />
+                                            <label for="nom_voie" style="top: -0.7rem;padding: 0.25rem;">Nom de voie *</label>
+                                            <i class="material-icons error-icon">error_outline</i>
+                                            <div class="helper-text bg-c" id="nom_voie_helper">
+                                                <span></span>
+                                            </div>
+                                        </div>
                                         <br />
 
-                                        <div class="outlined-input-field bg-c" id="num_voie_container">
+                                        <div class="outlined-input-field bg-c" id="num_voie_container" t-if="not num_voie">
                                             <input type="text" id="num_voie" name="num_voie" class="outlined-text-field" required="required" inputmode="numeric" pattern="[0-9]+" autocomplete="off" />
                                             <label for="num_voie">N° de voie *</label>
                                             <i class="material-icons error-icon">error_outline</i>
@@ -330,11 +348,27 @@
                                                 <span></span>
                                             </div>
                                         </div>
+                                        <div class="outlined-input-field bg-c" id="num_voie_container" t-if="num_voie">
+                                            <input type="text" id="num_voie" t-att-value="num_voie" name="num_voie" class="outlined-text-field" autocomplete="off" />
+                                            <label for="num_voie" style="top: -0.7rem;padding: 0.25rem;">N° de voie * </label>
+                                            <i class="material-icons error-icon">error_outline</i>
+                                            <div class="helper-text bg-c" id="num_voie_helper">
+                                                <span></span>
+                                            </div>
+                                        </div>
                                         <br />
 
-                                        <div class="outlined-input-field bg-c" id="comp_address_container">
+                                        <div class="outlined-input-field bg-c" id="comp_address_container" t-if="not street2">
                                             <input type="text" id="comp_address" name="street2" class="outlined-text-field" autocomplete="off" />
                                             <label for="comp_address">Complément d'adresse</label>
+                                            <i class="material-icons error-icon">error_outline</i>
+                                            <div class="helper-text bg-c" id="comp_address_helper">
+                                                <span></span>
+                                            </div>
+                                        </div>
+                                        <div class="outlined-input-field bg-c" id="comp_address_container" t-if="street2">
+                                            <input type="text" id="comp_address" name="street2" t-att-value="user_id.partner_id.street2" class="outlined-text-field" autocomplete="off" />
+                                            <label for="comp_address" style="top: -0.7rem;padding: 0.25rem;">Complément d'adresse </label>
                                             <i class="material-icons error-icon">error_outline</i>
                                             <div class="helper-text bg-c" id="comp_address_helper">
                                                 <span></span>
@@ -363,7 +397,7 @@
                                                 se connecter
                                             </a>
                                             <t t-if="request.website.id == 1">
-                                                <button id="inscrire" type="submit" class="rkmd-btn btn-black ripple-effect ripple-yellow" data-oe-model="ir.ui.view" data-oe-id="1730" data-oe-field="arch" data-oe-xpath="/data/xpath[4]/div[2]/div[1]/div[1]/div[1]/div[1]/fieldset[1]/div[7]/button[1]" t-if="not name or not last_login">
+                                                <button id="inscrire" type="submit" t-if="not name or not last_login" class="rkmd-btn btn-black ripple-effect ripple-yellow" data-oe-model="ir.ui.view" data-oe-id="1730" data-oe-field="arch" data-oe-xpath="/data/xpath[4]/div[2]/div[1]/div[1]/div[1]/div[1]/fieldset[1]/div[7]/button[1]">
                                                     S'inscrire
                                                     <i class="material-icons right">send</i>
                                                 </button>
@@ -372,7 +406,7 @@
                                                 </button>
                                             </t>
                                             <t t-if="request.website.id == 2">
-                                                <button id="inscrire" type="submit" class="rkmd-btn btn-blue ripple-effect ripple-yellow" data-oe-model="ir.ui.view" data-oe-id="1730" data-oe-field="arch" data-oe-xpath="/data/xpath[4]/div[2]/div[1]/div[1]/div[1]/div[1]/fieldset[1]/div[7]/button[1]" t-if="not name or not last_login">
+                                                <button id="inscrire" type="submit" t-if="not name or not last_login" class="rkmd-btn btn-blue ripple-effect ripple-yellow" data-oe-model="ir.ui.view" data-oe-id="1730" data-oe-field="arch" data-oe-xpath="/data/xpath[4]/div[2]/div[1]/div[1]/div[1]/div[1]/fieldset[1]/div[7]/button[1]">
                                                     S'inscrire
                                                     <i class="material-icons right">send</i>
                                                 </button>
