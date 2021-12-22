@@ -278,7 +278,7 @@ function verify_payment_method() {
   //if condition de vente (checkbox_conditions) is checked - passer ou paiment ou mobiliser mon cpf
   var conditionCheckbox = document.getElementById('checkbox_conditions');
   var error = document.getElementById('error_conditions');
-  if (conditionCheckbox.checked == true) {
+  if (conditionCheckbox.checked && conditionCheckbox.checked == true) {
     error.style.display = 'none';
     condition = true;
   } else {
