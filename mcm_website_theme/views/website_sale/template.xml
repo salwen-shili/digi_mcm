@@ -366,6 +366,7 @@
                 <h3 t-if="modules_mcm" class="" style="margin-top: 1rem; font-weight: 600;">
                 Veuillez sélectionnez votre date d'examen
                 </h3>
+
                 <!-- state from backend-->
                 <input id="state" type="" t-att-value="state" />
                 <p t-if="modules_mcm">
