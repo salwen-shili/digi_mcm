@@ -276,18 +276,23 @@ function verify_payment_method() {
   }
   //here we are sure that user has selected the date
   //if condition de vente (checkbox_conditions) is checked - passer ou paiment ou mobiliser mon cpf
-  var conditionCheckbox = document.getElementById('checkbox_conditions');
-  var error = document.getElementById('error_conditions');
-  if (conditionCheckbox.checked && conditionCheckbox.checked == true) {
-    error.style.display = 'none';
-    condition = true;
-  } else {
-    error.style.display = 'inline-block';
-    condition = false;
+  var conditionCheckbox;
+  var error;
+  if (document.getElementById('checkbox_conditions')) {
+    conditionCheckbox = document.getElementById('checkbox_conditions');
+    error = document.getElementById('error_conditions');
+    if (conditionCheckbox.checked == true) {
+      error.style.display = 'none';
+      condition = true;
+    } else {
+      error.style.display = 'inline-block';
+      condition = false;
+    }
+    if (condition == false) {
+      return;
+    }
   }
-  if (condition == false) {
-    return;
-  }
+
   //redirection stripe
   stripe_pm = document.getElementById('stripe_pm');
   // console.log(stripe_pm, 'stripe_pm');
