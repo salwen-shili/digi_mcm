@@ -89,9 +89,15 @@ const addUserPlateform = () => {
       if (res.result.ajout) {
         //js-container-animation to animate
         if (res.result.url) {
-          document
-            .getElementById('popup1')
-            .classList.add('js-container-animation');
+          document.getElementById('popupcontent').innerHTML = `
+                            <p class="js-container-animation" style="margin-top: 12px;text-align: center;">                              
+                                 ${res.result.ajout}     
+                            </p>
+                            <div style="text-align:center">
+                                <a href="#"> <button type="button" class="btn btn-secondary action-button" onclick="closepopup()" > Fermer </button></a>
+                            </div>
+         `;
+          console.log('res.result.url', res.result.url);
         }
         document.getElementById('popupcontent').innerHTML = `
                             <p style="margin-top: 12px;text-align: center;">                              
