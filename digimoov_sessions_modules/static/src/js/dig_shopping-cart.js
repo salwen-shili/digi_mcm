@@ -210,7 +210,10 @@ function showPopup() {
     : (textbtn = 'Passer au paiement');
 
   if (optionsDate != 'all' && optionsDate != '') {
-    document.getElementById('error_choix_date_popup').style.display = 'none';
+    if (document.getElementById('error_choix_date_popup')) {
+      document.getElementById('error_choix_date_popup').style.display = 'none';
+    }
+
     continueBtn.innerText = textbtn;
     window.location.href = '#popup1';
   } else {
@@ -265,7 +268,10 @@ function verify_payment_method() {
       return (document.getElementById('error_choix_date_popup').style.display =
         'inline-block');
     } else {
-      document.getElementById('error_choix_date_popup').style.display = 'none';
+      if (document.getElementById('error_choix_date_popup')) {
+        document.getElementById('error_choix_date_popup').style.display =
+          'none';
+      }
     }
   }
   //here we are sure that user has selected the date
