@@ -354,10 +354,7 @@ function verify_payment_method() {
             );
             break;
           case state == 'accepted':
-            document.getElementById('popupcontent').innerHTML = 'wait...';
             cpfAccepted();
-
-            document.getElementById('popupcontent').innerHTML = 'finished...';
             break;
 
           default:
