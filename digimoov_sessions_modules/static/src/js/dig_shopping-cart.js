@@ -214,7 +214,10 @@ function showPopup() {
     continueBtn.innerText = textbtn;
     window.location.href = '#popup1';
   } else {
-    document.getElementById('error_choix_date').style.display = 'inline-block';
+    if (document.getElementById('error_choix_date')) {
+      document.getElementById('error_choix_date').style.display =
+        'inline-block';
+    }
   }
 }
 
