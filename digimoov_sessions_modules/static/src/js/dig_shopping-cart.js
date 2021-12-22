@@ -440,17 +440,38 @@ function closepopup() {
 function renonce() {
   document.getElementById('popupcontent').innerHTML = `
                                                      
-                                 <div class="input checkbox" style="width:90%">
+                                 <p id="notifMessage">
+
+                            <div class="input checkbox" style="width:90%">
                                 <input type="checkbox" id="checkbox_failures" style="white-space: nowrap;" class="text-xl-left border-0" t-att-checked="website_sale_order.failures" t-att-value="website_sale_order.failures">
                                     <label for="failures" style="display:inline">
                                         Je souhaite accéder à la formation dès maintenant sans attendre 14 jours. Je reconnais que
-                                        DIGIMOOV
+                                        <span t-if="website_sale_order.company_id.id==2">DIGIMOOV</span>
+                                        <span t-if="website_sale_order.company_id.id==1">MCM Academy</span>
                                         procédera à l'exécution immédiate de ma formation en ligne et à ce titre, je
                             renonce expressément à exercer mon droit de rétractation conformément aux dispositions de
                             l'article L.221-28 1° du code de la consommation.
                                     </label>
                                 </input>
-                            </div>   
+                            </div>
+                            <div class="input checkbox" style="margin-top: 12px;">
+                                <input type="checkbox" id="checkbox_conditions" style="white-space: nowrap;" class="text-xl-left border-0" t-att-checked="website_sale_order.conditions" t-att-value="website_sale_order.conditions">
+                                    <label for="conditions" style="display:inline">
+                                        J'ai lu et j'accepte les
+                                        <a href="/conditions" target="blank" style="font-weight: 600; color: #000;">
+                                            conditions générales de vente
+                                        </a>
+                                    </label>
+                                </input>
+                            </div>
+                            <p id="error_conditions" class="alert alert-warning" style="margin-left:0%;display:none;">
+                                Vous devez acceptez les conditions générales de ventes
+                            </p>
+
+                            <p id="error_choix_date_popup" class="alert alert-warning" style="margin-left:0%;display:none;">
+                                Vous devez fermer cette fenêtre et selectionner votre date d'examen
+                            </p>
+                        </p> 
                           
                              <div style="text-align:center">
                             <button type="button" class="btn btn-secondary action-button shake" id="continueBtn" onclick="verify_payment_method()">Continuer</button>
