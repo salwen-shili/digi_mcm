@@ -85,6 +85,12 @@ const addUserPlateform = () => {
       }
     } else {
       if (res.result.ajout) {
+        //js-container-animation to animate
+        if (res.result.url) {
+          document
+            .getElementById('popup1')
+            .classList.add('js-container-animation ');
+        }
         document.getElementById('popupcontent').innerHTML = `
                             <p style="margin-top: 12px;    text-align: center;">                              
                                  ${res.result.ajout}     
