@@ -632,6 +632,9 @@ class partner(models.Model):
                 newformat = "%d/%m/%Y %H:%M:%S"
                 lastupdateform = lastupdate.strftime(newformat)
                 lastupd = datetime.strptime(lastupdateform, "%d/%m/%Y %H:%M:%S")
+                residence = ""
+                if "residence" in dossier['attendee']['address']:
+                    residence = dossier['attendee']['address']['residence']
                 num_voie = ""
                 if "number" in dossier['attendee']['address']:
                     num_voie = dossier['attendee']['address']['number']
@@ -682,7 +685,7 @@ class partner(models.Model):
                 """Si dossier passe à l'etat validé on met à jour statut cpf sur la fiche client"""
                 if status == "200":
                     print('validate', email)
-                    self.cpf_validate(training_id, email, num_voie, nom_voie, voie, street, tel, code_postal, ville,
+                    self.cpf_validate(training_id, email,residence, num_voie, nom_voie, voie, street, tel, code_postal, ville,
                                       diplome, dossier['attendee']['lastName'], dossier['attendee']['firstName'],
                                       dossier['externalId'], lastupd)
 
@@ -690,11 +693,11 @@ class partner(models.Model):
 
     def change_state_cpf_partner(self):
         base_url = self.env['ir.config_parameter'].sudo().get_param('web.base.url')
-        if "localhost" not in str(base_url) and "dev.odoo" in str(base_url):
+        if "localhost"  in str(base_url) and "dev.odoo" not in str(base_url):
             params_wedof = (
                 ('order', 'desc'),
                 ('type', 'all'),
-                ('state', 'validated'),
+                ('state', 'validated,accepted'),
                 ('billingState', 'all'),
                 ('certificationState', 'all'),
                 ('sort', 'lastUpdate'),
@@ -710,6 +713,7 @@ class partner(models.Model):
                                     params=params_wedof)
             registrations = response.json()
             for dossier in registrations:
+                print('dosssier',dossier['attendee']['address'] )
                 externalId = dossier['externalId']
                 email = dossier['attendee']['email']
                 email = email.replace("%", ".")  # remplacer % par .
@@ -741,36 +745,36 @@ class partner(models.Model):
                 if "roadName" in dossier['attendee']['address']:
                     nom_voie = dossier['attendee']['address']['roadName']
                 street = num_voie + ' ' + voie + ' ' + nom_voie
+                tel = ""
                 if "phoneNumber" in dossier['attendee']:
                     tel = dossier['attendee']['phoneNumber']
-                else:
-                    tel = ""
+
+                code_postal = ""
                 if "zipCode" in dossier['attendee']['address']:
                     code_postal = dossier['attendee']['address']['zipCode']
-                else:
-                    code_postal = ""
+
+                ville = ""
                 if "city" in dossier['attendee']['address']:
                     ville = dossier['attendee']['address']['city']
-                else:
-                    ville = ""
+                residence=""
+                if "residence" in dossier['attendee']['address']:
+                    residence=dossier['attendee']['address']['residence']
+                nom = ""
                 if 'firstName' in dossier['attendee']['firstName']:
                     nom = dossier['attendee']['firstName']
                     nom = unidecode(nom)
-                else:
-                    nom = ""
 
+                prenom = ""
                 if "lastName" in dossier['attendee']['lastName']:
                     prenom = dossier['attendee']['lastName']
                     prenom = unidecode(prenom)
-                else:
-                    prenom = ""
                 diplome = dossier['trainingActionInfo']['title']
                 product_id = self.env['product.template'].sudo().search(
                     [('id_edof', "=", str(training_id))], limit=1)
 
                 if state == "validated":
                     print('validate', email, dossier['attendee']['lastName'], dossier['attendee']['firstName'])
-                    self.cpf_validate(training_id, email, num_voie, nom_voie, voie, street, tel, code_postal, ville,
+                    self.cpf_validate(training_id, email,residence, num_voie, nom_voie, voie, street, tel, code_postal, ville,
                                       diplome, dossier['attendee']['lastName'], dossier['attendee']['firstName'],
                                       dossier['externalId'], lastupd)
                 else:
@@ -838,7 +842,7 @@ class partner(models.Model):
                                 if product_id:
                                     user.partner_id.id_edof = product_id.id_edof
 
-    def cpf_validate(self, module, email, num_voie, nom_voie, voie, street, tel, code_postal, ville, diplome, nom,
+    def cpf_validate(self, module, email,residence, num_voie, nom_voie, voie, street, tel, code_postal, ville, diplome, nom,
                      prenom, dossier, lastupd):
         user = self.env['res.users'].sudo().search([('login', "=", email)])
         exist = True
@@ -958,7 +962,7 @@ class partner(models.Model):
                 client.numero_cpf = dossier
                 client.statut_cpf = 'validated'
                 client.statut = 'indecis'
-
+                client.street2=residence
                 client.phone = '0' + str(tel.replace(' ', ''))[-9:]
                 client.street = street
                 client.num_voie = num_voie
@@ -1050,7 +1054,7 @@ class partner(models.Model):
 
     def change_statut_accepte(self):
         base_url = self.env['ir.config_parameter'].sudo().get_param('web.base.url')
-        if "localhost" not in str(base_url) and "dev.odoo" in str(base_url):
+        if "localhost" not in str(base_url) and "dev.odoo" not in str(base_url):
             params_wedof = (
                 ('order', 'desc'),
                 ('type', 'all'),
@@ -1166,6 +1170,7 @@ class partner(models.Model):
                                 [('module_id', "=", module_id.id), ('state', "=", 'posted'),
                                  ('partner_id', "=", user.partner_id.id)])
                             if not invoice:
+                                print('if  not invoice digi ')
                                 so = self.env['sale.order'].sudo().create({
                                     'partner_id': user.partner_id.id,
                                     'company_id': 2,
@@ -1246,6 +1251,7 @@ class partner(models.Model):
                                 [('module_id', "=", module_id.id), ('state', "=", 'posted'),
                                  ('partner_id', "=", user.partner_id.id)])
                             if not invoice:
+                                print('if  not invoice mcm')
                                 so = self.env['sale.order'].sudo().create({
                                     'partner_id': user.partner_id.id,
                                     'company_id': 1,
