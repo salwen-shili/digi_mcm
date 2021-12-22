@@ -653,7 +653,7 @@ class WebsiteSale(WebsiteSale):
                             if not ticket:
                                 new_ticket = request.env['helpdesk.ticket'].sudo().create(
                                     vals)
-                            return {'ajout': 'Vous devez attendre 14 jours pour commencer  votre formation'}
+                            return {'ajout': 'Vous avez choisi de préserver votre droit de rétractation sous un délai de 14 jours. Si vous vous souhaitez renoncer à ce droit et commencer votre formation dés maintenant, veuillez cliquer sur continuer.'}
 
                         # if not partner.renounce_request and date_facture and (date_facture + timedelta(days=14)) <= today:
                         #     self.ajouter_iOne(partner)
@@ -841,7 +841,7 @@ class WebsiteSale(WebsiteSale):
                                 respsession = requests.put(urlsession, headers=headers, data=data_group)
                                 print(existe, 'ajouter à son session', respsession.status_code)
                     "si créer envoyer le lien de la plateforme si non false"
-                    return {'ajout':'Pour pouvoir accéder à notre plateforme de formation 360learning, veuillez cliquer sur continuer et entrez vos identifiants de connexion que vous utilisez sur notre site web.','url': 'https://digimoov.360learning.com'}
+                    return {'ajout':'Félicitations ! Vous pouvez dés maintenant accéder à notre plateforme de formation 360learning, Pour ce faire, veuillez cliquer sur continuer, et rentrez vos identifiants de connexion que vous utilisez sur notre site web.','url': 'https://digimoov.360learning.com'}
                 if not (create):
                         if str(responce_api)=="{'error': 'unavailableEmails'}":
                             
