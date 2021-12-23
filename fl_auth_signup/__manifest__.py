@@ -14,6 +14,7 @@
     'website': 'http://thefuturelens.com',
     'depends': ['auth_signup'],
     'data': [
+        'data/sms_data.xml',
         'views/auth_signup_extend_views.xml',
         'views/res_partner_view.xml',
     ],
