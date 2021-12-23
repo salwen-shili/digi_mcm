@@ -75,6 +75,8 @@
 
                 <!-- state from backend-->
                 <input id="state" type="" t-att-value="state" />
+                <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.4.0/dist/confetti.browser.min.js"></script>
+
 
             </div>
         </xpath>
