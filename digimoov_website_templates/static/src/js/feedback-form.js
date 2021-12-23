@@ -4,7 +4,7 @@ $(document).ready(function () {
     ? (document.getElementById('notifMessage').textContent =
         "Vous pouvez désormais choisir votre date et centre d'examen et financer votre formation.")
     : (document.getElementById('notifMessage').textContent =
-        "Pour passer à l'étape suivante merci de vous munir d'une copie originale de votre carte d'identité.");
+        "Pour passer à l'étape suivante merci de vous munir d'une copie originale de votre carte d'identité. Le processus d'identification peut prendre jusqu'à 20 minutes.");
   console.log(hasdocument, document.getElementById('hasdocument').value);
   console.log(
     window.location.href.includes('/coordonnees#popup1'),
