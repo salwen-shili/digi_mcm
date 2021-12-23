@@ -26,6 +26,25 @@ document.addEventListener('DOMContentLoaded', function () {
     .setAttribute('src', 'https://www.youtube.com/embed/PN7gVHdT7x4');
 });
 
+//animation
+var colors = ['#000000', '#fdd105', '#959595', '#d5a376', '#ff1e00'];
+function frame() {
+  confetti({
+    particleCount: 2,
+    angle: 60,
+    spread: 55,
+    origin: { x: 0 },
+    colors: colors,
+  });
+  confetti({
+    particleCount: 2,
+    angle: 120,
+    spread: 55,
+    origin: { x: 1 },
+    colors: colors,
+  });
+}
+
 //xmlhttprequest
 const sendHttpRequest = (method, url, data) => {
   const promise = new Promise((resolve, reject) => {
@@ -73,6 +92,9 @@ const addUserPlateform = () => {
 
     if (res.result.url) {
       if (res.result.url.includes('https://')) {
+        for (let index = 0; index < 200; index++) {
+          frame();
+        }
         document.getElementById('popupcontent').innerHTML = `
                             <p style="margin-top: 12px; text-align: center;">                              
                                  ${res.result.ajout}
@@ -90,35 +112,38 @@ const addUserPlateform = () => {
         //js-container-animation to animate
         if (res.result.url) {
           document.getElementById('popupcontent').innerHTML = `
-                            <p class="js-container-animation" style="margin-top: 12px;text-align: center;">                              
+                            <p  style="margin-top: 12px;text-align: justify;">                              
                                  ${res.result.ajout}     
                             </p>
                             <div style="text-align:center">
-                                <a href="#"> <button type="button" class="btn btn-secondary action-button" onclick="closepopup()" > Fermer </button></a>
+                                <a href="#"> <button type="button" class="btn btn-secondary action-button" onclick="closepopup()"  style="padding: 8px 29px;" > Fermer </button></a>
+
                             </div>
          `;
         }
         document.getElementById('popupcontent').innerHTML = `
-                            <p style="margin-top: 12px;text-align: center;">                              
+                            <p style="margin-top: 12px;text-align: justify;">                              
                                  ${res.result.ajout}     
                             </p>
                             <div style="text-align:center">
-                                <a href="#"> <button type="button" class="btn btn-secondary action-button" onclick="closepopup()" > Fermer </button></a>
+                                <a href="#"> <button type="button" class="btn btn-secondary action-button"  onclick="closepopup()" style="padding: 8px 29px;" > Fermer </button></a>
                             </div>
          `;
       }
       if (
         res.result.ajout &&
         res.result.ajout ==
-          'Vous avez choisi de préserver votre droit de rétractation sous un délai de 14 jours. Si vous vous souhaitez renoncer à ce droit et commencer votre formation dés maintenant, veuillez cliquer sur continuer.'
+          'Vous avez choisi de préserver votre droit de rétractation sous un délai de 14 jours. Si vous souhaitez renoncer à ce droit et commencer votre formation dés maintenant, veuillez cliquer sur continuer.'
       ) {
         document.getElementById('popupcontent').innerHTML = `
-                            <p style="margin-top: 12px;text-align: center;">                              
+                            <p style="margin-top: 12px;text-align: justify;">                              
                                  ${res.result.ajout}     
                             </p>
                             <div style="text-align:center">
-                                <button type="button" class="btn btn-secondary action-button" onclick="renonce()" > Continuer </button>
+                                <button type="button" class="btn btn-secondary action-button" id="Précédent" onclick="closepopup()" style="padding: 8px 29px;">Précédent</button>
+                                <button type="button" class="btn btn-secondary action-button shake" style="padding: 8px 29px;" onclick="renonce()" > Continuer </button>
                             </div>
+
          `;
       }
     }
@@ -435,6 +460,9 @@ function closepopup() {
                         
 
                         <div style="text-align:center">
+                        <a href="#">  
+                        <button type="button" class="btn btn-secondary action-button" id="Précédent"  style="padding: 8px 29px;">Fermer</button>
+                        </a>
                             <button type="button" class="btn btn-secondary action-button shake" id="continueBtn" onclick="verify_payment_method()">Continuer</button>
                         </div>`;
 }
@@ -465,9 +493,11 @@ function renonce() {
                                 Vous devez fermer cette fenêtre et selectionner votre date d'examen
                             </p>
                         </p> 
+                       
                           
-                             <div style="text-align:center">
-                            <button type="button" class="btn btn-secondary action-button shake" id="continueBtn" onclick="verify_payment_method()">Continuer</button>
-                        </div>
+                            <div style="text-align:center">
+                             <button type="button" class="btn btn-secondary action-button" id="Précédent"  style="padding: 8px 29px;" onclick="cpfAccepted()">Précédent</button>
+                             <button type="button" class="btn btn-secondary action-button shake" id="continueBtn" onclick="verify_payment_method()"style="padding: 8px 29px;">Continuer</button>
+                          </div>
          `;
 }

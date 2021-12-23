@@ -314,7 +314,7 @@ class partner(models.Model):
                     resp = requests.post(urluser, headers=headers, data=data_user)
                     print(data_user, 'user', resp.status_code)
                     respo = str(json.loads(resp.text))
-                    _logger.info('response addd  %s' % respo)
+                    _logger.info('response addd  %s' %respo)
                     if (resp.status_code == 200):
                         create = True
                 data_group = {}
@@ -636,7 +636,7 @@ class partner(models.Model):
                 if "residence" in dossier['attendee']['address']:
                     residence = dossier['attendee']['address']['residence']
                 num_voie = ""
-                if "number" in dossier['attendee']['address']:
+                if "number" in dossier['attendee']['address']: 
                     num_voie = dossier['attendee']['address']['number']
 
                 voie = ""
@@ -796,9 +796,36 @@ class partner(models.Model):
                         user.partner_id.funding_type = 'cpf'  # update field funding type to cpfprint('partner',partner.numero_cpf,user.login)
                         print(user.partner_id.date_cpf)
 
-                        if state == "inTraining":
+                        if state=="inTraining":
                             print('intraining', email)
-                            user.partner_id.statut_cpf = "in_training"
+                            user.partner_id.statut_cpf="in_training"
+                            user.partner_id.numero_cpf = externalId
+                            user.partner_id.date_cpf = lastupd
+                            user.partner_id.diplome=diplome
+                            if product_id:
+                                user.partner_id.id_edof = product_id.id_edof
+
+                        if state=="terminated":
+                            print('terminated', email)
+                            user.partner_id.statut_cpf="out_training"
+                            user.partner_id.numero_cpf = externalId
+                            user.partner_id.diplome = diplome
+                            user.partner_id.date_cpf = lastupd
+                            if product_id:
+                                user.partner_id.id_edof = product_id.id_edof
+                        if state=="serviceDoneDeclared":
+                            print('serviceDoneDeclared', email)
+                            user.partner_id.statut_cpf="service_declared"
+                            user.partner_id.numero_cpf = externalId
+                            user.partner_id.date_cpf = lastupd
+                            user.partner_id.diplome = diplome
+                            if product_id:
+                                user.partner_id.id_edof=product_id.id_edof
+
+                        if state=="serviceDoneValidated":
+                            print('serviceDoneValidated', email)
+
+                            user.partner_id.statut_cpf="service_validated"
                             user.partner_id.numero_cpf = externalId
                             user.partner_id.date_cpf = lastupd
                             user.partner_id.diplome = diplome
@@ -903,10 +930,9 @@ class partner(models.Model):
                                 user = self.env["res.users"].sudo().search(
                                     ['|', ("phone", "=", phone), ("phone", "=", phone.replace(' ', ''))], limit=1)
                         phone = phone_number[0:2]
-                        if str(phone) in ['06', '07'] and ' ' in str(
-                                tel):  # check if edof api send the number of client in this format (number_format: 07 xx xx xx)
+                        if str(phone) in ['06', '07'] and ' ' in str(tel): # check if edof api send the number of client in this format (number_format: 07 xx xx xx)
                             user = self.env["res.users"].sudo().search(
-                                ['|', ("phone", "=", str(tel)), str(tel).replace(' ', '')], limit=1)
+                                ['|',("phone", "=", str(tel)),str(tel).replace(' ', '')], limit=1)
                             if not user:
                                 phone_number = str(tel[1:])
                                 user = self.env["res.users"].sudo().search(
@@ -915,12 +941,10 @@ class partner(models.Model):
                     else:  # check if edof api send the number of client with+33
                         if ' ' not in str(tel):
                             phone = str(tel)
-                            phone = phone[0:3] + ' ' + phone[3:4] + ' ' + phone[4:6] + ' ' + phone[6:8] + ' ' + phone[
-                                                                                                                8:10] + ' ' + phone[
-                                                                                                                              10:]
+                            phone = phone[0:3] + ' ' + phone[3:4] + ' ' + phone[4:6] + ' ' + phone[6:8] + ' ' + phone[8:10] + ' ' + phone[10:]
                             user = self.env["res.users"].sudo().search(
                                 [("phone", "=", phone)], limit=1)
-                        if not user:
+                        if not user :
                             user = self.env["res.users"].sudo().search(
                                 [("phone", "=", str(phone_number).replace(' ', ''))], limit=1)
                             if not user:

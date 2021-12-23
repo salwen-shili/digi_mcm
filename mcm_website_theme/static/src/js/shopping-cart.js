@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', function () {
   var formation = document.getElementById('cpf_pm').value;
-  if (formation === 'Formation à distance VTC') {
+  if (formation === '[vtc] Formation à distance VTC') {
     var urlVtc = 'https://www.youtube.com/embed/19BiYQVwZFs';
     document.getElementById('cpf_video').setAttribute('src', urlVtc);
   } else {
@@ -39,6 +39,24 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 });
 
+//animation
+var colors = ['#000000', '#fdd105', '#959595', '#d5a376', '#ff1e00'];
+function frame() {
+  confetti({
+    particleCount: 2,
+    angle: 60,
+    spread: 55,
+    origin: { x: 0 },
+    colors: colors,
+  });
+  confetti({
+    particleCount: 2,
+    angle: 120,
+    spread: 55,
+    origin: { x: 1 },
+    colors: colors,
+  });
+}
 //xmlhttprequest
 const sendHttpRequest = (method, url, data) => {
   const promise = new Promise((resolve, reject) => {
@@ -67,32 +85,75 @@ const sendHttpRequest = (method, url, data) => {
   });
   return promise;
 };
-const sendData = (condition) => {
-  sendHttpRequest('POST', '/shop/payment/update_condition', {
-    params: {
-      condition: condition,
-    },
-  })
-    .then((responseData) => {})
-    .catch((err) => {});
-};
+const addUserPlateform = () => {
+  document.getElementById(
+    'popupcontent'
+  ).innerHTML = `<div style="text-align: -webkit-center;"><div class="spinner"></div></div>`;
+  sendHttpRequest('POST', '/shop/adduser_plateform', {}).then((res) => {
+    console.log('res.result.url');
 
+    if (res.result.url) {
+      if (res.result.url.includes('https://')) {
+        for (let index = 0; index < 200; index++) {
+          frame();
+        }
+        document.getElementById('popupcontent').innerHTML = `
+                            <p style="margin-top: 12px; text-align: center;">                              
+                                 ${res.result.ajout}
+                                 <br/>
+                                </p>
+                         <div style="text-align:center">
+                            <a href="${res.result.url}"> <button type="button" class="btn btn-secondary action-button shake" style="padding: 6px 34px;"> Continuer </button></a>
+                        </div>     
+         `;
+      }
+    } else {
+      if (res.result.ajout) {
+        //js-container-animation to animate
+        if (res.result.url) {
+          document.getElementById('popupcontent').innerHTML = `
+                            <p  style="margin-top: 12px;text-align: justify;">                              
+                                 ${res.result.ajout}     
+                            </p>
+                            <div style="text-align:center">
+                                <a href="#"> <button type="button" class="btn btn-secondary action-button" onclick="closepopup()"  style="padding: 8px 29px;" > Fermer </button></a>
+
+                            </div>
+         `;
+        }
+        document.getElementById('popupcontent').innerHTML = `
+                            <p style="margin-top: 12px;text-align: justify;">                              
+                                 ${res.result.ajout}     
+                            </p>
+                            <div style="text-align:center">
+                                <a href="#"> <button type="button" class="btn btn-secondary action-button"  onclick="closepopup()" style="padding: 8px 29px;" > Fermer </button></a>
+                            </div>
+         `;
+      }
+      if (
+        res.result.ajout &&
+        res.result.ajout ==
+          'Vous avez choisi de préserver votre droit de rétractation sous un délai de 14 jours. Si vous souhaitez renoncer à ce droit et commencer votre formation dés maintenant, veuillez cliquer sur continuer.'
+      ) {
+        document.getElementById('popupcontent').innerHTML = `
+                            <p style="margin-top: 12px;text-align: justify;">                              
+                                 ${res.result.ajout}     
+                            </p>
+                            <div style="text-align:center">
+                                <button type="button" class="btn btn-secondary action-button" id="Précédent" onclick="closepopup()" style="padding: 8px 29px;">Précédent</button>
+                                <button type="button" class="btn btn-secondary action-button shake" style="padding: 8px 29px;     margin-left: 11px;" onclick="renonce()" > Continuer </button>
+                            </div>
+
+         `;
+      }
+    }
+  });
+};
 const cpfAccepted = () => {
   sendHttpRequest('POST', '/shop/cpf_accepted', {})
     .then((res) => {
-      if (res.result.ajout) {
-        document.getElementById('popupcontent').innerHTML = `
-                            <p style="margin-top: 12px;    text-align: center;">                              
-                                 ${res.result.ajout}     
-                                </p>
-                          
-                        
-                         <div style="text-align:center">
-                            <a href="#"> <button type="button" class="btn btn-secondary action-button" onclick="closepopup()" > Fermer </button></a>
-                        </div>
-                   
-       
-         `;
+      if (res.result.state) {
+        addUserPlateform();
       }
     })
     .catch((err) => {
@@ -176,19 +237,22 @@ function verify_payment_method() {
   //here we are sure that user has selected the date
   //if condition de vente (checkbox_conditions) is checked - passer ou paiment ou mobiliser mon cpf
 
-  var conditionCheckbox = document.getElementById('checkbox_conditions');
-  var error = document.getElementById('error_conditions');
-  if (conditionCheckbox.checked == true) {
-    error.style.display = 'none';
-    condition = true;
-  } else {
-    error.style.display = 'inline-block';
+  var conditionCheckbox;
+  if (document.getElementById('checkbox_conditions')) {
+    conditionCheckbox = document.getElementById('checkbox_conditions');
+    var error = document.getElementById('error_conditions');
+    if (conditionCheckbox && conditionCheckbox.checked == true) {
+      error.style.display = 'none';
+      condition = true;
+    } else {
+      error.style.display = 'inline-block';
 
-    condition = false;
-  }
+      condition = false;
+    }
 
-  if (condition == false) {
-    return;
+    if (condition == false) {
+      return;
+    }
   }
 
   stripe_pm = document.getElementById('stripe_pm');
@@ -266,7 +330,7 @@ function verify_payment_method() {
 
         return;
       }
-      if (cpf_pm.value == 'Formation à distance VTC') {
+      if (cpf_pm.value == '[vtc] Formation à distance VTC') {
         switch (true) {
           case state.includes('https://www.moncompteformation.gouv.fr/'):
             msTracking(
@@ -279,6 +343,7 @@ function verify_payment_method() {
             break;
           case state == 'accepted':
             cpfAccepted();
+            console.log('cpf accepted');
             break;
 
           default:
@@ -379,25 +444,21 @@ function closepopup() {
                         </p>
                         <style>
                             .action-button {
-                            height: 40px;
-                            width: 185px;
-                            font-size: 15px;
-                            background-color: #152856;
-                            border: 1px solid hsl(240, 44%, 28%);
-                            color: #ffffff;
-                            font-weight: 600;
-                            border-radius: 5px;
-                            box-shadow: 0 2px 4px 0 rgba(87, 71, 81, 0.2);
-                            cursor: pointer;
-                            transition: all 2s ease-out;
-                            transition: all 0.2s ease-out;
+                            width: 153px;
+                            background: #262223;
+                            font-weight: bold;
+                            color: white;
+                            border: 0 none;
+                            border-radius: 0px;
+                            padding: 10px 5px;
                             }
+
                             .action-button:hover,
                             .action-button:focus {
-                            background-color: #ffffff;
-                            border: 1px solid hsl(240, 44%, 28%);
-                            color: #000000;
-                            transition: all 0.2s ease-out;
+                            background: #e6e6e6;
+                            font-weight: bold;
+                            color: black;
+                            cursor: pointer;       
                             }
 
                         </style>
@@ -483,4 +544,39 @@ function onchangeTextButton1() {
       }
     }
   }
+}
+
+function renonce() {
+  document.getElementById('popupcontent').innerHTML = `
+                                                     
+                                 <p id="notifMessage">
+
+                            <div class="input checkbox" style="width:90%">
+                                <input type="checkbox" id="checkbox_failures" style="white-space: nowrap;" class="text-xl-left border-0" t-att-checked="website_sale_order.failures" t-att-value="website_sale_order.failures">
+                                    <label for="failures" style="display:inline">
+                                        Je souhaite accéder à la formation dès maintenant sans attendre 14 jours. Je reconnais que
+                                        <span t-if="website_sale_order.company_id.id==2">DIGIMOOV</span>
+                                        <span t-if="website_sale_order.company_id.id==1">MCM Academy</span>
+                                        procédera à l'exécution immédiate de ma formation en ligne et à ce titre, je
+                            renonce expressément à exercer mon droit de rétractation conformément aux dispositions de
+                            l'article L.221-28 1° du code de la consommation.
+                                    </label>
+                                </input>
+                            </div>
+                            
+                            <p id="error_conditions" class="alert alert-warning" style="margin-left:0%;display:none;">
+                                Vous devez acceptez les conditions générales de ventes
+                            </p>
+
+                            <p id="error_choix_date_popup" class="alert alert-warning" style="margin-left:0%;display:none;">
+                                Vous devez fermer cette fenêtre et selectionner votre date d'examen
+                            </p>
+                        </p> 
+                       
+                          
+                            <div style="text-align:center">
+                             <button type="button" class="btn btn-secondary action-button" id="Précédent"  style="padding: 8px 29px;" onclick="cpfAccepted()">Précédent</button>
+                             <button type="button" class="btn btn-secondary action-button shake" id="continueBtn" onclick="verify_payment_method()"style="padding: 8px 29px  ;   margin-left: 11px;">Continuer</button>
+                          </div>
+         `;
 }

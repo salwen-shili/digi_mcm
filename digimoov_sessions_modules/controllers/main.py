@@ -274,7 +274,7 @@ class WebsiteSale(WebsiteSale):
             state =registration['state']
             
             if state=="validated":
-                statut='https://www.moncompteformation.gouv.fr/espace-prive/html/#/dossiers/v2/'+numero_cpf+'/detail/financement'
+                statut='https://www.moncompteformation.gouv.fr/espace-prive/html/#/dossiers'
             if state=="accepted":
                 statut="accepted"
             
@@ -331,7 +331,7 @@ class WebsiteSale(WebsiteSale):
     @http.route(['/shop/cpf_accepted'], type='json', auth="user", methods=['POST'], website=True)
     def accepted_cpf(self):
         partner = request.env.user.partner_id
-        ajout = ""
+
         if partner.numero_cpf:
             params_wedof = (
                 ('order', 'desc'),
@@ -468,7 +468,7 @@ class WebsiteSale(WebsiteSale):
                         })
 
             elif product_id and product_id.company_id.id == 1 and partner.id_edof and partner.date_examen_edof and partner.session_ville_id:
-                print('if product_id mcm', product_id, user.login)
+                print('if product_id mcm', product_id)
                 partner.id_edof = product_id.id_edof
                 module_id = request.env['mcmacademy.module'].sudo().search(
                     [('company_id', "=", 1), ('session_ville_id', "=", partner.session_ville_id.id),
@@ -534,7 +534,7 @@ class WebsiteSale(WebsiteSale):
                             'session_id': module_id.session_id.id,
                             'company_id': 1,
                         })
-                    ajout = 'Vous allez recevoir une invitation pour accéder à votre formation'
+
 
             else:
                 if 'digimoov' in str(training_id):
@@ -565,7 +565,7 @@ class WebsiteSale(WebsiteSale):
                     if not ticket:
                         new_ticket = request.env['helpdesk.ticket'].sudo().create(
                             vals)
-        return {'state':'finished'}
+        return {'state':'finished',}
 
     """ajouter l'apprenant sur 360 par api360"""
     @http.route(['/shop/adduser_plateform'], type='json', auth="user",methods=['POST'], website=True)
@@ -575,7 +575,7 @@ class WebsiteSale(WebsiteSale):
        
         user = request.env.user
         partner = user.partner_id
-        if partner.statut == "won" and partner.statut_cpf != "canceled" and user.company_id.id == 2:
+        if partner.statut == "won" and partner.statut_cpf != "canceled":
             params = (
             ('company', '56f5520e11d423f46884d593'),
             ('apiKey', 'cnkcbrhHKyfzKLx4zI7Ub2P5'),
@@ -635,9 +635,16 @@ class WebsiteSale(WebsiteSale):
                 if partner.mode_de_financement == "cpf":
                     if document_valide and partner.mcm_session_id.date_exam and (
                             partner.mcm_session_id.date_exam > date.today()):
-                        if partner.renounce_request:
-                            print("****************************************ajouterrrr ione")
-                            return self.ajouter_iOne(partner)
+                        """si apprenant de digimoov on l'ajoute sur 360"""
+                        if partner.renounce_request :
+                            """si apprenant de digimoov on l'ajoute sur 360"""
+                            if user.company_id.id == 2:
+                                print("****************************************ajouterrrr ione")
+                                return self.ajouter_iOne(partner)
+                            if user.company_id.id == 1:
+                                print("*******************MCM")
+                                return {'ajout':"Félicitations ! Vous pouvez dés maintenant accéder à notre plateforme de formation, Pour ce faire, veuillez cliquer sur continuer et créer votre compte client.",
+                                        'url':"https://formation.mcm-academy.fr/register?next=/dashboard"}
                         if not partner.renounce_request:
                             print("Renonce")
                             """créer ticket pour service client"""
@@ -653,7 +660,7 @@ class WebsiteSale(WebsiteSale):
                             if not ticket:
                                 new_ticket = request.env['helpdesk.ticket'].sudo().create(
                                     vals)
-                            return {'ajout': 'Vous avez choisi de préserver votre droit de rétractation sous un délai de 14 jours. Si vous vous souhaitez renoncer à ce droit et commencer votre formation dés maintenant, veuillez cliquer sur continuer.'}
+                            return {'ajout': 'Vous avez choisi de préserver votre droit de rétractation sous un délai de 14 jours. Si vous souhaitez renoncer à ce droit et commencer votre formation dés maintenant, veuillez cliquer sur continuer.'}
 
                         # if not partner.renounce_request and date_facture and (date_facture + timedelta(days=14)) <= today:
                         #     self.ajouter_iOne(partner)
@@ -673,7 +680,7 @@ class WebsiteSale(WebsiteSale):
                         if not ticket:
                             new_ticket = request.env['helpdesk.ticket'].sudo().create(
                                 vals)
-                        return {'ajout': 'Vous devez attendre la validation de vos documents pour commencer la formation'}
+                        return {'ajout': "Le chargement de vos documents a été effectué avec succès ! Notre service clientèle se chargera de les valider, et de vous contacter dans les 24h pour poursuivre l'inscription."}
         
     def ajouter_iOne(self, partner):
         
@@ -841,7 +848,7 @@ class WebsiteSale(WebsiteSale):
                                 respsession = requests.put(urlsession, headers=headers, data=data_group)
                                 print(existe, 'ajouter à son session', respsession.status_code)
                     "si créer envoyer le lien de la plateforme si non false"
-                    return {'ajout':'Félicitations ! Vous pouvez dés maintenant accéder à notre plateforme de formation 360learning, Pour ce faire, veuillez cliquer sur continuer, et rentrez vos identifiants de connexion que vous utilisez sur notre site web.','url': 'https://digimoov.360learning.com'}
+                    return {'ajout':'Félicitations ! Vous pouvez dés maintenant accéder à notre plateforme de formation, Pour ce faire, veuillez cliquer sur continuer, et rentrez vos identifiants de connexion que vous utilisez sur notre site web.','url': 'https://digimoov.360learning.com'}
                 if not (create):
                         if str(responce_api)=="{'error': 'unavailableEmails'}":
                             
@@ -859,7 +866,8 @@ class WebsiteSale(WebsiteSale):
                             if not ticket:
                                 new_ticket = request.env['helpdesk.ticket'].sudo().create(
                                     vals)
-                            return {'ajout': 'Email non valide.'}
+                            return {'ajout': "Une erreur est survenue lors de votre connexion. Vous serez contacté par notre service client dans les 24h pour faciliter votre accès à notre plateforme."}
+
 
                         else :
 
@@ -890,7 +898,7 @@ class WebsiteSale(WebsiteSale):
                             if not ticket_client:
                                 new_ticket_client = request.env['helpdesk.ticket'].sudo().create(
                                     vals_client)
-                            return {'ajout': 'Vous allez bientôt recevoir une invitation à la plateforme par courrier.'}
+                            return {'ajout': "Une erreur est survenue lors de votre connexion. Vous serez contacté par notre service client dans les 24h pour faciliter votre accès à notre plateforme."}
 
 
 
