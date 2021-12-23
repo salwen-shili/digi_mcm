@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <data>
-
         <template id="auth_signup_fields_extend" inherit_id="auth_signup.fields" name="Signup Fields Extend">
             <xpath expr="//div[@class='form-group field-name']" position="replace">
                 <div class="form-group field-name"></div>

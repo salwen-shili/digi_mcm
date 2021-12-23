@@ -636,7 +636,7 @@ class partner(models.Model):
                 if "residence" in dossier['attendee']['address']:
                     residence = dossier['attendee']['address']['residence']
                 num_voie = ""
-                if "number" in dossier['attendee']['address']:
+                if "number" in dossier['attendee']['address']: 
                     num_voie = dossier['attendee']['address']['number']
 
                 voie = ""

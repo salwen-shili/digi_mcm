@@ -33,6 +33,7 @@ class resPartner(models.Model):
     birth_city=fields.Char('Ville de naissance')
     numero_permis=fields.Char('Numéro de permis')
     numero_carte_identite = fields.Char("Numéro de Carte d'identité")
+    lastName = fields.Char()
     # choosed_product=fields.Integer('Produit choisi')
 
 

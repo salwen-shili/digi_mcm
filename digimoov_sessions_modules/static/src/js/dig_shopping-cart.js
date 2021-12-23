@@ -97,7 +97,6 @@ const addUserPlateform = () => {
                                 <a href="#"> <button type="button" class="btn btn-secondary action-button" onclick="closepopup()" > Fermer </button></a>
                             </div>
          `;
-          console.log('res.result.url', res.result.url);
         }
         document.getElementById('popupcontent').innerHTML = `
                             <p style="margin-top: 12px;text-align: center;">                              
@@ -151,7 +150,6 @@ const addUserPlateform = () => {
 const cpfAccepted = () => {
   sendHttpRequest('POST', '/shop/cpf_accepted', {})
     .then((res) => {
-      console.log('res.result.state', res.result.state);
       if (res.result.state) {
         addUserPlateform();
       }
@@ -315,7 +313,7 @@ function verify_payment_method() {
   if (cpf_pm) {
     // console.log(cpf_pm, 'cpf_pm');
     if (cpf_pm.checked == true) {
-      if (cpf_pm.value == '[avancee] Formation pro') {
+      if (cpf_pm.value == 'Formation pro') {
         switch (true) {
           case state.includes('https://www.moncompteformation.gouv.fr/'):
             msTracking(
@@ -346,7 +344,7 @@ function verify_payment_method() {
         return;
       }
       if (cpf_pm.value == 'Formation premium') {
-        switch (state) {
+        switch (true) {
           case state.includes('https://www.moncompteformation.gouv.fr/'):
             msTracking(
               'clic sur mobiliser mon cpf premuim status validé',
@@ -356,10 +354,8 @@ function verify_payment_method() {
             );
             break;
           case state == 'accepted':
-            document.getElementById('popupcontent').innerHTML = 'wait...';
             cpfAccepted();
-
-            document.getElementById('popupcontent').innerHTML = 'finished...';
+            console.log('cpf accepted');
             break;
 
           default:
