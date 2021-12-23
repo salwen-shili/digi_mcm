@@ -643,7 +643,7 @@ class WebsiteSale(WebsiteSale):
                                 return self.ajouter_iOne(partner)
                             if user.company_id.id == 1:
                                 print("*******************MCM")
-                                return {'ajout':"Félicitations ! Vous pouvez dés maintenant accéder à notre plateforme de formation 360learning, Pour ce faire, veuillez cliquer sur continuer et créer votre compte client.",
+                                return {'ajout':"Félicitations ! Vous pouvez dés maintenant accéder à notre plateforme de formation, Pour ce faire, veuillez cliquer sur continuer et créer votre compte client.",
                                         'url':"https://formation.mcm-academy.fr/register?next=/dashboard"}
                         if not partner.renounce_request:
                             print("Renonce")
