@@ -331,8 +331,7 @@ class WebsiteSale(WebsiteSale):
     @http.route(['/shop/cpf_accepted'], type='json', auth="user", methods=['POST'], website=True)
     def accepted_cpf(self):
         partner = request.env.user.partner_id
-        ajout = ""
-        url=""
+
         if partner.numero_cpf:
             params_wedof = (
                 ('order', 'desc'),
@@ -535,10 +534,7 @@ class WebsiteSale(WebsiteSale):
                             'session_id': module_id.session_id.id,
                             'company_id': 1,
                         })
-                    "pour mcm academy ,si accepté et facture créé on lui oriente vers la plateforme"
 
-                    ajout = "Félicitations ! Vous pouvez dés maintenant accéder à notre plateforme de formation 360learning, Pour ce faire, veuillez cliquer sur continuer et créer votre compte client."
-                    url="https://formation.mcm-academy.fr/register?next=/dashboard"
 
             else:
                 if 'digimoov' in str(training_id):
@@ -569,7 +565,7 @@ class WebsiteSale(WebsiteSale):
                     if not ticket:
                         new_ticket = request.env['helpdesk.ticket'].sudo().create(
                             vals)
-        return {'state':'finished', 'ajout':ajout , 'url': url}
+        return {'state':'finished',}
 
     """ajouter l'apprenant sur 360 par api360"""
     @http.route(['/shop/adduser_plateform'], type='json', auth="user",methods=['POST'], website=True)
@@ -579,7 +575,7 @@ class WebsiteSale(WebsiteSale):
        
         user = request.env.user
         partner = user.partner_id
-        if partner.statut == "won" and partner.statut_cpf != "canceled" and user.company_id.id == 2:
+        if partner.statut == "won" and partner.statut_cpf != "canceled":
             params = (
             ('company', '56f5520e11d423f46884d593'),
             ('apiKey', 'cnkcbrhHKyfzKLx4zI7Ub2P5'),
@@ -639,9 +635,16 @@ class WebsiteSale(WebsiteSale):
                 if partner.mode_de_financement == "cpf":
                     if document_valide and partner.mcm_session_id.date_exam and (
                             partner.mcm_session_id.date_exam > date.today()):
-                        if partner.renounce_request:
-                            print("****************************************ajouterrrr ione")
-                            return self.ajouter_iOne(partner)
+                        """si apprenant de digimoov on l'ajoute sur 360"""
+                        if partner.renounce_request :
+                            """si apprenant de digimoov on l'ajoute sur 360"""
+                            if user.company_id.id == 2:
+                                print("****************************************ajouterrrr ione")
+                                return self.ajouter_iOne(partner)
+                            if user.company_id.id == 1:
+                                print("*******************MCM")
+                                return {'ajout':"Félicitations ! Vous pouvez dés maintenant accéder à notre plateforme de formation 360learning, Pour ce faire, veuillez cliquer sur continuer et créer votre compte client.",
+                                        'url':"https://formation.mcm-academy.fr/register?next=/dashboard"}
                         if not partner.renounce_request:
                             print("Renonce")
                             """créer ticket pour service client"""
