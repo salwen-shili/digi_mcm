@@ -118,6 +118,34 @@
                     </section>
                     <br />
                     <br />
+                    <!-- Logos-->
+                    <section class="container pt40 pb32">
+
+                        <div class="row align-items-center justify-content-center">
+
+
+                            <div class=" col-md-3 col-sm-12 text-center mb-4 mb-md-0  ">
+                                <img class="img-fluid" style="width: 100px;" src="/mcm_website_theme/static/src/img/cpf_.png" />
+                            </div>
+
+                            <div class=" col-md-3 col-sm-12 text-center mb-4 mb-md-0 ">
+                                <img class="img-fluid" style="width: 188px;" src="/mcm_website_theme/static/src/img/qualiopi.png" />
+
+                            </div>
+                            <div class=" col-md-3 col-sm-12 text-center mb-4 mb-md-0 ">
+                                <img class="img-fluid" style="width: 110px;" src="/mcm_website_theme/static/src/img/Logo-vert-sur-fond-blanc-en-.jpg.jpg" />
+
+                            </div>
+                            <div class=" col-md-3 col-sm-12 text-center mb-4 mb-md-0 ">
+                                <img class="img-fluid" style="width: 100px;" src="/mcm_website_theme/static/src/img/cap.png" />
+
+                            </div>
+
+
+                        </div>
+                    </section>
+                    <!-- fin LOGOS-->
+
                     <section style="" class="bg-white-50">
                         <div id="products" class="features wow fadeInDown" style="background-color: #fff">
                             <div class="container-m">
@@ -947,11 +975,6 @@
                         </div>
 
 
-
-
-
-
-
                     </section>
                     <style>
                                 .row-res{
@@ -972,7 +995,7 @@
                             </div>
                             <div t-if="partenaire=='' or partenaire=='ubereats'">
                                 <a href="https://www.ubereats.com/fr">
-                                    <img data-src="/digimoov_website_templates/static/img/compressed/ubereats partenaire Digimoov.webp" data-srcsafari="digimoov_website_templates/static/img/Homepage/uber.png" class="img img-fluid" alt="Logo partenaire ubereats" title="Ubereats partenaire Digimoov" style="margin: 0 10px;margin-bottom: 23px;" src="/digimoov_website_templates/static/img/compressed/ubereats partenaire Digimoov.webp"/>
+                                    <img data-src="/digimoov_website_templates/static/img/compressed/ubereats partenaire Digimoov.webp" data-srcsafari="digimoov_website_templates/static/img/Homepage/uber.png" class="img img-fluid" alt="Logo partenaire ubereats" title="Ubereats partenaire Digimoov" style="margin: 0 10px;margin-bottom: 23px;" src="/digimoov_website_templates/static/img/compressed/ubereats partenaire Digimoov.webp" />
                                 </a>
                             </div>
                             <div t-if="partenaire=='' or partenaire=='deliveroo'">
