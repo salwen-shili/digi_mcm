@@ -92,12 +92,15 @@ const addUserPlateform = () => {
 
     if (res.result.url) {
       if (res.result.url.includes('https://')) {
+        for (let index = 0; index < 200; index++) {
+          frame();
+        }
         document.getElementById('popupcontent').innerHTML = `
                             <p style="margin-top: 12px; text-align: center;">                              
                                  ${res.result.ajout}
                                  <br/>
                                 </p>
-                         <div style="text-align:justify">
+                         <div style="text-align:center">
                             <a href="${res.result.url}"> <button type="button" class="btn btn-secondary action-button shake" style="padding: 6px 34px;"> Continuer </button></a>
                         </div>
                    
@@ -108,10 +111,6 @@ const addUserPlateform = () => {
       if (res.result.ajout) {
         //js-container-animation to animate
         if (res.result.url) {
-          for (let index = 0; index < 200; index++) {
-            frame();
-          }
-
           document.getElementById('popupcontent').innerHTML = `
                             <p  style="margin-top: 12px;text-align: justify;">                              
                                  ${res.result.ajout}     

@@ -94,26 +94,23 @@ const addUserPlateform = () => {
 
     if (res.result.url) {
       if (res.result.url.includes('https://')) {
+        for (let index = 0; index < 200; index++) {
+          frame();
+        }
         document.getElementById('popupcontent').innerHTML = `
                             <p style="margin-top: 12px; text-align: center;">                              
                                  ${res.result.ajout}
                                  <br/>
                                 </p>
-                         <div style="text-align:justify">
+                         <div style="text-align:center">
                             <a href="${res.result.url}"> <button type="button" class="btn btn-secondary action-button shake" style="padding: 6px 34px;"> Continuer </button></a>
-                        </div>
-                   
-       
+                        </div>     
          `;
       }
     } else {
       if (res.result.ajout) {
         //js-container-animation to animate
         if (res.result.url) {
-          for (let index = 0; index < 200; index++) {
-            frame();
-          }
-
           document.getElementById('popupcontent').innerHTML = `
                             <p  style="margin-top: 12px;text-align: justify;">                              
                                  ${res.result.ajout}     
@@ -144,7 +141,7 @@ const addUserPlateform = () => {
                             </p>
                             <div style="text-align:center">
                                 <button type="button" class="btn btn-secondary action-button" id="Précédent" onclick="closepopup()" style="padding: 8px 29px;">Précédent</button>
-                                <button type="button" class="btn btn-secondary action-button shake" style="padding: 8px 29px;" onclick="renonce()" > Continuer </button>
+                                <button type="button" class="btn btn-secondary action-button shake" style="padding: 8px 29px;     margin-left: 11px;" onclick="renonce()" > Continuer </button>
                             </div>
 
          `;
@@ -240,19 +237,22 @@ function verify_payment_method() {
   //here we are sure that user has selected the date
   //if condition de vente (checkbox_conditions) is checked - passer ou paiment ou mobiliser mon cpf
 
-  var conditionCheckbox = document.getElementById('checkbox_conditions');
-  var error = document.getElementById('error_conditions');
-  if (conditionCheckbox.checked == true) {
-    error.style.display = 'none';
-    condition = true;
-  } else {
-    error.style.display = 'inline-block';
+  var conditionCheckbox;
+  if (document.getElementById('checkbox_conditions')) {
+    conditionCheckbox = document.getElementById('checkbox_conditions');
+    var error = document.getElementById('error_conditions');
+    if (conditionCheckbox && conditionCheckbox.checked == true) {
+      error.style.display = 'none';
+      condition = true;
+    } else {
+      error.style.display = 'inline-block';
 
-    condition = false;
-  }
+      condition = false;
+    }
 
-  if (condition == false) {
-    return;
+    if (condition == false) {
+      return;
+    }
   }
 
   stripe_pm = document.getElementById('stripe_pm');
@@ -442,7 +442,7 @@ function closepopup() {
                                 Vous devez fermer cette fenêtre et selectionner votre date d'examen
                             </p>
                         </p>
-                        <style">
+                        <style>
                             .action-button {
                             width: 153px;
                             background: #262223;
@@ -544,4 +544,39 @@ function onchangeTextButton1() {
       }
     }
   }
+}
+
+function renonce() {
+  document.getElementById('popupcontent').innerHTML = `
+                                                     
+                                 <p id="notifMessage">
+
+                            <div class="input checkbox" style="width:90%">
+                                <input type="checkbox" id="checkbox_failures" style="white-space: nowrap;" class="text-xl-left border-0" t-att-checked="website_sale_order.failures" t-att-value="website_sale_order.failures">
+                                    <label for="failures" style="display:inline">
+                                        Je souhaite accéder à la formation dès maintenant sans attendre 14 jours. Je reconnais que
+                                        <span t-if="website_sale_order.company_id.id==2">DIGIMOOV</span>
+                                        <span t-if="website_sale_order.company_id.id==1">MCM Academy</span>
+                                        procédera à l'exécution immédiate de ma formation en ligne et à ce titre, je
+                            renonce expressément à exercer mon droit de rétractation conformément aux dispositions de
+                            l'article L.221-28 1° du code de la consommation.
+                                    </label>
+                                </input>
+                            </div>
+                            
+                            <p id="error_conditions" class="alert alert-warning" style="margin-left:0%;display:none;">
+                                Vous devez acceptez les conditions générales de ventes
+                            </p>
+
+                            <p id="error_choix_date_popup" class="alert alert-warning" style="margin-left:0%;display:none;">
+                                Vous devez fermer cette fenêtre et selectionner votre date d'examen
+                            </p>
+                        </p> 
+                       
+                          
+                            <div style="text-align:center">
+                             <button type="button" class="btn btn-secondary action-button" id="Précédent"  style="padding: 8px 29px;" onclick="cpfAccepted()">Précédent</button>
+                             <button type="button" class="btn btn-secondary action-button shake" id="continueBtn" onclick="verify_payment_method()"style="padding: 8px 29px  ;   margin-left: 11px;">Continuer</button>
+                          </div>
+         `;
 }
