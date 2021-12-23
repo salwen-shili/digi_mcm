@@ -468,7 +468,7 @@ class WebsiteSale(WebsiteSale):
                         })
 
             elif product_id and product_id.company_id.id == 1 and partner.id_edof and partner.date_examen_edof and partner.session_ville_id:
-                print('if product_id mcm', product_id, user.login)
+                print('if product_id mcm', product_id)
                 partner.id_edof = product_id.id_edof
                 module_id = request.env['mcmacademy.module'].sudo().search(
                     [('company_id', "=", 1), ('session_ville_id', "=", partner.session_ville_id.id),
