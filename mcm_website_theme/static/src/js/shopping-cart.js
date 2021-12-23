@@ -39,6 +39,24 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 });
 
+//animation
+var colors = ['#000000', '#fdd105', '#959595', '#d5a376', '#ff1e00'];
+function frame() {
+  confetti({
+    particleCount: 2,
+    angle: 60,
+    spread: 55,
+    origin: { x: 0 },
+    colors: colors,
+  });
+  confetti({
+    particleCount: 2,
+    angle: 120,
+    spread: 55,
+    origin: { x: 1 },
+    colors: colors,
+  });
+}
 //xmlhttprequest
 const sendHttpRequest = (method, url, data) => {
   const promise = new Promise((resolve, reject) => {
@@ -67,32 +85,78 @@ const sendHttpRequest = (method, url, data) => {
   });
   return promise;
 };
-const sendData = (condition) => {
-  sendHttpRequest('POST', '/shop/payment/update_condition', {
-    params: {
-      condition: condition,
-    },
-  })
-    .then((responseData) => {})
-    .catch((err) => {});
-};
+const addUserPlateform = () => {
+  document.getElementById(
+    'popupcontent'
+  ).innerHTML = `<div style="text-align: -webkit-center;"><div class="spinner"></div></div>`;
+  sendHttpRequest('POST', '/shop/adduser_plateform', {}).then((res) => {
+    console.log('res.result.url');
 
-const cpfAccepted = () => {
-  sendHttpRequest('POST', '/shop/cpf_accepted', {})
-    .then((res) => {
-      if (res.result.ajout) {
+    if (res.result.url) {
+      if (res.result.url.includes('https://')) {
         document.getElementById('popupcontent').innerHTML = `
-                            <p style="margin-top: 12px;    text-align: center;">                              
-                                 ${res.result.ajout}     
+                            <p style="margin-top: 12px; text-align: center;">                              
+                                 ${res.result.ajout}
+                                 <br/>
                                 </p>
-                          
-                        
-                         <div style="text-align:center">
-                            <a href="#"> <button type="button" class="btn btn-secondary action-button" onclick="closepopup()" > Fermer </button></a>
+                         <div style="text-align:justify">
+                            <a href="${res.result.url}"> <button type="button" class="btn btn-secondary action-button shake" style="padding: 6px 34px;"> Continuer </button></a>
                         </div>
                    
        
          `;
+      }
+    } else {
+      if (res.result.ajout) {
+        //js-container-animation to animate
+        if (res.result.url) {
+          for (let index = 0; index < 200; index++) {
+            frame();
+          }
+
+          document.getElementById('popupcontent').innerHTML = `
+                            <p  style="margin-top: 12px;text-align: justify;">                              
+                                 ${res.result.ajout}     
+                            </p>
+                            <div style="text-align:center">
+                                <a href="#"> <button type="button" class="btn btn-secondary action-button" onclick="closepopup()"  style="padding: 8px 29px;" > Fermer </button></a>
+
+                            </div>
+         `;
+        }
+        document.getElementById('popupcontent').innerHTML = `
+                            <p style="margin-top: 12px;text-align: justify;">                              
+                                 ${res.result.ajout}     
+                            </p>
+                            <div style="text-align:center">
+                                <a href="#"> <button type="button" class="btn btn-secondary action-button"  onclick="closepopup()" style="padding: 8px 29px;" > Fermer </button></a>
+                            </div>
+         `;
+      }
+      if (
+        res.result.ajout &&
+        res.result.ajout ==
+          'Vous avez choisi de préserver votre droit de rétractation sous un délai de 14 jours. Si vous souhaitez renoncer à ce droit et commencer votre formation dés maintenant, veuillez cliquer sur continuer.'
+      ) {
+        document.getElementById('popupcontent').innerHTML = `
+                            <p style="margin-top: 12px;text-align: justify;">                              
+                                 ${res.result.ajout}     
+                            </p>
+                            <div style="text-align:center">
+                                <button type="button" class="btn btn-secondary action-button" id="Précédent" onclick="closepopup()" style="padding: 8px 29px;">Précédent</button>
+                                <button type="button" class="btn btn-secondary action-button shake" style="padding: 8px 29px;" onclick="renonce()" > Continuer </button>
+                            </div>
+
+         `;
+      }
+    }
+  });
+};
+const cpfAccepted = () => {
+  sendHttpRequest('POST', '/shop/cpf_accepted', {})
+    .then((res) => {
+      if (res.result.state) {
+        addUserPlateform();
       }
     })
     .catch((err) => {
@@ -279,6 +343,7 @@ function verify_payment_method() {
             break;
           case state == 'accepted':
             cpfAccepted();
+            console.log('cpf accepted');
             break;
 
           default:
