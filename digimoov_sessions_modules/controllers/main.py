@@ -274,7 +274,7 @@ class WebsiteSale(WebsiteSale):
             state =registration['state']
             
             if state=="validated":
-                statut='https://www.moncompteformation.gouv.fr/espace-prive/html/#/dossiers/v2/'+numero_cpf+'/detail/financement'
+                statut='https://www.moncompteformation.gouv.fr/espace-prive/html/#/dossiers'
             if state=="accepted":
                 statut="accepted"
             
@@ -657,7 +657,7 @@ class WebsiteSale(WebsiteSale):
                             if not ticket:
                                 new_ticket = request.env['helpdesk.ticket'].sudo().create(
                                     vals)
-                            return {'ajout': 'Vous avez choisi de préserver votre droit de rétractation sous un délai de 14 jours. Si vous vous souhaitez renoncer à ce droit et commencer votre formation dés maintenant, veuillez cliquer sur continuer.'}
+                            return {'ajout': 'Vous avez choisi de préserver votre droit de rétractation sous un délai de 14 jours. Si vous souhaitez renoncer à ce droit et commencer votre formation dés maintenant, veuillez cliquer sur continuer.'}
 
                         # if not partner.renounce_request and date_facture and (date_facture + timedelta(days=14)) <= today:
                         #     self.ajouter_iOne(partner)
