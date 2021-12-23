@@ -339,7 +339,7 @@ function verify_payment_method() {
 
         return;
       }
-      if (cpf_pm.value == '[vtc] Formation à distance VTC') {
+      if (cpf_pm.value == 'Formation à distance VTC') {
         switch (true) {
           case state.includes('https://www.moncompteformation.gouv.fr/'):
             msTracking(
