@@ -442,27 +442,23 @@ function closepopup() {
                                 Vous devez fermer cette fenêtre et selectionner votre date d'examen
                             </p>
                         </p>
-                        <style>
+                        <style">
                             .action-button {
-                            height: 40px;
-                            width: 185px;
-                            font-size: 15px;
-                            background-color: #152856;
-                            border: 1px solid hsl(240, 44%, 28%);
-                            color: #ffffff;
-                            font-weight: 600;
-                            border-radius: 5px;
-                            box-shadow: 0 2px 4px 0 rgba(87, 71, 81, 0.2);
-                            cursor: pointer;
-                            transition: all 2s ease-out;
-                            transition: all 0.2s ease-out;
+                            width: 153px;
+                            background: #262223;
+                            font-weight: bold;
+                            color: white;
+                            border: 0 none;
+                            border-radius: 0px;
+                            padding: 10px 5px;
                             }
+
                             .action-button:hover,
                             .action-button:focus {
-                            background-color: #ffffff;
-                            border: 1px solid hsl(240, 44%, 28%);
-                            color: #000000;
-                            transition: all 0.2s ease-out;
+                            background: #e6e6e6;
+                            font-weight: bold;
+                            color: black;
+                            cursor: pointer;       
                             }
 
                         </style>
