@@ -40,6 +40,15 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 //animation
+const sendData = (condition) => {
+  sendHttpRequest('POST', '/shop/payment/update_condition', {
+    params: {
+      condition: condition,
+    },
+  })
+    .then((responseData) => {})
+    .catch((err) => {});
+};
 var colors = ['#000000', '#fdd105', '#959595', '#d5a376', '#ff1e00'];
 function frame() {
   confetti({
