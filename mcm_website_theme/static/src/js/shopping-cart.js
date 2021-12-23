@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', function () {
   var formation = document.getElementById('cpf_pm').value;
-  if (formation === '[vtc] Formation à distance VTC') {
+  if (formation === 'Formation à distance VTC') {
     var urlVtc = 'https://www.youtube.com/embed/19BiYQVwZFs';
     document.getElementById('cpf_video').setAttribute('src', urlVtc);
   } else {
