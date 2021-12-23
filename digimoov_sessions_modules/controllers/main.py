@@ -332,6 +332,7 @@ class WebsiteSale(WebsiteSale):
     def accepted_cpf(self):
         partner = request.env.user.partner_id
         ajout = ""
+        url=""
         if partner.numero_cpf:
             params_wedof = (
                 ('order', 'desc'),
@@ -534,7 +535,10 @@ class WebsiteSale(WebsiteSale):
                             'session_id': module_id.session_id.id,
                             'company_id': 1,
                         })
-                    ajout = 'Vous allez recevoir une invitation pour accéder à votre formation'
+                    "pour mcm academy ,si accepté et facture créé on lui oriente vers la plateforme"
+
+                    ajout = "Félicitations ! Vous pouvez dés maintenant accéder à notre plateforme de formation 360learning, Pour ce faire, veuillez cliquer sur continuer et créer votre compte client."
+                    url="https://formation.mcm-academy.fr/register?next=/dashboard"
 
             else:
                 if 'digimoov' in str(training_id):
@@ -565,7 +569,7 @@ class WebsiteSale(WebsiteSale):
                     if not ticket:
                         new_ticket = request.env['helpdesk.ticket'].sudo().create(
                             vals)
-        return {'state':'finished', 'ajout':ajout}
+        return {'state':'finished', 'ajout':ajout , 'url': url}
 
     """ajouter l'apprenant sur 360 par api360"""
     @http.route(['/shop/adduser_plateform'], type='json', auth="user",methods=['POST'], website=True)
@@ -673,7 +677,7 @@ class WebsiteSale(WebsiteSale):
                         if not ticket:
                             new_ticket = request.env['helpdesk.ticket'].sudo().create(
                                 vals)
-                        return {'ajout': 'Vous devez attendre la validation de vos documents pour commencer la formation'}
+                        return {'ajout': "Le chargement de vos documents a été effectué avec succès ! Notre service clientèle se chargera de les valider, et de vous contacter dans les 24h pour poursuivre l'inscription."}
         
     def ajouter_iOne(self, partner):
         
@@ -841,7 +845,7 @@ class WebsiteSale(WebsiteSale):
                                 respsession = requests.put(urlsession, headers=headers, data=data_group)
                                 print(existe, 'ajouter à son session', respsession.status_code)
                     "si créer envoyer le lien de la plateforme si non false"
-                    return {'ajout':'Félicitations ! Vous pouvez dés maintenant accéder à notre plateforme de formation 360learning, Pour ce faire, veuillez cliquer sur continuer, et rentrez vos identifiants de connexion que vous utilisez sur notre site web.','url': 'https://digimoov.360learning.com'}
+                    return {'ajout':'Félicitations ! Vous pouvez dés maintenant accéder à notre plateforme de formation, Pour ce faire, veuillez cliquer sur continuer, et rentrez vos identifiants de connexion que vous utilisez sur notre site web.','url': 'https://digimoov.360learning.com'}
                 if not (create):
                         if str(responce_api)=="{'error': 'unavailableEmails'}":
                             
@@ -859,7 +863,8 @@ class WebsiteSale(WebsiteSale):
                             if not ticket:
                                 new_ticket = request.env['helpdesk.ticket'].sudo().create(
                                     vals)
-                            return {'ajout': 'Email non valide.'}
+                            return {'ajout': "Une erreur est survenue lors de votre connexion. Vous serez contacté par notre service client dans les 24h pour faciliter votre accès à notre plateforme."}
+
 
                         else :
 
@@ -890,7 +895,7 @@ class WebsiteSale(WebsiteSale):
                             if not ticket_client:
                                 new_ticket_client = request.env['helpdesk.ticket'].sudo().create(
                                     vals_client)
-                            return {'ajout': 'Vous allez bientôt recevoir une invitation à la plateforme par courrier.'}
+                            return {'ajout': "Une erreur est survenue lors de votre connexion. Vous serez contacté par notre service client dans les 24h pour faciliter votre accès à notre plateforme."}
 
 
 
