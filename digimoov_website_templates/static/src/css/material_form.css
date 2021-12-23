@@ -80,6 +80,13 @@ p {
   top: 1rem;
   right: 1rem;
 }
+.error-input-field .outlined-text-field ~ .visibility {
+  display: initial;
+  color: #dc0000;
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+}
 .error-input-field .outlined-text-field ~ .helper-text {
   display: initial;
   color: #dc0000;
@@ -133,7 +140,7 @@ body {
   padding: 0;
   color: #646360;
   /* font-size: 16px; */
-  font-family: "Roboto", sans-serif;
+  font-family: 'Roboto', sans-serif;
   background-color: #eee;
 }
 
@@ -327,7 +334,7 @@ footer .footer-content span {
   color: #424242;
   font-size: 15px;
   font-weight: 600;
-  font-family: "Roboto", sans-serif;
+  font-family: 'Roboto', sans-serif;
   letter-spacing: 0.8px;
   text-align: center;
   text-decoration: none;
@@ -660,8 +667,8 @@ footer .footer-content span {
   color: rgba(var(--pure-material-onsurface-rgb, 0, 0, 0), 0.87);
   font-family: var(
     --pure-material-font,
-    "Roboto",
-    "Segoe UI",
+    'Roboto',
+    'Segoe UI',
     BlinkMacSystemFont,
     system-ui,
     -apple-system
@@ -702,7 +709,7 @@ footer .footer-content span {
 
 /* Box */
 .pure-material-checkbox > label::before {
-  content: "";
+  content: '';
   display: inline-block;
   box-sizing: border-box;
   margin: 3px 11px 3px 1px;
@@ -717,7 +724,7 @@ footer .footer-content span {
 
 /* Checkmark */
 .pure-material-checkbox > label::after {
-  content: "";
+  content: '';
   display: block;
   position: absolute;
   top: 3px;
