@@ -32,8 +32,8 @@ odoo.define('digimoov_website_templates.portal_cpf', function (require) {
   const addUserPlateform = () => {
     sendHttpRequest('POST', '/shop/adduser_plateform', {}).then((res) => {
       console.log('res.result.url');
-      if (res.result.url) {
-        if (res.result.url.includes('https://')) {
+      if (res.result) {
+        if (res.result.url && res.result.url.includes('https://')) {
           for (let index = 0; index < 200; index++) {
             frame();
           }
@@ -46,9 +46,31 @@ odoo.define('digimoov_website_templates.portal_cpf', function (require) {
                             <a onclick='window.open("${res.result.url}");return false;'> <button type="button" class="btn btn-secondary action-button shake" style="padding: 6px 34px;"> Continuer </button></a>
                         </div>     
          `;
+        } else {
+          if (res.result.ajout) {
+            //js-container-animation to animate
+            if (res.result.url) {
+              document.getElementById('popupcontent').innerHTML = `
+                            <p  style="margin-top: 12px;text-align: justify;">                              
+                                 ${res.result.ajout}     
+                            </p>
+                            <div style="text-align:center">
+                                <a href="#"> <button type="button" class="btn btn-secondary action-button" onclick="closepopup()"  style="padding: 8px 29px;" > Fermer </button></a>
+
+                            </div>
+         `;
+            }
+            document.getElementById('popupcontent').innerHTML = `
+                            <p style="margin-top: 12px;text-align: justify;">                              
+                                 ${res.result.ajout}     
+                            </p>
+                            <div style="text-align:center">
+                                <a href="#"> <button type="button" class="btn btn-secondary action-button"  onclick="closepopup()" style="padding: 8px 29px;" > Fermer </button></a>
+                            </div>
+         `;
+          }
         }
       }
-      return;
     });
   };
 
