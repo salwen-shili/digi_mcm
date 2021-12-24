@@ -40,9 +40,9 @@ class ResPartner(models.Model):
             base_url = partner.get_base_url()
             #Define base_url according to partner company
             if partner.company_id.id == 1:
-                base_url = "https://mcm-academy.odoo.com"
+                base_url = "https://www.mcm-academy.fr"
             elif partner.company_id.id == 2:
-                base_url = "https://digimoov.fr"
+                base_url = "https://www.digimoov.fr"
             # when required, make sure the partner has a valid signup token
             if self.env.context.get('signup_valid') and not partner.user_ids:
                 partner.sudo().signup_prepare()
