@@ -338,7 +338,7 @@ function verify_payment_method() {
   if (cpf_pm) {
     // console.log(cpf_pm, 'cpf_pm');
     if (cpf_pm.checked == true) {
-      if (cpf_pm.value == '[avancee] Formation pro') {
+      if (cpf_pm.value == 'Formation pro') {
         switch (true) {
           case state.includes('https://www.moncompteformation.gouv.fr/'):
             msTracking(

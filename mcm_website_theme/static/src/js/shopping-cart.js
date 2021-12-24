@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', function () {
   var formation = document.getElementById('cpf_pm').value;
-  if (formation === '[vtc] Formation à distance VTC') {
+  if (formation === 'Formation à distance VTC') {
     var urlVtc = 'https://www.youtube.com/embed/19BiYQVwZFs';
     document.getElementById('cpf_video').setAttribute('src', urlVtc);
   } else {
@@ -40,6 +40,15 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 //animation
+const sendData = (condition) => {
+  sendHttpRequest('POST', '/shop/payment/update_condition', {
+    params: {
+      condition: condition,
+    },
+  })
+    .then((responseData) => {})
+    .catch((err) => {});
+};
 var colors = ['#000000', '#fdd105', '#959595', '#d5a376', '#ff1e00'];
 function frame() {
   confetti({
@@ -330,7 +339,7 @@ function verify_payment_method() {
 
         return;
       }
-      if (cpf_pm.value == '[vtc] Formation à distance VTC') {
+      if (cpf_pm.value == 'Formation à distance VTC') {
         switch (true) {
           case state.includes('https://www.moncompteformation.gouv.fr/'):
             msTracking(
