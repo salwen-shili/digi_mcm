@@ -30,7 +30,6 @@ odoo.define('digimoov_website_templates.portal_cpf', function (require) {
     return promise;
   };
   const addUserPlateform = () => {
-    window.location.href = '#popup1';
     document.getElementById(
       'popupcontent'
     ).innerHTML = `<div style="text-align: -webkit-center;"><div class="spinner"></div></div>`;
@@ -118,6 +117,7 @@ odoo.define('digimoov_website_templates.portal_cpf', function (require) {
           demande_renonce: demande_renonce, // on envoi la valeur du demande du renonce comme paramètre avec l'url
         },
       }).then(function () {
+        window.location.href = '#popup1';
         return window.location.reload(); // dés que l'url termine l'éxécution on recharge la page de portal client
       });
     },
