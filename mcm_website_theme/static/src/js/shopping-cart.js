@@ -292,14 +292,16 @@ function verify_payment_method() {
               'Inscription CPF Formation à distance TAXI',
               '680'
             );
-            window.location.href = state;
+            window.open(state, '_blank');
+
             break;
           case state == 'accepted':
             cpfAccepted();
             break;
 
           default:
-            window.location.href = 'https://bit.ly/3DOiZG6';
+            window.open('https://bit.ly/3DOiZG6', '_blank');
+
             msTracking(
               'clic sur mobiliser mon cpf taxi',
               'CPF',
@@ -320,14 +322,15 @@ function verify_payment_method() {
               'Inscription CPF Formation à distance TAXI',
               '680'
             );
-            window.location.href = state;
+            window.open(state, '_blank');
+
             break;
           case state == 'accepted':
             cpfAccepted();
             break;
 
           default:
-            window.location.href = 'https://bit.ly/3tbAxXw';
+            window.open('https://bit.ly/3tbAxXw', '_blank');
             msTracking(
               'clic sur mobiliser mon cpf vmdtr',
               'CPF',
@@ -348,7 +351,8 @@ function verify_payment_method() {
               'Inscription CPF Formation à distance TAXI',
               '680'
             );
-            window.location.href = state;
+            window.open(state, '_blank');
+
             break;
           case state == 'accepted':
             cpfAccepted();
@@ -356,7 +360,7 @@ function verify_payment_method() {
             break;
 
           default:
-            window.location.href = 'https://bit.ly/3mZoImh';
+            window.open('https://bit.ly/3mZoImh', '_blank');
             msTracking(
               'clic sur mobiliser mon cpf vtc',
               'CPF',
@@ -419,7 +423,10 @@ function verify_checked() {
 
 function closepopup(msg) {
   console.log('closepopup');
-  if (msg) window.location.href = msg;
+  if (msg) {
+    window.location.href = msg;
+    return;
+  }
   document.getElementById('popupcontent').innerHTML = `
   <p id="notifMessage">
                             <div class="input checkbox" style="width:90%">
@@ -555,10 +562,8 @@ function onchangeTextButton1() {
 }
 
 function renonce() {
-  document.getElementById('popupcontent').innerHTML = `
-                                                     
-                                 <p id="notifMessage">
-
+  document.getElementById('popupcontent').innerHTML = `                 
+                            <p id="notifMessage">
                             <div class="input checkbox" style="width:90%">
                                 <input type="checkbox" id="checkbox_failures" style="white-space: nowrap;" class="text-xl-left border-0" t-att-checked="website_sale_order.failures" t-att-value="website_sale_order.failures">
                                     <label for="failures" style="display:inline">
