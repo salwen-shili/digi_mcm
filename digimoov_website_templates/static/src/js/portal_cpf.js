@@ -2,6 +2,26 @@ odoo.define('digimoov_website_templates.portal_cpf', function (require) {
   'use strict';
 
   var publicWidget = require('web.public.widget');
+  var colors = ['#000000', '#fdd105', '#959595', '#d5a376', '#ff1e00'];
+  function close() {
+    document.getElementById('popup1').style.opacity = 0;
+  }
+  function frame() {
+    confetti({
+      particleCount: 2,
+      angle: 60,
+      spread: 55,
+      origin: { x: 0 },
+      colors: colors,
+    });
+    confetti({
+      particleCount: 2,
+      angle: 120,
+      spread: 55,
+      origin: { x: 1 },
+      colors: colors,
+    });
+  }
   const sendHttpRequest = (method, url, data) => {
     const promise = new Promise((resolve, reject) => {
       const xhr = new XMLHttpRequest();
@@ -30,6 +50,7 @@ odoo.define('digimoov_website_templates.portal_cpf', function (require) {
     return promise;
   };
   const addUserPlateform = () => {
+    document.getElementById('popup1').style.opacity = 1;
     document.getElementById(
       'popupcontent'
     ).innerHTML = `<div style="text-align: -webkit-center;"><div class="spinner"></div></div>`;
@@ -55,7 +76,6 @@ odoo.define('digimoov_website_templates.portal_cpf', function (require) {
       return;
     });
   };
-  addUserPlateform();
 
   publicWidget.registry.RequestRenouncee = publicWidget.Widget.extend({
     selector: '.o_portal_my_home',
@@ -79,8 +99,8 @@ odoo.define('digimoov_website_templates.portal_cpf', function (require) {
           demande_renonce: demande_renonce, // on envoi la valeur du demande du renonce comme paramètre avec l'url
         },
       }).then(function () {
-        window.location.href = '#popup1';
-        return window.location.reload(); // dés que l'url termine l'éxécution on recharge la page de portal client
+        window.location.reload(); // dés que l'url termine l'éxécution on recharge la page de portal client
+        return addUserPlateform();
       });
     },
   });

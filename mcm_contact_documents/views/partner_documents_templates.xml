@@ -167,21 +167,16 @@
                     }
                     }
              </style>
-            <div id="popup1" class="overlay_popup  " style="position: fixed !important;">
+            <div id="popup1" class="overlay_popup " style="position: fixed !important;">
                 <div class="popup" style="top: 20%;z-index:999;">
                     <h2 class="text-left">
                         <i class="fa fa-info-circle" style="color: #152856;"></i>
                     </h2>
-                    <a class="close" href="#" onclick=" closepopup()">
+                    <a class="close" onclick="close()">
                         <i class="fa fa-times"></i>
                     </a>
                     <div class="content" id="popupcontent">
-                        <p id="notifMessage">
-                            <div style="text-align: -webkit-center;">
-                                <div class="spinner"></div>
-                            </div>
-                            `
-                        </p>
+                        <p id="notifMessage"></p>
                         <style t-if="request.website.id==2">
                             .action-button {
                             height: 40px;
@@ -226,10 +221,6 @@
                             }
 
                         </style>
-
-                        <div style="text-align:center">
-                            <button type="button" class="btn btn-secondary action-button shake" id="continueBtn" onclick="verify_payment_method()">Continuer</button>
-                        </div>
                     </div>
                 </div>
             </div>
