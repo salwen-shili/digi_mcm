@@ -176,7 +176,12 @@
                         <i class="fa fa-times"></i>
                     </a>
                     <div class="content" id="popupcontent">
-                        <p id="notifMessage"></p>
+                        <p id="notifMessage">
+                            <div style="text-align: -webkit-center;">
+                                <div class="spinner"></div>
+                            </div>
+                            `
+                        </p>
                         <style t-if="request.website.id==2">
                             .action-button {
                             height: 40px;

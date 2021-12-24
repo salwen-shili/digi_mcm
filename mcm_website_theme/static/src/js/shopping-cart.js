@@ -94,6 +94,7 @@ const sendHttpRequest = (method, url, data) => {
   });
   return promise;
 };
+//
 const addUserPlateform = () => {
   document.getElementById(
     'popupcontent'
