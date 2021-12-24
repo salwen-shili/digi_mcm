@@ -579,8 +579,7 @@ function renonce() {
                                 Vous devez fermer cette fenêtre et selectionner votre date d'examen
                             </p>
                         </p> 
-                       
-                          
+
                             <div style="text-align:center">
                              <button type="button" class="btn btn-secondary action-button" id="Précédent"  style="padding: 8px 29px;" onclick="cpfAccepted()">Précédent</button>
                              <button type="button" class="btn btn-secondary action-button shake" id="continueBtn" onclick="verify_payment_method()"style="padding: 8px 29px  ;   margin-left: 11px;">Continuer</button>
