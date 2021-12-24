@@ -54,7 +54,6 @@ odoo.define('digimoov_website_templates.portal_cpf', function (require) {
     ).innerHTML = `<div style="text-align: -webkit-center;"><div class="spinner"></div></div>`;
     sendHttpRequest('POST', '/shop/adduser_plateform', {}).then((res) => {
       console.log('res.result.url');
-
       if (res.result.url) {
         if (res.result.url.includes('https://')) {
           for (let index = 0; index < 200; index++) {
