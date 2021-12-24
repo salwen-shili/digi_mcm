@@ -527,6 +527,8 @@ class WebsiteSale(WebsiteSale):
                         so.action_cancel()
                         so.unlink()
                         partner.statut = 'won'
+                        """changer step à validé dans espace client """
+                        partner.step='finish'
                     """Créer un historique de ssession pour cet apprenant """
                     session = request.env['partner.sessions'].search([('client_id', '=', partner.id),
                                                                       ('session_id', '=', module_id.session_id.id)])
