@@ -346,7 +346,8 @@ function verify_payment_method() {
               'Inscription CPF pro',
               '680'
             );
-            window.location.href = state;
+
+            window.open(state, '_blank');
             break;
           case state == 'accepted':
             cpfAccepted();
@@ -356,7 +357,7 @@ function verify_payment_method() {
             break;
 
           default:
-            window.location.href = 'https://bit.ly/3nMlm2A';
+            window.open('https://bit.ly/3nMlm2A', '_blank');
             msTracking(
               'clic sur mobiliser mon cpf pro',
               'CPF',
@@ -383,7 +384,8 @@ function verify_payment_method() {
             break;
 
           default:
-            window.location.href = 'https://bit.ly/38IxvSa';
+            window.open('https://bit.ly/38IxvSa', '_blank');
+
             msTracking(
               'clic sur mobiliser mon cpf premium',
               'CPF',
@@ -400,7 +402,10 @@ function verify_payment_method() {
 
 function closepopup(msg) {
   console.log('closepopup');
-  if (msg) window.location.href = msg;
+  if (msg) {
+    window.location.href = msg;
+    return;
+  }
   document.getElementById('popupcontent').innerHTML = `
   <p id="notifMessage">
                             <div class="input checkbox" style="width:90%">
@@ -472,9 +477,7 @@ function renonce() {
                             <div class="input checkbox" style="width:90%">
                                 <input type="checkbox" id="checkbox_failures" style="white-space: nowrap;" class="text-xl-left border-0" t-att-checked="website_sale_order.failures" t-att-value="website_sale_order.failures">
                                     <label for="failures" style="display:inline">
-                                        Je souhaite accéder à la formation dès maintenant sans attendre 14 jours. Je reconnais que
-                                        <span t-if="website_sale_order.company_id.id==2">DIGIMOOV</span>
-                                        <span t-if="website_sale_order.company_id.id==1">MCM Academy</span>
+                                        Je souhaite accéder à la formation dès maintenant sans attendre 14 jours. Je reconnais que DIGIMOOV
                                         procédera à l'exécution immédiate de ma formation en ligne et à ce titre, je
                             renonce expressément à exercer mon droit de rétractation conformément aux dispositions de
                             l'article L.221-28 1° du code de la consommation.
