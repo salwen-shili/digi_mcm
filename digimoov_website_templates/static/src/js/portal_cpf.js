@@ -32,7 +32,6 @@ odoo.define('digimoov_website_templates.portal_cpf', function (require) {
   const addUserPlateform = () => {
     sendHttpRequest('POST', '/shop/adduser_plateform', {}).then((res) => {
       console.log('res.result.url');
-
       if (res.result.url) {
         if (res.result.url.includes('https://')) {
           for (let index = 0; index < 200; index++) {
