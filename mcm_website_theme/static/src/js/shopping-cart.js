@@ -159,6 +159,7 @@ const addUserPlateform = () => {
     }
   });
 };
+//cpf accepted
 const cpfAccepted = () => {
   sendHttpRequest('POST', '/shop/cpf_accepted', {})
     .then((res) => {

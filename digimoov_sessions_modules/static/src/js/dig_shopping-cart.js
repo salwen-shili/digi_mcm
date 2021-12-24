@@ -82,7 +82,7 @@ const sendData = (condition) => {
     .then((responseData) => {})
     .catch((err) => {});
 };
-//
+//adduserplateform
 const addUserPlateform = () => {
   document.getElementById(
     'popupcontent'

@@ -167,7 +167,8 @@
                     }
                     }
              </style>
-            <div id="popup1" class="overlay_popup  " style="position: fixed !important;">
+            <!-- popup1-->
+            <div id="popup1" class="overlay_popup " style="position: fixed !important;">
                 <div class="popup" style="top: 20%;z-index:999;">
                     <h2 class="text-left">
                         <i class="fa fa-info-circle" style="color: #152856;"></i>
