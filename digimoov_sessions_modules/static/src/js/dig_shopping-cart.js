@@ -140,8 +140,8 @@ const addUserPlateform = () => {
                                  ${res.result.ajout}     
                             </p>
                             <div style="text-align:center">
-                                <button type="button" class="btn btn-secondary action-button" id="non_renonce" onclick="closepopup("/my/home")" style="padding: 8px 29px;">Attendre 14 jours</button>
-                                <button type="button" class="btn btn-secondary action-button shake" style="padding: 8px 29px;" onclick="renonce()" > Continuer </button>
+                                <button type="button" class="btn btn-secondary action-button" id="non_renonce" style="padding: 7.5px 38.5px;" onclick="closepopup('/my/home')">Attendre 14 jours</button>
+                                <button type="button" class="btn btn-secondary action-button shake" style="padding: 7.5px 38.5px;" onclick="renonce()" > Continuer </button>
                             </div>
          `;
       }
@@ -400,6 +400,7 @@ function verify_payment_method() {
 
 function closepopup(msg) {
   console.log('closepopup');
+  if (msg) window.location.href = msg;
   document.getElementById('popupcontent').innerHTML = `
   <p id="notifMessage">
                             <div class="input checkbox" style="width:90%">
@@ -461,7 +462,6 @@ function closepopup(msg) {
                         </a>
                             <button type="button" class="btn btn-secondary action-button shake" id="continueBtn" onclick="verify_payment_method()">Continuer</button>
                         </div>`;
-  if (msg) window.location.href = msg;
 }
 
 function renonce() {
