@@ -73,7 +73,7 @@
                 </p>
 
                 <!-- state from backend-->
-                <input id="state" type="" t-att-value="state" />
+                <input id="state" type="hidden" t-att-value="state" />
 
             </div>
         </xpath>
