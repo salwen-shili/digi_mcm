@@ -31,7 +31,25 @@ odoo.define('digimoov_website_templates.portal_cpf', function (require) {
   };
   const addUserPlateform = () => {
     sendHttpRequest('POST', '/shop/adduser_plateform', {}).then((res) => {
-      console.log('res.result.url', res);
+      console.log('res.result.url');
+
+      if (res.result.url) {
+        if (res.result.url.includes('https://')) {
+          for (let index = 0; index < 200; index++) {
+            frame();
+          }
+          document.getElementById('popupcontent').innerHTML = `
+                            <p style="margin-top: 12px; text-align: center;">                              
+                                 ${res.result.ajout}
+                                 <br/>
+                                </p>
+                         <div style="text-align:center">
+                            <a onclick='window.open("${res.result.url}");return false;'> <button type="button" class="btn btn-secondary action-button shake" style="padding: 6px 34px;"> Continuer </button></a>
+                        </div>     
+         `;
+        }
+      }
+      return;
     });
   };
 
