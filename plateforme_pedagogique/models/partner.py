@@ -13,6 +13,7 @@ from odoo import models, fields, api
 from odoo.exceptions import ValidationError
 from unidecode import unidecode
 import logging
+import pyshorteners
 
 _logger = logging.getLogger(__name__)
 
@@ -984,6 +985,35 @@ class partner(models.Model):
                     })
                     user.company_id = 1
                     user.partner_id.company_id = 1
+                if user :
+                    phone = str(tel.replace(' ', ''))[-9:]
+                    phone = '+33' + ' ' + phone[0:1] + ' ' + phone[1:3] + ' ' + phone[3:5] + ' ' + phone[5:7] + ' ' + phone[7:] # convert the number in this format : +33 x xx xx xx xx
+                    url = str(user.signup_url) # get the signup_url
+                    short_url = pyshorteners.Shortener()
+                    short_url = short_url.tinyurl.short(url) # convert the signup_url to be short using pyshorteners library
+                    body = 'Chere(e) %s , Vous avez été invité par %s  à rejoindre le site : %s . Votre courriel de connection est: %s' %(user.partner_id.name,user.partner_id.company_id.name,short_url,user.partner_id.email) # content of sms
+                    sms = self.env['sms.sms'].sudo().create({
+                                'partner_id': user.partner_id.id,
+                                'number' : phone,
+                                'body' : str(body)
+                            }) # create sms 
+                    if (sms):
+                        sms.send() #send the sms 
+                        subtype_id = self.env['ir.model.data'].xmlid_to_res_id('mt_note')
+                        body = False
+                        if sms.state == 'error':
+                            body = "Le SMS suivant n'a pas pu être envoyé : %s " % (sms.body)
+                        elif sms.state == 'sent':
+                            body = "Le SMS suivant a été bien envoyé " % (sms.body)
+                        if body:
+                            message = self.env['mail.message'].sudo().create({
+                                'subject': 'Invitation de rejoindre le site par sms',
+                                'model': 'res.partner',
+                                'res_id': user.partner_id.id,
+                                'message_type': 'notification',
+                                'subtype_id': subtype_id,
+                                'body': body,
+                            }) # create note in client view 
         # user = request.env['res.users'].sudo().search([('login', "=", email)])
         if user:
             client = self.env['res.partner'].sudo().search(
