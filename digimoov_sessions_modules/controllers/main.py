@@ -27,6 +27,8 @@ class WebsiteSale(WebsiteSale):
         ['''/<string:product>/<string:partenaire>/shop/cart''', '''/<string:product>/shop/cart''', '''/shop/cart'''],
         type='http', auth="user", website=True, sitemap=False)
     def cart(self, access_token=None, product=None, revive='', partenaire=None, **post):
+        
+
         """
         Main cart management + abandoned cart revival
         access_token: Abandoned cart SO access token
@@ -569,10 +571,8 @@ class WebsiteSale(WebsiteSale):
 
     """ajouter l'apprenant sur 360 par api360"""
     @http.route(['/shop/adduser_plateform'], type='json', auth="user",methods=['POST'], website=True)
-    def add_partner_plateforme(self): 
-       
-        
-       
+    def add_partner_plateforme(self):
+
         user = request.env.user
         partner = user.partner_id
         if partner.statut == "won" and partner.statut_cpf != "canceled":
@@ -592,7 +592,7 @@ class WebsiteSale(WebsiteSale):
             print('get user', resp.status_code)
             if resp.status_code == 200:
                 
-                return {'ajout': 'Vous êtes déja sur la plateforme, veuillez cliquer sur continuer et entrez vos identifiants de connexion que vous utilisez sur notre site web.','url':'https://digimoov.360learning.com'}
+                return {'ajout': 'Vous êtes déja sur la plateforme,\nveuillez cliquer sur continuer et entrez vos identifiants de connexion que vous utilisez sur notre site web.','url':'https://digimoov.360learning.com'}
             else:
                 print('if parnter adddddddddd')
                 # chercher son contrat
@@ -643,7 +643,7 @@ class WebsiteSale(WebsiteSale):
                                 return self.ajouter_iOne(partner)
                             if user.company_id.id == 1:
                                 print("*******************MCM")
-                                return {'ajout':"Félicitations ! Vous pouvez dés maintenant accéder à notre plateforme de formation, Pour ce faire, veuillez cliquer sur continuer et créer votre compte client.",
+                                return {'ajout':"Félicitations! Vous pouvez dés maintenant accéder à notre plateforme de formation,\nPour ce faire, veuillez cliquer sur continuer et créer votre compte client.\nLes cours seront ajoutés dans les 24 heures",
                                         'url':"https://formation.mcm-academy.fr/register?next=/dashboard"}
                         if not partner.renounce_request:
                             print("Renonce")
@@ -848,7 +848,7 @@ class WebsiteSale(WebsiteSale):
                                 respsession = requests.put(urlsession, headers=headers, data=data_group)
                                 print(existe, 'ajouter à son session', respsession.status_code)
                     "si créer envoyer le lien de la plateforme si non false"
-                    return {'ajout':'Félicitations ! Vous pouvez dés maintenant accéder à notre plateforme de formation, Pour ce faire, veuillez cliquer sur continuer, et rentrez vos identifiants de connexion que vous utilisez sur notre site web.','url': 'https://digimoov.360learning.com'}
+                    return {'ajout':'Félicitations! Vous pouvez dés maintenant accéder à notre plateforme de formation,\nPour ce faire, veuillez cliquer sur continuer, et rentrez vos identifiants de connexion que vous utilisez sur notre site web.','url': 'https://digimoov.360learning.com'}
                 if not (create):
                         if str(responce_api)=="{'error': 'unavailableEmails'}":
                             
