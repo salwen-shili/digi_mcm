@@ -3,9 +3,7 @@ odoo.define('digimoov_website_templates.portal_cpf', function (require) {
 
   var publicWidget = require('web.public.widget');
   var colors = ['#000000', '#fdd105', '#959595', '#d5a376', '#ff1e00'];
-  function close() {
-    document.getElementById('popup1').style.opacity = 0;
-  }
+
   function frame() {
     confetti({
       particleCount: 2,
@@ -50,7 +48,7 @@ odoo.define('digimoov_website_templates.portal_cpf', function (require) {
     return promise;
   };
   const addUserPlateform = () => {
-    document.getElementById('popup1').style.opacity = 1;
+    window.location.href = '#popup1';
     document.getElementById(
       'popupcontent'
     ).innerHTML = `<div style="text-align: -webkit-center;"><div class="spinner"></div></div>`;
@@ -68,7 +66,7 @@ odoo.define('digimoov_website_templates.portal_cpf', function (require) {
                                  <br/>
                                 </p>
                          <div style="text-align:center">
-                            <a onclick='window.open("${res.result.url}");return false;'> <button type="button" class="btn btn-secondary action-button shake" style="padding: 6px 34px;"> Continuer </button></a>
+                            <a onclick='window.open("${res.result.url}");window.location.reload();return false;'> <button type="button" class="btn btn-secondary action-button shake" style="padding: 6px 34px;"> Continuer </button></a>
                         </div>     
          `;
         }
@@ -99,7 +97,7 @@ odoo.define('digimoov_website_templates.portal_cpf', function (require) {
           demande_renonce: demande_renonce, // on envoi la valeur du demande du renonce comme paramètre avec l'url
         },
       }).then(function () {
-        window.location.reload(); // dés que l'url termine l'éxécution on recharge la page de portal client
+        // dés que l'url termine l'éxécution on recharge la page de portal client
         return addUserPlateform();
       });
     },

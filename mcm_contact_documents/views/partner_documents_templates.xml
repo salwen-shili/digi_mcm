@@ -172,7 +172,7 @@
                     <h2 class="text-left">
                         <i class="fa fa-info-circle" style="color: #152856;"></i>
                     </h2>
-                    <a class="close" onclick="close()">
+                    <a class="close" href="#" onclick="">
                         <i class="fa fa-times"></i>
                     </a>
                     <div class="content" id="popupcontent">
