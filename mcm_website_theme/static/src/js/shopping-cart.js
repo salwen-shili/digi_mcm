@@ -149,8 +149,7 @@ const addUserPlateform = () => {
                                  ${res.result.ajout}     
                             </p>
                             <div style="text-align:center">
-                                <button type="button" class="btn btn-secondary action-button" id="Précédent" onclick="closepopup()" style="padding: 8px 29px;">Précédent</button>
-                                <button type="button" class="btn btn-secondary action-button shake" style="padding: 8px 29px;     margin-left: 11px;" onclick="renonce()" > Continuer </button>
+                                <button type="button" class="btn btn-secondary action-button" id="non_renonce" onclick="closepopup("/my/home")" style="padding: 8px 29px;">Attendre 14 jours</button>                                <button type="button" class="btn btn-secondary action-button shake" style="padding: 8px 29px;     margin-left: 11px;" onclick="renonce()" > Continuer </button>
                             </div>
 
          `;
@@ -417,16 +416,14 @@ function verify_checked() {
   }
 }
 
-function closepopup() {
+function closepopup(msg) {
   console.log('closepopup');
   document.getElementById('popupcontent').innerHTML = `
   <p id="notifMessage">
                             <div class="input checkbox" style="width:90%">
                                 <input type="checkbox" id="checkbox_failures" style="white-space: nowrap;" class="text-xl-left border-0" t-att-checked="website_sale_order.failures" t-att-value="website_sale_order.failures">
                                     <label for="failures" style="display:inline">
-                                        Je souhaite accéder à la formation dès maintenant sans attendre 14 jours. Je reconnais que
-                                        <span t-if="website_sale_order.company_id.id==2">DIGIMOOV</span>
-                                        <span t-if="website_sale_order.company_id.id==1">MCM Academy</span>
+                                        Je souhaite accéder à la formation dès maintenant sans attendre 14 jours. Je reconnais que MCM Academy
                                         procédera à l'exécution immédiate de ma formation en ligne et à ce titre, je
                             renonce expressément à exercer mon droit de rétractation conformément aux dispositions de
                             l'article L.221-28 1° du code de la consommation.
@@ -476,6 +473,7 @@ function closepopup() {
                         <div style="text-align:center">
                             <button type="button" class="btn btn-secondary action-button shake" id="continueBtn" onclick="verify_payment_method()">Continuer</button>
                         </div>`;
+  if (msg) window.location.href = msg;
 }
 
 //change button to mobiliser mon cpf or passer au paiment if cpf is checked or not
