@@ -1,3 +1,5 @@
+from datetime import date
+
 from odoo import api, fields, models
 import logging
 _logger = logging.getLogger(__name__)
@@ -13,12 +15,11 @@ class InheritResPartner(models.Model):
     resultat = fields.Char(readonly=True, store=True)
     date_exam = fields.Date(related="mcm_session_id.date_exam", string="Date d'examen")
 
-    @api.onchange('note_exam_id')
     def _get_last_presence_resultat_values(self):
         """ Function to get presence and resultat values of last session in tree partner view"""
-        for rec in self.env['res.partner'].sudo().search([]):
-            last_line = rec.env['info.examen'].sudo().search([('partner_id', "=", rec.id)], limit=1, order="id desc")
-            if len(rec.note_exam_id) > 0:
+        for rec in self.env['res.partner'].sudo().search([('create_date', '<', date.today()), ('mcm_session_id', '!=', None), ('id', '=', self.id)]):
+            last_line = rec.env['info.examen'].sudo().search([('partner_id', "=", rec.id), ('date_exam', '<', date.today())], limit=1, order="id desc")
+            if len(rec.note_exam_id):
                 _logger.info('-------Cron Partner presence and resultat------- %s', rec.note_exam_id.partner_id.display_name)
                 for line in last_line:
                     if line.presence == 'present':
@@ -64,4 +65,3 @@ class InheritResPartner(models.Model):
         if 'note_exam_id' in values:
             self._get_last_presence_resultat_values()
         return val
-
