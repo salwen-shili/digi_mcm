@@ -140,8 +140,8 @@ const addUserPlateform = () => {
                                  ${res.result.ajout}     
                             </p>
                             <div style="text-align:center">
-                                <button type="button" class="btn btn-secondary action-button" id="non_renonce" onclick="closepopup("/my/home")" style="padding: 8px 29px;">Attendre 14 jours</button>
-                                <button type="button" class="btn btn-secondary action-button shake" style="padding: 8px 29px;" onclick="renonce()" > Continuer </button>
+                                <button type="button" class="btn btn-secondary action-button" id="non_renonce" onclick="closepopup('/my/home')">Attendre 14 jours</button>
+                                <button type="button" class="btn btn-secondary action-button shake" onclick="renonce()" > Commencer dés maintenant </button>
                             </div>
 
          `;
