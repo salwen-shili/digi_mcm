@@ -10,7 +10,7 @@
                 <t t-else="">Document</t>
             </li>
             <li t-if="document" class="breadcrumb-item active">
-                <t t-esc="document.name"/>
+                <t t-esc="document.name" />
             </li>
         </xpath>
     </template>
@@ -56,28 +56,25 @@
                                 <br />
 
                                 <div class="mt-3" style="float: right" id="finished">
-                                    <a id ="button-continuer" href="#">
+                                    <a id="button-continuer" href="#">
                                         <button class="rkmd-btn btn-white ripple-effect ripple-yellow" type="submit" style="font-size: 11px;">
-                                            <i class="material-icons right">send</i>Continuer</button>
+                                            <i class="material-icons right">send</i>
+                                            Continuer
+                                        </button>
                                     </a>
                                 </div>
 
 
-
-
-
-                                <br/>
+                                <br />
 
 
                             </div>
                         </div>
 
 
-
                     </div>
                 </div>
                 <input id="step_value" t-att-value="user_id.partner_id.step" type="hidden" />
-
 
 
                 <!-- <input id="step_value2" value="finish" type="input"/> -->
@@ -97,8 +94,8 @@
         <xpath expr="//div[hasclass('o_portal_docs')]" position="inside">
             <t t-if="document_count" t-call="portal.portal_docs_entry">
                 <t t-set="title">Documents</t>
-                <t t-set="url" t-value="'/my/documents'"/>
-                <t t-set="count" t-value="document_count"/>
+                <t t-set="url" t-value="'/my/documents'" />
+                <t t-set="count" t-value="document_count" />
             </t>
         </xpath>
         <xpath expr="//div[@class='o_portal_docs list-group']" position="after">
@@ -133,22 +130,119 @@
                     </div>
                 </li>
             </ul> -->
+            <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.4.0/dist/confetti.browser.min.js"></script>
+            <style>
+                        .spinner {
+                    width: 8rem;
+                    height: 8rem;
+                    border-radius: 50%;
+                    background: conic-gradient(rgb(21 40 86 / 30%), #152856);
+                    position: relative;
+                    animation: spin 2.6s linear infinite;
+                    transform: translateZ(0);
+                    margin-block-end: 13px;
+                    }
 
+                    .spinner::after {
+                    background: #ffffff;
+                    width: 75%;
+                    height: 75%;
+                    border-radius: 50%;
+                    content: '';
+                    margin: auto;
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    bottom: 0;
+                    right: 0;
+                    }
 
+                    @keyframes spin {
+                    from {
+                        transform: rotate(0deg);
+                    }
+
+                    to {
+                        transform: rotate(360deg);
+                    }
+                    }
+             </style>
+            <div id="popup1" class="overlay_popup  " style="position: fixed !important;">
+                <div class="popup" style="top: 20%;z-index:999;">
+                    <h2 class="text-left">
+                        <i class="fa fa-info-circle" style="color: #152856;"></i>
+                    </h2>
+                    <a class="close" href="#" onclick=" closepopup()">
+                        <i class="fa fa-times"></i>
+                    </a>
+                    <div class="content" id="popupcontent">
+                        <p id="notifMessage"></p>
+                        <style t-if="request.website.id==2">
+                            .action-button {
+                            height: 40px;
+                            width: 185px;
+                            font-size: 15px;
+                            background-color: #152856;
+                            border: 1px solid hsl(240, 44%, 28%);
+                            color: #ffffff;
+                            font-weight: 600;
+                            border-radius: 5px;
+                            box-shadow: 0 2px 4px 0 rgba(87, 71, 81, 0.2);
+                            cursor: pointer;
+                            transition: all 2s ease-out;
+                            transition: all 0.2s ease-out;
+                            }
+                            .action-button:hover,
+                            .action-button:focus {
+                            background-color: #ffffff;
+                            border: 1px solid hsl(240, 44%, 28%);
+                            color: #000000;
+                            transition: all 0.2s ease-out;
+                            }
+
+                        </style>
+                        <style t-if="request.website.id==1">
+                            .action-button {
+                            width: 153px;
+                            background: #262223;
+                            font-weight: bold;
+                            color: white;
+                            border: 0 none;
+                            border-radius: 0px;
+                            padding: 10px 5px;
+                            }
+
+                            .action-button:hover,
+                            .action-button:focus {
+                            background: #e6e6e6;
+                            font-weight: bold;
+                            color: black;
+                            cursor: pointer;       
+                            }
+
+                        </style>
+
+                        <div style="text-align:center">
+                            <button type="button" class="btn btn-secondary action-button shake" id="continueBtn" onclick="verify_payment_method()">Continuer</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
             <div class="input checkbox renonce" id="request_renonce">
                 <h5 class="list-group-item" t-if="user_id.partner_id.renounce_request==True">
                     <span class="d-flex align-items-center justify-content-between">
                         Renonciation au droit de rétractation conformément aux dispositions de l'article L.221-28 1°
-                        <i class="fa fa-check-circle text-success" role="img" aria-label="Success" title="Success"/>
+                        <i class="fa fa-check-circle text-success" role="img" aria-label="Success" title="Success" />
                     </span>
                 </h5>
+
                 <div class="renonce" style="padding-top:24px;" t-if="user_id.partner_id.renounce_request==False">
                     <input type="checkbox" id="renonce_request_box" name="renonce" t-att-checked="user_id.partner_id.renounce_request" style="white-space: nowrap;width:20px;height:14px;" class="text-xl-left border-0">
                         <label for="renonce" style="display:inline;color:#202647;font-weight:bold;">
                             Je souhaite accéder à la formation dès maintenant sans attendre 14 jours. Je reconnais que
-                            <span t-esc="user_id.company_id.name"/>
- procédera à l'exécution immédiate de ma formation en ligne et à ce titre, je
+                            <span t-esc="user_id.company_id.name" />
+                            procédera à l'exécution immédiate de ma formation en ligne et à ce titre, je
                             renonce expressément à exercer mon droit de rétractation conformément aux dispositions de
                             l'article L.221-28 1° du code de la consommation.
                         </label>
@@ -161,22 +255,24 @@
     </template>
     <template id="portal_my_documents" name="Mes Documents">
         <t t-call="portal.portal_layout">
-            <t t-set="breadcrumbs_searchbar" t-value="True"/>
+            <t t-set="breadcrumbs_searchbar" t-value="True" />
             <form method="POST" t-attf-action="/charger_mes_documents" t-if="website.id==1">
-                <h3>Documents
-                    <t t-call="portal.portal_searchbar"/>
+                <h3>
+                    Documents
+                    <t t-call="portal.portal_searchbar" />
                     <button name="create_documents" type="action" class="btn btn-primary" groups="base.group_portal" style="float: right; margin-right: 5px;">Charger mes documents
                     </button>
                 </h3>
-                <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()" />
             </form>
             <form method="POST" t-attf-action="/charger_mes_documents" t-if="website.id==2">
-                <h3>Documents
-                    <t t-call="portal.portal_searchbar"/>
+                <h3>
+                    Documents
+                    <t t-call="portal.portal_searchbar" />
                     <button name="create_documents" type="action" class="btn btn-primary" groups="base.group_portal" style="float: right; margin-right: 5px;">Charger mes documents
                     </button>
                 </h3>
-                <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()" />
             </form>
             <t t-if="not documents">
                 <p>Il n'y a pas de documents dans votre compte.</p>
@@ -194,7 +290,7 @@
                             <tr>
                                 <td>
                                     <a t-attf-href="/my/documents">
-                                        <t t-esc="document.name"/>
+                                        <t t-esc="document.name" />
                                     </a>
                                 </td>
                                 <td>
@@ -228,7 +324,7 @@
                     </table>
                 </div>
                 <div t-if="pager" class="o_portal_pager text-center">
-                    <t t-call="portal.pager"/>
+                    <t t-call="portal.pager" />
                 </div>
             </div>
         </t>
@@ -238,7 +334,7 @@
             <div class="row mt16 o_portal_sale_sidebar">
                 <!-- Sidebar -->
                 <t t-call="portal.portal_record_sidebar">
-                    <t t-set="classes" t-value="'col-lg-auto d-print-none'"/>
+                    <t t-set="classes" t-value="'col-lg-auto d-print-none'" />
 
                     <t t-set="title">
                         Document décharge
@@ -247,7 +343,7 @@
                         <ul class="list-group list-group-flush flex-wrap flex-row flex-lg-column">
                             <li class="list-group-item flex-grow-1">
                                 <a role="button" class="btn btn-primary btn-block mb8" data-toggle="modal" data-target="#modalaccept" href="#">
-                                    <i class="fa fa-check"/>
+                                    <i class="fa fa-check" />
                                     <t> Accepter &amp; signer </t>
                                 </a>
                             </li>
@@ -259,7 +355,7 @@
                     <div role="dialog" class="modal fade" id="modalaccept">
                         <div class="modal-dialog">
                             <form id="accept" method="POST" class="js_accept_json modal-content js_website_submit_form">
-                                <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                                <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()" />
                                 <header class="modal-header">
                                     <h4 class="modal-title">Valider décharge</h4>
                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">X</button>
@@ -280,8 +376,8 @@
                                         </ul>
                                     </p>
                                     <t t-call="portal.signature_form">
-                                        <t t-set="call_url" t-value="'/my/cerfa/accept'"/>
-                                        <t t-set="default_name" t-value="CERFA"/>
+                                        <t t-set="call_url" t-value="'/my/cerfa/accept'" />
+                                        <t t-set="default_name" t-value="CERFA" />
                                     </t>
                                 </main>
                             </form>
