@@ -29,7 +29,7 @@ odoo.define('digimoov_website_templates.portal_cpf', function (require) {
     });
     return promise;
   };
-  const addUserPlateform = () => {
+  () => {
     sendHttpRequest('POST', '/shop/adduser_plateform', {}).then((res) => {
       console.log('res.result.url', res);
     });
@@ -49,7 +49,6 @@ odoo.define('digimoov_website_templates.portal_cpf', function (require) {
         if (renonce.checked == true) {
           // on vérifie si le client a cocher la demande de renonce
           demande_renonce = true; // on change le variable demande renonce à vrai pour l'envoyer via url en python pour mettre à jour la fiche de client
-          addUserPlateform();
         }
       }
       this._rpc({
