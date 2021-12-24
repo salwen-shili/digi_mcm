@@ -143,7 +143,6 @@ const addUserPlateform = () => {
                                 <button type="button" class="btn btn-secondary action-button" id="non_renonce" onclick="closepopup('/my/home')">Attendre 14 jours</button>
                                 <button type="button" class="btn btn-secondary action-button shake" onclick="renonce()" > Commencer dés maintenant </button>
                             </div>
-
          `;
       }
     }
