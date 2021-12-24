@@ -66,7 +66,7 @@ odoo.define('digimoov_website_templates.portal_cpf', function (require) {
                                  <br/>
                                 </p>
                          <div style="text-align:center">
-                            <a onclick='window.open("${res.result.url}");window.location.reload();return false;'> <button type="button" class="btn btn-secondary action-button shake" style="padding: 6px 34px;"> Continuer </button></a>
+                            <a onclick='window.open("${res.result.url}");window.location.href = '#';;window.location.reload();return false;'> <button type="button" class="btn btn-secondary action-button shake" style="padding: 6px 34px;"> Continuer </button></a>
                         </div>     
          `;
         }
