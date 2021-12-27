@@ -9,6 +9,7 @@
       </style>
 
       <t t-if="request.website.is_public_user()==True">
+
         <script type="text/javascript" src="/digimoov_website_templates/static/src/js/intercom-bot.js" />
         <script type="text/javascript" src="/digimoov_website_templates/static/src/js/intercom-bot-config.js" />
         <!-- Début de widget de badge Calendly -->
@@ -28,6 +29,7 @@
         <!-- Fin de widget de badge Calendly -->
       </t>
       <t t-if="request.website.is_public_user()==False">
+
         <input type="hidden" name="intercom_user_name_connected" id="intercom_user_name_connected" t-att-value="request.website.get_user_name_logged()" />
         <input type="hidden" name="intercom_user_email_connected" id="intercom_user_email_connected" t-att-value="request.website.get_user_email_logged()" />
         <script type="text/javascript" src="/digimoov_website_templates/static/src/js/intercom-user.js" />
@@ -39,28 +41,11 @@
         <!-- Début de widget de badge Calendly -->
         <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet" />
         <script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async="async"></script>
-        <script type="text/javascript">
-          window.onload = function () {
-            var user_name = document.getElementById(
-              'user_name_connected'
-            ).value;
-            var user_email = document.getElementById(
-              'user_email_connected'
-            ).value;
-            Calendly.initBadgeWidget({
-              url: 'https://calendly.com/digimoov/attestation-de-capacite-marchandise',
-              prefill: {
-                name: user_name,
-                email: user_email,
-              },
-              text: 'Rendez-vous par téléphone',
-              color: '#724c9f',
-              textColor: '#ffffff',
-              branding: false,
-            });
-          };
-        </script>
+        <script type="text/javascript" src="/digimoov_website_templates/static/src/js/calendly.js"></script>
         <!-- Fin de widget de badge Calendly -->
+        <script>
+          console.log("calendly charged");
+        </script>
       </t>
       <style>
         @import url('//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css');
@@ -250,8 +235,7 @@
               <div class="footer-area">
                 <div class="footer-head">
                   <h3>
-                    <font style="color: rgb(255, 255, 255); font-size: 18px">Bon à savoir</font
-                    >
+                    <font style="color: rgb(255, 255, 255); font-size: 18px">Bon à savoir</font>
                   </h3>
                   <h3>
                     <font style="
@@ -273,7 +257,8 @@
                   </h3>
                   <h3>
                     <font style="font-size: 14px; font-weight: normal">
-                      <a href="/blog/digimoov-3/post/a-quoi-sert-l-attestation-de-capacite-en-transport-leger-3" data-original-title="" title="" aria-describedby="tooltip65497" style="color: #fff">À quoi sert l'attestation de capacité en transport
+                      <a href="/blog/digimoov-3/post/a-quoi-sert-l-attestation-de-capacite-en-transport-leger-3" data-original-title="" title="" aria-describedby="tooltip65497" style="color: #fff">
+                        À quoi sert l'attestation de capacité en transport
                         léger ?
                         <br />
                       </a>
@@ -308,8 +293,8 @@
                     <div style="text-align: left">
                       <span style="font-size: 0.875rem">&amp;nbsp;</span>
                       <font style="color: rgb(255, 255, 255); text-align: left">
-                        <a href="tel:+33 9 86 87 88 66" data-original-title="" title="" aria-describedby="tooltip757473">+33 9 86 87 88 66</a
-                        >&amp;nbsp;
+                        <a href="tel:+33 9 86 87 88 66" data-original-title="" title="" aria-describedby="tooltip757473">+33 9 86 87 88 66</a>
+                        &amp;nbsp;
                       </font>
                     </div>
                   </li>
@@ -326,8 +311,8 @@
                     <span class="fa fa-info-circle" data-original-title="" title="" aria-describedby="tooltip590995" style="color: rgb(255, 255, 255)" />
                     <font style="color: white; text-align: left">
                       <a href="/contact" data-original-title="" title="" aria-describedby="tooltip754257">
-                        &amp;nbsp;</a
-                      >Digimoov est un nom commercial de la société MCM Academy.
+                        &amp;nbsp;</a>
+                      Digimoov est un nom commercial de la société MCM Academy.
                       Numéro d’agrément : DRIEAT IDF N°2019-0110
                     </font>
                   </li>
@@ -343,8 +328,7 @@
                   <ul class="footer-links">
                     <li>
                       <h3>
-                        <a href="/politique-de-confidentialite">Politique de Confidentialité</a
-                        >
+                        <a href="/politique-de-confidentialite">Politique de Confidentialité</a>
                       </h3>
                       <h3>
                         <br />
