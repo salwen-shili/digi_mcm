@@ -590,7 +590,7 @@ class WebsiteSale(WebsiteSale):
             headers["Content-Type"] = "application/json"
 
             """Vérifier la presence d'apprenant sur 360 """
-            url_user = 'https://app.360learning.com/api/v1/users/' + partner.email + '?company=' + company_id + '&apiKey=' + api_key
+            url_user = 'https://staging.360learning-dev.com/api/v1/users/' + partner.email + '?company=' + company_id + '&apiKey=' + api_key
             resp = requests.get(url_user, headers=headers)
             """s'il est présent on lui envoie le lien pour se connecter si non on lui ajoute """
             print('get user', resp.status_code)
