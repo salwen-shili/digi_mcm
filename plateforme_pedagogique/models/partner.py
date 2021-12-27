@@ -646,7 +646,7 @@ class partner(models.Model):
                 nom_voie = ""
                 if "roadName" in dossier['attendee']['address']:
                     nom_voie = dossier['attendee']['address']['roadName']
-                street = num_voie + ' ' + voie + ' ' + nom_voie
+                street = str(num_voie) + ' ' + str(voie) + ' ' + str(nom_voie)
                 if "phoneNumber" in dossier['attendee']:
                     tel = dossier['attendee']['phoneNumber']
                 else:
