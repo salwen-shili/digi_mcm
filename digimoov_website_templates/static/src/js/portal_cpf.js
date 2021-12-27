@@ -2,6 +2,24 @@ odoo.define('digimoov_website_templates.portal_cpf', function (require) {
   'use strict';
 
   var publicWidget = require('web.public.widget');
+  var colors = ['#000000', '#fdd105', '#959595', '#d5a376', '#ff1e00'];
+
+  function frame() {
+    confetti({
+      particleCount: 2,
+      angle: 60,
+      spread: 55,
+      origin: { x: 0 },
+      colors: colors,
+    });
+    confetti({
+      particleCount: 2,
+      angle: 120,
+      spread: 55,
+      origin: { x: 1 },
+      colors: colors,
+    });
+  }
   const sendHttpRequest = (method, url, data) => {
     const promise = new Promise((resolve, reject) => {
       const xhr = new XMLHttpRequest();
@@ -30,6 +48,10 @@ odoo.define('digimoov_website_templates.portal_cpf', function (require) {
     return promise;
   };
   const addUserPlateform = () => {
+    window.location.href = '#popup1';
+    document.getElementById(
+      'popupcontent'
+    ).innerHTML = `<div style="text-align: -webkit-center;"><div class="spinner"></div></div>`;
     sendHttpRequest('POST', '/shop/adduser_plateform', {}).then((res) => {
       console.log('res.result.url');
       if (res.result) {
@@ -43,7 +65,11 @@ odoo.define('digimoov_website_templates.portal_cpf', function (require) {
                                  <br/>
                                 </p>
                          <div style="text-align:center">
-                            <a onclick='window.open("${res.result.url}");return false;'> <button type="button" class="btn btn-secondary action-button shake" style="padding: 6px 34px;"> Continuer </button></a>
+                            <a onclick="
+                              window.open('${res.result.url}');
+                              window.location.href = '#';
+                              window.location.reload();
+                              return false;"> <button type="button" class="btn btn-secondary action-button shake" style="padding: 6px 34px;"> Continuer </button></a>
                         </div>     
          `;
         } else {
@@ -70,6 +96,29 @@ odoo.define('digimoov_website_templates.portal_cpf', function (require) {
          `;
           }
         }
+      } else {
+        if (res.result.ajout) {
+          //js-container-animation to animate
+          if (res.result.url) {
+            document.getElementById('popupcontent').innerHTML = `
+                            <p  style="margin-top: 12px;text-align: justify;">                              
+                                 ${res.result.ajout}     
+                            </p>
+                            <div style="text-align:center">
+                                <a href="#"> <button type="button" class="btn btn-secondary action-button" onclick="closepopup()"  style="padding: 8px 29px;" > Fermer </button></a>
+
+                            </div>
+         `;
+          }
+          document.getElementById('popupcontent').innerHTML = `
+                            <p style="margin-top: 12px;text-align: justify;">                              
+                                 ${res.result.ajout}     
+                            </p>
+                            <div style="text-align:center">
+                                <a href="#"> <button type="button" class="btn btn-secondary action-button"  onclick="closepopup()" style="padding: 8px 29px;" > Fermer </button></a>
+                            </div>
+         `;
+        }
       }
     });
   };
@@ -88,7 +137,6 @@ odoo.define('digimoov_website_templates.portal_cpf', function (require) {
         if (renonce.checked == true) {
           // on vérifie si le client a cocher la demande de renonce
           demande_renonce = true; // on change le variable demande renonce à vrai pour l'envoyer via url en python pour mettre à jour la fiche de client
-          addUserPlateform();
         }
       }
       this._rpc({
@@ -97,7 +145,8 @@ odoo.define('digimoov_website_templates.portal_cpf', function (require) {
           demande_renonce: demande_renonce, // on envoi la valeur du demande du renonce comme paramètre avec l'url
         },
       }).then(function () {
-        return window.location.reload(); // dés que l'url termine l'éxécution on recharge la page de portal client
+        // dés que l'url termine l'éxécution on recharge la page de portal client
+        return addUserPlateform();
       });
     },
   });
