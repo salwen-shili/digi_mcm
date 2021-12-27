@@ -996,24 +996,25 @@ class partner(models.Model):
                                 'partner_id': user.partner_id.id,
                                 'number' : phone,
                                 'body' : str(body)
-                            }) # create sms 
+                            }) # create sms
+                    sms_body_contenu = str(sms.body)
                     if (sms):
-                        sms.send() #send the sms 
-                        # subtype_id = self.env['ir.model.data'].xmlid_to_res_id('mt_note')
-                        # body = False
-                        # if sms.state == 'error':
-                        #     body = "Le SMS suivant n'a pas pu être envoyé : %s " % (sms.body)
-                        # elif sms.state == 'sent':
-                        #     body = "Le SMS suivant a été bien envoyé " % (sms.body)
-                        # if body:
-                        #     message = self.env['mail.message'].sudo().create({
-                        #         'subject': 'Invitation de rejoindre le site par sms',
-                        #         'model': 'res.partner',
-                        #         'res_id': user.partner_id.id,
-                        #         'message_type': 'notification',
-                        #         'subtype_id': subtype_id,
-                        #         'body': body,
-                        #     }) # create note in client view
+                        sms.send() #send the sms
+                        subtype_id = self.env['ir.model.data'].xmlid_to_res_id('mt_note')
+                        body = False
+                        if sms.state == 'error':
+                            body = "Le SMS suivant n'a pas pu être envoyé : %s " % (sms_body_contenu)
+                        elif sms.state == 'sent':
+                            body = "Le SMS suivant a été bien envoyé " % (sms_body_contenu)
+                        if body:
+                            message = self.env['mail.message'].sudo().create({
+                                'subject': 'Invitation de rejoindre le site par sms',
+                                'model': 'res.partner',
+                                'res_id': user.partner_id.id,
+                                'message_type': 'notification',
+                                'subtype_id': subtype_id,
+                                'body': body,
+                            }) # create note in client view
         # user = request.env['res.users'].sudo().search([('login', "=", email)])
         if user:
             client = self.env['res.partner'].sudo().search(
