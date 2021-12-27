@@ -75,7 +75,7 @@
                         <div class="container">
                             <div class="row">
                                 <div class="col-lg-6">
-                                    <img data-src="/digimoov_website_templates/static/img/Digimoov - des centres d'examen partout en france.png" data-srcsafari="/digimoov_website_templates/static/img/Digimoov_-_des-centres-d'examen-partout-en-france.png" class="img-fluid" alt="bizople" data-original-title="" title="" aria-describedby="tooltip969892" style="transform: translateX(-0.9%) translateY(18.4%) scaleX(1.05) scaleY(1.05);" src="/digimoov_website_templates/static/img/Digimoov - des centres d'examen partout en france.png" />
+                                    <img data-src="/digimoov_website_templates/static/img/Digimoov_-_des-centres-d'examen-partout-en-france.png" data-srcsafari="/digimoov_website_templates/static/img/Digimoov_-_des-centres-d'examen-partout-en-france.png" class="img-fluid lazy" alt="bizople" data-original-title="" title="" aria-describedby="tooltip969892" style="transform: translateX(-0.9%) translateY(18.4%) scaleX(1.05) scaleY(1.05);" />
                                 </div>
                                 <div class="col-lg-6">
                                     <div class="card-body">
