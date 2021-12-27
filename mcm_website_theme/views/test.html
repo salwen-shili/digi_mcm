@@ -5,540 +5,98 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
   </head>
+  <style>
+    @import url('https://fonts.googleapis.com/css?family=Mukta:700');
+
+    .button-more {
+      position: relative;
+      display: inline-block;
+      cursor: pointer;
+      outline: none;
+      border: 0;
+      vertical-align: middle;
+      text-decoration: none;
+      background: transparent;
+      padding: 0;
+      font-size: inherit;
+      font-family: inherit;
+    }
+    .button-more.learn-more {
+      width: 12rem;
+      height: auto;
+    }
+    .button-more.learn-more .circle {
+      transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
+      position: relative;
+      display: block;
+      margin: 0;
+      width: 3rem;
+      height: 3rem;
+      background: #282936;
+      border-radius: 1.625rem;
+    }
+    .button-more.learn-more .circle .icon {
+      transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      margin: auto;
+      background: #fff;
+    }
+    .button-more.learn-more .circle .icon.arrow {
+      transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
+      left: 0.625rem;
+      width: 1.125rem;
+      height: 0.125rem;
+      background: none;
+    }
+    .button-more.learn-more .circle .icon.arrow::before {
+      position: absolute;
+      content: '';
+      top: -0.25rem;
+      right: 0.0625rem;
+      width: 0.625rem;
+      height: 0.625rem;
+      border-top: 0.125rem solid #fff;
+      border-right: 0.125rem solid #fff;
+      transform: rotate(45deg);
+    }
+    .button-more.learn-more .button-more-text {
+      transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      padding: 0.75rem 0;
+      margin: 0 0 0 1.85rem;
+      color: #282936;
+      font-weight: 700;
+      line-height: 1.6;
+      text-align: center;
+      text-transform: uppercase;
+    }
+    .button-more:hover .circle {
+      width: 100%;
+    }
+    .button-more:hover .circle .icon.arrow {
+      background: #fff;
+      transform: translate(1rem, 0);
+    }
+    .button-more:hover .button-more-text {
+      color: #fff;
+    }
+  </style>
+  <link
+    rel="stylesheet"
+    href="/mcm_website_theme/static/src/css/font-awesome.min.css"
+  />
   <body>
-    <div id="wrap" class="oe_structure oe_empty">
-      <link
-        href="/mcm_website_theme/static/src/css/theme.css"
-        rel="stylesheet"
-      />
-      <script
-        defer="defer"
-        type="text/javascript"
-        src="/digimoov_website_templates/static/src/js/lazy-min.js"
-      ></script>
-      <link
-        rel="stylesheet"
-        href="/mcm_website_theme/static/src/css/homepage.css"
-      />
-      <script
-        type="text/javascript"
-        src="/mcm_website_theme/static/src/js/msAds.js"
-      ></script>
-      <link
-        rel="stylesheet"
-        href="/mcm_website_theme/static/src/css/cta-button.css"
-      />
-      <!-- <script type="text/javascript" src="/mcm_website_theme/static/src/js/scrollAnimation.js"></script> -->
-      <style>
-        #sh_corpomate_theme_section_258 {
-          padding: 0 !important;
-        }
-
-        p {
-          font-size: 17px;
-          line-height: 28px;
-          color: #000;
-        }
-
-        .nav-pills .nav-link.active,
-        .nav-pills .show .nav-link {
-          background-color: #000;
-        }
-
-        a {
-          color: #000;
-        }
-
-        a:hover {
-          color: #000;
-        }
-
-        .btn {
-          background-color: #000;
-          border-color: #000;
-          color: #fff;
-        }
-
-        .btn:hover {
-          background-color: #7f7e7e;
-        }
-
-        #sh_corpomate_theme_section_290 .sh_feature_box p {
-          margin-bottom: 0px !important;
-          transition: 0.5s;
-          font-size: 17px;
-          line-height: 1.8;
-          display: block !important;
-          -webkit-line-clamp: 6 !important;
-          -webkit-box-orient: initital;
-          overflow: hidden;
-          color: #616161;
-          font-family: 'Poppins', sans-serif;
-        }
-
-        .feature_container {
-          margin-block-start: 15px;
-          flex-direction: column;
-          justify-content: space-between;
-        }
-
-        .read_more {
-          color: #2667ae !important;
-          font: inherit !important;
-          font-size: 16px !important;
-        }
-
-        #sh_corpomate_theme_section_76 .sh_content .sh_num_icon {
-          font-size: 30px;
-          color: #000000;
-          border: 1px solid #cecece;
-          border-radius: 50%;
-          padding: 25px 20px 20px 20px;
-          width: 90px;
-          height: 90px;
-          margin-top: -15px;
-          position: relative;
-          margin: 0 auto;
-          background: #fdd125;
-        }
-
-        #sh_corpomate_theme_section_76 .sh_content:hover .sh_num_icon {
-          font-size: 30px;
-          color: #fff;
-          border: 1px solid #cecece;
-          border-radius: 50%;
-          padding: 25px 20px 20px 20px;
-          width: 90px;
-          height: 90px;
-          margin-top: -15px;
-          position: relative;
-          margin: 0 auto;
-          background: #000000;
-        }
-
-        #sh_corpomate_theme_section_76 .sh_content p {
-          padding: 0 0 !important;
-          overflow: visible;
-          -webkit-box-orient: horizontal;
-        }
-
-        .res_height {
-          height: 423px;
-        }
-
-        @media (max-width: 467.98px) {
-          .res_height {
-            height: 243px;
-          }
-        }
-
-        #sh_corpomate_theme_section_76 .sh_content {
-          padding-top: 0;
-        }
-
-        #sh_corpomate_theme_section_76 .sh_content p:after {
-          top: 20px;
-        }
-
-        .card-title {
-          font-size: 23px;
-          font-weight: 700;
-          margin-block-end: 18px;
-          text-align: center;
-        }
-      </style>
-
-      <section
-        id="sh_corpomate_theme_section_258 "
-        class="sh_animation_part pt8"
-        data-name="Formation Chauffeur de Taxi"
-      >
-        <div class="container-banner">
-          <div class="row">
-            <div
-              class="col-lg-6 pb16 pt56 js-scroll slide-left"
-              style="border-style: none; border-width: 0px"
-            >
-              <div class="">
-                <div class="text-center">
-                  <h1 class="title-mcm slider-text-info">
-                    EXAMEN
-                    <br />
-                    <span class="subtitle-mcm-formation">TAXI/VTC/VMDT</span>
-                  </h1>
-                  <br />
-                  <p class="heading text-center">
-                    Passer les examens TAXI, VTC, ou VMDTR et les réussir est
-                    important pour que vous puissiez avoir votre carte
-                    professionnelle.
-                  </p>
-                  <br />
-                  <a href="#pricing">
-                    <button class="home-btn">S'inscrire</button>
-                  </a>
-                </div>
-              </div>
-            </div>
-            <div class="col-lg-6 pb48 pt16 js-scroll slide-right">
-              <br />
-              <img
-                data-src="/mcm_website_theme/static/src/img/fornmation_taxi_moto/1.png"
-                data-srcSafari="/mcm_website_theme/static/src/img/fornmation_taxi_moto/1.webp"
-                class="img img-fluid mx-auto lazy"
-                alt="Devenir chauffeur Taxi, VTC ou Moto-Taxi"
-                title="Taxi chauffeur"
-                style="text-align: center"
-              />
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- INTRO-->
-      <section
-        class="container s_text_block pt32 pb24 js-scroll fade-in-bottom"
-        data-name="Text block"
-      >
-        <!-- <h2 class="s_title_default text-center pb16 " style="font-size: 36px; font-weight:700">
-                 Devenir chauffeur de MOTO-TAXI (VMDTR)
-          </h2> -->
-        <p>
-          Pour exercer la profession de chauffeur de TAXI ou de voiture de
-          transport avec chauffeur (VTC), vous devez valider un examen
-          comprenant une épreuve d’admissibilité et une épreuve d'admission.
-        </p>
-      </section>
-
-      <!-- À qui s’adresse notre formation ? -->
-      <section class="s_text_image pt0 pb4">
-        <div class="container">
-          <div class="row align-items-center">
-            <div class="col-lg-6 pb24 pt0 js-scroll slide-left">
-              <img
-                data-src="/mcm_website_theme/static/src/img/fornmation_taxi_moto/Formation-Moto-Taxi-en-ligne.webp"
-                data-srcSafari="/mcm_website_theme/static/src/img/fornmation_taxi_moto/Formation-Moto-Taxi-en-ligne.png"
-                class="img img-fluid mx-auto lazy"
-                alt="Devenir conducteur taxi"
-                title="Devenir conducteur taxi"
-                style="text-align: center"
-              />
-            </div>
-            <div
-              class="col-lg-6 js-scroll slide-right"
-              style="border-style: none; border-width: 0px"
-            >
-              <h2
-                class="s_title_default pb16"
-                style="font-size: 36px; font-weight: 700"
-              >
-                Comment vous inscrire à l’examen TAXI/VTC/VMDTR ?
-              </h2>
-              <p>
-                Pour vous inscrire à l’examen, créez votre compte en ligne sur
-                EVALBOX en suivant le lien ICI.
-              </p>
-
-              <ul class="fa-ul" style="font-size: 16.5px; line-height: 1.5rem">
-                <li style="padding-block-end: 10px">
-                  <i class="fa-li fa fa-square" style="margin-top: 2px"></i>
-                  Vous devez joindre vos pièces justificatives directement en
-                  ligne. ►
-                  <a
-                    style="color: rgb(8, 82, 148)"
-                    href="/mcm_website_theme/static/pdf/EVALBOX INSCRIPTION ET REINSCRIPTION.pdf"
-                  >
-                    liste des pièces à télécharger
-                  </a>
-                  (attention : ne télécharger que les originaux. Les photocopies
-                  déchirées seront automatiquement refusées.)
-                </li>
-              </ul>
-
-              <p>
-                Pour les candidats se présentant à l'ensemble des épreuves
-                d'admissibilité et à l'épreuve d'admission, il faut prévoir :
-              </p>
-              <ul>
-                <li style="padding-block-end: 10px">
-                  <i class="fa-li fa fa-square" style="margin-top: 2px"></i>
-                  206 € de frais d'inscription aux 7 épreuves théoriques
-                  d'admissibilité et à l'épreuve pratique
-                </li>
-                <li style="padding-block-end: 10px">
-                  <i class="fa-li fa fa-square" style="margin-top: 2px"></i>
-                  101 € de frais d'inscription à une 2e ou 3e présentation à
-                  l'épreuve pratique d'admission.
-                </li>
-                <li style="padding-block-end: 10px">
-                  <i class="fa-li fa fa-square" style="margin-top: 2px"></i>
-                  <a
-                    href="/blog/blog-taxi-10/post/tout-savoir-sur-l-examen-taxi-vtc-moto-taxi-27"
-                    style="color: rgb(8, 82, 148)"
-                  >
-                    Plus de détails</a
-                  >
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- La Formation MOTO-TAXI -->
-      <section class="s_text_image pt0 pb4">
-        <div class="container">
-          <div class="row align-items-center">
-            <div
-              class="col-lg-6 js-scroll slide-left"
-              style="border-style: none; border-width: 0px"
-            >
-              <h2
-                class="s_title_default pb16"
-                style="font-size: 36px; font-weight: 700"
-              >
-                Quelles sont les conditions pour passer l'examen TAXI/VTC ?
-              </h2>
-
-              <p>
-                Pour s'inscrire à l'examen TAXI/VTC, le candidat doit être :
-              </p>
-              <ul class="fa-ul" style="font-size: 16.5px; line-height: 1.5rem">
-                <li style="padding-block-end: 10px">
-                  <i class="fa fa-chevron-right" style="margin-top: 2px"></i>
-                  Européen ou avoir un titre de séjour lui permettant d'exercer
-                  en France.
-                </li>
-                <li style="padding-block-end: 10px">
-                  <i class="fa fa-chevron-right" style="margin-top: 2px"></i>
-                  Titulaire d'un permis B depuis au moins 3 ans et non soumis à
-                  une période probatoire.
-                </li>
-                <li style="padding-block-end: 10px">
-                  <i class="fa fa-chevron-right" style="margin-top: 2px"></i>
-                  En capacité physique de devenir chauffeur professionnel.
-                </li>
-                <li style="padding-block-end: 10px">
-                  <i class="fa fa-chevron-right" style="margin-top: 2px"></i>
-                  <a
-                    href="/blog/blog-taxi-10/post/tout-savoir-sur-l-examen-taxi-vtc-moto-taxi-27"
-                    color="rgb(8, 82, 148);"
-                  >
-                    <span
-                      style="
-                        color: rgb(8, 82, 148);
-                        font-family: Poppins, sans-serif;
-                        font-size: 14px;
-                      "
-                    >
-                      En savoir plus
-                    </span>
-                  </a>
-                </li>
-              </ul>
-            </div>
-            <div class="col-lg-6 pb24 pt0 js-scroll slide-right">
-              <img
-                data-src="/mcm_website_theme/static/src/img/fornmation_taxi_moto/5.webp"
-                data-srcSafari="/mcm_website_theme/static/src/img/fornmation_taxi_moto/5.png"
-                class="img img-fluid mx-auto lazy res_height"
-                alt="Devenir conducteur taxi"
-                title="Devenir conducteur taxi"
-                style="text-align: center"
-              />
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- La Formation MOTO-TAXI -->
-
-      <section class="s_text_image pt0 pb4">
-        <div class="container">
-          <div class="row align-items-center">
-            <div class="col-lg-6" style="border-style: none; border-width: 0px">
-              <h2
-                class="s_title_default pb16 js-scroll slide-left"
-                style="font-size: 36px; font-weight: 700"
-              >
-                Quels sont les modules d’examens pour obtenir le Certificat de
-                Capacité Professionnelle ?
-              </h2>
-              <h3>
-                Les modules théoriques communs d’admissibilité pour les
-                formations Taxi , VTC , et Taxi Moto sont les suivants :
-              </h3>
-              <p>
-                Pendant votre formation, nous allons vous apprendre à maîtriser
-                les modules suivants :
-              </p>
-              <ul
-                class="fa-ul js-scroll slide-left"
-                style="font-size: 16.5px; line-height: 1.5rem"
-              >
-                <li style="padding-block-end: 10px">
-                  <i class="fa fa-chevron-right" style="margin-top: 2px"></i>
-                  GESTION
-                </li>
-                <li style="padding-block-end: 10px">
-                  <i class="fa fa-chevron-right" style="margin-top: 2px"></i>
-                  SECURITE
-                </li>
-                <li style="padding-block-end: 10px">
-                  <i class="fa fa-chevron-right" style="margin-top: 2px"></i>
-                  FRANÇAIS
-                </li>
-                <li style="padding-block-end: 10px">
-                  <i class="fa fa-chevron-right" style="margin-top: 2px"></i>
-                  ANGLAIS
-                </li>
-              </ul>
-              <h3
-                class="s_title_default pb16 js-scroll slide-left"
-                style="font-size: 36px; font-weight: 700"
-              >
-                Modules spécifiques VTC
-              </h3>
-              <p class="js-scroll slide-left">
-                Les modules spécifiques d'accès à la profession de conducteur de
-                VTC sont les suivants :
-              </p>
-              <ul
-                class="fa-ul js-scroll slide-left"
-                style="font-size: 16.5px; line-height: 1.5rem"
-              >
-                <li style="padding-block-end: 10px">
-                  <i class="fa fa-chevron-right" style="margin-top: 2px"></i>
-                  Développement commercial en gestion propre à l’activité de VTC
-                </li>
-                <li style="padding-block-end: 10px">
-                  <i class="fa fa-chevron-right" style="margin-top: 2px"></i>
-                  Réglementation nationale spécifique de l’activité de VTC
-                </li>
-              </ul>
-              <h3
-                class="s_title_default pb16 js-scroll slide-left"
-                style="font-size: 36px; font-weight: 700"
-              >
-                Modules spécifiques TAXI
-              </h3>
-              <p class="js-scroll slide-left">
-                Les épreuves spécifiques d'accès à la profession de conducteur
-                de TAXI sont les suivantes :
-              </p>
-              <ul
-                class="fa-ul js-scroll slide-left"
-                style="font-size: 16.5px; line-height: 1.5rem"
-              >
-                <li style="padding-block-end: 10px">
-                  <i class="fa fa-chevron-right" style="margin-top: 2px"></i>
-                  Connaissance du territoire et de la réglementation locale
-                </li>
-                <li style="padding-block-end: 10px">
-                  <i class="fa fa-chevron-right" style="margin-top: 2px"></i>
-                  Réglementation nationale de l’activité de TAXI et gestion
-                  propre à cette activité
-                </li>
-              </ul>
-            </div>
-            <div class="col-lg-6 pb24 pt0 js-scroll slide-right">
-              <img
-                data-src="/mcm_website_theme/static/src/img/fornmation_taxi_moto/3.webp"
-                data-srcSafari="/mcm_website_theme/static/src/img/fornmation_taxi_moto/3.png"
-                class="img img-fluid mx-auto lazy res_height"
-                alt="Devenir conducteur taxi"
-                title="Devenir conducteur taxi"
-                style="text-align: center"
-              />
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section class="s_text_image pt0 pb4">
-        <div class="container">
-          <div class="row align-items-center">
-            <div
-              class="col-lg-6 js-scroll slide-left"
-              style="border-style: none; border-width: 0px"
-            >
-              <h2
-                class="s_title_default pb16"
-                style="font-size: 36px; font-weight: 700"
-              >
-                Les épreuves pratiques communs d’admission des formations Taxi
-                et VTC :
-              </h2>
-              <ul class="fa-ul" style="font-size: 16.5px; line-height: 1.5rem">
-                <li style="padding-block-end: 10px">
-                  <i class="fa fa-chevron-right" style="margin-top: 2px"></i>
-                  1 - PREPARATION ET REALISATION DU PARCOURS
-                </li>
-                <li style="padding-block-end: 10px">
-                  <i class="fa fa-chevron-right" style="margin-top: 2px"></i>
-                  2 - SECURITE ET SOUPLESSE DU PARCOURS, RESPECT DU CODE DE LA
-                  ROUTE
-                </li>
-                <li style="padding-block-end: 10px">
-                  <i class="fa fa-chevron-right" style="margin-top: 2px"></i>
-                  3 -QUALITE DE LA PRISE EN CHARGE ET DE LA RELATION CLIENT
-                </li>
-                <li style="padding-block-end: 10px">
-                  <i class="fa fa-chevron-right" style="margin-top: 2px"></i>
-                  4 - FACTURATION ET UTILISATION DES EQUIPEMENTS SPECIAUX
-                </li>
-              </ul>
-              <p>
-                Retrouvez plus d'informations sur la durée des épreuves, les
-                coefficients, la notation et les modalités d'évaluation en
-                cliquant sur le bouton ci-dessous :
-              </p>
-              <a
-                href="/mcm_website_theme/static/src/img/examen/GRILLE_DE_NOTATION_EXAMEN_TAXI_VTC_MCMACADEMY.png"
-              >
-                <button class="home-btn">En Savoir Plus</button>
-              </a>
-            </div>
-            <div class="col-lg-6 pb24 pt0 js-scroll slide-right">
-              <img
-                data-src="/mcm_website_theme/static/src/img/fornmation_taxi_moto/5.webp"
-                data-srcSafari="/mcm_website_theme/static/src/img/fornmation_taxi_moto/5.png"
-                class="img img-fluid mx-auto lazy res_height"
-                alt="Devenir conducteur taxi"
-                title="Devenir conducteur taxi"
-                style="text-align: center"
-              />
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section
-        id="sh_corpomate_theme_section_167"
-        class="sh_animation_part"
-        data-name="Call To Action"
-        style="background-color: rgb(253, 209, 5)"
-      >
-        <div class="container">
-          <h3 style="color: rgb(0, 0, 0); font-size: 24px">
-            MCM Academy propose des formations VTC, TAXI et VMDTR d’excellence,
-            basées sur l'expertise de nos formateurs et la dédication de toute
-            l'équipe. Toutes nos formations sont éligibles au CPF !
-          </h3>
-
-          <a
-            class="animated-button-black"
-            href="/#pricing"
-            data-original-title=""
-            title="Comment mobiliser mon CPF"
-          >
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            Je m'inscris
-          </a>
-        </div>
-      </section>
-    </div>
+    <button class="button-more learn-more">
+      <span class="circle">
+        <i class="fa fa-chevron-right" style="margin-top: 2px"></i>
+      </span>
+      <span class="button-more-text">En savoir plus</span>
+    </button>
   </body>
 </html>

@@ -169,7 +169,7 @@
               </div>
               <div class="col-lg-6 pb48 pt16 js-scroll slide-right">
                 <br />
-                <img data-src="/mcm_website_theme/static/src/img/examen/1.png" data-srcSafari="/mcm_website_theme/static/src/img/examen/1.webp" class="img img-fluid mx-auto lazy" alt="Devenir chauffeur Taxi, VTC ou Moto-Taxi" title="Taxi chauffeur" style="text-align: center" />
+                <img data-src="/mcm_website_theme/static/src/img/quisommesnous/couv MCM.png" data-srcSafari="/mcm_website_theme/static/src/img/quisommesnous/couv MCM.webp" class="img img-fluid mx-auto lazy" alt="Devenir chauffeur Taxi, VTC ou Moto-Taxi" title="Taxi chauffeur" style="text-align: center" />
               </div>
             </div>
           </div>
@@ -221,7 +221,7 @@
                 </p>
               </div>
               <div class="pt16 pb16 col-lg-5" style="border-style: none; border-width: 0px">
-                <img src="/mcm_website_theme/static/src/img/quisommesnous/choisir-MCM-Academy.png" class="img img-fluid mx-auto" alt="Odoo • Texte et Image" data-original-title="" title="" aria-describedby="tooltip771176" />
+                <img data-src="/mcm_website_theme/static/src/img/quisommesnous/apprenants-satisfaits.webp" data-srcsafari="/mcm_website_theme/static/src/img/quisommesnous/apprenants-satisfaits.png" class="img img-fluid mx-auto lazy" alt="Apprenants satisfaits" data-original-title="" title="" aria-describedby="tooltip771176" />
               </div>
             </div>
           </div>
@@ -240,7 +240,7 @@
             </div>
             <div class="row align-items-center">
               <div class="pt16 pb16 col-lg-5" style="border-style: none; border-width: 0px">
-                <img src="/mcm_website_theme/static/src/img/quisommesnous/MCM-Acadmy-centre-de-renommée.png" class="img img-fluid mx-auto" alt="Odoo • Texte et Image" data-original-title="" title="" aria-describedby="tooltip771176" />
+                <img data-src="/mcm_website_theme/static/src/img/quisommesnous/MCM-Acadmy-centre-de-renommée.webp" data-srcsafari="/mcm_website_theme/static/src/img/quisommesnous/MCM-Acadmy-centre-de-renommée.png" class="img img-fluid mx-auto lazy" alt="" data-original-title="" title="" aria-describedby="tooltip771176" />
               </div>
               <div class="pt16 pb16 col-lg-7" style="border-style: none; border-width: 0px">
                 <ul class="fa-ul" style="font-size: 16.5px; line-height: 1.2rem">
@@ -710,7 +710,8 @@
             oe_custom_bg
           " data-snippet="sh_corpomate_theme_tmpl_394" data-name="testimonial" style="
             background-image: url('/mcm_website_theme/static/src/img/quisommesnous/apprenants-satisfaits.png');
-            background-position: 0.56% 96.76%;
+           
+            background-attachment: fixed;
           ">
           <div class="container">
             <div class="sh_title">

@@ -247,12 +247,13 @@
                   </li>
 
 
-                  <a class="animated-button-black" href="/blog/blog-taxi-10/post/tout-savoir-sur-l-examen-taxi-vtc-moto-taxi-27">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                    Plus de détails
+                  <a href="/blog/blog-taxi-10/post/tout-savoir-sur-l-examen-taxi-vtc-moto-taxi-27" target="_blank">
+                    <button class="button-more learn-more">
+                      <span class="circle">
+                        <span class="icon arrow"></span>
+                      </span>
+                      <span class="button-more-text">Plus de détails</span>
+                    </button>
                   </a>
                 </ul>
               </div>
@@ -288,12 +289,13 @@
                   </li>
 
 
-                  <a class="animated-button-black" href="/blog/blog-taxi-10/post/tout-savoir-sur-l-examen-taxi-vtc-moto-taxi-27">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                    En savoir plus
+                  <a href="/blog/blog-taxi-10/post/tout-savoir-sur-l-examen-taxi-vtc-moto-taxi-27" target="_blank">
+                    <button class="button-more learn-more">
+                      <span class="circle">
+                        <span class="icon arrow"></span>
+                      </span>
+                      <span class="button-more-text">En savoir plus</span>
+                    </button>
                   </a>
                 </ul>
               </div>
@@ -430,12 +432,14 @@
                   cliquant sur le bouton ci-dessous :
               </p>
 
-                <a class="animated-button-yellow" href="/mcm_website_theme/static/src/img/examen/GRILLE_DE_NOTATION_EXAMEN_TAXI_VTC_MCMACADEMY.png">
-                  <span></span>
-                  <span></span>
-                  <span></span>
-                  <span></span>
-                  En savoir plus
+
+                <a href="/mcm_website_theme/static/src/img/examen/GRILLE_DE_NOTATION_EXAMEN_TAXI_VTC_MCMACADEMY.png" target="_blank">
+                  <button class="button-more learn-more">
+                    <span class="circle">
+                      <span class="icon arrow"></span>
+                    </span>
+                    <span class="button-more-text">En savoir plus</span>
+                  </button>
                 </a>
               </div>
               <div class="col-lg-6 pb24 pt0 js-scroll slide-right">
@@ -484,12 +488,13 @@
                 </ul>
 
 
-                <a class="animated-button-black">
-                  <span></span>
-                  <span></span>
-                  <span></span>
-                  <span></span>
-                  En Savoir plus
+                <a target="_blank">
+                  <button class="button-more learn-more">
+                    <span class="circle">
+                      <span class="icon arrow"></span>
+                    </span>
+                    <span class="button-more-text">En savoir plus</span>
+                  </button>
                 </a>
 
 
