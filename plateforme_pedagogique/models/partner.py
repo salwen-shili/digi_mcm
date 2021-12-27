@@ -745,7 +745,7 @@ class partner(models.Model):
                 nom_voie = ""
                 if "roadName" in dossier['attendee']['address']:
                     nom_voie = dossier['attendee']['address']['roadName']
-                street = num_voie + ' ' + voie + ' ' + nom_voie
+                street = str(num_voie) + ' ' + str(voie) + ' ' + str(nom_voie)
                 tel = ""
                 if "phoneNumber" in dossier['attendee']:
                     tel = dossier['attendee']['phoneNumber']
@@ -1013,7 +1013,7 @@ class partner(models.Model):
                         #         'message_type': 'notification',
                         #         'subtype_id': subtype_id,
                         #         'body': body,
-                        #     }) # create note in client view 
+                        #     }) # create note in client view
         # user = request.env['res.users'].sudo().search([('login', "=", email)])
         if user:
             client = self.env['res.partner'].sudo().search(
