@@ -378,16 +378,16 @@
                 </p>
                 <ul class="fa-ul" style="font-size: 16.5px; line-height: 1.5rem">
                   <li style="padding-block-end: 10px">
-                    <i class="fa fa-chevron-right" style="margin-top: 2px"></i>
+                    <i class="fa fa-chevron-right" style="font-size: 13px; margin: 0px 7px 5px -17px"></i>
                     Une épreuve théorique
                   </li>
                   <li style="padding-block-end: 10px">
-                    <i class="fa fa-chevron-right" style="margin-top: 2px"></i>
+                    <i class="fa fa-chevron-right" style="font-size: 13px; margin: 0px 7px 5px -17px"></i>
                     une épreuve pratique
                   </li>
                 </ul>
                 <p>
-                  <i class="fa fa-arrow-right"></i>
+                  <i class="fa fa-arrow-right" style=" font-size: 13px; margin: 0px 7px 5px -17px"></i>
                   MCM Academy vous propose une formation e-learning qui allie
                   théorie et pratique, et vous assure un suivi personnalisé tout
                   au long de votre parcours avec des experts du métier.
@@ -434,12 +434,14 @@
 
                   <div style="margin-block-start: 20px; margin-left: -39px">
 
-                    <a class="animated-button-black" href="/mcm_website_theme/static/pdf/programme_de_formation_MCM_ACADEMY_2021.pdf" target="_blank">
-                      <span></span>
-                      <span></span>
-                      <span></span>
-                      <span></span>
-                      En savoir plus
+
+                    <a href="/mcm_website_theme/static/pdf/programme_de_formation_MCM_ACADEMY_2021.pdf" target="_blank">
+                      <button class="button-more learn-more">
+                        <span class="circle">
+                          <span class="icon arrow"></span>
+                        </span>
+                        <span class="button-more-text">En savoir plus</span>
+                      </button>
                     </a>
                   </div>
                 </ul>
@@ -457,19 +459,19 @@
                 </h3>
                 <ul class="fa-ul js-scroll slide-left" style="font-size: 16.5px; line-height: 1.5rem">
                   <li style="padding-block-end: 10px">
-                    <i class="fa fa-chevron-right" style="margin-top: 2px"></i>
+                    <i class="fa fa-chevron-right" style="font-size: 13px; margin: 0px 7px 5px -17px"></i>
                     Des vidéos de cours
                   </li>
                   <li style="padding-block-end: 10px">
-                    <i class="fa fa-chevron-right" style="margin-top: 2px"></i>
+                    <i class="fa fa-chevron-right" style="font-size: 13px; margin: 0px 7px 5px -17px"></i>
                     Des supports de cours en PDF
                   </li>
                   <li style="padding-block-end: 10px">
-                    <i class="fa fa-chevron-right" style="margin-top: 2px"></i>
+                    <i class="fa fa-chevron-right" style="font-size: 13px; margin: 0px 7px 5px -17px"></i>
                     Des quiz en ligne avec correction
                   </li>
                   <li style="padding-block-end: 10px">
-                    <i class="fa fa-chevron-right" style="margin-top: 2px"></i>
+                    <i class="fa fa-chevron-right" style="font-size: 13px; margin: 0px 7px 5px -17px"></i>
                     Des examens blancs avec corrections
                   </li>
                 </ul>
@@ -483,23 +485,23 @@
                 </p>
                 <ul class="fa-ul js-scroll slide-left" style="font-size: 16.5px; line-height: 1.5rem">
                   <li style="padding-block-end: 10px">
-                    <i class="fa fa-chevron-right" style="margin-top: 2px"></i>
+                    <i class="fa fa-chevron-right" style="font-size: 13px; margin: 0px 7px 5px -17px"></i>
                     Assistance par mail
                   </li>
                   <li style="padding-block-end: 10px">
-                    <i class="fa fa-chevron-right" style="margin-top: 2px"></i>
+                    <i class="fa fa-chevron-right" style="font-size: 13px; margin: 0px 7px 5px -17px"></i>
                     Assistance par téléphone
                   </li>
                   <li style="padding-block-end: 10px">
-                    <i class="fa fa-chevron-right" style="margin-top: 2px"></i>
+                    <i class="fa fa-chevron-right" style="font-size: 13px; margin: 0px 7px 5px -17px"></i>
                     Assistance par visioconférence
                   </li>
                   <li style="padding-block-end: 10px">
-                    <i class="fa fa-chevron-right" style="margin-top: 2px"></i>
+                    <i class="fa fa-chevron-right" style="font-size: 13px; margin: 0px 7px 5px -17px"></i>
                     Livre d’entrainement version électronique
                   </li>
                   <li style="padding-block-end: 10px">
-                    <i class="fa fa-chevron-right" style="margin-top: 2px"></i>
+                    <i class="fa fa-chevron-right" style="font-size: 13px; margin: 0px 7px 5px -17px"></i>
                     Révision du programme avant examen
                   </li>
                 </ul>
