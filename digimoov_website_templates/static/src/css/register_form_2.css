@@ -232,7 +232,7 @@ html {
 
 @media screen and (max-width: 390px) {
   #progressbar li {
-    font-size: 12px !important;
+    font-size: 7px !important;
   }
 }
 
