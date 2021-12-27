@@ -29,8 +29,9 @@ class AuthSignupHome(AuthSignupHome):
             phone = phone[1:]
             phone = '+33' + str(phone)
             values['phone'] = phone
-        if values.get('login') != qcontext.get('confirm_email'):
-            raise UserError(_("Les emails ne correspondent pas, veuillez les saisir à nouveau."))
+        if not qcontext.get('token'):
+            if values.get('login') != qcontext.get('confirm_email'):
+                raise UserError(_("Les emails ne correspondent pas, veuillez les saisir à nouveau."))
         if (values['num_voie'] and values['voie'] and values['nom_voie']):
             values['street'] = values['num_voie'] + " " + values['voie'] + " " + values['nom_voie']
         supported_lang_codes = [code for code, _ in request.env['res.lang'].get_installed()]
