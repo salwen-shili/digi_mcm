@@ -6,9 +6,13 @@
       <link rel="stylesheet" href="/mcm_website_theme/static/src/css/cta-button.css" />
 
       <script defer="defer" type="text/javascript" src="/digimoov_website_templates/static/src/js/lazy-min.js" />
-      <script type="text/javascript" src="/mcm_website_theme/static/src/js/msAds.js" async="async"/>
+      <script type="text/javascript" src="/mcm_website_theme/static/src/js/msAds.js" async="async" />
 
       <style>
+        h1{
+        text-transform: uppercase;
+      }
+    
         #sh_corpomate_theme_section_184 .sh_content .sh_more_btn.sh_btn_cm_8 {
           background: black;
           border: 2px solid #0a0a0a;
@@ -26,8 +30,10 @@
      
           
         .h2 {
-          font-size: 2.1875rem !important;
-          font-weight: 700 !important;
+          
+          text-transform: uppercase;
+            font-size: 30px !important;
+            font-weight: 700 !important;
         }
         .p {
           color: rgb(66, 66, 66);
@@ -57,32 +63,39 @@
         <section class="sh_animation_part pt8" data-name="practice">
           <div class="container-banner">
             <div class="row">
-              <div class="col-lg-6 pb16 pt56" style="border-style: none; border-width: 0px">
+              <div class="col-lg-6 pb16 pt56 js-scroll slide-left" style="border-style: none; border-width: 0px">
                 <div class="text-center">
                   <h1 class="title-mcm slider-text-info">
                     Comment financer ma formation de chauffeur
                     <br />
                     <span class="subtitle-mcm"> TAXI, VTC ou VMDTR ? </span>
                   </h1>
-                  <p class="p">
+                  <p style="margin-top:32px" class="p">
                     Chez MCM Academy nous offrons à nos candidats la possibilité
                     de financer leurs formation Taxi VTC et VMDTR en mobilisant
                     leurs Compte de formation Personnel ou par auto-financement
                     avec des modalités assez flexibles !
                   </p>
-                  <a href="#pricing">
-                    <button class="home-btn" alt="Bouton je m'inscris au site MCM Academy" style="margin:10px">
-                      Je m'inscris
-                    </button>
+
+                  <a class="animated-button-yellow" href="#pricing" alt="Bouton je m'inscris au site MCM Academy">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    Je m'inscris
                   </a>
-                  <a href="/contact">
-                    <button class="home-btn" alt="Bouton contactez-nous">
-                      Contactez-nous
-                    </button>
+
+
+                  <a class="animated-button-black" href="/contact" alt="Bouton contactez-nous">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    Contactez-nous
                   </a>
                 </div>
               </div>
-              <div class="col-lg-6 pb48 pt16">
+              <div class="col-lg-6 pb48 pt16 js-scroll slide-right">
                 <br />
                 <img data-src="/mcm_website_theme/static/src/img/financement/Comment-financer-ma-formation-de-chauffeur-TAXI-VTC-VMDTR.webp" data-srcSafari="/mcm_website_theme/static/src/img/financement/Comment-financer-ma-formation-de-chauffeur-TAXI-VTC-VMDTR.png" class="img img-fluid mx-auto image-size lazy" alt="Devenir chauffeur professionnel VTC, Taxi ou Moto-Taxi" data-original-title="" title="Formation vtc taxi moto-taxi" aria-describedby="tooltip202025" style="text-align: center; " />
               </div>
@@ -96,11 +109,11 @@
         <section class="s_text_image pt32 pb32" data-name="Image - Text">
           <div class="container">
             <div class="row align-items-center">
-              <div class="col-lg-6">
-                <h2 class="h2">Financer votre formation par carte bleu :</h2>
+              <div class="col-lg-6 js-scroll slide-left">
+                <h2 class="h2">Financer votre formation par carte bancaire :</h2>
                 <p class="p">
                   Et ce en payant directement votre formation en ligne par carte
-                  bleue.
+                  bancaire.
                   <br />
                   En passant par ce mode de paiement , MCM Academy, vous offre
                   le choix de financer votre formation en intégralité ou en
@@ -111,21 +124,25 @@
                 </p>
 
                 <div class="s_btn text-left pt16 pb16" data-name="Button">
-                  <a href="#pricing">
-                    <button class="home-btn" alt="Bouton je m'inscris au site MCM Academy">Je m'inscris</button>
+                  <a class="animated-button-yellow" href="#pricing" alt="Bouton je m'inscris au site MCM Academy">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    Je m'inscris
                   </a>
                 </div>
               </div>
-              <div class="col-lg-6 pt16" style="">
-                <img data-srcSafari="/mcm_website_theme/static/src/img/financement/Financer-votre-formation-taxi-vtc-vmdtr-par-carte-bleu.png" data-src="/mcm_website_theme/static/src/img/financement/Financer-votre-formation-taxi-vtc-vmdtr-par-carte-bleu.webp" class="img img-fluid mx-auto lazy" alt="Candidat carte bleu a la main pour financer sa formation VTC, VMDTR, TAXI" title="Financer votre formation taxi, vtc, vmdtr par carte bleu" />
+              <div class="col-lg-6 pt16 js-scroll slide-right" style="">
+                <img data-srcSafari="/mcm_website_theme/static/src/img/financement/Financer-votre-formation-taxi-vtc-vmdtr-par-carte-bleu.png" data-src="/mcm_website_theme/static/src/img/financement/Financer-votre-formation-taxi-vtc-vmdtr-par-carte-bleu.webp" class="img img-fluid mx-auto lazy" alt="Candidat carte bancaire a la main pour financer sa formation VTC, VMDTR, TAXI" title="Financer votre formation taxi, vtc, vmdtr par carte bancaire" />
               </div>
             </div>
           </div>
         </section>
-        <section class="pb4 s_text_block" data-name="Text block">
+        <section class="pb4 mt24 s_text_block" data-name="Text block">
           <div class="container">
             <div class="row">
-              <div class="col-lg-12">
+              <div class="col-lg-12 js-scroll fade-in-top">
                 <h2 class="h2">
                   Financer votre formation en mobilisant votre CPF
                   <br />
@@ -155,11 +172,11 @@
         <section class="bg-200 pb16 pt32 s_three_columns" data-name="Columns">
           <div class="container">
             <div class="align-items-stretch d-flex row">
-              <div class="col-lg-4 pb16 pt16 s_col_no_bgcolor">
+              <div class="col-lg-4 pb16 pt16 s_col_no_bgcolor js-scroll slide-left">
                 <div class="bg-white card">
                   <img class="card-img-top lazy" data-srcSafari="/mcm_website_theme/static/src/img/financement/CPF_comment_ça_fonctionne.png" data-src="/mcm_website_theme/static/src/img/financement/CPF_comment_ça_fonctionne.webp" alt="Interface mon compte de formation" title="Interface mon compte de formation" aria-describedby="tooltip14515" />
                   <div class="card-body">
-                    <h3 class="card-title" style="font-size: 24px; font-weight: 600">
+                    <h3 class="card-title" style="font-size: 22px; font-weight: 600">
                       CPF: Comment est-ce que ça fonctionne?
                     </h3>
 
@@ -172,11 +189,11 @@
                   </div>
                 </div>
               </div>
-              <div class="col-lg-4 pb16 pt16 s_col_no_bgcolor">
+              <div class="col-lg-4 pb16 pt16 s_col_no_bgcolor js-scroll fade-in-top">
                 <div class="bg-white card">
                   <img class="card-img-top lazy" data-src="/mcm_website_theme/static/src/img/financement/Mon-compte-de-formation.webp" data-srcSafari="/mcm_website_theme/static/src/img/financement/Mon-compte-de-formation.png" alt="interface mobile mon compte de formation" title="Interface mobile mon compte de formation" aria-describedby="tooltip14515" />
                   <div class="card-body">
-                    <h3 class="card-title" style="font-size: 24px; font-weight: 600">
+                    <h3 class="card-title" style="font-size: 22px; font-weight: 600">
                       Mon compte de formation
                     </h3>
 
@@ -189,11 +206,11 @@
                   </div>
                 </div>
               </div>
-              <div class="col-lg-4 pb16 pt16 s_col_no_bgcolor">
+              <div class="col-lg-4 pb16 pt16 s_col_no_bgcolor js-scroll slide-right">
                 <div class="bg-white card">
                   <img class="card-img-top lazy" data-srcSafari="/mcm_website_theme/static/src/img/financement/Financer-votre-formation-cpf.webp" data-src="/mcm_website_theme/static/src/img/financement/Financer-votre-formation-cpf.webp" alt="Interface mobile financement formation taxi cpf" title="Interface mobile financement formation taxi cpf" aria-describedby="tooltip14515" />
                   <div class="card-body">
-                    <h3 class="card-title" style="font-size: 24px; font-weight: 600">
+                    <h3 class="card-title" style="font-size: 22px; font-weight: 600">
                       Financer votre formation
                     </h3>
                     <p class="p" style="line-height: 1.88182">
@@ -209,7 +226,7 @@
           </div>
         </section>
         <section id="sh_corpomate_theme_section_167" class="sh_animation_part" data-name="Call To Action" style="background-color: rgb(253, 209, 5)">
-          <div class="container">
+          <div class="container js-scroll fade-in-top">
             <h3 style="color: rgb(0, 0, 0); font-size: 24px">
               Comment mobiliser mon CPF ?
             </h3>
@@ -226,10 +243,10 @@
         <section class="pt32 s_text_image" data-name="Image - Text">
           <div class="container">
             <div class="align-items-center row">
-              <div class="col-lg-6 pb16 pt16" style="border-style: none; border-width: 0px">
+              <div class="col-lg-6 pb16 pt16 js-scroll slide-left" style="border-style: none; border-width: 0px">
                 <img data-srcSafari="/mcm_website_theme/static/src/img/financement/Qui-peut-bénéficier-du-CPF.png" data-src="/mcm_website_theme/static/src/img/financement/Qui-peut-bénéficier-du-CPF.webp" class="img img-fluid mx-auto lazy" alt="candidats éligibles financement cpf" title="candidats éligibles financement cpf" aria-describedby="tooltip604679" />
               </div>
-              <div class="col-lg-6 pt16" style="border-style: none; border-width: 0px">
+              <div class="col-lg-6 pt16 js-scroll slide-right" style="border-style: none; border-width: 0px">
                 <h3 style="color: rgb(0, 0, 0); font-size: 24px; font-weight: 700">
                   Qui peut bénéficier du CPF ?
                 </h3>
@@ -253,8 +270,9 @@
         <section class="pb32 s_text_image pt0" data-name="Text - Image">
           <div class="container">
             <div class="align-items-center row">
-              <div class="col-lg-12 pb16 pt16" style="border-style: none; border-width: 0px">
-                <h3 style="color: rgb(0, 0, 0); font-size: 24px">
+              <div class="col-lg-12 pb16 pt16 js-scroll fade-in-top" style="border-style: none; border-width: 0px">
+
+                <h3 style="color: rgb(0, 0, 0); font-size: 24px; font-weight: 700">
                   Quelles sont les formations éligibles au CPF ?
                 </h3>
 
@@ -272,7 +290,9 @@
                   Soyez donc vigilant en choisissant votre formation.
                   <br />
                   Pour qu’une formation soit éligible, elle doit respecter l’un
-                  des critères suivants de l’article <b>L6323-6</b> :
+                  des critères suivants de l’article
+                  <b>L6323-6</b>
+                  :
                   <br />
                   <ul>
                     <li style="font-size: 18px;">L’obtention d’un titre professionnel, d’un diplôme ou d’un
@@ -287,6 +307,8 @@
                       <a href="https://www.moncompteformation.gouv.fr/espace-prive/html/#/formation/recherche" target="_blank" style="color: rgb(52, 57, 150)">
                         recherche de formation sur le site Mon compte Formation</a>
                     </li>
+
+                    <!-- test-->
                   </ul>
                 </p>
               </div>
@@ -294,24 +316,24 @@
           </div>
         </section>
         <!-- PRICING TABLE-->
-        <div id="pricing" style="margin-bottom:20px">
+        <div id="pricing" class="pb32">
           <input t-att-value="request.website.microsoft_tracking_key" id="microsoft_tracking_key" type="hidden" />
           <section id="sh_corpomate_theme_section_188" class="sh_animation_part" data-name="Pricing">
             <div class="container">
-              <div class="sh_title">
+              <div class="sh_title js-scroll fade-in-top">
                 <h2>
                   <b>Inscrivez-vous dès maintenant !</b>
                   <br />
                 </h2>
                 <h4 style="                   margin-top: 20px;                   margin-bottom: 0.5rem;                   font-size: 18px;                                   ">
-                Choisissez le pack qui vous convient&amp;nbsp;
-                </h4>
+                                    Choisissez le pack qui vous convient&amp;nbsp;
+                                </h4>
                 <p>
                   <br />
                 </p>
               </div>
               <div class="row">
-                <div class="col-md-4 sh_animation_part" style="border-style: none; border-width: 0px">
+                <div class="col-md-4 sh_animation_part js-scroll slide-left" style="border-style: none; border-width: 0px">
                   <div class="sh_pricing">
                     <t t-foreach="mcm_products" t-as="product">
                       <t t-if="product.default_code=='vtc'">
@@ -351,7 +373,8 @@
                               <b style="font-size: 50%">
                                 <t>90</t>
                                 <span t-esc="product.currency_id.symbol" style="color: #fdd105;" />
-                                <span style="text-transform: none !important;">avec le code</span>
+                                <span style="text-transform: none !important;">avec le
+                                                                    code</span>
                                 <t t-esc="promo.code" />
                               </b>
                             </p>
@@ -361,16 +384,22 @@
                             Je m'inscris
                                                 </a> -->
                             <!-- Call Mircorsoft ads script onclick-->
-                            <a href="#pricing">
-                              <button class="home-btn" onClick="(function(){packVtcHome(); document.getElementById('form-1-1').submit();return false;})();return false;">Je m'inscris</button>
+
+                            <a class="animated-button-yellow" href="#pricing" onClick="(function(){packVtcHome(); document.getElementById('form-1-1').submit();return false;})();return false;">
+                              <span></span>
+                              <span></span>
+                              <span></span>
+                              <span></span>
+                              Je m'inscris
                             </a>
+
                           </div>
                         </form>
                       </t>
                     </t>
                   </div>
                 </div>
-                <div class="col-md-4 sh_animation_part">
+                <div class="col-md-4 sh_animation_part js-scroll fade-in-top">
                   <div class="sh_pricing">
                     <t t-foreach="mcm_products" t-as="product">
                       <t t-if="product.default_code=='taxi'">
@@ -407,11 +436,12 @@
                             </p>
                           </t>
                           <div class="sh_btn">
-                            <!-- <a class="btn btn-primary sh_btn_cm_8" data-original-title="" title="" aria-describedby="tooltip209445" onClick="(function(){document.getElementById('form-1-2').submit();return false;})();return false;">
-                            Je m'inscris
-                                                </a> -->
-                            <a href="#pricing">
-                              <button class="home-btn" onClick="(function(){packTaxiHome();document.getElementById('form-1-2').submit();return false;})();return false;">Je m'inscris</button>
+                            <a class="animated-button-yellow" href="#pricing" onClick="(function(){packTaxiHome();document.getElementById('form-1-2').submit();return false;})();return false;">
+                              <span></span>
+                              <span></span>
+                              <span></span>
+                              <span></span>
+                              Je m'inscris
                             </a>
                           </div>
                         </form>
@@ -419,7 +449,7 @@
                     </t>
                   </div>
                 </div>
-                <div class="col-md-4 sh_animation_part">
+                <div class="col-md-4 sh_animation_part js-scroll slide-right">
                   <div class="sh_pricing">
                     <t t-foreach="mcm_products" t-as="product">
                       <t t-if="product.default_code=='vmdtr'">
@@ -458,8 +488,13 @@
                             <!-- <a class="btn btn-primary sh_btn_cm_8" data-original-title="" title="" aria-describedby="tooltip196298">
                             Je m'inscris
                                                 </a> -->
-                            <a href="#pricing">
-                              <button class="home-btn" onClick="(function(){packVmdtrHome(); document.getElementById('form-1-3').submit();return false;})();return false;">Je m'inscris</button>
+
+                            <a class="animated-button-yellow" href="#pricing" onClick="(function(){packVmdtrHome(); document.getElementById('form-1-3').submit();return false;})();return false;">
+                              <span></span>
+                              <span></span>
+                              <span></span>
+                              <span></span>
+                              Je m'inscris
                             </a>
                           </div>
                         </form>
@@ -472,6 +507,54 @@
           </section>
         </div>
         <!-- FIN PRICING TABLE-->
+        <section class="clients s_references bg-200 pt16 pb16" data-name="References">
+          <center>
+            <div class="container js-scroll fade-in-top">
+              <div class="center-logo">
+                <!-- <div t-if="partenaire=='' or not partenaire or partenaire=='bolt'">
+                                    <a href="https://www.digimoov.fr/">
+                                        <img data-src="/mcm_website_theme/static/src/img/partenaires/digimoov.png" data-srcSafari="/mcm_website_theme/static/src/img/partenaires/digimoov.png" class="img img-fluid lazy" alt="Logo partenaire Digimoov" data-original-title="" title="Digimoov partenaire MCM ACADEMY" aria-describedby="tooltip843653" style="margin-top: 30px; width: 72%"/>
+                                    </a>
+                                </div> -->
+
+                <div t-if="partenaire=='' or partenaire !='bolt'">
+                  <a href="#">
+                    <img data-src="/mcm_website_theme/static/src/img/partenaires/cma.png" data-srcSafari="/mcm_website_theme/static/src/img/partenaires/cma.png" class="img img-fluid lazy" alt="Logo partenaire CMA" data-original-title="" title="CMA partenaire MCM ACADEMY" aria-describedby="tooltip623872" style="margin-top: 30px; width: 50%" />
+                  </a>
+                </div>
+
+                <div t-if="partenaire=='' or not partenaire ">
+                  <a href="https://bolt.eu/fr/">
+                    <img data-src="/mcm_website_theme/static/src/img/partenaires/bolt.png" data-srcSafari="/mcm_website_theme/static/src/img/partenaires/bolt.png" class="img img-fluid lazy" alt="Logo partenaire bolt" data-original-title="" title="Bolt partenaire MCM ACADEMY" aria-describedby="tooltip843653" style="margin-top: 30px; width: 38%" />
+                  </a>
+                </div>
+                <div t-if="partenaire=='bolt' ">
+                  <a href="https://bolt.eu/fr/">
+                    <img data-src="/mcm_website_theme/static/src/img/partenaires/Bolt_logo.svg.png" data-srcSafari="/mcm_website_theme/static/src/img/partenaires/Bolt_logo.svg.png" class="img img-fluid lazy" alt="Logo partenaire bolt" data-original-title="" title="Bolt partenaire MCM ACADEMY" aria-describedby="tooltip843653" style="margin-top: 30px; width: 38%" />
+                  </a>
+                </div>
+                <!-- <div t-if="partenaire=='' or partenaire !='bolt'">
+                                    <a href="https://www.uber.com/fr/fr/">
+                                        <img data-src="/mcm_website_theme/static/src/img/partenaires/uber.png" data-srcSafari="/mcm_website_theme/static/src/img/partenaires/uber.png" class="img img-fluid lazy" alt="Logo partenaire uber" data-original-title="" title="Uber partenaire MCM ACADEMY" aria-describedby="tooltip843653" style="margin-top: 30px; width: 50%"/>
+                                    </a>
+                                </div> -->
+
+                <div t-if="partenaire=='' or not partenaire ">
+                  <a href="https://www.comptable-douai.com/">
+                    <img data-src="/mcm_website_theme/static/src/img/partenaires/joel.png" data-srcSafari="/mcm_website_theme/static/src/img/partenaires/joel.png" class="img img-fluid lazy" alt="Logo partenaire Cabinet Comptable Joël Pruvost" data-original-title="" title="Cabinet Comptable Joël Pruvost partenaire Digimoov" aria-describedby="tooltip175558" style="margin-top: 30px; width: 68%" />
+                  </a>
+                </div>
+                <div t-if="partenaire=='bolt'">
+                  <a href="https://www.digimoov.fr/">
+                    <img data-src="/mcm_website_theme/static/src/img/partenaires/digimoov.png" data-srcSafari="/mcm_website_theme/static/src/img/partenaires/digimoov.png" class="img img-fluid lazy" alt="Logo partenaire Digimoov" data-original-title="" title="Digimoov partenaire MCM ACADEMY" aria-describedby="tooltip843653" style="margin-top: 30px; width: 46%" />
+                  </a>
+                </div>
+              </div>
+
+            </div>
+          </center>
+
+        </section>
 
       </div>
     </t>
