@@ -38,7 +38,7 @@ class AuthSignupHome(AuthSignupHome):
         #         raise UserError(_("Les emails ne correspondent pas, veuillez les saisir à nouveau."))
         #Concatenate num_voie, voie and nom_voie inti street
         if (values['num_voie'] and values['voie'] and values['nom_voie']):
-            values['street'] = values['nu&m_voie'] + " " + values['voie'] + " " + values['nom_voie']
+            values['street'] = values['num_voie'] + " " + values['voie'] + " " + values['nom_voie']
         supported_lang_codes = [code for code, _ in request.env['res.lang'].get_installed()]
         lang = request.context.get('lang', '').split('_')[0]
         if lang in supported_lang_codes:
