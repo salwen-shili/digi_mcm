@@ -427,6 +427,9 @@ class Services(http.Controller):
         else:
             return request.render("mcm_website_theme.mcm_template_contact", {})
 
+    # test a supprimer
+    ##############################
+    
 
     @http.route('/maintenance', type='http', auth='public', website=True) # url of maintenance page 
     def maintenance(self, **kw, ):
