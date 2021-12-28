@@ -404,7 +404,7 @@ class WebsiteSale(WebsiteSale):
                     partner.module_id = module_id
                     request.env.user.company_id = 2
                     invoice = request.env['account.move'].sudo().search(
-                        [('module_id', "=", module_id.id), ('state', "=", 'posted'),
+                        [('module_id.date_exam', ">=", date.today()), ('state', "=", 'posted'),
                          ('partner_id', "=", partner.id)])
                     if not invoice:
                         so = request.env['sale.order'].sudo().create({
@@ -460,6 +460,7 @@ class WebsiteSale(WebsiteSale):
                         partner.statut = 'won'
                         """changer step à validé dans espace client """
                         partner.step = 'finish'
+
                         
                     """Créer un historique de ssession pour cet apprenant """
                     session = request.env['partner.sessions'].search([('client_id', '=', partner.id),
@@ -487,7 +488,7 @@ class WebsiteSale(WebsiteSale):
                     partner.module_id = module_id
                     request.env.user.company_id = 1
                     invoice = request.env['account.move'].sudo().search(
-                        [('module_id', "=", module_id.id), ('state', "=", 'posted'),
+                        [('module_id.date_exam', ">=", date.today()), ('state', "=", 'posted'),
                          ('partner_id', "=", partner.id)])
                     if not invoice:
                         so = request.env['sale.order'].sudo().create({
@@ -646,6 +647,15 @@ class WebsiteSale(WebsiteSale):
                                 print("****************************************ajouterrrr ione")
                                 return self.ajouter_iOne(partner)
                             if user.company_id.id == 1:
+                                "si créer envoyer le lien de la plateforme + suppression de panier  si non false"
+                                sale_order = request.env['sale.order'].sudo().search([('partner_id', '=', partner.id),
+                                                                                      ( 'session_id', '=', partner.mcm_session_id.id),
+                                                                                      ('module_id', '=', partner.module_id.id),
+                                                                                      ('state', '=', 'draft'),
+                                                                                      ('session_id.date_exam', '>', date.today())],
+                                                                                      limit=1, order="id desc")
+                                if sale_order:
+                                    sale_order.unlink()
                                 print("*******************MCM")
                                 return {'ajout':"Félicitations! Vous pouvez dés maintenant accéder à notre plateforme de formation,\nPour ce faire, veuillez cliquer sur continuer et créer votre compte client.\nLes cours seront ajoutés dans les 24 heures",
                                         'url':"https://formation.mcm-academy.fr/register?next=/dashboard"}
@@ -851,8 +861,18 @@ class WebsiteSale(WebsiteSale):
                                 urlsession = 'https://app.360learning.com/api/v1/groups/' + id_groupe + '/users/' + partner.email + '?company=' + company_id + '&apiKey=' + api_key
                                 respsession = requests.put(urlsession, headers=headers, data=data_group)
                                 print(existe, 'ajouter à son session', respsession.status_code)
-                    "si créer envoyer le lien de la plateforme si non false"
+                    "si créer envoyer le lien de la plateforme + suppression de panier  si non false"
+                    sale_order = request.env['sale.order'].sudo().search([('partner_id', '=', partner.id),
+                                                                          (
+                                                                          'session_id', '=', partner.mcm_session_id.id),
+                                                                          ('module_id', '=', partner.module_id.id),
+                                                                          ('state', '=', 'draft'),
+                                                                          ('session_id.date_exam', '>', date.today())
+                                                                          ], limit=1, order="id desc")
+                    if sale_order:
+                        sale_order.unlink()
                     return {'ajout':'Félicitations! Vous pouvez dés maintenant accéder à notre plateforme de formation,\nPour ce faire, veuillez cliquer sur continuer, et rentrez vos identifiants de connexion que vous utilisez sur notre site web.','url': 'https://digimoov.360learning.com'}
+
                 if not (create):
                         if str(responce_api)=="{'error': 'unavailableEmails'}":
                             
