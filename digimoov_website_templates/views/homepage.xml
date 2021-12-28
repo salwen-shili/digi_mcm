@@ -1,5 +1,6 @@
 <odoo>
     <template id="digimoov_website_templates.digimoov_template" inherit_id="website.homepage">
+
         <xpath expr="//div[@id='wrap']" position="replace">
             <script defer="defer" type="text/javascript" src="/digimoov_website_templates/static/src/js/lazy-min.js" />
             <link href="/digimoov_website_templates/static/src/css/css-dist/home.min.css" rel="stylesheet" />
@@ -14,35 +15,21 @@
                             <div class="row align-items-center">
                                 <div class="col-md-6 align-self-center">
                                     <t t-if="partenaire=='' or partenaire!='box2home'">
-                                        <h1 class="subtitle" style="
-                    font-size: 31px;
-                    color: #202647;
-                    line-height: 0.8cm !important;
-                    height: 150px;
-                  " t-if="partenaire=='' or partenaire!='box2home'">
+                                        <h1 class="subtitle" style="                     font-size: 31px;                     color: #202647;                     line-height: 0.8cm !important;                     height: 150px;                   " t-if="partenaire=='' or partenaire!='box2home'">
                                             FORMATION EN CAPACITÉ DE TRANSPORT LÉGER DE
                                             <span class="stabiloblue">MARCHANDISES</span>
                                             POUR DEVENIR LIVREUR EN
-                                            <span class="typewrite" data-period="2000" data-type='[ "SCOOTER", "VOITURE", "CAMIONNETTE"]'></span>
+                                            <span class="typewrite" data-period="2000" data-type="[ &quot;SCOOTER&quot;, &quot;VOITURE&quot;, &quot;CAMIONNETTE&quot;]" />
                                         </h1>
                                     </t>
                                     <t t-if="partenaire=='box2home'">
-                                        <h1 class="subtitle" style="
-                    font-size: 25px;
-                    color: #202647;
-                    line-height: 0.8cm !important;
-                    height: 150px;
-                  " t-if="partenaire=='box2home'">
+                                        <h1 class="subtitle" style="                     font-size: 25px;                     color: #202647;                     line-height: 0.8cm !important;                     height: 150px;                   " t-if="partenaire=='box2home'">
                                             <b>FORMATION EN CAPACITÉ DE TRANSPORT LÉGER DE</b>
                                             <span class="stabiloblue">MARCHANDISES</span>
-                                            <b style="
-                      font-size: 25px;
-                      color: #202647;
-                      line-height: 0.8cm !important;
-                    ">POUR DEVENIR LIVREUR EN
-                                            </b>
+                                            <b style="                       font-size: 25px;                       color: #202647;                       line-height: 0.8cm !important;                     ">POUR DEVENIR LIVREUR EN
+                                                    </b>
                                             <b>
-                                                <span class="typewrite" data-period="2000" data-type='[ "PARTENARIAT AVEC BOX2HOME" ]'>
+                                                <span class="typewrite" data-period="2000" data-type="[ &quot;PARTENARIAT AVEC BOX2HOME&quot; ]">
                                                     <span class="wrap">PARTENARIAT AVEC BOX2HOME</span>
                                                 </span>
                                             </b>
@@ -51,25 +38,12 @@
                                     </t>
                                     <br />
                                     <div class="boosting-section tab-btn s_btn">
-                                        <a href="/#en-savoir-plus" class="
-                    homebuttonspacing
-                    boosting-section
-                    boostingbtn
-                    btn btn-alpha
-                    rounded-circle
-                  ">En-savoir plus
-                                        </a>
-                                        <a class="
-                    homebuttonspacing
-                    boosting-section
-                    boostingbtn
-                    btn btn-alpha
-                    rounded-circle
-                  " href="/contact">
+                                        <a href="/#en-savoir-plus" class="                     homebuttonspacing                     boosting-section                     boostingbtn                     btn btn-alpha                     rounded-circle                   ">En-savoir plus
+                                            </a>
+                                        <a class="                     homebuttonspacing                     boosting-section                     boostingbtn                     btn btn-alpha                     rounded-circle                   " href="/contact">
                                             Contactez-nous
-                                        </a>
+                                            </a>
                                     </div>
-
                                     <!-- <div class="s_btn" data-name="Button">
                       <a class="btn btn-alpha rounded-circle btn-md arrow-btn m-t-20 m-b-10 bizople_button" href="/#en-savoir-plus">
                                             En-savoir plus
@@ -124,10 +98,10 @@
                                                 <h2 class="subtitle">
                                                     <span style="color: rgb(0, 0, 0); font-size: 36px">Formation 100 %
                                                         en ligne
-                                                    </span>
+                                                        </span>
                                                     <br />
                                                     <font style="color: rgb(0, 0, 0); font-size: 18px">éligible au CPF
-                                                    </font>
+                                                        </font>
                                                 </h2>
                                             </div>
                                         </div>
@@ -150,13 +124,9 @@
                                                 &amp;nbsp;
                                                 <br />
                                                 <br />
-                                                <span style="
-                        color: rgb(0, 0, 0);
-                        font-size: 18px;
-                        text-align: left;
-                      ">Se préparer à l’examen de capacité de transport léger de
+                                                <span style="                         color: rgb(0, 0, 0);                         font-size: 18px;                         text-align: left;                       ">Se préparer à l’examen de capacité de transport léger de
                                                     marchandises.
-                                                </span>
+                                                    </span>
                                             </div>
                                         </div>
                                     </div>
@@ -174,16 +144,13 @@
                                                         </div>
                                                         <h3>
                                                             <font style="font-size: 20px">Apprenez à votre rythme
-                                                            </font>
+                                                                </font>
                                                         </h3>
                                                         <p class="m-t-20">
-                                                            <span style="
-                              font-family: Roboto, 'Odoo Unicode Support Noto',
-                                sans-serif;
-                            ">
+                                                            <span style="                               font-family: Roboto, 'Odoo Unicode Support Noto',                                 sans-serif;                             ">
                                                                 Choisissez quand et pour combien de temps vous
                                                                 souhaitez travailler
-                                                            </span>
+                                                                </span>
                                                             <br />
                                                         </p>
                                                     </div>
@@ -197,16 +164,13 @@
                                                         </div>
                                                         <h3>
                                                             <font style="font-size: 20px">Des formateurs qualifiés
-                                                            </font>
+                                                                </font>
                                                         </h3>
                                                         <p class="m-t-20">
-                                                            <span style="
-                              font-family: Roboto, 'Odoo Unicode Support Noto',
-                                sans-serif;
-                            ">
+                                                            <span style="                               font-family: Roboto, 'Odoo Unicode Support Noto',                                 sans-serif;                             ">
                                                                 Vous serez pris en charge et accompagné par une
                                                                 équipe hautement qualifiée
-                                                            </span>
+                                                                </span>
                                                             <br />
                                                         </p>
                                                     </div>
@@ -222,12 +186,9 @@
                                                             <font style="font-size: 20px">Examens blancs</font>
                                                         </h3>
                                                         <p class="m-t-20">
-                                                            <span style="
-                              font-family: Roboto, 'Odoo Unicode Support Noto',
-                                sans-serif;
-                            " id="en-savoir-plus">
+                                                            <span style="                               font-family: Roboto, 'Odoo Unicode Support Noto',                                 sans-serif;                             " id="en-savoir-plus">
                                                                 Afin de se préparer efficacement à l'examen final
-                                                            </span>
+                                                                </span>
                                                             <br />
                                                         </p>
                                                     </div>
@@ -241,19 +202,12 @@
                                 <div class="container">
                                     <div class="row s_nb_column_fixed" id="en-savoir-plus">
                                         <div class="s_title pt16 offset-lg-2 col-lg-8 pb0" style="text-align: center">
-                                            <h2 style="
-                      margin-bottom: 10px;
-                      font-family: Roboto;
-                      font-weight: 500;
-                      line-height: 1.3;
-                      color: rgb(58, 58, 71);
-                      font-size: 28px;
-                    ">
+                                            <h2 style="                       margin-bottom: 10px;                       font-family: Roboto;                       font-weight: 500;                       line-height: 1.3;                       color: rgb(58, 58, 71);                       font-size: 28px;                     ">
                                                 <font style="font-size: 24px">Digimoov vous accompagne pour obtenir
                                                     votre
                                                     attestation
                                                     en capacité de transport léger de marchandises
-                                                </font>
+                                                    </font>
                                             </h2>
                                         </div>
                                     </div>
@@ -278,22 +232,14 @@
                                                         <br />
                                                     </p>
                                                     <div class="boosting-section tab-btn s_btn text-right">
-                                                        <a onClick="msTracking('clic sur detail sur la formation Homepage','clic sur bouton','clic sur bouton detail sur la formation Homepage','66')" href="/blog/digimoov-3/post/bon-a-savoir-sur-la-formation-capacite-de-transport-leger-6#details-formation" class="
-                            boosting-section
-                            boostingbtn
-                            btn btn-alpha
-                            rounded-circle
-                          ">
+                                                        <a onClick="msTracking('clic sur detail sur la formation Homepage','clic sur bouton','clic sur bouton detail sur la formation Homepage','66')" href="/blog/digimoov-3/post/bon-a-savoir-sur-la-formation-capacite-de-transport-leger-6#details-formation" class="                             boosting-section                             boostingbtn                             btn btn-alpha                             rounded-circle                           ">
                                                             Détails sur la formation
-                                                        </a>
+                                                            </a>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="col-md-5 col-md-5">
-                                                <img data-src="/digimoov_website_templates/static/img/compressed/formation en ligne.webp" data-srcSafari="/digimoov_website_templates/static/img/Homepage/formation en ligne.jpg" alt=" Apprenant en formation à distance" class="img-responsive img img-fluid lazy" data-original-title="" title="formation en ligne" aria-describedby="tooltip971717" style="
-                        transform: translateX(6.9%) translateY(1.3%)
-                          scaleX(1.11) scaleY(1.11);
-                      " />
+                                                <img data-src="/digimoov_website_templates/static/img/compressed/formation en ligne.webp" data-srcSafari="/digimoov_website_templates/static/img/Homepage/formation en ligne.jpg" alt=" Apprenant en formation à distance" class="img-responsive img img-fluid lazy" data-original-title="" title="formation en ligne" aria-describedby="tooltip971717" style="                         transform: translateX(6.9%) translateY(1.3%)                           scaleX(1.11) scaleY(1.11);                       " />
                                             </div>
                                             <!-- <div class="banner-btn s_btn text-right" style="margin-top: 20px" data-name="Button" aria-describedby="tooltip272185">
                                 <a class="bannerbtn btn btn-alpha rounded-circle o_default_snippet_text" href="/blog/digimoov-3/post/bon-a-savoir-sur-la-formation-capacite-de-transport-leger-6#details-formation">Détails sur la formation&amp;nbsp;&amp;nbsp;</a>
@@ -325,19 +271,12 @@
                                                     </t>
                                                     <br />
                                                 </p>
-
                                                 <div class="boosting-section tab-btn s_btn text-left">
-                                                    <a href="/examen-capacite-transport-marchandises" class="
-                          boosting-section
-                          boostingbtn
-                          btn btn-alpha
-                          rounded-circle
-                        " data-original-title="" title="" aria-describedby="tooltip959694">
+                                                    <a href="/examen-capacite-transport-marchandises" class="                           boosting-section                           boostingbtn                           btn btn-alpha                           rounded-circle                         " data-original-title="" title="" aria-describedby="tooltip959694">
                                                         Détails sur l'examen&amp;nbsp;&amp;nbsp;
-                                                    </a>
+                                                        </a>
                                                 </div>
                                             </div>
-
                                             <br />
                                         </div>
                                     </div>
@@ -352,7 +291,7 @@
                                                     <h2 class="title m-t-20 text-beta">
                                                         OBTENIR L'ATTESTATION DE CAPACITÉ DE TRANSPORT LÉGER DE
                                                         MARCHANDISES
-                                                    </h2>
+                                                        </h2>
                                                     <p class="m-t-30 custom_p">
                                                         C'est une attestation qui vous sera indispensable si
                                                         vous souhaitez vous installer comme transporteur public
@@ -361,23 +300,16 @@
                                                         de monter votre propre boîte de livraison.
                                                         <br />
                                                     </p>
-
                                                     <div class="boosting-section tab-btn s_btn text-right">
-                                                        <a href="/blog/digimoov-3/post/bon-a-savoir-sur-la-formation-capacite-de-transport-leger-6#details-formation" class="
-                            boosting-section
-                            boostingbtn
-                            btn btn-alpha
-                            rounded-circle
-                          " data-original-title="" title="" aria-describedby="tooltip272185">
+                                                        <a href="/blog/digimoov-3/post/bon-a-savoir-sur-la-formation-capacite-de-transport-leger-6#details-formation" class="                             boosting-section                             boostingbtn                             btn btn-alpha                             rounded-circle                           " data-original-title="" title="" aria-describedby="tooltip272185">
                                                             En-savoir plus&amp;nbsp;&amp;nbsp;
-                                                        </a>
+                                                            </a>
                                                     </div>
                                                     <p class="m-t-30 custom_p">
                                                         <br />
                                                     </p>
                                                 </div>
                                             </div>
-
                                             <div class="col-md-5 col-md-5">
                                                 <img data-src="/digimoov_website_templates/static/img/Diplome attestation de capacité de transport léger.webp" data-srcSafari="/digimoov_website_templates/static/img/Homepage/Diplome attestation de capacité de transport léger.jpg" alt="Homme et Femme diplomés après réussite" class="img-responsive img img-fluid lazy" data-original-title="" title="Diplome attestation de capacité de transport léger" aria-describedby="tooltip805036" />
                                             </div>
@@ -402,62 +334,50 @@
                                     <div class="container">
                                         <div class="row m-t-40">
                                             <div class="col-md-4 wrap-feature7-box">
-                                                <section class="o_anim_zoom_in o_animate o_animated" style="
-                        animation-name: o_anim_zoom_in;
-                        visibility: visible;
-                        animation-play-state: running;
-                      ">
+                                                <section class="o_anim_zoom_in o_animate o_animated" style="                         animation-name: o_anim_zoom_in;                         visibility: visible;                         animation-play-state: running;                       ">
                                                     <img class="rounded img-responsive lazy" data-src="/digimoov_website_templates/static/img/Transport léger sur scooter.webp" data-srcSafari="/digimoov_website_templates/static/img/Homepage/Transport léger sur scooter.png" alt="Scooter pour faire de la livraison" data-original-title="" title="Transport léger sur scooter" aria-describedby="tooltip533278" style="transform: scaleX(0.78) scaleY(0.85)" />
                                                     <div class="m-t-30">
                                                         <h3 class="font-medium" style="text-align: center">
                                                             Devenir livreur en scooter
-                                                        </h3>
+                                                            </h3>
                                                         <p class="custom_p m-b-30 m-t-30" style="text-align: center">
                                                             Passez à la vitesse supérieure et faites des
                                                             livraisons plus rapides et à moindre effort sur
                                                             scooter grâce à la capacité de transport&amp;nbsp;de
                                                             marchandises.
-                                                        </p>
+                                                            </p>
                                                     </div>
                                                 </section>
                                             </div>
                                             <div class="col-md-4 wrap-feature7-box">
-                                                <section class="o_animate o_anim_zoom_in o_animated" style="
-                        animation-name: o_anim_zoom_in;
-                        visibility: visible;
-                        animation-play-state: running;
-                      ">
+                                                <section class="o_animate o_anim_zoom_in o_animated" style="                         animation-name: o_anim_zoom_in;                         visibility: visible;                         animation-play-state: running;                       ">
                                                     <img class="rounded img-responsive lazy" data-src="/digimoov_website_templates/static/img/Transport léger  sur voiture.webp" data-srcSafari="/digimoov_website_templates/static/img/Homepage/Transport léger  sur voiture.png" alt="Voiture pour Transport léger de marchandise" data-original-title="" title="Transport léger  sur voiture" aria-describedby="tooltip970873" style="transform: scaleX(0.85) scaleY(0.89)" />
                                                     <div class="m-t-30">
                                                         <h3 class="font-medium" style="text-align: center">
                                                             Devenir livreur en voiture
-                                                        </h3>
+                                                            </h3>
                                                         <p class="custom_p m-b-30 m-t-30" style="text-align: center">
                                                             Le secteur de la livraison est en pleine expansion.
                                                             Plusieurs entreprises sont à la recherche des livreurs
                                                             reconnus en tant que professionnels de transport
                                                             routier léger de marchandises.
-                                                        </p>
+                                                            </p>
                                                     </div>
                                                 </section>
                                             </div>
                                             <div class="col-md-4 wrap-feature7-box">
-                                                <section class="o_animate o_anim_zoom_in o_animated" style="
-                        animation-name: o_anim_zoom_in;
-                        visibility: visible;
-                        animation-play-state: running;
-                      ">
+                                                <section class="o_animate o_anim_zoom_in o_animated" style="                         animation-name: o_anim_zoom_in;                         visibility: visible;                         animation-play-state: running;                       ">
                                                     <img class="rounded img-responsive lazy" data-src="/digimoov_website_templates/static/img/Transport léger sur camionnette 3,5t.webp" data-srcSafari="/digimoov_website_templates/static/img/Homepage/Transport léger sur camionnette 3,5t.png" alt="camionnette pour transport -3.5t PTAC" data-original-title="" title="Transport léger sur camionnette 3,5t" aria-describedby="tooltip38151" style="transform: scaleX(0.89) scaleY(0.9)" />
                                                     <div class="m-t-30">
                                                         <h3 class="font-medium lazy" style="text-align: center">
                                                             Devenir livreur en camionnette
-                                                        </h3>
+                                                            </h3>
                                                         <p class="custom_p m-b-30 m-t-30" style="text-align: center">
                                                             La capacité professionnelle de transport routier léger
                                                             de marchandises vous permettra d'exploiter des
                                                             véhicules de -3,5 tonnes de poids total autorisé en
                                                             charge.
-                                                        </p>
+                                                            </p>
                                                     </div>
                                                 </section>
                                             </div>
@@ -465,10 +385,7 @@
                                     </div>
                                 </div>
                             </section>
-                            <section class="s_furniture_fun-fact-section oe_img_bg oe_custom_bg" style="
-              background-image: url('/digimoov_website_templates/static/img/Monter boite de transport.png');
-              background-position: 55.8% 54.4%;
-            " alt="Transport routier de marchandise" data-name="Counter with parallex image">
+                            <section class="s_furniture_fun-fact-section oe_img_bg oe_custom_bg" style="               background-image: url('/digimoov_website_templates/static/img/Monter boite de transport.png');               background-position: 55.8% 54.4%;             " alt="Transport routier de marchandise" data-name="Counter with parallex image">
                                 <div class="container">
                                     <div class="row clearfix">
                                         <div class="title-column col-lg-5 col-md-12 col-sm-12">
@@ -478,7 +395,7 @@
                                                         centaines de
                                                         personnes ont déjà fait confiance à
                                                         Digimoov
-                                                    </font>
+                                                        </font>
                                                 </h4>
                                                 <div class="text">
                                                     Pourquoi pas vous ?
@@ -496,7 +413,7 @@
                                                             %
                                                             <h5 class="counter-title">
                                                                 <font style="font-size: 16px">de recommandation
-                                                                </font>
+                                                                    </font>
                                                             </h5>
                                                         </div>
                                                     </div>
@@ -517,7 +434,7 @@
                                                             +
                                                             <h5 class="counter-title">
                                                                 <font style="font-size: 16px">Stagiaires formés
-                                                                </font>
+                                                                    </font>
                                                             </h5>
                                                         </div>
                                                     </div>
@@ -543,7 +460,7 @@
                                                         Choisissez la formule qui vous convient</span>
                                                     &amp;nbsp;
                                                     <span style="color: rgb(66, 66, 66); font-size: 16px">&amp;nbsp;
-                                                    </span>
+                                                        </span>
                                                     <br />
                                                 </h3>
                                             </div>
@@ -553,19 +470,13 @@
                             </section>
                             <p />
                         </div>
-
                         <div class="container">
                             <input t-att-value="request.website.microsoft_tracking_key" id="microsoft_tracking_key" type="hidden" />
                             <div class="row">
                                 <div class="col-md-4 col-sm-6">
                                     <div class="card border-0 shadow" style="border-radius: 25px 25px">
-                                        <div class="text-center text-white border-0" style="
-                    background-color: #6e209f;
-                    border-top-left-radius: 25px;
-                    border-top-right-radius: 25px;
-                  ">
+                                        <div class="text-center text-white border-0" style="                     background-color: #6e209f;                     border-top-left-radius: 25px;                     border-top-right-radius: 25px;                   ">
                                             <br />
-
                                             <p>
                                                 <strong style="color: white">
                                                     <font style="font-size: 30px">SOLO</font>
@@ -626,34 +537,13 @@
                                                                 <i />
                                                             </li>
                                                         </ul>
-                                                        <p class="
-                            text-center
-                            font-weight-bolder
-                            text-dark
-                            h1
-                            display-4
-                            mb-0
-                          ">
+                                                        <p class="                             text-center                             font-weight-bolder                             text-dark                             h1                             display-4                             mb-0                           ">
                                                             <font>
-                                                                <p class="
-                                text-center
-                                font-weight-bolder
-                                text-dark
-                                h1
-                                display-4
-                                mb-0
-                              " t-if="not promo">
+                                                                <p class="                                 text-center                                 font-weight-bolder                                 text-dark                                 h1                                 display-4                                 mb-0                               " t-if="not promo">
                                                                     <span t-esc="round(product.list_price)" />
                                                                     <span t-esc="product.currency_id.symbol" />
                                                                 </p>
-                                                                <p class="
-                                text-center
-                                font-weight-bolder
-                                text-dark
-                                h1
-                                display-4
-                                mb-0
-                              " t-if="promo">
+                                                                <p class="                                 text-center                                 font-weight-bolder                                 text-dark                                 h1                                 display-4                                 mb-0                               " t-if="promo">
                                                                     <t t-foreach="promo.item_ids" t-as="item">
                                                                         <t t-if="item.product_id.id==product.id">
                                                                             <span t-esc="round(item.fixed_price)" />
@@ -664,29 +554,20 @@
                                                             </font>
                                                         </p>
                                                         <t t-if="promo and promo.name!='box2home'">
-                                                            <p class="
-                              text-center
-                              font-weight-bolder
-                              text-secondary
-                            ">
+                                                            <p class="                               text-center                               font-weight-bolder                               text-secondary                             ">
                                                                 <b style="font-size: 80%">
                                                                     <t>avec le code</t>
                                                                     <t t-esc="promo.code" />
                                                                 </b>
                                                             </p>
                                                         </t>
-                                                        <p class="
-                            medium
-                            text-center
-                            font-weight-bolder
-                            text-secondary
-                          " style="color: red !important">
+                                                        <p class="                             medium                             text-center                             font-weight-bolder                             text-secondary                           " style="color: red !important">
                                                             Paiement 1 fois
-                                                        </p>
+                                                            </p>
                                                         <br />
                                                         <button class="btn btn-block text-white" onClick="(function(){msTracking('clic sur inscrire pack solo','Pricing Table events','Inscrire pack solo Homepage','590'); document.getElementById('form-1-1').submit();return false;})();return false;" style="background-color: #6e209f; border-radius: 25px">
                                                             Je m'inscris
-                                                        </button>
+                                                            </button>
                                                     </div>
                                                 </form>
                                             </t>
@@ -695,11 +576,7 @@
                                 </div>
                                 <div class="col-md-4 col-sm-6">
                                     <div class="card border-0 shadow" style="border-radius: 25px 25px">
-                                        <div class="text-center text-white border-0" style="
-                    background-color: #6e209f;
-                    border-top-left-radius: 25px;
-                    border-top-right-radius: 25px;
-                  ">
+                                        <div class="text-center text-white border-0" style="                     background-color: #6e209f;                     border-top-left-radius: 25px;                     border-top-right-radius: 25px;                   ">
                                             <br />
                                             <p>
                                                 <strong style="color: white">
@@ -762,52 +639,28 @@
                                                                 <i />
                                                             </li>
                                                         </ul>
-                                                        <p class="
-                            text-center
-                            font-weight-bolder
-                            text-dark
-                            h1
-                            display-4
-                            mb-0
-                          ">
+                                                        <p class="                             text-center                             font-weight-bolder                             text-dark                             h1                             display-4                             mb-0                           ">
                                                             <font>
-                                                                <p class="
-                                text-center
-                                font-weight-bolder
-                                text-dark
-                                h1
-                                display-4
-                                mb-0
-                              ">
+                                                                <p class="                                 text-center                                 font-weight-bolder                                 text-dark                                 h1                                 display-4                                 mb-0                               ">
                                                                     <span t-esc="round(product.list_price)" />
-
                                                                     <span t-esc="product.currency_id.symbol" />
                                                                 </p>
                                                             </font>
                                                         </p>
                                                         <t t-if="promo and promo.name!='box2home'">
-                                                            <p class="
-                              text-center
-                              font-weight-bolder
-                              text-secondary
-                            ">
+                                                            <p class="                               text-center                               font-weight-bolder                               text-secondary                             ">
                                                                 <b style="font-size: 80%">
                                                                     <t>&amp;nbsp; &amp;nbsp; &amp;nbsp;&amp;nbsp;</t>
                                                                 </b>
                                                             </p>
                                                         </t>
-                                                        <p class="
-                            medium
-                            text-center
-                            font-weight-bolder
-                            text-secondary
-                          " style="color: red !important">
+                                                        <p class="                             medium                             text-center                             font-weight-bolder                             text-secondary                           " style="color: red !important">
                                                             Paiement 1 ou 2 fois
-                                                        </p>
+                                                            </p>
                                                         <br />
                                                         <button class="btn btn-block text-white" onClick="(function(){msTracking('clic sur inscrire pack pro','Pricing Table events','Inscrire pack pro Homepage','680'); document.getElementById('form-2-1').submit();return false;})();return false;" style="background-color: #6e209f; border-radius: 25px">
                                                             Je m'inscris
-                                                        </button>
+                                                            </button>
                                                     </div>
                                                 </form>
                                             </t>
@@ -816,11 +669,7 @@
                                 </div>
                                 <div class="col-md-4 col-sm-12">
                                     <div class="card border-0 shadow" style="border-radius: 25px 25px">
-                                        <div class="text-center text-white border-0" style="
-                    background-color: #6e209f;
-                    border-top-left-radius: 25px;
-                    border-top-right-radius: 25px;
-                  ">
+                                        <div class="text-center text-white border-0" style="                     background-color: #6e209f;                     border-top-left-radius: 25px;                     border-top-right-radius: 25px;                   ">
                                             <br />
                                             <h2>
                                                 <strong style="color: white">PREMIUM</strong>
@@ -849,7 +698,7 @@
                                                                 <i class="fa fa-check-circle fa-lg mr-2 text-success" />
                                                                 <b>Livre d’entrainement version&amp;nbsp;</b>
                                                                 <span style="font-weight: bolder">électronique
-                                                                </span>
+                                                                    </span>
                                                                 <br />
                                                             </li>
                                                             <li class="mb-4">
@@ -884,51 +733,28 @@
                                                                 <br />
                                                             </li>
                                                         </ul>
-                                                        <p class="
-                            text-center
-                            font-weight-bolder
-                            text-dark
-                            h1
-                            display-4
-                            mb-0
-                          ">
+                                                        <p class="                             text-center                             font-weight-bolder                             text-dark                             h1                             display-4                             mb-0                           ">
                                                             <font>
-                                                                <p class="
-                                text-center
-                                font-weight-bolder
-                                text-dark
-                                h1
-                                display-4
-                                mb-0
-                              ">
+                                                                <p class="                                 text-center                                 font-weight-bolder                                 text-dark                                 h1                                 display-4                                 mb-0                               ">
                                                                     <span t-esc="round(product.list_price)" />
                                                                     <span t-esc="product.currency_id.symbol" />
                                                                 </p>
                                                             </font>
                                                         </p>
                                                         <t t-if="promo">
-                                                            <p class="
-                              text-center
-                              font-weight-bolder
-                              text-secondary
-                            ">
+                                                            <p class="                               text-center                               font-weight-bolder                               text-secondary                             ">
                                                                 <b style="font-size: 80%">
                                                                     <t>&amp;nbsp; &amp;nbsp; &amp;nbsp;&amp;nbsp;</t>
                                                                 </b>
                                                             </p>
                                                         </t>
-                                                        <p class="
-                            medium
-                            text-center
-                            font-weight-bolder
-                            text-secondary
-                          " style="color: red !important">
+                                                        <p class="                             medium                             text-center                             font-weight-bolder                             text-secondary                           " style="color: red !important">
                                                             Paiement 1 ou 3 fois
-                                                        </p>
+                                                            </p>
                                                         <br />
                                                         <button class="btn btn-block text-white" onClick="(function(){msTracking('clic sur inscrire pack premuim','Pricing Table events','Inscrire pack premuim Homepage','849'); document.getElementById('form-3-1').submit();return false;})();return false;" style="background-color: #6e209f; border-radius: 25px">
                                                             Je m'inscris
-                                                        </button>
+                                                            </button>
                                                     </div>
                                                 </form>
                                             </t>
@@ -937,45 +763,54 @@
                                 </div>
                             </div>
                         </div>
-                        <section class="clients s_references bg-200 pt16 pb16" data-name="References">
-                            <center>
-                                <div class="container">
-                                    <div class="row">
-                                        <div class="col-sm-2">
-                                            <a href="https://www.mcm-academy.fr/">
-                                                <img data-src="/digimoov_website_templates/static/img/Homepage/MCMACADEMY.webp" data-srcSafari="/digimoov_website_templates/static/img/Homepage/MCMACADEMY.png" class="img img-fluid lazy" alt="Logo partenaire MCM ACADEMY" data-original-title="" title="MCM ACADEMY" aria-describedby="tooltip843653" style="margin-top: 45px; width: 92%" />
-                                            </a>
-                                        </div>
-
-                                        <div class="col-sm-2" t-if="partenaire=='' or partenaire=='ubereats'">
-                                            <a href="https://www.ubereats.com/fr">
-                                                <img data-src="/digimoov_website_templates/static/img/compressed/ubereats partenaire Digimoov.webp" data-srcSafari="digimoov_website_templates/static/img/Homepage/uber.png" class="img img-fluid lazy" alt="Logo partenaire ubereats" data-original-title="" title="Ubereats partenaire Digimoov" aria-describedby="tooltip843653" style="margin-top: 30px; width: 50%" />
-                                            </a>
-                                        </div>
-                                        <div class="col-sm-2" t-if="partenaire=='' or partenaire=='deliveroo'">
-                                            <a href="https://deliveroo.fr/fr/">
-                                                <img data-src="/digimoov_website_templates/static/img/compressed/deliveroo partenaire Digimoov.webp" data-srcSafari="/digimoov_website_templates/static/img/Homepage/deliveroo.png" class="img img-fluid lazy" alt="Logo partenaire Deliveroo" data-original-title="" title="Deliveroo partenaire Digimoov" aria-describedby="tooltip623872" style="margin-top: 30px; width: 70%" />
-                                            </a>
-                                        </div>
-                                        <div class="col-sm-2" t-if="partenaire=='' or partenaire=='coursierjob'">
-                                            <a href="https://www.coursierjob.com/">
-                                                <img data-src="/digimoov_website_templates/static/img/compressed/coursierjob partenaire Digimoov.webp" data-srcSafari="/digimoov_website_templates/static/img/Homepage/coursierjob.png" class="img img-fluid lazy" alt="Logo partenaire Coursierjob" data-original-title="" title="Coursierjob partenaire Digimoov" aria-describedby="tooltip175558" style="margin-top: 30px; width: 50%" />
-                                            </a>
-                                        </div>
-                                        <div class="col-sm-2" t-if="partenaire=='' or partenaire=='box2home'">
-                                            <a href="https://www.box2home.fr/">
-                                                <img data-src="/digimoov_website_templates/static/img/compressed/Box2home-partenaire-digimoov.webp" data-srcSafari="/digimoov_website_templates/static/img/Homepage/Box2home-partenaire-digimoov.png" class="img img-fluid lazy" alt="Logo partenaire Box2home" data-original-title="" title="Box2home partenaire Digimoov" aria-describedby="tooltip175558" style="margin-top: 30px; width: 50%" />
-                                            </a>
-                                        </div>
-                                        <div class="col-sm-2">
-                                            <a href="http://www.comptable-douai.com/">
-                                                <img data-src="/digimoov_website_templates/static/img/compressed/Cabinet Comptable Joel Pruvost.webp" data-srcSafari="/digimoov_website_templates/static/img/Homepage/Cabinet_Comptable_Joel_Pruvost.png" class="img img-fluid lazy" alt="Logo partenaire Cabinet Comptable Joël Pruvost" data-original-title="" title="Cabinet Comptable Joël Pruvost partenaire Digimoov" aria-describedby="tooltip175558" style="margin-top: 30px; width: 50%" />
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </center>
-                        </section>
+                    </section>
+                    <style>
+                                .row-res{
+                                    text-align:center;display: flex;align-content: stretch;justify-content: center;align-items: baseline;
+                                }
+                                @media (max-width: 524px){
+                                .row-res{
+                                    display: unset;
+                                }
+                    </style>
+                    <section class="bg-200 clients p-m-0 pb16 pt16 s_references" data-name="References">
+                        <div class="row-res">
+                            <div>
+                                <a href="https://www.mcm-academy.fr/">
+                                    <img data-src="/digimoov_website_templates/static/img/Homepage/MCMACADEMY.webp" data-srcsafari="/digimoov_website_templates/static/img/Homepage/MCMACADEMY.png" class="img img-fluid" alt="Logo partenaire MCM ACADEMY" title="MCM ACADEMY" style="margin-bottom: 10px;width: 200px;" src="/digimoov_website_templates/static/img/Homepage/MCMACADEMY.webp" />
+                                </a>
+                            </div>
+                            <div t-if="partenaire=='' or partenaire=='ubereats'">
+                                <a href="https://www.ubereats.com/fr">
+                                    <img data-src="/digimoov_website_templates/static/img/compressed/ubereats partenaire Digimoov.webp" data-srcsafari="digimoov_website_templates/static/img/Homepage/uber.png" class="img img-fluid" alt="Logo partenaire ubereats" title="Ubereats partenaire Digimoov" style="margin: 0 10px;margin-bottom: 23px;" src="/digimoov_website_templates/static/img/compressed/ubereats partenaire Digimoov.webp" />
+                                </a>
+                            </div>
+                            <div t-if="partenaire=='' or partenaire=='deliveroo'">
+                                <a href="https://deliveroo.fr/fr/">
+                                    <img data-src="/digimoov_website_templates/static/img/compressed/deliveroo partenaire Digimoov.webp" data-srcsafari="/digimoov_website_templates/static/img/Homepage/deliveroo.png" class="img img-fluid" alt="Logo partenaire Deliveroo" title="Deliveroo partenaire Digimoov" style="margin: 0 4px;margin-bottom: 23px;" src="/digimoov_website_templates/static/img/compressed/deliveroo partenaire Digimoov.webp" />
+                                </a>
+                            </div>
+                            <div t-if="partenaire=='' or partenaire=='coursierjob'">
+                                <a href="https://www.coursierjob.com/">
+                                    <img data-src="/digimoov_website_templates/static/img/compressed/coursierjob partenaire Digimoov.webp" data-srcsafari="/digimoov_website_templates/static/img/Homepage/coursierjob.png" class="img img-fluid" alt="Logo partenaire Coursierjob" title="Coursierjob partenaire Digimoov" style="margin: 0 8px;margin-bottom: 20px;width: 97px;" src="/digimoov_website_templates/static/img/compressed/coursierjob partenaire Digimoov.webp" />
+                                </a>
+                            </div>
+                            <div t-if="partenaire=='' or partenaire=='box2home'">
+                                <a href="https://www.box2home.fr/">
+                                    <img data-src="/digimoov_website_templates/static/img/coursier2roues/box2home.png" data-srcsafari="/digimoov_website_templates/static/img/coursier2roues/box2home.png" class="img img-fluid" alt="Logo partenaire Box2home" title="Box2home partenaire Digimoov" style="margin: 0 18px;margin-bottom: 30px;width: 113px;" src="/digimoov_website_templates/static/img/coursier2roues/box2home.png" />
+                                </a>
+                            </div>
+                            <div>
+                                <a href="http://www.comptable-douai.com/">
+                                    <img width="100" height="100" data-src="/digimoov_website_templates/static/img/coursier2roues/Cabinet Comptable Joel Pruvost.png" data-srcsafari="/digimoov_website_templates/static/img/coursier2roues/Cabinet Comptable Joel Pruvost.png" class="img img-fluid" alt="Logo partenaire Cabinet Comptable Joël Pruvost" title="Cabinet Comptable Joël Pruvost partenaire Digimoov" style="margin: 0px 18px;margin-bottom: 20px;width: 98px;" src="/digimoov_website_templates/static/img/coursier2roues/Cabinet Comptable Joel Pruvost.png" />
+                                </a>
+                            </div>
+                            <div>
+                                <a href="https://prev-easy.com/">
+                                    <img width="150" height="100" data-src="/digimoov_website_templates/static/img/Homepage/talenz-prev-easy.png" data-srcsafari="/digimoov_website_templates/static/img/Homepage/talenz-prev-easy.png" class="img img-fluid" src="/digimoov_website_templates/static/img/Homepage/talenz-prev-easy.png" style="margin: 0 16px;" />
+                                </a>
+                            </div>
+                        </div>
                     </section>
                     <section class="s_faq_collapse pt48 pb32" data-name="Accordion">
                         <div class="container">
@@ -984,7 +819,7 @@
                                     <div id="myCollapse" class="accordion" role="tablist">
                                         <div class="card bg-white">
                                             <a href="#" role="tab" data-toggle="collapse" aria-expanded="false" class="card-header collapsed" data-parent="#myCollapse" data-target="#myCollapseTab1616754726586" data-original-title="" title="" aria-describedby="tooltip5917">Capacité de transport
-                                            </a>
+                                                </a>
                                             <div class="collapse" role="tabpanel" id="myCollapseTab1616754726586">
                                                 <div class="card-body">
                                                     <p class="card-text">
@@ -998,7 +833,7 @@
                                                         partenaire de transport des plus grandes entreprises et
                                                         enseignes sur le marché de transport et de la
                                                         livraison.&amp;nbsp;
-                                                    </p>
+                                                        </p>
                                                 </div>
                                             </div>
                                         </div>
@@ -1008,7 +843,7 @@
                                     <div id="myCollapse" class="accordion" role="tablist">
                                         <div class="card bg-white">
                                             <a href="#" role="tab" data-toggle="collapse" aria-expanded="false" class="card-header collapsed" data-parent="#myCollapse" data-original-title="" title="" aria-describedby="tooltip5917" data-target="#myCollapseTab1616754743649">Formation capacité de transport
-                                            </a>
+                                                </a>
                                             <div class="collapse" role="tabpanel" id="myCollapseTab1616754743649">
                                                 <div class="card-body">
                                                     <p class="card-text">
@@ -1022,7 +857,7 @@
                                                         apprendre plusieurs compétences de gestion tel que
                                                         l’élaboration d’une étude de marché, déterminer le prix
                                                         de vente, etc.
-                                                    </p>
+                                                        </p>
                                                 </div>
                                             </div>
                                         </div>
@@ -1032,7 +867,7 @@
                                     <div id="myCollapse" class="accordion" role="tablist">
                                         <div class="card bg-white">
                                             <a href="#" role="tab" data-toggle="collapse" aria-expanded="false" class="card-header collapsed" data-parent="#myCollapse" data-original-title="" title="" aria-describedby="tooltip5917" data-target="#myCollapseTab1616754743646">Examen capacité de transport
-                                            </a>
+                                                </a>
                                             <div class="collapse" role="tabpanel" id="myCollapseTab1616754743646">
                                                 <div class="card-body">
                                                     <p class="card-text">
@@ -1057,8 +892,6 @@
                     </section>
                 </div>
                 <!-- page coursier2roues-->
-
-
                 <div id="coursier2roues" t-if="partenaire=='coursier2roues'">
                     <style>
        .centric_template span {
@@ -1248,7 +1081,6 @@
                                         Quelles compétences dois-je avoir pour exercer le métier de
                                         <span class="h1-title"> Livreur en scooter ? </span>
                                     </h2>
-
                                     <p>
                                         Pour exercer le métier de livreur ou
                                         <b>coursier sur 2 roues</b>
@@ -1300,23 +1132,16 @@
                         <div class="row" style="place-content: center">
                             <div class="col-lg-6 col-md-8 col-sm-12">
                                 <div class="card border-0 shadow" style="border-radius: 25px 25px">
-                                    <div class="text-center text-white border-0" style="
-                 background-color: #6e209f;
-                 border-top-left-radius: 25px;
-                 border-top-right-radius: 25px;
-                 padding-bottom: 14px;
-               ">
+                                    <div class="text-center text-white border-0" style="                  background-color: #6e209f;                  border-top-left-radius: 25px;                  border-top-right-radius: 25px;                  padding-bottom: 14px;                ">
                                         <br />
                                         <p>
                                             <span style="font-size: 30px; font-weight: 700; padding-bottom: 10px">SOLO</span>
                                         </p>
-
                                         <br />
                                     </div>
                                     <t t-foreach="digimoov_products" t-as="product">
                                         <t t-if="product.default_code=='basique'">
                                             <input t-att-value="request.website.microsoft_tracking_key" id="microsoft_tracking_key" type="hidden" />
-
                                             <input type="hidden" class="product_id" name="product_id" t-att-value="product.id" />
                                             <input type="hidden" name="promo" t-att-value="promo.id" t-if="promo" />
                                             <div class="card-body p-card-pricing" style="background-color: white">
@@ -1364,12 +1189,7 @@
                                                         </t>
                                                     </b>
                                                 </div>
-                                                <p class="
-                       medium
-                       text-center
-                       font-weight-bolder
-                       text-secondary
-                     " style="color: red !important">
+                                                <p class="                        medium                        text-center                        font-weight-bolder                        text-secondary                      " style="color: red !important">
                      Paiement 1 fois
                                                 </p>
                                                 <br />
@@ -1438,8 +1258,6 @@
                         </div>
                     </section>
                 </div>
-
-
                 <!-- page habilitation electrique-->
                 <div id="habilitation_electrique" t-if="partenaire=='habilitation-electrique'">
                     <section class="centric_template home-banner pt128 banner_padding" style="padding-bottom: 0px !important;" data-name="Banner">
@@ -1450,13 +1268,13 @@
                                         Habilitation
                                         <font class="text-alpha" style="">é</font>
                                         <span style="font-size: 70.4px; color: #343996 !important; font-weight:bold">lectrique :
-                                        </span>
+                        </span>
                                         <br />
                                         soyez prêt&amp;nbsp;
                                         <span style="font-size: 70.4px; color: #343996 !important ;font-weight:bold">!
 
 
-                                        </span>
+                        </span>
                                     </h1>
                                     <p class="paratext">
                                         Vous êtes entrepreneur, et vous pensez à former votre personnel sur l'habilitation électrique ? Chez
@@ -1568,7 +1386,7 @@
                                             <h4>
                                                 <span style="color: rgb(99, 99, 99); font-family: Roboto, sans-serif; font-size: 18px; font-variant-east-asian: normal; font-variant-numeric: normal; vertical-align: baseline; white-space: pre-wrap;">Les travailleurs apprendront grâce à ces formations en habilitation électrique à connaître la conduite qu'ils doivent avoir en cas d’accident ou d’incendie d’origine électrique. Suite à nos formations, vous saurez&amp;nbsp;spécifier le type des interventions que chacun de vos employés est autorisé à effectuer</span>
                                                 <span style="color: rgb(99, 99, 99); font-family: Roboto, sans-serif; font-variant-east-asian: normal; font-variant-numeric: normal; vertical-align: baseline; white-space: pre-wrap;">. 
-                                                </span>
+                    </span>
                                             </h4>
                                         </div>
                                     </div>
@@ -1584,7 +1402,7 @@
                                         Qui est concerné par cette
                                         <span style="                                                                         color: #9c00ff !important;                                                                     ">
                                                                         formation
-                                        </span>
+            </span>
                                         ?
                                     </h2>
                                     <h5>
@@ -1631,27 +1449,27 @@
                                     <ul class="li">
                                         <li>
                                                                     Connaître l'électricité et ses dangers
-                                        </li>
+            </li>
                                         <li> Connaître les risques électriques,&amp;nbsp; moyens et matériels de protection contre les dangers électriques </li>
                                         <li> Norme NFC 18510 de janvier 2012 </li>
                                         <li>
                                     Titre de l'habilitation électrique et le champ d'application
-                                        </li>
+            </li>
                                         <li>
                                     Conduite à tenir en cas d'incident et d'accident
-                                        </li>
+            </li>
                                     </ul>
                                     <h3>
                                                                 Habilitations électriques B1V B2V BR BC électricien ou électronicien chargé de travaux de dépannage B.T.
-                                    </h3>
+        </h3>
                                     <ul>
                                         <li> Connaître l'électricité et ses dangers et être capable d'identifier et d'analyser le risque électrique ; connaître les prescriptions et procédés de prévention du risque électrique, et savoir les mettre en œuvre </li>
                                         <li>
                                     Savoir intégrer la prévention dans la préparation du travail pour les personnes qui en ont la charge
-                                        </li>
+            </li>
                                         <li>
                                     Adopter le bon comportement en cas d'accident ou d'incendie
-                                        </li>
+            </li>
                                         <li>Être capable de respecter les règles de sécurité applicables lors de travaux électriques </li>
                                     </ul>
                                 </div>
@@ -1669,7 +1487,7 @@
                                                                                 dans les meilleures conditions,&amp;nbsp; nous avons
                                                                                 développé de nombreux partenariats avec les leaders du
                                                                                 marché de la livraison à domicile&amp;nbsp;
-                                        </p>
+            </p>
                                     </div>
                                 </div>
                                 <section class="clients s_references bg-200 pt16 pb16 p-m-0" data-name="References">
@@ -1785,7 +1603,7 @@
                                                     <br />
                                                     <button class="btn btn-block text-white" onClick="(function(){msTracking('clic sur inscrire pack solo coursier2roues','Pricing Table events','Inscrire pack solo coursier2roues','590'); document.getElementById('form-coursier2roues').submit();return false;})();return false;" style="background-color: #6e209f; border-radius: 25px">
                                                                                             Je m'inscris
-                                                    </button>
+                        </button>
                                                 </div>
                                             </form>
                                         </t>
@@ -1795,7 +1613,6 @@
                         </div>
                     </div>
                 </div>
-
                 <!-- page eco-conduite-->
                 <div id="eco_conduite" t-if="partenaire=='eco-conduite'" style="border-style: none; border-width: 0px;">
                     <style>
@@ -1875,7 +1692,7 @@
                                                             }
 
                                                             }
-                    </style>
+    </style>
                     <section class="centric_template home-banner pt64 banner_padding" data-name="Banner">
                         <div class="container">
                             <div class="row">
@@ -1955,7 +1772,7 @@
                                                 <a href="/digimoov_website_templates/static/pdf/principes de l'éco conduite - digimoov.pdf" style="font-size: 18px;" class="bannerbtn btn btn-alpha rounded-circle" title="je m'inscirs" alt="boutton je m'inscris" aria-describedby="tooltip679124">
                                                     <b>
                                                                         Télécharger
-                                                    </b>
+                                    </b>
                                                 </a>
                                             </div>
                                             <h4>
@@ -1993,7 +1810,7 @@
                                     <h4>
                                         <span style="background-color: rgb(255, 255, 255); color: rgb(99, 99, 99); font-family: Arial; font-size: 18px; font-style: normal; font-variant: normal; font-weight: 400; text-decoration: none; vertical-align: baseline; white-space: pre-wrap;">- Limiter votre usage de la climatisation vous permet de réduire vos rejets de CO2 de 15 % sur 100 km. Cette bonne habitude correspond aussi à une économie de carburant de 10 % sur route et 25 % en ville.</span>
                                     </h4>
-                                    <ul></ul>
+                                    <ul />
                                     <p />
                                 </div>
                                 <div class="col-lg-6">
@@ -2013,7 +1830,6 @@
                                     <h3>Les prérequis</h3>
                                     <h4>
                                         <span style="background-color: transparent; color: rgb(66, 66, 66); font-family: Arial; text-align: center; white-space: pre-wrap;">Être titulaire du permis B</span>
-
                                     </h4>
                                 </div>
                                 <div class="col-lg-4 pt32 pb32 text-center">
@@ -2021,7 +1837,6 @@
                                     <h3>Profils des stagiaires</h3>
                                     <h4>
                                         <span style="background-color: transparent; color: rgb(66, 66, 66); font-family: Arial; text-align: center; white-space: pre-wrap;">Toute personne qui utilise un véhicule</span>
-
                                     </h4>
                                     <p />
                                 </div>
@@ -2047,7 +1862,6 @@
                                             Notre formation d’écoconduite est très complète. Elle est basée sur
                                             <span style="color: rgb(156, 0, 255) !important">les modules suivants :</span>
                                         </span>
-
                                     </h4>
                                     <h4>
                                         <span style="background-color: transparent; color: rgb(156, 0, 255); font-family: Arial; font-style: normal; font-variant: normal; font-weight: 400; text-decoration: none; vertical-align: baseline; white-space: pre-wrap;">-</span>
@@ -2081,7 +1895,7 @@
                                                                                 dans les meilleures conditions&amp;nbsp; nous avons
                                                                                 développé de nombreux partenariats avec les leaders du
                                                                                 marché de la livraison à domicile&amp;nbsp;
-                                        </p>
+                        </p>
                                     </div>
                                 </div>
                                 <section class="clients s_references bg-200 pt16 pb16 p-m-0" data-name="References">
@@ -2130,11 +1944,7 @@
                         <div class="row" style="place-content: center;">
                             <div class="col-lg-6 col-md-8 col-sm-12">
                                 <div class="card border-0 shadow " style="border-radius: 25px 25px">
-                                    <div class="text-center text-white border-0" style="
-                                                            background-color: #6e209f;
-                                                            border-top-left-radius: 25px;
-                                                            border-top-right-radius: 25px;
-                                                        ">
+                                    <div class="text-center text-white border-0" style="                                                             background-color: #6e209f;                                                             border-top-left-radius: 25px;                                                             border-top-right-radius: 25px;                                                         ">
                                         <br />
                                         <p>
                                             <strong style="color: white">
@@ -2150,7 +1960,6 @@
                                         <t t-if="product.default_code=='basique'">
                                             <form action="/shop/cart/update" method="post" id="form-coursier2roues">
                                                 <input t-att-value="request.website.microsoft_tracking_key" id="microsoft_tracking_key" type="hidden" />
-
                                                 <input type="hidden" class="product_id" name="product_id" t-att-value="product.id" />
                                                 <input type="hidden" name="promo" t-att-value="promo.id" t-if="promo" />
                                                 <div class="card-body p-card-pricing" style="background-color: white">
@@ -2185,7 +1994,6 @@
                                                         </li>
                                                     </ul>
                                                     <div class="text-center ">
-
                                                         <b style="font-size:60px !important; color:#000000" t-if="not promo">
                                                             <span t-esc="round(product.list_price)" />
                                                             <span t-esc="product.currency_id.symbol" />
@@ -2198,20 +2006,14 @@
                                                                 </t>
                                                             </t>
                                                         </b>
-
                                                     </div>
-                                                    <p class="
-                                                                medium
-                                                                text-center
-                                                                font-weight-bolder
-                                                                text-secondary
-                                                            " style="color: red !important">
+                                                    <p class="                                                                 medium                                                                 text-center                                                                 font-weight-bolder                                                                 text-secondary                                                             " style="color: red !important">
                                                                                             Paiement 1 fois
-                                                    </p>
+                                    </p>
                                                     <br />
                                                     <button class="btn btn-block text-white" onClick="(function(){msTracking('clic sur inscrire pack solo coursier2roues','Pricing Table events','Inscrire pack solo coursier2roues','590'); document.getElementById('form-coursier2roues').submit();return false;})();return false;" style="background-color: #6e209f; border-radius: 25px">
                                                                                             Je m'inscris
-                                                    </button>
+                                    </button>
                                                 </div>
                                             </form>
                                         </t>
@@ -2221,7 +2023,6 @@
                         </div>
                     </div>
                 </div>
-
                 <!-- page TRANSPORT ROUTIER -->
                 <div id="transport-routier" t-if="partenaire=='transport-routier'" style="border-style: none; border-width: 0px;" class="">
                     <div id="wrap" class="oe_structure" style="border-style: none; border-width: 0px;" data-editor-message="GLISSEZ UN BLOC ICI">
@@ -2571,22 +2372,20 @@
                     </div>
                 </div>
                 <!-- page langues-->
-
                 <div id="langues" t-if="partenaire=='langues'" class="oe_empty oe_structure">
-
                     <section class="centric_template home-banner pt128 banner_padding" data-name="Banner">
                         <div class="container" style="border-style: none; border-width: 0px;">
                             <div class="row">
                                 <div class="bannarcol col-lg-6 col-md-12" style="border-style: none; border-width: 0px">
                                     <h1>
                                         <font color="#9c00ff" class="text-alpha" style="">Formation</font>
-                                        <font color="#9c00ff"></font>
+                                        <font color="#9c00ff" />
                                         <font color="#9c00ff" style="color: rgb(255, 0, 0);">langues</font>
-                                        <font color="#9c00ff"></font>
+                                        <font color="#9c00ff" />
                                         <font color="#9c00ff" class="text-alpha" style="">pour le </font>
                                         <font color="#9c00ff" style="color: rgb(255, 0, 0);">transport</font>
                                         <font color="#9c00ff" class="text-alpha" style=""> et la</font>
-                                        <font color="#9c00ff"></font>
+                                        <font color="#9c00ff" />
                                         <font color="#9c00ff" style="" class="text-alpha">logistique</font>
                                         <font color="#9c00ff" class="text-alpha" style="">
                                             &amp;nbsp;&amp;nbsp;
@@ -2609,7 +2408,7 @@
                                             <b>
                                                 <font style="color: rgb(255, 0, 0);">30 jours ! 
                         
-                                                </font>
+                    </font>
                                             </b>
                                         </text>
                                     </p>
@@ -2640,7 +2439,6 @@
                             </div>
                         </div>
                     </section>
-
                     <style>
                         .h1-title {
                         color: rgb(156, 0, 255);
@@ -2720,7 +2518,7 @@
                         }
 
                         }
-                    </style>
+</style>
                     <section class="centric_template pt128 section-padding about-us pb0" data-name="About Us" id="en-savoir-plus">
                         <section>
                             <div class="container">
@@ -2774,7 +2572,7 @@
                                                 </font>
                                                 <br />
                                             </h4>
-                                            <h2></h2>
+                                            <h2 />
                                             <div class="s_btn pt16 pb16 text-center" data-name="Button">
                                                 <a href="#" class="btn btn-success" data-original-title="" title="" aria-describedby="tooltip805297">Inscrivez-vous maintenant !</a>
                                             </div>
@@ -2782,7 +2580,7 @@
                                                 <a href="/digimoov_website_templates/static/pdf/formation-français-digimoov.pdf" class="btn btn-alpha" data-original-title="" title="" aria-describedby="tooltip729911">Télécharger le programme de formation</a>
                                             </div>
                                             <h4>
-                                                <span style="color: rgb(99, 99, 99); font-family: Roboto, sans-serif; font-variant-east-asian: normal; font-variant-numeric: normal; vertical-align: baseline; white-space: pre-wrap;"></span>
+                                                <span style="color: rgb(99, 99, 99); font-family: Roboto, sans-serif; font-variant-east-asian: normal; font-variant-numeric: normal; vertical-align: baseline; white-space: pre-wrap;" />
                                             </h4>
                                         </div>
                                     </div>
@@ -2822,7 +2620,7 @@
                                             <span style="font-weight: bolder;">Digimoov</span>
                                             en
                                         </span>
-                                        <span style="color: rgb(156, 0, 255); font-family: Arial; font-variant-numeric: normal; font-variant-east-asian: normal; vertical-align: baseline; white-space: pre-wrap;"></span>
+                                        <span style="color: rgb(156, 0, 255); font-family: Arial; font-variant-numeric: normal; font-variant-east-asian: normal; vertical-align: baseline; white-space: pre-wrap;" />
                                         <span style="color: rgb(99, 99, 99); font-family: Arial; font-variant-east-asian: normal; font-variant-numeric: normal; vertical-align: baseline; white-space: pre-wrap;">
                                             <span style="font-weight: bolder;">langue anglaise</span>
                                         </span>
@@ -2867,7 +2665,7 @@
                                         </text>
                                         <text>
                                             <font style="color: rgb(59, 210, 188);">allemand&amp;nbsp;</font>
-                                            <font class="text-epsilon"></font>
+                                            <font class="text-epsilon" />
                                             pour le transport et la logistique
                                         </text>
                                     </h2>
@@ -2902,7 +2700,7 @@
                                             dans les meilleures conditions&amp;nbsp; nous avons
                                             développé de nombreux partenariats avec les leaders du
                                             marché de la livraison à domicile&amp;nbsp;
-                                        </p>
+        </p>
                                     </div>
                                 </div>
                                 <section class="clients s_references bg-200 pt16 pb16 p-m-0" data-name="References">
@@ -2946,17 +2744,11 @@
                             </div>
                         </div>
                     </section>
-
-
                     <div class="container pt64 pb32" id="pricing">
                         <div class="row" style="place-content: center;">
                             <div class="col-lg-6 col-md-8 col-sm-12">
                                 <div class="card border-0 shadow " style="border-radius: 25px 25px">
-                                    <div class="text-center text-white border-0" style="
-                                                            background-color: #6e209f;
-                                                            border-top-left-radius: 25px;
-                                                            border-top-right-radius: 25px;
-                                                        ">
+                                    <div class="text-center text-white border-0" style="                                                             background-color: #6e209f;                                                             border-top-left-radius: 25px;                                                             border-top-right-radius: 25px;                                                         ">
                                         <br />
                                         <p>
                                             <strong style="color: white">
@@ -2972,7 +2764,6 @@
                                         <t t-if="product.default_code=='basique'">
                                             <form action="/shop/cart/update" method="post" id="form-coursier2roues">
                                                 <input t-att-value="request.website.microsoft_tracking_key" id="microsoft_tracking_key" type="hidden" />
-
                                                 <input type="hidden" class="product_id" name="product_id" t-att-value="product.id" />
                                                 <input type="hidden" name="promo" t-att-value="promo.id" t-if="promo" />
                                                 <div class="card-body p-card-pricing" style="background-color: white">
@@ -3007,7 +2798,6 @@
                                                         </li>
                                                     </ul>
                                                     <div class="text-center ">
-
                                                         <b style="font-size:60px !important; color:#000000" t-if="not promo">
                                                             <span t-esc="round(product.list_price)" />
                                                             <span t-esc="product.currency_id.symbol" />
@@ -3020,20 +2810,14 @@
                                                                 </t>
                                                             </t>
                                                         </b>
-
                                                     </div>
-                                                    <p class="
-                                                                medium
-                                                                text-center
-                                                                font-weight-bolder
-                                                                text-secondary
-                                                            " style="color: red !important">
+                                                    <p class="                                                                 medium                                                                 text-center                                                                 font-weight-bolder                                                                 text-secondary                                                             " style="color: red !important">
                                                                                             Paiement 1 fois
-                                                    </p>
+                    </p>
                                                     <br />
                                                     <button class="btn btn-block text-white" onClick="(function(){msTracking('clic sur inscrire pack solo coursier2roues','Pricing Table events','Inscrire pack solo coursier2roues','590'); document.getElementById('form-coursier2roues').submit();return false;})();return false;" style="background-color: #6e209f; border-radius: 25px">
                                                                                             Je m'inscris
-                                                    </button>
+                    </button>
                                                 </div>
                                             </form>
                                         </t>
@@ -3043,8 +2827,9 @@
                         </div>
                     </div>
                 </div>
-
             </div>
         </xpath>
+
+
     </template>
 </odoo>
