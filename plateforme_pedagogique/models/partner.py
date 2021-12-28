@@ -992,19 +992,20 @@ class partner(models.Model):
                     short_url = pyshorteners.Shortener()
                     short_url = short_url.tinyurl.short(url) # convert the signup_url to be short using pyshorteners library
                     body = 'Chere(e) %s , Vous avez été invité par %s  à rejoindre le site : %s . Votre courriel de connection est: %s' %(user.partner_id.name,user.partner_id.company_id.name,short_url,user.partner_id.email) # content of sms
+                    sms_body_contenu = 'Chere(e) %s , Vous avez été invité par %s  à rejoindre le site : %s . Votre courriel de connection est: %s' %(user.partner_id.name,user.partner_id.company_id.name,short_url,user.partner_id.email) # content of sms
                     sms = self.env['sms.sms'].sudo().create({
                                 'partner_id': user.partner_id.id,
                                 'number' : phone,
                                 'body' : str(body)
                             }) # create sms
-                    sms_body_contenu = str(sms.body)
                     if (sms):
                         sms.send() #send the sms
                         subtype_id = self.env['ir.model.data'].xmlid_to_res_id('mt_note')
                         body = False
-                        if sms.state == 'error':
-                            body = "Le SMS suivant n'a pas pu être envoyé : %s " % (sms_body_contenu)
-                        elif sms.state == 'sent':
+                        if (sms):
+                            if sms.state == 'error':
+                                body = "Le SMS suivant n'a pas pu être envoyé : %s " % (sms_body_contenu)
+                        else:
                             body = "Le SMS suivant a été bien envoyé " % (sms_body_contenu)
                         if body:
                             message = self.env['mail.message'].sudo().create({
