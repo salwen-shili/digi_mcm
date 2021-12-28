@@ -991,8 +991,8 @@ class partner(models.Model):
                     url = str(user.signup_url) # get the signup_url
                     short_url = pyshorteners.Shortener()
                     short_url = short_url.tinyurl.short(url) # convert the signup_url to be short using pyshorteners library
-                    body = 'Chere(e) %s , Vous avez été invité par %s  à rejoindre le site : %s . Votre courriel de connection est: %s' %(user.partner_id.name,user.partner_id.company_id.name,short_url,user.partner_id.email) # content of sms
-                    sms_body_contenu = 'Chere(e) %s , Vous avez été invité par %s  à rejoindre le site : %s . Votre courriel de connection est: %s' %(user.partner_id.name,user.partner_id.company_id.name,short_url,user.partner_id.email) # content of sms
+                    body = 'Chere(e) %s , Vous avez été invité par %s  à compléter votre inscription : %s . Votre courriel de connection est: %s' %(user.partner_id.name,user.partner_id.company_id.name,short_url,user.partner_id.email) # content of sms
+                    sms_body_contenu = 'Chere(e) %s , Vous avez été invité par %s  à compléter votre inscription : %s . Votre courriel de connection est: %s' %(user.partner_id.name,user.partner_id.company_id.name,short_url,user.partner_id.email) # content of sms
                     sms = self.env['sms.sms'].sudo().create({
                                 'partner_id': user.partner_id.id,
                                 'number' : phone,
