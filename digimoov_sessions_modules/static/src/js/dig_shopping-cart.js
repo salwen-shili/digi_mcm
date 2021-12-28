@@ -377,6 +377,7 @@ function verify_payment_method() {
               'Inscription CPF premuim',
               '680'
             );
+            window.open(state, '_blank');
             break;
           case state == 'accepted':
             cpfAccepted();
