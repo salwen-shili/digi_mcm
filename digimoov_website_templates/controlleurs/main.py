@@ -403,6 +403,7 @@ class Services(http.Controller):
 
     # test a supprimer
     ##############################
+    
 
     @http.route('/maintenance', type='http', auth='public', website=True) # url of maintenance page 
     def maintenance(self, **kw, ):
