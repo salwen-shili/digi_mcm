@@ -998,10 +998,13 @@ class partner(models.Model):
                                 'number' : phone,
                                 'body' : str(body)
                             }) # create sms
+                    sms_id = sms.id
                     if (sms):
                         sms.send() #send the sms
                         subtype_id = self.env['ir.model.data'].xmlid_to_res_id('mt_note')
                         body = False
+                        sms = self.env["sms.sms"].sudo().search(
+                            [("id", "=", sms_id)], limit=1)
                         if (sms):
                             if sms.state == 'error':
                                 body = "Le SMS suivant n'a pas pu être envoyé : %s " % (sms_body_contenu)
