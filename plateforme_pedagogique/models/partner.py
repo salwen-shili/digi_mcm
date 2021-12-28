@@ -1237,7 +1237,7 @@ class partner(models.Model):
                             self.env.user.company_id = 2
                             invoice = self.env['account.move'].sudo().search(
                                 [('module_id.date_exam', ">=", date.today()), ('state', "=", 'posted'),
-                                 ('partner_id', "=", partner.id)])
+                                 ('partner_id', "=", user.partner_id.id)])
                             if not invoice:
                                 print('if  not invoice digi ')
                                 so = self.env['sale.order'].sudo().create({
@@ -1320,7 +1320,7 @@ class partner(models.Model):
                             self.env.user.company_id = 1
                             invoice = self.env['account.move'].sudo().search(
                                 [('module_id.date_exam', ">=", date.today()), ('state', "=", 'posted'),
-                                 ('partner_id', "=", partner.id)])
+                                 ('partner_id', "=", user.partner_id.id)])
                             if not invoice:
                                 print('if  not invoice mcm')
                                 so = self.env['sale.order'].sudo().create({
