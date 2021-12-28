@@ -1009,7 +1009,7 @@ class partner(models.Model):
                             if sms.state == 'error':
                                 body = "Le SMS suivant n'a pas pu être envoyé : %s " % (sms_body_contenu)
                         else:
-                            body = "Le SMS suivant a été bien envoyé " % (sms_body_contenu)
+                            body = "Le SMS suivant a été bien envoyé : %s " % (sms_body_contenu)
                         if body:
                             message = self.env['mail.message'].sudo().create({
                                 'subject': 'Invitation de rejoindre le site par sms',
