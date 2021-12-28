@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
+  <!-- Idenfy-->
   <template id="idenfy_integration_digimoov_contact_documents_view" inherit_id="mcm_contact_documents.mcm_contact_document_charger_mes_documents">
     <xpath expr="//div[hasclass('m-0')]" position="replace">
       <div t-if="expired_license" name="ex_warning" style="text-align: center;border-width: 0px;">

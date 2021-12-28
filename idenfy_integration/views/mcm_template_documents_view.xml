@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
+  <!-- Idenfy-->
   <template id="idenfy_integration_mcm_contact_documents_view" inherit_id="mcm_contact_documents.mcm_contact_documents_charger_mes_documents_mcm">
     <xpath expr="//div[hasclass('m-0')]" position="replace">
-
-
       <div t-if="expired_license" name="ex_warning" style="text-align: center;border-width: 0px;">
         <p t-if="expired_license" class="alert alert-warning" style="margin-left:0%;">
           Votre permis de conduire semble être en période probatoire, vous ne pouvez donc pas continuer le processus d'inscription. Merci de contacter le service client avec le lien suivant. Please click here:

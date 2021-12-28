@@ -396,3 +396,4 @@ odoo.define('mcm_website_theme.mcm_website_sale', function (require) {
     }
   );
 });
+//

@@ -190,12 +190,12 @@
                                         </div>
                                         <div style="display: flex; flex-direction: row; justify-content: center;">
                                             <a href="/edit_info">
-                                                <button type="button" style=" color: #fff; margin:0px 5px  " class="float-right rkmd-btn btn-black ripple-effect ripple-yellow " id="submit_documents">
+                                                <button type="button" style=" color: #fff; margin:0px 5px" class="float-right rkmd-btn btn-black ripple-effect ripple-yellow " id="submit_documents">
                                                             Précédent </button>
                                             </a>
 
                                             <a href="/shop/cart" disabled="disabled" id="document_next">
-                                                <button type="button" style=" color: #fff; margin:0px 5px  " class="float-right rkmd-btn btn-black ripple-effect ripple-yellow " id="submit_documents_next_button" disabled="disabled">
+                                                <button type="button" style=" color: #fff; margin:0px 5px" class="float-right rkmd-btn btn-black ripple-effect ripple-yellow " id="submit_documents_next_button" disabled="disabled">
                                                            Suivant </button>
                                             </a>
                                             <span id="o_website_form_result" />

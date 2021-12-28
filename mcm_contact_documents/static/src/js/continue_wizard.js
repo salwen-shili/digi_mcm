@@ -23,7 +23,6 @@ document.addEventListener('DOMContentLoaded', function () {
                                 `;
 
   const finished = document.getElementById('finished');
-
   const documents = document.getElementById('personal');
   const documentsUrl = '/charger_mes_documents';
   const financement = document.getElementById('payment');

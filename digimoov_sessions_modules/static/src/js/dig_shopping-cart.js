@@ -503,7 +503,7 @@ function renonce() {
          `;
 }
 
-//
+//on click cpf / carte bleu
 function onchangeTextButton() {
   var stripe_pm = document.getElementById('stripe_pm');
   if (stripe_pm) {
