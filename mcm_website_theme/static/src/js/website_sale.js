@@ -67,6 +67,24 @@ odoo.define('mcm_website_theme.mcm_website_sale', function (require) {
           document.getElementById('cpf-details').classList.remove('hide');
           document.getElementById('arrow-down').classList.remove('hide');
 
+          if (document.getElementById('promo_code')) {
+            document.getElementById('promo_code').style.display = 'none';
+          }
+          if (document.getElementById('promo_button')) {
+            document.getElementById('promo_button').style.display = 'none';
+          }
+          if (document.getElementById('promo_input')) {
+            document.getElementById('promo_input').style.display = 'none';
+          }
+          if (document.getElementById('order_instalment')) {
+            document.getElementById('order_instalment').style.display = 'none';
+            document.getElementById(
+              'order_instalment_number'
+            ).style.visibility = 'hidden';
+            document.getElementById('order_amount_to_pay').style.display =
+              'none';
+          }
+
           // document
           //   .getElementById("cpf-details")
           //   .scrollIntoView({ inline: "start" });

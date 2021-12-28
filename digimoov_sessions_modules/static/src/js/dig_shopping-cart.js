@@ -502,3 +502,168 @@ function renonce() {
                           </div>
          `;
 }
+
+//
+function onchangeTextButton() {
+  var stripe_pm = document.getElementById('stripe_pm');
+  if (stripe_pm) {
+    if (stripe_pm.checked == true) {
+      document.getElementById('pm_shop_check').href =
+        '/shop/checkout?express=1';
+
+      document.getElementById('pm_shop_checkout').href =
+        '/shop/checkout?express=1';
+    }
+  }
+  cpf_pm = document.getElementById('cpf_pm');
+  if (cpf_pm) {
+    if (cpf_pm.checked == true) {
+      if (document.getElementById('pm_shop_checkout2')) {
+        document.getElementById('pm_shop_checkout2').innerText =
+          'Mobiliser mon CPF';
+      }
+      if (document.getElementById('pm_shop_checkout')) {
+        document.getElementById('pm_shop_checkout').innerText =
+          'Mobiliser mon CPF';
+      }
+      if (cpf_pm.value == 'Formation pro') {
+        document.getElementById('pm_shop_check').href =
+          'https://bit.ly/3nMlm2A';
+        document.getElementById('pm_shop_checkout').href =
+          'https://bit.ly/3nMlm2A';
+      }
+      if (cpf_pm.value == 'Formation premium') {
+        document.getElementById('pm_shop_check').href =
+          'https://bit.ly/38IxvSa';
+        document.getElementById('pm_shop_checkout').href =
+          'https://bit.ly/38IxvSa';
+      }
+      if (document.getElementById('promo_code')) {
+        document.getElementById('promo_code').style.display = 'none';
+      }
+      if (document.getElementById('promo_button')) {
+        document.getElementById('promo_button').style.display = 'none';
+      }
+      if (document.getElementById('promo_input')) {
+        document.getElementById('promo_input').style.display = 'none';
+      }
+      if (document.getElementById('order_instalment')) {
+        document.getElementById('order_instalment').style.display = 'none';
+        document.getElementById('order_instalment_number').style.display =
+          'none';
+        document.getElementById('order_amount_to_pay').style.display = 'none';
+      }
+    }
+  }
+
+  if (document.getElementById('pm_shop_text')) {
+    //Show CPF video and details
+    document.getElementById('cpf-details').classList.remove('hide');
+    document.getElementById('arrow-down').classList.remove('hide');
+
+    document.getElementById('pm_shop_text').innerHTML = 'Mobiliser mon CPF';
+    document.getElementById('pm_shop_check_text').innerHTML =
+      'Mobiliser mon CPF';
+    document.getElementById('pm_shop_checkout_text').innerHTML =
+      'Mobiliser mon CPF';
+  }
+}
+
+function onchangeTextButton1() {
+  if (document.getElementById('pm_shop_checkout')) {
+    document.getElementById('pm_shop_checkout').innerText =
+      'Passer au paiement';
+  }
+  if (document.getElementById('pm_shop_checkout2')) {
+    document.getElementById('pm_shop_checkout2').innerText =
+      'Passer au paiement';
+  }
+  if (document.getElementById('cpf-details')) {
+    document.getElementById('cpf-details').classList.add('hide');
+    if (document.getElementById('arrow-down')) {
+      document.getElementById('arrow-down').classList.add('hide');
+    }
+  }
+  //show hide instalment
+  if (document.getElementById('promo_code')) {
+    document.getElementById('promo_code').style.display = 'inline';
+  }
+  if (document.getElementById('promo_button')) {
+    document.getElementById('promo_button').style.display = 'inline';
+  }
+
+  if (document.getElementById('promo_input')) {
+    document.getElementById('promo_input').style.display = 'inline';
+  }
+  if (document.getElementById('order_instalment')) {
+    document.getElementById('order_instalment').style.display = 'revert';
+    document.getElementById('order_instalment_number').style.display = 'revert';
+    document.getElementById('order_amount_to_pay').style.display = 'revert';
+  }
+
+  var stripe_pm = document.getElementById('stripe_pm');
+  if (stripe_pm) {
+    if (stripe_pm.checked == true) {
+      document.getElementById('pm_shop_check').href =
+        '/shop/checkout?express=1';
+
+      document.getElementById('pm_shop_checkout').href =
+        '/shop/checkout?express=1';
+    }
+  }
+
+  if (document.getElementById('pm_shop_text')) {
+    if (document.getElementById('cpf-details')) {
+      document.getElementById('cpf-details').classList.add('hide');
+      document.getElementById('arrow-down').classList.add('hide');
+      if (document.getElementById('pm_shop_checkout')) {
+        document.getElementById('pm_shop_checkout').innerHTML =
+          'Passer au paiement';
+      }
+      if (document.getElementById('pm_shop_checkout2')) {
+        document.getElementById('pm_shop_checkout2').innerText =
+          'Passer au paiement';
+      }
+    }
+
+    if (document.getElementById('promo_code')) {
+      document.getElementById('promo_code').style.display = 'inline';
+    } else {
+      document.getElementById('promo_input').style.display = 'inline';
+      document.getElementById('promo_button').style.display = 'inline';
+    }
+    if (document.getElementById('order_instalment')) {
+      document.getElementById('order_instalment').style.display = 'visible';
+    }
+    instalment = document.getElementById('checkbox_instalment');
+    if (instalment) {
+      if (instalment.checked == true) {
+        document.getElementById('order_instalment_number').style.display =
+          'visible';
+        document.getElementById('order_amount_to_pay').style.display =
+          'visible';
+      }
+    }
+  }
+}
+function show_coupon() {
+  if (document.getElementById('promo_input')) {
+    document.getElementById('promo_input').style.display = 'inline';
+  }
+  if (document.getElementById('promo_button')) {
+    document.getElementById('promo_button').style.display = 'inline';
+  }
+}
+function verify_checked() {
+  var x = document.getElementById('checkbox_instalment');
+  if (x) {
+    if (document.getElementById('checkbox_instalment').checked == true) {
+      document.getElementById('order_amount_to_pay').style.display = 'inline';
+      document.getElementById('order_instalment_number').style.display =
+        'inline';
+    } else {
+      document.getElementById('order_amount_to_pay').style.display = 'none';
+      document.getElementById('order_instalment_number').style.display = 'none';
+    }
+  }
+}
