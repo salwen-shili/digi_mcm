@@ -1287,6 +1287,8 @@ class partner(models.Model):
                                 so.action_cancel()
                                 so.unlink()
                                 user.partner_id.statut = 'won'
+                                """changer step à validé dans espace client """
+                                user.partner_id.step = 'finish'
                             session = self.env['partner.sessions'].search([('client_id', '=', user.partner_id.id),
                                                                            (
                                                                            'session_id', '=', module_id.session_id.id)])
@@ -1356,6 +1358,8 @@ class partner(models.Model):
                                 so.action_cancel()
                                 so.unlink()
                                 user.partner_id.statut = 'won'
+                                """changer step à validé dans espace client """
+                                user.partner_id.step = 'finish'
                             session = self.env['partner.sessions'].search([('client_id', '=', user.partner_id.id),
                                                                            (
                                                                            'session_id', '=', module_id.session_id.id)])
