@@ -6,6 +6,17 @@ odoo.define('mcm_contact_documents.portal', function (require) {
 
   if (window.location.href.includes('manual')) {
     if (website.attr('data-website-id') == 1) {
+      $('#mcm_my_documents_form').submit(function (event) {
+        event.preventDefault();
+        window.location.href = '#popup1';
+      });
+      function onClickBtn() {
+        window.location.href = '#';
+
+        $('#mcm_my_documents_form').submit();
+        $('div.spanner').addClass('show');
+        $('div.overlay').addClass('show');
+      }
       console.log('js mcm');
       $('#identity').bind('change', function () {
         var filename = $('#identity').val();
