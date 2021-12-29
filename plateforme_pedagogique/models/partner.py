@@ -280,7 +280,7 @@ class partner(models.Model):
             user = self.env['res.users'].sudo().search([('partner_id', '=', partner.id)], limit=1)
             _logger.info('avant if login user %s' % user.login)
             _logger.info('avant if partner email %s' % partner.email)
-            _logger.info('avant if password  %s ' % user.password360)
+            
 
             if user:
                 id_Digimoov_bienvenue = '56f5520e11d423f46884d594'
@@ -308,7 +308,7 @@ class partner(models.Model):
                 # Si non si mot de passe récupéré on l'ajoute sur la plateforme avec le meme mot de passe
                 if (user.password360) and (company == '2'):
                     partner.password360 = user.password360
-                    _logger.info('if user  %s ' % user.password360)
+                    
 
                     # Ajouter i-One to table user
                     data_user = '{"mail":"' + partner.email + '" , "password":"' + user.password360 + '", "firstName":"' + partner.firstName + '", "lastName":"' + partner.lastName + '", "phone":"' + partner.phone + '", "lang":"fr","sendCredentials":"true"}'
@@ -1123,7 +1123,7 @@ class partner(models.Model):
 
     def change_statut_accepte(self):
         base_url = self.env['ir.config_parameter'].sudo().get_param('web.base.url')
-        if "localhost" not in str(base_url) and "dev.odoo" not in str(base_url):
+        if "localhost" not in str(base_url) and "dev.odoo" in str(base_url):
             params_wedof = (
                 ('order', 'desc'),
                 ('type', 'all'),
@@ -1236,9 +1236,10 @@ class partner(models.Model):
                             user.partner_id.module_id = module_id
                             self.env.user.company_id = 2
                             invoice = self.env['account.move'].sudo().search(
-                                [('module_id.date_exam', ">=", date.today()), ('state', "=", 'posted'),
+                                [('module_id', "=", module_id.id),
+                                 ('state', "=", 'posted'),
                                  ('partner_id', "=", user.partner_id.id)])
-                            if not invoice:
+                            if not invoice and (user.partner_id.date_examen_edof > date.today()):
                                 print('if  not invoice digi ')
                                 so = self.env['sale.order'].sudo().create({
                                     'partner_id': user.partner_id.id,
@@ -1319,9 +1320,10 @@ class partner(models.Model):
                             user.partner_id.module_id = module_id
                             self.env.user.company_id = 1
                             invoice = self.env['account.move'].sudo().search(
-                                [('module_id.date_exam', ">=", date.today()), ('state', "=", 'posted'),
+                                [('module_id', "=", module_id.id),
+                                 ('state', "=", 'posted'),
                                  ('partner_id', "=", user.partner_id.id)])
-                            if not invoice:
+                            if not invoice and (user.partner_id.date_examen_edof > date.today()) :
                                 print('if  not invoice mcm')
                                 so = self.env['sale.order'].sudo().create({
                                     'partner_id': user.partner_id.id,
