@@ -404,9 +404,9 @@ class WebsiteSale(WebsiteSale):
                     partner.module_id = module_id
                     request.env.user.company_id = 2
                     invoice = request.env['account.move'].sudo().search(
-                        [('module_id.date_exam', ">=", date.today()), ('state', "=", 'posted'),
+                        [('module_id.date_exam',">=", date.today()), ('state', "=", 'posted'),
                          ('partner_id', "=", partner.id)])
-                    if not invoice:
+                    if not invoice :
                         so = request.env['sale.order'].sudo().create({
                             'partner_id': partner.id,
                             'company_id': 2,
@@ -488,7 +488,7 @@ class WebsiteSale(WebsiteSale):
                     partner.module_id = module_id
                     request.env.user.company_id = 1
                     invoice = request.env['account.move'].sudo().search(
-                        [('module_id.date_exam', ">=", date.today()), ('state', "=", 'posted'),
+                        [('module_id','=',module_id.id), ('state', "=", 'posted'),
                          ('partner_id', "=", partner.id)])
                     if not invoice:
                         so = request.env['sale.order'].sudo().create({
