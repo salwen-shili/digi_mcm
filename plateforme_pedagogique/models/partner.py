@@ -280,7 +280,7 @@ class partner(models.Model):
             user = self.env['res.users'].sudo().search([('partner_id', '=', partner.id)], limit=1)
             _logger.info('avant if login user %s' % user.login)
             _logger.info('avant if partner email %s' % partner.email)
-           
+            
 
             if user:
                 id_Digimoov_bienvenue = '56f5520e11d423f46884d594'
@@ -1124,7 +1124,6 @@ class partner(models.Model):
     def change_statut_accepte(self):
         base_url = self.env['ir.config_parameter'].sudo().get_param('web.base.url')
         if "localhost" not in str(base_url) and "dev.odoo" in str(base_url):
-            
             params_wedof = (
                 ('order', 'desc'),
                 ('type', 'all'),
@@ -1240,7 +1239,7 @@ class partner(models.Model):
                                 [('module_id', "=", module_id.id),
                                  ('state', "=", 'posted'),
                                  ('partner_id', "=", user.partner_id.id)])
-                            if not invoice:
+                            if not invoice and (user.partner_id.date_examen_edof > date.today()):
                                 print('if  not invoice digi ')
                                 so = self.env['sale.order'].sudo().create({
                                     'partner_id': user.partner_id.id,
