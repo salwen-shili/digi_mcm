@@ -1199,7 +1199,7 @@ class partner(models.Model):
                 else:
                     user = users
                 if user:
-                    _logger.info('password _______ %s' % str(user.parnter_id.name))
+                    _logger.info('password _______ %s' % str(user.partner_id.name))
                     _logger.info('password _______ %s' % str(user.password360))
                     print("if user", user.login, user.partner_id.statut_cpf)
                     user.partner_id.mode_de_financement = 'cpf'
