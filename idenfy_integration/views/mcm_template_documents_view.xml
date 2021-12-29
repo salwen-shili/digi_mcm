@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
+  <!-- Idenfy-->
   <template id="idenfy_integration_mcm_contact_documents_view" inherit_id="mcm_contact_documents.mcm_contact_documents_charger_mes_documents_mcm">
     <xpath expr="//div[hasclass('m-0')]" position="replace">
-
-
       <div t-if="expired_license" name="ex_warning" style="text-align: center;border-width: 0px;">
         <p t-if="expired_license" class="alert alert-warning" style="margin-left:0%;">
-                    Votre permis de conduire semble être en période probatoire, vous ne pouvez donc pas continuer le processus d'inscription. Merci de contacter le service client avec le lien suivant. Please click here: <a href="https://www.mcm-academy.fr/service-clientele">https://www.mcm-academy.fr/service-clientele</a>
+          Votre permis de conduire semble être en période probatoire, vous ne pouvez donc pas continuer le processus d'inscription. Merci de contacter le service client avec le lien suivant. Please click here:
+          <a href="https://www.mcm-academy.fr/service-clientele">https://www.mcm-academy.fr/service-clientele</a>
         </p>
       </div>
       <div style="text-align: center;border-width: 0px;">
@@ -17,12 +17,12 @@
     <xpath expr="//a[@href='/shop/cart']" position="replace">
       <a href="/shop/cart" disabled="disabled" id="document_next">
         <t t-if="partner_id.is_idenfy_approved">
-          <button type="button" style="color: #fff; margin-top: 1rem;margin-bottom: 2rem;     margin-left: 1rem;  " class="float-right rkmd-btn btn-black ripple-effect ripple-yellow " id="submit_documents_next_button">
+          <button type="button" style="color: #fff; margin:0px 5px  " class="rkmd-btn btn-black ripple-effect ripple-yellow " id="submit_documents_next_button">
                     Suivant
           </button>
         </t>
         <t>
-          <button type="button" style="color: #fff; margin-top: 1rem;margin-bottom: 2rem;     margin-left: 1rem;  " class="float-right rkmd-btn btn-black ripple-effect ripple-yellow " id="submit_documents_next_button" disabled="disabled">
+          <button type="button" style="color: #fff; margin:0px 5px  " class="rkmd-btn btn-black ripple-effect ripple-yellow " id="submit_documents_next_button" disabled="disabled">
                     Suivant
           </button>
         </t>

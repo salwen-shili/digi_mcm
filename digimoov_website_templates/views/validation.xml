@@ -6,9 +6,9 @@
             <div id="wrap" class="oe_structure oe_empty">
                 <input type="hidden" t-att-value="partner_has_documents" id="hasdocument"></input>
 
-                <link href="/digimoov_website_templates/static/src/css/register_form.css" rel="stylesheet"/>
-                <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"/>
-                <link href="/digimoov_website_templates/static/src/css/material_form.css" rel="stylesheet"/>
+                <link href="/digimoov_website_templates/static/src/css/register_form.css" rel="stylesheet" />
+                <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+                <link href="/digimoov_website_templates/static/src/css/material_form.css" rel="stylesheet" />
 
                 <style>
                     @media screen and (max-width: 374px) {
@@ -67,7 +67,7 @@
                       progress-bar progress-bar-striped progress-bar-animated
                     " role="progressbar" aria-valuemin="0" aria-valuemax="100"></div>
                                     </div>
-                                    <br/>
+                                    <br />
                                     <script>
                                         document.getElementsByClassName("progress-bar")[0].style.width= "25%";
 
@@ -75,9 +75,9 @@
 
 
                                     <div class="row" style="padding-left:15px">
-                                        <div class="col-7">
-                                            <h2 class="fs-title">Questionnaire</h2>
-                                        </div>
+
+                                        <h2 class="fs-title">Questionnaire</h2>
+
                                     </div>
 
 
@@ -87,16 +87,14 @@
                                             suivi par un référent handicap, etc.)
                                         </h4>
                                         <label for="rad-1" class="radio">
-                                            <input id="rad-1" type="radio" name="group1" value="Oui"/>
+                                            <input id="rad-1" type="radio" name="group1" value="Oui" />
                                             <span class="label">Oui</span>
-                                            <span class="col-lg-12 pt16 " style="">
-                                            </span>
+                                            <span class="col-lg-12 pt16 " style=""></span>
                                         </label>
                                         <label for="rad-2" class="radio">
-                                            <input id="rad-2" type="radio" name="group1" value="Non"/>
+                                            <input id="rad-2" type="radio" name="group1" value="Non" />
                                             <span class="label">Non</span>
-                                            <span class="col-lg-12 pt16 " style="">
-                                            </span>
+                                            <span class="col-lg-12 pt16 " style=""></span>
                                         </label>
 
                                         <h5 style="font-size: 1.0rem;
@@ -107,18 +105,16 @@
                                         </h5>
                                         <input name="type_besoins" style="width: 96%;
                                                 padding: 10px;
-                                                margin: 10px 0px 24px;" id="text1">
-                                        </input>
+                                                margin: 10px 0px 24px;" id="text1"></input>
                                         <p style="    font-style: italic;
                                             color: #000000;
                                             background: #fff47d69;
                                             margin: 0;
                                             padding: 6px;
                                             margin-right: 20px;
-                                            font-size: revert; display:none" id="error1">
-                                        </p>
+                                            font-size: revert; display:none" id="error1"></p>
                                         <div class="btn-container">
-                                            <input type="button" name="next" class="next action-button" value="Suivant"/>
+                                            <input type="button" name="next" class="next action-button" value="Suivant" />
                                         </div>
 
 
@@ -129,68 +125,49 @@
                                             Pourquoi avez-vous choisi cette formation ?
                                         </h4>
                                         <label for="rad-3" class="radio ">
-                                            <input id="rad-3" type="radio" value="En chômage" name="group2"/>
+                                            <input id="rad-3" type="radio" value="En chômage" name="group2" />
                                             <span class="label">Je suis en chômage et je suis en recherche d'emploi</span>
 
 
-
-                                            <span class="col-lg-12 pt16 " style="">
-
-
-                                            </span>
+                                            <span class="col-lg-12 pt16 " style=""></span>
                                         </label>
                                         <label for="rad-4" class="radio ">
-                                            <input id="rad-4" type="radio" value="Monter sa propre entreprise" name="group2"/>
+                                            <input id="rad-4" type="radio" value="Monter sa propre entreprise" name="group2" />
                                             <span class="label">Je veux monter ma propre entreprise et être
                                             indépendant</span>
 
 
-                                            <span class="col-lg-12 pt16 " style="">
-
-
-                                            </span>
+                                            <span class="col-lg-12 pt16 " style=""></span>
                                         </label>
                                         <label for="rad-5" class="radio ">
-                                            <input id="rad-5" type="radio" value="Passionné par le métier" name="group2"/>
+                                            <input id="rad-5" type="radio" value="Passionné par le métier" name="group2" />
                                             <span class="label">Je suis passionné par le métier de chauffeur
                                             </span>
 
-                                            <span class="col-lg-12 pt16 " style="">
-
-
-                                            </span>
+                                            <span class="col-lg-12 pt16 " style=""></span>
                                         </label>
                                         <label for="rad-6" class="radio ">
-                                            <input id="rad-6" type="radio" value="En reconversion professionnelle" name="group2"/>
+                                            <input id="rad-6" type="radio" value="En reconversion professionnelle" name="group2" />
                                             <span class="label">Je suis en reconversion professionnelle pour
                                             être chauffeur</span>
 
 
-                                            <span class="col-lg-12 pt16 " style="">
-
-
-                                            </span>
+                                            <span class="col-lg-12 pt16 " style=""></span>
                                         </label>
                                         <label for="rad-7" class="radio ">
-                                            <input id="rad-7" type="radio" value="Mettre à jour ses connaissances" name="group2"/>
+                                            <input id="rad-7" type="radio" value="Mettre à jour ses connaissances" name="group2" />
                                             <span class="label">Pour mettre à jour mes connaissances et
                                             compétences du métier</span>
 
 
-                                            <span class="col-lg-12 pt16 " style="">
-
-
-                                            </span>
+                                            <span class="col-lg-12 pt16 " style=""></span>
                                         </label>
                                         <label for="rad-8" class="radio ">
-                                            <input id="rad-8" type="radio" value="Arrondir ses fins du mois" name="group2"/>
+                                            <input id="rad-8" type="radio" value="Arrondir ses fins du mois" name="group2" />
                                             <span class="label">Pour arrondir mes fins du mois
                                             </span>
 
-                                            <span class="col-lg-12 pt16 " style="">
-
-
-                                            </span>
+                                            <span class="col-lg-12 pt16 " style=""></span>
                                         </label>
                                         <p style="    font-style: italic;
     color: #000000;
@@ -198,11 +175,10 @@
     margin: 0;
     padding: 6px;
     margin-right: 20px;
-    font-size: revert; display:none" id="error2">
-                                        </p>
+    font-size: revert; display:none" id="error2"></p>
                                         <div class="btn-container">
-                                            <input type="button" name="next" class="next action-button" value="Suivant"/>
-                                            <input type="button" name="previous" class="previous action-button-previous" value="Précédent"/>
+                                            <input type="button" name="next" class="next action-button" value="Suivant" />
+                                            <input type="button" name="previous" class="previous action-button-previous" value="Précédent" />
                                         </div>
 
 
@@ -213,45 +189,33 @@
 
                                         </h4>
                                         <label for="rad-9" class="radio ">
-                                            <input id="rad-9" type="radio" value="Vidéos préenregistrées" name="group3"/>
+                                            <input id="rad-9" type="radio" value="Vidéos préenregistrées" name="group3" />
                                             <span class="label">En visualisant des vidéos préenregistrées
                                             </span>
 
-                                            <span class="col-lg-12 pt16 " style="">
-
-
-                                            </span>
+                                            <span class="col-lg-12 pt16 " style=""></span>
                                         </label>
                                         <label for="rad-10" class="radio ">
-                                            <input id="rad-10" type="radio" value="Documents en ligne" name="group3"/>
+                                            <input id="rad-10" type="radio" value="Documents en ligne" name="group3" />
                                             <span class="label">En lisant des documents PDF en ligne
                                             </span>
 
-                                            <span class="col-lg-12 pt16 " style="">
-
-
-                                            </span>
+                                            <span class="col-lg-12 pt16 " style=""></span>
                                         </label>
                                         <label for="rad-11" class="radio ">
-                                            <input id="rad-11" type="radio" value="En mode audio" name="group3"/>
+                                            <input id="rad-11" type="radio" value="En mode audio" name="group3" />
                                             <span class="label">En écoutant les cours en mode audio
                                             </span>
 
-                                            <span class="col-lg-12 pt16 " style="">
-
-
-                                            </span>
+                                            <span class="col-lg-12 pt16 " style=""></span>
                                         </label>
                                         <label for="rad-13" class="radio ">
-                                            <input id="rad-13" type="radio" value="Alternance entre tous ces modes" name="group3"/>
+                                            <input id="rad-13" type="radio" value="Alternance entre tous ces modes" name="group3" />
                                             <span class="label">En alternant entre tous ces modes
                                             d’apprentissage</span>
 
 
-                                            <span class="col-lg-12 pt16 " style="">
-
-
-                                            </span>
+                                            <span class="col-lg-12 pt16 " style=""></span>
                                         </label>
                                         <p style="    font-style: italic;
     color: #000000;
@@ -259,11 +223,10 @@
     margin: 0;
     padding: 6px;
     margin-right: 20px;
-    font-size: revert; display:none" id="error3">
-                                        </p>
+    font-size: revert; display:none" id="error3"></p>
                                         <div class="btn-container">
-                                            <input type="button" name="next" class="next action-button" value="Suivant"/>
-                                            <input type="button" name="previous" class="previous action-button-previous" value="Précédent"/>
+                                            <input type="button" name="next" class="next action-button" value="Suivant" />
+                                            <input type="button" name="previous" class="previous action-button-previous" value="Précédent" />
                                         </div>
 
 
@@ -274,26 +237,22 @@
                                         </h4>
                                         <input type="text" id="text2" name="attentes" style="width: 96%;
     padding: 10px;
-    margin: 10px 0px 24px;">
-
-                                        </input>
+    margin: 10px 0px 24px;"></input>
                                         <p style="    font-style: italic;
                                         color: #000000;
                                         background: #fff47d69;
                                         margin: 0;
                                         padding: 6px;
                                         margin-right: 20px;
-                                        font-size: revert; display:none" id="error4">
-                                        </p>
+                                        font-size: revert; display:none" id="error4"></p>
                                         <div class="btn-container">
 
 
-                                            <input type="button" class="next action-button" href="#popup1" value="Confirmer"/>
-                                            <input type="button" name="previous" class="previous action-button-previous" value="Précédent"/>
+                                            <input type="button" class="next action-button" href="#popup1" value="Confirmer" />
+                                            <input type="button" name="previous" class="previous action-button-previous" value="Précédent" />
 
                                         </div>
-                                        <script>
-                                        </script>
+                                        <script></script>
                                     </fieldset>
 
                                     <div style="text-align:center;margin-top:40px;">
@@ -322,11 +281,9 @@
                                             <i class="fa fa-times"></i>
                                         </a>
                                         <div class="content">
-                                            <p id="notifMessage">
-
-                                            </p>
+                                            <p id="notifMessage"></p>
                                             <div class="" style="margin-block-start: 1.5rem;">
-                                                <input type="submit" class="text-center next action-button" style="float: unset !important;" value="Continuer" onclick="(function(){document.getElementById('msform').submit();;return false;})();return false;"/>
+                                                <input type="submit" class="text-center next action-button" style="float: unset !important;" value="Continuer" onclick="(function(){document.getElementById('msform').submit();;return false;})();return false;" />
 
                                             </div>
                                         </div>
@@ -335,20 +292,20 @@
 
                             </form>
 
-                            <br/>
+                            <br />
 
 
-                            <br/>
+                            <br />
 
 
-                            <br/>
+                            <br />
 
 
                         </div>
                     </div>
                 </div>
-                <script defer="defer" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"/>
-                <script defer="defer" type="text/javascript" src="/digimoov_website_templates/static/src/js/feedback-form.js"/>
+                <script defer="defer" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js" />
+                <script defer="defer" type="text/javascript" src="/digimoov_website_templates/static/src/js/feedback-form.js" />
 
             </div>
 

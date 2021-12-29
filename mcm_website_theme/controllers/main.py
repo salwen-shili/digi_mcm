@@ -46,9 +46,9 @@ class Website(Home):
         premium_price = False
         # get all exam centers to show them in digimoov website homepage
         last_ville = request.env['session.ville'].sudo().search(
-            [], order='name_ville desc', limit=1)
+            [('company_id', '=', 2)], order='name_ville desc', limit=1)
         list_villes = request.env['session.ville'].sudo().search(
-            [('id', "!=", last_ville.id)], order='name_ville asc')
+            [('id', "!=", last_ville.id),('company_id', '=', 2)], order='name_ville asc')
         values = {
             'list_villes': list_villes,
             'last_ville': last_ville
@@ -64,7 +64,7 @@ class Website(Home):
         promo = False
         user_connected = request.env.user
         user_connected.partner_from = False
-        if (request.website.id == 2 and partenaire in ['ubereats', 'deliveroo', 'coursierjob', 'box2home','coursier2roues', 'habilitation-electrique', 'eco-conduite', 'transport-routier']):
+        if (request.website.id == 2 and partenaire in ['ubereats', 'deliveroo', 'coursierjob', 'box2home','coursier2roues']):
             user_connected.partner_from = str(partenaire)
             promo = request.env['product.pricelist'].sudo().search(
                 [('company_id', '=', 2), ('code', 'ilike', partenaire.upper())])
@@ -109,7 +109,7 @@ class Website(Home):
             values['last_ville'] = last_ville
         if list_villes:
             values['list_villes'] = list_villes
-        if (partenaire in ['', 'ubereats', 'deliveroo', 'coursierjob', 'box2home','coursier2roues', 'habilitation-electrique', 'eco-conduite', 'transport-routier'] and request.website.id == 2):
+        if (partenaire in ['', 'ubereats', 'deliveroo', 'coursierjob', 'box2home','coursier2roues'] and request.website.id == 2):
             values['partenaire'] = partenaire
             if (promo):
                 values['promo'] = promo
@@ -363,6 +363,15 @@ class Routes_Site(http.Controller):
         elif request.website.id == 1:
             return request.render("mcm_website_theme.mcm_website_examen", values)
 
+
+
+        #La page n'est affichée que sur le site mcm
+
+        if request.website.id == 2:
+            raise werkzeug.exceptions.NotFound()
+        elif request.website.id == 1:
+            return request.render("mcm_website_theme.mcm_website_examen", {})
+
     @http.route('/coordonnees', type='http', auth='user', website=True,csrf=False)
     def validation_questionnaires(self, **kw):
         order = request.website.sale_get_order()
@@ -471,12 +480,12 @@ class Routes_Site(http.Controller):
                     if product_id:
                         slugname = (product_id.name).strip().strip('-').replace(' ', '-').lower()
                         if str(slugname) != str(product):
-                            if order.pricelist_id and order.pricelist_id.name in ['ubereats', 'deliveroo', 'coursierjob','box2home','coursier2roues', 'habilitation-electrique', 'eco-conduite', 'transport-routier']:
+                            if order.pricelist_id and order.pricelist_id.name in ['ubereats', 'deliveroo', 'coursierjob','box2home','coursier2roues']:
                                 return request.redirect("/%s/%s/felicitations/" % (slugname, order.pricelist_id.name))
                             else:
                                 return request.redirect("/%s/felicitations/" % (slugname))
                         else:
-                            if order.pricelist_id and order.pricelist_id.name in ['ubereats', 'deliveroo', 'coursierjob','box2home','coursier2roues', 'habilitation-electrique', 'eco-conduite', 'transport-routier']:
+                            if order.pricelist_id and order.pricelist_id.name in ['ubereats', 'deliveroo', 'coursierjob','box2home','coursier2roues']:
                                 return request.redirect("/%s/%s/felicitations/" % (slugname, order.pricelist_id.name))
                     else:
                         return request.redirect("/felicitations")
@@ -488,12 +497,12 @@ class Routes_Site(http.Controller):
                                 [('company_id', '=', 2), ('name', "=", str(partenaire))])
                             if not pricelist:
                                 pricelist_id = order.pricelist_id
-                                if pricelist_id.name in ['ubereats', 'deliveroo', 'coursierjob','box2home','coursier2roues', 'habilitation-electrique', 'eco-conduite', 'transport-routier']:
+                                if pricelist_id.name in ['ubereats', 'deliveroo', 'coursierjob','box2home','coursier2roues']:
                                     return request.redirect("/%s/%s/felicitations/" % (slugname, pricelist_id.name))
                                 else:
                                     return request.redirect("/%s/felicitations/" % (slugname))
                             else:
-                                if pricelist.name in ['ubereats', 'deliveroo', 'coursierjob','box2home','coursier2roues', 'habilitation-electrique', 'eco-conduite', 'transport-routier']:
+                                if pricelist.name in ['ubereats', 'deliveroo', 'coursierjob','box2home','coursier2roues']:
                                     return request.redirect(
                                         "/%s/%s/felicitations/" % (slugname, order.pricelist_id.name))
                                 else:
@@ -509,7 +518,7 @@ class Routes_Site(http.Controller):
                                 else:
                                     return request.redirect("/%s/felicitations/" % (slugname))
                             else:
-                                if pricelist.name in ['ubereats', 'deliveroo', 'coursierjob','box2home','coursier2roues', 'habilitation-electrique', 'eco-conduite', 'transport-routier']:
+                                if pricelist.name in ['ubereats', 'deliveroo', 'coursierjob','box2home','coursier2roues']:
                                     if pricelist.name != order.pricelist_id.name:
                                         return request.redirect(
                                             "/%s/%s/felicitations/" % (slugname, order.pricelist_id.name))
@@ -518,7 +527,7 @@ class Routes_Site(http.Controller):
                     else:
                         pricelist = request.env['product.pricelist'].sudo().search(
                             [('company_id', '=', 2), ('name', "=", str(partenaire))])
-                        if pricelist and pricelist.name in ['ubereats', 'deliveroo', 'coursierjob','box2home','coursier2roues', 'habilitation-electrique', 'eco-conduite', 'transport-routier']:
+                        if pricelist and pricelist.name in ['ubereats', 'deliveroo', 'coursierjob','box2home','coursier2roues']:
                             return request.redirect("/%s" % (pricelist.name))
                         else:
                             return request.redirect("/felicitations")
@@ -829,7 +838,7 @@ class WebsiteSale(WebsiteSale):
                 if product_id:
                     slugname = (product_id.name).strip().strip('-').replace(' ', '-').lower()
                     if order.pricelist_id and order.pricelist_id.name in ['ubereats', 'deliveroo', 'coursierjob',
-                                                                          'box2home', 'coursier2roues', 'habilitation-electrique', 'eco-conduite', 'transport-routier']:
+                                                                          'box2home']:
                         return request.redirect(
                             "/%s/%s/shop/confirmation/%s" % (slugname, order.pricelist_id.name, state))
                     else:
@@ -1047,15 +1056,14 @@ class Payment3x(http.Controller):
     def cart_update_cpf(self, cpf):
         order = request.website.sale_get_order(force_create=1)
         if cpf and order.partner_id.statut != 'won':
-            order.partner_id.date_cpf = datetime.now()
+            # order.partner_id.date_cpf = datetime.now()
             order.partner_id.mode_de_financement = 'cpf'
-            order.partner_id.statut_cpf = 'untreated'
+            # order.partner_id.statut_cpf = 'untreated'
         return True
 
     @http.route(['/shop/payment/update_cartebleu'], type='json', auth="public", methods=['POST'], website=True, csrf=False)
     def cart_update_cartebleu(self, cartebleu):
         order = request.website.sale_get_order(force_create=1)
-        print('update_cartebleu')
         if cartebleu and order.partner_id.statut != 'won':
             order.partner_id.mode_de_financement ='particulier'
         return True

@@ -1,5 +1,5 @@
-document.addEventListener("DOMContentLoaded", function () {
-  const current = document.getElementById("step_value");
+document.addEventListener('DOMContentLoaded', function () {
+  const current = document.getElementById('step_value');
   console.log(current.value);
 
   const finish = `<h2 class="purple-text text-center"><strong>FÉLICITATIONS !</strong></h2> <br>
@@ -15,64 +15,63 @@ document.addEventListener("DOMContentLoaded", function () {
                                     
                                     
                                 </div>
-                                <a id ="button-continuer" href="https://formation.mcm-academy.fr/register?next=/dashboard">
+                                <a id ="button-continuer" href="https://formation.mcm-academy.fr/register?next=/dashboard" target='_blank'>
                                         <button class="rkmd-btn btn-black ripple-effect ripple-yellow" type="submit" style="font-size: 11px;">
                                             <i class="material-icons right">send</i>continuer</button>
                                     </a>
                                 </div>
                                 `;
 
-  const finished = document.getElementById("finished");
-
-  const documents = document.getElementById("personal");
-  const documentsUrl = "/charger_mes_documents";
-  const financement = document.getElementById("payment");
-  const financementUrl = "/shop/cart";
-  const validation = document.getElementById("confirm");
-  const validationUrl = "/validation";
-  const btnContinuer = document.getElementById("button-continuer");
-  const questionnaireUrl = "/coordonnees";
+  const finished = document.getElementById('finished');
+  const documents = document.getElementById('personal');
+  const documentsUrl = '/charger_mes_documents';
+  const financement = document.getElementById('payment');
+  const financementUrl = '/shop/cart';
+  const validation = document.getElementById('confirm');
+  const validationUrl = '/validation';
+  const btnContinuer = document.getElementById('button-continuer');
+  const questionnaireUrl = '/coordonnees';
 
   var step = 1;
-  console.log("step", current.value);
+  console.log('step', current.value);
   switch (current.value) {
-    case "coordonnées":
+    case 'coordonnées':
       step = 1;
 
-      btnContinuer.setAttribute("href", questionnaireUrl);
+      btnContinuer.setAttribute('href', questionnaireUrl);
 
       break;
-    case "document":
+    case 'document':
       step = 2;
-      documents.classList.add("active");
-      btnContinuer.setAttribute("href", documentsUrl);
+      documents.classList.add('active');
+      btnContinuer.setAttribute('href', documentsUrl);
 
       break;
-    case "financement":
+    case 'financement':
       step = 3;
-      documents.classList.add("active");
-      financement.classList.add("active");
+      documents.classList.add('active');
+      financement.classList.add('active');
 
-      btnContinuer.setAttribute("href", financementUrl);
+      btnContinuer.setAttribute('href', financementUrl);
 
       break;
-    case "validation":
+    case 'validation':
       step = 4;
-      documents.classList.add("active");
-      financement.classList.add("active");
-      validation.classList.add("active");
-      btnContinuer.setAttribute("href", validationUrl);
-      if (current.value === "finish") {
+      documents.classList.add('active');
+      financement.classList.add('active');
+      validation.classList.add('active');
+      btnContinuer.setAttribute('href', validationUrl);
+      if (current.value === 'finish') {
         finished.innerHTML = finish;
       }
 
       break;
-    case "finish":
+    case 'finish':
       step = 4;
       console.log(step);
-      documents.classList.add("active");
-      financement.classList.add("active");
-      validation.classList.add("active");
+      documents.classList.add('active');
+      financement.classList.add('active');
+      validation.classList.add('active');
 
       finished.innerHTML = finish;
 
@@ -83,6 +82,6 @@ document.addEventListener("DOMContentLoaded", function () {
   }
   var progressBarValue = step * 25;
   console.log(step);
-  document.getElementsByClassName("progress-bar")[0].style.width =
-    progressBarValue + "%";
+  document.getElementsByClassName('progress-bar')[0].style.width =
+    progressBarValue + '%';
 });

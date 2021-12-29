@@ -646,7 +646,7 @@ class partner(models.Model):
                 nom_voie = ""
                 if "roadName" in dossier['attendee']['address']:
                     nom_voie = dossier['attendee']['address']['roadName']
-                street = num_voie + ' ' + voie + ' ' + nom_voie
+                street = str(num_voie) + ' ' + str(voie) + ' ' + str(nom_voie)
                 if "phoneNumber" in dossier['attendee']:
                     tel = dossier['attendee']['phoneNumber']
                 else:
@@ -694,11 +694,11 @@ class partner(models.Model):
 
     def change_state_cpf_partner(self):
         base_url = self.env['ir.config_parameter'].sudo().get_param('web.base.url')
-        if "localhost"  in str(base_url) or "dev.odoo"  in str(base_url):
+        if "localhost" not in str(base_url) and "dev.odoo" not in str(base_url):
             params_wedof = (
                 ('order', 'desc'),
                 ('type', 'all'),
-                ('state', 'validated'),
+                ('state', 'validated,inTraining,refusedByAttendee,refusedByOrganism,serviceDoneDeclared,serviceDoneValidated,canceledByAttendee,canceledByAttendeeNotRealized,canceledByOrganism'),
                 ('billingState', 'all'),
                 ('certificationState', 'all'),
                 ('sort', 'lastUpdate'),
@@ -745,7 +745,7 @@ class partner(models.Model):
                 nom_voie = ""
                 if "roadName" in dossier['attendee']['address']:
                     nom_voie = dossier['attendee']['address']['roadName']
-                street = num_voie + ' ' + voie + ' ' + nom_voie
+                street = str(num_voie) + ' ' + str(voie) + ' ' + str(nom_voie)
                 tel = ""
                 if "phoneNumber" in dossier['attendee']:
                     tel = dossier['attendee']['phoneNumber']
@@ -991,20 +991,25 @@ class partner(models.Model):
                     url = str(user.signup_url) # get the signup_url
                     short_url = pyshorteners.Shortener()
                     short_url = short_url.tinyurl.short(url) # convert the signup_url to be short using pyshorteners library
-                    body = 'Chere(e) %s , Vous avez été invité par %s  à rejoindre le site : %s . Votre courriel de connection est: %s' %(user.partner_id.name,user.partner_id.company_id.name,short_url,user.partner_id.email) # content of sms
+                    body = 'Chere(e) %s , Vous avez été invité par %s  à compléter votre inscription : %s . Votre courriel de connection est: %s' %(user.partner_id.name,user.partner_id.company_id.name,short_url,user.partner_id.email) # content of sms
+                    sms_body_contenu = 'Chere(e) %s , Vous avez été invité par %s  à compléter votre inscription : %s . Votre courriel de connection est: %s' %(user.partner_id.name,user.partner_id.company_id.name,short_url,user.partner_id.email) # content of sms
                     sms = self.env['sms.sms'].sudo().create({
                                 'partner_id': user.partner_id.id,
                                 'number' : phone,
                                 'body' : str(body)
-                            }) # create sms 
+                            }) # create sms
+                    sms_id = sms.id
                     if (sms):
-                        sms.send() #send the sms 
+                        sms.send() #send the sms
                         subtype_id = self.env['ir.model.data'].xmlid_to_res_id('mt_note')
                         body = False
-                        if sms.state == 'error':
-                            body = "Le SMS suivant n'a pas pu être envoyé : %s " % (sms.body)
-                        elif sms.state == 'sent':
-                            body = "Le SMS suivant a été bien envoyé " % (sms.body)
+                        sms = self.env["sms.sms"].sudo().search(
+                            [("id", "=", sms_id)], limit=1)
+                        if (sms):
+                            if sms.state == 'error':
+                                body = "Le SMS suivant n'a pas pu être envoyé : %s " % (sms_body_contenu)
+                        else:
+                            body = "Le SMS suivant a été bien envoyé : %s " % (sms_body_contenu)
                         if body:
                             message = self.env['mail.message'].sudo().create({
                                 'subject': 'Invitation de rejoindre le site par sms',
@@ -1013,7 +1018,7 @@ class partner(models.Model):
                                 'message_type': 'notification',
                                 'subtype_id': subtype_id,
                                 'body': body,
-                            }) # create note in client view 
+                            }) # create note in client view
         # user = request.env['res.users'].sudo().search([('login', "=", email)])
         if user:
             client = self.env['res.partner'].sudo().search(
@@ -1113,37 +1118,6 @@ class partner(models.Model):
                             # so.amount_total = so.amount_total * 0.25
                             for line in so.order_line:
                                 line.price_unit = so.amount_total
-
-                        """Créer un devis et Remplir le panier par produit choisit sur edof"""
-                        sale=self.env['sale.order'].sudo().search([('partner_id','=',client.id),
-                                                                   ('company_id','=',1),
-                                                                   ('website_id','=',1),
-                                                                   ('order_line.product_id','=',product_id.id)])
-                        print('sale order', sale.id)
-                        if not sale:
-                            so = self.env['sale.order'].sudo().create({
-                                'partner_id': client.id,
-                                'company_id': 1,
-                                'website_id':1
-                            })
-    
-                            so_line = self.env['sale.order.line'].sudo().create({
-                                'name': product_id.name,
-                                'product_id': product_id.id,
-                                'product_uom_qty': 1,
-                                'product_uom': product_id.uom_id.id,
-                                'price_unit': product_id.list_price,
-                                'order_id': so.id,
-                                'tax_id': product_id.taxes_id,
-                                'company_id': 1,
-                            })
-                            #
-                            # prix de la formation dans le devis
-                            amount_before_instalment = so.amount_total
-                            # so.amount_total = so.amount_total * 0.25
-                            for line in so.order_line:
-                                line.price_unit = so.amount_total
-
 
     """Changer statut cpf vers accepté selon l'etat récupéré avec api wedof"""
 
@@ -1262,7 +1236,7 @@ class partner(models.Model):
                             user.partner_id.module_id = module_id
                             self.env.user.company_id = 2
                             invoice = self.env['account.move'].sudo().search(
-                                [('module_id', "=", module_id.id), ('state', "=", 'posted'),
+                                [('module_id.date_exam', ">=", date.today()), ('state', "=", 'posted'),
                                  ('partner_id', "=", user.partner_id.id)])
                             if not invoice:
                                 print('if  not invoice digi ')
@@ -1317,6 +1291,8 @@ class partner(models.Model):
                                 so.action_cancel()
                                 so.unlink()
                                 user.partner_id.statut = 'won'
+                                """changer step à validé dans espace client """
+                                user.partner_id.step = 'finish'
                             session = self.env['partner.sessions'].search([('client_id', '=', user.partner_id.id),
                                                                            (
                                                                            'session_id', '=', module_id.session_id.id)])
@@ -1343,7 +1319,7 @@ class partner(models.Model):
                             user.partner_id.module_id = module_id
                             self.env.user.company_id = 1
                             invoice = self.env['account.move'].sudo().search(
-                                [('module_id', "=", module_id.id), ('state', "=", 'posted'),
+                                [('module_id.date_exam', ">=", date.today()), ('state', "=", 'posted'),
                                  ('partner_id', "=", user.partner_id.id)])
                             if not invoice:
                                 print('if  not invoice mcm')
@@ -1386,6 +1362,8 @@ class partner(models.Model):
                                 so.action_cancel()
                                 so.unlink()
                                 user.partner_id.statut = 'won'
+                                """changer step à validé dans espace client """
+                                user.partner_id.step = 'finish'
                             session = self.env['partner.sessions'].search([('client_id', '=', user.partner_id.id),
                                                                            (
                                                                            'session_id', '=', module_id.session_id.id)])

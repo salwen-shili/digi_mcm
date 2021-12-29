@@ -33,7 +33,7 @@ class CRM(models.Model):
             num_dossier = str(lead.num_dossier)
             partners = self.env['res.partner'].search([('numero_cpf', "=", num_dossier)])
             _logger.info('lead %s' % lead.name)
-            for partner in partners:
+            # for partner in partners:
                 # if lead.stage_id.name != "Plateforme 360":
                 #     if (partner.numero_cpf) and (partner.numero_cpf == lead.num_dossier):
                 #         """Changer statut_cpf des fiches client selon
@@ -52,15 +52,15 @@ class CRM(models.Model):
                 #         #     partner.statut_cpf = "service_validated"
                 #         # if lead.stage_id.name == "Annulation titulaire":
                 #         #     partner.statut_cpf = "canceled"
-                lead.sudo().write({
-                            'partner_id': partner,
-                            'name': partner.name,
-                            'mode_de_financement': 'cpf',
-                            'module_id': partner.module_id,
-                            'mcm_session_id': partner.mcm_session_id,
-                            'company_id': partner.company_id if partner.company_id else False
-                        })
-                _logger.info("lead %s" % lead.name)
+                # lead.sudo().write({
+                #             'partner_id': partner,
+                #             'name': partner.name,
+                #             'mode_de_financement': 'cpf',
+                #             'module_id': partner.module_id,
+                #             'mcm_session_id': partner.mcm_session_id,
+                #             'company_id': partner.company_id if partner.company_id else False
+                #         })
+                # _logger.info("lead %s" % lead.name)
             """Supprimer les doublons par num_dossier"""
             if lead.num_dossier and lead.id not in duplicate_lead:
                 duplicates = self.env['crm.lead'].search(

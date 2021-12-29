@@ -196,18 +196,9 @@
                                     <span style="font-size:12px;font-weight: bold;">Centre d'examen de</span>
                                     <span style="font-size:12px"
                                           t-field="doc.module_id.session_ville_id.name_ville"/>
-                                    <t t-if="doc.module_id.product_id.default_code=='transport-routier'">
-                                        <span style="font-size:12px;">en</span>
-                                        <span style="font-size:12px;text-transform: capitalize"
-                                              t-esc="datetime.datetime.strptime(str(doc.module_id.date_exam), '%Y-%m-%d').strftime('%B %Y')"
-
-                                        />
-                                    </t>
-                                    <t t-else="">
-                                        <span style="font-size:12px;">le</span>
+                                    <span style="font-size:12px;">le</span>
                                         <span style="font-size:12px"
                                               t-field="doc.module_id.date_exam"/>
-                                    </t>
                                 </div>
                                 <div>
                                     <p style="font-size:12px">*En cas d'absence à l'examen, le candidat sera
@@ -236,7 +227,7 @@
                                     </span>
                                     <span style="font-size:12px"
                                           t-field="doc.module_id.session_ville_id.name_ville"/>
-                                    <span style="font-size:12px">à compterde la réception de vos
+                                    <span style="font-size:12px"> à compterde la réception de vos
                                         identifiants pour effectuer les 102h de formation en ligne.Les formations en
                                         ligne consistent dans la fourniture d’un contenu numérique non fourni sur un
                                         support matériel accessible par le biais d’un espace électronique sécurisé
@@ -357,8 +348,7 @@
                                 </div>
                                 <div>
                                     <span style="font-size:12px">
-                                        Le paiement sera ou par CB ou par CPF à réception d'une facture émise par
-                                        l'organisme de
+                                        Le paiement sera ou par CB ou par CPF à réception d'une facture émise par l'organisme de
                                         formation à destination du bénéficiaire.Le bénéficiaire s’engage à verser la
                                         somme due selon les modalités de paiement suivantes :
                                     </span>

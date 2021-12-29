@@ -410,15 +410,12 @@ function verify_checked() {
   var x = document.getElementById('checkbox_instalment');
   if (x) {
     if (document.getElementById('checkbox_instalment').checked == true) {
-      document.getElementById('order_amount_to_pay').style.visibility =
-        'visible';
-      document.getElementById('order_instalment_number').style.visibility =
-        'visible';
+      document.getElementById('order_amount_to_pay').style.display = 'inline';
+      document.getElementById('order_instalment_number').style.display =
+        'inline';
     } else {
-      document.getElementById('order_amount_to_pay').style.visibility =
-        'hidden';
-      document.getElementById('order_instalment_number').style.visibility =
-        'hidden';
+      document.getElementById('order_amount_to_pay').style.display = 'none';
+      document.getElementById('order_instalment_number').style.display = 'none';
     }
   }
 }

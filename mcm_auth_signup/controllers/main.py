@@ -33,9 +33,9 @@ class AuthSignupHome(AuthSignupHome):
             phone = '+33' + str(phone)
             values['phone'] = phone"""
         #Generate error when email and confirm email do not have the same value
-        if not qcontext.get('token'):
-            if values.get('login') != qcontext.get('confirm_email'):
-                raise UserError(_("Les emails ne correspondent pas, veuillez les saisir à nouveau."))
+        # if not qcontext.get('token'):
+        #     if values.get('login') != qcontext.get('confirm_email').replace(' ', '').lower():
+        #         raise UserError(_("Les emails ne correspondent pas, veuillez les saisir à nouveau."))
         #Concatenate num_voie, voie and nom_voie inti street
         if (values['num_voie'] and values['voie'] and values['nom_voie']):
             values['street'] = values['num_voie'] + " " + values['voie'] + " " + values['nom_voie']

@@ -36,15 +36,14 @@
 
 
                 <p t-if="modules_digimoov">
-
                     <div style="margin-left: 0%; display:none ">
                         <select id="exam_date" class="form-control search-slt" t-if="modules_digimoov">
                             <option value="all" id="all">
-                                Sélectionnez votre date d'examen
+                                    Sélectionnez votre date d'examen
                             </option>
                             <t t-foreach="modules_digimoov" t-as="module">
                                 <t t-if="module">
-                                    <t t-if="module.website_published==True" t-lang="website_sale_order.partner_id.lang">
+                                    <t t-if="module.website_published==True">
                                         <b>
                                             <option t-att-value="module.session_ville_id.name_ville" t-att-id="module.id" style="text-transform: capitalize;">
                                                 <t t-esc="module.date_exam.strftime('%d %B %Y')" />
@@ -58,7 +57,7 @@
                     </div>
                     <b>
                         <div id="select-date" style="margin-left: 0%">
-                            <select name="date_examen" id="options-date" class="form-control search-slt" style="display:none; ">
+                            <select name="date_examen" id="options-date" class="form-control search-slt" style="display:none">
                                 <option value="all" id="all">
                                     Sélectionnez votre date d'examen
                                 </option>
@@ -67,7 +66,7 @@
                     </b>
 
                     <p id="error_choix_date" class="alert alert-warning" style="margin-left:0%;display:none;">
-                        Vous devez sélectionner votre date d'examen
+                                Vous devez sélectionner votre date d'examen
                     </p>
 
 
@@ -101,158 +100,7 @@
                 <span id="pm_shop_checkout_text">Passer au paiement 2</span>
             </button>
             <div t-if="request.website.id==2">
-                <script>
-             
-                
-
-                function onchangeTextButton() {
-                var stripe_pm = document.getElementById("stripe_pm");
-                if (stripe_pm) {
-                if (stripe_pm.checked == true) {
-                
-                document.getElementById("pm_shop_check").href =
-                "/shop/checkout?express=1";
-               
-                document.getElementById("pm_shop_checkout").href =
-                "/shop/checkout?express=1";
-                }
-                }
-                cpf_pm = document.getElementById("cpf_pm");
-                if (cpf_pm) {
-                if (cpf_pm.checked == true) {
-                    if (document.getElementById("pm_shop_checkout2")) {
-                    document.getElementById("pm_shop_checkout2").innerText =
-                    "Mobiliser mon CPF";
-                }
-                if (document.getElementById("pm_shop_checkout")) {
-                    document.getElementById("pm_shop_checkout").innerText = "Mobiliser mon CPF";}
-                if (cpf_pm.value == "[avancee] Formation pro") {
-               
-                document.getElementById("pm_shop_check").href =
-                "https://bit.ly/3nMlm2A";
-                document.getElementById("pm_shop_checkout").href =
-                "https://bit.ly/3nMlm2A";
-                
-
-                }
-                if (cpf_pm.value == "Formation premium") {
-                
-                document.getElementById("pm_shop_check").href =
-                "https://bit.ly/38IxvSa";
-                document.getElementById("pm_shop_checkout").href =
-                "https://bit.ly/38IxvSa";
-               
-                }
-                }
-                }
-
-              
-                if (document.getElementById("pm_shop_text")) {
-                //Show CPF video and details
-                document.getElementById("cpf-details").classList.remove("hide");
-                document.getElementById("arrow-down").classList.remove("hide");
-                
-                document.getElementById("pm_shop_text").innerHTML =
-                "Mobiliser mon CPF";
-                document.getElementById("pm_shop_check_text").innerHTML =
-                "Mobiliser mon CPF";
-                document.getElementById("pm_shop_checkout_text").innerHTML =
-                "Mobiliser mon CPF";
-                if (document.getElementById("promo_code")) {
-                document.getElementById("promo_code").style.display = "none";
-                }
-                if (document.getElementById("promo_button")) {
-                document.getElementById("promo_button").style.display = "none";
-                }
-                if (document.getElementById("promo_input")) {
-                document.getElementById("promo_input").style.display = "none";
-                }
-                if (document.getElementById("order_instalment")) {
-                document.getElementById("order_instalment").style.visibility =
-                "hidden";
-                document.getElementById(
-                "order_instalment_number"
-                ).style.visibility = "hidden";
-                document.getElementById("order_amount_to_pay").style.visibility =
-                "hidden";
-                }
-                }
-                }
-
-                function onchangeTextButton1() {   
-                if (document.getElementById("pm_shop_checkout")){
-                document.getElementById("pm_shop_checkout").innerText="Passer au paiement";
-                }
-                if (document.getElementById("pm_shop_checkout2")){
-                document.getElementById("pm_shop_checkout2").innerText="Passer au paiement";
-                }
-                if (document.getElementById("cpf-details")){
-                        document.getElementById("cpf-details").classList.add("hide");
-                        if (document.getElementById("arrow-down")){
-                            document.getElementById("arrow-down").classList.add("hide");  ;
-                        }                    
-                    }
-                var stripe_pm = document.getElementById("stripe_pm");
-                if (stripe_pm) {
-                if (stripe_pm.checked == true) {
-               
-                document.getElementById("pm_shop_check").href =
-                "/shop/checkout?express=1";
-             
-                document.getElementById("pm_shop_checkout").href =
-                "/shop/checkout?express=1";
-                }
-                }
-
-                if (document.getElementById("pm_shop_text")) {
-                    if (document.getElementById("cpf-details")){
-                        document.getElementById("cpf-details").classList.add("hide");
-                        document.getElementById("arrow-down").classList.add("hide");
-                        if (document.getElementById("pm_shop_checkout")) {
-                           
-            document.getElementById("pm_shop_checkout").innerHTML =
-              "Passer au paiement";
-          }
-          if (document.getElementById("pm_shop_checkout2")) {
-            document.getElementById("pm_shop_checkout2").innerText =
-              "Passer au paiement";
-          }
-                    }
-               
-
-              
-                if (document.getElementById("promo_code")) {
-                document.getElementById("promo_code").style.display = "inline";
-                } else {
-                document.getElementById("promo_input").style.display = "inline";
-                document.getElementById("promo_button").style.display = "inline";
-                }
-                if (document.getElementById("order_instalment")) {
-                document.getElementById("order_instalment").style.visibility =
-                "visible";
-                }
-                instalment = document.getElementById("checkbox_instalment");
-                if (instalment) {
-                if (instalment.checked == true) {
-                document.getElementById(
-                "order_instalment_number"
-                ).style.visibility = "visible";
-                document.getElementById(
-                "order_amount_to_pay"
-                ).style.visibility = "visible";
-                }
-                }
-                }
-                }
-                function show_coupon() {
-                if (document.getElementById("promo_input")) {
-                document.getElementById("promo_input").style.display = "inline";
-                }
-                if (document.getElementById("promo_button")) {
-                document.getElementById("promo_button").style.display = "inline";
-                }
-                }
-                </script>
+                <script></script>
 
             </div>
 
@@ -271,25 +119,7 @@
         </xpath>
         <xpath expr="//div[@class='d-xl-none mt8']//a[1]" position="replace"></xpath>
         <xpath expr="//div[@class='col-12 col-xl-8 oe_cart']" position="inside">
-
-
-            <script>
-
-                function verify_checked(){
-                var x=document.getElementById('checkbox_instalment');
-                if(x) {
-                if (document.getElementById('checkbox_instalment').checked==true) {
-                document.getElementById("order_amount_to_pay").style.visibility = 'visible';
-                document.getElementById("order_instalment_number").style.visibility = 'visible';
-                } else {
-                document.getElementById("order_amount_to_pay").style.visibility = 'hidden';
-                document.getElementById("order_instalment_number").style.visibility = 'hidden';
-                }
-                }
-                };
-
-            </script>
-
+            <script></script>
         </xpath>
     </template>
 </odoo>
