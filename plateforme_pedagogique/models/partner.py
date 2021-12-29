@@ -47,6 +47,18 @@ class partner(models.Model):
     stats_ids = fields.Many2one('plateforme_pedagogique.user_stats')
     temps_minute = fields.Integer(string="Temps passé en minutes")  # Champs pour récuperer temps en minute par api360
 
+    """Changer login d'apprenant au moment de changement d'email sur la fiche client"""
+
+    def write(self, vals):
+        if 'email' in vals:
+            # Si email changé on change sur login
+            user=self.env['res.users'].sudo().search([('partner_id',"=",self.id)])
+            if user :
+                user.login=vals['email']
+                # print('if user',user)
+        record = super(partner, self).write(vals)
+        return record
+
     # Recuperer les utilisateurs de 360learning
     def getusers(self):
         locale.setlocale(locale.LC_TIME, str(self.env.user.lang) + '.utf8')
