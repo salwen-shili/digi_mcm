@@ -1124,6 +1124,7 @@ class partner(models.Model):
     def change_statut_accepte(self):
         base_url = self.env['ir.config_parameter'].sudo().get_param('web.base.url')
         if "localhost" not in str(base_url) and "dev.odoo" in str(base_url):
+            
             params_wedof = (
                 ('order', 'desc'),
                 ('type', 'all'),
@@ -1198,6 +1199,8 @@ class partner(models.Model):
                 else:
                     user = users
                 if user:
+                    _logger.info('password _______ %s' % str(user.parnter_id.name))
+                    _logger.info('password _______ %s' % str(user.password360))
                     print("if user", user.login, user.partner_id.statut_cpf)
                     user.partner_id.mode_de_financement = 'cpf'
                     user.partner_id.statut_cpf = 'accepted'
