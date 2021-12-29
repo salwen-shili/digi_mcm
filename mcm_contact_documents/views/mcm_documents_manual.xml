@@ -6,6 +6,30 @@
                 <t t-set="additional_title">Document</t>
                 <link href="/mcm_website_theme/static/src/css/register_form.css" rel="stylesheet" />
                 <link href="/mcm_contact_documents/static/src/css/upload_documents.css" rel="stylesheet" />
+                <style>
+                 .action-button {
+  height: 40px;
+  width: 150px;
+  font-size: 15px;
+background-color: #000000;  
+  border: 1px solid hsl(240, 44%, 28%);
+  color: #ffffff;
+  font-weight: 600;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px 0 rgba(87, 71, 81, 0.2);
+  cursor: pointer;
+  transition: all 2s ease-out;
+  transition: all 0.2s ease-out;
+  float: right;
+}
+.action-button:hover,
+.action-button:focus {
+  background-color: #ffffff;
+  border: 1px solid hsl(240, 44%, 28%);
+  color: #000000;
+  transition: all 0.2s ease-out;
+}
+                </style>
                 <div class="container oe_website_sale py-2">
                     <div class="container-fluid">
                         <div class="row justify-content-center paper">
@@ -190,17 +214,13 @@
                                         </div>
                                         <div style="display: flex; flex-direction: row; justify-content: center;">
                                             <a href="/edit_info">
-                                                <button type="button" style=" color: #fff; margin:0px 5px " class="float-right rkmd-btn btn-black ripple-effect ripple-yellow " id="submit_documents">
+                                                <button type="button" style=" color: #fff;  margin:0px 5px  " class="rkmd-btn btn-black ripple-effect ripple-yellow " id="submit_documents">
                                                             Précédent </button>
                                             </a>
 
-
-                                            <button type="submit" style=" color: #fff; margin:0px 5px " class="float-right rkmd-btn btn-black ripple-effect ripple-yellow " id="submit_documents_next_button">
+                                            <button type="submit" style=" color: #fff;  margin:0px 5px  " class="rkmd-btn btn-black ripple-effect ripple-yellow " id="submit_documents_next_button">
                                                            Suivant </button>
-
                                             <span id="o_website_form_result" />
-
-
                                         </div>
                                     </form>
                                 </div>
@@ -213,10 +233,40 @@
                     <div class="spanner">
                         <div class="loader"></div>
                     </div>
+                    <div id="popup1" class="overlay_popup">
+                        <div class="popup">
+                            <h2 class="text-left">
+                                <i class="fa fa-info-circle" style="color: #152856;"></i>
+                            </h2>
+                            <a class="close" href="#">
+                                <i class="fa fa-times"></i>
+                            </a>
+                            <div class="content text-center">
+                                <p id="notifMessage">
+Vous pourrez désormais choisir votre date et centre d'examen et financer votre formation.
+                                </p>
+                                <div class="" style="margin-block-start: 1.5rem;">
+                                    <input type="button" href="#" class="text-center next action-button" style="float: unset !important;" value="Continuer" onclick="onClickBtn()" />
 
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
+                <script>
+    $('#mcm_my_documents_form').submit(function (event) {
+  event.preventDefault();
+  window.location.href = '#popup1';
+});
+function onClickBtn() {
+  window.location.href = '#';
 
-                <script> function onChangeCheck(){ console.log("click") } </script>
+  document.getElementById('mcm_my_documents_form').submit();
+  $('div.spanner').addClass('show');
+  $('div.overlay').addClass('show');
+}
+</script>
+
             </t>
         </t>
     </template>

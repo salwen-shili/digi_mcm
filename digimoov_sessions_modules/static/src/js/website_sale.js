@@ -57,6 +57,7 @@ odoo.define('digimoov_sessions_modules.website_sale', function (require) {
       },
 
       verify_centre: function (ev) {
+        var datenb = 0;
         var self = this;
         var center = false;
         var center_exam = document.getElementById('centre_examen');
@@ -97,10 +98,13 @@ odoo.define('digimoov_sessions_modules.website_sale', function (require) {
 
           if (self.value === center) {
             var date = self.text;
-
-            dateOptions += `<option value=${self.value} id=${self.id}>
+            //show only one date
+            if (datenb < 3) {
+              dateOptions += `<option value=${self.value} id=${self.id}>
              ${date}
             </option>`;
+            }
+
             // document.getElementById("options-date").appendChild(dateOptions);
           }
 

@@ -265,6 +265,7 @@ odoo.define('mcm_website_theme.mcm_website_sale', function (require) {
       },
 
       verify_centre: function (ev) {
+        var datenb = 0;
         var self = this;
         var center = false;
 
@@ -306,11 +307,15 @@ odoo.define('mcm_website_theme.mcm_website_sale', function (require) {
             ios = false;
           }
           if (self.value === center) {
+            datenb++;
             var date = self.text;
-
-            dateOptions += `<option value=${self.value} id=${self.id}>
+            console.log('datenb', datenb);
+            if (datenb < 3) {
+              dateOptions += `<option value=${self.value} id=${self.id}>
              ${date}
             </option>`;
+            }
+
             // document.getElementById("options-date").appendChild(dateOptions);
           }
           if (self.value == center || self.value == 'all') {
