@@ -280,7 +280,7 @@ class partner(models.Model):
             user = self.env['res.users'].sudo().search([('partner_id', '=', partner.id)], limit=1)
             _logger.info('avant if login user %s' % user.login)
             _logger.info('avant if partner email %s' % partner.email)
-            _logger.info('avant if password  %s ' % user.password360)
+            
 
             if user:
                 id_Digimoov_bienvenue = '56f5520e11d423f46884d594'
@@ -308,7 +308,7 @@ class partner(models.Model):
                 # Si non si mot de passe récupéré on l'ajoute sur la plateforme avec le meme mot de passe
                 if (user.password360) and (company == '2'):
                     partner.password360 = user.password360
-                    _logger.info('if user  %s ' % user.password360)
+                    
 
                     # Ajouter i-One to table user
                     data_user = '{"mail":"' + partner.email + '" , "password":"' + user.password360 + '", "firstName":"' + partner.firstName + '", "lastName":"' + partner.lastName + '", "phone":"' + partner.phone + '", "lang":"fr","sendCredentials":"true"}'
