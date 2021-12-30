@@ -47,16 +47,16 @@ class partner(models.Model):
     stats_ids = fields.Many2one('plateforme_pedagogique.user_stats')
     temps_minute = fields.Integer(string="Temps passé en minutes")  # Champs pour récuperer temps en minute par api360
     # Recuperation de l'état de facturation pour cpf de wedof et carte bleu de odoo
-    # billingState = fields.Selection(selection=[
-    #     ('notBillable', 'Non facturable'),
-    #     ('depositWait', 'Dépôt attendez'),
-    #     ('depositPaid', 'Dépôt payé'),
-    #     ('toBill', 'Facturer'),
-    #     ('billed', 'Facturé'),
-    #     ('paid', 'Payé'),
-    #     ('not_paid', 'Non payées'),
-    #     ('in_payment', 'En paiement')],
-    #     string="Etat de facture", default=False)
+    billingState = fields.Selection(selection=[
+        ('notBillable', 'Non facturable'),
+        ('depositWait', 'Dépôt attendez'),
+        ('depositPaid', 'Dépôt payé'),
+        ('toBill', 'Facturer'),
+        ('billed', 'Facturé'),
+        ('paid', 'Payé'),
+        ('not_paid', 'Non payées'),
+        ('in_payment', 'En paiement')],
+        string="Etat de facture", default=False)
 
     # Recuperer les utilisateurs de 360learning
     def getusers(self):
