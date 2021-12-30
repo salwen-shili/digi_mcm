@@ -248,9 +248,10 @@ class WebsiteSale(WebsiteSale):
             if not request.env.context.get('pricelist'):
                 _order = order.with_context(pricelist=order.pricelist_id.id)
             values['suggested_products'] = _order._cart_accessories()
+        _logger.info('list_modules_digimoov')
+        _logger.info(list_modules_digimoov)
         for module in list_modules_digimoov:
-            print(module.ville)
-            print(module.date_exam)
+            _logger.info('module : %s %s %s' %(module.product_id.name,module.ville,module.date_exam))
         """Récuperer num_cpf et vérifier l'etat de dossier sur edof via api"""
         if order and order.partner_id and order.partner_id.numero_cpf:
             numero_cpf =order.partner_id.numero_cpf
