@@ -326,7 +326,7 @@ class partner(models.Model):
                     resp = requests.post(urluser, headers=headers, data=data_user)
                     print(data_user, 'user', resp.status_code)
                     respo = str(json.loads(resp.text))
-                    _logger.info('response addd  %s' % respo)
+                    _logger.info('response addd  %s' %respo)
                     if (resp.status_code == 200):
                         create = True
                 data_group = {}
@@ -648,7 +648,7 @@ class partner(models.Model):
                 if "residence" in dossier['attendee']['address']:
                     residence = dossier['attendee']['address']['residence']
                 num_voie = ""
-                if "number" in dossier['attendee']['address']:
+                if "number" in dossier['attendee']['address']: 
                     num_voie = dossier['attendee']['address']['number']
 
                 voie = ""
@@ -697,8 +697,7 @@ class partner(models.Model):
                 """Si dossier passe à l'etat validé on met à jour statut cpf sur la fiche client"""
                 if status == "200":
                     print('validate', email)
-                    self.cpf_validate(training_id, email, residence, num_voie, nom_voie, voie, street, tel, code_postal,
-                                      ville,
+                    self.cpf_validate(training_id, email,residence, num_voie, nom_voie, voie, street, tel, code_postal, ville,
                                       diplome, dossier['attendee']['lastName'], dossier['attendee']['firstName'],
                                       dossier['externalId'], lastupd)
 
@@ -706,12 +705,11 @@ class partner(models.Model):
 
     def change_state_cpf_partner(self):
         base_url = self.env['ir.config_parameter'].sudo().get_param('web.base.url')
-        if "localhost" not in str(base_url) and "dev.odoo" in str(base_url):
+        if "localhost" not in str(base_url) and "dev.odoo" not in str(base_url):
             params_wedof = (
                 ('order', 'desc'),
                 ('type', 'all'),
-                ('state',
-                 'validated,inTraining,refusedByAttendee,refusedByOrganism,serviceDoneDeclared,serviceDoneValidated,canceledByAttendee,canceledByAttendeeNotRealized,canceledByOrganism'),
+                ('state', 'validated,inTraining,refusedByAttendee,refusedByOrganism,serviceDoneDeclared,serviceDoneValidated,canceledByAttendee,canceledByAttendeeNotRealized,canceledByOrganism'),
                 ('billingState', 'all'),
                 ('certificationState', 'all'),
                 ('sort', 'lastUpdate'),
@@ -727,7 +725,7 @@ class partner(models.Model):
                                     params=params_wedof)
             registrations = response.json()
             for dossier in registrations:
-                print('dosssier', dossier['attendee']['address'])
+                print('dosssier',dossier['attendee']['address'] )
                 externalId = dossier['externalId']
                 email = dossier['attendee']['email']
                 email = email.replace("%", ".")  # remplacer % par .
@@ -806,9 +804,9 @@ class partner(models.Model):
                 ville = ""
                 if "city" in dossier['attendee']['address']:
                     ville = dossier['attendee']['address']['city']
-                residence = ""
+                residence=""
                 if "residence" in dossier['attendee']['address']:
-                    residence = dossier['attendee']['address']['residence']
+                    residence=dossier['attendee']['address']['residence']
                 nom = ""
                 if 'firstName' in dossier['attendee']['firstName']:
                     nom = dossier['attendee']['firstName']
@@ -824,8 +822,7 @@ class partner(models.Model):
 
                 if state == "validated":
                     print('validate', email, dossier['attendee']['lastName'], dossier['attendee']['firstName'])
-                    self.cpf_validate(training_id, email, residence, num_voie, nom_voie, voie, street, tel, code_postal,
-                                      ville,
+                    self.cpf_validate(training_id, email,residence, num_voie, nom_voie, voie, street, tel, code_postal, ville,
                                       diplome, dossier['attendee']['lastName'], dossier['attendee']['firstName'],
                                       dossier['externalId'], lastupd)
                 else:
@@ -847,48 +844,48 @@ class partner(models.Model):
                         user.partner_id.funding_type = 'cpf'  # update field funding type to cpfprint('partner',partner.numero_cpf,user.login)
                         print(user.partner_id.date_cpf)
 
-                        if state == "inTraining":
+                        if state=="inTraining":
                             print('intraining', email)
-                            user.partner_id.statut_cpf = "in_training"
+                            user.partner_id.statut_cpf="in_training"
                             user.partner_id.numero_cpf = externalId
                             user.partner_id.date_cpf = lastupd
-                            user.partner_id.diplome = diplome
+                            user.partner_id.diplome=diplome
                             if product_id:
                                 user.partner_id.id_edof = product_id.id_edof
 
-                        if state == "terminated":
+                        if state=="terminated":
                             print('terminated', email)
-                            user.partner_id.statut_cpf = "out_training"
+                            user.partner_id.statut_cpf="out_training"
                             user.partner_id.numero_cpf = externalId
                             user.partner_id.diplome = diplome
                             user.partner_id.date_cpf = lastupd
                             if product_id:
                                 user.partner_id.id_edof = product_id.id_edof
-                        if state == "serviceDoneDeclared":
+                        if state=="serviceDoneDeclared":
                             print('serviceDoneDeclared', email)
-                            user.partner_id.statut_cpf = "service_declared"
+                            user.partner_id.statut_cpf="service_declared"
                             user.partner_id.numero_cpf = externalId
                             user.partner_id.date_cpf = lastupd
                             user.partner_id.diplome = diplome
                             if product_id:
-                                user.partner_id.id_edof = product_id.id_edof
+                                user.partner_id.id_edof=product_id.id_edof
 
-                        if state == "serviceDoneValidated":
+                        if state=="serviceDoneValidated":
                             print('serviceDoneValidated', email)
 
-                            user.partner_id.statut_cpf = "service_validated"
+                            user.partner_id.statut_cpf="service_validated"
                             user.partner_id.numero_cpf = externalId
                             user.partner_id.date_cpf = lastupd
                             user.partner_id.diplome = diplome
                             if product_id:
                                 user.partner_id.id_edof = product_id.id_edof
-                        if state == "canceledByAttendee" or state == "canceledByAttendeeNotRealized" or state == "canceledByOrganism" or state == "refusedByAttendee" or state == "refusedByOrganism":
-                            if user.partner_id.numero_cpf == externalId:
-                                user.partner_id.statut_cpf = "canceled"
-                                user.partner_id.statut = "canceled"
+                        if state=="canceledByAttendee" or state=="canceledByAttendeeNotRealized" or state=="canceledByOrganism" or state=="refusedByAttendee" or state=="refusedByOrganism"  :
+                            if user.partner_id.numero_cpf==externalId:
+                                user.partner_id.statut_cpf="canceled"
+                                user.partner_id.statut="canceled"
                                 user.partner_id.date_cpf = lastupd
                                 user.partner_id.diplome = diplome
-                                print("product id annulé digi", user.partner_id.id_edof, training_id)
+                                print("product id annulé digi",user.partner_id.id_edof,training_id)
 
                                 if product_id:
                                     user.partner_id.id_edof = product_id.id_edof
@@ -930,8 +927,7 @@ class partner(models.Model):
                                 if product_id:
                                     user.partner_id.id_edof = product_id.id_edof
 
-    def cpf_validate(self, module, email, residence, num_voie, nom_voie, voie, street, tel, code_postal, ville, diplome,
-                     nom,
+    def cpf_validate(self, module, email,residence, num_voie, nom_voie, voie, street, tel, code_postal, ville, diplome, nom,
                      prenom, dossier, lastupd):
         user = self.env['res.users'].sudo().search([('login', "=", email)])
         exist = True
@@ -982,10 +978,9 @@ class partner(models.Model):
                                 user = self.env["res.users"].sudo().search(
                                     ['|', ("phone", "=", phone), ("phone", "=", phone.replace(' ', ''))], limit=1)
                         phone = phone_number[0:2]
-                        if str(phone) in ['06', '07'] and ' ' in str(
-                                tel):  # check if edof api send the number of client in this format (number_format: 07 xx xx xx)
+                        if str(phone) in ['06', '07'] and ' ' in str(tel): # check if edof api send the number of client in this format (number_format: 07 xx xx xx)
                             user = self.env["res.users"].sudo().search(
-                                ['|', ("phone", "=", str(tel)), str(tel).replace(' ', '')], limit=1)
+                                ['|',("phone", "=", str(tel)),str(tel).replace(' ', '')], limit=1)
                             if not user:
                                 phone_number = str(tel[1:])
                                 user = self.env["res.users"].sudo().search(
@@ -994,12 +989,10 @@ class partner(models.Model):
                     else:  # check if edof api send the number of client with+33
                         if ' ' not in str(tel):
                             phone = str(tel)
-                            phone = phone[0:3] + ' ' + phone[3:4] + ' ' + phone[4:6] + ' ' + phone[6:8] + ' ' + phone[
-                                                                                                                8:10] + ' ' + phone[
-                                                                                                                              10:]
+                            phone = phone[0:3] + ' ' + phone[3:4] + ' ' + phone[4:6] + ' ' + phone[6:8] + ' ' + phone[8:10] + ' ' + phone[10:]
                             user = self.env["res.users"].sudo().search(
                                 [("phone", "=", phone)], limit=1)
-                        if not user:
+                        if not user :
                             user = self.env["res.users"].sudo().search(
                                 [("phone", "=", str(phone_number).replace(' ', ''))], limit=1)
                             if not user:
@@ -1039,29 +1032,22 @@ class partner(models.Model):
                     })
                     user.company_id = 1
                     user.partner_id.company_id = 1
-                if user:
+                if user :
                     phone = str(tel.replace(' ', ''))[-9:]
-                    phone = '+33' + ' ' + phone[0:1] + ' ' + phone[1:3] + ' ' + phone[3:5] + ' ' + phone[
-                                                                                                   5:7] + ' ' + phone[
-                                                                                                                7:]  # convert the number in this format : +33 x xx xx xx xx
-                    url = str(user.signup_url)  # get the signup_url
+                    phone = '+33' + ' ' + phone[0:1] + ' ' + phone[1:3] + ' ' + phone[3:5] + ' ' + phone[5:7] + ' ' + phone[7:] # convert the number in this format : +33 x xx xx xx xx
+                    url = str(user.signup_url) # get the signup_url
                     short_url = pyshorteners.Shortener()
-                    short_url = short_url.tinyurl.short(
-                        url)  # convert the signup_url to be short using pyshorteners library
-                    body = 'Chere(e) %s , Vous avez été invité par %s  à compléter votre inscription : %s . Votre courriel de connection est: %s' % (
-                        user.partner_id.name, user.partner_id.company_id.name, short_url,
-                        user.partner_id.email)  # content of sms
-                    sms_body_contenu = 'Chere(e) %s , Vous avez été invité par %s  à compléter votre inscription : %s . Votre courriel de connection est: %s' % (
-                        user.partner_id.name, user.partner_id.company_id.name, short_url,
-                        user.partner_id.email)  # content of sms
+                    short_url = short_url.tinyurl.short(url) # convert the signup_url to be short using pyshorteners library
+                    body = 'Chere(e) %s , Vous avez été invité par %s  à compléter votre inscription : %s . Votre courriel de connection est: %s' %(user.partner_id.name,user.partner_id.company_id.name,short_url,user.partner_id.email) # content of sms
+                    sms_body_contenu = 'Chere(e) %s , Vous avez été invité par %s  à compléter votre inscription : %s . Votre courriel de connection est: %s' %(user.partner_id.name,user.partner_id.company_id.name,short_url,user.partner_id.email) # content of sms
                     sms = self.env['sms.sms'].sudo().create({
-                        'partner_id': user.partner_id.id,
-                        'number': phone,
-                        'body': str(body)
-                    })  # create sms
+                                'partner_id': user.partner_id.id,
+                                'number' : phone,
+                                'body' : str(body)
+                            }) # create sms
                     sms_id = sms.id
                     if (sms):
-                        sms.send()  # send the sms
+                        sms.send() #send the sms
                         subtype_id = self.env['ir.model.data'].xmlid_to_res_id('mt_note')
                         body = False
                         sms = self.env["sms.sms"].sudo().search(
@@ -1079,7 +1065,7 @@ class partner(models.Model):
                                 'message_type': 'notification',
                                 'subtype_id': subtype_id,
                                 'body': body,
-                            })  # create note in client view
+                            }) # create note in client view
         # user = request.env['res.users'].sudo().search([('login', "=", email)])
         if user:
             client = self.env['res.partner'].sudo().search(
@@ -1092,7 +1078,7 @@ class partner(models.Model):
                 client.numero_cpf = dossier
                 client.statut_cpf = 'validated'
                 client.statut = 'indecis'
-                client.street2 = residence
+                client.street2=residence
                 client.phone = '0' + str(tel.replace(' ', ''))[-9:]
                 client.street = street
                 client.num_voie = num_voie
@@ -1296,10 +1282,14 @@ class partner(models.Model):
                             user.partner_id.mcm_session_id = module_id.session_id
                             user.partner_id.module_id = module_id
                             self.env.user.company_id = 2
+                            today=date.today()
+                            date_min=today - relativedelta(months=2)
                             invoice = self.env['account.move'].sudo().search(
-                                [('module_id', "=", module_id.id),
+                                [('numero_cpf', "=", externalId),
                                  ('state', "=", 'posted'),
-                                 ('partner_id', "=", user.partner_id.id)])
+                                 ('invoice_date',">=",date_min),
+                                 ('partner_id', "=", user.partner_id.id)],limit=1)
+                            print('invoice',invoice.name)
                             if not invoice :
                                 print('if  not invoice digi ')
                                 so = self.env['sale.order'].sudo().create({
@@ -1337,6 +1327,7 @@ class partner(models.Model):
                                         # move.cpf_acompte_invoice= True
                                         # move.cpf_invoice =True
                                         move.methodes_payment = 'cpf'
+                                        move.numero_cpf = externalId
                                         move.pourcentage_acompte = 25
                                         move.module_id = so.module_id
                                         move.session_id = so.session_id
@@ -1357,8 +1348,7 @@ class partner(models.Model):
                                 user.partner_id.step = 'finish'
                             session = self.env['partner.sessions'].search([('client_id', '=', user.partner_id.id),
                                                                            (
-                                                                               'session_id', '=',
-                                                                               module_id.session_id.id)])
+                                                                           'session_id', '=', module_id.session_id.id)])
                             if not session:
                                 new_history = self.env['partner.sessions'].sudo().create({
                                     'client_id': user.partner_id.id,
@@ -1381,10 +1371,14 @@ class partner(models.Model):
                             user.partner_id.mcm_session_id = module_id.session_id
                             user.partner_id.module_id = module_id
                             self.env.user.company_id = 1
+                            today = date.today()
+                            date_min = today - relativedelta(months=2)
                             invoice = self.env['account.move'].sudo().search(
-                                [('module_id', "=", module_id.id),
+                                [('numero_cpf', "=", externalId),
                                  ('state', "=", 'posted'),
-                                 ('partner_id', "=", user.partner_id.id)])
+                                 ('invoice_date', ">=", date_min),
+                                 ('partner_id', "=", user.partner_id.id)], limit=1)
+                            print('invoice', invoice)
                             if not invoice :
                                 print('if  not invoice mcm')
                                 so = self.env['sale.order'].sudo().create({
@@ -1415,6 +1409,7 @@ class partner(models.Model):
                                     # move.cpf_acompte_invoice=True
                                     # move.cpf_invoice =True
                                     move.methodes_payment = 'cpf'
+                                    move.numero_cpf=externalId
                                     move.pourcentage_acompte = 25
                                     move.session_id = so.session_id
                                     move.company_id = so.company_id
@@ -1430,8 +1425,7 @@ class partner(models.Model):
                                 user.partner_id.step = 'finish'
                             session = self.env['partner.sessions'].search([('client_id', '=', user.partner_id.id),
                                                                            (
-                                                                               'session_id', '=',
-                                                                               module_id.session_id.id)])
+                                                                           'session_id', '=', module_id.session_id.id)])
                             if not session:
                                 new_history = self.env['partner.sessions'].sudo().create({
                                     'client_id': user.partner_id.id,
@@ -1468,3 +1462,13 @@ class partner(models.Model):
                             if not ticket:
                                 new_ticket = self.env['helpdesk.ticket'].sudo().create(
                                     vals)
+
+    """Remplir champ numero cpf sur tout les factures cpf"""
+    def num_cpf_facture(self):
+        partners = self.env['res.partner'].sudo().search([('statut',"=","won"),('mode_de_financement',"=","cpf")])
+        for partner in partners:
+            invoice = self.env['account.move'].sudo().search([('partner_id',"=",partner.id),],limit=1,order="id desc")
+
+            if invoice and partner.numero_cpf:
+                invoice.numero_cpf=partner.numero_cpf
+

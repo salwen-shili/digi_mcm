@@ -405,9 +405,11 @@ class WebsiteSale(WebsiteSale):
                     partner.module_id = module_id
                     request.env.user.company_id = 2
                     invoice = request.env['account.move'].sudo().search(
-                        [('module_id.date_exam', ">=", date.today()), ('state', "=", 'posted'),
-                         ('partner_id', "=", partner.id)])
-                    if not invoice:
+                        [('numero_cpf', "=", partner.numero_cpf),
+                         ('state', "=", 'posted'),
+                         ('partner_id', "=", partner.id)], limit=1, order="date")
+
+                    if not invoice :
                         so = request.env['sale.order'].sudo().create({
                             'partner_id': partner.id,
                             'company_id': 2,
@@ -443,6 +445,7 @@ class WebsiteSale(WebsiteSale):
                                 # move.cpf_acompte_invoice= True
                                 # move.cpf_invoice =True
                                 move.methodes_payment = 'cpf'
+                                move.numero_cpf=partner.numero_cpf
                                 move.pourcentage_acompte = 25
                                 move.module_id = so.module_id
                                 move.session_id = so.session_id
@@ -489,8 +492,10 @@ class WebsiteSale(WebsiteSale):
                     partner.module_id = module_id
                     request.env.user.company_id = 1
                     invoice = request.env['account.move'].sudo().search(
-                        [('module_id.date_exam', ">=", date.today()), ('state', "=", 'posted'),
-                         ('partner_id', "=", partner.id)])
+                        [('numero_cpf', "=", partner.numero_cpf),
+                         ('state', "=", 'posted'),
+                         ('partner_id', "=", partner.id)], limit=1, order="date")
+
                     if not invoice:
                         so = request.env['sale.order'].sudo().create({
                             'partner_id': partner.id,
@@ -520,6 +525,7 @@ class WebsiteSale(WebsiteSale):
                             # move.cpf_acompte_invoice=True
                             # move.cpf_invoice =True
                             move.methodes_payment = 'cpf'
+                            move.numero_cpf = partner.numero_cpf
                             move.pourcentage_acompte = 25
                             move.session_id = so.session_id
                             move.company_id = so.company_id
@@ -592,7 +598,7 @@ class WebsiteSale(WebsiteSale):
             headers["Content-Type"] = "application/json"
 
             """Vérifier la presence d'apprenant sur 360 """
-            url_user = 'https://staging.360learning-dev.com/api/v1/users/' + partner.email + '?company=' + company_id + '&apiKey=' + api_key
+            url_user = 'https://app.360learning.com/api/v1/users/' + partner.email + '?company=' + company_id + '&apiKey=' + api_key
             resp = requests.get(url_user, headers=headers)
             """s'il est présent on lui envoie le lien pour se connecter si non on lui ajoute """
             print('get user', resp.status_code)
