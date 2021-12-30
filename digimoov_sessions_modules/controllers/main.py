@@ -232,8 +232,6 @@ class WebsiteSale(WebsiteSale):
         today = date.today()
         if (all_digimoov_modules):
             for module in all_digimoov_modules:
-                if module.session_ville_id:
-                    module.ville = str(module.session_ville_id.name_ville)
                 if module.date_exam:
                     if (module.date_exam - today).days > int(
                             module.session_id.intervalle_jours) and module.session_id.website_published == True:
