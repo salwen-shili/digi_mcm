@@ -251,7 +251,7 @@ class WebsiteSale(WebsiteSale):
         _logger.info('list_modules_digimoov')
         _logger.info(list_modules_digimoov)
         for module in list_modules_digimoov:
-            _logger.info('module : %s %s %s' %(module.product_id.name,module.session_ville_id.name,module.date_exam))
+            _logger.info('module : %s %s %s' %(module.product_id.name,module.session_ville_id.name_ville,module.date_exam))
         """Récuperer num_cpf et vérifier l'etat de dossier sur edof via api"""
         if order and order.partner_id and order.partner_id.numero_cpf:
             numero_cpf =order.partner_id.numero_cpf
@@ -405,9 +405,9 @@ class WebsiteSale(WebsiteSale):
                     partner.module_id = module_id
                     request.env.user.company_id = 2
                     invoice = request.env['account.move'].sudo().search(
-                        [('module_id.date_exam',">=", date.today()), ('state', "=", 'posted'),
+                        [('module_id.date_exam', ">=", date.today()), ('state', "=", 'posted'),
                          ('partner_id', "=", partner.id)])
-                    if not invoice :
+                    if not invoice:
                         so = request.env['sale.order'].sudo().create({
                             'partner_id': partner.id,
                             'company_id': 2,
@@ -489,7 +489,7 @@ class WebsiteSale(WebsiteSale):
                     partner.module_id = module_id
                     request.env.user.company_id = 1
                     invoice = request.env['account.move'].sudo().search(
-                        [('module_id','=',module_id.id), ('state', "=", 'posted'),
+                        [('module_id.date_exam', ">=", date.today()), ('state', "=", 'posted'),
                          ('partner_id', "=", partner.id)])
                     if not invoice:
                         so = request.env['sale.order'].sudo().create({
