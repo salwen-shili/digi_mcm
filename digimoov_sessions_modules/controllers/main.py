@@ -251,7 +251,7 @@ class WebsiteSale(WebsiteSale):
         _logger.info('list_modules_digimoov')
         _logger.info(list_modules_digimoov)
         for module in list_modules_digimoov:
-            _logger.info('module : %s %s %s' %(module.product_id.name,module.session_ville_id.name,module.date_exam))
+            _logger.info('module : %s %s %s' %(module.product_id.name,module.date_exam))
         """Récuperer num_cpf et vérifier l'etat de dossier sur edof via api"""
         if order and order.partner_id and order.partner_id.numero_cpf:
             numero_cpf =order.partner_id.numero_cpf
