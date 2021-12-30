@@ -400,7 +400,7 @@
                                         <t t-if="module.website_published==True">
                                             <b>
                                                 <option t-att-value="module.session_ville_id.name_ville" t-att-id="module.id">
-                                                    <t t-esc="module.date_exam.strftime('%d/%m/%Y')" />
+                                                    <t t-esc="module.date_exam.strftime('%d %B %Y)" />
                                                 </option>
                                             </b>
                                         </t>
