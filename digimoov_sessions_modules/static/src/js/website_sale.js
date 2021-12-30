@@ -98,12 +98,13 @@ odoo.define('digimoov_sessions_modules.website_sale', function (require) {
 
           if (self.value === center) {
             var date = self.text;
+            datenb++;
             //show only one date
-
+            if(datenb < 3) {
             dateOptions += `<option value=${self.value} id=${self.id}>
              ${date}
             </option>`;
-
+            }
             // document.getElementById("options-date").appendChild(dateOptions);
           }
 
