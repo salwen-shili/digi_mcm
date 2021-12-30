@@ -310,11 +310,10 @@ odoo.define('mcm_website_theme.mcm_website_sale', function (require) {
             datenb++;
             var date = self.text;
             console.log('datenb', datenb);
-            if (datenb < 3) {
-              dateOptions += `<option value=${self.value} id=${self.id}>
+
+            dateOptions += `<option value=${self.value} id=${self.id}>
              ${date}
             </option>`;
-            }
 
             // document.getElementById("options-date").appendChild(dateOptions);
           }
