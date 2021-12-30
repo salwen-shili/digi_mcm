@@ -1300,7 +1300,7 @@ class partner(models.Model):
                                 [('module_id', "=", module_id.id),
                                  ('state', "=", 'posted'),
                                  ('partner_id', "=", user.partner_id.id)])
-                            if not invoice and (user.partner_id.date_examen_edof > date.today()):
+                            if not invoice :
                                 print('if  not invoice digi ')
                                 so = self.env['sale.order'].sudo().create({
                                     'partner_id': user.partner_id.id,
@@ -1385,7 +1385,7 @@ class partner(models.Model):
                                 [('module_id', "=", module_id.id),
                                  ('state', "=", 'posted'),
                                  ('partner_id', "=", user.partner_id.id)])
-                            if not invoice and (user.partner_id.date_examen_edof > date.today()) :
+                            if not invoice :
                                 print('if  not invoice mcm')
                                 so = self.env['sale.order'].sudo().create({
                                     'partner_id': user.partner_id.id,
