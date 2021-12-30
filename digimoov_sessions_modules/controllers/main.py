@@ -404,8 +404,10 @@ class WebsiteSale(WebsiteSale):
                     partner.module_id = module_id
                     request.env.user.company_id = 2
                     invoice = request.env['account.move'].sudo().search(
-                        [('module_id.date_exam',">=", date.today()), ('state', "=", 'posted'),
-                         ('partner_id', "=", partner.id)])
+                        [('numero_cpf', "=", partner.numero_cpf),
+                         ('state', "=", 'posted'),
+                         ('partner_id', "=", partner.id)], limit=1, order="date")
+
                     if not invoice :
                         so = request.env['sale.order'].sudo().create({
                             'partner_id': partner.id,
@@ -442,6 +444,7 @@ class WebsiteSale(WebsiteSale):
                                 # move.cpf_acompte_invoice= True
                                 # move.cpf_invoice =True
                                 move.methodes_payment = 'cpf'
+                                move.numero_cpf=partner.numero_cpf
                                 move.pourcentage_acompte = 25
                                 move.module_id = so.module_id
                                 move.session_id = so.session_id
@@ -488,8 +491,10 @@ class WebsiteSale(WebsiteSale):
                     partner.module_id = module_id
                     request.env.user.company_id = 1
                     invoice = request.env['account.move'].sudo().search(
-                        [('module_id','=',module_id.id), ('state', "=", 'posted'),
-                         ('partner_id', "=", partner.id)])
+                        [('numero_cpf', "=", partner.numero_cpf),
+                         ('state', "=", 'posted'),
+                         ('partner_id', "=", partner.id)], limit=1, order="date")
+
                     if not invoice:
                         so = request.env['sale.order'].sudo().create({
                             'partner_id': partner.id,
@@ -519,6 +524,7 @@ class WebsiteSale(WebsiteSale):
                             # move.cpf_acompte_invoice=True
                             # move.cpf_invoice =True
                             move.methodes_payment = 'cpf'
+                            move.numero_cpf = partner.numero_cpf
                             move.pourcentage_acompte = 25
                             move.session_id = so.session_id
                             move.company_id = so.company_id
