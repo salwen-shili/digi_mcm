@@ -8,6 +8,7 @@ class AccountMove(models.Model):
     _inherit = "account.move"
     restamount = fields.Monetary(string='Reste à payé ', store=True)
     amount_paye= fields.Monetary(string='payé ', store=True)
+    numero_cpf=fields.Char(string='N° de Dossier CPF')
 #Ancien _Process  :
 # #Création de l'acompte dans l'ancien process
 #

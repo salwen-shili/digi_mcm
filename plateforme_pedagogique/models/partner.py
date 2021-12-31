@@ -1123,7 +1123,7 @@ class partner(models.Model):
 
     def change_statut_accepte(self):
         base_url = self.env['ir.config_parameter'].sudo().get_param('web.base.url')
-        if "localhost" not in str(base_url) and "dev.odoo" in str(base_url):
+        if "localhost"  in str(base_url) and "dev.odoo" not in str(base_url):
             params_wedof = (
                 ('order', 'desc'),
                 ('type', 'all'),
@@ -1167,6 +1167,8 @@ class partner(models.Model):
                     tel = ""
                 diplome = dossier['trainingActionInfo']['title']
                 print('training', training_id)
+                today = date.today()
+                date_min = today - relativedelta(months=2)
                 users = self.env['res.users'].sudo().search([('login', "=", email)])
                 """si apprenant non trouvé par email on cherche par numero telephone"""
                 if not users:
@@ -1198,6 +1200,7 @@ class partner(models.Model):
                 else:
                     user = users
                 if user:
+                    """mettre à jour les informations sur fiche client"""
                     print("if user", user.login, user.partner_id.statut_cpf)
                     user.partner_id.mode_de_financement = 'cpf'
                     user.partner_id.statut_cpf = 'accepted'
@@ -1206,6 +1209,8 @@ class partner(models.Model):
                     user.partner_id.diplome = diplome
                     module_id = False
                     product_id = False
+                    """chercher le produit sur odoo selon id edof de formation"""
+
                     if 'digimoov' in str(training_id):
 
                         product_id = self.env['product.template'].sudo().search(
@@ -1235,10 +1240,12 @@ class partner(models.Model):
                             user.partner_id.mcm_session_id = module_id.session_id
                             user.partner_id.module_id = module_id
                             self.env.user.company_id = 2
+                            """chercher facture avec numero de dossier si n'existe pas on crée une facture"""
                             invoice = self.env['account.move'].sudo().search(
-                                [('module_id', "=", module_id.id),
+                                [('numero_cpf', "=", externalId),
                                  ('state', "=", 'posted'),
-                                 ('partner_id', "=", user.partner_id.id)])
+                                 ('partner_id', "=", user.partner_id.id)],limit=1)
+                            print('invoice',invoice.name)
                             if not invoice :
                                 print('if  not invoice digi ')
                                 so = self.env['sale.order'].sudo().create({
@@ -1276,6 +1283,7 @@ class partner(models.Model):
                                         # move.cpf_acompte_invoice= True
                                         # move.cpf_invoice =True
                                         move.methodes_payment = 'cpf'
+                                        move.numero_cpf = externalId
                                         move.pourcentage_acompte = 25
                                         move.module_id = so.module_id
                                         move.session_id = so.session_id
@@ -1285,7 +1293,7 @@ class partner(models.Model):
                                         move.price_unit = so.amount_total
                                         # move.cpf_acompte_invoice=True
                                         # move.cpf_invoice = True
-                                        move.methodes_payment = 'cpf'
+                                        
                                         move.post()
                                         ref = move.name
 
@@ -1319,10 +1327,14 @@ class partner(models.Model):
                             user.partner_id.mcm_session_id = module_id.session_id
                             user.partner_id.module_id = module_id
                             self.env.user.company_id = 1
+                            today = date.today()
+                            date_min = today - relativedelta(months=2)
+                            """chercher facture avec numero de dossier si n'existe pas on crée une facture"""
                             invoice = self.env['account.move'].sudo().search(
-                                [('module_id', "=", module_id.id),
+                                [('numero_cpf', "=", externalId),
                                  ('state', "=", 'posted'),
-                                 ('partner_id', "=", user.partner_id.id)])
+                                 ('partner_id', "=", user.partner_id.id)], limit=1)
+                            print('invoice', invoice)
                             if not invoice :
                                 print('if  not invoice mcm')
                                 so = self.env['sale.order'].sudo().create({
@@ -1353,6 +1365,7 @@ class partner(models.Model):
                                     # move.cpf_acompte_invoice=True
                                     # move.cpf_invoice =True
                                     move.methodes_payment = 'cpf'
+                                    move.numero_cpf=externalId
                                     move.pourcentage_acompte = 25
                                     move.session_id = so.session_id
                                     move.company_id = so.company_id
@@ -1406,4 +1419,12 @@ class partner(models.Model):
                                 new_ticket = self.env['helpdesk.ticket'].sudo().create(
                                     vals)
 
+    """Remplir champ numero cpf sur tout les factures cpf"""
+    def num_cpf_facture(self):
+        partners = self.env['res.partner'].sudo().search([('statut',"=","won"),('mode_de_financement',"=","cpf")])
+        for partner in partners:
+            invoice = self.env['account.move'].sudo().search([('partner_id',"=",partner.id),],limit=1,order="id desc")
+
+            if invoice and partner.numero_cpf:
+                invoice.numero_cpf=partner.numero_cpf
 
