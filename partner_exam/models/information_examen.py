@@ -309,7 +309,7 @@ class NoteExamen(models.Model):
             session_count = self.env['partner.sessions'].search_count(
                 [('client_id', '=', self.partner_id.id), ('paiement', '!=', True)])
             _logger.info('session_count %s', session_count)
-            _logger.info('self.partner_id.note_exam_id %s', self.partner_id.note_exam_id)
+            _logger.info('self.partner_id.note_exam_id %s', len(self.partner_id.note_exam_id))
             if session_count == 1 and len(self.partner_id.note_exam_id) == 1:
                 _logger.info('self.partner_id.note_exam_id %s', self.partner_id.note_exam_id)
                 self.nombre_de_passage = "premier"
