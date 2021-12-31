@@ -1167,6 +1167,8 @@ class partner(models.Model):
                     tel = ""
                 diplome = dossier['trainingActionInfo']['title']
                 print('training', training_id)
+                today = date.today()
+                date_min = today - relativedelta(months=2)
                 users = self.env['res.users'].sudo().search([('login', "=", email)])
                 """si apprenant non trouvé par email on cherche par numero telephone"""
                 if not users:
@@ -1235,12 +1237,10 @@ class partner(models.Model):
                             user.partner_id.mcm_session_id = module_id.session_id
                             user.partner_id.module_id = module_id
                             self.env.user.company_id = 2
-                            today=date.today()
-                            date_min=today - relativedelta(months=2)
+                            
                             invoice = self.env['account.move'].sudo().search(
                                 [('numero_cpf', "=", externalId),
                                  ('state', "=", 'posted'),
-                                 ('invoice_date',">=",date_min),
                                  ('partner_id', "=", user.partner_id.id)],limit=1)
                             print('invoice',invoice.name)
                             if not invoice :
@@ -1329,7 +1329,6 @@ class partner(models.Model):
                             invoice = self.env['account.move'].sudo().search(
                                 [('numero_cpf', "=", externalId),
                                  ('state', "=", 'posted'),
-                                 ('invoice_date', ">=", date_min),
                                  ('partner_id', "=", user.partner_id.id)], limit=1)
                             print('invoice', invoice)
                             if not invoice :
