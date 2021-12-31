@@ -1430,4 +1430,5 @@ class partner(models.Model):
             if invoice and partner.numero_cpf:
                 _logger.info(' if invoice %s' % str(invoice.name))
                 invoice.numero_cpf=partner.numero_cpf
+                _logger.info(' if invoice %s' % str(invoice.numero_cpf))
 
