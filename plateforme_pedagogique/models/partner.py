@@ -1200,6 +1200,7 @@ class partner(models.Model):
                 else:
                     user = users
                 if user:
+                    """mettre à jour les informations sur fiche client"""
                     print("if user", user.login, user.partner_id.statut_cpf)
                     user.partner_id.mode_de_financement = 'cpf'
                     user.partner_id.statut_cpf = 'accepted'
@@ -1208,6 +1209,8 @@ class partner(models.Model):
                     user.partner_id.diplome = diplome
                     module_id = False
                     product_id = False
+                    """chercher le produit sur odoo selon id edof de formation"""
+
                     if 'digimoov' in str(training_id):
 
                         product_id = self.env['product.template'].sudo().search(
@@ -1237,7 +1240,7 @@ class partner(models.Model):
                             user.partner_id.mcm_session_id = module_id.session_id
                             user.partner_id.module_id = module_id
                             self.env.user.company_id = 2
-                            
+                            """chercher facture avec numero de dossier si n'existe pas on crée une facture"""
                             invoice = self.env['account.move'].sudo().search(
                                 [('numero_cpf', "=", externalId),
                                  ('state', "=", 'posted'),
@@ -1326,6 +1329,7 @@ class partner(models.Model):
                             self.env.user.company_id = 1
                             today = date.today()
                             date_min = today - relativedelta(months=2)
+                            """chercher facture avec numero de dossier si n'existe pas on crée une facture"""
                             invoice = self.env['account.move'].sudo().search(
                                 [('numero_cpf', "=", externalId),
                                  ('state', "=", 'posted'),

@@ -368,12 +368,14 @@ class WebsiteSale(WebsiteSale):
             newformat = "%d/%m/%Y %H:%M:%S"
             lastupdateform = lastupdate.strftime(newformat)
             lastupd = datetime.strptime(lastupdateform, "%d/%m/%Y %H:%M:%S")
+            """mettre à jour les informations sur fiche client"""
             partner.mode_de_financement = 'cpf'
             partner.statut_cpf = 'accepted'
             partner.date_cpf = lastupd
             partner.diplome = diplome
             module_id = False
             product_id = False
+            """chercher le produit sur odoo selon id edof de formation"""
             if 'digimoov' in str(training_id):
 
                 product_id = request.env['product.template'].sudo().search(
@@ -403,10 +405,11 @@ class WebsiteSale(WebsiteSale):
                     partner.mcm_session_id = module_id.session_id
                     partner.module_id = module_id
                     request.env.user.company_id = 2
+                    """chercher facture avec numero de dossier si n'existe pas on crée une facture"""
                     invoice = request.env['account.move'].sudo().search(
                         [('numero_cpf', "=", partner.numero_cpf),
                          ('state', "=", 'posted'),
-                         ('partner_id', "=", partner.id)], limit=1, order="date")
+                         ('partner_id', "=", partner.id)], limit=1)
 
                     if not invoice :
                         so = request.env['sale.order'].sudo().create({
@@ -490,10 +493,11 @@ class WebsiteSale(WebsiteSale):
                     partner.mcm_session_id = module_id.session_id
                     partner.module_id = module_id
                     request.env.user.company_id = 1
+                    """chercher facture avec numero de dossier si n'existe pas on crée une facture"""
                     invoice = request.env['account.move'].sudo().search(
                         [('numero_cpf', "=", partner.numero_cpf),
                          ('state', "=", 'posted'),
-                         ('partner_id', "=", partner.id)], limit=1, order="date")
+                         ('partner_id', "=", partner.id)], limit=1)
 
                     if not invoice:
                         so = request.env['sale.order'].sudo().create({
