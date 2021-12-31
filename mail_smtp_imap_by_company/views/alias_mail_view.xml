@@ -91,28 +91,7 @@
                 </xpath>
             </field>
         </record>
-		
-		<record id="hr_job_simple_form_smtp" model="ir.ui.view">
-            <field name="name">hr.job.simple.form.smtp</field>
-            <field name="model">hr.job</field>
-            <field name="inherit_id" ref="hr_recruitment.hr_job_simple_form"/>
-            <field name="arch" type="xml">
-                <xpath expr="//field[@name='alias_domain']" position="replace">
-                	<field name="alias_domain" class="oe_inline" readonly="0"/>
-                </xpath>
-            </field>
-        </record>
-        
-        <record id="hr_job_survey_smtp" model="ir.ui.view">
-            <field name="name">hr.job.form1.smtp</field>
-            <field name="model">hr.job</field>
-            <field name="inherit_id" ref="hr_recruitment.hr_job_survey"/>
-            <field name="arch" type="xml">
-                <xpath expr="//field[@name='alias_domain']" position="replace">
-                	<field name="alias_domain" class="oe_inline" readonly="0"/>
-                </xpath>
-            </field>
-        </record>
+
         
 		<menuitem id="alias_mail_menu"
 	            name="Alias Domains"

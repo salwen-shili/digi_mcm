@@ -27,7 +27,7 @@
     'website': 'https://www.geminatecs.com/',
     'summary' : 'Mail SMTP and IMAP + Alias Domain By Company',
     'description' : """Geminate comes with a feature to support multiple domain and multi company emailing system.""",
-    'depends' : ['base','sale_management','fetchmail','crm','project','mail','account','hr_recruitment'],
+    'depends' : ['base','sale_management','fetchmail','crm','project','mail','account'],
     'data' : [
         'security/ir.model.access.csv',
         'views/mail_server_view.xml',
