@@ -303,27 +303,22 @@ class NoteExamen(models.Model):
                     examen.session_id = examen.partner_id.mcm_session_id
 
     def write(self, values):
+        res = super(NoteExamen, self).write(values)
         # Add condition based on checkbox field paiement != True
         # to put auto value in "nombre de passage" based on sum of historic sessions
         if 'partner_id' in values or 'epreuve_a' in values:
             session_count = self.env['partner.sessions'].search_count(
                 [('client_id', '=', self.partner_id.id), ('paiement', '!=', True)])
-            _logger.info('session_count %s', session_count)
-            _logger.info('self.partner_id.note_exam_id %s', len(self.partner_id.note_exam_id))
-            if session_count == 1 and len(self.partner_id.note_exam_id) == 1:
-                _logger.info('self.partner_id.note_exam_id %s', self.partner_id.note_exam_id)
+            if session_count == 1:
                 self.nombre_de_passage = "premier"
-            if session_count == 2 and len(self.partner_id.note_exam_id) == 2:
-                _logger.info('self.partner_id.note_exam_id %s', self.partner_id.note_exam_id)
+            if session_count == 2:
                 self.nombre_de_passage = "deuxieme"
-            if session_count == 3 and len(self.partner_id.note_exam_id) == 3:
-                _logger.info('self.partner_id.note_exam_id %s', self.partner_id.note_exam_id)
+            if session_count == 3:
                 self.nombre_de_passage = "troisieme"
-            if session_count == 4 and len(self.partner_id.note_exam_id) == 4:
+            if session_count == 4:
                 self.nombre_de_passage = "premier"
             if session_count == 5:
                 self.nombre_de_passage = "deuxieme"
             if session_count == 6:
                 self.nombre_de_passage = "troisieme"
-        res = super(NoteExamen, self).write(values)
         return res
