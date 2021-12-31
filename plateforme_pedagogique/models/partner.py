@@ -1423,7 +1423,7 @@ class partner(models.Model):
     def num_cpf_facture(self):
         partners = self.env['res.partner'].sudo().search([('statut',"=","won"),('mode_de_financement',"=","cpf")])
         for partner in partners:
-            invoice = self.env['account.move'].sudo().search([('partner_id',"=",partner.id),],limit=1,order="id desc")
+            invoice = self.env['account.move'].sudo().search([('partner_id',"=",partner.id)],limit=1,order="id desc")
 
             if invoice and partner.numero_cpf:
                 invoice.numero_cpf=partner.numero_cpf
