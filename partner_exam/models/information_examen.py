@@ -63,6 +63,7 @@ class NoteExamen(models.Model):
         for rec in self:
             rec.moyenne_generale = (rec.epreuve_a + rec.epreuve_b) / 2
             if rec.epreuve_a >= 10 and rec.epreuve_b >= 8 and rec.moyenne_generale >= 12 and rec.partner_id:
+                print("self.partner_id.resultat", self.partner_id.resultat)
                 rec.moyenne_generale = rec.moyenne_generale
                 rec.mention = 'recu'
                 rec.resultat = 'recu'
@@ -70,12 +71,15 @@ class NoteExamen(models.Model):
                 self.date_exam = self.partner_id.mcm_session_id.date_exam
                 self.presence = 'present'
                 self.ville_id = self.partner_id.mcm_session_id.session_ville_id.id
+                self.partner_id.presence = "Présent(e)"
+                self.partner_id.resultat = "Admis(e)"
             else:
                 # reset your fields
                 rec.epreuve_a = rec.epreuve_a
                 rec.epreuve_b = rec.epreuve_b
                 rec.mention = 'ajourne'
                 rec.resultat = 'ajourne'
+                rec.partner_id.resultat = "Ajourné(e)"
 
                 last_line = self.env['partner.sessions'].search(
                     [('client_id', '=', rec.partner_id.id), ('date_exam', '<', date.today())], limit=1,
@@ -85,16 +89,22 @@ class NoteExamen(models.Model):
                     self.date_exam = self.partner_id.mcm_session_id.date_exam
                     self.presence = 'present'
                     self.ville_id = self.partner_id.mcm_session_id.session_ville_id.id
+                    self.partner_id.presence = "Présent(e)"
+                    self.partner_id.resultat = "Ajourné(e)"
                 elif rec.epreuve_a < 1 and rec.epreuve_b < 1 and not last_line.justification and rec.partner_id:
                     self.session_id = self.partner_id.mcm_session_id
                     self.date_exam = self.partner_id.mcm_session_id.date_exam
                     self.presence = 'Absent'
                     self.ville_id = self.partner_id.mcm_session_id.session_ville_id.id
+                    self.partner_id.update({'presence': "Absent(e)"})
+                    self.partner_id.resultat = "Ajourné(e)"
                 elif rec.epreuve_a < 1 and rec.epreuve_b < 1 and last_line.justification is True and rec.partner_id:
                     self.session_id = last_line.session_id
                     self.date_exam = last_line.session_id.date_exam
                     self.presence = 'absence_justifiee'
                     self.ville_id = last_line.session_id.session_ville_id.id
+                    self.partner_id.update({'presence': "Absence justifiée"})
+                    self.partner_id.resultat = "Ajourné(e)"
 
     @api.onchange("résultat")
     def etat_de_client_apres_examen(self):
@@ -112,6 +122,15 @@ class NoteExamen(models.Model):
         resultat = super(NoteExamen, self).create(vals)
         resultat.compute_moyenne_generale()
         resultat.mise_ajour_mode_financement()
+        if 'partner_id' in vals:
+            if 'presence' == 'present':
+                self.partner_id.presence = "Présent(e)"
+            if 'presence' == 'Absent':
+                self.partner_id.presence = "Absent(e)"
+            if 'presence' == 'absence_justifiee':
+                self.partner_id.presence = "Absence justifiée"
+            elif not 'presence':
+                self.partner_id.presence = "_______"
         return resultat
 
     def _clear_duplicates_exams(self):
@@ -290,28 +309,16 @@ class NoteExamen(models.Model):
         if 'partner_id' in values or 'epreuve_a' in values:
             session_count = self.env['partner.sessions'].search_count(
                 [('client_id', '=', self.partner_id.id), ('paiement', '!=', True)])
-            _logger.info('session_count %s', session_count)
-            _logger.info('self.partner_id.note_exam_id %s', len(self.partner_id.note_exam_id))
-            if session_count == 1 and len(self.partner_id.note_exam_id) == 0:
-                _logger.info('self.partner_id.note_exam_id %s', self.partner_id.note_exam_id)
             if session_count == 1:
                 self.nombre_de_passage = "premier"
-            if session_count == 2 and len(self.partner_id.note_exam_id) == 1:
-                _logger.info('self.partner_id.note_exam_id %s', self.partner_id.note_exam_id)
             if session_count == 2:
                 self.nombre_de_passage = "deuxieme"
-            if session_count == 3 and len(self.partner_id.note_exam_id) == 2:
-                _logger.info('self.partner_id.note_exam_id %s', self.partner_id.note_exam_id)
             if session_count == 3:
                 self.nombre_de_passage = "troisieme"
-            if session_count == 4 and len(self.partner_id.note_exam_id) == 3:
-                if session_count == 4:
-                    self.nombre_de_passage = "premier"
-            if session_count == 5 and len(self.partner_id.note_exam_id) == 4:
+            if session_count == 4:
+                self.nombre_de_passage = "premier"
+            if session_count == 5:
                 self.nombre_de_passage = "deuxieme"
-            if session_count == 6 and len(self.partner_id.note_exam_id) == 5:
+            if session_count == 6:
                 self.nombre_de_passage = "troisieme"
-        res = super(NoteExamen, self).write(values)
         return res
-
-
