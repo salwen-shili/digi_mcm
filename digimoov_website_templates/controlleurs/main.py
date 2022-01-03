@@ -727,7 +727,7 @@ class Services(http.Controller):
     #transport lourd 
 
 class Transport_Lourd(http.Controller):
-    @http.route(['/formation-capacité-transport-lourd-marchandise'], type='http', auth='public', website=True)
+    @http.route(['/formation-capacite-transport-lourd-marchandise'], type='http', auth='public', website=True)
     def transport_lourd(self, **kw, ):
         digimoov_products = False
         values = False
