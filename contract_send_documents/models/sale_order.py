@@ -10,6 +10,7 @@ class SaleOrder(models.Model):
 
     def write(self,values):
         order=super(SaleOrder,self).write(values)
+        subtype_id = self.env['ir.model.data'].xmlid_to_res_id('mt_note')
         message = self.env['mail.message'].sudo().create({
             'subject': 'Contrat signé',
             'model': 'res.partner',
