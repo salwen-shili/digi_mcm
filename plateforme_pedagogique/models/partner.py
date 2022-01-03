@@ -425,6 +425,28 @@ class partner(models.Model):
                                 urlsession = 'https://app.360learning.com/api/v1/groups/' + id_groupe + '/users/' + partner.email + '?company=' + company_id + '&apiKey=' + api_key
                                 respsession = requests.put(urlsession, headers=headers, data=data_group)
                                 print(existe, 'ajouter à son session', respsession.status_code)
+                    if self.env.su:
+                        # sending mail in sudo was meant for it being sent from superuser
+                        self = self.with_user(SUPERUSER_ID)
+                    if not partner.lang :
+                        partner.lang = 'fr_FR'
+                    template_id = int(self.env['ir.config_parameter'].sudo().get_param(
+                        'plateforme_pedagogique.mail_template_add_ione_to_plateforme_digimoov_mcm'))
+                    template_id = self.env['mail.template'].search([('id', '=', template_id)]).id
+                    if not template_id:
+                        template_id = self.env['ir.model.data'].xmlid_to_res_id(
+                            'plateforme_pedagogique.mail_template_add_ione_to_plateforme_digimoov_mcm',
+                            raise_if_not_found=False)
+                    if not template_id:
+                        template_id = self.env['ir.model.data'].xmlid_to_res_id(
+                            'plateforme_pedagogique.mail_template_add_ione_to_plateforme_digimoov_mcm',
+                            raise_if_not_found=False)
+                    if template_id:
+                        partner.with_context(force_send=True).message_post_with_template(template_id,
+                                                                                                  composition_mode='comment',
+                                                                                                  )
+
+
 
     def supprimer_ione_auto(self):
 
@@ -1104,7 +1126,7 @@ class partner(models.Model):
                                                                      ('company_id', '=', 2),
                                                                      ('website_id', '=', 2),
                                                                      ('order_line.product_id', '=', product_id.id)])
-                        print('sale order', sale.id)
+                        
                         if not sale:
                             so = self.env['sale.order'].sudo().create({
                                 'partner_id': client.id,
@@ -1141,7 +1163,7 @@ class partner(models.Model):
                                                                      ('company_id', '=', 1),
                                                                      ('website_id', '=', 1),
                                                                      ('order_line.product_id', '=', product_id.id)])
-                        print('sale order', sale.id)
+                        
                         if not sale:
                             so = self.env['sale.order'].sudo().create({
                                 'partner_id': client.id,
@@ -1247,6 +1269,7 @@ class partner(models.Model):
                 else:
                     user = users
                 if user:
+                    """mettre à jour les informations sur fiche client"""
                     print("if user", user.login, user.partner_id.statut_cpf)
                     user.partner_id.mode_de_financement = 'cpf'
                     user.partner_id.statut_cpf = 'accepted'
@@ -1255,6 +1278,8 @@ class partner(models.Model):
                     user.partner_id.diplome = diplome
                     module_id = False
                     product_id = False
+                    """chercher le produit sur odoo selon id edof de formation"""
+
                     if 'digimoov' in str(training_id):
 
                         product_id = self.env['product.template'].sudo().search(
@@ -1284,7 +1309,7 @@ class partner(models.Model):
                             user.partner_id.mcm_session_id = module_id.session_id
                             user.partner_id.module_id = module_id
                             self.env.user.company_id = 2
-                            
+                            """chercher facture avec numero de dossier si n'existe pas on crée une facture"""
                             invoice = self.env['account.move'].sudo().search(
                                 [('numero_cpf', "=", externalId),
                                  ('state', "=", 'posted'),
@@ -1373,6 +1398,7 @@ class partner(models.Model):
                             self.env.user.company_id = 1
                             today = date.today()
                             date_min = today - relativedelta(months=2)
+                            """chercher facture avec numero de dossier si n'existe pas on crée une facture"""
                             invoice = self.env['account.move'].sudo().search(
                                 [('numero_cpf', "=", externalId),
                                  ('state', "=", 'posted'),
@@ -1465,9 +1491,13 @@ class partner(models.Model):
     """Remplir champ numero cpf sur tout les factures cpf"""
     def num_cpf_facture(self):
         partners = self.env['res.partner'].sudo().search([('statut',"=","won"),('mode_de_financement',"=","cpf")])
+        _logger.info('for partnerss')
         for partner in partners:
-            invoice = self.env['account.move'].sudo().search([('partner_id',"=",partner.id),],limit=1,order="id desc")
+            _logger.info(' partner %s' % partner.name )
+            invoice = self.env['account.move'].sudo().search([('partner_id',"=",partner.id)],limit=1,order="id desc")
 
             if invoice and partner.numero_cpf:
+                _logger.info(' if invoice %s' % str(invoice.name))
                 invoice.numero_cpf=partner.numero_cpf
+                _logger.info(' if invoice %s' % str(invoice.numero_cpf))
 

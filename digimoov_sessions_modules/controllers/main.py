@@ -369,12 +369,14 @@ class WebsiteSale(WebsiteSale):
             newformat = "%d/%m/%Y %H:%M:%S"
             lastupdateform = lastupdate.strftime(newformat)
             lastupd = datetime.strptime(lastupdateform, "%d/%m/%Y %H:%M:%S")
+            """mettre à jour les informations sur fiche client"""
             partner.mode_de_financement = 'cpf'
             partner.statut_cpf = 'accepted'
             partner.date_cpf = lastupd
             partner.diplome = diplome
             module_id = False
             product_id = False
+            """chercher le produit sur odoo selon id edof de formation"""
             if 'digimoov' in str(training_id):
 
                 product_id = request.env['product.template'].sudo().search(
@@ -404,10 +406,11 @@ class WebsiteSale(WebsiteSale):
                     partner.mcm_session_id = module_id.session_id
                     partner.module_id = module_id
                     request.env.user.company_id = 2
+                    """chercher facture avec numero de dossier si n'existe pas on crée une facture"""
                     invoice = request.env['account.move'].sudo().search(
                         [('numero_cpf', "=", partner.numero_cpf),
                          ('state', "=", 'posted'),
-                         ('partner_id', "=", partner.id)], limit=1, order="date")
+                         ('partner_id', "=", partner.id)], limit=1)
 
                     if not invoice :
                         so = request.env['sale.order'].sudo().create({
@@ -491,10 +494,11 @@ class WebsiteSale(WebsiteSale):
                     partner.mcm_session_id = module_id.session_id
                     partner.module_id = module_id
                     request.env.user.company_id = 1
+                    """chercher facture avec numero de dossier si n'existe pas on crée une facture"""
                     invoice = request.env['account.move'].sudo().search(
                         [('numero_cpf', "=", partner.numero_cpf),
                          ('state', "=", 'posted'),
-                         ('partner_id', "=", partner.id)], limit=1, order="date")
+                         ('partner_id', "=", partner.id)], limit=1)
 
                     if not invoice:
                         so = request.env['sale.order'].sudo().create({
@@ -878,6 +882,23 @@ class WebsiteSale(WebsiteSale):
                                                                           ], limit=1, order="id desc")
                     if sale_order:
                         sale_order.unlink()
+                    if not partner.lang :
+                        partner.lang = 'fr_FR'
+                    template_id = int(request.env['ir.config_parameter'].sudo().get_param(
+                        'plateforme_pedagogique.mail_template_add_ione_to_plateforme_digimoov_mcm'))
+                    template_id = request.env['mail.template'].search([('id', '=', template_id)]).id
+                    if not template_id:
+                        template_id = request.env['ir.model.data'].xmlid_to_res_id(
+                            'plateforme_pedagogique.mail_template_add_ione_to_plateforme_digimoov_mcm',
+                            raise_if_not_found=False)
+                    if not template_id:
+                        template_id = request.env['ir.model.data'].xmlid_to_res_id(
+                            'plateforme_pedagogique.mail_template_add_ione_to_plateforme_digimoov_mcm',
+                            raise_if_not_found=False)
+                    if template_id:
+                        partner.with_context(force_send=True).message_post_with_template(template_id,
+                                                                                                  composition_mode='comment',
+                                                                                                  )
                     return {'ajout':'Félicitations! Vous pouvez dés maintenant accéder à notre plateforme de formation,\nPour ce faire, veuillez cliquer sur continuer, et rentrez vos identifiants de connexion que vous utilisez sur notre site web.','url': 'https://digimoov.360learning.com'}
 
                 if not (create):
