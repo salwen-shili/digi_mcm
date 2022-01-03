@@ -1469,9 +1469,13 @@ class partner(models.Model):
     """Remplir champ numero cpf sur tout les factures cpf"""
     def num_cpf_facture(self):
         partners = self.env['res.partner'].sudo().search([('statut',"=","won"),('mode_de_financement',"=","cpf")])
+        _logger.info('for partnerss')
         for partner in partners:
-            invoice = self.env['account.move'].sudo().search([('partner_id',"=",partner.id),],limit=1,order="id desc")
+            _logger.info(' partner %s' % partner.name )
+            invoice = self.env['account.move'].sudo().search([('partner_id',"=",partner.id)],limit=1,order="id desc")
 
             if invoice and partner.numero_cpf:
+                _logger.info(' if invoice %s' % str(invoice.name))
                 invoice.numero_cpf=partner.numero_cpf
+                _logger.info(' if invoice %s' % str(invoice.numero_cpf))
 
