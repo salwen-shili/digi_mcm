@@ -1126,7 +1126,7 @@ class partner(models.Model):
                                                                      ('company_id', '=', 2),
                                                                      ('website_id', '=', 2),
                                                                      ('order_line.product_id', '=', product_id.id)])
-                        print('sale order', sale.id)
+                        
                         if not sale:
                             so = self.env['sale.order'].sudo().create({
                                 'partner_id': client.id,
@@ -1163,7 +1163,7 @@ class partner(models.Model):
                                                                      ('company_id', '=', 1),
                                                                      ('website_id', '=', 1),
                                                                      ('order_line.product_id', '=', product_id.id)])
-                        print('sale order', sale.id)
+                        
                         if not sale:
                             so = self.env['sale.order'].sudo().create({
                                 'partner_id': client.id,
