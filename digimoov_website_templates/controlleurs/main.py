@@ -670,7 +670,7 @@ class Transport_Lourd(http.Controller):
             values = {
                 'digimoov_products': digimoov_products,
             }
-            return request.render("digimoov_website_templates.formation_capacité_de_transport_lourd_de_marchandise", values)
+            return request.render("digimoov_website_templates.formation-capacité-transport-lourd-marchandise", values)
         else:
             raise werkzeug.exceptions.NotFound()
         

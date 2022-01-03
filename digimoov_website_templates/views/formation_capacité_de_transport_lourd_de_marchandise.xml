@@ -1,5 +1,5 @@
 <odoo>
-    <template id="digimoov_website_templates.formation_capacité_de_transport_lourd_de_marchandise" name="Formation capacité de transport lourd de marchandise | Digimoov">
+    <template id="digimoov_website_templates.formation-capacité-transport-lourd-marchandise" name="Formation capacité de transport lourd de marchandise | Digimoov">
         <t t-call="website.layout">
             <div id="wrap" class="oe_structure" style="border-style: none; border-width: 0px;">
                 <section class="centric_template home-banner banner_padding pt80" data-name="Banner">
