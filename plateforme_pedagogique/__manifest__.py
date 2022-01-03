@@ -29,6 +29,7 @@
         'views/parcours.xml',
         'views/session.xml' ,
         'views/users_stats.xml',
+        'data/mail_data.xml',
     ],
     'application': True,
 }

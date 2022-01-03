@@ -425,6 +425,28 @@ class partner(models.Model):
                                 urlsession = 'https://app.360learning.com/api/v1/groups/' + id_groupe + '/users/' + partner.email + '?company=' + company_id + '&apiKey=' + api_key
                                 respsession = requests.put(urlsession, headers=headers, data=data_group)
                                 print(existe, 'ajouter à son session', respsession.status_code)
+                    if self.env.su:
+                        # sending mail in sudo was meant for it being sent from superuser
+                        self = self.with_user(SUPERUSER_ID)
+                    if not partner.lang :
+                        partner.lang = 'fr_FR'
+                    template_id = int(self.env['ir.config_parameter'].sudo().get_param(
+                        'plateforme_pedagogique.mail_template_add_ione_to_plateforme_digimoov_mcm'))
+                    template_id = self.env['mail.template'].search([('id', '=', template_id)]).id
+                    if not template_id:
+                        template_id = self.env['ir.model.data'].xmlid_to_res_id(
+                            'plateforme_pedagogique.mail_template_add_ione_to_plateforme_digimoov_mcm',
+                            raise_if_not_found=False)
+                    if not template_id:
+                        template_id = self.env['ir.model.data'].xmlid_to_res_id(
+                            'plateforme_pedagogique.mail_template_add_ione_to_plateforme_digimoov_mcm',
+                            raise_if_not_found=False)
+                    if template_id:
+                        partner.with_context(force_send=True).message_post_with_template(template_id,
+                                                                                                  composition_mode='comment',
+                                                                                                  )
+
+
 
     def supprimer_ione_auto(self):
 
@@ -1104,7 +1126,7 @@ class partner(models.Model):
                                                                      ('company_id', '=', 2),
                                                                      ('website_id', '=', 2),
                                                                      ('order_line.product_id', '=', product_id.id)])
-                        print('sale order', sale.id)
+                        
                         if not sale:
                             so = self.env['sale.order'].sudo().create({
                                 'partner_id': client.id,
@@ -1141,7 +1163,7 @@ class partner(models.Model):
                                                                      ('company_id', '=', 1),
                                                                      ('website_id', '=', 1),
                                                                      ('order_line.product_id', '=', product_id.id)])
-                        print('sale order', sale.id)
+                        
                         if not sale:
                             so = self.env['sale.order'].sudo().create({
                                 'partner_id': client.id,
