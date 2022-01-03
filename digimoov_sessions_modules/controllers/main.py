@@ -882,6 +882,23 @@ class WebsiteSale(WebsiteSale):
                                                                           ], limit=1, order="id desc")
                     if sale_order:
                         sale_order.unlink()
+                    if not partner.lang :
+                        partner.lang = 'fr_FR'
+                    template_id = int(request.env['ir.config_parameter'].sudo().get_param(
+                        'plateforme_pedagogique.mail_template_add_ione_to_plateforme_digimoov_mcm'))
+                    template_id = request.env['mail.template'].search([('id', '=', template_id)]).id
+                    if not template_id:
+                        template_id = request.env['ir.model.data'].xmlid_to_res_id(
+                            'plateforme_pedagogique.mail_template_add_ione_to_plateforme_digimoov_mcm',
+                            raise_if_not_found=False)
+                    if not template_id:
+                        template_id = request.env['ir.model.data'].xmlid_to_res_id(
+                            'plateforme_pedagogique.mail_template_add_ione_to_plateforme_digimoov_mcm',
+                            raise_if_not_found=False)
+                    if template_id:
+                        partner.with_context(force_send=True).message_post_with_template(template_id,
+                                                                                                  composition_mode='comment',
+                                                                                                  )
                     return {'ajout':'Félicitations! Vous pouvez dés maintenant accéder à notre plateforme de formation,\nPour ce faire, veuillez cliquer sur continuer, et rentrez vos identifiants de connexion que vous utilisez sur notre site web.','url': 'https://digimoov.360learning.com'}
 
                 if not (create):
