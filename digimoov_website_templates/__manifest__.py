@@ -46,7 +46,7 @@
         'views/attestation-transport-leger-marchandises-carte-bleu.xml',
         # 'views/charger_mes_documents'
         # 'views/sitemap.xml',
-        'views/formation-capacité-de-transport-lourd-de-marchandise.xml'
+        'views/formation_capacité_de_transport_lourd_de_marchandise.xml'
 
     ],
     'qweb': [],
