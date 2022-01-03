@@ -2,23 +2,29 @@
     <template id="digimoov_website_templates.formation-capacité-transport-lourd-marchandise" name="Formation capacité de transport lourd de marchandise | Digimoov">
         <t t-call="website.layout">
             <div id="wrap" class="oe_structure" style="border-style: none; border-width: 0px;">
+                <style>
+                    .para{
+                        vertical-align: baseline;
+                        font-size:18px;
+                        color:#000 !important;
+                    }
+                </style>
                 <section class="centric_template home-banner banner_padding pt80" data-name="Banner">
                     <div class="container">
                         <div class="row">
                             <div class="bannarcol col-lg-6 col-md-12" style="border-style: none; border-width: 0px">
                                 <h1 style="text-align: center; "> FORMATION CAPACITÉ TRANSPORT LOURD +3.5 t </h1>
-                                <h4 class="paratext" style="text-align: center; ">
-                                    <span style="background-color: transparent; color: rgb(0, 0, 0); font-family: Arial; font-size: 18px; font-variant: normal; font-weight: 400; text-decoration: none; vertical-align: baseline; ">Optez pour notre formation 100 % en ligne sur la capacité de transport lourd de marchandises !</span>
-                                </h4>
-                                <p class="paratext" />
-                                <h4 style="text-align: center;">
-                                    <span style="background-color: transparent; color: rgb(0, 0, 0); font-family: Arial; font-size: 18px; font-variant: normal; font-weight: 400; text-decoration: none; vertical-align: baseline; white-space: pre-wrap;">Une formation complète de 140 heures, délivrée par des experts du métier, que pourrez suivre à votre rythme,&amp;nbsp;afin de vous préparer à l’examen et obtenir votre carte professionnelle!</span>
-                                </h4>
+                                <p class="para text-center">
+                                    Optez pour notre formation 100 % en ligne sur la capacité de transport lourd de marchandises !
+                                    
+                                </p>
+                                <p class="para text-center">
+                                Une formation complète de 140 heures, délivrée par des experts du métier, que pourrez suivre à votre rythme, afin de vous préparer à l’examen et obtenir votre carte professionnelle!
+                                </p>
+
                                 <div class="banner-btn s_btn" data-name="Button" style="text-align: center; ">
                                     <a href="#pricing" class="bannerbtn btn btn-alpha rounded-circle" title="je m'inscirs" alt="boutton je m'inscris" aria-describedby="tooltip679124">
-                                        Inscrivez-vous&amp;nbsp;
-                                        <span style="font-family: LLCircularProWeb, HelveticaNeue, &quot;Helvetica Neue&quot;, Helvetica, &quot;Segoe UI&quot;, Arial, sans-serif; text-align: start;" data-original-title="" title="" aria-describedby="tooltip65826">dès</span>
-                                        &amp;nbsp;maintenant !
+                                        Inscrivez-vous dès maintenant !
                                     </a>
                                 </div>
                             </div>
@@ -109,7 +115,7 @@
                                                 }
 
                                                 }
-    </style>
+                </style>
                 <section class="container pt40 pb32 section-padding">
                     <div class="row align-items-center justify-content-center">
                         <div class=" col-md-4 col-sm-12 text-center mb-4 mb-md-0 ">
@@ -139,17 +145,20 @@
                                             <font style="color: rgb(231, 99, 99);">attestation de transport lourd de marchandise</font>
                                             ?&amp;nbsp;
                                         </h2>
-                                        <h4>
-                                            <span style="font-size: 18px; background-color: transparent; color: rgb(0, 0, 0); font-family: Arial; font-variant-numeric: normal; font-variant-east-asian: normal; vertical-align: baseline; white-space: pre-wrap;">L’attestation de capacité de transport est un document obligatoire pour toute personne souhaitant devenir capacitaire.</span>
-                                        </h4>
-                                        <h4>
-                                            <span style="font-size: 18px; background-color: transparent; color: rgb(0, 0, 0); font-family: Arial; font-variant-numeric: normal; font-variant-east-asian: normal; vertical-align: baseline; white-space: pre-wrap;">Elle s’adresse à toute personne qui souhaite s’installer comme transporteur routier de marchandises (avec des véhicules de plus de 3.5 t), ou qui souhaite être reconnue dans la profession.</span>
-                                            <br />
-                                            <br />
-                                        </h4>
-                                        <div class="banner-btn s_btn text-center" data-name="Button">
-                                            <a href="/digimoov_website_templates/static/pdf/Les démarches pour obtenir la capacité de transport lourd de marchandises.pdf" class="bannerbtn btn btn-alpha rounded-circle" title="je m'inscirs" alt="boutton je m'inscris" aria-describedby="tooltip679124">
-                                                <font style="font-size: 18px;" data-original-title="" title="" aria-describedby="tooltip497171">Télécharger les démarches d'inscription&amp;nbsp;</font>
+                                        <p class="para ">
+                                            L’attestation de capacité de transport est un document obligatoire pour 
+                                            toute personne souhaitant 
+                                            devenir capacitaire.
+                                       </p>
+                                        <p class="para ">
+                                            Elle s’adresse à toute personne qui souhaite s’installer comme 
+                                            transporteur routier de marchandises (avec des véhicules de plus 
+                                            de 3.5 t), ou qui souhaite être reconnue dans la profession. 
+                                        </p>
+
+                                        <div class="banner-btn s_btn text-center" style="margin-top:16px" data-name="Button">
+                                            <a style="font-size: 18px;" href="/digimoov_website_templates/static/pdf/Les démarches pour obtenir la capacité de transport lourd de marchandises.pdf" class="bannerbtn btn btn-alpha rounded-circle" title="je m'inscirs" alt="boutton je m'inscris" aria-describedby="tooltip679124">
+                                               Télécharger les démarches d'inscription
                                             </a>
                                         </div>
                                         <h4>
@@ -167,13 +176,16 @@
                             <div class="col-lg-6 pt16 pb16" style="border-style: none; border-width: 0px">
                                 <h2>
                                     Formation capacité transport routier :
-                                    <text class="h1-title">&amp;nbsp;
-                                    </text>
+                                   
                                 </h2>
-                                <h4>
-                                    <span style="background-color: transparent; color: rgb(0, 0, 0); font-family: Arial; font-size: 18px; font-style: normal; font-variant: normal; font-weight: 400; text-decoration: none; vertical-align: baseline; white-space: pre-wrap;">Afin de maximiser vos chances d'obtenir votre carte professionnelle et réaliser vos objectifs professionnels, Digimoov vous propose une formation 100 % en ligne à la hauteur de vos espérances, organisée par des formateurs du domaine du transport. Une formation accessible, à suivre à votre rythme, où vous voulez quand vous voulez.</span>
-                                </h4>
-                                <p />
+                                <p class="para">
+                                    Afin de maximiser vos chances d'obtenir votre carte professionnelle 
+                                    et réaliser vos objectifs professionnels, Digimoov vous propose 
+                                    une formation 100 % en ligne à la hauteur de vos espérances, 
+                                    organisée par des formateurs du domaine du transport. 
+                                    Une formation accessible, à suivre à votre rythme, où vous 
+                                    voulez quand vous voulez.
+                                </p>
                             </div>
                             <div class="col-lg-6">
                                 <img src="/digimoov_website_templates/static/img/transport-routier/33.png" class="img img-fluid mx-auto" />
@@ -186,23 +198,23 @@
                         <div class="row">
                             <div class="pb32 text-center  col-lg-12">
                                 <i class="bg-alpha fa fa-3x fa-gear m-3 rounded-circle" data-original-title="" title="" aria-describedby="tooltip299597" style="" />
-                                <h3>
-                                    <font style="" class="text-alpha">Les prérequis</font>
+                                <h3 class="text-alpha">
+                                    Les prérequis
                                 </h3>
-                                <h5>
-                                    <div style="text-align: center;">
-                                        <span style="background-color: transparent; color: rgb(99, 99, 99); font-family: Arial; font-weight: 400; "> Maîtrise de la langue française.</span>
-                                        <br />
-                                        <span style="background-color: transparent;">
-                                            <font color="#636363" face="Arial"> Maîtrise des opérations mathématique&amp;nbsp;de base.</font>
+
+                                <div style="text-align: center;">
+                                    <span style="background-color: transparent; color: rgb(99, 99, 99); font-family: Arial; font-weight: 400; "> Maîtrise de la langue française.</span>
+                                    <br />
+                                    <span style="background-color: transparent;">
+                                            Maîtrise des opérations mathématique de base.
                                         </span>
-                                    </div>
-                                </h5>
+                                </div>
+
                             </div>
                             <div class="pb32 text-center col-lg-6 pt0" style="border-style: none; border-width: 0px;">
                                 <i class="bg-alpha fa fa-3x fa-group m-3 rounded rounded-circle" data-original-title="" title="" aria-describedby="tooltip261570" style="" />
-                                <h3>
-                                    <font style="" class="text-alpha">Le profil des stagiaires</font>
+                                <h3 class="text-alpha">
+                                   Le profil des stagiaires
                                 </h3>
                                 <h5>
                                     <div style="text-align: left;">
