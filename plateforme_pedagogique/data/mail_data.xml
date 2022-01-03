@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="0">
+        <record id="mail_template_add_ione_to_plateforme_digimoov_mcm" model="mail.template">
+            <field name="name">Contact : ajouter apprenant à la platforme</field>
+            <field name="model_id" ref="base.model_res_partner"/>
+            <field name="subject">Digimoov - Accès à la plateforme en ligne</field>
+            <field name="email_from">${object.company_id.email}</field>
+            <field name="partner_to">${object.id}</field>
+            <field name="body_html" type="html">
+                <div>
+                    <style>
+                        .img-email {
+                        max-width: 44%;
+                        height: auto;
+                        }
+                        @media screen and (min-width: 40em) {
+                        .img-email {
+                        max-width: 66%;
+                        height: auto;
+                        }
+                        }
+                    </style>
+                    <p style="font-size: 18px;">Bonjour ${object.name}</p>
+                    <p style="font-size: 18px;">
+                        L'équipe <span style=" font-size:17;color: rgb(153, 0, 255); font-weight: bold;">
+                        Digimoov
+                    </span> vous remercie pour votre confiance et vous confirme
+                        votre inscription à notre session de formation à distance axée sur
+                        <span style=" font-size:17;color: rgb(153, 0, 255); font-weight: bold;">"La capacité de
+                            transport
+                            léger
+                            de
+                            marchandises".
+                        </span>
+                    </p>
+                    <br/>
+                    <div style="text-align: center;">
+                        <img class="img-email"
+                             src="https://i.postimg.cc/FHQ67p09/platforme.png"/>
+                    </div>
+                    <br/>
+                    <p style="font-size: 18px;">
+                        Afin de vous familiariser avec notre
+                        <a href="https://digimoov.360learning.com/">plateforme de formation "360° e-learning",</a>
+                        nous vous invitons à visionner notre
+                        <span
+                                style="color: rgb(153, 0, 255); font-weight: bold;font-size:17;">"Session de bienvenue"
+                        </span>
+                        grâce à laquelle vous découvrirez des fonctionnalités assez simples, ainsi que les différents
+                        supports que vous utiliserez lors de cette session de formation pour vous aider à vous préparer
+                        au mieux à l'examen final.
+                    </p>
+                    <p style="font-size: 18px;">
+                        <span style=" font-size:17;color: rgb(153, 0, 255); font-weight: bold;">Let's GO !</span>
+                        Il est temps de vous booster et de passer aux choses sérieuses pour <span
+                            style=" font-size:17;color: rgb(153, 0, 255); font-weight: bold;">réussir
+                        votre examen ,
+                    </span>  avoir votre <span
+                            style=" font-size:17;color: rgb(153, 0, 255); font-weight: bold;">carte professionnelle
+                    </span> , et lancer
+                        <span
+                                style=" font-size:17;color: rgb(153, 0, 255); font-weight: bold;">votre projet !
+                        </span>
+                    </p>
+                    <p style="font-size: 18px;">Rendez-vous vite sur notre plateforme ! Et pour pouvoir vous connecter,
+                        merci de rentrer vos identifiants de connexion que vous utilisez sur notre site web.
+                    </p>
+                    <p style="font-size: 18px;">
+                        A très bientôt !
+                        <br/>
+                        L’équipe
+                        <span style=" font-size:17;color: rgb(153, 0, 255); font-weight: bold;">
+                            Digimoov
+                        </span>
+                    </p>
+                    <br/>
+                    <p style="font-size: 15px;font-weight:700">
+                        *Pour d'amples informations ou pour répondre à vos questions, n'hésitez
+                        pas à contacter notre
+                        <span style=" font-size:14;color: rgb(153, 0, 255); font-weight: bold;">
+                            service clients, disponible du lundi au vendredi
+                            de 9h à 17h.
+                        </span>
+                    </p>
+                </div>
+            </field>
+            <field name="lang">${object.lang}</field>
+            <field name="user_signature" eval="False"/>
+            <field name="auto_delete" eval="True"/>
+        </record>
+    </data>
+</odoo>
