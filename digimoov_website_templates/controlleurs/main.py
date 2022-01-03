@@ -654,3 +654,23 @@ class Services(http.Controller):
                         'res_id': new_ticket.id
                     })
             return request.render("digimoov_website_templates.pedagogique_thank_you")
+
+    #transport lourd 
+
+class Transport_Lourd(http.Controller):
+    @http.route(['/formation-capacité-transport-lourd-marchandise'], type='http', auth='public', website=True)
+    def transport_lourd(self, **kw, ):
+        digimoov_products = False
+        values = False
+        if request.website.id == 2:
+          
+            #get digimoov products to send them to pricing table 
+            digimoov_products = request.env['product.product'].sudo().search([('company_id', '=', 2)],
+                                                                             order="list_price")
+            values = {
+                'digimoov_products': digimoov_products,
+            }
+            return request.render("digimoov_website_templates.formation_capacité_de_transport_lourd_de_marchandise", values)
+        else:
+            raise werkzeug.exceptions.NotFound()
+        

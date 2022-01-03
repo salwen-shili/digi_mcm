@@ -7,6 +7,7 @@
             <br />
             <br />
             <div id="wrap" class="oe_structure oe_empty">
+                <!-- page homepage-->
                 <div id="homepage" t-if="partenaire!='coursier2roues'">
                     <section class="s_one_page_banner static-slider2" data-name="Home Banner Ten" style="">
                         <div class="container">
