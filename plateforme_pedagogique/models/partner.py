@@ -169,7 +169,7 @@ class partner(models.Model):
     # Ajout automatique d' i-One sur 360learning
     def Ajouter_iOne_auto(self):
         base_url = self.env['ir.config_parameter'].sudo().get_param('web.base.url')
-        if "localhost" not in str(base_url) and "dev.odoo" not in str(base_url):
+        if "localhost" in str(base_url) and "dev.odoo" not in str(base_url):
             for partner in self.env['res.partner'].sudo().search([('statut', "=", "won"),
                                                                   ('statut_cpf', "!=", "canceled")
                                                                   ]):
@@ -290,7 +290,7 @@ class partner(models.Model):
             # Changer format de date et la mettre en majuscule
             datesession = str(date_exam.strftime(new_format).upper())
             date_session = unidecode(datesession)
-
+            responce_api = False
             # Récuperer le mot de passe à partir de res.users
             user = self.env['res.users'].sudo().search([('partner_id', '=', partner.id)], limit=1)
             _logger.info('avant if login user %s' % user.login)
@@ -330,8 +330,10 @@ class partner(models.Model):
                     resp = requests.post(urluser, headers=headers, data=data_user)
                     print(data_user, 'user', resp.status_code)
                     respo = str(json.loads(resp.text))
+                    responce_api = json.loads(resp.text)
                     _logger.info('response addd  %s' %respo)
                     if (resp.status_code == 200):
+
                         create = True
                 data_group = {}
                 # Désactiver les notifications par email
@@ -451,7 +453,57 @@ class partner(models.Model):
                                                                                                   )
 
 
+                if not (create):
+                    """Créer des tickets contenant le message  d'erreur pour service client et service IT 
+                    si l'apprenant n'est pas ajouté sur 360"""
+                    if responce_api and   str(responce_api) != "{'error': 'user_already_exists'}" :
+                        if str(responce_api) == "{'error': 'unavailableEmails'}":
 
+                            vals = {
+                                'description': 'Apprenant non ajouté sur 360 %s' % (partner.name),
+                                'name': 'Email non valide ',
+                                'team_id': self.env['helpdesk.team'].sudo().search(
+                                    [('name', 'like', 'Client'), ('company_id', "=", 2)],
+                                    limit=1).id,
+                            }
+                            description = "Apprenant non ajouté sur 360 " + str(partner.name)
+                            ticket = self.env['helpdesk.ticket'].sudo().search([("description", "=", description),
+                                                                                   ("team_id.name", 'like', 'Client')])
+                            if not ticket:
+                                new_ticket = self.env['helpdesk.ticket'].sudo().create(
+                                    vals)
+
+                        else:
+
+                            vals = {
+                                'description': 'Apprenant non ajouté sur 360 %s %s' % (partner.name, responce_api),
+                                'name': 'Apprenant non ajouté sur 360 ',
+                                'team_id': self.env['helpdesk.team'].sudo().search(
+                                    [('name', 'like', 'IT'), ('company_id', "=", 2)],
+                                    limit=1).id,
+                            }
+                            description = "Apprenant non ajouté sur 360 " + str(partner.name) +" "+str(responce_api)
+                            ticket = self.env['helpdesk.ticket'].sudo().search([("description", "=", description),
+                                                                                   ("team_id.name", 'like', 'IT')])
+
+                            if not ticket:
+                                new_ticket = self.env['helpdesk.ticket'].sudo().create(
+                                    vals)
+                            vals_client = {
+                                'description': 'Apprenant non ajouté sur 360 %s %s' % (partner.name, responce_api),
+                                'name': 'Apprenant non ajouté sur 360 ',
+                                'team_id': self.env['helpdesk.team'].sudo().search(
+                                    [('name', 'like', 'Client'), ('company_id', "=", 2)],
+                                    limit=1).id,
+                            }
+                            description_client = "Apprenant non ajouté sur 360 " + str(partner.name) +" "+ str(
+                                responce_api)
+                            ticket_client = self.env['helpdesk.ticket'].sudo().search(
+                                [("description", "=", description_client),
+                                 ("team_id.name", 'like', 'Client')])
+                            if not ticket_client:
+                                new_ticket_client = self.env['helpdesk.ticket'].sudo().create(
+                                    vals_client)
     def supprimer_ione_auto(self):
 
         base_url = self.env['ir.config_parameter'].sudo().get_param('web.base.url')
@@ -633,7 +685,6 @@ class partner(models.Model):
     def change_state_wedof_validate(self):
         base_url = self.env['ir.config_parameter'].sudo().get_param('web.base.url')
         if "localhost" not in str(base_url) and "dev.odoo" not in str(base_url):
-            
             params_wedof = (
                 ('order', 'desc'),
                 ('type', 'all'),
@@ -1339,7 +1390,7 @@ class partner(models.Model):
                                         move.price_unit = so.amount_total
                                         # move.cpf_acompte_invoice=True
                                         # move.cpf_invoice = True
-                                        
+                                        move.methodes_payment = 'cpf'
                                         move.post()
                                         ref = move.name
 
