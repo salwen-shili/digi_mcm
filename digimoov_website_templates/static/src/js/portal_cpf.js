@@ -53,9 +53,11 @@ odoo.define('digimoov_website_templates.portal_cpf', function (require) {
       'popupcontent'
     ).innerHTML = `<div style="text-align: -webkit-center;"><div class="spinner"></div></div>`;
     sendHttpRequest('POST', '/shop/adduser_plateform', {}).then((res) => {
-      console.log('res.result.url');
+      //console.log('add user call');
       if (res.result) {
+        //console.log('res.result');
         if (res.result.url && res.result.url.includes('https://')) {
+          //console.log('res.result.url && res.result.url.includes');
           for (let index = 0; index < 200; index++) {
             frame();
           }
@@ -73,9 +75,16 @@ odoo.define('digimoov_website_templates.portal_cpf', function (require) {
                         </div>     
          `;
         } else {
+          //console.log('else res.result.url && res.result.url.includes');
           if (res.result.ajout) {
+            //console.log(
+            //   'else if res.ajout res.result.url && res.result.url.includes'
+            // );
             //js-container-animation to animate
             if (res.result.url) {
+              //console.log(
+              //   'else if res.ajout else res.result.url  res.result.url && res.result.url.includes'
+              // );
               document.getElementById('popupcontent').innerHTML = `
                             <p  style="margin-top: 12px;text-align: justify;">                              
                                  ${res.result.ajout}     
@@ -97,28 +106,9 @@ odoo.define('digimoov_website_templates.portal_cpf', function (require) {
           }
         }
       } else {
-        if (res.result.ajout) {
-          //js-container-animation to animate
-          if (res.result.url) {
-            document.getElementById('popupcontent').innerHTML = `
-                            <p  style="margin-top: 12px;text-align: justify;">                              
-                                 ${res.result.ajout}     
-                            </p>
-                            <div style="text-align:center">
-                                <a href="#"> <button type="button" class="btn btn-secondary action-button" onclick="closepopup()"  style="padding: 8px 29px;" > Fermer </button></a>
-
-                            </div>
-         `;
-          }
-          document.getElementById('popupcontent').innerHTML = `
-                            <p style="margin-top: 12px;text-align: justify;">                              
-                                 ${res.result.ajout}     
-                            </p>
-                            <div style="text-align:center">
-                                <a href="#"> <button type="button" class="btn btn-secondary action-button"  onclick="closepopup()" style="padding: 8px 29px;" > Fermer </button></a>
-                            </div>
-         `;
-        }
+        //console.log('res.result');
+        window.location.href = '#';
+        window.location.reload();
       }
     });
   };
@@ -146,7 +136,8 @@ odoo.define('digimoov_website_templates.portal_cpf', function (require) {
         },
       }).then(function () {
         // dés que l'url termine l'éxécution on recharge la page de portal client
-        return addUserPlateform();
+        //console.log('addUser');
+        addUserPlateform();
       });
     },
   });

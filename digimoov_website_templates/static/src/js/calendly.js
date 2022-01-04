@@ -2,7 +2,7 @@ window.onload = function () {
   var user_name = document.getElementById('user_name_connected').value;
   var user_email = document.getElementById('user_email_connected').value;
   var url = window.location.pathname;
-  console.log(!url.includes('/coordonnees'));
+  //console.log(!url.includes('/coordonnees'));
   if (
     !(
       url.includes('/coordonnees') ||

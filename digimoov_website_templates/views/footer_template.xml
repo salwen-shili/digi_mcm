@@ -43,9 +43,7 @@
         <script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async="async"></script>
         <script type="text/javascript" src="/digimoov_website_templates/static/src/js/calendly.js"></script>
         <!-- Fin de widget de badge Calendly -->
-        <script>
-          console.log("calendly charged");
-        </script>
+
       </t>
       <style>
         @import url('//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css');
@@ -348,7 +346,7 @@
               <footer>
                 <ul class="social-icons shadow">
                   <li class="tab">
-                    <a href="https://www.facebook.com/Digimoov" data-original-title="" title="" aria-describedby="tooltip67821" target="_blank">
+                    <a href="https://www.facebook.com/Digimoov" data-original-title="" title="" aria-describedby="tooltip67821" target="_blank" rel="noopener">
                       <i class="fa fa-facebook circle" data-original-title="" title="" aria-describedby="tooltip741703" />
                       &amp;nbsp;
                     </a>
@@ -375,7 +373,7 @@
             var t = d.getElementsByTagName(s)[0],
               e = d.createElement(s);
             e.async = true;
-            e.src = '//static.axept.io/sdk.js';
+            e.src = 'https://static.axept.io/sdk.js';
             t.parentNode.insertBefore(e, t);
           })(document, 'script');
         </script>

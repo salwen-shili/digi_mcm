@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', function () {
   const current = document.getElementById('step_value');
-  console.log(current.value);
+  //console.log(current.value);
 
   const finish = `<h2 class="purple-text text-center"><strong>FÉLICITATIONS !</strong></h2> <br>
                             <div class="row justify-content-center">
@@ -33,7 +33,7 @@ document.addEventListener('DOMContentLoaded', function () {
   const questionnaireUrl = '/coordonnees';
 
   var step = 1;
-  console.log('step', current.value);
+  //console.log('step', current.value);
   switch (current.value) {
     case 'coordonnées':
       step = 1;
@@ -68,7 +68,7 @@ document.addEventListener('DOMContentLoaded', function () {
       break;
     case 'finish':
       step = 4;
-      console.log(step);
+      //console.log(step);
       documents.classList.add('active');
       financement.classList.add('active');
       validation.classList.add('active');
@@ -81,7 +81,7 @@ document.addEventListener('DOMContentLoaded', function () {
       break;
   }
   var progressBarValue = step * 25;
-  console.log(step);
+  //console.log(step);
   document.getElementsByClassName('progress-bar')[0].style.width =
     progressBarValue + '%';
 });
