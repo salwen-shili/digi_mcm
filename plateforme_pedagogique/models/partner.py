@@ -47,16 +47,19 @@ class partner(models.Model):
     stats_ids = fields.Many2one('plateforme_pedagogique.user_stats')
     temps_minute = fields.Integer(string="Temps passé en minutes")  # Champs pour récuperer temps en minute par api360
     # Recuperation de l'état de facturation pour cpf de wedof et carte bleu de odoo
-    billingState = fields.Selection(selection=[
-        ('notBillable', 'Non facturable'),
-        ('depositWait', 'Dépôt attendez'),
-        ('depositPaid', 'Dépôt payé'),
-        ('toBill', 'Facturer'),
-        ('billed', 'Facturé'),
+    etat_financement_cpf_cb = fields.Selection([('untreated', 'Non Traité'),
+        ('validated', 'Validé'),
+        ('accepted', 'Accepté'),
+        ('in_training', 'En Formation'),
+        ('out_training', 'Sortie de Formation'),
+        ('service_declared', 'Service Fait Declaré'),
+        ('service_validated', 'Service Fait Validé'),
+        ('bill', 'Facturé'),
+        ('canceled', 'Annulé'),
         ('paid', 'Payé'),
         ('not_paid', 'Non payées'),
         ('in_payment', 'En paiement')],
-        string="Etat de facture", default=False)
+        string="Financement", default=False)
 
     """Changer login d'apprenant au moment de changement d'email sur la fiche client"""
 
@@ -306,7 +309,7 @@ class partner(models.Model):
             user = self.env['res.users'].sudo().search([('partner_id', '=', partner.id)], limit=1)
             _logger.info('avant if login user %s' % user.login)
             _logger.info('avant if partner email %s' % partner.email)
-            
+            _logger.info('avant if password  %s ' % user.password360)
 
             if user:
                 id_Digimoov_bienvenue = '56f5520e11d423f46884d594'
@@ -334,14 +337,14 @@ class partner(models.Model):
                 # Si non si mot de passe récupéré on l'ajoute sur la plateforme avec le meme mot de passe
                 if (user.password360) and (company == '2'):
                     partner.password360 = user.password360
-                    
+                    _logger.info('if user  %s ' % user.password360)
 
                     # Ajouter i-One to table user
                     data_user = '{"mail":"' + partner.email + '" , "password":"' + user.password360 + '", "firstName":"' + partner.firstName + '", "lastName":"' + partner.lastName + '", "phone":"' + partner.phone + '", "lang":"fr","sendCredentials":"true"}'
                     resp = requests.post(urluser, headers=headers, data=data_user)
                     print(data_user, 'user', resp.status_code)
                     respo = str(json.loads(resp.text))
-                    _logger.info('response addd  %s' %respo)
+                    _logger.info('response addd  %s' % respo)
                     if (resp.status_code == 200):
                         create = True
                 data_group = {}
@@ -644,7 +647,7 @@ class partner(models.Model):
     def change_state_wedof_validate(self):
         base_url = self.env['ir.config_parameter'].sudo().get_param('web.base.url')
         if "localhost" not in str(base_url) and "dev.odoo" not in str(base_url):
-            
+
             params_wedof = (
                 ('order', 'desc'),
                 ('type', 'all'),
@@ -687,7 +690,7 @@ class partner(models.Model):
                 if "residence" in dossier['attendee']['address']:
                     residence = dossier['attendee']['address']['residence']
                 num_voie = ""
-                if "number" in dossier['attendee']['address']: 
+                if "number" in dossier['attendee']['address']:
                     num_voie = dossier['attendee']['address']['number']
 
                 voie = ""
@@ -1073,7 +1076,7 @@ class partner(models.Model):
                     })
                     user.company_id = 1
                     user.partner_id.company_id = 1
-                if user :
+                if user:
                     phone = str(tel.replace(' ', ''))[-9:]
                     phone = '+33' + ' ' + phone[0:1] + ' ' + phone[1:3] + ' ' + phone[3:5] + ' ' + phone[5:7] + ' ' + phone[7:] # convert the number in this format : +33 x xx xx xx xx
                     url = str(user.signup_url) # get the signup_url
@@ -1106,7 +1109,7 @@ class partner(models.Model):
                                 'message_type': 'notification',
                                 'subtype_id': subtype_id,
                                 'body': body,
-                            }) # create note in client view
+                            })  # create note in client view
         # user = request.env['res.users'].sudo().search([('login', "=", email)])
         if user:
             client = self.env['res.partner'].sudo().search(
@@ -1119,7 +1122,7 @@ class partner(models.Model):
                 client.numero_cpf = dossier
                 client.statut_cpf = 'validated'
                 client.statut = 'indecis'
-                client.street2=residence
+                client.street2 = residence
                 client.phone = '0' + str(tel.replace(' ', ''))[-9:]
                 client.street = street
                 client.num_voie = num_voie
@@ -1145,7 +1148,7 @@ class partner(models.Model):
                                                                      ('company_id', '=', 2),
                                                                      ('website_id', '=', 2),
                                                                      ('order_line.product_id', '=', product_id.id)])
-                        
+
                         if not sale:
                             so = self.env['sale.order'].sudo().create({
                                 'partner_id': client.id,
@@ -1182,7 +1185,7 @@ class partner(models.Model):
                                                                      ('company_id', '=', 1),
                                                                      ('website_id', '=', 1),
                                                                      ('order_line.product_id', '=', product_id.id)])
-                        
+
                         if not sale:
                             so = self.env['sale.order'].sudo().create({
                                 'partner_id': client.id,
