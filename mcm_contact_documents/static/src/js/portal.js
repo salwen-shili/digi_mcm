@@ -17,7 +17,7 @@ odoo.define('mcm_contact_documents.portal', function (require) {
         $('div.spanner').addClass('show');
         $('div.overlay').addClass('show');
       }
-      console.log('js mcm');
+      //console.log('js mcm');
       $('#identity').bind('change', function () {
         var filename = $('#identity').val();
         if (/^\s*$/.test(filename)) {

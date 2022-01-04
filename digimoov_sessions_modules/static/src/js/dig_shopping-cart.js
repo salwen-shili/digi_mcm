@@ -88,7 +88,7 @@ const addUserPlateform = () => {
     'popupcontent'
   ).innerHTML = `<div style="text-align: -webkit-center;"><div class="spinner"></div></div>`;
   sendHttpRequest('POST', '/shop/adduser_plateform', {}).then((res) => {
-    console.log('res.result.url');
+    //console.log('res.result.url');
 
     if (res.result.url) {
       if (res.result.url.includes('https://')) {
@@ -273,7 +273,7 @@ function msTracking(event, event_category, event_label, event_value) {
         }),
       (i = d.getElementsByTagName(t)[0]),
       i.parentNode.insertBefore(n, i);
-  })(window, document, 'script', '//bat.bing.com/bat.js', 'uetq');
+  })(window, document, 'script', 'https://bat.bing.com/bat.js', 'uetq');
 
   window.uetq = window.uetq || [];
   window.uetq.push('event', event, {
@@ -351,7 +351,7 @@ function verify_payment_method() {
             break;
           case state == 'accepted':
             cpfAccepted();
-            console.log('cpf accepted');
+            //console.log('cpf accepted');
 
             // document.getElementById('popupcontent').innerHTML = 'finished...';
             break;
@@ -381,7 +381,7 @@ function verify_payment_method() {
             break;
           case state == 'accepted':
             cpfAccepted();
-            console.log('cpf accepted');
+            //console.log('cpf accepted');
             break;
 
           default:
@@ -402,7 +402,7 @@ function verify_payment_method() {
 }
 
 function closepopup(msg) {
-  console.log('closepopup');
+  //console.log('closepopup');
   if (msg) {
     window.location.href = msg;
     return;

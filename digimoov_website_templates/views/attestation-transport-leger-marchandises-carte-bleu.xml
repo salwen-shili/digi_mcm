@@ -275,7 +275,7 @@
                                     </p>
                                 </div>
                                 <div class="col-lg-3 s_btn text-right pt8 pb24" data-name="Button">
-                                    <a href="/digimoov_website_templates/static/pdf/PROGRAMME-DE-FORMATION-DE-TRANSPORT-LEGER-DE-MARCHANDISES-DIGIMOOV.pdf" class="btn btn-primary btn-lg" target="_blank" data-original-title="" title="" aria-describedby="tooltip643098">
+                                    <a href="/digimoov_website_templates/static/pdf/PROGRAMME-DE-FORMATION-DE-TRANSPORT-LEGER-DE-MARCHANDISES-DIGIMOOV.pdf" class="btn btn-primary btn-lg" target="_blank" rel="noopener" data-original-title="" title="" aria-describedby="tooltip643098">
                                         <span data-original-title="" title="" aria-describedby="tooltip516238">Je télécharge !</span>
                                         &amp;nbsp;
                                         <i class="fa fa-1x fa-fw fa-arrow-circle-right ml-1" />

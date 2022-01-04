@@ -70,29 +70,21 @@
                         </div>
                     </div>
                 </section>
-                <!-- fin section 1  -->
                 <!-- Logos-->
                 <section class="container pt40 pb32 js-scroll fade-in-bottom">
-
                     <div class="row align-items-center justify-content-center">
-                        <div class=" col-md-3 col-sm-12 text-center mb-4 mb-md-0  ">
-                            <img class="img-fluid" style="width: 100px;" src="/mcm_website_theme/static/src/img/formation-éligible-au-compte-personnel-de-formation.png" />
+                        <div class="col-md-3 col-sm-12 text-center mb-4 mb-md-0">
+                            <img data-src="/mcm_website_theme/static/src/img/formation-éligible-au-compte-personnel-de-formation.webp" data-srcSafari="/mcm_website_theme/static/src/img/formation-éligible-au-compte-personnel-de-formation.png" class="img-fluid lazy" style="width: 100px" title="Formation éligible au CPF" alt="logo mon compte de formation" />
                         </div>
-
-                        <div class=" col-md-3 col-sm-12 text-center mb-4 mb-md-0 ">
-                            <img class="img-fluid" style="width: 188px;" src="/mcm_website_theme/static/src/img/formation-taxi-vtc-certifiée-qualiopi.png" />
-
+                        <div class="col-md-3 col-sm-12 text-center mb-4 mb-md-0">
+                            <img class="img-fluid lazy" style="width: 188px" data-src="/mcm_website_theme/static/src/img/formation-taxi-vtc-certifiée-qualiopi.webp" data-srcSafari="/mcm_website_theme/static/src/img/formation-taxi-vtc-certifiée-qualiopi.png" title="qualiopi" alt="qualiopi" />
                         </div>
-                        <div class=" col-md-3 col-sm-12 text-center mb-4 mb-md-0 ">
-                            <img class="img-fluid" style="width: 110px;" src="/mcm_website_theme/static/src/img/mcm academy-partenaire-france-relance.jpg" />
-
+                        <div class="col-md-3 col-sm-12 text-center mb-4 mb-md-0">
+                            <img class="img-fluid lazy" style="width: 110px" data-srcSafari="/mcm_website_theme/static/src/img/mcm academy-partenaire-france-relance.jpg" data-src="/mcm_website_theme/static/src/img/mcm academy-partenaire-france-relance.webp" title="logo france relance" alt="logo france relance" />
                         </div>
-                        <div class=" col-md-3 col-sm-12 text-center mb-4 mb-md-0 ">
-                            <img class="img-fluid" style="width: 100px;" src="/mcm_website_theme/static/src/img/mcm academy-centre-de-formation-taxi-vtc-carte pro-préfecture.png" />
-
+                        <div class="col-md-3 col-sm-12 text-center mb-4 mb-md-0">
+                            <img class="img-fluid lazy" style="width: 100px" data-src="/mcm_website_theme/static/src/img/mcm academy-centre-de-formation-taxi-vtc-carte pro-préfecture.webp" data-srcSafari="/mcm_website_theme/static/src/img/mcm academy-centre-de-formation-taxi-vtc-carte pro-préfecture.png" title="Centre agrée de la préfecture" alt="Centre agrée de la préfecture" />
                         </div>
-
-
                     </div>
                 </section>
                 <!-- fin LOGOS-->
@@ -439,7 +431,7 @@
                                     <span style="font-weight: 700; font-size: 15px;">
                                         Pour connaître les statistiques détaillées (données brutes et formules de
                                         calcul),
-                                        <a href="https://www.mcm-academy.fr/service-clientele" target="_blank" data-original-title="" title="" aria-describedby="tooltip12353">contactez-nous</a>
+                                        <a href="https://www.mcm-academy.fr/service-clientele" target="_blank" rel="noopener" data-original-title="" title="" aria-describedby="tooltip12353">contactez-nous</a>
                                         .
                                     </span>
 
@@ -659,11 +651,11 @@
                                     </a>
                                 </div>
 
-<!--                                <div t-if="partenaire=='' or not partenaire ">-->
-<!--                                    <a href="https://bolt.eu/fr/">-->
-<!--                                        <img data-src="/mcm_website_theme/static/src/img/partenaires/bolt.png" data-srcSafari="/mcm_website_theme/static/src/img/partenaires/bolt.png" class="img img-fluid lazy" alt="Logo partenaire bolt" data-original-title="" title="Bolt partenaire MCM ACADEMY" aria-describedby="tooltip843653" style="margin-top: 30px; width: 38%" />-->
-<!--                                    </a>-->
-<!--                                </div>-->
+                                <!--                                <div t-if="partenaire=='' or not partenaire ">-->
+                                <!--                                    <a href="https://bolt.eu/fr/">-->
+                                <!--                                        <img data-src="/mcm_website_theme/static/src/img/partenaires/bolt.png" data-srcSafari="/mcm_website_theme/static/src/img/partenaires/bolt.png" class="img img-fluid lazy" alt="Logo partenaire bolt" data-original-title="" title="Bolt partenaire MCM ACADEMY" aria-describedby="tooltip843653" style="margin-top: 30px; width: 38%" />-->
+                                <!--                                    </a>-->
+                                <!--                                </div>-->
                                 <div t-if="partenaire=='bolt' ">
                                     <a href="https://bolt.eu/fr/">
                                         <img data-src="/mcm_website_theme/static/src/img/partenaires/Bolt_logo.svg.png" data-srcSafari="/mcm_website_theme/static/src/img/partenaires/Bolt_logo.svg.png" class="img img-fluid lazy" alt="Logo partenaire bolt" data-original-title="" title="Bolt partenaire MCM ACADEMY" aria-describedby="tooltip843653" style="margin-top: 30px; width: 38%" />

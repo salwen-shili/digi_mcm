@@ -1323,7 +1323,7 @@
                                     </h4>
                                 </div>
                                 <div class="col-lg-3 s_btn text-right pt8 pb24" data-name="Button">
-                                    <a href="/digimoov_website_templates/static/pdf/PROGRAMME DE FORMATION - COURSIER 2 ROUES - DIGIMOOV.pdf" alt="document pdf programme de formation coursier sur deux roues" target="_blank" class="btn btn-primary btn-lg" title="programme de formation coursier sur scooter">
+                                    <a href="/digimoov_website_templates/static/pdf/PROGRAMME DE FORMATION - COURSIER 2 ROUES - DIGIMOOV.pdf" alt="document pdf programme de formation coursier sur deux roues" target="_blank" rel="noopener" class="btn btn-primary btn-lg" title="programme de formation coursier sur scooter">
                 Je télécharge !
                                     </a>
                                 </div>
