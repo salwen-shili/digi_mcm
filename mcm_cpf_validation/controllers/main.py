@@ -648,6 +648,7 @@ class ClientCPFController(http.Controller):
                     ).sudo().create({
                         'body': body,
                         'mass_keep_log': True,
+                        'mass_force_send': True,
                     })
                     composer.action_send_sms()
             return request.render("mcm_cpf_validation.mcm_website_new_partner_created", {})
