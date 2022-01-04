@@ -618,6 +618,7 @@ class partner(models.Model):
     def change_state_wedof_validate(self):
         base_url = self.env['ir.config_parameter'].sudo().get_param('web.base.url')
         if "localhost" not in str(base_url) and "dev.odoo" not in str(base_url):
+            
             params_wedof = (
                 ('order', 'desc'),
                 ('type', 'all'),
@@ -635,6 +636,7 @@ class partner(models.Model):
                                     params=params_wedof)
             registrations = response.json()
             for dossier in registrations:
+                _logger.info("validate_________ %s" %str(dossier))
                 externalid = dossier['externalId']
                 email = dossier['attendee']['email']
                 email = email.replace("%", ".")  # remplacer % par .
@@ -704,7 +706,9 @@ class partner(models.Model):
                     'https://www.wedof.fr/api/registrationFolders/' + externalid + '/validate',
                     headers=headers, data=dat)
                 status = str(response_post.status_code)
-
+                statuss=str(json.loads(response_post.text))
+                _logger.info("validate_________ %s" % str(status))
+                _logger.info("validate_________ %s" % str(statuss))
                 """Si dossier passe à l'etat validé on met à jour statut cpf sur la fiche client"""
                 if status == "200":
                     print('validate', email)
