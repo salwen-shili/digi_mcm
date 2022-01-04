@@ -37,7 +37,7 @@
                 <field name="last_login"/>
                 <field name="totalTimeSpentInMinutes"/>
                 <field name="temps_minute" optional="hide"/>
-                <field name="billingState" optional="show" string="État de facture edof"/>
+                <field name="etat_financement_cpf_cb" optional="show" string="Financement"/>
             </xpath>
         </field>
     </record>
@@ -64,7 +64,7 @@
             </xpath>
             <xpath expr="//page/group[@name='session']/group" position="inside">
                 <field name="renounce_request"/>
-                <field name="billingState"/>
+                <field name="etat_financement_cpf_cb"/>
             </xpath>
             <xpath expr="//page[@name='internal_notes']" position="after">
                 <page string="Statistiques sur 360 Learning" name="pedagogique">

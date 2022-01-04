@@ -47,16 +47,19 @@ class partner(models.Model):
     stats_ids = fields.Many2one('plateforme_pedagogique.user_stats')
     temps_minute = fields.Integer(string="Temps passé en minutes")  # Champs pour récuperer temps en minute par api360
     # Recuperation de l'état de facturation pour cpf de wedof et carte bleu de odoo
-    billingState = fields.Selection(selection=[
-        ('notBillable', 'Non facturable'),
-        ('depositWait', 'Dépôt attendez'),
-        ('depositPaid', 'Dépôt payé'),
-        ('toBill', 'Facturer'),
-        ('billed', 'Facturé'),
+    etat_financement_cpf_cb = fields.Selection([('untreated', 'Non Traité'),
+        ('validated', 'Validé'),
+        ('accepted', 'Accepté'),
+        ('in_training', 'En Formation'),
+        ('out_training', 'Sortie de Formation'),
+        ('service_declared', 'Service Fait Declaré'),
+        ('service_validated', 'Service Fait Validé'),
+        ('bill', 'Facturé'),
+        ('canceled', 'Annulé'),
         ('paid', 'Payé'),
         ('not_paid', 'Non payées'),
         ('in_payment', 'En paiement')],
-        string="Etat de facture", default=False)
+        string="Financement", default=False)
 
     # Recuperer les utilisateurs de 360learning
     def getusers(self):
@@ -513,7 +516,7 @@ class partner(models.Model):
                 ('order', 'desc'),
                 ('type', 'all'),
                 ('state', 'accepted'),
-                ('billingState', 'all'),
+                ('etat_financement_cpf_cb', 'all'),
                 ('certificationState', 'all'),
                 ('sort', 'lastUpdate'),
             )
@@ -611,7 +614,7 @@ class partner(models.Model):
                 ('order', 'desc'),
                 ('type', 'all'),
                 ('state', 'notProcessed'),
-                ('billingState', 'all'),
+                ('etat_financement_cpf_cb', 'all'),
                 ('certificationState', 'all'),
                 ('sort', 'lastUpdate'),
             )
@@ -706,16 +709,16 @@ class partner(models.Model):
 
     def change_state_cpf_partner(self):
         base_url = self.env['ir.config_parameter'].sudo().get_param('web.base.url')
-        if "localhost" not in str(base_url) and "dev.odoo" in str(base_url):
+        if "localhost" in str(base_url) and "dev.odoo" not in str(base_url):
             params_wedof = (
                 ('order', 'desc'),
                 ('type', 'all'),
                 ('state',
                  'validated,inTraining,refusedByAttendee,refusedByOrganism,serviceDoneDeclared,serviceDoneValidated,canceledByAttendee,canceledByAttendeeNotRealized,canceledByOrganism'),
-                ('billingState', 'all'),
+                ('etat_financement_cpf_cb', 'all'),
                 ('certificationState', 'all'),
                 ('sort', 'lastUpdate'),
-                ('limit', '100'),
+                ('limit', '2000'),
                 ('page', '1')
             )
             headers = {
@@ -733,43 +736,57 @@ class partner(models.Model):
                 email = email.replace("%", ".")  # remplacer % par .
                 email = email.replace(" ", "")  # supprimer les espaces envoyés en paramètre email
                 email = str(email).lower()  # recupérer l'email en miniscule pour éviter la création des deux comptes
-                print('dossier', dossier)
                 # Recherche dans la table utilisateur si login de wedof = email
                 user = self.env["res.users"].sudo().search([("login", "=", email)])
-                if user:
-                    # Initialisation de champ billingState
-                    billingState = dossier['billingState']
-                    print("user WEDOF:::::::::::::::::::::", user.partner_id.display_name)
-                    _logger.info("user WEDOF::::::::::::::::::::: %s" % str(user.partner_id.display_name))
-                    if billingState == 'paid':
-                        user.sudo().write({'billingState': 'paid'})  # write la valeur payé dans le champ billingState
-                    if billingState == 'notBillable':
-                        user.sudo().write({'billingState': 'notBillable'})
-                    if billingState == 'depositWait':
-                        user.sudo().write({'billingState': 'depositWait'})
-                    if billingState == 'depositPaid':
-                        user.sudo().write({'billingState': 'depositPaid'})
-                    if billingState == 'toBill':
-                        user.sudo().write({'billingState': 'toBill'})
-                    if billingState == 'billed':
-                        user.sudo().write({'billingState': 'billed'})
-                if not user:  # Si utilisateur n'existe pas in wedof
-                    for partner in self.env['res.partner'].sudo().search([('statut', "=", "won")]):
-                        print("partner", partner.display_name)
-                        # Afficher les factures si session dans la facture == session dans la fiche client
-                        facture = self.env['account.move'].sudo().search([], order="invoice_date desc", limit=1)
-                        print("%%%%%Facture%%%%%", facture.id)
-                        if facture:  # Si facture existe
-                            billingState = facture.invoice_payment_state
-                            print("billingState", billingState, facture.partner_id.id)
-                            _logger.info("Facture dans odoo::::::::::::::::::::: %s" % str(facture.partner_id.id))
-                            if billingState == 'not_paid':
-                                facture.partner_id.sudo().write({'billingState': 'not_paid'})
-                            if billingState == 'in_payment':
-                                facture.partner_id.sudo().write({'billingState': 'in_payment'})
-                            if billingState == 'paid':
-                                facture.partner_id.sudo().write({'billingState': 'paid'})
-
+                if user and user.partner_id.mode_de_financement == "cpf":
+                    # Initialisation de champ etat_financement_cpf_cb
+                    etat_financement_cpf_cb = dossier['state']
+                    print("user WEDOF:::::::::::::::::::::", user.partner_id.display_name, etat_financement_cpf_cb)
+                    #_logger.info("user WEDOF::::::::::::::::::::: %s" % str(user.partner_id.display_name))
+                    if etat_financement_cpf_cb == "untreated":
+                        user.partner_id.sudo().write({'etat_financement_cpf_cb': 'untreated'})  # write la valeur payé dans le champ etat_financement_cpf_cb
+                        print("001")
+                    if etat_financement_cpf_cb == "validated":
+                        user.partner_id.sudo().write({'etat_financement_cpf_cb': 'validated'})
+                        print("002")
+                    if etat_financement_cpf_cb == "accepted":
+                        user.partner_id.sudo().write({'etat_financement_cpf_cb': 'accepted'})
+                        print("003")
+                    if etat_financement_cpf_cb == "inTraining":
+                        user.partner_id.sudo().write({'etat_financement_cpf_cb': 'in_training'})
+                        print("004")
+                    if etat_financement_cpf_cb == "out_training":
+                        user.partner_id.sudo().write({'etat_financement_cpf_cb': 'terminated'})
+                        print("005")
+                    if etat_financement_cpf_cb == "serviceDoneDeclared":
+                        #user.partner_id.sudo().write({'etat_financement_cpf_cb': 'service_declared'})
+                        user.partner_id.etat_financement_cpf_cb == 'service_declared'
+                        print("006")
+                    if etat_financement_cpf_cb == "serviceDoneValidated":
+                        user.partner_id.sudo().write({'etat_financement_cpf_cb': 'service_validated'})
+                        print("007")
+                    if etat_financement_cpf_cb == "bill":
+                        user.partner_id.sudo().write({'etat_financement_cpf_cb': 'bill'})
+                        print("008")
+                    if etat_financement_cpf_cb == "canceled" or etat_financement_cpf_cb == "canceledByAttendee" or etat_financement_cpf_cb == "canceledByAttendeeNotRealized" or etat_financement_cpf_cb == "refusedByAttendee" or etat_financement_cpf_cb == "refusedByOrganism":
+                        user.partner_id.sudo().write({'etat_financement_cpf_cb': 'canceled'})
+                        print("009")
+                else:
+                    for partner in self.env['res.partner'].search([('statut', "=", "won"), ("mode_de_financement", "=", "particulier")]):
+                        print("////////::::::::::::::::Partner:::::::::::::::://////////////////;;", partner)
+                        invoice = self.env['account.move'].sudo().search([('state', "=", 'posted'), ('partner_id', "=", partner.id)], order="invoice_date desc", limit=1)
+                        print("°°°°°°°°°°°°°°°°°°°°°facture.partner_id°°°°°°°°°°°°°°°°°°°°°", invoice.partner_id, invoice.invoice_payment_state)
+                        etat_financement_cpf_cb = invoice.invoice_payment_state
+                        if invoice.invoice_payment_state == "in_payment":
+                            partner.sudo().write({'etat_financement_cpf_cb': 'in_payment'})
+                            print("task001")
+                        if invoice.invoice_payment_state == "paid":
+                            partner.sudo().write({'etat_financement_cpf_cb': 'paid'})
+                            print("task002")
+                        if invoice.invoice_payment_state == "not_paid":
+                            partner.sudo().write({'etat_financement_cpf_cb': 'not_paid'})
+                            print("task003")
+                    #etat_financement_cpf_cb = invoice.invoice_payment_state
                 idform = dossier['trainingActionInfo']['externalId']
                 training_id = ""
                 if "_" in idform:
@@ -1189,7 +1206,7 @@ class partner(models.Model):
                 ('order', 'desc'),
                 ('type', 'all'),
                 ('state', 'accepted'),
-                ('billingState', 'all'),
+                ('etat_financement_cpf_cb', 'all'),
                 ('certificationState', 'all'),
                 ('sort', 'lastUpdate'),
                 ('limit', '100')
