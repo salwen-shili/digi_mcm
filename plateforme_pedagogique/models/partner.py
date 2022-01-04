@@ -647,7 +647,6 @@ class partner(models.Model):
     def change_state_wedof_validate(self):
         base_url = self.env['ir.config_parameter'].sudo().get_param('web.base.url')
         if "localhost" not in str(base_url) and "dev.odoo" not in str(base_url):
-
             params_wedof = (
                 ('order', 'desc'),
                 ('type', 'all'),
@@ -741,7 +740,8 @@ class partner(models.Model):
                 """Si dossier passe à l'etat validé on met à jour statut cpf sur la fiche client"""
                 if status == "200":
                     print('validate', email)
-                    self.cpf_validate(training_id, email,residence, num_voie, nom_voie, voie, street, tel, code_postal, ville,
+                    self.cpf_validate(training_id, email, residence, num_voie, nom_voie, voie, street, tel, code_postal,
+                                      ville,
                                       diplome, dossier['attendee']['lastName'], dossier['attendee']['firstName'],
                                       dossier['externalId'], lastupd)
 
@@ -757,7 +757,7 @@ class partner(models.Model):
                 ('billingState', 'all'),
                 ('certificationState', 'all'),
                 ('sort', 'lastUpdate'),
-                ('limit', '100'),
+                ('limit', '300'),
                 ('page', '1')
             )
             headers = {
@@ -769,7 +769,7 @@ class partner(models.Model):
                                     params=params_wedof)
             registrations = response.json()
             for dossier in registrations:
-                print('dosssier',dossier['attendee']['address'] )
+                print('dosssier', dossier['attendee']['address'])
                 externalId = dossier['externalId']
                 email = dossier['attendee']['email']
                 email = email.replace("%", ".")  # remplacer % par .
@@ -778,40 +778,55 @@ class partner(models.Model):
                 print('dossier', dossier)
                 # Recherche dans la table utilisateur si login de wedof = email
                 user = self.env["res.users"].sudo().search([("login", "=", email)])
-                if user:
-                    # Initialisation de champ billingState
-                    billingState = dossier['billingState']
-                    print("user WEDOF:::::::::::::::::::::", user.partner_id.display_name)
-                    _logger.info("user WEDOF::::::::::::::::::::: %s" % str(user.partner_id.display_name))
-                    if billingState == 'paid':
-                        user.sudo().write({'billingState': 'paid'})  # write la valeur payé dans le champ billingState
-                    if billingState == 'notBillable':
-                        user.sudo().write({'billingState': 'notBillable'})
-                    if billingState == 'depositWait':
-                        user.sudo().write({'billingState': 'depositWait'})
-                    if billingState == 'depositPaid':
-                        user.sudo().write({'billingState': 'depositPaid'})
-                    if billingState == 'toBill':
-                        user.sudo().write({'billingState': 'toBill'})
-                    if billingState == 'billed':
-                        user.sudo().write({'billingState': 'billed'})
-                if not user:  # Si utilisateur n'existe pas in wedof
-                    for partner in self.env['res.partner'].sudo().search([('statut', "=", "won")]):
-                        print("partner", partner.display_name)
-                        # Afficher les factures si session dans la facture == session dans la fiche client
-                        facture = self.env['account.move'].sudo().search([], order="invoice_date desc", limit=1)
-                        print("%%%%%Facture%%%%%", facture.id)
-                        if facture:  # Si facture existe
-                            billingState = facture.invoice_payment_state
-                            print("billingState", billingState, facture.partner_id.id)
-                            _logger.info("Facture dans odoo::::::::::::::::::::: %s" % str(facture.partner_id.id))
-                            if billingState == 'not_paid':
-                                facture.partner_id.sudo().write({'billingState': 'not_paid'})
-                            if billingState == 'in_payment':
-                                facture.partner_id.sudo().write({'billingState': 'in_payment'})
-                            if billingState == 'paid':
-                                facture.partner_id.sudo().write({'billingState': 'paid'})
-
+                if user and user.partner_id.mode_de_financement == "cpf":
+                    # Initialisation de champ etat_financement_cpf_cb
+                    etat_financement_cpf_cb = dossier['state']
+                    print("user WEDOF:::::::::::::::::::::", user.partner_id.display_name, etat_financement_cpf_cb)
+                    #_logger.info("user WEDOF::::::::::::::::::::: %s" % str(user.partner_id.display_name))
+                    if etat_financement_cpf_cb == "untreated":
+                        user.partner_id.sudo().write({'etat_financement_cpf_cb': 'untreated'})  # write la valeur payé dans le champ etat_financement_cpf_cb
+                        print("001")
+                    if etat_financement_cpf_cb == "validated":
+                        user.partner_id.sudo().write({'etat_financement_cpf_cb': 'validated'})
+                        print("002")
+                    if etat_financement_cpf_cb == "accepted":
+                        user.partner_id.sudo().write({'etat_financement_cpf_cb': 'accepted'})
+                        print("003")
+                    if etat_financement_cpf_cb == "inTraining":
+                        user.partner_id.sudo().write({'etat_financement_cpf_cb': 'in_training'})
+                        print("004")
+                    if etat_financement_cpf_cb == "out_training":
+                        user.partner_id.sudo().write({'etat_financement_cpf_cb': 'terminated'})
+                        print("005")
+                    if etat_financement_cpf_cb == "serviceDoneDeclared":
+                        #user.partner_id.sudo().write({'etat_financement_cpf_cb': 'service_declared'})
+                        user.partner_id.etat_financement_cpf_cb == 'service_declared'
+                        print("006")
+                    if etat_financement_cpf_cb == "serviceDoneValidated":
+                        user.partner_id.sudo().write({'etat_financement_cpf_cb': 'service_validated'})
+                        print("007")
+                    if etat_financement_cpf_cb == "bill":
+                        user.partner_id.sudo().write({'etat_financement_cpf_cb': 'bill'})
+                        print("008")
+                    if etat_financement_cpf_cb == "canceled" or etat_financement_cpf_cb == "canceledByAttendee" or etat_financement_cpf_cb == "canceledByAttendeeNotRealized" or etat_financement_cpf_cb == "refusedByAttendee" or etat_financement_cpf_cb == "refusedByOrganism":
+                        user.partner_id.sudo().write({'etat_financement_cpf_cb': 'canceled'})
+                        print("009")
+                else:
+                    for partner in self.env['res.partner'].search([('statut', "=", "won"), ("mode_de_financement", "=", "particulier")]):
+                        print("////////::::::::::::::::Partner:::::::::::::::://////////////////;;", partner)
+                        invoice = self.env['account.move'].sudo().search([('state', "=", 'posted'), ('partner_id', "=", partner.id)], order="invoice_date desc", limit=1)
+                        print("°°°°°°°°°°°°°°°°°°°°°facture.partner_id°°°°°°°°°°°°°°°°°°°°°", invoice.partner_id, invoice.invoice_payment_state)
+                        etat_financement_cpf_cb = invoice.invoice_payment_state
+                        if invoice.invoice_payment_state == "in_payment":
+                            partner.sudo().write({'etat_financement_cpf_cb': 'in_payment'})
+                            print("task001")
+                        if invoice.invoice_payment_state == "paid":
+                            partner.sudo().write({'etat_financement_cpf_cb': 'paid'})
+                            print("task002")
+                        if invoice.invoice_payment_state == "not_paid":
+                            partner.sudo().write({'etat_financement_cpf_cb': 'not_paid'})
+                            print("task003")
+                    etat_financement_cpf_cb = invoice.invoice_payment_state
                 idform = dossier['trainingActionInfo']['externalId']
                 training_id = ""
                 if "_" in idform:
@@ -848,9 +863,9 @@ class partner(models.Model):
                 ville = ""
                 if "city" in dossier['attendee']['address']:
                     ville = dossier['attendee']['address']['city']
-                residence=""
+                residence = ""
                 if "residence" in dossier['attendee']['address']:
-                    residence=dossier['attendee']['address']['residence']
+                    residence = dossier['attendee']['address']['residence']
                 nom = ""
                 if 'firstName' in dossier['attendee']['firstName']:
                     nom = dossier['attendee']['firstName']
@@ -866,7 +881,8 @@ class partner(models.Model):
 
                 if state == "validated":
                     print('validate', email, dossier['attendee']['lastName'], dossier['attendee']['firstName'])
-                    self.cpf_validate(training_id, email,residence, num_voie, nom_voie, voie, street, tel, code_postal, ville,
+                    self.cpf_validate(training_id, email, residence, num_voie, nom_voie, voie, street, tel, code_postal,
+                                      ville,
                                       diplome, dossier['attendee']['lastName'], dossier['attendee']['firstName'],
                                       dossier['externalId'], lastupd)
                 else:
@@ -888,48 +904,48 @@ class partner(models.Model):
                         user.partner_id.funding_type = 'cpf'  # update field funding type to cpfprint('partner',partner.numero_cpf,user.login)
                         print(user.partner_id.date_cpf)
 
-                        if state=="inTraining":
+                        if state == "inTraining":
                             print('intraining', email)
-                            user.partner_id.statut_cpf="in_training"
+                            user.partner_id.statut_cpf = "in_training"
                             user.partner_id.numero_cpf = externalId
                             user.partner_id.date_cpf = lastupd
-                            user.partner_id.diplome=diplome
+                            user.partner_id.diplome = diplome
                             if product_id:
                                 user.partner_id.id_edof = product_id.id_edof
 
-                        if state=="terminated":
+                        if state == "terminated":
                             print('terminated', email)
-                            user.partner_id.statut_cpf="out_training"
+                            user.partner_id.statut_cpf = "out_training"
                             user.partner_id.numero_cpf = externalId
                             user.partner_id.diplome = diplome
                             user.partner_id.date_cpf = lastupd
                             if product_id:
                                 user.partner_id.id_edof = product_id.id_edof
-                        if state=="serviceDoneDeclared":
+                        if state == "serviceDoneDeclared":
                             print('serviceDoneDeclared', email)
-                            user.partner_id.statut_cpf="service_declared"
+                            user.partner_id.statut_cpf = "service_declared"
                             user.partner_id.numero_cpf = externalId
                             user.partner_id.date_cpf = lastupd
                             user.partner_id.diplome = diplome
                             if product_id:
-                                user.partner_id.id_edof=product_id.id_edof
+                                user.partner_id.id_edof = product_id.id_edof
 
-                        if state=="serviceDoneValidated":
+                        if state == "serviceDoneValidated":
                             print('serviceDoneValidated', email)
 
-                            user.partner_id.statut_cpf="service_validated"
+                            user.partner_id.statut_cpf = "service_validated"
                             user.partner_id.numero_cpf = externalId
                             user.partner_id.date_cpf = lastupd
                             user.partner_id.diplome = diplome
                             if product_id:
                                 user.partner_id.id_edof = product_id.id_edof
-                        if state=="canceledByAttendee" or state=="canceledByAttendeeNotRealized" or state=="canceledByOrganism" or state=="refusedByAttendee" or state=="refusedByOrganism"  :
-                            if user.partner_id.numero_cpf==externalId:
-                                user.partner_id.statut_cpf="canceled"
-                                user.partner_id.statut="canceled"
+                        if state == "canceledByAttendee" or state == "canceledByAttendeeNotRealized" or state == "canceledByOrganism" or state == "refusedByAttendee" or state == "refusedByOrganism":
+                            if user.partner_id.numero_cpf == externalId:
+                                user.partner_id.statut_cpf = "canceled"
+                                user.partner_id.statut = "canceled"
                                 user.partner_id.date_cpf = lastupd
                                 user.partner_id.diplome = diplome
-                                print("product id annulé digi",user.partner_id.id_edof,training_id)
+                                print("product id annulé digi", user.partner_id.id_edof, training_id)
 
                                 if product_id:
                                     user.partner_id.id_edof = product_id.id_edof
@@ -971,7 +987,8 @@ class partner(models.Model):
                                 if product_id:
                                     user.partner_id.id_edof = product_id.id_edof
 
-    def cpf_validate(self, module, email,residence, num_voie, nom_voie, voie, street, tel, code_postal, ville, diplome, nom,
+    def cpf_validate(self, module, email, residence, num_voie, nom_voie, voie, street, tel, code_postal, ville, diplome,
+                     nom,
                      prenom, dossier, lastupd):
         user = self.env['res.users'].sudo().search([('login', "=", email)])
         exist = True
@@ -1022,9 +1039,10 @@ class partner(models.Model):
                                 user = self.env["res.users"].sudo().search(
                                     ['|', ("phone", "=", phone), ("phone", "=", phone.replace(' ', ''))], limit=1)
                         phone = phone_number[0:2]
-                        if str(phone) in ['06', '07'] and ' ' in str(tel): # check if edof api send the number of client in this format (number_format: 07 xx xx xx)
+                        if str(phone) in ['06', '07'] and ' ' in str(
+                                tel):  # check if edof api send the number of client in this format (number_format: 07 xx xx xx)
                             user = self.env["res.users"].sudo().search(
-                                ['|',("phone", "=", str(tel)),str(tel).replace(' ', '')], limit=1)
+                                ['|', ("phone", "=", str(tel)), str(tel).replace(' ', '')], limit=1)
                             if not user:
                                 phone_number = str(tel[1:])
                                 user = self.env["res.users"].sudo().search(
@@ -1078,8 +1096,10 @@ class partner(models.Model):
                     user.partner_id.company_id = 1
                 if user:
                     phone = str(tel.replace(' ', ''))[-9:]
-                    phone = '+33' + ' ' + phone[0:1] + ' ' + phone[1:3] + ' ' + phone[3:5] + ' ' + phone[5:7] + ' ' + phone[7:] # convert the number in this format : +33 x xx xx xx xx
-                    url = str(user.signup_url) # get the signup_url
+                    phone = '+33' + ' ' + phone[0:1] + ' ' + phone[1:3] + ' ' + phone[3:5] + ' ' + phone[
+                                                                                                   5:7] + ' ' + phone[
+                                                                                                                7:]  # convert the number in this format : +33 x xx xx xx xx
+                    url = str(user.signup_url)  # get the signup_url
                     short_url = pyshorteners.Shortener()
                     short_url = short_url.tinyurl.short(url) # convert the signup_url to be short using pyshorteners library
                     body = 'Chere(e) %s , Vous avez été invité par %s  à compléter votre inscription : %s . Votre courriel de connection est: %s' %(user.partner_id.name,user.partner_id.company_id.name,short_url,user.partner_id.email) # content of sms
@@ -1509,17 +1529,3 @@ class partner(models.Model):
                             if not ticket:
                                 new_ticket = self.env['helpdesk.ticket'].sudo().create(
                                     vals)
-
-    """Remplir champ numero cpf sur tout les factures cpf"""
-    def num_cpf_facture(self):
-        partners = self.env['res.partner'].sudo().search([('statut',"=","won"),('mode_de_financement',"=","cpf")])
-        _logger.info('for partnerss')
-        for partner in partners:
-            _logger.info(' partner %s' % partner.name )
-            invoice = self.env['account.move'].sudo().search([('partner_id',"=",partner.id)],limit=1,order="id desc")
-
-            if invoice and partner.numero_cpf:
-                _logger.info(' if invoice %s' % str(invoice.name))
-                invoice.numero_cpf=partner.numero_cpf
-                _logger.info(' if invoice %s' % str(invoice.numero_cpf))
-
