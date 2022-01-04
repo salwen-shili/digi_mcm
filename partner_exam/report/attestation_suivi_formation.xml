@@ -153,19 +153,15 @@
                                            t-value="o.historic_sessions_ids.filtered(lambda tx: tx.paiement == False)"/>
                                         <t t-if="len(val_2) &gt; 1">
                                             <strong>
-                                                <t t-if="val_2[1].session_id[0].date_exam.strftime('%m/%d/%Y') &lt; context_timestamp(datetime.datetime.now()).strftime('%m/%d/%Y')">
-                                                    <span t-raw=" '%s' % val_2[1].session_id[0].session_adresse_examen.adresse_centre_examen"/>
-                                                </t>
+                                                <span t-raw=" '%s' % val_2[1].session_id[0].session_adresse_examen.adresse_centre_examen"/>
                                             </strong>
                                         </t>
                                         <t t-if="len(val_2) &gt; 1">
                                             <t t-if="val_2[1].session_id[0].date_exam">
                                                 <strong>
-                                                    <t t-if="val_2[1].session_id[0].date_exam.strftime('%m/%d/%Y') &lt; context_timestamp(datetime.datetime.now()).strftime('%m/%d/%Y')">
 
-                                                        <span t-field='val_2[1].session_id[0].date_exam'
-                                                              t-field-options='{"format": "dd/MM/yyyy"}'/>
-                                                    </t>
+                                                    <span t-field='val_2[1].session_id[0].date_exam'
+                                                          t-field-options='{"format": "dd/MM/yyyy"}'/>
                                                 </strong>
                                             </t>
                                         </t>
@@ -176,9 +172,7 @@
                                             <t t-if="len(val_2) &gt; 1">
                                                 <t t-if="o.company_id[0].region">
                                                     <strong>
-                                                        <t t-if="val_2[1].session_id[0].date_exam.strftime('%m/%d/%Y') &lt; context_timestamp(datetime.datetime.now()).strftime('%m/%d/%Y')">
-                                                            <span t-raw=" '%s' % o.company_id[0].region"/>
-                                                        </t>
+                                                        <span t-raw=" '%s' % o.company_id[0].region"/>
                                                     </strong>
                                                 </t>
                                                 <t t-else="">
@@ -193,29 +187,19 @@
                                         (n° d’agrément <strong>IDF 2019-0110</strong>),
                                         déclare que M/Mme
                                         <t t-if="len(o.note_exam_id) &gt; 1">
-                                            <t t-if="val_2[1].session_id[0].date_exam.strftime('%m/%d/%Y') &lt; context_timestamp(datetime.datetime.now()).strftime('%m/%d/%Y')">
-                                                <strong>
-                                                    <span t-esc="o.display_name"/>
-                                                </strong>
-                                            </t>
+                                            <strong>
+                                                <span t-esc="o.display_name"/>
+                                            </strong>
                                         </t>
                                         <t t-else="">
                                             <span>........</span>
                                         </t>
                                         <t t-if="len(o.note_exam_id) &gt; 1">
-<<<<<<< HEAD
                                             <t t-if="val_2[1]">
                                                 <t t-if="val_2[1].justification == True">
                                                     a une <b>absence justifiée</b> au deuxième examen.
                                                 </t>
                                                 <t t-else="">
-=======
-                                            <t t-if="val_2[1].justification == True">
-                                                a une <b>absence justifiée</b> au deuxième examen.
-                                            </t>
-                                            <t t-else="">
-                                                <t t-if="val_2[1].session_id[0].date_exam.strftime('%m/%d/%Y') &lt; context_timestamp(datetime.datetime.now()).strftime('%m/%d/%Y')">
->>>>>>> 8be8734a841861a16e0bcbf9126337cf304e6e85
                                                     <t t-if="len(o.note_exam_id) &gt; 1">
                                                         <t t-if="o.note_exam_id[1].presence == 'present'">
                                                             <span>a passé</span>
@@ -239,11 +223,9 @@
                                             <strong>
                                                 Date :
                                                 <t t-if="len(o.note_exam_id) &gt; 1">
-                                                    <t t-if="val_2[1].session_id[0].date_exam.strftime('%m/%d/%Y') &lt; context_timestamp(datetime.datetime.now()).strftime('%m/%d/%Y')">
 
-                                                        <span t-esc="((o.note_exam_id[1].session_id[0].date_exam) + datetime.timedelta(days=2)).strftime('%d/%m/%Y')"
-                                                        />
-                                                    </t>
+                                                    <span t-esc="((o.note_exam_id[1].session_id[0].date_exam) + datetime.timedelta(days=2)).strftime('%d/%m/%Y')"
+                                                    />
                                                 </t>
                                                 <t t-else="">
                                                     <span>........</span>
@@ -253,10 +235,8 @@
                                                 Signature :
                                             </strong>
                                             <t t-if="len(val_2) &gt; 1">
-                                                <t t-if="val_2[1].session_id[0].date_exam.strftime('%m/%d/%Y') &lt; context_timestamp(datetime.datetime.now()).strftime('%m/%d/%Y')">
-                                                    <img src='/partner_exam/static/src/img/signature_suivi.png'
-                                                         style="height:200px; width:300px;"/>
-                                                </t>
+                                                <img src='/partner_exam/static/src/img/signature_suivi.png'
+                                                     style="height:200px; width:300px;"/>
                                             </t>
                                         </center>
                                         <hr width="100%"
@@ -268,18 +248,14 @@
                                            t-value="o.historic_sessions_ids.filtered(lambda tx: tx.paiement == False)"/>
                                         <t t-if="len(val_3) &gt; 2 and len(o.note_exam_id) &gt; 2">
                                             <strong>
-                                                <t t-if="val_3[2].session_id[0].date_exam.strftime('%m/%d/%Y') &lt; context_timestamp(datetime.datetime.now()).strftime('%m/%d/%Y')">
-                                                    <span t-raw=" '%s' % val_3[2].session_id[0].session_adresse_examen.adresse_centre_examen"/>
-                                                </t>
+                                                <span t-raw=" '%s' % val_3[2].session_id[0].session_adresse_examen.adresse_centre_examen"/>
                                             </strong>
                                         </t>
                                         <t t-if="len(val_3) &gt; 2 and len(o.note_exam_id) &gt; 2">
                                             <t t-if="val_3[2].session_id[0].date_exam">
                                                 <strong>
-                                                    <t t-if="val_3[2].session_id[0].date_exam.strftime('%m/%d/%Y') &lt; context_timestamp(datetime.datetime.now()).strftime('%m/%d/%Y')">
-                                                        <span t-field='val_3[2].session_id[0].date_exam'
-                                                              t-field-options='{"format": "dd/MM/yyyy"}'/>
-                                                    </t>
+                                                    <span t-field='val_3[2].session_id[0].date_exam'
+                                                          t-field-options='{"format": "dd/MM/yyyy"}'/>
                                                 </strong>
                                             </t>
                                         </t>
@@ -290,9 +266,7 @@
                                             <strong>
                                                 <t t-if="o.company_id[0].region">
                                                     <strong>
-                                                        <t t-if="val_3[2].session_id[0].date_exam.strftime('%m/%d/%Y') &lt; context_timestamp(datetime.datetime.now()).strftime('%m/%d/%Y')">
-                                                            <span t-raw=" '%s' % o.company_id[0].region"/>
-                                                        </t>
+                                                        <span t-raw=" '%s' % o.company_id[0].region"/>
                                                     </strong>
                                                 </t>
                                             </strong>
@@ -301,29 +275,19 @@
                                         (n° d’agrément <strong>IDF 2019-0110</strong>),
                                         déclare que M/Mme
                                         <t t-if="len(o.note_exam_id) &gt; 2">
-                                            <t t-if="val_3[2].session_id[0].date_exam.strftime('%m/%d/%Y') &lt; context_timestamp(datetime.datetime.now()).strftime('%m/%d/%Y')">
-                                                <strong>
-                                                    <span t-esc="o.display_name"/>
-                                                </strong>
-                                            </t>
+                                            <strong>
+                                                <span t-esc="o.display_name"/>
+                                            </strong>
                                         </t>
                                         <t t-else="">
                                             <span>........</span>
                                         </t>
                                         <t t-if="len(o.note_exam_id) &gt; 2">
-<<<<<<< HEAD
                                             <t t-if="val_3[2]">
                                                 <t t-if="val_3[2].justification == True">
                                                     a une <b>absence justifiée</b> au troisième examen.
                                                 </t>
                                                 <t t-else="">
-=======
-                                            <t t-if="val_3[2].justification == True">
-                                                a une <b>absence justifiée</b> au troisième examen.
-                                            </t>
-                                            <t t-else="">
-                                                <t t-if="val_3[2].session_id[0].date_exam.strftime('%m/%d/%Y') &lt; context_timestamp(datetime.datetime.now()).strftime('%m/%d/%Y')">
->>>>>>> 8be8734a841861a16e0bcbf9126337cf304e6e85
                                                     <t t-if="len(o.note_exam_id) &gt; 2">
                                                         <t t-if="o.note_exam_id[2].presence == 'present'">
                                                             <span>a passé</span>
@@ -347,13 +311,7 @@
                                             <strong>
                                                 Date :
                                                 <t t-if="len(o.note_exam_id) &gt; 2">
-                                                    <t t-if="val_3[2].session_id[0].date_exam.strftime('%m/%d/%Y') &lt; context_timestamp(datetime.datetime.now()).strftime('%m/%d/%Y')">
-
-                                                        <span t-esc="((o.note_exam_id[2].session_id[0].date_exam) + datetime.timedelta(days=2)).strftime('%d/%m/%Y')"/>
-                                                    </t>
-                                                    <t t-else="">
-                                                        <span>........</span>
-                                                    </t>
+                                                    <span t-esc="((o.note_exam_id[2].session_id[0].date_exam) + datetime.timedelta(days=2)).strftime('%d/%m/%Y')"/>
                                                 </t>
                                                 <t t-else="">
                                                     <span>........</span>
@@ -363,11 +321,8 @@
                                                 Signature
                                             </strong>
                                             <t t-if="len(val_3) &gt; 2">
-                                                <t t-if="val_3[2].session_id[0].date_exam.strftime('%m/%d/%Y') &lt; context_timestamp(datetime.datetime.now()).strftime('%m/%d/%Y')">
-
-                                                    <img src='/partner_exam/static/src/img/signature_suivi.png'
-                                                         style="height:200px; width:300px;"/>
-                                                </t>
+                                                <img src='/partner_exam/static/src/img/signature_suivi.png'
+                                                     style="height:200px; width:300px;"/>
                                             </t>
                                             <t t-else="">
                                                 <span>........</span>
@@ -436,15 +391,13 @@
                                         Lieu et date de l’examen :
                                         <t t-set="val_4"
                                            t-value="o.historic_sessions_ids.filtered(lambda tx: tx.paiement == False)"/>
-                                        <t t-if="val_4[3].session_id[0].date_exam.strftime('%m/%d/%Y') &lt; context_timestamp(datetime.datetime.now()).strftime('%m/%d/%Y')">
-                                            <t t-if="len(val_4) &gt; 3">
-                                                <strong>
-                                                    <span t-raw="'%s' % val_4[3].session_id[0].session_adresse_examen.adresse_centre_examen if val_4[3].session_id[0].session_adresse_examen else ''"/>
-                                                    -
-                                                    <span t-field="val_4[3].session_id[0].date_exam"
-                                                          t-field-options='{"format": "dd/MM/yyyy"}'/>
-                                                </strong>
-                                            </t>
+                                        <t t-if="len(val_4) &gt; 3">
+                                            <strong>
+                                                <span t-raw="'%s' % val_4[3].session_id[0].session_adresse_examen.adresse_centre_examen if val_4[3].session_id[0].session_adresse_examen else ''"/>
+                                                -
+                                                <span t-field="val_4[3].session_id[0].date_exam"
+                                                      t-field-options='{"format": "dd/MM/yyyy"}'/>
+                                            </strong>
                                         </t>
                                         <t t-else="">
                                             <span>...........</span>
@@ -456,30 +409,20 @@
                                         (n° d’agrément <strong>IDF 2019-0110</strong>),déclare que
                                         M/Mme
                                         <t t-if="len(val_4) &gt; 3">
-                                            <t t-if="val_4[3].session_id[0].date_exam.strftime('%m/%d/%Y') &lt; context_timestamp(datetime.datetime.now()).strftime('%m/%d/%Y')">
-                                                <strong>
-                                                    <span t-esc="o.display_name"/>
-                                                </strong>
-                                            </t>
+                                            <strong>
+                                                <span t-esc="o.display_name"/>
+                                            </strong>
                                         </t>
                                         <t t-else="">
                                             <span>...........</span>
                                         </t>
                                         a suivi la formation mentionnée ci-dessus et
                                         <t t-if="len(o.note_exam_id) &gt; 3">
-<<<<<<< HEAD
                                             <t t-if="val_4[3]">
                                                 <t t-if="val_4[3].justification == True">
                                                     a une <b>absence justifiée</b> au premier examen.
                                                 </t>
                                                 <t t-else="">
-=======
-                                            <t t-if="val_4[3].justification == True">
-                                                a une <b>absence justifiée</b> au premier examen.
-                                            </t>
-                                            <t t-else="">
-                                                <t t-if="val_4[3].session_id[0].date_exam.strftime('%m/%d/%Y') &lt; context_timestamp(datetime.datetime.now()).strftime('%m/%d/%Y')">
->>>>>>> 8be8734a841861a16e0bcbf9126337cf304e6e85
                                                     <t t-if="len(o.note_exam_id) &gt; 3">
                                                         <t t-if="o.note_exam_id[3].presence == 'present'">
                                                             <span>a passé</span>
@@ -504,10 +447,8 @@
                                             <strong>
                                                 Date :
                                                 <t t-if="len(o.note_exam_id) &gt; 3">
-                                                    <t t-if="val_4[3].session_id[0].date_exam.strftime('%m/%d/%Y') &lt; context_timestamp(datetime.datetime.now()).strftime('%m/%d/%Y')">
-                                                        <span t-esc="((o.note_exam_id[3].session_id[0].date_exam) + datetime.timedelta(days=2)).strftime('%d/%m/%Y')"
-                                                        />
-                                                    </t>
+                                                    <span t-esc="((o.note_exam_id[3].session_id[0].date_exam) + datetime.timedelta(days=2)).strftime('%d/%m/%Y')"
+                                                    />
                                                 </t>
                                                 <t t-else="">
                                                     <span>...........</span>
@@ -516,10 +457,8 @@
                                                 &amp;nbsp;&amp;nbsp;
                                                 Signature :
                                                 <t t-if="len(o.note_exam_id) &gt; 3">
-                                                    <t t-if="val_4[3].session_id[0].date_exam.strftime('%m/%d/%Y') &lt; context_timestamp(datetime.datetime.now()).strftime('%m/%d/%Y')">
-                                                        <img src='/partner_exam/static/src/img/signature_suivi.png'
-                                                             style="height:200px; width:300px;"/>
-                                                    </t>
+                                                    <img src='/partner_exam/static/src/img/signature_suivi.png'
+                                                         style="height:200px; width:300px;"/>
                                                 </t>
                                                 <t t-else="">
                                                     <span>...........</span>
@@ -535,18 +474,14 @@
                                            t-value="o.historic_sessions_ids.filtered(lambda tx: tx.paiement == False)"/>
                                         <t t-if="len(val_5) &gt; 4">
                                             <strong>
-                                                <t t-if="val_5[4].session_id[0].date_exam.strftime('%m/%d/%Y') &lt; context_timestamp(datetime.datetime.now()).strftime('%m/%d/%Y')">
-                                                    <span t-raw=" '%s' % val_5[4].session_id[0].session_adresse_examen.adresse_centre_examen"/>
-                                                </t>
+                                                <span t-raw=" '%s' % val_5[4].session_id[0].session_adresse_examen.adresse_centre_examen"/>
                                             </strong>
                                         </t>
                                         <t t-if="len(val_5) &gt; 4">
                                             <t t-if="val_5[4].session_id[0].date_exam">
                                                 <strong>
-                                                    <t t-if="val_5[4].session_id[0].date_exam.strftime('%m/%d/%Y') &lt; context_timestamp(datetime.datetime.now()).strftime('%m/%d/%Y')">
-                                                        <span t-field='val_5[4].session_id[0].date_exam'
-                                                              t-field-options='{"format": "dd/MM/yyyy"}'/>
-                                                    </t>
+                                                    <span t-field='val_5[4].session_id[0].date_exam'
+                                                          t-field-options='{"format": "dd/MM/yyyy"}'/>
                                                 </strong>
                                             </t>
                                         </t>
@@ -561,9 +496,7 @@
                                             <t t-if="len(val_5) &gt; 4">
                                                 <t t-if="o.company_id[0].region">
                                                     <strong>
-                                                        <t t-if="val_5[4].session_id[0].date_exam.strftime('%m/%d/%Y') &lt; context_timestamp(datetime.datetime.now()).strftime('%m/%d/%Y')">
-                                                            <span t-raw=" '%s' % o.company_id[0].region"/>
-                                                        </t>
+                                                        <span t-raw=" '%s' % o.company_id[0].region"/>
                                                     </strong>
                                                 </t>
                                             </t>
@@ -575,29 +508,19 @@
                                         (n° d’agrément <strong>IDF 2019-0110</strong>),
                                         déclare que M/Mme
                                         <t t-if="len(val_5) &gt; 4">
-                                            <t t-if="val_5[4].session_id[0].date_exam.strftime('%m/%d/%Y') &lt; context_timestamp(datetime.datetime.now()).strftime('%m/%d/%Y')">
-                                                <strong>
-                                                    <span t-esc="o.display_name"/>
-                                                </strong>
-                                            </t>
+                                            <strong>
+                                                <span t-esc="o.display_name"/>
+                                            </strong>
                                         </t>
                                         <t t-else="">
                                             <span>...........</span>
                                         </t>
                                         <t t-if="len(o.note_exam_id) &gt; 4">
-<<<<<<< HEAD
                                             <t t-if="val_5[4]">
                                                 <t t-if="val_5[4].justification == True">
                                                     a une <b>absence justifiée</b> au deuxième examen.
                                                 </t>
                                                 <t t-else="">
-=======
-                                            <t t-if="val_5[4].justification == True">
-                                                a une <b>absence justifiée</b> au deuxième examen.
-                                            </t>
-                                            <t t-else="">
-                                                <t t-if="val_5[4].session_id[0].date_exam.strftime('%m/%d/%Y') &lt; context_timestamp(datetime.datetime.now()).strftime('%m/%d/%Y')">
->>>>>>> 8be8734a841861a16e0bcbf9126337cf304e6e85
                                                     <t t-if="len(o.note_exam_id) &gt; 4">
                                                         <t t-if="o.note_exam_id[4].presence == 'present'">
                                                             <span>a passé</span>
@@ -621,10 +544,8 @@
                                             <strong>
                                                 Date :
                                                 <t t-if="len(o.note_exam_id) &gt; 4">
-                                                    <t t-if="val_5[4].session_id[0].date_exam.strftime('%m/%d/%Y') &lt; context_timestamp(datetime.datetime.now()).strftime('%m/%d/%Y')">
-                                                        <span t-esc="((o.note_exam_id[4].session_id[0].date_exam) + datetime.timedelta(days=2)).strftime('%d/%m/%Y')"
-                                                        />
-                                                    </t>
+                                                    <span t-esc="((o.note_exam_id[4].session_id[0].date_exam) + datetime.timedelta(days=2)).strftime('%d/%m/%Y')"
+                                                    />
                                                 </t>
                                                 <t t-else="">
                                                     <span>...........</span>
@@ -634,10 +555,8 @@
                                                 Signature :
                                             </strong>
                                             <t t-if="len(val_5) &gt; 4">
-                                                <t t-if="val_5[4].session_id[0].date_exam.strftime('%m/%d/%Y') &lt; context_timestamp(datetime.datetime.now()).strftime('%m/%d/%Y')">
-                                                    <img src='/partner_exam/static/src/img/signature_suivi.png'
-                                                         style="height:200px; width:300px;"/>
-                                                </t>
+                                                <img src='/partner_exam/static/src/img/signature_suivi.png'
+                                                     style="height:200px; width:300px;"/>
                                             </t>
                                             <t t-else="">
                                                 <span>...........</span>
@@ -651,15 +570,9 @@
                                         <t t-set="val_6"
                                            t-value="o.historic_sessions_ids.filtered(lambda tx: tx.paiement == False)"/>
                                         <t t-if="len(val_6) &gt; 5">
-                                            <t t-if="val_6[5].session_id[0].date_exam.strftime('%m/%d/%Y') &lt; context_timestamp(datetime.datetime.now()).strftime('%m/%d/%Y')">
-
-                                                <strong>
-                                                    <span t-raw=" '%s' % val_6[5].session_id[0].session_adresse_examen.adresse_centre_examen"/>
-                                                </strong>
-                                            </t>
-                                            <t t-else="">
-                                                <span>.............</span>
-                                            </t>
+                                            <strong>
+                                                <span t-raw=" '%s' % val_6[5].session_id[0].session_adresse_examen.adresse_centre_examen"/>
+                                            </strong>
                                             <t t-if="len(val_6) &gt; 5">
                                                 <t t-if="val_6[5].session_id[0].date_exam">
                                                     <strong>
@@ -676,19 +589,13 @@
                                         Le directeur du centre de formation, organisateur du troisième examen, agrée
                                         par le préfet de la région
                                         <t t-if="len(val_6) &gt; 5">
-                                            <t t-if="val_6[5].session_id[0].date_exam.strftime('%m/%d/%Y') &lt; context_timestamp(datetime.datetime.now()).strftime('%m/%d/%Y')">
-                                                <strong>
-                                                    <t t-if="o.company_id[0].region">
-                                                        <strong>
-                                                            <span t-raw=" '%s' % o.company_id[0].region"/>
-                                                        </strong>
-                                                    </t>
-                                                </strong>
-                                            </t>
-                                            <t t-else="">
-                                                <span>........</span>
-                                            </t>
-
+                                            <strong>
+                                                <t t-if="o.company_id[0].region">
+                                                    <strong>
+                                                        <span t-raw=" '%s' % o.company_id[0].region"/>
+                                                    </strong>
+                                                </t>
+                                            </strong>
                                         </t>
                                         <t t-else="">
                                             <span>...........</span>
@@ -697,29 +604,19 @@
                                         (n° d’agrément <strong>IDF 2019-0110</strong>),
                                         déclare que M/Mme
                                         <t t-if="len(val_6) &gt; 5">
-                                            <t t-if="val_6[5].session_id[0].date_exam.strftime('%m/%d/%Y') &lt; context_timestamp(datetime.datetime.now()).strftime('%m/%d/%Y')">
-                                                <strong>
-                                                    <span t-esc="o.display_name"/>
-                                                </strong>
-                                            </t>
+                                            <strong>
+                                                <span t-esc="o.display_name"/>
+                                            </strong>
                                         </t>
                                         <t t-else="">
                                             <span>...........</span>
                                         </t>
                                         <t t-if="len(o.note_exam_id) &gt; 5">
-<<<<<<< HEAD
                                             <t t-if="val_6[5]">
                                                 <t t-if="val_6[5].justification == True">
                                                     a une <b>absence justifiée</b> au troisième examen.
                                                 </t>
                                                 <t t-else="">
-=======
-                                            <t t-if="val_6[5].justification == True">
-                                                a une <b>absence justifiée</b> au troisième examen.
-                                            </t>
-                                            <t t-else="">
-                                                <t t-if="val_6[5].session_id[0].date_exam.strftime('%m/%d/%Y') &lt; context_timestamp(datetime.datetime.now()).strftime('%m/%d/%Y')">
->>>>>>> 8be8734a841861a16e0bcbf9126337cf304e6e85
                                                     <t t-if="len(o.note_exam_id) &gt; 5">
                                                         <t t-if="o.note_exam_id[5].presence == 'present'">
                                                             <span>a passé</span>
@@ -743,13 +640,7 @@
                                             <strong>
                                                 Date :
                                                 <t t-if="len(o.note_exam_id) &gt; 5">
-                                                    <t t-if="val_6[5].session_id[0].date_exam.strftime('%m/%d/%Y') &lt; context_timestamp(datetime.datetime.now()).strftime('%m/%d/%Y')">
-
-                                                        <span t-esc="((o.note_exam_id[5].session_id[0].date_exam) + datetime.timedelta(days=2)).strftime('%d/%m/%Y')"/>
-                                                    </t>
-                                                    <t t-else="">
-                                                        <span>.............</span>
-                                                    </t>
+                                                    <span t-esc="((o.note_exam_id[5].session_id[0].date_exam) + datetime.timedelta(days=2)).strftime('%d/%m/%Y')"/>
                                                 </t>
                                                 <t t-else="">
                                                     <span>...........</span>
@@ -759,13 +650,8 @@
                                                 Signature
                                             </strong>
                                             <t t-if="len(val_6) &gt; 5">
-                                                <t t-if="val_6[5].session_id[0].date_exam.strftime('%m/%d/%Y') &lt; context_timestamp(datetime.datetime.now()).strftime('%m/%d/%Y')">
-                                                    <img src='/partner_exam/static/src/img/signature_suivi.png'
-                                                         style="height:200px; width:300px;"/>
-                                                </t>
-                                                <t t-else="">
-                                                    <span>.............</span>
-                                                </t>
+                                                <img src='/partner_exam/static/src/img/signature_suivi.png'
+                                                     style="height:200px; width:300px;"/>
                                             </t>
                                             <t t-else="">
                                                 <span>...........</span>
