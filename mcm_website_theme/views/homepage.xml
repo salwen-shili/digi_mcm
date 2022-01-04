@@ -21,9 +21,16 @@
                     res-button {
                         margin-bottom: 1rem;
                     }
+                }
+                    .para {
+                        font-size: 16px !important;
+                        line-height: 28px !important;
+                        color: #000 !important;
+                    }
             </style>
                 <script defer="defer" type="text/javascript" src="/digimoov_website_templates/static/src/js/lazy-min.js" />
                 <div id="wrap" class="oe_structure" style="border-style: none; border-width: 0px; border-color: rgb(33, 37, 41);" data-editor-message="GLISSEZ UN BLOC ICI">
+                    <!-- couverture-->
                     <section id="sh_corpomate_theme_section_258" class="sh_animation_part pt8" data-name="practice">
                         <div class="container-banner">
                             <div class="row">
@@ -61,6 +68,7 @@
                             </div>
                         </div>
                     </section>
+                    <!-- logo-->
                     <section class="container pt40 pb32 js-scroll fade-in-bottom scrolled">
                         <div class="row align-items-center justify-content-center">
                             <div class=" col-md-3 col-sm-12 text-center mb-4 mb-md-0  ">
@@ -77,6 +85,8 @@
                             </div>
                         </div>
                     </section>
+
+                    <!-- Section 3-->
                     <section id="sh_corpomate_theme_section_92" data-name="Contact Us Snippet 2" class="bg-100">
                         <div class="container" style="border-style: none; border-width: 0px">
                             <div class="row">
@@ -88,7 +98,7 @@
                                                     Formation TAXI
                                                     <br />
                                                 </h2>
-                                                <p style="font-size: 14px"> MCM Academy a tout pour satisfaire vos besoins en formations TAXI : formation initiale, formation passerelle taxi VTC, renouvellement carte professionnelle .</p>
+                                                <p style="font-size: 14px"> MCM Academy a tout pour satisfaire vos besoins en formations TAXI : formation initiale, formation passerelle taxi VTC, renouvellement carte professionnelle.</p>
                                                 <div class="s_btn text-center pt16 pb16" data-name="Button">
                                                     <a href="/formation-chauffeur-vtc" class="btn btn-warning sh_btn_cm_4" style="margin-top: 0.4rem;                                                 padding: 0.4rem 2rem;" onclick="msTracking(&quot;clic sur Devenez chauffeur VTC homepage&quot;,                                                 &quot;Homepage events&quot;,                                                 &quot;Devenez chauffeur VTC homepage&quot;,                                                 2)" data-original-title="" title="" aria-describedby="tooltip762606">En savoir plus</a>
                                                 </div>
@@ -104,7 +114,7 @@
                                                     Formation VTC
                                                     <br />
                                                 </h2>
-                                                <p style="font-size: 14px"> Nous vous offrons&amp;nbsp; une formation VTC à distance,&amp;nbsp; une bonne préparation à l'examen , et un accompagnement&amp;nbsp; pour la création de votre entreprise.</p>
+                                                <p style="font-size: 14px"> Nous vous offrons&amp;nbsp; une formation VTC à distance,&amp;nbsp; une bonne préparation à l'examen, et un accompagnement&amp;nbsp;pour la création de votre entreprise.</p>
                                                 <div class="s_btn text-center pt16 pb16" data-name="Button">
                                                     <a href="/formation-chauffeur-vtc" class="btn btn-warning sh_btn_cm_4" style="margin-top: 0.4rem;                                                 padding: 0.4rem 2rem;" onclick="msTracking(&quot;clic sur Devenez chauffeur VTC homepage&quot;,                                                 &quot;Homepage events&quot;,                                                 &quot;Devenez chauffeur VTC homepage&quot;,                                                 2)" data-original-title="" title="" aria-describedby="tooltip762606">En savoir plus</a>
                                                 </div>
@@ -134,37 +144,61 @@
                             </div>
                         </div>
                     </section>
-                    <section id="sh_corpomate_theme_section_19" data-name="Banner" />
+
+                    <!-- Section 4-->
                     <section class="s_text_image pt32 pb32" data-name="Text - Image">
                         <div class="container">
                             <div class="row align-items-center">
                                 <div class="col-lg-6 pt16 pb16" style="border-style: none; border-width: 0px;">
-                                    <h3>
-                                        <span style="color: rgb(0, 0, 0); font-family: Roboto, sans-serif; font-variant-east-asian: normal; font-variant-numeric: normal; font-weight: 700; vertical-align: baseline; white-space: pre-wrap;">Ce que nous vous offrons chez MCM</span>
-                                        &amp;nbsp;
-                                        <span style="color: rgb(0, 0, 0); font-family: Roboto, sans-serif; font-variant-east-asian: normal; font-variant-numeric: normal; font-weight: 700; vertical-align: baseline; white-space: pre-wrap;">&amp;nbsp;</span>
-                                    </h3>
-                                    <p class="o_default_snippet_text">
-                                        Nous offrons à nos futurs&amp;nbsp; conducteurs de taxi, VTC ou de taxi moto&amp;nbsp; des&amp;nbsp; formations&amp;nbsp; de 70 heures à suivre&amp;nbsp; à distance , à votre rythme sur notre plateforme e-learning. Les&amp;nbsp; cours&amp;nbsp; sont présentés sous formes de diapositives , de vidéoconférences, de Live avec nos formateurs, de&amp;nbsp; QCM&amp;nbsp; et d’ examens blancs , soigneusement préparés par nos experts métiers afin de mieux vous préparer à l’examen final. Une fois votre&amp;nbsp; examen&amp;nbsp; réussi, nous pourrons vous accompagner dans la&amp;nbsp; démarche&amp;nbsp; d’obtention de votre carte professionnelle auprès de la préfecture et dans les démarches de création de&amp;nbsp; votre entreprise en tant que&amp;nbsp; chauffeur privé&amp;nbsp; indépendant ou pour travailler pour le compte des plateformes dédiées
-                                        <br />
+                                    <h2 style="font-weight: 700; vertical-align: baseline;">
+                                    MCM Academy : centre de formation en ligne des métiers de transport de personnes
+                                    </h2>
+                                    <p class="para">
+                                        Créée en 2015, MCM Academy est une structure spécialisée dans la 
+                                        formation des métiers de chauffeurs de taxi,  VTC et de taxi moto. 
+                                        Forte de son expérience, elle est aujourd'hui leader du marché de 
+                                        la formation de TAXIS et VTC en France.
+                                        Agréé par la chambre des métiers et de l’artisanat, 
+                                        notre centre de formation organise les examens du 
+                                        certificat de capacité professionnelle de chauffeur 
+                                        taxi et VTC partout en France.   
+                                    </p>
+                                    <h2 style="font-weight: 700; vertical-align: baseline;">
+                                    Ce que nous vous offrons chez MCM
+                                    </h2>
+                                    <p class="para">
+                                        Nous offrons à nos futurs conducteurs de taxi, VTC ou de taxi 
+                                        moto des formations à suivre à distance, à votre rythme sur 
+                                        notre plateforme e-learning. Les cours sont présentés sous 
+                                        forme de diapositives, de vidéoconférences, de Live avec nos 
+                                        formateurs, de QCM et d’examens blancs, soigneusement préparés 
+                                        par nos experts métiers afin de mieux vous préparer à l’examen final. 
+                                        Une fois votre examen réussi, nous pourrons vous accompagner 
+                                        dans la démarche d’obtention de votre carte professionnelle 
+                                        auprès de la préfecture et dans les démarches de création de 
+                                        votre entreprise en tant que chauffeur privé indépendant ou 
+                                        pour travailler pour le compte des plateformes dédiées.
                                     </p>
                                 </div>
                                 <div class="col-lg-6 pt16 pb16">
-                                    <img src="/web/image/website.s_text_image_default_image" class="img img-fluid mx-auto" alt="Odoo • Text and Image" data-original-title="" title="" aria-describedby="tooltip830450" />
+                                    <img src="mcm_website_theme/static/src/img/homepage/mcm notre histoire.png" class="img img-fluid mx-auto" alt="Odoo • Text and Image" data-original-title="" title="" aria-describedby="tooltip830450" />
                                 </div>
                             </div>
                         </div>
                     </section>
+
+                    <!-- Les etapes-->
                     <section id="sh_corpomate_theme_section_152" data-name="Title">
                         <div class="container">
                             <div class="row">
-                                <h1 class="elementor-size-default">
-                                    Les étapes à suivre pour devenir chauffeur TAXI-VTC
+                                <h2 class="elementor-size-default" style="text-align: center; ">
+                                    &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;Les étapes à suivre pour devenir chauffeur TAXI-VTC&amp;nbsp;&amp;nbsp;
                                     <br />
-                                </h1>
+                                </h2>
                             </div>
                         </div>
                     </section>
+
                     <section id="sh_corpomate_theme_section_76" data-name="About Snippet 3">
                         <div class="container">
                             <div class="row">
@@ -218,146 +252,112 @@
                             </div>
                         </div>
                     </section>
-                    <section class="s_text_image pt32 pb32" data-name="Image - Text">
+
+
+                    <!-- Section 4-->
+                    <section class="s_text_image pt32 pb32" data-name="Text - Image">
                         <div class="container">
                             <div class="row align-items-center">
-                                <div class="col-lg-6 pt16 pb16">
-                                    <h3>
-                                        <span id="docs-internal-guid-4a755982-7fff-b480-fe23-8723a872116a">
-                                            <span style="color: rgb(0, 0, 0); font-family: Roboto, sans-serif; font-variant-east-asian: normal; font-variant-numeric: normal; font-weight: 700; vertical-align: baseline; white-space: pre-wrap;">Comment financer ma formation VTC/Taxi ?</span>
-                                        </span>
-                                        <br />
-                                    </h3>
-                                    <h2 class="o_default_snippet_text" />
-                                    <p class="o_default_snippet_text" style="font-size: 14px;">
-                                        <span id="docs-internal-guid-26d0a219-7fff-65a3-cd66-bef50333cf73" />
-                                    </p>
-                                    <blockquote style="font-size: 14px;">
-                                        <span style="color: rgb(66, 66, 66); font-family: Roboto, sans-serif; font-variant-numeric: normal; font-variant-east-asian: normal; vertical-align: baseline; white-space: pre-wrap;">MCM Academy vous offre deux possibilités de financement de votre formation : par carte bancaire, avec possibilité de payer sur 2 ou 3 tranches, ou encore en mobilisant votre solde </span>
-                                        <span style="color: rgb(66, 66, 66); font-family: Roboto, sans-serif; font-variant-numeric: normal; font-variant-east-asian: normal; vertical-align: baseline; white-space: pre-wrap;">de</span>
-                                        &amp;nbsp;
-                                        <span style="color: rgb(66, 66, 66); font-family: Roboto, sans-serif; font-variant-numeric: normal; font-variant-east-asian: normal; vertical-align: baseline; white-space: pre-wrap;">compte de formation personnel (CPF).</span>
-                                    </blockquote>
-                                    <h3>
-                                        <span style="color: rgb(0, 0, 0); font-family: Roboto, sans-serif; font-variant-numeric: normal; font-variant-east-asian: normal; font-weight: 700; vertical-align: baseline; white-space: pre-wrap;">Comment s'inscrire à l'examen Taxi, VTC et Taxi-moto ?</span>
-                                    </h3>
-                                    <h2>
-                                        <blockquote style="font-size: 14px;">
-                                            <span style="color: rgb(66, 66, 66); font-family: Roboto, sans-serif; font-variant-numeric: normal; font-variant-east-asian: normal; vertical-align: baseline; white-space: pre-wrap;">Pour passer l’examen </span>
-                                            &amp;nbsp;
-                                            <span style="color: rgb(66, 66, 66); font-family: Roboto, sans-serif; font-variant-numeric: normal; font-variant-east-asian: normal; vertical-align: baseline; white-space: pre-wrap;">CCPCT</span>
-                                            &amp;nbsp;
-                                            <span style="color: rgb(66, 66, 66); font-family: Roboto, sans-serif; font-variant-numeric: normal; font-variant-east-asian: normal; vertical-align: baseline; white-space: pre-wrap;"> vo</span>
-                                            &amp;nbsp;
-                                            <span style="color: rgb(66, 66, 66); font-family: Roboto, sans-serif; font-variant-numeric: normal; font-variant-east-asian: normal; vertical-align: baseline; white-space: pre-wrap;">us devez respecter certains </span>
-                                            &amp;nbsp;
-                                            <span style="color: rgb(66, 66, 66); font-family: Roboto, sans-serif; font-variant-numeric: normal; font-variant-east-asian: normal; vertical-align: baseline; white-space: pre-wrap;">prérequis</span>
-                                            &amp;nbsp;
-                                            <span style="color: rgb(66, 66, 66); font-family: Roboto, sans-serif; font-variant-numeric: normal; font-variant-east-asian: normal; vertical-align: baseline; white-space: pre-wrap;"> à savoir : être titulaire d'un </span>
-                                            &amp;nbsp;
-                                            <span style="color: rgb(66, 66, 66); font-family: Roboto, sans-serif; font-variant-numeric: normal; font-variant-east-asian: normal; vertical-align: baseline; white-space: pre-wrap;">permis</span>
-                                            &amp;nbsp;
-                                            <span style="color: rgb(66, 66, 66); font-family: Roboto, sans-serif; font-variant-numeric: normal; font-variant-east-asian: normal; vertical-align: baseline; white-space: pre-wrap;"> de conduire (catégorie</span>
-                                            &amp;nbsp;
-                                            <span style="color: rgb(66, 66, 66); font-family: Roboto, sans-serif; font-variant-numeric: normal; font-variant-east-asian: normal; vertical-align: baseline; white-space: pre-wrap;"> B</span>
-                                            &amp;nbsp;
-                                            <span style="color: rgb(66, 66, 66); font-family: Roboto, sans-serif; font-variant-numeric: normal; font-variant-east-asian: normal; vertical-align: baseline; white-space: pre-wrap;"> pour les taxis et VTC et A pour le taxi moto), d’une</span>
-                                            &amp;nbsp;
-                                            <span style="color: rgb(66, 66, 66); font-family: Roboto, sans-serif; font-variant-numeric: normal; font-variant-east-asian: normal; vertical-align: baseline; white-space: pre-wrap;"> attestation médicale </span>
-                                            &amp;nbsp;
-                                            <span style="color: rgb(66, 66, 66); font-family: Roboto, sans-serif; font-variant-numeric: normal; font-variant-east-asian: normal; vertical-align: baseline; white-space: pre-wrap;">que vous obtiendrez auprès du médecin de la</span>
-                                            &amp;nbsp;
-                                            <font style="color: rgb(66, 66, 66);">&amp;nbsp;</font>
-                                            &amp;nbsp;
-                                            <span style="color: rgb(66, 66, 66); font-family: Roboto, sans-serif; font-variant-numeric: normal; font-variant-east-asian: normal; vertical-align: baseline; white-space: pre-wrap;">Préfecture de votre ville et d’un </span>
-                                            &amp;nbsp;
-                                            <span style="color: rgb(66, 66, 66); font-family: Roboto, sans-serif; font-variant-numeric: normal; font-variant-east-asian: normal; vertical-align: baseline; white-space: pre-wrap;">casier judiciaire vierge</span>
-                                            &amp;nbsp;
-                                            <span style="color: rgb(66, 66, 66); font-family: Arial; font-variant-numeric: normal; font-variant-east-asian: normal; vertical-align: baseline; white-space: pre-wrap;">
-                                                .
-                                                <br />
-                                            </span>
-                                            <span style="color: rgb(66, 66, 66); font-family: Roboto, sans-serif; font-variant-numeric: normal; font-variant-east-asian: normal; vertical-align: baseline; white-space: pre-wrap;">L’examen est organisé par la chambre des métiers et de l’artisanat et l’</span>
-                                            &amp;nbsp;
-                                            <span style="color: rgb(66, 66, 66); font-family: Roboto, sans-serif; font-variant-numeric: normal; font-variant-east-asian: normal; vertical-align: baseline; white-space: pre-wrap;">inscription </span>
-                                            &amp;nbsp;
-                                            <span style="color: rgb(66, 66, 66); font-family: Roboto, sans-serif; font-variant-numeric: normal; font-variant-east-asian: normal; vertical-align: baseline; white-space: pre-wrap;">se fait en ligne sur le site de la </span>
-                                            &amp;nbsp;
-                                            <span style="color: rgb(66, 66, 66); font-family: Roboto, sans-serif; font-variant-numeric: normal; font-variant-east-asian: normal; vertical-align: baseline; white-space: pre-wrap;">préfecture</span>
-                                            &amp;nbsp;
-                                            <span style="color: rgb(66, 66, 66); font-family: Roboto, sans-serif; font-variant-numeric: normal; font-variant-east-asian: normal; vertical-align: baseline; white-space: pre-wrap;">.</span>
-                                            <br />
-                                            <br />
-                                            <span style="color: rgb(66, 66, 66); font-family: Roboto, sans-serif; font-variant-numeric: normal; font-variant-east-asian: normal; vertical-align: baseline; white-space: pre-wrap;">Il est composé de </span>
-                                            &amp;nbsp;
-                                            <span style="color: rgb(66, 66, 66); font-family: Roboto, sans-serif; font-variant-numeric: normal; font-variant-east-asian: normal; vertical-align: baseline; white-space: pre-wrap;">deux épreuves</span>
-                                            &amp;nbsp;
-                                            <span style="color: rgb(66, 66, 66); font-family: Roboto, sans-serif; font-variant-numeric: normal; font-variant-east-asian: normal; vertical-align: baseline; white-space: pre-wrap;"> : une épreuve </span>
-                                            &amp;nbsp;
-                                            <span style="color: rgb(66, 66, 66); font-family: Roboto, sans-serif; font-variant-numeric: normal; font-variant-east-asian: normal; vertical-align: baseline; white-space: pre-wrap;">théorique</span>
-                                            &amp;nbsp;
-                                            <span style="color: rgb(66, 66, 66); font-family: Roboto, sans-serif; font-variant-numeric: normal; font-variant-east-asian: normal; vertical-align: baseline; white-space: pre-wrap;"> d’admissibilité sous forme de QCM axée sur la réglementation, la gestion , les langues et la sécurité. Et une épreuve </span>
-                                            &amp;nbsp;
-                                            <span style="color: rgb(66, 66, 66); font-family: Roboto, sans-serif; font-variant-numeric: normal; font-variant-east-asian: normal; vertical-align: baseline; white-space: pre-wrap;">pratique</span>
-                                            &amp;nbsp;
-                                            <span style="color: rgb(66, 66, 66); font-family: Roboto, sans-serif; font-variant-numeric: normal; font-variant-east-asian: normal; vertical-align: baseline; white-space: pre-wrap;"> d'admission sous forme de parcours de 20 min pour tester les connaissances du candidat sur le territoire parcouru, et sa capacité à accueillir et à facturer un client.</span>
-                                        </blockquote>
+                                <div class="col-lg-6 pt16 pb16" style="border-style: none; border-width: 0px;">
+                                    <h2 style="font-weight: 700; vertical-align: baseline;">
+                                    Comment s'inscrire à l'examen Taxi, VTC et Taxi-moto ?
                                     </h2>
-                                    <div class="pb16 pt16 s_btn text-left">En savoir plus</div>
+                                    <p class="para">
+                                        Pour passer l’examen du certificat de capacité professionnelle pour devenir 
+                                        chauffeur de taxi ou de VTC, vous devez respecter certains prérequis à savoir :
+                                        Être titulaire d'un permis de conduire (catégorie B) pour les 
+                                        taxis et VTC et A pour le taxi moto), d’une attestation médicale 
+                                        que vous obtiendrez auprès du médecin de la Préfecture de votre ville 
+                                        et d’un casier judiciaire vierge.
+                                        <p class="para">
+                                            L’examen est organisé par la chambre des métiers et de 
+                                        l’artisanat et l'Inscription se fait en ligne sur le site
+                                        de la chambre des métiers et de l'artisanat.
+                                        </p>
+
+                                        <p class="para">
+                                            Il est composé de deux épreuves : une épreuve théorique d’admissibilité 
+                                        sous forme de QCM axée sur la réglementation, la gestion, les langues 
+                                        et la sécurité. Et une épreuve pratique d'admission sous forme de parcours 
+                                        de 20 min pour tester les connaissances du candidat sur le territoire 
+                                        parcouru, et sa capacité à accueillir et à facturer un client.
+                                        </p>
+                                    </p>
+                                    <div class="s_btn text-center pt16 pb16" data-name="Button">
+                                        <a href="#" class="btn btn-primary" data-mci-spellchecked="true" spellcheck="false" lang="merciapp" style="word-break: break-word; position: relative; z-index: 0;">Je m'inscris !</a>
+                                    </div>
                                 </div>
                                 <div class="col-lg-6 pt16 pb16">
-                                    <img src="/web/image/website.s_image_text_default_image" class="img img-fluid mx-auto" alt="Odoo • Image and Text" data-original-title="" title="" aria-describedby="tooltip454711" />
+                                    <img src="/mcm_website_theme/static/src/img/homepage/1 PF.png" class="img img-fluid mx-auto" alt="Odoo • Text and Image" data-original-title="" title="" aria-describedby="tooltip830450" />
                                 </div>
                             </div>
                         </div>
                     </section>
-                    <section id="sh_corpomate_theme_section_34" data-name="Counter">
+
+
+                    <!-- counter section-->
+                    <section id="sh_corpomate_theme_section_229" class="sh_animation_part bg-900 oe_img_bg oe_custom_bg" data-name="Services counter" style="           background-image: url('/mcm_website_theme/static/src/img/homepage/fond.png');           background-position: 1.58% 78.71%;         ">
                         <div class="container">
-                            <div class="row">
-                                <div class="col-lg-3 col-md-6 col-sm-6 sh_animation_part">
-                                    <div class="sh_counter">
-                                        <span class="counter_num o_default_snippet_text">200</span>
-                                        <h4 class="sh_count_name o_default_snippet_text">Happy Clients</h4>
-                                        <div class="sh_icon">
-                                            <span class="fa fa-plus" />
-                                        </div>
+                            <div class="row clearfix">
+                                <div class="title-column col-lg-5 col-md-12 col-sm-12">
+                                    <div class="inner-column js-scroll slide-left">
+                                        <h4 style="font-size: 35px">
+
+                                        Des centaines de
+                                        personnes ont déjà fait confiance à
+                                        MCM ACADEMY
+
+                                    </h4>
+                                        <h5 style="font-size: 26px">
+                                        Pourquoi pas vous ?
+                                    </h5>
+
+
                                     </div>
                                 </div>
-                                <div class="col-lg-3 col-md-6 col-sm-6 sh_animation_part">
-                                    <div class="sh_counter sh_second_child">
-                                        <span class="counter_num o_default_snippet_text">356</span>
-                                        <h4 class="sh_count_name o_default_snippet_text">Projects</h4>
-                                        <div class="sh_icon">
-                                            <span class="fa fa-plus" />
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-3 col-md-6 col-sm-6 sh_animation_part">
-                                    <div class="sh_counter">
-                                        <span class="counter_num o_default_snippet_text">145</span>
-                                        <h4 class="sh_count_name o_default_snippet_text">Business Partners</h4>
-                                        <div class="sh_icon">
-                                            <span class="fa fa-plus" />
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-3 col-md-6 col-sm-6 sh_animation_part">
-                                    <div class="sh_counter sh_last_child">
-                                        <span class="counter_num o_default_snippet_text">20</span>
-                                        <h4 class="sh_count_name o_default_snippet_text">Awards</h4>
-                                        <div class="sh_icon">
-                                            <span class="fa fa-plus" />
+                                <div class="content-column col-lg-7 col-md-12 col-sm-12">
+                                    <div class="inner-column js-scroll slide-left">
+                                        <div class="row clearfix">
+                                            <div class="col-md-4 col-sm-12  pt32">
+                                                <div class="sh_counter">
+                                                    <h4 class="sh_count ">1500</h4>
+                                                    <h3 style="font-weight: 600;font-size: 15px;color: rgb(255, 255, 255);">
+                                                    STAGIAIRES FORMÉS</h3>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4 col-sm-12  pt32">
+                                                <div class="sh_counter">
+                                                    <h4>
+                                                        <span class="sh_count">96</span>
+                                                        <span>%</span>
+                                                    </h4>
+                                                    <h3 style="font-weight: 600;font-size: 15px;color: rgb(255, 255, 255);">
+                                                    CLIENTS SATISFAITS</h3>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4 col-sm-12  pt32">
+                                                <div class="sh_counter">
+                                                    <h4>
+                                                        <span class="sh_count">78</span>
+                                                        <span>%</span>
+                                                    </h4>
+                                                    <h3 style="font-weight: 600;font-size: 15px;color: rgb(255, 255, 255);">
+                                                    MOYENNE DE TAUX DE RÉUSSITE</h3>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </section>
+                    <!-- End counter section-->
+                    <!-- section under counter-->
                     <section id="sh_corpomate_theme_section_155" data-name="Heading" class="pb24 bg-100 pt16" style="">
                         <div class="container" style="border-style: none; border-width: 0px;">
-                            <div class="row js-scroll fade-in-top scrolled">
+                            <div class="row js-scroll fade-in-top">
                                 <div class=" col-md-3 col-sm-12 text-center mb-4 mb-md-0 ">
-                                    <img class="img-fluid" src="/mcm_website_theme/static/src/img/avis_google.png" style="width: 182px;" data-original-title="" title="" aria-describedby="tooltip46414" />
+                                    <img class="img-fluid" src="/mcm_website_theme/static/src/img/avis_google.png" style="width: 182px;" />
                                 </div>
                                 <div class="col-md-9 col-sm-12 s_title pt16 pb0" style="text-align: center; border-style: none; border-width: 0px">
                                     <div style="text-align: left;">
@@ -389,191 +389,202 @@
                             </div>
                         </div>
                     </section>
-                    <section id="sh_corpomate_theme_section_8" class="bg-100" data-name="Comparision" style="">
-                        <div class="container">
-                            <div class="row">
-                                <div class="col-md-4">
-                                    <section class="sh_pricing">
-                                        <section class="sh_price_heading">
-                                            <div class="sh_icon">
-                                                <span class="fa fa-bicycle" />
-                                            </div>
-                                            <h2>BASIC</h2>
-                                            <div class="sh_price">
-                                                <p class="sh_amount o_default_snippet_text">
-                                                    <span class="o_default_snippet_text">$</span>
-                                                    19
-                                                    <span class="o_default_snippet_text">.99</span>
-                                                </p>
-                                            </div>
-                                        </section>
-                                        <section class="sh_price_list">
-                                            <li class="o_default_snippet_text">Lorem ipsum dolor</li>
-                                            <li class="o_default_snippet_text">Lorem ipsum dolor</li>
-                                            <li class="sh_cross o_default_snippet_text">Lorem ipsum dolor</li>
-                                            <li class="o_default_snippet_text">Lorem ipsum dolor</li>
-                                            <li class="sh_cross o_default_snippet_text">Lorem ipsum dolor</li>
-                                        </section>
-                                        <div class="sh_price_btn">
-                                            <a href="#" class="sh_btn btn btn-success sh_btn_cm_1" data-original-title="" title="" aria-describedby="tooltip797080">Signup Now</a>
-                                            <p class="sh_text o_default_snippet_text">
-                                                <span class="fa fa-lock" />
-                                                100% Secure Payment
-                                            </p>
-                                        </div>
-                                    </section>
+                    <!-- fin section under counter-->
+                    <!-- PRICING TABLE-->
+                    <!-- PRICING TABLE-->
+                    <div id="pricing" class="pb32">
+                        <input t-att-value="request.website.microsoft_tracking_key" id="microsoft_tracking_key" type="hidden" />
+                        <section id="sh_corpomate_theme_section_188" class="sh_animation_part" data-name="Pricing">
+                            <div class="container">
+                                <div class="sh_title js-scroll fade-in-top">
+                                    <h2>
+                                        <b>Inscrivez-vous dès maintenant !</b>
+                                        <br />
+                                    </h2>
+                                    <h4 style="                   margin-top: 20px;                   margin-bottom: 0.5rem;                   font-size: 18px;                                   ">
+                                    Choisissez le pack qui vous convient&amp;nbsp;
+                                </h4>
+                                    <p>
+                                        <br />
+                                    </p>
                                 </div>
-                                <div class="col-md-4">
-                                    <section class="sh_pricing">
-                                        <section class="sh_best">
-                                            <p class="o_default_snippet_text">
-                                                Best Plan
-                                                <span class="o_default_snippet_text">25% off</span>
-                                            </p>
-                                        </section>
-                                        <section class="sh_price_heading ">
-                                            <div class="sh_icon">
-                                                <span class="fa fa-truck" />
-                                            </div>
-                                            <h2 class="o_default_snippet_text">BUSINESS</h2>
-                                            <div class="sh_price">
-                                                <p class="sh_amount">
-                                                    <span class="o_default_snippet_text">$</span>
-                                                    29
-                                                    <span class="o_default_snippet_text">.99</span>
-                                                </p>
-                                            </div>
-                                        </section>
-                                        <section class="sh_price_list">
-                                            <li class="o_default_snippet_text">Lorem ipsum dolor</li>
-                                            <li class="o_default_snippet_text">Lorem ipsum dolor</li>
-                                            <li class="sh_cross o_default_snippet_text">Lorem ipsum dolor</li>
-                                            <li class="o_default_snippet_text">Lorem ipsum dolor</li>
-                                            <li class="sh_cross o_default_snippet_text">Lorem ipsum dolor</li>
-                                        </section>
-                                        <div class="sh_price_btn">
-                                            <a href="#" class="sh_btn btn btn-success sh_btn_cm_1">Signup Now</a>
-                                            <p class="sh_text o_default_snippet_text">
-                                                <span class="fa fa-lock" />
-                                                100% Secure Payment
-                                            </p>
-                                        </div>
-                                    </section>
-                                </div>
-                                <div class="col-md-4">
-                                    <section class="sh_pricing">
-                                        <section class="sh_price_heading ">
-                                            <div class="sh_icon">
-                                                <span class="fa fa-plane" />
-                                            </div>
-                                            <h2 class="o_default_snippet_text">PROFESSIONAL</h2>
-                                            <div class="sh_price">
-                                                <p class="sh_amount o_default_snippet_text">
-                                                    <span class="o_default_snippet_text">$</span>
-                                                    39
-                                                    <span class="o_default_snippet_text">.99</span>
-                                                </p>
-                                            </div>
-                                        </section>
-                                        <section class="sh_price_list">
-                                            <li class="o_default_snippet_text">Lorem ipsum dolor</li>
-                                            <li class="o_default_snippet_text">Lorem ipsum dolor</li>
-                                            <li class="sh_cross o_default_snippet_text">Lorem ipsum dolor</li>
-                                            <li class="o_default_snippet_text">Lorem ipsum dolor</li>
-                                            <li class="sh_cross o_default_snippet_text">Lorem ipsum dolor</li>
-                                        </section>
-                                        <div class="sh_price_btn">
-                                            <a href="#" class="sh_btn btn btn-success sh_btn_cm_1">Signup Now</a>
-                                            <p class="sh_text o_default_snippet_text">
-                                                <span class="fa fa-lock" />
-                                                100% Secure Payment
-                                            </p>
-                                        </div>
-                                    </section>
-                                </div>
-                            </div>
-                        </div>
-                    </section>
-                    <section class="s_faq_collapse pt48 pb32" data-name="Accordion">
-                        <div class="container">
-                            <div class="row s_col_no_bgcolor">
-                                <div class="pt16 pb16 col-lg-4" style="border-style: none; border-width: 0px">
-                                    <div id="myCollapse" class="accordion" role="tablist">
-                                        <div class="card bg-white">
-                                            <a href="#" role="tab" data-toggle="collapse" aria-expanded="false" class="card-header collapsed" data-parent="#myCollapse" data-target="#myCollapseTab1616754726586" data-original-title="" title="" aria-describedby="tooltip5917">
-                                            Devenez chauffeur TAXI
-                                        </a>
-                                            <div class="collapse" role="tabpanel" id="myCollapseTab1616754726586">
-                                                <div class="card-body">
-                                                    <p class="card-text">
-                                                    Le métier de chauffeur TAXI consiste à transporter
-                                                    des personnes vers leurs destinations, mais également à rentabiliser
-                                                    son
-                                                    activité en se trouvant au bon endroit
-                                                    et au bon moment.
-                                                </p>
-                                                    <div class="s_btn text-center pt16 pb16" data-name="Button">
-                                                        <a href="/formation-chauffeur-taxi" class="btn btn-warning sh_btn_cm_4" style="margin-top: 0.4rem;                                                 padding: 0.4rem 2rem;" data-original-title="" title="" aria-describedby="tooltip562914" onclick="msTracking(&quot;clic sur Devenez chauffeur TAXI homepage&quot;,                                                 &quot;Homepage events&quot;,                                                 &quot;Devenez chauffeur TAXI homepage&quot;,                                                 1)">
-                                                        En savoir plus
-                                                    </a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="pt16 pb16 col-lg-4" style="border-style: none; border-width: 0px">
-                                    <div id="myCollapse" class="accordion" role="tablist">
-                                        <div class="card bg-white">
-                                            <a href="#" role="tab" data-toggle="collapse" aria-expanded="false" class="card-header collapsed" data-parent="#myCollapse" data-original-title="" title="" aria-describedby="tooltip5917" data-target="#myCollapseTab1616754743649">
-                                            Devenez chauffeur VTC
-                                        </a>
-                                            <div class="collapse" role="tabpanel" id="myCollapseTab1616754743649">
-                                                <div class="card-body">
-                                                    <p class="card-text">
-                                                    Le chauffeur VTC (Voiture de Transport avec Chauffeur)
-                                                    transporte des particuliers lors de leurs déplacements
-                                                    personnels ou professionnels après réservation ;
-                                                    l’exercice de son métier est strictement encadré par la
-                                                    loi.
-                                                </p>
-                                                    <div class="s_btn text-center pt16 pb16" data-name="Button">
-                                                        <a href="/formation-chauffeur-vtc" class="btn btn-warning sh_btn_cm_4" style="margin-top: 0.4rem;                                                 padding: 0.4rem 2rem;" onclick="msTracking(&quot;clic sur Devenez chauffeur VTC homepage&quot;,                                                 &quot;Homepage events&quot;,                                                 &quot;Devenez chauffeur VTC homepage&quot;,                                                 2)">En savoir plus</a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="pt16 pb16 col-lg-4" style="border-style: none; border-width: 0px">
-                                    <div id="myCollapse" class="accordion" role="tablist">
-                                        <div class="card bg-white">
-                                            <a href="#" role="tab" data-toggle="collapse" aria-expanded="false" class="card-header collapsed" data-parent="#myCollapse" data-original-title="" title="" aria-describedby="tooltip5917" data-target="#myCollapseTab1616754743646">
-                                            Devenez chauffeur MOTO-TAXI
-                                        </a>
-                                            <div class="collapse" role="tabpanel" id="myCollapseTab1616754743646">
-                                                <div class="card-body">
-                                                    <p class="card-text">
-                                                        Le chauffeur VMDTR propose, sous réservation
-                                                    préalable et au moyen d'un véhicule motorisé à deux ou
-                                                    trois roues, des prestations de transport public
-                                                    particulier de personnes et de leurs bagages.
+                                <div class="row">
+                                    <div class="col-md-4 sh_animation_part js-scroll slide-left" style="border-style: none; border-width: 0px">
+                                        <div class="sh_pricing">
+                                            <t t-foreach="mcm_products" t-as="product">
+                                                <t t-if="product.default_code=='vtc'">
+                                                    <form action="/shop/cart/update" method="post" id="form-1-1">
+                                                        <input type="hidden" class="product_id" name="product_id" id="vtc_product" t-att-value="product.id" />
+                                                        <input type="hidden" name="promo" t-att-value="promo.id" t-if="promo" />
+                                                        <h4>PACK VTC</h4>
+                                                        <h5 style="color: #636161">Éligible au CPF</h5>
+                                                        <h4 t-if="not promo">
+                                                            <span t-esc="round(product.list_price)" />
+                                                            <span style="color: #fdd105;" t-esc="product.currency_id.symbol" />
+                                                        </h4>
+                                                        <h4 t-if="promo">
+                                                            <t t-foreach="promo.item_ids" t-as="item">
+                                                                <t t-if="item.product_id.id==product.id">
+                                                                    <span t-esc="round(item.fixed_price)" />
+                                                                    <span t-esc="product.currency_id.symbol" style="color: #fdd105;" />
+                                                                </t>
+                                                            </t>
+                                                        </h4>
+                                                        <ul class="">
+                                                            <li>Formation 70 h (100 % en ligne)</li>
+                                                            <li>Accès à + de 12 examens d'entraînement</li>
+                                                            <li>Assistance par mail</li>
+                                                            <li>Assistance&amp;nbsp;par téléphone</li>
+                                                            <li>Assistance&amp;nbsp;par visioconférence</li>
+                                                            <li>Lives&amp;nbsp;avec les formateurs pour explications</li>
+                                                            <li>Révision du programme avant examen</li>
+                                                        </ul>
                                                         <br />
+                                                        <t t-if="promo">
+                                                            <p class="
+                              text-center
+                              font-weight-bolder
+                              text-secondary
+                            ">
+                                                                <b style="font-size: 50%">
+                                                                    <t>90</t>
+                                                                    <span t-esc="product.currency_id.symbol" style="color: #fdd105;" />
+                                                                    <span style="text-transform: none !important;">avec le
+                                                                    code</span>
+                                                                    <t t-esc="promo.code" />
+                                                                </b>
+                                                            </p>
+                                                        </t>
+                                                        <div class="sh_btn">
+                                                            <!-- <a class="btn btn-primary sh_btn_cm_8" data-original-title="" title="" aria-describedby="tooltip357369" onClick="(function(){document.getElementById('form-1-1').submit();return false;})();return false;">
+                            Je m'inscris
+                                                </a> -->
+                                                            <!-- Call Mircorsoft ads script onclick-->
 
+                                                            <a class="animated-button-yellow" href="#pricing" onClick="(function(){packVtcHome(); document.getElementById('form-1-1').submit();return false;})();return false;">
+                                                                <span></span>
+                                                                <span></span>
+                                                                <span></span>
+                                                                <span></span>
+                                                                Je m'inscris
+                                                            </a>
 
-                                                    </p>
-                                                    <div class="s_btn text-center pt16 pb16" data-name="Button">
-                                                        <a href="/formation-taximoto-vmtdr" class="btn btn-warning sh_btn_cm_4" style="margin-top: 0.4rem;                                                 padding: 0.4rem 2rem;" onclick="msTracking(&quot;clic sur Devenez chauffeur MOTO-Taxi homepage&quot;,                                                 &quot;Homepage events&quot;,                                                 &quot;Devenez chauffeur MOTO-Taxi homepage&quot;,                                                 3)">En savoir plus</a>
-                                                    </div>
-                                                </div>
-                                            </div>
+                                                        </div>
+                                                    </form>
+                                                </t>
+                                            </t>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 sh_animation_part js-scroll fade-in-top">
+                                        <div class="sh_pricing">
+                                            <t t-foreach="mcm_products" t-as="product">
+                                                <t t-if="product.default_code=='taxi'">
+                                                    <form action="/shop/cart/update" method="post" id="form-1-2">
+                                                        <input type="hidden" class="product_id" name="product_id" id="taxi_product" t-att-value="product.id" />
+                                                        <input type="hidden" name="promo" t-att-value="promo.id" t-if="promo" />
+                                                        <h4>PACK TAXI</h4>
+                                                        <h5 style="color: #636161">Éligible au CPF</h5>
+                                                        <h4>
+                                                            <span t-esc="round(product.list_price)" />
+                                                            <span style="
+    color: #fdd105;
+" t-esc="product.currency_id.symbol" />
+
+                                                        </h4>
+                                                        <ul class="">
+                                                            <li>Formation 70 h (100 % en ligne)</li>
+                                                            <li>Accès à + de 12 examens d'entraînement</li>
+                                                            <li>Assistance&amp;nbsp;par mail</li>
+                                                            <li>Assistance&amp;nbsp;par téléphone</li>
+                                                            <li>Assistance&amp;nbsp;par visioconférence</li>
+                                                            <li>Lives&amp;nbsp;avec les formateurs pour explications</li>
+                                                            <li>Révision du programme avant examen</li>
+                                                        </ul>
+                                                        <br />
+                                                        <t t-if="promo">
+                                                            <p class="text-center
+                                                                    font-weight-bolder
+                                                                    text-secondary
+                                                                    ">
+                                                                <b style="font-size: 50%">
+                                                                    <t>&amp;nbsp; &amp;nbsp; &amp;nbsp;&amp;nbsp;</t>
+                                                                </b>
+                                                            </p>
+                                                        </t>
+                                                        <div class="sh_btn">
+                                                            <a class="animated-button-yellow" href="#pricing" onClick="(function(){packTaxiHome();document.getElementById('form-1-2').submit();return false;})();return false;">
+                                                                <span></span>
+                                                                <span></span>
+                                                                <span></span>
+                                                                <span></span>
+                                                                Je m'inscris
+                                                            </a>
+                                                        </div>
+                                                    </form>
+                                                </t>
+                                            </t>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 sh_animation_part js-scroll slide-right">
+                                        <div class="sh_pricing">
+                                            <t t-foreach="mcm_products" t-as="product">
+                                                <t t-if="product.default_code=='vmdtr'">
+                                                    <form action="/shop/cart/update" method="post" id="form-1-3">
+                                                        <input type="hidden" class="product_id" name="product_id" id="vmdtr_product" t-att-value="product.id" />
+                                                        <input type="hidden" name="promo" t-att-value="promo.id" t-if="promo" />
+                                                        <h4>PACK TAXI-MOTO</h4>
+                                                        <h5 style="color: #636161">Éligible au CPF</h5>
+                                                        <h4>
+                                                            <span t-esc="round(product.list_price)" />
+                                                            <span style="color: #fdd105;" t-esc="product.currency_id.symbol" />
+
+                                                        </h4>
+                                                        <ul class="">
+                                                            <li>Formation 70 h (100 % en ligne)</li>
+                                                            <li>Accès à + de 12 examens d'entraînement</li>
+                                                            <li>Assistance&amp;nbsp;par mail</li>
+                                                            <li>Assistance&amp;nbsp;par téléphone</li>
+                                                            <li>Assistance&amp;nbsp;par visioconférence</li>
+                                                            <li>Lives&amp;nbsp;avec les formateurs pour explications</li>
+                                                            <li>Révision du programme avant examen</li>
+                                                        </ul>
+                                                        <br />
+                                                        <t t-if="promo">
+                                                            <p class="
+                              text-center
+                              font-weight-bolder
+                              text-secondary
+                            ">
+                                                                <b style="font-size: 50%">
+                                                                    <t>&amp;nbsp; &amp;nbsp; &amp;nbsp;&amp;nbsp;</t>
+                                                                </b>
+                                                            </p>
+                                                        </t>
+                                                        <div class="sh_btn">
+                                                            <!-- <a class="btn btn-primary sh_btn_cm_8" data-original-title="" title="" aria-describedby="tooltip196298">
+                            Je m'inscris
+                                                </a> -->
+
+                                                            <a class="animated-button-yellow" href="#pricing" onClick="(function(){packVmdtrHome(); document.getElementById('form-1-3').submit();return false;})();return false;">
+                                                                <span></span>
+                                                                <span></span>
+                                                                <span></span>
+                                                                <span></span>
+                                                                Je m'inscris
+                                                            </a>
+                                                        </div>
+                                                    </form>
+                                                </t>
+                                            </t>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    </section>
-                    <p />
+                        </section>
+                    </div>
+                    <!-- FIN PRICING TABLE-->
+
+
                 </div>
             </div>
         </xpath>
