@@ -636,7 +636,7 @@ class ClientCPFController(http.Controller):
         if not exist:
             if not user.partner_id.renounce_request:
                 subtype = 'mail.mt_note'
-                url = str(user.partner_id.get_base_url()) + 'my'
+                url = str(user.partner_id.get_base_url()) + '/my'
                 body = "Chere(e) %s félicitation pour votre inscription, votre formation commence dans 14 jours. Si vous souhaitez commencer dès maintenant cliquez sur le lien suivant : %s" % (
                 user.partner_id.name, url)
                 subject = "%s accepté(e) en CPF" % (user.partner_id.name)
