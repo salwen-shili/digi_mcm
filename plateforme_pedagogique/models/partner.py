@@ -58,6 +58,18 @@ class partner(models.Model):
         ('in_payment', 'En paiement')],
         string="Etat de facture", default=False)
 
+    """Changer login d'apprenant au moment de changement d'email sur la fiche client"""
+
+    def write(self, vals):
+        if 'email' in vals:
+            # Si email changé on change sur login
+            user=self.env['res.users'].sudo().search([('partner_id',"=",self.id)])
+            if user :
+                user.login=vals['email']
+                # print('if user',user)
+        record = super(partner, self).write(vals)
+        return record
+
     # Recuperer les utilisateurs de 360learning
     def getusers(self):
         locale.setlocale(locale.LC_TIME, str(self.env.user.lang) + '.utf8')
