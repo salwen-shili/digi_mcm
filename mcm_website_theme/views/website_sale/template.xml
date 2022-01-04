@@ -492,7 +492,7 @@
                             Merci pour votre paiement.
                         </span>
                         <div t-if="order.company_id.id ==2">
-                            <a role="button" class="btn btn-primary d-none d-md-inline-block" href="/shop/print" target="_blank" aria-label="Print" title="Print">
+                            <a role="button" class="btn btn-primary d-none d-md-inline-block" href="/shop/print" target="_blank" rel="noopener" aria-label="Print" title="Print">
                                 <i class="fa fa-print"></i>
                                 Imprimer
                             </a>

@@ -106,24 +106,26 @@
                                         </strong>
                                         a suivi la formation mentionnée ci-dessus et
                                         <t t-if="len(o.note_exam_id) &gt; 0">
-                                            <t t-if="val[0].justification == True">
-                                                a une <b>absence justifiée</b> au premier examen.
-                                            </t>
-                                            <t t-else="">
-                                                <t t-if="len(o.note_exam_id) &gt; 0">
-                                                    <t t-if="o.note_exam_id[0].presence == 'present'">
-                                                        <span>a passé</span>
-                                                        <strong>
-                                                            <span t-field="o.note_exam_id[0].etat"/>
-                                                        </strong>
-                                                        <span>le premier examen.</span>
-                                                    </t>
-                                                    <t t-else="o.note_exam_id[0].presence == 'Absent'">
-                                                        <span>a été</span>
-                                                        <strong>
-                                                            <t t-esc="{False: False, 'present': 'present(e)', 'Absent': 'absent(e)'}[o.note_exam_id[0].presence]"></t>
-                                                        </strong>
-                                                        <span>au premier examen.</span>
+                                            <t t-if="val[0]">
+                                                <t t-if="val[0].justification == True">
+                                                    a une <b>absence justifiée</b> au premier examen.
+                                                </t>
+                                                <t t-else="">
+                                                    <t t-if="len(o.note_exam_id) &gt; 0">
+                                                        <t t-if="o.note_exam_id[0].presence == 'present'">
+                                                            <span>a passé</span>
+                                                            <strong>
+                                                                <span t-field="o.note_exam_id[0].etat"/>
+                                                            </strong>
+                                                            <span>le premier examen.</span>
+                                                        </t>
+                                                        <t t-else="o.note_exam_id[0].presence == 'Absent'">
+                                                            <span>a été</span>
+                                                            <strong>
+                                                                <t t-esc="{False: False, 'present': 'present(e)', 'Absent': 'absent(e)'}[o.note_exam_id[0].presence]"></t>
+                                                            </strong>
+                                                            <span>au premier examen.</span>
+                                                        </t>
                                                     </t>
                                                 </t>
                                             </t>
@@ -193,24 +195,26 @@
                                             <span>........</span>
                                         </t>
                                         <t t-if="len(o.note_exam_id) &gt; 1">
-                                            <t t-if="val_2[1].justification == True">
-                                                a une <b>absence justifiée</b> au deuxième examen.
-                                            </t>
-                                            <t t-else="">
-                                                <t t-if="len(o.note_exam_id) &gt; 1">
-                                                    <t t-if="o.note_exam_id[1].presence == 'present'">
-                                                        <span>a passé</span>
-                                                        <strong>
-                                                            <span t-field="o.note_exam_id[1].etat"/>
-                                                        </strong>
-                                                        <span>le deuxième examen.</span>
-                                                    </t>
-                                                    <t t-else="o.note_exam_id[1].presence == 'Absent'">
-                                                        <span>a été</span>
-                                                        <strong>
-                                                            <t t-esc="{False: False, 'present': 'present(e)', 'Absent': 'absent(e)'}[o.note_exam_id[1].presence]"></t>
-                                                        </strong>
-                                                        <span>au deuxième examen.</span>
+                                            <t t-if="val_2[1]">
+                                                <t t-if="val_2[1].justification == True">
+                                                    a une <b>absence justifiée</b> au deuxième examen.
+                                                </t>
+                                                <t t-else="">
+                                                    <t t-if="len(o.note_exam_id) &gt; 1">
+                                                        <t t-if="o.note_exam_id[1].presence == 'present'">
+                                                            <span>a passé</span>
+                                                            <strong>
+                                                                <span t-field="o.note_exam_id[1].etat"/>
+                                                            </strong>
+                                                            <span>le deuxième examen.</span>
+                                                        </t>
+                                                        <t t-else="o.note_exam_id[1].presence == 'Absent'">
+                                                            <span>a été</span>
+                                                            <strong>
+                                                                <t t-esc="{False: False, 'present': 'present(e)', 'Absent': 'absent(e)'}[o.note_exam_id[1].presence]"></t>
+                                                            </strong>
+                                                            <span>au deuxième examen.</span>
+                                                        </t>
                                                     </t>
                                                 </t>
                                             </t>
@@ -279,24 +283,26 @@
                                             <span>........</span>
                                         </t>
                                         <t t-if="len(o.note_exam_id) &gt; 2">
-                                            <t t-if="val_3[2].justification == True">
-                                                a une <b>absence justifiée</b> au troisième examen.
-                                            </t>
-                                            <t t-else="">
-                                                <t t-if="len(o.note_exam_id) &gt; 2">
-                                                    <t t-if="o.note_exam_id[2].presence == 'present'">
-                                                        <span>a passé</span>
-                                                        <strong>
-                                                            <span t-field="o.note_exam_id[2].etat"/>
-                                                        </strong>
-                                                        <span>le troisième examen.</span>
-                                                    </t>
-                                                    <t t-else="o.note_exam_id[2].presence == 'Absent'">
-                                                        <span>a été</span>
-                                                        <strong>
-                                                            <t t-esc="{False: False, 'present': 'present(e)', 'Absent': 'absent(e)'}[o.note_exam_id[2].presence]"></t>
-                                                        </strong>
-                                                        <span>au troisième examen.</span>
+                                            <t t-if="val_3[2]">
+                                                <t t-if="val_3[2].justification == True">
+                                                    a une <b>absence justifiée</b> au troisième examen.
+                                                </t>
+                                                <t t-else="">
+                                                    <t t-if="len(o.note_exam_id) &gt; 2">
+                                                        <t t-if="o.note_exam_id[2].presence == 'present'">
+                                                            <span>a passé</span>
+                                                            <strong>
+                                                                <span t-field="o.note_exam_id[2].etat"/>
+                                                            </strong>
+                                                            <span>le troisième examen.</span>
+                                                        </t>
+                                                        <t t-else="o.note_exam_id[2].presence == 'Absent'">
+                                                            <span>a été</span>
+                                                            <strong>
+                                                                <t t-esc="{False: False, 'present': 'present(e)', 'Absent': 'absent(e)'}[o.note_exam_id[2].presence]"></t>
+                                                            </strong>
+                                                            <span>au troisième examen.</span>
+                                                        </t>
                                                     </t>
                                                 </t>
                                             </t>
@@ -412,24 +418,26 @@
                                         </t>
                                         a suivi la formation mentionnée ci-dessus et
                                         <t t-if="len(o.note_exam_id) &gt; 3">
-                                            <t t-if="val_4[3].justification == True">
-                                                a une <b>absence justifiée</b> au premier examen.
-                                            </t>
-                                            <t t-else="">
-                                                <t t-if="len(o.note_exam_id) &gt; 3">
-                                                    <t t-if="o.note_exam_id[3].presence == 'present'">
-                                                        <span>a passé</span>
-                                                        <strong>
-                                                            <span t-field="o.note_exam_id[3].etat"/>
-                                                        </strong>
-                                                        <span>le premier examen.</span>
-                                                    </t>
-                                                    <t t-else="o.note_exam_id[3].presence == 'Absent'">
-                                                        <span>a été</span>
-                                                        <strong>
-                                                            <t t-esc="{False: False, 'present': 'present(e)', 'Absent': 'absent(e)'}[o.note_exam_id[3].presence]"></t>
-                                                        </strong>
-                                                        <span>au premier examen.</span>
+                                            <t t-if="val_4[3]">
+                                                <t t-if="val_4[3].justification == True">
+                                                    a une <b>absence justifiée</b> au premier examen.
+                                                </t>
+                                                <t t-else="">
+                                                    <t t-if="len(o.note_exam_id) &gt; 3">
+                                                        <t t-if="o.note_exam_id[3].presence == 'present'">
+                                                            <span>a passé</span>
+                                                            <strong>
+                                                                <span t-field="o.note_exam_id[3].etat"/>
+                                                            </strong>
+                                                            <span>le premier examen.</span>
+                                                        </t>
+                                                        <t t-else="o.note_exam_id[3].presence == 'Absent'">
+                                                            <span>a été</span>
+                                                            <strong>
+                                                                <t t-esc="{False: False, 'present': 'present(e)', 'Absent': 'absent(e)'}[o.note_exam_id[3].presence]"></t>
+                                                            </strong>
+                                                            <span>au premier examen.</span>
+                                                        </t>
                                                     </t>
                                                 </t>
                                             </t>
@@ -508,24 +516,26 @@
                                             <span>...........</span>
                                         </t>
                                         <t t-if="len(o.note_exam_id) &gt; 4">
-                                            <t t-if="val_5[4].justification == True">
-                                                a une <b>absence justifiée</b> au deuxième examen.
-                                            </t>
-                                            <t t-else="">
-                                                <t t-if="len(o.note_exam_id) &gt; 4">
-                                                    <t t-if="o.note_exam_id[4].presence == 'present'">
-                                                        <span>a passé</span>
-                                                        <strong>
-                                                            <span t-field="o.note_exam_id[4].etat"/>
-                                                        </strong>
-                                                        <span>le deuxième examen.</span>
-                                                    </t>
-                                                    <t t-else="o.note_exam_id[4].presence == 'Absent'">
-                                                        <span>a été</span>
-                                                        <strong>
-                                                            <t t-esc="{False: False, 'present': 'present(e)', 'Absent': 'absent(e)'}[o.note_exam_id[4].presence]"></t>
-                                                        </strong>
-                                                        <span>au deuxième examen.</span>
+                                            <t t-if="val_5[4]">
+                                                <t t-if="val_5[4].justification == True">
+                                                    a une <b>absence justifiée</b> au deuxième examen.
+                                                </t>
+                                                <t t-else="">
+                                                    <t t-if="len(o.note_exam_id) &gt; 4">
+                                                        <t t-if="o.note_exam_id[4].presence == 'present'">
+                                                            <span>a passé</span>
+                                                            <strong>
+                                                                <span t-field="o.note_exam_id[4].etat"/>
+                                                            </strong>
+                                                            <span>le deuxième examen.</span>
+                                                        </t>
+                                                        <t t-else="o.note_exam_id[4].presence == 'Absent'">
+                                                            <span>a été</span>
+                                                            <strong>
+                                                                <t t-esc="{False: False, 'present': 'present(e)', 'Absent': 'absent(e)'}[o.note_exam_id[4].presence]"></t>
+                                                            </strong>
+                                                            <span>au deuxième examen.</span>
+                                                        </t>
                                                     </t>
                                                 </t>
                                             </t>
@@ -602,24 +612,26 @@
                                             <span>...........</span>
                                         </t>
                                         <t t-if="len(o.note_exam_id) &gt; 5">
-                                            <t t-if="val_6[5].justification == True">
-                                                a une <b>absence justifiée</b> au troisième examen.
-                                            </t>
-                                            <t t-else="">
-                                                <t t-if="len(o.note_exam_id) &gt; 5">
-                                                    <t t-if="o.note_exam_id[5].presence == 'present'">
-                                                        <span>a passé</span>
-                                                        <strong>
-                                                            <span t-field="o.note_exam_id[5].etat"/>
-                                                        </strong>
-                                                        <span>le troisième examen.</span>
-                                                    </t>
-                                                    <t t-else="o.note_exam_id[5].presence == 'Absent'">
-                                                        <span>a été</span>
-                                                        <strong>
-                                                            <t t-esc="{False: False, 'present': 'present(e)', 'Absent': 'absent(e)'}[o.note_exam_id[5].presence]"></t>
-                                                        </strong>
-                                                        <span>au troisième examen.</span>
+                                            <t t-if="val_6[5]">
+                                                <t t-if="val_6[5].justification == True">
+                                                    a une <b>absence justifiée</b> au troisième examen.
+                                                </t>
+                                                <t t-else="">
+                                                    <t t-if="len(o.note_exam_id) &gt; 5">
+                                                        <t t-if="o.note_exam_id[5].presence == 'present'">
+                                                            <span>a passé</span>
+                                                            <strong>
+                                                                <span t-field="o.note_exam_id[5].etat"/>
+                                                            </strong>
+                                                            <span>le troisième examen.</span>
+                                                        </t>
+                                                        <t t-else="o.note_exam_id[5].presence == 'Absent'">
+                                                            <span>a été</span>
+                                                            <strong>
+                                                                <t t-esc="{False: False, 'present': 'present(e)', 'Absent': 'absent(e)'}[o.note_exam_id[5].presence]"></t>
+                                                            </strong>
+                                                            <span>au troisième examen.</span>
+                                                        </t>
                                                     </t>
                                                 </t>
                                             </t>

@@ -5,13 +5,13 @@ $(document).ready(function () {
         "Vous pouvez désormais choisir votre date et centre d'examen et financer votre formation.")
     : (document.getElementById('notifMessage').textContent =
         "Pour passer à l'étape suivante merci de vous munir d'une copie originale de votre carte d'identité. Le processus d'identification peut prendre jusqu'à 20 minutes. ");
-  console.log(hasdocument, document.getElementById('hasdocument').value);
-  console.log(
-    window.location.href.includes('/coordonnees#popup1'),
-    window.location.href
-  );
+  //console.log(hasdocument, document.getElementById('hasdocument').value);
+  //console.log(
+  //   window.location.href.includes('/coordonnees#popup1'),
+  //   window.location.href
+  // );
   if (window.location.href.includes('/coordonnees#popup1')) {
-    console.log('enter');
+    //console.log('enter');
     window.location.href = '/coordonnees';
   }
   var current_fs, next_fs, previous_fs; //fieldsets
@@ -51,7 +51,7 @@ $(document).ready(function () {
         break;
     }
 
-    console.log(pass);
+    //console.log(pass);
     if (pass) {
       current_fs = $(this).parent().parent();
       next_fs = $(this).parent().parent().next();
@@ -92,7 +92,7 @@ $(document).ready(function () {
     }
 
     // if (pass.length > 1 && current === 4) {
-    //   console.log(pass.length);
+    //   //console.log(pass.length);
     else {
       error.text('Veuillez répondre à la question');
       error.show();

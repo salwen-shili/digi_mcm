@@ -304,7 +304,7 @@
                     <li style="font-size: 18px;">La création ou la reprise d’une entreprise.</li>
                     <li style="font-size: 18px;">
                       L'interface
-                      <a href="https://www.moncompteformation.gouv.fr/espace-prive/html/#/formation/recherche" target="_blank" style="color: rgb(52, 57, 150)">
+                      <a href="https://www.moncompteformation.gouv.fr/espace-prive/html/#/formation/recherche" target="_blank" rel="noopener" style="color: rgb(52, 57, 150)">
                         recherche de formation sur le site Mon compte Formation</a>
                     </li>
 

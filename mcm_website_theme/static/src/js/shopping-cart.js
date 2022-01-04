@@ -219,7 +219,7 @@ function msTracking(event, event_category, event_label, event_value) {
         }),
       (i = d.getElementsByTagName(t)[0]),
       i.parentNode.insertBefore(n, i);
-  })(window, document, 'script', '//bat.bing.com/bat.js', 'uetq');
+  })(window, document, 'script', 'https://bat.bing.com/bat.js', 'uetq');
   window.uetq = window.uetq || [];
   window.uetq.push('event', event, {
     event_category: event_category,

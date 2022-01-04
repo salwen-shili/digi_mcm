@@ -63,19 +63,19 @@ $(document).ready(function () {
 
   $(zipcode).on('blur', function () {
     var code = $(this).val();
-    console.log(code);
+    //console.log(code);
     let url = apiCommunes + code + format;
-    console.log(url);
+    //console.log(url);
 
     fetch(url, { method: 'get' })
       .then((response) => response.json())
       .then((results) => {
         let city = $('#city') ?? $('#city_reset');
-        console.log(city);
+        //console.log(city);
         // console.log(results);
         $(city).find('option').remove();
         if (results.length) {
-          console.log('enter');
+          //console.log('enter');
           $(`#city_container `).removeClass('error-input-field');
           $(`#city `).removeClass('error-input-field');
           $(`#city_helper `).append('');
@@ -97,8 +97,8 @@ $(document).ready(function () {
           city = $('#city_reset');
 
           $.each(results, function (key, value) {
-            console.log(value);
-            console.log(value.nom);
+            //console.log(value);
+            //console.log(value.nom);
             $(city).removeAttr('disbaled');
 
             $(city).append(
@@ -175,8 +175,8 @@ $(document).ready(function () {
             }),
           (i = d.getElementsByTagName(t)[0]),
           i.parentNode.insertBefore(n, i);
-      })(window, document, 'script', '//bat.bing.com/bat.js', 'uetq');
-      console.log('inside script');
+      })(window, document, 'script', 'https://bat.bing.com/bat.js', 'uetq');
+      //console.log('inside script');
       window.uetq = window.uetq || [];
       window.uetq.push('event', 'click sur inscription wedof', {
         event_category: 'Inscription wedof',
