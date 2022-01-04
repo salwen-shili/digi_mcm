@@ -702,6 +702,11 @@ class partner(models.Model):
                 dat = '{\n  "weeklyDuration": 14,\n  "indicativeDuration": 102\n}'
                 response_put = requests.put('https://www.wedof.fr/api/registrationFolders/' + externalid,
                                             headers=headers, data=data)
+
+                status = str(response_put.status_code)
+                statuss = str(json.loads(response_put.text))
+                _logger.info("validate put _________ %s" % str(status))
+                _logger.info("validate_________ %s" % str(statuss))
                 response_post = requests.post(
                     'https://www.wedof.fr/api/registrationFolders/' + externalid + '/validate',
                     headers=headers, data=dat)
