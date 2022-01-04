@@ -193,8 +193,10 @@
                                             <span>........</span>
                                         </t>
                                         <t t-if="len(o.note_exam_id) &gt; 1">
-                                            <t t-if="val_2[1].justification == True">
-                                                a une <b>absence justifiée</b> au deuxième examen.
+                                            <t t-if="val_2[1]">
+                                                <t t-if="val_2[1].justification == True">
+                                                    a une <b>absence justifiée</b> au deuxième examen.
+                                                </t>
                                             </t>
                                             <t t-else="">
                                                 <t t-if="len(o.note_exam_id) &gt; 1">
