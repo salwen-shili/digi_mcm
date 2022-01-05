@@ -815,8 +815,8 @@ class partner(models.Model):
                 ('billingState', 'all'),
                 ('certificationState', 'all'),
                 ('sort', 'lastUpdate'),
-                ('limit', '60'),
-                ('page', '2')
+                ('limit', '80'),
+                ('page', '3')
             )
             headers = {
                 'accept': 'application/json',
@@ -877,9 +877,8 @@ class partner(models.Model):
                         invoice = self.env['account.move'].sudo().search(
                             [('state', "=", 'posted'), ('partner_id', "=", partner.id)], order="invoice_date desc",
                             limit=1)
-                        _logger.info(
-                            "user INVOICE----------------°°°°°°°°°°°°°°° %s " % str(invoice.invoice_payment_state), "%s"
-                                                                                   % str(invoice.partner_id.display_name))
+                        _logger.info("user INVOICE----------------°°°°°°°°°°°°°°° %s " % str(invoice.invoice_payment_state))
+                        _logger.info("user INVOICE----------------°°°°°°°°°°°°°°° %s " % str(invoice.partner_id.display_name))
                         print("°°°°°°°°°°°°°°°°°°°°°facture.partner_id°°°°°°°°°°°°°°°°°°°°°", invoice.partner_id,
                               invoice.invoice_payment_state)
                         etat_financement_cpf_cb = invoice.invoice_payment_state
