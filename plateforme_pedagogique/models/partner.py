@@ -815,8 +815,8 @@ class partner(models.Model):
                 ('billingState', 'all'),
                 ('certificationState', 'all'),
                 ('sort', 'lastUpdate'),
-                ('limit', '80'),
-                ('page', '3')
+                ('limit', '100'),
+                ('page', '2')
             )
             headers = {
                 'accept': 'application/json',
