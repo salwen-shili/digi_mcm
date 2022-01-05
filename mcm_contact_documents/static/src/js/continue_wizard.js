@@ -17,7 +17,7 @@ document.addEventListener('DOMContentLoaded', function () {
                                 </div>
                                 <a id ="button-continuer" href="https://formation.mcm-academy.fr/register?next=/dashboard" target='_blank'>
                                         <button class="rkmd-btn btn-black ripple-effect ripple-yellow" type="submit" style="font-size: 11px;">
-                                            <i class="material-icons right">send</i>continuer</button>
+                                            <i class="material-icons right">send</i>Commencer votre formation</button>
                                     </a>
                                 </div>
                                 `;
