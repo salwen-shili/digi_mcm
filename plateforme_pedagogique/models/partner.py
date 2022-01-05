@@ -814,8 +814,8 @@ class partner(models.Model):
                 ('billingState', 'all'),
                 ('certificationState', 'all'),
                 ('sort', 'lastUpdate'),
-                ('limit', '100'),
-                ('page', '1')
+                ('limit', '20'),
+                ('page', '2')
             )
             headers = {
                 'accept': 'application/json',
@@ -839,7 +839,7 @@ class partner(models.Model):
                     # Initialisation de champ etat_financement_cpf_cb
                     etat_financement_cpf_cb = dossier['state']
                     print("user WEDOF:::::::::::::::::::::", user.partner_id.display_name, etat_financement_cpf_cb)
-                    #_logger.info("user WEDOF::::::::::::::::::::: %s" % str(user.partner_id.display_name))
+                    _logger.info("user WEDOF::::::::::::::::::::: %s" % str(user.partner_id.display_name))
                     if etat_financement_cpf_cb == "untreated":
                         user.partner_id.sudo().write({'etat_financement_cpf_cb': 'untreated'})  # write la valeur payé dans le champ etat_financement_cpf_cb
                         print("001")
@@ -883,7 +883,6 @@ class partner(models.Model):
                         if invoice.invoice_payment_state == "not_paid":
                             partner.sudo().write({'etat_financement_cpf_cb': 'not_paid'})
                             print("task003")
-                    etat_financement_cpf_cb = invoice.invoice_payment_state
                 idform = dossier['trainingActionInfo']['externalId']
                 training_id = ""
                 if "_" in idform:
