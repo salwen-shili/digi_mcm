@@ -343,6 +343,7 @@ class partner(models.Model):
                     resp = requests.post(urluser, headers=headers, data=data_user)
                     print(data_user, 'user', resp.status_code)
                     respo = str(json.loads(resp.text))
+                    responce_api = str(json.loads(resp.text))
                     _logger.info('response addd  %s' % respo)
                     if (resp.status_code == 200):
                         create = True
