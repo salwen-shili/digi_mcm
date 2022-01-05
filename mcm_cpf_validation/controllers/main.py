@@ -650,9 +650,9 @@ class ClientCPFController(http.Controller):
                         ).sudo().create({
                             'body': body,
                             'mass_keep_log': True,
-                            'mass_force_send': True,
+                            'mass_force_send': True, # force send sms True
                         })
-                        composer.action_send_sms()
+                        composer.action_send_sms() # send sms
                     client.phone = '0'+str(tel.replace(' ',''))[-9:]
                 return request.render("mcm_cpf_validation.mcm_website_partner_not_found", {})
         if not exist:
