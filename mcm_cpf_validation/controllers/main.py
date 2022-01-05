@@ -598,7 +598,7 @@ class ClientCPFController(http.Controller):
                 body = "Chere(e) %s félicitation pour votre inscription, votre formation commence dans 14 jours. Si vous souhaitez commencer dès maintenant cliquez sur le lien suivant : %s" % (
                     user.partner_id.name, url)
                 if body:
-                    composer = self.env['sms.composer'].with_context(
+                    composer = request.env['sms.composer'].with_context(
                         default_res_model='res.partner',
                         default_res_ids=user.partner_id.id,
                         default_composition_mode='mass',
