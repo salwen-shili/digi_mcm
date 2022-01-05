@@ -878,8 +878,8 @@ class partner(models.Model):
                             [('state', "=", 'posted'), ('partner_id', "=", partner.id)], order="invoice_date desc",
                             limit=1)
                         _logger.info(
-                            "user INVOICE----------------°°°°°°°°°°°°°°° %s %s" % str(invoice.invoice_payment_state,
-                                                                                   invoice.partner_id.display_name))
+                            "user INVOICE----------------°°°°°°°°°°°°°°° %s %s" % str(invoice.invoice_payment_state)
+                                                                                   % str(invoice.partner_id.display_name))
                         print("°°°°°°°°°°°°°°°°°°°°°facture.partner_id°°°°°°°°°°°°°°°°°°°°°", invoice.partner_id,
                               invoice.invoice_payment_state)
                         etat_financement_cpf_cb = invoice.invoice_payment_state
