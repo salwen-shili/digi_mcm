@@ -643,7 +643,7 @@ class ClientCPFController(http.Controller):
                 phone = '+33' + ' ' + phone[0:1] + ' ' + phone[1:3] + ' ' + phone[3:5] + ' ' + phone[
                                                                                                5:7] + ' ' + phone[
                                                                                                             7:]  # convert the number in this format : +33 x xx xx xx xx
-                client.phone = phone
+                user.partner_id.phone = phone
                 if body:
                     composer = request.env['sms.composer'].with_context(
                         default_res_model='res.partner',
@@ -655,7 +655,7 @@ class ClientCPFController(http.Controller):
                         'mass_force_send': True,  # force send sms True
                     })
                     composer.action_send_sms()  # send sms
-                client.phone = '0' + str(tel.replace(' ', ''))[-9:]
+                user.partner_id.phone = '0' + str(tel.replace(' ', ''))[-9:]
             return request.render("mcm_cpf_validation.mcm_website_new_partner_created", {})
         else:
             return request.render("mcm_cpf_validation.mcm_website_partner_updated", {})
