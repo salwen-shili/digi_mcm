@@ -45,7 +45,7 @@ class partner(models.Model):
     passage_exam = fields.Boolean("Examen passé", default=False)
     stats_ids = fields.Many2one('plateforme_pedagogique.user_stats')
     temps_minute = fields.Integer(string="Temps passé en minutes")  # Champs pour récuperer temps en minute par api360
-    second_email= fields.Char(string='Email secondaire')
+    # second_email= fields.Char(string='Email secondaire')
     """Changer login d'apprenant au moment de changement d'email sur la fiche client"""
 
     def write(self, vals):
