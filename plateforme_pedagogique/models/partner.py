@@ -45,7 +45,7 @@ class partner(models.Model):
     passage_exam = fields.Boolean("Examen passé", default=False)
     stats_ids = fields.Many2one('plateforme_pedagogique.user_stats')
     temps_minute = fields.Integer(string="Temps passé en minutes")  # Champs pour récuperer temps en minute par api360
-    # second_email= fields.Char(string='Email secondaire')
+    second_email= fields.Char(string='Email secondaire')
     """Changer login d'apprenant au moment de changement d'email sur la fiche client"""
 
     def write(self, vals):
@@ -515,7 +515,7 @@ class partner(models.Model):
                 ('company', '56f5520e11d423f46884d593'),
                 ('apiKey', 'cnkcbrhHKyfzKLx4zI7Ub2P5'),
             )
-            response = requests.get('https://staging.360learning-dev.com/api/v1/users', params=params)
+            response = requests.get('https://app.360learning.com/api/v1/users', params=params)
             users = response.json()
             for user in users:
                 iduser = user['_id']
