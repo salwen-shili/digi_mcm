@@ -714,7 +714,7 @@ class CustomerPortal(CustomerPortal):
 
         return request.redirect('/my/documents')
 
-    @http.route(['/my/cerfa'], type='http', auth="public", website=True)
+    @http.route(['/my/cerfa'], type='http', auth="user", website=True)
     def portal_cerfa(self):
         return request.render("mcm_contact_documents.cerfa_portal_template")
 
