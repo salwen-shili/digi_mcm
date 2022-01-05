@@ -1332,6 +1332,10 @@ class partner(models.Model):
                                 so.unlink()
                                 user.partner_id.statut = 'won'
                                 if not user.partner_id.renounce_request:
+                                    if user.partner_id.phone:
+                                        phone = str(user.partner_id.phone.replace(' ', ''))[-9:]
+                                        phone = '+33' + ' ' + phone[0:1] + ' ' + phone[1:3] + ' ' + phone[3:5] + ' ' + phone[5:7] + ' ' + phone[7:]
+                                        user.partner_id.phone = phone
                                     url = str(user.partner_id.get_base_url()) + '/my'
                                     body = "Chere(e) %s félicitation pour votre inscription, votre formation commence dans 14 jours. Si vous souhaitez commencer dès maintenant cliquez sur le lien suivant : %s" % (
                                         user.partner_id.name, url)
@@ -1346,6 +1350,8 @@ class partner(models.Model):
                                             'mass_force_send': True,
                                         })
                                         composer.action_send_sms()
+                                        if user.partner_id.phone:
+                                            user.partner_id.phone = '0' + str(user.partner_id.phone.replace(' ', ''))[-9:]
                                 """changer step à validé dans espace client """
                                 user.partner_id.step = 'finish'
                             session = self.env['partner.sessions'].search([('client_id', '=', user.partner_id.id),
@@ -1424,6 +1430,13 @@ class partner(models.Model):
                                 so.unlink()
                                 user.partner_id.statut = 'won'
                                 if not user.partner_id.renounce_request:
+                                    if user.partner_id.phone:
+                                        phone = str(user.partner_id.phone.replace(' ', ''))[-9:]
+                                        phone = '+33' + ' ' + phone[0:1] + ' ' + phone[1:3] + ' ' + phone[
+                                                                                                    3:5] + ' ' + phone[
+                                                                                                                 5:7] + ' ' + phone[
+                                                                                                                              7:]
+                                        user.partner_id.phone = phone
                                     url = str(user.partner_id.get_base_url()) + '/my'
                                     body = "Chere(e) %s félicitation pour votre inscription, votre formation commence dans 14 jours. Si vous souhaitez commencer dès maintenant cliquez sur le lien suivant : %s" % (
                                         user.partner_id.name, url)
@@ -1438,6 +1451,9 @@ class partner(models.Model):
                                             'mass_force_send': True,
                                         })
                                         composer.action_send_sms()
+                                        if user.partner_id.phone:
+                                            user.partner_id.phone = '0' + str(user.partner_id.phone.replace(' ', ''))[
+                                                                          -9:]
                                 """changer step à validé dans espace client """
                                 user.partner_id.step = 'finish'
                             session = self.env['partner.sessions'].search([('client_id', '=', user.partner_id.id),
