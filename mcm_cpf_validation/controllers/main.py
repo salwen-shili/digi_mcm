@@ -593,6 +593,21 @@ class ClientCPFController(http.Controller):
                     user.partner_id.company_id = 1
         # user = request.env['res.users'].sudo().search([('login', "=", email)])
         if user:
+            if not user.partner_id.renounce_request:
+                url = str(user.partner_id.get_base_url()) + '/my'
+                body = "Chere(e) %s félicitation pour votre inscription, votre formation commence dans 14 jours. Si vous souhaitez commencer dès maintenant cliquez sur le lien suivant : %s" % (
+                    user.partner_id.name, url)
+                if body:
+                    composer = self.env['sms.composer'].with_context(
+                        default_res_model='res.partner',
+                        default_res_ids=user.partner_id.id,
+                        default_composition_mode='mass',
+                    ).sudo().create({
+                        'body': body,
+                        'mass_keep_log': True,
+                        'mass_force_send': True,
+                    })
+                    composer.action_send_sms()
             client = request.env['res.partner'].sudo().search(
                 [('id', '=', user.partner_id.id)])
             if client:
