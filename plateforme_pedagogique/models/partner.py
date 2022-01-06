@@ -856,24 +856,24 @@ class partner(models.Model):
                         user.partner_id.sudo().write({'etat_financement_cpf_cb': 'bill'})
                     if etat_financement_cpf_cb == "canceled" or etat_financement_cpf_cb == "canceledByAttendee" or etat_financement_cpf_cb == "canceledByAttendeeNotRealized" or etat_financement_cpf_cb == "refusedByAttendee" or etat_financement_cpf_cb == "refusedByOrganism":
                         user.partner_id.sudo().write({'etat_financement_cpf_cb': 'canceled'})
-                else:
-                    for partner in self.env['res.partner'].search(
-                            [('statut', "=", "won"), ("mode_de_financement", "=", "particulier")]):
-                        invoice = self.env['account.move'].sudo().search(
-                            [('partner_id', "=", partner.id)], limit=1)
-                        _logger.info("user INVOICE----invoice_payment_state------------°°°°°°°°°°°°°°° %s " % str(invoice.invoice_payment_state))
-                        _logger.info("user Partner id----------------°°°°°°°°°°°°°°° %s " % str(invoice.partner_id.display_name))
+                #else:
+                for partner in self.env['res.partner'].search(
+                        [('statut', "=", "won"), ("mode_de_financement", "=", "particulier"), ("id", "=", self.id)]):
+                    invoice = self.env['account.move'].sudo().search(
+                        [('partner_id', "=", partner.id)], limit=1)
+                    _logger.info("user INVOICE----invoice_payment_state------------°°°°°°°°°°°°°°° %s " % str(invoice.invoice_payment_state))
+                    _logger.info("user Partner id----------------°°°°°°°°°°°°°°° %s " % str(invoice.partner_id.display_name))
+                    etat_financement_cpf_cb = invoice.invoice_payment_state
+                    if invoice.invoice_payment_state == "in_payment":
                         etat_financement_cpf_cb = invoice.invoice_payment_state
-                        if invoice.invoice_payment_state == "in_payment":
-                            etat_financement_cpf_cb = invoice.invoice_payment_state
-                            partner.sudo().write({'etat_financement_cpf_cb': 'in_payment'})
-                        if invoice.invoice_payment_state == "paid":
-                            etat_financement_cpf_cb = invoice.invoice_payment_state
-                            partner.sudo().write({'etat_financement_cpf_cb': 'paid'})
-                        if invoice.invoice_payment_state == "not_paid":
-                            etat_financement_cpf_cb = invoice.invoice_payment_state
-                            partner.sudo().write({'etat_financement_cpf_cb': 'not_paid'})
-                            print("task003")
+                        partner.sudo().write({'etat_financement_cpf_cb': 'in_payment'})
+                    if invoice.invoice_payment_state == "paid":
+                        etat_financement_cpf_cb = invoice.invoice_payment_state
+                        partner.sudo().write({'etat_financement_cpf_cb': 'paid'})
+                    if invoice.invoice_payment_state == "not_paid":
+                        etat_financement_cpf_cb = invoice.invoice_payment_state
+                        partner.sudo().write({'etat_financement_cpf_cb': 'not_paid'})
+                        print("task003")
                 idform = dossier['trainingActionInfo']['externalId']
                 training_id = ""
                 if "_" in idform:
