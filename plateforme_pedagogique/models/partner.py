@@ -320,10 +320,10 @@ class partner(models.Model):
                 )
                 company_id = '56f5520e11d423f46884d593'
                 api_key = 'cnkcbrhHKyfzKLx4zI7Ub2P5'
-                urluser = ' https://staging.360learning-dev.com/api/v1/users?company=' + company_id + '&apiKey=' + api_key
-                urlgroup_Bienvenue = ' https://staging.360learning-dev.com/api/v1/groups/' + id_Digimoov_bienvenue + '/users/' + partner.email + '?company=' + company_id + '&apiKey=' + api_key
-                url_groups = ' https://staging.360learning-dev.com/api/v1/groups'
-                url_unsubscribeToEmailNotifications = ' https://staging.360learning-dev.com/api/v1/users/unsubscribeToEmailNotifications?company=' + company_id + '&apiKey=' + api_key
+                urluser = 'https://app.360learning.com/api/v1/users?company=' + company_id + '&apiKey=' + api_key
+                urlgroup_Bienvenue = 'https://app.360learning.com/api/v1/groups/' + id_Digimoov_bienvenue + '/users/' + partner.email + '?company=' + company_id + '&apiKey=' + api_key
+                url_groups = 'https://app.360learning.com/api/v1/groups'
+                url_unsubscribeToEmailNotifications = 'https://app.360learning.com/api/v1/users/unsubscribeToEmailNotifications?company=' + company_id + '&apiKey=' + api_key
                 headers = CaseInsensitiveDict()
                 headers["Content-Type"] = "application/json"
                 invit = False
@@ -379,7 +379,7 @@ class partner(models.Model):
                         print('nom groupe', groupe)
                         id_groupe = groupe['_id']
                         # affecter à groupe digimoov
-                        digimoov_examen = "Digimoov - Attestation de capacité de transport de marchandises de moins de 3.5t"
+                        digimoov_examen = "Digimoov - Attestation de capacité de transport de marchandises de moins de 3.5t (léger)"
                         # Si la company est digimoov on ajoute i-One sur 360
                         if (company == '2'):
                             if (nom_groupe == digimoov_examen.upper()):
@@ -565,7 +565,7 @@ class partner(models.Model):
             api_key = 'cnkcbrhHKyfzKLx4zI7Ub2P5'
             headers = CaseInsensitiveDict()
             headers["Accept"] = "*/*"
-            url = ' https://staging.360learning-dev.com/api/v1/users/' + self.email + '?company=' + company_id + '&apiKey=' + api_key
+            url = 'https://app.360learning.com/api/v1/users/' + self.email + '?company=' + company_id + '&apiKey=' + api_key
             resp = requests.delete(url)
 
     # Extraire firstName et lastName à partir du champs name
@@ -641,8 +641,7 @@ class partner(models.Model):
                 print('date', today, dateFormation, certificat)
                 """Si date de formation <= ajourdhui et s'il a choisi  la formation de transport  léger de marchandises
                 on cherche l'apprenant par email sur 360"""
-                if (
-                        certificat == "Formation à l'obtention de l'attestation de capacité professionnelle en transport léger de marchandises") \
+                if (certificat == "Formation à l'obtention de l'attestation de capacité professionnelle en transport léger de marchandises") \
                         and (dateFormation <= today):
                     _logger.info('wedooooffffff %s' % certificat)
                     _logger.info('dateformation %s' % dateFormation)
@@ -698,7 +697,6 @@ class partner(models.Model):
     def change_state_wedof_validate(self):
         base_url = self.env['ir.config_parameter'].sudo().get_param('web.base.url')
         if "localhost" not in str(base_url) and "dev.odoo" not in str(base_url):
-
             params_wedof = (
                 ('order', 'desc'),
                 ('type', 'all'),
@@ -833,7 +831,6 @@ class partner(models.Model):
                 email = email.replace("%", ".")  # remplacer % par .
                 email = email.replace(" ", "")  # supprimer les espaces envoyés en paramètre email
                 email = str(email).lower()  # recupérer l'email en miniscule pour éviter la création des deux comptes
-                print('dossier', dossier)
                 # Recherche dans la table utilisateur si login de wedof = email
                 user = self.env["res.users"].sudo().search([("login", "=", email)])
                 if user and user.partner_id.mode_de_financement == "cpf":
@@ -841,8 +838,7 @@ class partner(models.Model):
                     etat_financement_cpf_cb = dossier['state']
                     _logger.info("user WEDOF::::::::::::::::::::: %s" % str(user.partner_id.display_name))
                     if etat_financement_cpf_cb == "untreated":
-                        user.partner_id.sudo().write({
-                            'etat_financement_cpf_cb': 'untreated'})  # write la valeur payé dans le champ etat_financement_cpf_cb
+                        user.partner_id.sudo().write({'etat_financement_cpf_cb': 'untreated'})  # write la valeur payé dans le champ etat_financement_cpf_cb
                     if etat_financement_cpf_cb == "validated":
                         user.partner_id.sudo().write({'etat_financement_cpf_cb': 'validated'})
                     if etat_financement_cpf_cb == "accepted":
@@ -1554,7 +1550,6 @@ class partner(models.Model):
                                     # move.cpf_acompte_invoice=True
                                     # move.cpf_invoice =True
                                     move.methodes_payment = 'cpf'
-                                    move.numero_cpf = externalId
                                     move.pourcentage_acompte = 25
                                     move.session_id = so.session_id
                                     move.company_id = so.company_id
