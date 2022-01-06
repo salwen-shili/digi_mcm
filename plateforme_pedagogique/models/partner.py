@@ -46,7 +46,6 @@ class partner(models.Model):
     passage_exam = fields.Boolean("Examen passé", default=False)
     stats_ids = fields.Many2one('plateforme_pedagogique.user_stats')
     temps_minute = fields.Integer(string="Temps passé en minutes")  # Champs pour récuperer temps en minute par api360
-    second_email = fields.Char(string='Email secondaire')
     # Recuperation de l'état de facturation pour cpf de wedof et carte bleu de odoo
     etat_financement_cpf_cb = fields.Selection([('untreated', 'Non Traité'),
                                                 ('validated', 'Validé'),
@@ -320,10 +319,10 @@ class partner(models.Model):
                 )
                 company_id = '56f5520e11d423f46884d593'
                 api_key = 'cnkcbrhHKyfzKLx4zI7Ub2P5'
-                urluser = ' https://staging.360learning-dev.com/api/v1/users?company=' + company_id + '&apiKey=' + api_key
-                urlgroup_Bienvenue = ' https://staging.360learning-dev.com/api/v1/groups/' + id_Digimoov_bienvenue + '/users/' + partner.email + '?company=' + company_id + '&apiKey=' + api_key
-                url_groups = ' https://staging.360learning-dev.com/api/v1/groups'
-                url_unsubscribeToEmailNotifications = ' https://staging.360learning-dev.com/api/v1/users/unsubscribeToEmailNotifications?company=' + company_id + '&apiKey=' + api_key
+                urluser = 'https://app.360learning.com/api/v1/users?company=' + company_id + '&apiKey=' + api_key
+                urlgroup_Bienvenue = 'https://app.360learning.com/api/v1/groups/' + id_Digimoov_bienvenue + '/users/' + partner.email + '?company=' + company_id + '&apiKey=' + api_key
+                url_groups = 'https://app.360learning.com/api/v1/groups'
+                url_unsubscribeToEmailNotifications = 'https://app.360learning.com/api/v1/users/unsubscribeToEmailNotifications?company=' + company_id + '&apiKey=' + api_key
                 headers = CaseInsensitiveDict()
                 headers["Content-Type"] = "application/json"
                 invit = False
@@ -565,7 +564,7 @@ class partner(models.Model):
             api_key = 'cnkcbrhHKyfzKLx4zI7Ub2P5'
             headers = CaseInsensitiveDict()
             headers["Accept"] = "*/*"
-            url = ' https://staging.360learning-dev.com/api/v1/users/' + self.email + '?company=' + company_id + '&apiKey=' + api_key
+            url = 'https://app.360learning.com/api/v1/users/' + self.email + '?company=' + company_id + '&apiKey=' + api_key
             resp = requests.delete(url)
 
     # Extraire firstName et lastName à partir du champs name
@@ -698,7 +697,6 @@ class partner(models.Model):
     def change_state_wedof_validate(self):
         base_url = self.env['ir.config_parameter'].sudo().get_param('web.base.url')
         if "localhost" not in str(base_url) and "dev.odoo" not in str(base_url):
-
             params_wedof = (
                 ('order', 'desc'),
                 ('type', 'all'),
@@ -806,7 +804,7 @@ class partner(models.Model):
 
     def change_state_cpf_partner(self):
         base_url = self.env['ir.config_parameter'].sudo().get_param('web.base.url')
-        if "localhost" not in str(base_url) and "dev.odoo" in str(base_url):
+        if "localhost" in str(base_url) and "dev.odoo" not in str(base_url):
             params_wedof = (
                 ('order', 'desc'),
                 ('type', 'all'),
@@ -833,7 +831,6 @@ class partner(models.Model):
                 email = email.replace("%", ".")  # remplacer % par .
                 email = email.replace(" ", "")  # supprimer les espaces envoyés en paramètre email
                 email = str(email).lower()  # recupérer l'email en miniscule pour éviter la création des deux comptes
-                print('dossier', dossier)
                 # Recherche dans la table utilisateur si login de wedof = email
                 user = self.env["res.users"].sudo().search([("login", "=", email)])
                 if user and user.partner_id.mode_de_financement == "cpf":
@@ -841,8 +838,7 @@ class partner(models.Model):
                     etat_financement_cpf_cb = dossier['state']
                     _logger.info("user WEDOF::::::::::::::::::::: %s" % str(user.partner_id.display_name))
                     if etat_financement_cpf_cb == "untreated":
-                        user.partner_id.sudo().write({
-                            'etat_financement_cpf_cb': 'untreated'})  # write la valeur payé dans le champ etat_financement_cpf_cb
+                        user.partner_id.sudo().write({'etat_financement_cpf_cb': 'untreated'})  # write la valeur payé dans le champ etat_financement_cpf_cb
                     if etat_financement_cpf_cb == "validated":
                         user.partner_id.sudo().write({'etat_financement_cpf_cb': 'validated'})
                     if etat_financement_cpf_cb == "accepted":
@@ -852,8 +848,7 @@ class partner(models.Model):
                     if etat_financement_cpf_cb == "out_training":
                         user.partner_id.sudo().write({'etat_financement_cpf_cb': 'terminated'})
                     if etat_financement_cpf_cb == "serviceDoneDeclared":
-                        # user.partner_id.sudo().write({'etat_financement_cpf_cb': 'service_declared'})
-                        user.partner_id.etat_financement_cpf_cb == 'service_declared'
+                        user.partner_id.sudo().write({'etat_financement_cpf_cb': 'service_declared'})
                     if etat_financement_cpf_cb == "serviceDoneValidated":
                         user.partner_id.sudo().write({'etat_financement_cpf_cb': 'service_validated'})
                     if etat_financement_cpf_cb == "bill":
@@ -1555,7 +1550,6 @@ class partner(models.Model):
                                     # move.cpf_acompte_invoice=True
                                     # move.cpf_invoice =True
                                     move.methodes_payment = 'cpf'
-                                    move.numero_cpf = externalId
                                     move.pourcentage_acompte = 25
                                     move.session_id = so.session_id
                                     move.company_id = so.company_id
