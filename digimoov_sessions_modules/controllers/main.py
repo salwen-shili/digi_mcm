@@ -806,7 +806,7 @@ class WebsiteSale(WebsiteSale):
                         print('nom groupe', groupe)
                         id_groupe = groupe['_id']
                         # affecter à groupe digimoov
-                        digimoov_examen = "Digimoov - Attestation de capacité de transport de marchandises de moins de 3.5t"
+                        digimoov_examen = "Digimoov - Attestation de capacité de transport de marchandises de moins de 3.5t (léger)"
                         # Si la company est digimoov on ajoute i-One sur 360
                         if (company == '2'):
                             if (nom_groupe == digimoov_examen.upper()):
