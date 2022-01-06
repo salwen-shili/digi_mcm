@@ -852,8 +852,7 @@ class partner(models.Model):
                     if etat_financement_cpf_cb == "out_training":
                         user.partner_id.sudo().write({'etat_financement_cpf_cb': 'terminated'})
                     if etat_financement_cpf_cb == "serviceDoneDeclared":
-                        # user.partner_id.sudo().write({'etat_financement_cpf_cb': 'service_declared'})
-                        user.partner_id.etat_financement_cpf_cb == 'service_declared'
+                        user.partner_id.sudo().write({'etat_financement_cpf_cb': 'service_declared'})
                     if etat_financement_cpf_cb == "serviceDoneValidated":
                         user.partner_id.sudo().write({'etat_financement_cpf_cb': 'service_validated'})
                     if etat_financement_cpf_cb == "bill":
