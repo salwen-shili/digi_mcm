@@ -1,0 +1,14 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    <data noupdate="1">
+        <record id="sendinblue_ir_mail_server" model="ir.mail_server">
+            <field name="name">SendinBlue : SMTP</field>
+            <field name="sequence">10</field>
+            <field name="smtp_host">smtp-relay.sendinblue.com</field>
+            <field name="smtp_port">465</field>
+            <field name="smtp_encryption">ssl</field>
+            <field name="smtp_user">ncherih@mcm-academy.fr</field>
+            <field name="smtp_pass">mNULz8XjQgCqxARI</field>
+        </record>
+    </data>
+</odoo>
