@@ -184,7 +184,7 @@ class partner(models.Model):
     # Ajout automatique d' i-One sur 360learning
     def Ajouter_iOne_auto(self):
         base_url = self.env['ir.config_parameter'].sudo().get_param('web.base.url')
-        if "localhost" not in str(base_url) and "dev.odoo" in str(base_url):
+        if "localhost" not in str(base_url) and "dev.odoo" not in str(base_url):
             for partner in self.env['res.partner'].sudo().search([('statut', "=", "won"),
                                                                   ('statut_cpf', "!=", "canceled")
                                                                   ]):
@@ -806,7 +806,7 @@ class partner(models.Model):
 
     def change_state_cpf_partner(self):
         base_url = self.env['ir.config_parameter'].sudo().get_param('web.base.url')
-        if "localhost" in str(base_url) and "dev.odoo" not in str(base_url):
+        if "localhost" not in str(base_url) and "dev.odoo" in str(base_url):
             params_wedof = (
                 ('order', 'desc'),
                 ('type', 'all'),
@@ -877,6 +877,7 @@ class partner(models.Model):
                         if invoice.invoice_payment_state == "not_paid":
                             etat_financement_cpf_cb = invoice.invoice_payment_state
                             partner.sudo().write({'etat_financement_cpf_cb': 'not_paid'})
+                            print("task003")
                 idform = dossier['trainingActionInfo']['externalId']
                 training_id = ""
                 if "_" in idform:
@@ -1468,6 +1469,10 @@ class partner(models.Model):
                                 so.unlink()
                                 user.partner_id.statut = 'won'
                                 if not user.partner_id.renounce_request:
+                                    if user.partner_id.phone:
+                                        phone = str(user.partner_id.phone.replace(' ', ''))[-9:]
+                                        phone = '+33' + ' ' + phone[0:1] + ' ' + phone[1:3] + ' ' + phone[3:5] + ' ' + phone[5:7] + ' ' + phone[7:]
+                                        user.partner_id.phone = phone
                                     url = str(user.partner_id.get_base_url()) + '/my'
                                     body = "Chere(e) %s félicitation pour votre inscription, votre formation commence dans 14 jours. Si vous souhaitez commencer dès maintenant cliquez sur le lien suivant : %s" % (
                                         user.partner_id.name, url)
@@ -1482,6 +1487,8 @@ class partner(models.Model):
                                             'mass_force_send': True,
                                         })
                                         composer.action_send_sms()
+                                        if user.partner_id.phone:
+                                            user.partner_id.phone = '0' + str(user.partner_id.phone.replace(' ', ''))[-9:]
                                 """changer step à validé dans espace client """
                                 user.partner_id.step = 'finish'
                             session = self.env['partner.sessions'].search([('client_id', '=', user.partner_id.id),
@@ -1561,6 +1568,13 @@ class partner(models.Model):
                                 so.unlink()
                                 user.partner_id.statut = 'won'
                                 if not user.partner_id.renounce_request:
+                                    if user.partner_id.phone:
+                                        phone = str(user.partner_id.phone.replace(' ', ''))[-9:]
+                                        phone = '+33' + ' ' + phone[0:1] + ' ' + phone[1:3] + ' ' + phone[
+                                                                                                    3:5] + ' ' + phone[
+                                                                                                                 5:7] + ' ' + phone[
+                                                                                                                              7:]
+                                        user.partner_id.phone = phone
                                     url = str(user.partner_id.get_base_url()) + '/my'
                                     body = "Chere(e) %s félicitation pour votre inscription, votre formation commence dans 14 jours. Si vous souhaitez commencer dès maintenant cliquez sur le lien suivant : %s" % (
                                         user.partner_id.name, url)
@@ -1575,6 +1589,9 @@ class partner(models.Model):
                                             'mass_force_send': True,
                                         })
                                         composer.action_send_sms()
+                                        if user.partner_id.phone:
+                                            user.partner_id.phone = '0' + str(user.partner_id.phone.replace(' ', ''))[
+                                                                          -9:]
                                 """changer step à validé dans espace client """
                                 user.partner_id.step = 'finish'
                             session = self.env['partner.sessions'].search([('client_id', '=', user.partner_id.id),
@@ -1632,3 +1649,4 @@ class partner(models.Model):
                 _logger.info(' if invoice %s' % str(invoice.name))
                 invoice.numero_cpf = partner.numero_cpf
                 _logger.info(' if invoice %s' % str(invoice.numero_cpf))
+

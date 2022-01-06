@@ -635,27 +635,6 @@ class ClientCPFController(http.Controller):
             else:
                 return request.render("mcm_cpf_validation.mcm_website_partner_not_found", {})
         if not exist:
-            if not user.partner_id.renounce_request:
-                url = str(user.partner_id.get_base_url()) + '/my'
-                body = "Chere(e) %s félicitation pour votre inscription, votre formation commence dans 14 jours. Si vous souhaitez commencer dès maintenant cliquez sur le lien suivant : %s" % (
-                    user.partner_id.name, url)
-                phone = str(tel.replace(' ', ''))[-9:]
-                phone = '+33' + ' ' + phone[0:1] + ' ' + phone[1:3] + ' ' + phone[3:5] + ' ' + phone[
-                                                                                               5:7] + ' ' + phone[
-                                                                                                            7:]  # convert the number in this format : +33 x xx xx xx xx
-                user.partner_id.phone = phone
-                if body:
-                    composer = request.env['sms.composer'].with_context(
-                        default_res_model='res.partner',
-                        default_res_ids=user.partner_id.id,
-                        default_composition_mode='mass',
-                    ).sudo().create({
-                        'body': body,
-                        'mass_keep_log': True,
-                        'mass_force_send': True,  # force send sms True
-                    })
-                    composer.action_send_sms()  # send sms
-                user.partner_id.phone = '0' + str(tel.replace(' ', ''))[-9:]
             return request.render("mcm_cpf_validation.mcm_website_new_partner_created", {})
         else:
             return request.render("mcm_cpf_validation.mcm_website_partner_updated", {})
