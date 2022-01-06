@@ -9,7 +9,7 @@ from odoo import _
 import locale
 from dateutil.relativedelta import relativedelta
 
-from odoo import models, fields, api
+from odoo import models, fields, api, SUPERUSER_ID
 from odoo.exceptions import ValidationError
 from unidecode import unidecode
 import logging
@@ -46,31 +46,32 @@ class partner(models.Model):
     passage_exam = fields.Boolean("Examen passé", default=False)
     stats_ids = fields.Many2one('plateforme_pedagogique.user_stats')
     temps_minute = fields.Integer(string="Temps passé en minutes")  # Champs pour récuperer temps en minute par api360
+    second_email = fields.Char(string='Email secondaire')
     # Recuperation de l'état de facturation pour cpf de wedof et carte bleu de odoo
     etat_financement_cpf_cb = fields.Selection([('untreated', 'Non Traité'),
-        ('validated', 'Validé'),
-        ('accepted', 'Accepté'),
-        ('in_training', 'En Formation'),
-        ('out_training', 'Sortie de Formation'),
-        ('service_declared', 'Service Fait Declaré'),
-        ('service_validated', 'Service Fait Validé'),
-        ('bill', 'Facturé'),
-        ('canceled', 'Annulé'),
-        ('paid', 'Payé'),
-        ('not_paid', 'Non payées'),
-        ('in_payment', 'En paiement')],
-        string="Financement", default=False)
+                                                ('validated', 'Validé'),
+                                                ('accepted', 'Accepté'),
+                                                ('in_training', 'En Formation'),
+                                                ('out_training', 'Sortie de Formation'),
+                                                ('service_declared', 'Service Fait Declaré'),
+                                                ('service_validated', 'Service Fait Validé'),
+                                                ('bill', 'Facturé'),
+                                                ('canceled', 'Annulé'),
+                                                ('paid', 'Payé'),
+                                                ('not_paid', 'Non payées'),
+                                                ('in_payment', 'En paiement')],
+                                               string="Financement", default=False)
 
     """Changer login d'apprenant au moment de changement d'email sur la fiche client"""
 
     def write(self, vals):
         if 'email' in vals:
             # Si email changé on change sur login
-            user=self.env['res.users'].sudo().search([('partner_id',"=",self.id)])
-            if user :
-                _logger.info("loginn---------- %s" %str(user.login))
+            user = self.env['res.users'].sudo().search([('partner_id', "=", self.id)])
+            if user:
+                _logger.info("loginn---------- %s" % str(user.login))
                 user.sudo().write({
-                 'login':vals['email']
+                    'login': vals['email']
                 })
                 # print('if user',user)
         record = super(partner, self).write(vals)
@@ -304,12 +305,11 @@ class partner(models.Model):
             # Changer format de date et la mettre en majuscule
             datesession = str(date_exam.strftime(new_format).upper())
             date_session = unidecode(datesession)
-
+            responce_api = False
             # Récuperer le mot de passe à partir de res.users
             user = self.env['res.users'].sudo().search([('partner_id', '=', partner.id)], limit=1)
             _logger.info('avant if login user %s' % user.login)
             _logger.info('avant if partner email %s' % partner.email)
-            _logger.info('avant if password  %s ' % user.password360)
 
             if user:
                 id_Digimoov_bienvenue = '56f5520e11d423f46884d594'
@@ -320,10 +320,10 @@ class partner(models.Model):
                 )
                 company_id = '56f5520e11d423f46884d593'
                 api_key = 'cnkcbrhHKyfzKLx4zI7Ub2P5'
-                urluser = 'https://app.360learning.com/api/v1/users?company=' + company_id + '&apiKey=' + api_key
-                urlgroup_Bienvenue = 'https://app.360learning.com/api/v1/groups/' + id_Digimoov_bienvenue + '/users/' + partner.email + '?company=' + company_id + '&apiKey=' + api_key
-                url_groups = 'https://app.360learning.com/api/v1/groups'
-                url_unsubscribeToEmailNotifications = 'https://app.360learning.com/api/v1/users/unsubscribeToEmailNotifications?company=' + company_id + '&apiKey=' + api_key
+                urluser = ' https://staging.360learning-dev.com/api/v1/users?company=' + company_id + '&apiKey=' + api_key
+                urlgroup_Bienvenue = ' https://staging.360learning-dev.com/api/v1/groups/' + id_Digimoov_bienvenue + '/users/' + partner.email + '?company=' + company_id + '&apiKey=' + api_key
+                url_groups = ' https://staging.360learning-dev.com/api/v1/groups'
+                url_unsubscribeToEmailNotifications = ' https://staging.360learning-dev.com/api/v1/users/unsubscribeToEmailNotifications?company=' + company_id + '&apiKey=' + api_key
                 headers = CaseInsensitiveDict()
                 headers["Content-Type"] = "application/json"
                 invit = False
@@ -337,13 +337,13 @@ class partner(models.Model):
                 # Si non si mot de passe récupéré on l'ajoute sur la plateforme avec le meme mot de passe
                 if (user.password360) and (company == '2'):
                     partner.password360 = user.password360
-                    _logger.info('if user  %s ' % user.password360)
 
                     # Ajouter i-One to table user
                     data_user = '{"mail":"' + partner.email + '" , "password":"' + user.password360 + '", "firstName":"' + partner.firstName + '", "lastName":"' + partner.lastName + '", "phone":"' + partner.phone + '", "lang":"fr","sendCredentials":"true"}'
                     resp = requests.post(urluser, headers=headers, data=data_user)
                     print(data_user, 'user', resp.status_code)
                     respo = str(json.loads(resp.text))
+                    responce_api = str(json.loads(resp.text))
                     _logger.info('response addd  %s' % respo)
                     if (resp.status_code == 200):
                         create = True
@@ -384,14 +384,14 @@ class partner(models.Model):
                         if (company == '2'):
                             if (nom_groupe == digimoov_examen.upper()):
                                 id_Digimoov_Examen_Attestation = id_groupe
-                                urlsession = 'https://app.360learning.com/api/v1/groups/' + id_groupe + '/users/' + partner.email + '?company=' + company_id + '&apiKey=' + api_key
+                                urlsession = ' https://staging.360learning-dev.com/api/v1/groups/' + id_groupe + '/users/' + partner.email + '?company=' + company_id + '&apiKey=' + api_key
                                 respsession = requests.put(urlsession, headers=headers, data=data_group)
 
                                 # Affecter à un pack solo
                             packsolo = "Digimoov - Pack Solo"
                             if (("solo" in product_name) and (nom_groupe == packsolo.upper())):
                                 print(partner.module_id.name)
-                                urlgrp_solo = 'https://app.360learning.com/api/v1/groups/' + id_groupe + '/users/' + partner.email + '?company=' + company_id + '&apiKey=' + api_key
+                                urlgrp_solo = ' https://staging.360learning-dev.com/api/v1/groups/' + id_groupe + '/users/' + partner.email + '?company=' + company_id + '&apiKey=' + api_key
                                 respgrp_solo = requests.put(urlgrp_solo, headers=headers, data=data_group)
                                 print('affecté à solo', respgrp_solo.status_code)
 
@@ -399,26 +399,26 @@ class partner(models.Model):
                             pack_pro = "Digimoov - Pack Pro"
                             if (("pro" in product_name) and (nom_groupe == pack_pro.upper())):
                                 print(partner.module_id.name)
-                                urlgrp_pro = 'https://app.360learning.com/api/v1/groups/' + id_groupe + '/users/' + partner.email + '?company=' + company_id + '&apiKey=' + api_key
+                                urlgrp_pro = ' https://staging.360learning-dev.com/api/v1/groups/' + id_groupe + '/users/' + partner.email + '?company=' + company_id + '&apiKey=' + api_key
                                 respgrp_pro = requests.put(urlgrp_pro, headers=headers, data=data_group)
                             # Affecter à unpremium
                             packprem = "Digimoov - Pack Premium"
                             if (("premium" in product_name) and (nom_groupe == packprem.upper())):
                                 print(partner.module_id.name)
-                                urlgrp_prim = 'https://app.360learning.com/api/v1/groups/' + id_groupe + '/users/' + partner.email + '?company=' + company_id + '&apiKey=' + api_key
+                                urlgrp_prim = ' https://staging.360learning-dev.com/api/v1/groups/' + id_groupe + '/users/' + partner.email + '?company=' + company_id + '&apiKey=' + api_key
                                 respgrp_prim = requests.put(urlgrp_prim, headers=headers, data=data_group)
 
                             # Affecter apprenant à Digimoov-Révision
                             revision = "Digimoov - Pack Repassage Examen"
                             if (("Repassage d'examen" in product_name) and (nom_groupe == revision.upper())):
-                                urlgrp_revision = 'https://app.360learning.com/api/v1/groups/' + id_groupe + '/users/' + partner.email + '?company=' + company_id + '&apiKey=' + api_key
+                                urlgrp_revision = ' https://staging.360learning-dev.com/api/v1/groups/' + id_groupe + '/users/' + partner.email + '?company=' + company_id + '&apiKey=' + api_key
                                 respgrp_revision = requests.put(urlgrp_revision, headers=headers, data=data_group)
 
                             # Affecter apprenant à une session d'examen
                             print('date, ville', ville, date_session)
                             if (ville in nom_groupe) and (date_session in nom_groupe):
                                 existe = True
-                                urlsession = 'https://app.360learning.com/api/v1/groups/' + id_groupe + '/users/' + partner.email + '?company=' + company_id + '&apiKey=' + api_key
+                                urlsession = ' https://staging.360learning-dev.com/api/v1/groups/' + id_groupe + '/users/' + partner.email + '?company=' + company_id + '&apiKey=' + api_key
                                 respsession = requests.put(urlsession, headers=headers, data=data_group)
 
                     # Si la session n'est pas trouvée sur 360 on l'ajoute
@@ -427,7 +427,7 @@ class partner(models.Model):
                         nom = ville + ' - ' + date_session
                         nomgroupe = unidecode(nom)
                         print(nomgroupe)
-                        urlgroups = 'https://app.360learning.com/api/v1/groups?company=' + company_id + '&apiKey=' + api_key
+                        urlgroups = ' https://staging.360learning-dev.com/api/v1/groups?company=' + company_id + '&apiKey=' + api_key
                         data_session = '{"name":"' + nomgroupe + '","parent":"' + id_Digimoov_Examen_Attestation + '"  , "public":"false" }'
                         create_session = requests.post(urlgroups, headers=headers, data=data_session)
                         print('creer  une session', create_session.status_code)
@@ -440,13 +440,13 @@ class partner(models.Model):
                             # Affecter apprenant à la nouvelle session d'examen
                             if (ville in nom_groupe) and (date_session in nom_groupe):
                                 existe = True
-                                urlsession = 'https://app.360learning.com/api/v1/groups/' + id_groupe + '/users/' + partner.email + '?company=' + company_id + '&apiKey=' + api_key
+                                urlsession = ' https://staging.360learning-dev.com/api/v1/groups/' + id_groupe + '/users/' + partner.email + '?company=' + company_id + '&apiKey=' + api_key
                                 respsession = requests.put(urlsession, headers=headers, data=data_group)
                                 print(existe, 'ajouter à son session', respsession.status_code)
                     if self.env.su:
                         # sending mail in sudo was meant for it being sent from superuser
                         self = self.with_user(SUPERUSER_ID)
-                    if not partner.lang :
+                    if not partner.lang:
                         partner.lang = 'fr_FR'
                     template_id = int(self.env['ir.config_parameter'].sudo().get_param(
                         'plateforme_pedagogique.mail_template_add_ione_to_plateforme_digimoov_mcm'))
@@ -461,10 +461,60 @@ class partner(models.Model):
                             raise_if_not_found=False)
                     if template_id:
                         partner.with_context(force_send=True).message_post_with_template(template_id,
-                                                                                                  composition_mode='comment',
-                                                                                                  )
+                                                                                         composition_mode='comment',
+                                                                                         )
 
+                if not (create):
+                    """Créer des tickets contenant le message  d'erreur pour service client et service IT 
+                    si l'apprenant n'est pas ajouté sur 360"""
+                    if responce_api and str(responce_api) != "{'error': 'user_already_exists'}":
+                        if str(responce_api) == "{'error': 'unavailableEmails'}":
 
+                            vals = {
+                                'description': 'Apprenant non ajouté sur 360 %s' % (partner.name),
+                                'name': 'Email non valide ',
+                                'team_id': self.env['helpdesk.team'].sudo().search(
+                                    [('name', 'like', 'Client'), ('company_id', "=", 2)],
+                                    limit=1).id,
+                            }
+                            description = "Apprenant non ajouté sur 360 " + str(partner.name)
+                            ticket = self.env['helpdesk.ticket'].sudo().search([("description", "=", description),
+                                                                                ("team_id.name", 'like', 'Client')])
+                            if not ticket:
+                                new_ticket = self.env['helpdesk.ticket'].sudo().create(
+                                    vals)
+
+                        else:
+
+                            vals = {
+                                'description': 'Apprenant non ajouté sur 360 %s %s' % (partner.name, responce_api),
+                                'name': 'Apprenant non ajouté sur 360 ',
+                                'team_id': self.env['helpdesk.team'].sudo().search(
+                                    [('name', 'like', 'IT'), ('company_id', "=", 2)],
+                                    limit=1).id,
+                            }
+                            description = "Apprenant non ajouté sur 360 " + str(partner.name) + " " + str(responce_api)
+                            ticket = self.env['helpdesk.ticket'].sudo().search([("description", "=", description),
+                                                                                ("team_id.name", 'like', 'IT')])
+
+                            if not ticket:
+                                new_ticket = self.env['helpdesk.ticket'].sudo().create(
+                                    vals)
+                            vals_client = {
+                                'description': 'Apprenant non ajouté sur 360 %s %s' % (partner.name, responce_api),
+                                'name': 'Apprenant non ajouté sur 360 ',
+                                'team_id': self.env['helpdesk.team'].sudo().search(
+                                    [('name', 'like', 'Client'), ('company_id', "=", 2)],
+                                    limit=1).id,
+                            }
+                            description_client = "Apprenant non ajouté sur 360 " + str(partner.name) + " " + str(
+                                responce_api)
+                            ticket_client = self.env['helpdesk.ticket'].sudo().search(
+                                [("description", "=", description_client),
+                                 ("team_id.name", 'like', 'Client')])
+                            if not ticket_client:
+                                new_ticket_client = self.env['helpdesk.ticket'].sudo().create(
+                                    vals_client)
 
     def supprimer_ione_auto(self):
 
@@ -478,7 +528,7 @@ class partner(models.Model):
                 ('company', '56f5520e11d423f46884d593'),
                 ('apiKey', 'cnkcbrhHKyfzKLx4zI7Ub2P5'),
             )
-            response = requests.get('https://app.360learning.com/api/v1/users', params=params)
+            response = requests.get(' https://staging.360learning-dev.com/api/v1/users', params=params)
             users = response.json()
             for user in users:
                 iduser = user['_id']
@@ -505,7 +555,7 @@ class partner(models.Model):
                         email = partner.email
                         print('date_sup', email, date_suppression, today, email)
                         _logger.info('liste à supprimé %s' % str(email))
-                        url = 'https://app.360learning.com/api/v1/users/' + email + '?company=' + company_id + '&apiKey=' + api_key
+                        url = ' https://staging.360learning-dev.com/api/v1/users/' + email + '?company=' + company_id + '&apiKey=' + api_key
                         resp = requests.delete(url)
 
     def supprimer_ione_manuelle(self):
@@ -515,7 +565,7 @@ class partner(models.Model):
             api_key = 'cnkcbrhHKyfzKLx4zI7Ub2P5'
             headers = CaseInsensitiveDict()
             headers["Accept"] = "*/*"
-            url = 'https://app.360learning.com/api/v1/users/' + self.email + '?company=' + company_id + '&apiKey=' + api_key
+            url = ' https://staging.360learning-dev.com/api/v1/users/' + self.email + '?company=' + company_id + '&apiKey=' + api_key
             resp = requests.delete(url)
 
     # Extraire firstName et lastName à partir du champs name
@@ -597,12 +647,13 @@ class partner(models.Model):
                     _logger.info('wedooooffffff %s' % certificat)
                     _logger.info('dateformation %s' % dateFormation)
                     _logger.info('email %s' % email)
-                    response_plateforme = requests.get('https://app.360learning.com/api/v1/users', params=param_360)
+                    response_plateforme = requests.get(' https://staging.360learning-dev.com/api/v1/users',
+                                                       params=param_360)
                     users = response_plateforme.json()
                     for user in users:
                         user_mail = user['mail']
                         user_id = user['_id']
-                        response_user = requests.get('https://app.360learning.com/api/v1/users/' + user_id,
+                        response_user = requests.get(' https://staging.360learning-dev.com/api/v1/users/' + user_id,
                                                      params=param_360)
                         table_user = response_user.json()
                         totalTime = int(table_user['totalTimeSpentInMinutes'])
@@ -647,6 +698,7 @@ class partner(models.Model):
     def change_state_wedof_validate(self):
         base_url = self.env['ir.config_parameter'].sudo().get_param('web.base.url')
         if "localhost" not in str(base_url) and "dev.odoo" not in str(base_url):
+
             params_wedof = (
                 ('order', 'desc'),
                 ('type', 'all'),
@@ -664,7 +716,7 @@ class partner(models.Model):
                                     params=params_wedof)
             registrations = response.json()
             for dossier in registrations:
-                _logger.info("validate_________ %s" %str(dossier))
+                _logger.info("validate_________ %s" % str(dossier))
                 externalid = dossier['externalId']
                 email = dossier['attendee']['email']
                 email = email.replace("%", ".")  # remplacer % par .
@@ -730,11 +782,16 @@ class partner(models.Model):
                 dat = '{\n  "weeklyDuration": 14,\n  "indicativeDuration": 102\n}'
                 response_put = requests.put('https://www.wedof.fr/api/registrationFolders/' + externalid,
                                             headers=headers, data=data)
+
+                status = str(response_put.status_code)
+                statuss = str(json.loads(response_put.text))
+                _logger.info("validate put _________ %s" % str(status))
+                _logger.info("validate_________ %s" % str(statuss))
                 response_post = requests.post(
                     'https://www.wedof.fr/api/registrationFolders/' + externalid + '/validate',
                     headers=headers, data=dat)
                 status = str(response_post.status_code)
-                statuss=str(json.loads(response_post.text))
+                statuss = str(json.loads(response_post.text))
                 _logger.info("validate_________ %s" % str(status))
                 _logger.info("validate_________ %s" % str(statuss))
                 """Si dossier passe à l'etat validé on met à jour statut cpf sur la fiche client"""
@@ -749,16 +806,17 @@ class partner(models.Model):
 
     def change_state_cpf_partner(self):
         base_url = self.env['ir.config_parameter'].sudo().get_param('web.base.url')
-        if "localhost" not in str(base_url) and "dev.odoo" not in str(base_url):
+        if "localhost" not in str(base_url) and "dev.odoo" in str(base_url):
             params_wedof = (
                 ('order', 'desc'),
                 ('type', 'all'),
-                ('state', 'validated,inTraining,refusedByAttendee,refusedByOrganism,serviceDoneDeclared,serviceDoneValidated,canceledByAttendee,canceledByAttendeeNotRealized,canceledByOrganism'),
+                ('state',
+                 'validated,inTraining,refusedByAttendee,refusedByOrganism,serviceDoneDeclared,serviceDoneValidated,canceledByAttendee,canceledByAttendeeNotRealized,canceledByOrganism'),
                 ('billingState', 'all'),
                 ('certificationState', 'all'),
                 ('sort', 'lastUpdate'),
-                ('limit', '300'),
-                ('page', '1')
+                ('limit', '100'),
+                ('page', '2')
             )
             headers = {
                 'accept': 'application/json',
@@ -781,59 +839,51 @@ class partner(models.Model):
                 if user and user.partner_id.mode_de_financement == "cpf":
                     # Initialisation de champ etat_financement_cpf_cb
                     etat_financement_cpf_cb = dossier['state']
-                    print("user WEDOF:::::::::::::::::::::", user.partner_id.display_name, etat_financement_cpf_cb)
-                    #_logger.info("user WEDOF::::::::::::::::::::: %s" % str(user.partner_id.display_name))
+                    _logger.info("user WEDOF::::::::::::::::::::: %s" % str(user.partner_id.display_name))
                     if etat_financement_cpf_cb == "untreated":
-                        user.partner_id.sudo().write({'etat_financement_cpf_cb': 'untreated'})  # write la valeur payé dans le champ etat_financement_cpf_cb
-                        print("001")
+                        user.partner_id.sudo().write({
+                            'etat_financement_cpf_cb': 'untreated'})  # write la valeur payé dans le champ etat_financement_cpf_cb
                     if etat_financement_cpf_cb == "validated":
                         user.partner_id.sudo().write({'etat_financement_cpf_cb': 'validated'})
-                        print("002")
                     if etat_financement_cpf_cb == "accepted":
                         user.partner_id.sudo().write({'etat_financement_cpf_cb': 'accepted'})
-                        print("003")
                     if etat_financement_cpf_cb == "inTraining":
                         user.partner_id.sudo().write({'etat_financement_cpf_cb': 'in_training'})
-                        print("004")
                     if etat_financement_cpf_cb == "out_training":
                         user.partner_id.sudo().write({'etat_financement_cpf_cb': 'terminated'})
-                        print("005")
                     if etat_financement_cpf_cb == "serviceDoneDeclared":
-                        #user.partner_id.sudo().write({'etat_financement_cpf_cb': 'service_declared'})
+                        # user.partner_id.sudo().write({'etat_financement_cpf_cb': 'service_declared'})
                         user.partner_id.etat_financement_cpf_cb == 'service_declared'
-                        print("006")
                     if etat_financement_cpf_cb == "serviceDoneValidated":
                         user.partner_id.sudo().write({'etat_financement_cpf_cb': 'service_validated'})
-                        print("007")
                     if etat_financement_cpf_cb == "bill":
                         user.partner_id.sudo().write({'etat_financement_cpf_cb': 'bill'})
-                        print("008")
                     if etat_financement_cpf_cb == "canceled" or etat_financement_cpf_cb == "canceledByAttendee" or etat_financement_cpf_cb == "canceledByAttendeeNotRealized" or etat_financement_cpf_cb == "refusedByAttendee" or etat_financement_cpf_cb == "refusedByOrganism":
                         user.partner_id.sudo().write({'etat_financement_cpf_cb': 'canceled'})
-                        print("009")
                 else:
-                    for partner in self.env['res.partner'].search([('statut', "=", "won"), ("mode_de_financement", "=", "particulier")]):
-                        print("////////::::::::::::::::Partner:::::::::::::::://////////////////;;", partner)
-                        invoice = self.env['account.move'].sudo().search([('state', "=", 'posted'), ('partner_id', "=", partner.id)], order="invoice_date desc", limit=1)
-                        print("°°°°°°°°°°°°°°°°°°°°°facture.partner_id°°°°°°°°°°°°°°°°°°°°°", invoice.partner_id, invoice.invoice_payment_state)
+                    for partner in self.env['res.partner'].search(
+                            [('statut', "=", "won"), ("mode_de_financement", "=", "particulier")]):
+                        invoice = self.env['account.move'].sudo().search(
+                            [('partner_id', "=", partner.id)], limit=1)
+                        _logger.info("user INVOICE----invoice_payment_state------------°°°°°°°°°°°°°°° %s " % str(invoice.invoice_payment_state))
+                        _logger.info("user Partner id----------------°°°°°°°°°°°°°°° %s " % str(invoice.partner_id.display_name))
                         etat_financement_cpf_cb = invoice.invoice_payment_state
                         if invoice.invoice_payment_state == "in_payment":
+                            etat_financement_cpf_cb = invoice.invoice_payment_state
                             partner.sudo().write({'etat_financement_cpf_cb': 'in_payment'})
-                            print("task001")
                         if invoice.invoice_payment_state == "paid":
+                            etat_financement_cpf_cb = invoice.invoice_payment_state
                             partner.sudo().write({'etat_financement_cpf_cb': 'paid'})
-                            print("task002")
                         if invoice.invoice_payment_state == "not_paid":
+                            etat_financement_cpf_cb = invoice.invoice_payment_state
                             partner.sudo().write({'etat_financement_cpf_cb': 'not_paid'})
                             print("task003")
-                    etat_financement_cpf_cb = invoice.invoice_payment_state
                 idform = dossier['trainingActionInfo']['externalId']
                 training_id = ""
                 if "_" in idform:
                     idforma = idform.split("_", 1)
                     if idforma:
                         training_id = idforma[1]
-
                 print('training', training_id)
                 state = dossier['state']
                 lastupdatestr = str(dossier['lastUpdate'])
@@ -1051,10 +1101,12 @@ class partner(models.Model):
                     else:  # check if edof api send the number of client with+33
                         if ' ' not in str(tel):
                             phone = str(tel)
-                            phone = phone[0:3] + ' ' + phone[3:4] + ' ' + phone[4:6] + ' ' + phone[6:8] + ' ' + phone[8:10] + ' ' + phone[10:]
+                            phone = phone[0:3] + ' ' + phone[3:4] + ' ' + phone[4:6] + ' ' + phone[6:8] + ' ' + phone[
+                                                                                                                8:10] + ' ' + phone[
+                                                                                                                              10:]
                             user = self.env["res.users"].sudo().search(
                                 [("phone", "=", phone)], limit=1)
-                        if not user :
+                        if not user:
                             user = self.env["res.users"].sudo().search(
                                 [("phone", "=", str(phone_number).replace(' ', ''))], limit=1)
                             if not user:
@@ -1101,17 +1153,22 @@ class partner(models.Model):
                                                                                                                 7:]  # convert the number in this format : +33 x xx xx xx xx
                     url = str(user.signup_url)  # get the signup_url
                     short_url = pyshorteners.Shortener()
-                    short_url = short_url.tinyurl.short(url) # convert the signup_url to be short using pyshorteners library
-                    body = 'Chere(e) %s , Vous avez été invité par %s  à compléter votre inscription : %s . Votre courriel de connection est: %s' %(user.partner_id.name,user.partner_id.company_id.name,short_url,user.partner_id.email) # content of sms
-                    sms_body_contenu = 'Chere(e) %s , Vous avez été invité par %s  à compléter votre inscription : %s . Votre courriel de connection est: %s' %(user.partner_id.name,user.partner_id.company_id.name,short_url,user.partner_id.email) # content of sms
+                    short_url = short_url.tinyurl.short(
+                        url)  # convert the signup_url to be short using pyshorteners library
+                    body = 'Chere(e) %s , Vous avez été invité par %s  à compléter votre inscription : %s . Votre courriel de connection est: %s' % (
+                        user.partner_id.name, user.partner_id.company_id.name, short_url,
+                        user.partner_id.email)  # content of sms
+                    sms_body_contenu = 'Chere(e) %s , Vous avez été invité par %s  à compléter votre inscription : %s . Votre courriel de connection est: %s' % (
+                        user.partner_id.name, user.partner_id.company_id.name, short_url,
+                        user.partner_id.email)  # content of sms
                     sms = self.env['sms.sms'].sudo().create({
-                                'partner_id': user.partner_id.id,
-                                'number' : phone,
-                                'body' : str(body)
-                            }) # create sms
+                        'partner_id': user.partner_id.id,
+                        'number': phone,
+                        'body': str(body)
+                    })  # create sms
                     sms_id = sms.id
                     if (sms):
-                        sms.send() #send the sms
+                        sms.send()  # send the sms
                         subtype_id = self.env['ir.model.data'].xmlid_to_res_id('mt_note')
                         body = False
                         sms = self.env["sms.sms"].sudo().search(
@@ -1234,7 +1291,7 @@ class partner(models.Model):
 
     def change_statut_accepte(self):
         base_url = self.env['ir.config_parameter'].sudo().get_param('web.base.url')
-        if "localhost" not in str(base_url) and "dev.odoo" in str(base_url):
+        if "localhost" not in str(base_url) and "dev.odoo" not in str(base_url):
             params_wedof = (
                 ('order', 'desc'),
                 ('type', 'all'),
@@ -1355,9 +1412,9 @@ class partner(models.Model):
                             invoice = self.env['account.move'].sudo().search(
                                 [('numero_cpf', "=", externalId),
                                  ('state', "=", 'posted'),
-                                 ('partner_id', "=", user.partner_id.id)],limit=1)
-                            print('invoice',invoice.name)
-                            if not invoice :
+                                 ('partner_id', "=", user.partner_id.id)], limit=1)
+                            print('invoice', invoice.name)
+                            if not invoice:
                                 print('if  not invoice digi ')
                                 so = self.env['sale.order'].sudo().create({
                                     'partner_id': user.partner_id.id,
@@ -1411,11 +1468,33 @@ class partner(models.Model):
                                 so.action_cancel()
                                 so.unlink()
                                 user.partner_id.statut = 'won'
+                                if not user.partner_id.renounce_request:
+                                    if user.partner_id.phone:
+                                        phone = str(user.partner_id.phone.replace(' ', ''))[-9:]
+                                        phone = '+33' + ' ' + phone[0:1] + ' ' + phone[1:3] + ' ' + phone[3:5] + ' ' + phone[5:7] + ' ' + phone[7:]
+                                        user.partner_id.phone = phone
+                                    url = str(user.partner_id.get_base_url()) + '/my'
+                                    body = "Chere(e) %s félicitation pour votre inscription, votre formation commence dans 14 jours. Si vous souhaitez commencer dès maintenant cliquez sur le lien suivant : %s" % (
+                                        user.partner_id.name, url)
+                                    if body:
+                                        composer = self.env['sms.composer'].with_context(
+                                            default_res_model='res.partner',
+                                            default_res_ids=user.partner_id.id,
+                                            default_composition_mode='mass',
+                                        ).sudo().create({
+                                            'body': body,
+                                            'mass_keep_log': True,
+                                            'mass_force_send': True,
+                                        })
+                                        composer.action_send_sms()
+                                        if user.partner_id.phone:
+                                            user.partner_id.phone = '0' + str(user.partner_id.phone.replace(' ', ''))[-9:]
                                 """changer step à validé dans espace client """
                                 user.partner_id.step = 'finish'
                             session = self.env['partner.sessions'].search([('client_id', '=', user.partner_id.id),
                                                                            (
-                                                                           'session_id', '=', module_id.session_id.id)])
+                                                                               'session_id', '=',
+                                                                               module_id.session_id.id)])
                             if not session:
                                 new_history = self.env['partner.sessions'].sudo().create({
                                     'client_id': user.partner_id.id,
@@ -1446,7 +1525,7 @@ class partner(models.Model):
                                  ('state', "=", 'posted'),
                                  ('partner_id', "=", user.partner_id.id)], limit=1)
                             print('invoice', invoice)
-                            if not invoice :
+                            if not invoice:
                                 print('if  not invoice mcm')
                                 so = self.env['sale.order'].sudo().create({
                                     'partner_id': user.partner_id.id,
@@ -1476,7 +1555,7 @@ class partner(models.Model):
                                     # move.cpf_acompte_invoice=True
                                     # move.cpf_invoice =True
                                     move.methodes_payment = 'cpf'
-                                    move.numero_cpf=externalId
+                                    move.numero_cpf = externalId
                                     move.pourcentage_acompte = 25
                                     move.session_id = so.session_id
                                     move.company_id = so.company_id
@@ -1488,11 +1567,37 @@ class partner(models.Model):
                                 so.action_cancel()
                                 so.unlink()
                                 user.partner_id.statut = 'won'
+                                if not user.partner_id.renounce_request:
+                                    if user.partner_id.phone:
+                                        phone = str(user.partner_id.phone.replace(' ', ''))[-9:]
+                                        phone = '+33' + ' ' + phone[0:1] + ' ' + phone[1:3] + ' ' + phone[
+                                                                                                    3:5] + ' ' + phone[
+                                                                                                                 5:7] + ' ' + phone[
+                                                                                                                              7:]
+                                        user.partner_id.phone = phone
+                                    url = str(user.partner_id.get_base_url()) + '/my'
+                                    body = "Chere(e) %s félicitation pour votre inscription, votre formation commence dans 14 jours. Si vous souhaitez commencer dès maintenant cliquez sur le lien suivant : %s" % (
+                                        user.partner_id.name, url)
+                                    if body:
+                                        composer = self.env['sms.composer'].with_context(
+                                            default_res_model='res.partner',
+                                            default_res_ids=user.partner_id.id,
+                                            default_composition_mode='mass',
+                                        ).sudo().create({
+                                            'body': body,
+                                            'mass_keep_log': True,
+                                            'mass_force_send': True,
+                                        })
+                                        composer.action_send_sms()
+                                        if user.partner_id.phone:
+                                            user.partner_id.phone = '0' + str(user.partner_id.phone.replace(' ', ''))[
+                                                                          -9:]
                                 """changer step à validé dans espace client """
                                 user.partner_id.step = 'finish'
                             session = self.env['partner.sessions'].search([('client_id', '=', user.partner_id.id),
                                                                            (
-                                                                           'session_id', '=', module_id.session_id.id)])
+                                                                               'session_id', '=',
+                                                                               module_id.session_id.id)])
                             if not session:
                                 new_history = self.env['partner.sessions'].sudo().create({
                                     'client_id': user.partner_id.id,
@@ -1529,3 +1634,19 @@ class partner(models.Model):
                             if not ticket:
                                 new_ticket = self.env['helpdesk.ticket'].sudo().create(
                                     vals)
+
+    """Remplir champ numero cpf sur tout les factures cpf"""
+
+    def num_cpf_facture(self):
+        partners = self.env['res.partner'].sudo().search([('statut', "=", "won"), ('mode_de_financement', "=", "cpf")])
+        _logger.info('for partnerss')
+        for partner in partners:
+            _logger.info(' partner %s' % partner.name)
+            invoice = self.env['account.move'].sudo().search([('partner_id', "=", partner.id)], limit=1,
+                                                             order="id desc")
+
+            if invoice and partner.numero_cpf:
+                _logger.info(' if invoice %s' % str(invoice.name))
+                invoice.numero_cpf = partner.numero_cpf
+                _logger.info(' if invoice %s' % str(invoice.numero_cpf))
+
