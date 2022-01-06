@@ -46,6 +46,7 @@ class partner(models.Model):
     passage_exam = fields.Boolean("Examen passé", default=False)
     stats_ids = fields.Many2one('plateforme_pedagogique.user_stats')
     temps_minute = fields.Integer(string="Temps passé en minutes")  # Champs pour récuperer temps en minute par api360
+    second_email = fields.Char(string='Email secondaire')
     # Recuperation de l'état de facturation pour cpf de wedof et carte bleu de odoo
     etat_financement_cpf_cb = fields.Selection([('untreated', 'Non Traité'),
                                                 ('validated', 'Validé'),
