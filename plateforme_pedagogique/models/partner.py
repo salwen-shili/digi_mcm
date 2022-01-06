@@ -184,7 +184,7 @@ class partner(models.Model):
     # Ajout automatique d' i-One sur 360learning
     def Ajouter_iOne_auto(self):
         base_url = self.env['ir.config_parameter'].sudo().get_param('web.base.url')
-        if "localhost" not in str(base_url) and "dev.odoo" not in str(base_url):
+        if "localhost" in str(base_url) and "dev.odoo" not in str(base_url):
             for partner in self.env['res.partner'].sudo().search([('statut', "=", "won"),
                                                                   ('statut_cpf', "!=", "canceled")
                                                                   ]):
@@ -379,7 +379,7 @@ class partner(models.Model):
                         print('nom groupe', groupe)
                         id_groupe = groupe['_id']
                         # affecter à groupe digimoov
-                        digimoov_examen = "Digimoov - Attestation de capacité de transport de marchandises de moins de 3.5t"
+                        digimoov_examen = "Digimoov - Attestation de capacité de transport de marchandises de moins de 3.5t (léger)"
                         # Si la company est digimoov on ajoute i-One sur 360
                         if (company == '2'):
                             if (nom_groupe == digimoov_examen.upper()):
@@ -641,8 +641,7 @@ class partner(models.Model):
                 print('date', today, dateFormation, certificat)
                 """Si date de formation <= ajourdhui et s'il a choisi  la formation de transport  léger de marchandises
                 on cherche l'apprenant par email sur 360"""
-                if (
-                        certificat == "Formation à l'obtention de l'attestation de capacité professionnelle en transport léger de marchandises") \
+                if (certificat == "Formation à l'obtention de l'attestation de capacité professionnelle en transport léger de marchandises") \
                         and (dateFormation <= today):
                     _logger.info('wedooooffffff %s' % certificat)
                     _logger.info('dateformation %s' % dateFormation)
