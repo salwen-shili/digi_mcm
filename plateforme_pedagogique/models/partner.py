@@ -294,7 +294,7 @@ class partner(models.Model):
             user = self.env['res.users'].sudo().search([('partner_id', '=', partner.id)], limit=1)
             _logger.info('avant if login user %s' % user.login)
             _logger.info('avant if partner email %s' % partner.email)
-            
+
 
             if user:
                 id_Digimoov_bienvenue = '56f5520e11d423f46884d594'
@@ -322,7 +322,7 @@ class partner(models.Model):
                 # Si non si mot de passe récupéré on l'ajoute sur la plateforme avec le meme mot de passe
                 if (user.password360) and (company == '2'):
                     partner.password360 = user.password360
-                    
+
 
                     # Ajouter i-One to table user
                     data_user = '{"mail":"' + partner.email + '" , "password":"' + user.password360 + '", "firstName":"' + partner.firstName + '", "lastName":"' + partner.lastName + '", "phone":"' + partner.phone + '", "lang":"fr","sendCredentials":"true"}'
@@ -407,6 +407,29 @@ class partner(models.Model):
                                 existe = True
                                 urlsession = 'https://app.360learning.com/api/v1/groups/' + id_groupe + '/users/' + partner.email + '?company=' + company_id + '&apiKey=' + api_key
                                 respsession = requests.put(urlsession, headers=headers, data=data_group)
+                            if partner.phone:
+                                phone = str(partner.phone.replace(' ', ''))[-9:]
+                                phone = '+33' + ' ' + phone[0:1] + ' ' + phone[1:3] + ' ' + phone[3:5] + ' ' + phone[
+                                                                                                               5:7] + ' ' + phone[
+                                                                                                                            7:]
+                                partner.phone = phone
+                            url = 'https://digimoov.360learning.com/'
+                            body = "Chere(e) %s : félicitation pour votre inscription, vous avez été invité par Digimoov à commencer votre formation via ce lien : %s .Vos identifiants sont identiques que sur Digimoov" % (
+                                partner.name, url)
+                            if body:
+                                composer = self.env['sms.composer'].with_context(
+                                    default_res_model='res.partner',
+                                    default_res_ids=partner.id,
+                                    default_composition_mode='mass',
+                                ).sudo().create({
+                                    'body': body,
+                                    'mass_keep_log': True,
+                                    'mass_force_send': True,
+                                })
+                                composer.action_send_sms() # envoyer un sms de félicitation à l'apprenant et l'inviter à commncer sa formation
+                                if partner.phone:
+                                    partner.phone = '0' + str(partner.phone.replace(' ', ''))[-9:]
+
 
                     # Si la session n'est pas trouvée sur 360 on l'ajoute
                     print('exist', existe)
@@ -1503,6 +1526,31 @@ class partner(models.Model):
                                         user.partner_id.phone = phone
                                     url = str(user.partner_id.get_base_url()) + '/my'
                                     body = "Chere(e) %s félicitation pour votre inscription, votre formation commence dans 14 jours. Si vous souhaitez commencer dès maintenant cliquez sur le lien suivant : %s" % (
+                                        user.partner_id.name, url)
+                                    if body:
+                                        composer = self.env['sms.composer'].with_context(
+                                            default_res_model='res.partner',
+                                            default_res_ids=user.partner_id.id,
+                                            default_composition_mode='mass',
+                                        ).sudo().create({
+                                            'body': body,
+                                            'mass_keep_log': True,
+                                            'mass_force_send': True,
+                                        })
+                                        composer.action_send_sms() # envoyer un sms de félicitation au client et l'informer que sa formation commence dans 14 jours car il n'a pas cocher la rénoncation
+                                        if user.partner_id.phone:
+                                            user.partner_id.phone = '0' + str(user.partner_id.phone.replace(' ', ''))[
+                                                                          -9:]
+                                else:
+                                    if user.partner_id.phone:
+                                        phone = str(user.partner_id.phone.replace(' ', ''))[-9:]
+                                        phone = '+33' + ' ' + phone[0:1] + ' ' + phone[1:3] + ' ' + phone[
+                                                                                                    3:5] + ' ' + phone[
+                                                                                                                 5:7] + ' ' + phone[
+                                                                                                                              7:]
+                                        user.partner_id.phone = phone
+                                    url = 'https://formation.mcm-academy.fr/register'
+                                    body = "Chere(e) %s : félicitation pour votre inscription, vous avez été invité par MCM ACADEMY à commencer votre formation via ce lien : %s . vous devez créer un compte avec les mêmes identifiants que MCM ACADEMY" % (
                                         user.partner_id.name, url)
                                     if body:
                                         composer = self.env['sms.composer'].with_context(
