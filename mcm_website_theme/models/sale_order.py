@@ -4,7 +4,7 @@
 from odoo import api, fields, models
 
 
-class ProductTemplate(models.Model):
+class SaleOrder(models.Model):
     _inherit = "sale.order"
 
     instalment_number = fields.Integer("Tranches", compute='get_instalment_number')
@@ -62,3 +62,69 @@ class ProductTemplate(models.Model):
 
     def sale_action_sent(self):
         return self.write({'state': 'sent'})
+
+    def write(self, values):
+        order=super(SaleOrder,self).write(values)
+        subtype_id = self.env['ir.model.data'].xmlid_to_res_id('mt_note')
+        if 'signed_by' in values and 'signed_on' in values and 'signature' in values and self.state != 'cancel' and self.state != 'draft' and self.company_id.id == 1:
+            message = self.env['mail.message'].sudo().create({
+                'subject': 'Contrat signé',
+                'model': 'res.partner',
+                'res_id': self.partner_id.id,
+                'message_type': 'notification',
+                'subtype_id': subtype_id,
+                'body': 'Contrat signé par ' + str(values['signed_by']),
+            })
+            for order in self:
+                order.partner_id.step = 'finish'
+            if not self.partner_id.renounce_request:
+                if self.partner_id.phone:
+                    phone = str(self.partner_id.phone.replace(' ', ''))[-9:]
+                    phone = '+33' + ' ' + phone[0:1] + ' ' + phone[1:3] + ' ' + phone[
+                                                                                3:5] + ' ' + phone[
+                                                                                             5:7] + ' ' + phone[
+                                                                                                          7:]
+                    self.partner_id.phone = phone
+                url = str(self.partner_id.get_base_url()) + '/my'
+                body = "Chere(e) %s félicitation pour votre inscription, votre formation commence dans 14 jours. Si vous souhaitez commencer dès maintenant cliquez sur le lien suivant : %s" % (
+                    self.partner_id.name, url)
+                if body:
+                    composer = self.env['sms.composer'].with_context(
+                        default_res_model='res.partner',
+                        default_res_ids=self.partner_id.id,
+                        default_composition_mode='mass',
+                    ).sudo().create({
+                        'body': body,
+                        'mass_keep_log': True,
+                        'mass_force_send': True,
+                    })
+                    composer.action_send_sms()
+                    if self.partner_id.phone:
+                        self.partner_id.phone = '0' + str(self.partner_id.phone.replace(' ', ''))[
+                                                      -9:]
+            else:
+                if self.partner_id.phone:
+                    phone = str(self.partner_id.phone.replace(' ', ''))[-9:]
+                    phone = '+33' + ' ' + phone[0:1] + ' ' + phone[1:3] + ' ' + phone[
+                                                                                3:5] + ' ' + phone[
+                                                                                             5:7] + ' ' + phone[
+                                                                                                          7:]
+                    self.partner_id.phone = phone
+                url = 'https://formation.mcm-academy.fr/register'
+                body = "Chere(e) %s : félicitation pour votre inscription, vous avez été invité par MCM ACADEMY à commencer votre formation via ce lien : %s . vous devez créer un compte avec les mêmes identifiants que MCM ACADEMY" % (
+                    self.partner_id.name, url)
+                if body:
+                    composer = self.env['sms.composer'].with_context(
+                        default_res_model='res.partner',
+                        default_res_ids=self.partner_id.id,
+                        default_composition_mode='mass',
+                    ).sudo().create({
+                        'body': body,
+                        'mass_keep_log': True,
+                        'mass_force_send': True,
+                    })
+                    composer.action_send_sms()
+                    if self.partner_id.phone:
+                        self.partner_id.phone = '0' + str(self.partner_id.phone.replace(' ', ''))[
+                                                      -9:]
+        return order
