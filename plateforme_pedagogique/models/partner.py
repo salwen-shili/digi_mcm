@@ -168,7 +168,7 @@ class partner(models.Model):
     # Ajout automatique d' i-One sur 360learning
     def Ajouter_iOne_auto(self):
         base_url = self.env['ir.config_parameter'].sudo().get_param('web.base.url')
-        if "localhost" in str(base_url) and "dev.odoo" not in str(base_url):
+        if "localhost" not in str(base_url) and "dev.odoo" not in str(base_url):
             for partner in self.env['res.partner'].sudo().search([('statut', "=", "won"),
                                                                   ('statut_cpf', "!=", "canceled")
                                                                   ]):
