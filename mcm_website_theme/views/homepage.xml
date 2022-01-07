@@ -363,7 +363,7 @@
                     </section>
 
                     <!-- counter section-->
-                    <section id="sh_corpomate_theme_section_229" class="sh_animation_part bg-900 oe_img_bg oe_custom_bg counter-bg" data-name="Services counter">
+                    <section id="sh_corpomate_theme_section_229 counter-bg" class="sh_animation_part bg-900 oe_img_bg oe_custom_bg counter-bg" data-name="Services counter">
                         <div class="container">
                             <div class="row clearfix">
                                 <div class="title-column col-lg-5 col-md-12 col-sm-12">
