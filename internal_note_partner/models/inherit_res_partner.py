@@ -1,4 +1,10 @@
+from datetime import date
+
 from odoo import api, fields, models
+
+import logging
+
+_logger = logging.getLogger(__name__)
 
 
 class InheritResPartner(models.Model):
