@@ -1,12 +1,14 @@
 <odoo>
     <template id="mcm_website_theme.mcm_template" inherit_id="website.homepage">
         <xpath expr="//div[@id='wrap']" position="replace">
-            <link rel="stylesheet" href="/mcm_website_theme/static/src/css/homepage.css" />
-            <script defer="defer" type="text/javascript" src="/digimoov_website_templates/static/src/js/lazy-min.js" />
-            <script type="text/javascript" src="/mcm_website_theme/static/src/js/msAds.js" />
-            <link rel="stylesheet" href="/mcm_website_theme/static/src/css/cta-button.css" />
-            <!-- test-->
-            <style>
+            <div id="wrap" class="oe_structure oe_empty">
+                <link rel="stylesheet" href="/mcm_website_theme/static/src/css/homepage.css" />
+                <script defer="defer" type="text/javascript" src="/digimoov_website_templates/static/src/js/lazy-min.js" />
+                <script type="text/javascript" src="/mcm_website_theme/static/src/js/msAds.js" />
+                <link rel="stylesheet" href="/mcm_website_theme/static/src/css/cta-button.css" />
+                <script defer="defer" type="text/javascript" src="/digimoov_website_templates/static/src/js/lazy-min.js" />
+
+                <style>
                 #sh_corpomate_theme_section_184 .sh_content .sh_more_btn.sh_btn_cm_8 {
                     background: black;
                     border: 2px solid #0a0a0a;
@@ -21,798 +23,779 @@
                     res-button {
                         margin-bottom: 1rem;
                     }
-            </style>
-            <script defer="defer" type="text/javascript" src="/digimoov_website_templates/static/src/js/lazy-min.js" />
-            <div id="wrap" class="oe_structure oe_empty">
+                }
+                    .para {
+                        font-size: 16px !important;
+                        line-height: 28px !important;
+                        color: #000 !important;
+                    }
+                </style>
+                <div id="wrap" class="oe_structure">
+                    <!-- section 1 Couverture -->
+                    <section id="sh_corpomate_theme_section_258" class="sh_animation_part pt8">
+                        <div class="container-banner">
+                            <div class="row">
+                                <div class="col-lg-6 pb16 pt56">
+                                    <div class="js-scroll slide-left">
+                                        <div class="text-center">
+                                            <h1 class="slider-text-info title-mcm">
+                                                FORMATION VTC, TAXI et TAXI MOTO
+                                                <br />
+                                                <span class="subtitle-mcm"> 100 % en ligne </span>
+                                            </h1>
+                                            <p class="para">
+                    Besoin de formation pour devenir chauffeur TAXI, de VTC ou
+                    de VMDTR, pour renouveler votre carte professionnelle, ou
+                    encore pour une passerelle TAXI-VTC ?
+                  </p>
+                                            <a class="animated-button-yellow" href="#pricing">
+                                                <span></span>
+                                                <span></span>
+                                                <span></span>
+                                                <span></span>
+                                                S'inscrire
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 pb48 pt16 js-scroll slide-right">
+                                    <img data-src="/mcm_website_theme/static/src/img/homepage/formations-taxi-vtc-taxi-moto-en-ligne.webp" data-srcsafari="/mcm_website_theme/static/src/img/homepage/formations-taxi-vtc-taxi-moto-en-ligne.png" class="img img-fluid mx-auto lazy lazy text-center" alt="Chauffeurs taxis et véhicules de tourisme" title="Formation vtc taxi moto-taxi" />
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                    <!-- fin section 1  -->
+                    <!-- Logos-->
+                    <section class="container pt40 pb32 js-scroll fade-in-top">
+                        <div class="row align-items-center justify-content-center">
+                            <div class="col-md-3 col-sm-12 text-center mb-4 mb-md-0">
+                                <img data-src="/mcm_website_theme/static/src/img/formation-éligible-au-compte-personnel-de-formation.webp" data-srcSafari="/mcm_website_theme/static/src/img/formation-éligible-au-compte-personnel-de-formation.png" class="img-fluid lazy" style="width: 100px" title="Formation éligible au CPF" alt="logo mon compte de formation" />
+                            </div>
+                            <div class="col-md-3 col-sm-12 text-center mb-4 mb-md-0">
+                                <img class="img-fluid lazy" style="width: 188px" data-src="/mcm_website_theme/static/src/img/formation-taxi-vtc-certifiée-qualiopi.webp" data-srcSafari="/mcm_website_theme/static/src/img/formation-taxi-vtc-certifiée-qualiopi.png" title="qualiopi" alt="qualiopi" />
+                            </div>
+                            <div class="col-md-3 col-sm-12 text-center mb-4 mb-md-0">
+                                <img class="img-fluid lazy" style="width: 110px" data-srcSafari="/mcm_website_theme/static/src/img/mcm academy-partenaire-france-relance.jpg" data-src="/mcm_website_theme/static/src/img/mcm academy-partenaire-france-relance.webp" title="logo france relance" alt="logo france relance" />
+                            </div>
+                            <div class="col-md-3 col-sm-12 text-center mb-4 mb-md-0">
+                                <img class="img-fluid lazy" style="width: 100px" data-src="/mcm_website_theme/static/src/img/mcm academy-centre-de-formation-taxi-vtc-carte pro-préfecture.webp" data-srcSafari="/mcm_website_theme/static/src/img/mcm academy-centre-de-formation-taxi-vtc-carte pro-préfecture.png" title="Centre agrée de la préfecture" alt="Centre agrée de la préfecture" />
+                            </div>
+                        </div>
+                    </section>
+                    <!-- fin LOGOS-->
+                    <!-- section 3 Les formations -->
+                    <section id="sh_corpomate_theme_section_92" class="bg-100">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-md-6 col-sm-6 col-12 col-lg-4 js-scroll fade-in-top">
+                                    <div class="sh_content">
+                                        <div class="sh_content_box">
+                                            <div class="sh_description">
+                                                <h2>
+                                                    Formation TAXI
+                                                    <br />
+                                                </h2>
+                                                <p class="p-description">
+                      MCM Academy a tout pour satisfaire vos besoins en
+                      formations TAXI : formation initiale, formation passerelle
+                      taxi VTC, renouvellement carte professionnelle.
+                    </p>
+                                                <div class="s_btn text-center pt16 pb16" data-name="Button">
+                                                    <a href="/formation-chauffeur-vtc" class="btn btn-warning sh_btn_cm_4 spacing-m-p" onclick='msTracking("clic sur Devenez chauffeur VTC homepage",                                                 "Homepage events",                                                 "Devenez chauffeur VTC homepage",                                                 2)'>En savoir plus</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-sm-6 col-12 col-lg-4 js-scroll fade-in-top">
+                                    <div class="sh_content">
+                                        <div class="sh_content_box">
+                                            <div class="sh_description">
+                                                <h2>
+                                                    Formation VTC
+                                                    <br />
+                                                </h2>
+                                                <p class="p-description">
+                      Nous vous offrons une formation VTC à distance, une bonne
+                      préparation à l'examen, et un accompagnement pour la
+                      création de votre entreprise.
+                    </p>
+                                                <div class="s_btn text-center pt16 pb16" data-name="Button">
+                                                    <a href="/formation-chauffeur-vtc" class="btn btn-warning sh_btn_cm_4 spacing-m-p" onclick='msTracking("clic sur Devenez chauffeur VTC homepage",                                                 "Homepage events",                                                 "Devenez chauffeur VTC homepage",                                                 2)' aria-describedby="tooltip762606">En savoir plus</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-sm-6 col-12 col-lg-4 js-scroll fade-in-top">
+                                    <div class="sh_content">
+                                        <div class="sh_content_box">
+                                            <div class="sh_description">
+                                                <h2>
+                                                    Formation MOTO-TAXI
+                                                    <br />
+                                                </h2>
+                                                <p class="p-description">
+                                                    Passionné de motos et vous voulez en faire votre activité
+                      professionnelle ? Souscrivez à notre formation 100% en
+                      ligne pour devenir chauffeur taxi moto.
+                                                    <br />
+                                                </p>
+                                                <div class="s_btn text-center pt16 pb16" data-name="Button">
+                                                    <a href="/formation-taximoto-vmtdr" class="btn btn-warning sh_btn_cm_4 spacing-m-p" onclick='msTracking("clic sur Devenez chauffeur MOTO-Taxi homepage",                                                 "Homepage events",                                                 "Devenez chauffeur MOTO-Taxi homepage",                                                 3)' aria-describedby="tooltip181659">En savoir plus</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
 
-                <!-- section 1  -->
-
-                <section id="sh_corpomate_theme_section_258" class="sh_animation_part pt8" data-name="practice">
-                    <div class="container-banner">
-                        <div class="row">
-                            <div class="col-lg-6 pb16 pt56" style="border-style: none; border-width: 0px;">
-                                <div class="js-scroll slide-left">
-                                    <div class="text-center">
-                                        <h1 class="title-mcm slider-text-info">
-                                            FORMATION VTC, TAXI et TAXI MOTO
-                                            <br />
-                                            <span class="subtitle-mcm">
-                                                100 % en ligne
-                                            </span>
-                                        </h1>
-                                        <p class="heading text-center; color: rgb(0, 0, 0)" style="padding: 2rem 0rem">
-                                            Besoin de formation pour devenir chauffeur TAXI,
-                                            de VTC ou de VMDTR, pour renouveler
-                                            votre carte professionnelle, ou encore pour une
-                                            passerelle TAXI-VTC ?
-                                            <br />
-                                            MCM Academy a tout pour satisfaire vos
-                                            besoins en formation avec un programme riche,
-                                            flexible et pertinent.
-                                        </p>
-
-                                        <a class="animated-button-yellow" href="#pricing">
-
-                                            <span></span>
-                                            <span></span>
-                                            <span></span>
-                                            <span></span>
-                                            S'inscrire
+                    <!-- section 4 Faisons connaissance…-->
+                    <section class="s_text_image pt32 pb32">
+                        <div class="container">
+                            <div class="row align-items-center">
+                                <div class="col-lg-6 pt16 pb16 js-scroll slide-left">
+                                    <img data-src="/mcm_website_theme/static/src/img/homepage/mcm-academy-centre-de-formation-en-ligne-des-métiers-de-transports.webp" data-srcsafari="/mcm_website_theme/static/src/img/homepage/mcm-academy-centre-de-formation-en-ligne-des-métiers-de-transports.png" class="img img-fluid mx-auto lazy" alt="candidats centre de formation vtc" />
+                                </div>
+                                <div class="col-lg-6 pt16 pb16 js-scroll slide-right">
+                                    <h2>
+                                        <b> Faisons connaissance… </b>
+                                    </h2>
+                                    <p class="para">
+                                        Créée en 2015, MCM Academy est une structure spécialisée dans la
+                formation des métiers de chauffeurs de taxi, VTC et de taxi
+                moto.
+                                        <br />
+                                        <br />
+                                        Aujourd'hui nous sommes parmi les leaders du marché de la
+                formation en ligne de TAXIS et VTC en France.
+                                        <br />
+                                        <br />
+                                        Agréé par la préfecture, notre centre de formation organise les
+                examens du certificat de capacité professionnelle de chauffeur
+                taxi et VTC partout en France.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                    <!-- section 5 Plus qu'une formation ! -->
+                    <section class="s_text_image pt32 pb32">
+                        <div class="container">
+                            <div class="row align-items-center">
+                                <div class="col-lg-6 pt16 pb16 js-scroll slide-left">
+                                    <h2>
+                                        <b> Plus qu'une formation ! </b>
+                                    </h2>
+                                    <p class="para">
+                                        Nous offrons à nos futurs conducteurs de taxi, VTC ou de taxi
+                moto des formations à suivre à distance, à votre rythme sur
+                notre plateforme
+                                        <br />
+                                        E-learning. Les cours sont présentés sous forme de vidéos
+                interactives, de Live avec nos formateurs, de QCM et d’examens
+                blancs, soigneusement préparés par nos experts métiers afin de
+                mieux vous préparer à l’examen final.
+                                        <br />
+                                        <br />
+                                        Une fois votre examen réussi, nous pourrons vous accompagner
+                dans la démarche d’obtention de votre carte professionnelle
+                auprès de la préfecture ainsi que dans les démarches de création
+                de votre entreprise en tant que chauffeur privé indépendant ou
+                pour travailler pour le compte des plateformes dédiées.
+                                        <br />
+                                    </p>
+                                    <div class="s_btn text-left pt16 pb16" data-name="Buttons">
+                                        <a href="/web/login" target="_blank" rel="noopener">
+                                            <button class="home-btn">Je m'inscris maintenant !</button>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 pt16 pb16 js-scroll slide-right">
+                                    <img data-srcsafari="/mcm_website_theme/static/src/img/homepage/centre-de-formation-taxi-vtc-en-ligne.png" data-src="/mcm_website_theme/static/src/img/homepage/centre-de-formation-taxi-vtc-en-ligne.webp" class="img img-fluid mx-auto lazy" alt="candidats formation taxi vtc" />
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                    <!-- section étapes à suivre pour devenir chauffeur taxi VTC -->
+                    <section id="sh_corpomate_theme_section_76">
+                        <div class="container">
+                            <h2 class="text-center js-scroll fade-in-bottom">
+            Voici les étapes à suivre pour devenir chauffeur taxi VTC
+          </h2>
+                            <div class="row js-scroll fade-in-bottom">
+                                <div class="col-md-4">
+                                    <div class="sh_content">
+                                        <a href="/mcm_website_theme/static/pdf/DEMARCHES_D'INSCRIPTION_A_LA_CMA_-_MCM_ACADEMY.pdf" target="_blank" rel="noopner">
+                                            <div class="sh_num_icon">
+                                                <section class="sh_num o_default_snippet_text">1</section>
+                                                <span class="sh_icon fa fa-calendar" />
+                                            </div>
                                         </a>
 
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-6 pb48 pt16 js-scroll slide-right">
-                                <br />
-                                <img data-src="/mcm_website_theme/static/src/img/homepage/1'''.webp" data-srcSafari="/mcm_website_theme/static/src/img/homepage/1'''.png" class="img img-fluid mx-auto lazy" alt="Devenir chauffeur professionnel VTC, Taxi ou Moto-Taxi" data-original-title="" title="Formation vtc taxi moto-taxi" aria-describedby="tooltip202025" style="text-align: center;" />
-                            </div>
-                        </div>
-                    </div>
-                </section>
-                <!-- fin section 1  -->
-                <!-- Logos-->
-                <section class="container pt40 pb32 js-scroll fade-in-bottom">
-
-                    <div class="row align-items-center justify-content-center">
-                        <div class=" col-md-3 col-sm-12 text-center mb-4 mb-md-0  ">
-                            <img class="img-fluid" style="width: 100px;" src="/mcm_website_theme/static/src/img/formation-éligible-au-compte-personnel-de-formation.png" />
-                        </div>
-
-                        <div class=" col-md-3 col-sm-12 text-center mb-4 mb-md-0 ">
-                            <img class="img-fluid" style="width: 188px;" src="/mcm_website_theme/static/src/img/formation-taxi-vtc-certifiée-qualiopi.png" />
-
-                        </div>
-                        <div class=" col-md-3 col-sm-12 text-center mb-4 mb-md-0 ">
-                            <img class="img-fluid" style="width: 110px;" src="/mcm_website_theme/static/src/img/mcm academy-partenaire-france-relance.jpg" />
-
-                        </div>
-                        <div class=" col-md-3 col-sm-12 text-center mb-4 mb-md-0 ">
-                            <img class="img-fluid" style="width: 100px;" src="/mcm_website_theme/static/src/img/mcm academy-centre-de-formation-taxi-vtc-carte pro-préfecture.png" />
-
-                        </div>
-
-
-                    </div>
-                </section>
-                <!-- fin LOGOS-->
-
-                <!-- section 2  -->
-
-                <section id="sh_corpomate_theme_section_92" data-name="Contact Us Snippet 2" class="bg-100">
-                    <div class="container" style="border-style: none; border-width: 0px">
-                        <div class="row">
-                            <div class="col-md-6 col-sm-6 col-12 col-lg-4 js-scroll fade-in-top" style="border-style: none; border-width: 0px">
-                                <div class="sh_content">
-                                    <div class="sh_content_box">
-                                        <div class="sh_description">
-                                            <h2>
-                                                Formation TAXI
-                                                <br />
-                                            </h2>
-                                            <p style="font-size: 14px">
-                                                MCM Academy a tout pour satisfaire vos besoins en
-                                                formation TAXI et vous offre un suivi complet du jour de
-                                                l'inscription à l'obtention de votre carte
-                                                professionnelle.
-                                            </p>
-                                            <div class="s_btn text-center pt16 pb16" data-name="Button">
-                                                <a href="/formation-chauffeur-taxi" class="btn btn-warning sh_btn_cm_4" style="margin-top: 0.4rem;
-                                                padding: 0.4rem 2rem;" data-original-title="" title="" aria-describedby="tooltip562914" onclick='msTracking("clic sur Devenez chauffeur TAXI homepage",
-                                                "Homepage events",
-                                                "Devenez chauffeur TAXI homepage",
-                                                1)'>
-                                                    En savoir plus
-                                                </a>
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6 col-sm-6 col-12 col-lg-4 js-scroll fade-in-top" style="border-style: none; border-width: 0px">
-                                <div class="sh_content">
-                                    <div class="sh_content_box">
-                                        <div class="sh_description">
-                                            <h2>
-                                                Formation VTC
-                                                <br />
-                                            </h2>
-                                            <p style="font-size: 14px">
-                                                Nous vous offrons non seulement une formation à distance,
-                                                mais également un accompagnement et un suivi personnalisé
-                                                pour garantir votre réussite.
-
-                                            </p>
-                                            <div class="s_btn text-center pt16 pb16" data-name="Button">
-                                                <a href="/formation-chauffeur-vtc" class="btn btn-warning sh_btn_cm_4" style="margin-top: 0.4rem;
-                                                padding: 0.4rem 2rem;" onclick='msTracking("clic sur Devenez chauffeur VTC homepage",
-                                                "Homepage events",
-                                                "Devenez chauffeur VTC homepage",
-                                                2)'>En savoir plus</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6 col-sm-6 col-12 col-lg-4 js-scroll fade-in-top" style="border-style: none; border-width: 0px">
-                                <div class="sh_content">
-                                    <div class="sh_content_box">
-                                        <div class="sh_description">
-                                            <h2>
-                                                Formation MOTO-TAXI
-                                                <br />
-                                            </h2>
-                                            <p style="font-size: 14px">
-                                                MCM Academy a tout pour satisfaire vos besoins en
-                                                formation TAXI et vous offre un suivi complet du jour de
-                                                l'inscription à l'obtention de votre carte
-                                                professionnelle.
-                                                <br />
-                                            </p>
-                                            <div class="s_btn text-center pt16 pb16" data-name="Button">
-                                                <a href="/formation-taximoto-vmtdr" class="btn btn-warning sh_btn_cm_4" style="margin-top: 0.4rem;
-                                                padding: 0.4rem 2rem;" onclick='msTracking("clic sur Devenez chauffeur MOTO-Taxi homepage",
-                                                "Homepage events",
-                                                "Devenez chauffeur MOTO-Taxi homepage",
-                                                3)'>En savoir plus</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-
-                <!-- fin section 2  -->
-
-                <!-- section 3  -->
-                <section class="pt32 pb0" data-name="Title">
-                    <div class="container">
-                        <div class="row s_nb_column_fixed ">
-                            <div class="col-lg-12 s_title pt16 pb16 js-scroll fade-in-top" style="text-align: center">
-                                <h2 class="s_title_default">
-                                    <b>Une formation flexible et pertinente</b>
-                                    <br />
-                                </h2>
-                            </div>
-                            <div class="pt32 pb32 col-lg-4 js-scroll slide-left" style="border-style: none; border-width: 0px">
-                                <p class="lead">
-                                    <span class="d-block fa fa-rocket mx-auto fa-2x" data-original-title="" title="" aria-describedby="tooltip803873" style="color: rgb(0, 0, 0)" />
-                                    <span style="color: rgb(0, 0, 0); font-size: 18px">
                                         <br />
-                                    </span>
-
-                                    <span style="font-size: 18px">Formez-vous à votre rythme, où vous voulez et quand
-                                        vous
-                                        voulez : vous n’avez besoin que d’une connexion internet
-                                        pour vous lancer !</span>
-
-                                    <br />
-                                </p>
-                            </div>
-                            <div class="pt32 pb32 col-lg-4 js-scroll fade-in-top" style="border-style: none; border-width: 0px">
-                                <p class="lead">
-                                    <img class="img-fluid o_we_custom_image lazy" data-srcSafari="/mcm_website_theme/static/src/img/homepage/im 1.png" data-src="/mcm_website_theme/static/src/img/homepage/im 1.webp" data-original-title="" title="Formation Flexible et Pertinente chez Mcm Academy" alt="Passer formation VTC, Taxi ou Moto-Taxi chez Mcm Academy" aria-describedby="tooltip951588" />
-                                    <br />
-                                </p>
-                            </div>
-                            <div class="pt32 pb32 col-lg-4 js-scroll slide-right" style="border-style: none; border-width: 0px">
-                                <p class="lead">
-                                    <span class="d-block fa fa-flag mx-auto fa-2x" data-original-title="" title="" aria-describedby="tooltip879316" style="color: rgb(0, 0, 0)" />
-                                    <br />
-
-                                    <span style="font-size: 18px">Formation animée par des experts du métier, avec des
-                                        programmes de révision bien étudiés pour se préparer
-                                        correctement à l’examen.</span>
-
-                                    <br />
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-                <!-- fin section 3  -->
-
-                <section id="sh_corpomate_theme_section_151" data-name="Heading" class="bg-100 pb8 pt32">
-                    <div class="container">
-                        <div class="sh_title sh_animation_part js-scroll fade-in-top">
-                            <h2>
-                                La démarche à suivre pour obtenir votre carte professionnelle
-                            </h2>
-                        </div>
-                    </div>
-                </section>
-                <section id="sh_corpomate_theme_section_258" class="sh_animation_part bg-100 pb32" data-name="practice" style="">
-                    <div class="container">
-                        <div class="row ">
-                            <div class="col-lg-3 col-md-6 col-sm-6 col-12 sh_animation_part js-scroll slide-left" style="border-style: none; border-width: 0px">
-                                <div class="sh_content">
-                                    <div class="sh_icon">
-                                        <span class="fa fa-desktop" data-original-title="" title="" aria-describedby="tooltip309396" style="                       background-color: #fdd105;                       color: rgb(0, 0, 0);                     " />
+                                        <h3 class="p-description">
+                  Inscription à la chambre des métiers et de l'artisanat
+                </h3>
                                     </div>
-                                    <h3 style="font-size: 1.3rem;">1. Inscription</h3>
-                                    <p style="color: rgb(0, 0, 0)">
-                                        Vous vous inscrivez en ligne sur le site de la CMA et vous
-                                        y déposez votre dossier ; ensuite, vous vous inscrivez sur
-                                        le site de MCM Academy.
-                                    </p>
                                 </div>
-                            </div>
-                            <div class="col-lg-3 col-md-6 col-sm-6 col-12 sh_animation_part pb4 js-scroll slide-left">
-                                <div class="sh_content">
-                                    <div class="sh_icon">
-                                        <span class="fa fa-edit" data-original-title="" title="" aria-describedby="tooltip255152" style="                       background-color: #fdd105;                       color: rgb(0, 0, 0);                     " />
-                                    </div>
-                                    <h3 style="font-size: 1.3rem;">2. Suivre la formation à distance&amp;nbsp;</h3>
-                                    <p style="color: rgb(0, 0, 0)">
-                                        Maintenant que vous êtes inscrit sur notre plateforme, vous
-                                        disposez d'un mois pour suivre nos cours en illimité et
-                                        utiliser tout nos supports de révision.
-                                    </p>
-                                </div>
-                            </div>
-                            <div class="col-lg-3 col-md-6 col-sm-6 col-12 sh_animation_part js-scroll slide-left">
-                                <div class="sh_content">
-                                    <div class="sh_icon">
-                                        <span class="fa fa-mortar-board" data-original-title="" title="" aria-describedby="tooltip343085" style="                       background-color: #fdd105;                       color: rgb(0, 0, 0);                     " />
-                                    </div>
-                                    <h3 style="font-size: 1.3rem;">3. Passer l'examen</h3>
-                                    <p style=" color:#000000">
-                                        Vous allez passer un examen comprenant une épreuve d’admissibilité et une
-                                        épreuve d'admission. L'épreuve se déroulera dans un centre d'examen de votre
-                                        région que vous choisirez lors de votre inscription.
+                                <div class="col-md-4">
+                                    <div class="sh_content sh_second_content">
+                                        <a href="/mcm_website_theme/static/pdf/DEMARCHES_D'INSCRIPTION_SUR_LE_SITE_MCM_ACADEMY.pdf" target="_blank" rel="noopner">
+                                            <div class="sh_num_icon">
+                                                <section class="sh_num o_default_snippet_text">2</section>
+                                                <span class="sh_icon fa fa-folder-open-o" />
+                                            </div>
+                                        </a>
 
-                                    </p>
-                                </div>
-                            </div>
-                            <div class="col-lg-3 col-md-6 col-sm-6 col-12 sh_animation_part js-scroll slide-left">
-                                <div class="sh_content">
-                                    <div class="sh_icon">
-                                        <span class="fa fa-list-alt" data-original-title="" title="" aria-describedby="tooltip501034" style="                       background-color: #fdd105;                       color: rgb(0, 0, 0);                     " />
+                                        <br />
+
+                                        <h3 class="p-description">
+                  Souscrire à la formation en ligne chez MCM Academy
+                </h3>
                                     </div>
-                                    <h3 style="font-size: 1.3rem;">4. Récupérer votre carte professionnelle</h3>
-                                    <p style="color: rgb(0, 0, 0)">
-                                        Vous avez réussi votre examen ? Félicitations ! L’étape
-                                        suivante est le dépôt de votre dossier à la préfecture pour
-                                        récupérer votre carte professionnelle.
-                                    </p>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="sh_content sh_last_content">
+                                        <a href="/mcm_website_theme/static/pdf/Devenez_chauffeur_taxi_vtc_démarches_dépôt_dossier_préfecture.pdf" target="_blank" rel="noopner">
+                                            <div class="sh_num_icon">
+                                                <section class="sh_num o_default_snippet_text">3</section>
+                                                <span class="sh_icon fa fa-paper-plane-o" />
+                                            </div>
+                                        </a>
+
+                                        <br />
+                                        <h3 class="p-description">
+                  Déposer votre dossier à la préfecture pour obtenir votre carte
+                  professionnelle
+                </h3>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </section>
-                <section class="pt32 pb4 bg-200" data-name="Title">
-                    <div class="container">
-                        <div class="row s_nb_column_fixed js-scroll fade-in-top">
-                            <div class="col-lg-12 s_title pt16 pb8" style="text-align: center; border-style: none; border-width: 0px">
-                                <h2 class="s_title_default">
-                                    <b>Avec MCM Academy,&amp;nbsp;vous choisissez le meilleur !</b>
-                                </h2>
+                    </section>
+                    <!-- section S'inscrire à l'examen Taxi VTC et Taxi-moto-->
+                    <section class="s_text_image pt32 pb32">
+                        <div class="container">
+                            <div class="row align-items-center">
+                                <div class="col-lg-6 pt16 pb16 js-scroll slide-left">
+                                    <img data-src="/mcm_website_theme/static/src/img/homepage/inscription-à-l’examen-taxi-vtc.webp" data-srcsafari="mcm_website_theme/static/src/img/homepage/inscription-à-l’examen-taxi-vtc.png" class="img img-fluid mx-auto lazy" alt="Odoo • Image et Texte" />
+                                </div>
+                                <div class="col-lg-6 pt16 pb16 js-scroll slide-right">
+                                    <h2>
+                                        <b> S'inscrire à l'examen Taxi VTC et Taxi-moto </b>
+                                    </h2>
+                                    <p class="para">
+                                        Pour passer l’
+                                        <b>examen du certificat de capacité professionnelle</b>
+                                        pour
+                                        <b>devenir chauffeur de taxi ou de VTC</b>
+                                        , vous devez respecter certains prérequis à savoir : Être
+                titulaire d'un
+                                        <b>permis de conduire</b>
+
+                                        <b>B</b>
+                                        depuis plus de 3 ans pour les taxis et VTC et d'un permis A pour
+                le taxi moto, d’une
+                                        <b>attestation médicale</b>
+                                        que vous obtiendrez auprès du médecin de la Préfecture de votre
+                ville et d’un
+                                        <b>casier</b>
+                                        judiciaire
+                                        <b>vierge.</b>
+                                    </p>
+                                    <p class="para">
+                                        L’examen est organisé par
+                                        <b> la chambre des métiers et de l’artisanat </b>
+                                        et
+                                        <b>
+                                            <a class="hyper-link" href="https://www.examentaxivtc.fr/">
+                    l'inscription
+                  </a>
+                                        </b>
+                                        se fait
+                                        <b>en ligne</b>
+                                        sur le site de la chambre des métiers et de l'artisanat.
+                                    </p>
+                                    <div class="s_btn text-left pt16 pb16" data-name="Button">
+                                        <a href="/examen" target="_blank" rel="noopener">
+                                            <button class="home-btn">Découvrir</button>
+                                        </a>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </section>
-                <section class="s_features pt32 pb32" data-name="Features">
-                    <div class="container">
-                        <div class="row js-scroll fade-in-top">
-                            <div class="pb32 text-center pt0 col-lg-4" style="border-style: none; border-width: 0px">
-                                <i class="fa fa-2x fa-clock-o m-3 rounded-circle" data-original-title="" title="" aria-describedby="tooltip924651" style="                   background-color: rgb(255, 255, 255);                   color: rgb(0, 0, 0);                 " />
-                                <h3>
-                                    <b>Flexibilité</b>
-                                    <br />
-                                </h3>
-                                <p>
-                                    Vous avez la liberté de choisir quand et durant combien de temps
-                                    vous souhaitez travailler.
-                                    <br />
-                                </p>
-                            </div>
-                            <div class="pb32 text-center pt0 col-lg-4">
-                                <i class="fa fa-2x fa-mortar-board m-3 rounded" data-original-title="" title="" aria-describedby="tooltip680976" style="                   background-color: rgb(255, 255, 255);                   color: rgb(0, 0, 0);                 " />
-                                <h3>
-                                    <b>Qualification</b>
-                                    <br />
-                                </h3>
-                                <p>
-                                    Nos experts pédagogiques vous accompagneront durant tout le
-                                    cursus de formation.
-                                    <br />
-                                </p>
-                            </div>
-                            <div class="pb32 text-center pt0 col-lg-4" style="border-style: none; border-width: 0px">
-                                <i class="fa fa-star m-3 rounded-leaf fa-2x" data-original-title="" title="" aria-describedby="tooltip820818" style="                   background-color: rgb(255, 255, 255);                   color: rgb(0, 0, 0);                 " />
-                                <h3>
-                                    <b>Expertise</b>
-                                </h3>
-                                <p>
-                                    Notre centre de formation est doté d’une expérience de plus de
-                                    10 ans dans le domaine !
-                                </p>
+                    </section>
+                    <!-- section -->
+                    <section class="s_text_image pt32 pb32 bg-100">
+                        <div class="container">
+                            <div class="row align-items-center">
+                                <div class="col-lg-6 pt16 pb16 js-scroll slide-left">
+                                    <h3>
+                                        <b>Déroulement de l'examen taxi Vtc</b>
+                                    </h3>
+                                    <p class="para">
+                                        Il est composé de
+                                        <b>deux épreuves </b>
+                                        : une épreuve théorique d’
+                                        <b>admissibilité</b>
+                                        sous forme de QCM axée sur la réglementation, la gestion, les
+                langues et la sécurité. Et une épreuve pratique d'
+                                        <b>admission</b>
+                                        sous forme de parcours de 20 min pour tester les connaissances
+                du candidat sur le territoire parcouru, et sa capacité à
+                accueillir et à facturer un client.
+                                    </p>
+                                    <p />
+                                    <div class="s_btn text-left pt16 pb16" data-name="Button">
+                                        <a href="https://www.examentaxivtc.fr/" target="_blank" rel="noopener">
+                                            <button class="home-btn">Je m'inscris !</button>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 pt16 pb16 js-scroll slide-right">
+                                    <img data-src="/mcm_website_theme/static/src/img/homepage/examen-théorique-et-pratique-taxi-vtc.webp" data-srcSafari="/mcm_website_theme/static/src/img/homepage/examen-théorique-et-pratique-taxi-vtc.png" class="img img-fluid mx-auto lazy" alt="chauffeur vtc à l’examen pratique" />
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </section>
-                <!-- counter section-->
-                <section id="sh_corpomate_theme_section_229" class="sh_animation_part bg-900 oe_img_bg oe_custom_bg" data-name="Services counter" style="           background-image: url('/mcm_website_theme/static/src/img/homepage/fond.png');           background-position: 1.58% 78.71%;         ">
-                    <div class="container">
-                        <div class="row clearfix">
-                            <div class="title-column col-lg-5 col-md-12 col-sm-12">
-                                <div class="inner-column js-scroll slide-left">
-                                    <h4 style="font-size: 35px">
+                    </section>
+
+                    <!-- counter section-->
+                    <section id="sh_corpomate_theme_section_229" class="sh_animation_part bg-900 oe_img_bg oe_custom_bg" style="           background-image: url('/mcm_website_theme/static/src/img/homepage/fond.png');           background-position: 1.58% 78.71%;         " data-oe-model="ir.ui.view" data-oe-id="2090" data-oe-field="arch" data-oe-xpath="/data/xpath/div/section[9]">
+                        <div class="container">
+                            <div class="row clearfix">
+                                <div class="title-column col-lg-5 col-md-12 col-sm-12">
+                                    <div class="inner-column js-scroll slide-left scrolled">
+                                        <h4 style="font-size: 35px">
 
                                         Des centaines de
                                         personnes ont déjà fait confiance à
                                         MCM ACADEMY
 
                                     </h4>
-                                    <h5 style="font-size: 26px">
+                                        <h5 style="font-size: 26px">
                                         Pourquoi pas vous ?
                                     </h5>
 
 
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="content-column col-lg-7 col-md-12 col-sm-12">
-                                <div class="inner-column js-scroll slide-left">
-                                    <div class="row clearfix">
-                                        <div class="col-md-4 col-sm-12  pt32">
-                                            <div class="sh_counter">
-                                                <h4 class="sh_count ">1500</h4>
-                                                <h3 style="font-weight: 600;font-size: 15px;color: rgb(255, 255, 255);">
+                                <div class="content-column col-lg-7 col-md-12 col-sm-12">
+                                    <div class="inner-column js-scroll slide-left scrolled">
+                                        <div class="row clearfix">
+                                            <div class="col-md-4 col-sm-12  pt32">
+                                                <div class="sh_counter">
+                                                    <h4 class="sh_count ">1500</h4>
+                                                    <h3 style="font-weight: 600;font-size: 15px;color: rgb(255, 255, 255);">
                                                     STAGIAIRES FORMÉS</h3>
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div class="col-md-4 col-sm-12  pt32">
-                                            <div class="sh_counter">
-                                                <h4>
-                                                    <span class="sh_count">96</span>
-                                                    <span>%</span>
-                                                </h4>
-                                                <h3 style="font-weight: 600;font-size: 15px;color: rgb(255, 255, 255);">
+                                            <div class="col-md-4 col-sm-12  pt32">
+                                                <div class="sh_counter">
+                                                    <h4>
+                                                        <span class="sh_count">96</span>
+                                                        <span>%</span>
+                                                    </h4>
+                                                    <h3 style="font-weight: 600;font-size: 15px;color: rgb(255, 255, 255);">
                                                     CLIENTS SATISFAITS</h3>
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div class="col-md-4 col-sm-12  pt32">
-                                            <div class="sh_counter">
-                                                <h4>
-                                                    <span class="sh_count">78</span>
-                                                    <span>%</span>
-                                                </h4>
-                                                <h3 style="font-weight: 600;font-size: 15px;color: rgb(255, 255, 255);">
+                                            <div class="col-md-4 col-sm-12  pt32">
+                                                <div class="sh_counter">
+                                                    <h4>
+                                                        <span class="sh_count">78</span>
+                                                        <span>%</span>
+                                                    </h4>
+                                                    <h3 style="font-weight: 600;font-size: 15px;color: rgb(255, 255, 255);">
                                                     MOYENNE DE TAUX DE RÉUSSITE</h3>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </section>
-                <!-- End counter section-->
-                <!-- section under counter-->
-                <section id="sh_corpomate_theme_section_155" data-name="Heading" class="pb24 bg-100 pt16" style="">
-                    <div class="container" style="border-style: none; border-width: 0px;">
-                        <div class="row js-scroll fade-in-top">
-                            <div class=" col-md-3 col-sm-12 text-center mb-4 mb-md-0 ">
-                                <img class="img-fluid" src="/mcm_website_theme/static/src/img/avis_google.png" style="width: 182px;" />
-                            </div>
-                            <div class="col-md-9 col-sm-12 s_title pt16 pb0" style="text-align: center; border-style: none; border-width: 0px">
-                                <div style="text-align: left;">
-                                    <b style="font-size: 15px;">
-                                        - Le nombre de stagiaires formés depuis l'ouverture de centre et jusqu'à
-                                        Septembre 2021
-                                        <br />
-                                    </b>
-                                    <b style=" font-size: 15px;">
-                                        - Selon l'avis de la majorité de nos apprenants sur google.
-                                        <a style="color:#2d74f7;" href="https://www.google.com/search?q=mcm+academy&amp;rlz=1C1CHBF_frTN911TN916&amp;sxsrf=AOaemvLXgPjmp_LUdcBr_VYoZZbfCUXnQQ%3A1632154532783&amp;ei=pLNIYZv4LoTDlwT8z6igCw&amp;oq=mcm+a&amp;gs_lcp=Cgdnd3Mtd2l6EAMYADIECCMQJzIFCAAQgAQyCwguEIAEEMcBEK8BMgUIABCABDIFCAAQgAQyBQgAEIAEMgUIABCABDIFCAAQgAQyBQgAEIAEMgUIABCABDoHCCMQsAMQJzoHCAAQRxCwAzoQCC4QxwEQ0QMQyAMQsAMQQzoHCAAQsQMQQzoECAAQQzoKCAAQsQMQgwEQQzoLCAAQgAQQsQMQgwE6CAgAEIAEELEDOgoILhDHARDRAxBDOgQILhBDOg4ILhCABBCxAxDHARDRAzoLCC4QgAQQxwEQ0QM6CAguEIAEELEDOgUILhCABEoFCDgSATFKBAhBGABQpOQLWIbqC2Dc8AtoAXACeACAAcMBiAGbBpIBAzAuNZgBAKABAcgBC8ABAQ&amp;sclient=gws-wiz#lrd=0x47c2d584b3f426a3:0x8c9722c8da9f4da3,1,,,">
-                                            Cliquez ici pour lire les avis
-                                        </a>
-                                        .
-                                        <br />
-                                    </b>
-                                    <b style="font-size: 15px;">- Moyenne de taux de réussite de&amp;nbsp;</b>
-                                    <b style="font-size: 15px;">Novembre 2020 à juillet 2021 ( VTC : 71%, TAXI : 85%,
-                                        VMDTR : 80%).&amp;nbsp;</b>
-                                    <span style="font-weight: 700; font-size: 15px;">
-                                        Pour connaître les statistiques détaillées (données brutes et formules de
-                                        calcul),
-                                        <a href="https://www.mcm-academy.fr/service-clientele" target="_blank" data-original-title="" title="" aria-describedby="tooltip12353">contactez-nous</a>
-                                        .
-                                    </span>
-
+                    </section>
+                    <!-- End counter section-->
+                    <!-- section google avis-->
+                    <section id="sh_corpomate_theme_section_155" class="pb24 bg-100 pt16">
+                        <div class="container">
+                            <div class="row js-scroll fade-in-top">
+                                <div class="col-md-3 col-sm-12 text-center mb-4 mb-md-0">
+                                    <img class="img-fluid" src="/mcm_website_theme/static/src/img/avis_google.png" style="width: 182px" />
                                 </div>
-                                <br />
+                                <div class="col-md-9 col-sm-12 s_title pt16 pb0 text-center">
+                                    <div class="text-left">
+                                        <span class="bold-desc">
+                                            - Le nombre de stagiaires formés depuis l'ouverture de centre
+                  et jusqu'à Septembre 2021
+                                            <br />
+                                        </span>
+                                        <span class="bold-desc">
+                                            - Selon l'avis de la majorité de nos apprenants sur google.
+                                            <a style="color: #2d74f7" href="https://www.google.com/search?q=mcm+academy&amp;rlz=1C1CHBF_frTN911TN916&amp;sxsrf=AOaemvLXgPjmp_LUdcBr_VYoZZbfCUXnQQ%3A1632154532783&amp;ei=pLNIYZv4LoTDlwT8z6igCw&amp;oq=mcm+a&amp;gs_lcp=Cgdnd3Mtd2l6EAMYADIECCMQJzIFCAAQgAQyCwguEIAEEMcBEK8BMgUIABCABDIFCAAQgAQyBQgAEIAEMgUIABCABDIFCAAQgAQyBQgAEIAEMgUIABCABDoHCCMQsAMQJzoHCAAQRxCwAzoQCC4QxwEQ0QMQyAMQsAMQQzoHCAAQsQMQQzoECAAQQzoKCAAQsQMQgwEQQzoLCAAQgAQQsQMQgwE6CAgAEIAEELEDOgoILhDHARDRAxBDOgQILhBDOg4ILhCABBCxAxDHARDRAzoLCC4QgAQQxwEQ0QM6CAguEIAEELEDOgUILhCABEoFCDgSATFKBAhBGABQpOQLWIbqC2Dc8AtoAXACeACAAcMBiAGbBpIBAzAuNZgBAKABAcgBC8ABAQ&amp;sclient=gws-wiz#lrd=0x47c2d584b3f426a3:0x8c9722c8da9f4da3,1,,,">
+                    Cliquez ici pour lire les avis
+                  </a>
+                                            .
+                                            <br />
+                                        </span>
+                                        <span class="bold-desc">- Moyenne de taux de réussite de </span>
+                                        <span class="bold-desc">
+                  Novembre 2020 à juillet 2021 ( VTC : 71%, TAXI : 85%, VMDTR :
+                  80%).
+                </span>
+
+                                        <span class="bold-desc">
+                                            Pour connaître les statistiques détaillées (données brutes et
+                  formules de calcul),
+                                            <a href="https://www.mcm-academy.fr/service-clientele" target="_blank">contactez-nous</a>
+                                            .
+                                        </span>
+                                    </div>
+                                    <br />
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </section>
-                <!-- fin section under counter-->
-                <!-- PRICING TABLE-->
-                <!-- PRICING TABLE-->
-                <div id="pricing" class="pb32">
-                    <input t-att-value="request.website.microsoft_tracking_key" id="microsoft_tracking_key" type="hidden" />
-                    <section id="sh_corpomate_theme_section_188" class="sh_animation_part" data-name="Pricing">
+                    </section>
+
+                    <!-- section - Comment financer ma formation ?-->
+
+                    <section id="sh_corpomate_theme_section_60">
                         <div class="container">
-                            <div class="sh_title js-scroll fade-in-top">
-                                <h2>
-                                    <b>Inscrivez-vous dès maintenant !</b>
-                                    <br />
-                                </h2>
-                                <h4 style="                   margin-top: 20px;                   margin-bottom: 0.5rem;                   font-size: 18px;                                   ">
-                                    Choisissez le pack qui vous convient&amp;nbsp;
-                                </h4>
-                                <p>
-                                    <br />
-                                </p>
-                            </div>
                             <div class="row">
-                                <div class="col-md-4 sh_animation_part js-scroll slide-left" style="border-style: none; border-width: 0px">
-                                    <div class="sh_pricing">
-                                        <t t-foreach="mcm_products" t-as="product">
-                                            <t t-if="product.default_code=='vtc'">
-                                                <form action="/shop/cart/update" method="post" id="form-1-1">
-                                                    <input type="hidden" class="product_id" name="product_id" id="vtc_product" t-att-value="product.id" />
-                                                    <input type="hidden" name="promo" t-att-value="promo.id" t-if="promo" />
-                                                    <h4>PACK VTC</h4>
-                                                    <h5 style="color: #636161">Éligible au CPF</h5>
-                                                    <h4 t-if="not promo">
-                                                        <span t-esc="round(product.list_price)" />
-                                                        <span style="color: #fdd105;" t-esc="product.currency_id.symbol" />
-                                                    </h4>
-                                                    <h4 t-if="promo">
-                                                        <t t-foreach="promo.item_ids" t-as="item">
-                                                            <t t-if="item.product_id.id==product.id">
-                                                                <span t-esc="round(item.fixed_price)" />
-                                                                <span t-esc="product.currency_id.symbol" style="color: #fdd105;" />
+                                <div class="col-md-6 align-items-center sh_animation_part js-scroll slide-left d-flex">
+                                    <div class="sh_left_content">
+                                        <h2>Comment financer ma formation ?</h2>
+                                        <p class="para">
+                                        Chez MCM Academy nous offrons à nos candidats la possibilité
+                                        de financer leurs formations Taxi VTC et VMDTR en mobilisant
+                                        leurs Compte de formation Personnel ou par autofinancement
+                                        avec des modalités assez flexibles !
+                                         </p>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 sh_animation_part js-scroll slide-right">
+                                    <div class="sh_content_right">
+                                        <div class="sh_img">
+                                            <div class="media_iframe_video" data-oe-expression="//www.youtube.com/embed/19BiYQVwZFs?autoplay=1&amp;mute=1&amp;rel=0&amp;modestbranding=1">
+                                                <div class="css_editable_mode_display"></div>
+                                                <div class="media_iframe_video_size"></div>
+                                                <iframe src="//www.youtube.com/embed/19BiYQVwZFs?autoplay=1&amp;mute=1&amp;rel=0&amp;modestbranding=1" frameborder="0" allowfullscreen="allowfullscreen" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                    <!-- PRICING TABLE-->
+                    <div id="pricing" class="pb32 mt-5">
+                        <input t-att-value="request.website.microsoft_tracking_key" id="microsoft_tracking_key" type="hidden" />
+                        <section id="sh_corpomate_theme_section_188" class="sh_animation_part" data-name="Pricing">
+                            <div class="container">
+                                <div class="sh_title js-scroll fade-in-top">
+                                    <h2>
+                                        <b> Nos Tarifs de formation</b>
+                                        <br />
+                                    </h2>
+                                    <h3 class="tarif-insc">
+                                        Inscrivez-vous dès maintenant !
+                                    </h3>
+                                    <br />
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-4 sh_animation_part js-scroll slide-left">
+                                        <div class="sh_pricing">
+                                            <t t-foreach="mcm_products" t-as="product">
+                                                <t t-if="product.default_code=='vtc'">
+                                                    <form action="/shop/cart/update" method="post" id="form-1-1">
+                                                        <input type="hidden" class="product_id" name="product_id" id="vtc_product" t-att-value="product.id" />
+                                                        <input type="hidden" name="promo" t-att-value="promo.id" t-if="promo" />
+                                                        <h4>PACK VTC</h4>
+                                                        <h5 class="el-cpf">Éligible au CPF</h5>
+                                                        <h4 t-if="not promo">
+                                                            <span t-esc="round(product.list_price)" />
+                                                            <span class="prod-cur" t-esc="product.currency_id.symbol" />
+                                                        </h4>
+                                                        <h4 t-if="promo">
+                                                            <t t-foreach="promo.item_ids" t-as="item">
+                                                                <t t-if="item.product_id.id==product.id">
+                                                                    <span t-esc="round(item.fixed_price)" />
+                                                                    <span t-esc="product.currency_id.symbol" class="prod-cur" />
+                                                                </t>
                                                             </t>
+                                                        </h4>
+                                                        <ul class="">
+                                                            <li>Formation 70 h (100 % en ligne)</li>
+                                                            <li>Accès à + de 12 examens d'entraînement</li>
+                                                            <li>Assistance par mail</li>
+                                                            <li>Assistance par téléphone</li>
+                                                            <li>Assistance par visioconférence</li>
+                                                            <li>Lives avec les formateurs pour explications</li>
+                                                            <li>Révision du programme avant examen</li>
+                                                        </ul>
+                                                        <br />
+                                                        <t t-if="promo">
+                                                            <p class="text-center font-weight-bolder text-secondary">
+                                                                <b style="font-size: 50%">
+                                                                    <t>90</t>
+                                                                    <span t-esc="product.currency_id.symbol" class="prod-cur" />
+                                                                    <span style="text-transform: none !important">avec le code</span>
+                                                                    <t t-esc="promo.code" />
+                                                                </b>
+                                                            </p>
                                                         </t>
-                                                    </h4>
-                                                    <ul class="">
-                                                        <li>Formation 70 h (100 % en ligne)</li>
-                                                        <li>Accès à + de 12 examens d'entraînement</li>
-                                                        <li>Assistance par mail</li>
-                                                        <li>Assistance&amp;nbsp;par téléphone</li>
-                                                        <li>Assistance&amp;nbsp;par visioconférence</li>
-                                                        <li>Lives&amp;nbsp;avec les formateurs pour explications</li>
-                                                        <li>Révision du programme avant examen</li>
-                                                    </ul>
-                                                    <br />
-                                                    <t t-if="promo">
-                                                        <p class="
-                              text-center
-                              font-weight-bolder
-                              text-secondary
-                            ">
-                                                            <b style="font-size: 50%">
-                                                                <t>90</t>
-                                                                <span t-esc="product.currency_id.symbol" style="color: #fdd105;" />
-                                                                <span style="text-transform: none !important;">avec le
-                                                                    code</span>
-                                                                <t t-esc="promo.code" />
-                                                            </b>
-                                                        </p>
-                                                    </t>
-                                                    <div class="sh_btn">
-                                                        <!-- <a class="btn btn-primary sh_btn_cm_8" data-original-title="" title="" aria-describedby="tooltip357369" onClick="(function(){document.getElementById('form-1-1').submit();return false;})();return false;">
+                                                        <div class="sh_btn">
+                                                            <!-- <a class="btn btn-primary sh_btn_cm_8"   aria-describedby="tooltip357369" onClick="(function(){document.getElementById('form-1-1').submit();return false;})();return false;">
                             Je m'inscris
                                                 </a> -->
-                                                        <!-- Call Mircorsoft ads script onclick-->
+                                                            <!-- Call Mircorsoft ads script onclick-->
 
-                                                        <a class="animated-button-yellow" href="#pricing" onClick="(function(){packVtcHome(); document.getElementById('form-1-1').submit();return false;})();return false;">
-                                                            <span></span>
-                                                            <span></span>
-                                                            <span></span>
-                                                            <span></span>
-                                                            Je m'inscris
-                                                        </a>
-
-                                                    </div>
-                                                </form>
+                                                            <a class="animated-button-yellow" href="#pricing" onClick="(function(){packVtcHome(); document.getElementById('form-1-1').submit();return false;})();return false;">
+                                                                <span></span>
+                                                                <span></span>
+                                                                <span></span>
+                                                                <span></span>
+                                                                Je m'inscris
+                                                            </a>
+                                                        </div>
+                                                    </form>
+                                                </t>
                                             </t>
-                                        </t>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="col-md-4 sh_animation_part js-scroll fade-in-top">
-                                    <div class="sh_pricing">
-                                        <t t-foreach="mcm_products" t-as="product">
-                                            <t t-if="product.default_code=='taxi'">
-                                                <form action="/shop/cart/update" method="post" id="form-1-2">
-                                                    <input type="hidden" class="product_id" name="product_id" id="taxi_product" t-att-value="product.id" />
-                                                    <input type="hidden" name="promo" t-att-value="promo.id" t-if="promo" />
-                                                    <h4>PACK TAXI</h4>
-                                                    <h5 style="color: #636161">Éligible au CPF</h5>
-                                                    <h4>
-                                                        <span t-esc="round(product.list_price)" />
-                                                        <span style="
-    color: #fdd105;
-" t-esc="product.currency_id.symbol" />
-
-                                                    </h4>
-                                                    <ul class="">
-                                                        <li>Formation 70 h (100 % en ligne)</li>
-                                                        <li>Accès à + de 12 examens d'entraînement</li>
-                                                        <li>Assistance&amp;nbsp;par mail</li>
-                                                        <li>Assistance&amp;nbsp;par téléphone</li>
-                                                        <li>Assistance&amp;nbsp;par visioconférence</li>
-                                                        <li>Lives&amp;nbsp;avec les formateurs pour explications</li>
-                                                        <li>Révision du programme avant examen</li>
-                                                    </ul>
-                                                    <br />
-                                                    <t t-if="promo">
-                                                        <p class="text-center
-                                                                    font-weight-bolder
-                                                                    text-secondary
-                                                                    ">
-                                                            <b style="font-size: 50%">
-                                                                <t>&amp;nbsp; &amp;nbsp; &amp;nbsp;&amp;nbsp;</t>
-                                                            </b>
-                                                        </p>
-                                                    </t>
-                                                    <div class="sh_btn">
-                                                        <a class="animated-button-yellow" href="#pricing" onClick="(function(){packTaxiHome();document.getElementById('form-1-2').submit();return false;})();return false;">
-                                                            <span></span>
-                                                            <span></span>
-                                                            <span></span>
-                                                            <span></span>
-                                                            Je m'inscris
-                                                        </a>
-                                                    </div>
-                                                </form>
+                                    <div class="col-md-4 sh_animation_part js-scroll fade-in-top">
+                                        <div class="sh_pricing">
+                                            <t t-foreach="mcm_products" t-as="product">
+                                                <t t-if="product.default_code=='taxi'">
+                                                    <form action="/shop/cart/update" method="post" id="form-1-2">
+                                                        <input type="hidden" class="product_id" name="product_id" id="taxi_product" t-att-value="product.id" />
+                                                        <input type="hidden" name="promo" t-att-value="promo.id" t-if="promo" />
+                                                        <h4>PACK TAXI</h4>
+                                                        <h5 class="el-cpf">Éligible au CPF</h5>
+                                                        <h4>
+                                                            <span t-esc="round(product.list_price)" />
+                                                            <span class="prod-cur" t-esc="product.currency_id.symbol" />
+                                                        </h4>
+                                                        <ul class="">
+                                                            <li>Formation 70 h (100 % en ligne)</li>
+                                                            <li>Accès à + de 12 examens d'entraînement</li>
+                                                            <li>Assistance par mail</li>
+                                                            <li>Assistance par téléphone</li>
+                                                            <li>Assistance par visioconférence</li>
+                                                            <li>Lives avec les formateurs pour explications</li>
+                                                            <li>Révision du programme avant examen</li>
+                                                        </ul>
+                                                        <br />
+                                                        <t t-if="promo">
+                                                            <p class="text-center font-weight-bolder text-secondary">
+                                                                <b style="font-size: 50%">
+                                                                    <t></t>
+                                                                </b>
+                                                            </p>
+                                                        </t>
+                                                        <div class="sh_btn">
+                                                            <a class="animated-button-yellow" href="#pricing" onClick="(function(){packTaxiHome();document.getElementById('form-1-2').submit();return false;})();return false;">
+                                                                <span></span>
+                                                                <span></span>
+                                                                <span></span>
+                                                                <span></span>
+                                                                Je m'inscris
+                                                            </a>
+                                                        </div>
+                                                    </form>
+                                                </t>
                                             </t>
-                                        </t>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="col-md-4 sh_animation_part js-scroll slide-right">
-                                    <div class="sh_pricing">
-                                        <t t-foreach="mcm_products" t-as="product">
-                                            <t t-if="product.default_code=='vmdtr'">
-                                                <form action="/shop/cart/update" method="post" id="form-1-3">
-                                                    <input type="hidden" class="product_id" name="product_id" id="vmdtr_product" t-att-value="product.id" />
-                                                    <input type="hidden" name="promo" t-att-value="promo.id" t-if="promo" />
-                                                    <h4>PACK TAXI-MOTO</h4>
-                                                    <h5 style="color: #636161">Éligible au CPF</h5>
-                                                    <h4>
-                                                        <span t-esc="round(product.list_price)" />
-                                                        <span style="color: #fdd105;" t-esc="product.currency_id.symbol" />
-
-                                                    </h4>
-                                                    <ul class="">
-                                                        <li>Formation 70 h (100 % en ligne)</li>
-                                                        <li>Accès à + de 12 examens d'entraînement</li>
-                                                        <li>Assistance&amp;nbsp;par mail</li>
-                                                        <li>Assistance&amp;nbsp;par téléphone</li>
-                                                        <li>Assistance&amp;nbsp;par visioconférence</li>
-                                                        <li>Lives&amp;nbsp;avec les formateurs pour explications</li>
-                                                        <li>Révision du programme avant examen</li>
-                                                    </ul>
-                                                    <br />
-                                                    <t t-if="promo">
-                                                        <p class="
-                              text-center
-                              font-weight-bolder
-                              text-secondary
-                            ">
-                                                            <b style="font-size: 50%">
-                                                                <t>&amp;nbsp; &amp;nbsp; &amp;nbsp;&amp;nbsp;</t>
-                                                            </b>
-                                                        </p>
-                                                    </t>
-                                                    <div class="sh_btn">
-                                                        <!-- <a class="btn btn-primary sh_btn_cm_8" data-original-title="" title="" aria-describedby="tooltip196298">
+                                    <div class="col-md-4 sh_animation_part js-scroll slide-right">
+                                        <div class="sh_pricing">
+                                            <t t-foreach="mcm_products" t-as="product">
+                                                <t t-if="product.default_code=='vmdtr'">
+                                                    <form action="/shop/cart/update" method="post" id="form-1-3">
+                                                        <input type="hidden" class="product_id" name="product_id" id="vmdtr_product" t-att-value="product.id" />
+                                                        <input type="hidden" name="promo" t-att-value="promo.id" t-if="promo" />
+                                                        <h4>PACK TAXI-MOTO</h4>
+                                                        <h5 class="el-cpf">Éligible au CPF</h5>
+                                                        <h4>
+                                                            <span t-esc="round(product.list_price)" />
+                                                            <span class="prod-cur" t-esc="product.currency_id.symbol" />
+                                                        </h4>
+                                                        <ul class="">
+                                                            <li>Formation 70 h (100 % en ligne)</li>
+                                                            <li>Accès à + de 12 examens d'entraînement</li>
+                                                            <li>Assistance par mail</li>
+                                                            <li>Assistance par téléphone</li>
+                                                            <li>Assistance par visioconférence</li>
+                                                            <li>Lives avec les formateurs pour explications</li>
+                                                            <li>Révision du programme avant examen</li>
+                                                        </ul>
+                                                        <br />
+                                                        <t t-if="promo">
+                                                            <p class="text-center font-weight-bolder text-secondary">
+                                                                <b style="font-size: 50%">
+                                                                    <t></t>
+                                                                </b>
+                                                            </p>
+                                                        </t>
+                                                        <div class="sh_btn">
+                                                            <!-- <a class="btn btn-primary sh_btn_cm_8"   aria-describedby="tooltip196298">
                             Je m'inscris
                                                 </a> -->
 
-                                                        <a class="animated-button-yellow" href="#pricing" onClick="(function(){packVmdtrHome(); document.getElementById('form-1-3').submit();return false;})();return false;">
-                                                            <span></span>
-                                                            <span></span>
-                                                            <span></span>
-                                                            <span></span>
-                                                            Je m'inscris
-                                                        </a>
-                                                    </div>
-                                                </form>
+                                                            <a class="animated-button-yellow" href="#pricing" onClick="(function(){packVmdtrHome(); document.getElementById('form-1-3').submit();return false;})();return false;">
+                                                                <span></span>
+                                                                <span></span>
+                                                                <span></span>
+                                                                <span></span>
+                                                                Je m'inscris
+                                                            </a>
+                                                        </div>
+                                                    </form>
+                                                </t>
                                             </t>
-                                        </t>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+                    <!-- FIN PRICING TABLE-->
+                    <section class="clients s_references bg-200 pt16 pb16">
+                        <center>
+                            <div class="container js-scroll fade-in-top">
+                                <div class="center-logo">
+                                    <!-- <div t-if="partenaire=='' or not partenaire or partenaire=='bolt'">
+                                    <a href="https://www.digimoov.fr/">
+                                        <img data-src="/mcm_website_theme/static/src/img/partenaires/digimoov.png" data-srcSafari="/mcm_website_theme/static/src/img/partenaires/digimoov.png" class="img img-fluid lazy" alt="Logo partenaire Digimoov"  title="Digimoov partenaire MCM ACADEMY" aria-describedby="tooltip843653" style="margin-top: 30px; width: 72%"/>
+                                    </a>
+                                </div> -->
+
+                                    <div t-if="partenaire=='' or partenaire !='bolt'">
+                                        <a href="#">
+                                            <img data-src="/mcm_website_theme/static/src/img/partenaires/cma.png" data-srcSafari="/mcm_website_theme/static/src/img/partenaires/cma.png" class="img img-fluid lazy" alt="Logo partenaire CMA" title="CMA partenaire MCM ACADEMY" aria-describedby="tooltip623872" style="margin-top: 30px; width: 50%" />
+                                        </a>
+                                    </div>
+
+                                    <!--                                <div t-if="partenaire=='' or not partenaire ">-->
+                                    <!--                                    <a href="https://bolt.eu/fr/">-->
+                                    <!--                                        <img data-src="/mcm_website_theme/static/src/img/partenaires/bolt.png" data-srcSafari="/mcm_website_theme/static/src/img/partenaires/bolt.png" class="img img-fluid lazy" alt="Logo partenaire bolt"  title="Bolt partenaire MCM ACADEMY" aria-describedby="tooltip843653" style="margin-top: 30px; width: 38%" />-->
+                                    <!--                                    </a>-->
+                                    <!--                                </div>-->
+                                    <div t-if="partenaire=='bolt' ">
+                                        <a href="https://bolt.eu/fr/">
+                                            <img data-src="/mcm_website_theme/static/src/img/partenaires/Bolt_logo.svg.png" data-srcSafari="/mcm_website_theme/static/src/img/partenaires/Bolt_logo.svg.png" class="img img-fluid lazy" alt="Logo partenaire bolt" title="Bolt partenaire MCM ACADEMY" aria-describedby="tooltip843653" style="margin-top: 30px; width: 38%" />
+                                        </a>
+                                    </div>
+                                    <!-- <div t-if="partenaire=='' or partenaire !='bolt'">
+                                    <a href="https://www.uber.com/fr/fr/">
+                                        <img data-src="/mcm_website_theme/static/src/img/partenaires/uber.png" data-srcSafari="/mcm_website_theme/static/src/img/partenaires/uber.png" class="img img-fluid lazy" alt="Logo partenaire uber"  title="Uber partenaire MCM ACADEMY" aria-describedby="tooltip843653" style="margin-top: 30px; width: 50%"/>
+                                    </a>
+                                </div> -->
+
+                                    <div t-if="partenaire=='' or not partenaire ">
+                                        <a href="https://www.comptable-douai.com/">
+                                            <img data-src="/mcm_website_theme/static/src/img/partenaires/joel.png" data-srcSafari="/mcm_website_theme/static/src/img/partenaires/joel.png" class="img img-fluid lazy" alt="Logo partenaire Cabinet Comptable Joël Pruvost" title="Cabinet Comptable Joël Pruvost partenaire Digimoov" aria-describedby="tooltip175558" style="margin-top: 30px; width: 68%" />
+                                        </a>
+                                    </div>
+                                    <div t-if="partenaire=='bolt'">
+                                        <a href="https://www.digimoov.fr/">
+                                            <img data-src="/mcm_website_theme/static/src/img/partenaires/digimoov.png" data-srcSafari="/mcm_website_theme/static/src/img/partenaires/digimoov.png" class="img img-fluid lazy" alt="Logo partenaire Digimoov" title="Digimoov partenaire MCM ACADEMY" aria-describedby="tooltip843653" style="margin-top: 30px; width: 46%" />
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </center>
+                    </section>
+
+                    <section class="s_faq_collapse pt48 pb32">
+                        <div class="container">
+                            <div class="row s_col_no_bgcolor">
+                                <div class="pt16 pb16 col-lg-4">
+                                    <div id="myCollapse" class="accordion" role="tablist">
+                                        <div class="card bg-white">
+                                            <a href="#" role="tab" data-toggle="collapse" aria-expanded="false" class="card-header collapsed" data-parent="#myCollapse" data-target="#myCollapseTab1616754726586" aria-describedby="tooltip5917">
+                    Devenez chauffeur TAXI
+                  </a>
+                                            <div class="collapse" role="tabpanel" id="myCollapseTab1616754726586">
+                                                <div class="card-body">
+                                                    <p class="card-text">
+                        Le métier de chauffeur TAXI consiste à transporter des
+                        personnes vers leurs destinations, mais également à
+                        rentabiliser son activité en se trouvant au bon endroit
+                        et au bon moment.
+                      </p>
+                                                    <div class="s_btn text-center pt16 pb16" data-name="Button">
+                                                        <a href="/formation-chauffeur-taxi" class="btn btn-warning sh_btn_cm_4 spacing-m-p" aria-describedby="tooltip562914" onclick='msTracking("clic sur Devenez chauffeur TAXI homepage",
+                                                "Homepage events",
+                                                "Devenez chauffeur TAXI homepage",
+                                                1)'>
+                          En savoir plus
+                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="pt16 pb16 col-lg-4">
+                                    <div id="myCollapse" class="accordion" role="tablist">
+                                        <div class="card bg-white">
+                                            <a href="#" role="tab" data-toggle="collapse" aria-expanded="false" class="card-header collapsed" data-parent="#myCollapse" aria-describedby="tooltip5917" data-target="#myCollapseTab1616754743649">
+                    Devenez chauffeur VTC
+                  </a>
+                                            <div class="collapse" role="tabpanel" id="myCollapseTab1616754743649">
+                                                <div class="card-body">
+                                                    <p class="card-text">
+                        Le chauffeur VTC (Voiture de Transport avec Chauffeur)
+                        transporte des particuliers lors de leurs déplacements
+                        personnels ou professionnels après réservation ;
+                        l’exercice de son métier est strictement encadré par la
+                        loi.
+                      </p>
+                                                    <div class="s_btn text-center pt16 pb16" data-name="Button">
+                                                        <a href="/formation-chauffeur-vtc" class="btn btn-warning sh_btn_cm_4 spacing-m-p" onclick='msTracking("clic sur Devenez chauffeur VTC homepage",
+                                                "Homepage events",
+                                                "Devenez chauffeur VTC homepage",
+                                                2)'>En savoir plus</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="pt16 pb16 col-lg-4">
+                                    <div id="myCollapse" class="accordion" role="tablist">
+                                        <div class="card bg-white">
+                                            <a href="#" role="tab" data-toggle="collapse" aria-expanded="false" class="card-header collapsed" data-parent="#myCollapse" aria-describedby="tooltip5917" data-target="#myCollapseTab1616754743646">
+                    Devenez chauffeur MOTO-TAXI
+                  </a>
+                                            <div class="collapse" role="tabpanel" id="myCollapseTab1616754743646">
+                                                <div class="card-body">
+                                                    <p class="card-text">
+                                                        Le chauffeur VMDTR propose, sous réservation préalable
+                        et au moyen d'un véhicule motorisé à deux ou trois
+                        roues, des prestations de transport public particulier
+                        de personnes et de leurs bagages.
+                                                        <br />
+                                                    </p>
+                                                    <div class="s_btn text-center pt16 pb16" data-name="Button">
+                                                        <a href="/formation-taximoto-vmtdr" class="btn btn-warning sh_btn_cm_4 spacing-m-p" onclick='msTracking("clic sur Devenez chauffeur MOTO-Taxi homepage",
+                                                "Homepage events",
+                                                "Devenez chauffeur MOTO-Taxi homepage",
+                                                3)'>En savoir plus</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </section>
                 </div>
-                <!-- FIN PRICING TABLE-->
-                <section class="clients s_references bg-200 pt16 pb16" data-name="References">
-                    <center>
-                        <div class="container js-scroll fade-in-top">
-                            <div class="center-logo">
-                                <!-- <div t-if="partenaire=='' or not partenaire or partenaire=='bolt'">
-                                    <a href="https://www.digimoov.fr/">
-                                        <img data-src="/mcm_website_theme/static/src/img/partenaires/digimoov.png" data-srcSafari="/mcm_website_theme/static/src/img/partenaires/digimoov.png" class="img img-fluid lazy" alt="Logo partenaire Digimoov" data-original-title="" title="Digimoov partenaire MCM ACADEMY" aria-describedby="tooltip843653" style="margin-top: 30px; width: 72%"/>
-                                    </a>
-                                </div> -->
-
-                                <div t-if="partenaire=='' or partenaire !='bolt'">
-                                    <a href="#">
-                                        <img data-src="/mcm_website_theme/static/src/img/partenaires/cma.png" data-srcSafari="/mcm_website_theme/static/src/img/partenaires/cma.png" class="img img-fluid lazy" alt="Logo partenaire CMA" data-original-title="" title="CMA partenaire MCM ACADEMY" aria-describedby="tooltip623872" style="margin-top: 30px; width: 50%" />
-                                    </a>
-                                </div>
-
-<!--                                <div t-if="partenaire=='' or not partenaire ">-->
-<!--                                    <a href="https://bolt.eu/fr/">-->
-<!--                                        <img data-src="/mcm_website_theme/static/src/img/partenaires/bolt.png" data-srcSafari="/mcm_website_theme/static/src/img/partenaires/bolt.png" class="img img-fluid lazy" alt="Logo partenaire bolt" data-original-title="" title="Bolt partenaire MCM ACADEMY" aria-describedby="tooltip843653" style="margin-top: 30px; width: 38%" />-->
-<!--                                    </a>-->
-<!--                                </div>-->
-                                <div t-if="partenaire=='bolt' ">
-                                    <a href="https://bolt.eu/fr/">
-                                        <img data-src="/mcm_website_theme/static/src/img/partenaires/Bolt_logo.svg.png" data-srcSafari="/mcm_website_theme/static/src/img/partenaires/Bolt_logo.svg.png" class="img img-fluid lazy" alt="Logo partenaire bolt" data-original-title="" title="Bolt partenaire MCM ACADEMY" aria-describedby="tooltip843653" style="margin-top: 30px; width: 38%" />
-                                    </a>
-                                </div>
-                                <!-- <div t-if="partenaire=='' or partenaire !='bolt'">
-                                    <a href="https://www.uber.com/fr/fr/">
-                                        <img data-src="/mcm_website_theme/static/src/img/partenaires/uber.png" data-srcSafari="/mcm_website_theme/static/src/img/partenaires/uber.png" class="img img-fluid lazy" alt="Logo partenaire uber" data-original-title="" title="Uber partenaire MCM ACADEMY" aria-describedby="tooltip843653" style="margin-top: 30px; width: 50%"/>
-                                    </a>
-                                </div> -->
-
-                                <div t-if="partenaire=='' or not partenaire ">
-                                    <a href="https://www.comptable-douai.com/">
-                                        <img data-src="/mcm_website_theme/static/src/img/partenaires/joel.png" data-srcSafari="/mcm_website_theme/static/src/img/partenaires/joel.png" class="img img-fluid lazy" alt="Logo partenaire Cabinet Comptable Joël Pruvost" data-original-title="" title="Cabinet Comptable Joël Pruvost partenaire Digimoov" aria-describedby="tooltip175558" style="margin-top: 30px; width: 68%" />
-                                    </a>
-                                </div>
-                                <div t-if="partenaire=='bolt'">
-                                    <a href="https://www.digimoov.fr/">
-                                        <img data-src="/mcm_website_theme/static/src/img/partenaires/digimoov.png" data-srcSafari="/mcm_website_theme/static/src/img/partenaires/digimoov.png" class="img img-fluid lazy" alt="Logo partenaire Digimoov" data-original-title="" title="Digimoov partenaire MCM ACADEMY" aria-describedby="tooltip843653" style="margin-top: 30px; width: 46%" />
-                                    </a>
-                                </div>
-                            </div>
-
-                        </div>
-                    </center>
-
-                </section>
-
-                <section class="s_faq_collapse pt48 pb32" data-name="Accordion">
-                    <div class="container">
-                        <div class="row s_col_no_bgcolor">
-                            <div class="pt16 pb16 col-lg-4" style="border-style: none; border-width: 0px">
-                                <div id="myCollapse" class="accordion" role="tablist">
-                                    <div class="card bg-white">
-                                        <a href="#" role="tab" data-toggle="collapse" aria-expanded="false" class="card-header collapsed" data-parent="#myCollapse" data-target="#myCollapseTab1616754726586" data-original-title="" title="" aria-describedby="tooltip5917">
-                                            Devenez chauffeur TAXI
-                                        </a>
-                                        <div class="collapse" role="tabpanel" id="myCollapseTab1616754726586">
-                                            <div class="card-body">
-                                                <p class="card-text">
-                                                    Le métier de chauffeur TAXI consiste à transporter
-                                                    des personnes vers leurs destinations, mais également à rentabiliser
-                                                    son
-                                                    activité en se trouvant au bon endroit
-                                                    et au bon moment.
-                                                </p>
-                                                <div class="s_btn text-center pt16 pb16" data-name="Button">
-                                                    <a href="/formation-chauffeur-taxi" class="btn btn-warning sh_btn_cm_4" style="margin-top: 0.4rem;
-                                                padding: 0.4rem 2rem;" data-original-title="" title="" aria-describedby="tooltip562914" onclick='msTracking("clic sur Devenez chauffeur TAXI homepage",
-                                                "Homepage events",
-                                                "Devenez chauffeur TAXI homepage",
-                                                1)'>
-                                                        En savoir plus
-                                                    </a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="pt16 pb16 col-lg-4" style="border-style: none; border-width: 0px">
-                                <div id="myCollapse" class="accordion" role="tablist">
-                                    <div class="card bg-white">
-                                        <a href="#" role="tab" data-toggle="collapse" aria-expanded="false" class="card-header collapsed" data-parent="#myCollapse" data-original-title="" title="" aria-describedby="tooltip5917" data-target="#myCollapseTab1616754743649">
-                                            Devenez chauffeur VTC
-                                        </a>
-                                        <div class="collapse" role="tabpanel" id="myCollapseTab1616754743649">
-                                            <div class="card-body">
-                                                <p class="card-text">
-                                                    Le chauffeur VTC (Voiture de Transport avec Chauffeur)
-                                                    transporte des particuliers lors de leurs déplacements
-                                                    personnels ou professionnels après réservation ;
-                                                    l’exercice de son métier est strictement encadré par la
-                                                    loi.
-                                                </p>
-                                                <div class="s_btn text-center pt16 pb16" data-name="Button">
-                                                    <a href="/formation-chauffeur-vtc" class="btn btn-warning sh_btn_cm_4" style="margin-top: 0.4rem;
-                                                padding: 0.4rem 2rem;" onclick='msTracking("clic sur Devenez chauffeur VTC homepage",
-                                                "Homepage events",
-                                                "Devenez chauffeur VTC homepage",
-                                                2)'>En savoir plus</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="pt16 pb16 col-lg-4" style="border-style: none; border-width: 0px">
-                                <div id="myCollapse" class="accordion" role="tablist">
-                                    <div class="card bg-white">
-                                        <a href="#" role="tab" data-toggle="collapse" aria-expanded="false" class="card-header collapsed" data-parent="#myCollapse" data-original-title="" title="" aria-describedby="tooltip5917" data-target="#myCollapseTab1616754743646">
-                                            Devenez chauffeur MOTO-TAXI
-                                        </a>
-                                        <div class="collapse" role="tabpanel" id="myCollapseTab1616754743646">
-                                            <div class="card-body">
-                                                <p class="card-text">
-                                                    Le chauffeur VMDTR propose, sous réservation
-                                                    préalable et au moyen d'un véhicule motorisé à deux ou
-                                                    trois roues, des prestations de transport public
-                                                    particulier de personnes et de leurs bagages.
-                                                    <br />
-
-
-                                                </p>
-                                                <div class="s_btn text-center pt16 pb16" data-name="Button">
-                                                    <a href="/formation-taximoto-vmtdr" class="btn btn-warning sh_btn_cm_4" style="margin-top: 0.4rem;
-                                                padding: 0.4rem 2rem;" onclick='msTracking("clic sur Devenez chauffeur MOTO-Taxi homepage",
-                                                "Homepage events",
-                                                "Devenez chauffeur MOTO-Taxi homepage",
-                                                3)'>En savoir plus</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-
-                <!-- <section id="sh_corpomate_theme_section_178" class="js_cls_sh_corpomate_theme_section_178 sh_animation_part">
-                    <div class="container">
-                        <div class="row">
-                            <div class="owl-carousel owl-theme">
-                                <div class="col item">
-                                    <a href="#">
-                                        <img src="/mcm_website_theme/static/src/img/partenaires/3.png" />
-                                    </a>
-                                </div>
-                                <div class="col">
-                                    <a href="#">
-                                        <img src="/mcm_website_theme/static/src/img/partenaires/4.png" />
-                                    </a>
-                                </div>
-                                <div class="col">
-                                    <a href="#">
-                                        <img src="/mcm_website_theme/static/src/img/partenaires/11.png" />
-                                    </a>
-                                </div>
-                                <div class="col">
-                                    <a href="#">
-                                        <img src="/mcm_website_theme/static/src/img/partenaires/22.png" />
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </section> -->
-                <p />
             </div>
         </xpath>
     </template>
