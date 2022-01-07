@@ -35,12 +35,14 @@ class PaymentAcquirer(models.Model):
             sale = self.env['sale.order'].sudo().search([('name', 'ilike', data[0])])
             amount_before_instalment=amount
             if rec.instalment and amount>1000 and rec.company_id.id==1:
+                _logger.info("je suis laaaaaaaaaaaa2")
                 amount=amount/3
                 if transaction:
                     transaction.amount = transaction.amount / 3
                 if sale:
                     sale.amount_total = sale.amount_total / 3
             if sale and sale.instalment and sale.company_id.id==2 and rec.instalment:
+                _logger.info("je suis laaaaaaaaaaaa3")
                 sale.amount_total = sale.amount_total / sale.instalment_number
                 amount = amount / sale.instalment_number
             payments = self.env['payment.acquirer'].sudo().search([('name', 'ilike', 'stripe')])
