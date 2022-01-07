@@ -1,8 +1,4 @@
-from datetime import date
-
 from odoo import api, fields, models
-import logging
-_logger = logging.getLogger(__name__)
 
 
 class InheritResPartner(models.Model):
@@ -13,6 +9,7 @@ class InheritResPartner(models.Model):
     company_id = fields.Many2one('res.company', default=lambda self: self.env.company)
     presence = fields.Char(readonly=True, store=True)
     resultat = fields.Char(readonly=True, store=True)
+    nombre_de_passage = fields.Char(readonly=True, store=True)
     date_exam = fields.Date(related="mcm_session_id.date_exam", string="Date d'examen")
 
     def _get_last_presence_resultat_values(self):
@@ -38,6 +35,12 @@ class InheritResPartner(models.Model):
                         rec.resultat = "Admis(e)"
                     elif not resultat.resultat:
                         rec.resultat = "_______"
+                    if resultat.nombre_de_passage == 'premier':
+                        rec.nombre_de_passage = "deuxieme"
+                    if resultat.nombre_de_passage == 'recu':
+                        rec.nombre_de_passage = "troisieme"
+                    elif not resultat.nombre_de_passage:
+                        rec.nombre_de_passage = "_______"
 
     def _compute_get_last_internal_log(self):
         for record in self:
