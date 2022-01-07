@@ -641,7 +641,8 @@ class partner(models.Model):
                 print('date', today, dateFormation, certificat)
                 """Si date de formation <= ajourdhui et s'il a choisi  la formation de transport  léger de marchandises
                 on cherche l'apprenant par email sur 360"""
-                if (certificat == "Formation à l'obtention de l'attestation de capacité professionnelle en transport léger de marchandises") \
+                if (
+                        certificat == "Formation à l'obtention de l'attestation de capacité professionnelle en transport léger de marchandises") \
                         and (dateFormation <= today):
                     _logger.info('wedooooffffff %s' % certificat)
                     _logger.info('dateformation %s' % dateFormation)
@@ -800,11 +801,39 @@ class partner(models.Model):
                                       diplome, dossier['attendee']['lastName'], dossier['attendee']['firstName'],
                                       dossier['externalId'], lastupd)
 
+    def Update_carte_bleu_partner_field_financement(self):
+        """ Remplir le champ financement danc la fiche client avec état de paiement
+        de (paid, not paid, in paiement) à partir de la dernière facture de client"""
+        for partner in self.env['res.partner'].search(
+                [('statut', "=", "won"), ("mode_de_financement", "=",
+                                              "particulier")]):  # Récupérer les clients qui sont gagnés et sont modes de financement carte bleu
+            print(len(self.env['res.partner'].search(
+                [('statut', "=", "won"), ("mode_de_financement", "=", "particulier")])))
+            for invoice in self.env['account.move'].sudo().search([('partner_id', "=", partner.id)],
+                                                                  order='create_date asc'):
+                print(len(self.env['account.move'].sudo().search(
+                    [('partner_id', "=", partner.id)])))
+                _logger.info("user INVOICE----invoice_payment_state------------°°°°°°°°°°°°°°° %s " % str(
+                    invoice.invoice_payment_state))
+                _logger.info(
+                    "user Partner id----------------°°°°°°°°°°°°°°° %s " % str(invoice.partner_id.display_name))
+                if invoice and invoice.invoice_payment_state:
+                    etat_financement_cpf_cb = invoice.invoice_payment_state
+                    if invoice.invoice_payment_state == "in_payment":
+                        etat_financement_cpf_cb = invoice.invoice_payment_state
+                        invoice.partner_id.sudo().write({'etat_financement_cpf_cb': 'in_payment'})
+                    if invoice.invoice_payment_state == "paid":
+                        etat_financement_cpf_cb = invoice.invoice_payment_state
+                        invoice.partner_id.sudo().write({'etat_financement_cpf_cb': 'paid'})
+                    if invoice.invoice_payment_state == "not_paid":
+                        etat_financement_cpf_cb = invoice.invoice_payment_state
+                        invoice.partner_id.sudo().write({'etat_financement_cpf_cb': 'not_paid'})
+
     """Mettre à jour les statuts cpf sur la fiche client selon l'etat sur wedof """
 
     def change_state_cpf_partner(self):
         base_url = self.env['ir.config_parameter'].sudo().get_param('web.base.url')
-        if "localhost" not in str(base_url) and "dev.odoo" in str(base_url):
+        if "localhost" in str(base_url) and "dev.odoo" not in str(base_url):
             params_wedof = (
                 ('order', 'desc'),
                 ('type', 'all'),
@@ -838,7 +867,8 @@ class partner(models.Model):
                     etat_financement_cpf_cb = dossier['state']
                     _logger.info("user WEDOF::::::::::::::::::::: %s" % str(user.partner_id.display_name))
                     if etat_financement_cpf_cb == "untreated":
-                        user.partner_id.sudo().write({'etat_financement_cpf_cb': 'untreated'})  # write la valeur payé dans le champ etat_financement_cpf_cb
+                        user.partner_id.sudo().write({
+                            'etat_financement_cpf_cb': 'untreated'})  # write la valeur payé dans le champ etat_financement_cpf_cb
                     if etat_financement_cpf_cb == "validated":
                         user.partner_id.sudo().write({'etat_financement_cpf_cb': 'validated'})
                     if etat_financement_cpf_cb == "accepted":
@@ -855,24 +885,6 @@ class partner(models.Model):
                         user.partner_id.sudo().write({'etat_financement_cpf_cb': 'bill'})
                     if etat_financement_cpf_cb == "canceled" or etat_financement_cpf_cb == "canceledByAttendee" or etat_financement_cpf_cb == "canceledByAttendeeNotRealized" or etat_financement_cpf_cb == "refusedByAttendee" or etat_financement_cpf_cb == "refusedByOrganism":
                         user.partner_id.sudo().write({'etat_financement_cpf_cb': 'canceled'})
-                else:
-                    for partner in self.env['res.partner'].search(
-                            [('statut', "=", "won"), ("mode_de_financement", "=", "particulier")]):
-                        invoice = self.env['account.move'].sudo().search(
-                            [('partner_id', "=", partner.id)], limit=1)
-                        _logger.info("user INVOICE----invoice_payment_state------------°°°°°°°°°°°°°°° %s " % str(invoice.invoice_payment_state))
-                        _logger.info("user Partner id----------------°°°°°°°°°°°°°°° %s " % str(invoice.partner_id.display_name))
-                        etat_financement_cpf_cb = invoice.invoice_payment_state
-                        if invoice.invoice_payment_state == "in_payment":
-                            etat_financement_cpf_cb = invoice.invoice_payment_state
-                            partner.sudo().write({'etat_financement_cpf_cb': 'in_payment'})
-                        if invoice.invoice_payment_state == "paid":
-                            etat_financement_cpf_cb = invoice.invoice_payment_state
-                            partner.sudo().write({'etat_financement_cpf_cb': 'paid'})
-                        if invoice.invoice_payment_state == "not_paid":
-                            etat_financement_cpf_cb = invoice.invoice_payment_state
-                            partner.sudo().write({'etat_financement_cpf_cb': 'not_paid'})
-                            print("task003")
                 idform = dossier['trainingActionInfo']['externalId']
                 training_id = ""
                 if "_" in idform:
@@ -1466,7 +1478,10 @@ class partner(models.Model):
                                 if not user.partner_id.renounce_request:
                                     if user.partner_id.phone:
                                         phone = str(user.partner_id.phone.replace(' ', ''))[-9:]
-                                        phone = '+33' + ' ' + phone[0:1] + ' ' + phone[1:3] + ' ' + phone[3:5] + ' ' + phone[5:7] + ' ' + phone[7:]
+                                        phone = '+33' + ' ' + phone[0:1] + ' ' + phone[1:3] + ' ' + phone[
+                                                                                                    3:5] + ' ' + phone[
+                                                                                                                 5:7] + ' ' + phone[
+                                                                                                                              7:]
                                         user.partner_id.phone = phone
                                     url = str(user.partner_id.get_base_url()) + '/my'
                                     body = "Chere(e) %s félicitation pour votre inscription, votre formation commence dans 14 jours. Si vous souhaitez commencer dès maintenant cliquez sur le lien suivant : %s" % (
@@ -1483,7 +1498,8 @@ class partner(models.Model):
                                         })
                                         composer.action_send_sms()
                                         if user.partner_id.phone:
-                                            user.partner_id.phone = '0' + str(user.partner_id.phone.replace(' ', ''))[-9:]
+                                            user.partner_id.phone = '0' + str(user.partner_id.phone.replace(' ', ''))[
+                                                                          -9:]
                                 """changer step à validé dans espace client """
                                 user.partner_id.step = 'finish'
                             session = self.env['partner.sessions'].search([('client_id', '=', user.partner_id.id),
@@ -1643,4 +1659,3 @@ class partner(models.Model):
                 _logger.info(' if invoice %s' % str(invoice.name))
                 invoice.numero_cpf = partner.numero_cpf
                 _logger.info(' if invoice %s' % str(invoice.numero_cpf))
-
