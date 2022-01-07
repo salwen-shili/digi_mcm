@@ -311,7 +311,6 @@ class partner(models.Model):
             _logger.info('avant if login user %s' % user.login)
             _logger.info('avant if partner email %s' % partner.email)
 
-
             if user:
                 id_Digimoov_bienvenue = '56f5520e11d423f46884d594'
                 id_Digimoov_Examen_Attestation = '5f9af8dae5769d1a2c9d5047'
@@ -338,7 +337,6 @@ class partner(models.Model):
                 # Si non si mot de passe récupéré on l'ajoute sur la plateforme avec le meme mot de passe
                 if (user.password360) and (company == '2'):
                     partner.password360 = user.password360
-
 
                     # Ajouter i-One to table user
                     data_user = '{"mail":"' + partner.email + '" , "password":"' + user.password360 + '", "firstName":"' + partner.firstName + '", "lastName":"' + partner.lastName + '", "phone":"' + partner.phone + '", "lang":"fr","sendCredentials":"true"}'
@@ -825,6 +823,34 @@ class partner(models.Model):
                                       diplome, dossier['attendee']['lastName'], dossier['attendee']['firstName'],
                                       dossier['externalId'], lastupd)
 
+    def Update_carte_bleu_partner_field_financement(self):
+        """ Remplir le champ financement danc la fiche client avec état de paiement
+        de (paid, not paid, in paiement) à partir de la dernière facture de client"""
+        for partner in self.env['res.partner'].search(
+                [('statut', "=", "won"), ("mode_de_financement", "=",
+                                              "particulier")]):  # Récupérer les clients qui sont gagnés et sont modes de financement carte bleu
+            print(len(self.env['res.partner'].search(
+                [('statut', "=", "won"), ("mode_de_financement", "=", "particulier")])))
+            for invoice in self.env['account.move'].sudo().search([('partner_id', "=", partner.id)],
+                                                                  order='create_date asc'):
+                print(len(self.env['account.move'].sudo().search(
+                    [('partner_id', "=", partner.id)])))
+                _logger.info("user INVOICE----invoice_payment_state------------°°°°°°°°°°°°°°° %s " % str(
+                    invoice.invoice_payment_state))
+                _logger.info(
+                    "user Partner id----------------°°°°°°°°°°°°°°° %s " % str(invoice.partner_id.display_name))
+                if invoice and invoice.invoice_payment_state:
+                    etat_financement_cpf_cb = invoice.invoice_payment_state
+                    if invoice.invoice_payment_state == "in_payment":
+                        etat_financement_cpf_cb = invoice.invoice_payment_state
+                        invoice.partner_id.sudo().write({'etat_financement_cpf_cb': 'in_payment'})
+                    if invoice.invoice_payment_state == "paid":
+                        etat_financement_cpf_cb = invoice.invoice_payment_state
+                        invoice.partner_id.sudo().write({'etat_financement_cpf_cb': 'paid'})
+                    if invoice.invoice_payment_state == "not_paid":
+                        etat_financement_cpf_cb = invoice.invoice_payment_state
+                        invoice.partner_id.sudo().write({'etat_financement_cpf_cb': 'not_paid'})
+
     """Mettre à jour les statuts cpf sur la fiche client selon l'etat sur wedof """
 
     def change_state_cpf_partner(self):
@@ -880,24 +906,6 @@ class partner(models.Model):
                         user.partner_id.sudo().write({'etat_financement_cpf_cb': 'bill'})
                     if etat_financement_cpf_cb == "canceled" or etat_financement_cpf_cb == "canceledByAttendee" or etat_financement_cpf_cb == "canceledByAttendeeNotRealized" or etat_financement_cpf_cb == "refusedByAttendee" or etat_financement_cpf_cb == "refusedByOrganism":
                         user.partner_id.sudo().write({'etat_financement_cpf_cb': 'canceled'})
-                else:
-                    for partner in self.env['res.partner'].search(
-                            [('statut', "=", "won"), ("mode_de_financement", "=", "particulier")]):
-                        invoice = self.env['account.move'].sudo().search(
-                            [('partner_id', "=", partner.id)], limit=1)
-                        _logger.info("user INVOICE----invoice_payment_state------------°°°°°°°°°°°°°°° %s " % str(invoice.invoice_payment_state))
-                        _logger.info("user Partner id----------------°°°°°°°°°°°°°°° %s " % str(invoice.partner_id.display_name))
-                        etat_financement_cpf_cb = invoice.invoice_payment_state
-                        if invoice.invoice_payment_state == "in_payment":
-                            etat_financement_cpf_cb = invoice.invoice_payment_state
-                            partner.sudo().write({'etat_financement_cpf_cb': 'in_payment'})
-                        if invoice.invoice_payment_state == "paid":
-                            etat_financement_cpf_cb = invoice.invoice_payment_state
-                            partner.sudo().write({'etat_financement_cpf_cb': 'paid'})
-                        if invoice.invoice_payment_state == "not_paid":
-                            etat_financement_cpf_cb = invoice.invoice_payment_state
-                            partner.sudo().write({'etat_financement_cpf_cb': 'not_paid'})
-                            print("task003")
                 idform = dossier['trainingActionInfo']['externalId']
                 training_id = ""
                 if "_" in idform:
@@ -1491,7 +1499,10 @@ class partner(models.Model):
                                 if not user.partner_id.renounce_request:
                                     if user.partner_id.phone:
                                         phone = str(user.partner_id.phone.replace(' ', ''))[-9:]
-                                        phone = '+33' + ' ' + phone[0:1] + ' ' + phone[1:3] + ' ' + phone[3:5] + ' ' + phone[5:7] + ' ' + phone[7:]
+                                        phone = '+33' + ' ' + phone[0:1] + ' ' + phone[1:3] + ' ' + phone[
+                                                                                                    3:5] + ' ' + phone[
+                                                                                                                 5:7] + ' ' + phone[
+                                                                                                                              7:]
                                         user.partner_id.phone = phone
                                     url = str(user.partner_id.get_base_url()) + '/my'
                                     body = "Chere(e) %s félicitation pour votre inscription, votre formation commence dans 14 jours. Si vous souhaitez commencer dès maintenant cliquez sur le lien suivant : %s" % (
@@ -1508,7 +1519,8 @@ class partner(models.Model):
                                         })
                                         composer.action_send_sms()
                                         if user.partner_id.phone:
-                                            user.partner_id.phone = '0' + str(user.partner_id.phone.replace(' ', ''))[-9:]
+                                            user.partner_id.phone = '0' + str(user.partner_id.phone.replace(' ', ''))[
+                                                                          -9:]
                                 """changer step à validé dans espace client """
                                 user.partner_id.step = 'finish'
                             session = self.env['partner.sessions'].search([('client_id', '=', user.partner_id.id),
@@ -1575,7 +1587,7 @@ class partner(models.Model):
                                     # move.cpf_acompte_invoice=True
                                     # move.cpf_invoice =True
                                     move.methodes_payment = 'cpf'
-                                    move.numero_cpf=externalId
+                                    move.numero_cpf = externalId
                                     move.pourcentage_acompte = 25
                                     move.session_id = so.session_id
                                     move.company_id = so.company_id
