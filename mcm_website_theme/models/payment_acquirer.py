@@ -17,7 +17,7 @@ class PaymentAcquirer(models.Model):
     ]
 
     def set_amount(self,instalement,auth="public"):
-
+            _logger.info("je suis laaaaaaaaaaaa")
             payments = self.env['payment.acquirer'].sudo().search([('name', 'ilike', 'stripe')])
             for payment in payments:
                 if instalement:
@@ -51,7 +51,8 @@ class PaymentAcquirer(models.Model):
         result = super(PaymentAcquirer, self).render(reference, amount, currency_id, partner_id, values)
         sale.amount_total = amount_before_instalment
         return result
-
+    
+    
 
 
 
