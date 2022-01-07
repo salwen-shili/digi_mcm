@@ -71,9 +71,10 @@
 .counter-bg {
   background-image: url('/mcm_website_theme/static/src/img/homepage/fond.png');
   background-position: 1.58% 78.71%;
+  padding: 10px;
 }
 .counter-title {
-  font-size: 35px !important;
+  font-size: 40px !important;
 }
 .counter-desc {
   font-size: 26px !important;
