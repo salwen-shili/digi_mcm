@@ -3,6 +3,8 @@
 import time
 from odoo import api, fields, models,_
 
+import logging
+_logger = logging.getLogger(__name__)
 
 class PaymentAcquirer(models.Model):
     _inherit = "payment.acquirer"
@@ -24,7 +26,8 @@ class PaymentAcquirer(models.Model):
                 else:
                     payment.instalment = False
     def render(self, reference, amount, currency_id, partner_id=False, values=None):
-
+        print('je suis laaaaaaaaaaaa')
+        _logger.info("je suis laaaaaaaaaaaa")
         transaction = self.env['payment.transaction'].sudo().search([('reference', 'ilike', reference)])
         self.done_msg=_('Bravo ! Commande confirmée \n Vous allez recevoir dans quelques minutes un mail ! Pas de mail reçu ? Vérifiez dans vos courriers indésirables ou spams.')
         for rec in self:
@@ -46,6 +49,7 @@ class PaymentAcquirer(models.Model):
         result = super(PaymentAcquirer, self).render(reference, amount, currency_id, partner_id, values)
         sale.amount_total = amount_before_instalment
         return result
+
 
 
 
