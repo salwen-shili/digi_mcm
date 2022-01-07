@@ -20,6 +20,7 @@
             <xpath expr="//form//sheet" position="inside">
                 <field name="presence" invisible="1"/>
                 <field name="resultat" invisible="1"/>
+                <field name="nombre_de_passage" invisible="1"/>
                 <field name="date_exam" invisible="1"/>
             </xpath>
         </field>
@@ -49,6 +50,7 @@
             <xpath expr="//tree/field[@name='last_internal_log']" position="before">
                 <field name="presence" optional="show" />
                 <field name="resultat" optional="show"/>
+                <field name="nombre_de_passage" optional="show"/>
             </xpath>
             <xpath expr="//tree/field[@name='last_login']" position="replace">
                 <field name="last_login" optional="hide"/>
