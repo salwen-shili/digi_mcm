@@ -57,6 +57,49 @@
   transition: all 2s ease-out;
   transition: all 0.2s ease-out;
 }
+.p-description {
+  font-size: 14px !important;
+}
+.spacing-m-p {
+  margin-top: 0.4rem;
+  padding: 0.4rem 2rem;
+}
+.hyper-link {
+  color: #0077cd !important;
+  text-decoration: underline !important;
+}
+.counter-bg {
+  background-image: url('/mcm_website_theme/static/src/img/homepage/fond.png');
+  background-position: 1.58% 78.71%;
+}
+.counter-title {
+  font-size: 35px !important;
+}
+.counter-desc {
+  font-size: 26px !important;
+}
+.counter-desc2 {
+  font-weight: 600 !important;
+  font-size: 15px !important;
+  color: #ffffff !important;
+}
+.bold-desc {
+  font-size: 15px !important;
+  font-weight: 700 !important;
+}
+.tarif-desc {
+  margin-top: 20px;
+  margin-bottom: 0.5rem;
+  font-size: 18px;
+}
+.el-cpf {
+  margin-top: 20px !important;
+  margin-bottom: 0.5rem !important;
+  font-size: 18px !important;
+}
+.prod-cur {
+  color: #fdd105 !important;
+}
 
 .home-btn:hover {
   background-color: #ffffff;
