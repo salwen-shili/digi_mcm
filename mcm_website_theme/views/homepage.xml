@@ -424,7 +424,7 @@
                         <div class="container">
                             <div class="row js-scroll fade-in-top">
                                 <div class="col-md-3 col-sm-12 text-center mb-4 mb-md-0">
-                                    <img class="img-fluid" src="/mcm_website_theme/static/src/img/avis_google.png" style="width: 182px" />
+                                    <img class="img-fluid lazy" data-src="/mcm_website_theme/static/src/img/avis_google.webp" data-srcsafari="/mcm_website_theme/static/src/img/avis_google.png" alt="avis google MCM ACADEMY" title="Google" style="width: 182px" />
                                 </div>
                                 <div class="col-md-9 col-sm-12 s_title pt16 pb0 text-center">
                                     <div class="text-left">
