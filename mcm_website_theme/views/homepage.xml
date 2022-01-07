@@ -363,43 +363,53 @@
                     </section>
 
                     <!-- counter section-->
-                    <section id="sh_corpomate_theme_section_229" class="sh_animation_part bg-900 oe_img_bg oe_custom_bg counter-bg" data-name="Services counter">
+                    <section id="sh_corpomate_theme_section_229" class="sh_animation_part bg-900 oe_img_bg oe_custom_bg" style="           background-image: url('/mcm_website_theme/static/src/img/homepage/fond.png');           background-position: 1.58% 78.71%;         " data-oe-model="ir.ui.view" data-oe-id="2090" data-oe-field="arch" data-oe-xpath="/data/xpath/div/section[9]">
                         <div class="container">
                             <div class="row clearfix">
                                 <div class="title-column col-lg-5 col-md-12 col-sm-12">
-                                    <div class="inner-column js-scroll slide-left">
-                                        <h4 class="counter-title">
-                  Des centaines de personnes ont déjà fait confiance à MCM
-                  ACADEMY
-                </h4>
-                                        <h5 class="counter-desc">Pourquoi pas vous ?</h5>
+                                    <div class="inner-column js-scroll slide-left scrolled">
+                                        <h4 style="font-size: 35px">
+
+                                        Des centaines de
+                                        personnes ont déjà fait confiance à
+                                        MCM ACADEMY
+
+                                    </h4>
+                                        <h5 style="font-size: 26px">
+                                        Pourquoi pas vous ?
+                                    </h5>
+
+
                                     </div>
                                 </div>
                                 <div class="content-column col-lg-7 col-md-12 col-sm-12">
-                                    <div class="inner-column js-scroll slide-left">
+                                    <div class="inner-column js-scroll slide-left scrolled">
                                         <div class="row clearfix">
-                                            <div class="col-md-4 col-sm-12 pt32">
+                                            <div class="col-md-4 col-sm-12  pt32">
                                                 <div class="sh_counter">
-                                                    <h4 class="sh_count">1500</h4>
-                                                    <h3 class="counter-desc2">STAGIAIRES FORMÉS</h3>
+                                                    <h4 class="sh_count ">1500</h4>
+                                                    <h3 style="font-weight: 600;font-size: 15px;color: rgb(255, 255, 255);">
+                                                    STAGIAIRES FORMÉS</h3>
                                                 </div>
                                             </div>
-                                            <div class="col-md-4 col-sm-12 pt32">
+                                            <div class="col-md-4 col-sm-12  pt32">
                                                 <div class="sh_counter">
                                                     <h4>
                                                         <span class="sh_count">96</span>
                                                         <span>%</span>
                                                     </h4>
-                                                    <h3 class="counter-desc2">CLIENTS SATISFAITS</h3>
+                                                    <h3 style="font-weight: 600;font-size: 15px;color: rgb(255, 255, 255);">
+                                                    CLIENTS SATISFAITS</h3>
                                                 </div>
                                             </div>
-                                            <div class="col-md-4 col-sm-12 pt32">
+                                            <div class="col-md-4 col-sm-12  pt32">
                                                 <div class="sh_counter">
                                                     <h4>
                                                         <span class="sh_count">78</span>
                                                         <span>%</span>
                                                     </h4>
-                                                    <h3 class="counter-desc2">MOYENNE DE TAUX DE RÉUSSITE</h3>
+                                                    <h3 style="font-weight: 600;font-size: 15px;color: rgb(255, 255, 255);">
+                                                    MOYENNE DE TAUX DE RÉUSSITE</h3>
                                                 </div>
                                             </div>
                                         </div>
