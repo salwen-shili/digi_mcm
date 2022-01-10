@@ -39,7 +39,7 @@ class InheritResPartner(models.Model):
                         rec.resultat = "Admis(e)"
                     elif not resultat.resultat:
                         rec.resultat = "_______"
-                for nb_passage in last_line:
+                for nb_passage in rec.env['info.examen'].sudo().search([('partner_id', "=", rec.id), ('date_exam', '<', date.today())], limit=1, order="id desc"):
                     if nb_passage.nombre_de_passage == 'premier':
                         rec.nombre_de_passage = "deuxieme"
                     if nb_passage.nombre_de_passage == 'recu':
