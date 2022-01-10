@@ -51,9 +51,17 @@ class PaymentAcquirer(models.Model):
         result = super(PaymentAcquirer, self).render(reference, amount, currency_id, partner_id, values)
         sale.amount_total = amount_before_instalment
         return result
-    
-    
 
+    def _create_setup_intent(self, kwargs):
+        _logger.info("je suis laaaaaaaaaaaa create ")
+        for rec in self:
+
+            if rec.instalment and rec.company_id.id ==2:
+                _logger.info("je suis laaaaaaaaaaaa create 2")
+            else :
+                result = super(PaymentAcquirer, self)._create_setup_intent()
+
+                return result
 
 
 
