@@ -69,7 +69,7 @@
 
                                             <a href="/faq" style="cursor: pointer; color:#ffffff">
                                                 <li class="mb-2">
-                                                    <span class="fa fa-question-circle" data-original-title="" title="" aria-describedby="tooltip437298" />
+                                                    <span class="fa fa-question-circle" aria-describedby="tooltip437298" />
                                                     Foire aux questions
                                                     <br />
                                                 </li>
@@ -93,39 +93,42 @@
                                     </h3>
                                     <div class="contact-info">
                                         <ul class="contact-details">
-                                            <li>
-                                                <div>
-                                                    <a style="color: #ffffff" href="https://fr-fr.facebook.com/pg/formation.mcm.academy" alt="Page Facebook MCM Academy">
-                                                        <span class="fa fa-facebook-square fa-2x" data-original-title="" title="" aria-describedby="tooltip139952" />
-
-                                                    </a>
-                                                    <a style="color: #ffffff" href="https://www.instagram.com/formation.mcm.academy/" alt="Page Instagram MCM Academy">
-                                                        <span class="fa fa-2x fa-instagram" data-original-title="" title="" aria-describedby="tooltip799266" />
-
-                                                    </a>
-
-                                                    <a style="color: #ffffff" href="https://www.youtube.com/channel/UCYFC80fsylTETNppaBlAVkQ" alt="Chaine youtube MCM Academy">
-                                                        <span class="fa fa-youtube-play fa-2x" data-original-title="" title="" aria-describedby="tooltip749786" />
-
-                                                    </a>
-
-                                                </div>
-
-                                                <div class="contact-info" style="">
-                                                    <ul class="contact-details" style="margin-bottom: 1rem; list-style-type: disc;">
-                                                        <li style="font-weight: 400;">
-                                                            <span style="font-weight: 700;" />
-                                                            <br />
-                                                            Politique de confidentialité
-                                                            <br />
-                                                            <br />
-                                                        </li>
-                                                        <a href="/conditions" style="color:#fff">
-                                                            <li>Conditions générales de vente</li>
-                                                        </a>
-                                                    </ul>
-                                                </div>
+                                            <li style="font-weight: 400;">
+                                                <a style="color: #ffffff" href="https://fr-fr.facebook.com/pg/formation.mcm.academy" alt="Page Facebook MCM Academy">
+                                                    <i class="fa fa-facebook-square fa-2x" />
+                                                    &amp;nbsp;&amp;nbsp;Facebook
+                                                </a>
                                             </li>
+                                            <li style="font-weight: 400;">
+                                                <a style="color: #ffffff" href="https://www.instagram.com/formation.mcm.academy/" alt="Page Instagram MCM Academy">
+                                                    <i class="fa fa-2x fa-instagram" />
+                                                    &amp;nbsp;&amp;nbsp;Instagram
+                                                </a>
+                                            </li>
+                                            <li style="font-weight: 400;">
+                                                <a style="color: #ffffff" href="https://www.youtube.com/channel/UCYFC80fsylTETNppaBlAVkQ" alt="Chaine youtube MCM Academy">
+                                                    <i class="fa fa-youtube-play fa-2x" />
+                                                    &amp;nbsp;&amp;nbsp;Youtube
+                                                </a>
+
+                                            </li>
+
+
+                                            <div class="contact-info" style="">
+                                                <ul class="contact-details" style="margin-bottom: 1rem; list-style-type: disc;">
+                                                    <li style="font-weight: 400;">
+                                                        <span style="font-weight: 700;" />
+                                                        <br />
+                                                        Politique de confidentialité
+                                                        <br />
+                                                        <br />
+                                                    </li>
+                                                    <a href="/conditions" style="color:#fff">
+                                                        <li>Conditions générales de vente</li>
+                                                    </a>
+                                                </ul>
+                                            </div>
+
                                         </ul>
                                     </div>
                                 </aside>
