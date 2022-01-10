@@ -53,15 +53,12 @@ class PaymentAcquirer(models.Model):
         return result
 
     def _create_setup_intent(self, kwargs):
+        _logger.info("je suis laaaaaaaaaaaa ---------- %s" % str(self))
         _logger.info("je suis laaaaaaaaaaaa create ")
-        for rec in self:
 
-            if rec.instalment and rec.company_id.id ==2:
-                _logger.info("je suis laaaaaaaaaaaa create 2")
-            else :
-                result = super(PaymentAcquirer, self)._create_setup_intent()
+        result = super(PaymentAcquirer, self)._create_setup_intent(kwargs)
 
-                return result
+        return result
 
 
 
