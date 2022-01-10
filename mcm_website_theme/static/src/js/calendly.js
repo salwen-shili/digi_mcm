@@ -10,20 +10,15 @@ window.onload = function () {
       url.includes('/charger')
     )
   ) {
-    var user_name = document.getElementById('user_name_connected').value;
-    var user_email = document.getElementById('user_email_connected').value;
-    window.onload = function () {
-      Calendly.initBadgeWidget({
-        url: 'https://calendly.com/mcm-academy/taxi-vtc-taxi_moto',
-        prefill: {
-          name: user_name,
-          email: user_email,
-        },
-        text: 'Rendez-vous par téléphone',
-        color: '#1A1A1A',
-        textColor: '#FFFFFF',
-        branding: false,
-      });
-    };
+    Calendly.initBadgeWidget({
+      url: 'https://calendly.com/mcm-academy/taxi-vtc-taxi_moto',
+      prefill: {
+        name: user_name,
+        email: user_email,
+      },
+      text: 'Rendez-vous par téléphone',
+      color: '#1A1A1A',
+      textColor: '#FFFFFF',
+    });
   }
 };
