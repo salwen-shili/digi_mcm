@@ -2,7 +2,13 @@
 <odoo>
     <template id="schema_web_layout" name="SCHEMA.ORG: Web Layout" inherit_id="web.layout">
         <xpath expr="//head" position="inside">
-            <script type="application/ld+json">{
+            <script t-if="request.website.id==1" type="application/ld+json">{
+                "@context": "http://schema.org",
+                "@type": "WebSite",
+                "name": "MCM ACADEMY",
+                "url": "https://www.mcm-academy.fr",
+                }</script>
+            <script t-if="request.website.id==2" type="application/ld+json">{
                 "@context": "http://schema.org",
                 "@type": "WebSite",
                 "name": "MCM ACADEMY",
