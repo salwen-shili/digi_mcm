@@ -360,7 +360,7 @@ class Services(http.Controller):
                                'contact_name': prenom})
     
     @http.route('/service-presse', type='http', auth='public', website=True)
-    def partenariat(self, **kw, ):
+    def presse(self, **kw, ):
         if request.website.is_public_user():
             values = {
                 'partner_id': False
