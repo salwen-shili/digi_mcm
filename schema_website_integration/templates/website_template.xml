@@ -11,8 +11,8 @@
             <script t-if="request.website.id==2" type="application/ld+json">{
                 "@context": "http://schema.org",
                 "@type": "WebSite",
-                "name": "MCM ACADEMY",
-                "url": "https://www.mcm-academy.fr",
+                "name": "DIGIMOOV",
+                "url": "https://www.digimoov.fr",
                 }</script>
         </xpath>
     </template>
