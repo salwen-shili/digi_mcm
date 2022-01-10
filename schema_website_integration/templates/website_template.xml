@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="schema_web_layout" name="SCHEMA.ORG: Web Layout" inherit_id="web.layout">
+        <xpath expr="//head" position="inside">
+            <script type="application/ld+json">{
+                "@context": "http://schema.org",
+                "@type": "WebSite",
+                "name": "MCM ACADEMY",
+                "url": "https://www.mcm-academy.fr",
+                }</script>
+        </xpath>
+    </template>
+</odoo>
