@@ -52,13 +52,6 @@ class PaymentAcquirer(models.Model):
         sale.amount_total = amount_before_instalment
         return result
 
-    def _create_setup_intent(self, kwargs):
-        _logger.info("je suis laaaaaaaaaaaa ---------- %s" % str(self))
-        _logger.info("je suis laaaaaaaaaaaa create ")
-
-        result = super(PaymentAcquirer, self)._create_setup_intent(kwargs)
-
-        return result
 
 
 
