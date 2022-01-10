@@ -1,0 +1,462 @@
+<odoo>
+    <template id="digimoov_website_templates.formation-capacité-transport-lourd-marchandise" name="Formation capacité de transport lourd de marchandise | Digimoov">
+        <t t-call="website.layout">
+            <div id="wrap" class="oe_structure" style="border-style: none; border-width: 0px;">
+                <style>
+                    .para{
+                        vertical-align: baseline;
+                        font-size:18px;
+                        color:#000 !important;
+                    }
+                </style>
+                <section class="centric_template home-banner banner_padding pt80" data-name="Banner">
+                    <div class="container">
+                        <div class="row">
+                            <div class="bannarcol col-lg-6 col-md-12" style="border-style: none; border-width: 0px">
+                                <h1 style="text-align: center; "> FORMATION CAPACITÉ TRANSPORT LOURD +3.5 t </h1>
+                                <p class="para text-center">
+                                    Optez pour notre formation 100 % en ligne sur la capacité de transport lourd de marchandises !
+                                    
+                                </p>
+                                <p class="para text-center">
+                                Une formation complète de 140 heures, délivrée par des experts du métier, que pourrez suivre à votre rythme, afin de vous préparer à l’examen et obtenir votre carte professionnelle!
+                                </p>
+
+                                <div class="banner-btn s_btn" data-name="Button" style="text-align: center; ">
+                                    <a href="#pricing" class="bannerbtn btn btn-alpha rounded-circle" title="je m'inscirs" alt="boutton je m'inscris" aria-describedby="tooltip679124">
+                                        Inscrivez-vous dès maintenant !
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="bannercol col-lg-6 col-md-12 image_padding" style="border-style: none; border-width: 0px">
+                                <div class="banner_image">
+                                    <img class="img img-fluid" src="/digimoov_website_templates/static/img/transport-routier/1.png" title="" alt="CAPACITÉ TRANSPORT LOURD" aria-describedby="tooltip653698" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <style>
+                                                .h1-title {
+                                                color: rgb(156, 0, 255);
+                                                }
+                                                p {
+                                                font-size: 18px !important;
+                                                }
+                                                h2 {
+                                                font-weight: bold !important;
+                                                font-size: 48px !important;
+                                                color: #000 !important;
+                                                padding-bottom: 25px !important;
+                                                }
+                                                li{
+
+                                                font-weight: bold !important;
+                                                font-size: 17px !important;
+
+                                                }
+
+                                                .p-card-pricing{
+                                                padding: 48px;
+                                                }
+                                                .center-logo {
+                                                display: flex;
+                                                flex-direction: row;
+                                                align-content: center;
+                                                justify-content: space-between;
+                                                align-items: center;
+                                                }
+
+                                                .banner_padding{
+                                                padding: 128px 0px 64px 0px !important;
+                                                }
+
+                                                @media all and (max-width: 425px) {
+                                                .center-logo {
+                                                display: flex;
+                                                flex-direction: column;
+                                                align-content: center;
+                                                justify-content: space-between;
+                                                align-items: center;
+                                                }
+                                                .p-card-pricing{
+                                                padding: 40px 0px 0px 11px;
+                                                }
+                                                .p-m-0{
+                                                padding: 0px !important;
+                                                }
+                                                .banner_padding{
+                                                padding: 58px 0px 18px 0px !important;
+                                                }
+                                                .image_padding{
+                                                padding: 32px 0px !important;
+
+                                                }
+                                                .section-padding{
+                                                padding: 32px 0px !important;
+                                                }
+                                                .section-logos{
+                                                padding: 32px 0px !important;
+                                                }
+                                                .res-width-46{
+                                                width: 46% !important;
+                                                }
+                                                .res-width-43{
+                                                width: 43% !important;
+                                                }
+                                                .res-width-26{
+                                                width: 26% !important;
+                                                }
+                                                .res-width-36{
+                                                width: 36% !important;
+                                                }
+                                                .res-width-30{
+                                                width: 30% !important;
+                                                }
+
+                                                }
+                </style>
+                <section class="container pt40 pb32 section-padding">
+                    <div class="row align-items-center justify-content-center">
+                        <div class=" col-md-4 col-sm-12 text-center mb-4 mb-md-0 ">
+                            <img class="img-fluid" style="width: 188px;" src="/mcm_website_theme/static/src/img/formation-taxi-vtc-certifiée-qualiopi.png" />
+                        </div>
+                        <div class=" col-md-4 col-sm-12 text-center mb-4 mb-md-0 ">
+                            <img class="img-fluid" style="width: 110px;" src="/mcm_website_theme/static/src/img/mcm academy-partenaire-france-relance.jpg" />
+                        </div>
+                        <div class=" col-md-4 col-sm-12 text-center mb-4 mb-md-0  ">
+                            <img class="img-fluid" style="width: 188px;" src="/digimoov_website_templates/static/img/coursier2roues/logo-DREAL.png" />
+                        </div>
+                    </div>
+                </section>
+                <section class="centric_template pt128 section-padding about-us pb0" data-name="About Us" id="en-savoir-plus">
+                    <section>
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-lg-6 col-md-12" style="border-style: none; border-width: 0px">
+                                    <div class="aboutus-img">
+                                        <img class="img img-fluid" src="/digimoov_website_templates/static/img/transport-routier/3.png" title="CAPACITÉ TRANSPORT LOURD en ligne" alt="formation en ligne capacité lourd de transport de marchandise" aria-describedby="tooltip664574" />
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-md-12" style="border-style: none; border-width: 0px">
+                                    <div class="aboutus-content">
+                                        <h2>
+                                            C'est quoi une&amp;nbsp;
+                                            <font style="color: rgb(231, 99, 99);">attestation de transport lourd de marchandise</font>
+                                            ?&amp;nbsp;
+                                        </h2>
+                                        <p class="para ">
+                                            L’attestation de capacité de transport est un document obligatoire pour 
+                                            toute personne souhaitant 
+                                            devenir capacitaire.
+                                       </p>
+                                        <p class="para ">
+                                            Elle s’adresse à toute personne qui souhaite s’installer comme 
+                                            transporteur routier de marchandises (avec des véhicules de plus 
+                                            de 3.5 t), ou qui souhaite être reconnue dans la profession. 
+                                        </p>
+
+                                        <div class="banner-btn s_btn text-center" style="margin-top:16px" data-name="Button">
+                                            <a style="font-size: 18px;" href="/digimoov_website_templates/static/pdf/Les démarches pour obtenir la capacité de transport lourd de marchandises.pdf" class="bannerbtn btn btn-alpha rounded-circle" title="je m'inscirs" alt="boutton je m'inscris" aria-describedby="tooltip679124">
+                                               Télécharger les démarches d'inscription
+                                            </a>
+                                        </div>
+                                        <h4>
+                                            <br />
+                                        </h4>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </section>
+                <section class="s_text_image pt32 pb0" data-name="Text - Image">
+                    <div class="container">
+                        <div class="row align-items-center">
+                            <div class="col-lg-6 pt16 pb16" style="border-style: none; border-width: 0px">
+                                <h2>
+                                    Formation capacité transport routier :
+                                   
+                                </h2>
+                                <p class="para">
+                                    Afin de maximiser vos chances d'obtenir votre carte professionnelle 
+                                    et réaliser vos objectifs professionnels, Digimoov vous propose 
+                                    une formation 100 % en ligne à la hauteur de vos espérances, 
+                                    organisée par des formateurs du domaine du transport. 
+                                    Une formation accessible, à suivre à votre rythme, où vous 
+                                    voulez quand vous voulez.
+                                </p>
+                            </div>
+                            <div class="col-lg-6">
+                                <img src="/digimoov_website_templates/static/img/transport-routier/33.png" class="img img-fluid mx-auto" />
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <section class="s_features pt32 pb32" data-name="Features">
+                    <div class="container">
+                        <div class="row">
+                            <div class="pb32 text-center  col-lg-12">
+                                <i class="bg-alpha fa fa-3x fa-gear m-3 rounded-circle" data-original-title="" title="" aria-describedby="tooltip299597" style="" />
+                                <h3 class="text-alpha">
+                                    Les prérequis
+                                </h3>
+
+                                <div style="text-align: center;">
+                                    <span style="background-color: transparent; color: rgb(99, 99, 99); font-family: Arial; font-weight: 400; "> Maîtrise de la langue française.</span>
+                                    <br />
+                                    <span style="background-color: transparent;">
+                                            Maîtrise des opérations mathématique de base.
+                                        </span>
+                                </div>
+
+                            </div>
+                            <div class="pb32 text-center col-lg-6 pt0" style="border-style: none; border-width: 0px;">
+                                <i class="bg-alpha fa fa-3x fa-group m-3 rounded rounded-circle" data-original-title="" title="" aria-describedby="tooltip261570" style="" />
+                                <h3 class="text-alpha">
+                                   Le profil des stagiaires
+                                </h3>
+                                <h5>
+                                    <div style="text-align: left;">
+                                        <span style="color: rgb(99, 99, 99); font-family: Arial; font-weight: 400;">Personnes désirant devenir gestionnaires d'entreprise de transport routier de marchandises.</span>
+                                        <br />
+                                        <span style="*/; *//* font-variant: normal; *//* font-weight: 400; *//* text-decoration: none; *//* vertical-align: baseline; *//* white-space: pre-wrap; */color: rgb(0, 0, 0); */font-size: 14px; /* background-color: transparent; /* font-family: Arial; /* font-style: normal;">
+                                            <span style="background-color: transparent; color: rgb(99, 99, 99); font-size: 18px; font-weight: 400;">Personnes souhaitant acquérir de nouvelles compétences en transport routier de marchandises.</span>
+                                            <span style="background-color: transparent; font-size: 18px; font-weight: 400;" />
+                                        </span>
+                                    </div>
+                                </h5>
+                            </div>
+                            <div class="pb32 text-center col-lg-6 pt0" style="border-style: none; border-width: 0px;">
+                                <i class="fa fa-3x rounded-leaf bg-primary m-3 fa-flag rounded-circle" data-original-title="" title="" aria-describedby="tooltip106707" />
+                                <h3>
+                                    <font style="" class="text-alpha">Les objectifs</font>
+                                </h3>
+                                <h5>
+                                    <div style="text-align: left;">
+                                        <span style="color: rgb(99, 99, 99); font-family: Arial; font-weight: 400;">Préparation à l'examen national pour l'obtention de l'attestation de capacité professionnelle.</span>
+                                        <br />
+                                        <span style="background-color: transparent; color: rgb(99, 99, 99); font-size: 18px; font-weight: 400;">Acquisition de connaissance en réglementation (commerciale, sociale, transport). </span>
+                                        <br />
+                                        <span style="color: rgb(99, 99, 99); font-size: 18px; font-weight: 400;">Acquisition de connaissances en gestion économique et financière d'entreprise.</span>
+                                        <span style="color:#000; font-size: 18px; font-weight: 400;" />
+                                    </div>
+                                </h5>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <section class="s_call_to_action pt48 pb24 bg-amy-crisp-gradient" data-name="Call to Action">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-9 pb24">
+                                <h3>
+                                    <span style="font-weight: bolder;">Téléchargez notre programme&amp;nbsp;complet&amp;nbsp;</span>
+                                    <span style="font-weight: bolder; background-color: initial;">de formation et d'évaluation </span>
+                                </h3>
+                                <h3 />
+                                <p class="lead" style="color: rgb(255, 255, 255);">
+                                    <span style="font-weight: bolder;">Pour garantir votre réussite !</span>
+                                </p>
+                            </div>
+                            <div class="col-lg-3 s_btn text-right pt8 pb24" data-name="Button">
+                                <a href="/digimoov_website_templates/static/pdf/PROGRAMME DE FORMATION TRANSPORT LOURD DE MARCHANDISES.pdf" class="btn btn-primary btn-lg">
+                                    <span data-original-title="" title="" aria-describedby="tooltip254674">Télécharger</span>
+                                    <i class="fa fa-1x fa-fw fa-arrow-circle-right ml-1" data-original-title="" title="" aria-describedby="tooltip761958" />
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <section class="s_business_text_with_img_left_right" data-name="Left Right image with text">
+                    <div class="spacer feature26">
+                        <div class="container">
+                            <div class="row wrap-feature-26">
+                                <div class="col-md-7 align-self-center">
+                                    <div class="max-box">
+                                        <h2 class="title m-t-20 text-beta">Comment se déroule l’examen de capacité de transport lourd de marchandises ?
+								</h2>
+                                        <h4 class="m-t-30 custom_p">
+                                            <font style="color: rgb(0, 0, 0); font-size: 18px;">C’est la DREAL de votre département qui s’occupera de la gestion de votre inscription et du déroulement de l’examen. Pour vous inscrire, vous aurez à remplir un formulaire sur le site</font>
+                                            <font style="color: rgb(0, 0, 255); font-size: 18px;">
+                                                &amp;nbsp;&amp;nbsp;
+                                                <b>https://www.demarches-simplifiees.fr</b>
+                                            </font>
+                                            <font style="color: rgb(0, 0, 0); font-size: 18px;">
+                                                <b>&amp;nbsp;</b>
+                                                &amp;nbsp;, tout en sachant que les inscriptions sont généralement ouvertes jusqu'à la fin du mois de juillet de chaque année, tandis que l’examen se déroule souvent au début du mois d’octobre.
+                                            </font>
+                                            <br />
+                                        </h4>
+                                    </div>
+                                </div>
+                                <div class="col-md-5 col-md-5">
+                                    <img src="/digimoov_website_templates/static/img/financement/qu'est ce que le cpf - digimoov.png" alt=" " class="img-responsive img img-fluid" />
+                                </div>
+                            </div>
+                            <div class="row wrap-feature-26 m-t-40 p-t-30">
+                                <div class="col-md-6">
+                                    <img src="/digimoov_website_templates/static/img/transport-routier/2.png" alt=" " class="img-responsive img img-fluid" data-original-title="" title="" aria-describedby="tooltip616299" />
+                                </div>
+                                <div class="col-md-6 align-self-center">
+                                    <h4 class="custom_p m-t-30">
+                                        <font style="color: rgb(0, 0, 0); font-size: 18px;">Cet examen a justement vocation à évaluer votre maîtrise de la profession de transport poids lourd ainsi que votre capacité à gérer une exploitation de transport poids lourd.</font>
+                                    </h4>
+                                    <h4 class="custom_p m-t-30">
+                                        <font style="color: rgb(0, 0, 0); font-size: 18px;">Celui-ci, décliné en deux épreuves, se présente sous la forme qu’un QCM ainsi qu’une série de tests écrits au cours desquels il vous faudra rédiger une réponse.</font>
+                                    </h4>
+                                    <h4 class="custom_p m-t-30">
+                                        <font style="color: rgb(0, 0, 0); font-size: 18px;">La durée totale des épreuves est fixée à quatre heures.&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;&amp;nbsp;</font>
+                                    </h4>
+                                    <h4 class="custom_p m-t-30">
+                                        <font style="color: rgb(0, 0, 0); font-size: 18px;">Sont déclarés reçus les candidats qui ont obtenu pour l’ensemble des épreuves une note au moins égale à 120 sur 200, sous réserve qu’ils aient obtenu au moins 50 points pour le questionnaire à choix multiples et 40 points pour l’épreuve à réponses rédigées.</font>
+                                    </h4>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <section class="s_text_image pt32 pb0" data-name="Text - Image">
+                    <div class="container">
+                        <div class="row align-items-center">
+                            <div class="col-lg-6 pt16 pb0" style="border-style: none; border-width: 0px">
+                                <h2>
+                                    Comment financer ma formation ?
+                                    <text class="h1-title">&amp;nbsp;</text>
+                                </h2>
+                                <h4 />
+                                <h4>
+                                    <span style="background-color: transparent; color: rgb(0, 0, 0); font-family: Arial; font-size: 18px; font-variant-east-asian: normal; font-variant-numeric: normal; vertical-align: baseline; white-space: pre-wrap;">Digimoov vous offre la possibilité de financer votre formation de deux façons :</span>
+                                    <br />
+                                </h4>
+                                <h4>
+                                    <span style="background-color: transparent; color: rgb(0, 0, 0); font-family: Arial; font-size: 18px; font-variant-east-asian: normal; font-variant-numeric: normal; font-weight: 700; vertical-align: baseline; white-space: pre-wrap;">Par auto-financement (carte bancaire) :&amp;nbsp;</span>
+                                    &amp;nbsp;&amp;nbsp;&amp;nbsp;
+                                    <font style="color: rgb(0, 0, 0);">a</font>
+                                    &amp;nbsp;
+                                    <span style="background-color: transparent; color: rgb(0, 0, 0); font-family: Arial; font-size: 18px; font-variant-east-asian: normal; font-variant-numeric: normal; vertical-align: baseline; white-space: pre-wrap;" />
+                                    <span style="background-color: transparent; color: rgb(0, 0, 0); font-family: Arial; font-size: 18px; font-variant-east-asian: normal; font-variant-numeric: normal; vertical-align: baseline; white-space: pre-wrap;">fin de faciliter votre démarche , Digimoov vous offre la possibilité de financer votre formation en totalité par carte bancaire. </span>
+                                </h4>
+                                <h4>
+                                    <span style="background-color: transparent; color: rgb(0, 0, 0); font-family: Arial; font-size: 18px; font-variant-east-asian: normal; font-variant-numeric: normal; font-weight: 700; vertical-align: baseline; white-space: pre-wrap;">En mobilisant votre compte CPF&amp;nbsp;</span>
+                                    <br />
+                                    <span style="background-color: transparent; color: rgb(0, 0, 0); font-family: Arial; font-size: 18px; font-variant-east-asian: normal; font-variant-numeric: normal; vertical-align: baseline; white-space: pre-wrap;">Salariés, demandeurs d’emploi ou encore travailleurs indépendants : vous avez tous des droits à la formation professionnelle, d’où la nécessité de la mise en place du compte personnel de formation (CPF), qui a remplacé depuis le 1er janvier 2015 le Droit Individuel à la Formation (DIF).</span>
+                                    <br />
+                                    <span style="background-color: transparent; color: rgb(0, 0, 0); font-family: Arial; font-size: 18px; font-variant-east-asian: normal; font-variant-numeric: normal; vertical-align: baseline; white-space: pre-wrap;">C’est un droit octroyé à ces catégories de personnes pour financer une formation professionnelle qualifiante ou certifiante. L’objectif consiste à améliorer leur niveau de qualification et accroître leurs compétences.</span>
+                                    <span style="background-color: transparent; color: rgb(0, 0, 255); font-family: Arial; font-size: 18px; font-variant-east-asian: normal; font-variant-numeric: normal; font-weight: 700; vertical-align: baseline; white-space: pre-wrap;">&amp;nbsp; </span>
+                                    <br />
+                                </h4>
+                                <div class="s_btn text-center pt16 pb16" data-name="Button">
+                                    <a href="#" class="btn btn-primary" data-original-title="" title="" aria-describedby="tooltip906021">En savoir plus</a>
+                                </div>
+                                <p />
+                            </div>
+                            <div class="col-lg-6">
+                                <img src="/digimoov_website_templates/static/img/transport-routier/fiancement.png" class="img img-fluid mx-auto" title="CAPACITÉ TRANSPORT LOURD" alt="CAPACITÉ TRANSPORT LOURD" />
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <!-- Pricing-->
+                <!-- Pricing Table-->
+                <div class="container pt64 pb32" id="pricing">
+                    <div class="row" style="place-content: center;">
+                        <div class="col-lg-6 col-md-8 col-sm-12">
+                            <div class="card border-0 shadow " style="border-radius: 25px 25px">
+                                <div class="text-center text-white border-0" style="
+                                                            background-color: #6e209f;
+                                                            border-top-left-radius: 25px;
+                                                            border-top-right-radius: 25px;
+                                                        ">
+                                    <br />
+                                    <p>
+                                        <strong style="color: white">
+                                            <font style="font-size: 30px">Capacité transport routier</font>
+                                        </strong>
+                                    </p>
+                                    <p>
+                                        <b>Éligible au CPF</b>
+                                    </p>
+                                    <br />
+                                </div>
+                                <t t-foreach="digimoov_products" t-as="product">
+                                    <t t-if="product.default_code=='transport-routier'">
+                                        <form action="/shop/cart/update" method="post" id="form-transport-routier">
+                                            <input t-att-value="request.website.microsoft_tracking_key" id="microsoft_tracking_key" type="hidden" />
+
+                                            <input type="hidden" class="product_id" name="product_id" t-att-value="product.id" />
+                                            <input type="hidden" name="promo" t-att-value="promo.id" t-if="promo" />
+                                            <div class="card-body p-card-pricing" style="background-color: white">
+                                                <ul class="list-unstyled">
+                                                    <li class="mb-4">
+                                                        <i class="fa fa-check-circle fa-lg mr-2 text-success" />
+                                                        <b>Formation 35h (100% en ligne)</b>
+                                                    </li>
+                                                    <li class="mb-4">
+                                                        <i class="fa fa-check-circle fa-lg mr-2 text-success" />
+                                                        <b>Accès à 4 examens d'entrainement</b>
+                                                    </li>
+                                                    <li class="mb-4">
+                                                        <i class="fa fa-check-circle fa-lg mr-2 text-success" />
+                                                        <b>Assistance par mail</b>
+                                                    </li>
+                                                    <li class="mb-4">
+                                                        <i class="fa fa-check-circle fa-lg mr-2 text-success" />
+                                                        <b>Assistance par téléphone</b>
+                                                    </li>
+                                                    <li class="mb-4">
+                                                        <i class="fa fa-check-circle fa-lg mr-2 text-success" />
+                                                        <b>Révision du programme avant examen</b>
+                                                    </li>
+                                                    <li class="mb-4">
+                                                        <i class="fa fa-check-circle fa-lg mr-2 text-success" />
+                                                        <b>Lives avec les formateurs pour explications</b>
+                                                    </li>
+                                                    <li class="mb-4">
+                                                        <i class="fa fa-check-circle fa-lg mr-2 text-success" />
+                                                        <b>Examen Final</b>
+                                                    </li>
+                                                </ul>
+                                                <div class="text-center ">
+
+                                                    <b style="font-size:60px !important; color:#000000" t-if="not promo">
+                                                        <span t-esc="round(product.list_price)" />
+                                                        <span t-esc="product.currency_id.symbol" />
+                                                    </b>
+                                                    <b style="font-size:60px !important; color:#000000" t-if="promo">
+                                                        <t t-foreach="promo.item_ids" t-as="item">
+                                                            <t t-if="item.product_id.id==product.id">
+                                                                <span t-esc="round(item.fixed_price)" />
+                                                                <span t-esc="product.currency_id.symbol" />
+                                                            </t>
+                                                        </t>
+                                                    </b>
+
+                                                </div>
+                                                <p class="
+                                                                medium
+                                                                text-center
+                                                                font-weight-bolder
+                                                                text-secondary
+                                                            " style="color: red !important">
+                                                                                            Paiement 1 fois
+                                    </p>
+                                                <br />
+                                                <button class="btn btn-block text-white" style="background-color: #6e209f; border-radius: 25px">
+Je m'inscris
+                                    </button>
+
+
+                                            </div>
+                                        </form>
+                                    </t>
+                                </t>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </t>
+    </template>
+</odoo>
