@@ -2,6 +2,12 @@
     <template id="mcm_website_theme.mcm_template" inherit_id="website.homepage">
         <xpath expr="//div[@id='wrap']" position="replace">
             <div id="wrap" class="oe_structure oe_empty">
+                <script type="application/ld+json">{
+"@context": "http://schema.org",
+"@type": "WebSite",
+  "name": "MCM ACADEMY",
+  "url": "https://www.mcm-academy.fr",
+}</script>
                 <link rel="stylesheet" href="/mcm_website_theme/static/src/css/homepage.min.css" />
                 <script defer="defer" type="text/javascript" src="/digimoov_website_templates/static/src/js/lazy-min.min.js" />
                 <script type="text/javascript" src="/mcm_website_theme/static/src/js/msAds.min.js" />
