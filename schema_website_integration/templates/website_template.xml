@@ -2,7 +2,7 @@
 <odoo>
     <template id="schema_web_layout" name="SCHEMA.ORG: Web Layout" inherit_id="web.layout">
         <xpath expr="//head" position="inside">
-            <script t-if="website.id==1" type="application/ld+json">{
+            <!-- <script t-if="website.id==1" type="application/ld+json">{
                 "@context": "http://schema.org",
                 "@type": "WebSite",
                 "name": "MCM ACADEMY",
@@ -13,7 +13,7 @@
                 "@type": "WebSite",
                 "name": "DIGIMOOV",
                 "url": "https://www.digimoov.fr",
-                }</script>
+                }</script> -->
         </xpath>
     </template>
 </odoo>
