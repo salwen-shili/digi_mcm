@@ -51,9 +51,9 @@ class FAQ(http.Controller):
         if request.website.id == 2:
             # recuperer la liste des villes pour l'afficher dans la page faq de siteweb digimoov
             last_ville = request.env['session.ville'].sudo().search(
-                [('company_id', '=', 2)], order='name_ville desc', limit=1)
+                [('company_id', '=', 2)] , order='name_ville desc', limit=1)
             list_villes = request.env['session.ville'].sudo().search(
-                [('id', "!=", last_ville.id),('company_id', '=', 2)], order='name_ville asc')
+                [('id', "!=", last_ville.id),('company_id', '=', 2)] , order='name_ville asc')
             values = {
                 'list_villes': list_villes,
                 'last_ville': last_ville
@@ -133,7 +133,7 @@ class FINANCEMENT(http.Controller):
                     'error_ville': False,
                     'error_exam_date': False,
                 })
-                list_villes = request.env['session.ville'].sudo().search([('company_id', '=', 2)])
+                list_villes = request.env['session.ville'].sudo().search([('company_id', '=', 2)]) 
                 if list_villes:
                     values.update({
                         'list_villes': list_villes,
@@ -226,9 +226,9 @@ class QUISOMMESNOUS(http.Controller):
         if request.website.id == 2:
             # recuperer la liste des villes pour l'afficher dans la page qui sommes nous de siteweb digimoov 
             last_ville = request.env['session.ville'].sudo().search(
-                [('company_id', '=', 2)],order='name_ville desc',limit=1)
+                [('company_id', '=', 2)] ,order='name_ville desc',limit=1)
             list_villes = request.env['session.ville'].sudo().search(
-                [('id',"!=",last_ville.id),('company_id', '=', 2)],order='name_ville asc')
+                [('id',"!=",last_ville.id),('company_id', '=', 2)] ,order='name_ville asc')
             values = {
                 'list_villes': list_villes,
                 'last_ville':last_ville
@@ -245,9 +245,9 @@ class NOSCENTRES(http.Controller):
         if request.website.id == 2:
             # recuperer la liste des villes pour l'afficher dans la page nos centres examen de siteweb digimoov
             last_ville = request.env['session.ville'].sudo().search(
-                [('company_id', '=', 2)],order='name_ville desc',limit=1)
+                [('company_id', '=', 2)] ,order='name_ville desc',limit=1)
             list_villes = request.env['session.ville'].sudo().search(
-                [('id',"!=",last_ville.id),('company_id', '=', 2)],order='name_ville asc')
+                [('id',"!=",last_ville.id),('company_id', '=', 2)] ,order='name_ville asc')
             values = {
                 'list_villes': list_villes,
                 'last_ville':last_ville
@@ -360,7 +360,7 @@ class Services(http.Controller):
                                'contact_name': prenom})
     
     @http.route('/service-presse', type='http', auth='public', website=True)
-    def partenariat(self, **kw, ):
+    def presse(self, **kw, ):
         if request.website.is_public_user():
             values = {
                 'partner_id': False
