@@ -18,11 +18,4 @@ class Website(models.Model):
     def get_user_email_logged(self):
         return request.env.user.email
 
-    def get_base_url(self):
-        self.ensure_one()
-        if 'localhost' not in self._get_http_domain() and 'localhost' not in super(BaseModel, self).get_base_url():
-            return self._get_http_domain().replace("http", "https") or super(BaseModel, self).get_base_url().replace("http", "https")
-        else:
-            return self._get_http_domain() or super(BaseModel, self).get_base_url()
-
 

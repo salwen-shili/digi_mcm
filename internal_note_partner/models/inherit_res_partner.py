@@ -41,11 +41,12 @@ class InheritResPartner(models.Model):
                         rec.resultat = "Admis(e)"
                     elif not resultat.resultat:
                         rec.resultat = "_______"
-                    if resultat.nombre_de_passage == 'premier':
+                for nb_passage in last_line:
+                    if nb_passage.nombre_de_passage == 'premier':
                         rec.nombre_de_passage = "deuxieme"
-                    if resultat.nombre_de_passage == 'recu':
+                    if nb_passage.nombre_de_passage == 'recu':
                         rec.nombre_de_passage = "troisieme"
-                    elif not resultat.nombre_de_passage:
+                    elif not nb_passage.nombre_de_passage:
                         rec.nombre_de_passage = "_______"
 
     def _compute_get_last_internal_log(self):
