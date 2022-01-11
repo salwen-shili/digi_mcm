@@ -699,7 +699,9 @@
         <t t-call="website.layout">
             <script defer="defer" type="text/javascript"
                     src="/digimoov_website_templates/static/src/js/lazy-min.min.js"/>
-
+            <t t-set="head">
+                <meta name="robots" content="noindex"/>
+            </t>
             <div id="wrap" class="oe_structure oe_empty">
                 <section class="centric_template" data-name="Projects">
                     <section class="project-section pt128 pb0">
