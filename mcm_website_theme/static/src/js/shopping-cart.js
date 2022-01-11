@@ -302,7 +302,7 @@ function verify_payment_method() {
             break;
 
           default:
-            window.open('https://bit.ly/3DOiZG6', '_blank');
+            window.open('https://bit.ly/3GjhHn7', '_blank');
 
             msTracking(
               'clic sur mobiliser mon cpf taxi',
@@ -348,9 +348,9 @@ function verify_payment_method() {
         switch (true) {
           case state.includes('https://www.moncompteformation.gouv.fr/'):
             msTracking(
-              'clic sur mobiliser mon cpf Formation à distance TAXI status validé',
+              'clic sur mobiliser mon cpf Formation à distance VTC status validé',
               'CPF',
-              'Inscription CPF Formation à distance TAXI',
+              'Inscription CPF Formation à distance VTC',
               '680'
             );
             window.open(state, '_blank');
@@ -362,7 +362,7 @@ function verify_payment_method() {
             break;
 
           default:
-            window.open('https://bit.ly/3mZoImh', '_blank');
+            window.open('https://bit.ly/3nfkeHn', '_blank');
             msTracking(
               'clic sur mobiliser mon cpf vtc',
               'CPF',
