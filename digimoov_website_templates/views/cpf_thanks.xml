@@ -2,7 +2,7 @@
 <odoo>
     <template id="digimoov_website_templates.cpf_thank_you" name="CPF | DIGIMOOV">
         <t t-call="website.layout">
-            <script defer="defer" type="text/javascript" src="/digimoov_website_templates/static/src/js/lazy-min.js" />
+            <script defer="defer" type="text/javascript" src="/digimoov_website_templates/static/src/js/lazy-min.min.js" />
 
             <div id="wrap" class="oe_structure oe_empty">
                 <div class="container">
@@ -30,7 +30,7 @@
     </template>
     <template id="digimoov_website_templates.client_thank_you" name="Service Clientèle | DIGIMOOV">
         <t t-call="website.layout">
-            <script defer="defer" type="text/javascript" src="/digimoov_website_templates/static/src/js/lazy-min.js" />
+            <script defer="defer" type="text/javascript" src="/digimoov_website_templates/static/src/js/lazy-min.min.js" />
             <div id="wrap" class="oe_structure oe_empty">
                 <div class="container">
                     <div class="row">
@@ -57,7 +57,7 @@
     </template>
     <template id="digimoov_website_templates.pedagogique_thank_you" name="Service Pédagogique | DIGIMOOV">
         <t t-call="website.layout">
-            <script defer="defer" type="text/javascript" src="/digimoov_website_templates/static/src/js/lazy-min.js" />
+            <script defer="defer" type="text/javascript" src="/digimoov_website_templates/static/src/js/lazy-min.min.js" />
             <div id="wrap" class="oe_structure oe_empty">
                 <div class="container">
                     <div class="row">
@@ -84,7 +84,7 @@
     </template>
     <template id="digimoov_website_templates.comptabilite_thank_you" name="Service Comptabilité | DIGIMOOV">
         <t t-call="website.layout">
-            <script defer="defer" type="text/javascript" src="/digimoov_website_templates/static/src/js/lazy-min.js" />
+            <script defer="defer" type="text/javascript" src="/digimoov_website_templates/static/src/js/lazy-min.min.js" />
             <div id="wrap" class="oe_structure oe_empty">
                 <div class="container">
                     <div class="row">
@@ -111,7 +111,7 @@
     </template>
     <template id="digimoov_website_templates.administration_thank_you" name="Service Comptabilité | DIGIMOOV">
         <t t-call="website.layout">
-            <script defer="defer" type="text/javascript" src="/digimoov_website_templates/static/src/js/lazy-min.js" />
+            <script defer="defer" type="text/javascript" src="/digimoov_website_templates/static/src/js/lazy-min.min.js" />
             <div id="wrap" class="oe_structure oe_empty">
                 <div class="container">
                     <div class="row">
@@ -138,7 +138,7 @@
     </template>
     <template id="digimoov_website_templates.presse_thank_you" name="Service Presse | DIGIMOOV">
         <t t-call="website.layout">
-            <script defer="defer" type="text/javascript" src="/digimoov_website_templates/static/src/js/lazy-min.js" />
+            <script defer="defer" type="text/javascript" src="/digimoov_website_templates/static/src/js/lazy-min.min.js" />
             <div id="wrap" class="oe_structure oe_empty">
                 <div class="container">
                     <div class="row">
