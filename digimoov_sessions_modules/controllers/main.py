@@ -1138,6 +1138,7 @@ class WebsiteSale(WebsiteSale):
     def payment_confirmation(self, partenaire=None, product=None, state=None, **post):
         order_id = request.session.get('sale_last_order_id')
         order = request.env['sale.order'].sudo().search([('id', '=', order_id)], limit=1)
+        _logger.info('payment_confirmation orderrrrrr :  %s' % (order))
         if order:
             if order and order.company_id.id == 1:
                 product_id = False
