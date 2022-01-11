@@ -30,7 +30,7 @@ class Blog(Models):
 
     def update_seo_url(self):
         blogIds = self._context.get('active_ids')
-        blogObjs = self.search([('id', 'in', blogIds)])
+        blogObjs = self.search([('id', 'in', blogIds),('website_id',"=",1)])
         self.env['website.rewrite'].setSeoUrlKey('pattern_blog', blogObjs)
         text = "SEO Url key of {} blog(s) have been successfully updated.".format(len(blogObjs))
         return self.env['wk.wizard.message'].genrated_message(text)
@@ -54,7 +54,7 @@ class BlogPost(Models):
 
     def update_seo_url(self):
         blogPostIds = self._context.get('active_ids')
-        blogPostObjs = self.search([('id', 'in', blogPostIds)])
+        blogPostObjs = self.search([('id', 'in', blogPostIds),('website_id',"=",1)])
         self.env['website.rewrite'].setSeoUrlKey('pattern_post', blogPostObjs)
         text = "SEO Url key of {} blog post(s) have been successfully updated.".format(len(blogPostObjs))
         return self.env['wk.wizard.message'].genrated_message(text)
