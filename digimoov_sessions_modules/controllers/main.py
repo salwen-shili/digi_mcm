@@ -1212,17 +1212,21 @@ class WebsiteSale(WebsiteSale):
                 if check_transaction and order.state == 'sent':
                     return request.redirect("/my/orders/%s?access_token=%s" % (order.id, order.access_token))
             if order and order.company_id.id == 2:
+                _logger.info('payment_confirmation order :  %s' %(order.name))
                 product_id = False
                 if order:
                     for line in order.order_line:
                         product_id = line.product_id
-
+                _logger.info('payment_confirmation product_id :  %s' % (product_id))
                 if not product and not partenaire and product_id:
                     product = True
                     partenaire = True
                 if product and not partenaire:
+                    _logger.info('payment_confirmation product not partenaire')
+                    _logger.info('payment_confirmation product : %s' %(product_id))
                     if product_id:
                         slugname = (product_id.name).strip().strip('-').replace(' ', '-').lower()
+                        _logger.info('payment_confirmation slugname : %s' % (slugname))
                         if str(slugname) != str(product):
                             if order.pricelist_id and order.pricelist_id.name in ['ubereats', 'deliveroo',
                                                                                   'coursierjob','box2home','coursier2roues', 'habilitation-electrique', 'eco-conduite', 'transport-routier']:
@@ -1236,6 +1240,7 @@ class WebsiteSale(WebsiteSale):
                                 return request.redirect(
                                     "/%s/%s/shop/confirmation/" % (slugname, order.pricelist_id.name))
                     else:
+                        _logger.info('payment_confirmation product not product_id')
                         return request.redirect("/pricing")
                 elif product and partenaire:
                     if product_id:
@@ -1283,6 +1288,7 @@ class WebsiteSale(WebsiteSale):
                 for transaction in order.transaction_ids:
                     if transaction.state != 'done':
                         check_transaction = False
+                print('check_transaction:',check_transaction)
                 if check_transaction and order.state == 'sent':
                     return request.redirect("/my/orders/%s?access_token=%s" % (order.id, order.access_token))
         return super(WebsiteSale, self).payment_confirmation(**post)
