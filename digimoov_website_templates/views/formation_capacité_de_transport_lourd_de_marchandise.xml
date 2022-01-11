@@ -403,25 +403,25 @@
                                             <input type="hidden" name="promo" t-att-value="promo.id" t-if="promo" />
                                             <div class="card-body p-card-pricing" style="background-color: white">
                                                 <ul class="list-unstyled">
-                                                    <li class="mb-4">
+                                                    <li class="mb-4" style="font-size: 15px !important;">
                                                         <i class="fa fa-check-circle fa-lg mr-2 text-success" />
-                                                        <b>210 h Révision en Live avec un formateur</b>
+                                                        210 h Révision en Live avec un formateur
                                                     </li>
-                                                    <li class="mb-4">
+                                                    <li class="mb-4" style="font-size: 15px !important;">
                                                         <i class="fa fa-check-circle fa-lg mr-2 text-success" />
-                                                        <b>70 h Cours e-learning assités par un tuteur</b>
+                                                        70 h Cours e-learning assités par un tuteur
                                                     </li>
-                                                    <li class="mb-4">
+                                                    <li class="mb-4" style="font-size: 15px !important;">
                                                         <i class="fa fa-check-circle fa-lg mr-2 text-success" />
-                                                        <b>Assistance par mail</b>
+                                                        Assistance par mail
                                                     </li>
-                                                    <li class="mb-4">
+                                                    <li class="mb-4" style="font-size: 15px !important;">
                                                         <i class="fa fa-check-circle fa-lg mr-2 text-success" />
-                                                        <b>Assistance par téléphone</b>
+                                                        Assistance par téléphone
                                                     </li>
-                                                    <li class="mb-4">
+                                                    <li class="mb-4" style="font-size: 15px !important;">
                                                         <i class="fa fa-check-circle fa-lg mr-2 text-success" />
-                                                        <b>Accès aux corrigés de plus de 14 examens d'entraînement</b>
+                                                        Accès aux corrigés de plus de 14 examens d'entraînement
                                                     </li>
 
 
