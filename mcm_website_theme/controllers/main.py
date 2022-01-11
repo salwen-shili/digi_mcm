@@ -852,8 +852,7 @@ class WebsiteSale(WebsiteSale):
                  '''/shop/address'''], type='http', methods=['GET', 'POST'], auth="user", website=True, sitemap=False)
     def address(self, partenaire=None, product=None, **kw):
         Partner = request.env['res.partner'].with_context(show_address=1).sudo()
-        if request.website.id == 1 :
-            return request.redirect('/edit_info')
+        return request.redirect('/shop/payment')
         order = request.website.sale_get_order()
         redirection = self.checkout_redirection(order)
         if redirection:
