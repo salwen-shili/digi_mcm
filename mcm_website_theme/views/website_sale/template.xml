@@ -546,6 +546,11 @@
 
 
     <template id="mcm_website_sale_cart_script" inherit_id="website_sale.cart">
+        <xpath expr="//div[@id='wrap']" position="before">
+            <t t-set="head">
+                <meta name="robots" content="noindex"/>
+            </t>
+        </xpath>
         <!-- hide the second button return to shop on bottom-->
         <xpath expr="//a[@class='btn btn-secondary mb32']" position="replace"></xpath>
         <xpath expr="//a[@class='btn btn-primary float-right']" position="replace">
