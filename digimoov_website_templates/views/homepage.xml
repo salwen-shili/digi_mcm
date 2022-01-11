@@ -731,9 +731,9 @@
                                                     <font style="font-size: 30px">PRO</font>
                                                 </strong>
                                             </p>
-                                            <p>
+                                            <!-- <p>
                                                 <b>Éligible au CPF</b>
-                                            </p>
+                                            </p> -->
                                             <br />
                                         </div>
                                         <t t-foreach="digimoov_products" t-as="product">
@@ -850,9 +850,9 @@
                                             <h2>
                                                 <strong style="color: white">PREMIUM</strong>
                                             </h2>
-                                            <p>
+                                            <!-- <p>
                                                 <b>Éligible au CPF</b>
-                                            </p>
+                                            </p> -->
                                             <br />
                                         </div>
                                         <t t-foreach="digimoov_products" t-as="product">

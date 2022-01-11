@@ -374,9 +374,9 @@
                                             <font style="font-size: 30px">Capacité transport routier</font>
                                         </strong>
                                     </p>
-                                    <p>
+                                    <!-- <p>
                                         <b>Éligible au CPF</b>
-                                    </p>
+                                    </p> -->
                                     <br />
                                 </div>
                                 <t t-foreach="digimoov_products" t-as="product">
@@ -390,11 +390,11 @@
                                                 <ul class="list-unstyled">
                                                     <li class="mb-4">
                                                         <i class="fa fa-check-circle fa-lg mr-2 text-success" />
-                                                        <b>210 h Révision en Live</b>
+                                                        <b>210 h Révision en Live avec un formateur</b>
                                                     </li>
                                                     <li class="mb-4">
                                                         <i class="fa fa-check-circle fa-lg mr-2 text-success" />
-                                                        <b>70 h Cours e-learning</b>
+                                                        <b>70 h Cours e-learning assités par un tuteur</b>
                                                     </li>
                                                     <li class="mb-4">
                                                         <i class="fa fa-check-circle fa-lg mr-2 text-success" />
@@ -406,16 +406,10 @@
                                                     </li>
                                                     <li class="mb-4">
                                                         <i class="fa fa-check-circle fa-lg mr-2 text-success" />
-                                                        <b>Accès aux corrigés de 14 examens</b>
+                                                        <b>Accès aux corrigés de plus de 14 examens d'entraînement</b>
                                                     </li>
-                                                    <li class="mb-4">
-                                                        <i class="fa fa-check-circle fa-lg mr-2 text-success" />
-                                                        <b>Lives avec les formateurs pour explications</b>
-                                                    </li>
-                                                    <li class="mb-4">
-                                                        <i class="fa fa-check-circle fa-lg mr-2 text-success" />
-                                                        <b>Examen Final</b>
-                                                    </li>
+
+
                                                 </ul>
                                                 <div class="text-center ">
 
