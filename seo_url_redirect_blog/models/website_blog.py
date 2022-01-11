@@ -17,14 +17,15 @@ class Blog(Models):
     @api.model
     def create(self, vals):
         res = super(Blog, self).create(vals)
-        if res.url_key in ['', False, None]:
+        if res.url_key in ['', False, None] and res.website_id==1:
             self.env['website.rewrite'].setSeoUrlKey('pattern_blog', res)
         return res
 
 
     def write(self, vals):
         for blogObj in self:
-            vals = self.env['website.rewrite'].createRedirectForRewrite(vals, blogObj, 'blog.blog', 'pattern_blog')
+            if blogObj.website_id==1:
+                vals = self.env['website.rewrite'].createRedirectForRewrite(vals, blogObj, 'blog.blog', 'pattern_blog')
         res = super(Blog, self).write(vals)
         return res
 
@@ -42,13 +43,14 @@ class BlogPost(Models):
     @api.model
     def create(self, vals):
         res = super(BlogPost, self).create(vals)
-        if res.url_key in ['', False, None]:
+        if res.url_key in ['', False, None] and res.website_id==1:
             self.env['website.rewrite'].setSeoUrlKey('pattern_post', res)
         return res
 
     def write(self, vals):
         for blogPostObj in self:
-            vals = self.env['website.rewrite'].createRedirectForRewrite(vals, blogPostObj, 'blog.post', 'pattern_post')
+            if blogPostObj.website_id == 1:
+                vals = self.env['website.rewrite'].createRedirectForRewrite(vals, blogPostObj, 'blog.post', 'pattern_post')
         res = super(BlogPost, self).write(vals)
         return res
 
