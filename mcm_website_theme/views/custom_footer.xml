@@ -60,20 +60,23 @@
                                     </h3>
                                     <div class="textwidget">
                                         <ul>
-                                            <a href="/contact" style="cursor: pointer; color:#ffffff">
-                                                <li class="mb-2">
+
+                                            <li class="mb-2">
+                                                <a href="/contact" style="cursor: pointer; color:#ffffff">
                                                     <span class="fa fa-envelope" />
                                                     Envoyez-nous un message
-                                                </li>
-                                            </a>
+                                                </a>
+                                            </li>
 
-                                            <a href="/faq" style="cursor: pointer; color:#ffffff">
-                                                <li class="mb-2">
+
+                                            <li class="mb-2">
+                                                <a href="/faq" style="cursor: pointer; color:#ffffff">
                                                     <span class="fa fa-question-circle" aria-describedby="tooltip437298" />
                                                     Foire aux questions
                                                     <br />
-                                                </li>
-                                            </a>
+                                                </a>
+                                            </li>
+
                                             <li class="mb-2">
                                                 <span class="fa fa-info-circle" />
                                                 Agréé par la préfecture sous le numéro
