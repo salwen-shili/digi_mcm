@@ -361,9 +361,9 @@
                 <!-- Pricing Table-->
                 <div class="container pt64 pb32" id="pricing">
                     <div class="row" style="place-content: center;">
-                        <div class="col-lg-6 col-md-8 col-sm-12">
+                        <div class="col-lg-5 col-md-8 col-sm-12">
                             <div class="card border-0 shadow " style="border-radius: 25px 25px">
-                                <div class="text-center text-white border-0" style="
+                                <!-- <div class="text-center text-white border-0" style="
                                                             background-color: #6e209f;
                                                             border-top-left-radius: 25px;
                                                             border-top-right-radius: 25px;
@@ -374,9 +374,24 @@
                                             <font style="font-size: 30px">Capacité transport routier</font>
                                         </strong>
                                     </p>
-                                    <!-- <p>
-                                        <b>Éligible au CPF</b>
-                                    </p> -->
+                                    <p>
+                                        <b></b>
+                                    </p>
+                                    <br />
+                                </div> -->
+                                <div class="text-center text-white border-0" style="
+                    background-color: #6e209f;
+                    border-top-left-radius: 25px;
+                    border-top-right-radius: 25px;
+                  ">
+                                    <br />
+
+                                    <p>
+                                        <strong style="color: white">
+                                            <font style="font-size: 30px">Capacité transport routier</font>
+                                        </strong>
+                                    </p>
+                                    <p>&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;</p>
                                     <br />
                                 </div>
                                 <t t-foreach="digimoov_products" t-as="product">
