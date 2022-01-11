@@ -3,8 +3,8 @@
     <!-- Vue helpdesk de Digimoov pour le service clientèle dans le siteweb -->
     <template id="digimoov_website_templates.digimoov_template_service_clientele" name="Service Clientèle | Digimoov">
         <t t-call="website.layout">
-            <script defer="defer" type="text/javascript" src="/digimoov_website_templates/static/src/js/lazy-min.js"/>
-            <script type="text/javascript" src="/mcm_website_theme/static/src/js/msAds.js"/>
+            <script defer="defer" type="text/javascript" src="/digimoov_website_templates/static/src/js/lazy-min.min.js"/>
+            <script type="text/javascript" src="/mcm_website_theme/static/src/js/msAds.min.js"/>
 
             <div id="wrap" class="oe_structure oe_empty">
                 <section class="s_contact_with_img" data-name="Contact Us Two" style="">
@@ -118,7 +118,7 @@
     <!-- Vue helpdesk de Digimoov pour le service administration dans le siteweb -->
     <template id="digimoov_website_templates.digimoov_template_service_administration"
               name="Service Administration | Digimoov">
-        <script defer="defer" type="text/javascript" src="/digimoov_website_templates/static/src/js/lazy-min.js"/>
+        <script defer="defer" type="text/javascript" src="/digimoov_website_templates/static/src/js/lazy-min.min.js"/>
 
         <t t-call="website.layout">
             <div id="wrap" class="oe_structure oe_empty">
@@ -216,7 +216,7 @@
 
 
         <t t-call="website.layout">
-            <script defer="defer" type="text/javascript" src="/digimoov_website_templates/static/src/js/lazy-min.js"/>
+            <script defer="defer" type="text/javascript" src="/digimoov_website_templates/static/src/js/lazy-min.min.js"/>
 
             <div id="wrap" class="oe_structure oe_empty">
                 <section class="s_contact_with_img" data-name="Contact Us Two" style="">
@@ -328,7 +328,7 @@
 
 
         <t t-call="website.layout">
-            <script defer="defer" type="text/javascript" src="/digimoov_website_templates/static/src/js/lazy-min.js"/>
+            <script defer="defer" type="text/javascript" src="/digimoov_website_templates/static/src/js/lazy-min.min.js"/>
 
             <div id="wrap" class="oe_structure oe_empty">
                 <section class="s_contact_with_img" data-name="Contact Us Two" style="">
@@ -469,7 +469,7 @@
 
 
         <t t-call="website.layout">
-            <script defer="defer" type="text/javascript" src="/digimoov_website_templates/static/src/js/lazy-min.js"/>
+            <script defer="defer" type="text/javascript" src="/digimoov_website_templates/static/src/js/lazy-min.min.js"/>
 
             <div id="wrap" class="oe_structure oe_empty">
                 <section class="s_contact_with_img" data-name="Contact Us Two">
@@ -577,7 +577,7 @@
     </template>
     <!-- Vue helpdesk de Digimoov pour le service pédagogique dans le siteweb -->
     <template id="digimoov_website_templates.digimoov_template_service_pedagogique" name="Service Pédagogique Digimoov">
-        <script defer="defer" type="text/javascript" src="/digimoov_website_templates/static/src/js/lazy-min.js"/>
+        <script defer="defer" type="text/javascript" src="/digimoov_website_templates/static/src/js/lazy-min.min.js"/>
 
         <t t-call="website.layout">
             <div id="wrap" class="oe_structure oe_empty">
@@ -689,7 +689,7 @@
     <template id="digimoov_website_templates.digimoov_template_contact" name="Contactez-Nous | Digimoov">
 
         <t t-call="website.layout">
-            <script defer="defer" type="text/javascript" src="/digimoov_website_templates/static/src/js/lazy-min.js"/>
+            <script defer="defer" type="text/javascript" src="/digimoov_website_templates/static/src/js/lazy-min.min.js"/>
 
             <div id="wrap" class="oe_structure oe_empty">
                 <section class="centric_template" data-name="Projects">

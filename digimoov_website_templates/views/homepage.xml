@@ -1,9 +1,9 @@
 <odoo>
     <template id="digimoov_website_templates.digimoov_template" inherit_id="website.homepage">
         <xpath expr="//div[@id='wrap']" position="replace">
-            <script defer="defer" type="text/javascript" src="/digimoov_website_templates/static/src/js/lazy-min.js" />
+            <script defer="defer" type="text/javascript" src="/digimoov_website_templates/static/src/js/lazy-min.min.js" />
             <link href="/digimoov_website_templates/static/src/css/css-dist/home.min.css" rel="stylesheet" />
-            <script type="text/javascript" src="/mcm_website_theme/static/src/js/msAds.js" />
+            <script type="text/javascript" src="/mcm_website_theme/static/src/js/msAds.min.js" />
             <br />
             <br />
             <div id="wrap" class="oe_structure oe_empty">

@@ -194,7 +194,7 @@
 
                                                 <div class="o_login_auth" data-oe-model="ir.ui.view" data-oe-id="1730" data-oe-field="arch" data-oe-xpath="/data/xpath[4]/div[2]/div[1]/div[1]/div[1]/div[1]/fieldset[1]/div[7]/div[1]"></div>
                                             </div>
-                                            <link href="/mcm_contact_documents/static/src/css/button.css" rel="stylesheet" />
+                                            <link href="/mcm_contact_documents/static/src/css/button.min.css" rel="stylesheet" />
 
 
 

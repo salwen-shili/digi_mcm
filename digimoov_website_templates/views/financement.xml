@@ -1,7 +1,7 @@
 <odoo>
     <template id="digimoov_website_templates.digimoov_template_financement" name="Financer votre formation avec le CPF | Digimoov">
         <t t-call="website.layout">
-            <script type="text/javascript" src="/mcm_website_theme/static/src/js/msAds.js"/>
+            <script type="text/javascript" src="/mcm_website_theme/static/src/js/msAds.min.js"/>
 
             <div id="wrap" class="oe_structure oe_empty">
                 <style>
@@ -16,7 +16,7 @@
                 }
                 }
                 </style>
-                <script defer="defer" type="text/javascript" src="/digimoov_website_templates/static/src/js/lazy-min.js"/>
+                <script defer="defer" type="text/javascript" src="/digimoov_website_templates/static/src/js/lazy-min.min.js"/>
                 <section id="s_hero_banner" class="s_business_banner spacer bg-100" style="" data-name="Home Banner Two">
                     <div class="container">
                         <div class="row">

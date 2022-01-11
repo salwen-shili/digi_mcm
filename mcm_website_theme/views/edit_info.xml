@@ -2,7 +2,7 @@
 <odoo>
     <template id="mcm_website_theme.mcm_website_theme_edit_info" name="Editer">
         <t t-call="website.layout">
-            <link href="/mcm_website_theme/static/src/css/register_form.css" rel="stylesheet"/>
+            <link href="/mcm_website_theme/static/src/css/register_form.min.css" rel="stylesheet"/>
             <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"/>
             <link href="/mcm_website_theme/static/src/css/material_form.css" rel="stylesheet"/>
 
@@ -194,7 +194,7 @@
 
                                                 <div class="o_login_auth" data-oe-model="ir.ui.view" data-oe-id="1730" data-oe-field="arch" data-oe-xpath="/data/xpath[4]/div[2]/div[1]/div[1]/div[1]/div[1]/fieldset[1]/div[7]/div[1]"></div>
                                             </div>
-                                            <link href="/mcm_contact_documents/static/src/css/button.css" rel="stylesheet" />
+                                            <link href="/mcm_contact_documents/static/src/css/button.min.css" rel="stylesheet" />
 
 
 
