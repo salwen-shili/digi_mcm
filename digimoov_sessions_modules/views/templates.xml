@@ -93,6 +93,11 @@
     </template>
 
     <template id="digimoov_website_sale_cart_script" inherit_id="website_sale.cart">
+        <xpath expr="//div[@id='wrap']" position="before">
+            <t t-set="head">
+                <meta name="robots" content="noindex"/>
+            </t>
+        </xpath>
         <xpath expr="//a[@class='btn btn-primary float-right']" position="replace">
             <button role="button" t-if="website_sale_order and website_sale_order.website_order_line" class="btn btn-secondary float-right disabled" id="pm_shop_checkout2" onclick="showPopup()">
                 <span id="pm_shop_checkout_text">Passer au paiement 2</span>
