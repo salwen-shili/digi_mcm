@@ -720,7 +720,7 @@
                                 </div>
                                 <div class="col-md-4 col-sm-6">
                                     <div class="card border-0 shadow" style="border-radius: 25px 25px">
-                                        <div class="text-center text-white border-0" style="
+                                        <!-- <div class="text-center text-white border-0" style="
                     background-color: #6e209f;
                     border-top-left-radius: 25px;
                     border-top-right-radius: 25px;
@@ -731,9 +731,24 @@
                                                     <font style="font-size: 30px">PRO</font>
                                                 </strong>
                                             </p>
-                                            <!-- <p>
-                                                <b>Éligible au CPF</b>
-                                            </p> -->
+                                            <p>
+                                                <b></b>
+                                            </p>
+                                            <br />
+                                        </div> -->
+                                        <div class="text-center text-white border-0" style="
+                    background-color: #6e209f;
+                    border-top-left-radius: 25px;
+                    border-top-right-radius: 25px;
+                  ">
+                                            <br />
+
+                                            <p>
+                                                <strong style="color: white">
+                                                    <font style="font-size: 30px">PRO</font>
+                                                </strong>
+                                            </p>
+                                            <p>&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;</p>
                                             <br />
                                         </div>
                                         <t t-foreach="digimoov_products" t-as="product">
@@ -841,7 +856,7 @@
                                 </div>
                                 <div class="col-md-4 col-sm-12">
                                     <div class="card border-0 shadow" style="border-radius: 25px 25px">
-                                        <div class="text-center text-white border-0" style="
+                                        <!-- <div class="text-center text-white border-0" style="
                     background-color: #6e209f;
                     border-top-left-radius: 25px;
                     border-top-right-radius: 25px;
@@ -850,9 +865,24 @@
                                             <h2>
                                                 <strong style="color: white">PREMIUM</strong>
                                             </h2>
-                                            <!-- <p>
-                                                <b>Éligible au CPF</b>
-                                            </p> -->
+                                            <p>
+                                                <b></b>
+                                            </p>
+                                            <br />
+                                        </div> -->
+                                        <div class="text-center text-white border-0" style="
+                    background-color: #6e209f;
+                    border-top-left-radius: 25px;
+                    border-top-right-radius: 25px;
+                  ">
+                                            <br />
+
+                                            <p>
+                                                <strong style="color: white">
+                                                    <font style="font-size: 30px">PREMUIM</font>
+                                                </strong>
+                                            </p>
+                                            <p>&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;</p>
                                             <br />
                                         </div>
                                         <t t-foreach="digimoov_products" t-as="product">
