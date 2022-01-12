@@ -1,3 +1,7 @@
+#sh_corpomate_theme_section_188 .sh_pricing ul li {
+  font-weight: normal !important;
+}
+
 @media all and (min-width: 1512px) {
   .container-banner {
     padding: 0rem 10rem;
