@@ -7,31 +7,7 @@
                 <script defer="defer" type="text/javascript" src="/digimoov_website_templates/static/src/js/lazy-min.min.js" />
                 <script type="text/javascript" src="/mcm_website_theme/static/src/js/msAds.min.js" />
                 <link rel="stylesheet" href="/mcm_website_theme/static/src/css/cta-button.min.css" />
-                <style>
-                    #sh_corpomate_theme_section_60 .sh_left_content p:nth-child(2) {
-                        -webkit-line-clamp: 5 !important;
-                    }
-                #sh_corpomate_theme_section_184 .sh_content .sh_more_btn.sh_btn_cm_8 {
-                    background: black;
-                    border: 2px solid #0a0a0a;
-                    padding: 8px 25px;
-                    border-radius: 10px;
-                    margin-right: 15px;
-                    font-size: 16px;
-                    letter-spacing: 1px;
-                }
 
-                @media (max-width: 410px) {
-                    res-button {
-                        margin-bottom: 1rem;
-                    }
-                }
-                    .para {
-                        font-size: 16px !important;
-                        line-height: 28px !important;
-                        color: #000 !important;
-                    }
-                </style>
                 <div id="wrap" class="oe_structure">
                     <!-- section 1 Couverture -->
                     <section id="sh_corpomate_theme_section_258" class="sh_animation_part pt8">
@@ -260,7 +236,7 @@
                                         <a href="/mcm_website_theme/static/pdf/Devenez_chauffeur_taxi_vtc_démarches_dépôt_dossier_préfecture.pdf" target="_blank" rel="noopner">
                                             <div class="sh_num_icon">
                                                 <section class="sh_num o_default_snippet_text">3</section>
-                                                <span class="sh_icon fa fa-paper-plane-o o_we_selected_image"></span>
+                                                <span class="sh_icon fa fa-paper-plane-o"></span>
                                             </div>
                                         </a>
                                         <h4 class="o_default_snippet_text"></h4>
@@ -670,7 +646,7 @@
 
                                     <div t-if="partenaire=='' or partenaire !='bolt'">
                                         <a href="#">
-                                            <img data-src="/mcm_website_theme/static/src/img/partenaires/cma.png" data-srcSafari="/mcm_website_theme/static/src/img/partenaires/cma.png" class="img img-fluid lazy" alt="Logo partenaire CMA" title="CMA partenaire MCM ACADEMY" aria-describedby="tooltip623872" style="margin-top: 30px; width: 50%" />
+                                            <img data-src="/mcm_website_theme/static/src/img/partenaires/cma.png" data-srcSafari="/mcm_website_theme/static/src/img/partenaires/cma.png" class="img img-fluid lazy" alt="Logo partenaire CMA" title="CMA partenaire MCM ACADEMY" aria-describedby="tooltip623872" style="margin-top: 30px; width: 31%" />
                                         </a>
                                     </div>
 
@@ -692,7 +668,7 @@
 
                                     <div t-if="partenaire=='' or not partenaire ">
                                         <a href="https://www.comptable-douai.com/">
-                                            <img data-src="/mcm_website_theme/static/src/img/partenaires/joel.png" data-srcSafari="/mcm_website_theme/static/src/img/partenaires/joel.png" class="img img-fluid lazy" alt="Logo partenaire Cabinet Comptable Joël Pruvost" title="Cabinet Comptable Joël Pruvost partenaire Digimoov" aria-describedby="tooltip175558" style="margin-top: 30px; width: 68%" />
+                                            <img data-src="/mcm_website_theme/static/src/img/partenaires/joel.png" data-srcSafari="/mcm_website_theme/static/src/img/partenaires/joel.png" class="img img-fluid lazy" alt="Logo partenaire Cabinet Comptable Joël Pruvost" title="Cabinet Comptable Joël Pruvost partenaire Digimoov" aria-describedby="tooltip175558" style="margin-top: 30px; width: 46%" />
                                         </a>
                                     </div>
                                     <div t-if="partenaire=='bolt'">
