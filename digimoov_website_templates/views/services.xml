@@ -3,6 +3,9 @@
     <!-- Vue helpdesk de Digimoov pour le service clientèle dans le siteweb -->
     <template id="digimoov_website_templates.digimoov_template_service_clientele" name="Service Clientèle | Digimoov">
         <t t-call="website.layout">
+            <t t-set="head">
+                <meta name="robots" content="noindex"/>
+            </t>
             <script defer="defer" type="text/javascript"
                     src="/digimoov_website_templates/static/src/js/lazy-min.min.js"/>
             <script type="text/javascript" src="/mcm_website_theme/static/src/js/msAds.min.js"/>
@@ -122,6 +125,9 @@
         <script defer="defer" type="text/javascript" src="/digimoov_website_templates/static/src/js/lazy-min.min.js"/>
 
         <t t-call="website.layout">
+            <t t-set="head">
+                <meta name="robots" content="noindex"/>
+            </t>
             <div id="wrap" class="oe_structure oe_empty">
                 <section class="s_contact_with_img" data-name="Contact Us Two" style="">
                     <div class="contact3 mini-spacer">
@@ -217,6 +223,9 @@
 
 
         <t t-call="website.layout">
+            <t t-set="head">
+                <meta name="robots" content="noindex"/>
+            </t>
             <script defer="defer" type="text/javascript"
                     src="/digimoov_website_templates/static/src/js/lazy-min.min.js"/>
 
@@ -330,6 +339,9 @@
 
 
         <t t-call="website.layout">
+            <t t-set="head">
+                <meta name="robots" content="noindex"/>
+            </t>
             <script defer="defer" type="text/javascript"
                     src="/digimoov_website_templates/static/src/js/lazy-min.min.js"/>
 
