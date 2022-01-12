@@ -1,5 +1,6 @@
 <odoo>
     <template id="digimoov_website_templates.formation-capacité-transport-lourd-marchandise" name="Formation capacité de transport lourd de marchandise | Digimoov">
+
         <t t-call="website.layout">
             <div id="wrap" class="oe_structure" style="border-style: none; border-width: 0px;">
                 <style>
@@ -9,7 +10,7 @@
                         color:#000 !important;
                     }
                 </style>
-                <section class="centric_template home-banner banner_padding pt80" data-name="Banner">
+                <section class="centric_template home-banner banner_padding pt80">
                     <div class="container">
                         <div class="row">
                             <div class="bannarcol col-lg-6 col-md-12" style="border-style: none; border-width: 0px">
@@ -19,9 +20,8 @@
                                     
                                 </p>
                                 <p class="para text-center">
-                                Une formation complète de 140 heures, délivrée par des experts du métier, que pourrez suivre à votre rythme, afin de vous préparer à l’examen et obtenir votre carte professionnelle!
+                                Une formation complète de 280 heures, délivrée par des experts du métier, que pourrez suivre à votre rythme, afin de vous préparer à l’examen et obtenir votre carte professionnelle!
                                 </p>
-
                                 <div class="banner-btn s_btn" data-name="Button" style="text-align: center; ">
                                     <a href="#pricing" class="bannerbtn btn btn-alpha rounded-circle" title="je m'inscirs" alt="boutton je m'inscris" aria-describedby="tooltip679124">
                                         Inscrivez-vous dès maintenant !
@@ -129,7 +129,7 @@
                         </div>
                     </div>
                 </section>
-                <section class="centric_template pt128 section-padding about-us pb0" data-name="About Us" id="en-savoir-plus">
+                <section class="centric_template pt128 section-padding about-us pb0" id="en-savoir-plus">
                     <section>
                         <div class="container">
                             <div class="row">
@@ -155,7 +155,6 @@
                                             transporteur routier de marchandises (avec des véhicules de plus 
                                             de 3.5 t), ou qui souhaite être reconnue dans la profession. 
                                         </p>
-
                                         <div class="banner-btn s_btn text-center" style="margin-top:16px" data-name="Button">
                                             <a style="font-size: 18px;" href="/digimoov_website_templates/static/pdf/Les démarches pour obtenir la capacité de transport lourd de marchandises.pdf" class="bannerbtn btn btn-alpha rounded-circle" title="je m'inscirs" alt="boutton je m'inscris" aria-describedby="tooltip679124">
                                                Télécharger les démarches d'inscription
@@ -170,7 +169,7 @@
                         </div>
                     </section>
                 </section>
-                <section class="s_text_image pt32 pb0" data-name="Text - Image">
+                <section class="s_text_image pt32 pb0">
                     <div class="container">
                         <div class="row align-items-center">
                             <div class="col-lg-6 pt16 pb16" style="border-style: none; border-width: 0px">
@@ -197,11 +196,10 @@
                     <div class="container">
                         <div class="row">
                             <div class="pb32 text-center  col-lg-12">
-                                <i class="bg-alpha fa fa-3x fa-gear m-3 rounded-circle" data-original-title="" title="" aria-describedby="tooltip299597" style="" />
+                                <i class="bg-alpha fa fa-3x fa-gear m-3 rounded-circle" aria-describedby="tooltip299597" style="" />
                                 <h3 class="text-alpha">
                                     Les prérequis
                                 </h3>
-
                                 <div style="text-align: center;">
                                     <span style="background-color: transparent; color: rgb(99, 99, 99); font-family: Arial; font-weight: 400; "> Maîtrise de la langue française.</span>
                                     <br />
@@ -209,10 +207,9 @@
                                             Maîtrise des opérations mathématique de base.
                                         </span>
                                 </div>
-
                             </div>
                             <div class="pb32 text-center col-lg-6 pt0" style="border-style: none; border-width: 0px;">
-                                <i class="bg-alpha fa fa-3x fa-group m-3 rounded rounded-circle" data-original-title="" title="" aria-describedby="tooltip261570" style="" />
+                                <i class="bg-alpha fa fa-3x fa-group m-3 rounded rounded-circle" aria-describedby="tooltip261570" style="" />
                                 <h3 class="text-alpha">
                                    Le profil des stagiaires
                                 </h3>
@@ -228,7 +225,7 @@
                                 </h5>
                             </div>
                             <div class="pb32 text-center col-lg-6 pt0" style="border-style: none; border-width: 0px;">
-                                <i class="fa fa-3x rounded-leaf bg-primary m-3 fa-flag rounded-circle" data-original-title="" title="" aria-describedby="tooltip106707" />
+                                <i class="fa fa-3x rounded-leaf bg-primary m-3 fa-flag rounded-circle" aria-describedby="tooltip106707" />
                                 <h3>
                                     <font style="" class="text-alpha">Les objectifs</font>
                                 </h3>
@@ -260,9 +257,9 @@
                                 </p>
                             </div>
                             <div class="col-lg-3 s_btn text-right pt8 pb24" data-name="Button">
-                                <a href="/digimoov_website_templates/static/pdf/PROGRAMME DE FORMATION TRANSPORT LOURD DE MARCHANDISES.pdf" class="btn btn-primary btn-lg">
-                                    <span data-original-title="" title="" aria-describedby="tooltip254674">Télécharger</span>
-                                    <i class="fa fa-1x fa-fw fa-arrow-circle-right ml-1" data-original-title="" title="" aria-describedby="tooltip761958" />
+                                <a href="/digimoov_website_templates/static/pdf/PROGRAMME DE FORMATION EN LIGNE DE LA CAPACITE DE  TRANSPORT LOURD DE MARCHANDISES.pdf" alt="Transport lourd programme de formation" class="btn btn-primary btn-lg">
+                                    <span aria-describedby="tooltip254674">Télécharger</span>
+                                    <i class="fa fa-1x fa-fw fa-arrow-circle-right ml-1" aria-describedby="tooltip761958" />
                                 </a>
                             </div>
                         </div>
@@ -296,7 +293,7 @@
                             </div>
                             <div class="row wrap-feature-26 m-t-40 p-t-30">
                                 <div class="col-md-6">
-                                    <img src="/digimoov_website_templates/static/img/transport-routier/2.png" alt=" " class="img-responsive img img-fluid" data-original-title="" title="" aria-describedby="tooltip616299" />
+                                    <img src="/digimoov_website_templates/static/img/transport-routier/2.png" alt=" " class="img-responsive img img-fluid" aria-describedby="tooltip616299" />
                                 </div>
                                 <div class="col-md-6 align-self-center">
                                     <h4 class="custom_p m-t-30">
@@ -316,38 +313,19 @@
                         </div>
                     </div>
                 </section>
-                <section class="s_text_image pt32 pb0" data-name="Text - Image">
+                <section class="s_text_image pt32 pb0" style="word-break: break-word; position: relative; z-index: 0;">
                     <div class="container">
                         <div class="row align-items-center">
                             <div class="col-lg-6 pt16 pb0" style="border-style: none; border-width: 0px">
                                 <h2>
-                                    Comment financer ma formation ?
-                                    <text class="h1-title">&amp;nbsp;</text>
-                                </h2>
+                                    Comment financer ma formation ?</h2>
                                 <h4 />
                                 <h4>
-                                    <span style="background-color: transparent; color: rgb(0, 0, 0); font-family: Arial; font-size: 18px; font-variant-east-asian: normal; font-variant-numeric: normal; vertical-align: baseline; white-space: pre-wrap;">Digimoov vous offre la possibilité de financer votre formation de deux façons :</span>
-                                    <br />
-                                </h4>
-                                <h4>
-                                    <span style="background-color: transparent; color: rgb(0, 0, 0); font-family: Arial; font-size: 18px; font-variant-east-asian: normal; font-variant-numeric: normal; font-weight: 700; vertical-align: baseline; white-space: pre-wrap;">Par auto-financement (carte bancaire) :&amp;nbsp;</span>
-                                    &amp;nbsp;&amp;nbsp;&amp;nbsp;
-                                    <font style="color: rgb(0, 0, 0);">a</font>
-                                    &amp;nbsp;
-                                    <span style="background-color: transparent; color: rgb(0, 0, 0); font-family: Arial; font-size: 18px; font-variant-east-asian: normal; font-variant-numeric: normal; vertical-align: baseline; white-space: pre-wrap;" />
-                                    <span style="background-color: transparent; color: rgb(0, 0, 0); font-family: Arial; font-size: 18px; font-variant-east-asian: normal; font-variant-numeric: normal; vertical-align: baseline; white-space: pre-wrap;">fin de faciliter votre démarche , Digimoov vous offre la possibilité de financer votre formation en totalité par carte bancaire. </span>
-                                </h4>
-                                <h4>
-                                    <span style="background-color: transparent; color: rgb(0, 0, 0); font-family: Arial; font-size: 18px; font-variant-east-asian: normal; font-variant-numeric: normal; font-weight: 700; vertical-align: baseline; white-space: pre-wrap;">En mobilisant votre compte CPF&amp;nbsp;</span>
-                                    <br />
-                                    <span style="background-color: transparent; color: rgb(0, 0, 0); font-family: Arial; font-size: 18px; font-variant-east-asian: normal; font-variant-numeric: normal; vertical-align: baseline; white-space: pre-wrap;">Salariés, demandeurs d’emploi ou encore travailleurs indépendants : vous avez tous des droits à la formation professionnelle, d’où la nécessité de la mise en place du compte personnel de formation (CPF), qui a remplacé depuis le 1er janvier 2015 le Droit Individuel à la Formation (DIF).</span>
-                                    <br />
-                                    <span style="background-color: transparent; color: rgb(0, 0, 0); font-family: Arial; font-size: 18px; font-variant-east-asian: normal; font-variant-numeric: normal; vertical-align: baseline; white-space: pre-wrap;">C’est un droit octroyé à ces catégories de personnes pour financer une formation professionnelle qualifiante ou certifiante. L’objectif consiste à améliorer leur niveau de qualification et accroître leurs compétences.</span>
-                                    <span style="background-color: transparent; color: rgb(0, 0, 255); font-family: Arial; font-size: 18px; font-variant-east-asian: normal; font-variant-numeric: normal; font-weight: 700; vertical-align: baseline; white-space: pre-wrap;">&amp;nbsp; </span>
-                                    <br />
+                                    <span style="background-color: transparent; color: rgb(0, 0, 0); font-size: 18px; font-variant-east-asian: normal; font-variant-numeric: normal; vertical-align: baseline;">A</span>
+                                    <span style="background-color: transparent; color: rgb(0, 0, 0); font-family: Arial; font-size: 18px; font-variant-east-asian: normal; font-variant-numeric: normal; vertical-align: baseline; white-space: pre-wrap;">fin de faciliter votre démarche, Digimoov vous offre la possibilité de facilité de paiement en 5 fois sans frais.</span>
                                 </h4>
                                 <div class="s_btn text-center pt16 pb16" data-name="Button">
-                                    <a href="#" class="btn btn-primary" data-original-title="" title="" aria-describedby="tooltip906021">En savoir plus</a>
+                                    <a href="/contact" class="btn btn-primary" alt="transport lourd en savoir plus">En savoir plus</a>
                                 </div>
                                 <p />
                             </div>
@@ -379,13 +357,8 @@
                                     </p>
                                     <br />
                                 </div> -->
-                                <div class="text-center text-white border-0" style="
-                    background-color: #6e209f;
-                    border-top-left-radius: 25px;
-                    border-top-right-radius: 25px;
-                  ">
+                                <div class="text-center text-white border-0" style="                     background-color: #6e209f;                     border-top-left-radius: 25px;                     border-top-right-radius: 25px;                   ">
                                     <br />
-
                                     <p>
                                         <strong style="color: white">
                                             <font style="font-size: 30px">Capacité transport routier</font>
@@ -398,7 +371,6 @@
                                     <t t-if="product.default_code=='transport-routier'">
                                         <form action="/shop/cart/update" method="post" id="form-transport-routier">
                                             <input t-att-value="request.website.microsoft_tracking_key" id="microsoft_tracking_key" type="hidden" />
-
                                             <input type="hidden" class="product_id" name="product_id" t-att-value="product.id" />
                                             <input type="hidden" name="promo" t-att-value="promo.id" t-if="promo" />
                                             <div class="card-body p-card-pricing" style="background-color: white">
@@ -423,11 +395,8 @@
                                                         <i class="fa fa-check-circle fa-lg mr-2 text-success" />
                                                         Accès aux corrigés de plus de 14 examens d'entraînement
                                                     </li>
-
-
                                                 </ul>
                                                 <div class="text-center ">
-
                                                     <b style="font-size:60px !important; color:#000000" t-if="not promo">
                                                         <span t-esc="round(product.list_price)" />
                                                         <span t-esc="product.currency_id.symbol" />
@@ -440,22 +409,14 @@
                                                             </t>
                                                         </t>
                                                     </b>
-
                                                 </div>
-                                                <p class="
-                                                                medium
-                                                                text-center
-                                                                font-weight-bolder
-                                                                text-secondary
-                                                            " style="color: red !important">
+                                                <p class="                                                                 medium                                                                 text-center                                                                 font-weight-bolder                                                                 text-secondary                                                             " style="color: red !important">
                                                                                             Paiement 1 fois
                                     </p>
                                                 <br />
                                                 <button class="btn btn-block text-white" style="background-color: #6e209f; border-radius: 25px">
 Je m'inscris
                                     </button>
-
-
                                             </div>
                                         </form>
                                     </t>
@@ -464,8 +425,9 @@ Je m'inscris
                         </div>
                     </div>
                 </div>
-
             </div>
         </t>
+
+
     </template>
 </odoo>
