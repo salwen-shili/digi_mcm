@@ -156,7 +156,7 @@
                                             de 3.5 t), ou qui souhaite être reconnue dans la profession. 
                                         </p>
                                         <div class="banner-btn s_btn text-center" style="margin-top:16px" data-name="Button">
-                                            <a style="font-size: 18px;" href="/digimoov_website_templates/static/pdf/Les démarches pour obtenir la capacité de transport lourd de marchandises.pdf" class="bannerbtn btn btn-alpha rounded-circle" title="je m'inscirs" alt="boutton je m'inscris" aria-describedby="tooltip679124">
+                                            <a style="font-size: 18px;" href="/digimoov_website_templates/static/pdf/Les démarches pour obtenir la capacité de transport lourd de marchandises.pdf" target="_blank" rel="noopener" class="bannerbtn btn btn-alpha rounded-circle" title="je m'inscirs" alt="boutton je m'inscris" aria-describedby="tooltip679124">
                                                Télécharger les démarches d'inscription
                                             </a>
                                         </div>
@@ -257,7 +257,7 @@
                                 </p>
                             </div>
                             <div class="col-lg-3 s_btn text-right pt8 pb24" data-name="Button">
-                                <a href="/digimoov_website_templates/static/pdf/PROGRAMME DE FORMATION EN LIGNE DE LA CAPACITE DE  TRANSPORT LOURD DE MARCHANDISES.pdf" alt="Transport lourd programme de formation" class="btn btn-primary btn-lg">
+                                <a target="_blank" rel="noopener" href="/digimoov_website_templates/static/pdf/PROGRAMME DE FORMATION EN LIGNE DE LA CAPACITE DE  TRANSPORT LOURD DE MARCHANDISES.pdf" alt="Transport lourd programme de formation" class="btn btn-primary btn-lg">
                                     <span aria-describedby="tooltip254674">Télécharger</span>
                                     <i class="fa fa-1x fa-fw fa-arrow-circle-right ml-1" aria-describedby="tooltip761958" />
                                 </a>
@@ -325,7 +325,7 @@
                                     <span style="background-color: transparent; color: rgb(0, 0, 0); font-family: Arial; font-size: 18px; font-variant-east-asian: normal; font-variant-numeric: normal; vertical-align: baseline; white-space: pre-wrap;">fin de faciliter votre démarche, Digimoov vous offre la possibilité de facilité de paiement en 5 fois sans frais.</span>
                                 </h4>
                                 <div class="s_btn text-center pt16 pb16" data-name="Button">
-                                    <a href="/contact" class="btn btn-primary" alt="transport lourd en savoir plus">En savoir plus</a>
+                                    <a target="_blank" rel="noopener" href="/contact" class="btn btn-primary" alt="transport lourd en savoir plus">En savoir plus</a>
                                 </div>
                                 <p />
                             </div>
