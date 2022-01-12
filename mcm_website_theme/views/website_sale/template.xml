@@ -568,12 +568,13 @@
 
     </template>
     <template id="mcm_website_sale_header" inherit_id="website_sale.header">
-        <xpath expr="//a[1]" position="replace">
+        <xpath expr="//a[@href='/shop/cart']" position="replace">
             <a href="/shop/cart" class="nav-link" rel="nofollow">
                 <i class="fa fa-shopping-cart"/>
                 Mon Panier
                 <sup t-attf-class="my_cart_quantity badge badge-primary"
-                     t-esc="website_sale_order and website_sale_order.cart_quantity or ''"/>
+                     t-esc="website_sale_order and website_sale_order.cart_quantity or ''"
+                     t-att-data-order-id="website_sale_order and website_sale_order.id or ''"/>
             </a>
         </xpath>
     </template>
