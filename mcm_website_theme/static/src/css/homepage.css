@@ -1,3 +1,34 @@
+#sh_corpomate_theme_section_258 {
+  padding: 0 !important;
+}
+#sh_corpomate_theme_section_229 {
+  padding: 0 !important;
+}
+
+#sh_corpomate_theme_section_60 .sh_left_content p:nth-child(2) {
+  -webkit-line-clamp: 5 !important;
+}
+#sh_corpomate_theme_section_184 .sh_content .sh_more_btn.sh_btn_cm_8 {
+  background: black;
+  border: 2px solid #0a0a0a;
+  padding: 8px 25px;
+  border-radius: 10px;
+  margin-right: 15px;
+  font-size: 16px;
+  letter-spacing: 1px;
+}
+
+@media (max-width: 410px) {
+  res-button {
+    margin-bottom: 1rem;
+  }
+}
+.para {
+  font-size: 16px !important;
+  line-height: 28px !important;
+  color: #000 !important;
+}
+
 @media all and (min-width: 1512px) {
   .container-banner {
     padding: 0rem 10rem;
