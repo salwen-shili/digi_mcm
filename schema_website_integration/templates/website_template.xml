@@ -10,7 +10,7 @@
                 "@type": "WebSite",
                 "name": "MCM ACADEMY",
                 "url": "https://www.mcm-academy.fr"
-                
+
                 }
             </script>
             <!-- <script t-if="website.id==2" type="application/ld+json">{
@@ -19,6 +19,11 @@
                 "name": "DIGIMOOV",
                 "url": "https://www.digimoov.fr",
                 }</script> -->
+        </xpath>
+    </template>
+    <template id="mcm_website_blog_post_short" inherit_id="website_blog.blog_post_short">
+        <xpath expr="//meta[@name='robots']" position="replace">
+            <meta name="robots" content="noindex"/>
         </xpath>
     </template>
 </odoo>
