@@ -3,7 +3,6 @@
   <template id="mcm_website_theme.mcm_website_examen" name="Examen | MCM ACADEMY">
     <t t-call="website.layout">
       <div id="wrap" class="oe_structure oe_empty">
-        <link href="/mcm_website_theme/static/src/css/theme.css" rel="stylesheet" />
         <script defer="defer" type="text/javascript" src="/digimoov_website_templates/static/src/js/lazy-min.min.js"></script>
         <link rel="stylesheet" href="/mcm_website_theme/static/src/css/homepage.min.css" />
         <script type="text/javascript" src="/mcm_website_theme/static/src/js/msAds.min.js"></script>
@@ -246,7 +245,7 @@
                   </li>
 
 
-                  <a href="/blog/blog-taxi-10/post/tout-savoir-sur-l-examen-taxi-vtc-moto-taxi-27" target="_blank" rel="noopener">
+                  <a target="_blank">
                     <button class="button-more learn-more">
                       <span class="circle">
                         <span class="icon arrow"></span>
@@ -288,7 +287,7 @@
                   </li>
 
 
-                  <a href="/blog/blog-taxi-10/post/tout-savoir-sur-l-examen-taxi-vtc-moto-taxi-27" target="_blank" rel="noopener">
+                  <a target="_blank">
                     <button class="button-more learn-more">
                       <span class="circle">
                         <span class="icon arrow"></span>
