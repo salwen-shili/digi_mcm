@@ -12,7 +12,7 @@
     'sequence': 1,
     'author': 'Futurelens',
     'website': 'http://thefuturelens.com',
-    'depends': ['auth_signup','sms'],
+    'depends': ['auth_signup','sms','web'],
     'data': [
         'views/auth_signup_extend_views.xml',
         'views/res_partner_view.xml',
