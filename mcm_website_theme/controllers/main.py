@@ -566,6 +566,46 @@ class Routes_Site(http.Controller):
                 else:
                     return request.redirect('/shop/cart')
         return http.request.render('mcm_contact_documents.portal_my_home', {'step': 'document'})
+    
+    @http.route('/test-bolt', type='http', auth='public', website=True)
+    def bolttest(self):
+
+        #La page n'est affichée que sur le site mcm
+        taxi_category = request.env['product.public.category'].sudo().search([('name', 'ilike', 'Formation TAXI')])
+        vtc_category = request.env['product.public.category'].sudo().search([('name', 'ilike', 'Formation VTC')])
+        vmdtr_category = request.env['product.public.category'].sudo().search([('name', 'ilike', 'Formation VMDTR')])
+
+        # Pricelist sur la page financement
+        mcm_products = request.env['product.product'].sudo().search([('company_id', '=', 1)], order="list_price")
+        print(mcm_products)
+        taxi_price = False
+        vtc_price = False
+        vmdtr_price = False
+        if mcm_products:
+            for product in mcm_products:
+                if (product.default_code == 'taxi'):
+                    taxi_price = round(product.list_price)
+                if (product.default_code == 'vmdtr'):
+                    vmdtr_price = round(product.list_price)
+                if (product.default_code == 'vtc'):
+                    vtc_price = round(product.list_price)
+
+        values = {
+            'taxi': taxi_category,
+            'vtc': vtc_category,
+            'vmdtr': vmdtr_category,
+            'taxi_price': taxi_price if taxi_price else '',
+            'vtc_price': vtc_price if vtc_price else '',
+            'vmdtr_price': vmdtr_price if vmdtr_price else '',
+            'mcm_products': mcm_products,  # send mcm product to homepage
+        }
+        if request.website.id == 2:
+            raise werkzeug.exceptions.NotFound()
+        elif request.website.id == 1:
+            return request.render("mcm_website_theme.mcm_bolt", values)
+
+
+
 
 
 class WebsiteSale(WebsiteSale):
