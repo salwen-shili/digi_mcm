@@ -4,698 +4,488 @@
 
     <t t-call="website.layout">
       <div id="wrap" class="oe_structure oe_empty">
-        <script defer="defer" type="text/javascript" src="/digimoov_website_templates/static/src/js/lazy-min.min.js"></script>
-        <link rel="stylesheet" href="/mcm_website_theme/static/src/css/homepage.min.css" />
-        <script type="text/javascript" src="/mcm_website_theme/static/src/js/msAds.min.js"></script>
+        <link rel="stylesheet" href="/mcm_website_theme/static/src/css/style_taxi.min.css" />
+        <script type="text/javascript" src="/mcm_website_theme/static/src/js/msAds.min.js" defer="defer" />
         <link rel="stylesheet" href="/mcm_website_theme/static/src/css/cta-button.min.css" />
+        <script defer="defer" type="text/javascript" src="/digimoov_website_templates/static/src/js/lazy-min.min.js" />
 
-        <style>
-          h1 {
-            text-transform: uppercase;
-          }
 
-          h2 {
-            text-transform: uppercase;
-          }
+        <div id="wrap" class="oe_structure oe_empty">
+          <!-- section 1-->
+          <section id="sh_corpomate_theme_section_258" class="sh_animation_part pt8" data-name="Formation chauffeur TAXI">
+            <div class="container-banner">
+              <div class="row">
+                <div class="col-lg-6 pb16 pt56">
+                  <div class="js-scroll slide-left">
+                    <div class="text-center">
+                      <h1 class="title-mcm slider-text-info">
+                        Formation Chauffeur
+                        <br />
 
-          #sh_corpomate_theme_section_258 {
-            padding: 0 !important;
-          }
-
-          p {
-            font-size: 17px;
-            line-height: 28px;
-            color: #000;
-          }
-
-          .nav-pills .nav-link.active,
-          .nav-pills .show .nav-link {
-            background-color: #000;
-          }
-
-          a {
-            color: #000;
-          }
-
-          a:hover {
-            color: #000;
-          }
-
-          .btn {
-            background-color: #000;
-            border-color: #000;
-            color: #fff;
-          }
-
-          .btn:hover {
-            background-color: #7f7e7e;
-          }
-
-          #sh_corpomate_theme_section_290 .sh_feature_box p {
-            margin-bottom: 0px !important;
-            transition: 0.5s;
-            font-size: 17px;
-            line-height: 1.8;
-            display: block !important;
-            -webkit-line-clamp: 6 !important;
-            -webkit-box-orient: initital;
-            overflow: hidden;
-            color: #616161;
-            font-family: 'Poppins', sans-serif;
-          }
-
-          .feature_container {
-            margin-block-start: 15px;
-            flex-direction: column;
-            justify-content: space-between;
-          }
-
-          .read_more {
-            color: #2667ae !important;
-            font: inherit !important;
-            font-size: 16px !important;
-          }
-
-          #sh_corpomate_theme_section_76 .sh_content .sh_num_icon {
-            font-size: 30px;
-            color: #000000;
-            border: 1px solid #cecece;
-            border-radius: 50%;
-            padding: 16px 20px 20px 19px;
-            width: 78px;
-            height: 78px;
-            margin-top: -15px;
-            position: relative;
-            margin: 0 auto;
-            background: #fdd125;
-          }
-
-          #sh_corpomate_theme_section_76 .sh_content:hover .sh_num_icon {
-            font-size: 30px;
-            color: #fff;
-            border: 1px solid #cecece;
-            border-radius: 50%;
-            padding: 18px 20px 20px 19px;
-            width: 83px;
-            height: 83px;
-            margin-top: -15px;
-            position: relative;
-            margin: 0 auto;
-            background: #000000;
-          }
-
-          #sh_corpomate_theme_section_76 .sh_content p {
-            padding: 0 0 !important;
-            overflow: visible;
-            -webkit-box-orient: horizontal;
-          }
-
-          .res_height {
-            height: 423px;
-          }
-
-          @media (max-width: 467.98px) {
-            .res_height {
-              height: 243px;
-            }
-          }
-
-          #sh_corpomate_theme_section_76 .sh_content {
-            padding-top: 0;
-          }
-
-          #sh_corpomate_theme_section_76 .sh_content p:after {
-            top: 20px;
-          }
-
-          .card-title {
-            font-size: 23px;
-            font-weight: 700;
-            margin-block-end: 18px;
-            text-align: center;
-          }
-        </style>
-
-        <section id="sh_corpomate_theme_section_258" class="sh_animation_part pt8" data-name="Formation chauffeur TAXI">
-          <div class="container-banner">
-            <div class="row">
-              <div class="col-lg-6 pb16 pt56" style="border-style: none; border-width: 0px;">
-                <div class="js-scroll slide-left">
-                  <div class="text-center">
-                    <h1 class="title-mcm slider-text-info">
-                      Formation Chauffeur
+                        <span class="subtitle-mcm-formation">Taxi</span>
+                      </h1>
                       <br />
-                      de
-                      <span class="subtitle-mcm-formation">Taxi</span>
-                    </h1>
-                    <br />
-                    <p class="heading text-center">
-                      Besoin de formation pour devenir chauffeur TAXI, pour renouveler votre carte
-                      professionnelle, ou encore pour une passerelle TAXI-VTC ?
-                    </p>
-                    <p>
-                      MCM Academy a tout pour satisfaire vos besoins en formation TAXI en vous offrant un
-                      suivi complet, du jour de l’inscription à l’obtention de votre carte
-                      professionnelle, et en vous accompagnant dans la création de votre entreprise.
-                    </p>
-                    <br />
-                    <a class="animated-button-yellow" href="#pricing" title="Inscription">
-                      <span></span>
-                      <span></span>
-                      <span></span>
-                      <span></span>
-                      S'inscrire
-                    </a>
-
-                  </div>
-                </div>
-              </div>
-              <div class="col-lg-6 pb48 pt16 js-scroll slide-right">
-                <br />
-                <img data-src="/mcm_website_theme/static/src/img/formation_taxi/devenir_chauffeur_taxi.webp" data-srcSafari="/mcm_website_theme/static/src/img/formation_taxi/devenir_chauffeur_taxi.png" class="img img-fluid mx-auto lazy" alt="Devenir chauffeur Taxi, VTC ou Moto-Taxi" title="Taxi chauffeur" style="text-align: center;" />
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <!-- Logos-->
-        <section class="container pt40 pb32 js-scroll fade-in-bottom">
-          <div class="row align-items-center justify-content-center">
-            <div class="col-md-3 col-sm-12 text-center mb-4 mb-md-0">
-              <img data-src="/mcm_website_theme/static/src/img/formation-éligible-au-compte-personnel-de-formation.webp" data-srcSafari="/mcm_website_theme/static/src/img/formation-éligible-au-compte-personnel-de-formation.png" class="img-fluid lazy" style="width: 100px" title="Formation éligible au CPF" alt="logo mon compte de formation" />
-            </div>
-            <div class="col-md-3 col-sm-12 text-center mb-4 mb-md-0">
-              <img class="img-fluid lazy" style="width: 188px" data-src="/mcm_website_theme/static/src/img/formation-taxi-vtc-certifiée-qualiopi.webp" data-srcSafari="/mcm_website_theme/static/src/img/formation-taxi-vtc-certifiée-qualiopi.png" title="qualiopi" alt="qualiopi" />
-            </div>
-            <div class="col-md-3 col-sm-12 text-center mb-4 mb-md-0">
-              <img class="img-fluid lazy" style="width: 110px" data-srcSafari="/mcm_website_theme/static/src/img/mcm academy-partenaire-france-relance.jpg" data-src="/mcm_website_theme/static/src/img/mcm academy-partenaire-france-relance.webp" title="logo france relance" alt="logo france relance" />
-            </div>
-            <div class="col-md-3 col-sm-12 text-center mb-4 mb-md-0">
-              <img class="img-fluid lazy" style="width: 100px" data-src="/mcm_website_theme/static/src/img/mcm academy-centre-de-formation-taxi-vtc-carte pro-préfecture.webp" data-srcSafari="/mcm_website_theme/static/src/img/mcm academy-centre-de-formation-taxi-vtc-carte pro-préfecture.png" title="Centre agrée de la préfecture" alt="Centre agrée de la préfecture" />
-            </div>
-          </div>
-        </section>
-        <!-- fin LOGOS-->
-        <!-- second section-->
-        <section class="s_text_image mt24 mb16">
-          <div class="container">
-            <div class="row align-items-center js-scroll slide-left">
-              <div class="col-lg-6" style="border-style: none; border-width: 0px">
-                <h2 style="font-size: 33px; font-weight:700; color: #000; margin-block-end: 1.2rem; ">
-                  Devenir chauffeur TAXI
-                </h2>
-                <p>
-                  Afin d'exercer la profession de chauffeur TAXI en toute légalité,
-                  vous devez avoir votre carte professionnelle.
-                  Pour l'avoir , le passage d'un examen d'admission et
-                  d'admissibilité est obligatoire.
-                  Si vous voulez maximiser vos chance de réussite,
-                  vous devez passer par la case formation.
-                  Ce que nous vous proposons chez MCM Academy,
-                  c’est la garantie d'une formation en ligne théorique et pratique de qualité,
-                  qui vous permettra non seulement d’acquérir de nouvelles connaissances, mais
-                  également de réussir votre préparation à l’examen.
-                </p>
-              </div>
-              <div class="col-lg-6 pb24 pt0 js-scroll slide-right">
-                <img data-src="/mcm_website_theme/static/src/img/formation_taxi/comment-devenir-chauffeur-taxi.webp" data-srcsafari="/mcm_website_theme/static/src/img/formation_taxi/comment-devenir-chauffeur-taxi.png" class="img img-fluid mx-auto lazy" alt="devenir conducteur taxi" title="Devenir conducteur taxi" style="text-align: center;" />
-              </div>
-            </div>
-          </div>
-        </section>
-        <!-- Etapes new-->
-        <section id="sh_corpomate_theme_section_76">
-          <div class="container">
-            <div class="row js-scroll fade-in-top">
-              <div class="container pt16 pb16" style="border-style: none; border-width: 0px;">
-                <div class="col-lg-12 s_title pt24 pb16" style="text-align: center">
-                  <h3 class="font-weight-bold display-4 " style="font-size: 26px">
-                    Les étapes à suivre pour devenir chauffeur TAXI
-                  </h3>
-                </div>
-              </div>
-              <div class="col-md-4 ">
-                <div class="sh_content">
-                  <div class="sh_num_icon">
-                    <span class="sh_icon">1</span>
-                  </div>
-                  <div class="feature_container">
-                    <h4 style="font-weight: 600; font-size:20px !important">
-                      1. Souscrire à la formation en ligne à la Chambre des
-                      Métiers et de l'Artisanat (CMA)
-                    </h4>
-                    <p class="font-weight-light my-3">
-                      Une inscription sur la plateforme de la Chambre
-                      des Métiers et de l'Artisanat (CMA) est obligatoire.
-                    </p>
-                    <div class="text-center" style="margin-block-end: 23px;">
-                      <a class="read_more" href="/mcm_website_theme/static/pdf/DEMARCHES_D'INSCRIPTION_A_LA_CMA_-_MCM_ACADEMY.pdf">
-                        En savoir plus
-                        <i class="fa fa-info-circle"></i>
-                      </a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="col-md-4 ">
-                <div class="sh_content sh_second_content">
-                  <div class="sh_num_icon">
-                    <span class="sh_icon">2</span>
-                  </div>
-                  <div class="feature_container">
-                    <h4 style="font-weight: 600; font-size:20px !important">
-                      2. Souscrire à la formation en ligne chez MCM Academy
-                    </h4>
-                    <p class="font-weight-light my-3">
-                      Inscription facile en 3 étapes : tout se passe sur notre site web.
-                    </p>
-                    <div class="text-center" style="margin-block-end: 23px;">
-                      <a class="read_more" href="/mcm_website_theme/static/pdf/DEMARCHES_D'INSCRIPTION_SUR_LE_SITE_MCM_ACADEMY.pdf">
-                        En savoir plus
-                        <i class="fa fa-info-circle"></i>
-                      </a>
-
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="col-md-4 ">
-                <div class="sh_content sh_last_content">
-                  <div class="sh_num_icon">
-                    <span class="sh_icon">3</span>
-                  </div>
-                  <div class="feature_container">
-                    <h4 style="font-weight: 600; font-size:20px !important">
-                      3. Déposer votre dossier à la préfecture pour obtenir votre carte professionnelle
-                    </h4>
-                    <p class="font-weight-light my-3">
-                      Une fois l’examen passé et votre certificat de réussite obtenu, il faut déposer un
-                      dossier
-                      à la préfecture.
-                    </p>
-                    <div class="text-center" style="margin-block-end: 23px;">
-                      <a class="read_more" href="/mcm_website_theme/static/pdf/Devenez_chauffeur_taxi_vtc_démarches_dépôt_dossier_préfecture.pdf">
-                        En savoir plus
-                        <i class="fa fa-info-circle"></i>
-                      </a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-        <!-- Telecharger-->
-        <section id="sh_corpomate_theme_section_167" class="sh_animation_part" data-name="Call To Action" style="background-color: rgb(253, 209, 5); margin : 76px 0px;">
-          <div class="container js-scroll fade-in-top">
-            <h3 style="color: rgb(0, 0, 0); font-size: 19px">
-              TÉLÉCHARGER LE PROGRAMME DE LA FORMATION TAXI
-            </h3>
-
-            <a class="animated-button-black" href="/mcm_website_theme/static/pdf/programme_de_formation_MCM_ACADEMY_2021.pdf" title="Programme de la formation VTC">
-              <span></span>
-              <span></span>
-              <span></span>
-              <span></span>
-              JE TELECHARGE
-            </a>
-          </div>
-        </section>
-        <!-- -->
-
-        <section class="s_text_image pt0 pb4">
-          <div class="container">
-            <div class="row align-items-center">
-              <div class="col-lg-6 pb24 pt0 js-scroll slide-left">
-                <img data-src="/mcm_website_theme/static/src/img/formation_taxi/P T 2.webp" data-srcSafari="/mcm_website_theme/static/src/img/formation_taxi/P T 2.png" class="img img-fluid mx-auto lazy res_height" alt="Devenir conducteur taxi" title="Devenir conducteur taxi" style="text-align: center;" />
-              </div>
-              <div class="col-lg-6 js-scroll slide-right" style="border-style: none; border-width: 0px">
-                <h2 class="s_title_default pb16" style="font-size: 33px; font-weight:700">
-                  La formation taxi
-                </h2>
-                <h3 style="font-size: 26px; font-weight:700; color: #000; margin-block-end: 1.2rem; ">
-                  À qui s’adresse cette formation ?
-                </h3>
-                <p>
-                  Notre formation TAXI s’adresse à toute personne
-                  majeure intéressée par les métiers de transport –
-                  en recherche d’emploi stable, souhaitant devenir autoentrepreneur,
-                  ou en reconversion professionnelle
-                  – témoignant des prérequis suivants :
-                </p>
-                <p>
-                  <ul class="fa-ul" style="font-size:16.5px; line-height: 1.5rem;">
-                    <li>
-                      <i class="fa fa-chevron-right" style="font-size: 13px; margin: 0px 7px 5px -17px"></i>
-                      Permis B non probatoire
-                    </li>
-                    <i class="fa-li fa fa-square" aria-hidden="true"></i>
-                    <li>
-                      <i class="fa fa-chevron-right" style="font-size: 13px; margin: 0px 7px 5px -17px"></i>
-                      Attestation d’aptitude médicale auprès d’un médecin agréé par la préfecture par la
-                    préfecture
-                    </li>
-                    <li>
-                      <i class="fa fa-chevron-right" style="font-size: 13px; margin: 0px 7px 5px -17px"></i>
-                      Casier judiciaire B2 non affecté de certaines condamnations
-                    </li>
-                  </ul>
-                </p>
-                <h3 style="font-size: 26px; font-weight:700; color: #000; margin-block-end: 1.2rem; ">
-                  Ses objectifs :
-                </h3>
-
-                <p>
-                  <ul class="fa-ul" style="font-size:16.5px; line-height: 1.5rem;">
-                    <li>
-                      <i class="fa fa-chevron-right" style="font-size: 13px; margin: 0px 7px 5px -17px"></i>
-                      Acquérir les savoirs nécessaires à la réussite de l’examen TAXI
-                    </li>
-                    <li>
-                      <i class="fa fa-chevron-right" style="font-size: 13px; margin: 0px 7px 5px -17px"></i>
-                      Préparation aux épreuves d’admissibilité de l’examen TAXI (théorie)
-                    </li>
-
-                  </ul>
-                </p>
-              </div>
-              <div class="s_title col-lg-12 pt24 pb0 js-scroll slide-left" style="text-align: center;                   border-style: none;                   border-width: 0px;                 ">
-                <div class="s_alert clearfix w-100 s_alert_sm alert-100" data-name="Alert">
-                  <i class="fa fa-2x fa-info-circle s_alert_icon" />
-                  <div class="s_alert_content">
-                    <p style="text-align: left">
-                      Nos formations incluent les personnes en situation d'handicap.
-                      Bien entendu, nous restons à votre disposition pour
-                      répondre à toutes vos questions, en contactant notre
-                      référent handicap sur notre espace client accessible
-                      sur notre site web
-                      <a href="https://www.mcm-academy.fr/service-clientele" style="background-color: rgb(255, 255, 255)">
-                        <span style="color: rgb(0, 0, 255)">par ici.</span>
-                      </a>
-
+                      <p class="para">
+                    Besoin de formation pour devenir chauffeur TAXI, pour
+                    renouveler votre carte professionnelle, ou encore pour une
+                    passerelle TAXI-VTC ? MCM Academy a tout pour satisfaire vos
+                    besoins en formations !
+                  </p>
                       <br />
-                    </p>
+                      <a class="animated-button-yellow" href="#pricing" alt="inscirption formation chauffeur taxi en ligne MCM ACADEMY" title="Inscription">
+                        <span />
+                        <span />
+                        <span />
+                        <span />
+                        S'inscrire
+                      </a>
+                    </div>
                   </div>
+                </div>
+                <div class="col-lg-6 pb48 pt16 js-scroll slide-right">
+                  <br />
+                  <img data-src="/mcm_website_theme/static/src/img/formation_taxi/devenir_chauffeur_taxi.webp" data-srcsafari="/mcm_website_theme/static/src/img/formation_taxi/devenir_chauffeur_taxi.png" class="img img-fluid mx-auto lazy text-center" alt="Devenir chauffeur Taxi, VTC ou Moto-Taxi" title="Chauffeur taxi" />
                 </div>
               </div>
             </div>
-          </div>
-        </section>
-        <!-- 3 columns -->
-        <section class="s_three_columns bg-200 pb32 pt0 js-scroll fade-in-top" data-name="Columns">
-          <div class="container">
-
-            <h3 style="font-size: 26px;
-    font-weight: 700;
-    color: #000;
-    margin-block-end: 1.2rem;
-    margin: 26px 0px;
-    text-align: center;">
-              Les différentes formations taxi
-            </h3>
-            <div class="row d-flex align-items-stretch">
-
-              <div class="col-lg-4 s_col_no_bgcolor pt16 pb16" style="border-style: none; border-width: 0px">
-
-                <div class="card bg-white">
-                  <img class="card-img-top lazy" data-src="/mcm_website_theme/static/src/img/formation_taxi/Formation-initiale-au-métier-de-TAXI.webp" data-srcSafari="/mcm_website_theme/static/src/img/formation_taxi/Formation-initiale-au-métier-de-TAXI.png" alt="formation taxi" title="Formation taxi" />
-                  <div class="card-body">
-                    <h4 class="card-title">
-                      Formation initiale au métier de TAXI
-                    </h4>
-                    <p>
-                      Afin d'exercer la profession de chauffeur TAXI en toute
-                      légalité, le passage d'un examen théorique et pratique
-                      est indispensable. Ce que nous vous proposons chez MCM Academy,
-                      c’est la garantie d'une formation en ligne théorique et pratique
-                      de qualité, qui vous permettra non seulement d’acquérir de
-                      nouvelles connaissances, mais également de réussir votre
-                      préparation à l’examen.
-                    </p>
-                  </div>
-                </div>
+          </section>
+          <!-- section logos-->
+          <section class="container pt40 pb32 js-scroll fade-in-bottom">
+            <div class="row align-items-center justify-content-center">
+              <div class="col-md-3 col-sm-12 text-center mb-4 mb-md-0">
+                <img data-src="/mcm_website_theme/static/src/img/formation-éligible-au-compte-personnel-de-formation.webp" data-srcsafari="/mcm_website_theme/static/src/img/formation-éligible-au-compte-personnel-de-formation.png" class="img-fluid lazy" style="width: 100px" title="Formation éligible au CPF" alt="logo mon compte de formation CPF" />
               </div>
-              <div class="col-lg-4 s_col_no_bgcolor pt16 pb16" style="border-style: none; border-width: 0px">
-                <div class="card bg-white">
-                  <img class="card-img-top lazy" data-src="/mcm_website_theme/static/src/img/formation_taxi/Formation-passerelle-VTC-TAXI.webp" data-srcSafari="/mcm_website_theme/static/src/img/formation_taxi/Formation-passerelle-VTC-TAXI.png" alt="Rétroviseur taxi" title="Rétroviseur taxi" />
-                  <div class="card-body">
-                    <h4 class="card-title">
-                      Formation passerelle VTC-TAXI
-                    </h4>
-                    <p>
-                      Depuis mai 2017, il est possible pour un stagiaire qui a
-                      réussi l’examen VTC de tronc commun de bénéficier d’une
-                      passerelle VTC-TAXI. Il devra donc passer deux modules
-                      théoriques (F et G) et une épreuve pratique pour pouvoir
-                      exercer la profession de chauffeur TAXI. Cette formation
-                      vous permettra de vous préparer à l'examen théorique et
-                      pratique de conducteur de TAXI en vue d'obtenir votre
-                      carte professionnelle de conducteur de TAXI.
-                    </p>
-                  </div>
-                </div>
+              <div class="col-md-3 col-sm-12 text-center mb-4 mb-md-0">
+                <img class="img-fluid lazy" style="width: 188px" data-src="/mcm_website_theme/static/src/img/formation-taxi-vtc-certifiée-qualiopi.webp" data-srcsafari="/mcm_website_theme/static/src/img/formation-taxi-vtc-certifiée-qualiopi.png" title="Centre certifié qualiopi" alt="Centre certifié qualiopi" />
               </div>
-              <div class="col-lg-4 s_col_no_bgcolor pt16 pb16" style="border-style: none; border-width: 0px">
-                <div class="card bg-white">
-                  <img class="card-img-top lazy" data-src="/mcm_website_theme/static/src/img/formation_taxi/Formation-continue-au-métier-de-TAXI.webp" data-srcSafari="/mcm_website_theme/static/src/img/formation_taxi/Formation-continue-au-métier-de-TAXI.png" alt="Candidat et formateur au métier de taxi" title="Candidat et formateur au métier de taxi" />
-                  <div class="card-body">
-                    <h4 class="card-title">
-                      Formation continue au métier de TAXI
-                    </h4>
-                    <p>
-                      Cette formation est obligatoire et doit être suivie tous les 5 ans.
-                      Nous vous conseillons d'effectuer un stage de remise à niveau dans
-                      un centre de formation agréé. Ce stage porte sur une actualisation
-                      des connaissances et répond aux attentes des professionnels TAXIS.
-                      Pour suivre cette formation, une demande s’effectue au préalable
-                      plusieurs mois avant l’expiration de la carte professionnelle.
-                    </p>
-                  </div>
-                </div>
+              <div class="col-md-3 col-sm-12 text-center mb-4 mb-md-0">
+                <img class="img-fluid lazy" style="width: 110px" data-srcsafari="/mcm_website_theme/static/src/img/mcm academy-partenaire-france-relance.jpg" data-src="/mcm_website_theme/static/src/img/mcm academy-partenaire-france-relance.webp" title="logo france relance" alt="logo france relance" />
+              </div>
+              <div class="col-md-3 col-sm-12 text-center mb-4 mb-md-0">
+                <img class="img-fluid lazy" style="width: 100px" data-src="/mcm_website_theme/static/src/img/mcm academy-centre-de-formation-taxi-vtc-carte pro-préfecture.webp" data-srcsafari="/mcm_website_theme/static/src/img/mcm academy-centre-de-formation-taxi-vtc-carte pro-préfecture.png" title="Centre agrée de la préfecture" alt="Centre agrée de la préfecture" />
               </div>
             </div>
-          </div>
-        </section>
-
-        <!-- -->
-
-        <section class="s_text_block pt0 pb0 js-scroll slide-left" data-name="Text block">
-          <div class="container">
-            <h3 style="font-size: 26px;
-    font-weight: 700;
-    color: #000;
-    margin-block-end: 1.2rem;
-    margin: 26px 0px;
-    text-align: center;">
-              Déroulement de la formation
-            </h3>
-            <div class="row">
-
-              <div class="pt32 col-lg-6 pb0" style="border-style: none; border-width: 0px">
-                <h4 style="font-size: 23px;
-    font-weight: 700;
-    margin-block-end: 18px;">
-                  Une formation Taxi théorique à distance de 70 H
-                </h4>
-                <p>
-                  Suivre une formation en ligne c'est"
-                  Savoir s'organiser pour réussir".
-                  Ce que nous vous offrons chez MCM ACADEMY c’est :
-                </p>
-                <ul class="fa-ul" style="font-size:16.5px; line-height: 1.5rem;">
-                  <li>
-                    <i class="fa fa-chevron-right" style="    font-size: 13px; margin: 0px 7px 5px -17px;"></i>
-                    Une
-                    formation complète
-                  </li>
-                  <li>
-                    <i class="fa fa-chevron-right" style="    font-size: 13px; margin: 0px 7px 5px -17px;"></i>
-                    A votre
-                    rythme
-                  </li>
-                  <li>
-                    <i class="fa fa-chevron-right" style="    font-size: 13px; margin: 0px 7px 5px -17px;"></i>
-                    Présentée
-                    sous
-                    différents
-                    supports
-                  </li>
-                  <li>
-                    <i class="fa fa-chevron-right" style="    font-size: 13px; margin: 0px 7px 5px -17px;"></i>
-                    Organisés
-                    par des
-                    experts du
-                    métiers
-                  </li>
-                  <li>
-                    <i class="fa fa-chevron-right" style="    font-size: 13px; margin: 0px 7px 5px -17px;"></i>
-                    Avec des
-                    programmes de
-                    révisions bien étudiés
-                  </li>
-                  <li>
-                    <i class="fa fa-chevron-right" style="    font-size: 13px; margin: 0px 7px 5px -17px;"></i>
-                    Un accès
-                    à des examens
-                    blancs
-                    pour s'entraîner
-                  </li>
-                  <li>
-                    <i class="fa fa-chevron-right" style="    font-size: 13px; margin: 0px 7px 5px -17px;"></i>
-                    Et un
-                    suivi personnalisé
-                    afin
-                    de bien vous préparer à l'examen.
-                  </li>
-                </ul>
-              </div>
-              <div class="pt32 col-lg-6 pb0" style="border-style: none; border-width: 0px">
-                <h4 style="font-size: 23px;
-    font-weight: 700;
-    margin-block-end: 18px;">
-                  Les supports de formation seront présentés sous formes de
-                </h4>
-                <ul class="fa-ul" style="font-size:16.5px; line-height: 1.5rem;">
-                  <li>
-                    <i class="fa fa-chevron-right" style="    font-size: 13px; margin: 0px 7px 5px -17px;"></i>
-                    Vidéos
-                  </li>
-                  <li>
-                    <i class="fa fa-chevron-right" style="    font-size: 13px; margin: 0px 7px 5px -17px;"></i>
-                    Cours en
-                    visioconférences
-                  </li>
-                  <li>
-                    <i class="fa fa-chevron-right" style="    font-size: 13px; margin: 0px 7px 5px -17px;"></i>
-                    Quizz en
-                    lignes
-                  </li>
-                  <li>
-                    <i class="fa fa-chevron-right" style="    font-size: 13px; margin: 0px 7px 5px -17px;"></i>
-                    Examens
-                    blancs en ligne
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </section>
-        <!-- -->
-        <div id="pricing" class="js-scroll fade-in-top">
-          <input t-att-value="request.website.microsoft_tracking_key" id="microsoft_tracking_key" type="hidden" />
-          <section id="sh_corpomate_theme_section_188" class="sh_animation_part" data-name="Pricing">
+          </section>
+          <!-- section Comment devenir chauffeur de taxi -->
+          <section class="s_text_image mt24 mb16">
             <div class="container">
-              <div class="sh_title mt48">
-                <h3>
-                  <b>Un tout pour garantir votre réussite et avoir un résultat à la hauteur de vos ambitions !
-                    Maintenant, à vous de jouer!</b>
-                  <br />
-                </h3>
-                <h4 style="
-                    margin-top: 20px;
-                    margin-bottom: 0.5rem;
-                    font-size: 18px;">
-                  Choisissez le pack qui vous convient&amp;nbsp;
-                </h4>
-                <p>
-                  <br />
-                </p>
+              <div class="row align-items-center">
+                <div class="col-lg-6 js-scroll slide-left">
+                  <h2>COMMENT DEVENIR CHAUFFEUR DE TAXI ?</h2>
+                  <p class="para">
+                    Afin d'exercer la profession de
+                    <b>chauffeur taxi</b>
+                    en toute légalité, vous devez remplir trois
+                    <b>conditions</b>
+                    : avoir un
+                    <b> permis de conduire (B) </b>
+                    de plus de 3 ans de validité, passer une
+                    <b>visite médicale</b>
+                    à la
+                    <b>préfecture</b>
+                    de votre région pour être reconnu apte à exercer ce métier, et
+                enfin avoir un
+                    <b>casier</b>
+                    judiciaire
+                    <b>vierge</b>
+                    . De même, pour avoir votre
+                    <b>carte professionnelle</b>
+                    , vous devez impérativement, passer un
+                    <b>examen</b>
+                    et le réussir. Cet
+                    <b>examen</b>
+                    est composé d’une
+                    <b>épreuve d'admission</b>
+                    et une
+                    <b>épreuve d’admissibilité</b>
+                  </p>
+                  <div class="s_btn text-left pt16 pb16" data-name="Buttons">
+                    <a alt="inscription MCM academy fomration chauffeur de taxi en ligne" title="inscription à la formation chauffeur de taxi en ligne" href="/web/login" target="_blank" rel="noopener">
+                      <button class="home-btn">Je m'inscris</button>
+                    </a>
+                  </div>
+                </div>
+                <div class="col-lg-6 pb24 pt0 js-scroll slide-right">
+                  <img data-src="/mcm_website_theme/static/src/img/formation_taxi/devenir-chauffeur-taxi.webp" data-srcsafari="/mcm_website_theme/static/src/img/formation_taxi/devenir-chauffeur-taxi.png" class="img img-fluid mx-auto lazy text-center" alt="homme pointant du doigt pour montrer comment devenir chauffeur taxi" title="Devenir conducteur taxi" />
+                </div>
               </div>
-              <div class="row" style="justify-content: center !important">
-                <div class="col-md-5 sh_animation_part">
-                  <div class="sh_pricing">
-                    <t t-foreach="mcm_products" t-as="product">
-                      <t t-if="product.default_code=='taxi'">
-                        <form action="/shop/cart/update" method="post" id="form-1-2">
-                          <input type="hidden" class="product_id" name="product_id" id="taxi_product" t-att-value="product.id" />
-                          <input type="hidden" name="promo" t-att-value="promo.id" t-if="promo" />
-                          <h4>PACK TAXI</h4>
-                          <h5 style="color: #636161">Éligible au CPF</h5>
-                          <h4>
-                            <span t-esc="round(product.list_price)" />
-                            <span style="color: #fdd105" t-esc="product.currency_id.symbol" />
-                          </h4>
-                          <ul>
-                            <li>Formation 70 h (100 % en ligne)</li>
-                            <li>Accès à + de 12 examens d'entraînement</li>
-                            <li>Assistance&amp;nbsp;par mail</li>
-                            <li>Assistance&amp;nbsp;par téléphone</li>
-                            <li>Assistance&amp;nbsp;par visioconférence</li>
-                            <li>
+            </div>
+          </section>
+          <!-- Voici les démarches pour devenir chauffeur TAXI-->
+          <section id="sh_corpomate_theme_section_52">
+            <div class="container">
+              <h3 class="text-center mbe js-scroll slide-left" style="margin-top: 52px; max-width: 100% !important">
+            Voici les démarches pour devenir chauffeur TAXI
+          </h3>
+              <div class="row js-scroll fade-in-top">
+                <div class="col-lg-4 col-md-4">
+                  <div class="sh_content sh_animation_part">
+                    <div class="sh_number">
+                      <span class="sh_num o_default_snippet_text">01</span>
+                    </div>
+                    <div class="sh_description">
+                      <h4 style="font-size: 18px">
+                    Déposer votre dossier d'inscription sur le site de la
+                    chambre des métiers et de l'artisanat.
+                  </h4>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-lg-4 col-md-4">
+                  <div class="sh_content sh_animation_part">
+                    <div class="sh_number">
+                      <span class="sh_num o_default_snippet_text">02</span>
+                    </div>
+                    <div class="sh_description">
+                      <h4 style="font-size: 18px; padding-block-end: 21px">
+                    Souscrire sur notre site web à la formation taxi.
+                  </h4>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-lg-4 col-md-4">
+                  <div class="sh_content sh_animation_part">
+                    <div class="sh_number">
+                      <span class="sh_num o_default_snippet_text">03</span>
+                    </div>
+                    <div class="sh_description">
+                      <h4 style="font-size: 18px">
+                    Après la réussite de l'examen, déposer votre dossier à la
+                    préfecture pour obtenir votre carte professionnelle.
+                  </h4>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+          <!--TÉLÉCHARGER LE PROGRAMME DE LA FORMATION TAXI -->
+          <section id="sh_corpomate_theme_section_167" class="sh_animation_part" style="background-color: rgb(253, 209, 5); margin: 76px 0px">
+            <div class="container js-scroll fade-in-top">
+              <h3 style="color: rgb(0, 0, 0); font-size: 19px; max-width: 100%">
+            TÉLÉCHARGER LE PROGRAMME DE LA FORMATION TAXI
+          </h3>
+              <a class="animated-button-black" href="/mcm_website_theme/static/pdf/programme_de_formation_MCM_ACADEMY_2021.pdf" title="Programme de la formation TAXI" alt="Programme de la formation TAXI">
+                <span />
+                <span />
+                <span />
+                <span />
+                JE TÉLÉCHARGE
+              </a>
+            </div>
+          </section>
+          <!--  La formation taxi-->
+          <section class="s_text_image pt0 pb4">
+            <div class="container">
+              <div class="row align-items-center">
+                <div class="col-lg-6 pb24 pt0 js-scroll slide-left">
+                  <img data-src="/mcm_website_theme/static/src/img/formation_taxi/formation-taxi.webp" data-srcsafari="/mcm_website_theme/static/src/img/formation_taxi/formation-taxi.png" class="img img-fluid mx-auto lazy res_height text-center" alt="deux personnes en formation taxi" title="deux personnes en formation taxi" />
+                </div>
+                <div class="col-lg-6 js-scroll slide-right">
+                  <h2 class="s_title_default pb16" style="font-size: 33px; font-weight: 700">
+                La formation taxi
+              </h2>
+                  <h3>À qui s’adresse cette formation ?</h3>
+                  <p class="para">
+                    Nos
+                    <b>formations </b>
+                    taxis s’adressent à toute personne majeure intéressée par les
+                métiers de
+                    <b>transport</b>
+                    , en recherche d’
+                    <b>emploi</b>
+                    stable, souhaitant devenir
+                    <b>autoentrepreneur</b>
+                    , ou en
+                    <b>reconversion professionnelle.</b>
+                  </p>
+
+                  <h3 class="mbe">Objectifs :</h3>
+
+                  <ul class="fa-ul" style="font-size: 16.5px; line-height: 1.5rem">
+                    <li>
+                      <i class="fa fa-chevron-right" style="font-size: 13px; margin: 0px 7px 5px -17px" />
+                      Acquérir les savoirs nécessaires à la réussite de l’
+                      <b> examen TAXI </b>
+                    </li>
+                    <li>
+                      <i class="fa fa-chevron-right" style="font-size: 13px; margin: 0px 7px 5px -17px" />
+                      Préparation aux épreuves d’admissibilité de l’
+                      <b>examen TAXI</b>
+                      (théorique).
+                    </li>
+                  </ul>
+                  <p />
+                </div>
+
+                <div class="s_title col-lg-12 pt24 pb0 js-scroll slide-left">
+                  <div class="s_alert clearfix w-100 s_alert_sm alert-100">
+                    <i class="fa fa-2x fa-info-circle s_alert_icon" />
+                    <div class="s_alert_content">
+                      <p class="para text-left">
+                        Nos formations incluent les personnes en situation de
+                    handicap. Bien entendu, nous restons à votre disposition
+                    pour répondre à toutes vos questions, en contactant notre
+                    référent handicap sur notre espace client accessible sur
+                    notre site web
+                        <a href="https://www.mcm-academy.fr/service-clientele">
+                          <span style="color: rgb(0, 0, 255)">par ici.</span>
+                        </a>
+
+                        <br />
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+          <!-- FORMATION THÉORIQUE AU MÉTIER DE TAXI-->
+          <section class="s_text_image pt32 pb32">
+            <div class="container">
+              <div class="row align-items-center">
+                <div class="col-lg-6 pt16 pb16 js-scroll slide-left">
+                  <h3>FORMATION THÉORIQUE AU MÉTIER DE TAXI</h3>
+
+                  <p class="para">
+                    Ce que nous vous proposons chez MCM Academy, c’est la garantie
+                d'une
+                    <b>formation en ligne</b>
+                    théorique de qualité, qui vous permettra non seulement
+                d’acquérir de nouvelles connaissances, mais également de réussir
+                votre préparation à l’
+                    <b>examen</b>
+                    . Les
+                    <b>modules de formation </b>
+                    seront axés sur la
+                    <b>réglementation</b>
+                    du
+                    <b>transport public</b>
+                    , la
+                    <b>sécurité</b>
+                    routière, la
+                    <b>gestion</b>
+                    , la connaissance du territoire et la réglementation locale et
+                les langues française et anglaise pour évaluer la
+                    <b>capacité</b>
+                    d’expression et de compréhension et ainsi assurer une bonne
+                communication avec vos futurs clients.
+                  </p>
+
+                  <a href="/web/signup" class="pt16 pb16" alt="inscription site MCM ACADEMY formation taxi vtc vmdtr">
+                    <button class="home-btn">JE M'INSCRIS !</button>
+                  </a>
+                </div>
+                <div class="col-lg-6 pt16 pb16 js-scroll slide-right">
+                  <img data-src="/mcm_website_theme/static/src/img/formation_taxi/Formation-chauffeur-taxi.webp" data-srcsafari="/mcm_website_theme/static/src/img/formation_taxi/Formation-chauffeur-taxi.png" class="img img-fluid mx-auto lazy" alt="voiture-chauffeur-taxi" />
+                </div>
+              </div>
+            </div>
+          </section>
+          <!-- FORMATION PASSERELLE VTC-TAXI-->
+          <section class="s_text_image pt32">
+            <div class="container">
+              <div class="row align-items-center">
+                <div class="col-lg-6 pt16 pb16 js-scroll slide-left">
+                  <img data-src="/mcm_website_theme/static/src/img/formation_taxi/devenir_chauffeur_taxi.webp" data-srcsafari="/mcm_website_theme/static/src/img/formation_taxi/devenir_chauffeur_taxi.png" class="img img-fluid mx-auto lazy" alt="chauffeur taxi vtc" title="chauffeur taxi vtc" />
+                </div>
+                <div class="col-lg-6 js-scroll slide-right">
+                  <h3>FORMATION PASSERELLE VTC-TAXI</h3>
+                  <p class="para">
+                    Depuis mai 2017, il est possible pour un stagiaire qui a réussi
+                l’
+                    <b>examen VTC</b>
+                    de tronc commun de bénéficier d’
+                    <b>une passerelle VTC-TAXI</b>
+                    . Il devra donc passer deux modules théoriques : Une
+                    <b>épreuve</b>
+                    « F (T) » portant sur la connaissance du territoire et la
+                réglementation locale, d’une durée de vingt minutes. Et une
+                    <b>épreuve</b>
+                    « G (T) » portant sur la
+                    <b>réglementation</b>
+                    nationale de l’activité taxis ainsi que sur la
+                    <b>gestion</b>
+                    propre à cette activité d’une durée de trente minutes. À ceci se
+                rajoute une
+                    <b>épreuve pratique</b>
+                    de 20min dont l'objectif est d’évaluer la capacité du
+                    <b>candidat</b>
+                    à assurer, par sa
+                    <b>conduite</b>
+                    en circulation, la sécurité des passagers et des autres usagers
+                de la route tout en proposant aux clients un service commercial
+                de qualité.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </section>
+          <!-- FORMATION CONTINUE AU METIER DE TAXI-->
+          <section class="s_text_image pt32 pb32">
+            <div class="container">
+              <div class="row align-items-center">
+                <div class="col-lg-6 pt16 pb16 js-scroll slide-left">
+                  <h3>RENOUVELLEMENT CARTE PROFESSIONNELLE</h3>
+                  <p class="para">
+                    Cette
+                    <b>formation</b>
+                    est obligatoire et doit être suivie tous les 5 ans. Nous vous
+                conseillons d'effectuer un stage de remise à niveau dans un
+                    <b>centre de formation agréé</b>
+                    . Ce stage porte sur une actualisation des connaissances et
+                répond aux attentes des professionnels
+                    <b>TAXIS</b>
+                    . Pour suivre cette
+                    <b>formation</b>
+                    , une demande s’effectue au préalable plusieurs mois avant
+                l’expiration de la
+                    <b>carte professionnelle.</b>
+                  </p>
+                </div>
+                <div class="col-lg-6 pt16 pb16 js-scroll slide-right">
+                  <img data-src="/mcm_website_theme/static/src/img/homepage/Chauffeur vtc femme-mcm-academy.png" data-srcsafari="/mcm_website_theme/static/src/img/homepage/Chauffeur vtc femme-mcm-academy.png" class="img img-fluid mx-auto lazy" alt="Chauffeur vtc femme mcm academy" />
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- FORMATION CONTINUE AU METIER DE TAXI-->
+          <section class="s_text_image pt32 pb32">
+            <div class="container">
+              <div class="row align-items-center">
+                <div class="col-lg-6 pt16 pb16 js-scroll slide-left">
+                  <img data-src="/mcm_website_theme/static/src/img/formation_taxi/chaffeur-taxi-au-volant.webp" data-srcsafari="/mcm_website_theme/static/src/img/formation_taxi/chaffeur-taxi-au-volant.png" class="img img-fluid mx-auto lazy" alt="chauffeur taxi femme au volant" />
+                </div>
+                <div class="col-lg-6 pt16 pb16 js-scroll slide-right">
+                  <h3>NOS TARIFS DE FORMATIONS TAXI</h3>
+                  <p class="para">
+                    Nous proposons à nos candidats des
+                    <b>prix</b>
+                    assez abordables qui varient entre 250 euros et 680 euros avec
+                possibilité de mobilisation de votre compte de
+                    <b>formation</b>
+                    personnel pour la
+                    <b>formation initiale.</b>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- pricing table formation taxi-->
+          <div id="pricing" class="js-scroll fade-in-top">
+            <input t-att-value="request.website.microsoft_tracking_key" id="microsoft_tracking_key" type="hidden" />
+            <section id="sh_corpomate_theme_section_188" class="sh_animation_part" data-name="Pricing">
+              <div class="container">
+                <div class="sh_title pt32">
+                  <h3 style="max-width:100%">
+                                        Inscrivez-vous dès maintenant !
+                 </h3>
+                  <br />
+                </div>
+                <div class="row" style="justify-content: center !important">
+                  <div class="col-md-5 sh_animation_part">
+                    <div class="sh_pricing">
+                      <t t-foreach="mcm_products" t-as="product">
+                        <t t-if="product.default_code=='taxi'">
+                          <form action="/shop/cart/update" method="post" id="form-1-2">
+                            <input type="hidden" class="product_id" name="product_id" id="taxi_product" t-att-value="product.id" />
+                            <input type="hidden" name="promo" t-att-value="promo.id" t-if="promo" />
+                            <h4>PACK TAXI</h4>
+                            <h5 style="color: #636161">Éligible au CPF</h5>
+                            <h4>
+                              <span t-esc="round(product.list_price)" />
+                              <span style="color: #fdd105" t-esc="product.currency_id.symbol" />
+                            </h4>
+                            <ul>
+                              <li>Formation 70 h (100 % en ligne)</li>
+                              <li>Accès à + de 12 examens d'entraînement</li>
+                              <li>Assistance&amp;nbsp;par mail</li>
+                              <li>Assistance&amp;nbsp;par téléphone</li>
+                              <li>Assistance&amp;nbsp;par visioconférence</li>
+                              <li>
                               Lives&amp;nbsp;avec les formateurs pour
                               explications
                             </li>
-                            <li>Révision du programme avant examen</li>
+                              <li>Révision du programme avant examen</li>
 
-                          </ul>
-                          <div class="sh_btn">
-                            <!-- <a class="btn btn-primary sh_btn_cm_8" data-original-title="" title="" aria-describedby="tooltip209445" onClick="(function(){document.getElementById('form-1-2').submit();return false;})();return false;">
+                            </ul>
+                            <div class="sh_btn">
+                              <!-- <a class="btn btn-primary sh_btn_cm_8" data-original-title="" title="" aria-describedby="tooltip209445" onClick="(function(){document.getElementById('form-1-2').submit();return false;})();return false;">
                             Je m'inscris
                                                 </a> -->
 
 
-                            <a class="animated-button-yellow" href="#pricing" onClick="(function(){packTaxiPageFormationTaxi();document.getElementById('form-1-2').submit();return false;})();return false;">
-                              <span></span>
-                              <span></span>
-                              <span></span>
-                              <span></span>
-                              Je m'inscris
-                            </a>
-                          </div>
-                        </form>
+                              <a class="animated-button-yellow" href="#pricing" onClick="(function(){packTaxiPageFormationTaxi();document.getElementById('form-1-2').submit();return false;})();return false;">
+                                <span />
+                                <span />
+                                <span />
+                                <span />
+                                Je m'inscris
+                              </a>
+                            </div>
+                          </form>
+                        </t>
                       </t>
-                    </t>
+                    </div>
                   </div>
-                </div>
 
+                </div>
               </div>
-            </div>
-          </section>
-        </div>
-        <!-- FIN PRICING TABLE-->
-        <section class="clients s_references bg-200 pt16 pb32 " data-name="References">
-          <div class="container text-center">
-            <div class="center-logo">
-              <!-- <div t-if="partenaire=='' or not partenaire or partenaire=='bolt'">
+            </section>
+          </div>
+          <!-- FIN PRICING TABLE-->
+          <section class="clients s_references bg-200 pt16 pb16">
+            <center>
+              <div class="container js-scroll fade-in-top">
+                <div class="center-logo">
+                  <!-- <div t-if="partenaire=='' or not partenaire or partenaire=='bolt'">
                                     <a href="https://www.digimoov.fr/">
-                                        <img data-src="/mcm_website_theme/static/src/img/partenaires/digimoov.png" data-srcSafari="/mcm_website_theme/static/src/img/partenaires/digimoov.png" class="img img-fluid lazy" alt="Logo partenaire Digimoov" data-original-title="" title="Digimoov partenaire MCM ACADEMY" aria-describedby="tooltip843653" style="margin-top: 30px; width: 72%"/>
+                                        <img data-src="/mcm_website_theme/static/src/img/partenaires/digimoov.png" data-srcSafari="/mcm_website_theme/static/src/img/partenaires/digimoov.png" class="img img-fluid lazy" alt="Logo partenaire Digimoov"  title="Digimoov partenaire MCM ACADEMY" aria-describedby="tooltip843653" style="margin-top: 30px; width: 72%"/>
                                     </a>
                                 </div> -->
-              <div t-if="partenaire=='' or partenaire !='bolt'">
-                <a href="#">
-                  <img data-src="/mcm_website_theme/static/src/img/partenaires/cma.png" data-srcSafari="/mcm_website_theme/static/src/img/partenaires/cma.png" class="img img-fluid lazy" alt="Logo partenaire CMA" data-original-title="" title="CMA partenaire MCM ACADEMY" aria-describedby="tooltip623872" style="margin-top: 30px; width: 50%" />
-                </a>
-              </div>
 
-              <div t-if="partenaire=='' or not partenaire ">
-                <a href="https://bolt.eu/fr/">
-                  <img data-src="/mcm_website_theme/static/src/img/partenaires/bolt.png" data-srcSafari="/mcm_website_theme/static/src/img/partenaires/bolt.png" class="img img-fluid lazy" alt="Logo partenaire bolt" data-original-title="" title="Bolt partenaire MCM ACADEMY" aria-describedby="tooltip843653" style="margin-top: 30px; width: 38%" />
-                </a>
-              </div>
-              <div t-if="partenaire=='bolt' ">
-                <a href="https://bolt.eu/fr/">
-                  <img data-src="/mcm_website_theme/static/src/img/partenaires/Bolt_logo.svg.png" data-srcSafari="/mcm_website_theme/static/src/img/partenaires/Bolt_logo.svg.png" class="img img-fluid lazy" alt="Logo partenaire bolt" data-original-title="" title="Bolt partenaire MCM ACADEMY" aria-describedby="tooltip843653" style="margin-top: 30px; width: 38%" />
-                </a>
-              </div>
-              <div t-if="partenaire=='' or partenaire !='bolt'">
-                <a href="https://www.uber.com/fr/fr/">
-                  <img data-src="/mcm_website_theme/static/src/img/partenaires/uber.png" data-srcSafari="/mcm_website_theme/static/src/img/partenaires/uber.png" class="img img-fluid lazy" alt="Logo partenaire uber" data-original-title="" title="Uber partenaire MCM ACADEMY" aria-describedby="tooltip843653" style="margin-top: 30px; width: 50%" />
-                </a>
-              </div>
+                  <div t-if="partenaire=='' or partenaire !='bolt'">
+                    <a href="#">
+                      <img data-src="/mcm_website_theme/static/src/img/partenaires/cma.png" data-srcSafari="/mcm_website_theme/static/src/img/partenaires/cma.png" class="img img-fluid lazy" alt="Logo partenaire CMA" title="CMA partenaire MCM ACADEMY" aria-describedby="tooltip623872" style="margin-top: 30px; width: 50%" />
+                    </a>
+                  </div>
 
-              <div t-if="partenaire=='' or not partenaire ">
-                <a href="https://www.comptable-douai.com/">
-                  <img data-src="/mcm_website_theme/static/src/img/partenaires/joel.png" data-srcSafari="/mcm_website_theme/static/src/img/partenaires/joel.png" class="img img-fluid lazy" alt="Logo partenaire Cabinet Comptable Joël Pruvost" data-original-title="" title="Cabinet Comptable Joël Pruvost partenaire Digimoov" aria-describedby="tooltip175558" style="margin-top: 30px; width: 68%" />
-                </a>
+                  <!--                                <div t-if="partenaire=='' or not partenaire ">-->
+                  <!--                                    <a href="https://bolt.eu/fr/">-->
+                  <!--                                        <img data-src="/mcm_website_theme/static/src/img/partenaires/bolt.png" data-srcSafari="/mcm_website_theme/static/src/img/partenaires/bolt.png" class="img img-fluid lazy" alt="Logo partenaire bolt"  title="Bolt partenaire MCM ACADEMY" aria-describedby="tooltip843653" style="margin-top: 30px; width: 38%" />-->
+                  <!--                                    </a>-->
+                  <!--                                </div>-->
+                  <div t-if="partenaire=='bolt' ">
+                    <a href="https://bolt.eu/fr/">
+                      <img data-src="/mcm_website_theme/static/src/img/partenaires/Bolt_logo.svg.png" data-srcSafari="/mcm_website_theme/static/src/img/partenaires/Bolt_logo.svg.png" class="img img-fluid lazy" alt="Logo partenaire bolt" title="Bolt partenaire MCM ACADEMY" aria-describedby="tooltip843653" style="margin-top: 30px; width: 38%" />
+                    </a>
+                  </div>
+                  <!-- <div t-if="partenaire=='' or partenaire !='bolt'">
+                                    <a href="https://www.uber.com/fr/fr/">
+                                        <img data-src="/mcm_website_theme/static/src/img/partenaires/uber.png" data-srcSafari="/mcm_website_theme/static/src/img/partenaires/uber.png" class="img img-fluid lazy" alt="Logo partenaire uber"  title="Uber partenaire MCM ACADEMY" aria-describedby="tooltip843653" style="margin-top: 30px; width: 50%"/>
+                                    </a>
+                                </div> -->
+
+                  <div t-if="partenaire=='' or not partenaire ">
+                    <a href="https://www.comptable-douai.com/">
+                      <img data-src="/mcm_website_theme/static/src/img/partenaires/joel.png" data-srcSafari="/mcm_website_theme/static/src/img/partenaires/joel.png" class="img img-fluid lazy" alt="Logo partenaire Cabinet Comptable Joël Pruvost" title="Cabinet Comptable Joël Pruvost partenaire Digimoov" aria-describedby="tooltip175558" style="margin-top: 30px; width: 68%" />
+                    </a>
+                  </div>
+                  <div t-if="partenaire=='bolt'">
+                    <a href="https://www.digimoov.fr/">
+                      <img data-src="/mcm_website_theme/static/src/img/partenaires/digimoov.png" data-srcSafari="/mcm_website_theme/static/src/img/partenaires/digimoov.png" class="img img-fluid lazy" alt="Logo partenaire Digimoov" title="Digimoov partenaire MCM ACADEMY" aria-describedby="tooltip843653" style="margin-top: 30px; width: 46%" />
+                    </a>
+                  </div>
+                </div>
               </div>
-              <div t-if="partenaire=='bolt'">
-                <a href="https://www.digimoov.fr/">
-                  <img data-src="/mcm_website_theme/static/src/img/partenaires/digimoov.png" data-srcSafari="/mcm_website_theme/static/src/img/partenaires/digimoov.png" class="img img-fluid lazy" alt="Logo partenaire Digimoov" data-original-title="" title="Digimoov partenaire MCM ACADEMY" aria-describedby="tooltip843653" style="margin-top: 30px; width: 46%" />
-                </a>
-              </div>
-            </div>
-          </div>
-        </section>
+            </center>
+          </section>
+
+
+        </div>
+
       </div>
     </t>
   </template>
