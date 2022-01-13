@@ -43,45 +43,86 @@ class PaymentStripeAcquirer(models.Model):
                 """Si le devis est trouvé avec la condition de payement sur plusieurs fois
                 on appelle la methode de creation d'abonnement stripe """
                 print("instalment")
-                self.ensure_one()
                 res=self.create_stripe_subsription(sale)
-                result=self._stripe_s2s_validate_tree_subscription(res)
-                print('*************resultvalidate',result)
-                return result
+                '''il faut verifier si  un abonnement est créé ou non '''
+                print('res subscription ', res)
+                if res :
+                    """si l'abonnement est créé on valide la transaction et on fait la mise à jour des informations"""
+                    result=self._stripe_s2s_validate_tree_subscription(res)
+                    print('*************resultvalidate',result)
+                    return result
+                else :
+                    """on cas d'erreur on met à jour l'etat de transaction comme erreur"""
+                    print('erreuur')
+                    msg="Abonnement stripe non effectué "
+                    self._set_transaction_error(msg)
+                    return False
+
             else :
                 """Si non si un payement de la totalité de montant """
                 print("else ")
                 result = super(PaymentStripeAcquirer, self).stripe_s2s_do_transaction(**kwargs)
-        return result
+                return result
 
     """creer un abonnement stripe avec api """
     def create_stripe_subsription(self,sale):
         if not self.payment_token_id.stripe_payment_method:
             # old token before using sca, need to fetch data from the api
             self.payment_token_id._stripe_sca_migrate_customer()
-        """trouver le produit sur stripe pour créer un abonnement  """
-        nom_produit=sale.module_id.name
+        """trouver le produit recurent sur stripe pour créer un abonnement  """
+        nom_produit=sale.module_id.product_id.name
+        id_produit=sale.module_id.product_id.id_stripe
         print('name product', nom_produit)
-        data = self.acquirer_id._stripe_request('products', method="GET")
-        products = data.get('data', [])
+        params = (('limit', '100'),)
+        url = "products/%s" % (id_produit)
+        data = self.acquirer_id._stripe_request(url, method="GET")
+        prod = data.get('data', [])
+        print('product', data)
         RECURRING_PRICE_ID=""
-        for prod in products:
-            name=prod['name']
-            id =prod['id']
-            print('produuuuuuuuuuuuuuuuuct',prod)
-            print("name",name)
-            if name.lower() == nom_produit.lower():
-                data = self.acquirer_id._stripe_request('prices', method="GET")
-                prices = data.get('data', [])
-                print('if namee pricesss ', prices)
-                for price in prices:
-                    if price['product']== id and price['type']=="recurring":
-                        RECURRING_PRICE_ID=price['id']
-                        print('price recurring', price)
-
-
+        data = self.acquirer_id._stripe_request('prices',data=params, method="GET")
+        prices = data.get('data', [])
+        print('if namee pricesss ', prices)
+        for price in prices:
+            if price['product']== id_produit and price['type']=="recurring":
+                RECURRING_PRICE_ID=price['id']
+                print('price recurring', price)
         if RECURRING_PRICE_ID=="":
+            """si le produit est non trouvé, un message d'erreur sera affiché,la transaction passe à l'etat "error"
+             et un ticket sera créé pour service client et comptabilité  """
             print('pas de produit recurent')
+            error = data.get("failure_message") or data.get('error', {}).get('message')
+            self._set_transaction_error(error)
+            vals = {
+                'description': 'Erreur de paiement stripe %s %s' % (sale.partner_id.name, sale.name ),
+                'name': 'Tentative de paiement',
+                'team_id': self.env['helpdesk.team'].sudo().search(
+                    [('name', 'like', 'Comptabilité')],
+                    limit=1).id,
+            }
+            description =  "Erreur de paiement stripe " + str(sale.partner_id.name) +" "+ str(sale.name)
+            ticket = self.env['helpdesk.ticket'].sudo().search([("description", "=", description),
+                                                                ("team_id.name", 'like', 'Comptabilité')])
+
+            if not ticket:
+                new_ticket = self.env['helpdesk.ticket'].sudo().create(
+                    vals)
+            vals_client = {
+                'description': 'Erreur de paiement stripe %s %s' % (sale.partner_id.name, sale.name ),
+                'name': 'Tentative de paiement',
+                'team_id': self.env['helpdesk.team'].sudo().search(
+                    [('name', 'like', 'Client')],
+                    limit=1).id,
+            }
+            description_client = "Erreur de paiement stripe " + str(sale.partner_id.name) +" "+ str(sale.name)
+            ticket = self.env['helpdesk.ticket'].sudo().search([("description", "=", description_client),
+                                                                ("team_id.name", 'like', 'Client')])
+
+            if not ticket:
+                new_ticket = self.env['helpdesk.ticket'].sudo().create(
+                    vals_client)
+
+            return False
+
         else :
             subscription_data = {
               'customer': self.payment_token_id.acquirer_ref,
@@ -90,20 +131,10 @@ class PaymentStripeAcquirer(models.Model):
 
             }
 
-            charge_params = {
-                'amount': int(self.amount if self.currency_id.name in INT_CURRENCIES else float_round(self.amount * 100, 2)),
-                'currency': self.currency_id.name.lower(),
-                'off_session': True,
-                'confirm': True,
-                'payment_method': self.payment_token_id.stripe_payment_method,
-                'customer': self.payment_token_id.acquirer_ref,
-                "description": self.reference,
-            }
-            # if not self.env.context.get('off_session'):
-            #     subscription_data.update(setup_future_usage='off_session', off_session=False)
             _logger.info('_create_stripe_subsription: Sending values to stripe, values:\n%s',
                          pprint.pformat(subscription_data))
 
+            """créer un abonnement sur stripe"""
             res = self.acquirer_id._stripe_request('subscriptions', subscription_data)
             if res.get('charges') and res.get('charges').get('total_count'):
                 res = res.get('charges').get('data')[0]
@@ -131,6 +162,15 @@ class PaymentStripeAcquirer(models.Model):
         status = tree.get('status')
         tx_id = tree.get('id')
         tx_secret = tree.get("client_secret")
+        """recuperer le  paiement de cet abonnement pour recuperer les information de card"""
+        id_paiement=tree.get('default_payment_method')
+        url="payment_methods/%s" %id_paiement
+        paiement=self.acquirer_id._stripe_request(url,method="GET")
+        result_paiement = paiement.get('card', [])
+        print("paiement", paiement)
+        if result_paiement:
+            card=result_paiement
+            print('card',card)
         vals = {
             "date": fields.datetime.now(),
             "acquirer_reference": tx_id,
@@ -145,7 +185,7 @@ class PaymentStripeAcquirer(models.Model):
                 s2s_data = {
                     'customer': tree.get('customer'),
                     'payment_method': tree.get('default_payment_method'),
-                    # 'card': tree.get('default_payment_method').get('card'),
+                    'card': card,
                     'acquirer_id': self.acquirer_id.id,
                     'partner_id': self.partner_id.id
                 }
