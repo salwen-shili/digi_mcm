@@ -4,11 +4,11 @@
 
     <t t-call="website.layout">
       <div id="wrap" class="oe_structure oe_empty">
-        <link href="/mcm_website_theme/static/src/css/theme.css" rel="stylesheet" />
-        <script defer="defer" type="text/javascript" src="/digimoov_website_templates/static/src/js/lazy-min.min.js" />
         <link rel="stylesheet" href="/mcm_website_theme/static/src/css/style_taxi.min.css" />
-        <script type="text/javascript" src="/mcm_website_theme/static/src/js/msAds.min.js" />
+        <script type="text/javascript" src="/mcm_website_theme/static/src/js/msAds.min.js" defer="defer" />
         <link rel="stylesheet" href="/mcm_website_theme/static/src/css/cta-button.min.css" />
+        <script defer="defer" type="text/javascript" src="/digimoov_website_templates/static/src/js/lazy-min.min.js" />
+
 
         <div id="wrap" class="oe_structure oe_empty">
           <!-- section 1-->
@@ -25,7 +25,7 @@
                         <span class="subtitle-mcm-formation">Taxi</span>
                       </h1>
                       <br />
-                      <p class="heading text-center">
+                      <p class="para">
                     Besoin de formation pour devenir chauffeur TAXI, pour
                     renouveler votre carte professionnelle, ou encore pour une
                     passerelle TAXI-VTC ? MCM Academy a tout pour satisfaire vos
@@ -53,16 +53,16 @@
           <section class="container pt40 pb32 js-scroll fade-in-bottom">
             <div class="row align-items-center justify-content-center">
               <div class="col-md-3 col-sm-12 text-center mb-4 mb-md-0">
-                <img data-src="/mcm_website_theme/static/src/img/formation-éligible-au-compte-personnel-de-formation.webp" data-srcsafari="/mcm_website_theme/static/src/img/formation-éligible-au-compte-personnel-de-formation.png" class="img-fluid" style="width: 100px" title="Formation éligible au CPF" alt="logo mon compte de formation CPF" />
+                <img data-src="/mcm_website_theme/static/src/img/formation-éligible-au-compte-personnel-de-formation.webp" data-srcsafari="/mcm_website_theme/static/src/img/formation-éligible-au-compte-personnel-de-formation.png" class="img-fluid lazy" style="width: 100px" title="Formation éligible au CPF" alt="logo mon compte de formation CPF" />
               </div>
               <div class="col-md-3 col-sm-12 text-center mb-4 mb-md-0">
-                <img class="img-fluid" style="width: 188px" data-src="/mcm_website_theme/static/src/img/formation-taxi-vtc-certifiée-qualiopi.webp" data-srcsafari="/mcm_website_theme/static/src/img/formation-taxi-vtc-certifiée-qualiopi.png" title="Centre certifié qualiopi" alt="Centre certifié qualiopi" />
+                <img class="img-fluid lazy" style="width: 188px" data-src="/mcm_website_theme/static/src/img/formation-taxi-vtc-certifiée-qualiopi.webp" data-srcsafari="/mcm_website_theme/static/src/img/formation-taxi-vtc-certifiée-qualiopi.png" title="Centre certifié qualiopi" alt="Centre certifié qualiopi" />
               </div>
               <div class="col-md-3 col-sm-12 text-center mb-4 mb-md-0">
-                <img class="img-fluid" style="width: 110px" data-srcsafari="/mcm_website_theme/static/src/img/mcm academy-partenaire-france-relance.jpg" data-src="/mcm_website_theme/static/src/img/mcm academy-partenaire-france-relance.webp" title="logo france relance" alt="logo france relance" />
+                <img class="img-fluid lazy" style="width: 110px" data-srcsafari="/mcm_website_theme/static/src/img/mcm academy-partenaire-france-relance.jpg" data-src="/mcm_website_theme/static/src/img/mcm academy-partenaire-france-relance.webp" title="logo france relance" alt="logo france relance" />
               </div>
               <div class="col-md-3 col-sm-12 text-center mb-4 mb-md-0">
-                <img class="img-fluid" style="width: 100px" data-src="/mcm_website_theme/static/src/img/mcm academy-centre-de-formation-taxi-vtc-carte pro-préfecture.webp" data-srcsafari="/mcm_website_theme/static/src/img/mcm academy-centre-de-formation-taxi-vtc-carte pro-préfecture.png" title="Centre agrée de la préfecture" alt="Centre agrée de la préfecture" />
+                <img class="img-fluid lazy" style="width: 100px" data-src="/mcm_website_theme/static/src/img/mcm academy-centre-de-formation-taxi-vtc-carte pro-préfecture.webp" data-srcsafari="/mcm_website_theme/static/src/img/mcm academy-centre-de-formation-taxi-vtc-carte pro-préfecture.png" title="Centre agrée de la préfecture" alt="Centre agrée de la préfecture" />
               </div>
             </div>
           </section>
@@ -325,7 +325,7 @@
           <section class="s_text_image pt32 pb32">
             <div class="container">
               <div class="row align-items-center">
-                <div class="col-lg-6 pt16 pb16">
+                <div class="col-lg-6 pt16 pb16 js-scroll slide-left">
                   <h3>RENOUVELLEMENT CARTE PROFESSIONNELLE</h3>
                   <p class="para">
                     Cette
@@ -343,7 +343,7 @@
                     <b>carte professionnelle.</b>
                   </p>
                 </div>
-                <div class="col-lg-6 pt16 pb16">
+                <div class="col-lg-6 pt16 pb16 js-scroll slide-right">
                   <img data-src="/mcm_website_theme/static/src/img/homepage/Chauffeur vtc femme-mcm-academy.png" data-srcsafari="/mcm_website_theme/static/src/img/homepage/Chauffeur vtc femme-mcm-academy.png" class="img img-fluid mx-auto lazy" alt="Chauffeur vtc femme mcm academy" />
                 </div>
               </div>
@@ -354,10 +354,10 @@
           <section class="s_text_image pt32 pb32">
             <div class="container">
               <div class="row align-items-center">
-                <div class="col-lg-6 pt16 pb16">
+                <div class="col-lg-6 pt16 pb16 js-scroll slide-left">
                   <img data-src="/mcm_website_theme/static/src/img/formation_taxi/chaffeur-taxi-au-volant.webp" data-srcsafari="/mcm_website_theme/static/src/img/formation_taxi/chaffeur-taxi-au-volant.png" class="img img-fluid mx-auto lazy" alt="chauffeur taxi femme au volant" />
                 </div>
-                <div class="col-lg-6 pt16 pb16">
+                <div class="col-lg-6 pt16 pb16 js-scroll slide-right">
                   <h3>NOS TARIFS DE FORMATIONS TAXI</h3>
                   <p class="para">
                     Nous proposons à nos candidats des
@@ -372,8 +372,119 @@
               </div>
             </div>
           </section>
-        </div>
 
+          <!-- pricing table formation taxi-->
+          <div id="pricing" class="js-scroll fade-in-top">
+            <input t-att-value="request.website.microsoft_tracking_key" id="microsoft_tracking_key" type="hidden" />
+            <section id="sh_corpomate_theme_section_188" class="sh_animation_part" data-name="Pricing">
+              <div class="container">
+                <div class="sh_title pt32">
+                  <h3 style="max-width:100%">
+                                        Inscrivez-vous dès maintenant !
+                 </h3>
+                  <br />
+                </div>
+                <div class="row" style="justify-content: center !important">
+                  <div class="col-md-5 sh_animation_part">
+                    <div class="sh_pricing">
+                      <t t-foreach="mcm_products" t-as="product">
+                        <t t-if="product.default_code=='taxi'">
+                          <form action="/shop/cart/update" method="post" id="form-1-2">
+                            <input type="hidden" class="product_id" name="product_id" id="taxi_product" t-att-value="product.id" />
+                            <input type="hidden" name="promo" t-att-value="promo.id" t-if="promo" />
+                            <h4>PACK TAXI</h4>
+                            <h5 style="color: #636161">Éligible au CPF</h5>
+                            <h4>
+                              <span t-esc="round(product.list_price)" />
+                              <span style="color: #fdd105" t-esc="product.currency_id.symbol" />
+                            </h4>
+                            <ul>
+                              <li>Formation 70 h (100 % en ligne)</li>
+                              <li>Accès à + de 12 examens d'entraînement</li>
+                              <li>Assistance&amp;nbsp;par mail</li>
+                              <li>Assistance&amp;nbsp;par téléphone</li>
+                              <li>Assistance&amp;nbsp;par visioconférence</li>
+                              <li>
+                              Lives&amp;nbsp;avec les formateurs pour
+                              explications
+                            </li>
+                              <li>Révision du programme avant examen</li>
+
+                            </ul>
+                            <div class="sh_btn">
+                              <!-- <a class="btn btn-primary sh_btn_cm_8" data-original-title="" title="" aria-describedby="tooltip209445" onClick="(function(){document.getElementById('form-1-2').submit();return false;})();return false;">
+                            Je m'inscris
+                                                </a> -->
+
+
+                              <a class="animated-button-yellow" href="#pricing" onClick="(function(){packTaxiPageFormationTaxi();document.getElementById('form-1-2').submit();return false;})();return false;">
+                                <span />
+                                <span />
+                                <span />
+                                <span />
+                                Je m'inscris
+                              </a>
+                            </div>
+                          </form>
+                        </t>
+                      </t>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+            </section>
+          </div>
+          <!-- FIN PRICING TABLE-->
+          <section class="clients s_references bg-200 pt16 pb16">
+            <center>
+              <div class="container js-scroll fade-in-top">
+                <div class="center-logo">
+                  <!-- <div t-if="partenaire=='' or not partenaire or partenaire=='bolt'">
+                                    <a href="https://www.digimoov.fr/">
+                                        <img data-src="/mcm_website_theme/static/src/img/partenaires/digimoov.png" data-srcSafari="/mcm_website_theme/static/src/img/partenaires/digimoov.png" class="img img-fluid lazy" alt="Logo partenaire Digimoov"  title="Digimoov partenaire MCM ACADEMY" aria-describedby="tooltip843653" style="margin-top: 30px; width: 72%"/>
+                                    </a>
+                                </div> -->
+
+                  <div t-if="partenaire=='' or partenaire !='bolt'">
+                    <a href="#">
+                      <img data-src="/mcm_website_theme/static/src/img/partenaires/cma.png" data-srcSafari="/mcm_website_theme/static/src/img/partenaires/cma.png" class="img img-fluid lazy" alt="Logo partenaire CMA" title="CMA partenaire MCM ACADEMY" aria-describedby="tooltip623872" style="margin-top: 30px; width: 50%" />
+                    </a>
+                  </div>
+
+                  <!--                                <div t-if="partenaire=='' or not partenaire ">-->
+                  <!--                                    <a href="https://bolt.eu/fr/">-->
+                  <!--                                        <img data-src="/mcm_website_theme/static/src/img/partenaires/bolt.png" data-srcSafari="/mcm_website_theme/static/src/img/partenaires/bolt.png" class="img img-fluid lazy" alt="Logo partenaire bolt"  title="Bolt partenaire MCM ACADEMY" aria-describedby="tooltip843653" style="margin-top: 30px; width: 38%" />-->
+                  <!--                                    </a>-->
+                  <!--                                </div>-->
+                  <div t-if="partenaire=='bolt' ">
+                    <a href="https://bolt.eu/fr/">
+                      <img data-src="/mcm_website_theme/static/src/img/partenaires/Bolt_logo.svg.png" data-srcSafari="/mcm_website_theme/static/src/img/partenaires/Bolt_logo.svg.png" class="img img-fluid lazy" alt="Logo partenaire bolt" title="Bolt partenaire MCM ACADEMY" aria-describedby="tooltip843653" style="margin-top: 30px; width: 38%" />
+                    </a>
+                  </div>
+                  <!-- <div t-if="partenaire=='' or partenaire !='bolt'">
+                                    <a href="https://www.uber.com/fr/fr/">
+                                        <img data-src="/mcm_website_theme/static/src/img/partenaires/uber.png" data-srcSafari="/mcm_website_theme/static/src/img/partenaires/uber.png" class="img img-fluid lazy" alt="Logo partenaire uber"  title="Uber partenaire MCM ACADEMY" aria-describedby="tooltip843653" style="margin-top: 30px; width: 50%"/>
+                                    </a>
+                                </div> -->
+
+                  <div t-if="partenaire=='' or not partenaire ">
+                    <a href="https://www.comptable-douai.com/">
+                      <img data-src="/mcm_website_theme/static/src/img/partenaires/joel.png" data-srcSafari="/mcm_website_theme/static/src/img/partenaires/joel.png" class="img img-fluid lazy" alt="Logo partenaire Cabinet Comptable Joël Pruvost" title="Cabinet Comptable Joël Pruvost partenaire Digimoov" aria-describedby="tooltip175558" style="margin-top: 30px; width: 68%" />
+                    </a>
+                  </div>
+                  <div t-if="partenaire=='bolt'">
+                    <a href="https://www.digimoov.fr/">
+                      <img data-src="/mcm_website_theme/static/src/img/partenaires/digimoov.png" data-srcSafari="/mcm_website_theme/static/src/img/partenaires/digimoov.png" class="img img-fluid lazy" alt="Logo partenaire Digimoov" title="Digimoov partenaire MCM ACADEMY" aria-describedby="tooltip843653" style="margin-top: 30px; width: 46%" />
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </center>
+          </section>
+
+
+        </div>
 
       </div>
     </t>
