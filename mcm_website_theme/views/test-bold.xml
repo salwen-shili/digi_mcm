@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <template id="mcm_website_theme.mcm_bolt" name="Formation TAXI">
+    <template id="mcm_website_theme.mcm_bolt" name="MCM ACADEMY - BOLT">
 
         <t t-call="website.layout">
             <div id="wrap" class="oe_structure oe_empty">
