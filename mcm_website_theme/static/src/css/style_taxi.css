@@ -296,3 +296,7 @@ a:hover {
     opacity: 1;
   }
 }
+
+#sh_corpomate_theme_section_188 .sh_pricing ul li {
+  font-weight: 600 !important;
+}
