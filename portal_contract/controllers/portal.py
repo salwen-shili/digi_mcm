@@ -150,6 +150,7 @@ class CustomerPortal(CustomerPortal):
         query_string = '&message=sign_ok'
         if order_sudo.has_to_be_paid(True):
             query_string += '#allow_payment=yes'
+        print('portal_quote_accept')
         return {
             'force_refresh': True,
             'redirect_url': order_sudo.get_portal_url(query_string=query_string),

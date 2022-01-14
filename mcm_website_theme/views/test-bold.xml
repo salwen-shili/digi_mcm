@@ -366,11 +366,11 @@
                                                         </li>
                                                         <li>Révision du programme avant examen</li>
                                                     </ul>
-                                                    <t t-if="pricelist_bolt and pricelist_bolt.name=='bolt'">
+                                                    <t t-if="promo and promo.name=='bolt'">
                                                         <p class="text-center font-weight-bolder text-secondary">
                                                             <b style="font-size: 80%">
                                                                 <t>avec le code</t>
-                                                                <t t-esc="pricelist_bolt.code"/>
+                                                                <t t-esc="promo.code"/>
                                                             </b>
                                                         </p>
                                                     </t>

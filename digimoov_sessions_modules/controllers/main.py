@@ -236,12 +236,15 @@ class WebsiteSale(WebsiteSale):
                     if (module.date_exam - today).days > int(
                             module.session_id.intervalle_jours) and module.session_id.website_published == True:
                         list_modules_digimoov.append(module)
+        print('all_mcm_modules')
+        print(all_mcm_modules)
         if (all_mcm_modules):
             for module in all_mcm_modules:
                 if module.date_exam:
                     if (module.date_exam - today).days > int(
                             module.session_id.intervalle_jours) and module.session_id.website_published == True:
                         list_modules_mcm.append(module)
+        print(list_modules_mcm)
         if order:
             order.order_line.filtered(lambda l: not l.product_id.active).unlink()
             _order = order
@@ -281,7 +284,9 @@ class WebsiteSale(WebsiteSale):
             if state=="accepted":
                 statut="accepted"
             
-
+        from_bolt = False
+        if product.default_code == 'vtc_bolt' :
+            from_bolt = True
         values.update({
             'modules_digimoov': list_modules_digimoov,
             'modules_mcm': list_modules_mcm,
@@ -289,6 +294,7 @@ class WebsiteSale(WebsiteSale):
             'error_ville': '',
             'error_exam_date': '',
             'error_condition': '',
+            'from_bolt': from_bolt,
         })
         # recuperer la liste des villes pour l'afficher dans la vue panier de siteweb digimoov pour que le client peut choisir une ville parmis la liste
         list_villes = request.env['session.ville'].sudo().search([('company_id', '=', 2)])
