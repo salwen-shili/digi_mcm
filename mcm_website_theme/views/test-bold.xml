@@ -45,18 +45,18 @@
                             <div class="sh_image_text_13">
                                 <div class="row align-items-center">
                                     <div class="col-lg-6 col-md-12 col-sm-12 col-12">
-                                        <div class="left_image">
-                                            <div class="behind_img">
+                                        <div class="left_image ">
+                                            <div class="behind_img js-scroll slide-left">
                                                 <img src="/mcm_website_theme/static/src/img/formation-vtc-bolt.png" alt="formation vtc code promo bolt" />
                                             </div>
 
-                                            <div class="front_img_bottom">
+                                            <div class="front_img_bottom js-scroll slide-right">
                                                 <img src="/mcm_website_theme/static/src/img/logo-bolt.png" alt="Bolt logo" />
                                             </div>
                                         </div>
                                     </div>
                                     <div class="col-lg-6 col-md-12 col-sm-12 col-12 bg-black-75" style="margin-top: 21px;">
-                                        <div class="right_text" style="margin: 12px 12px 41px 12px;">
+                                        <div class="right_text js-scroll slide-right" style="margin: 12px 12px 41px 12px;">
                                             <h2 style="font-size: 17px; font-weight: bold; color:#fff ">
                                                 Jusqu'au
                                                 <span style="color: #24f0a0; font-weight: 600">21/01</span>
