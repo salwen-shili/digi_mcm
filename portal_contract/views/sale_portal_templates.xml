@@ -566,6 +566,17 @@
                                       t-field="sale_order.module_id.duree"/>
                                 <span style="font-size:12px">h</span>
                             </div>
+                            <div t-if="sale_order.pricelist_id and sale_order.pricelist_id.name=='bolt'">
+                                    <span style="font-size:12px">
+                                        Offre valable qu'une seule fois et non cumulable.
+                                        Merci de noter que vous n'aurez accès à la formation et la prise en charge de
+                                        votre examen qu'après avoir réussi un test avec une note supérieure à 06/20. Il
+                                        est également impératif de répondre aux questions rédigées de l'examen blanc. En
+                                        cas de note inférieur à 06/20 ou en cas de non réponse aux questions rédigées
+                                        vous ne pourrez pas bénéficier de l'offre et vous recevrez un remboursement de
+                                        20€.
+                                    </span>
+                                </div>
                             <div>
                                 <strong>
                                     <span style="font-size:16px">2. Programme de la formation et formateur</span>

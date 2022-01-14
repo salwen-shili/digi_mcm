@@ -251,3 +251,16 @@
     opacity: 1;
   }
 }
+
+.pricebar {
+  position: relative;
+}
+.pricebar::after {
+  content: '';
+  width: 167%;
+  height: 3px;
+  background: red;
+  position: absolute;
+  bottom: 16px;
+  left: -8px;
+}
