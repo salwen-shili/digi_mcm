@@ -578,6 +578,7 @@ class Routes_Site(http.Controller):
         print(promo)
         values = {
             'bolt_product' : bolt_product,
+            'vtc_product' : vtc_product,
             'promo' : promo
         }
 
