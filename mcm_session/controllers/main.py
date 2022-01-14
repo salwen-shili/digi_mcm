@@ -100,7 +100,6 @@ class WebsiteSale(WebsiteSale):
         )
         if(sale_order.partner_id.customer_rank==0):
             sale_order.partner_id.customer_rank=1
-        print('promo')
         if promo:
             print(promo)
         if product_id:

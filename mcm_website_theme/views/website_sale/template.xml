@@ -425,13 +425,26 @@
                             <select name="region_examen" id="region_examen" class="form-control search-slt "
                                     t-if="modules_mcm">
                                 <option value="all" id="all">Sélectionnez votre région d'examen</option>
-                                <t t-foreach="list_villes_mcm" t-as="ville">
-                                    <t t-if="ville">
-                                        <b>
-                                            <option t-att-value="ville.name_ville">
-                                                <t t-esc="ville.name_ville"/>
-                                            </option>
-                                        </b>
+                                <t t-if="not from_bolt">
+                                    <t t-foreach="list_villes_mcm" t-as="ville">
+                                        <t t-if="ville">
+                                            <b>
+                                                <option t-att-value="ville.name_ville">
+                                                    <t t-esc="ville.name_ville"/>
+                                                </option>
+                                            </b>
+                                        </t>
+                                    </t>
+                                </t>
+                                 <t t-if="from_bolt">
+                                    <t t-foreach="list_villes_mcm" t-as="ville">
+                                        <t t-if="ville and ville.name_ville=='Île-de-France'">
+                                            <b>
+                                                <option t-att-value="ville.name_ville">
+                                                    <t t-esc="ville.name_ville"/>
+                                                </option>
+                                            </b>
+                                        </t>
                                     </t>
                                 </t>
                             </select>
@@ -450,7 +463,7 @@
                                 <option value="all" id="all">Sélectionnez votre date d'examen</option>
                                 <t t-foreach="modules_mcm" t-as="module">
                                     <t t-if="module">
-                                        <t t-if="module.website_published==True">
+                                        <t t-if="module.session_id.website_published==True">
                                             <b>
                                                 <option t-att-value="module.session_ville_id.name_ville"
                                                         t-att-id="module.id">
