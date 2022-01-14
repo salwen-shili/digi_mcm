@@ -111,7 +111,7 @@
                                                 optimale de
                                                 votre examen !
                                             </p>
-                                            <a href="#" class="_viewmore btn btn-warning" data-mci-spellchecked="true"
+                                            <a href="/bolt#pricing" class="_viewmore btn btn-warning" data-mci-spellchecked="true"
                                                spellcheck="false"
                                                style="word-break: break-word; position: relative; z-index: 0;"
                                                data-original-title="" title="" aria-describedby="tooltip467674">
@@ -172,7 +172,7 @@
                                         <br/>
                                     </p>
                                     <div class="s_btn text-left pt16 pb16" data-name="Buttons">
-                                        <a href="/web/login" target="_blank" rel="noopener">
+                                        <a href="/bolt#pricing" target="_blank" rel="noopener">
                                             <button class="home-btn">Je m'inscris maintenant !</button>
                                         </a>
                                     </div>
@@ -294,7 +294,7 @@
                                         <b>la chambre des métiers et de l’artisanat</b>
                                         et
                                         <b>
-                                            <a class="hyper-link" href="https://www.examentaxivtc.fr/">l'inscription</a>
+                                            <a class="hyper-link" href="https://www.examentaxivtc.fr/" target="_blank">l'inscription</a>
                                         </b>
                                         se fait&amp;nbsp;
                                         <b>en ligne</b>

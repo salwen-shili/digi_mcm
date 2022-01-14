@@ -874,6 +874,7 @@ class WebsiteSale(WebsiteSale):
     @http.route(['''/<string:product>/<string:partenaire>/shop/address''', '''/<string:product>/shop/address''',
                  '''/shop/address'''], type='http', methods=['GET', 'POST'], auth="user", website=True, sitemap=False)
     def address(self, partenaire=None, product=None, **kw):
+        return request.redirect('/shop/payment')
         Partner = request.env['res.partner'].with_context(show_address=1).sudo()
         if request.website.id == 1 :
             return request.redirect('/edit_info')
