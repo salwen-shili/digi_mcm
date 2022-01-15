@@ -70,6 +70,9 @@ class AccountMove(models.Model):
             amount_untaxed_initiale = rec.amount_untaxed
             invoice_date=rec.invoice_date
             daysDiff = 0
+            rec.pourcentage_acompte = 0
+            rec.restamount = rec.amount_residual
+            rec.amount_paye = rec.amount_total - rec.amount_residual
             if  date_precis and rec.invoice_date:
                  daysDiff = ((date_precis) - rec.invoice_date).days
                  if (rec.methodes_payment == 'cpf' and daysDiff >= 0):
