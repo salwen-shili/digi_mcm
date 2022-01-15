@@ -486,7 +486,7 @@
                                     </a>
                                 </div> -->
                                 <div>
-                                    <a href="https://partners.bolt.eu/driver-signup?utm_source=website&utm_medium=header&utm_campaign=bolt-drivers" target="_blank">
+                                    <a href="https://partners.bolt.eu/driver-signup?utm_source=website&amp;utm_medium=header&amp;utm_campaign=bolt-drivers" target="_blank">
                                         <img data-src="/mcm_website_theme/static/src/img/partenaires/bolt.png"
                                              data-srcSafari="/mcm_website_theme/static/src/img/partenaires/bolt.png"
                                              class="img img-fluid lazy" alt="Logo partenaire bolt"
