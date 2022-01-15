@@ -172,7 +172,7 @@
                                         <br/>
                                     </p>
                                     <div class="s_btn text-left pt16 pb16" data-name="Buttons">
-                                        <a href="/bolt#pricing" target="_blank" rel="noopener">
+                                        <a href="/bolt#pricing" rel="noopener">
                                             <button class="home-btn">Je m'inscris maintenant !</button>
                                         </a>
                                     </div>
@@ -486,7 +486,7 @@
                                     </a>
                                 </div> -->
                                 <div>
-                                    <a href="https://bolt.eu/fr/">
+                                    <a href="https://partners.bolt.eu/driver-signup?utm_source=website&utm_medium=header&utm_campaign=bolt-drivers" target="_blank">
                                         <img data-src="/mcm_website_theme/static/src/img/partenaires/bolt.png"
                                              data-srcSafari="/mcm_website_theme/static/src/img/partenaires/bolt.png"
                                              class="img img-fluid lazy" alt="Logo partenaire bolt"
@@ -495,7 +495,7 @@
                                     </a>
                                 </div>
                                 <div>
-                                    <a href="https://www.examentaxivtc.fr/#!/login">
+                                    <a href="https://www.examentaxivtc.fr/#!/login" target="_blank">
                                         <img data-src="/mcm_website_theme/static/src/img/partenaires/cma.png"
                                              data-srcSafari="/mcm_website_theme/static/src/img/partenaires/cma.png"
                                              class="img img-fluid lazy" alt="Logo partenaire CMA" data-original-title=""
@@ -504,7 +504,7 @@
                                     </a>
                                 </div>
                                 <div>
-                                    <a href="https://www.digimoov.fr/">
+                                    <a href="https://www.digimoov.fr/" target="_blank">
                                         <img data-src="/mcm_website_theme/static/src/img/partenaires/digimoov.png"
                                              data-srcSafari="/mcm_website_theme/static/src/img/partenaires/digimoov.png"
                                              class="img img-fluid lazy" alt="Logo partenaire Digimoov"
