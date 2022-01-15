@@ -1142,9 +1142,10 @@ class WebsiteSale(WebsiteSale):
                  '''/<string:product>/shop/confirmation/<string:state>''', '''/<string:product>/shop/confirmation''',
                  '''/shop/confirmation'''], type='http', auth="user", website=True, sitemap=False)
     def payment_confirmation(self, partenaire=None, product=None, state=None, **post):
+        sale_last_order_id = request.session['sale_last_order_id']
         order_id = request.session.get('sale_last_order_id')
-        order = request.env['sale.order'].sudo().search([('id', '=', order_id)], limit=1)
-        _logger.info('payment_confirmation orderrrrrr :  %s' % (order))
+        _logger.info('sale_last_order_id : %s , %s ' % (sale_last_order_id,order_id))
+        order = request.env['sale.order'].sudo().search(['|',('id', '=', order_id),('id', '=', sale_last_order_id)], limit=1)
         if order:
             if order and order.company_id.id == 1:
                 product_id = False
@@ -1233,7 +1234,6 @@ class WebsiteSale(WebsiteSale):
                     _logger.info('payment_confirmation product : %s' %(product_id))
                     if product_id:
                         slugname = (product_id.name).strip().strip('-').replace(' ', '-').lower()
-                        _logger.info('payment_confirmation slugname : %s' % (slugname))
                         if str(slugname) != str(product):
                             if order.pricelist_id and order.pricelist_id.name in ['ubereats', 'deliveroo',
                                                                                   'coursierjob','box2home','coursier2roues', 'habilitation-electrique', 'eco-conduite', 'transport-routier']:

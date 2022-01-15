@@ -495,7 +495,7 @@
                                     </a>
                                 </div>
                                 <div t-if="partenaire=='' or partenaire !='bolt'">
-                                    <a href="#">
+                                    <a href="https://www.examentaxivtc.fr/#!/login">
                                         <img data-src="/mcm_website_theme/static/src/img/partenaires/cma.png"
                                              data-srcSafari="/mcm_website_theme/static/src/img/partenaires/cma.png"
                                              class="img img-fluid lazy" alt="Logo partenaire CMA" data-original-title=""
