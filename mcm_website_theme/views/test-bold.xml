@@ -172,7 +172,7 @@
                                         <br/>
                                     </p>
                                     <div class="s_btn text-left pt16 pb16" data-name="Buttons">
-                                        <a href="/bolt#pricing" target="_blank" rel="noopener">
+                                        <a href="/bolt#pricing" rel="noopener">
                                             <button class="home-btn">Je m'inscris maintenant !</button>
                                         </a>
                                     </div>
