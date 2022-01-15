@@ -485,7 +485,7 @@
                                         <img data-src="/mcm_website_theme/static/src/img/partenaires/digimoov.png" data-srcSafari="/mcm_website_theme/static/src/img/partenaires/digimoov.png" class="img img-fluid lazy" alt="Logo partenaire Digimoov" data-original-title="" title="Digimoov partenaire MCM ACADEMY" aria-describedby="tooltip843653" style="margin-top: 30px; width: 72%"/>
                                     </a>
                                 </div> -->
-                                <div t-if="partenaire=='' or not partenaire ">
+                                <div>
                                     <a href="https://bolt.eu/fr/">
                                         <img data-src="/mcm_website_theme/static/src/img/partenaires/bolt.png"
                                              data-srcSafari="/mcm_website_theme/static/src/img/partenaires/bolt.png"
@@ -494,7 +494,7 @@
                                              aria-describedby="tooltip843653" style="margin-top: 30px; width: 38%"/>
                                     </a>
                                 </div>
-                                <div t-if="partenaire=='' or partenaire !='bolt'">
+                                <div>
                                     <a href="https://www.examentaxivtc.fr/#!/login">
                                         <img data-src="/mcm_website_theme/static/src/img/partenaires/cma.png"
                                              data-srcSafari="/mcm_website_theme/static/src/img/partenaires/cma.png"
