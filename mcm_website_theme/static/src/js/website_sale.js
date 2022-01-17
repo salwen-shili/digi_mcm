@@ -38,8 +38,10 @@ odoo.define('mcm_website_theme.mcm_website_sale', function (require) {
         instalment = true;
         document.getElementById('order_amount_to_pay').style.visibility =
           'visible';
+        if(document.getElementById('order_amount_to_pay_amount')){
         document.getElementById('order_amount_to_pay_amount').style.visibility =
           'visible';
+          }
         document.getElementById('order_instalment_number').style.visibility =
           'visible';
 
