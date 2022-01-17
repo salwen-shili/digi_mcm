@@ -406,19 +406,6 @@ function showPopup() {
 }
 
 //
-function verify_checked() {
-  var x = document.getElementById('checkbox_instalment');
-  if (x) {
-    if (document.getElementById('checkbox_instalment').checked == true) {
-      document.getElementById('order_amount_to_pay').style.display = 'inline';
-      document.getElementById('order_instalment_number').style.display =
-        'inline';
-    } else {
-      document.getElementById('order_amount_to_pay').style.display = 'none';
-      document.getElementById('order_instalment_number').style.display = 'none';
-    }
-  }
-}
 
 function closepopup(msg) {
   console.log('closepopup');
@@ -589,3 +576,25 @@ function renonce() {
                           </div>
          `;
 }
+
+// function show_coupon() {
+//   if (document.getElementById('promo_input')) {
+//     document.getElementById('promo_input').style.display = 'inline';
+//   }
+//   if (document.getElementById('promo_button')) {
+//     document.getElementById('promo_button').style.display = 'inline';
+//   }
+// }
+// function verify_checked() {
+//   var x = document.getElementById('checkbox_instalment');
+//   if (x) {
+//     if (document.getElementById('checkbox_instalment').checked == true) {
+//       document.getElementById('order_amount_to_pay').style.display = 'inline';
+//       document.getElementById('order_instalment_number').style.display =
+//         'inline';
+//     } else {
+//       document.getElementById('order_amount_to_pay').style.display = 'none';
+//       document.getElementById('order_instalment_number').style.display = 'none';
+//     }
+//   }
+// }

@@ -38,14 +38,25 @@ odoo.define('mcm_website_theme.mcm_website_sale', function (require) {
         instalment = true;
         document.getElementById('order_amount_to_pay').style.visibility =
           'visible';
+        document.getElementById('order_amount_to_pay_amount').style.visibility =
+          'visible';
         document.getElementById('order_instalment_number').style.visibility =
           'visible';
+
+        document.getElementById(
+          'order_instalment_number_order'
+        ).style.visibility = 'visible';
       } else {
         instalment = false;
         document.getElementById('order_amount_to_pay').style.visibility =
           'hidden';
+        document.getElementById('order_amount_to_pay_amount').style.visibility =
+          'hidden';
         document.getElementById('order_instalment_number').style.visibility =
           'hidden';
+        document.getElementById(
+          'order_instalment_number_order'
+        ).style.visibility = 'hidden';
       }
 
       this._rpc({
@@ -81,8 +92,14 @@ odoo.define('mcm_website_theme.mcm_website_sale', function (require) {
             document.getElementById(
               'order_instalment_number'
             ).style.visibility = 'hidden';
+            document.getElementById(
+              'order_instalment_number_order'
+            ).style.visibility = 'hidden';
             document.getElementById('order_amount_to_pay').style.display =
               'none';
+            document.getElementById(
+              'order_amount_to_pay_amount'
+            ).style.display = 'none';
           }
 
           // document
