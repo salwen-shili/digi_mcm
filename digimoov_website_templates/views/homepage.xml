@@ -8,11 +8,12 @@
             <br />
             <style>
             .blink-soft {
-            animation: blinker 2.5s linear infinite;
+            animation: blinker 2s linear infinite;
+            color:#fff900;
             }
             @keyframes blinker {
             50% {
-                opacity: 0.5;
+                opacity: 0.6;
             }
             70%{
             opacity: 1;
