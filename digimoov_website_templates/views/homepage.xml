@@ -6,6 +6,22 @@
             <script type="text/javascript" src="/mcm_website_theme/static/src/js/msAds.min.js" />
             <br />
             <br />
+            <style>
+            .blink-soft {
+            animation: blinker 2.5s linear infinite;
+            }
+            @keyframes blinker {
+            50% {
+                opacity: 0.5;
+            }
+            70%{
+            opacity: 1;
+            }
+            100%{
+            opacity: 1;
+            }
+            }
+            </style>
             <div id="wrap" class="oe_structure oe_empty">
                 <!-- Homepage Digimoov-->
                 <div id="homepage" t-if="partenaire!='coursier2roues' and partenaire!='habilitation-electrique' and partenaire!='eco-conduite' and partenaire!='transport-routier'">
@@ -596,7 +612,9 @@
                                                     <font style="font-size: 30px">SOLO</font>
                                                 </strong>
                                             </p>
-                                            <p>&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;</p>
+                                            <p class="blink-soft">
+                                                <b>Nouveau tarif 2022</b>
+                                            </p>
                                             <br />
                                         </div>
                                         <t t-foreach="digimoov_products" t-as="product">
