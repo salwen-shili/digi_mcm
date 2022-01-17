@@ -855,29 +855,30 @@ class partner(models.Model):
                 email = str(email).lower()  # recupérer l'email en miniscule pour éviter la création des deux comptes
                 # Recherche dans la table utilisateur si login de wedof = email
                 user = self.env["res.users"].sudo().search([("login", "=", email)])
-                if user and user.partner_id.mode_de_financement == "cpf":
-                    # Initialisation de champ etat_financement_cpf_cb
-                    etat_financement_cpf_cb = dossier['state']
-                    _logger.info("state user WEDOF::::::::::::::::::::: %s" % str(user.partner_id.display_name))
-                    if etat_financement_cpf_cb == "untreated":
-                        user.partner_id.sudo().write({
-                            'etat_financement_cpf_cb': 'untreated'}) # write la valeur untreated dans le champ etat_financement_cpf_cb
-                    if etat_financement_cpf_cb == "validated":
-                        user.partner_id.sudo().write({'etat_financement_cpf_cb': 'validated'})
-                    if etat_financement_cpf_cb == "accepted":
-                        user.partner_id.sudo().write({'etat_financement_cpf_cb': 'accepted'})
-                    if etat_financement_cpf_cb == "inTraining":
-                        user.partner_id.sudo().write({'etat_financement_cpf_cb': 'in_training'})
-                    if etat_financement_cpf_cb == "out_training":
-                        user.partner_id.sudo().write({'etat_financement_cpf_cb': 'terminated'})
-                    if etat_financement_cpf_cb == "serviceDoneDeclared":
-                        user.partner_id.sudo().write({'etat_financement_cpf_cb': 'service_declared'})
-                    if etat_financement_cpf_cb == "serviceDoneValidated":
-                        user.partner_id.sudo().write({'etat_financement_cpf_cb': 'service_validated'})
-                    if etat_financement_cpf_cb == "bill":
-                        user.partner_id.sudo().write({'etat_financement_cpf_cb': 'bill'})
-                    if etat_financement_cpf_cb == "canceled" or etat_financement_cpf_cb == "canceledByAttendee" or etat_financement_cpf_cb == "canceledByAttendeeNotRealized" or etat_financement_cpf_cb == "refusedByAttendee" or etat_financement_cpf_cb == "refusedByOrganism":
-                        user.partner_id.sudo().write({'etat_financement_cpf_cb': 'canceled'})
+                for users in user:
+                    if users and users.partner_id.mode_de_financement == "cpf":
+                        # Initialisation de champ etat_financement_cpf_cb
+                        etat_financement_cpf_cb = dossier['state']
+                        _logger.info("state user WEDOF::::::::::::::::::::: %s" % str(users.partner_id.display_name))
+                        if etat_financement_cpf_cb == "untreated":
+                            users.partner_id.sudo().write({
+                                'etat_financement_cpf_cb': 'untreated'}) # write la valeur untreated dans le champ etat_financement_cpf_cb
+                        if etat_financement_cpf_cb == "validated":
+                            users.partner_id.sudo().write({'etat_financement_cpf_cb': 'validated'})
+                        if etat_financement_cpf_cb == "accepted":
+                            users.partner_id.sudo().write({'etat_financement_cpf_cb': 'accepted'})
+                        if etat_financement_cpf_cb == "inTraining":
+                            users.partner_id.sudo().write({'etat_financement_cpf_cb': 'in_training'})
+                        if etat_financement_cpf_cb == "out_training":
+                            users.partner_id.sudo().write({'etat_financement_cpf_cb': 'terminated'})
+                        if etat_financement_cpf_cb == "serviceDoneDeclared":
+                            users.partner_id.sudo().write({'etat_financement_cpf_cb': 'service_declared'})
+                        if etat_financement_cpf_cb == "serviceDoneValidated":
+                            users.partner_id.sudo().write({'etat_financement_cpf_cb': 'service_validated'})
+                        if etat_financement_cpf_cb == "bill":
+                            users.partner_id.sudo().write({'etat_financement_cpf_cb': 'bill'})
+                        if etat_financement_cpf_cb == "canceled" or etat_financement_cpf_cb == "canceledByAttendee" or etat_financement_cpf_cb == "canceledByAttendeeNotRealized" or etat_financement_cpf_cb == "refusedByAttendee" or etat_financement_cpf_cb == "refusedByOrganism":
+                            users.partner_id.sudo().write({'etat_financement_cpf_cb': 'canceled'})
                 idform = dossier['trainingActionInfo']['externalId']
                 training_id = ""
                 if "_" in idform:
