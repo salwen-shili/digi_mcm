@@ -59,7 +59,7 @@ class partner(models.Model):
                                                 ('paid', 'Payé'),
                                                 ('not_paid', 'Non payées'),
                                                 ('in_payment', 'En paiement')],
-                                               string="Financement", default=False)
+                                               string="Financement", default=False )
 
     """Changer login d'apprenant au moment de changement d'email sur la fiche client"""
 
