@@ -11,3 +11,4 @@ class product_template(models.Model):
         digits='Product Price',
         help="Prix CHPF")
     department=fields.Boolean('Département')
+    instalment_number = fields.Integer("Payer montant sur ",default=1,track_visibility='always')

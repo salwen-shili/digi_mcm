@@ -15,6 +15,10 @@
                 <div name="department">
                     <field name="department" class="oe_inline"/>
                 </div>
+                <label for="instalment_number" groups="account.group_account_manager"/>
+                <div name="instalment_number" groups="account.group_account_manager">
+                    <field name="instalment_number" class="oe_inline"/> fois
+                </div>
             </xpath>
         </field>
     </record>

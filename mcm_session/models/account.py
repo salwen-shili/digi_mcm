@@ -225,9 +225,7 @@ class AccountMove(models.Model):
             print(self.company_id.id)
             print(order.instalment)
             if order:
-                if order.instalment and self.amount_total > 1000 and self.company_id.id==1:
-                    amount = self.amount_total / 3
-                if order.instalment and self.company_id.id==2:
+                if order.instalment :
                     amount = self.amount_total / order.instalment_number
 
         vals.update({
