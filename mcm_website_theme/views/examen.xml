@@ -103,8 +103,18 @@
               </div>
               <div class="col-md-4">
                 <div class="sh_right_content">
+                  <!-- <a href="https://www.cma-hautsdefrance.fr/examen-taxi-et-vtc" target="_blank">
+                    <button class="button-more learn-more">
+                      <span class="circle">
+                        <span class="icon arrow"></span>
+                      </span>
+                      <span class="button-more-text">Plus de détails</span>
+                    </button>
+                  </a> -->
                   <a href="https://www.cma-hautsdefrance.fr/examen-taxi-et-vtc" target="_blank" rel="noopner" class="btn-primary btn sh_btn_cm_3" alt="modalités d'évaluation épreuves
-                théoriques pratiques examen TAXI-VTC-VMDTR" title="EN SAVOIR PLUS">EN SAVOIR PLUS</a>
+                théoriques pratiques examen TAXI-VTC-VMDTR" title="EN SAVOIR PLUS">
+                
+                EN SAVOIR PLUS</a>
                 </div>
               </div>
             </div>
@@ -195,30 +205,9 @@
             </div>
           </div>
         </section>
-        <!--Mettez toutes les chance -->
-        <section id="sh_corpomate_theme_section_167" class="sh_animation_part" data-name="Call To Action" style="
-        background-color: rgb(253, 209, 5);
-        margin-block-start: 51px;
-        margin-block-end: 51px;
-      ">
-          <div class="container fade-in-top js-scroll scrolled">
-            <p style="
-            font-size: 18px;
-            color: rgb(0, 0, 0);
-            max-width: 100%;
-            font-weight: 500;
-          ">
-          Mettez toutes les chances de votre côté pour réussir votre examen
-          suivant nos formations en ligne, soigneusement concoctés par nos
-          experts pédagogiques.
-        </p>
-            <a class="animated-button-black" href="#pricing" title="Comment mobiliser mon CPF">
-          Je m'inscris
-        </a>
-          </div>
-        </section>
+
         <!-- Prcing table-->
-        <div id="pricing" class="pb32">
+        <div id="pricing" class="mt96 pb32">
           <input t-att-value="request.website.microsoft_tracking_key" id="microsoft_tracking_key" type="hidden" />
           <section id="sh_corpomate_theme_section_188" class="sh_animation_part" data-name="Pricing">
             <div class="container">
@@ -409,34 +398,34 @@
                                     </a>
                                 </div> -->
 
-              <div t-if="partenaire=='' or partenaire !='bolt'">
+              <div class="text-center" t-if="partenaire=='' or partenaire !='bolt'">
                 <a href="#">
                   <img data-src="/mcm_website_theme/static/src/img/partenaires/cma.png" data-srcSafari="/mcm_website_theme/static/src/img/partenaires/cma.png" class="img img-fluid lazy" alt="Logo partenaire CMA" title="CMA partenaire MCM ACADEMY" style="margin-top: 30px; width: 50%" />
                 </a>
               </div>
 
-              <div t-if="partenaire=='' or not partenaire ">
+              <div class="text-center" t-if="partenaire=='' or not partenaire ">
                 <a href="https://bolt.eu/fr/" target="_blank" rel="noopner">
                   <img data-src="/mcm_website_theme/static/src/img/partenaires/bolt.png" data-srcSafari="/mcm_website_theme/static/src/img/partenaires/bolt.png" class="img img-fluid lazy" alt="Logo partenaire bolt" title="Bolt partenaire MCM ACADEMY" style="margin-top: 30px; width: 38%" />
                 </a>
               </div>
-              <div t-if="partenaire=='bolt' ">
+              <div class="text-center" t-if="partenaire=='bolt' ">
                 <a href="https://bolt.eu/fr/" target="_blank" rel="noopner">
                   <img data-src="/mcm_website_theme/static/src/img/partenaires/Bolt_logo.svg.png" data-srcSafari="/mcm_website_theme/static/src/img/partenaires/Bolt_logo.svg.png" class="img img-fluid lazy" alt="Logo partenaire bolt" title="Bolt partenaire MCM ACADEMY" style="margin-top: 30px; width: 38%" />
                 </a>
               </div>
-              <!-- <div t-if="partenaire=='' or partenaire !='bolt'">
+              <!-- <div class="text-center" t-if="partenaire=='' or partenaire !='bolt'">
                                     <a href="https://www.uber.com/fr/fr/">
                                         <img data-src="/mcm_website_theme/static/src/img/partenaires/uber.png" data-srcSafari="/mcm_website_theme/static/src/img/partenaires/uber.png" class="img img-fluid lazy" alt="Logo partenaire uber"  title="Uber partenaire MCM ACADEMY" aria-describedby="tooltip843653" style="margin-top: 30px; width: 50%"/>
                                     </a>
                                 </div> -->
 
-              <div t-if="partenaire=='' or not partenaire ">
+              <div class="text-center" t-if="partenaire=='' or not partenaire ">
                 <a href="https://www.comptable-douai.com/" target="_blank" rel="noopner" alt="Joël Pruvost partenaire MCM ACADEMY">
                   <img data-src="/mcm_website_theme/static/src/img/partenaires/joel.png" data-srcSafari="/mcm_website_theme/static/src/img/partenaires/joel.png" class="img img-fluid lazy" alt="Logo partenaire Cabinet Comptable Joël Pruvost" title="Cabinet Comptable Joël Pruvost partenaire MCM ACADEMY" style="margin-top: 30px; width: 68%" />
                 </a>
               </div>
-              <div t-if="partenaire=='bolt'">
+              <div class="text-center" t-if="partenaire=='bolt'">
                 <a href="https://www.digimoov.fr/" target="_blank" rel="noopner">
                   <img data-src="/mcm_website_theme/static/src/img/partenaires/digimoov.png" data-srcSafari="/mcm_website_theme/static/src/img/partenaires/digimoov.png" class="img img-fluid lazy" alt="Logo partenaire Digimoov" title="Digimoov partenaire MCM ACADEMY" style="margin-top: 30px; width: 46%" />
                 </a>
