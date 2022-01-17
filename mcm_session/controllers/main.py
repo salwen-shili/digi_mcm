@@ -76,6 +76,13 @@ class WebsiteSale(WebsiteSale):
     @http.route(['/shop/cart/update'], type='http', auth="public", methods=['GET', 'POST'], website=True, csrf=False)
     def cart_update(self, product_id,module='', add_qty=1, set_qty=0,promo=None, **kw):
         """This route is called when adding a product to cart (no options)."""
+        product =  request.env['product.product'].sudo().search(
+                    [('id', '=', product_id)])
+        order = request.website.sale_get_order()
+        print('shop update')
+        print(order)
+        if order and product and order.company_id != product.company_id:
+            order.sudo().unlink()
         sale_order = request.website.sale_get_order(force_create=True)
         if sale_order.order_line:
             list = []
