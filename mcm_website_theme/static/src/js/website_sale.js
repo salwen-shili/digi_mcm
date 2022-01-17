@@ -50,10 +50,14 @@ odoo.define('mcm_website_theme.mcm_website_sale', function (require) {
         instalment = false;
         document.getElementById('order_amount_to_pay').style.visibility =
           'hidden';
+        if(document.getElementById('order_amount_to_pay_amount')){
         document.getElementById('order_amount_to_pay_amount').style.visibility =
           'hidden';
+          }
+        if(document.getElementById('order_instalment_number')){
         document.getElementById('order_instalment_number').style.visibility =
           'hidden';
+          }
         document.getElementById(
           'order_instalment_number_order'
         ).style.visibility = 'hidden';
@@ -97,9 +101,11 @@ odoo.define('mcm_website_theme.mcm_website_sale', function (require) {
             ).style.visibility = 'hidden';
             document.getElementById('order_amount_to_pay').style.display =
               'none';
+            if(document.getElementById('order_amount_to_pay_amount')){
             document.getElementById(
               'order_amount_to_pay_amount'
             ).style.display = 'none';
+            }
           }
 
           // document
