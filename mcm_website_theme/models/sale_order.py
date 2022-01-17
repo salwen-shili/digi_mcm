@@ -34,26 +34,10 @@ class SaleOrder(models.Model):
     @ api.depends('amount_total', 'pricelist_id')
     def get_instalment_number(self):
         for rec in self:
-            if (rec.amount_total >= 1000 and rec.company_id.id == 1):
-                rec.instalment_number = 3
-            elif (rec.amount_total < 1000 and rec.company_id.id == 1):
-                rec.instalment_number = 1
-            elif (rec.company_id.id == 2):
-                default_code = False
-                for line in rec.order_line:
-                    default_code = line.product_id.default_code
-                if default_code == 'basique':
-                    rec.instalment_number = 1
-                elif default_code == 'avancee':
-                    rec.instalment_number = 2
-                elif default_code == 'premium':
-                    rec.instalment_number = 3
-                else:
-                    rec.instalment_number = 1
-            else:
-                rec.instalment_number = 1
-            print('instalment number')
-            print(rec.instalment_number)
+            for line in rec.order_line:
+                if line.product_id.instalment_number :
+                    rec.instalment_number = line.product_id.instalment_number
+            
 
     @api.depends('amount_total', 'instalment_number')
     def compute_amount_to_pay(self):
