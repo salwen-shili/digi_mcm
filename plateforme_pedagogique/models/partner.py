@@ -46,6 +46,21 @@ class partner(models.Model):
     stats_ids = fields.Many2one('plateforme_pedagogique.user_stats')
     temps_minute = fields.Integer(string="Temps passé en minutes")  # Champs pour récuperer temps en minute par api360
     second_email= fields.Char(string='Email secondaire')
+    # Recuperation de l'état de facturation pour cpf de wedof et carte bleu de odoo
+    etat_financement_cpf_cb = fields.Selection([('untreated', 'Non Traité'),
+                                                ('validated', 'Validé'),
+                                                ('accepted', 'Accepté'),
+                                                ('in_training', 'En Formation'),
+                                                ('out_training', 'Sortie de Formation'),
+                                                ('service_declared', 'Service Fait Declaré'),
+                                                ('service_validated', 'Service Fait Validé'),
+                                                ('bill', 'Facturé'),
+                                                ('canceled', 'Annulé'),
+                                                ('paid', 'Payé'),
+                                                ('not_paid', 'Non payées'),
+                                                ('in_payment', 'En paiement')],
+                                               string="Financement", default=False)
+
     """Changer login d'apprenant au moment de changement d'email sur la fiche client"""
 
     def write(self, vals):
