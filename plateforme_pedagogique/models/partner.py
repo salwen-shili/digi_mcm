@@ -836,7 +836,7 @@ class partner(models.Model):
                 ('certificationState', 'all'),
                 ('sort', 'lastUpdate'),
                 ('limit', '100'),
-                ('page', '1')
+                ('page', '2')
             )
             headers = {
                 'accept': 'application/json',
