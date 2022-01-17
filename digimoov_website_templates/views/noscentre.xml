@@ -131,7 +131,7 @@
                             </p>
                             <div class="pb16 pt16 s_btn text-center" data-name="Button">
                                 <button type="submit" class="btn btn-alpha o_anim_fade_in_up o_animate" data-original-title="" title="" aria-describedby="tooltip906293" style="animation-name: o_anim_fade_in_up; visibility: visible; animation-play-state: paused;">
-                                    <a href="/pricing" data-original-title="" title="" aria-describedby="tooltip562802">
+                                    <a href="/pricing" target="_blank" rel="noopner" data-original-title="" title="" aria-describedby="tooltip562802">
                                         <font style="color: rgb(255, 255, 255);" onclick='(function (w, d, t, r, u) {
     var f, n, i;
     (w[u] = w[u] || []),
