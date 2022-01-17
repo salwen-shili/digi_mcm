@@ -1636,3 +1636,26 @@ class partner(models.Model):
                 invoice.numero_cpf=partner.numero_cpf
                 _logger.info(' if invoice %s' % str(invoice.numero_cpf))
 
+    def update_carte_bleu_partner_field_financement(self):
+        """ Tache cron pour remplir le champ financement dans la fiche client avec état de paiement
+        de (paid, not paid, in paiement) à partir de la dernière facture de client"""
+        for partner in self.env['res.partner'].search(
+                [('statut', "=", "won"), ("mode_de_financement", "=",
+                                          "particulier")]):  # Récupérer les clients qui sont gagnés et sont modes de financement carte bleu
+            for invoice in self.env['account.move'].sudo().search([('partner_id', "=", partner.id)],
+                                                                  order='create_date asc'):
+                _logger.info("user INVOICE----invoice_payment_state------------°°°°°°°°°°°°°°° %s " % str(
+                    invoice.invoice_payment_state))
+                _logger.info(
+                    "user Partner id----------------°°°°°°°°°°°°°°° %s " % str(invoice.partner_id.display_name))
+                if invoice and invoice.invoice_payment_state:
+                    etat_financement_cpf_cb = invoice.invoice_payment_state
+                    if invoice.invoice_payment_state == "in_payment":
+                        etat_financement_cpf_cb = invoice.invoice_payment_state
+                        invoice.partner_id.sudo().write({'etat_financement_cpf_cb': 'in_payment'})
+                    if invoice.invoice_payment_state == "paid":
+                        etat_financement_cpf_cb = invoice.invoice_payment_state
+                        invoice.partner_id.sudo().write({'etat_financement_cpf_cb': 'paid'})
+                    if invoice.invoice_payment_state == "not_paid":
+                        etat_financement_cpf_cb = invoice.invoice_payment_state
+                        invoice.partner_id.sudo().write({'etat_financement_cpf_cb': 'not_paid'})
