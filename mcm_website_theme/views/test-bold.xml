@@ -4,16 +4,14 @@
         <t t-call="website.layout">
             <xpath expr="//div[@id='wrap']" position="before">
                 <t t-set="head">
-                    <meta name="robots" content="noindex"/>
+                    <meta name="robots" content="noindex" />
                 </t>
             </xpath>
-            <div id="wrap" class="oe_structure oe_empty"
-                 style="word-break: break-word; position: relative; z-index: 0;">
-                <link rel="stylesheet" href="/mcm_website_theme/static/src/css/homepage.min.css"/>
-                <script defer="defer" type="text/javascript"
-                        src="/digimoov_website_templates/static/src/js/lazy-min.min.js"/>
-                <script type="text/javascript" src="/mcm_website_theme/static/src/js/msAds.min.js"/>
-                <link rel="stylesheet" href="/mcm_website_theme/static/src/css/cta-button.min.css"/>
+            <div id="wrap" class="oe_structure oe_empty" style="word-break: break-word; position: relative; z-index: 0;">
+                <link rel="stylesheet" href="/mcm_website_theme/static/src/css/homepage.min.css" />
+                <script defer="defer" type="text/javascript" src="/digimoov_website_templates/static/src/js/lazy-min.min.js" />
+                <script type="text/javascript" src="/mcm_website_theme/static/src/js/msAds.min.js" />
+                <link rel="stylesheet" href="/mcm_website_theme/static/src/css/cta-button.min.css" />
                 <div id="wrap" class="oe_structure" style="border-style: none; border-width: 0px;">
                     <section id="sh_corpomate_theme_section_258" class="sh_animation_part pt8">
                         <div class="container-banner">
@@ -23,7 +21,7 @@
                                         <div class="text-center">
                                             <h1 class="slider-text-info title-mcm">
                                                 <font style="font-size: 48px;">FORMATION VTC</font>
-                                                <br/>
+                                                <br />
                                                 <span class="subtitle-mcm">100 % en ligne</span>
                                             </h1>
                                             <p class="para">
@@ -32,12 +30,9 @@
                                                     centre de formation doté d’une expérience de plus de 10 ans dans le
                                                     domaine, vous ne pourrez qu’être satisfait.
                                                 </span>
-                                                <br/>
+                                                <br />
                                             </p>
-                                            <a class="animated-button-yellow" href="#pricing" data-original-title=""
-                                               title="" aria-describedby="tooltip955896" data-mci-spellchecked="true"
-                                               spellcheck="false" lang="merciapp"
-                                               style="word-break: break-word; position: relative; z-index: 0;">JE
+                                            <a class="animated-button-yellow" href="#pricing" data-original-title="" title="" aria-describedby="tooltip955896" data-mci-spellchecked="true" spellcheck="false" lang="merciapp" style="word-break: break-word; position: relative; z-index: 0;">JE
                                                 M'INSCRIS !
                                             </a>
                                         </div>
@@ -46,13 +41,7 @@
 
                                 </div>
                                 <div class="col-lg-6 pb48 pt16 js-scroll slide-right ">
-                                    <img data-src="/mcm_website_theme/static/src/img/formation_vtc/formation-chauffeur-vtc.webp"
-                                         data-srcsafari="/mcm_website_theme/static/src/img/formation_vtc/formation-chauffeur-vtc.png"
-                                         class="img img-fluid mx-auto"
-                                         alt="Devenir chauffeur professionnel VTC, Taxi ou Moto-Taxi"
-                                         data-original-title="" title="Chauffeur vtc devant sa voiture"
-                                         aria-describedby="tooltip202025" style="text-align: center;"
-                                         src="/mcm_website_theme/static/src/img/formation_vtc/formation-chauffeur-vtc.webp"/>
+                                    <img data-src="/mcm_website_theme/static/src/img/formation_vtc/formation-chauffeur-vtc.webp" data-srcsafari="/mcm_website_theme/static/src/img/formation_vtc/formation-chauffeur-vtc.png" class="img img-fluid mx-auto" alt="Devenir chauffeur professionnel VTC, Taxi ou Moto-Taxi" data-original-title="" title="Chauffeur vtc devant sa voiture" aria-describedby="tooltip202025" style="text-align: center;" src="/mcm_website_theme/static/src/img/formation_vtc/formation-chauffeur-vtc.webp" />
                                 </div>
                             </div>
                         </div>
@@ -62,28 +51,23 @@
                         padding: 0px 0px 150px 0px;
                         }
                     </style>
-                    <section id="sh_corpomate_theme_section_315" class="sh_animation_part"
-                             data-name="Image_Text Snippet 13">
+                    <section id="sh_corpomate_theme_section_315" class="sh_animation_part" data-name="Image_Text Snippet 13">
                         <div class="container">
                             <div class="sh_image_text_13">
                                 <div class="row align-items-center">
                                     <div class="col-lg-6 col-md-12 col-sm-12 col-12">
                                         <div class="left_image ">
                                             <div class="behind_img js-scroll slide-left">
-                                                <img src="/mcm_website_theme/static/src/img/formation-vtc-bolt.png"
-                                                     alt="formation vtc code promo bolt"/>
+                                                <img src="/mcm_website_theme/static/src/img/formation-vtc-bolt.png" alt="formation vtc code promo bolt" />
                                             </div>
 
                                             <div class="front_img_bottom js-scroll slide-right">
-                                                <img src="/mcm_website_theme/static/src/img/logo-bolt.png"
-                                                     alt="Bolt logo"/>
+                                                <img src="/mcm_website_theme/static/src/img/logo-bolt.png" alt="Bolt logo" />
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-lg-6 col-md-12 col-sm-12 col-12 bg-black-75"
-                                         style="margin-top: 21px;">
-                                        <div class="right_text js-scroll slide-right"
-                                             style="margin: 12px 12px 41px 12px;">
+                                    <div class="col-lg-6 col-md-12 col-sm-12 col-12 bg-black-75" style="margin-top: 21px;">
+                                        <div class="right_text js-scroll slide-right" style="margin: 12px 12px 41px 12px;">
                                             <h2 style="font-size: 17px; font-weight: bold; color:#fff ">
                                                 Jusqu'au
                                                 <span style="color: #24f0a0; font-weight: 600">21/01</span>
@@ -111,10 +95,7 @@
                                                 optimale de
                                                 votre examen !
                                             </p>
-                                            <a href="/bolt#pricing" class="_viewmore btn btn-warning" data-mci-spellchecked="true"
-                                               spellcheck="false"
-                                               style="word-break: break-word; position: relative; z-index: 0;"
-                                               data-original-title="" title="" aria-describedby="tooltip467674">
+                                            <a href="/bolt#pricing" class="_viewmore btn btn-warning" data-mci-spellchecked="true" spellcheck="false" style="word-break: break-word; position: relative; z-index: 0;" data-original-title="" title="" aria-describedby="tooltip467674">
                                                 <font style="font-size: 18px;">
                                                     <b>J'en profite !</b>
                                                 </font>
@@ -132,10 +113,7 @@
                         <div class="container">
                             <div class="row align-items-center">
                                 <div class="col-lg-6 pt16 pb16 js-scroll slide-left ">
-                                    <img data-src="/mcm_website_theme/static/src/img/homepage/mcm-academy-centre-de-formation-en-ligne-des-métiers-de-transports.webp"
-                                         data-srcsafari="/mcm_website_theme/static/src/img/homepage/mcm-academy-centre-de-formation-en-ligne-des-métiers-de-transports.png"
-                                         class="img img-fluid mx-auto" alt="candidats centre de formation vtc"
-                                         src="/mcm_website_theme/static/src/img/homepage/mcm-academy-centre-de-formation-en-ligne-des-métiers-de-transports.webp"/>
+                                    <img data-src="/mcm_website_theme/static/src/img/homepage/mcm-academy-centre-de-formation-en-ligne-des-métiers-de-transports.webp" data-srcsafari="/mcm_website_theme/static/src/img/homepage/mcm-academy-centre-de-formation-en-ligne-des-métiers-de-transports.png" class="img img-fluid mx-auto" alt="candidats centre de formation vtc" src="/mcm_website_theme/static/src/img/homepage/mcm-academy-centre-de-formation-en-ligne-des-métiers-de-transports.webp" />
                                 </div>
                                 <div class="col-lg-6 pt16 pb16 js-scroll slide-right ">
                                     <h2>
@@ -144,10 +122,10 @@
                                     <p class="para">
                                         Créée en 2015, MCM Academy est une structure spécialisée dans la
                                         formation des métiers de chauffeurs de taxi, VTC et de taxi moto.
-                                        <br/>
+                                        <br />
                                         Aujourd'hui nous sommes parmi les leaders du marché de la formation en ligne de
                                         TAXIS et VTC en France.
-                                        <br/>
+                                        <br />
                                         Agréé par la préfecture, notre centre de formation organise les
                                         examens du certificat de capacité professionnelle de chauffeur taxi et VTC
                                         partout en France.
@@ -169,7 +147,7 @@
                                         forme de vidéos interactives, de Live avec nos formateurs, de QCM et d’examens
                                         blancs, soigneusement préparés par nos experts métiers afin de mieux vous
                                         préparer à l’examen final.&amp;nbsp;
-                                        <br/>
+                                        <br />
                                     </p>
                                     <div class="s_btn text-left pt16 pb16" data-name="Buttons">
                                         <a href="/bolt#pricing" rel="noopener">
@@ -178,8 +156,7 @@
                                     </div>
                                 </div>
                                 <div class="col-lg-6 pt16 pb16 js-scroll slide-right ">
-                                    <img class="img img-fluid mx-auto" alt="candidats formation taxi vtc"
-                                         src="/mcm_website_theme/static/src/img/comment-s'inscrire-au-registre-VTC.png"/>
+                                    <img class="img img-fluid mx-auto" alt="candidats formation taxi vtc" src="/mcm_website_theme/static/src/img/comment-s'inscrire-au-registre-VTC.png" />
                                 </div>
                             </div>
                         </div>
@@ -209,10 +186,10 @@
                                     <div class="sh_content">
                                         <div class="sh_num_icon">
                                             <section class="sh_num o_default_snippet_text">1</section>
-                                            <span class="sh_icon fa fa-calendar"/>
+                                            <span class="sh_icon fa fa-calendar" />
                                         </div>
 
-                                        <h4 class="o_default_snippet_text"/>
+                                        <h4 class="o_default_snippet_text" />
                                         <p class="o_default_snippet_text">Inscrivez-vous à la formation</p>
                                     </div>
                                 </div>
@@ -220,10 +197,10 @@
                                     <div class="sh_content sh_second_content">
                                         <div class="sh_num_icon">
                                             <section class="sh_num o_default_snippet_text">2</section>
-                                            <span class="sh_icon fa fa-folder-open-o"/>
+                                            <span class="sh_icon fa fa-folder-open-o" />
                                         </div>
 
-                                        <h4 class="o_default_snippet_text"/>
+                                        <h4 class="o_default_snippet_text" />
                                         <p class="o_default_snippet_text">Passer un petit examen blanc pour tester vos
                                             connaissances en français
                                         </p>
@@ -233,10 +210,10 @@
                                     <div class="sh_content">
                                         <div class="sh_num_icon">
                                             <section class="sh_num o_default_snippet_text">3</section>
-                                            <span class="sh_icon fa fa-calendar"/>
+                                            <span class="sh_icon fa fa-calendar" />
                                         </div>
 
-                                        <h4 class="o_default_snippet_text"/>
+                                        <h4 class="o_default_snippet_text" />
                                         <p class="o_default_snippet_text">Nous allons vous assister pour vous inscrire à
                                             l'examen
                                         </p>
@@ -247,9 +224,9 @@
                                     <div class="sh_content sh_last_content">
                                         <div class="sh_num_icon">
                                             <section class="sh_num o_default_snippet_text">4</section>
-                                            <span class="sh_icon fa fa-paper-plane-o"/>
+                                            <span class="sh_icon fa fa-paper-plane-o" />
                                         </div>
-                                        <h4 class="o_default_snippet_text"/>
+                                        <h4 class="o_default_snippet_text" />
                                         <p class="o_default_snippet_text">Accès à notre plateforme de formation</p>
                                     </div>
                                 </div>
@@ -259,11 +236,17 @@
                     <section class="s_text_image pt32 pb32" data-name="Text - Image">
                         <div class="container">
                             <div class="row align-items-center">
-                                <div class="col-lg-6 pt16 pb16 js-scroll slide-left ">
-                                    <img data-src="/mcm_website_theme/static/src/img/homepage/inscription-à-l’examen-taxi-vtc.webp"
-                                         data-srcsafari="mcm_website_theme/static/src/img/homepage/inscription-à-l’examen-taxi-vtc.png"
-                                         class="img img-fluid mx-auto" alt="Odoo • Image et Texte"
-                                         src="/mcm_website_theme/static/src/img/homepage/inscription-à-l’examen-taxi-vtc.webp"/>
+
+                                <div class="col-md-6 sh_animation_part js-scroll slide-left">
+                                    <div class="sh_content_right">
+                                        <div class="sh_img">
+                                            <div class="media_iframe_video" data-oe-expression="https://www.youtube.com/embed/z4zwWA5VHoQ?autoplay=1&amp;mute=1&amp;rel=0&amp;modestbranding=1">
+                                                <div class="css_editable_mode_display"></div>
+                                                <div class="media_iframe_video_size"></div>
+                                                <iframe src="https://www.youtube.com/embed/z4zwWA5VHoQ?autoplay=1&amp;mute=1&amp;rel=0&amp;modestbranding=1" frameborder="0" allowfullscreen="allowfullscreen" />
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                                 <div class="col-lg-6 pt16 pb16 js-scroll slide-right ">
                                     <h2>
@@ -323,20 +306,10 @@
                                         du candidat sur le territoire parcouru, et sa capacité à accueillir et à
                                         facturer un client.
                                     </p>
-                                    <p/>
+                                    <p />
                                 </div>
-                                <div class="col-md-6 sh_animation_part js-scroll slide-right">
-                                    <div class="sh_content_right">
-                                        <div class="sh_img">
-                                            <div class="media_iframe_video"
-                                                 data-oe-expression="https://www.youtube.com/embed/z4zwWA5VHoQ?autoplay=1&amp;mute=1&amp;rel=0&amp;modestbranding=1">
-                                                <div class="css_editable_mode_display"></div>
-                                                <div class="media_iframe_video_size"></div>
-                                                <iframe src="https://www.youtube.com/embed/z4zwWA5VHoQ?autoplay=1&amp;mute=1&amp;rel=0&amp;modestbranding=1"
-                                                        frameborder="0" allowfullscreen="allowfullscreen"/>
-                                            </div>
-                                        </div>
-                                    </div>
+                                <div class="col-lg-6 pt16 pb16 js-scroll slide-right ">
+                                    <img data-src="/mcm_website_theme/static/src/img/homepage/inscription-à-l’examen-taxi-vtc.webp" data-srcsafari="mcm_website_theme/static/src/img/homepage/inscription-à-l’examen-taxi-vtc.png" class="img img-fluid mx-auto" alt="Odoo • Image et Texte" src="/mcm_website_theme/static/src/img/homepage/inscription-à-l’examen-taxi-vtc.webp" />
                                 </div>
                             </div>
                         </div>
@@ -345,26 +318,22 @@
                         <div class="container">
                             <div class="row js-scroll fade-in-top ">
                                 <div class="col-md-3 col-sm-12 text-center mb-4 mb-md-0">
-                                    <img class="img-fluid" data-src="/mcm_website_theme/static/src/img/avis_google.webp"
-                                         data-srcsafari="/mcm_website_theme/static/src/img/avis_google.png"
-                                         alt="avis google MCM ACADEMY" title="Google" style="width: 182px"
-                                         src="/mcm_website_theme/static/src/img/avis_google.webp"/>
+                                    <img class="img-fluid" data-src="/mcm_website_theme/static/src/img/avis_google.webp" data-srcsafari="/mcm_website_theme/static/src/img/avis_google.png" alt="avis google MCM ACADEMY" title="Google" style="width: 182px" src="/mcm_website_theme/static/src/img/avis_google.webp" />
                                 </div>
                                 <div class="col-md-9 col-sm-12 s_title pt16 pb0 text-center">
                                     <div class="text-left">
                                         <span class="bold-desc">
                                             - Le nombre de stagiaires formés depuis l'ouverture de centre
                                             et jusqu'à Septembre 2021
-                                            <br/>
+                                            <br />
                                         </span>
                                         <span class="bold-desc">
                                             - Selon l'avis de la majorité de nos apprenants sur Google.
-                                            <a style="color: #2d74f7"
-                                               href="https://www.google.com/search?q=mcm+academy&amp;rlz=1C1CHBF_frTN911TN916&amp;sxsrf=AOaemvLXgPjmp_LUdcBr_VYoZZbfCUXnQQ%3A1632154532783&amp;ei=pLNIYZv4LoTDlwT8z6igCw&amp;oq=mcm+a&amp;gs_lcp=Cgdnd3Mtd2l6EAMYADIECCMQJzIFCAAQgAQyCwguEIAEEMcBEK8BMgUIABCABDIFCAAQgAQyBQgAEIAEMgUIABCABDIFCAAQgAQyBQgAEIAEMgUIABCABDoHCCMQsAMQJzoHCAAQRxCwAzoQCC4QxwEQ0QMQyAMQsAMQQzoHCAAQsQMQQzoECAAQQzoKCAAQsQMQgwEQQzoLCAAQgAQQsQMQgwE6CAgAEIAEELEDOgoILhDHARDRAxBDOgQILhBDOg4ILhCABBCxAxDHARDRAzoLCC4QgAQQxwEQ0QM6CAguEIAEELEDOgUILhCABEoFCDgSATFKBAhBGABQpOQLWIbqC2Dc8AtoAXACeACAAcMBiAGbBpIBAzAuNZgBAKABAcgBC8ABAQ&amp;sclient=gws-wiz#lrd=0x47c2d584b3f426a3:0x8c9722c8da9f4da3,1,,,">
+                                            <a style="color: #2d74f7" href="https://www.google.com/search?q=mcm+academy&amp;rlz=1C1CHBF_frTN911TN916&amp;sxsrf=AOaemvLXgPjmp_LUdcBr_VYoZZbfCUXnQQ%3A1632154532783&amp;ei=pLNIYZv4LoTDlwT8z6igCw&amp;oq=mcm+a&amp;gs_lcp=Cgdnd3Mtd2l6EAMYADIECCMQJzIFCAAQgAQyCwguEIAEEMcBEK8BMgUIABCABDIFCAAQgAQyBQgAEIAEMgUIABCABDIFCAAQgAQyBQgAEIAEMgUIABCABDoHCCMQsAMQJzoHCAAQRxCwAzoQCC4QxwEQ0QMQyAMQsAMQQzoHCAAQsQMQQzoECAAQQzoKCAAQsQMQgwEQQzoLCAAQgAQQsQMQgwE6CAgAEIAEELEDOgoILhDHARDRAxBDOgQILhBDOg4ILhCABBCxAxDHARDRAzoLCC4QgAQQxwEQ0QM6CAguEIAEELEDOgUILhCABEoFCDgSATFKBAhBGABQpOQLWIbqC2Dc8AtoAXACeACAAcMBiAGbBpIBAzAuNZgBAKABAcgBC8ABAQ&amp;sclient=gws-wiz#lrd=0x47c2d584b3f426a3:0x8c9722c8da9f4da3,1,,,">
                                                 Cliquez ici pour lire les avis
                                             </a>
                                             .
-                                            <br/>
+                                            <br />
                                         </span>
                                         <span class="bold-desc">- Moyenne de taux de réussite de</span>
                                         <span class="bold-desc">
@@ -380,22 +349,21 @@
                                             .
                                         </span>
                                     </div>
-                                    <br/>
+                                    <br />
                                 </div>
                             </div>
                         </div>
                     </section>
 
                     <div id="pricing" class="js-scroll fade-in-top">
-                        <input t-att-value="request.website.microsoft_tracking_key" id="microsoft_tracking_key"
-                               type="hidden"/>
+                        <input t-att-value="request.website.microsoft_tracking_key" id="microsoft_tracking_key" type="hidden" />
 
                         <section id="sh_corpomate_theme_section_188" class="sh_animation_part" data-name="Pricing">
                             <div class="container">
                                 <div class="sh_title mt48">
                                     <h2>
                                         <b>Inscrivez-vous dès maintenant !</b>
-                                        <br/>
+                                        <br />
                                     </h2>
                                     <h4 style="
                     margin-top: 20px;
@@ -405,24 +373,20 @@
                                         Choisissez le pack qui vous convient&amp;nbsp;
                                     </h4>
                                     <p>
-                                        <br/>
+                                        <br />
                                     </p>
                                 </div>
                                 <div class="row" style="justify-content: center !important">
-                                    <div class="col-md-5 sh_animation_part"
-                                         style="border-style: none; border-width: 0px">
+                                    <div class="col-md-5 sh_animation_part" style="border-style: none; border-width: 0px">
                                         <div class="sh_pricing">
                                             <t t-if="bolt_product.default_code=='vtc_bolt'">
                                                 <form action="/shop/cart/update" method="post" id="form-1-1">
-                                                    <input type="hidden" class="product_id" name="product_id"
-                                                           id="bolt_product" t-att-value="bolt_product.id"/>
-                                                    <input type="hidden" name="promo" t-att-value="promo.id"
-                                                           t-if="promo"/>
+                                                    <input type="hidden" class="product_id" name="product_id" id="bolt_product" t-att-value="bolt_product.id" />
+                                                    <input type="hidden" name="promo" t-att-value="promo.id" t-if="promo" />
                                                     <h4>PACK VTC</h4>
                                                     <h4>
-                                                        <span class="pricebar" t-esc="round(vtc_product.list_price)"/>
-                                                        <span style="color: #fdd105"
-                                                              t-esc="vtc_product.currency_id.symbol"/>
+                                                        <span class="pricebar" t-esc="round(vtc_product.list_price)" />
+                                                        <span style="color: #fdd105" t-esc="vtc_product.currency_id.symbol" />
                                                     </h4>
                                                     <ul class="">
                                                         <li>Examen à la CMA inclus</li>
@@ -441,23 +405,21 @@
                                                         <p class="text-center font-weight-bolder text-secondary">
                                                             <b style="font-size: 80%">
                                                                 <t>avec le code</t>
-                                                                <t style="color:#24F0A0" t-esc="promo.code"/>
+                                                                <t style="color:#24F0A0" t-esc="promo.code" />
                                                             </b>
                                                         </p>
                                                     </t>
                                                     <h4>
-                                                        <span t-esc="round(bolt_product.list_price)"/>
-                                                        <span style="color: #fdd105"
-                                                              t-esc="bolt_product.currency_id.symbol"/>
+                                                        <span t-esc="round(bolt_product.list_price)" />
+                                                        <span style="color: #fdd105" t-esc="bolt_product.currency_id.symbol" />
                                                     </h4>
-                                                    <br/>
+                                                    <br />
                                                     <div class="sh_btn">
                                                         <!-- <a class="btn btn-primary sh_btn_cm_8" data-original-title="" title="" aria-describedby="tooltip357369" onClick="(function(){document.getElementById('form-1-1').submit();return false;})();return false;">
                         Je m'inscris
                                             </a> -->
 
-                                                        <a class="animated-button-yellow" href="#pricing"
-                                                           onClick="(function(){packVtcPageFormationTaxi();document.getElementById('form-1-1').submit();return false;})();return false;">
+                                                        <a class="animated-button-yellow" href="#pricing" onClick="(function(){packVtcPageFormationTaxi();document.getElementById('form-1-1').submit();return false;})();return false;">
                                                             <span></span>
                                                             <span></span>
                                                             <span></span>
@@ -476,8 +438,7 @@
                         </section>
                     </div>
                     <!-- FIN PRICING TABLE-->
-                    <section class="clients s_references bg-200 pt16 pb32 js-scroll fade-in-top "
-                             data-name="References">
+                    <section class="clients s_references bg-200 pt16 pb32 js-scroll fade-in-top " data-name="References">
                         <div class="container text-center">
                             <div class="center-logo">
                                 <!-- <div t-if="partenaire=='' or not partenaire or partenaire=='bolt'">
@@ -487,29 +448,17 @@
                                 </div> -->
                                 <div>
                                     <a href="https://partners.bolt.eu/driver-signup?utm_source=website&amp;utm_medium=header&amp;utm_campaign=bolt-drivers" target="_blank">
-                                        <img data-src="/mcm_website_theme/static/src/img/partenaires/bolt.png"
-                                             data-srcSafari="/mcm_website_theme/static/src/img/partenaires/bolt.png"
-                                             class="img img-fluid lazy" alt="Logo partenaire bolt"
-                                             data-original-title="" title="Bolt partenaire MCM ACADEMY"
-                                             aria-describedby="tooltip843653" style="margin-top: 30px; width: 38%"/>
+                                        <img data-src="/mcm_website_theme/static/src/img/partenaires/bolt.png" data-srcSafari="/mcm_website_theme/static/src/img/partenaires/bolt.png" class="img img-fluid lazy" alt="Logo partenaire bolt" data-original-title="" title="Bolt partenaire MCM ACADEMY" aria-describedby="tooltip843653" style="margin-top: 30px; width: 38%" />
                                     </a>
                                 </div>
                                 <div>
                                     <a href="https://www.examentaxivtc.fr/#!/login" target="_blank">
-                                        <img data-src="/mcm_website_theme/static/src/img/partenaires/cma.png"
-                                             data-srcSafari="/mcm_website_theme/static/src/img/partenaires/cma.png"
-                                             class="img img-fluid lazy" alt="Logo partenaire CMA" data-original-title=""
-                                             title="CMA partenaire MCM ACADEMY" aria-describedby="tooltip623872"
-                                             style="margin-top: 30px; width: 50%"/>
+                                        <img data-src="/mcm_website_theme/static/src/img/partenaires/cma.png" data-srcSafari="/mcm_website_theme/static/src/img/partenaires/cma.png" class="img img-fluid lazy" alt="Logo partenaire CMA" data-original-title="" title="CMA partenaire MCM ACADEMY" aria-describedby="tooltip623872" style="margin-top: 30px; width: 50%" />
                                     </a>
                                 </div>
                                 <div>
                                     <a href="https://www.digimoov.fr/" target="_blank">
-                                        <img data-src="/mcm_website_theme/static/src/img/partenaires/digimoov.png"
-                                             data-srcSafari="/mcm_website_theme/static/src/img/partenaires/digimoov.png"
-                                             class="img img-fluid lazy" alt="Logo partenaire Digimoov"
-                                             data-original-title="" title="Digimoov partenaire MCM ACADEMY"
-                                             aria-describedby="tooltip843653" style="margin-top: 30px; width: 46%"/>
+                                        <img data-src="/mcm_website_theme/static/src/img/partenaires/digimoov.png" data-srcSafari="/mcm_website_theme/static/src/img/partenaires/digimoov.png" class="img img-fluid lazy" alt="Logo partenaire Digimoov" data-original-title="" title="Digimoov partenaire MCM ACADEMY" aria-describedby="tooltip843653" style="margin-top: 30px; width: 46%" />
                                     </a>
                                 </div>
                             </div>
