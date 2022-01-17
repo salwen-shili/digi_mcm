@@ -326,7 +326,7 @@ class Routes_Site(http.Controller):
         elif request.website.id == 1:
             return request.render("mcm_website_theme.mcm_template_vmdtr", values)
 
-    @http.route('/examen', type='http', auth='public', website=True)
+    @http.route('/examen-vtc-taxi', type='http', auth='public', website=True)
     def examen(self):
 
         #La page n'est affichée que sur le site mcm
