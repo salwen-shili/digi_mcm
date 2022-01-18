@@ -19,7 +19,10 @@ from odoo.osv import expression
 from datetime import datetime, date
 import werkzeug
 import locale
-
+import json
+import jsonify
+import logging
+_logger = logging.getLogger(__name__)
 PPG = 20  # Products Per Page
 PPR = 4  # Products Per Row
 
@@ -1026,6 +1029,9 @@ class WebsiteSale(WebsiteSale):
 
 
 class Payment3x(http.Controller):
+
+
+
     @http.route(['/shop/payment/update_amount'], type='json', auth="public", methods=['POST'], website=True)
     def cart_update_amount(self, instalment):
         """This route is called when changing quantity from the cart or adding
@@ -1355,3 +1361,17 @@ class MCM_SIGNUP(http.Controller):
             return 0
         elif request.website.id == 1:
             return request.render("mcm_website_theme.mcm_website_register_form")
+
+    @http.route(['/webhook_testing'],type='json', auth="public", methods=['POST'])
+    def stripe_event(self):
+        event = None
+        payload = request.data
+
+        try:
+            event = json.loads(payload)
+            _logger.info("webhoooooooooook %s" %str(event))
+        except:
+            print('⚠️  Webhook error while parsing basic request.')
+            return jsonify(success=False)
+
+        return jsonify(success=True)
