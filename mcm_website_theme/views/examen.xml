@@ -434,47 +434,6 @@
           </div>
         </section>
 
-        <!-- repassage-->
-        <section id="examen-fond-2" class="s_newsletter_block oe_img_bg o_animate pb40 pt40 o_anim_zoom_in oe_custom_bg" style="background-image: url(&quot;/digimoov_website_templates/static/img/fond.webp&quot;); animation-name: o_anim_zoom_in; visibility: visible; animation-play-state: paused; background-position: 75.48% 30.96%;" data-name="Newsletter block">
-          <div class="container" id="nouvelle-tentative">
-            <div class="row">
-              <div class="bg-white-75 col-lg-12 pt16 pb16">
-                <div class="text-center">
-                  <h1 class="text-uppercase font-weight-bold">
-                    <font style="color: rgb(103, 67, 148); font-size: 24px;">Et si vous souhaitez
-                                            réserver votre nouvelle tentative d'examen ?
-                                    </font>
-                  </h1>
-                  <p>
-                    <span class="fa fa-check" />
-                    <font style="color: rgb(0, 0, 0); font-size: 18px;">&amp;nbsp;Dispense des 102 h
-                                            de formation
-                                    </font>
-                    <span class="fa fa-check" />
-                    <font style="color: rgb(0, 0, 0); font-size: 18px;">Jusqu'à 2 tentatives</font>
-                    <span class="fa fa-check" />
-                    <font style="color: rgb(0, 0, 0); font-size: 18px;">&amp;nbsp;Paiement en une
-                                            fois
-                                    </font>
-                    <br />
-                  </p>
-                  <div class="pb16 pt16 s_btn text-center" data-name="Button">
-                    <t t-if="echec_examen">
-                      <form action="/shop/cart/update" method="post">
-                        <input type="hidden" class="product_id" name="product_id" t-att-value="echec_examen.id" />
-                        <td>
-                          <button type="submit" class="btn btn-alpha o_anim_fade_in_up o_animate" data-original-title="" title="" aria-describedby="tooltip906293" style="animation-name: o_anim_fade_in_up; visibility: visible; animation-play-state: paused;">
-                                                        Réservez votre tentative
-                                                </button>
-                        </td>
-                      </form>
-                    </t>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
 
       </div>
     </t>
