@@ -33,7 +33,7 @@
                         </ol>
                         <div class="carousel-inner" role="listbox">
                             <div id="examen-background-examen" class="carousel-item oe_img_bg pt56 pb96 oe_custom_bg active" style="
-                background-image: url('/digimoov_website_templates/static/img/Examen de capacité de transport léger de marchandise.jpg');
+                background-image: url('/digimoov_website_templates/static/img/Examen_de_capacité_de_transport_léger_de_marchandise.jpg');
               ">
                                 <div class="container">
                                     <div class="row" style="width: 100% !important">
@@ -443,7 +443,7 @@
                     <div class="container">
                         <div class="row align-items-center">
                             <div class="col-lg-6 pt16 pb16">
-                                <img src="/web/image/237732/im%2032%20ex.png" class="img img-fluid mx-auto" alt="Odoo • Image et Texte" />
+                                <img src="/digimoov_website_templates/static/img/im 32 ex.png" class="img img-fluid mx-auto" alt="Odoo • Image et Texte" />
                             </div>
                             <div class="col-lg-6 pt16 pb0" style="border-style: none; border-width: 0px">
                                 <h2>
