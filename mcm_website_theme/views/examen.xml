@@ -212,11 +212,11 @@
           <section id="sh_corpomate_theme_section_188" class="sh_animation_part" data-name="Pricing">
             <div class="container">
               <div class="sh_title js-scroll fade-in-top">
-                <h2>
+                <h3>
                   <b>LET'S GO ! </b>
                   <br />
                   Inscrivez-vous dès maintenant !
-                </h2>
+                </h3>
                 <h4 style="margin-top: 20px; margin-bottom: 0.5rem; font-size: 18px">
                   <br />
                   Choisissez la formule qui vous convient
@@ -342,7 +342,7 @@
                           <input type="hidden" class="product_id" name="product_id" id="vmdtr_product" t-att-value="product.id" />
                           <input type="hidden" name="promo" t-att-value="promo.id" t-if="promo" />
                           <h4>PACK TAXI-MOTO</h4>
-                          <h5 style="color: #636161">&amp;nbsp;</h5>
+                          <h5 style="color: #636161">Éligible au CPF</h5>
                           <h4>
                             <span t-esc="round(product.list_price)" />
                             <span style="color: #fdd105" t-esc="product.currency_id.symbol" />
@@ -429,6 +429,48 @@
                 <a href="https://www.digimoov.fr/" target="_blank" rel="noopner">
                   <img data-src="/mcm_website_theme/static/src/img/partenaires/digimoov.png" data-srcSafari="/mcm_website_theme/static/src/img/partenaires/digimoov.png" class="img img-fluid lazy" alt="Logo partenaire Digimoov" title="Digimoov partenaire MCM ACADEMY" style="margin-top: 30px; width: 46%" />
                 </a>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- repassage-->
+        <section id="examen-fond-2" class="s_newsletter_block oe_img_bg o_animate pb40 pt40 o_anim_zoom_in oe_custom_bg" style="background-image: url(&quot;/digimoov_website_templates/static/img/fond.webp&quot;); animation-name: o_anim_zoom_in; visibility: visible; animation-play-state: paused; background-position: 75.48% 30.96%;" data-name="Newsletter block">
+          <div class="container" id="nouvelle-tentative">
+            <div class="row">
+              <div class="bg-white-75 col-lg-12 pt16 pb16">
+                <div class="text-center">
+                  <h1 class="text-uppercase font-weight-bold">
+                    <font style="color: rgb(103, 67, 148); font-size: 24px;">Et si vous souhaitez
+                                            réserver votre nouvelle tentative d'examen ?
+                                    </font>
+                  </h1>
+                  <p>
+                    <span class="fa fa-check" />
+                    <font style="color: rgb(0, 0, 0); font-size: 18px;">&amp;nbsp;Dispense des 102 h
+                                            de formation
+                                    </font>
+                    <span class="fa fa-check" />
+                    <font style="color: rgb(0, 0, 0); font-size: 18px;">Jusqu'à 2 tentatives</font>
+                    <span class="fa fa-check" />
+                    <font style="color: rgb(0, 0, 0); font-size: 18px;">&amp;nbsp;Paiement en une
+                                            fois
+                                    </font>
+                    <br />
+                  </p>
+                  <div class="pb16 pt16 s_btn text-center" data-name="Button">
+                    <t t-if="echec_examen">
+                      <form action="/shop/cart/update" method="post">
+                        <input type="hidden" class="product_id" name="product_id" t-att-value="echec_examen.id" />
+                        <td>
+                          <button type="submit" class="btn btn-alpha o_anim_fade_in_up o_animate" data-original-title="" title="" aria-describedby="tooltip906293" style="animation-name: o_anim_fade_in_up; visibility: visible; animation-play-state: paused;">
+                                                        Réservez votre tentative
+                                                </button>
+                        </td>
+                      </form>
+                    </t>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
