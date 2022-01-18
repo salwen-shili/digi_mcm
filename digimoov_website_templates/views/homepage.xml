@@ -28,14 +28,14 @@
         position: relative;
       }
       .pricebar::after {
-      content: " ";
+    content: " ";
     display: block;
     width: 100%;
-    border-top: 2px solid #ed4430;
+    border-top: 4px solid #19191a;
     height: 12px;
     position: absolute;
-    bottom: 3px;
-    left: -2px;
+    bottom: 9px;
+    left: -4px;
     transform: rotate(-7deg);
       }
             </style>
@@ -702,7 +702,7 @@
                                 mb-0
                               " t-if="not promo">
                                                                     <span class="pricebar" style="
-                                                                        font-size: 25px;
+                                                                       color:red; font-size: 25px;
                                                                     ">590 €</span>
                                                                     <span t-esc="round(product.list_price)" />
                                                                     <span t-esc="product.currency_id.symbol" />
