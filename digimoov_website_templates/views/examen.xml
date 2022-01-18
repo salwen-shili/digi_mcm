@@ -4,23 +4,23 @@
         <t t-call="website.layout">
             <div id="wrap" class="oe_empty oe_structure" style="word-break: break-word; position: relative; z-index: 0">
                 <style>
-        @media (max-width: 720px) {
-          .padding-xl {
-            padding: 0px !important;
-            width: 100% !important;
-            transform: translateX(-1.3%) translateY(-22.5%) scaleX(1.92)
-              scaleY(1.92) !important;
-          }
-        }
-        @media (min-width: 720px) {
-          .padding-xl {
-            padding: 32px !important;
-            width: 50% !important;
-            transform: translateX(-1.3%) translateY(-22.5%) scaleX(1.92)
-              scaleY(1.92) !important;
-          }
-        }
-      </style>
+                    @media (max-width: 720px) {
+                    .padding-xl {
+                        padding: 0px !important;
+                        width: 100% !important;
+                        transform: translateX(-1.3%) translateY(-22.5%) scaleX(1.92)
+                        scaleY(1.92) !important;
+                    }
+                    }
+                    @media (min-width: 720px) {
+                    .padding-xl {
+                        padding: 32px !important;
+                        width: 50% !important;
+                        transform: translateX(-1.3%) translateY(-22.5%) scaleX(1.92)
+                        scaleY(1.92) !important;
+                    }
+                    }
+                 </style>
                 <script defer="defer" type="text/javascript" src="/digimoov_website_templates/static/src/js/lazy-min.js" />
                 <section id="slider-sec" class="web_agency_banner slider4 oe_img_bg oe_custom_bg" data-name="Home Banner Eight" style="
           background-image: url('/web/image/13078/Digimoov%20qui%20somme%20nous.png');
@@ -584,6 +584,4 @@
             </div>
         </t>
     </template>
-
-
 </odoo>

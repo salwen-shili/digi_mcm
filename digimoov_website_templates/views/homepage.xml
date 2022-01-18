@@ -687,8 +687,12 @@
                                 display-4
                                 mb-0
                               " t-if="not promo">
+                                                                    <span class="pricebar" style="
+                                                                        font-size: 40px;
+                                                                    ">590 €</span>
                                                                     <span t-esc="round(product.list_price)" />
                                                                     <span t-esc="product.currency_id.symbol" />
+
                                                                 </p>
                                                                 <p class="
                                 text-center
@@ -1229,6 +1233,18 @@
           }
           
         }
+         .pricebar {
+        position: relative;
+      }
+      .pricebar::after {
+            content: '';
+            width: 110px;
+            height: 4px;
+            background: red;
+            position: absolute;
+            bottom: 141px;
+            left: 36px;
+      }
                     </style>
                     <section class="banner_padding centric_template home-banner pt128" data-name="Banner">
                         <div class="container" style="border-style: none; border-width: 0px">
