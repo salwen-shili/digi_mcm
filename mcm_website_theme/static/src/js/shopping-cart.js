@@ -332,7 +332,7 @@ function verify_payment_method() {
             break;
 
           default:
-            window.open('https://bit.ly/3tbAxXw', '_blank');
+            window.open('https://bit.ly/3FCYXxK', '_blank');
             msTracking(
               'clic sur mobiliser mon cpf vmdtr',
               'CPF',

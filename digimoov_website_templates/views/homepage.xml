@@ -901,7 +901,7 @@
                                                     <font style="font-size: 30px">PREMUIM</font>
                                                 </strong>
                                             </p>
-                                            <p>&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;</p>
+                                            <p>Éligible au CPF</p>
                                             <br />
                                         </div>
                                         <t t-foreach="digimoov_products" t-as="product">
