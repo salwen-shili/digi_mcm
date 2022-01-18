@@ -32,7 +32,7 @@ class PaymentStripeAcquirer(models.Model):
             data = reference.split("-")
             sale = self.env['sale.order'].sudo().search([('name', 'ilike', data[0])])
             print('sale ', sale)
-            if sale and sale.instalment and sale.company_id.id==2:
+            if sale and sale.instalment:
                 """Si le devis est trouvé avec la condition de payement sur plusieurs fois
                 on appelle la methode de creation d'abonnement stripe """
                 print("instalment")
