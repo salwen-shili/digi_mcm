@@ -65,7 +65,8 @@ class MailComposeMessage(models.TransientModel):
     def action_send_mail(self):
         if self._context.get('default_model') and self._context.get('default_model') == 'res.partner':
             partner = self.env[self._context.get('default_model')].browse(self._context.get('default_res_id'))
-            if partner and not partner.company_id:
-                raise UserError(_("Please define a company on the contact."))
+            if self.template_id.sb_template_id and not self.template_id.sb_sender_id:
+                if partner and not partner.company_id:
+                    raise UserError(_("Please define a company on the contact."))
         res = super(MailComposeMessage, self).action_send_mail()
         return res
