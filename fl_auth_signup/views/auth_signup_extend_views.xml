@@ -115,7 +115,7 @@
                                         </div>
                                         <br t-if="not name or not last_login" />
 
-                                        <div class="outlined-input-field bg-c" id="firstname_container" t-if="not name" style="display:none">
+                                        <div class="outlined-input-field bg-c" id="firstname_container" t-if="not name">
                                             <input type="text" id="firstname" name="name" class="outlined-text-field" autocomplete="off" t-att-value="firstname" pattern="[A-Z,a-z,À-ÿ '-]{2,}" required="required" inputmode="latin-name" />
                                             <label for="firstname">Prénom *</label>
                                             <i class="material-icons error-icon">error_outline</i>
