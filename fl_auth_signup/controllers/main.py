@@ -63,6 +63,7 @@ class AuthSignupHome(AuthSignupHome):
         SIGN_UP_REQUEST_PARAMS.add('num_voie')
         SIGN_UP_REQUEST_PARAMS.add('street')
         SIGN_UP_REQUEST_PARAMS.add('street2')
+        #add keys to SIGN_UP_REQUEST_PARAMS to get datas from signup form
         qcontext = {k: v for (k, v) in request.params.items() if k in SIGN_UP_REQUEST_PARAMS}
         qcontext.update(self.get_auth_signup_config())
         if not qcontext.get('token') and request.session.get('auth_signup_token'):
