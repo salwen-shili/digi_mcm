@@ -55,6 +55,8 @@ class AuthSignupHome(AuthSignupHome):
     def get_auth_signup_qcontext(self):
         """ Shared helper returning the rendering context for signup and reset password """
         SIGN_UP_REQUEST_PARAMS.add('phone')
+        SIGN_UP_REQUEST_PARAMS.add('lastName')
+        SIGN_UP_REQUEST_PARAMS.add('firstname')
         SIGN_UP_REQUEST_PARAMS.add('zip')
         SIGN_UP_REQUEST_PARAMS.add('voie')
         SIGN_UP_REQUEST_PARAMS.add('nom_voie')
