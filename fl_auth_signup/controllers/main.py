@@ -54,8 +54,13 @@ class AuthSignupHome(AuthSignupHome):
 
     def get_auth_signup_qcontext(self):
         """ Shared helper returning the rendering context for signup and reset password """
-        additional_data = {'phone','zip','voie','nom_voie','num_voie','street','street2'}
-        SIGN_UP_REQUEST_PARAMS |= set(additional_data)
+        SIGN_UP_REQUEST_PARAMS.add('phone')
+        SIGN_UP_REQUEST_PARAMS.add('zip')
+        SIGN_UP_REQUEST_PARAMS.add('voie')
+        SIGN_UP_REQUEST_PARAMS.add('nom_voie')
+        SIGN_UP_REQUEST_PARAMS.add('num_voie')
+        SIGN_UP_REQUEST_PARAMS.add('street')
+        SIGN_UP_REQUEST_PARAMS.add('street2')
         qcontext = {k: v for (k, v) in request.params.items() if k in SIGN_UP_REQUEST_PARAMS}
         qcontext.update(self.get_auth_signup_config())
         if not qcontext.get('token') and request.session.get('auth_signup_token'):
