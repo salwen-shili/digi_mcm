@@ -467,14 +467,21 @@
                         <section id="sh_corpomate_theme_section_188" class="sh_animation_part" data-name="Pricing">
                             <div class="container">
                                 <div class="sh_title js-scroll fade-in-top">
-                                    <h2>
-                                        <b> Nos Tarifs de formation</b>
+                                    <h3 style="font-size: 26px;
+                                                font-weight: 700;
+                                                color: #000
+                                                ;max-width:100%">
+                                        <b>LET'S GO ! </b>
                                         <br />
-                                    </h2>
-                                    <h3 class="tarif-insc">
                                         Inscrivez-vous dès maintenant !
                                     </h3>
-                                    <br />
+                                    <h4 style="margin-top: 20px; margin-bottom: 0.5rem; font-size: 18px">
+                                        <br />
+                                        Choisissez la formule qui vous convient
+                                    </h4>
+                                    <p>
+                                        <br />
+                                    </p>
                                 </div>
                                 <div class="row">
                                     <div class="col-md-4 sh_animation_part js-scroll slide-left">
