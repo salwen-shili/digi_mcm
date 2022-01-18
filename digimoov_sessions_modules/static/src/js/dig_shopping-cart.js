@@ -385,7 +385,7 @@ function verify_payment_method() {
             break;
 
           default:
-            window.open('https://bit.ly/38IxvSa', '_blank');
+            window.open('https://bit.ly/3AcC579', '_blank');
 
             msTracking(
               'clic sur mobiliser mon cpf premium',
@@ -534,9 +534,9 @@ function onchangeTextButton() {
       }
       if (cpf_pm.value == 'Formation premium') {
         document.getElementById('pm_shop_check').href =
-          'https://bit.ly/38IxvSa';
+          'https://bit.ly/3AcC579';
         document.getElementById('pm_shop_checkout').href =
-          'https://bit.ly/38IxvSa';
+          'https://bit.ly/3AcC579';
       }
       if (document.getElementById('promo_code')) {
         document.getElementById('promo_code').style.display = 'none';
