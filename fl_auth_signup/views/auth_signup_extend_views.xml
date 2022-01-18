@@ -122,7 +122,7 @@
                                             <div class="helper-text bg-c" id="firstname_helper">
                                                 <span></span>
                                             </div>
-                                        </div> -->
+                                        </div>
                                         <br t-if="not name or not last_login"/>
 
                                         <div class="outlined-input-field bg-c" id="phone_container" t-if="not name">
