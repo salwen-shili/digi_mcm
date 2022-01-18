@@ -101,7 +101,7 @@
                                         <div class="outlined-input-field bg-c" id="lastname_container" t-if="not name">
 
 
-                                            <input type="text" name="lastname" id="lastname" class="outlined-text-field"
+                                            <input type="text" name="lastName" id="lastname" class="outlined-text-field"
                                                    autocomplete="off" t-att-value="lastName"
                                                    pattern="[A-Z,a-z,À-ÿ '-]{2,}" required="required"
                                                    inputmode="latin-name"/>
