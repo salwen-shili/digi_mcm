@@ -274,7 +274,7 @@
                                 <br />
                             </div>
                         </div>
-                </section>
+                    </div>
                 </section>
                 <ul />
                 <section class="centric_template" data-name="Subscriber" style="" />
@@ -584,5 +584,6 @@
             </div>
         </t>
     </template>
+
 
 </odoo>
