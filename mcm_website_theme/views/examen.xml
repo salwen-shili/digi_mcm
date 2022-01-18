@@ -212,7 +212,7 @@
           <section id="sh_corpomate_theme_section_188" class="sh_animation_part" data-name="Pricing">
             <div class="container">
               <div class="sh_title js-scroll fade-in-top">
-                <h3>
+                <h3 style="max-width:100%">
                   <b>LET'S GO ! </b>
                   <br />
                   Inscrivez-vous dès maintenant !
