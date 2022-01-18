@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <data>
-        <template id="auth_signup_fields_extend" inherit_id="auth_signup.fields" name="Signup Fields Extend">
+<template id="auth_signup_fields_extend" inherit_id="auth_signup.fields" name="Signup Fields Extend">
             <xpath expr="//div[@class='form-group field-name']" position="replace">
                 <div class="form-group field-name"></div>
             </xpath>
@@ -17,7 +17,7 @@
                     max-width: 100% !important;
                     }
                 </style>
-                <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"/>
+                <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
 
                 <!-- <div class="form-group field-phone">
                             <label for="phone" class="control-label">Téléphone</label>
@@ -27,35 +27,28 @@
                     <div class="row justify-content-center paper">
                         <div class="
                 col-11 col-sm-10 col-md-10 col-lg-6 col-xl-8
-               
+
                 p-0
                 mt-3
                 mb-2
               ">
                             <div class="form-section">
                                 <div class="card px-0 pt-4 pb-0 mt-3 mb-3 bg-c">
-                                    <h2 id="heading" style="text-align:center" t-if="not name or not last_login">
-                                        Inscription
-                                    </h2>
-                                    <p class="p_class" style="text-align:center" t-if="not name or not last_login">
-                                        Remplissez tous les champs du formulaire pour
+                                    <h2 id="heading" style="text-align:center" t-if="not name or not last_login">Inscription</h2>
+                                    <p class="p_class" style="text-align:center" t-if="not name or not last_login">Remplissez tous les champs du formulaire pour
                                         passer à l'étape suivante
                                     </p>
 
                                     <!-- progressbar -->
                                     <t t-if="request.website.id == 1">
-                                        <link href="/mcm_website_theme/static/src/css/register_form.min.css"
-                                              rel="stylesheet"/>
+                                        <link href="/mcm_website_theme/static/src/css/register_form.css" rel="stylesheet" />
 
-                                        <link href="/mcm_website_theme/static/src/css/material_form.min.css"
-                                              rel="stylesheet"/>
+                                        <link href="/mcm_website_theme/static/src/css/material_form.css" rel="stylesheet" />
 
                                     </t>
                                     <t t-if="request.website.id == 2">
-                                        <link href="/digimoov_website_templates/static/src/css/material_form.css"
-                                              rel="stylesheet"/>
-                                        <link href="/digimoov_website_templates/static/src/css/register_form.css"
-                                              rel="stylesheet"/>
+                                        <link href="/digimoov_website_templates/static/src/css/material_form.css" rel="stylesheet" />
+                                        <link href="/digimoov_website_templates/static/src/css/register_form.css" rel="stylesheet" />
                                     </t>
                                     <ul id="progressbar" t-if="not name or not last_login" style="text-align: center;">
                                         <li class="active" id="account">
@@ -77,13 +70,12 @@
                                             " role="progressbar" aria-valuemin="0" aria-valuemax="100"></div>
                                     </div>
 
-                                    <br t-if="not name or not last_login"/>
+                                    <br t-if="not name or not last_login" />
 
                                     <div class="alert alert-danger" t-if="error" role="alert">
-                                        <t t-esc="error"/>
+                                        <t t-esc="error" />
                                         <p>
-                                            <a t-attf-href="/web/login?{{ keep_query() }}" class="btn btn-link"
-                                               role="button">Connexion
+                                            <a t-attf-href="/web/login?{{ keep_query() }}" class="btn btn-link" role="button">Connexion
                                             </a>
                                             <a t-attf-href="/web/reset_password" class="btn btn-link" role="button">
                                                 Mot de passe oublié
@@ -101,11 +93,9 @@
                                         <div class="outlined-input-field bg-c" id="lastname_container" t-if="not name">
 
 
-                                            <input type="text" name="lastName" id="lastname" class="outlined-text-field"
-                                                   autocomplete="off" t-att-value="lastName"
-                                                   pattern="[A-Z,a-z,À-ÿ '-]{2,}" required="required"
-                                                   inputmode="latin-name"/>
-                                            <label for="lastname" style="font-size: 1rem; top: 1rem; padding: 0px;">Nom *
+                                            <input type="text" name="lastName" id="lastname" class="outlined-text-field" autocomplete="off" t-att-value="lastName" pattern="[A-Z,a-z,À-ÿ '-]{2,}" required="required" inputmode="latin-name" />
+                                            <label for="lastname" style="font-size: 1rem; top: 1rem; padding: 0px;">Nom
+                                                *
                                             </label>
                                             <i class="material-icons error-icon">error_outline</i>
                                             <div class="helper-text bg-c" id="lastname_helper">
@@ -123,12 +113,10 @@
                                                 <span></span>
                                             </div>
                                         </div>
-                                        <br t-if="not name or not last_login"/>
+                                        <br t-if="not name or not last_login" />
 
                                         <div class="outlined-input-field bg-c" id="phone_container" t-if="not name">
-                                            <input type="text" id="phone" name="phone" class="outlined-text-field"
-                                                   autocomplete="off" t-att-value="phone" maxlength="10"
-                                                   pattern="(07|06)[0-9]\d{7}" required="required" inputmode="numeric"/>
+                                            <input type="text" id="phone" name="phone" class="outlined-text-field" autocomplete="off" t-att-value="phone" maxlength="10" pattern="(07|06)[0-9]\d{7}" required="required" inputmode="numeric" />
                                             <label for="phone">Téléphone *</label>
                                             <i class="material-icons error-icon">error_outline</i>
                                             <div class="helper-text bg-c" id="phone_helper">
@@ -136,10 +124,7 @@
                                             </div>
                                         </div>
                                         <div class="outlined-input-field bg-c" id="phone_container" t-if="phone">
-                                            <input type="text" id="phone" name="phone" class="outlined-text-field"
-                                                   autocomplete="off" t-att-value="phone" maxlength="10"
-                                                   pattern="(07|06)[0-9]\d{7}" required="required" inputmode="numeric"
-                                                   t-att-readonly="'readonly' if phone else None"/>
+                                            <input type="text" id="phone" name="phone" class="outlined-text-field" autocomplete="off" t-att-value="phone" maxlength="10" pattern="(07|06)[0-9]\d{7}" required="required" inputmode="numeric" t-att-readonly="'readonly' if phone else None" />
                                             <label for="phone" style="top: -0.7rem;padding: 0.25rem;">Téléphone *
                                             </label>
                                             <i class="material-icons error-icon">error_outline</i>
@@ -147,12 +132,10 @@
                                             <span>Vous ne pouvez pas modifier votre téléphone .</span>
 
                                         </div>
-                                        <br/>
+                                        <br />
 
                                         <div class="outlined-input-field bg-c" id="email_container" t-if="not name">
-                                            <input type="email" id="email" class="outlined-text-field"
-                                                   autocomplete="off" value="" required="required" inputmode="email"
-                                                   name="login"/>
+                                            <input type="email" id="email" class="outlined-text-field" autocomplete="off" value="" required="required" inputmode="email" name="login" />
                                             <label for="email">Email *</label>
                                             <i class="material-icons error-icon">error_outline</i>
                                             <div class="helper-text bg-c" id="email_helper">
@@ -160,43 +143,33 @@
                                             </div>
                                         </div>
                                         <div class="outlined-input-field bg-c" id="email_container" t-if="name">
-                                            <input type="email" id="email" class="outlined-text-field"
-                                                   autocomplete="off" t-att-value="login" required="required"
-                                                   inputmode="email" name="login"
-                                                   t-att-readonly="'readonly' if login else None"/>
+                                            <input type="email" id="email" class="outlined-text-field" autocomplete="off" t-att-value="login" required="required" inputmode="email" name="login" t-att-readonly="'readonly' if login else None" />
                                             <label for="email" style="top: -0.7rem;padding: 0.25rem;">Email *</label>
                                             <i class="material-icons error-icon">error_outline</i>
                                             <span>Vous ne pouvez pas modifier votre email.</span>
                                         </div>
 
-
-                                        <div class="outlined-input-field bg-c" id="confirm_email_container"
-                                             t-if="not name">
-                                            <input type="email" id="confirm_email" class="outlined-text-field"
-                                                   name="confirm_email" autocomplete="off" value="" required="required"
-                                                   inputmode="email"/>
+                                        <br t-if="not name or not last_login" />
+                                        <div class="outlined-input-field bg-c" id="confirm_email_container" t-if="not name">
+                                            <input type="email" id="confirm_email" class="outlined-text-field" name="confirm_email" autocomplete="off" value="" required="required" inputmode="email" />
                                             <label for="confirm_email">Confirmer votre email *</label>
                                             <i class="material-icons error-icon">error_outline</i>
                                             <div class="helper-text bg-c" id="confirm_email_helper">
                                                 <span></span>
                                             </div>
                                         </div>
-                                        <div class="outlined-input-field bg-c" id="confirm_email_container" t-if="name"
-                                             style="display:none">
-                                            <input type="email" id="confirm_email" class="outlined-text-field"
-                                                   name="confirm_email" autocomplete="off" t-att-value="login"
-                                                   required="required" inputmode="email"/>
+                                        <div class="outlined-input-field bg-c" id="confirm_email_container" t-if="name" style="display:none">
+                                            <input type="email" id="confirm_email" class="outlined-text-field" name="confirm_email" autocomplete="off" t-att-value="login" required="required" inputmode="email" />
                                             <label for="confirm_email">Confirmer votre email *</label>
                                             <i class="material-icons error-icon">error_outline</i>
                                             <div class="helper-text bg-c" id="confirm_email_helper">
                                                 <span></span>
                                             </div>
                                         </div>
-                                        <br t-if="not name or not last_login"/>
+                                        <br t-if="not name or not last_login" />
 
                                         <div class="outlined-input-field bg-c" id="password_container">
-                                            <input type="password" id="password" class="outlined-text-field"
-                                                   autocomplete="off" required="required" name="password"/>
+                                            <input type="password" id="password" class="outlined-text-field" autocomplete="off" required="required" name="password" />
                                             <label for="password">Mot de passe *</label>
                                             <i class="toggle-password material-icons visibility " style="
                                                 display: initial;
@@ -204,16 +177,15 @@
                                                 top: 1rem;
                                                 right: 1rem;
                                                 cursor:pointer;
-                                            ">visibility
-                                            </i>
+                                            ">visibility</i>
 
                                             <div class="text-left helper-text bg-c" id="password_helper">
                                                 <span></span>
                                             </div>
                                         </div>
 
-                                        <br t-if="not name or not last_login"/>
-                                        <br t-if="name"/>
+                                        <br t-if="not name or not last_login" />
+                                        <br t-if="name" />
                                     </fieldset>
                                 </div>
                             </div>
@@ -240,19 +212,18 @@
 
                 </script>
                 <!-- Address Form -->
-                <input t-att-value="request.website.microsoft_tracking_key" id="microsoft_tracking_key" type="hidden"/>
+                <input t-att-value="request.website.microsoft_tracking_key" id="microsoft_tracking_key" type="hidden" />
                 <div class="container-fluid" t-if="not name or not last_login">
                     <div class="row justify-content-center paper">
                         <div class="
                 col-11 col-sm-10 col-md-10 col-lg-6 col-xl-8
-               
+
                 p-0
                 mt-3
                 mb-2
               ">
                             <div class="form-section">
-                                <div class="card px-0 pt-4 pb-0 mt-3 mb-3 bg-c"
-                                     style="marging: 0 !important; padding: 0 !important">
+                                <div class="card px-0 pt-4 pb-0 mt-3 mb-3 bg-c" style="marging: 0 !important; padding: 0 !important">
                                     <!-- fieldsets -->
                                     <fieldset>
                                         <div class="row">
@@ -262,11 +233,8 @@
                                         </div>
                                         <!-- error-input-field -->
                                         <div class="row">
-                                            <div class="col-md-4 mgb outlined-input-field bg-c" id="zipcode_container"
-                                                 t-if="not name">
-                                                <input type="text" id="zipcode" name="zip" class="outlined-text-field"
-                                                       required="required" maxlength="5" pattern="[0-9]{5,5}"
-                                                       inputmode="numeric" autocomplete="off" value=""/>
+                                            <div class="col-md-4 mgb outlined-input-field bg-c" id="zipcode_container" t-if="not name">
+                                                <input type="text" id="zipcode" name="zip" class="outlined-text-field" required="required" maxlength="5" pattern="[0-9]{5,5}" inputmode="numeric" autocomplete="off" value="" />
                                                 <label for="zipcode" style="left: 2rem !important">Code Postal *
                                                 </label>
                                                 <i class="material-icons error-icon">error_outline</i>
@@ -275,25 +243,18 @@
                                                 </div>
                                             </div>
 
-                                            <div class="col-md-4 mgb outlined-input-field bg-c" id="zipcode_container"
-                                                 t-if="name">
-                                                <input type="text" id="zipcode" name="zip" class="outlined-text-field"
-                                                       required="required" maxlength="5" pattern="[0-9]{5,5}"
-                                                       inputmode="numeric" autocomplete="off" t-att-value="zip_code"/>
-                                                <label for="zipcode"
-                                                       style="left: 2rem !important;top: -0.7rem;padding: 0.25rem;">Code
-                                                    Postal *
+                                            <div class="col-md-4 mgb outlined-input-field bg-c" id="zipcode_container" t-if="name">
+                                                <input type="text" id="zipcode" name="zip" class="outlined-text-field" required="required" maxlength="5" pattern="[0-9]{5,5}" inputmode="numeric" autocomplete="off" t-att-value="zip_code" />
+                                                <label for="zipcode" style="left: 2rem !important;top: -0.7rem;padding: 0.25rem;">Code Postal *
                                                 </label>
                                                 <i class="material-icons error-icon">error_outline</i>
                                                 <div class="helper-text bg-c" id="zipcode_helper">
                                                     <span></span>
                                                 </div>
                                             </div>
-                                            <div class="col-md-8 outlined-input-field bg-c" id="city_container"
-                                                 aria-disabled="true" t-if="not name">
+                                            <div class="col-md-8 outlined-input-field bg-c" id="city_container" aria-disabled="true" t-if="not name">
                                                 <!-- <input type="text" id="city" class="outlined-text-field" autocomplete="off" /> -->
-                                                <select class="outlined-text-field disabled" name="city" id="city"
-                                                        type="hidden" required="required"></select>
+                                                <select class="outlined-text-field disabled" name="city" id="city" type="hidden" required="required"></select>
                                                 <label for="city" style="left: 2rem !important">Ville *
                                                 </label>
                                                 <i class="material-icons error-icon">error_outline</i>
@@ -301,28 +262,21 @@
                                                     <span></span>
                                                 </div>
                                             </div>
-                                            <div class="col-md-8 outlined-input-field bg-c" id="city_container"
-                                                 aria-disabled="true" t-if="name">
+                                            <div class="col-md-8 outlined-input-field bg-c" id="city_container" aria-disabled="true" t-if="name">
 
-                                                <input class="outlined-text-field disabled" name="city" id="city"
-                                                       t-att-value="city"/>
-                                                <label for="city"
-                                                       style="left: 2rem !important;top: -0.7rem;padding: 0.25rem;">
-                                                    Ville *
-                                                </label>
+                                                <input class="outlined-text-field disabled" name="city" id="city" t-att-value="city" />
+                                                <label for="city" style="left: 2rem !important;top: -0.7rem;padding: 0.25rem;">Ville *</label>
                                                 <i class="material-icons error-icon">error_outline</i>
                                                 <div class="helper-text bg-c" id="city_helper">
                                                     <span></span>
                                                 </div>
                                             </div>
                                         </div>
-                                        <br/>
+                                        <br />
 
 
-                                        <div class="outlined-input-field bg-c" id="voie_container" aria-disabled="true"
-                                             t-if="not name">
-                                            <select class="outlined-text-field" name="voie" id="voie" disabled="true"
-                                                    required="required">
+                                        <div class="outlined-input-field bg-c" id="voie_container" aria-disabled="true" t-if="not name">
+                                            <select class="outlined-text-field" name="voie" id="voie" disabled="true" required="required">
                                                 <option value=""></option>
                                                 <option value='AUTRE'>(AUTRE...)</option>
                                                 <option value='ALLÉE'>ALLÉE</option>
@@ -354,10 +308,8 @@
                                                 <span></span>
                                             </div>
                                         </div>
-                                        <div class="outlined-input-field bg-c" id="voie_container" aria-disabled="true"
-                                             t-if="name">
-                                            <input class="outlined-text-field" name="voie" id="voie" t-att-value="voie"
-                                                   required="true"/>
+                                        <div class="outlined-input-field bg-c" id="voie_container" aria-disabled="true" t-if="name">
+                                            <input class="outlined-text-field" name="voie" id="voie" t-att-value="voie" required="true" />
                                             <label for="voie">Type de voie *</label>
                                             <i class="material-icons error-icon"></i>
                                             <div class="helper-text bg-c" id="voie_helper">
@@ -365,13 +317,11 @@
                                             </div>
                                         </div>
 
-                                        <br/>
+                                        <br />
 
-                                        <div class="outlined-input-field bg-c" id="nom_voie_container"
-                                             aria-disabled="true" t-if="not nom_voie">
+                                        <div class="outlined-input-field bg-c" id="nom_voie_container" aria-disabled="true" t-if="not nom_voie">
 
-                                            <input type="text" name="nom_voie" id="nom_voie" class="outlined-text-field"
-                                                   autocomplete="off" required="required"/>
+                                            <input type="text" name="nom_voie" id="nom_voie" class="outlined-text-field" autocomplete="off" required="required" />
 
                                             <label for="nom_voie">Nom de voie *</label>
                                             <i class="material-icons error-icon">error_outline</i>
@@ -379,24 +329,18 @@
                                                 <span></span>
                                             </div>
                                         </div>
-                                        <div class="outlined-input-field bg-c" id="nom_voie_container"
-                                             aria-disabled="true" t-if="nom_voie">
-                                            <input type="text" name="nom_voie" id="nom_voie" t-att-value="nom_voie"
-                                                   class="outlined-text-field" autocomplete="off"/>
-                                            <label for="nom_voie" style="top: -0.7rem;padding: 0.25rem;">Nom de voie *
-                                            </label>
+                                        <div class="outlined-input-field bg-c" id="nom_voie_container" aria-disabled="true" t-if="nom_voie">
+                                            <input type="text" name="nom_voie" id="nom_voie" t-att-value="nom_voie" class="outlined-text-field" autocomplete="off" />
+                                            <label for="nom_voie" style="top: -0.7rem;padding: 0.25rem;">Nom de voie *</label>
                                             <i class="material-icons error-icon">error_outline</i>
                                             <div class="helper-text bg-c" id="nom_voie_helper">
                                                 <span></span>
                                             </div>
                                         </div>
-                                        <br/>
+                                        <br />
 
-                                        <div class="outlined-input-field bg-c" id="num_voie_container"
-                                             t-if="not num_voie">
-                                            <input type="text" id="num_voie" name="num_voie" class="outlined-text-field"
-                                                   required="required" inputmode="numeric" pattern="[0-9]+"
-                                                   autocomplete="off"/>
+                                        <div class="outlined-input-field bg-c" id="num_voie_container" t-if="not num_voie">
+                                            <input type="text" id="num_voie" name="num_voie" class="outlined-text-field" required="required" inputmode="numeric" pattern="[0-9]+" autocomplete="off" />
                                             <label for="num_voie">N° de voie *</label>
                                             <i class="material-icons error-icon">error_outline</i>
                                             <div class="helper-text bg-c" id="num_voie_helper">
@@ -404,42 +348,33 @@
                                             </div>
                                         </div>
                                         <div class="outlined-input-field bg-c" id="num_voie_container" t-if="num_voie">
-                                            <input type="text" id="num_voie" t-att-value="num_voie" name="num_voie"
-                                                   class="outlined-text-field" autocomplete="off"/>
-                                            <label for="num_voie" style="top: -0.7rem;padding: 0.25rem;">N° de voie *
-                                            </label>
+                                            <input type="text" id="num_voie" t-att-value="num_voie" name="num_voie" class="outlined-text-field" autocomplete="off" />
+                                            <label for="num_voie" style="top: -0.7rem;padding: 0.25rem;">N° de voie * </label>
                                             <i class="material-icons error-icon">error_outline</i>
                                             <div class="helper-text bg-c" id="num_voie_helper">
                                                 <span></span>
                                             </div>
                                         </div>
-                                        <br/>
+                                        <br />
 
-                                        <div class="outlined-input-field bg-c" id="comp_address_container"
-                                             t-if="not street2">
-                                            <input type="text" id="comp_address" name="street2"
-                                                   class="outlined-text-field" autocomplete="off"/>
+                                        <div class="outlined-input-field bg-c" id="comp_address_container" t-if="not street2">
+                                            <input type="text" id="comp_address" name="street2" class="outlined-text-field" autocomplete="off" />
                                             <label for="comp_address">Complément d'adresse</label>
                                             <i class="material-icons error-icon">error_outline</i>
                                             <div class="helper-text bg-c" id="comp_address_helper">
                                                 <span></span>
                                             </div>
                                         </div>
-                                        <div class="outlined-input-field bg-c" id="comp_address_container"
-                                             t-if="street2">
-                                            <input type="text" id="comp_address" name="street2" t-att-value="street2"
-                                                   class="outlined-text-field" autocomplete="off"/>
-                                            <label for="comp_address" style="top: -0.7rem;padding: 0.25rem;">Complément
-                                                d'adresse
-                                            </label>
+                                        <div class="outlined-input-field bg-c" id="comp_address_container" t-if="street2">
+                                            <input type="text" id="comp_address" name="street2" t-att-value="street2" class="outlined-text-field" autocomplete="off" />
+                                            <label for="comp_address" style="top: -0.7rem;padding: 0.25rem;">Complément d'adresse </label>
                                             <i class="material-icons error-icon">error_outline</i>
                                             <div class="helper-text bg-c" id="comp_address_helper">
                                                 <span></span>
                                             </div>
                                         </div>
-                                        <br/>
-                                        <input type="hidden" name="redirect"
-                                               t-att-value="'/felicitations' or redirect "/>
+                                        <br />
+                                        <input type="hidden" name="redirect" t-att-value="'/felicitations' or redirect " />
                                         <!-- <div style="float: left">
                                           <label class="pure-material-checkbox">
                                             <input type="checkbox" id="introuvable" />
@@ -456,47 +391,32 @@
                                           </button>
                                         </div> -->
                                         <div class="text-center oe_login_buttons pt-5" style="margin-block-end: 3rem">
-                                            <a href="/web/login?" class="rkmd-btn btn-white ripple-effect ripple-yellow"
-                                               style="margin-right: 10px; display:none">
+                                            <a href="/web/login?" class="rkmd-btn btn-white ripple-effect ripple-yellow" style="margin-right: 10px; display:none">
 
                                                 se connecter
                                             </a>
                                             <t t-if="request.website.id == 1">
-                                                <button id="inscrire" type="submit" t-if="not name or not last_login"
-                                                        class="rkmd-btn btn-black ripple-effect ripple-yellow"
-                                                        data-oe-model="ir.ui.view" data-oe-id="1730"
-                                                        data-oe-field="arch"
-                                                        data-oe-xpath="/data/xpath[4]/div[2]/div[1]/div[1]/div[1]/div[1]/fieldset[1]/div[7]/button[1]">
+                                                <button id="inscrire" type="submit" t-if="not name or not last_login" class="rkmd-btn btn-black ripple-effect ripple-yellow" data-oe-model="ir.ui.view" data-oe-id="1730" data-oe-field="arch" data-oe-xpath="/data/xpath[4]/div[2]/div[1]/div[1]/div[1]/div[1]/fieldset[1]/div[7]/button[1]">
                                                     S'inscrire
                                                     <i class="material-icons right">send</i>
                                                 </button>
-                                                <button type="submit"
-                                                        class="rkmd-btn btn-black ripple-effect ripple-yellow"
-                                                        t-if="last_login">
+                                                <button type="submit" class="rkmd-btn btn-black ripple-effect ripple-yellow" t-if="last_login">
                                                     Confirmer
                                                 </button>
                                             </t>
                                             <t t-if="request.website.id == 2">
-                                                <button id="inscrire" type="submit" t-if="not name or not last_login"
-                                                        class="rkmd-btn btn-blue ripple-effect ripple-yellow"
-                                                        data-oe-model="ir.ui.view" data-oe-id="1730"
-                                                        data-oe-field="arch"
-                                                        data-oe-xpath="/data/xpath[4]/div[2]/div[1]/div[1]/div[1]/div[1]/fieldset[1]/div[7]/button[1]">
+                                                <button id="inscrire" type="submit" t-if="not name or not last_login" class="rkmd-btn btn-blue ripple-effect ripple-yellow" data-oe-model="ir.ui.view" data-oe-id="1730" data-oe-field="arch" data-oe-xpath="/data/xpath[4]/div[2]/div[1]/div[1]/div[1]/div[1]/fieldset[1]/div[7]/button[1]">
                                                     S'inscrire
                                                     <i class="material-icons right">send</i>
                                                 </button>
-                                                <button type="submit"
-                                                        class="rkmd-btn btn-black ripple-effect ripple-yellow"
-                                                        t-if="last_login">
+                                                <button type="submit" class="rkmd-btn btn-black ripple-effect ripple-yellow" t-if="last_login">
                                                     Confirmer
                                                 </button>
                                             </t>
 
                                             <script></script>
 
-                                            <div class="o_login_auth" data-oe-model="ir.ui.view" data-oe-id="1730"
-                                                 data-oe-field="arch"
-                                                 data-oe-xpath="/data/xpath[4]/div[2]/div[1]/div[1]/div[1]/div[1]/fieldset[1]/div[7]/div[1]"></div>
+                                            <div class="o_login_auth" data-oe-model="ir.ui.view" data-oe-id="1730" data-oe-field="arch" data-oe-xpath="/data/xpath[4]/div[2]/div[1]/div[1]/div[1]/div[1]/fieldset[1]/div[7]/div[1]"></div>
                                         </div>
                                         <link href="/mcm_contact_documents/static/src/css/button.min.css"
                                               rel="stylesheet"/>
@@ -506,58 +426,58 @@
                                 </div>
                             </div>
                             <script t-if="name">
-                                $(`#zipcode`).animate(
-                                {
-                                fontSize: "0.8rem",
-                                top: "-0.7rem",
-                                padding: "0.25rem",
-                                },
-                                80
-                                );
-                                $(`#city`).animate(
-                                {
-                                fontSize: "0.8rem",
-                                top: "-0.7rem",
-                                padding: "0.25rem",
-                                },
-                                80
-                                );
-                                if (('#voie').val){
-                                $(`#voie`).animate(
-                                {
-                                fontSize: "0.8rem",
-                                top: "-0.7rem",
-                                padding: "0.25rem",
-                                },
-                                80
-                                );
-                                }
-                                $(`#nom_voie`).animate(
-                                {
-                                fontSize: "0.8rem",
-                                top: "-0.7rem",
-                                padding: "0.25rem",
-                                },
-                                80
-                                );
-                                $(`#num_voie`).animate(
-                                {
-                                fontSize: "0.8rem",
-                                top: "-0.7rem",
-                                padding: "0.25rem",
-                                },
-                                80
-                                );
-                                $(`#comp_address`).animate(
-                                {
-                                fontSize: "0.8rem",
-                                top: "-0.7rem",
-                                padding: "0.25rem",
-                                },
-                                80
-                                );
+                    $(`#zipcode`).animate(
+                    {
+                    fontSize: "0.8rem",
+                    top: "-0.7rem",
+                    padding: "0.25rem",
+                    },
+                    80
+                    );
+                    $(`#city`).animate(
+                    {
+                    fontSize: "0.8rem",
+                    top: "-0.7rem",
+                    padding: "0.25rem",
+                    },
+                    80
+                    );
+                    if (('#voie').val){
+                    $(`#voie`).animate(
+                    {
+                    fontSize: "0.8rem",
+                    top: "-0.7rem",
+                    padding: "0.25rem",
+                    },
+                    80
+                    );
+                    }
+                    $(`#nom_voie`).animate(
+                    {
+                    fontSize: "0.8rem",
+                    top: "-0.7rem",
+                    padding: "0.25rem",
+                    },
+                    80
+                    );
+                     $(`#num_voie`).animate(
+                    {
+                    fontSize: "0.8rem",
+                    top: "-0.7rem",
+                    padding: "0.25rem",
+                    },
+                    80
+                    );
+                     $(`#comp_address`).animate(
+                    {
+                    fontSize: "0.8rem",
+                    top: "-0.7rem",
+                    padding: "0.25rem",
+                    },
+                    80
+                    );
 
-                            </script>
+                </script>
                         </div>
                     </div>
                 </div>
