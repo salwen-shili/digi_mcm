@@ -24,17 +24,19 @@
             opacity: 1;
             }
             }
-                .pricebar {
+        .pricebar {
         position: relative;
       }
       .pricebar::after {
-            content: '';
-    width: 70px;
-    height: 2px;
-    background: red;
-    position: absolute;
-    bottom: 15px;
-    left: -5px;
+        content: " ";
+      display: block;
+      width: 100%;
+      border-top: 2px solid rgba(red, 0.8);
+      height: 12px;
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      transform: rotate(-7deg);
       }
             </style>
             <div id="wrap" class="oe_structure oe_empty">
