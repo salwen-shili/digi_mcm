@@ -1388,10 +1388,8 @@ class MCM_SIGNUP(http.Controller):
     @http.route(['/webhook_testing'],type='json', auth="public", methods=['POST'])
     def stripe_event(self):
         event = None
-        resp=requests.get('https://mcm-academy-staging-pre-prod-3887467.dev.odoo.com/webhook_testing')
 
-        
-        data = resp.json()
-        _logger.info("webhoooooooooook %s" % str(data))
+        dataa = json.loads(request.httprequest.data)
+        _logger.info("webhoooooooooook %s" % str(dataa))
         return True
         
