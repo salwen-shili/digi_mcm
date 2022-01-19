@@ -11,6 +11,8 @@
              .blink-soft {
             animation: blinker 1s linear infinite;
             color:#fff900;
+            text-transform: uppercase;
+            font-size: 21px;
             }
             @keyframes blinker {
             50% {
