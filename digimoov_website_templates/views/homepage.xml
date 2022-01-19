@@ -2,46 +2,11 @@
     <template id="digimoov_website_templates.digimoov_template" inherit_id="website.homepage">
         <xpath expr="//div[@id='wrap']" position="replace">
             <script defer="defer" type="text/javascript" src="/digimoov_website_templates/static/src/js/lazy-min.min.js" />
-            <link href="/digimoov_website_templates/static/src/css/css-dist/home.min.css" rel="stylesheet" />
+            <link href="/digimoov_website_templates/static/src/css/homepage_dig.min.css" rel="stylesheet" />
             <script type="text/javascript" src="/mcm_website_theme/static/src/js/msAds.min.js" />
             <br />
             <br />
-            <style>
-            
-             .blink-soft {
-            animation: blinker 1s linear infinite;
-            color:#fff900;
-            text-transform: uppercase;
-            font-size: 21px;
-            }
-            @keyframes blinker {
-            50% {
-                opacity: 0.1;
-            }
-            70%{
-            opacity: 1;
-            }
-            100%{
-            opacity: 1;
-            }
-            }
-            
-        .pricebar {
-        position: relative;
-      }
-      .pricebar::after {
-        content: " ";
-        display: block;
-        width: 100%;
-        border-top: 3px solid red;
-        height: 12px;
-        position: absolute;
-        bottom: 6px;
-        left: -3px;
-        transform: rotate(330deg);
-      }
-      
-            </style>
+
             <div id="wrap" class="oe_structure oe_empty">
                 <div id="homepage" t-if="partenaire!='coursier2roues'">
                     <section class="s_one_page_banner static-slider2" data-name="Home Banner Ten" style="">
@@ -648,10 +613,6 @@
                                                             </li>
                                                             <li class="mb-4">
                                                                 <i class="fa fa-check-circle fa-lg mr-2 text-success" />
-                                                                <b>Examen final en présentiel</b>
-                                                            </li>
-                                                            <li class="mb-4">
-                                                                <i class="fa fa-check-circle fa-lg mr-2 text-success" />
                                                                 <b>Accès à 5 examens d'entraînement</b>
                                                             </li>
                                                             <li class="mb-4">
@@ -659,25 +620,34 @@
                                                                 <b>Assistance par mail</b>
                                                             </li>
                                                             <li class="mb-4">
-                                                                <i class="fa fa-lg fa-times-circle mr-2 text-danger" />
-                                                                Assistance par téléphone
+                                                                <i class="fa fa-check-circle fa-lg mr-2 text-success" />
+                                                                <b>Assistance par téléphone</b>
                                                             </li>
                                                             <li class="mb-4">
-                                                                <span class="fa fa-lg fa-times-circle mr-2 text-danger" style="font-size: 1.33333em" />
-                                                                Assistance par visioconférence
-                                                                <br />
+                                                                <i class="fa fa-check-circle fa-lg mr-2 text-success" />
+                                                                <b>Examen final en présentiel</b>
                                                             </li>
+
                                                             <li class="mb-4">
                                                                 <i class="fa fa-lg fa-times-circle mr-2 text-danger" />
                                                                 Livre d’entrainement version électronique
                                                             </li>
                                                             <li class="mb-4">
-                                                                <i class="fa fa-lg fa-times-circle mr-2 text-danger" />
-                                                                Directs pour explication avec les formateurs
+                                                                <span class="fa fa-lg fa-times-circle mr-2 text-danger" style="font-size: 1.33333em" />
+                                                                Séances en Live avec les formateurs
+                                                                <br />
                                                             </li>
                                                             <li class="mb-4">
                                                                 <i class="fa fa-lg fa-times-circle mr-2 text-danger" />
-                                                                Révision du programme avant examen &amp;nbsp;
+                                                                Live avec un expert métier
+                                                            </li>
+                                                            <li class="mb-4">
+                                                                <i class="fa fa-lg fa-times-circle mr-2 text-danger" />
+                                                                Révision du programme avant l'examen
+                                                            </li>
+                                                            <li class="mb-4">
+                                                                <i class="fa fa-lg fa-times-circle mr-2 text-danger" />
+                                                                Séance Live pour la correction après l’examen &amp;nbsp;
                                                                 &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;
                                                                 &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;
                                                                 &amp;nbsp; &amp;nbsp; &amp;nbsp;
@@ -802,39 +772,43 @@
                                                             </li>
                                                             <li class="mb-4">
                                                                 <i class="fa fa-check-circle fa-lg mr-2 text-success" />
-                                                                <b>Examen final en présentiel &amp;nbsp;</b>
-                                                            </li>
-                                                            <li class="mb-4">
-                                                                <i class="fa fa-check-circle fa-lg mr-2 text-success" />
-                                                                <b>Livre d’entrainement version électronique</b>
+                                                                <b> Livre d’entrainement version électronique</b>
                                                             </li>
                                                             <li class="mb-4">
                                                                 <i class="fa fa-check-circle fa-lg mr-2 text-success" />
                                                                 <b>Accès à 10 examens d'entraînement</b>
                                                             </li>
                                                             <li class="mb-4">
-                                                                <i class="fa fa-check-circle fa-lg mr-2 text-success" data-original-title="" title="" aria-describedby="tooltip131000" />
+                                                                <i class="fa fa-check-circle fa-lg mr-2 text-success" />
                                                                 <b>Assistance par mail</b>
                                                             </li>
                                                             <li class="mb-4">
-                                                                <span class="fa fa-check-circle fa-lg mr-2 text-success" style="font-size: 1.33333em" data-original-title="" title="" aria-describedby="tooltip96053" />
+                                                                <i class="fa fa-check-circle fa-lg mr-2 text-success" data-original-title="" title="" aria-describedby="tooltip131000" />
                                                                 <b>Assistance par téléphone</b>
                                                             </li>
                                                             <li class="mb-4">
+                                                                <span class="fa fa-check-circle fa-lg mr-2 text-success" style="font-size: 1.33333em" data-original-title="" title="" aria-describedby="tooltip96053" />
+                                                                <b>Séances en Live avec les formateurs</b>
+                                                            </li>
+                                                            <li class="mb-4">
                                                                 <span class="fa fa-lg fa-times-circle text-danger mr-2" style="font-size: 1.33333em" data-original-title="" title="" aria-describedby="tooltip288722" />
-                                                                Assistance par visioconférence
+                                                                Live avec un expert métier
                                                             </li>
                                                             <li class="mb-4">
                                                                 <i class="fa fa-lg fa-times-circle text-danger mr-2" />
-                                                                Directs pour explication avec les formateurs
+                                                                Révision du programme avant l'examen
                                                             </li>
                                                             <li class="mb-4">
                                                                 <i class="fa fa-lg fa-times-circle text-danger mr-2" />
-                                                                &amp;nbsp;Révision du programme avant examen
+                                                                &amp;nbsp;Examen final en présentiel 
                                                                 &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;
                                                                 &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;
                                                                 &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;
                                                                 &amp;nbsp;&amp;nbsp;
+                                                            </li>
+                                                            <li class="mb-4">
+                                                                <i class="fa fa-lg fa-times-circle text-danger mr-2" />
+                                                                Séance Live pour la correction après l’examen
                                                             </li>
                                                             <li>
                                                                 <i />
@@ -938,18 +912,13 @@
                                                             </li>
                                                             <li class="mb-4">
                                                                 <i class="fa fa-check-circle fa-lg mr-2 text-success" />
-                                                                <b>Examen final en présentiel</b>
-                                                            </li>
-                                                            <li class="mb-4">
-                                                                <i class="fa fa-check-circle fa-lg mr-2 text-success" />
-                                                                <b>Livre d’entrainement version&amp;nbsp;</b>
-                                                                <span style="font-weight: bolder">électronique
-                                                                </span>
-                                                                <br />
+                                                                <b>Livre d’entrainement version  électronique</b>
                                                             </li>
                                                             <li class="mb-4">
                                                                 <i class="fa fa-check-circle fa-lg mr-2 text-success" />
                                                                 <b>Accès à 14+ examens d'entraînement</b>
+                                                                <span style="font-weight: bolder">électronique
+                                                                </span>
                                                                 <br />
                                                             </li>
                                                             <li class="mb-4">
@@ -964,19 +933,29 @@
                                                             </li>
                                                             <li class="mb-4">
                                                                 <i class="fa fa-check-circle fa-lg mr-2 text-success" />
-                                                                <b>Assistance par visioconférence</b>
+                                                                <b>Séances Live avec ZOOM avec un tuteur dédié</b>
+                                                                <br />
+                                                            </li>
+                                                            <li class="mb-4">
+                                                                <i class="fa fa-check-circle fa-lg mr-2 text-success" />
+                                                                <b>Séance Live avec un expert métier </b>
                                                                 <b>&amp;nbsp;</b>
                                                                 <br />
                                                             </li>
                                                             <li class="mb-4">
                                                                 <i class="fa fa-check-circle fa-lg mr-2 text-success" />
-                                                                <b>Directs pour explication avec les formateurs</b>
+                                                                <b>Révision du programme avant l'examen</b>
                                                             </li>
                                                             <li class="mb-4">
                                                                 <span class="fa fa-check-circle fa-lg mr-2 text-success" style="font-size: 1.33333em" />
-                                                                <b>Révision du programme avant examen</b>
+                                                                <b>Examen final en présentiel</b>
+
+                                                            </li>
+                                                            <li class="mb-4">
+                                                                <span class="fa fa-check-circle fa-lg mr-2 text-success" style="font-size: 1.33333em" />
+                                                                <b>Séance Live pour la correction après l’examen.</b>
                                                                 <br />
-                                                                <br />
+
                                                             </li>
                                                         </ul>
                                                         <p class="

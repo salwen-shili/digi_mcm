@@ -6,23 +6,66 @@
     <title>Document</title>
   </head>
   <body>
-    <style>
-      .del {
-        color: rgba(red, 0.5);
-        text-decoration: none;
-        position: relative;
+    <script>
+      function showDetails() {
+        console.log('clique infor');
       }
-      .del::before {
-        content: ' ';
-        display: block;
-        width: 100%;
-        border-top: 2px solid rgba(red, 0.8);
-        height: 12px;
+    </script>
+    <style>
+      .info {
+        position: relative;
+        cursor: pointer;
+      }
+      .additional-info {
+        font-size: 15px !important;
         position: absolute;
-        bottom: 0;
-        left: 0;
-        transform: rotate(-7deg);
+        margin-left: 5px;
+        background-color: #5b575728;
+        padding: 3px 10px;
+        border-radius: 10px;
+        color: #068f2d;
+        display: none;
+        animation: fadeOutDown 0.2s linear;
+      }
+      .info:hover ~ .additional-info {
+        display: unset;
+        animation: fadeInUp 0.2s linear;
+      }
+
+      @-webkit-keyframes fadeInUp {
+        0% {
+          opacity: 0;
+          -webkit-transform: translateY(20px);
+          transform: translateY(20px);
+        }
+
+        100% {
+          opacity: 1;
+          -webkit-transform: translateY(0);
+          transform: translateY(0);
+        }
+      }
+
+      @keyframes fadeInUp {
+        0% {
+          opacity: 0;
+          -webkit-transform: translateY(20px);
+          -ms-transform: translateY(20px);
+          transform: translateY(20px);
+        }
+
+        100% {
+          opacity: 1;
+          -webkit-transform: translateY(0);
+          -ms-transform: translateY(0);
+          transform: translateY(0);
+        }
       }
     </style>
+    <h1>
+      <span>i</span>
+      <i class="fa fa-info-circle info">i</i>
+      <span class="additional-info">additional info</span>
+    </h1>
   </body>
 </html>
