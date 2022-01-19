@@ -1,7 +1,18 @@
 <odoo>
     <template id="digimoov_website_templates.habilitation-electrique" name="Habilitation electrique | Digimoov">
         <t t-call="website.layout">
-            <div id="habilitation-electrique">
+
+
+            <script defer="defer" type="text/javascript" src="/digimoov_website_templates/static/src/js/lazy-min.js" />
+            <link href="/digimoov_website_templates/static/src/css/css-dist/home.min.css" rel="stylesheet" />
+            <script type="text/javascript" src="/mcm_website_theme/static/src/js/msAds.js" />
+            <br />
+            <br />
+            <div id="wrap" class="oe_structure oe_empty">
+
+
+                <!-- page habiliation electrique-->
+
                 <section class="centric_template home-banner pt128 banner_padding" style="padding-bottom: 0px !important;" data-name="Banner">
                     <div class="container" style="border-style: none; border-width: 0px;">
                         <div class="row">
@@ -10,16 +21,16 @@
                                     Habilitation
                                     <font class="text-alpha" style="">é</font>
                                     <span style="font-size: 70.4px; color: #343996 !important; font-weight:bold">lectrique :
-                                    </span>
+                                            </span>
                                     <br />
                                     soyez prêt&amp;nbsp;
                                     <span style="font-size: 70.4px; color: #343996 !important ;font-weight:bold">!
 
 
-                                    </span>
+                                        </span>
                                 </h1>
                                 <p class="paratext">
-                                    Vous êtes entrepreneur, et vous pensez à former votre personnel sur l' habilitation électrique
+                                    Vous êtes entrepreneur, et vous pensez à former votre personnel sur l'habilitation électrique ? Chez
                                     <font style="color: rgb(156, 0, 255);">Digimoov,</font>
                                     on vous propose&amp;nbsp;
                                     <b>
@@ -128,7 +139,7 @@
                                         <h4>
                                             <span style="color: rgb(99, 99, 99); font-family: Roboto, sans-serif; font-size: 18px; font-variant-east-asian: normal; font-variant-numeric: normal; vertical-align: baseline; white-space: pre-wrap;">Les travailleurs apprendront grâce à ces formations en habilitation électrique à connaître la conduite qu'ils doivent avoir en cas d’accident ou d’incendie d’origine électrique. Suite à nos formations, vous saurez&amp;nbsp;spécifier le type des interventions que chacun de vos employés est autorisé à effectuer</span>
                                             <span style="color: rgb(99, 99, 99); font-family: Roboto, sans-serif; font-variant-east-asian: normal; font-variant-numeric: normal; vertical-align: baseline; white-space: pre-wrap;">. 
-                                            </span>
+                    </span>
                                         </h4>
                                     </div>
                                 </div>
@@ -144,7 +155,7 @@
                                     Qui est concerné par cette
                                     <span style="                                                                         color: #9c00ff !important;                                                                     ">
                                                                         formation
-                                    </span>
+                                </span>
                                     ?
                                 </h2>
                                 <h5>
@@ -191,27 +202,27 @@
                                 <ul class="li">
                                     <li>
                                                                     Connaître l'électricité et ses dangers
-                                    </li>
+                                </li>
                                     <li> Connaître les risques électriques,&amp;nbsp; moyens et matériels de protection contre les dangers électriques </li>
                                     <li> Norme NFC 18510 de janvier 2012 </li>
                                     <li>
                                     Titre de l'habilitation électrique et le champ d'application
-                                    </li>
+                                </li>
                                     <li>
                                     Conduite à tenir en cas d'incident et d'accident
-                                    </li>
+                                </li>
                                 </ul>
                                 <h3>
                                                                 Habilitations électriques B1V B2V BR BC électricien ou électronicien chargé de travaux de dépannage B.T.
-                                </h3>
+                            </h3>
                                 <ul>
                                     <li> Connaître l'électricité et ses dangers et être capable d'identifier et d'analyser le risque électrique ; connaître les prescriptions et procédés de prévention du risque électrique, et savoir les mettre en œuvre </li>
                                     <li>
                                     Savoir intégrer la prévention dans la préparation du travail pour les personnes qui en ont la charge
-                                    </li>
+                                </li>
                                     <li>
                                     Adopter le bon comportement en cas d'accident ou d'incendie
-                                    </li>
+                                </li>
                                     <li>Être capable de respecter les règles de sécurité applicables lors de travaux électriques </li>
                                 </ul>
                             </div>
@@ -229,7 +240,7 @@
                                                                                 dans les meilleures conditions,&amp;nbsp; nous avons
                                                                                 développé de nombreux partenariats avec les leaders du
                                                                                 marché de la livraison à domicile&amp;nbsp;
-                                    </p>
+                                </p>
                                 </div>
                             </div>
                             <section class="clients s_references bg-200 pt16 pb16 p-m-0" data-name="References">
@@ -345,7 +356,7 @@
                                                 <br />
                                                 <button class="btn btn-block text-white" onClick="(function(){msTracking('clic sur inscrire pack solo coursier2roues','Pricing Table events','Inscrire pack solo coursier2roues','590'); document.getElementById('form-coursier2roues').submit();return false;})();return false;" style="background-color: #6e209f; border-radius: 25px">
                                                                                             Je m'inscris
-                                                </button>
+                                            </button>
                                             </div>
                                         </form>
                                     </t>
@@ -355,6 +366,8 @@
                     </div>
                 </div> -->
             </div>
+
+
         </t>
 
 
