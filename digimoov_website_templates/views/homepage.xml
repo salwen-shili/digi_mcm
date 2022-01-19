@@ -773,10 +773,8 @@
                                                             <li class="mb-4">
                                                                 <i class="fa fa-check-circle fa-lg mr-2 text-success" />
                                                                 <b> Livre d’entrainement version électronique</b>
-                                                            </li>
-                                                            <li class="mb-4">
-                                                                <i class="fa fa-check-circle fa-lg mr-2 text-success" />
-                                                                <b>Accès à 10 examens d'entraînement</b>
+                                                                <i class="fa fa-info-circle info">i</i>
+                                                                <span id="additional-info" class="additional-info" onlick="(function(){console.log('click add info');return false;})();return false;">additional info</span>
                                                             </li>
                                                             <li class="mb-4">
                                                                 <i class="fa fa-check-circle fa-lg mr-2 text-success" />
@@ -807,8 +805,16 @@
                                                                 &amp;nbsp;&amp;nbsp;
                                                             </li>
                                                             <li class="mb-4">
-                                                                <i class="fa fa-lg fa-times-circle text-danger mr-2" />
-                                                                Séance Live pour la correction après l’examen
+                                                                <i class="fa fa-check-circle fa-lg mr-2 text-success" />
+                                                                <b>Accès à 10 examens d'entraînement</b>
+                                                            </li>
+                                                            <li class="mb-4">
+                                                                <i class="fa fa-lg fa-times-circle mr-2 text-danger" />
+                                                                Séance Live pour la correction après l’examen &amp;nbsp;
+                                                                &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;
+                                                                &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;
+                                                                &amp;nbsp; &amp;nbsp; &amp;nbsp;
+                                                                &amp;nbsp;&amp;nbsp;
                                                             </li>
                                                             <li>
                                                                 <i />
@@ -916,10 +922,8 @@
                                                             </li>
                                                             <li class="mb-4">
                                                                 <i class="fa fa-check-circle fa-lg mr-2 text-success" />
-                                                                <b>Accès à 14+ examens d'entraînement</b>
-                                                                <span style="font-weight: bolder">électronique
-                                                                </span>
-                                                                <br />
+                                                                <b>Accès à 14+ examens d'entraînement électronique</b>
+
                                                             </li>
                                                             <li class="mb-4">
                                                                 <i class="fa fa-check-circle fa-lg mr-2 text-success" />
@@ -952,10 +956,15 @@
 
                                                             </li>
                                                             <li class="mb-4">
-                                                                <span class="fa fa-check-circle fa-lg mr-2 text-success" style="font-size: 1.33333em" />
-                                                                <b>Séance Live pour la correction après l’examen.</b>
-                                                                <br />
-
+                                                                <i class="fa fa-lg fa-times-circle mr-2 text-danger" />
+                                                                Séance Live pour la correction après l’examen &amp;nbsp;
+                                                                &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;
+                                                                &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;
+                                                                &amp;nbsp; &amp;nbsp; &amp;nbsp;
+                                                                &amp;nbsp;&amp;nbsp;
+                                                            </li>
+                                                            <li>
+                                                                <i />
                                                             </li>
                                                         </ul>
                                                         <p class="

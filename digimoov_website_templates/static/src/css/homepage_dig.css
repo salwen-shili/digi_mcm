@@ -187,3 +187,7 @@ footer {
   left: -3px;
   transform: rotate(330deg);
 }
+
+.card-body {
+  padding: 1rem;
+}
