@@ -1390,7 +1390,7 @@ class MCM_SIGNUP(http.Controller):
         event = None
         resp=requests.get('https://mcm-academy-staging-pre-prod-3887467.dev.odoo.com/webhook_testing')
 
-    
-        data = json.loads(resp.text)
+        data = resp.json()
         _logger.info("webhoooooooooook %s" % str(data))
         return True
+        
