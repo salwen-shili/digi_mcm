@@ -1394,6 +1394,6 @@ class MCM_SIGNUP(http.Controller):
             _logger.info("webhoooooooooook %s" %str(event))
         except:
             print('⚠️  Webhook error while parsing basic request.')
-            return jsonify(success=False)
+            return False
 
-        return jsonify(success=True)
+        return True
