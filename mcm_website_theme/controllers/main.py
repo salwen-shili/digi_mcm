@@ -1365,9 +1365,9 @@ class MCM_SIGNUP(http.Controller):
     @http.route(['/webhook_testing'],type='json', auth="public", methods=['POST'])
     def stripe_event(self):
         event = None
-        payload = requests.data
+        
         data=json.loads(requests.text)
-        _logger.info("webhoooooooooook %s %s" % (str(data), str(payload)))
+        _logger.info("webhoooooooooook %s " % (str(data)))
         try:
             event = json.loads(payload)
             _logger.info("webhoooooooooook %s" %str(event))
