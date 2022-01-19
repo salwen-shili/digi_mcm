@@ -775,8 +775,8 @@
                                                             <li class="mb-4">
                                                                 <i class="fa fa-check-circle fa-lg mr-2 text-success" />
                                                                 <b> Livre d’entrainement version électronique</b>
-                                                                <i class="fa fa-info-circle info">i</i>
-                                                                <span id="additional-info" class="additional-info" onlick="(function(){console.log('click add info');return false;})();return false;">additional info</span>
+                                                                <i class="fa fa-info-circle info"></i>
+                                                                <span class="additional-info">additional info</span>
                                                             </li>
                                                             <li class="mb-4">
                                                                 <i class="fa fa-check-circle fa-lg mr-2 text-success" />
@@ -808,7 +808,7 @@
                                                             </li>
                                                             <li class="mb-4">
                                                                 <i class="fa fa-check-circle fa-lg mr-2 text-success" />
-                                                                <b>Accès à 10 examens d'entraînement</b>
+                                                                <b>Examen final en présentiel </b>
                                                             </li>
                                                             <li class="mb-4">
                                                                 <i class="fa fa-lg fa-times-circle mr-2 text-danger" />

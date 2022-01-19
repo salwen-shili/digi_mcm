@@ -113,15 +113,19 @@ footer {
   font-size: 15px !important;
   position: absolute;
   margin-left: 5px;
-  background-color: #5b575728;
+  background-color: #ffffff;
   padding: 3px 10px;
   border-radius: 10px;
-  color: #068f2d;
+  color: #484848f2;
   display: none;
   animation: fadeOutDown 0.2s linear;
+  z-index: 999;
+  inline-size: fit-content;
+  box-sizing: border-box;
+  box-shadow: -1px 1px 16px -4px rgb(0 0 0 / 64%);
 }
 .info:hover ~ .additional-info {
-  display: unset;
+  display: inline-block;
   animation: fadeInUp 0.2s linear;
 }
 
