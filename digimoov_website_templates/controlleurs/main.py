@@ -689,7 +689,7 @@ class Habilitation_electrique(http.Controller):
             values = {
                 'digimoov_products': digimoov_products,
             }
-            return request.render("digimoov_website_templates.formation-capacité-transport-lourd-marchandise", values)
+            return request.render("digimoov_website_templates.habilitation-electrique", values)
         else:
             raise werkzeug.exceptions.NotFound()
         
