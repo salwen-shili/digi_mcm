@@ -47,7 +47,7 @@
         # 'views/test2.xml',
         # 'views/test3.xml',
         # 'views/test4.xml',
-        'views/test5.xml',
+        # 'views/test5.xml',
         # 'views/test7.xml',
         'views/test8.xml',
         'views/test9.xml',
