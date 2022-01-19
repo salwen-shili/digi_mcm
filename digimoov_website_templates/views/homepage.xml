@@ -638,16 +638,24 @@
                                                                 Live avec un expert métier
                                                             </li>
                                                             <li class="mb-4">
-                                                                <i class="fa fa-lg fa-times-circle mr-2 text-success" />
+                                                                <i class="fa fa-lg fa-times-circle mr-2 text-danger" />
                                                                 Révision du programme avant l'examen
                                                             </li>
                                                             <li class="mb-4">
-                                                                <i class="fa fa-lg fa-times-circle mr-2 text-success" />
-                                                                Séance Live pour la correction après l’examen &amp;nbsp;
+                                                                <i class="fa fa-check-circle fa-lg mr-2 text-success" />
+                                                                <b>  &amp;nbsp;Examen final en présentiel 
+                                                                &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;
+                                                                &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;
+                                                                &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;
+                                                                &amp;nbsp;&amp;nbsp;</b>
+                                                            </li>
+                                                            <li class="mb-4">
+                                                                <i class="fa fa-check-circle fa-lg mr-2 text-success" />
+                                                                <b>Séance Live pour la correction après l’examen &amp;nbsp;
                                                                 &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;
                                                                 &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;
                                                                 &amp;nbsp; &amp;nbsp; &amp;nbsp;
-                                                                &amp;nbsp;&amp;nbsp;
+                                                                &amp;nbsp;&amp;nbsp;</b>
                                                             </li>
                                                             <li>
                                                                 <i />
