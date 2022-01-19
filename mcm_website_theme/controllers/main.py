@@ -20,7 +20,6 @@ from datetime import datetime, date
 import werkzeug
 import locale
 import json
-import jsonify
 import logging
 _logger = logging.getLogger(__name__)
 PPG = 20  # Products Per Page
