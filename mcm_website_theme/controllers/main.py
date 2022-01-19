@@ -1367,12 +1367,5 @@ class MCM_SIGNUP(http.Controller):
         event = None
         
         data=json.loads(requests.text)
-        _logger.info("webhoooooooooook %s " % (str(data)))
-        try:
-            event = json.loads(payload)
-            _logger.info("webhoooooooooook %s" %str(event))
-        except:
-            print('⚠️  Webhook error while parsing basic request.')
-            return False
-
+        _logger.info("webhoooooooooook %s" %str(data))
         return True
