@@ -108,6 +108,7 @@ footer {
 .info {
   position: relative;
   cursor: pointer;
+  color: #556cd6;
 }
 .additional-info {
   font-size: 15px !important;
@@ -123,6 +124,7 @@ footer {
   inline-size: fit-content;
   box-sizing: border-box;
   box-shadow: -1px 1px 16px -4px rgb(0 0 0 / 64%);
+  bottom: 598px;
 }
 .info:hover ~ .additional-info {
   display: inline-block;
