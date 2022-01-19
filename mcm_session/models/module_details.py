@@ -11,6 +11,6 @@ class ModuleDetails(models.Model):
     prix_normal=fields.Monetary('Prix Particulier')
     prix_chpf=fields.Monetary('Prix CHPF')
     duree = fields.Char('Durée')
-    module_id=fields.Many2one('mcmacademy.module','Module')
+    module_id=fields.Many2one('mcmacademy.module','Module',ondelete='cascade')
     currency_id = fields.Many2one('res.currency',related='company_id.currency_id')
     company_id = fields.Many2one('res.company', string='Company', default=lambda self: self.env.company)

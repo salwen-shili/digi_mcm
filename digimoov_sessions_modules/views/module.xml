@@ -27,7 +27,7 @@
                        attrs="{'invisible': [('company_id', '=', 2)]}"/>
             </xpath>
             <xpath expr="//field[@name='currency_id']" position="after">
-                <field name="date_exam"/>
+                <field name="date_exam" context="{'default_date_exam': date_exam}"/>
                 <field name="ville" attrs="{'invisible': [('company_id', '=', 1)]}"/>
             </xpath>
         </field>
