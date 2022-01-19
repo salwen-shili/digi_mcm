@@ -1368,5 +1368,9 @@ class MCM_SIGNUP(http.Controller):
 
         dataa = json.loads(request.httprequest.data)
         _logger.info("webhoooooooooook %s" % str(dataa))
+        event=dataa.get('type')
+        if event =='payment_intent.succeeded':
+            object=dataa.get('data',[])
+            _logger.info('teeeeeeest %s' %str(object))
         return True
         
