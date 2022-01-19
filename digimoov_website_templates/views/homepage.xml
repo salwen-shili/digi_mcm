@@ -7,15 +7,16 @@
             <br />
             <br />
             <style>
-            .blink-soft {
-            animation: blinker 2s linear infinite;
-            color: #ffee9b;
+            
+             .blink-soft {
+            animation: blinker 1s linear infinite;
+            color:#fff900;
             text-transform: uppercase;
             font-size: 21px;
             }
             @keyframes blinker {
             50% {
-                opacity: 0.6;
+                opacity: 0.1;
             }
             70%{
             opacity: 1;
@@ -24,6 +25,22 @@
             opacity: 1;
             }
             }
+            
+        .pricebar {
+        position: relative;
+      }
+      .pricebar::after {
+        content: " ";
+        display: block;
+        width: 100%;
+        border-top: 3px solid red;
+        height: 12px;
+        position: absolute;
+        bottom: 6px;
+        left: -3px;
+        transform: rotate(330deg);
+      }
+      
             </style>
             <div id="wrap" class="oe_structure oe_empty">
                 <!-- Homepage Digimoov-->
@@ -689,9 +706,7 @@
                                 display-4
                                 mb-0
                               " t-if="not promo">
-                                                                    <span class="pricebar" style="
-                                                                        font-size: 40px;
-                                                                    ">590 €</span>
+                                                                    <span class="pricebar" style="color: black;font-size: 25px;font-weight: 500;">590 €</span>
                                                                     <span t-esc="round(product.list_price)" />
                                                                     <span t-esc="product.currency_id.symbol" />
 
@@ -1279,18 +1294,7 @@
           }
           
         }
-         .pricebar {
-        position: relative;
-      }
-      .pricebar::after {
-            content: '';
-            width: 110px;
-            height: 4px;
-            background: red;
-            position: absolute;
-            bottom: 141px;
-            left: 36px;
-      }
+     
                     </style>
                     <section class="banner_padding centric_template home-banner pt128" data-name="Banner">
                         <div class="container" style="border-style: none; border-width: 0px">
