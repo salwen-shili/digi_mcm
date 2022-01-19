@@ -7,7 +7,8 @@
             <br />
             <br />
             <style>
-            .blink-soft {
+            
+             .blink-soft {
             animation: blinker 2s linear infinite;
             color: #ffee9b;
             text-transform: uppercase;
@@ -24,20 +25,22 @@
             opacity: 1;
             }
             }
+            
         .pricebar {
         position: relative;
       }
       .pricebar::after {
-    content: " ";
-    display: block;
-    width: 100%;
-    border-top: 4px solid #19191a;
-    height: 12px;
-    position: absolute;
-    bottom: 9px;
-    left: -4px;
-    transform: rotate(-7deg);
+        content: " ";
+        display: block;
+        width: 100%;
+        border-top: 3px solid red;
+        height: 12px;
+        position: absolute;
+        bottom: 6px;
+        left: -3px;
+        transform: rotate(330deg);
       }
+      
             </style>
             <div id="wrap" class="oe_structure oe_empty">
                 <div id="homepage" t-if="partenaire!='coursier2roues'">
@@ -701,9 +704,7 @@
                                 display-4
                                 mb-0
                               " t-if="not promo">
-                                                                    <span class="pricebar" style="
-                                                                       color:red; font-size: 25px;
-                                                                    ">590 €</span>
+                                                                    <span class="pricebar" style="color: black;font-size: 25px;font-weight: 500;">590 €</span>
                                                                     <span t-esc="round(product.list_price)" />
                                                                     <span t-esc="product.currency_id.symbol" />
 
