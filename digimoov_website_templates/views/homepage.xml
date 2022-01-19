@@ -9,14 +9,12 @@
             <style>
             
              .blink-soft {
-            animation: blinker 2s linear infinite;
-            color: #ffee9b;
-            text-transform: uppercase;
-            font-size: 21px;
+            animation: blinker 1s linear infinite;
+            color:#fff900;
             }
             @keyframes blinker {
             50% {
-                opacity: 0.6;
+                opacity: 0.1;
             }
             70%{
             opacity: 1;
