@@ -673,4 +673,23 @@ class Transport_Lourd(http.Controller):
             return request.render("digimoov_website_templates.formation-capacité-transport-lourd-marchandise", values)
         else:
             raise werkzeug.exceptions.NotFound()
+
+ # habilitation electrique
+
+class Habilitation_electrique(http.Controller):
+    @http.route(['/habilitation-electrique'], type='http', auth='public', website=True)
+    def habilitation_electrique(self, **kw, ):
+        digimoov_products = False
+        values = False
+        if request.website.id == 2:
+          
+            #get digimoov products to send them to pricing table 
+            digimoov_products = request.env['product.product'].sudo().search([('company_id', '=', 2)],
+                                                                             order="list_price")
+            values = {
+                'digimoov_products': digimoov_products,
+            }
+            return request.render("digimoov_website_templates.formation-capacité-transport-lourd-marchandise", values)
+        else:
+            raise werkzeug.exceptions.NotFound()
         
