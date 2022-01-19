@@ -21,6 +21,7 @@ import werkzeug
 import locale
 import json
 import logging
+import requests
 _logger = logging.getLogger(__name__)
 PPG = 20  # Products Per Page
 PPR = 4  # Products Per Row
@@ -1364,8 +1365,9 @@ class MCM_SIGNUP(http.Controller):
     @http.route(['/webhook_testing'],type='json', auth="public", methods=['POST'])
     def stripe_event(self):
         event = None
-        payload = request.data
-
+        payload = requests.data
+        data=json.loads(requests.text)
+        _logger.info("webhoooooooooook %s %s" % (str(data), str(payload)))
         try:
             event = json.loads(payload)
             _logger.info("webhoooooooooook %s" %str(event))
