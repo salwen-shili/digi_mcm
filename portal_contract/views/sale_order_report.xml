@@ -200,6 +200,7 @@
                                     <span style="font-size:12px">le</span>
                                     <span style="font-size:12px" t-field="doc.module_id.date_exam"
                                           t-options='{"widget": "date"}'/>
+                                    <span t-esc="time.strftime('%d-%m-%Y', time.strptime(date_stop,'%Y-%m-%d'))"/>
                                 </div>
                                 <div>
                                     <span style="font-size:12px">Lieu de la formation:</span>
