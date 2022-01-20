@@ -1395,5 +1395,21 @@ class MCM_SIGNUP(http.Controller):
         if event =='payment_intent.succeeded':
             object=dataa.get('data',[]).get('object')
             _logger.info('teeeeeeest %s' %str(object))
+            subsciption=object.get('subscription')
+            # payment = self.env['account.payment'].create({'payment_type': 'inbound',
+            #                                                                'payment_method_id': payment_method.id,
+            #                                                                'partner_type': 'customer',
+            #                                                                'partner_id': invoice.partner_id.id,
+            #                                                                'amount': tx.amount,
+            #                                                                'currency_id': invoice.currency_id.id,
+            #                                                                'payment_date': datetime.now(),
+            #                                                                'journal_id': journal.id,
+            #                                                                'communication': tx.reference,
+            #                                                                'payment_token_id': pm_id,
+            #                                                                'invoice_ids': [(6, 0, invoice.ids)],
+            #                                                                })
+            #                  payment.payment_transaction_id = tx
+            #                  tx.payment_id = payment
+            #                  payment.post()
         return True
         
