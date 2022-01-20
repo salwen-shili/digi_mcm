@@ -12,10 +12,9 @@ class Session(models.Model):
             else:
                 return 20
 
-    
     id_edof=fields.Char("ID Sesssion EDOF")
-    max_number_places = fields.Integer("Nombre des places maximales",default=get_default_number_place_by_company,copy=False)
-    number_places_available = fields.Integer("Nombre des places disponibles", compute='get_number_places_available',
+    max_number_places = fields.Integer("Nombre des places maximales *",default=get_default_number_place_by_company,copy=False,required=True,track_visibility='always')
+    number_places_available = fields.Integer("Nombre des places disponibles *", compute='get_number_places_available',
                                              store=True, default=0)
     website_published=fields.Boolean('Publié en site web',default=True)
 

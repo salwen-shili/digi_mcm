@@ -2,13 +2,14 @@
 # Part of Odoo. See LICENSE file for full copyright and licensing details.
 
 from odoo import api, fields, models,_
+from odoo.exceptions import ValidationError
 import random
 
 class Session(models.Model):
     _name = 'mcmacademy.session'
     _description = "Sessions de formation"
 
-    name=fields.Char('Nom du session',required=True)
+    name=fields.Char('Nom du session',required=True,track_visibility='always')
 
     type_client=fields.Selection(selection=[
         ('intra', 'INTRA'),
@@ -17,7 +18,7 @@ class Session(models.Model):
     sous_traitance=fields.Boolean("Réalisé en sous traitance d'un autre organisme",copy=True)
     action_type_id=fields.Many2one('mcmacademy.action',string="Type d'action de formation",copy=True)
     domaine_formation=fields.Many2one('mcmacademy.domain',string='Domaine de formation',copy=True)
-    diplome_vise=fields.Char('Diplôme visé par la formation',copy=True)
+    diplome_vise=fields.Char('Diplôme visé par la formation',copy=True,track_visibility='always')
     module_ids = fields.One2many('mcmacademy.module', inverse_name='session_id', string='Liste des modules', copy=True)
     client_ids=fields.Many2many('res.partner','session_clients_rel', 'session_id', 'client_id', string='' ,copy=False)
     prospect_ids=fields.Many2many('res.partner','session_prospect_rel','session_id','prospect_id',string='',copy=False)
@@ -59,6 +60,21 @@ class Session(models.Model):
             print(rec.date_debut)
             print(rec.date_fin)
 
+    def write(self, values):
+        for record in self :
+            if 'stage_id' in values:
+                stages = self.env['mcmacademy.stage'].search([('id',"=",values['stage_id'])])
+                for stage in stages :
+                    if stage.name in ['Archivées','Archivés'] and len(record.client_ids) > 0 :
+                        raise ValidationError("Impossible d'archiver une session qui contient des clients")
+                    elif stage.name in ['Archivées','Archivés'] and len(record.client_ids) == 0 :
+                         values['max_number_places'] =0
+        return super(Session, self).write(values)
+    def unlink(self):
+        for record in self:
+            if len(record.client_ids) > 0 :
+                raise ValidationError("Impossible de supprimer une session qui contient des clients")
+        return super(Session, self).unlink()
     @api.depends('client_ids','prospect_ids','canceled_prospect_ids')
     def _compute_count_clients(self):
         for rec in self:
