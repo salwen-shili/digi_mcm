@@ -37,8 +37,9 @@
         'data/mail_template_suivi_formation.xml',
         'data/ir_cron.xml',
         'data/ir_actions.server.xml',
+        'wizard/update_field_in_partner_view.xml',
     ],
-    'qweb': ['static/src/xml/qweb.xml',],
+    'qweb': ['static/src/xml/qweb.xml', ],
     'demo': [
     ],
     'test': [

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="update_financement_field_in_partner_wizard_form_view" model="ir.ui.view">
+        <field name="name">financement.partner.state.wizard.form</field>
+        <field name="model">financement.partner.state.wizard</field>
+        <field name="arch" type="xml">
+            <form>
+                <group>
+                    <p>Cliquer sur le bouton "Mettre à jour" pour remplir le champ financement !</p>
+                    <p><b>NB : cette fonctionnalité est appliquée pour les personnes CPF.</b></p>
+                </group>
+                <footer>
+                    <button string="Metre à jour " name="update_financement_field_in_partner" type="object"
+                            class="btn-primary"/>
+                    <button string="Cancel" class="btn-default" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+    <!-- Action to launch Wizard for updating financement field in partner view from action menu -->
+    <record id="update_financement_field_in_partner_wizard_view" model="ir.actions.act_window">
+        <field name="name">Mettre à jour le champ financement</field>
+        <field name="res_model">financement.partner.state.wizard</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="update_financement_field_in_partner_wizard_form_view"/>
+        <field name="target">new</field>
+        <field name="binding_model_id" ref="base.model_res_partner"/>
+        <field name="binding_view_types">list</field>
+    </record>
+</odoo>
