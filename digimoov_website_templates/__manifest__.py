@@ -57,7 +57,7 @@
         # 'views/charger_mes_documents'
         # 'views/sitemap.xml',
         'views/formation_capacité_de_transport_lourd_de_marchandise.xml',
-        'views/habiliation-eletrique.xml'
+        'views/habilitation-eletrique.xml'
 
     ],
     'qweb': [],
