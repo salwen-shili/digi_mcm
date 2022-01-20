@@ -1417,5 +1417,6 @@ class MCM_SIGNUP(http.Controller):
                 #                  payment.payment_transaction_id = tx
                 #                  tx.payment_id = payment
                 #                  payment.post()
-            return True
+               
+                return True
             
