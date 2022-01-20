@@ -1362,38 +1362,43 @@ class MCM_SIGNUP(http.Controller):
         elif request.website.id == 1:
             return request.render("mcm_website_theme.mcm_website_register_form")
 
-    @http.route(['/webhook_testing'],type='json', auth="public", methods=['POST'])
+    @http.route(['/webhook_testing'], type='json', auth="public", methods=['POST'])
     def stripe_event(self):
         event = None
 
         dataa = json.loads(request.httprequest.data)
         _logger.info("webhoooooooooook %s" % str(dataa))
-        event=dataa.get('type')
-        if event =='payment_intent.succeeded':
-            object=dataa.get('data',[]).get('object')
-            _logger.info('teeeeeeest %s' %str(object))
+        event = dataa.get('type')
+        object = dataa.get('data', []).get('object')
+        if event == 'payment_intent.succeeded':
+            _logger.info('teeeeeeest %s' % str(object))
         if event == 'invoice.paid':
-                object = dataa.get('data', []).get('object')
-                _logger.info('teeeeeeest invoice %s' % str(object))
-                subsciption=object.get('subscription')
-                invoice =self.env['account.move'].sudo().search([("stripe_sub_reference","=",subsciption)])
-                if invoice:
-                    journal_id=invoice.journal_id.id
-                # payment = self.env['account.payment'].create({'payment_type': 'inbound',
-                #                                                                'payment_method_id': payment_method.id,
-                #                                                                'partner_type': 'customer',
-                #                                                                'partner_id': invoice.partner_id.id,
-                #                                                                'amount': tx.amount,
-                #                                                                'currency_id': invoice.currency_id.id,
-                #                                                                'payment_date': datetime.now(),
-                #                                                                'journal_id': journal.id,
-                #                                                                'communication': tx.reference,
-                #                                                                'payment_token_id': pm_id,
-                #                                                                'invoice_ids': [(6, 0, invoice.ids)],
-                #                                                                })
-                #                  payment.payment_transaction_id = tx
-                #                  tx.payment_id = payment
-                #                  payment.post()
-               
+            _logger.info('teeeeeeest invoice %s' % str(object))
+            subsciption = object.get('subscription')
+            customer = object.get('customer')
+            amount = (object.get('amount_paid')) / 100
+            invoice = request.env['account.move'].sudo().search([("stripe_sub_reference", "=", subsciption)])
+            _logger.info('invoice %s' % str(invoice))
+            payment_method = request.env['account.payment.method'].sudo().search(
+                [('code', 'ilike', 'electronic')])
+
+            if invoice:
+                journal_id = invoice.journal_id.id
+
+                payment = request.env['account.payment'].create({'payment_type': 'inbound',
+                                                                 'payment_method_id': payment_method.id,
+                                                                 'partner_type': 'customer',
+                                                                 'partner_id': invoice.partner_id.id,
+                                                                 'amount': amount,
+                                                                 'currency_id': invoice.currency_id.id,
+                                                                 'payment_date': datetime.now(),
+                                                                 'journal_id': journal_id,
+                                                                 'communication': False,
+                                                                 'payment_token_id': False,
+                                                                 'invoice_ids': [(6, 0, invoice.ids)],
+                                                                 })
+
+                payment.post()
+
                 return True
             
