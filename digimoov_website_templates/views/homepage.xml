@@ -128,6 +128,9 @@
                                 <img class="img-fluid" style="width: 110px;" src="/mcm_website_theme/static/src/img/Logo-vert-sur-fond-blanc-en-.jpg.jpg" />
 
                             </div>
+                            <div class=" col-md-3 col-sm-12 text-center mb-4 mb-md-0  ">
+                                <img class="img-fluid" style="width: 100px;" src="/mcm_website_theme/static/src/img/formation-éligible-au-compte-personnel-de-formation.png" />
+                            </div>
                             <div class=" col-md-3 col-sm-12 text-center mb-4 mb-md-0 ">
                                 <img class="img-fluid" style="width: 150px;" src="/digimoov_website_templates/static/img/Homepage/driea.png" />
                             </div>
