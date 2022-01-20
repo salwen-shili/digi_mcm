@@ -78,9 +78,7 @@
                         <div class="col-md-4 col-sm-12 text-center mb-4 mb-md-0">
                             <img class="img-fluid" style="width: 110px" src="/mcm_website_theme/static/src/img/mcm academy-partenaire-france-relance.jpg" />
                         </div>
-                        <div class="col-md-4 col-sm-12 text-center mb-4 mb-md-0">
-                            <img class="img-fluid" style="width: 188px" src="/digimoov_website_templates/static/img/coursier2roues/logo-DREAL.png" />
-                        </div>
+
                     </div>
                 </section>
                 <section class="s_creative_bg_imag_with_para spacer feature46 bg-light-1 o_bg_img_opt_custom bg-white-75" style="background-size: auto; background-position: 50% 0%" data-name="Background image with paragraph">
@@ -351,17 +349,19 @@
                                 </p>
 
                                 <div class="s_alert s_alert_md alert-delta w-100 clearfix" data-name="Alert">
-
+                                    <i class="fa fa-2x fa-info-circle s_alert_icon"></i>
                                     <div class="s_alert_content">
-                                        <p class="para text-center">
-                                            La formation pratique se fait en présentiel dans les
-                      villes de
-                                            <b>Paris</b>
-                                            ,
-                                            <b>Lyon </b>
-                                            et
-                                            <b> Marseille</b>
-                                            .
+                                        <p>
+                                            <span style="text-align: center;">
+                                                La formation pratique se fait en présentiel dans les villes de
+                                                <b>Paris</b>
+                                                ,
+                                                <b>Lyon </b>
+                                                et
+                                                <b> Marseille</b>
+                                                .
+                                            </span>
+                                            <br />
                                         </p>
                                     </div>
                                 </div>
@@ -370,43 +370,7 @@
                         </div>
                     </div>
                 </section>
-                <section class="s_estate_logo_partners bg-light-1 bg-200" data-name="Partners with logos and paragraph">
-                    <div class="spacer feature14">
-                        <div class="container">
-                            <div class="row justify-content-center">
-                                <div class="col-md-7 text-center">
-                                    <h2 class="text-beta title">Nos partenaires</h2>
-                                    <p class="subtitle">
-                  Afin de vous aider à réaliser vos objectifs professionnels
-                  dans les meilleures conditions,&amp;nbsp; nous avons développé
-                  de nombreux partenariats avec les leaders du marché de la
-                  livraison à domicile.&amp;nbsp;
-                                    </p>
-                                </div>
-                            </div>
 
-                            <section class="clients s_references bg-200 pt16 pb16 p-m-0" data-name="References">
-
-
-                                <div class="row align-items-center justify-content-center">
-                                    <div class=" col-md-4 col-sm-12 text-center mb-4 mb-md-0 ">
-                                        <img class="img img-fluid res-width-46" alt="Logo partenaire MCM ACADEMY" title="MCM ACADEMY" aria-describedby="tooltip843653" style="margin-top: 24px" src="/digimoov_website_templates/static/img/habilitation-electrique/MCM ACADEMY - logo.png" />
-                                    </div>
-
-                                    <div class=" col-md-4 col-sm-12 text-center mb-4 mb-md-0  ">
-                                        <a href="https://www.box2home.fr/">
-                                            <img class="img img-fluid res-width-30" alt="Logo partenaire Box2home" title="Box2home partenaire Digimoov" aria-describedby="tooltip175558" style="margin-top: 21px;" src="/digimoov_website_templates/static/img/habilitation-electrique/box-2-home-logo.png" />
-                                        </a>
-                                    </div>
-                                    <div class=" col-md-4 col-sm-12 text-center mb-4 mb-md-0 ">
-                                        <img class="img img-fluid res-width-26" alt="Logo partenaire marmelade" title="marmelade partenaire Digimoov" style="margin-top: 30px;" src="/digimoov_website_templates/static/img/habilitation-electrique/marmelade app.png" />
-                                    </div>
-                                </div>
-
-                            </section>
-                        </div>
-                    </div>
-                </section>
 
                 <!-- pricing table-->
                 <div class="container pt64 pb32" id="pricing">
@@ -498,6 +462,41 @@
                         </div>
                     </div>
                 </div>
+
+                <!-- partenaire-->
+                <section class="s_estate_logo_partners bg-light-1 bg-200" data-name="Partners with logos and paragraph">
+                    <div class="spacer feature14">
+                        <div class="container">
+                            <div class="row justify-content-center">
+                                <div class="col-md-7 text-center">
+                                    <h2 class="text-beta title">Partenaire exclusif</h2>
+                                    <p class="subtitle">
+                  Afin de vous aider à réaliser vos objectifs professionnels
+                  dans les meilleures conditions,&amp;nbsp; nous avons développé
+                  de nombreux partenariats avec les leaders du marché de la
+                  livraison à domicile.&amp;nbsp;
+                                    </p>
+                                </div>
+                            </div>
+
+                            <section class="clients s_references bg-200 pt16 pb16 p-m-0" data-name="References">
+
+
+                                <div class="row align-items-center justify-content-center">
+
+
+                                    <div class=" col-md-4 col-sm-12 text-center mb-4 mb-md-0  ">
+                                        <a href="https://www.box2home.fr/">
+                                            <img class="img img-fluid res-width-30" alt="Logo partenaire Box2home" title="Box2home partenaire Digimoov" aria-describedby="tooltip175558" style="margin-top: 21px;" src="/digimoov_website_templates/static/img/habilitation-electrique/box-2-home-logo.png" />
+                                        </a>
+                                    </div>
+
+                                </div>
+
+                            </section>
+                        </div>
+                    </div>
+                </section>
             </div>
 
 
