@@ -19,6 +19,9 @@
                     justify-content: space-between;
                     align-items: center;
                     }
+                    h1{
+                      font-size: 62.4px !important;  
+                    }
                 }
                   .center-logo {
                     display: flex;
@@ -29,7 +32,7 @@
                     }
       .para {
         vertical-align: baseline !important;
-        font-size: 18px !important;
+        font-size: 16px !important;
         color: #6a6c72 !important;
         line-height: 1.7 ;
       }
@@ -44,7 +47,7 @@
                                 <p class="paratext">
                                     Vous êtes entrepreneur, et vous pensez à former votre personnel
                 sur l'habilitation électrique BS/BEM ? Chez&amp;nbsp;
-                                    <span style="color: rgb(156, 0, 255)">Digimoov,&amp;nbsp;</span>
+                                    <text style="color: rgb(156, 0, 255)">Digimoov,&amp;nbsp;</text>
                                     on vous propose&amp;nbsp;
                                     <b>
                                         <text class="text-delta">une formation 100 % en ligne certifiée&amp;nbsp;</text>
@@ -59,7 +62,7 @@
                                     </a>
                                 </div>
                             </div>
-                            <div class="bannercol col-lg-6 col-md-12 image_padding">
+                            <div class="col-lg-6 col-md-12 image_padding mt24">
                                 <div class="banner_image">
                                     <img class="img img-fluid" src="/digimoov_website_templates/static/img/habilitation-electrique/1.png" title="habilitation electrique" alt="habilitation electrique" />
                                 </div>
@@ -84,7 +87,7 @@
                     <div class="container">
                         <div class="row">
                             <div class="col-md-6 col-lg-12">
-                                <h2 class="font-bold text-beta title" style="text-align: left; color: rgb(156, 0, 255)">
+                                <h2 class="font-bold text-beta title text-epsilon" style="text-align: left; color: rgb(156, 0, 255)">
                 C'est quoi une habilitation électrique ?
                                 </h2>
                                 <p class="para" style="line-height: 30px;">
@@ -100,7 +103,10 @@
                                     <b>équipements de protection</b>
                                     , afin de garantir sa
                                     <b>sécurité</b>
-                                    et celle des personnes qui l'entoure. L’
+                                    et celle des personnes qui l'entoure.
+                                </p>
+                                <p class="para">
+                                    L’
                                     <b>habilitation</b>
                                     , délivrée par l'employeur, détermine le type des opérations sur
                 lesquelles pourrait
@@ -108,7 +114,10 @@
                                     l'employé,&amp;nbsp;sachant qu'obtenir une
                                     <b>habilitation</b>
                                     ne permet pas à un travailleur d’avoir toutes les habilitations.
-                Il y a plusieurs catégories d’
+                                </p>
+
+                                <p class="para">
+                                    Il y a plusieurs catégories d’
                                     <b>habilitations électriques </b>
                                     qui varient en fonction du domaine de
                                     <b>tension</b>
@@ -141,7 +150,7 @@
                                         &amp;nbsp;
                                         <text style="color: rgb(59, 210, 188)">formation&amp;nbsp;</text>
                                         <text>
-                                            <text style="color: rgb(0, 0, 0)">sur :</text>
+                                            <text style="color: rgb(0, 0, 0)">sur:</text>
                                             <text style="color: rgb(59, 210, 188)" class="text-delta">
                                                 <br />
                                             </text>
@@ -253,8 +262,7 @@
                         <div class="container">
                             <div class="row">
                                 <div class="align-self-center display-7 col-lg-9 col-md-8 col-sm-12">
-                                    Vous souhaitez en savoir plus sur notre programme de formation
-                                    habilitation BS/BEM ?
+                                    Programme de formation habilitation BS/BEM
                                 </div>
                                 <div class="ml-auto m-t-10 m-b-10 s_btn col-lg-3 col-md-4 col-sm-12" data-name="Button" style="text-align: center">
                                     <a href="/digimoov_website_templates/static/pdf/Programme de formation habilitation électrique-digimoov-marmelade.pdf" alt="Programme de formation habilitation électrique-digimoov-marmelade" title="Programme de formation habilitation électrique digimoov marmelade">
@@ -461,7 +469,8 @@
                                                 </ul>
                                                 <div class="text-center">
                                                     <b style="font-size: 60px !important; color: #000000" t-if="not promo">
-                                                        <span t-esc="round(product.list_price)" />
+                                                        <!-- <span t-esc="round(product.list_price)" /> -->
+                                                        <span>320</span>
                                                         <span t-esc="product.currency_id.symbol" />
                                                     </b>
                                                     <b style="font-size: 60px !important; color: #000000" t-if="promo">
