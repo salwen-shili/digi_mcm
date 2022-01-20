@@ -148,6 +148,7 @@
 }
 
         </style>
+        <!-- section-->
         <section id="sh_corpomate_theme_section_258" class="sh_animation_part pt8" data-name="Formation chauffeur TAXI">
           <div class="container-banner">
             <div class="row">
@@ -192,6 +193,23 @@
         </section>
 
         <!-- Logos-->
+        <style>
+           .center-logo {
+          display: flex;
+          flex-direction: row;
+          align-content: center;
+          justify-content: space-between;
+          align-items: center;
+        }
+        @media all and (max-width: 575px) {
+          .center-logo {
+            display: flex;
+            flex-direction: column;
+            align-content: center;
+            justify-content: space-between;
+            align-items: center;
+          }
+        </style>
         <section class="pt40 pb32 js-scroll fade-in-top">
           <div class="container js-scroll fade-in-top">
             <div class="center-logo">
