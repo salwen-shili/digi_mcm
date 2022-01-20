@@ -129,6 +129,24 @@
           h2 {
             text-transform: uppercase;
           }
+ 
+  .center-logo {
+  display: flex;
+  flex-direction: row;
+  align-content: center;
+  justify-content: space-between;
+  align-items: center;
+}
+@media all and (max-width: 425px) {
+  .center-logo {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content: space-between;
+    align-items: center;
+  }
+}
+
         </style>
         <section id="sh_corpomate_theme_section_258" class="sh_animation_part pt8" data-name="Formation chauffeur TAXI">
           <div class="container-banner">
@@ -174,23 +192,30 @@
         </section>
 
         <!-- Logos-->
-        <section class="container pt40 pb32 js-scroll fade-in-top">
-          <div class="row align-items-center justify-content-center">
-            <div class=" col-md-3 col-sm-12 text-center mb-4 mb-md-0  ">
-              <img data-src="/mcm_website_theme/static/src/img/formation-éligible-au-compte-personnel-de-formation.webp" data-srcSafari="/mcm_website_theme/static/src/img/formation-éligible-au-compte-personnel-de-formation.png" class="img-fluid lazy" style="width: 100px;" title="Formation éligible au CPF" alt="logo mon compte de formation" />
-            </div>
-            <div class=" col-md-3 col-sm-12 text-center mb-4 mb-md-0 ">
-              <img class="img-fluid lazy" style="width: 188px;" data-src="/mcm_website_theme/static/src/img/formation-taxi-vtc-certifiée-qualiopi.webp" data-srcSafari="/mcm_website_theme/static/src/img/formation-taxi-vtc-certifiée-qualiopi.png" title="qualiopi" alt="qualiopi" />
-            </div>
-            <div class=" col-md-3 col-sm-12 text-center mb-4 mb-md-0 ">
-              <img class="img-fluid lazy" style="width: 110px;" data-srcSafari="/mcm_website_theme/static/src/img/mcm academy-partenaire-france-relance.jpg" data-src="/mcm_website_theme/static/src/img/mcm academy-partenaire-france-relance.webp" title="logo france relance" alt="logo france relance" />
-            </div>
-            <div class=" col-md-3 col-sm-12 text-center mb-4 mb-md-0 ">
-              <img class="img-fluid lazy" style="width: 100px;" data-src="/mcm_website_theme/static/src/img/mcm academy-centre-de-formation-taxi-vtc-carte pro-préfecture.webp" data-srcSafari="/mcm_website_theme/static/src/img/mcm academy-centre-de-formation-taxi-vtc-carte pro-préfecture.png" title="Centre agrée de la préfecture" alt="Centre agrée de la préfecture" />
+        <section class="pt40 pb32 js-scroll fade-in-top">
+          <div class="container js-scroll fade-in-top">
+            <div class="center-logo">
+              <div>
+                <img data-src="/mcm_website_theme/static/src/img/formation-éligible-au-compte-personnel-de-formation.webp" data-srcSafari="/mcm_website_theme/static/src/img/formation-éligible-au-compte-personnel-de-formation.png" class="img-fluid lazy" style="width: 100px;" title="Formation éligible au CPF" alt="logo mon compte de formation" />
+              </div>
+              <div>
+                <img class="img-fluid lazy" style="width: 188px;" data-src="/mcm_website_theme/static/src/img/formation-taxi-vtc-certifiée-qualiopi.webp" data-srcSafari="/mcm_website_theme/static/src/img/formation-taxi-vtc-certifiée-qualiopi.png" title="qualiopi" alt="qualiopi" />
+              </div>
+              <div>
+                <img class="img-fluid lazy" style="width: 110px;" data-srcSafari="/mcm_website_theme/static/src/img/mcm academy-partenaire-france-relance.jpg" data-src="/mcm_website_theme/static/src/img/mcm academy-partenaire-france-relance.webp" title="logo france relance" alt="logo france relance" />
+              </div>
+
+              <div>
+                <img class="img-fluid lazy" style="width: 100px;" data-src="/mcm_website_theme/static/src/img/mcm academy-centre-de-formation-taxi-vtc-carte pro-préfecture.webp" data-srcSafari="/mcm_website_theme/static/src/img/mcm academy-centre-de-formation-taxi-vtc-carte pro-préfecture.png" title="Centre agrée de la préfecture" alt="Centre agrée de la préfecture" />
+              </div>
+              <div>
+                <img class="img-fluid lazy" style="width:263px" data-srcSafari="/mcm_website_theme/static/src/img/logo-investir-avenir.png" data-src="/mcm_website_theme/static/src/img/logo-investir-avenir.webp" title="logo investir l'avenir" alt="logo investir l'avenir" />
+              </div>
             </div>
           </div>
         </section>
         <!-- fin LOGOS-->
+
 
         <section class="container s_text_block pt32 pb64 js-scroll fade-in-top" data-name="Text block">
           <h2 class="s_title_default text-center pb16" style="font-size: 33px; font-weight:700">
