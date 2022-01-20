@@ -59,7 +59,6 @@
         'views/formation_capacité_de_transport_lourd_de_marchandise.xml',
         'views/habiliation-eletrique.xml'
 
-
     ],
     'qweb': [],
     'demo': [
