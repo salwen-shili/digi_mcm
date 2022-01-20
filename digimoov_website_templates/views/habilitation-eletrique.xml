@@ -431,7 +431,7 @@
 
                                 </div>
                                 <t t-foreach="digimoov_products" t-as="product">
-                                    <t t-if="product.default_code=='basique'">
+                                    <t t-if="product.default_code=='habilitation-electrique'">
                                         <form action="/shop/cart/update" method="post" id="form-coursier2roues">
                                             <input t-att-value="request.website.microsoft_tracking_key" id="microsoft_tracking_key" type="hidden" />
                                             <input type="hidden" class="product_id" name="product_id" t-att-value="product.id" />
@@ -469,8 +469,7 @@
                                                 </ul>
                                                 <div class="text-center">
                                                     <b style="font-size: 60px !important; color: #000000" t-if="not promo">
-                                                        <!-- <span t-esc="round(product.list_price)" /> -->
-                                                        <span>320</span>
+                                                        <span t-esc="round(product.list_price)" />
                                                         <span t-esc="product.currency_id.symbol" />
                                                     </b>
                                                     <b style="font-size: 60px !important; color: #000000" t-if="promo">
