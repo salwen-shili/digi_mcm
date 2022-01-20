@@ -1401,14 +1401,14 @@ class MCM_SIGNUP(http.Controller):
             customer = object.get('customer')
             amount = (object.get('amount_paid')) / 100
             invoice = request.env['account.move'].sudo().search([("stripe_sub_reference", "=", subsciption)],limit=1)
-            _logger.info('invoice %s' % str(invoice))
+            _logger.info('invoice %s' % str(invoice.name))
             payment_method = request.env['account.payment.method'].sudo().search(
                 [('code', 'ilike', 'electronic')])
 
             if invoice:
                 journal_id = invoice.journal_id.id
 
-                payment = request.env['account.payment'].create({'payment_type': 'inbound',
+                payment = request.env['account.payment'].sudo().create({'payment_type': 'inbound',
                                                                  'payment_method_id': payment_method.id,
                                                                  'partner_type': 'customer',
                                                                  'partner_id': invoice.partner_id.id,
