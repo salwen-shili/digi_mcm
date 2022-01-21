@@ -41,7 +41,7 @@ add css and js files to website model
         'views/website_sale/cart_multistep_integration.xml',
         'views/website_sale/template.xml',
         'views/custom_footer.xml',
-        'views/test-bold.xml'
+        'views/bolt.xml'
     ],
 
     'installable': True,
