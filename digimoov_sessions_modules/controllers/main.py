@@ -283,10 +283,11 @@ class WebsiteSale(WebsiteSale):
                 statut='https://www.moncompteformation.gouv.fr/espace-prive/html/#/dossiers'
             if state=="accepted":
                 statut="accepted"
-            
+
         from_bolt = False
-        if product.default_code == 'vtc_bolt' :
-            from_bolt = True
+        if product :
+            if product.default_code == 'vtc_bolt' :
+                from_bolt = True
         values.update({
             'modules_digimoov': list_modules_digimoov,
             'modules_mcm': list_modules_mcm,
