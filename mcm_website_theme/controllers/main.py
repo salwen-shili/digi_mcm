@@ -569,13 +569,10 @@ class Routes_Site(http.Controller):
     
     @http.route([ '''/bolt''', '''/BOLT''','''/Bolt'''], type='http', auth='public', website=True)
     def bolttest(self):
-        print('aaaaaaa')
         bolt_product = request.env['product.product'].sudo().search([('company_id', '=', 1),('default_code',"=",'vtc_bolt')], order="list_price",limit=1)
         vtc_product = request.env['product.product'].sudo().search([('company_id', '=', 1),('default_code',"=",'vtc')], order="list_price",limit=1)
         promo = request.env['product.pricelist'].sudo().search(
             [('company_id', '=', 1), ('name', "=", 'bolt')],limit=1)
-        print('aaaaaaa')
-        print(promo)
         values = {
             'bolt_product' : bolt_product,
             'vtc_product' : vtc_product,

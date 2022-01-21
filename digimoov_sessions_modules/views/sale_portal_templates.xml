@@ -183,9 +183,11 @@
                                         <span style="font-size:12px;">Centre d'examen de</span>
                                         <span style="font-size:12px"
                                               t-field="sale_order.module_id.session_ville_id.name_ville"/>
-                                        <span style="font-size:12px;">le</span>
+                                        <span style="font-size:12px;" t-if="sale_order.module_id.product_id.default_code!='habilitation-electrique'">le</span>
+                                        <span style="font-size:12px;" t-if="sale_order.module_id.product_id.default_code=='habilitation-electrique'">en</span>
                                         <span style="font-size:12px"
-                                              t-field="sale_order.module_id.date_exam"/>
+                                              t-field="sale_order.module_id.date_exam" t-if="sale_order.module_id.product_id.default_code!='habilitation-electrique'"/>
+                                        <span t-esc="datetime.datetime.strptime(str(sale_order.module_id.date_exam), '%Y-%m-%d').strftime('%B %Y')" t-if="sale_order.module_id.product_id.default_code=='habilitation-electrique'"/>
 
 
                                     </div>

@@ -196,9 +196,11 @@
                                     <span style="font-size:12px;font-weight: bold;">Centre d'examen de</span>
                                     <span style="font-size:12px"
                                           t-field="doc.module_id.session_ville_id.name_ville"/>
-                                    <span style="font-size:12px;">le</span>
+                                    <span style="font-size:12px;" t-if="doc.module_id.product_id.default_code!='habilitation-electrique'">le</span>
+                                    <span style="font-size:12px;" t-if="doc.module_id.product_id.default_code=='habilitation-electrique'">en</span>
                                         <span style="font-size:12px"
-                                              t-field="doc.module_id.date_exam"/>
+                                              t-field="doc.module_id.date_exam" t-if="doc.module_id.product_id.default_code!='habilitation-electrique'"/>
+                                    <span t-esc="datetime.datetime.strptime(str(doc.module_id.date_exam), '%Y-%m-%d').strftime('%B %Y')" t-if="doc.module_id.product_id.default_code=='habilitation-electrique'"/>
                                 </div>
                                 <div>
                                     <p style="font-size:12px">*En cas d'absence à l'examen, le candidat sera
