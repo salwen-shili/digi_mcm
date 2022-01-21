@@ -389,7 +389,7 @@
                             Lives&amp;nbsp;avec les formateurs pour explications
                           </li>
                                                     </ul>
-                                                    <!-- <t t-if="promo and promo.name=='bolt'">
+                                                    <t t-if="promo and promo.name=='bolt'">
                                                         <p class="text-center font-weight-bolder text-secondary">
                                                             <b style="font-size: 80%">
                                                                 <t>avec le code</t>
@@ -401,7 +401,7 @@
                                                         <span t-esc="round(bolt_product.list_price)" />
                                                         <span style="color: #fdd105" t-esc="bolt_product.currency_id.symbol" />
                                                     </h4>
-                                                    <br /> -->
+                                                    <br />
                                                     <div class="sh_btn">
                                                         <!-- <a class="btn btn-primary sh_btn_cm_8" data-original-title="" title="" aria-describedby="tooltip357369" onClick="(function(){document.getElementById('form-1-1').submit();return false;})();return false;">
                         Je m'inscris
