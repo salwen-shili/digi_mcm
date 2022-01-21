@@ -202,7 +202,7 @@ class WebsiteSale(WebsiteSale):
                             else:
                                 return request.redirect("/%s/shop/cart/" % (slugname))
                         else:
-                            if pricelist.name in ['ubereats', 'deliveroo', 'coursierjob','box2home','coursier2roues',  'eco-conduite', 'transport-routier']:
+                            if pricelist.name in ['ubereats', 'deliveroo', 'coursierjob','box2home','coursier2roues', 'habilitation-electrique', 'eco-conduite', 'transport-routier']:
                                 if pricelist.name != order.pricelist_id.name:
                                     return request.redirect("/%s/%s/shop/cart/" % (slugname, order.pricelist_id.name))
                             else:
@@ -210,7 +210,7 @@ class WebsiteSale(WebsiteSale):
                 else:
                     pricelist = request.env['product.pricelist'].sudo().search(
                         [('company_id', '=', 2), ('name', "=", str(partenaire))])
-                    if pricelist and pricelist.name in ['ubereats', 'deliveroo', 'coursierjob','box2home','coursier2roues',  'eco-conduite', 'transport-routier']:
+                    if pricelist and pricelist.name in ['ubereats', 'deliveroo', 'coursierjob','box2home','coursier2roues', 'habilitation-electrique', 'eco-conduite', 'transport-routier']:
                         return request.redirect("/%s" % (pricelist.name))
                     else:
                         return request.redirect("/pricing")
@@ -283,13 +283,11 @@ class WebsiteSale(WebsiteSale):
                 statut='https://www.moncompteformation.gouv.fr/espace-prive/html/#/dossiers'
             if state=="accepted":
                 statut="accepted"
-            
+
         from_bolt = False
-        from_habilitation_electrique = False
-        if product.default_code == 'vtc_bolt' :
-            from_bolt = True
-        if product.default_code == 'habilitation-electrique' :
-            from_habilitation_electrique = True
+        if product :
+            if product.default_code == 'vtc_bolt' :
+                from_bolt = True
         values.update({
             'modules_digimoov': list_modules_digimoov,
             'modules_mcm': list_modules_mcm,
@@ -298,7 +296,6 @@ class WebsiteSale(WebsiteSale):
             'error_exam_date': '',
             'error_condition': '',
             'from_bolt': from_bolt,
-            'from_habilitation_electrique': from_habilitation_electrique,
         })
         # recuperer la liste des villes pour l'afficher dans la vue panier de siteweb digimoov pour que le client peut choisir une ville parmis la liste
         list_villes = request.env['session.ville'].sudo().search([('company_id', '=', 2)])
