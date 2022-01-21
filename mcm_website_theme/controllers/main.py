@@ -1396,8 +1396,8 @@ class MCM_SIGNUP(http.Controller):
             _logger.info('teeeeeeest invoice %s' % str(object))
             subsciption = object.get('subscription')
             customer = object.get('customer')
-            amount = (object.get('amount_paid')) / 100
-            invoice = request.env['account.move'].sudo().search([("stripe_sub_reference", "=", subsciption)],limit=1)
+            amount = 100 / 100
+            invoice = request.env['account.move'].sudo().search([("stripe_sub_reference", "=", "sub_1KK1vKIEbFL8iNKWKwuvkBYo")],limit=1)
             _logger.info('invoice %s' % str(invoice.name))
             _logger.info('invoice ************* %s' % str(invoice.stripe_sub_reference))
             payment_method = request.env['account.payment.method'].sudo().search(
