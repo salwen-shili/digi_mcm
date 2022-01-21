@@ -146,11 +146,11 @@
                   de mieux vous préparer à l’examen final.&amp;nbsp;
                                         <br />
                                     </p>
-                                    <div class="s_btn text-left pt16 pb16" data-name="Buttons">
+                                    <!-- <div class="s_btn text-left pt16 pb16" data-name="Buttons">
                                         <a href="/bolt#pricing" rel="noopener">
                                             <button class="home-btn">Je m'inscris maintenant !</button>
                                         </a>
-                                    </div>
+                                    </div> -->
                                 </div>
                                 <div class="col-lg-6 pt16 pb16 js-scroll slide-right ">
                                     <img class="img img-fluid mx-auto" alt="candidats formation taxi vtc" src="/mcm_website_theme/static/src/img/comment-s'inscrire-au-registre-VTC.png" />
