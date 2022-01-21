@@ -682,7 +682,6 @@ class Habilitation_electrique(http.Controller):
         digimoov_products = False
         values = False
         if request.website.id == 2:
-          
             #get digimoov products to send them to pricing table 
             digimoov_products = request.env['product.product'].sudo().search([('company_id', '=', 2)],
                                                                              order="list_price")
