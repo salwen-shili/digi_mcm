@@ -1379,6 +1379,7 @@ class MCM_SIGNUP(http.Controller):
             amount = (object.get('amount_paid')) / 100
             invoice = request.env['account.move'].sudo().search([("stripe_sub_reference", "=", subsciption)],limit=1)
             _logger.info('invoice %s' % str(invoice.name))
+            _logger.info('invoice ************* %s' % str(invoice.stripe_sub_reference))
             payment_method = request.env['account.payment.method'].sudo().search(
                 [('code', 'ilike', 'electronic')])
 
