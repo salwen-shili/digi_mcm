@@ -250,7 +250,7 @@
     opacity: 1;
   }
 }
-
+/* strikethrough price */
 .pricebar {
   position: relative;
 }
@@ -262,4 +262,7 @@
   position: absolute;
   bottom: 16px;
   left: -8px;
+}
+.price {
+  font-size: large;
 }
