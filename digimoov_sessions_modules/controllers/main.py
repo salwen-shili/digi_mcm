@@ -285,9 +285,11 @@ class WebsiteSale(WebsiteSale):
                 statut="accepted"
             
         from_bolt = False
-        if product:
-            if product.default_code == 'vtc_bolt' :
-                from_bolt = True
+        from_habilitation_electrique = False
+        if product.default_code == 'vtc_bolt' :
+            from_bolt = True
+        if product.default_code == 'habilitation-electrique' :
+            from_habilitation_electrique = True
         values.update({
             'modules_digimoov': list_modules_digimoov,
             'modules_mcm': list_modules_mcm,
@@ -296,6 +298,7 @@ class WebsiteSale(WebsiteSale):
             'error_exam_date': '',
             'error_condition': '',
             'from_bolt': from_bolt,
+            'from_habilitation_electrique': from_habilitation_electrique,
         })
         # recuperer la liste des villes pour l'afficher dans la vue panier de siteweb digimoov pour que le client peut choisir une ville parmis la liste
         list_villes = request.env['session.ville'].sudo().search([('company_id', '=', 2)])

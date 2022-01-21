@@ -46,7 +46,8 @@
                                     <t t-if="module.session_id.website_published==True">
                                         <b>
                                             <option t-att-value="module.session_ville_id.name_ville" t-att-id="module.id" style="text-transform: capitalize;">
-                                                <t t-esc="module.date_exam.strftime('%d %B %Y')" />
+                                                <t t-if="not from_habilitation_electrique" t-esc="module.date_exam.strftime('%d %B %Y')" />
+                                                <t t-if="from_habilitation_electrique" t-esc="module.date_exam.strftime('%B %Y')" />
                                             </option>
                                         </b>
                                     </t>
