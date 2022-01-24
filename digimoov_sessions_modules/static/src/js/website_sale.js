@@ -126,9 +126,16 @@ odoo.define('digimoov_sessions_modules.website_sale', function (require) {
         });
 
         if (dateOptions) {
+          var habilitation="Sélectionnez votre date d'examen";
+          if (document.getElementById('habilitation')) {
+          habilitation =
+            document.getElementById('habilitation').value == 'true'
+              ? 'Sélectionnez votre mois'
+              : "Sélectionnez votre date d'examen";
+         }
           var select = `<select name="date_examen" id="options-date" class="form-control search-slt" onchange="onChangeCheckButton()" style="text-transform: capitalize;" >
           <option value="all" id="all">
-                                    Sélectionnez votre date d'examen
+                                    ${habilitation}
                                 </option>                  
           ${dateOptions}
                             </select>`;

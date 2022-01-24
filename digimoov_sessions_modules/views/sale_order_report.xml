@@ -181,26 +181,47 @@
                                     <span style="font-size:12px;font-weight: bold;">Durée de la formation :</span>
                                     <span style="font-size:12px"
                                           t-field="doc.module_id.duree"/>
-                                    <span style="font-size:12px">h</span>
-                                </div>
-                                <div>
-                                    <span style="font-size:12px;font-weight: bold;">Lieu d'examens possible :</span>
-                                    <span style="font-size:12px">Bordeaux, Dijon, Lille, Lyon, Marseille,
-                                        Montpellier, Nantes, Nice, Orléans, Paris, Rennes, Rouen,
-                                        Strasbourg, Toulouse.
-                                    </span>
-                                </div>
-                                <div>
-                                    <span style="font-size:12px;font-weight: bold;">Date et lieu d'examen choisi :
-                                    </span>
-                                    <span style="font-size:12px;font-weight: bold;">Centre d'examen de</span>
+                                    <span style="font-size:12px">heures</span>
                                     <span style="font-size:12px"
-                                          t-field="doc.module_id.session_ville_id.name_ville"/>
-                                    <span style="font-size:12px;">le</span>
-                                        <span style="font-size:12px"
-                                              t-field="doc.module_id.date_exam"/>
+                                          t-if="doc.module_id.product_id.default_code!='habilitation-electrique'">examen
+                                        compris
+                                    </span>
                                 </div>
                                 <div>
+                                    <span style="font-size:12px;font-weight: bold;"
+                                          t-if="doc.module_id.product_id.default_code!='habilitation-electrique'">Date
+                                        et lieu d'examen choisi :
+                                    </span>
+                                    <span style="font-size:12px;font-weight: bold;"
+                                          t-if="doc.module_id.product_id.default_code=='habilitation-electrique'">Date
+                                        et lieu de la formation pratique :
+                                    </span>
+                                    <span style="font-size:12px;"
+                                          t-if="doc.module_id.product_id.default_code!='habilitation-electrique'">Centre
+                                        d'examen de
+                                    </span>
+                                    <span style="font-size:12px"
+                                          t-field="doc.module_id.session_ville_id.name_ville"
+                                          t-if="doc.module_id.product_id.default_code!='habilitation-electrique'"/>
+                                    <span style="font-size:12px;"
+                                          t-if="doc.module_id.product_id.default_code!='habilitation-electrique'">le
+                                    </span>
+                                    <span style="font-size:12px"
+                                          t-field="doc.module_id.date_exam"
+                                          t-if="doc.module_id.product_id.default_code!='habilitation-electrique'"/>
+                                    <span t-esc="datetime.datetime.strptime(str(doc.module_id.date_exam), '%Y-%m-%d').strftime('%B %Y')"
+                                          t-if="doc.module_id.product_id.default_code=='habilitation-electrique'"
+                                          style="text-transform: capitalize;"/>
+                                    <span style="font-size:12px;"
+                                          t-if="doc.module_id.product_id.default_code=='habilitation-electrique'">/
+                                    </span>
+                                    <span style="font-size:12px"
+                                          t-field="doc.module_id.session_ville_id.name_ville"
+                                          t-if="doc.module_id.product_id.default_code=='habilitation-electrique'"/>
+
+
+                                </div>
+                                <div t-if="doc.module_id.product_id.default_code!='habilitation-electrique'">
                                     <p style="font-size:12px">*En cas d'absence à l'examen, le candidat sera
                                         déconnecté de la plateforme et devra s'acquitter de la somme de200€ pour
                                         repasser l'examen dans la limite de 2 tentatives autorisées.
@@ -212,29 +233,36 @@
                                         le règlement restera dû en totalité.
                                     </p>
                                 </div>
-                                <div>
+                                <div t-if="doc.module_id.product_id.default_code!='habilitation-electrique'">
                                     <span style="font-size:12px">Aucun report d’examen n’est possible une fois la date
                                         est fixée lors de l’inscription.
                                     </span>
                                 </div>
-                                <div>
+                                <div t-if="doc.module_id.product_id.default_code=='habilitation-electrique'">
+                                    <span style="font-size:12px">En cas d'absence à la formation pratique, vous êtes
+                                        tenu d'avertir le centre de formation 48h à l'avance, sinon vous serez
+                                        déconnecté de la plateforme et vous devrez vous acquitter de la somme de 360
+                                        euros et repasser la formation.
+                                    </span>
+                                </div>
+                                <div t-if="doc.module_id.product_id.default_code!='habilitation-electrique'">
                                     <span style="font-size:12px;font-weight: bold;">Dates de formation:</span>
                                 </div>
-                                <div>
+                                <div t-if="doc.module_id.product_id.default_code!='habilitation-electrique'">
                                     <span style="font-size:12px">
-                                        Vous disposez d'un délai de formation jusqu'àla date de passage de
+                                        Vous disposez d'un délai de formation jusqu'à la date de passage de
                                         votre Centre d'examen de
                                     </span>
                                     <span style="font-size:12px"
                                           t-field="doc.module_id.session_ville_id.name_ville"/>
-                                    <span style="font-size:12px"> à compterde la réception de vos
+                                    <span style="font-size:12px">à compterde la réception de vos
                                         identifiants pour effectuer les 102h de formation en ligne.Les formations en
                                         ligne consistent dans la fourniture d’un contenu numérique non fourni sur un
                                         support matériel accessible par le biais d’un espace électronique sécurisé
                                         accessible sur d’Internet.
                                     </span>
                                 </div>
-                                <br/>
+                                <br t-if="doc.module_id.product_id.default_code!='habilitation-electrique'"/>
                                 <div>
                                     <strong>
                                         <span style="font-size:16px">2. Modalités organisationnelles de la formation
@@ -242,9 +270,15 @@
                                     </strong>
                                 </div>
                                 <div>
-                                    <span style="font-size:12px">
+                                    <span style="font-size:12px"
+                                          t-if="doc.module_id.product_id.default_code!='habilitation-electrique'">
                                         Se préparer efficacement à l'examen en vue de l'obtention de l'attestation
                                         de capacité professionnelle en transport routier léger de marchandises.
+                                    </span>
+                                    <span style="font-size:12px"
+                                          t-if="doc.module_id.product_id.default_code=='habilitation-electrique'">
+                                        Suivre le processus de formation jusqu'au bout, en vue d'obtenir votre
+                                        attestation d'habilitation électrique.
                                     </span>
                                 </div>
                                 <br/>
@@ -254,10 +288,17 @@
                                         </span>
                                     </strong>
                                 </div>
-                                <div>
+                                <div t-if="doc.module_id.product_id.default_code!='habilitation-electrique'">
                                     <span style="font-size:12px">
                                         Les modalités de contrôle des connaissances sont les suivantes : sous forme
                                         de QCM et/ou exercices rédigées et/ou examens finaux.
+                                    </span>
+                                </div>
+                                <div t-if="doc.module_id.product_id.default_code=='habilitation-electrique'">
+                                    <span style="font-size:12px">
+                                        Programme et contenu de la formation conformes à la norme NF C 18-510. Exposé
+                                        théorique, mises en situation pratiques, études de situations et partage
+                                        d’expériences.
                                     </span>
                                 </div>
                                 <br/>
@@ -347,8 +388,16 @@
                                     </strong>
                                 </div>
                                 <div>
+                                    <span style="font-size:12px"
+                                          t-if="doc.module_id.product_id.default_code!='habilitation-electrique'">
+                                        Le paiement sera ou par CB ou par CPF
+                                    </span>
+                                    <span style="font-size:12px"
+                                          t-if="doc.module_id.product_id.default_code=='habilitation-electrique'">
+                                        Le paiement sera par carte bancaire
+                                    </span>
                                     <span style="font-size:12px">
-                                        Le paiement sera ou par CB ou par CPF à réception d'une facture émise par l'organisme de
+                                        à la réception d'une facture émise par l'organisme de
                                         formation à destination du bénéficiaire.Le bénéficiaire s’engage à verser la
                                         somme due selon les modalités de paiement suivantes :
                                     </span>
@@ -414,7 +463,7 @@
                                         </span>
                                     </strong>
                                 </div>
-                                <div>
+                                <div t-if="doc.module_id.product_id.default_code!='habilitation-electrique'">
                                     <span style="font-size:12px">
                                         Voir le programme de formation en annexe détaillant les moyens mis en œuvre
                                         pour réaliser techniquement l'action, suivre son exécution et apprécier ses
@@ -422,6 +471,53 @@
                                         formateur, par demi-journée de formation, permettra de justifier de la
                                         réalisation de la prestation.
                                     </span>
+                                </div>
+                                <div t-if="doc.module_id.product_id.default_code=='habilitation-electrique'">
+                                    <span style="font-size:12px">
+                                        Notre méthode pédagogique est innovante !
+                                    </span>
+                                    <br/>
+                                    <span style="font-size:12px">
+                                        Le suivi de la formation sera par le biais d'une application mobile propre à
+                                        notre partenaire exclusif "Marmelade" assez facile d'utilisation .
+                                    </span>
+                                    <br/>
+                                    <span style="font-size:12px">
+                                        Le processus de la formation sera comme suit :
+                                    </span>
+                                    <br/>
+                                    <span style="font-size:12px">
+                                        Partie théorique :
+                                    </span>
+                                    <br/>
+                                    <ul>
+                                        <li style="font-size:12px">
+                                            Un parcours de formation clair : des modules, découpés en chapitre, pour un
+                                            apprentissage précis et efficace.
+                                        </li>
+                                        <li style="font-size:12px">
+                                            Pour chaque chapitre, vous consultez la fiche «L’essentiel» puis répondez à
+                                            des questions pour vous approprier les connaissances.
+                                        </li>
+                                        <li style="font-size:12px">
+                                            Une pédagogie inversée : des «Bon à savoir» pour chaque question, pour aller
+                                            plus loin et être incollable.
+                                        </li>
+                                        <li style="font-size:12px">
+                                            Un Quiz Final pour chaque module pour verrouiller vos acquis.
+                                        </li>
+                                    </ul>
+                                    <span style="font-size:12px">
+                                        Partie pratique :
+                                    </span>
+                                    <br/>
+                                    <ul>
+                                        <li style="font-size:12px">
+                                            Programme et contenu de la formation conformes à la norme NF C 18-510.
+                                            Exposé théorique, mises en situation pratiques, études de situations et
+                                            partage d’expériences.
+                                        </li>
+                                    </ul>
                                 </div>
                                 <div>
                                     <strong>
