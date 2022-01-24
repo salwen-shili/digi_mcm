@@ -286,10 +286,13 @@ class WebsiteSale(WebsiteSale):
             
         from_bolt = False
         from_habilitation_electrique = False
-        if product.default_code == 'vtc_bolt' :
-            from_bolt = True
-        if product.default_code == 'habilitation-electrique' :
-            from_habilitation_electrique = True
+        list_villes_habilitation_electrique = False
+        if product :
+            if product.default_code == 'vtc_bolt' :
+                from_bolt = True
+            if product.default_code == 'habilitation-electrique' :
+                from_habilitation_electrique = True
+                list_villes_habilitation_electrique = request.env['session.ville'].sudo().search([('company_id', '=', 2),('ville_formation',"=",True)])
         values.update({
             'modules_digimoov': list_modules_digimoov,
             'modules_mcm': list_modules_mcm,
@@ -299,9 +302,10 @@ class WebsiteSale(WebsiteSale):
             'error_condition': '',
             'from_bolt': from_bolt,
             'from_habilitation_electrique': from_habilitation_electrique,
+            'list_villes_habilitation_electrique': list_villes_habilitation_electrique,
         })
         # recuperer la liste des villes pour l'afficher dans la vue panier de siteweb digimoov pour que le client peut choisir une ville parmis la liste
-        list_villes = request.env['session.ville'].sudo().search([('company_id', '=', 2)])
+        list_villes = request.env['session.ville'].sudo().search([('company_id', '=', 2),('ville_formation',"=",False)])
         if list_villes:
             values.update({
                 'list_villes': list_villes,

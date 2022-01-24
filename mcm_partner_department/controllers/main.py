@@ -193,6 +193,13 @@ class WebsiteSale(WebsiteSale):
     def cart_update(self, product_id, module='', departement='', add_qty=1, set_qty=0, promo=None, **kw):
         """This route is called when adding a product to cart (no options)."""
         error_message = ''
+        order = request.website.sale_get_order()
+        if order and product_id:
+            product = request.env['product.product'].sudo().search(
+                [('id', "=", product_id)])
+            if product :
+                if product.company_id != order.company_id :
+                    order.sudo().unlink()
         sale_order = request.website.sale_get_order(force_create=True)
         if not product_id:
             partner =http.request.env.user.partner_id

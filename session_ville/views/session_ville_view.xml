@@ -32,6 +32,7 @@
                         <group>
                             <group name="Informations">
                                 <field name="active" invisible="1"/>
+                                <field name="ville_formation"/>
                                 <field name="session_adresse_examen_ids">
                                     <tree>
                                         <field name="adresse_centre_examen"/>

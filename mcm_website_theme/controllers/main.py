@@ -46,9 +46,9 @@ class Website(Home):
         premium_price = False
         # get all exam centers to show them in digimoov website homepage
         last_ville = request.env['session.ville'].sudo().search(
-            [('company_id', '=', 2)], order='name_ville desc', limit=1)
+            [('company_id', '=', 2),('ville_formation',"=",False)], order='name_ville desc', limit=1)
         list_villes = request.env['session.ville'].sudo().search(
-            [('id', "!=", last_ville.id),('company_id', '=', 2)], order='name_ville asc')
+            [('id', "!=", last_ville.id),('company_id', '=', 2),('ville_formation',"=",False)], order='name_ville asc')
         values = {
             'list_villes': list_villes,
             'last_ville': last_ville
