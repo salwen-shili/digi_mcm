@@ -5,10 +5,6 @@
         <field name="model">financement.partner.state.wizard</field>
         <field name="arch" type="xml">
             <form>
-                <group>
-                    <p>Cliquer sur le bouton "Mettre à jour" pour remplir le champ financement !</p>
-                    <p><b>NB : cette fonctionnalité est appliquée pour les personnes CPF.</b></p>
-                </group>
                 <footer>
                     <button string="Metre à jour " name="update_financement_field_in_partner" type="object"
                             class="btn-primary"/>
@@ -19,7 +15,7 @@
     </record>
     <!-- Action to launch Wizard for updating financement field in partner view from action menu -->
     <record id="update_financement_field_in_partner_wizard_view" model="ir.actions.act_window">
-        <field name="name">Mettre à jour le champ financement</field>
+        <field name="name">Mettre à jour le champ financement CPF</field>
         <field name="res_model">financement.partner.state.wizard</field>
         <field name="type">ir.actions.act_window</field>
         <field name="view_mode">form</field>
