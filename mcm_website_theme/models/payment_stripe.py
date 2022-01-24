@@ -23,6 +23,7 @@ INT_CURRENCIES = [
 class PaymentStripeAcquirer(models.Model):
     _inherit = "payment.transaction"
 
+    stripe_sub_reference = fields.Char("Reference d'abonnement")
 
     """Heriter la methode qui fait le payment intent sur stripe et ajouter la partie de creation d'abonnement"""
     def stripe_s2s_do_transaction(self, **kwargs):
@@ -32,7 +33,7 @@ class PaymentStripeAcquirer(models.Model):
             data = reference.split("-")
             sale = self.env['sale.order'].sudo().search([('name', 'ilike', data[0])])
             print('sale ', sale)
-            if sale and sale.instalment and sale.company_id.id==2:
+            if sale and sale.instalment:
                 """Si le devis est trouvé avec la condition de payement sur plusieurs fois
                 on appelle la methode de creation d'abonnement stripe """
                 print("instalment")
@@ -144,9 +145,10 @@ class PaymentStripeAcquirer(models.Model):
             return True
 
         latest_invoice=tree.get('latest_invoice')
-        print('latest invoice', latest_invoice)
-        tx_id = tree.get('id')
+        print('latest invoice', latest_invoice,tree)
 
+        tx_id = tree.get('id')
+        subscription_id=tree.get('id')
         """recuperer le  paiement de cet abonnement pour recuperer les information de 1ere transaction"""
         params = (('limit', '100'),)
         paiement_intent = self.acquirer_id._stripe_request("payment_intents", data=params, method="GET")
@@ -170,7 +172,8 @@ class PaymentStripeAcquirer(models.Model):
             "date": fields.datetime.now(),
             "acquirer_reference": tx_id,
             "stripe_payment_intent": paiement_intent_id,
-            "stripe_payment_intent_secret": tx_secret
+            "stripe_payment_intent_secret": tx_secret,
+            "stripe_sub_reference":subscription_id
         }
         if status == 'succeeded':
             self.write(vals)
@@ -186,6 +189,7 @@ class PaymentStripeAcquirer(models.Model):
                 }
                 token = self.acquirer_id.stripe_s2s_form_process(s2s_data)
                 self.payment_token_id = token.id
+
             if self.payment_token_id:
                 self.payment_token_id.verified = True
             return True
