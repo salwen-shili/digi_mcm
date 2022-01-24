@@ -66,13 +66,14 @@ class partner(models.Model):
     def write(self, vals):
         if 'email' in vals:
             # Si email changé on change sur login
-            user=self.env['res.users'].sudo().search([('partner_id',"=",self.id)])
-            if user :
-                _logger.info("loginn---------- %s" %str(user.login))
-                user.sudo().write({
-                 'login':vals['email']
-                })
-                # print('if user',user)
+            users=self.env['res.users'].sudo().search([('partner_id',"=",self.id)])
+            for users in user:
+                if user :
+                    _logger.info("loginn---------- %s" %str(user.login))
+                    user.sudo().write({
+                     'login':vals['email']
+                    })
+                    # print('if user',user)
         record = super(partner, self).write(vals)
         return record
 
