@@ -99,7 +99,7 @@
                       création de votre entreprise.
                     </p>
                                                 <div class="s_btn text-center pt16 pb16" data-name="Button">
-                                                    <a href="/formation-chauffeur-vtc" class="btn btn-warning sh_btn_cm_4 spacing-m-p" onclick='msTracking("clic sur Devenez chauffeur VTC homepage",                                                 "Homepage events",                                                 "Devenez chauffeur VTC homepage",                                                 2)' aria-describedby="tooltip762606">En savoir plus</a>
+                                                    <a href="/formation-chauffeur-taxi" class="btn btn-warning sh_btn_cm_4 spacing-m-p" onclick='msTracking("clic sur Devenez chauffeur VTC homepage",                                                 "Homepage events",                                                 "Devenez chauffeur VTC homepage",                                                 2)' aria-describedby="tooltip762606">En savoir plus</a>
                                                 </div>
                                             </div>
                                         </div>
@@ -186,7 +186,7 @@
                                         <br />
                                     </p>
                                     <div class="s_btn text-left pt16 pb16" data-name="Buttons">
-                                        <a href="/web/login" target="_blank" rel="noopener">
+                                        <a href="/web/signup" target="_blank" rel="noopener">
                                             <button class="home-btn">Je m'inscris maintenant !</button>
                                         </a>
                                     </div>
@@ -282,7 +282,7 @@
                                         <b> la chambre des métiers et de l’artisanat </b>
                                         et
                                         <b>
-                                            <a class="hyper-link" href="https://www.examentaxivtc.fr/">
+                                            <a target="_blank" class="hyper-link" href="https://www.examentaxivtc.fr/">
                     l'inscription
                   </a>
                                         </b>
@@ -291,7 +291,7 @@
                                         sur le site de la chambre des métiers et de l'artisanat.
                                     </p>
                                     <div class="s_btn text-left pt16 pb16" data-name="Button">
-                                        <a href="/examen" target="_blank" rel="noopener">
+                                        <a href="/examen-vtc-taxi" target="_blank" rel="noopener">
                                             <button class="home-btn">Découvrir</button>
                                         </a>
                                     </div>
@@ -406,7 +406,7 @@
                                         </span>
                                         <span class="bold-desc">
                                             - Selon l'avis de la majorité de nos apprenants sur google.
-                                            <a style="color: #2d74f7" href="https://www.google.com/search?q=mcm+academy&amp;rlz=1C1CHBF_frTN911TN916&amp;sxsrf=AOaemvLXgPjmp_LUdcBr_VYoZZbfCUXnQQ%3A1632154532783&amp;ei=pLNIYZv4LoTDlwT8z6igCw&amp;oq=mcm+a&amp;gs_lcp=Cgdnd3Mtd2l6EAMYADIECCMQJzIFCAAQgAQyCwguEIAEEMcBEK8BMgUIABCABDIFCAAQgAQyBQgAEIAEMgUIABCABDIFCAAQgAQyBQgAEIAEMgUIABCABDoHCCMQsAMQJzoHCAAQRxCwAzoQCC4QxwEQ0QMQyAMQsAMQQzoHCAAQsQMQQzoECAAQQzoKCAAQsQMQgwEQQzoLCAAQgAQQsQMQgwE6CAgAEIAEELEDOgoILhDHARDRAxBDOgQILhBDOg4ILhCABBCxAxDHARDRAzoLCC4QgAQQxwEQ0QM6CAguEIAEELEDOgUILhCABEoFCDgSATFKBAhBGABQpOQLWIbqC2Dc8AtoAXACeACAAcMBiAGbBpIBAzAuNZgBAKABAcgBC8ABAQ&amp;sclient=gws-wiz#lrd=0x47c2d584b3f426a3:0x8c9722c8da9f4da3,1,,,">
+                                            <a target="_blank" style="color: #2d74f7" href="https://www.google.com/search?q=mcm+academy&amp;rlz=1C1CHBF_frTN911TN916&amp;sxsrf=AOaemvLXgPjmp_LUdcBr_VYoZZbfCUXnQQ%3A1632154532783&amp;ei=pLNIYZv4LoTDlwT8z6igCw&amp;oq=mcm+a&amp;gs_lcp=Cgdnd3Mtd2l6EAMYADIECCMQJzIFCAAQgAQyCwguEIAEEMcBEK8BMgUIABCABDIFCAAQgAQyBQgAEIAEMgUIABCABDIFCAAQgAQyBQgAEIAEMgUIABCABDoHCCMQsAMQJzoHCAAQRxCwAzoQCC4QxwEQ0QMQyAMQsAMQQzoHCAAQsQMQQzoECAAQQzoKCAAQsQMQgwEQQzoLCAAQgAQQsQMQgwE6CAgAEIAEELEDOgoILhDHARDRAxBDOgQILhBDOg4ILhCABBCxAxDHARDRAzoLCC4QgAQQxwEQ0QM6CAguEIAEELEDOgUILhCABEoFCDgSATFKBAhBGABQpOQLWIbqC2Dc8AtoAXACeACAAcMBiAGbBpIBAzAuNZgBAKABAcgBC8ABAQ&amp;sclient=gws-wiz#lrd=0x47c2d584b3f426a3:0x8c9722c8da9f4da3,1,,,">
                     Cliquez ici pour lire les avis
                   </a>
                                             .
