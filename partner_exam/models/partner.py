@@ -35,21 +35,6 @@ class resComapny(models.Model):
             'context': {'default_note_exam_id': self.note_exam_id.ids},
         }
 
-    def update_nombre_de_passage_en_mass(self):
-        """Remplir champ nombre de passage sur tout les fiche partner"""
-        partners = self.env['res.partner'].sudo().search([('statut', "=", "won")])
-        for partner in partners:
-            examen = self.env['info.examen'].sudo().search([('partner_id', "=", partner.id)], limit=1,
-                                                             order="id desc")
-            if examen:
-                if examen.nombre_de_passage == "premier":
-                    partner.nombre_de_passage = "Premier"
-                    print(partner.nombre_de_passage)
-                if examen.nombre_de_passage == "deuxieme":
-                    partner.nombre_de_passage = "Deuxième"
-                if examen.nombre_de_passage == "troisieme":
-                    partner.nombre_de_passage = "Troisième"
-
     def write(self, values):
         """ Update this function to add new line in list of sessions
         if the field mcm_session_id changed based on report boolean field

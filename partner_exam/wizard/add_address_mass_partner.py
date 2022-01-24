@@ -15,6 +15,15 @@ class UpdateFieldFinancementWizard(models.TransientModel):
             if statut and statut.etat_financement_cpf_cb != None and statut.mode_de_financement == "cpf":
                 # set the selected field for each partner
                 statut.etat_financement_cpf_cb = statut.statut_cpf
+            examen = self.env['info.examen'].sudo().search([('partner_id', "=", statut.id)], limit=1,
+                                                           order="id desc")
+            if examen:
+                if examen.nombre_de_passage == "premier":
+                    statut.nombre_de_passage = "Premier"
+                if examen.nombre_de_passage == "deuxieme":
+                    statut.nombre_de_passage = "Deuxième"
+                if examen.nombre_de_passage == "troisieme":
+                    statut.nombre_de_passage = "Troisième"
 
 
 
