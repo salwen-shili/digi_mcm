@@ -3,6 +3,8 @@
 import time
 from odoo import api, fields, models,_
 
+import logging
+_logger = logging.getLogger(__name__)
 
 class PaymentAcquirer(models.Model):
     _inherit = "payment.acquirer"
@@ -15,7 +17,7 @@ class PaymentAcquirer(models.Model):
     ]
 
     def set_amount(self,instalement,auth="public"):
-
+            _logger.info("je suis laaaaaaaaaaaa")
             payments = self.env['payment.acquirer'].sudo().search([('name', 'ilike', 'stripe')])
             for payment in payments:
                 if instalement:
@@ -24,20 +26,15 @@ class PaymentAcquirer(models.Model):
                 else:
                     payment.instalment = False
     def render(self, reference, amount, currency_id, partner_id=False, values=None):
-
+        print('je suis laaaaaaaaaaaa')
+        _logger.info("je suis laaaaaaaaaaaa")
         transaction = self.env['payment.transaction'].sudo().search([('reference', 'ilike', reference)])
         self.done_msg=_('Bravo ! Commande confirmée \n Vous allez recevoir dans quelques minutes un mail ! Pas de mail reçu ? Vérifiez dans vos courriers indésirables ou spams.')
         for rec in self:
             data = reference.split("-")
             sale = self.env['sale.order'].sudo().search([('name', 'ilike', data[0])])
             amount_before_instalment=amount
-            if rec.instalment and amount>1000 and rec.company_id.id==1:
-                amount=amount/3
-                if transaction:
-                    transaction.amount = transaction.amount / 3
-                if sale:
-                    sale.amount_total = sale.amount_total / 3
-            if sale and sale.instalment and sale.company_id.id==2 and rec.instalment:
+            if sale and sale.instalment and rec.instalment:
                 sale.amount_total = sale.amount_total / sale.instalment_number
                 amount = amount / sale.instalment_number
             payments = self.env['payment.acquirer'].sudo().search([('name', 'ilike', 'stripe')])

@@ -73,10 +73,12 @@
 
     <template id="mcm_website_sale_total" inherit_id="website_sale.total">
         <xpath expr="//tr[@id='order_total_taxes']" position="after">
-            <tr t-if="website_sale_order.amount_total>1000">
+            <tr t-if="website_sale_order.instalment_number>1">
                 <td class="text-right border-0" id="order_instalment" style="display:block">
                     <label for="checkbox_instalment">
-                        Payer montant sur 3 fois
+                        <span>Payer montant sur </span>
+                        <span t-field="website_sale_order.instalment_number" style="white-space: nowrap;" />
+                        <span> fois </span>
                     </label>
                 </td>
                 <td class="text-xl-right border-0" id="order_instalment_checkbox" style="display:table-cell">

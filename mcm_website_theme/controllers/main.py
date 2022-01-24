@@ -19,7 +19,10 @@ from odoo.osv import expression
 from datetime import datetime, date
 import werkzeug
 import locale
-
+import json
+import logging
+import requests
+_logger = logging.getLogger(__name__)
 PPG = 20  # Products Per Page
 PPR = 4  # Products Per Row
 
@@ -1050,6 +1053,9 @@ class WebsiteSale(WebsiteSale):
 
 
 class Payment3x(http.Controller):
+
+
+
     @http.route(['/shop/payment/update_amount'], type='json', auth="public", methods=['POST'], website=True)
     def cart_update_amount(self, instalment):
         """This route is called when changing quantity from the cart or adding
@@ -1379,3 +1385,45 @@ class MCM_SIGNUP(http.Controller):
             return 0
         elif request.website.id == 1:
             return request.render("mcm_website_theme.mcm_website_register_form")
+
+    @http.route(['/webhook_testing'], type='json', auth="public", methods=['POST'])
+    def stripe_event(self):
+        event = None
+
+        dataa = json.loads(request.httprequest.data)
+        _logger.info("webhoooooooooook %s" % str(dataa))
+        event = dataa.get('type')
+        object = dataa.get('data', []).get('object')
+        if event == 'payment_intent.succeeded':
+            _logger.info('teeeeeeest %s' % str(object))
+        if event == 'invoice.paid':
+            _logger.info('teeeeeeest invoice %s' % str(object))
+            subsciption = object.get('subscription')
+            customer = object.get('customer')
+            amount = int(object.get('amount_paid') / 100)
+            invoice = request.env['account.move'].sudo().search([("stripe_sub_reference", "=",subsciption)],limit=1)
+            _logger.info('invoice %s' % str(invoice.name))
+            _logger.info('invoice ************* %s' % str(invoice.stripe_sub_reference))
+            payment_method = request.env['account.payment.method'].sudo().search(
+                [('code', 'ilike', 'electronic')])
+
+            if invoice:
+                journal_id = invoice.journal_id.id
+
+                payment = request.env['account.payment'].sudo().create({'payment_type': 'inbound',
+                                                                 'payment_method_id': payment_method.id,
+                                                                 'partner_type': 'customer',
+                                                                 'partner_id': invoice.partner_id.id,
+                                                                 'amount': amount,
+                                                                 'currency_id': invoice.currency_id.id,
+                                                                 'payment_date': datetime.now(),
+                                                                 'journal_id': journal_id,
+                                                                 'communication': False,
+                                                                 'payment_token_id': False,
+                                                                 'invoice_ids': [(6, 0, invoice.ids)],
+                                                                 })
+
+                payment.post()
+
+                return True
+            

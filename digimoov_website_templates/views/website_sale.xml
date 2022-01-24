@@ -1,7 +1,7 @@
 <odoo>
     <template id="digimoov_website_sale_total" inherit_id="website_sale.total">
         <xpath expr="//tr[@id='order_total_taxes']" position="after">
-            <tr id="order_instalment" t-if="website_sale_order.instalment_number==2 or website_sale_order.instalment_number==3" style="visibility:visible">
+            <tr id="order_instalment" t-if="website_sale_order.instalment_number>1" style="visibility:visible">
                 <td class="text-right border-0">
                     <label for="checkbox_instalment">
                         <span>Payer montant sur </span>

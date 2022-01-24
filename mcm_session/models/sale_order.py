@@ -82,12 +82,10 @@ class SaleOrder(models.Model):
         if not acquirer_id and acquirer:
             vals['acquirer_id'] = acquirer.id
         amount = sum(self.mapped('amount_total'))
-        if self.instalment and amount>1000 and self.company_id.id==1:
-            amount=amount/3
         print('_create_payment_transaction')
         print(self.instalment)
         print(self.company_id.id)
-        if self.instalment and self.company_id.id==2:
+        if self.instalment:
             amount=amount/int(self.instalment_number)
         vals.update({
             'amount': amount,

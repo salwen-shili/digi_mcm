@@ -44,7 +44,6 @@ class PaymentTransaction(models.Model):
             data = self.reference.split("-")
             sale = self.env['sale.order'].sudo().search([('name', 'ilike', data[0])])
             if (self.stripe_payment_intent and self.state == 'done' and sale):
-                
                 sale.action_confirm()
                 sale.partner_id.mcm_session_id=sale.session_id
                 sale.partner_id.module_id=sale.module_id
@@ -53,6 +52,7 @@ class PaymentTransaction(models.Model):
                 for move in moves:
                     move.type_facture='web'
                     move.methodes_payment = 'cartebleu'
+                    move.stripe_sub_reference=self.stripe_sub_reference # s'il sagit d'un paiement sur plusieur fois recupérer l'id d'abonnement sur stripe
                     move.module_id=sale.module_id
                     move.session_id=sale.session_id
                     sale.partner_id.mcm_session_id = sale.session_id
