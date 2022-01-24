@@ -311,14 +311,21 @@ class NoteExamen(models.Model):
                 [('client_id', '=', self.partner_id.id), ('paiement', '!=', True)])
             if session_count == 1:
                 self.nombre_de_passage = "premier"
+                self.partner_id.nombre_de_passage = "Premier"
+                print(self.partner_id.nombre_de_passage)
             if session_count == 2:
                 self.nombre_de_passage = "deuxieme"
+                self.partner_id.nombre_de_passage = "Deuxième"
             if session_count == 3:
                 self.nombre_de_passage = "troisieme"
+                self.partner_id.nombre_de_passage = "Troisième"
             if session_count == 4:
                 self.nombre_de_passage = "premier"
+                self.partner_id.nombre_de_passage = "Premier"
             if session_count == 5:
                 self.nombre_de_passage = "deuxieme"
+                self.partner_id.nombre_de_passage = "Deuxième"
             if session_count == 6:
                 self.nombre_de_passage = "troisieme"
+                self.partner_id.nombre_de_passage = "Troisième"
         return res
