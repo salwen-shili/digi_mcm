@@ -7,7 +7,8 @@ window.onload = function () {
     !(
       url.includes('/coordonnees') ||
       url.includes('/shop') ||
-      url.includes('/charger')
+      url.includes('/charger') ||
+      url.includes('/habilitation-electrique')
     )
   ) {
     Calendly.initBadgeWidget({
