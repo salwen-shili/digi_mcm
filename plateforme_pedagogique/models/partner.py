@@ -1496,7 +1496,7 @@ class partner(models.Model):
                                 so.action_cancel()
                                 so.unlink()
                                 user.partner_id.statut = 'won'
-                                if not user.partner_id.renounce_request:
+                                if not user.partner_id.renounce_request and product_id.default_code!='habilitation-electrique':
                                     if user.partner_id.phone:
                                         phone = str(user.partner_id.phone.replace(' ', ''))[-9:]
                                         phone = '+33' + ' ' + phone[0:1] + ' ' + phone[1:3] + ' ' + phone[
