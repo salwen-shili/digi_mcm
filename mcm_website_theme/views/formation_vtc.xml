@@ -581,6 +581,9 @@
                             <li>Révision du programme avant examen</li>
                           </ul>
                           <div class="sh_btn">
+                            <span style="color: red !important;font-size: 17px;font-weight: 600;">
+                                                            Paiement 1 ou 2 fois
+                                                            </span>
                             <!-- <a class="btn btn-primary sh_btn_cm_8" data-original-title="" title="" aria-describedby="tooltip357369" onClick="(function(){document.getElementById('form-1-1').submit();return false;})();return false;">
                             Je m'inscris
                                                 </a> -->
