@@ -309,7 +309,7 @@
                                 </t>
                             </div>
                         </div> -->
-                        <div class="col-md-4 col-sm-6">
+                        <!-- <div class="col-md-4 col-sm-6">
                             <div class="card border-0 shadow" style="border-radius: 25px 25px">
                                 <div class="text-center text-white border-0" style="
                     background-color: #6e209f;
@@ -429,8 +429,8 @@
                                     </t>
                                 </t>
                             </div>
-                        </div>
-                        <div class="col-md-4 col-sm-12">
+                        </div> -->
+                        <div class="col-md-5 col-sm-12">
                             <div class="card border-0 shadow" style="border-radius: 25px 25px">
                                 <div class="text-center text-white border-0" style="
                     background-color: #6e209f;
