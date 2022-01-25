@@ -430,16 +430,19 @@ class partner(models.Model):
                             body = "Chere(e) %s : félicitation pour votre inscription, vous avez été invité par Digimoov à commencer votre formation via ce lien : %s .Vos identifiants sont identiques que sur Digimoov" % (
                                 partner.name, url)
                             if body:
-                                composer = self.env['sms.composer'].with_context(
-                                    default_res_model='res.partner',
-                                    default_res_ids=partner.id,
-                                    default_composition_mode='mass',
-                                ).sudo().create({
-                                    'body': body,
-                                    'mass_keep_log': True,
-                                    'mass_force_send': True,
-                                })
-                                composer.action_send_sms() # envoyer un sms de félicitation à l'apprenant et l'inviter à commncer sa formation
+                                sms = self.env['mail.message'].sudo().search(
+                                    [("body", "=", body), ("message_type", "=", 'sms'), ("res_id", "=", partner.id)])
+                                if not sms:
+                                    composer = self.env['sms.composer'].with_context(
+                                        default_res_model='res.partner',
+                                        default_res_ids=partner.id,
+                                        default_composition_mode='mass',
+                                    ).sudo().create({
+                                        'body': body,
+                                        'mass_keep_log': True,
+                                        'mass_force_send': True,
+                                    })
+                                    composer.action_send_sms() # envoyer un sms de félicitation à l'apprenant et l'inviter à commncer sa formation
                                 if partner.phone:
                                     partner.phone = '0' + str(partner.phone.replace(' ', ''))[-9:]
 
