@@ -42,8 +42,8 @@ class NoteExamen(models.Model):
         string="Nombre De Passage", default="premier")
 
     presence = fields.Selection([
-        ('present', 'Présent(e)'),
-        ('Absent', 'Absent(e)'),
+        ('present', 'Présent'),
+        ('Absent', 'Absent'),
         ('absence_justifiee', 'Absence justifiée')],
         string="Présence", default='present')
     # Ajout le champ etat qui sera invisible dans l'interface "notes & examen"
