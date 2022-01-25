@@ -735,8 +735,8 @@
                             font-weight-bolder
                             text-secondary
                           " style="color: red !important">
-                                                            Paiement 1 fois
-                                                            </p>
+                                                            Paiement 1 ou 2 fois
+                                                        </p>
                                                         <br />
                                                         <button class="btn btn-block text-white" onClick="(function(){msTracking('clic sur inscrire pack solo','Pricing Table events','Inscrire pack solo Homepage','590'); document.getElementById('form-1-1').submit();return false;})();return false;" style="background-color: #6e209f; border-radius: 25px">
                                                             Je m'inscris
