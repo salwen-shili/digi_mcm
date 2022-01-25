@@ -22,13 +22,13 @@ class NoteExamen(models.Model):
     epreuve_a = fields.Float(string="Epreuve A(QCM):", track_visibility='always', group_operator='avg')
     epreuve_b = fields.Float(string="Epreuve B(QRO)", track_visibility='always', default=1, group_operator='avg')
     moyenne_generale = fields.Float(string="Moyenne Générale", track_visibility='always', store=True, group_operator='avg')
-    mention = fields.Selection(selection=[
-        ('recu', 'reçu'),
-        ('ajourne', 'ajourné')],
-        string="Mention", default=False)
-    resultat = fields.Selection(selection=[
+    mention = fields.Selection([
         ('recu', 'Reçu'),
-        ('ajourne', 'Ajourné')], string="Résultat")
+        ('ajourne', 'Ajourné(e)')],
+        string="Mention", default=False)
+    resultat = fields.Selection([
+        ('recu', 'Reçu'),
+        ('ajourne', 'Ajourné(e)')], string="Résultat")
     date_exam = fields.Date(string="Date Examen", track_visibility='always')
     active = fields.Boolean('Active', default=True)
     company_id = fields.Many2one(
@@ -36,14 +36,14 @@ class NoteExamen(models.Model):
         default=lambda self: self.env.company,
         required=False, readonly=False)
     nombre_de_passage = fields.Selection(selection=[
-        ('premier', 'premier'),
-        ('deuxieme', 'deuxième'),
-        ('troisieme', 'troisième')],
+        ('premier', 'Premier'),
+        ('deuxieme', 'Deuxième'),
+        ('troisieme', 'Troisième')],
         string="Nombre De Passage", default="premier")
 
-    presence = fields.Selection(selection=[
-        ('present', 'Présent'),
-        ('Absent', 'Absent'),
+    presence = fields.Selection([
+        ('present', 'Présent(e)'),
+        ('Absent', 'Absent(e)'),
         ('absence_justifiee', 'Absence justifiée')],
         string="Présence", default='present')
     # Ajout le champ etat qui sera invisible dans l'interface "notes & examen"
@@ -70,6 +70,8 @@ class NoteExamen(models.Model):
                 self.session_id = self.partner_id.mcm_session_id
                 self.date_exam = self.partner_id.mcm_session_id.date_exam
                 self.presence = 'present'
+                self.presence = dict(self._fields['presence'].selection).get(self.presence)
+                print("self.presence", self.presence)
                 self.ville_id = self.partner_id.mcm_session_id.session_ville_id.id
                 self.partner_id.presence = "Présent(e)"
                 self.partner_id.resultat = "Admis(e)"
