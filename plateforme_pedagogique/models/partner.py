@@ -67,8 +67,8 @@ class partner(models.Model):
         if 'email' in vals:
             # Si email changé on change sur login
             users=self.env['res.users'].sudo().search([('partner_id',"=",self.id)])
-            for users in user:
-                if user :
+            if users :
+                for user in users:
                     _logger.info("loginn---------- %s" %str(user.login))
                     user.sudo().write({
                      'login':vals['email']
