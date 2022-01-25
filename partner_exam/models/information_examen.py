@@ -24,11 +24,11 @@ class NoteExamen(models.Model):
     moyenne_generale = fields.Float(string="Moyenne Générale", track_visibility='always', store=True, group_operator='avg')
     mention = fields.Selection([
         ('recu', 'Reçu'),
-        ('ajourne', 'Ajourné(e)')],
+        ('ajourne', 'Ajourné')],
         string="Mention", default=False)
     resultat = fields.Selection([
         ('recu', 'Reçu'),
-        ('ajourne', 'Ajourné(e)')], string="Résultat")
+        ('ajourne', 'Ajourné')], string="Résultat")
     date_exam = fields.Date(string="Date Examen", track_visibility='always')
     active = fields.Boolean('Active', default=True)
     company_id = fields.Many2one(
