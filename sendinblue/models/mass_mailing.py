@@ -254,9 +254,9 @@ class MassMailing(models.Model):
             if mass_mailing.sendinblue_id:
                 mass_mailing.fetch_campaign()
                 continue
-            if len(mass_mailing.get_remaining_recipients()) > 0:
+            if len(mass_mailing._get_remaining_recipients()) > 0:
                 mass_mailing.state = 'sending'
-                mass_mailing.send_mail()
+                mass_mailing.action_send_mail()
             else:
                 mass_mailing.write({'state': 'done', 'sent_date': fields.Datetime.now()})
 
