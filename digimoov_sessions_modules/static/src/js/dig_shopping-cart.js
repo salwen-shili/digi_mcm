@@ -1,4 +1,9 @@
 document.addEventListener('DOMContentLoaded', function () {
+  if (document.getElementById('checkbox_instalment').checked) {
+    showInstallement();
+  } else {
+    hideInstallement();
+  }
   onchangeTextButton1();
   document
     .getElementById('checkbox_conditions')
@@ -665,5 +670,24 @@ function verify_checked() {
       document.getElementById('order_amount_to_pay').style.display = 'none';
       document.getElementById('order_instalment_number').style.display = 'none';
     }
+  }
+}
+//show hide instalment
+function showInstallement() {
+  if (document.getElementById('order_instalment_number')) {
+    document.getElementById('order_instalment_number').style.visibility =
+      'unset';
+  }
+  if (document.getElementById('order_amount_to_pay')) {
+    document.getElementById('order_amount_to_pay').style.visibility = 'unset';
+  }
+}
+function hideInstallement() {
+  if (document.getElementById('order_instalment_number')) {
+    document.getElementById('order_instalment_number').style.visibility =
+      'hidden';
+  }
+  if (document.getElementById('order_amount_to_pay')) {
+    document.getElementById('order_amount_to_pay').style.visibility = 'hidden';
   }
 }
