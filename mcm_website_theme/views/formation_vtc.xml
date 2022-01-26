@@ -4,189 +4,50 @@
     <t t-call="website.layout">
       <div id="wrap" class="oe_structure oe_empty">
         <script defer="defer" type="text/javascript" src="/digimoov_website_templates/static/src/js/lazy-min.min.js" />
-        <link rel="stylesheet" href="/mcm_website_theme/static/src/css/homepage.min.css" />
         <script type="text/javascript" src="/mcm_website_theme/static/src/js/msAds.min.js" />
         <link rel="stylesheet" href="/mcm_website_theme/static/src/css/cta-button.min.css" />
+        <link rel="stylesheet" href="/mcm_website_theme/static/src/css/style_taxi.min.css" />
 
-
-        <style>
-          #sh_corpomate_theme_section_258 {
-            padding: 0 !important;
-          }
-
-          p {
-            font-size: 17px;
-            line-height: 28px;
-            color: #000;
-          }
-
-          .nav-pills .nav-link.active,
-          .nav-pills .show &gt;
-
-          .nav-link {
-            background-color: #000;
-          }
-
-          a {
-            color: #000;
-          }
-
-          a:hover {
-            color: #000;
-          }
-
-          .btn {
-            background-color: #000;
-            border-color: #000;
-            color: #fff;
-          }
-
-          .btn:hover {
-            background-color: #7f7e7e;
-          }
-
-          #sh_corpomate_theme_section_290 .sh_feature_box p {
-            margin-bottom: 0px !important;
-            transition: 0.5s;
-            font-size: 17px;
-            line-height: 1.8;
-            display: block !important;
-            -webkit-line-clamp: 6 !important;
-            -webkit-box-orient: initital;
-            overflow: hidden;
-            color: #616161;
-            font-family: "Poppins", sans-serif;
-          }
-
-          .feature_container {
-            margin-block-start: 15px;
-            flex-direction: column;
-            justify-content: space-between;
-          }
-
-          .read_more {
-            color: #2667ae !important;
-            font: inherit !important;
-            font-size: 16px !important;
-          }
-
-          #sh_corpomate_theme_section_76 .sh_content .sh_num_icon {
-            font-size: 30px;
-            color: #000000;
-            border: 1px solid #cecece;
-            border-radius: 50%;
-            padding: 16px 20px 20px 19px;
-            width: 78px;
-            height: 78px;
-            margin-top: -15px;
-            position: relative;
-            margin: 0 auto;
-            background: #fdd125;
-          }
-
-          #sh_corpomate_theme_section_76 .sh_content:hover .sh_num_icon {
-            font-size: 30px;
-            color: #fff;
-            border: 1px solid #cecece;
-            border-radius: 50%;
-            padding: 18px 20px 20px 19px;
-            width: 83px;
-            height: 83px;
-            margin-top: -15px;
-            position: relative;
-            margin: 0 auto;
-            background: #000000;
-          }
-
-          #sh_corpomate_theme_section_76 .sh_content p {
-            padding: 0 0 !important;
-            overflow: visible;
-            -webkit-box-orient: horizontal;
-          }
-
-          .res_height {
-            height: 423px;
-          }
-
-          @media (max-width: 467.98px) {
-            .res_height {
-              height: 243px;
-            }
-          }
-
-          #sh_corpomate_theme_section_76 .sh_content {
-            padding-top: 0;
-          }
-
-          #sh_corpomate_theme_section_76 .sh_content p:after {
-            top: 20px;
-          }
-
-          h1 {
-            text-transform: uppercase;
-          }
-
-          h2 {
-            text-transform: uppercase;
-          }
- 
-  .center-logo {
-  display: flex;
-  flex-direction: row;
-  align-content: center;
-  justify-content: space-between;
-  align-items: center;
-}
-@media all and (max-width: 425px) {
-  .center-logo {
-    display: flex;
-    flex-direction: column;
-    align-content: center;
-    justify-content: space-between;
-    align-items: center;
-  }
-}
-
-        </style>
-        <!-- section-->
+        <!-- section 1-->
         <section id="sh_corpomate_theme_section_258" class="sh_animation_part pt8" data-name="Formation chauffeur TAXI">
           <div class="container-banner">
             <div class="row">
-              <div class="col-lg-6 pb16 pt56" style="border-style: none; border-width: 0px;">
-                <div class="js-scroll slide-left">
+              <div class="col-lg-6 pb16 pt56" style="border-style: none; border-width: 0px">
+                <div class="js-scroll slide-left ">
                   <div class="text-center">
-                    <h1 class="title-mcm slider-text-info">
-                      Formation chauffeur
+                    <h1 class="slider-text-info title-mcm">
+                      Formation
                       <br />
-                      de
-                      <span class="subtitle-mcm-formation">VTC</span>
+                      <span class="subtitle-mcm-formation"> VTC </span>
                     </h1>
                     <br />
-
-                    <p class="heading text-center">
-                      Vous voulez devenir chauffeur VTC ? Nous vous félicitons, car vous avez frappé à la bonne porte
-                      ! En tant que centre de formation doté d’une expérience de plus de 10 ans dans le domaine, vous ne
-                      pourrez qu’être satisfait. Ce que nous vous offrons, c’est plus qu’une formation à distance :
-                      c’est un accompagnement et un suivi personnalisé pour garantir votre réussite.
+                    <p class="para text-center">
+                      Vous voulez
+                      <b>devenir chauffeur VTC</b>
+                      ? Notre
+                      <b>centre de formation VTC</b>
+                      , doté d’une expérience de plus de 10 ans dans le domaine,
+                    vous offre une
+                      <b>formation théorique à distance</b>
+                      de qualité avec un accompagnement et un suivi personnalisé
+                    pour garantir votre réussite à l'
+                      <b>examen VTC</b>
+                      .
                     </p>
-
                     <br />
-
                     <a class="animated-button-yellow" href="#pricing" title="Inscription">
-                      <span></span>
-                      <span></span>
-                      <span></span>
-                      <span></span>
+                      <span />
+                      <span />
+                      <span />
+                      <span />
                       S'inscrire
                     </a>
-
-
                   </div>
                 </div>
               </div>
-              <div class="col-lg-6 pb48 pt16 js-scroll slide-right">
+              <div class="col-lg-6 pb48 pt16 js-scroll slide-right ">
                 <br />
-                <img data-src="/mcm_website_theme/static/src/img/formation_vtc/formation-chauffeur-vtc.webp" data-srcSafari="/mcm_website_theme/static/src/img/formation_vtc/formation-chauffeur-vtc.png" class="img img-fluid mx-auto lazy" alt="Devenir chauffeur professionnel VTC, Taxi ou Moto-Taxi" data-original-title="" title="Chauffeur vtc devant sa voiture" aria-describedby="tooltip202025" style="text-align: center;" />
+                <img data-src="/mcm_website_theme/static/src/img/formation_vtc/formation-chauffeur-vtc.webp" data-srcsafari="/mcm_website_theme/static/src/img/formation_vtc/formation-chauffeur-vtc.png" class="img img-fluid mx-auto" alt="Devenir chauffeur professionnel VTC, Taxi ou Moto-Taxi" data-original-title="" title="Chauffeur vtc devant sa voiture" aria-describedby="tooltip202025" style="text-align: center" src="/mcm_website_theme/static/src/img/formation_vtc/formation-chauffeur-vtc.webp" />
               </div>
             </div>
           </div>
@@ -250,78 +111,209 @@
         <section class="s_text_image pt0 pb4 " data-name="">
           <div class="container">
             <div class="row align-items-center">
-              <div class="col-lg-6 pb24 pt0 js-scroll slide-left">
-                <img data-src="/mcm_website_theme/static/src/img/formation_vtc/profil-candidat-chauffeur-vtc.webp" data-srcSafari="/mcm_website_theme/static/src/img/formation_vtc/profil-candidat-chauffeur-vtc.png" class="img img-fluid mx-auto lazy" alt="Devenir chauffeur professionnel VTC" title="Chauffeur vtc dans sa voiture" style="text-align: center;" />
+              <div class="col-lg-6 pt16 pb16 js-scroll slide-left">
+                <img src="/mcm_website_theme/static/src/img/formation_vtc/formation-vtc.png" class="img img-fluid mx-auto" alt="formation vtc" />
               </div>
-              <div class="col-lg-6 js-scroll slide-right" style="border-style: none; border-width: 0px">
-                <h3 style="font-size: 26px; font-weight:700; color: #000; margin-block-end: 1.2rem; ">
-                  À qui s’adresse cette formation ?
-                </h3>
-                <p>
-                  Notre formation VTC à distance concerne toute personne majeure qui souhaite devenir entrepreneur, en
-                  reconversion professionnelle, passionné par les métiers de transport, et qui répond à ces prérequis :
+              <div class="col-lg-6 pt16 pb16 js-scroll slide-right">
+                <h2 style="max-width: 70%">c'est quoi un chauffeur vtc ?</h2>
+                <p class="para">
+                  L’abréviation
+                  <b>VTC</b>
+                  signifie Voiture de Transport avec Chauffeur.
                 </p>
-                <p>
-                  <ul class="fa-ul" style="font-size:16.5px; line-height: 1.5rem;">
-                    <li>
-                      <i class="fa fa-chevron-right" style="font-size: 13px; margin: 0px 7px 5px -17px"></i>
-                      Permis B non probatoire
-                    </li>
-                    <li>
-                      <i class="fa fa-chevron-right" style="font-size: 13px; margin: 0px 7px 5px -17px"></i>
-                      Attestation d’aptitude médicale auprès d’un médecin agréé par la préfecture
-                    </li>
-                    <li>
-                      <i class="fa fa-chevron-right" style="font-size: 13px; margin: 0px 7px 5px -17px"></i>
-                      Casier judiciaire B2 non affecté de certaines condamnations
-                    </li>
-                    <li>
-                      <i class="fa fa-chevron-right" style="font-size: 13px; margin: 0px 7px 5px -17px"></i>
-                      Réussite à l’examen blanc MCM Academy
-                    </li>
-                  </ul>
-                </p>
-                <h3 style="font-size: 26px; font-weight:700; color: #000; margin-block-end: 1.2rem; ">
-                  Ses objectifs :
-                </h3>
-
-                <p>
-                  <ul class="fa-ul" style="font-size:16.5px; line-height: 1.5rem;">
-                    <li>
-                      <i class="fa fa-chevron-right" style="font-size: 13px; margin: 0px 7px 5px -17px"></i>
-                      Acquérir les savoirs, savoir-être et savoir-faire nécessaires à la réussite de l’examen VTC
-                    </li>
-                    <li>
-                      <i class="fa fa-chevron-right" style="font-size: 13px; margin: 0px 7px 5px -17px"></i>
-                      Préparation aux épreuves d’admissibilité de l’examen VTC (théorie)
-                    </li>
-
-                    <div style="margin-block-start: 20px; margin-left: -30px;">
-
-                      <a href="/mcm_website_theme/static/pdf/programme_de_formation_MCM_ACADEMY_2021.pdf" target="_blank">
-                        <button class="button-more learn-more">
-                          <span class="circle">
-                            <span class="icon arrow"></span>
-                          </span>
-                          <span class="button-more-text">En savoir plus</span>
-                        </button>
-                      </a>
-
-
-                    </div>
-                  </ul>
+                <p class="para">
+                  La
+                  <b> GrandGuillaume </b>
+                  implique que le VTC peut se déplacer
+                uniquement si la course a été réservée à l'avance. Justement, en
+                réservant un VTC, le client connait à l’avance , le trajet de sa
+                destination ainsi que le coût de sa course.
                 </p>
               </div>
-              <div class="s_title col-lg-12 pt24 pb0 js-scroll slide-right" style="                   text-align: center;                   border-style: none;                   border-width: 0px;                 ">
-                <div class="s_alert clearfix w-100 s_alert_sm alert-100" data-name="Alert" style="">
-                  <i class="fa fa-2x fa-info-circle s_alert_icon" />
+            </div>
+          </div>
+        </section>
+        <!-- section 4-->
+        <section class="s_text_image pt32 pb32">
+          <div class="container">
+            <div class="row align-items-center">
+              <div class="col-lg-6 pt16 pb16 js-scroll slide-left">
+                <h2>COMMENT DEVENIR CHAUFFEUR VTC ?</h2>
+                <p class="para">
+                  Pour devenir&amp;nbsp;
+                  <b>conducteur VTC</b>
+                  , le passage d'un examen est obligatoire pour obtenir
+                votre&amp;nbsp;
+                  <b>carte professionnelle .</b>
+                  &amp;nbsp;
+                </p>
+                <p class="para">
+                  En effet, la&amp;nbsp;
+                  <b>carte VTC&amp;nbsp;</b>
+                  est un permis professionnel qui vous offre la possibilité
+                d’exercer exclusivement le métier de chauffeur ou de&amp;nbsp;
+                  <b>
+                    <a target="_blank" href="https://www.mcm-academy.fr/blog/blog-vtc-7/post/comment-devenir-chauffeur-vtc-femme-32">chauffeure VTC</a>
+                  </b>
+                  .
+                </p>
+                <p class="para">
+                Afin de garantir votre réussite à l'examen VTC, il est fortement
+                recommandé de suivre une formation auprés d'un centre agrée
+                comme le notre.&amp;nbsp;
+              </p>
+                <p class="para">
+                  Une fois votre&amp;nbsp;
+                  <b>carte VTC</b>
+                  &amp;nbsp;en main, l'étape suivante pour exercer le métier
+                de&amp;nbsp;
+                  <b>conducteur VTC</b>
+                  &amp;nbsp;serait d'obtenir votre&amp;nbsp;
+                  <b>
+                    <a target="_blank" href="https://www.mcm-academy.fr/blog/blog-vtc-7/post/comment-sinscrire-au-registre-vtc-35#macaron">
+                      macaron VTC
+                  </a>
+                  </b>
+                  &amp;nbsp;auprès du
+                  <b>
+                    <a target="_blank" href="https://www.mcm-academy.fr/blog/blog-vtc-7/post/comment-sinscrire-au-registre-vtc-35">registre des VTC</a>
+                  </b>
+                  . Et enfin, choisir votre
+                  <a target="_blank" href="https://www.mcm-academy.fr/blog-vtc-7/quel-statut-juridique-choisir-pour-un-chauffeur-vtc-21">&amp;nbsp;</a>
+                  <b>
+                    <a target="_blank" href="https://www.mcm-academy.fr/blog/blog-vtc-7/post/quel-statut-juridique-choisir-pour-un-chauffeur-vtc-21">statut juridique VTC</a>
+                    ,&amp;nbsp;
+                  </b>
+                  un statut qui&amp;nbsp;s’accorde en principe à vos attentes et à
+                vos moyens
+                  <b>&amp;nbsp;</b>
+                  en tant que chauffeur indépendant ou pour le compte d'une
+                plateforme dédiée.
+                </p>
+                <div class="s_btn text-left pt16 pb16" data-name="Buttons">
+                  <a href="#pricing" alt="Je m'inscris  mcm-academy">
+                    <button class="home-btn">
+                       Je m'inscris !
+                    </button>
+                  </a>
+                </div>
+              </div>
+              <div class="col-lg-6 pt16 pb16 js-scroll slide-right">
+                <img src="/mcm_website_theme/static/src/img/formation_vtc/candidat-chauffeur-vtc.png" class="img img-fluid mx-auto" />
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- section 6-->
+        <section id="sh_corpomate_theme_section_52" data-name="About snippet 7">
+          <div class="container">
+            <h3 class="pb32 text-center js-scroll fade-in-top" style="max-width: 100%">
+            Les démarches administratives pour avoir la carte VTC PRO
+          </h3>
+            <div class="row js-scroll fade-in-top">
+              <div class="col-lg-4 col-md-4">
+                <div class="sh_content sh_animation_part">
+                  <div class="sh_number">
+                    <a href="/mcm_website_theme/static/pdf/DEMARCHES_D'INSCRIPTION_A_LA_CMA_-_MCM_ACADEMY.pdf" alt="DEMARCHES D'INSCRIPTION A LA CMA" title="DEMARCHES D'INSCRIPTION A LA CMA">
+                      <span class="sh_num o_default_snippet_text">01</span>
+                    </a>
+
+                  </div>
+                  <div class="sh_description">
+                    <h4 style="font-size: 18px">
+                    Déposer votre dossier d'inscription sur le site de la
+                    chambre des métiers et de l'artisanat.
+                  </h4>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-4 col-md-4">
+                <div class="sh_content sh_animation_part">
+                  <div class="sh_number">
+                    <a href="/mcm_website_theme/static/pdf/DEMARCHES_D'INSCRIPTION_SUR_LE_SITE_MCM_ACADEMY.pdf" title="DEMARCHES D'INSCRIPTION SUR LE SITE MCM ACADEMY">
+                      <span class="sh_num o_default_snippet_text">02</span>
+                    </a>
+                  </div>
+                  <div class="sh_description">
+                    <h4 style="font-size: 18px; padding-block-end: 21px">
+                    Souscrire sur notre site web à la formation taxi.
+                  </h4>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-4 col-md-4">
+                <div class="sh_content sh_animation_part">
+                  <div class="sh_number">
+                    <a href="/mcm_website_theme/static/pdf/Devenez_chauffeur_taxi_vtc_démarches_dépôt_dossier_préfecture.pdf" alt="Devenez chauffeur taxi vtc démarches dépôt dossier préfecture" title="démarches dépôt dossier préfecture">
+                      <span class="sh_num o_default_snippet_text">03</span>
+                    </a>
+
+                  </div>
+                  <div class="sh_description">
+                    <h4 style="font-size: 18px">
+                    Après la réussite de l'examen, déposer votre dossier à la
+                    préfecture pour obtenir votre carte professionnelle.
+                  </h4>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- section 8-->
+        <section class="s_text_image pt40 pb4" data-name="">
+          <div class="container">
+            <div class="pt16 pb16 js-scroll fade-in-top" style="text-align: center">
+              <h2 class="s_title_default">Formation chauffeur VTC</h2>
+            </div>
+            <div class="row align-items-center">
+              <div class="col-lg-6 pb24 pt0 js-scroll slide-left ">
+                <img data-src="/mcm_website_theme/static/src/img/formation_vtc/profil-candidat-chauffeur-vtc.webp" data-srcsafari="/mcm_website_theme/static/src/img/formation_vtc/profil-candidat-chauffeur-vtc.png" class="img img-fluid mx-auto" alt="Devenir chauffeur professionnel VTC" title="Chauffeur vtc dans sa voiture" style="text-align: center" src="/mcm_website_theme/static/src/img/formation_vtc/profil-candidat-chauffeur-vtc.webp" />
+              </div>
+              <div class="col-lg-6 js-scroll slide-right " style="border-style: none; border-width: 0px">
+                <h3 style="
+                  font-size: 26px;
+                  color: rgb(0, 0, 0);
+                  margin-block-end: 1.2rem;
+                ">
+                À qui s’adresse la formation VTC ?&amp;nbsp;
+              </h3>
+                <p class="para">
+                Notre formation VTC à distance concerne toute personne majeure
+                qui souhaite devenir entrepreneur, en reconversion
+                professionnelle, passionné par les métiers de transport, ayant
+                ces prérequis :&amp;nbsp;Permis B non probatoire de plus de 3
+                ans, une attestation d’aptitude&amp;nbsp; physique auprès d’un
+                médecin agréé par la préfecture, et un casier judiciaire B2 non
+                affecté de certaines condamnations.
+              </p>
+
+                <h3 style="
+                  font-size: 26px;
+                  color: rgb(0, 0, 0);
+                  margin-block-end: 1.2rem;
+                ">
+                Ses objectifs :
+              </h3>
+                <p class="para">
+                  Acquérir les savoirs, savoir-être et savoir-faire nécessaires à
+                la réussite de l’examen VTC et se préparer aux épreuves
+                d’admissibilité de l’examen VTC (théorie).
+                  <br />
+                </p>
+              </div>
+              <div class="s_title col-lg-12 pt24 pb0 js-scroll slide-right " style="text-align: center; border-style: none; border-width: 0px">
+                <div class="s_alert clearfix w-100 s_alert_sm alert-100" data-name="Alert">
+                  <i style="margin-top: 18px;" class="fa fa-2x fa-info-circle s_alert_icon" />
                   <div class="s_alert_content">
-                    <p style="text-align: left">
-                      Nos formations incluent les personnes en situation
-                      d'handicap. Bien entendu, nous restons à votre disposition
-                      pour répondre à toutes vos questions, en contactant notre
-                      référent handicap sur notre espace client accessible sur
-                      notre site web
+                    <p class="para text-left">
+                      Nos formations incluent les personnes en situation de
+                    handicap. Bien entendu, nous restons à votre disposition
+                    pour répondre à toutes vos questions, en contactant notre
+                    référent handicap sur notre espace client accessible sur
+                    notre site web
                       <a href="https://www.mcm-academy.fr/service-clientele" style="background-color: rgb(255, 255, 255)">
                         <span style="color: rgb(0, 0, 255)">par ici</span>
                       </a>
@@ -334,204 +326,111 @@
             </div>
           </div>
         </section>
-
-
-        <section id="sh_corpomate_theme_section_76">
-          <div class="container">
-            <div class="row js-scroll fade-in-top">
-              <div class="container pt16 pb16" style="border-style: none; border-width: 0px;">
-                <div class="col-lg-12 s_title pt24 pb16" style="text-align: center">
-                  <h3 class="font-weight-bold display-4 " style="font-size: 26px">
-                    Les étapes à suivre pour devenir chauffeur VTC
-                  </h3>
-                </div>
-              </div>
-              <div class="col-md-4 ">
-                <div class="sh_content">
-                  <div class="sh_num_icon">
-                    <span class="sh_icon">1</span>
-                  </div>
-                  <div class="feature_container">
-                    <h4 style="font-weight: 600; font-size:20px !important">
-                      1. Souscrire à la formation en ligne à la Chambre des
-                      Métiers et de l'Artisanat (CMA)
-                    </h4>
-                    <p class="font-weight-light my-3">
-                      Une inscription sur la plateforme de la Chambre
-                      des Métiers et de l'Artisanat (CMA) est obligatoire.
-                    </p>
-                    <div class="text-center" style="margin-block-end: 23px;">
-                      <a class="read_more" href="/mcm_website_theme/static/pdf/DEMARCHES_D'INSCRIPTION_A_LA_CMA_-_MCM_ACADEMY.pdf">
-                        En savoir plus
-                        <i class="fa fa-info-circle"></i>
-                      </a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="col-md-4 ">
-                <div class="sh_content sh_second_content">
-                  <div class="sh_num_icon">
-                    <span class="sh_icon">2</span>
-                  </div>
-                  <div class="feature_container">
-                    <h4 style="font-weight: 600; font-size:20px !important">
-                      2. Souscrire à la formation en ligne chez MCM Academy
-                    </h4>
-                    <p class="font-weight-light my-3">
-                      Inscription facile en 3 étapes : tout se passe sur notre site web.
-                    </p>
-                    <div class="text-center" style="margin-block-end: 23px;">
-                      <a class="read_more" href="/mcm_website_theme/static/pdf/DEMARCHES_D'INSCRIPTION_SUR_LE_SITE_MCM_ACADEMY.pdf">
-                        En savoir plus
-                        <i class="fa fa-info-circle"></i>
-                      </a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="col-md-4 ">
-                <div class="sh_content sh_last_content">
-                  <div class="sh_num_icon">
-                    <span class="sh_icon">3</span>
-                  </div>
-                  <div class="feature_container">
-                    <h4 style="font-weight: 600; font-size:20px !important">
-                      3. Déposer votre dossier à la préfecture pour obtenir votre carte professionnelle
-                    </h4>
-                    <p class="font-weight-light my-3">
-                      Une fois l’examen passé et votre certificat de réussite obtenu, il faut déposer un
-                      dossier
-                      à la préfecture.
-                    </p>
-                    <div class="text-center" style="margin-block-end: 23px;">
-                      <a class="read_more" href="/mcm_website_theme/static/pdf/Devenez_chauffeur_taxi_vtc_démarches_dépôt_dossier_préfecture.pdf">
-                        En savoir plus
-                        <i class="fa fa-info-circle"></i>
-                      </a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-        <!-- Telecharger-->
-        <section id="sh_corpomate_theme_section_167" class="sh_animation_part" data-name="Call To Action" style="background-color: rgb(253, 209, 5); margin : 76px 0px;">
-          <div class="container js-scroll fade-in-top">
-            <h3 style="color: rgb(0, 0, 0); font-size: 19px">
-              TÉLÉCHARGER LE PROGRAMME DE LA FORMATION VTC
-            </h3>
-
-            <a class="animated-button-black" href="/mcm_website_theme/static/pdf/programme_de_formation_MCM_ACADEMY_2021.pdf" title="Programme de la formation VTC">
-              <span></span>
-              <span></span>
-              <span></span>
-              <span></span>
-              JE TELECHARGE
+        <!-- section 9-->
+        <section id="sh_corpomate_theme_section_167" class="sh_animation_part" data-name="Call To Action" style="background-color: rgb(253, 209, 5); margin: 76px 0px">
+          <div class="container js-scroll fade-in-top ">
+            <h3 style="color: rgb(0, 0, 0); font-size: 19px; max-width:100%">
+            TÉLÉCHARGER LE PROGRAMME DE LA FORMATION VTC
+          </h3>
+            <a class="animated-button-black" target="_blank" href="/mcm_website_theme/static/pdf/PROGRAMME DE  FORMATION a distance de 70H TAXI ET VTC.pdf" title="Programme de la formation VTC" alt="">
+              <span />
+              <span />
+              <span />
+              <span />
+              JE TÉLÉCHARGE
             </a>
           </div>
         </section>
-        <!-- -->
-        <section class="s_text_image mt24 mb16" data-name="Image - Text">
+        <!-- section 10-->
+        <section class="s_text_image mt24 mb40" data-name="Image - Text">
           <div class="container">
             <div class="row align-items-center">
-
-              <div class="col-lg-6 js-scroll slide-right" style="border-style: none; border-width: 0px">
-                <h3 style="font-size: 26px; font-weight:700; color: #000; margin-block-end: 1.2rem; ">
-                  Déroulement de la formation VTC :
-                </h3>
-                <p>
-                  Une formation VTC à distance de 70 h :
+              <div class="col-lg-6 js-scroll slide-right " style="border-style: none; border-width: 0px">
+                <h3 style="
+                  font-size: 26px;
+                  color: rgb(0, 0, 0);
+                  margin-block-end: 1.2rem;
+                ">
+                Déroulement de la formation VTC :
+              </h3>
+                <p class="para">
+                  Notre
+                  <b> formation théorique VTC</b>
+                  se fait en ligne sur une plateforme e-learning assez simple
+                d'utilisation. La formation est de
+                  <b> 70 h</b>
+                  , durant laquelle vous allez pouvoir vous former sur les 7
+                matières sur lesquelles vous allez passer l'
+                  <b>examen théorique d'admissibilité</b>
+                  .
                 </p>
-
-                <ul class="fa-ul" style="font-size:16.5px; line-height: 1.5rem;">
-                  <li style=" padding-block-end: 20px;">
-                    <i class="fa fa-chevron-right" style="font-size: 13px; margin: 0px 7px 5px -17px"></i>
-                    Des vidéos préenregistrées bien détaillées
-                  </li>
-                  <li style=" padding-block-end: 20px;">
-                    <i class="fa fa-chevron-right" style="font-size: 13px; margin: 0px 7px 5px -17px"></i>
-                    Des programmes de révision bien étudiés par la préfecture
-                  </li>
-                  <li style=" padding-block-end: 20px;">
-                    <i class="fa fa-chevron-right" style="font-size: 13px; margin: 0px 7px 5px -17px"></i>
-                    Des "Lives" avec les formateurs pour les explications
-                  </li>
-                  <li style=" padding-block-end: 20px;">
-                    <i class="fa fa-chevron-right" style="font-size: 13px; margin: 0px 7px 5px -17px"></i>
-                    Du Assistance par mail, téléphone et visioconférence
-                  </li>
-                </ul>
+                <p class="para">
+                  La formation sera portée sur ces dernières, dont 5 matières sont
+                en
+                  <b>tronc commun Taxi VTC</b>
+                  &amp;nbsp;et 2 autres spécifiques au VTC. Les cours seront
+                présentés sous forme de vidéoconférences, et des Live avec les
+                formateurs.&amp;nbsp;
+                </p>
+                <p class="para">
+                  Pour pouvoir tester vos connaissances, vous aurez droit à la fin
+                de chaque matière à des
+                  <b>QCM</b>
+                  et des QCR (questions à réponses courtes) ainsi que des examens
+                blancs à passer ensuite à corriger avec votre tuteur. (Pour en
+                savoir plus, veuillez télécharger notre programme de formation).
+                </p>
               </div>
-              <div class="col-lg-6 pb24 pt0 js-scroll slide-left">
-                <img data-src="/mcm_website_theme/static/src/img/formation_vtc/formation-en-ligne-vtc.webp" data-srcSafari="/mcm_website_theme/static/src/img/formation_vtc/formation-en-ligne-vtc.png" class="img img-fluid mx-auto lazy" alt="Candidat vtc suit une formation en ligne sur pc" title="Candidat vtc suit une formation en ligne sur pc" style="text-align: center;" />
+              <div class="col-lg-6 pb24 pt0 js-scroll slide-left ">
+                <img data-src="/mcm_website_theme/static/src/img/formation_vtc/formation-en-ligne-vtc.webp" data-srcsafari="/mcm_website_theme/static/src/img/formation_vtc/formation-en-ligne-vtc.png" class="img img-fluid mx-auto" alt="Candidat vtc suit une formation en ligne sur pc" title="Candidat vtc suit une formation en ligne sur pc" style="text-align: center" src="/mcm_website_theme/static/src/img/formation_vtc/formation-en-ligne-vtc.webp" />
               </div>
             </div>
           </div>
         </section>
-        <!-- -->
-        <section class="s_text_image mt48 mb12" data-name="Image - Text">
+        <!-- section 11-->
+        <section id="sh_corpomate_theme_section_46 mt24 mb16" data-name="About Snippet 1">
           <div class="container">
-            <div class="row align-items-center">
-              <div class="col-lg-6 pb24 pt0 js-scroll slide-left">
-                <img data-src="/mcm_website_theme/static/src/img/formation_vtc/programme-de-formation-vtc.webp" data-srcSafari="/mcm_website_theme/static/src/img/formation_vtc/programme-de-formation-vtc.png" class="img img-fluid lazy" alt="Candidat suit sa formation vtc sur tablette" title="Candidat suit sa formation vtc sur tablette" style="text-align: center;" />
-              </div>
-              <div class="col-lg-6 js-scroll slide-right" style="border-style: none; border-width: 0px">
-                <h3 style="font-size: 26px; font-weight:700; color: #000; margin-block-end: 1.2rem; ">
-                  Les modules de la formation VTC
-                </h3>
-                <p>
-                  Pendant votre formation, nous allons vous apprendre à maîtriser les modules suivants :
-                </p>
-                <ul class="fa-ul" style="font-size:16.5px; line-height: 1.5rem;">
-                  <li style=" padding-block-end: 8px;">
-                    <i class="fa fa-chevron-right" style="    font-size: 13px; margin: 0px 7px 5px -17px;"></i>
-                    Réglementation du transport public particulier de personnes
-                  </li>
-                  <li style=" padding-block-end: 8px;">
-                    <i class="fa fa-chevron-right" style="    font-size: 13px; margin: 0px 7px 5px -17px;"></i>
-                    Sécurité routière
-                  </li>
-                  <li style=" padding-block-end: 8px;">
-                    <i class="fa fa-chevron-right" style="    font-size: 13px; margin: 0px 7px 5px -17px;"></i>
-                    Gestion
-                  </li>
-                  <li style=" padding-block-end: 8px;">
-                    <i class="fa fa-chevron-right" style="    font-size: 13px; margin: 0px 7px 5px -17px;"></i>
-                    Français
-                  </li>
-                  <li style=" padding-block-end: 8px;">
-                    <i class="fa fa-chevron-right" style="    font-size: 13px; margin: 0px 7px 5px -17px;"></i>
-                    Anglais
-                  </li>
-                  <li style=" padding-block-end: 8px;">
-                    <i class="fa fa-chevron-right" style="    font-size: 13px; margin: 0px 7px 5px -17px;"></i>
-                    Développement commercial
-                  </li>
-                  <li style=" padding-block-end: 8px;">
-                    <i class="fa fa-chevron-right" style="    font-size: 13px; margin: 0px 7px 5px -17px;"></i>
-                    Réglementation vtc
-                  </li>
-
-                  <div style="margin-block-start: 20px; margin-left: -39px;">
-
-
-                    <a href="/mcm_website_theme/static/pdf/programme_de_formation_MCM_ACADEMY_2021.pdf" target="_blank">
-                      <button class="button-more learn-more">
-                        <span class="circle">
-                          <span class="icon arrow"></span>
-                        </span>
-                        <span class="button-more-text">En savoir plus</span>
-                      </button>
+            <div class="row">
+              <div class="col-lg-6 js-scroll slide-left">
+                <div class="sh_img_video sh_animation_part">
+                  <div class="media_iframe_video" data-oe-expression="//www.youtube.com/embed/vLIr9mckz8M?autoplay=1&amp;mute=1&amp;rel=0&amp;loop=1&amp;playlist=vLIr9mckz8M&amp;modestbranding=1">
+                    <div class="css_editable_mode_display">&amp;nbsp;</div>
+                    <div class="media_iframe_video_size">&amp;nbsp;</div>
+                    <iframe src="//www.youtube.com/embed/vLIr9mckz8M?autoplay=1&amp;mute=1&amp;rel=0&amp;loop=1&amp;playlist=vLIr9mckz8M&amp;modestbranding=1" frameborder="0" allowfullscreen="allowfullscreen" />
+                  </div>
+                  <div class="sh_video">
+                    <a href="https://www.youtube.com/watch?v=O33uuBh6nXA" target="_blank" class="sh_video_play">
+                      <span class="fa fa-play" />
                     </a>
                   </div>
-                </ul>
+                </div>
+              </div>
+              <div class="col-lg-6 js-scroll slide-right" style="border-style: none; border-width: 0px">
+                <div class="sh_description sh_animation_part">
+                  <h2>COMMENT FINANCER MA FORMATION VTC ?</h2>
+                  <p class="para">
+                    <span style="color: rgb(0, 0, 0); letter-spacing: 0.3px">
+                      Chez MCM Academy, nous offrons à nos candidats la
+                    possibilité de financer leur formation VTC en mobilisant
+                    leurs
+                      <b>Compte de formation Personnel (CPF)</b>
+                      &amp;nbsp;comme expliqué dans cette vidéo.
+                    </span>
+                    <br />
+                    <span style="color: rgb(0, 0, 0); letter-spacing: 0.3px">Ou par autofinancement avec des modalités assez flexibles
+                    !&amp;nbsp;</span>
+                    <text color="#000000">
+                      <span style="letter-spacing: 0.3px">En répartissant votre paiement sur deux ou trois
+                      tranches.
+                    </span>
+                    </text>
+                    <br />
+                  </p>
+                </div>
               </div>
             </div>
           </div>
         </section>
-
 
         <div id="pricing" class="js-scroll fade-in-top">
           <input t-att-value="request.website.microsoft_tracking_key" id="microsoft_tracking_key" type="hidden" />
@@ -543,14 +442,10 @@
                   <b>Inscrivez-vous dès maintenant !</b>
                   <br />
                 </h2>
-                <h4 style="
-                    margin-top: 20px;
-                    margin-bottom: 0.5rem;
-                    font-size: 18px;
-                  ">
-                  Choisissez le pack qui vous convient&amp;nbsp;
-                </h4>
-                <p>
+                <h4 style="margin-top: 20px; margin-bottom: 0.5rem; font-size: 18px">
+                Choisissez le pack qui vous convient&amp;nbsp;
+              </h4>
+                <p class="para">
                   <br />
                 </p>
               </div>
@@ -575,9 +470,8 @@
                             <li>Assistance&amp;nbsp;par téléphone</li>
                             <li>Assistance&amp;nbsp;par visioconférence</li>
                             <li>
-                              Lives&amp;nbsp;avec les formateurs pour
-                              explications
-                            </li>
+                            Lives&amp;nbsp;avec les formateurs pour explications
+                          </li>
                             <li>Révision du programme avant examen</li>
                           </ul>
                           <div class="sh_btn">
@@ -589,6 +483,11 @@
                             <!-- <a class="btn btn-primary sh_btn_cm_8" data-original-title="" title="" aria-describedby="tooltip357369" onClick="(function(){document.getElementById('form-1-1').submit();return false;})();return false;">
                             Je m'inscris
                                                 </a> -->
+                            <div>
+                              <span style="color: red !important;font-size: 17px;font-weight: 600;">
+                                                            Paiement 1 ou 2 fois
+                              </span>
+                            </div>
 
                             <a class="animated-button-yellow" href="#pricing" onClick="(function(){packVtcPageFormationTaxi();document.getElementById('form-1-1').submit();return false;})();return false;">
                               <span></span>
@@ -597,7 +496,6 @@
                               <span></span>
                               Je m'inscris
                             </a>
-
                           </div>
                         </form>
                       </t>
@@ -609,55 +507,52 @@
           </section>
         </div>
         <!-- FIN PRICING TABLE-->
-        <section class="clients s_references bg-200 pt16 pb32 js-scroll fade-in-top " data-name="References">
-          <div class="container text-center">
-            <div class="center-logo">
-              <!-- <div t-if="partenaire=='' or not partenaire or partenaire=='bolt'">
+        <section class="clients s_references bg-200 pt16 pb16">
+          <center>
+            <div class="container js-scroll fade-in-top">
+              <div class="center-logo">
+                <!-- <div t-if="partenaire=='' or not partenaire or partenaire=='bolt'">
                                     <a href="https://www.digimoov.fr/" target="_blank" rel="noopner">
-                                        <img data-src="/mcm_website_theme/static/src/img/partenaires/digimoov.png" data-srcSafari="/mcm_website_theme/static/src/img/partenaires/digimoov.png" class="img img-fluid lazy" alt="Logo partenaire Digimoov" data-original-title="" title="Digimoov partenaire MCM ACADEMY" aria-describedby="tooltip843653" style="margin-top: 30px; width: 72%"/>
+                                        <img data-src="/mcm_website_theme/static/src/img/partenaires/digimoov.png" data-srcSafari="/mcm_website_theme/static/src/img/partenaires/digimoov.png" class="img img-fluid lazy" alt="Logo partenaire Digimoov"  title="Digimoov partenaire MCM ACADEMY" aria-describedby="tooltip843653" style="margin-top: 30px; width: 72%"/>
                                     </a>
                                 </div> -->
 
-              <div t-if="partenaire=='' or partenaire !='bolt'">
-                <a href="#">
-                  <img data-src="/mcm_website_theme/static/src/img/partenaires/cma.png" data-srcSafari="/mcm_website_theme/static/src/img/partenaires/cma.png" class="img img-fluid lazy" alt="Logo partenaire CMA" data-original-title="" title="CMA partenaire MCM ACADEMY" aria-describedby="tooltip623872" style="margin-top: 30px; width: 50%" />
-                </a>
-              </div>
+                <div t-if="partenaire=='' or partenaire !='bolt'">
+                  <a href="#">
+                    <img data-src="/mcm_website_theme/static/src/img/partenaires/cma.png" data-srcSafari="/mcm_website_theme/static/src/img/partenaires/cma.png" class="img img-fluid lazy" alt="Logo partenaire CMA" title="CMA partenaire MCM ACADEMY" aria-describedby="tooltip623872" style="margin-top: 30px; width: 35%" />
+                  </a>
+                </div>
 
-              <div t-if="partenaire=='' or not partenaire ">
-                <a href="https://bolt.eu/fr/" target="_blank" rel="noopner">
-                  <img data-src="/mcm_website_theme/static/src/img/partenaires/bolt.png" data-srcSafari="/mcm_website_theme/static/src/img/partenaires/bolt.png" class="img img-fluid lazy" alt="Logo partenaire bolt" data-original-title="" title="Bolt partenaire MCM ACADEMY" aria-describedby="tooltip843653" style="margin-top: 30px; width: 38%" />
-                </a>
-              </div>
-              <div t-if="partenaire=='bolt' ">
-                <a href="https://bolt.eu/fr/" target="_blank" rel="noopner">
-                  <img data-src="/mcm_website_theme/static/src/img/partenaires/Bolt_logo.svg.png" data-srcSafari="/mcm_website_theme/static/src/img/partenaires/Bolt_logo.svg.png" class="img img-fluid lazy" alt="Logo partenaire bolt" data-original-title="" title="Bolt partenaire MCM ACADEMY" aria-describedby="tooltip843653" style="margin-top: 30px; width: 38%" />
-                </a>
-              </div>
-              <div t-if="partenaire=='' or partenaire !='bolt'">
-                <a href="https://www.uber.com/fr/fr/">
-                  <img data-src="/mcm_website_theme/static/src/img/partenaires/uber.png" data-srcSafari="/mcm_website_theme/static/src/img/partenaires/uber.png" class="img img-fluid lazy" alt="Logo partenaire uber" data-original-title="" title="Uber partenaire MCM ACADEMY" aria-describedby="tooltip843653" style="margin-top: 30px; width: 50%" />
-                </a>
-              </div>
+                <!--                                <div t-if="partenaire=='' or not partenaire ">-->
+                <!--                                    <a href="https://bolt.eu/fr/" target="_blank" rel="noopner">-->
+                <!--                                        <img data-src="/mcm_website_theme/static/src/img/partenaires/bolt.png" data-srcSafari="/mcm_website_theme/static/src/img/partenaires/bolt.png" class="img img-fluid lazy" alt="Logo partenaire bolt"  title="Bolt partenaire MCM ACADEMY" aria-describedby="tooltip843653" style="margin-top: 30px; width: 38%" />-->
+                <!--                                    </a>-->
+                <!--                                </div>-->
+                <!-- <div t-if="partenaire=='bolt' ">
+                  <a href="https://bolt.eu/fr/" target="_blank" rel="noopner">
+                    <img data-src="/mcm_website_theme/static/src/img/partenaires/Bolt_logo.svg.png" data-srcSafari="/mcm_website_theme/static/src/img/partenaires/Bolt_logo.svg.png" class="img img-fluid lazy" alt="Logo partenaire bolt" title="Bolt partenaire MCM ACADEMY" aria-describedby="tooltip843653" style="margin-top: 30px; width: 38%" />
+                  </a>
+                </div> -->
+                <!-- <div t-if="partenaire=='' or partenaire !='bolt'">
+                                    <a href="https://www.uber.com/fr/fr/">
+                                        <img data-src="/mcm_website_theme/static/src/img/partenaires/uber.png" data-srcSafari="/mcm_website_theme/static/src/img/partenaires/uber.png" class="img img-fluid lazy" alt="Logo partenaire uber"  title="Uber partenaire MCM ACADEMY" aria-describedby="tooltip843653" style="margin-top: 30px; width: 50%"/>
+                                    </a>
+                                </div> -->
 
-              <div t-if="partenaire=='' or not partenaire ">
-                <a href="https://www.comptable-douai.com/" target="_blank" rel="noopner">
-                  <img data-src="/mcm_website_theme/static/src/img/partenaires/joel.png" data-srcSafari="/mcm_website_theme/static/src/img/partenaires/joel.png" class="img img-fluid lazy" alt="Logo partenaire Cabinet Comptable Joël Pruvost" data-original-title="" title="Cabinet Comptable Joël Pruvost partenaire Digimoov" aria-describedby="tooltip175558" style="margin-top: 30px; width: 68%" />
-                </a>
-              </div>
-              <div t-if="partenaire=='bolt'">
-                <a href="https://www.digimoov.fr/" target="_blank" rel="noopner">
-                  <img data-src="/mcm_website_theme/static/src/img/partenaires/digimoov.png" data-srcSafari="/mcm_website_theme/static/src/img/partenaires/digimoov.png" class="img img-fluid lazy" alt="Logo partenaire Digimoov" data-original-title="" title="Digimoov partenaire MCM ACADEMY" aria-describedby="tooltip843653" style="margin-top: 30px; width: 46%" />
-                </a>
+                <div t-if="partenaire=='' or not partenaire ">
+                  <a href="https://www.comptable-douai.com/" target="_blank" rel="noopner">
+                    <img data-src="/mcm_website_theme/static/src/img/partenaires/joel.png" data-srcSafari="/mcm_website_theme/static/src/img/partenaires/joel.png" class="img img-fluid lazy" alt="Logo partenaire Cabinet Comptable Joël Pruvost" title="Cabinet Comptable Joël Pruvost partenaire Digimoov" aria-describedby="tooltip175558" style="margin-top: 30px; width: 53%" />
+                  </a>
+                </div>
+                <!-- <div t-if="partenaire=='bolt'">
+                  <a href="https://www.digimoov.fr/" target="_blank" rel="noopner">
+                    <img data-src="/mcm_website_theme/static/src/img/partenaires/digimoov.png" data-srcSafari="/mcm_website_theme/static/src/img/partenaires/digimoov.png" class="img img-fluid lazy" alt="Logo partenaire Digimoov" title="Digimoov partenaire MCM ACADEMY" aria-describedby="tooltip843653" style="margin-top: 30px; width: 46%" />
+                  </a>
+                </div> -->
               </div>
             </div>
-
-          </div>
-
-
+          </center>
         </section>
-
-
       </div>
     </t>
   </template>
