@@ -362,7 +362,7 @@ function verify_payment_method() {
             break;
 
           default:
-            window.open('https://bit.ly/3nfkeHn', '_blank');
+            window.open('https://bit.ly/3452CaC', '_blank');
             msTracking(
               'clic sur mobiliser mon cpf vtc',
               'CPF',
