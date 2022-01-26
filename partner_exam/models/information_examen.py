@@ -155,7 +155,8 @@ class NoteExamen(models.Model):
             _logger.info('facture %s', client.partner_id.email)
             _logger.info('facture %s', facture.methodes_payment)
             if facture:
-                client.mode_de_financement = facture.methodes_payment
+                client.mode_de_financement = dict(facture._fields['methodes_payment'].selection).get(facture.methodes_payment)
+                print("client.mode_de_financement", client.mode_de_financement)
 
     """utiliser api wedof pour changer etat de dossier sur edof selon la presence le jour d'examen"""
     def change_etat_wedof(self):
