@@ -55,6 +55,17 @@ class NoteExamen(models.Model):
     this_is_exam_technical_field = fields.Boolean(readonly=True, default=True)
     temps_minute = fields.Integer(related="partner_id.temps_minute")
     sorti_formation =fields.Boolean(string="Sorti de formation")
+    is_recu = fields.Boolean(default=False)
+    is_ajournee = fields.Boolean(default=False)
+
+    @api.onchange('resultat')
+    def update_boolean_values(self):
+        for rec in self:
+            if rec.resultat == 'recu':
+                rec.is_recu = True
+                print("rec.is_recu", rec.is_recu)
+            if rec.resultat == 'ajourne':
+                rec.is_ajournee = True
 
     @api.onchange('partner_id', 'epreuve_a', 'epreuve_b', 'presence')
     def compute_moyenne_generale(self):
@@ -63,15 +74,12 @@ class NoteExamen(models.Model):
         for rec in self:
             rec.moyenne_generale = (rec.epreuve_a + rec.epreuve_b) / 2
             if rec.epreuve_a >= 10 and rec.epreuve_b >= 8 and rec.moyenne_generale >= 12 and rec.partner_id:
-                print("self.partner_id.resultat", self.partner_id.resultat)
                 rec.moyenne_generale = rec.moyenne_generale
                 rec.mention = 'recu'
                 rec.resultat = 'recu'
                 self.session_id = self.partner_id.mcm_session_id
                 self.date_exam = self.partner_id.mcm_session_id.date_exam
                 self.presence = 'present'
-                self.presence = dict(self._fields['presence'].selection).get(self.presence)
-                print("self.presence", self.presence)
                 self.ville_id = self.partner_id.mcm_session_id.session_ville_id.id
                 self.partner_id.presence = "Présent(e)"
                 self.partner_id.resultat = "Admis(e)"
@@ -149,7 +157,7 @@ class NoteExamen(models.Model):
 
     """ Mettre à jour le champ mode de financement selon la facture """
     def mise_ajour_mode_financement(self):
-        for client in self.env['info.examen'].search([], order='id DESC'):
+        for client in self:
             facture = self.env['account.move'].sudo().search([('partner_id', '=', client.partner_id.id),
                                                               ('state', "=", "posted"), ], limit=1)
             _logger.info('facture %s', client.partner_id.email)
