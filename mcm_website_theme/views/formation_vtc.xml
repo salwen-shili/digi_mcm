@@ -6,14 +6,14 @@
         <script defer="defer" type="text/javascript" src="/digimoov_website_templates/static/src/js/lazy-min.min.js" />
         <script type="text/javascript" src="/mcm_website_theme/static/src/js/msAds.min.js" />
         <link rel="stylesheet" href="/mcm_website_theme/static/src/css/cta-button.min.css" />
-        <link rel="stylesheet" href="/mcm_website_theme/static/src/css/style_taxi.css" />
+        <link rel="stylesheet" href="/mcm_website_theme/static/src/css/style_taxi.min.css" />
 
         <!-- section 1-->
         <section id="sh_corpomate_theme_section_258" class="sh_animation_part pt8" data-name="Formation chauffeur TAXI">
           <div class="container-banner">
             <div class="row">
               <div class="col-lg-6 pb16 pt56" style="border-style: none; border-width: 0px">
-                <div class="js-scroll slide-left scrolled">
+                <div class="js-scroll slide-left ">
                   <div class="text-center">
                     <h1 class="slider-text-info title-mcm">
                       Formation
@@ -45,7 +45,7 @@
                   </div>
                 </div>
               </div>
-              <div class="col-lg-6 pb48 pt16 js-scroll slide-right scrolled">
+              <div class="col-lg-6 pb48 pt16 js-scroll slide-right ">
                 <br />
                 <img data-src="/mcm_website_theme/static/src/img/formation_vtc/formation-chauffeur-vtc.webp" data-srcsafari="/mcm_website_theme/static/src/img/formation_vtc/formation-chauffeur-vtc.png" class="img img-fluid mx-auto" alt="Devenir chauffeur professionnel VTC, Taxi ou Moto-Taxi" data-original-title="" title="Chauffeur vtc devant sa voiture" aria-describedby="tooltip202025" style="text-align: center" src="/mcm_website_theme/static/src/img/formation_vtc/formation-chauffeur-vtc.webp" />
               </div>
@@ -53,7 +53,7 @@
           </div>
         </section>
         <!-- section 2 logos-->
-        <section class="container pt40 pb32 js-scroll fade-in-bottom scrolled">
+        <section class="container pt40 pb32 js-scroll fade-in-bottom ">
           <div class="row align-items-center justify-content-center">
             <div class="col-md-3 col-sm-12 text-center mb-4 mb-md-0">
               <img data-src="/mcm_website_theme/static/src/img/formation-éligible-au-compte-personnel-de-formation.webp" data-srcsafari="/mcm_website_theme/static/src/img/formation-éligible-au-compte-personnel-de-formation.png" class="img-fluid" style="width: 100px" title="Formation éligible au CPF" alt="logo mon compte de formation" src="/mcm_website_theme/static/src/img/formation-éligible-au-compte-personnel-de-formation.webp" />
@@ -73,10 +73,10 @@
         <section class="s_text_image pt32 pb32">
           <div class="container">
             <div class="row align-items-center">
-              <div class="col-lg-6 pt16 pb16">
+              <div class="col-lg-6 pt16 pb16 js-scroll slide-left">
                 <img src="/mcm_website_theme/static/src/img/formation_vtc/formation-vtc.png" class="img img-fluid mx-auto" alt="formation vtc" />
               </div>
-              <div class="col-lg-6 pt16 pb16" style="border-style: none; border-width: 0px">
+              <div class="col-lg-6 pt16 pb16 js-scroll slide-right">
                 <h2 style="max-width: 70%">c'est quoi un chauffeur vtc ?</h2>
                 <p class="para">
                   L’abréviation
@@ -99,7 +99,7 @@
         <section class="s_text_image pt32 pb32">
           <div class="container">
             <div class="row align-items-center">
-              <div class="col-lg-6 pt16 pb16">
+              <div class="col-lg-6 pt16 pb16 js-scroll slide-left">
                 <h2>COMMENT DEVENIR CHAUFFEUR VTC ?</h2>
                 <p class="para">
                   Pour devenir&amp;nbsp;
@@ -153,10 +153,14 @@
                 plateforme dédiée.
                 </p>
                 <div class="s_btn text-left pt16 pb16" data-name="Buttons">
-                  <a href="#" class="btn btn-primary" data-mci-spellchecked="true" spellcheck="false" data-original-title="" title="" aria-describedby="tooltip140276">Je m'inscris !</a>
+                  <a href="#pricing" alt="Je m'inscris  mcm-academy">
+                    <button class="home-btn">
+                       Je m'inscris !
+                    </button>
+                  </a>
                 </div>
               </div>
-              <div class="col-lg-6 pt16 pb16">
+              <div class="col-lg-6 pt16 pb16 js-scroll slide-right">
                 <img src="/mcm_website_theme/static/src/img/formation_vtc/candidat-chauffeur-vtc.png" class="img img-fluid mx-auto" />
               </div>
             </div>
@@ -166,7 +170,7 @@
         <!-- section 6-->
         <section id="sh_corpomate_theme_section_52" data-name="About snippet 7">
           <div class="container">
-            <h3 class="pb32 text-center" style="max-width: 100%">
+            <h3 class="pb32 text-center js-scroll fade-in-top" style="max-width: 100%">
             Les démarches administratives pour avoir la carte VTC PRO
           </h3>
             <div class="row js-scroll fade-in-top">
@@ -223,14 +227,14 @@
         <!-- section 8-->
         <section class="s_text_image pt40 pb4" data-name="">
           <div class="container">
-            <div class="pt16 pb16" style="text-align: center">
+            <div class="pt16 pb16 js-scroll fade-in-top" style="text-align: center">
               <h2 class="s_title_default">Formation chauffeur VTC</h2>
             </div>
             <div class="row align-items-center">
-              <div class="col-lg-6 pb24 pt0 js-scroll slide-left scrolled">
+              <div class="col-lg-6 pb24 pt0 js-scroll slide-left ">
                 <img data-src="/mcm_website_theme/static/src/img/formation_vtc/profil-candidat-chauffeur-vtc.webp" data-srcsafari="/mcm_website_theme/static/src/img/formation_vtc/profil-candidat-chauffeur-vtc.png" class="img img-fluid mx-auto" alt="Devenir chauffeur professionnel VTC" title="Chauffeur vtc dans sa voiture" style="text-align: center" src="/mcm_website_theme/static/src/img/formation_vtc/profil-candidat-chauffeur-vtc.webp" />
               </div>
-              <div class="col-lg-6 js-scroll slide-right scrolled" style="border-style: none; border-width: 0px">
+              <div class="col-lg-6 js-scroll slide-right " style="border-style: none; border-width: 0px">
                 <h3 style="
                   font-size: 26px;
                   color: rgb(0, 0, 0);
@@ -262,7 +266,7 @@
                   <br />
                 </p>
               </div>
-              <div class="s_title col-lg-12 pt24 pb0 js-scroll slide-right scrolled" style="text-align: center; border-style: none; border-width: 0px">
+              <div class="s_title col-lg-12 pt24 pb0 js-scroll slide-right " style="text-align: center; border-style: none; border-width: 0px">
                 <div class="s_alert clearfix w-100 s_alert_sm alert-100" data-name="Alert">
                   <i style="margin-top: 18px;" class="fa fa-2x fa-info-circle s_alert_icon" />
                   <div class="s_alert_content">
@@ -286,11 +290,11 @@
         </section>
         <!-- section 9-->
         <section id="sh_corpomate_theme_section_167" class="sh_animation_part" data-name="Call To Action" style="background-color: rgb(253, 209, 5); margin: 76px 0px">
-          <div class="container js-scroll fade-in-top scrolled">
+          <div class="container js-scroll fade-in-top ">
             <h3 style="color: rgb(0, 0, 0); font-size: 19px; max-width:100%">
             TÉLÉCHARGER LE PROGRAMME DE LA FORMATION VTC
           </h3>
-            <a class="animated-button-black" target="_blank" href="/mcm_website_theme/static/pdf/PROGRAMME DE  FORMATION a distance de 70H TAXI ET VTC.pdf" title="Programme de la formation VTC" data-mci-spellchecked="true" spellcheck="false">
+            <a class="animated-button-black" target="_blank" href="/mcm_website_theme/static/pdf/PROGRAMME DE  FORMATION a distance de 70H TAXI ET VTC.pdf" title="Programme de la formation VTC" alt="">
               <span />
               <span />
               <span />
@@ -303,7 +307,7 @@
         <section class="s_text_image mt24 mb40" data-name="Image - Text">
           <div class="container">
             <div class="row align-items-center">
-              <div class="col-lg-6 js-scroll slide-right scrolled" style="border-style: none; border-width: 0px">
+              <div class="col-lg-6 js-scroll slide-right " style="border-style: none; border-width: 0px">
                 <h3 style="
                   font-size: 26px;
                   color: rgb(0, 0, 0);
@@ -339,7 +343,7 @@
                 savoir plus, veuillez télécharger notre programme de formation).
                 </p>
               </div>
-              <div class="col-lg-6 pb24 pt0 js-scroll slide-left scrolled">
+              <div class="col-lg-6 pb24 pt0 js-scroll slide-left ">
                 <img data-src="/mcm_website_theme/static/src/img/formation_vtc/formation-en-ligne-vtc.webp" data-srcsafari="/mcm_website_theme/static/src/img/formation_vtc/formation-en-ligne-vtc.png" class="img img-fluid mx-auto" alt="Candidat vtc suit une formation en ligne sur pc" title="Candidat vtc suit une formation en ligne sur pc" style="text-align: center" src="/mcm_website_theme/static/src/img/formation_vtc/formation-en-ligne-vtc.webp" />
               </div>
             </div>
@@ -349,7 +353,7 @@
         <section id="sh_corpomate_theme_section_46 mt24 mb16" data-name="About Snippet 1">
           <div class="container">
             <div class="row">
-              <div class="col-lg-6">
+              <div class="col-lg-6 js-scroll slide-left">
                 <div class="sh_img_video sh_animation_part">
                   <div class="media_iframe_video" data-oe-expression="//www.youtube.com/embed/vLIr9mckz8M?autoplay=1&amp;mute=1&amp;rel=0&amp;loop=1&amp;playlist=vLIr9mckz8M&amp;modestbranding=1">
                     <div class="css_editable_mode_display">&amp;nbsp;</div>
@@ -363,7 +367,7 @@
                   </div>
                 </div>
               </div>
-              <div class="col-lg-6" style="border-style: none; border-width: 0px">
+              <div class="col-lg-6 js-scroll slide-right" style="border-style: none; border-width: 0px">
                 <div class="sh_description sh_animation_part">
                   <h2>COMMENT FINANCER MA FORMATION VTC ?</h2>
                   <p class="para">
