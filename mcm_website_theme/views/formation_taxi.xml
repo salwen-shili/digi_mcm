@@ -130,7 +130,10 @@
                     <b>épreuve d’admissibilité</b>
                   </p>
                   <div class="s_btn text-left pt16 pb16" data-name="Buttons">
-                    <a alt="inscription MCM academy fomration chauffeur de taxi en ligne" title="inscription à la formation chauffeur de taxi en ligne" href="/web/login" target="_blank" rel="noopener">
+                    <a t-if="request.website.is_public_user()==True" alt="inscription MCM academy fomration chauffeur de taxi en ligne" title="inscription à la formation chauffeur de taxi en ligne" href="/web/signup" target="_blank" rel="noopener">
+                      <button class="home-btn">Je m'inscris</button>
+                    </a>
+                    <a t-if="request.website.is_public_user()==False" alt="inscription MCM academy fomration chauffeur de taxi en ligne" title="inscription à la formation chauffeur de taxi en ligne" href="#pricing">
                       <button class="home-btn">Je m'inscris</button>
                     </a>
                   </div>
@@ -310,8 +313,11 @@
                 communication avec vos futurs clients.
                   </p>
 
-                  <a href="/web/signup" class="pt16 pb16" alt="inscription site MCM ACADEMY formation taxi vtc vmdtr">
-                    <button class="home-btn">JE M'INSCRIS !</button>
+                  <a t-if="request.website.is_public_user()==True" alt="inscription MCM academy fomration chauffeur de taxi en ligne" title="inscription à la formation chauffeur de taxi en ligne" href="/web/signup" target="_blank" rel="noopener">
+                    <button class="home-btn">Je m'inscris</button>
+                  </a>
+                  <a t-if="request.website.is_public_user()==False" alt="inscription MCM academy fomration chauffeur de taxi en ligne" title="inscription à la formation chauffeur de taxi en ligne" href="#pricing">
+                    <button class="home-btn">Je m'inscris</button>
                   </a>
                 </div>
                 <div class="col-lg-6 pt16 pb16 js-scroll slide-right">

@@ -1,7 +1,5 @@
 # -*- coding: utf-8 -*-
 # Part of Odoo. See LICENSE file for full copyright and licensing details.
-
-
 from odoo import api, fields, models, _
 from odoo.tools.float_utils import float_round
 import requests
@@ -12,7 +10,8 @@ from odoo.addons.payment.models.payment_acquirer import ValidationError
 from odoo.addons.payment_stripe.controllers.main import StripeController
 import pprint
 import psycopg2
-
+from datetime import datetime, timedelta, date
+from dateutil.relativedelta import relativedelta
 import logging
 _logger = logging.getLogger(__name__)
 # The following currencies are integer only, see https://stripe.com/docs/currencies#zero-decimal
@@ -22,9 +21,7 @@ INT_CURRENCIES = [
 ]
 class PaymentStripeAcquirer(models.Model):
     _inherit = "payment.transaction"
-
     stripe_sub_reference = fields.Char("Reference d'abonnement")
-
     """Heriter la methode qui fait le payment intent sur stripe et ajouter la partie de creation d'abonnement"""
     def stripe_s2s_do_transaction(self, **kwargs):
         for rec in self :
@@ -51,13 +48,11 @@ class PaymentStripeAcquirer(models.Model):
                     msg="Abonnement stripe non effectué "
                     self._set_transaction_error(msg)
                     return False
-
             else :
                 """Si non si un payement de la totalité de montant on garde le paiement Intent """
                 print("else ")
                 result = super(PaymentStripeAcquirer, self).stripe_s2s_do_transaction(**kwargs)
                 return result
-
     """creer un abonnement stripe avec api """
     def create_stripe_subsription(self,sale):
         if not self.payment_token_id.stripe_payment_method:
@@ -66,12 +61,18 @@ class PaymentStripeAcquirer(models.Model):
         """trouver le produit recurent sur stripe pour créer un abonnement  """
         nom_produit=sale.module_id.product_id.name
         id_produit=sale.module_id.product_id.id_stripe
-        print('name product', nom_produit)
+        """vérifier la valeur de instalment number 
+        et créer la date d'annulation d'abonnement """
+        instalment_number = (sale.instalment_number) - 1
+        print('name product instalment', nom_produit, instalment_number)
+        today=date.today()
+        canceled=str(today+ relativedelta(months=instalment_number)+ timedelta(days=1))
+        date_canceled= int(datetime.strptime(canceled, "%Y-%m-%d").timestamp())
         params = (('limit', '100'),)
         url = "products/%s" % (id_produit)
         data = self.acquirer_id._stripe_request(url, method="GET")
         prod = data.get('data', [])
-        print('product', data)
+        print('product',date_canceled)
         RECURRING_PRICE_ID=False
         data = self.acquirer_id._stripe_request('prices',data=params, method="GET")
         prices = data.get('data', [])
@@ -85,20 +86,28 @@ class PaymentStripeAcquirer(models.Model):
             subscription_data = {
                 'customer': self.payment_token_id.acquirer_ref,
                 'items[0][price]': RECURRING_PRICE_ID,
-                'default_payment_method': self.payment_token_id.stripe_payment_method
-
+                'default_payment_method': self.payment_token_id.stripe_payment_method,
+                'cancel_at':date_canceled
             }
-
             _logger.info('_create_stripe_subsription: Sending values to stripe, values:\n%s',
                          pprint.pformat(subscription_data))
-
             """créer un abonnement sur stripe"""
             res = self.acquirer_id._stripe_request('subscriptions', subscription_data)
-            if res.get('charges') and res.get('charges').get('total_count'):
-                res = res.get('charges').get('data')[0]
-
-            _logger.info('_create_stripe_subsription: Values received:\n%s', pprint.pformat(res))
-            return res
+            if res.get('id'):
+                _logger.info('_create_stripe_subsription: Values received:\n%s', pprint.pformat(res))
+                return res
+            else:
+                """si l'abonnement n'est pas créé on affiche erreur de paiement """
+                print('pas dabonnement')
+                stripe_error = res.get("failure_message") or res.get('error', {}).get('message')
+                _logger.error('Stripe: invalid reply received from stripe API, looks like '
+                              'the transaction failed. (error: %s)', stripe_error or 'n/a')
+                error_msg = _("We're sorry to report that the transaction has failed.")
+                if stripe_error:
+                    error_msg += " " + (_("Stripe gave us the following info about the problem: '%s'") %
+                                        stripe_error)
+                raise ValidationError(error_msg)
+            return False
         else :
             """si le produit est non trouvé, un message d'erreur sera affiché,la transaction passe à l'etat "error"
                         et un ticket sera créé pour service client et comptabilité  """
@@ -115,7 +124,6 @@ class PaymentStripeAcquirer(models.Model):
             description = "Erreur de paiement stripe " + str(sale.partner_id.name) + " " + str(sale.name)
             ticket = self.env['helpdesk.ticket'].sudo().search([("description", "=", description),
                                                                 ("team_id.name", 'like', 'Comptabilité')])
-
             if not ticket:
                 new_ticket = self.env['helpdesk.ticket'].sudo().create(
                     vals)
@@ -129,24 +137,17 @@ class PaymentStripeAcquirer(models.Model):
             description_client = "Erreur de paiement stripe " + str(sale.partner_id.name) + " " + str(sale.name)
             ticket = self.env['helpdesk.ticket'].sudo().search([("description", "=", description_client),
                                                                 ("team_id.name", 'like', 'Client')])
-
             if not ticket:
                 new_ticket = self.env['helpdesk.ticket'].sudo().create(
                     vals_client)
-
             return False
-
-
-
     def _stripe_s2s_validate_tree_subscription(self, tree):
         self.ensure_one()
         if self.state not in ("draft", "pending"):
             _logger.info('Stripe: trying to validate an already validated tx (ref %s)', self.reference)
             return True
-
         latest_invoice=tree.get('latest_invoice')
         print('latest invoice', latest_invoice,tree)
-
         tx_id = tree.get('id')
         subscription_id=tree.get('id')
         """recuperer le  paiement de cet abonnement pour recuperer les information de 1ere transaction"""
@@ -167,7 +168,6 @@ class PaymentStripeAcquirer(models.Model):
                 payment_method=pay.get('payment_method_options',[])
                 card=payment_method.get('card',[])
                 status=pay.get('status')
-
         vals = {
             "date": fields.datetime.now(),
             "acquirer_reference": tx_id,
@@ -189,7 +189,6 @@ class PaymentStripeAcquirer(models.Model):
                 }
                 token = self.acquirer_id.stripe_s2s_form_process(s2s_data)
                 self.payment_token_id = token.id
-
             if self.payment_token_id:
                 self.payment_token_id.verified = True
             return True
@@ -205,4 +204,3 @@ class PaymentStripeAcquirer(models.Model):
             error = tree.get("failure_message") or tree.get('error', {}).get('message')
             self._set_transaction_error(error)
             return False
-
