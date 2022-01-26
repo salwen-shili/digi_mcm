@@ -73,10 +73,10 @@
 
     <template id="mcm_website_sale_total" inherit_id="website_sale.total">
         <xpath expr="//tr[@id='order_total_taxes']" position="after">
-            <tr t-if="website_sale_order.instalment_number>1">
+            <tr t-if="website_sale_order.instalment_number>1 and website_sale_order.pricelist_id and website_sale_order.pricelist_id.id==1">
                 <td class="text-right border-0" id="order_instalment" style="display:block">
                     <label for="checkbox_instalment">
-                        <span>Payer montant sur </span>
+                        <span>Paiment en </span>
                         <span t-field="website_sale_order.instalment_number" style="white-space: nowrap;" />
                         <span> fois </span>
                     </label>
@@ -158,10 +158,7 @@
                         <span class="label"></span>
                         Carte de crédit
                         <span class="col-lg-12  " style=""></span>
-                        <t t-if="website_sale_order.amount_total>1000 and website_sale_order.company_id.id==1">
-                            <p style="font-style: italic;font-size: 12px;">Paiement en 1 ou 3 fois sans frais</p>
-                        </t>
-                        <t t-if="website_sale_order.instalment_number>1 and website_sale_order.company_id.id==2">
+                        <t t-if="website_sale_order.instalment_number>1 and website_sale_order.pricelist_id.id==1">
                             <p style="font-style: italic;font-size: 12px; margin-bottom: 0rem !important;padding-left: 31px;">
                                 <span>Paiement en</span>
                                 <span t-field="website_sale_order.instalment_number"/>
