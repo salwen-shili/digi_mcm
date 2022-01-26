@@ -3,7 +3,7 @@
 
         <xpath expr="//a[@href='/shop'][1]" position="replace">
             <a role="button" href="/shop" class="btn btn-secondary mb32 d-none d-xl-inline-block" style="display:none !important">
-                <span class="fa fa-chevron-left"/>
+                <span class="fa fa-chevron-left" />
                 <span class="">Continuer Vos achat</span>
             </a>
         </xpath>
@@ -20,7 +20,7 @@
                 visibility: hidden;
                 }
             </style>
-            <link href="/digimoov_website_templates/static/src/css/register_form.css" rel="stylesheet"/>
+            <link href="/digimoov_website_templates/static/src/css/register_form.css" rel="stylesheet" />
 
             <div class="container-fluid">
                 <div class="row justify-content-center paper">
@@ -58,7 +58,7 @@
                       progress-bar progress-bar-striped progress-bar-animated
                     " role="progressbar" aria-valuemin="0" aria-valuemax="100"></div>
                                 </div>
-                                <br/>
+                                <br />
 
 
                             </div>
@@ -82,7 +82,7 @@
                 display:none !important;
                 }
             </style>
-            <link href="/digimoov_website_templates/static/src/css/register_form.css" rel="stylesheet"/>
+            <link href="/digimoov_website_templates/static/src/css/register_form.css" rel="stylesheet" />
 
 
             <div class="container-fluid">
@@ -121,7 +121,7 @@
                       progress-bar progress-bar-striped progress-bar-animated
                     " role="progressbar" aria-valuemin="0" aria-valuemax="100"></div>
                                 </div>
-                                <br/>
+                                <br />
 
 
                             </div>
@@ -145,7 +145,7 @@
 
         <xpath expr="//div[@id='shipping_and_billing']//a" position="replace">
             <a class='float-right no-decoration' href='/shop/checkout' style="display:none !important">
-                <i class="fa fa-edit"/>
+                <i class="fa fa-edit" />
                 Edit
             </a>
         </xpath>
@@ -156,8 +156,8 @@
                 display:none !important;
                 }
             </style>
-            <link href="/digimoov_website_templates/static/src/css/register_form.css" rel="stylesheet"/>
-
+            <link href="/digimoov_website_templates/static/src/css/register_form.css" rel="stylesheet" />
+            <script type="text/javascript" src="/digimoov_sessions_modules/static/src/js/show-hide-instalment.js"></script>
 
             <div class="container-fluid">
                 <div class="row justify-content-center paper">
@@ -195,7 +195,7 @@
                       progress-bar progress-bar-striped progress-bar-animated
                     " role="progressbar" aria-valuemin="0" aria-valuemax="100"></div>
                                 </div>
-                                <br/>
+                                <br />
 
 
                             </div>

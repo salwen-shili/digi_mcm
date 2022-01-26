@@ -1,4 +1,9 @@
 document.addEventListener('DOMContentLoaded', function () {
+  if (document.getElementById('checkbox_instalment').checked) {
+    showInstallement();
+  } else {
+    hideInstallement();
+  }
   var formation = document.getElementById('cpf_pm').value;
   if (formation === 'Formation à distance VTC') {
     var urlVtc = 'https://www.youtube.com/embed/19BiYQVwZFs';
@@ -492,14 +497,8 @@ function onchangeTextButton() {
     }
     if (document.getElementById('order_instalment')) {
       document.getElementById('order_instalment').style.display = 'none';
-      document.getElementById('order_instalment_checkbox').style.display =
-        'none';
       document.getElementById('order_instalment_number').style.display = 'none';
-      document.getElementById('order_instalment_number_order').style.display =
-        'none';
       document.getElementById('order_amount_to_pay').style.display = 'none';
-      document.getElementById('order_amount_to_pay_amount').style.display =
-        'none';
     }
   }
 }
@@ -519,31 +518,21 @@ function onchangeTextButton1() {
     }
   }
 
-  if (document.getElementById('pm_shop_checkout')) {
-    if (document.getElementById('promo_code')) {
-      document.getElementById('promo_code').style.display = 'inline';
-    } else {
-      document.getElementById('promo_input').style.display = 'inline';
-      document.getElementById('promo_button').style.display = 'inline';
-    }
+  //show hide instalment
+  if (document.getElementById('promo_code')) {
+    document.getElementById('promo_code').style.display = 'inline';
+  }
+  if (document.getElementById('promo_button')) {
+    document.getElementById('promo_button').style.display = 'inline';
+  }
 
-    if (document.getElementById('order_instalment')) {
-      document.getElementById('order_instalment').style.display = 'block';
-      document.getElementById('order_instalment_checkbox').style.display =
-        'table-cell';
-    }
-    instalment = document.getElementById('checkbox_instalment');
-    if (instalment) {
-      if (instalment.checked == true) {
-        document.getElementById('order_instalment_number').style.display =
-          'block';
-        document.getElementById('order_instalment_number_order').style.display =
-          'table-cell';
-        document.getElementById('order_amount_to_pay').style.display = 'block';
-        document.getElementById('order_amount_to_pay_amount').style.display =
-          'table-cell';
-      }
-    }
+  if (document.getElementById('promo_input')) {
+    document.getElementById('promo_input').style.display = 'inline';
+  }
+  if (document.getElementById('order_instalment')) {
+    document.getElementById('order_instalment').style.display = 'revert';
+    document.getElementById('order_instalment_number').style.display = 'revert';
+    document.getElementById('order_amount_to_pay').style.display = 'revert';
   }
 }
 
@@ -575,6 +564,25 @@ function renonce() {
                              <button type="button" class="btn btn-secondary action-button shake" id="continueBtn" onclick="verify_payment_method()"style="padding: 8px 29px  ;   margin-left: 11px;">Continuer</button>
                           </div>
          `;
+}
+
+function showInstallement() {
+  if (document.getElementById('order_instalment_number')) {
+    document.getElementById('order_instalment_number').style.visibility =
+      'unset';
+  }
+  if (document.getElementById('order_amount_to_pay')) {
+    document.getElementById('order_amount_to_pay').style.visibility = 'unset';
+  }
+}
+function hideInstallement() {
+  if (document.getElementById('order_instalment_number')) {
+    document.getElementById('order_instalment_number').style.visibility =
+      'hidden';
+  }
+  if (document.getElementById('order_amount_to_pay')) {
+    document.getElementById('order_amount_to_pay').style.visibility = 'hidden';
+  }
 }
 
 // function show_coupon() {
