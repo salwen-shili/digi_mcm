@@ -19,10 +19,9 @@
                   <div class="js-scroll slide-left">
                     <div class="text-center">
                       <h1 class="title-mcm slider-text-info">
-                        Formation Chauffeur
+                        Formation
                         <br />
-
-                        <span class="subtitle-mcm-formation">Taxi</span>
+                        <span class="subtitle-mcm-formation"> Taxi</span>
                       </h1>
                       <br />
                       <p class="para">
@@ -180,7 +179,7 @@
               <h3 style="color: rgb(0, 0, 0); font-size: 19px; max-width: 100%">
             TÉLÉCHARGER LE PROGRAMME DE LA FORMATION TAXI
           </h3>
-              <a class="animated-button-black" href="/mcm_website_theme/static/pdf/programme_de_formation_MCM_ACADEMY_2021.pdf" title="Programme de la formation TAXI" alt="Programme de la formation TAXI">
+              <a class="animated-button-black" href="/mcm_website_theme/static/pdf/PROGRAMME DE  FORMATION a distance de 70H TAXI ET VTC.pdf" title="Programme de la formation TAXI" alt="Programme de la formation TAXI">
                 <span />
                 <span />
                 <span />
@@ -463,7 +462,7 @@
 
                   <div t-if="partenaire=='' or partenaire !='bolt'">
                     <a href="#">
-                      <img data-src="/mcm_website_theme/static/src/img/partenaires/cma.png" data-srcSafari="/mcm_website_theme/static/src/img/partenaires/cma.png" class="img img-fluid lazy" alt="Logo partenaire CMA" title="CMA partenaire MCM ACADEMY" aria-describedby="tooltip623872" style="margin-top: 30px; width: 50%" />
+                      <img data-src="/mcm_website_theme/static/src/img/partenaires/cma.png" data-srcSafari="/mcm_website_theme/static/src/img/partenaires/cma.png" class="img img-fluid lazy" alt="Logo partenaire CMA" title="CMA partenaire MCM ACADEMY" aria-describedby="tooltip623872" style="margin-top: 30px; width: 35%" />
                     </a>
                   </div>
 
@@ -472,11 +471,11 @@
                   <!--                                        <img data-src="/mcm_website_theme/static/src/img/partenaires/bolt.png" data-srcSafari="/mcm_website_theme/static/src/img/partenaires/bolt.png" class="img img-fluid lazy" alt="Logo partenaire bolt"  title="Bolt partenaire MCM ACADEMY" aria-describedby="tooltip843653" style="margin-top: 30px; width: 38%" />-->
                   <!--                                    </a>-->
                   <!--                                </div>-->
-                  <div t-if="partenaire=='bolt' ">
-                    <a href="https://bolt.eu/fr/" target="_blank" rel="noopner">
-                      <img data-src="/mcm_website_theme/static/src/img/partenaires/Bolt_logo.svg.png" data-srcSafari="/mcm_website_theme/static/src/img/partenaires/Bolt_logo.svg.png" class="img img-fluid lazy" alt="Logo partenaire bolt" title="Bolt partenaire MCM ACADEMY" aria-describedby="tooltip843653" style="margin-top: 30px; width: 38%" />
-                    </a>
-                  </div>
+                  <!-- <div t-if="partenaire=='bolt' ">
+                  <a href="https://bolt.eu/fr/" target="_blank" rel="noopner">
+                    <img data-src="/mcm_website_theme/static/src/img/partenaires/Bolt_logo.svg.png" data-srcSafari="/mcm_website_theme/static/src/img/partenaires/Bolt_logo.svg.png" class="img img-fluid lazy" alt="Logo partenaire bolt" title="Bolt partenaire MCM ACADEMY" aria-describedby="tooltip843653" style="margin-top: 30px; width: 38%" />
+                  </a>
+                </div> -->
                   <!-- <div t-if="partenaire=='' or partenaire !='bolt'">
                                     <a href="https://www.uber.com/fr/fr/">
                                         <img data-src="/mcm_website_theme/static/src/img/partenaires/uber.png" data-srcSafari="/mcm_website_theme/static/src/img/partenaires/uber.png" class="img img-fluid lazy" alt="Logo partenaire uber"  title="Uber partenaire MCM ACADEMY" aria-describedby="tooltip843653" style="margin-top: 30px; width: 50%"/>
@@ -485,14 +484,14 @@
 
                   <div t-if="partenaire=='' or not partenaire ">
                     <a href="https://www.comptable-douai.com/" target="_blank" rel="noopner">
-                      <img data-src="/mcm_website_theme/static/src/img/partenaires/joel.png" data-srcSafari="/mcm_website_theme/static/src/img/partenaires/joel.png" class="img img-fluid lazy" alt="Logo partenaire Cabinet Comptable Joël Pruvost" title="Cabinet Comptable Joël Pruvost partenaire Digimoov" aria-describedby="tooltip175558" style="margin-top: 30px; width: 68%" />
+                      <img data-src="/mcm_website_theme/static/src/img/partenaires/joel.png" data-srcSafari="/mcm_website_theme/static/src/img/partenaires/joel.png" class="img img-fluid lazy" alt="Logo partenaire Cabinet Comptable Joël Pruvost" title="Cabinet Comptable Joël Pruvost partenaire Digimoov" aria-describedby="tooltip175558" style="margin-top: 30px; width: 53%" />
                     </a>
                   </div>
-                  <div t-if="partenaire=='bolt'">
-                    <a href="https://www.digimoov.fr/" target="_blank" rel="noopner">
-                      <img data-src="/mcm_website_theme/static/src/img/partenaires/digimoov.png" data-srcSafari="/mcm_website_theme/static/src/img/partenaires/digimoov.png" class="img img-fluid lazy" alt="Logo partenaire Digimoov" title="Digimoov partenaire MCM ACADEMY" aria-describedby="tooltip843653" style="margin-top: 30px; width: 46%" />
-                    </a>
-                  </div>
+                  <!-- <div t-if="partenaire=='bolt'">
+                  <a href="https://www.digimoov.fr/" target="_blank" rel="noopner">
+                    <img data-src="/mcm_website_theme/static/src/img/partenaires/digimoov.png" data-srcSafari="/mcm_website_theme/static/src/img/partenaires/digimoov.png" class="img img-fluid lazy" alt="Logo partenaire Digimoov" title="Digimoov partenaire MCM ACADEMY" aria-describedby="tooltip843653" style="margin-top: 30px; width: 46%" />
+                  </a>
+                </div> -->
                 </div>
               </div>
             </center>
