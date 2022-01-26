@@ -149,7 +149,7 @@ class NoteExamen(models.Model):
 
     """ Mettre à jour le champ mode de financement selon la facture """
     def mise_ajour_mode_financement(self):
-        for client in self.env['info.examen']:
+        for client in self.env['info.examen'].search([], order='id DESC'):
             facture = self.env['account.move'].sudo().search([('partner_id', '=', client.partner_id.id),
                                                               ('state', "=", "posted"), ], limit=1)
             _logger.info('facture %s', client.partner_id.email)
