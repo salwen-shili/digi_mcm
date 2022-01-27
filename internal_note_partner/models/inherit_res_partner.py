@@ -24,7 +24,7 @@ class InheritResPartner(models.Model):
 
     @api.onchange('note_exam_id')
     def update_boolean_values_partner(self):
-        for rec in self.env['res.partner'].search([('statut', "=", 'won')], order='id DESC', ):
+        for rec in self.env['res.partner'].search([('statut', "=", 'won')], order='id DESC', limit=200):
             if rec.resultat == 'Admis(e)':
                 rec.is_recu = True
             if rec.resultat == 'Ajourné(e)':
