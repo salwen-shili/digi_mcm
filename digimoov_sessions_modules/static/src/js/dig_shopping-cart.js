@@ -1,9 +1,5 @@
 document.addEventListener('DOMContentLoaded', function () {
-  if (document.getElementById('checkbox_instalment').checked) {
-    showInstallement();
-  } else {
-    hideInstallement();
-  }
+  displayInstalmentPayment();
   onchangeTextButton1();
   document
     .getElementById('checkbox_conditions')
@@ -29,6 +25,13 @@ document.addEventListener('DOMContentLoaded', function () {
   document
     .getElementById('cpf_video')
     .setAttribute('src', 'https://www.youtube.com/embed/PN7gVHdT7x4');
+
+  //event on click on checkbox paiement installment
+  document
+    .getElementById('checkbox_instalment')
+    .addEventListener('click', function () {
+      displayInstalmentPayment();
+    });
 });
 
 //animation
@@ -87,6 +90,7 @@ const sendData = (condition) => {
     .then((responseData) => {})
     .catch((err) => {});
 };
+
 //adduserplateform
 const addUserPlateform = () => {
   document.getElementById(
@@ -543,21 +547,25 @@ function onchangeTextButton() {
         document.getElementById('pm_shop_checkout').href =
           'https://bit.ly/3AcC579';
       }
-      if (document.getElementById('promo_code')) {
-        document.getElementById('promo_code').style.display = 'none';
-      }
-      if (document.getElementById('promo_button')) {
-        document.getElementById('promo_button').style.display = 'none';
-      }
-      if (document.getElementById('promo_input')) {
-        document.getElementById('promo_input').style.display = 'none';
-      }
-      if (document.getElementById('order_instalment')) {
-        document.getElementById('order_instalment').style.display = 'none';
-        document.getElementById('order_instalment_number').style.display =
-          'none';
-        document.getElementById('order_amount_to_pay').style.display = 'none';
-      }
+      // if (document.getElementById('promo_code')) {
+      //   document.getElementById('promo_code').style.display = 'none';
+      // }
+      // if (document.getElementById('promo_button')) {
+      //   document.getElementById('promo_button').style.display = 'none';
+      // }
+      // if (document.getElementById('promo_input')) {
+      //   document.getElementById('promo_input').style.display = 'none';
+      // }
+      // if (document.getElementById('order_instalment')) {
+      //   document.getElementById('order_instalment').style.display = 'none';
+      //   document.getElementById('order_instalment_number').style.display =
+      //     'none';
+      //   document.getElementById('order_amount_to_pay').style.display = 'none';
+      // }
+
+      // hide instalment
+      displayInstalmentPayment(); //hide instalment
+      displayPromo(); //hide promo
     }
   }
 
@@ -589,26 +597,28 @@ function onchangeTextButton1() {
       document.getElementById('arrow-down').classList.add('hide');
     }
   }
-  //show hide instalment
-  if (document.getElementById('promo_code')) {
-    document.getElementById('promo_code').style.display = 'inline';
-  }
-  if (document.getElementById('promo_button')) {
-    document.getElementById('promo_button').style.display = 'inline';
-  }
+  // //show hide instalment
+  displayInstalmentPayment(); //show instalment
+  displayPromo(); //show promo
+  // if (document.getElementById('promo_code')) {
+  //   document.getElementById('promo_code').style.display = 'inline';
+  // }
+  // if (document.getElementById('promo_button')) {
+  //   document.getElementById('promo_button').style.display = 'inline';
+  // }
 
-  if (document.getElementById('promo_input')) {
-    document.getElementById('promo_input').style.display = 'inline';
-  }
-  if (document.getElementById('order_instalment')) {
-    document.getElementById('order_instalment').style.display = 'revert';
-    document.getElementById('order_instalment_number').style.display = 'revert';
-    document.getElementById('order_amount_to_pay').style.display = 'revert';
-    document.getElementById('order_instalment').style.visibility = 'unset';
-    document.getElementById('order_instalment_number').style.visibility =
-      'unset';
-    document.getElementById('order_amount_to_pay').style.visibility = 'unset';
-  }
+  // if (document.getElementById('promo_input')) {
+  //   document.getElementById('promo_input').style.display = 'inline';
+  // }
+  // if (document.getElementById('order_instalment')) {
+  //   document.getElementById('order_instalment').style.display = 'revert';
+  //   document.getElementById('order_instalment_number').style.display = 'revert';
+  //   document.getElementById('order_amount_to_pay').style.display = 'revert';
+  //   document.getElementById('order_instalment').style.visibility = 'unset';
+  //   document.getElementById('order_instalment_number').style.visibility =
+  //     'unset';
+  //   document.getElementById('order_amount_to_pay').style.visibility = 'unset';
+  // }
 
   var stripe_pm = document.getElementById('stripe_pm');
   if (stripe_pm) {
@@ -635,24 +645,24 @@ function onchangeTextButton1() {
       }
     }
 
-    if (document.getElementById('promo_code')) {
-      document.getElementById('promo_code').style.display = 'inline';
-    } else {
-      document.getElementById('promo_input').style.display = 'inline';
-      document.getElementById('promo_button').style.display = 'inline';
-    }
-    if (document.getElementById('order_instalment')) {
-      document.getElementById('order_instalment').style.display = 'visible';
-    }
-    instalment = document.getElementById('checkbox_instalment');
-    if (instalment) {
-      if (instalment.checked == true) {
-        document.getElementById('order_instalment_number').style.display =
-          'visible';
-        document.getElementById('order_amount_to_pay').style.display =
-          'visible';
-      }
-    }
+    // if (document.getElementById('promo_code')) {
+    //   document.getElementById('promo_code').style.display = 'inline';
+    // } else {
+    //   document.getElementById('promo_input').style.display = 'inline';
+    //   document.getElementById('promo_button').style.display = 'inline';
+    // }
+    // if (document.getElementById('order_instalment')) {
+    //   document.getElementById('order_instalment').style.display = 'visible';
+    // }
+    // instalment = document.getElementById('checkbox_instalment');
+    // if (instalment) {
+    //   if (instalment.checked == true) {
+    //     document.getElementById('order_instalment_number').style.display =
+    //       'visible';
+    //     document.getElementById('order_amount_to_pay').style.display =
+    //       'visible';
+    //   }
+    // }
   }
 }
 function show_coupon() {
@@ -663,35 +673,88 @@ function show_coupon() {
     document.getElementById('promo_button').style.display = 'inline';
   }
 }
-function verify_checked() {
-  var x = document.getElementById('checkbox_instalment');
-  if (x) {
-    if (document.getElementById('checkbox_instalment').checked == true) {
-      document.getElementById('order_amount_to_pay').style.display = 'inline';
-      document.getElementById('order_instalment_number').style.display =
-        'inline';
-    } else {
-      document.getElementById('order_amount_to_pay').style.display = 'none';
-      document.getElementById('order_instalment_number').style.display = 'none';
-    }
-  }
-}
-//show hide instalment
-function showInstallement() {
+
+// display promo - instalment
+
+function showInstalment() {
   if (document.getElementById('order_instalment_number')) {
     document.getElementById('order_instalment_number').style.visibility =
       'unset';
   }
   if (document.getElementById('order_amount_to_pay')) {
     document.getElementById('order_amount_to_pay').style.visibility = 'unset';
+    document.getElementById('order_amount_to_pay').style.display = 'revert';
   }
 }
-function hideInstallement() {
+function hideInstalment() {
   if (document.getElementById('order_instalment_number')) {
     document.getElementById('order_instalment_number').style.visibility =
       'hidden';
   }
   if (document.getElementById('order_amount_to_pay')) {
     document.getElementById('order_amount_to_pay').style.visibility = 'hidden';
+  }
+}
+function displayInstalmentPayment() {
+  if (document.getElementById('order_instalment')) {
+    var orderInstalment = document.getElementById('order_instalment');
+    orderInstalment.style.visibility = 'unset';
+    orderInstalment.style.display = 'revert';
+    if (document.getElementById('checkbox_instalment')) {
+      var instalment = document.getElementById('checkbox_instalment').checked;
+      sendHttpRequest('POST', '/shop/payment/update_amount', {
+        params: {
+          instalment: instalment,
+        },
+      })
+        .then((responseData) => {
+          console.log('send instalment');
+        })
+        .catch((err) => {});
+      if (instalment) {
+        showInstalment();
+      } else {
+        hideInstalment();
+      }
+    }
+  }
+}
+function displayPromo() {
+  if (document.getElementById('stripe_pm')) {
+    if (document.getElementById('stripe_pm').checked) {
+      showPromo();
+    } else {
+      hidePromo();
+    }
+  }
+}
+function showPromo() {
+  if (document.getElementById('promo_code')) {
+    //when promo button is shown we don't need to show promo_code
+    if (document.getElementById('promo_button')) {
+      if (document.getElementById('promo_button').style.display != 'none') {
+        // document.getElementById('promo_code').style.display = 'none';
+      } else {
+        document.getElementById('promo_code').style.display = 'unset';
+      }
+    }
+  }
+  if (document.getElementById('promo_button')) {
+    document.getElementById('promo_button').style.display = 'inline';
+  }
+
+  if (document.getElementById('promo_input')) {
+    document.getElementById('promo_input').style.display = 'inline';
+  }
+}
+function hidePromo() {
+  if (document.getElementById('promo_code')) {
+    document.getElementById('promo_code').style.display = 'none';
+  }
+  if (document.getElementById('promo_button')) {
+    document.getElementById('promo_button').style.display = 'none';
+  }
+  if (document.getElementById('promo_input')) {
+    document.getElementById('promo_input').style.display = 'none';
   }
 }

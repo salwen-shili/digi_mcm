@@ -14,7 +14,7 @@ odoo.define('mcm_website_theme.mcm_website_sale', function (require) {
 
   publicWidget.registry.WebsiteSale.include({
     events: _.extend({}, publicWidget.registry.WebsiteSale.prototype.events, {
-      'click #checkbox_instalment': 'verify_check',
+      // 'click #checkbox_instalment': 'verify_check',
       // "click #checkbox_conditions": "verify_conditions",
       'click #checkbox_failures': 'verify_failures',
       'click #checkbox_accompagnement': 'verify_accompagnement',
@@ -31,51 +31,56 @@ odoo.define('mcm_website_theme.mcm_website_sale', function (require) {
         document.getElementById('promo_input').style.display = 'inline';
       }
     },
-    verify_check: function (ev) {
-      var self = this;
-      var instalment = false;
-      if (document.getElementById('checkbox_instalment').checked == true) {
-        instalment = true;
-        document.getElementById('order_amount_to_pay').style.visibility =
-          'visible';
-        if(document.getElementById('order_amount_to_pay_amount')){
-        document.getElementById('order_amount_to_pay_amount').style.visibility =
-          'visible';
-          }
-        if(document.getElementById('order_instalment_number')){
-        document.getElementById('order_instalment_number').style.visibility =
-          'visible'; }
-        if(document.getElementById('order_instalment_number_order')){
-        document.getElementById(
-          'order_instalment_number_order'
-        ).style.visibility = 'visible'; }
-      } else {
-        instalment = false;
-        document.getElementById('order_amount_to_pay').style.visibility =
-          'hidden';
-        if(document.getElementById('order_amount_to_pay_amount')){
-        document.getElementById('order_amount_to_pay_amount').style.visibility =
-          'hidden';
-          }
-        if(document.getElementById('order_instalment_number')){
-        document.getElementById('order_instalment_number').style.visibility =
-          'hidden';
-          }
-        if(document.getElementById('order_instalment_number_order')){
-        document.getElementById(
-          'order_instalment_number_order'
-        ).style.visibility = 'hidden'; }
-      }
+    // verify_check: function (ev) {
+    //   var self = this;
+    //   var instalment = false;
+    //   if (document.getElementById('checkbox_instalment').checked == true) {
+    //     instalment = true;
+    //     document.getElementById('order_amount_to_pay').style.visibility =
+    //       'visible';
+    //     if (document.getElementById('order_amount_to_pay_amount')) {
+    //       document.getElementById(
+    //         'order_amount_to_pay_amount'
+    //       ).style.visibility = 'visible';
+    //     }
+    //     if (document.getElementById('order_instalment_number')) {
+    //       document.getElementById('order_instalment_number').style.visibility =
+    //         'visible';
+    //     }
+    //     if (document.getElementById('order_instalment_number_order')) {
+    //       document.getElementById(
+    //         'order_instalment_number_order'
+    //       ).style.visibility = 'visible';
+    //     }
+    //   } else {
+    //     instalment = false;
+    //     document.getElementById('order_amount_to_pay').style.visibility =
+    //       'hidden';
+    //     if (document.getElementById('order_amount_to_pay_amount')) {
+    //       document.getElementById(
+    //         'order_amount_to_pay_amount'
+    //       ).style.visibility = 'hidden';
+    //     }
+    //     if (document.getElementById('order_instalment_number')) {
+    //       document.getElementById('order_instalment_number').style.visibility =
+    //         'hidden';
+    //     }
+    //     if (document.getElementById('order_instalment_number_order')) {
+    //       document.getElementById(
+    //         'order_instalment_number_order'
+    //       ).style.visibility = 'hidden';
+    //     }
+    //   }
 
-      this._rpc({
-        route: '/shop/payment/update_amount',
-        params: {
-          instalment: instalment,
-        },
-      }).then(function () {
-        return true;
-      });
-    },
+    //   this._rpc({
+    //     route: '/shop/payment/update_amount',
+    //     params: {
+    //       instalment: instalment,
+    //     },
+    //   }).then(function () {
+    //     return true;
+    //   });
+    // },
     verify_cpf: function (ev) {
       var self = this;
       var cpf = false;
@@ -100,16 +105,17 @@ odoo.define('mcm_website_theme.mcm_website_sale', function (require) {
             document.getElementById(
               'order_instalment_number'
             ).style.visibility = 'hidden';
-            if(document.getElementById('order_instalment_number_order')){
-            document.getElementById(
-              'order_instalment_number_order'
-            ).style.visibility = 'hidden'; }
+            if (document.getElementById('order_instalment_number_order')) {
+              document.getElementById(
+                'order_instalment_number_order'
+              ).style.visibility = 'hidden';
+            }
             document.getElementById('order_amount_to_pay').style.display =
               'none';
-            if(document.getElementById('order_amount_to_pay_amount')){
-            document.getElementById(
-              'order_amount_to_pay_amount'
-            ).style.display = 'none';
+            if (document.getElementById('order_amount_to_pay_amount')) {
+              document.getElementById(
+                'order_amount_to_pay_amount'
+              ).style.display = 'none';
             }
           }
 
