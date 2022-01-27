@@ -316,34 +316,69 @@
                     </div>
                 </section>
                 <!-- pricing table-->
+                <style>
+            
+             .blink-soft {
+            animation: blinker 1s linear infinite;
+            color:#fff900;
+            text-transform: uppercase;
+            font-size: 21px;
+            }
+            @keyframes blinker {
+            50% {
+                opacity: 0.1;
+            }
+            70%{
+            opacity: 1;
+            }
+            100%{
+            opacity: 1;
+            }
+            }
+            
+        .pricebar {
+        position: relative;
+      }
+      .pricebar::after {
+        content: " ";
+        display: block;
+        width: 100%;
+        border-top: 3px solid red;
+        height: 12px;
+        position: absolute;
+        bottom: 6px;
+        left: -3px;
+        transform: rotate(330deg);
+      }
+      
+            </style>
                 <div class="container pt64 pb32" id="pricing">
                     <div class="row" style="place-content: center;">
                         <div class="col-lg-6 col-md-8 col-sm-12">
-                            <div class="card border-0 shadow " style="border-radius: 25px 25px">
+                            <div class="card border-0 shadow" style="border-radius: 25px 25px">
                                 <div class="text-center text-white border-0" style="
-                                                            background-color: #6e209f;
-                                                            border-top-left-radius: 25px;
-                                                            border-top-right-radius: 25px;
-                                                        ">
+                    background-color: #6e209f;
+                    border-top-left-radius: 25px;
+                    border-top-right-radius: 25px;
+                  ">
                                     <br />
+
                                     <p>
                                         <strong style="color: white">
                                             <font style="font-size: 30px">SOLO</font>
                                         </strong>
                                     </p>
-                                    <p>
-                                        <b>Éligible au CPF</b>
+                                    <p class="blink-soft">
+                                        <b>Nouveau tarif 2022</b>
                                     </p>
                                     <br />
                                 </div>
                                 <t t-foreach="digimoov_products" t-as="product">
                                     <t t-if="product.default_code=='basique'">
-                                        <form action="/shop/cart/update" method="post" id="form-coursier2roues">
-                                            <input t-att-value="request.website.microsoft_tracking_key" id="microsoft_tracking_key" type="hidden" />
-
+                                        <form action="/shop/cart/update" method="post" id="form-1-1">
                                             <input type="hidden" class="product_id" name="product_id" t-att-value="product.id" />
                                             <input type="hidden" name="promo" t-att-value="promo.id" t-if="promo" />
-                                            <div class="card-body p-card-pricing" style="background-color: white">
+                                            <div class="card-body" style="background-color: white">
                                                 <ul class="list-unstyled">
                                                     <li class="mb-4">
                                                         <i class="fa fa-check-circle fa-lg mr-2 text-success" />
@@ -351,57 +386,113 @@
                                                     </li>
                                                     <li class="mb-4">
                                                         <i class="fa fa-check-circle fa-lg mr-2 text-success" />
-                                                        <b>Accès à 4 examens d'entrainement</b>
+                                                        <b>Examen final en présentiel</b>
+                                                    </li>
+                                                    <li class="mb-4">
+                                                        <i class="fa fa-check-circle fa-lg mr-2 text-success" />
+                                                        <b>Accès à 5 examens d'entraînement</b>
                                                     </li>
                                                     <li class="mb-4">
                                                         <i class="fa fa-check-circle fa-lg mr-2 text-success" />
                                                         <b>Assistance par mail</b>
                                                     </li>
                                                     <li class="mb-4">
-                                                        <i class="fa fa-check-circle fa-lg mr-2 text-success" />
-                                                        <b>Assistance par téléphone</b>
+                                                        <i class="fa fa-lg fa-times-circle mr-2 text-danger" />
+                                                        Assistance par téléphone
                                                     </li>
                                                     <li class="mb-4">
-                                                        <i class="fa fa-check-circle fa-lg mr-2 text-success" />
-                                                        <b>Révision du programme avant examen</b>
+                                                        <span class="fa fa-lg fa-times-circle mr-2 text-danger" style="font-size: 1.33333em" />
+                                                        Assistance par visioconférence
+                                                        <br />
                                                     </li>
                                                     <li class="mb-4">
-                                                        <i class="fa fa-check-circle fa-lg mr-2 text-success" />
-                                                        <b>Lives avec les formateurs pour explications</b>
+                                                        <i class="fa fa-lg fa-times-circle mr-2 text-danger" />
+                                                        Livre d’entrainement version électronique
                                                     </li>
                                                     <li class="mb-4">
-                                                        <i class="fa fa-check-circle fa-lg mr-2 text-success" />
-                                                        <b>Examen Final</b>
+                                                        <i class="fa fa-lg fa-times-circle mr-2 text-danger" />
+                                                        Directs pour explication avec les formateurs
+                                                    </li>
+                                                    <li class="mb-4">
+                                                        <i class="fa fa-lg fa-times-circle mr-2 text-danger" />
+                                                        Révision du programme avant examen &amp;nbsp;
+                                                                &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;
+                                                                &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;
+                                                                &amp;nbsp; &amp;nbsp; &amp;nbsp;
+                                                                &amp;nbsp;&amp;nbsp;
+                                                    </li>
+                                                    <li>
+                                                        <i />
                                                     </li>
                                                 </ul>
-                                                <div class="text-center ">
-
-                                                    <b style="font-size:60px !important; color:#000000" t-if="not promo">
-                                                        <span t-esc="round(product.list_price)" />
-                                                        <span t-esc="product.currency_id.symbol" />
-                                                    </b>
-                                                    <b style="font-size:60px !important; color:#000000" t-if="promo">
-                                                        <t t-foreach="promo.item_ids" t-as="item">
-                                                            <t t-if="item.product_id.id==product.id">
-                                                                <span t-esc="round(item.fixed_price)" />
-                                                                <span t-esc="product.currency_id.symbol" />
-                                                            </t>
-                                                        </t>
-                                                    </b>
-
-                                                </div>
                                                 <p class="
-                                                                medium
-                                                                text-center
-                                                                font-weight-bolder
-                                                                text-secondary
-                                                            " style="color: red !important">
-                                                                                            Paiement 1 fois
-                            </p>
+                            text-center
+                            font-weight-bolder
+                            text-dark
+                            h1
+                            display-4
+                            mb-0
+                          ">
+                                                    <font>
+                                                        <p class="
+                                text-center
+                                font-weight-bolder
+                                text-dark
+                                h1
+                                display-4
+                                mb-0
+                              " t-if="not promo">
+                                                            <span class="pricebar" style="color: black;font-size: 25px;font-weight: 500;">590 €</span>
+                                                            <span style="font-size: 3.5rem;
+    font-weight: 700;
+    line-height: 1.2;" t-esc="round(product.list_price)" />
+                                                            <span style="font-size: 3.5rem;
+    font-weight: 700;
+    line-height: 1.2;" t-esc="product.currency_id.symbol" />
+
+                                                        </p>
+                                                        <p class="
+                                text-center
+                                font-weight-bolder
+                                text-dark
+                                h1
+                                display-4
+                                mb-0
+                              " t-if="promo">
+                                                            <t t-foreach="promo.item_ids" t-as="item">
+                                                                <t t-if="item.product_id.id==product.id">
+                                                                    <span t-esc="round(item.fixed_price)" />
+                                                                    <span t-esc="product.currency_id.symbol" />
+                                                                </t>
+                                                            </t>
+                                                        </p>
+                                                    </font>
+                                                </p>
+                                                <t t-if="promo and promo.name!='box2home'">
+                                                    <p class="
+                              text-center
+                              font-weight-bolder
+                              text-secondary
+                            ">
+                                                        <b style="font-size: 80%">
+                                                            <t>avec le code</t>
+                                                            <t t-esc="promo.code" />
+                                                        </b>
+                                                    </p>
+                                                </t>
+                                                <p class="
+                            medium
+                            text-center
+                            font-weight-bolder
+                            text-secondary
+                          " style="color: red !important" t-if="not partenaire or partenaire==''">
+                                                            Paiement 1 ou 2 fois
+                                                        </p>
+
                                                 <br />
-                                                <button class="btn btn-block text-white" onClick="(function(){msTracking('clic sur inscrire pack solo carte bleu seulement','Pricing Table events','Inscrire pack solo carte bleu seulement','590'); document.getElementById('form-coursier2roues').submit();return false;})();return false;" style="background-color: #6e209f; border-radius: 25px">
-                                                                                            Je m'inscris
-                            </button>
+                                                <button class="btn btn-block text-white" onClick="(function(){msTracking('clic sur inscrire pack solo','Pricing Table events','Inscrire pack solo Homepage','590'); document.getElementById('form-1-1').submit();return false;})();return false;" style="background-color: #6e209f; border-radius: 25px">
+                                                            Je m'inscris
+                                                        </button>
                                             </div>
                                         </form>
                                     </t>
