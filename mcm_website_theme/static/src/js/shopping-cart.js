@@ -1,6 +1,9 @@
 document.addEventListener('DOMContentLoaded', function () {
   displayInstalmentPayment();
-  var formation = document.getElementById('cpf_pm').value;
+  var formation;
+  if (document.getElementById('cpf_pm')) {
+    formation = document.getElementById('cpf_pm').value;
+  }
   if (formation === 'Formation à distance VTC') {
     var urlVtc = 'https://www.youtube.com/embed/19BiYQVwZFs';
     document.getElementById('cpf_video').setAttribute('src', urlVtc);
@@ -42,6 +45,7 @@ document.addEventListener('DOMContentLoaded', function () {
   document
     .getElementById('checkbox_instalment')
     .addEventListener('click', function () {
+      console.log('bougalb');
       displayInstalmentPayment();
     });
 });
@@ -585,6 +589,7 @@ function hideInstalment() {
   }
 }
 function displayInstalmentPayment() {
+  console.log('here');
   if (document.getElementById('order_instalment')) {
     var orderInstalment = document.getElementById('order_instalment');
     orderInstalment.style.visibility = 'unset';
