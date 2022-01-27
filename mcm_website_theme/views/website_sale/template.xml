@@ -74,7 +74,7 @@
                 </td>
                 <td class="text-xl-right border-0">
 
-                    <input type="checkbox" id="checkbox_instalment" style="white-space: nowrap;" class="text-xl-right border-0" t-att-checked="website_sale_order.instalment" t-att-value="website_sale_order.instalment" />
+                    <input type="checkbox" id="checkbox_instalment" style="white-space: nowrap;" class="text-xl-right border-0" t-att-checked="website_sale_order.instalment" t-att-value="website_sale_order.instalment" onclick="displayInstalmentPayment()" />
                 </td>
             </tr>
             <body>
