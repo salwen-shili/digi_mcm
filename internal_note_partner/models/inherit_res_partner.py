@@ -17,13 +17,35 @@ class InheritResPartner(models.Model):
     resultat = fields.Char(readonly=True, store=True)
     nombre_de_passage = fields.Char(readonly=True, store=True)
     date_exam = fields.Date(related="mcm_session_id.date_exam", string="Date d'examen")
+    is_recu = fields.Boolean(default=False)
+    is_ajourne = fields.Boolean(default=False)
+    is_present = fields.Boolean(default=False)
+    is_Absent = fields.Boolean(default=False)
+    is_absence_justifiee = fields.Boolean(default=False)
+
+    @api.onchange('note_exam_id')
+    def update_boolean_values_partner(self):
+        for rec in self.env['res.partner'].search([('statut', "=", 'won')], order='id DESC', ):
+            if rec.resultat == 'Admis(e)':
+                rec.is_recu = True
+            if rec.resultat == 'Ajourné(e)':
+                rec.is_ajourne = True
+            if rec.presence == 'Présent(e)':
+                rec.is_present = True
+            if rec.presence == 'Absent(e)':
+                rec.is_Absent = True
+            if rec.presence == 'Absence justifiée':
+                rec.is_absence_justifiee = True
 
     def _get_last_presence_resultat_values(self):
         """ Function to get presence and resultat values of last session in tree partner view"""
-        for rec in self.env['res.partner'].sudo().search([('create_date', '<', date.today()), ('mcm_session_id', '!=', None), ('id', '=', self.id)]):
-            last_line = rec.env['info.examen'].sudo().search([('partner_id', "=", rec.id), ('date_exam', '<', date.today())], limit=1, order="id desc")
+        for rec in self.env['res.partner'].sudo().search(
+                [('create_date', '<', date.today()), ('mcm_session_id', '!=', None), ('id', '=', self.id)]):
+            last_line = rec.env['info.examen'].sudo().search(
+                [('partner_id', "=", rec.id), ('date_exam', '<', date.today())], limit=1, order="id desc")
             if len(rec.note_exam_id):
-                _logger.info('-------Cron Partner presence and resultat------- %s', rec.note_exam_id.partner_id.display_name)
+                _logger.info('-------Cron Partner presence and resultat------- %s',
+                             rec.note_exam_id.partner_id.display_name)
                 for line in last_line:
                     if line.presence == 'present':
                         rec.presence = "Présent(e)"

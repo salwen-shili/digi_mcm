@@ -22,11 +22,11 @@ class NoteExamen(models.Model):
     epreuve_a = fields.Float(string="Epreuve A(QCM):", track_visibility='always', group_operator='avg')
     epreuve_b = fields.Float(string="Epreuve B(QRO)", track_visibility='always', default=1, group_operator='avg')
     moyenne_generale = fields.Float(string="Moyenne Générale", track_visibility='always', store=True, group_operator='avg')
-    mention = fields.Selection(selection=[
-        ('recu', 'reçu'),
-        ('ajourne', 'ajourné')],
+    mention = fields.Selection([
+        ('recu', 'Reçu'),
+        ('ajourne', 'Ajourné')],
         string="Mention", default=False)
-    resultat = fields.Selection(selection=[
+    resultat = fields.Selection([
         ('recu', 'Reçu'),
         ('ajourne', 'Ajourné')], string="Résultat")
     date_exam = fields.Date(string="Date Examen", track_visibility='always')
@@ -36,12 +36,12 @@ class NoteExamen(models.Model):
         default=lambda self: self.env.company,
         required=False, readonly=False)
     nombre_de_passage = fields.Selection(selection=[
-        ('premier', 'premier'),
-        ('deuxieme', 'deuxième'),
-        ('troisieme', 'troisième')],
+        ('premier', 'Premier'),
+        ('deuxieme', 'Deuxième'),
+        ('troisieme', 'Troisième')],
         string="Nombre De Passage", default="premier")
 
-    presence = fields.Selection(selection=[
+    presence = fields.Selection([
         ('present', 'Présent'),
         ('Absent', 'Absent'),
         ('absence_justifiee', 'Absence justifiée')],
@@ -54,18 +54,27 @@ class NoteExamen(models.Model):
     # For automation action conditions use.
     this_is_exam_technical_field = fields.Boolean(readonly=True, default=True)
     temps_minute = fields.Integer(related="partner_id.temps_minute")
-    sorti_formation =fields.Boolean(string="Sorti de formation")
+    sorti_formation = fields.Boolean(string="Sorti de formation")
     is_recu = fields.Boolean(default=False)
-    is_ajournee = fields.Boolean(default=False)
+    is_ajourne = fields.Boolean(default=False)
+    is_present = fields.Boolean(default=False)
+    is_Absent = fields.Boolean(default=False)
+    is_absence_justifiee = fields.Boolean(default=False)
 
-    @api.onchange('resultat')
+    @api.onchange('resultat', 'partner_id')
     def update_boolean_values(self):
-        for rec in self:
+        for rec in self.env['info.examen'].search([], order='id DESC'):
             if rec.resultat == 'recu':
                 rec.is_recu = True
                 print("rec.is_recu", rec.is_recu)
             if rec.resultat == 'ajourne':
-                rec.is_ajournee = True
+                rec.is_ajourne = True
+            if rec.presence == 'present':
+                rec.is_present = True
+            if rec.presence == 'Absent':
+                rec.is_Absent = True
+            if rec.presence == 'absence_justifiee':
+                rec.is_absence_justifiee = True
 
     @api.onchange('partner_id', 'epreuve_a', 'epreuve_b', 'presence')
     def compute_moyenne_generale(self):
@@ -163,10 +172,12 @@ class NoteExamen(models.Model):
             _logger.info('facture %s', client.partner_id.email)
             _logger.info('facture %s', facture.methodes_payment)
             if facture:
-                client.mode_de_financement = dict(facture._fields['methodes_payment'].selection).get(facture.methodes_payment)
+                client.mode_de_financement = dict(facture._fields['methodes_payment'].selection).get(
+                    facture.methodes_payment)
                 print("client.mode_de_financement", client.mode_de_financement)
 
     """utiliser api wedof pour changer etat de dossier sur edof selon la presence le jour d'examen"""
+
     def change_etat_wedof(self):
         headers = {
             'accept': 'application/json',
@@ -213,7 +224,6 @@ class NoteExamen(models.Model):
                                           headers=headers, data=data1)
                 response = requests.post('https://www.wedof.fr/api/registrationFolders/' + externalId + '/serviceDone',
                                          headers=headers, data=data)
-                
 
                 _logger.info('terminate %s' % str(response1.status_code))
                 _logger.info('service done %s' % str(response.status_code))
@@ -222,12 +232,12 @@ class NoteExamen(models.Model):
                     _logger.info('if service done %s' % info_exam.partner_id.numero_cpf)
                     info_exam.partner_id.statut_cpf = "service_declared"
                     info_exam.sorti_formation = True
-                    info_exam.partner_id.date_cpf=lastupd
+                    info_exam.partner_id.date_cpf = lastupd
                     if product_id:
-                        info_exam.partner_id.id_edof=product_id.id_edof
-
+                        info_exam.partner_id.id_edof = product_id.id_edof
 
     """utiliser api wedof pour changer etat de dossier sur edof selon l'absence le jour d'examen"""
+
     def change_etat_wedof_absent(self):
         headers = {
             'accept': 'application/json',
@@ -299,11 +309,10 @@ class NoteExamen(models.Model):
                         """si statut est changé sur wedof on change statut_cpf sur fiche client """
                         _logger.info('if service done %s' % info_exam.partner_id.numero_cpf)
                         info_exam.partner_id.statut_cpf = "service_declared"
-                        info_exam.sorti_formation=True
+                        info_exam.sorti_formation = True
                         info_exam.partner_id.date_cpf = lastupd
                         if product_id:
                             info_exam.partner_id.id_edof = product_id.id_edof
-
 
     def update_session_examen(self):
         """ Mettre à jour le champ session selon condition de date examen = date examen de la session dans la fiche client"""
@@ -322,14 +331,21 @@ class NoteExamen(models.Model):
                 [('client_id', '=', self.partner_id.id), ('paiement', '!=', True)])
             if session_count == 1:
                 self.nombre_de_passage = "premier"
+                self.partner_id.nombre_de_passage = "Premier"
+                print(self.partner_id.nombre_de_passage)
             if session_count == 2:
                 self.nombre_de_passage = "deuxieme"
+                self.partner_id.nombre_de_passage = "Deuxième"
             if session_count == 3:
                 self.nombre_de_passage = "troisieme"
+                self.partner_id.nombre_de_passage = "Troisième"
             if session_count == 4:
                 self.nombre_de_passage = "premier"
+                self.partner_id.nombre_de_passage = "Premier"
             if session_count == 5:
                 self.nombre_de_passage = "deuxieme"
+                self.partner_id.nombre_de_passage = "Deuxième"
             if session_count == 6:
                 self.nombre_de_passage = "troisieme"
+                self.partner_id.nombre_de_passage = "Troisième"
         return res

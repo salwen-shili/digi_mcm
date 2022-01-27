@@ -18,9 +18,13 @@
                 <field name="last_internal_log" invisible="1"/>
             </xpath>
             <xpath expr="//form//sheet" position="inside">
+                <field name="is_recu" invisible="1"/>
+                <field name="is_ajourne" invisible="1"/>
+                <field name="is_present" invisible="1"/>
+                <field name="is_Absent" invisible="1"/>
+                <field name="is_absence_justifiee" invisible="1"/>
                 <field name="presence" invisible="1"/>
                 <field name="resultat" invisible="1"/>
-                <field name="nombre_de_passage" invisible="1"/>
                 <field name="date_exam" invisible="1"/>
             </xpath>
         </field>
@@ -31,12 +35,6 @@
         <field name="model">res.partner</field>
         <field name="inherit_id" ref="base.view_partner_tree"/>
         <field name="arch" type="xml">
-            <xpath expr="//tree" position="attributes">
-                <attribute name="decoration-danger">presence == 'Absent(e)'</attribute>
-                <attribute name="decoration-success">(presence == 'Présent(e)' and resultat == 'Admis(e)')</attribute>
-                <attribute name="decoration-warning">presence == 'Absence justifiee'</attribute>
-                <attribute name="decoration-warning">(presence == 'Présent(e)' and resultat == 'Ajourné(e)')</attribute>
-            </xpath>
             <xpath expr="//tree/field[@name='module_id']" position="before">
                 <field name="mcm_session_id" string="Session" optional="show"/>
                 <field name="date_exam" string="Date examen" optional="hide"/>
@@ -48,9 +46,15 @@
                 <field name="last_internal_log" widget="html" optional="show"/>
             </xpath>
             <xpath expr="//tree/field[@name='last_internal_log']" position="before">
-                <field name="presence" optional="show" />
-                <field name="resultat" optional="show"/>
-                <field name="nombre_de_passage" optional="show"/>
+                <field name="is_recu" invisible="1"/>
+                <field name="is_ajourne" invisible="1"/>
+                <field name="is_present" invisible="1"/>
+                <field name="is_Absent" invisible="1"/>
+                <field name="is_absence_justifiee" invisible="1"/>
+                <field name="presence" optional="show"
+                       options='{"fg_color": "green:is_present==True; red:is_Absent==True; #ff6600:is_absence_justifiee==True"}'/>
+                <field name="resultat" optional="show"
+                       options='{"fg_color": "green:is_recu==True; red:is_ajourne==True"}'/>
             </xpath>
             <xpath expr="//tree/field[@name='last_login']" position="replace">
                 <field name="last_login" optional="hide"/>
