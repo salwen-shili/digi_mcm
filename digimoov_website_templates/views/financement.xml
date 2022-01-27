@@ -442,15 +442,15 @@
                                         <strong style="color: white">PREMIUM</strong>
                                     </h2>
                                     <style>
-                                            .blink-soft {
-            animation: blinker 2s linear infinite;
-            color: #3ce732;
+                                             .blink-soft {
+            animation: blinker 1s linear infinite;
+            color:#fff900;
             text-transform: uppercase;
             font-size: 21px;
             }
             @keyframes blinker {
             50% {
-                opacity: 0.6;
+                opacity: 0.1;
             }
             70%{
             opacity: 1;
