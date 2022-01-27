@@ -1,7 +1,8 @@
 <odoo>
     <template id="digimoov_website_sale_total" inherit_id="website_sale.total">
+
         <xpath expr="//tr[@id='order_total_taxes']" position="after">
-            <tr id="order_instalment" t-if="website_sale_order.instalment_number>1 and website_sale_order.pricelist_id and website_sale_order.pricelist_id.id==1" style="visibility:visible">
+            <tr id="order_instalment" t-if="website_sale_order.instalment_number&gt;1 and website_sale_order.pricelist_id and website_sale_order.pricelist_id.id==1" style="visibility:visible">
                 <td class="text-right border-0">
                     <label for="checkbox_instalment">
                         <span>Paiement en </span>
@@ -30,10 +31,12 @@
                         <strong>Montant à payer:</strong>
                     </td>
                     <td class="text-xl-right">
-                        <strong t-field="website_sale_order.amount_to_pay" class="monetary_field" t-options='{"widget": "monetary", "display_currency": website_sale_order.pricelist_id.currency_id}' />
+                        <strong t-field="website_sale_order.amount_to_pay" class="monetary_field" t-options="{&quot;widget&quot;: &quot;monetary&quot;, &quot;display_currency&quot;: website_sale_order.pricelist_id.currency_id}" />
                     </td>
                 </tr>
             </body>
         </xpath>
+
+
     </template>
 </odoo>
