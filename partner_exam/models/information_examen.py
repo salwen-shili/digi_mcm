@@ -64,10 +64,9 @@ class NoteExamen(models.Model):
 
     @api.onchange('resultat', 'partner_id')
     def update_boolean_values(self):
-        for rec in self.env['info.examen'].search([], order='id DESC'):
+        for rec in self:
             if rec.resultat == 'recu':
                 rec.is_recu = True
-                print("rec.is_recu", rec.is_recu)
             if rec.resultat == 'ajourne':
                 rec.is_ajourne = True
             if rec.presence == 'present':
