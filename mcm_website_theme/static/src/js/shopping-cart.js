@@ -533,6 +533,10 @@ function onchangeTextButton1() {
     document.getElementById('order_instalment').style.display = 'revert';
     document.getElementById('order_instalment_number').style.display = 'revert';
     document.getElementById('order_amount_to_pay').style.display = 'revert';
+    document.getElementById('order_instalment').style.visibility = 'unset';
+    document.getElementById('order_instalment_number').style.visibility =
+      'unset';
+    document.getElementById('order_amount_to_pay').style.visibility = 'unset';
   }
 }
 
