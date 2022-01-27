@@ -20,11 +20,22 @@ class UpdateFieldFinancementWizard(models.TransientModel):
                                                            order="id desc")
             if examen:
                 if examen.nombre_de_passage == "premier":
-                    statut.nombre_de_passage = "Premier"
+                    statut.nombre_de_passage = "Premier" # affectation valeur "Premier" dans champ nombre de passage
                 if examen.nombre_de_passage == "deuxieme":
                     statut.nombre_de_passage = "Deuxième"
                 if examen.nombre_de_passage == "troisieme":
                     statut.nombre_de_passage = "Troisième"
+            # Remplir les champ boolean pour recuperer les couleur (vert,rouge et orange)
+            if statut.resultat == 'Admis(e)':
+                statut.is_recu = True
+            if statut.resultat == 'Ajourné(e)':
+                statut.is_ajourne = True
+            if statut.presence == 'Présent(e)':
+                statut.is_present = True
+            if statut.presence == 'Absent(e)':
+                statut.is_Absent = True
+            if statut.presence == 'Absence justifiée':
+                statut.is_absence_justifiee = True
 
 
 
