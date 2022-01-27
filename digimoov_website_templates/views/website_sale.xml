@@ -14,7 +14,7 @@
                     <input type="checkbox" id="checkbox_instalment" style="white-space: nowrap;" class="text-xl-right border-0" t-att-checked="website_sale_order.instalment" t-att-value="website_sale_order.instalment" />
                 </td>
             </tr>
-            <body onload="verify_checked()">
+            <body onload="displayInstalmentPayment()">
                 <tr id="order_instalment_number" style="visibility: hidden;">
                     <td class="text-right border-0">Tranches:</td>
                     <td class="text-xl-right border-0">
@@ -24,7 +24,7 @@
             </body>
         </xpath>
         <xpath expr="//tr[@id='order_total']" position="after">
-            <body onload="verify_checked()">
+            <body onload="displayInstalmentPayment()">
                 <tr id="order_amount_to_pay" style="visibility: hidden;">
                     <td class="text-right">
                         <strong>Montant à payer:</strong>
