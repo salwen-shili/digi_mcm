@@ -33,6 +33,11 @@
                                 <field name="epreuve_a"/>
                                 <field name="epreuve_b"/>
                                 <field name="moyenne_generale" style="background:#FFF0F5;"/>
+                                <field name="is_recu" invisible="1"/>
+                                <field name="is_ajourne" invisible="1"/>
+                                <field name="is_present" invisible="1"/>
+                                <field name="is_Absent" invisible="1"/>
+                                <field name="is_absence_justifiee" invisible="1"/>
                             </group>
                             <group name="statuts" string="Statut">
                                 <field name="presence"/>
@@ -67,12 +72,18 @@
                     <field name="mode_de_financement"/>
                     <field name="session_id"/>
                     <field name="date_exam"/>
-                    <field name="epreuve_a" avg="Moy.QCM" />
-                    <field name="epreuve_b" avg="Moy.QRO" />
+                    <field name="epreuve_a" avg="Moy.QCM"/>
+                    <field name="epreuve_b" avg="Moy.QRO"/>
                     <field name="moyenne_generale" avg="Moy.G"/>
                     <field name="mention"/>
-                    <field name="resultat"/>
-                    <field name="presence"/>
+                    <field name="is_recu" invisible="1"/>
+                    <field name="is_ajourne" invisible="1"/>
+                    <field name="is_present" invisible="1"/>
+                    <field name="is_Absent" invisible="1"/>
+                    <field name="is_absence_justifiee" invisible="1"/>
+                    <field name="resultat" options='{"fg_color": "green:is_recu==True; red:is_ajourne==True"}'/>
+                    <field name="presence"
+                           options='{"fg_color": "green:is_present==True; red:is_Absent==True; #ff6600:is_absence_justifiee==True"}'/>
                     <field name="nombre_de_passage"/>
                     <field name="sorti_formation" optional="hide"/>
                     <field name="temps_minute" optional="hide"/>
@@ -95,8 +106,8 @@
                     <separator/>
                     <filter string="Archived" name="inactive" domain="[('active', '=', False)]"/>
                     <group expand="1" string="Group By">
-                    <filter string="Résultat" name="resultat" context="{'group_by':'resultat'}"/>
-                    <filter string="Présence" name="presence" context="{'group_by':'presence'}"/>
+                        <filter string="Résultat" name="resultat" context="{'group_by':'resultat'}"/>
+                        <filter string="Présence" name="presence" context="{'group_by':'presence'}"/>
                     </group>
                 </search>
             </field>
