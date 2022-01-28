@@ -61,19 +61,36 @@ class NoteExamen(models.Model):
     is_Absent = fields.Boolean(default=False)
     is_absence_justifiee = fields.Boolean(default=False)
 
-    @api.onchange('resultat', 'partner_id')
+    @api.onchange('resultat', 'partner_id', 'presence')
     def update_boolean_values(self):
         for rec in self:
             if rec.resultat == 'recu':
                 rec.is_recu = True
-            if rec.resultat == 'ajourne':
+                rec.is_ajourne = False
+            if rec.resultat == 'ajourne' and rec.presence == 'present':
                 rec.is_ajourne = True
+                rec.is_recu = False
+                rec.is_Absent = True
+                rec.is_absence_justifiee = False
+            if rec.resultat == 'ajourne' and rec.presence == 'absence_justifiee':
+                rec.is_ajourne = True
+                rec.is_recu = False
+                rec.is_Absent = False
+                rec.is_absence_justifiee = True
             if rec.presence == 'present':
                 rec.is_present = True
-            if rec.presence == 'Absent':
+                rec.is_Absent = False
+                rec.is_absence_justifiee = False
+            if rec.presence == 'Absent' and rec.resultat == 'ajourne':
                 rec.is_Absent = True
-            if rec.presence == 'absence_justifiee':
-                rec.is_absence_justifiee = True
+                rec.is_ajourne = True
+                rec.is_present = False
+                rec.is_recu = False
+                rec.is_absence_justifiee = False
+            # if rec.presence == 'absence_justifiee':
+            #     rec.is_absence_justifiee = True
+            #     rec.is_recu = False
+            #     rec.is_Absent = False
 
     @api.onchange('partner_id', 'epreuve_a', 'epreuve_b', 'presence')
     def compute_moyenne_generale(self):
@@ -326,6 +343,7 @@ class NoteExamen(models.Model):
         # Add condition based on checkbox field paiement != True
         # to put auto value in "nombre de passage" based on sum of historic sessions
         if 'partner_id' in values or 'epreuve_a' in values:
+            self.update_boolean_values()
             session_count = self.env['partner.sessions'].search_count(
                 [('client_id', '=', self.partner_id.id), ('paiement', '!=', True)])
             if session_count == 1:
