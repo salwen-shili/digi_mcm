@@ -17,7 +17,7 @@
                                     <div class="js-scroll slide-left">
                                         <div class="text-center">
                                             <h1 class="slider-text-info title-mcm">
-                                                FORMATION VTC, TAXI et TAXI MOTO
+                                                FORMATION VTC TAXI MOTO-TAXI
                                                 <br />
                                                 <span class="subtitle-mcm"> 100 % en ligne </span>
                                             </h1>
@@ -68,17 +68,17 @@
                                     <img data-src="/mcm_website_theme/static/src/img/formation-éligible-au-compte-personnel-de-formation.webp" data-srcSafari="/mcm_website_theme/static/src/img/formation-éligible-au-compte-personnel-de-formation.png" class="img-fluid lazy" style="width: 100px;" title="Formation éligible au CPF" alt="logo mon compte de formation" />
                                 </div>
                                 <div class="pt32">
-                                    <img class="img-fluid lazy" style="width: 188px;" data-src="/mcm_website_theme/static/src/img/formation-taxi-vtc-certifiée-qualiopi.webp" data-srcSafari="/mcm_website_theme/static/src/img/formation-taxi-vtc-certifiée-qualiopi.png" title="qualiopi" alt="qualiopi" />
+                                    <img class="img-fluid lazy" style="width: 188px;" data-src="/mcm_website_theme/static/src/img/formation-taxi-vtc-certifiée-qualiopi.webp" data-srcSafari="/mcm_website_theme/static/src/img/formation-taxi-vtc-certifiée-qualiopi.png" title="MCM Academy centre agrée par Qualiopi" alt="qualiopi" />
                                 </div>
                                 <div class="pt32">
-                                    <img class="img-fluid lazy" style="width: 110px;" data-srcSafari="/mcm_website_theme/static/src/img/mcm academy-partenaire-france-relance.jpg" data-src="/mcm_website_theme/static/src/img/mcm academy-partenaire-france-relance.webp" title="logo france relance" alt="logo france relance" />
+                                    <img class="img-fluid lazy" style="width: 110px;" data-srcSafari="/mcm_website_theme/static/src/img/mcm academy-partenaire-france-relance.jpg" data-src="/mcm_website_theme/static/src/img/mcm academy-partenaire-france-relance.webp" title="France relance-MCM Academy" alt="France relance-MCM Academy" />
                                 </div>
 
                                 <div class="pt32">
                                     <img class="img-fluid lazy" style="width: 100px;" data-src="/mcm_website_theme/static/src/img/mcm academy-centre-de-formation-taxi-vtc-carte pro-préfecture.webp" data-srcSafari="/mcm_website_theme/static/src/img/mcm academy-centre-de-formation-taxi-vtc-carte pro-préfecture.png" title="Centre agrée de la préfecture" alt="Centre agrée de la préfecture" />
                                 </div>
                                 <div class="pt32">
-                                    <img class="img-fluid lazy" style="width:263px" data-srcSafari="/mcm_website_theme/static/src/img/logo-investir-avenir.png" data-src="/mcm_website_theme/static/src/img/logo-investir-avenir.webp" title="logo investir l'avenir" alt="logo investir l'avenir" />
+                                    <img class="img-fluid lazy" style="width:263px" data-srcSafari="/mcm_website_theme/static/src/img/logo-investir-avenir.png" data-src="/mcm_website_theme/static/src/img/logo-investir-avenir.webp" title="Investir dans vos compétences avec MCM Academy" alt="Investir dans vos compétences avec MCM Academy" />
                                 </div>
                             </div>
                         </div>
@@ -122,7 +122,7 @@
                       création de votre entreprise.
                     </p>
                                                 <div class="s_btn text-center pt16 pb16" data-name="Button">
-                                                    <a href="/formation-chauffeur-taxi" class="btn btn-warning sh_btn_cm_4 spacing-m-p" onclick='msTracking("clic sur Devenez chauffeur VTC homepage",                                                 "Homepage events",                                                 "Devenez chauffeur VTC homepage",                                                 2)' aria-describedby="tooltip762606">En savoir plus</a>
+                                                    <a href="/formation-taxi" class="btn btn-warning sh_btn_cm_4 spacing-m-p" onclick='msTracking("clic sur Devenez chauffeur VTC homepage",                                                 "Homepage events",                                                 "Devenez chauffeur VTC homepage",                                                 2)' aria-describedby="tooltip762606">En savoir plus</a>
                                                 </div>
                                             </div>
                                         </div>
@@ -676,48 +676,33 @@
                         </section>
                     </div>
                     <!-- FIN PRICING TABLE-->
-                    <section class="clients s_references bg-200 pt16 pb16">
-                        <center>
-                            <div class="container js-scroll fade-in-top">
-                                <div class="center-logo">
-                                    <!-- <div t-if="partenaire=='' or not partenaire or partenaire=='bolt'">
+                    <!-- partenaires-->
+                    <section class="pt40 pb32">
+                        <div class="container js-scroll fade-in-top">
+                            <div class="center-logo">
+                                <div class="pt32" t-if="partenaire=='bolt'  or partenaire !='bolt'">
+                                    <a href="https://bolt.eu/fr/" target="_blank" rel="noopner">
+                                        <img data-src="/mcm_website_theme/static/src/img/logos/logo-bolt.png" data-srcSafari="/mcm_website_theme/static/src/img/logos/logo-bolt.png" class="img-fluid lazy" style="width: 100px; margin-top: 25px" alt="Logo partenaire MCM-ACADEMY" title="Bolt partenaire MCM ACADEMY" />
+                                    </a>
+                                </div>
+                                <div class="pt32" t-if="partenaire=='bolt'  or partenaire !='bolt'">
                                     <a href="https://www.digimoov.fr/" target="_blank" rel="noopner">
-                                        <img data-src="/mcm_website_theme/static/src/img/partenaires/digimoov.png" data-srcSafari="/mcm_website_theme/static/src/img/partenaires/digimoov.png" class="img img-fluid lazy" alt="Logo partenaire Digimoov"  title="Digimoov partenaire MCM ACADEMY" aria-describedby="tooltip843653" style="margin-top: 30px; width: 72%"/>
+                                        <img class="img-fluid lazy" style="width: 94px" data-src="/mcm_website_theme/static/src/img/logos/logo-digimoov.png" data-srcSafari="/mcm_website_theme/static/src/img/logos/logo-digimoov.png" alt="Logo partenaire Digimoov" title="Digimoov partenaire MCM ACADEMY" />
                                     </a>
-                                </div> -->
-                                    <div t-if="partenaire=='' or partenaire !='bolt'">
-                                        <a href="#">
-                                            <img data-src="/mcm_website_theme/static/src/img/partenaires/cma.png" data-srcSafari="/mcm_website_theme/static/src/img/partenaires/cma.png" class="img img-fluid lazy" alt="Logo partenaire CMA" title="CMA partenaire MCM ACADEMY" aria-describedby="tooltip623872" style="margin-top: 30px; width: 31%" />
-                                        </a>
-                                    </div>
-                                    <!--                                <div t-if="partenaire=='' or not partenaire ">-->
-                                    <!--                                    <a href="https://bolt.eu/fr/" target="_blank" rel="noopner">-->
-                                    <!--                                        <img data-src="/mcm_website_theme/static/src/img/partenaires/bolt.png" data-srcSafari="/mcm_website_theme/static/src/img/partenaires/bolt.png" class="img img-fluid lazy" alt="Logo partenaire bolt"  title="Bolt partenaire MCM ACADEMY" aria-describedby="tooltip843653" style="margin-top: 30px; width: 38%" />-->
-                                    <!--                                    </a>-->
-                                    <!--                                </div>-->
-                                    <div t-if="partenaire=='bolt'  or partenaire !='bolt'">
-                                        <a href="https://bolt.eu/fr/" target="_blank" rel="noopner">
-                                            <img data-src="/mcm_website_theme/static/src/img/partenaires/bolt.png" data-srcSafari="/mcm_website_theme/static/src/img/partenaires/Bolt_logo.svg.png" class="img img-fluid lazy" alt="Logo partenaire bolt" title="Bolt partenaire MCM ACADEMY" aria-describedby="tooltip843653" style="margin-top: 30px; width: 31%" />
-                                        </a>
-                                    </div>
-                                    <!-- <div t-if="partenaire=='' or partenaire !='bolt'">
-                                    <a href="https://www.uber.com/fr/fr/">
-                                        <img data-src="/mcm_website_theme/static/src/img/partenaires/uber.png" data-srcSafari="/mcm_website_theme/static/src/img/partenaires/uber.png" class="img img-fluid lazy" alt="Logo partenaire uber"  title="Uber partenaire MCM ACADEMY" aria-describedby="tooltip843653" style="margin-top: 30px; width: 50%"/>
+                                </div>
+                                <div class="pt32" t-if="partenaire=='' or partenaire !='bolt'">
+                                    <a href="https://www.artisanat.fr/">
+                                        <img class="img-fluid lazy" style="width: 100px" data-srcSafari="/mcm_website_theme/static/src/img/logos/logo-CMA.png" data-src="/mcm_website_theme/static/src/img/logos/logo-CMA.png" title="Chambre de métiers et de l'artisanat partenaire MCM ACADEMY" alt="Chambre de métiers et de l'artisanat partenaire MCM ACADEMY" />
                                     </a>
-                                </div> -->
-                                    <div t-if="partenaire=='' or not partenaire ">
-                                        <a href="https://www.comptable-douai.com/" target="_blank" rel="noopner">
-                                            <img data-src="/mcm_website_theme/static/src/img/partenaires/joel.png" data-srcSafari="/mcm_website_theme/static/src/img/partenaires/joel.png" class="img img-fluid lazy" alt="Logo partenaire Cabinet Comptable Joël Pruvost" title="Cabinet Comptable Joël Pruvost partenaire Digimoov" aria-describedby="tooltip175558" style="margin-top: 30px; width: 46%" />
-                                        </a>
-                                    </div>
-                                    <div t-if="partenaire=='bolt'  or partenaire !='bolt'">
-                                        <a href="https://www.digimoov.fr/" target="_blank" rel="noopner">
-                                            <img data-src="/mcm_website_theme/static/src/img/partenaires/digimoov.png" data-srcSafari="/mcm_website_theme/static/src/img/partenaires/digimoov.png" class="img img-fluid lazy" alt="Logo partenaire Digimoov" title="Digimoov partenaire MCM ACADEMY" aria-describedby="tooltip843653" style="margin-top: 30px; width: 42%" />
-                                        </a>
-                                    </div>
+                                </div>
+
+                                <div class="pt32" t-if="partenaire=='' or not partenaire ">
+                                    <a href="https://www.comptable-douai.com/" target="_blank" rel="noopner">
+                                        <img class="img-fluid lazy" style="width: 250px" data-src="/mcm_website_theme/static/src/img/logos/logo-joel-pruvost.jpg" data-srcSafari="/mcm_website_theme/static/src/img/logos/logo-joel-pruvost.jpg" title="Joel partenaire MCM ACADEMY" alt="Joel partenaire MCM ACADEMY" />
+                                    </a>
                                 </div>
                             </div>
-                        </center>
+                        </div>
                     </section>
 
                     <section class="s_faq_collapse pt48 pb32">
@@ -738,7 +723,7 @@
                         et au bon moment.
                       </p>
                                                     <div class="s_btn text-center pt16 pb16" data-name="Button">
-                                                        <a href="/formation-chauffeur-taxi" class="btn btn-warning sh_btn_cm_4 spacing-m-p" aria-describedby="tooltip562914" onclick='msTracking("clic sur Devenez chauffeur TAXI homepage",
+                                                        <a href="/formation-taxi" class="btn btn-warning sh_btn_cm_4 spacing-m-p" aria-describedby="tooltip562914" onclick='msTracking("clic sur Devenez chauffeur TAXI homepage",
                                                 "Homepage events",
                                                 "Devenez chauffeur TAXI homepage",
                                                 1)'>

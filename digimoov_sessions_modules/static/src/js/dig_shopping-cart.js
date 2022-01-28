@@ -97,8 +97,11 @@ const addUserPlateform = () => {
     'popupcontent'
   ).innerHTML = `<div style="text-align: -webkit-center;"><div class="spinner"></div></div>`;
   sendHttpRequest('POST', '/shop/adduser_plateform', {}).then((res) => {
+<<<<<<< HEAD
     //console.log('res.result.url');
 
+=======
+>>>>>>> fix-logos-title
     if (res.result.url) {
       if (res.result.url.includes('https://')) {
         for (let index = 0; index < 200; index++) {
@@ -341,7 +344,6 @@ function verify_payment_method() {
   }
   // var state = 'accepted';
   var state = document.getElementById('state').value;
-  console.log('***************state', state);
 
   if (cpf_pm) {
     // console.log(cpf_pm, 'cpf_pm');
@@ -360,7 +362,6 @@ function verify_payment_method() {
             break;
           case state == 'accepted':
             cpfAccepted();
-            //console.log('cpf accepted');
 
             // document.getElementById('popupcontent').innerHTML = 'finished...';
             break;
@@ -390,7 +391,6 @@ function verify_payment_method() {
             break;
           case state == 'accepted':
             cpfAccepted();
-            //console.log('cpf accepted');
             break;
 
           default:
@@ -411,7 +411,6 @@ function verify_payment_method() {
 }
 
 function closepopup(msg) {
-  //console.log('closepopup');
   if (msg) {
     window.location.href = msg;
     return;
@@ -707,9 +706,7 @@ function displayInstalmentPayment() {
           instalment: instalment,
         },
       })
-        .then((responseData) => {
-          console.log('send instalment');
-        })
+        .then((responseData) => {})
         .catch((err) => {});
       if (instalment) {
         showInstalment();

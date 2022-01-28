@@ -45,7 +45,6 @@ document.addEventListener('DOMContentLoaded', function () {
   document
     .getElementById('checkbox_instalment')
     .addEventListener('click', function () {
-      console.log('bougalb');
       displayInstalmentPayment();
     });
 });
@@ -111,8 +110,6 @@ const addUserPlateform = () => {
     'popupcontent'
   ).innerHTML = `<div style="text-align: -webkit-center;"><div class="spinner"></div></div>`;
   sendHttpRequest('POST', '/shop/adduser_plateform', {}).then((res) => {
-    console.log('res.result.url');
-
     if (res.result.url) {
       if (res.result.url.includes('https://')) {
         for (let index = 0; index < 200; index++) {
@@ -247,7 +244,6 @@ function verify_payment_method() {
       'inline-block');
   } else {
     var optionsDate = document.getElementById('options-date').value;
-    console.log('verify', optionsDate);
 
     if (optionsDate == 'all' || optionsDate == '') {
       return (document.getElementById('error_choix_date_popup').style.display =
@@ -293,7 +289,7 @@ function verify_payment_method() {
   cpf_pm = document.getElementById('cpf_pm');
   // var state = 'accepted';
   var state = document.getElementById('state').value;
-  console.log('***************state', state);
+
   if (cpf_pm) {
     if (cpf_pm.checked == true) {
       if (cpf_pm.value == 'Formation à distance TAXI') {
@@ -369,7 +365,7 @@ function verify_payment_method() {
             break;
           case state == 'accepted':
             cpfAccepted();
-            console.log('cpf accepted');
+
             break;
 
           default:
@@ -419,7 +415,6 @@ function showPopup() {
 //
 
 function closepopup(msg) {
-  console.log('closepopup');
   if (msg) {
     window.location.href = msg;
     return;
@@ -589,7 +584,6 @@ function hideInstalment() {
   }
 }
 function displayInstalmentPayment() {
-  console.log('here');
   if (document.getElementById('order_instalment')) {
     var orderInstalment = document.getElementById('order_instalment');
     orderInstalment.style.visibility = 'unset';
@@ -601,9 +595,7 @@ function displayInstalmentPayment() {
           instalment: instalment,
         },
       })
-        .then((responseData) => {
-          console.log('send instalment');
-        })
+        .then((responseData) => {})
         .catch((err) => {});
       if (instalment) {
         showInstalment();
