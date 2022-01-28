@@ -22,20 +22,6 @@ class InheritResPartner(models.Model):
     is_Absent = fields.Boolean(default=False)
     is_absence_justifiee = fields.Boolean(default=False)
 
-    @api.onchange('note_exam_id')
-    def update_boolean_values_partner(self):
-        for rec in self:
-            if rec.resultat == 'Admis(e)':
-                rec.is_recu = True
-            if rec.resultat == 'Ajourné(e)':
-                rec.is_ajourne = True
-            if rec.presence == 'Présent(e)':
-                rec.is_present = True
-            if rec.presence == 'Absent(e)':
-                rec.is_Absent = True
-            if rec.presence == 'Absence justifiée':
-                rec.is_absence_justifiee = True
-
     def _get_last_presence_resultat_values(self):
         """ Function to get presence and resultat values of last session in tree partner view"""
         for rec in self.env['res.partner'].sudo().search(
@@ -87,5 +73,31 @@ class InheritResPartner(models.Model):
         """ Mettre à jour presence & resultat fields pour chaque mise à jour"""
         val = super(InheritResPartner, self).write(values)
         if 'note_exam_id' in values:
+            print("here", 'note_exam_id')
             self._get_last_presence_resultat_values()
+            #Update boolean fields to set colors(red, orange, green) in contact list
+            if self.resultat == 'Admis(e)':
+                self.is_recu = True
+                self.is_ajourne = False
+            if self.resultat == 'Ajourné(e)' and self.presence == 'Présent(e)':
+                self.is_ajourne = True
+                self.is_recu = False
+                self.is_Absent = True
+                self.is_absence_justifiee = False
+            if self.resultat == 'Ajourné(e)' and self.presence == 'Absence justifiée':
+                self.is_ajourne = True
+                self.is_recu = False
+                self.is_Absent = False
+                self.is_absence_justifiee = True
+            if self.presence == 'Présent(e)':
+                self.is_present = True
+                self.is_Absent = False
+                self.is_absence_justifiee = False
+            if self.presence == 'Absent(e)' and self.resultat == 'Ajourné(e)':
+                self.is_Absent = True
+                self.is_ajourne = True
+                self.is_present = False
+                self.is_recu = False
+                self.is_absence_justifiee = False
         return val
+
