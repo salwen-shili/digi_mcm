@@ -5,7 +5,8 @@ from odoo import fields, models,api
 
 class Session(models.Model):
     _inherit = "mcmacademy.session"
-    
+
+    # edit default number of places based on the company
     def get_default_number_place_by_company(self):
             if self.env.company.id == 1:
                 return 100
@@ -13,7 +14,7 @@ class Session(models.Model):
                 return 20
 
     id_edof=fields.Char("ID Sesssion EDOF")
-    max_number_places = fields.Integer("Nombre des places maximales *",default=get_default_number_place_by_company,copy=False,required=True,track_visibility='always')
+    max_number_places = fields.Integer("Nombre des places maximales *",default=get_default_number_place_by_company,copy=False,required=True,track_visibility='always')#modify the field to be required and add track visibility to show edit history
     number_places_available = fields.Integer("Nombre des places disponibles *", compute='get_number_places_available',
                                              store=True, default=0)
     website_published=fields.Boolean('Publié en site web',default=True)

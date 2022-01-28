@@ -1144,7 +1144,7 @@ class WebsiteSale(WebsiteSale):
     def payment_confirmation(self, partenaire=None, product=None, state=None, **post):
         order_id = request.session.get('sale_last_order_id')
         if not order_id :
-            last_order = request.env['sale.order'].sudo().search([("partner_id", "=", order.partner_id.id),("state","=","sent")],
+            last_order = request.env['sale.order'].sudo().search([("partner_id", "=", request.env.user.partner_id.id),("state","=","sent")],
                                                                  order='id desc', limit=1)
             if last_order : 
                 order_id = last_order.id
@@ -1343,16 +1343,8 @@ class Date_Examen(http.Controller):
                     order.partner_id.statut = 'indecis'
                     if futures_sessions:
                         for session in futures_sessions:
-                            list_prospect = []
-                            for prospect in session.prospect_ids:
-                                if prospect.id != order.partner_id.id:
-                                    list_prospect.append(prospect.id)
-                            session.write({'prospect_ids': [(6, 0, list_prospect)]})
-                    list = []
-                    for prospect in module.session_id.prospect_ids:
-                        list.append(prospect.id)
-                    list.append(order.partner_id.id)
-                    module.session_id.write({'prospect_ids': [(6, 0, list)]})
+                            session.write({'prospect_ids': [(3, order.partner_id.id)]})
+                    module.session_id.write({'prospect_ids': [(4, order.partner_id.id)]})
                 order.module_id = module
                 order.session_id = module.session_id
                 # if order.company_id.id == 1:

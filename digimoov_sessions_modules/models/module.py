@@ -7,7 +7,7 @@ from odoo import fields, models,api
 class Module(models.Model):
     _inherit = "mcmacademy.module"
 
-    date_exam=fields.Date("Date d'examen",copy=False,required=True)
+    date_exam=fields.Date("Date d'examen",copy=False,required=True) #edit date exam to be required
     ville = fields.Selection(selection=[
         ('bordeaux', 'Bordeaux'),
         ('lille', 'Lille'),
@@ -17,7 +17,7 @@ class Module(models.Model):
         ('paris', 'Paris'),
         ('strasbourg', 'Strasbourg'),
         ('toulouse', 'Toulouse'),
-    ], string='Ville', default=lambda self:self.session_id.ville)
+    ], string='Ville', default=lambda self:self.session_id.ville) # edit default ville of module to get ville of session
 
     # @api.model
     # def default_get(self, fields):

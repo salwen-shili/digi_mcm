@@ -6,7 +6,7 @@ class McmacademySessionVille(models.Model):
      # "Inherit this mcmacademy.session to add list of villes"
 
     # lier chaque session par une ville et adresse d'examen
-    session_ville_id = fields.Many2one('session.ville',string="Ville",required=True,track_visibility='always')
+    session_ville_id = fields.Many2one('session.ville',string="Ville",required=True,track_visibility='always')#edit the field to be required and show field edit history
     session_adresse_examen =fields.Many2one('session.adresse.examen',"Adresse d'examen")
     phone = fields.Char(related="session_adresse_examen.phone")
     email = fields.Char(related="session_adresse_examen.email")

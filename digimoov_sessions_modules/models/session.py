@@ -17,4 +17,4 @@ class Session(models.Model):
         ('strasbourg', 'Strasbourg'),
         ('toulouse', 'Toulouse'),
     ], string='Ville', default="bordeaux")
-    intervalle_jours = fields.Integer('Intervalle des jours *',copy=False,default=42,required=True,track_visibility='always')
+    intervalle_jours = fields.Integer('Intervalle des jours *',copy=False,default=42,required=True,track_visibility='always') #add track visibily to show edit history of the field

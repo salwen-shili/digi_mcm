@@ -16,6 +16,7 @@
     ],
     'description': "Département de client lorsqu'il choisi formation taxi  ",
     'data': [
+        'data/base_automation_statut_client.xml',
         'views/partner.xml',
         'views/templates.xml',
     ],

@@ -5,21 +5,23 @@
         <field name="sequence">10</field>
         <field name="name">Session</field>
     </record>
-
+     <!-- Creqte group Session user-->
     <record id="group_session_module_user" model="res.groups">
         <field name="name">User</field>
         <field name="category_id" ref="mcm_session.session_module_category"/>
         <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
     </record>
+     <!-- Create group Session Manager -->
     <record id="group_session_module_manager" model="res.groups">
         <field name="name">Manager</field>
         <field name="category_id" ref="mcm_session.session_module_category"/>
-        <field name="implied_ids" eval="[(4, ref('mcm_session.group_session_module_user'))]"/>
+        <field name="implied_ids" eval="[(4, ref('mcm_session.group_session_module_user'))]"/> <!-- implicit rules and access right  of session user to manager-->
     </record>
+    <!-- Create group Session Administrator -->
     <record id="group_session_module_administrator" model="res.groups">
         <field name="name">Administrator</field>
         <field name="category_id" ref="mcm_session.session_module_category"/>
-        <field name="implied_ids" eval="[(4, ref('mcm_session.group_session_module_manager'))]"/>
+        <field name="implied_ids" eval="[(4, ref('mcm_session.group_session_module_manager'))]"/> <!-- implicit rules and access right  of session manager to administrator-->
         <field name="users" eval="[(4, ref('base.user_root')), (4, ref('base.user_admin'))]"/>
     </record>
     <data noupdate="1">

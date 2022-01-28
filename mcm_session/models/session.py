@@ -15,6 +15,8 @@ class Session(models.Model):
         ('intra', 'INTRA'),
         ('inter_entreprise', 'INTER ENTREPRISE'),
     ], string='Type de client',copy=True)
+    #copy=True : the field will be automaticly duplicated when we duplicate the session
+    #copy=False : the field will not be duplicated when we duplicate the session and he will get his default value
     sous_traitance=fields.Boolean("Réalisé en sous traitance d'un autre organisme",copy=True)
     action_type_id=fields.Many2one('mcmacademy.action',string="Type d'action de formation",copy=True)
     domaine_formation=fields.Many2one('mcmacademy.domain',string='Domaine de formation',copy=True)
@@ -66,14 +68,14 @@ class Session(models.Model):
                 stages = self.env['mcmacademy.stage'].search([('id',"=",values['stage_id'])])
                 for stage in stages :
                     if stage.name in ['Archivées','Archivés'] and len(record.client_ids) > 0 :
-                        raise ValidationError("Impossible d'archiver une session qui contient des clients")
+                        raise ValidationError("Impossible d'archiver une session qui contient des clients")#raise validation error when we edit the session to stage 'Archivées or Archivés' and the session has won clients
                     elif stage.name in ['Archivées','Archivés'] and len(record.client_ids) == 0 :
-                         values['max_number_places'] =0
+                         values['max_number_places'] =0 # edit the max number of places to 0 when we edit the session to stage  ['Archivées','Archivés'] and session has no clients
         return super(Session, self).write(values)
     def unlink(self):
         for record in self:
             if len(record.client_ids) > 0 :
-                raise ValidationError("Impossible de supprimer une session qui contient des clients")
+                raise ValidationError("Impossible de supprimer une session qui contient des clients") # raise validation error when we want to delete a session has clients
         return super(Session, self).unlink()
     @api.depends('client_ids','prospect_ids','canceled_prospect_ids')
     def _compute_count_clients(self):

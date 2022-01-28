@@ -66,20 +66,20 @@
     </record>
 
 
-    <menuitem id="mcm_academy_session_root_menu" name="Sessions" sequence="10" groups="mcm_session.group_session_module_user"/>
+    <menuitem id="mcm_academy_session_root_menu" name="Sessions" sequence="10" groups="mcm_session.group_session_module_user"/><!-- show Sessions main menu to group Session User -->
     <menuitem id="mcm_academy_session_menu" name="Toutes les sessions"
-              parent="mcm_academy_session_root_menu" action="mcm_academy_session_action_main" sequence="10" groups="mcm_session.group_session_module_user"/>
+              parent="mcm_academy_session_root_menu" action="mcm_academy_session_action_main" sequence="10" groups="mcm_session.group_session_module_user"/> <!-- show sessions sub-menu to group Session User -->
     <menuitem id="mcm_academy_session_config_main_menu" name="Configuration"
-              parent="mcm_academy_session_root_menu" sequence="50" groups="mcm_session.group_session_module_manager"/>
+              parent="mcm_academy_session_root_menu" sequence="50" groups="mcm_session.group_session_module_manager"/> <!-- show Configuration sub-menu to group Session Manager -->
     <menuitem id="mcm_academy_session_action_menu" name="Types d'action"
-              parent="mcm_academy_session_config_main_menu" action="mcm_academy_action_type_action" sequence="10" groups="mcm_session.group_session_module_manager"/>
+              parent="mcm_academy_session_config_main_menu" action="mcm_academy_action_type_action" sequence="10" groups="mcm_session.group_session_module_manager"/> <!-- show action type sub-menu to group Session Manager -->
     <menuitem id="mcm_academy_session_domain_menu" name="Domaine de formation"
-              parent="mcm_academy_session_config_main_menu" action="mcm_academy_domain_action" sequence="20" groups="mcm_session.group_session_module_manager"/>
+              parent="mcm_academy_session_config_main_menu" action="mcm_academy_domain_action" sequence="20" groups="mcm_session.group_session_module_manager"/> <!-- show stage sub-menu to group Session Manager -->
     <menuitem id="mcm_academy_session_stage_menu" name="États des sessions"
-              parent="mcm_academy_session_config_main_menu" action="mcm_academy_stage_action" sequence="30" groups="mcm_session.group_session_module_manager"/>
-    <menuitem id="mcm_academy_module_root_menu" parent="mcm_academy_session_root_menu" name="Modules" sequence="20" groups="mcm_session.group_session_module_manager"/>
+              parent="mcm_academy_session_config_main_menu" action="mcm_academy_stage_action" sequence="30" groups="mcm_session.group_session_module_manager"/> <!-- show stage sub-menu to group Session Manager -->
+    <menuitem id="mcm_academy_module_root_menu" parent="mcm_academy_session_root_menu" name="Modules" sequence="20" groups="mcm_session.group_session_module_manager"/> <!-- show modules menu to group Session Manager -->
     <menuitem id="mcm_academy_module_menu" name="liste des modules"
-              parent="mcm_academy_module_root_menu" action="mcm_academy_module_action_main" sequence="10" groups="mcm_session.group_session_module_manager"/>
+              parent="mcm_academy_module_root_menu" action="mcm_academy_module_action_main" sequence="10" groups="mcm_session.group_session_module_manager"/> <!-- show modules sub-menu to group Session Manager -->
     <menuitem id="mcm_academy_catalogue_main_menu" name="Catalogue"
               parent="mcm_academy_session_root_menu" sequence="40" groups="mcm_session.group_session_module_manager"/>
     <menuitem id="mcm_academy_programme_menu" name="Programmes"

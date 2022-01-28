@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- automated action to delete client from all list of prospect in all sessions when the state of client become won -->
+    <record id="rule_on_write_delete_prospect" model="base.automation">
+        <field name="name">Base Automation: Delete client from prospect in old sessions </field>
+        <field name="model_id" ref="base.model_res_partner"/>
+        <field name="trigger">on_write</field>
+        <field name="trigger_field_ids" eval="[(4,ref('mcm_session.field_res_partner__statut'))]"/>
+        <field name="active" eval="True"/>
+        <field name="state">code</field>
+        <field name="code">
+            if(record['statut']=='won'):
+                previous_sessions = env['mcmacademy.session'].search([])
+                if (previous_sessions):
+                    for session in previous_sessions:
+                        session.write({'prospect_ids': [(3, record['id'])]})
+        </field>
+    </record>
+</odoo>

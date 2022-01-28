@@ -16,7 +16,7 @@ class Session(models.Model):
 
     heure_examen_matin = fields.Char(default="09H00")
     heure_examen_apres_midi = fields.Char(default="14H00")
-    date_exam = fields.Date(string="Date d'examen",copy=False,required=True,track_visibility='always')
+    date_exam = fields.Date(string="Date d'examen",copy=False,required=True,track_visibility='always') # add track visibility to show edit history of exam date field
 
     # date_convocation = fields.Date(string="Date d'envoi de convocation", default=datetime.today())
     horaire_email = fields.Char(compute="_compute_auto_horaire_email", string="Horaire Email",
