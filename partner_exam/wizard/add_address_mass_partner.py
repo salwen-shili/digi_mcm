@@ -28,14 +28,22 @@ class UpdateFieldFinancementWizard(models.TransientModel):
             # Remplir les champ boolean pour recuperer les couleur (vert,rouge et orange)
             if statut.resultat == 'Admis(e)':
                 statut.is_recu = True
+                statut.is_ajourne = False
             if statut.resultat == 'Ajourné(e)':
                 statut.is_ajourne = True
+                statut.is_recu = False
             if statut.presence == 'Présent(e)':
                 statut.is_present = True
+                statut.is_Absent = False
+                statut.is_absence_justifiee = False
             if statut.presence == 'Absent(e)':
                 statut.is_Absent = True
+                statut.is_present = False
+                statut.is_absence_justifiee = False
             if statut.presence == 'Absence justifiée':
                 statut.is_absence_justifiee = True
+                statut.is_Absent = False
+                statut.is_present = False
 
 
 
