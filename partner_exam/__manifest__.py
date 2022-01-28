@@ -17,6 +17,7 @@
                'from contact view, also Import all Exam-informations as note (QCM, QRO)',
     'depends': [
         'base',
+        'phone_validation',
         'mcm_session',
         'contacts',
         'auto_mass_mailing_marketing',

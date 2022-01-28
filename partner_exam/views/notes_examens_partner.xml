@@ -24,6 +24,13 @@
                             <h1>
                                 <field name="partner_id" class="oe_inline"/>
                             </h1>
+                            <h2>
+                                <field name="phone" widget="phone" options="{'enable_sms': True}" invisible="1"/>
+                                <label for="mobile"/>
+                                <div class="o_row">
+                                    <field name="mobile" widget="phone" options="{'enable_sms': True}" />
+                                </div>
+                            </h2>
                         </div>
                         <group>
                             <group name="note_examen" string="Notes QRO/QCM">
@@ -69,6 +76,7 @@
             <field name="arch" type="xml">
                 <tree string="Notes des examens Tree" default_order="create_date desc">
                     <field name="partner_id"/>
+                    <field name="mobile" widget="phone" options="{'enable_sms': True}"/>
                     <field name="mode_de_financement"/>
                     <field name="session_id"/>
                     <field name="date_exam"/>
