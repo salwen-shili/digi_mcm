@@ -7,4 +7,5 @@ from . import users
 from . import parcours
 from . import session
 from . import user_stats
+from . import company
 

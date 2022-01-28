@@ -30,6 +30,7 @@
         'views/session.xml' ,
         'views/users_stats.xml',
         'data/mail_data.xml',
+        'views/company.xml',
     ],
     'application': True,
 }
