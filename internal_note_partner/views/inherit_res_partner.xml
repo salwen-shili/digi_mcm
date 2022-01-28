@@ -46,11 +46,11 @@
                 <field name="last_internal_log" widget="html" optional="show"/>
             </xpath>
             <xpath expr="//tree/field[@name='last_internal_log']" position="before">
-                <field name="is_recu" invisible="0"/>
-                <field name="is_ajourne" invisible="0"/>
-                <field name="is_present" invisible="0"/>
-                <field name="is_Absent" invisible="0"/>
-                <field name="is_absence_justifiee" invisible="0"/>
+                <field name="is_recu" invisible="1"/>
+                <field name="is_ajourne" invisible="1"/>
+                <field name="is_present" invisible="1"/>
+                <field name="is_Absent" invisible="1"/>
+                <field name="is_absence_justifiee" invisible="1"/>
                 <field name="presence" optional="show"
                        options='{"fg_color": "green:is_present==True; red:is_Absent==True; #ff6600:is_absence_justifiee==True"}'/>
                 <field name="resultat" optional="show"
