@@ -102,7 +102,7 @@
                       taxi VTC, renouvellement carte professionnelle.
                     </p>
                                                 <div class="s_btn text-center pt16 pb16" data-name="Button">
-                                                    <a href="/formation-chauffeur-vtc" class="btn btn-warning sh_btn_cm_4 spacing-m-p" onclick='msTracking("clic sur Devenez chauffeur VTC homepage",                                                 "Homepage events",                                                 "Devenez chauffeur VTC homepage",                                                 2)'>En savoir plus</a>
+                                                    <a href="/formation-vtc" class="btn btn-warning sh_btn_cm_4 spacing-m-p" onclick='msTracking("clic sur Devenez chauffeur VTC homepage",                                                 "Homepage events",                                                 "Devenez chauffeur VTC homepage",                                                 2)'>En savoir plus</a>
                                                 </div>
                                             </div>
                                         </div>
@@ -143,7 +143,7 @@
                                                     <br />
                                                 </p>
                                                 <div class="s_btn text-center pt16 pb16" data-name="Button">
-                                                    <a href="/formation-taximoto-vmtdr" class="btn btn-warning sh_btn_cm_4 spacing-m-p" onclick='msTracking("clic sur Devenez chauffeur MOTO-Taxi homepage",                                                 "Homepage events",                                                 "Devenez chauffeur MOTO-Taxi homepage",                                                 3)' aria-describedby="tooltip181659">En savoir plus</a>
+                                                    <a href="/formation-moto-taxi" class="btn btn-warning sh_btn_cm_4 spacing-m-p" onclick='msTracking("clic sur Devenez chauffeur MOTO-Taxi homepage",                                                 "Homepage events",                                                 "Devenez chauffeur MOTO-Taxi homepage",                                                 3)' aria-describedby="tooltip181659">En savoir plus</a>
                                                 </div>
                                             </div>
                                         </div>
@@ -314,7 +314,7 @@
                                         sur le site de la chambre des métiers et de l'artisanat.
                                     </p>
                                     <div class="s_btn text-left pt16 pb16" data-name="Button">
-                                        <a href="/examen-vtc-taxi" target="_blank" rel="noopener">
+                                        <a href="/examen-vtc-taxi-moto-taxi" target="_blank" rel="noopener">
                                             <button class="home-btn">Découvrir</button>
                                         </a>
                                     </div>
@@ -751,7 +751,7 @@
                         loi.
                       </p>
                                                     <div class="s_btn text-center pt16 pb16" data-name="Button">
-                                                        <a href="/formation-chauffeur-vtc" class="btn btn-warning sh_btn_cm_4 spacing-m-p" onclick='msTracking("clic sur Devenez chauffeur VTC homepage",
+                                                        <a href="/formation-vtc" class="btn btn-warning sh_btn_cm_4 spacing-m-p" onclick='msTracking("clic sur Devenez chauffeur VTC homepage",
                                                 "Homepage events",
                                                 "Devenez chauffeur VTC homepage",
                                                 2)'>En savoir plus</a>
@@ -777,7 +777,7 @@
                                                         <br />
                                                     </p>
                                                     <div class="s_btn text-center pt16 pb16" data-name="Button">
-                                                        <a href="/formation-taximoto-vmtdr" class="btn btn-warning sh_btn_cm_4 spacing-m-p" onclick='msTracking("clic sur Devenez chauffeur MOTO-Taxi homepage",
+                                                        <a href="/formation-moto-taxi" class="btn btn-warning sh_btn_cm_4 spacing-m-p" onclick='msTracking("clic sur Devenez chauffeur MOTO-Taxi homepage",
                                                 "Homepage events",
                                                 "Devenez chauffeur MOTO-Taxi homepage",
                                                 3)'>En savoir plus</a>
