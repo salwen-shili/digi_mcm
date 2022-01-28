@@ -47,7 +47,7 @@
               </div>
               <div class="col-lg-6 pb48 pt16 js-scroll slide-right ">
                 <br />
-                <img data-src="/mcm_website_theme/static/src/img/formation_vtc/formation-chauffeur-vtc.webp" data-srcsafari="/mcm_website_theme/static/src/img/formation_vtc/formation-chauffeur-vtc.png" class="img img-fluid mx-auto" alt="Devenir chauffeur professionnel VTC, Taxi ou Moto-Taxi" data-original-title="" title="Chauffeur vtc devant sa voiture" aria-describedby="tooltip202025" style="text-align: center" src="/mcm_website_theme/static/src/img/formation_vtc/formation-chauffeur-vtc.webp" />
+                <img data-src="/mcm_website_theme/static/src/img/formation_vtc/formation-chauffeur-vtc.webp" data-srcsafari="/mcm_website_theme/static/src/img/formation_vtc/formation-chauffeur-vtc.png" class="img img-fluid mx-auto" alt="chaffeur vtc devant sa voiture" title="Formation VTC" aria-describedby="tooltip202025" style="text-align: center" src="/mcm_website_theme/static/src/img/formation_vtc/formation-chauffeur-vtc.webp" />
               </div>
             </div>
           </div>
@@ -100,7 +100,7 @@
           <div class="container">
             <div class="row align-items-center">
               <div class="col-lg-6 pt16 pb16 js-scroll slide-left">
-                <img src="/mcm_website_theme/static/src/img/formation_vtc/formation-vtc.png" class="img img-fluid mx-auto" alt="formation vtc" />
+                <img src="/mcm_website_theme/static/src/img/formation_vtc/formation-vtc.png" class="img img-fluid mx-auto" title="c'est quoi un chauffeur vtc ?" alt="chauffeur vtc dans sa voiture" />
               </div>
               <div class="col-lg-6 pt16 pb16 js-scroll slide-right">
                 <h2 style="max-width: 70%">c'est quoi un chauffeur vtc ?</h2>
@@ -179,7 +179,7 @@
                 plateforme dédiée.
                 </p>
                 <div class="s_btn text-left pt16 pb16" data-name="Buttons">
-                  <a href="#pricing" alt="Je m'inscris  mcm-academy">
+                  <a href="#pricing" alt="inscription formation vtc MCM Academy">
                     <button class="home-btn">
                        Je m'inscris !
                     </button>
@@ -187,7 +187,7 @@
                 </div>
               </div>
               <div class="col-lg-6 pt16 pb16 js-scroll slide-right">
-                <img src="/mcm_website_theme/static/src/img/formation_vtc/candidat-chauffeur-vtc.png" alt='devenir chauffeur vtc' class="img img-fluid mx-auto" />
+                <img src="/mcm_website_theme/static/src/img/formation_vtc/candidat-chauffeur-vtc.png" alt='chauffeur vtc' title="comment devenir chauffeur vtc" class="img img-fluid mx-auto" />
               </div>
             </div>
           </div>
