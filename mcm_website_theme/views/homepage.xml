@@ -22,10 +22,20 @@
                                                 <span class="subtitle-mcm"> 100 % en ligne </span>
                                             </h1>
                                             <p class="para">
-                    Besoin de formation pour devenir chauffeur TAXI, de VTC ou
-                    de VMDTR, pour renouveler votre carte professionnelle, ou
-                    encore pour une passerelle TAXI-VTC ?
-                  </p>
+                                                Besoin de formation pour devenir
+                                                <b>chauffeur TAXI</b>
+                                                , de
+                                                <b>VTC</b>
+                                                ou
+                    de
+                                                <b>VMDTR</b>
+                                                , pour renouveler votre
+                                                <b> carte professionnelle</b>
+                                                , ou
+                    encore pour une
+                                                <b>passerelle TAXI-VTC</b>
+                                                ?
+                                            </p>
                                             <a class="animated-button-yellow" href="#pricing">
                                                 <span></span>
                                                 <span></span>
@@ -45,22 +55,22 @@
                     <!-- fin section 1  -->
                     <!-- Logos-->
                     <style>
-           .center-logo {
-          display: flex;
-          flex-direction: row;
-          align-content: center;
-          justify-content: space-between;
-          align-items: center;
-        }
-        @media all and (max-width: 575px) {
-          .center-logo {
-            display: flex;
-            flex-direction: column;
-            align-content: center;
-            justify-content: space-between;
-            align-items: center;
-          }
-        </style>
+                    .center-logo {
+                    display: flex;
+                    flex-direction: row;
+                    align-content: center;
+                    justify-content: space-between;
+                    align-items: center;
+                    }
+                    @media all and (max-width: 575px) {
+                    .center-logo {
+                        display: flex;
+                        flex-direction: column;
+                        align-content: center;
+                        justify-content: space-between;
+                        align-items: center;
+                    }
+                    </style>
                     <section class="pt40 pb32 js-scroll fade-in-top">
                         <div class="container js-scroll fade-in-top">
                             <div class="center-logo">
@@ -166,16 +176,33 @@
                                     </h2>
                                     <p class="para">
                                         Créée en 2015, MCM Academy est une structure spécialisée dans la
-                formation des métiers de chauffeurs de taxi, VTC et de taxi
-                moto.
+                                        <b>formation des métiers de chauffeurs de taxi</b>
+                                        , VTC et de
+                                        <b> taxi
+                moto</b>
+                                        .
                                         <br />
                                         <br />
                                         Aujourd'hui nous sommes parmi les leaders du marché de la
-                formation en ligne de TAXIS et VTC en France.
+                                        <b>
+                formation en ligne </b>
+                                        de
+                                        <b>TAXIS</b>
+                                        et
+                                        <b>VTC</b>
+                                        en France.
                                         <br />
                                         <br />
-                                        Agréé par la préfecture, notre centre de formation organise les
-                examens du certificat de capacité professionnelle de chauffeur
+                                        Agréé par la
+                                        <b>préfecture</b>
+                                        , notre
+                                        <b>centre de formation</b>
+                                        organis
+                                        <b>e les
+</b>
+                                        examens du
+                                        <b>certificat de capacité professionnelle</b>
+                                        de chauffeur
                 taxi et VTC partout en France.
                                     </p>
                                 </div>
@@ -191,20 +218,45 @@
                                         <b> Plus qu'une formation ! </b>
                                     </h2>
                                     <p class="para">
-                                        Nous offrons à nos futurs conducteurs de taxi, VTC ou de taxi
-                moto des formations à suivre à distance, à votre rythme sur
+                                        Nous offrons à nos futurs
+                                        <b>conducteurs de taxi</b>
+                                        ,
+                                        <b>VTC</b>
+                                        ou de
+                                        <b> moto-taxi</b>
+                                        des
+                                        <b>formations</b>
+                                        à suivre
+                                        <b> à distance</b>
+                                        , à votre rythme sur
                 notre plateforme
-                                        <br />
+                                    </p>
+                                    <p class="para">
                                         E-learning. Les cours sont présentés sous forme de vidéos
-                interactives, de Live avec nos formateurs, de QCM et d’examens
-                blancs, soigneusement préparés par nos experts métiers afin de
+                interactives, de Live avec nos formateurs, de
+                                        <b> QCM </b>
+                                        et d’
+                                        <b>examens
+                blancs</b>
+                                        , soigneusement préparés par nos experts métiers afin de
                 mieux vous préparer à l’examen final.
                                         <br />
                                         <br />
-                                        Une fois votre examen réussi, nous pourrons vous accompagner
-                dans la démarche d’obtention de votre carte professionnelle
-                auprès de la préfecture ainsi que dans les démarches de création
-                de votre entreprise en tant que chauffeur privé indépendant ou
+                                        Une fois votre
+                                        <b> examen</b>
+                                        réussi, nous pourrons vous accompagner
+                dans la démarche d’obtention de votre
+                                        <b>carte professionnelle</b>
+                                        auprès de la
+                                        <b>préfecture</b>
+                                        ainsi que dans les
+                                        <b>démarches </b>
+                                        de
+                                        <b>création
+                de votre entreprise </b>
+                                        en tant que
+                                        <b>chauffeur privé </b>
+                                        indépendant ou
                 pour travailler pour le compte des plateformes dédiées.
                                         <br />
                                     </p>
@@ -342,7 +394,7 @@
                 du candidat sur le territoire parcouru, et sa capacité à
                 accueillir et à facturer un client.
                                     </p>
-                                    <p />
+
                                     <!-- <div class="s_btn text-left pt16 pb16" data-name="Button">
                                         <a href="https://www.examentaxivtc.fr/" target="_blank" rel="noopener">
                                             <button class="home-btn">Je m'inscris !</button>
