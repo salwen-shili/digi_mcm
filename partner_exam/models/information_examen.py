@@ -60,6 +60,17 @@ class NoteExamen(models.Model):
     is_present = fields.Boolean(default=False)
     is_Absent = fields.Boolean(default=False)
     is_absence_justifiee = fields.Boolean(default=False)
+    phone = fields.Char(related="partner_id.phone")
+    mobile = fields.Char(compute="_compute_phone_value_to_mobile", store=True)
+
+    @api.depends('partner_id.phone')
+    def _compute_phone_value_to_mobile(self):
+        for rec in self.env['info.examen'].search([]):
+            if rec.phone is not None:
+                print("alloo phone", rec.phone)
+                rec.mobile = rec.phone
+                print("alloo mobile", rec.mobile)
+
 
     @api.onchange('resultat', 'partner_id', 'presence')
     def update_boolean_values(self):
