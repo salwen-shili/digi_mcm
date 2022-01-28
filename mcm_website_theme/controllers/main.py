@@ -218,7 +218,7 @@ class Routes_Site(http.Controller):
         elif request.website.id == 1:
             return request.render("mcm_website_theme.mcm_website_theme_edit_info", {})
 
-    @http.route('/formation-chauffeur-taxi', type='http', auth='public', website=True)
+    @http.route('/formation-taxi', type='http', auth='public', website=True)
     def taxi(self):
 
         taxi_category = request.env['product.public.category'].sudo().search([('name', 'ilike', 'Formation TAXI')])
