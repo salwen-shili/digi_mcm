@@ -218,7 +218,7 @@ class Routes_Site(http.Controller):
         elif request.website.id == 1:
             return request.render("mcm_website_theme.mcm_website_theme_edit_info", {})
 
-    @http.route('/formation-chauffeur-taxi', type='http', auth='public', website=True)
+    @http.route('/formation-taxi', type='http', auth='public', website=True)
     def taxi(self):
 
         taxi_category = request.env['product.public.category'].sudo().search([('name', 'ilike', 'Formation TAXI')])
@@ -255,7 +255,7 @@ class Routes_Site(http.Controller):
         elif request.website.id == 1:
             return request.render("mcm_website_theme.mcm_template_taxi", values)
 
-    @http.route('/formation-chauffeur-vtc', type='http', auth='public', website=True)
+    @http.route('/formation-vtc', type='http', auth='public', website=True)
     def vtc(self):
 
         taxi_category = request.env['product.public.category'].sudo().search([('name', 'ilike', 'Formation TAXI')])
@@ -292,7 +292,7 @@ class Routes_Site(http.Controller):
         elif request.website.id == 1:
             return request.render("mcm_website_theme.mcm_website_theme_vtc", values)
 
-    @http.route('/formation-taximoto-vmtdr', type='http', auth='public', website=True)
+    @http.route('/formation-moto-taxi', type='http', auth='public', website=True)
     def vmdtr(self):
 
         taxi_category = request.env['product.public.category'].sudo().search([('name', 'ilike', 'Formation TAXI')])
@@ -329,7 +329,7 @@ class Routes_Site(http.Controller):
         elif request.website.id == 1:
             return request.render("mcm_website_theme.mcm_template_vmdtr", values)
 
-    @http.route('/examen-vtc-taxi', type='http', auth='public', website=True)
+    @http.route('/examen-vtc-taxi-moto-taxi', type='http', auth='public', website=True)
     def examen(self):
 
         #La page n'est affichée que sur le site mcm
@@ -1354,7 +1354,7 @@ class CustomerPortal(CustomerPortal):
 #     #     elif request.website.id == 1:
 #     #         return request.render("mcm_website_theme.mcm_website_formation_vtc")
 
-#     @http.route('/formation-taximoto-vmtdr', type='http', auth='public', website=True)
+#     @http.route('/formation-moto-taxi', type='http', auth='public', website=True)
 #     def formvmdtr(self, **kw, ):
 
 #         #Si site Digimoov, ne renvoie rien

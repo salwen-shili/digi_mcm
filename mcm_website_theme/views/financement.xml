@@ -392,6 +392,11 @@
                               <span></span>
                               Je m'inscris
                             </a>
+                            <div>
+                              <span style="color: red !important;font-size: 17px;font-weight: 600;">
+                                                            Paiement 1 ou 2 fois
+                              </span>
+                            </div>
 
                           </div>
                         </form>
@@ -443,6 +448,11 @@
                               <span></span>
                               Je m'inscris
                             </a>
+                            <div>
+                              <span style="color: red !important;font-size: 17px;font-weight: 600;">
+                                                            Paiement 1 ou 2 fois
+                              </span>
+                            </div>
                           </div>
                         </form>
                       </t>
@@ -496,6 +506,11 @@
                               <span></span>
                               Je m'inscris
                             </a>
+                            <div>
+                              <span style="color: red !important;font-size: 17px;font-weight: 600;">
+                                                            Paiement 1 ou 3 fois
+                              </span>
+                            </div>
                           </div>
                         </form>
                       </t>
@@ -507,53 +522,49 @@
           </section>
         </div>
         <!-- FIN PRICING TABLE-->
-        <section class="clients s_references bg-200 pt16 pb16" data-name="References">
-          <center>
-            <div class="container js-scroll fade-in-top">
-              <div class="center-logo">
-                <!-- <div t-if="partenaire=='' or not partenaire or partenaire=='bolt'">
-                                    <a href="https://www.digimoov.fr/" target="_blank" rel="noopner">
-                                        <img data-src="/mcm_website_theme/static/src/img/partenaires/digimoov.png" data-srcSafari="/mcm_website_theme/static/src/img/partenaires/digimoov.png" class="img img-fluid lazy" alt="Logo partenaire Digimoov" data-original-title="" title="Digimoov partenaire MCM ACADEMY" aria-describedby="tooltip843653" style="margin-top: 30px; width: 72%"/>
-                                    </a>
-                                </div> -->
-
-                <div t-if="partenaire=='' or partenaire !='bolt'">
-                  <a href="#">
-                    <img data-src="/mcm_website_theme/static/src/img/partenaires/cma.png" data-srcSafari="/mcm_website_theme/static/src/img/partenaires/cma.png" class="img img-fluid lazy" alt="Logo partenaire CMA" data-original-title="" title="CMA partenaire MCM ACADEMY" aria-describedby="tooltip623872" style="margin-top: 30px; width: 50%" />
-                  </a>
-                </div>
-
-                <div t-if="partenaire=='' or not partenaire ">
-                  <a href="https://bolt.eu/fr/" target="_blank" rel="noopner">
-                    <img data-src="/mcm_website_theme/static/src/img/partenaires/bolt.png" data-srcSafari="/mcm_website_theme/static/src/img/partenaires/bolt.png" class="img img-fluid lazy" alt="Logo partenaire bolt" data-original-title="" title="Bolt partenaire MCM ACADEMY" aria-describedby="tooltip843653" style="margin-top: 30px; width: 38%" />
-                  </a>
-                </div>
-                <div t-if="partenaire=='bolt' ">
-                  <a href="https://bolt.eu/fr/" target="_blank" rel="noopner">
-                    <img data-src="/mcm_website_theme/static/src/img/partenaires/Bolt_logo.svg.png" data-srcSafari="/mcm_website_theme/static/src/img/partenaires/Bolt_logo.svg.png" class="img img-fluid lazy" alt="Logo partenaire bolt" data-original-title="" title="Bolt partenaire MCM ACADEMY" aria-describedby="tooltip843653" style="margin-top: 30px; width: 38%" />
-                  </a>
-                </div>
-                <!-- <div t-if="partenaire=='' or partenaire !='bolt'">
-                                    <a href="https://www.uber.com/fr/fr/">
-                                        <img data-src="/mcm_website_theme/static/src/img/partenaires/uber.png" data-srcSafari="/mcm_website_theme/static/src/img/partenaires/uber.png" class="img img-fluid lazy" alt="Logo partenaire uber" data-original-title="" title="Uber partenaire MCM ACADEMY" aria-describedby="tooltip843653" style="margin-top: 30px; width: 50%"/>
-                                    </a>
-                                </div> -->
-
-                <div t-if="partenaire=='' or not partenaire ">
-                  <a href="https://www.comptable-douai.com/" target="_blank" rel="noopner">
-                    <img data-src="/mcm_website_theme/static/src/img/partenaires/joel.png" data-srcSafari="/mcm_website_theme/static/src/img/partenaires/joel.png" class="img img-fluid lazy" alt="Logo partenaire Cabinet Comptable Joël Pruvost" data-original-title="" title="Cabinet Comptable Joël Pruvost partenaire Digimoov" aria-describedby="tooltip175558" style="margin-top: 30px; width: 68%" />
-                  </a>
-                </div>
-                <div t-if="partenaire=='bolt'">
-                  <a href="https://www.digimoov.fr/" target="_blank" rel="noopner">
-                    <img data-src="/mcm_website_theme/static/src/img/partenaires/digimoov.png" data-srcSafari="/mcm_website_theme/static/src/img/partenaires/digimoov.png" class="img img-fluid lazy" alt="Logo partenaire Digimoov" data-original-title="" title="Digimoov partenaire MCM ACADEMY" aria-describedby="tooltip843653" style="margin-top: 30px; width: 46%" />
-                  </a>
-                </div>
+        <style>
+           .center-logo {
+          display: flex;
+          flex-direction: row;
+          align-content: center;
+          justify-content: space-between;
+          align-items: center;
+        }
+        @media all and (max-width: 575px) {
+          .center-logo {
+            display: flex;
+            flex-direction: column;
+            align-content: center;
+            justify-content: space-between;
+            align-items: center;
+          }
+        </style>
+        <section class="pt40 pb32">
+          <div class="container js-scroll fade-in-top">
+            <div class="center-logo">
+              <div class="pt32" t-if="partenaire=='bolt'  or partenaire !='bolt'">
+                <a href="https://bolt.eu/fr/" target="_blank" rel="noopner">
+                  <img data-src="/mcm_website_theme/static/src/img/logos/logo-bolt.png" data-srcSafari="/mcm_website_theme/static/src/img/logos/logo-bolt.png" class="img-fluid lazy" style="width: 100px; margin-top: 25px" alt="Logo partenaire MCM-ACADEMY" title="Bolt partenaire MCM ACADEMY" />
+                </a>
+              </div>
+              <div class="pt32" t-if="partenaire=='bolt'  or partenaire !='bolt'">
+                <a href="https://www.digimoov.fr/" target="_blank" rel="noopner">
+                  <img class="img-fluid lazy" style="width: 94px" data-src="/mcm_website_theme/static/src/img/logos/logo-digimoov.png" data-srcSafari="/mcm_website_theme/static/src/img/logos/logo-digimoov.png" alt="Logo partenaire Digimoov" title="Digimoov partenaire MCM ACADEMY" />
+                </a>
+              </div>
+              <div class="pt32" t-if="partenaire=='' or partenaire !='bolt'">
+                <a href="https://www.artisanat.fr/">
+                  <img class="img-fluid lazy" style="width: 100px" data-srcSafari="/mcm_website_theme/static/src/img/logos/logo-CMA.png" data-src="/mcm_website_theme/static/src/img/logos/logo-CMA.png" title="Chambre de métiers et de l'artisanat partenaire MCM ACADEMY" alt="Chambre de métiers et de l'artisanat partenaire MCM ACADEMY" />
+                </a>
               </div>
 
+              <div class="pt32" t-if="partenaire=='' or not partenaire ">
+                <a href="https://www.comptable-douai.com/" target="_blank" rel="noopner">
+                  <img class="img-fluid lazy" style="width: 250px" data-src="/mcm_website_theme/static/src/img/logos/logo-joel-pruvost.jpg" data-srcSafari="/mcm_website_theme/static/src/img/logos/logo-joel-pruvost.jpg" title="Joel partenaire MCM ACADEMY" alt="Joel partenaire MCM ACADEMY" />
+                </a>
+              </div>
             </div>
-          </center>
-
+          </div>
         </section>
 
       </div>
