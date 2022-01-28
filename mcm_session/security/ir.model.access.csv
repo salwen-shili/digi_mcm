@@ -1,26 +1,51 @@
 id,name,model_id/id,group_id/id,perm_read,perm_write,perm_create,perm_unlink
-mcmacademy_session_manager,mcm academy session manager,model_mcmacademy_session,base.group_user,1,1,1,1
-mcm_academy_session_read_all,mcm academy session all,model_mcmacademy_session,,1,1,1,1
-mcmacademy_action_manager,mcm academy action manager,model_mcmacademy_action,base.group_user,1,1,1,1
-mcm_academy_action_read_all,mcm academy action all,model_mcmacademy_action,,1,0,0,0
-mcmacademy_domain_manager,mcm academy domain manager,model_mcmacademy_domain,base.group_user,1,1,1,1
-mcm_academy_domain_read_all,mcm academy domain all,model_mcmacademy_domain,,1,0,0,0
-mcmacademy_stage_manager,mcm academy stage manager,model_mcmacademy_stage,base.group_user,1,1,1,1
-mcm_academy_stage_read_all,mcm academy stage all,model_mcmacademy_stage,,1,0,0,0
-mcmacademy_module_manager,mcm academy module manager,model_mcmacademy_module,base.group_user,1,1,1,1
-mcm_academy_module_read_all,mcm academy module all,model_mcmacademy_module,,1,1,1,1
-mcmacademy_module_details_manager,mcm academy module details manager,model_mcmacademy_module_details,base.group_user,1,1,1,1
-mcm_academy_module_details_read_all,mcm academy module details all,model_mcmacademy_module_details,,1,1,1,1
-mcmacademy_programme_manager,mcm academy programme manager,model_mcmacademy_programme,base.group_user,1,1,1,1
-mcm_academy_programme_read_all,mcm academy programme all,model_mcmacademy_programme,,1,0,0,0
-mcmacademy_objectifs_manager,mcm academy objectifs manager,model_mcmacademy_programme_objectif,base.group_user,1,1,1,1
-mcm_academy_objectif_read_all,mcm academy objectif all,model_mcmacademy_programme_objectif,,1,0,0,0
-mcmacademy_clientpotentiel_manager,mcm academy client potentiels manager,model_mcmacademy_programme_clientpotentiel,base.group_user,1,1,1,1
-mcm_academy_clientpotentiel_read_all,mcm academy clientpotentiel all,model_mcmacademy_programme_clientpotentiel,,1,0,0,0
-mcmacademy_prerequis_manager,mcm academy prerequis manager,model_mcmacademy_programme_prerequis,base.group_user,1,1,1,1
-mcm_academy_prerequis_read_all,mcm academy prerequis all,model_mcmacademy_programme_prerequis,,1,0,0,0
-mcmacademy_suivi_execution_manager,mcm academy suivie execution manager,model_mcmacademy_suiviexecution,base.group_user,1,1,1,1
-mcm_academy_suivi_execution_read_all,mcm academy suivie execution all,model_mcmacademy_suiviexecution,,1,0,0,0
-mcmacademy_ressources_manager,mcm academy ressources manager,model_mcmacademy_ressources,base.group_user,1,1,1,1
-mcm_academy_ressources_read_all,mcm academy ressources all,model_mcmacademy_ressources,,1,0,0,0
+
+mcmacademy_session_user,mcm academy session user,model_mcmacademy_session,mcm_session.group_session_module_user,1,0,0,0
+mcmacademy_session_manager,mcm academy session manager,model_mcmacademy_session,mcm_session.group_session_module_manager,1,1,1,0
+mcm_academy_session_administrator,mcm academy session administrator,model_mcmacademy_session,mcm_session.group_session_module_administrator,1,1,1,1
+
+mcmacademy_action_user,mcm academy action user,model_mcmacademy_action,mcm_session.group_session_module_user,1,0,0,0
+mcmacademy_action_manager,mcm academy action manager,model_mcmacademy_action,mcm_session.group_session_module_manager,1,1,1,0
+mcm_academy_action_administrator,mcm academy action administrator,model_mcmacademy_action,mcm_session.group_session_module_administrator,1,1,1,1
+
+mcmacademy_domain_user,mcm academy domain manager,model_mcmacademy_domain,group_session_module_user,1,0,0,0
+mcmacademy_domain_manager,mcm academy domain manager,model_mcmacademy_domain,mcm_session.group_session_module_manager,1,1,1,0
+mcm_academy_domain_administrator,mcm academy domain administrator,model_mcmacademy_domain,mcm_session.group_session_module_administrator,1,1,1,1
+
+mcmacademy_stage_user,mcm academy stage user,model_mcmacademy_stage,mcm_session.group_session_module_user,1,0,0,0
+mcmacademy_stage_manager,mcm academy stage manager,model_mcmacademy_stage,mcm_session.group_session_module_manager,1,1,1,0
+mcm_academy_stage_administrator,mcm academy stage administrator,model_mcmacademy_stage,mcm_session.group_session_module_administrator,1,1,1,1
+
+mcmacademy_module_user,mcm academy module user,model_mcmacademy_module,mcm_session.group_session_module_user,1,1,0,0
+mcmacademy_module_manager,mcm academy module manager,model_mcmacademy_module,mcm_session.group_session_module_manager,1,1,1,0
+mcm_academy_module_administrator,mcm academy module administrator,model_mcmacademy_module,mcm_session.group_session_module_administrator,1,1,1,1
+
+mcmacademy_module_details_user,mcm academy module details user,model_mcmacademy_module_details,mcm_session.group_session_module_user,1,0,0,0
+mcmacademy_module_details_manager,mcm academy module details manager,model_mcmacademy_module_details,mcm_session.group_session_module_manager,1,1,1,0
+mcm_academy_module_details_administrator,mcm academy module details administrator,model_mcmacademy_module_details,mcm_session.group_session_module_administrator,1,1,1,1
+
+mcmacademy_programme_user,mcm academy programme user,model_mcmacademy_programme,mcm_session.group_session_module_user,1,0,0,0
+mcmacademy_programme_manager,mcm academy programme manager,model_mcmacademy_programme,mcm_session.group_session_module_manager,1,1,1,0
+mcm_academy_programme_administrator,mcm academy programme administrator,model_mcmacademy_programme,mcm_session.group_session_module_administrator,1,1,1,1
+
+mcmacademy_objectifs_user,mcm academy objectifs user,model_mcmacademy_programme_objectif,mcm_session.group_session_module_user,1,0,0,0
+mcmacademy_objectifs_manager,mcm academy objectifs manager,model_mcmacademy_programme_objectif,mcm_session.group_session_module_manager,1,1,1,0
+mcm_academy_objectif_administrator,mcm academy objectif administraor,model_mcmacademy_programme_objectif,mcm_session.group_session_module_administrator,1,1,1,1
+
+mcmacademy_clientpotentiel_user,mcm academy client potentiels user,model_mcmacademy_programme_clientpotentiel,mcm_session.group_session_module_user,1,0,0,0
+mcmacademy_clientpotentiel_manager,mcm academy client potentiels manager,model_mcmacademy_programme_clientpotentiel,mcm_session.group_session_module_manager,1,1,1,0
+mcm_academy_clientpotentiel_administrator,mcm academy clientpotentiel administrator,model_mcmacademy_programme_clientpotentiel,mcm_session.group_session_module_administrator,1,1,1,1
+
+mcmacademy_prerequis_user,mcm academy prerequis user,model_mcmacademy_programme_prerequis,mcm_session.group_session_module_user,1,0,0,0
+mcmacademy_prerequis_manager,mcm academy prerequis manager,model_mcmacademy_programme_prerequis,mcm_session.group_session_module_manager,1,1,1,0
+mcm_academy_prerequis_read_administrator,mcm academy prerequis administrator,model_mcmacademy_programme_prerequis,mcm_session.group_session_module_administrator,1,1,1,1
+
+mcmacademy_suivi_execution_user,mcm academy suivie execution user,model_mcmacademy_suiviexecution,mcm_session.group_session_module_user,1,0,0,0
+mcmacademy_suivi_execution_manager,mcm academy suivie execution manager,model_mcmacademy_suiviexecution,mcm_session.group_session_module_manager,1,1,1,0
+mcm_academy_suivi_execution_read_administrator,mcm academy suivie execution administrator,model_mcmacademy_suiviexecution,mcm_session.group_session_module_administrator,1,1,1,1
+
+mcmacademy_ressources_user,mcm academy ressources user,model_mcmacademy_ressources,mcm_session.group_session_module_user,1,0,0,0
+mcmacademy_ressources_manager,mcm academy ressources manager,model_mcmacademy_ressources,mcm_session.group_session_module_manager,1,1,1,0
+mcm_academy_ressources_read_administrator,mcm academy ressources administrator,model_mcmacademy_ressources,mcm_session.group_session_module_administrator,1,1,1,1
+
 mcm_academy_partner_wizard,mcm academy partner wizard,model_res_partner_session_wizard,,1,1,1,1

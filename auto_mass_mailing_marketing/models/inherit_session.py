@@ -4,7 +4,7 @@ from datetime import date, datetime, tzinfo, timedelta
 from odoo import api, fields, models, _
 
 
-class AccountMove(models.Model):
+class Session(models.Model):
     _inherit = "mcmacademy.session"
     _description = "Add fields in session view"
 
@@ -16,7 +16,7 @@ class AccountMove(models.Model):
 
     heure_examen_matin = fields.Char(default="09H00")
     heure_examen_apres_midi = fields.Char(default="14H00")
-    date_exam = fields.Date(string="Date d'examen")
+    date_exam = fields.Date(string="Date d'examen",copy=False,required=True,track_visibility='always') # add track visibility to show edit history of exam date field
 
     # date_convocation = fields.Date(string="Date d'envoi de convocation", default=datetime.today())
     horaire_email = fields.Char(compute="_compute_auto_horaire_email", string="Horaire Email",
@@ -76,3 +76,15 @@ class AccountMove(models.Model):
             'domain': [('id', 'in', [x.id for x in self.client_ids])],
             'context': "{'create': True}"
         }
+    def write(self,values):
+        session=super(Session,self).write(values)
+        modules = self.env['mcmacademy.module'].search([('session_id', "=",self.id)]) #get list of modules linked to self session
+        if modules:
+            for module in modules :
+                module.date_exam = self.date_exam #copy date exam of session in module
+                module.ville = self.ville #copy ville of session in module
+                module.max_number_places = self.max_number_places #copy nombre des places disponibles of session in module
+                if self.date_exam:
+                    module.date_debut = self.date_exam - timedelta(days=60) #start_date = date_exam - 60 days
+                module.date_fin = self.date_exam #end_date  = date_exam 
+        return session

@@ -114,6 +114,6 @@
         </record>
 
         <menuitem id="info_examen_info" name="Notes des examens"
-                  parent="mcm_session.mcm_academy_session_root_menu" action="action_info_examen" sequence="12"/>
+                  parent="mcm_session.mcm_academy_session_root_menu" action="action_info_examen" sequence="12" groups="mcm_session.group_session_module_manager"/>
     </data>
 </odoo>
