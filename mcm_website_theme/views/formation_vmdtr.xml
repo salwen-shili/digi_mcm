@@ -618,17 +618,18 @@
         <!-- partenaires-->
         <section class="pt40 pb32">
           <div class="container js-scroll fade-in-top">
-            <div class="center-logo" style="    justify-content: space-evenly !important;">
-              <!-- <div class="pt32" t-if="partenaire=='bolt'  or partenaire !='bolt'">
-                <a href="https://bolt.eu/fr/" target="_blank" rel="noopner">
-                  <img data-src="/mcm_website_theme/static/src/img/logos/logo-bolt.png" data-srcSafari="/mcm_website_theme/static/src/img/formation-éligible-au-compte-personnel-de-formation.png" class="img-fluid lazy" style="width: 100px; margin-top: 25px" alt="Logo partenaire MCM-ACADEMY" title="Bolt partenaire MCM ACADEMY" />
-                </a>
-              </div> -->
-              <!-- <div class="pt32" t-if="partenaire=='bolt'  or partenaire !='bolt'">
+            <div class="center-logo">
+
+              <div class="pt32" t-if="partenaire=='bolt'  or partenaire !='bolt'">
                 <a href="https://www.digimoov.fr/" target="_blank" rel="noopner">
-                  <img class="img-fluid lazy" style="width: 94px" data-src="/mcm_website_theme/static/src/img/logos/logo-digimoov.png" data-srcSafari="/mcm_website_theme/static/src/img/formation-taxi-vtc-certifiée-qualiopi.png" alt="Logo partenaire Digimoov" title="Digimoov partenaire MCM ACADEMY" />
+                  <img class="img-fluid lazy" style="width: 94px" data-src="/mcm_website_theme/static/src/img/logos/logo-digimoov.png" data-srcSafari="/mcm_website_theme/static/src/img/logos/logo-digimoov.png" alt="Logo partenaire Digimoov" title="Digimoov partenaire MCM ACADEMY" />
                 </a>
-              </div> -->
+              </div>
+              <div class="pt32" t-if="partenaire=='bolt'  or partenaire !='bolt'">
+                <a href="https://bolt.eu/fr/" target="_blank" rel="noopner">
+                  <img data-src="/mcm_website_theme/static/src/img/logos/logo-bolt.png" data-srcSafari="/mcm_website_theme/static/src/img/logos/logo-bolt.png" class="img-fluid lazy" style="width: 100px; margin-top: 9px" alt="Logo partenaire MCM-ACADEMY" title="Bolt partenaire MCM ACADEMY" />
+                </a>
+              </div>
               <div class="pt32" t-if="partenaire=='' or partenaire !='bolt'">
                 <a href="https://www.artisanat.fr/">
                   <img class="img-fluid lazy" style="width: 100px" data-srcSafari="/mcm_website_theme/static/src/img/logos/logo-CMA.png" data-src="/mcm_website_theme/static/src/img/logos/logo-CMA.png" title="Chambre de métiers et de l'artisanat partenaire MCM ACADEMY" alt="Chambre de métiers et de l'artisanat partenaire MCM ACADEMY" />
