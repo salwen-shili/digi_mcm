@@ -440,28 +440,21 @@
                             </p>
                           </t>
                           <div class="sh_btn">
-                            <null
-                              <null
-                                <null
-                                  <null
-                                    <null
-                                      <null
-                                        <HEAD
-                                          <a class="animated-button-yellow" href="#pricing" onClick="(function(){document.getElementById('form-1-2').submit();return false;})();return false;">
-                                            =======
-                                            <a class="animated-button-yellow" href="#pricing" onClick="(function(){ document.getElementById('form-1-2').submit();return false;})();return false;">
-                                              >>>>>>> vtc
-                                              <span></span>
-                                              <span></span>
-                                              <span></span>
-                                              <span></span>
-                                              Je m'inscris
-                                            </a>
-                                            <div>
-                                              <span style="color: red !important;font-size: 17px;font-weight: 600;">
+
+
+                            <a class="animated-button-yellow" href="#pricing" onClick="(function(){document.getElementById('form-1-2').submit();return false;})();return false;">
+
+                              <span></span>
+                              <span></span>
+                              <span></span>
+                              <span></span>
+                              Je m'inscris
+                            </a>
+                            <div>
+                              <span style="color: red !important;font-size: 17px;font-weight: 600;">
                                                             Paiement 1 ou 2 fois
                               </span>
-                                            </div>
+                            </div>
                           </div>
                         </form>
                       </t>
