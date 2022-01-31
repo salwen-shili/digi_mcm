@@ -5,9 +5,10 @@ from datetime import datetime, date
 import werkzeug
 import locale
 import json
-import logging
-import requests
 
+import requests
+import logging
+_logger = logging.getLogger(__name__)
 class WebhookController(http.Controller):
     @http.route('/validate_cpf_digi', auth='public')
     def validate_cpf_digi(self, **kw):
@@ -15,6 +16,7 @@ class WebhookController(http.Controller):
         header=json.loads(request.httprequest.header)
         _logger.info("webhoooooooooook %s" % str(dossier))
         _logger.info("header %s" % str(header))
+   
         params_wedof = (
             ('order', 'desc'),
             ('type', 'all'),
@@ -26,7 +28,7 @@ class WebhookController(http.Controller):
         headers = {
             'accept': 'application/json',
             'Content-Type': 'application/json',
-            'X-API-KEY': '026514d6bc7d880515a27eae4947bccef4fbbf03',
+            'X-API-KEY': '',
         }
 
         externalid = dossier['externalId']
