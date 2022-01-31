@@ -91,7 +91,7 @@ class Website(Website):
             raise werkzeug.exceptions.NotFound()
 
     @http.route('/attestation-transport-leger-marchandises/marseille', type='http', auth='public', website=True)
-    def attestation_transport_leger_marchandises_nantes(self, **kw,):
+    def attestation_transport_leger_marchandises_marseille(self, **kw,):
         if request.website.id == 2:
             digimoov_products = request.env['product.product'].sudo().search([('company_id', '=', 2)],
                                                                              order="list_price")
