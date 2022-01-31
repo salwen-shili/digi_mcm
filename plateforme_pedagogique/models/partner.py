@@ -724,7 +724,7 @@ class partner(models.Model):
 
     def change_state_wedof_validate(self):
         base_url = self.env['ir.config_parameter'].sudo().get_param('web.base.url')
-        if "localhost" not in str(base_url) and "dev.odoo" not in str(base_url):
+        if "localhost"  not in str(base_url) and "dev.odoo" not in str(base_url):
             params_wedof = (
                 ('order', 'desc'),
                 ('type', 'all'),
@@ -740,6 +740,13 @@ class partner(models.Model):
             }
             response = requests.get('https://www.wedof.fr/api/registrationFolders/', headers=headers,
                                     params=params_wedof)
+            """recuperer date debut de session minimale """
+            url = "https://www.wedof.fr/api/registrationFolders/utils/sessionMinDates"
+            date_session_min = requests.request("GET", url, headers=headers)
+            print(date_session_min.text)
+            datemin = date_session_min.json()
+            date_debutstr = datemin.get('cpfSessionMinDate')
+            date_debut = datetime.strptime(date_debutstr, '%Y-%m-%dT%H:%M:%S.%fz')
             registrations = response.json()
             for dossier in registrations:
                 _logger.info("validate_________ %s" %str(dossier))
@@ -801,9 +808,10 @@ class partner(models.Model):
                 diplome = dossier['trainingActionInfo']['title']
 
                 today = date.today()
-                datedebut = today + timedelta(days=15)
-                datefin = str(datedebut + relativedelta(months=3) + timedelta(days=1))
-                datedebutstr = str(datedebut)
+                # datedebut = today + timedelta(days=15)
+
+                datefin = str(date_debut + relativedelta(months=3) + timedelta(days=1))
+                datedebutstr = str(date_debut)
                 data = '{"trainingActionInfo":{"sessionStartDate":"' + datedebutstr + '","sessionEndDate":"' + datefin + '" }}'
                 dat = '{\n  "weeklyDuration": 14,\n  "indicativeDuration": 102\n}'
                 response_put = requests.put('https://www.wedof.fr/api/registrationFolders/' + externalid,
@@ -1688,3 +1696,21 @@ class partner(models.Model):
                     if invoice.invoice_payment_state == "not_paid":
                         etat_financement_cpf_cb = invoice.invoice_payment_state
                         invoice.partner_id.sudo().write({'etat_financement_cpf_cb': 'not_paid'})
+
+    def get_session(self):
+
+        url = "https://www.wedof.fr/api/registrationFolders/utils/sessionMinDates"
+
+        headers = {
+            "Content-Type": "application/json",
+            "X-API-KEY": "026514d6bc7d880515a27eae4947bccef4fbbf03"
+        }
+
+        response = requests.request("GET", url, headers=headers)
+
+        print(response.text)
+        datemin=response.json()
+        date_debutstr=datemin.get('cpfSessionMinDate')
+        date_debut=datetime.strptime( date_debutstr, '%Y-%m-%dT%H:%M:%S.%fz')
+
+        print(date_debut)
