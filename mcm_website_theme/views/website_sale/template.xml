@@ -557,7 +557,7 @@
             <div t-if="request.website.id==1">
 
 
-                <script type="text/javascript" src="/mcm_website_theme/static/src/js/template.js"></script>
+                <!-- <script type="text/javascript" src="/mcm_website_theme/static/src/js/template.js"></script> -->
             </div>
 
 
