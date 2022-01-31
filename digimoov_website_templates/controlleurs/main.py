@@ -42,6 +42,65 @@ class Website(Website):
         else:
             raise werkzeug.exceptions.NotFound()
 
+    @http.route('/attestation-transport-leger-marchandises/paris', type='http', auth='public', website=True)
+    def attestation_transport_leger_marchandises_paris(self, **kw,):
+        if request.website.id == 2:
+            digimoov_products = request.env['product.product'].sudo().search([('company_id', '=', 2)],
+                                                                             order="list_price")
+            values = {
+                'digimoov_products': digimoov_products,
+            }
+            return request.render("digimoov_website_templates.digimoov_template_transport_leger_marchandises_paris", values)
+        else:
+            raise werkzeug.exceptions.NotFound()
+
+    @http.route('/attestation-transport-leger-marchandises/lyon', type='http', auth='public', website=True)
+    def attestation_transport_leger_marchandises_lyon(self, **kw,):
+        if request.website.id == 2:
+            digimoov_products = request.env['product.product'].sudo().search([('company_id', '=', 2)],
+                                                                             order="list_price")
+            values = {
+                'digimoov_products': digimoov_products,
+            }
+            return request.render("digimoov_website_templates.digimoov_template_transport_leger_marchandises_lyon", values)
+        else:
+            raise werkzeug.exceptions.NotFound()
+
+    @http.route('/attestation-transport-leger-marchandises/lille', type='http', auth='public', website=True)
+    def attestation_transport_leger_marchandises_lille(self, **kw,):
+        if request.website.id == 2:
+            digimoov_products = request.env['product.product'].sudo().search([('company_id', '=', 2)],
+                                                                             order="list_price")
+            values = {
+                'digimoov_products': digimoov_products,
+            }
+            return request.render("digimoov_website_templates.digimoov_template_transport_leger_marchandises_lille", values)
+        else:
+            raise werkzeug.exceptions.NotFound()
+
+    @http.route('/attestation-transport-leger-marchandises/nantes', type='http', auth='public', website=True)
+    def attestation_transport_leger_marchandises_nantes(self, **kw,):
+        if request.website.id == 2:
+            digimoov_products = request.env['product.product'].sudo().search([('company_id', '=', 2)],
+                                                                             order="list_price")
+            values = {
+                'digimoov_products': digimoov_products,
+            }
+            return request.render("digimoov_website_templates.digimoov_template_transport_leger_marchandises_nantes", values)
+        else:
+            raise werkzeug.exceptions.NotFound()
+
+    @http.route('/attestation-transport-leger-marchandises/marseille', type='http', auth='public', website=True)
+    def attestation_transport_leger_marchandises_nantes(self, **kw,):
+        if request.website.id == 2:
+            digimoov_products = request.env['product.product'].sudo().search([('company_id', '=', 2)],
+                                                                             order="list_price")
+            values = {
+                'digimoov_products': digimoov_products,
+            }
+            return request.render("digimoov_website_templates.digimoov_template_transport_leger_marchandises_marseille", values)
+        else:
+            raise werkzeug.exceptions.NotFound()
 
 
 class FAQ(http.Controller):

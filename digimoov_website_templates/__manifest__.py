@@ -44,6 +44,11 @@
         'views/cart_progressbar.xml',
         'views/edit_info.xml',
         'views/attestation-transport-leger-marchandises-carte-bleu.xml',
+        'views/attestation-transport-leger-marchandises-paris.xml',
+        'views/attestation-transport-leger-marchandises-lille.xml',
+        'views/attestation-transport-leger-marchandises-lyon.xml',
+        'views/attestation-transport-leger-marchandises-nantes.xml',
+        'views/attestation-transport-leger-marchandises-marseille.xml',
         # 'views/charger_mes_documents'
         # 'views/sitemap.xml',
         'views/formation_capacité_de_transport_lourd_de_marchandise.xml',
