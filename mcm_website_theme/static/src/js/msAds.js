@@ -1,34 +1,5 @@
 //Homepage Microsoft ADS scripts
 //section devener chaffeur homepage
-function msTracking(event, event_category, event_label, event_value) {
-  (function (w, d, t, r, u) {
-    var f, n, i;
-    (w[u] = w[u] || []),
-      (f = function () {
-        var o = {
-          ti: document.getElementById('microsoft_tracking_key').value,
-        };
-        (o.q = w[u]), (w[u] = new UET(o)), w[u].push('pageLoad');
-      }),
-      (n = d.createElement(t)),
-      (n.src = r),
-      (n.async = 1),
-      (n.onload = n.onreadystatechange =
-        function () {
-          var s = this.readyState;
-          (s && s !== 'loaded' && s !== 'complete') ||
-            (f(), (n.onload = n.onreadystatechange = null));
-        }),
-      (i = d.getElementsByTagName(t)[0]),
-      i.parentNode.insertBefore(n, i);
-  })(window, document, 'script', 'https://bat.bing.com/bat.js', 'uetq');
-  window.uetq = window.uetq || [];
-  window.uetq.push('event', event, {
-    event_category: event_category,
-    event_label: event_label,
-    event_value: event_value,
-  });
-}
 
 //pricing table
 function packVtcHome() {
@@ -52,7 +23,7 @@ function packVtcHome() {
         }),
       (i = d.getElementsByTagName(t)[0]),
       i.parentNode.insertBefore(n, i);
-  })(window, document, 'script', 'https://bat.bing.com/bat.js', 'uetq');
+  })(window, document, 'script', '//bat.bing.com/bat.js', 'uetq');
 
   window.uetq = window.uetq || [];
   window.uetq.push('event', "clic sur s'inscrire pack vtc", {
@@ -83,7 +54,7 @@ function packTaxiHome() {
         }),
       (i = d.getElementsByTagName(t)[0]),
       i.parentNode.insertBefore(n, i);
-  })(window, document, 'script', 'https://bat.bing.com/bat.js', 'uetq');
+  })(window, document, 'script', '//bat.bing.com/bat.js', 'uetq');
 
   window.uetq = window.uetq || [];
   window.uetq.push('event', "clic sur s'inscrire pack taxi", {
@@ -114,7 +85,7 @@ function packVmdtrHome() {
         }),
       (i = d.getElementsByTagName(t)[0]),
       i.parentNode.insertBefore(n, i);
-  })(window, document, 'script', 'https://bat.bing.com/bat.js', 'uetq');
+  })(window, document, 'script', '//bat.bing.com/bat.js', 'uetq');
 
   window.uetq = window.uetq || [];
   window.uetq.push('event', "clic sur s'inscrire pack vmdtr", {
@@ -146,7 +117,7 @@ function packVtcPageFormationTaxi() {
         }),
       (i = d.getElementsByTagName(t)[0]),
       i.parentNode.insertBefore(n, i);
-  })(window, document, 'script', 'https://bat.bing.com/bat.js', 'uetq');
+  })(window, document, 'script', '//bat.bing.com/bat.js', 'uetq');
 
   window.uetq = window.uetq || [];
   window.uetq.push('event', "clic sur s'inscrire pack vtc", {
@@ -177,7 +148,7 @@ function packTaxiPageFormationTaxi() {
         }),
       (i = d.getElementsByTagName(t)[0]),
       i.parentNode.insertBefore(n, i);
-  })(window, document, 'script', 'https://bat.bing.com/bat.js', 'uetq');
+  })(window, document, 'script', '//bat.bing.com/bat.js', 'uetq');
 
   window.uetq = window.uetq || [];
   window.uetq.push('event', "clic sur s'inscrire pack taxi", {
@@ -208,7 +179,7 @@ function packVmdtrPageFormationTaxi() {
         }),
       (i = d.getElementsByTagName(t)[0]),
       i.parentNode.insertBefore(n, i);
-  })(window, document, 'script', 'https://bat.bing.com/bat.js', 'uetq');
+  })(window, document, 'script', '//bat.bing.com/bat.js', 'uetq');
 
   window.uetq = window.uetq || [];
   window.uetq.push('event', "clic sur s'inscrire pack vmdtr", {
@@ -240,7 +211,7 @@ function packVtcPageFromationVtc() {
         }),
       (i = d.getElementsByTagName(t)[0]),
       i.parentNode.insertBefore(n, i);
-  })(window, document, 'script', 'https://bat.bing.com/bat.js', 'uetq');
+  })(window, document, 'script', '//bat.bing.com/bat.js', 'uetq');
 
   window.uetq = window.uetq || [];
   window.uetq.push('event', "clic sur s'inscrire pack vtc", {
@@ -271,7 +242,7 @@ function packTaxiPageFromationVtc() {
         }),
       (i = d.getElementsByTagName(t)[0]),
       i.parentNode.insertBefore(n, i);
-  })(window, document, 'script', 'https://bat.bing.com/bat.js', 'uetq');
+  })(window, document, 'script', '//bat.bing.com/bat.js', 'uetq');
 
   window.uetq = window.uetq || [];
   window.uetq.push('event', "clic sur s'inscrire pack taxi", {
@@ -302,7 +273,7 @@ function packVmdtrPageFromationVtc() {
         }),
       (i = d.getElementsByTagName(t)[0]),
       i.parentNode.insertBefore(n, i);
-  })(window, document, 'script', 'https://bat.bing.com/bat.js', 'uetq');
+  })(window, document, 'script', '//bat.bing.com/bat.js', 'uetq');
 
   window.uetq = window.uetq || [];
   window.uetq.push('event', "clic sur s'inscrire pack vmdtr", {
@@ -334,7 +305,7 @@ function packVtcPageFormationTaxiMoto() {
         }),
       (i = d.getElementsByTagName(t)[0]),
       i.parentNode.insertBefore(n, i);
-  })(window, document, 'script', 'https://bat.bing.com/bat.js', 'uetq');
+  })(window, document, 'script', '//bat.bing.com/bat.js', 'uetq');
 
   window.uetq = window.uetq || [];
   window.uetq.push('event', "clic sur s'inscrire pack vtc", {
@@ -365,7 +336,7 @@ function packTaxiPageFormationTaxiMoto() {
         }),
       (i = d.getElementsByTagName(t)[0]),
       i.parentNode.insertBefore(n, i);
-  })(window, document, 'script', 'https://bat.bing.com/bat.js', 'uetq');
+  })(window, document, 'script', '//bat.bing.com/bat.js', 'uetq');
 
   window.uetq = window.uetq || [];
   window.uetq.push('event', "clic sur s'inscrire pack taxi", {
@@ -396,7 +367,7 @@ function packVmdtrPageFormationTaxiMoto() {
         }),
       (i = d.getElementsByTagName(t)[0]),
       i.parentNode.insertBefore(n, i);
-  })(window, document, 'script', 'https://bat.bing.com/bat.js', 'uetq');
+  })(window, document, 'script', '//bat.bing.com/bat.js', 'uetq');
 
   window.uetq = window.uetq || [];
   window.uetq.push('event', "clic sur s'inscrire pack vmdtr", {

@@ -1,34 +1,4 @@
 document.addEventListener('DOMContentLoaded', function () {
-  function msTracking(event, event_category, event_label, event_value, tagId) {
-    (function (w, d, t, r, u) {
-      var f, n, i;
-      (w[u] = w[u] || []),
-        (f = function () {
-          var o = {
-            ti: tagId,
-          };
-          (o.q = w[u]), (w[u] = new UET(o)), w[u].push('pageLoad');
-        }),
-        (n = d.createElement(t)),
-        (n.src = r),
-        (n.async = 1),
-        (n.onload = n.onreadystatechange =
-          function () {
-            var s = this.readyState;
-            (s && s !== 'loaded' && s !== 'complete') ||
-              (f(), (n.onload = n.onreadystatechange = null));
-          }),
-        (i = d.getElementsByTagName(t)[0]),
-        i.parentNode.insertBefore(n, i);
-    })(window, document, 'script', 'https://bat.bing.com/bat.js', 'uetq');
-    window.uetq = window.uetq || [];
-    window.uetq.push('event', event, {
-      event_category: event_category,
-      event_label: event_label,
-      event_value: event_value,
-    });
-  }
-
   //trigger tracking on submit payment
   document
     .getElementById('o_payment_form_pay')
@@ -89,6 +59,5 @@ document.addEventListener('DOMContentLoaded', function () {
           event_value = '200';
           break;
       }
-      msTracking(event, event_category, event_label, event_value, tagId);
     });
 });

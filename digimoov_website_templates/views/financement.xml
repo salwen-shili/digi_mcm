@@ -561,7 +561,7 @@
                                                             Paiement 1 ou 3 fois
                                                 </p>
                                                 <br />
-                                                <button class="btn btn-block text-white" onClick="(function(){msTracking('clic sur inscrire pack premuim','Pricing Table events','Inscrire pack premuim Homepage','849'); document.getElementById('form-3-1').submit();return false;})();return false;" style="background-color: #6e209f; border-radius: 25px">
+                                                <button class="btn btn-block text-white" onClick="(function(){ document.getElementById('form-3-1').submit();return false;})();return false;" style="background-color: #6e209f; border-radius: 25px">
                                                             Je m'inscris
                                                 </button>
                                             </div>

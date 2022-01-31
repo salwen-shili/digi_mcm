@@ -97,11 +97,6 @@ const addUserPlateform = () => {
     'popupcontent'
   ).innerHTML = `<div style="text-align: -webkit-center;"><div class="spinner"></div></div>`;
   sendHttpRequest('POST', '/shop/adduser_plateform', {}).then((res) => {
-<<<<<<< HEAD
-    //console.log('res.result.url');
-
-=======
->>>>>>> fix-logos-title
     if (res.result.url) {
       if (res.result.url.includes('https://')) {
         for (let index = 0; index < 200; index++) {
@@ -264,36 +259,36 @@ function showPopup() {
   }
 }
 
-function msTracking(event, event_category, event_label, event_value) {
-  (function (w, d, t, r, u) {
-    var f, n, i;
-    (w[u] = w[u] || []),
-      (f = function () {
-        var o = {
-          ti: '134610618',
-        };
-        (o.q = w[u]), (w[u] = new UET(o)), w[u].push('pageLoad');
-      }),
-      (n = d.createElement(t)),
-      (n.src = r),
-      (n.async = 1),
-      (n.onload = n.onreadystatechange =
-        function () {
-          var s = this.readyState;
-          (s && s !== 'loaded' && s !== 'complete') ||
-            (f(), (n.onload = n.onreadystatechange = null));
-        }),
-      (i = d.getElementsByTagName(t)[0]),
-      i.parentNode.insertBefore(n, i);
-  })(window, document, 'script', 'https://bat.bing.com/bat.js', 'uetq');
+// function msTracking(event, event_category, event_label, event_value) {
+//   (function (w, d, t, r, u) {
+//     var f, n, i;
+//     (w[u] = w[u] || []),
+//       (f = function () {
+//         var o = {
+//           ti: '134610618',
+//         };
+//         (o.q = w[u]), (w[u] = new UET(o)), w[u].push('pageLoad');
+//       }),
+//       (n = d.createElement(t)),
+//       (n.src = r),
+//       (n.async = 1),
+//       (n.onload = n.onreadystatechange =
+//         function () {
+//           var s = this.readyState;
+//           (s && s !== 'loaded' && s !== 'complete') ||
+//             (f(), (n.onload = n.onreadystatechange = null));
+//         }),
+//       (i = d.getElementsByTagName(t)[0]),
+//       i.parentNode.insertBefore(n, i);
+//   })(window, document, 'script', '//bat.bing.com/bat.js', 'uetq');
 
-  window.uetq = window.uetq || [];
-  window.uetq.push('event', event, {
-    event_category: event_category,
-    event_label: event_label,
-    event_value: event_value,
-  });
-}
+//   window.uetq = window.uetq || [];
+//   window.uetq.push('event', event, {
+//     event_category: event_category,
+//     event_label: event_label,
+//     event_value: event_value,
+//   });
+// }
 
 function verify_payment_method() {
   //user can navigate #popup1 to the url directly so we need to secure
@@ -351,13 +346,6 @@ function verify_payment_method() {
       if (cpf_pm.value == 'Formation pro') {
         switch (true) {
           case state.includes('https://www.moncompteformation.gouv.fr/'):
-            msTracking(
-              'clic sur mobiliser mon cpf pro status validé',
-              'CPF',
-              'Inscription CPF pro',
-              '680'
-            );
-
             window.open(state, '_blank');
             break;
           case state == 'accepted':
@@ -368,12 +356,7 @@ function verify_payment_method() {
 
           default:
             window.open('https://bit.ly/3nMlm2A', '_blank');
-            msTracking(
-              'clic sur mobiliser mon cpf pro',
-              'CPF',
-              'Inscription CPF pro',
-              '680'
-            );
+
             break;
         }
         return;
@@ -381,12 +364,6 @@ function verify_payment_method() {
       if (cpf_pm.value == 'Formation premium') {
         switch (true) {
           case state.includes('https://www.moncompteformation.gouv.fr/'):
-            msTracking(
-              'clic sur mobiliser mon cpf premuim status validé',
-              'CPF',
-              'Inscription CPF premuim',
-              '680'
-            );
             window.open(state, '_blank');
             break;
           case state == 'accepted':
@@ -396,12 +373,6 @@ function verify_payment_method() {
           default:
             window.open('https://bit.ly/3AcC579', '_blank');
 
-            msTracking(
-              'clic sur mobiliser mon cpf premium',
-              'CPF',
-              'Inscription CPF Premium',
-              '680'
-            );
             break;
         }
         return;

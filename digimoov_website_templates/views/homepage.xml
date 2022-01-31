@@ -2,8 +2,8 @@
     <template id="digimoov_website_templates.digimoov_template" inherit_id="website.homepage">
         <xpath expr="//div[@id='wrap']" position="replace">
             <script defer="defer" type="text/javascript" src="/digimoov_website_templates/static/src/js/lazy-min.min.js" />
-            <link href="/digimoov_website_templates/static/src/css/homepage_dig.min.css" rel="stylesheet" />
-            <script type="text/javascript" src="/mcm_website_theme/static/src/js/msAds.min.js" />
+            <link href="/digimoov_website_templates/static/src/css/css-dist/home.min.css" rel="stylesheet" />
+
             <br />
             <br />
 
@@ -321,7 +321,7 @@
                                                         <br />
                                                     </p>
                                                     <div class="boosting-section tab-btn s_btn text-right">
-                                                        <a onClick="msTracking('clic sur detail sur la formation Homepage','clic sur bouton','clic sur bouton detail sur la formation Homepage','66')" href="/blog/digimoov-3/post/bon-a-savoir-sur-la-formation-capacite-de-transport-leger-6#details-formation" target="_blank" rel="noopner" class="
+                                                        <a href="/blog/digimoov-3/post/bon-a-savoir-sur-la-formation-capacite-de-transport-leger-6#details-formation" target="_blank" rel="noopner" class="
                             boosting-section
                             boostingbtn
                             btn btn-alpha
@@ -746,7 +746,7 @@
                                                             Paiement 1 fois
                                                         </p>
                                                         <br />
-                                                        <button class="btn btn-block text-white" onClick="(function(){msTracking('clic sur inscrire pack solo','Pricing Table events','Inscrire pack solo Homepage','590'); document.getElementById('form-1-1').submit();return false;})();return false;" style="background-color: #6e209f; border-radius: 25px">
+                                                        <button class="btn btn-block text-white" onClick="(function(){ document.getElementById('form-1-1').submit();return false;})();return false;" style="background-color: #6e209f; border-radius: 25px">
                                                             Je m'inscris
                                                             </button>
                                                     </div>
@@ -895,7 +895,7 @@
                                                             Paiement 1 ou 2 fois
                                                             </p>
                                                         <br />
-                                                        <button class="btn btn-block text-white" onClick="(function(){msTracking('clic sur inscrire pack pro','Pricing Table events','Inscrire pack pro Homepage','680'); document.getElementById('form-2-1').submit();return false;})();return false;" style="background-color: #6e209f; border-radius: 25px">
+                                                        <button class="btn btn-block text-white" onClick="(function(){document.getElementById('form-2-1').submit();return false;})();return false;" style="background-color: #6e209f; border-radius: 25px">
                                                             Je m'inscris
                                                             </button>
                                                     </div>
@@ -1041,7 +1041,7 @@
                                                             Paiement 1 ou 3 fois
                                                             </p>
                                                         <br />
-                                                        <button class="btn btn-block text-white" onClick="(function(){msTracking('clic sur inscrire pack premuim','Pricing Table events','Inscrire pack premuim Homepage','849'); document.getElementById('form-3-1').submit();return false;})();return false;" style="background-color: #6e209f; border-radius: 25px">
+                                                        <button class="btn btn-block text-white" onClick="(function(){ document.getElementById('form-3-1').submit();return false;})();return false;" style="background-color: #6e209f; border-radius: 25px">
                                                             Je m'inscris
                                                             </button>
                                                     </div>
@@ -1545,8 +1545,8 @@
                      Paiement 1 fois
                                                 </p>
                                                 <br />
-                                                <button class="btn btn-block text-white" onClick="(function(){msTracking('clic sur inscrire pack solo coursier2roues','Pricing Table events','Clic pack solo coursier2roues','590'); window.location.href='/service-clientele'; return false;})();return false;" style="background-color: #6e209f; border-radius: 25px">
-                     Je m'inscris
+                                                <button class="btn btn-block text-white" onClick="(function(){window.location.href='/service-clientele'; return false;})();return false;" style="background-color: #6e209f; border-radius: 25px">
+                      Je m'inscris
                                                 </button>
                                             </div>
                                         </t>

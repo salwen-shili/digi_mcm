@@ -206,36 +206,6 @@ function onChangeCheckButton() {
   }
 }
 
-function msTracking(event, event_category, event_label, event_value) {
-  (function (w, d, t, r, u) {
-    var f, n, i;
-    (w[u] = w[u] || []),
-      (f = function () {
-        var o = {
-          ti: '134601341',
-        };
-        (o.q = w[u]), (w[u] = new UET(o)), w[u].push('pageLoad');
-      }),
-      (n = d.createElement(t)),
-      (n.src = r),
-      (n.async = 1),
-      (n.onload = n.onreadystatechange =
-        function () {
-          var s = this.readyState;
-          (s && s !== 'loaded' && s !== 'complete') ||
-            (f(), (n.onload = n.onreadystatechange = null));
-        }),
-      (i = d.getElementsByTagName(t)[0]),
-      i.parentNode.insertBefore(n, i);
-  })(window, document, 'script', 'https://bat.bing.com/bat.js', 'uetq');
-  window.uetq = window.uetq || [];
-  window.uetq.push('event', event, {
-    event_category: event_category,
-    event_label: event_label,
-    event_value: event_value,
-  });
-}
-
 function verify_payment_method() {
   //user can navigate #popup1 to the url directly so we need to secure
   //that he can't pass if he didn't choose a date
@@ -295,12 +265,6 @@ function verify_payment_method() {
       if (cpf_pm.value == 'Formation à distance TAXI') {
         switch (true) {
           case state.includes('https://www.moncompteformation.gouv.fr/'):
-            msTracking(
-              'clic sur mobiliser mon cpf Formation à distance TAXI status validé',
-              'CPF',
-              'Inscription CPF Formation à distance TAXI',
-              '680'
-            );
             window.open(state, '_blank');
 
             break;
@@ -311,12 +275,6 @@ function verify_payment_method() {
           default:
             window.open('https://bit.ly/3GjhHn7', '_blank');
 
-            msTracking(
-              'clic sur mobiliser mon cpf taxi',
-              'CPF',
-              'Inscription CPF TAXI',
-              '680'
-            );
             break;
         }
 
@@ -325,12 +283,6 @@ function verify_payment_method() {
       if (cpf_pm.value == 'Formation à distance VMDTR') {
         switch (true) {
           case state.includes('https://www.moncompteformation.gouv.fr/'):
-            msTracking(
-              'clic sur mobiliser mon cpf Formation à distance TAXI status validé',
-              'CPF',
-              'Inscription CPF Formation à distance TAXI',
-              '680'
-            );
             window.open(state, '_blank');
 
             break;
@@ -340,12 +292,7 @@ function verify_payment_method() {
 
           default:
             window.open('https://bit.ly/3FCYXxK', '_blank');
-            msTracking(
-              'clic sur mobiliser mon cpf vmdtr',
-              'CPF',
-              'Inscription CPF VMDTR',
-              '849'
-            );
+
             break;
         }
 
@@ -354,12 +301,6 @@ function verify_payment_method() {
       if (cpf_pm.value == 'Formation à distance VTC') {
         switch (true) {
           case state.includes('https://www.moncompteformation.gouv.fr/'):
-            msTracking(
-              'clic sur mobiliser mon cpf Formation à distance VTC status validé',
-              'CPF',
-              'Inscription CPF Formation à distance VTC',
-              '680'
-            );
             window.open(state, '_blank');
 
             break;
@@ -370,12 +311,7 @@ function verify_payment_method() {
 
           default:
             window.open('https://bit.ly/3452CaC', '_blank');
-            msTracking(
-              'clic sur mobiliser mon cpf vtc',
-              'CPF',
-              'Inscription CPF VTC',
-              '590'
-            );
+
             break;
         }
 
