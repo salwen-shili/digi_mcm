@@ -11,7 +11,7 @@
             <div id="wrap" class="oe_structure oe_empty" style="word-break: break-word; position: relative; z-index: 0">
                 <link rel="stylesheet" href="/mcm_website_theme/static/src/css/homepage.min.css" />
                 <script defer="defer" type="text/javascript" src="/digimoov_website_templates/static/src/js/lazy-min.min.js" />
-                <script type="text/javascript" src="/mcm_website_theme/static/src/js/msAds.min.js" />
+
                 <link rel="stylesheet" href="/mcm_website_theme/static/src/css/cta-button.min.css" />
                 <div id="wrap" class="oe_structure" style="border-style: none; border-width: 0px">
                     <section id="sh_corpomate_theme_section_258" class="sh_animation_part pt8">

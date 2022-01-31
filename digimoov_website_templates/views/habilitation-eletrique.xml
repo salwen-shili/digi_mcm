@@ -3,7 +3,6 @@
         <t t-call="website.layout">
             <script defer="defer" type="text/javascript" src="/digimoov_website_templates/static/src/js/lazy-min.js" />
             <link href="/digimoov_website_templates/static/src/css/css-dist/home.min.css" rel="stylesheet" />
-            <script type="text/javascript" src="/mcm_website_theme/static/src/js/msAds.js" />
             <br />
             <br />
             <style>
@@ -396,7 +395,7 @@
                                                 <br />
                                                 <br />
                                                 <br />
-                                                <button class="btn btn-block text-white" onClick="(function(){msTracking('clic sur inscrire pack solo habiliation-electrique','Pricing Table events','Inscrire pack  habiliation-electrique','360'); document.getElementById('form-habiliation-electrique').submit();return false;})();return false;" style="background-color: #6e209f; border-radius: 25px">
+                                                <button class="btn btn-block text-white" onClick="(function(){document.getElementById('form-habiliation-electrique').submit();return false;})();return false;" style="background-color: #6e209f; border-radius: 25px">
                         Je m'inscris
                                                 </button>
                                             </div>
