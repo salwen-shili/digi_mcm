@@ -72,7 +72,7 @@
                                     <style t-if="request.website.id == 1">
                                         .wrapper{
                                                 margin-top: 39px;
-                                                border: 1px solid #fcd1046b;
+                                                border: 1px solid #000;
                                                 padding: 12px;
                                                 box-shadow: 0px 10px 15px 7px rgb(0 0 0 / 5%);
                                                 border-radius: 5px;
