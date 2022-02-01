@@ -571,80 +571,14 @@
                 <t t-if="request.website.id == 1">
 
                     <link href="/mcm_website_theme/static/src/css/material_form.css" rel="stylesheet" />
+                    <link href="/fl_auth_signup/static/css/style_mcm.css" rel="stylesheet" />
 
                 </t>
                 <t t-if="request.website.id == 2">
                     <link href="/digimoov_website_templates/static/src/css/material_form.css" rel="stylesheet" />
+                    <link href="/fl_auth_signup/static/css/style_dig.css" rel="stylesheet" />
                 </t>
-                <style>
-                    body{
-                        background-color: transparent;
-                        color:#27303f;
-                        font-size:17px;
-                        font-family:"Poppins",sans-serif;
-                        
-                    }
-                    .form-control {
-                            padding: 20px 10px;
-                        margin-top: 0;
-                            background-color: #e8f0fe;
 
-                    }
-                    .form-group > label{
-                        color: #27303f;
-                        margin:0;
-                    }
-                    .form-control:focus {
-                    
-                        border-radius: 0.25rem;
-                        transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
-                    }
-                    .form-control:focus {
-                    
-                        background-color: #FFFFFF;
-                        border-color: #5850ec;
-                    
-                        box-shadow: none ;
-                    }
-
-                    .cnx-title{
-                            margin: 32px 0 0;
-                        font-size: 30px;
-                        font-weight: 800;
-                        letter-spacing: -.022em;
-                        line-height: 1.25;
-                    }
-                    .cnx-subtitle{
-                        margin-bottom: 32px;
-                    }
-                    .cnx-subtitle > a{
-                        color: #5850ec;
-                        border-bottom: 1px solid #5850ec;
-                    }
-                    .logo-flex{
-                            display: flex;
-                        align-items: center;
-                        justify-content: center;
-                        align-content: center;
-                    }
-                    main{
-                            max-width: 940px;
-                            margin: 1.4rem auto;
-                            height: 83vh;
-                            width: 100%;
-                            display: flex;
-                            align-items: center;
-                            justify-content: center;
-                    }
-                    #wrapwrap{
-background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' version='1.1' xmlns:xlink='http://www.w3.org/1999/xlink' xmlns:svgjs='http://svgjs.com/svgjs' width='1440' height='560' preserveAspectRatio='none' viewBox='0 0 1440 560'%3e%3cg mask='url(%26quot%3b%23SvgjsMask5078%26quot%3b)' fill='none'%3e%3crect width='1440' height='560' x='0' y='0' fill='url(%23SvgjsLinearGradient5079)'%3e%3c/rect%3e%3cpath d='M0 0L64.48 0L0 273.93z' fill='rgba(255%2c 255%2c 255%2c .1)'%3e%3c/path%3e%3cpath d='M0 273.93L64.48 0L682.8000000000001 0L0 368.24z' fill='rgba(255%2c 255%2c 255%2c .075)'%3e%3c/path%3e%3cpath d='M0 368.24L682.8000000000001 0L1153.21 0L0 406.87z' fill='rgba(255%2c 255%2c 255%2c .05)'%3e%3c/path%3e%3cpath d='M0 406.87L1153.21 0L1297.52 0L0 440.36z' fill='rgba(255%2c 255%2c 255%2c .025)'%3e%3c/path%3e%3cpath d='M1440 560L1363.54 560L1440 470.5z' fill='rgba(0%2c 0%2c 0%2c .1)'%3e%3c/path%3e%3cpath d='M1440 470.5L1363.54 560L985.93 560L1440 400.37z' fill='rgba(0%2c 0%2c 0%2c .075)'%3e%3c/path%3e%3cpath d='M1440 400.37L985.9300000000001 560L882.69 560L1440 356.14z' fill='rgba(0%2c 0%2c 0%2c .05)'%3e%3c/path%3e%3cpath d='M1440 356.14L882.69 560L550.23 560L1440 304.19z' fill='rgba(0%2c 0%2c 0%2c .025)'%3e%3c/path%3e%3c/g%3e%3cdefs%3e%3cmask id='SvgjsMask5078'%3e%3crect width='1440' height='560' fill='white'%3e%3c/rect%3e%3c/mask%3e%3clinearGradient x1='15.28%25' y1='139.29%25' x2='84.72%25' y2='-39.29%25' gradientUnits='userSpaceOnUse' id='SvgjsLinearGradient5079'%3e%3cstop stop-color='rgba(81%2c 69%2c 205%2c 1)' offset='0'%3e%3c/stop%3e%3cstop stop-color='rgba(255%2c 255%2c 255%2c 0)' offset='0.52'%3e%3c/stop%3e%3cstop stop-color='rgba(255%2c 255%2c 255%2c 0)' offset='1'%3e%3c/stop%3e%3cstop stop-color='rgba(255%2c 255%2c 255%2c 0)' offset='1'%3e%3c/stop%3e%3c/linearGradient%3e%3c/defs%3e%3c/svg%3e");                    }
-                   
-
-
-    
-
-
-                </style>
 
                 <div class="container">
                     <div class="row">
@@ -721,8 +655,8 @@ background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/s
                                 </div>
                                 <div class="cnx-title"> Connexion </div>
                                 <div class="cnx-subtitle">
-                                    <span> Pas encore de compte ? </span>
-                                    <a href="/web/signup"> Inscription </a>
+                                    <span> Vous n'avez pas encore créer votre compte ? </span>
+                                    <a href="/web/signup"> Inscrivez-vous ! </a>
                                 </div>
                                 <div class="form-group field-login">
                                     <label for="login">Adresse email</label>
@@ -747,7 +681,7 @@ background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/s
                                 </div>
 
                                 <div t-attf-class="clearfix oe_login_buttons text-center mb-1 {{'pt-2' if form_small else 'pt-3'}}">
-                                    <button type="submit" class="rkmd-btn btn-indigo">Log in</button>
+                                    <button type="submit" t-attf-class="rkmd-btn   #{'btn-indigo' if request.website.id == 2 else 'btn-black'}">Je me connecte</button>
                                     <t t-if="debug">
                                         <button type="submit" name="redirect" value="/web/become" class="btn btn-link btn-sm btn-block">Log in as superuser</button>
                                     </t>
@@ -758,9 +692,8 @@ background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/s
                             </form>
                         </div>
                         <div class="col-lg-6 text-center logo-flex ">
-                            <img class="img img img-fluid" style="width:60%" alt="Digimoov" src="/mcm_website_theme/static/src/img/logos/logo-digimoov.png"></img>
+                            <img class="img img img-fluid" style="width:60%" t-attf-src="#{'/mcm_website_theme/static/src/img/logos/logo-digimoov.png' if request.website.id == 2 else '/mcm_website_theme/static/src/img/logos/MCM ACADEMY.png' }" />
                         </div>
-
                     </div>
                 </div>
 
