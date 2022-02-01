@@ -16,7 +16,7 @@ class Module(models.Model):
     date_debut = fields.Date('Du')
     date_fin = fields.Date('Au')
     duree = fields.Char('Durée')
-    session_id = fields.Many2one('mcmacademy.session', 'Session')
+    session_id = fields.Many2one('mcmacademy.session', 'Session',required=True,ondelete='cascade') #ondelete='cascade'  the module will be automatically deleted when the session to which it is attached is deleted
     module_details_ids = fields.One2many('mcmacademy.module.details', inverse_name='module_id', string='Détails')
     currency_id = fields.Many2one('res.currency', related='company_id.currency_id')
     sequence = fields.Integer(string='Sequence', default=10)
