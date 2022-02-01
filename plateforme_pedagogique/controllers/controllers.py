@@ -16,22 +16,19 @@ class WebhookController(http.Controller):
         header=json.loads(request.httprequest.header)
         _logger.info("webhoooooooooook %s" % str(dossier))
         _logger.info("header %s" % str(header))
-   
-        params_wedof = (
-            ('order', 'desc'),
-            ('type', 'all'),
-            ('state', 'notProcessed'),
-            ('billingState', 'all'),
-            ('certificationState', 'all'),
-            ('sort', 'lastUpdate'),
-        )
+        company=request.env['res.company'].sudo().search([('id',"=",2)])
+        api_key=""
+        if company:
+            api_key=company.wedof_api_key
+
         headers = {
             'accept': 'application/json',
             'Content-Type': 'application/json',
-            'X-API-KEY': '',
+            'X-API-KEY': api_key,
         }
 
         externalid = dossier['externalId']
+        _logger.info("external_id %s" %str(externalid))
         email = dossier['attendee']['email']
         email = email.replace("%", ".")  # remplacer % par .
         email = email.replace(" ", "")  # supprimer les espaces envoyés en paramètre email
