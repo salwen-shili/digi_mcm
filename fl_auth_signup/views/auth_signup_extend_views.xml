@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <data>
-<template id="auth_signup_fields_extend" inherit_id="auth_signup.fields" name="Signup Fields Extend">
+        <template id="auth_signup_fields_extend" inherit_id="auth_signup.fields" name="Signup Fields Extend">
             <xpath expr="//div[@class='form-group field-name']" position="replace">
                 <div class="form-group field-name"></div>
             </xpath>
@@ -418,8 +418,7 @@
 
                                             <div class="o_login_auth" data-oe-model="ir.ui.view" data-oe-id="1730" data-oe-field="arch" data-oe-xpath="/data/xpath[4]/div[2]/div[1]/div[1]/div[1]/div[1]/fieldset[1]/div[7]/div[1]"></div>
                                         </div>
-                                        <link href="/mcm_contact_documents/static/src/css/button.min.css"
-                                              rel="stylesheet"/>
+                                        <link href="/mcm_contact_documents/static/src/css/button.min.css" rel="stylesheet" />
 
 
                                     </fieldset>
@@ -481,18 +480,15 @@
                         </div>
                     </div>
                 </div>
-                <script defer="defer" type="text/javascript"
-                        src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"/>
+                <script defer="defer" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js" />
 
 
                 <!-- <script defer="defer" type="text/javascript" src="/mcm_website_theme/static/src/js/register_form.js" /> -->
 
-                <script defer="defer" type="text/javascript" src="/fl_auth_signup/static/js/validate_inscription.min.js"
-                        t-if="not name or not last_login"/>
+                <script defer="defer" type="text/javascript" src="/fl_auth_signup/static/js/validate_inscription.min.js" t-if="not name or not last_login" />
 
-                <script defer="defer" type="text/javascript"
-                        src="/fl_auth_signup/static/js/validate_inscription_reset.js" t-if="name"/>
-                <script defer="defer" type="text/javascript" src="/mcm_website_theme/static/src/js/material.min.js"/>
+                <script defer="defer" type="text/javascript" src="/fl_auth_signup/static/js/validate_inscription_reset.js" t-if="name" />
+                <script defer="defer" type="text/javascript" src="/mcm_website_theme/static/src/js/material.min.js" />
 
             </xpath>
 
@@ -500,27 +496,22 @@
         <template id="fl_auth_signup.login" inherit_id="auth_signup.login" name="Sign up - Reset Password">
             <xpath expr="//div[@class='justify-content-between mt-2 d-flex small']" position="before">
                 <t t-set="head">
-                    <meta name="robots" content="noindex"/>
+                    <meta name="robots" content="noindex" />
                 </t>
             </xpath>
             <xpath expr="//div[@class='justify-content-between mt-2 d-flex small']" position="replace">
                 <div class="justify-content-between mt-2 d-flex small">
-                    <a t-if="signup_enabled" t-attf-href="/web/signup?{{ keep_query() }}" style="font-size: large">Vous
+                    <a t-if="signup_enabled" t-attf-href="/web/signup?{{ keep_query() }}" style="font-size: large">
+                        Vous
                         n'avez pas de compte ?
                     </a>
-                    <div>
-                        <a t-if="reset_password_enabled" t-attf-href="/web/reset_password?{{ keep_query() }}"
-                           style="font-size: large">Mot de passe oublié ?
-                        </a>
-                    </div>
-
                 </div>
             </xpath>
         </template>
         <template id="fl_auth_signup.reset_password" inherit_id="auth_signup.reset_password" name="Reset password">
             <xpath expr="//div[1]" position="before">
                 <t t-set="head">
-                    <meta name="robots" content="noindex"/>
+                    <meta name="robots" content="noindex" />
                 </t>
             </xpath>
             <xpath expr="//div[1]//a" position="replace">
@@ -545,24 +536,24 @@
         <template id="fl_auth_signup.form_extented" inherit_id="auth_signup.signup" name="Extended Form Sign up">
             <xpath expr="//form" position="before">
                 <t t-set="head">
-                    <meta name="robots" content="noindex"/>
+                    <meta name="robots" content="noindex" />
                 </t>
             </xpath>
             <xpath expr="//form" position="replace">
 
                 <form id="first_form" role="form" method="post" t-if="not message">
-                    <input name="csrf_token" t-att-value="request.csrf_token()" type="hidden"/>
+                    <input name="csrf_token" t-att-value="request.csrf_token()" type="hidden" />
 
                     <t t-call="auth_signup.fields">
-                        <t t-set="only_passwords" t-value="bool(token and not invalid_token)"/>
+                        <t t-set="only_passwords" t-value="bool(token and not invalid_token)" />
                     </t>
 
                     <p class="alert alert-danger" t-if="error" role="alert" style="display:none !important">
-                        <t t-esc="error"/>
+                        <t t-esc="error" />
                     </p>
                     <!--          <input type="hidden" name="redirect" t-att-value="'/charger_mes_documents'"/>-->
-                    <input name="token" t-att-value="token" type="hidden"/>
-                    <input id="product_id" t-att-value="product_id" type="hidden"/>
+                    <input name="token" t-att-value="token" type="hidden" />
+                    <input id="product_id" t-att-value="product_id" type="hidden" />
 
                 </form>
 
@@ -573,8 +564,139 @@
         <template id="fl_auth_signup.web_login" inherit_id="web.login" name="Extended Login">
             <xpath expr="//form" position="before">
                 <t t-set="head">
-                    <meta name="robots" content="noindex"/>
+                    <meta name="robots" content="noindex" />
                 </t>
+            </xpath>
+            <xpath expr="//form[@class='oe_login_form']" position="replace">
+                <t t-if="request.website.id == 1">
+
+                    <link href="/mcm_website_theme/static/src/css/material_form.css" rel="stylesheet" />
+                    <link href="/fl_auth_signup/static/css/style_mcm.css" rel="stylesheet" />
+
+                </t>
+                <t t-if="request.website.id == 2">
+                    <link href="/digimoov_website_templates/static/src/css/material_form.css" rel="stylesheet" />
+                    <link href="/fl_auth_signup/static/css/style_dig.css" rel="stylesheet" />
+                </t>
+
+
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <!-- <form class="oe_login_form" role="form" t-attf-action="/web/login" method="post" onsubmit="this.action = this.action + location.hash">
+                                <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()" />
+
+                                <div class="form-group field-db" t-if="databases and len(databases) &gt; 1">
+                                    <label for="db" class="col-form-label">Database</label>
+                                    <div t-attf-class="input-group {{'input-group-sm' if form_small else ''}}">
+                                        <input type="text" name="db" t-att-value="request.db" id="db" t-attf-class="form-control #{'form-control-sm' if form_small else ''}" required="required" readonly="readonly" />
+                                        <span class="input-group-append">
+                                            <a role="button" href="/web/database/selector" class="btn btn-secondary">
+                                                Select
+                                                <i class="fa fa-database" role="img" aria-label="Database" title="Database" />
+                                            </a>
+                                        </span>
+                                    </div>
+                                </div>
+
+                                <div class="form-group field-login">
+                                    <label for="login">Adresse Email</label>
+                                    <input type="text" placeholder="Email" name="login" t-att-value="login" id="login" t-attf-class="form-control #{'form-control-sm' if form_small else ''}" required="required" autofocus="autofocus" autocapitalize="off" />
+                                </div>
+
+                                <div class="form-group field-password">
+                                    <label for="password">Mot de passe</label>
+                                    <input type="password" placeholder="Password" name="password" id="password" t-attf-class="form-control #{'form-control-sm' if form_small else ''}" required="required" autocomplete="current-password" t-att-autofocus="'autofocus' if login else None" maxlength="4096" />
+                                </div>
+
+                                <p class="alert alert-danger" t-if="error" role="alert">
+                                    <t t-esc="error" />
+                                </p>
+                                <p class="alert alert-success" t-if="message" role="status">
+                                    <t t-esc="message" />
+                                </p>
+                                <div style="margin: 15px 0 ">
+                                    <a t-if="reset_password_enabled" t-attf-href="/web/reset_password?{{ keep_query() }}" style="font-size: large; color: #5850ec; text-decoration: underline !important;">
+                                        Mot de passe oublié ?
+                                    </a>
+                                </div>
+
+                                <div t-attf-class="clearfix oe_login_buttons text-center mb-1 {{'pt-2' if form_small else 'pt-3'}}">
+                                    <button type="submit" class="btn btn-primary btn-block">Log in</button>
+                                    <t t-if="debug">
+                                        <button type="submit" name="redirect" value="/web/become" class="btn btn-link btn-sm btn-block">Log in as superuser</button>
+                                    </t>
+                                    <div class="o_login_auth" />
+                                </div>
+                                <div style="    align-items: center;     border-bottom: 1px solid #dadde1;     display: flex;     margin: 20px 16px;     text-align: center;"></div>
+                                <a style="font-size: large" href="/web/signup">
+                                    <button id="inscrire" class="rkmd-btn btn-green">
+                            Créer un compte
+                        </button>
+                                </a>
+
+                                <input type="hidden" name="redirect" t-att-value="redirect" />
+                            </form> -->
+
+                            <form class="oe_login_form" role="form" t-attf-action="/web/login" method="post" onsubmit="this.action = this.action + location.hash">
+                                <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()" />
+
+                                <div class="form-group field-db" t-if="databases and len(databases) &gt; 1">
+                                    <label for="db" class="col-form-label">Database</label>
+                                    <div t-attf-class="input-group {{'input-group-sm' if form_small else ''}}">
+                                        <input type="text" name="db" t-att-value="request.db" id="db" t-attf-class="form-control #{'form-control-sm' if form_small else ''}" required="required" readonly="readonly" />
+                                        <span class="input-group-append">
+                                            <a role="button" href="/web/database/selector" class="btn btn-secondary">
+                                                Select
+                                                <i class="fa fa-database" role="img" aria-label="Database" title="Database" />
+                                            </a>
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="cnx-title"> Connexion </div>
+                                <div class="cnx-subtitle">
+                                    <span> Vous n'avez pas encore créer votre compte ? </span>
+                                    <a href="/web/signup"> Inscrivez-vous ! </a>
+                                </div>
+                                <div class="form-group field-login">
+                                    <label for="login">Adresse email</label>
+                                    <input type="text" placeholder="Email" name="login" t-att-value="login" id="login" t-attf-class="form-control #{'form-control-sm' if form_small else ''}" required="required" autofocus="autofocus" autocapitalize="off" />
+                                </div>
+
+                                <div class="form-group field-password">
+                                    <label for="password">Mot de passe</label>
+                                    <input type="password" placeholder="Password" name="password" id="password" t-attf-class="form-control #{'form-control-sm' if form_small else ''}" required="required" autocomplete="current-password" t-att-autofocus="'autofocus' if login else None" maxlength="4096" />
+                                </div>
+
+                                <p class="alert alert-danger" t-if="error" role="alert">
+                                    <t t-esc="error" />
+                                </p>
+                                <p class="alert alert-success" t-if="message" role="status">
+                                    <t t-esc="message" />
+                                </p>
+                                <div style="margin: 15px 0 ">
+                                    <a t-if="reset_password_enabled" t-attf-href="/web/reset_password?{{ keep_query() }}" style="font-size: 16px; color: #5850ec; text-decoration: underline !important;">
+                                        Mot de passe oublié ?
+                                    </a>
+                                </div>
+
+                                <div t-attf-class="clearfix oe_login_buttons text-center mb-1 {{'pt-2' if form_small else 'pt-3'}}">
+                                    <button type="submit" t-attf-class="rkmd-btn   #{'btn-indigo' if request.website.id == 2 else 'btn-black'}">Je me connecte</button>
+                                    <t t-if="debug">
+                                        <button type="submit" name="redirect" value="/web/become" class="btn btn-link btn-sm btn-block">Log in as superuser</button>
+                                    </t>
+                                    <div class="o_login_auth" />
+                                </div>
+                                <div style="    align-items: center;     border-bottom: 1px solid #dadde1;     display: flex;     margin: 20px 16px;     text-align: center;"></div>
+                                <input type="hidden" name="redirect" t-att-value="redirect" />
+                            </form>
+                        </div>
+                        <div class="col-lg-6 text-center logo-flex ">
+                            <img class="img img img-fluid" style="width:60%" t-attf-src="#{'/mcm_website_theme/static/src/img/logos/logo-digimoov.png' if request.website.id == 2 else '/mcm_website_theme/static/src/img/logos/MCM ACADEMY.png' }" />
+                        </div>
+                    </div>
+                </div>
+
             </xpath>
         </template>
     </data>

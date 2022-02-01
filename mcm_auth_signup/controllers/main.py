@@ -123,15 +123,15 @@ class Home(Home):
         if 'login' in request.params:
             request.params['login'] = request.params['login'].replace(' ', '').lower()
             login = request.params['login']
-        print("redirect1", redirect)
         response = super(Home, self).web_login(redirect=redirect, **kw)
-        print("redirect2",redirect)
         partner = request.env['res.partner'].sudo().search([('email', "=", login)], limit=1)
         order = request.env['sale.order'].sudo().search([('partner_id', "=", partner.id)], order='create_date desc', limit=1)
         order1 = request.website.sale_get_order()
+        if redirect and request.website.is_public_user():
+            url = '/web/signup?redirect=%s' %(redirect)
+            return werkzeug.utils.redirect(url, '301')
         if request.website.id == 1 or request.website.id == 2:
             step = partner.step
-            print("step",step)
             if redirect == '/felicitations':
                 response = super(Home, self).web_login(redirect='/felicitations', **kw)
             elif order:
@@ -148,9 +148,15 @@ class Home(Home):
                     redirect='/my'
                     #response = super(Home, self).web_login(redirect='/my', **kw)
             else:
-                redirect = '/#pricing'
-                response = super(Home, self).web_login(redirect='/#pricing', **kw)
-        response = super(Home, self).web_login(redirect=redirect, **kw)
+
+                if request.website.sale_get_order() and not request.website.is_public_user():
+                    redirect = '/shop/cart'
+                    response = super(Home, self).web_login(redirect='/shop/cart', **kw)
+                else :
+                    redirect = '/#pricing'
+                    response = super(Home, self).web_login(redirect='/#pricing', **kw)
+        else:
+            response = super(Home, self).web_login(redirect=redirect, **kw)
         return response
 
 
