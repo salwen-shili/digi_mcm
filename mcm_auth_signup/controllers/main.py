@@ -154,7 +154,7 @@ class Home(Home):
                     response = super(Home, self).web_login(redirect='/shop/cart', **kw)
                 else :
                     redirect = '/#pricing'
-                    response = super(Home, self).web_login(redirect='/shop/cart', **kw)
+                    response = super(Home, self).web_login(redirect='/#pricing', **kw)
         else:
             response = super(Home, self).web_login(redirect=redirect, **kw)
         return response
