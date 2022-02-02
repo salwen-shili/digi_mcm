@@ -377,4 +377,5 @@ class WebhookController(http.Controller):
                             # so.amount_total = so.amount_total * 0.25
                             for line in so.order_line:
                                 line.price_unit = so.amount_total
+
         return True
