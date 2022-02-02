@@ -98,7 +98,7 @@ class WebhookController(http.Controller):
         else:
             prenom = ""
         diplome = dossier['trainingActionInfo']['title']
-        if event=="registrationFolder.created":
+        if str(event) == "registrationFolder.created":
             today = date.today()
             datedebut = today + timedelta(days=15)
             datefin = str(datedebut + relativedelta(months=3) + timedelta(days=1))
