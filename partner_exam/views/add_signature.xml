@@ -23,6 +23,15 @@
                     </group>
                 </page>
             </xpath>
+                 <xpath expr="//page[@name='suivi_formation']" position="after">
+                  <page string="Integration Wedof" name="wedof">
+                    <group>
+                        <group>
+                            <field name="wedof_api_key" />
+                        </group>
+                    </group>
+                </page>
+            </xpath>
         </field>
     </record>
 </odoo>

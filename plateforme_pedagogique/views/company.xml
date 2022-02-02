@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="mcm_inherit_view_company_form" model="ir.ui.view">
+        <field name="name">res.company.form</field>
+        <field name="model">res.company</field>
+        <field name="inherit_id" ref="partner_exam.view_signature_company_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//page[@name='suivi_formation']" position="after">
+                <page string="Integration Wedof" name="wedof">
+                    <group>
+                        <group>
+                            <field name="wedof_api_key" string="Jetons d'API Wedof"/>
+                        </group>
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+</odoo>
