@@ -458,7 +458,7 @@ class Services(http.Controller):
                 'login': str(email_from),
                 'groups_id': [(6, 0, [request.env.ref('base.group_portal').id])],
                 'email': email_from,
-                # 'phone': phone,
+                'phone': phone,
                 'notification_type': 'email',
                 # 'website_id': 2,
                 # 'company_ids': [1, 2],
@@ -473,6 +473,7 @@ class Services(http.Controller):
                 user.partner_id.sudo().write({'phone': phone, 'website_id': 2, 'email': email_from})
             user.partner_id.company_name = name_company
         if user:
+            user.partner_id.sudo().write({'phone': phone})
             ticket_name = 'Digimoov : ' + str(name)
             ticket = request.env['helpdesk.ticket'].sudo().search(
                 [('name', "=", ticket_name), ('partner_id', "=", user.partner_id.id),
