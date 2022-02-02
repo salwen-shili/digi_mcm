@@ -422,7 +422,7 @@
                                 <img src="/digimoov_website_templates/static/img/im 32 ex.png" class="img img-fluid mx-auto" alt="Odoo • Image et Texte" />
                             </div>
                             <div class="col-lg-6 pt16 pb0" style="border-style: none; border-width: 0px">
-                                <h2>
+                                <h2 style="padding-bottom:13px; line-height:1 !important; ">
                                     <font style="color: rgb(103, 67, 148); font-size: 24px">Les conditions relatives aux passages et aux repassages des
                   examens</font>
                                 </h2>
@@ -432,6 +432,7 @@
                                         : Légalement, il ne faut pas dépasser 4 mois entre la date
                   d'inscription à la formation et le passage du premier examen.
                                     </span>
+                                    <br />
                                     <br style="                     box-sizing: inherit;                     color: rgb(29, 28, 29);                     font-family: Slack-Lato, appleLogo, sans-serif;                     font-size: 15px;                     font-variant-ligatures: common-ligatures;                   " />
                                     <span style="                     font-family: Slack-Lato, appleLogo, sans-serif;                     font-size: 15px;                     font-variant-ligatures: common-ligatures;                   " class="text-beta">
                                         <b>Report gratuit du passage de l'examen :</b>
