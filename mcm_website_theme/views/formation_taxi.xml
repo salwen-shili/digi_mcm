@@ -206,7 +206,7 @@
               <h3 style="color: rgb(0, 0, 0); font-size: 19px; max-width: 100%">
             TÉLÉCHARGER LE PROGRAMME DE LA FORMATION TAXI
           </h3>
-              <a class="animated-button-black" href="/mcm_website_theme/static/pdf/PROGRAMME DE  FORMATION a distance de 70H TAXI ET VTC.pdf" title="Programme de la formation TAXI" alt="Programme de la formation TAXI">
+              <a class="animated-button-black" href="/mcm_website_theme/static/pdf/PROGRAMME DE  FORMATION a distance de 70H  MOTO-TAXI - MCM ACADEMY.pdf" title="Programme de la formation TAXI" alt="Programme de la formation TAXI">
                 <span />
                 <span />
                 <span />
@@ -422,11 +422,14 @@
             <input t-att-value="request.website.microsoft_tracking_key" id="microsoft_tracking_key" type="hidden" />
             <section id="sh_corpomate_theme_section_188" class="sh_animation_part" data-name="Pricing">
               <div class="container">
-                <div class="sh_title pt32">
-                  <h3 style="max-width:100%">
-                                        Inscrivez-vous dès maintenant !
-                 </h3>
+                <div class="sh_title mt48 js-scroll fade-in-top">
+                  <h2 style="max-width:100%">
+                     Inscrivez-vous dès maintenant !
+                 </h2>
+
+
                   <br />
+
                 </div>
                 <div class="row" style="justify-content: center !important">
                   <div class="col-md-5 sh_animation_part">
