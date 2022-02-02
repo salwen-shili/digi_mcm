@@ -36,6 +36,7 @@ class WebhookController(http.Controller):
         if "digimoov" in idform:
             company_id=2
         else :
+            
             company_id=1
         company = request.env['res.company'].sudo().search([('id', "=", company_id)])
         api_key = ""
