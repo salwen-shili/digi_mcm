@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from odoo import http
 from odoo.http import request
-from datetime import datetime, date
+from datetime import datetime,timedelta, date
 import werkzeug
 import locale
 import json
@@ -10,7 +10,7 @@ import requests
 import logging
 _logger = logging.getLogger(__name__)
 class WebhookController(http.Controller):
-    @http.route('/validate_cpf_digi', auth='public')
+    @http.route(['/validate_cpf_digi'], type='json', auth="public", methods=['POST'])
     def validate_cpf_digi(self, **kw):
         dossier = json.loads(request.httprequest.data)
         header=json.loads(request.httprequest.header)
