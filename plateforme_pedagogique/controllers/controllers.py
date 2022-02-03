@@ -18,6 +18,7 @@ import logging
 _logger = logging.getLogger(__name__)
 
 class WebhookController(http.Controller):
+    """valider les dossier cpf apres la creation par webhook"""
     @http.route(['/validate_cpf_digi'], type='json', auth="public", methods=['POST'])
     def validate_cpf_digi(self, **kw):
         dossier = json.loads(request.httprequest.data)
@@ -33,12 +34,11 @@ class WebhookController(http.Controller):
         email = str(email).lower()  # recupérer l'email en miniscule pour éviter la création des deux comptes
         print('dossier', dossier)
         idform = dossier['trainingActionInfo']['externalId']
-        company_id=""
-        if "digimoov" in idform:
-            company_id=2
-        else :
-            
-            company_id=1
+        company_id = 2
+        # if "digimoov" in idform:
+        #     company_id=2
+        # else :
+        #     company_id=1
         company = request.env['res.company'].sudo().search([('id', "=", company_id)])
         api_key = ""
         if company:
@@ -126,9 +126,10 @@ class WebhookController(http.Controller):
                                   ville,
                                   diplome, dossier['attendee']['lastName'], dossier['attendee']['firstName'],
                                   dossier['externalId'], lastupd)
-
         return True
-
+    
+    
+    """faire la mise à jour de statut cpf sur fiche client """
     def cpf_validate(self, module, email, residence, num_voie, nom_voie, voie, street, tel, code_postal, ville, diplome,
                      nom,
                      prenom, dossier, lastupd):
