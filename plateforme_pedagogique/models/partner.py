@@ -61,6 +61,7 @@ class partner(models.Model):
                                                 ('not_paid', 'Non payées'),
                                                 ('in_payment', 'En paiement')],
                                                string="Financement", default=False )
+    date_ajout = fields.Datetime('Date début de formation')
 
     """Changer login d'apprenant au moment de changement d'email sur la fiche client"""
 
@@ -366,6 +367,7 @@ class partner(models.Model):
                     new_format = '%d %B %Y'
                     # Changer format de date et la mettre en majuscule
                     date_ajout = today.strftime(new_format)
+                    print("I'm date_ajout", date_ajout)
                     partner.date_creation = date_ajout
                     # Affecter i-One to groupe digimoov-bienvenue
                     respgroupe = requests.put(urlgroup_Bienvenue, headers=headers, data=data_group)
