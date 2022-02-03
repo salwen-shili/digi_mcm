@@ -596,17 +596,40 @@
                             </section>
                             <p />
                         </div>
+                        <!-- Pricing table-->
+                        <!-- Pricing table-->
+                        <section class="s_one_page_pricing_plan bg-light-1" data-name="Pricing plan two">
+                            <div class="pricing1 spacer" id="pricing">
+                                <div class="container">
+                                    <div class="row justify-content-center">
+                                        <div class="col-md-8 text-center col-lg-11">
+                                            <h2 class="text-beta title">
+                                                LET'S GO !
+                                                <br />
+                                                Inscrivez-vous dès maintenant !
+                                            </h2>
+                                            <h3 class="subtitle">
+                                                <span style="color: rgb(66, 66, 66); font-size: 16px">
+                                                        Choisissez la formule qui vous convient</span>
+                                                &amp;nbsp;
+                                                <span style="color: rgb(66, 66, 66); font-size: 16px">&amp;nbsp;
+                                                        </span>
+                                                <br />
+                                            </h3>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                        <p />
+
 
                         <div class="container">
                             <input t-att-value="request.website.microsoft_tracking_key" id="microsoft_tracking_key" type="hidden" />
                             <div class="row">
                                 <div class="col-md-4 col-sm-6">
                                     <div class="card border-0 shadow" style="border-radius: 25px 25px">
-                                        <div class="text-center text-white border-0" style="
-                    background-color: #6e209f;
-                    border-top-left-radius: 25px;
-                    border-top-right-radius: 25px;
-                  ">
+                                        <div class="text-center text-white border-0" style="                     background-color: #6e209f;                     border-top-left-radius: 25px;                     border-top-right-radius: 25px;                   ">
                                             <br />
 
                                             <p>
@@ -668,7 +691,18 @@
                                                             </li>
                                                             <li class="mb-4">
                                                                 <i class="fa fa-check-circle fa-lg mr-2 text-success" />
-                                                                <b>Séance Live pour la correction après l’examen &amp;nbsp;
+                                                                <null
+                                                                    <null
+                                                                        <null
+                                                                            <null
+                                                                                <null
+                                                                                    <null
+                                                                                        <HEAD
+                                                                                            <b>
+                                                                                                Séance Live pour la correction après l’examen &amp;nbsp;
+=======
+                                                                                                <b>Séance en Live pour la correction après l’examen &amp;nbsp;
+>>>>>>> feature-pricing-content-update
                                                                 &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;
                                                                 &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;
                                                                 &amp;nbsp; &amp;nbsp; &amp;nbsp;
@@ -678,36 +712,15 @@
                                                                 <i />
                                                             </li>
                                                         </ul>
-                                                        <p class="
-                            text-center
-                            font-weight-bolder
-                            text-dark
-                            h1
-                            display-4
-                            mb-0
-                          ">
+                                                        <p class="                             text-center                             font-weight-bolder                             text-dark                             h1                             display-4                             mb-0                           ">
                                                             <font>
-                                                                <p class="
-                                text-center
-                                font-weight-bolder
-                                text-dark
-                                h1
-                                display-4
-                                mb-0
-                              " t-if="not promo">
+                                                                <p class="                                 text-center                                 font-weight-bolder                                 text-dark                                 h1                                 display-4                                 mb-0                               " t-if="not promo">
                                                                     <span class="pricebar" style="color: black;font-size: 25px;font-weight: 500;">590 €</span>
                                                                     <span t-esc="round(product.list_price)" />
                                                                     <span t-esc="product.currency_id.symbol" />
 
                                                                 </p>
-                                                                <p class="
-                                text-center
-                                font-weight-bolder
-                                text-dark
-                                h1
-                                display-4
-                                mb-0
-                              " t-if="promo">
+                                                                <p class="                                 text-center                                 font-weight-bolder                                 text-dark                                 h1                                 display-4                                 mb-0                               " t-if="promo">
                                                                     <t t-foreach="promo.item_ids" t-as="item">
                                                                         <t t-if="item.product_id.id==product.id">
                                                                             <span t-esc="round(item.fixed_price)" />
@@ -718,33 +731,17 @@
                                                             </font>
                                                         </p>
                                                         <t t-if="promo and promo.name!='box2home'">
-                                                            <p class="
-                              text-center
-                              font-weight-bolder
-                              text-secondary
-                            ">
+                                                            <p class="                               text-center                               font-weight-bolder                               text-secondary                             ">
                                                                 <b style="font-size: 80%">
                                                                     <t>avec le code</t>
                                                                     <t t-esc="promo.code" />
                                                                 </b>
                                                             </p>
                                                         </t>
-                                                        <p class="
-                            medium
-                            text-center
-                            font-weight-bolder
-                            text-secondary
-                          " style="color: red !important" t-if="not partenaire or partenaire==''">
+                                                        <p class="                             medium                             text-center                             font-weight-bolder                             text-secondary                           " style="color: red !important" t-if="not partenaire or partenaire==''">
                                                             Paiement 1 ou 2 fois
                                                         </p>
-                                                        <p class="
-                            medium
-                            text-center
-                            font-weight-bolder
-                            text-secondary
-                          " style="color: red !important" t-if="partenaire or partenaire!=''">
-                                                            Paiement 1 fois
-                                                        </p>
+
                                                         <br />
                                                         <button class="btn btn-block text-white" onClick="(function(){ document.getElementById('form-1-1').submit();return false;})();return false;" style="background-color: #6e209f; border-radius: 25px">
                                                             Je m'inscris
@@ -773,11 +770,7 @@
                                             </p>
                                             <br />
                                         </div> -->
-                                        <div class="text-center text-white border-0" style="
-                    background-color: #6e209f;
-                    border-top-left-radius: 25px;
-                    border-top-right-radius: 25px;
-                  ">
+                                        <div class="text-center text-white border-0" style="                     background-color: #6e209f;                     border-top-left-radius: 25px;                     border-top-right-radius: 25px;                   ">
                                             <br />
 
                                             <p>
@@ -841,7 +834,18 @@
                                                             </li>
                                                             <li class="mb-4">
                                                                 <i class="fa fa-check-circle fa-lg mr-2 text-success" />
-                                                                <b>Séance Live pour la correction après l’examen &amp;nbsp;
+                                                                <null
+                                                                    <null
+                                                                        <null
+                                                                            <null
+                                                                                <null
+                                                                                    <null
+                                                                                        <HEAD
+                                                                                            <b>
+                                                                                                Séance Live pour la correction après l’examen &amp;nbsp;
+=======
+                                                                                                <b>Séance en Live pour la correction après l’examen &amp;nbsp;
+>>>>>>> feature-pricing-content-update
                                                                 &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;
                                                                 &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;
                                                                 &amp;nbsp; &amp;nbsp; &amp;nbsp;
@@ -852,23 +856,9 @@
                                                                 <i />
                                                             </li>
                                                         </ul>
-                                                        <p class="
-                            text-center
-                            font-weight-bolder
-                            text-dark
-                            h1
-                            display-4
-                            mb-0
-                          ">
+                                                        <p class="                             text-center                             font-weight-bolder                             text-dark                             h1                             display-4                             mb-0                           ">
                                                             <font>
-                                                                <p class="
-                                text-center
-                                font-weight-bolder
-                                text-dark
-                                h1
-                                display-4
-                                mb-0
-                              ">
+                                                                <p class="                                 text-center                                 font-weight-bolder                                 text-dark                                 h1                                 display-4                                 mb-0                               ">
                                                                     <span t-esc="round(product.list_price)" />
 
                                                                     <span t-esc="product.currency_id.symbol" />
@@ -876,22 +866,13 @@
                                                             </font>
                                                         </p>
                                                         <t t-if="promo and promo.name!='box2home'">
-                                                            <p class="
-                              text-center
-                              font-weight-bolder
-                              text-secondary
-                            ">
+                                                            <p class="                               text-center                               font-weight-bolder                               text-secondary                             ">
                                                                 <b style="font-size: 80%">
                                                                     <t>&amp;nbsp; &amp;nbsp; &amp;nbsp;&amp;nbsp;</t>
                                                                 </b>
                                                             </p>
                                                         </t>
-                                                        <p class="
-                            medium
-                            text-center
-                            font-weight-bolder
-                            text-secondary
-                          " style="color: red !important">
+                                                        <p class="                             medium                             text-center                             font-weight-bolder                             text-secondary                           " style="color: red !important">
                                                             Paiement 1 ou 2 fois
                                                             </p>
                                                         <br />
@@ -920,11 +901,7 @@
                                             </p>
                                             <br />
                                         </div> -->
-                                        <div class="text-center text-white border-0" style="
-                    background-color: #6e209f;
-                    border-top-left-radius: 25px;
-                    border-top-right-radius: 25px;
-                  ">
+                                        <div class="text-center text-white border-0" style="                     background-color: #6e209f;                     border-top-left-radius: 25px;                     border-top-right-radius: 25px;                   ">
                                             <br />
 
                                             <p>
@@ -950,12 +927,25 @@
                                                             </li>
                                                             <li class="mb-4">
                                                                 <i class="fa fa-check-circle fa-lg mr-2 text-success" />
-                                                                <b>Livre d’entrainement version  électronique</b>
+                                                                <null
+                                                                    <null
+                                                                        <null
+                                                                            <null
+                                                                                <null
+                                                                                    <null
+                                                                                        <HEAD
+                                                                                            <b>Livre d’entrainement version  électronique</b>
                                                             </li>
                                                             <li class="mb-4">
                                                                 <i class="fa fa-check-circle fa-lg mr-2 text-success" />
                                                                 <b>Accès à 14+ examens d'entraînement électronique</b>
-
+                                                                =======
+                                                                <b>Livre d’entrainement version électronique</b>
+                                                            </li>
+                                                            <li class="mb-4">
+                                                                <i class="fa fa-check-circle fa-lg mr-2 text-success" />
+                                                                <b>Accès à 14+ examens d'entraînement</b>
+                                                                >>>>>>> feature-pricing-content-update
                                                             </li>
                                                             <li class="mb-4">
                                                                 <i class="fa fa-check-circle fa-lg mr-2 text-success" />
@@ -969,8 +959,18 @@
                                                             </li>
                                                             <li class="mb-4">
                                                                 <i class="fa fa-check-circle fa-lg mr-2 text-success" />
-                                                                <b>Séances Live avec ZOOM avec un tuteur dédié</b>
-                                                                <br />
+                                                                <null
+                                                                    <null
+                                                                        <null
+                                                                            <null
+                                                                                <null
+                                                                                    <null
+                                                                                        <HEAD
+                                                                                            <b>Séances Live avec ZOOM avec un tuteur dédié</b>
+                                                                                            =======
+                                                                                            <b>Séances Live avec un tuteur dédié</b>
+                                                                                            >>>>>>> feature-pricing-content-update
+                                                                                            <br />
                                                             </li>
                                                             <li class="mb-4">
                                                                 <i class="fa fa-check-circle fa-lg mr-2 text-success" />
@@ -989,55 +989,34 @@
                                                             </li>
                                                             <li class="mb-4">
                                                                 <i class="fa fa-lg fa-times-circle mr-2 text-success" />
-                                                                Séance Live pour la correction après l’examen &amp;nbsp;
-                                                                &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;
-                                                                &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;
-                                                                &amp;nbsp; &amp;nbsp; &amp;nbsp;
-                                                                &amp;nbsp;&amp;nbsp;
+                                                                <null
+                                                                    <null
+                                                                        <null
+                                                                            <null
+                                                                                <null
+                                                                                    <null
+                                                                                        <HEAD Séance Live pour la correction après l’examen &amp;nbsp;=
                                                             </li>
                                                             <li>
                                                                 <i />
                                                             </li>
                                                         </ul>
-                                                        <p class="
-                            text-center
-                            font-weight-bolder
-                            text-dark
-                            h1
-                            display-4
-                            mb-0
-                          ">
+                                                        <p class="                             text-center                             font-weight-bolder                             text-dark                             h1                             display-4                             mb-0                           ">
                                                             <font>
-                                                                <p class="
-                                text-center
-                                font-weight-bolder
-                                text-dark
-                                h1
-                                display-4
-                                mb-0
-                              ">
+                                                                <p class="                                 text-center                                 font-weight-bolder                                 text-dark                                 h1                                 display-4                                 mb-0                               ">
                                                                     <span t-esc="round(product.list_price)" />
                                                                     <span t-esc="product.currency_id.symbol" />
                                                                 </p>
                                                             </font>
                                                         </p>
                                                         <t t-if="promo">
-                                                            <p class="
-                              text-center
-                              font-weight-bolder
-                              text-secondary
-                            ">
+                                                            <p class="                               text-center                               font-weight-bolder                               text-secondary                             ">
                                                                 <b style="font-size: 80%">
                                                                     <t>&amp;nbsp; &amp;nbsp; &amp;nbsp;&amp;nbsp;</t>
                                                                 </b>
                                                             </p>
                                                         </t>
-                                                        <p class="
-                            medium
-                            text-center
-                            font-weight-bolder
-                            text-secondary
-                          " style="color: red !important">
+                                                        <p class="                             medium                             text-center                             font-weight-bolder                             text-secondary                           " style="color: red !important">
                                                             Paiement 1 ou 3 fois
                                                             </p>
                                                         <br />
