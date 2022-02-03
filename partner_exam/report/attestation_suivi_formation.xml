@@ -67,7 +67,7 @@
                                                 </t>
                                             </t>
                                             <t t-else="not sales">
-                                                <span t-esc="datetime.datetime.strptime(str(o.date_creation), '%d %B %Y').strftime('%d/%m/%Y')"/>
+                                                <span t-esc="datetime.datetime.strptime(str(o.date_creation), '%d %B %Y')"/>
                                             </t>
                                             au
                                             <span t-field="o.module_id.date_exam"
@@ -378,7 +378,7 @@
                                                 </t>
                                             </t>
                                             <t t-else="not sales">
-                                                <span t-esc="datetime.datetime.strptime(str(o.date_creation), '%d %B %Y').strftime('%d/%m/%Y')"/>
+                                                <span t-esc="datetime.datetime.strptime(str(o.date_creation), '%d %B %Y')"/>
                                             </t>
                                             au
                                             <span t-field="o.module_id.date_exam"
