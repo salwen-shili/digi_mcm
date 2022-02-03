@@ -870,6 +870,8 @@ class WebhookController(http.Controller):
     """Mettre à jour statut cpf apres chaque update sur edof """
     @http.route(['/update_cpf_state'], type='json', auth="public", methods=['POST'])
     def update_cpf_statut(self, **kw):
+        dossier = json.loads(request.httprequest.data)
+        event = request.httprequest.headers.get('X-Wedof-Event')
         externalId = dossier['externalId']
         email = dossier['attendee']['email']
         email = email.replace("%", ".")  # remplacer % par .
