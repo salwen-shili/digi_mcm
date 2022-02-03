@@ -96,6 +96,7 @@
   right: 20px;
   bottom: 15px;
   z-index: 9998;
+  max-width : 280px;
 }
 .calendly-badge-widget .calendly-badge-content {
   display: table-cell;
