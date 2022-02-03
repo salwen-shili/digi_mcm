@@ -866,3 +866,169 @@ class WebhookController(http.Controller):
                         new_ticket = request.env['helpdesk.ticket'].sudo().create(
                             vals)
         return True
+    
+    """Mettre à jour statut cpf apres chaque update sur edof """
+    @http.route(['/update_cpf_state'], type='json', auth="public", methods=['POST'])
+    def update_cpf_statut(self, **kw):
+        externalId = dossier['externalId']
+        email = dossier['attendee']['email']
+        email = email.replace("%", ".")  # remplacer % par .
+        email = email.replace(" ", "")  # supprimer les espaces envoyés en paramètre email
+        email = str(email).lower()  # recupérer l'email en miniscule pour éviter la création des deux comptes
+        # Recherche dans la table utilisateur si login de wedof = email
+        user = request.env["res.users"].sudo().search([("login", "=", email)])
+        for users in user:
+            if users and users.partner_id.mode_de_financement == "cpf":
+                # Initialisation de champ etat_financement_cpf_cb
+                etat_financement_cpf_cb = dossier['state']
+                _logger.info("state user WEDOF WEBHOOK::::::::::::::::::::: %s" % str(users.partner_id.display_name))
+                if etat_financement_cpf_cb == "untreated":
+                    users.partner_id.sudo().write({
+                        'etat_financement_cpf_cb': 'untreated'})  # write la valeur untreated dans le champ etat_financement_cpf_cb
+                if etat_financement_cpf_cb == "validated":
+                    users.partner_id.sudo().write({'etat_financement_cpf_cb': 'validated'})
+                if etat_financement_cpf_cb == "accepted":
+                    users.partner_id.sudo().write({'etat_financement_cpf_cb': 'accepted'})
+                if etat_financement_cpf_cb == "inTraining":
+                    users.partner_id.sudo().write({'etat_financement_cpf_cb': 'in_training'})
+                if etat_financement_cpf_cb == "out_training":
+                    users.partner_id.sudo().write({'etat_financement_cpf_cb': 'terminated'})
+                if etat_financement_cpf_cb == "serviceDoneDeclared":
+                    users.partner_id.sudo().write({'etat_financement_cpf_cb': 'service_declared'})
+                if etat_financement_cpf_cb == "serviceDoneValidated":
+                    users.partner_id.sudo().write({'etat_financement_cpf_cb': 'service_validated'})
+                if etat_financement_cpf_cb == "bill":
+                    users.partner_id.sudo().write({'etat_financement_cpf_cb': 'bill'})
+                if etat_financement_cpf_cb == "canceled" or etat_financement_cpf_cb == "canceledByAttendee" or etat_financement_cpf_cb == "canceledByAttendeeNotRealized" or etat_financement_cpf_cb == "refusedByAttendee" or etat_financement_cpf_cb == "refusedByOrganism":
+                    users.partner_id.sudo().write({'etat_financement_cpf_cb': 'canceled'})
+        idform = dossier['trainingActionInfo']['externalId']
+        training_id = ""
+        if "_" in idform:
+            idforma = idform.split("_", 1)
+            if idforma:
+                training_id = idforma[1]
+
+        print('training', training_id)
+        state = dossier['state']
+        lastupdatestr = str(dossier['lastUpdate'])
+        lastupdate = datetime.strptime(lastupdatestr, '%Y-%m-%dT%H:%M:%S.%fz')
+        newformat = "%d/%m/%Y %H:%M:%S"
+        lastupdateform = lastupdate.strftime(newformat)
+        lastupd = datetime.strptime(lastupdateform, "%d/%m/%Y %H:%M:%S")
+        num_voie = ""
+        if "number" in dossier['attendee']['address']:
+            num_voie = dossier['attendee']['address']['number']
+
+        voie = ""
+        if "roadTypeLabel" in dossier['attendee']['address']:
+            voie = dossier['attendee']['address']['roadTypeLabel']
+        nom_voie = ""
+        if "roadName" in dossier['attendee']['address']:
+            nom_voie = dossier['attendee']['address']['roadName']
+        street = str(num_voie) + ' ' + str(voie) + ' ' + str(nom_voie)
+        tel = ""
+        if "phoneNumber" in dossier['attendee']:
+            tel = dossier['attendee']['phoneNumber']
+
+        code_postal = ""
+        if "zipCode" in dossier['attendee']['address']:
+            code_postal = dossier['attendee']['address']['zipCode']
+
+        ville = ""
+        if "city" in dossier['attendee']['address']:
+            ville = dossier['attendee']['address']['city']
+        residence = ""
+        if "residence" in dossier['attendee']['address']:
+            residence = dossier['attendee']['address']['residence']
+        nom = ""
+        if 'firstName' in dossier['attendee']['firstName']:
+            nom = dossier['attendee']['firstName']
+            nom = unidecode(nom)
+
+        prenom = ""
+        if "lastName" in dossier['attendee']['lastName']:
+            prenom = dossier['attendee']['lastName']
+            prenom = unidecode(prenom)
+        diplome = dossier['trainingActionInfo']['title']
+        product_id = request.env['product.template'].sudo().search(
+            [('id_edof', "=", str(training_id))], limit=1)
+
+        if state == "validated":
+            print('validate', email, dossier['attendee']['lastName'], dossier['attendee']['firstName'])
+            return self.cpf_validate(training_id, email, residence, num_voie, nom_voie, voie, street, tel, code_postal, ville,
+                              diplome, dossier['attendee']['lastName'], dossier['attendee']['firstName'],
+                              dossier['externalId'], lastupd)
+        else:
+            users = request.env['res.users'].sudo().search(
+                [('login', "=", email)])  # search user with same email sended
+            user = False
+            if len(users) > 1:
+                user = users[1]
+                print('userss', users)
+                for utilisateur in users:
+                    if utilisateur.partner_id.id_edof and utilisateur.partner_id.date_examen_edof and utilisateur.partner_id.session_ville_id:  # if more than user ,check between them wich user is come from edof
+                        user = utilisateur
+                        print('if userssss', user.partner_id.email)
+            else:
+                user = users
+            if user:  # if user finded
+                print('webhooooookk if__________________user', user.partner_id.statut_cpf, user.partner_id.email)
+                user.partner_id.mode_de_financement = 'cpf'  # update field mode de financement to cpf
+                user.partner_id.funding_type = 'cpf'  # update field funding type to cpfprint('partner',partner.numero_cpf,user.login)
+                print(user.partner_id.date_cpf)
+
+                if state == "inTraining":
+                    print('intraining', email)
+                    user.partner_id.statut_cpf = "in_training"
+                    user.partner_id.numero_cpf = externalId
+                    user.partner_id.date_cpf = lastupd
+                    user.partner_id.diplome = diplome
+                    if product_id:
+                        user.partner_id.id_edof = product_id.id_edof
+
+                if state == "terminated":
+                    print('terminated', email)
+                    user.partner_id.statut_cpf = "out_training"
+                    user.partner_id.numero_cpf = externalId
+                    user.partner_id.diplome = diplome
+                    user.partner_id.date_cpf = lastupd
+                    if product_id:
+                        user.partner_id.id_edof = product_id.id_edof
+                if state == "serviceDoneDeclared":
+                    print('serviceDoneDeclared', email)
+                    user.partner_id.statut_cpf = "service_declared"
+                    user.partner_id.numero_cpf = externalId
+                    user.partner_id.date_cpf = lastupd
+                    user.partner_id.diplome = diplome
+                    if product_id:
+                        user.partner_id.id_edof = product_id.id_edof
+
+                if state == "serviceDoneValidated":
+                    print('serviceDoneValidated', email)
+
+                    user.partner_id.statut_cpf = "service_validated"
+                    user.partner_id.numero_cpf = externalId
+                    user.partner_id.date_cpf = lastupd
+                    user.partner_id.diplome = diplome
+                    if product_id:
+                        user.partner_id.id_edof = product_id.id_edof
+                if state == "canceledByAttendee" or state == "canceledByAttendeeNotRealized" or state == "canceledByOrganism" or state == "refusedByAttendee" or state == "refusedByOrganism":
+                    if user.partner_id.numero_cpf == externalId:
+                        user.partner_id.statut_cpf = "canceled"
+                        user.partner_id.statut = "canceled"
+                        user.partner_id.date_cpf = lastupd
+                        user.partner_id.diplome = diplome
+                        print("product id annulé digi", user.partner_id.id_edof, training_id)
+
+                        if product_id:
+                            user.partner_id.id_edof = product_id.id_edof
+
+                if state == "terminated":
+                    print('terminated', email)
+                    user.partner_id.statut_cpf = "out_training"
+                    user.partner_id.numero_cpf = externalId
+                    user.partner_id.diplome = diplome
+                    user.partner_id.date_cpf = lastupd
+                    if product_id:
+                        user.partner_id.id_edof = product_id.id_edof
+        return True
