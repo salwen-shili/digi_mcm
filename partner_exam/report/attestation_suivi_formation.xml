@@ -11,7 +11,7 @@
                             font-size:20px !important;
                             }
                         </style>
-                        <t t-set="docs" t-value="docs.with_context(lang='fr_FR')"/>
+                        <t t-set="docs" t-value="o.with_context(lang='fr_FR')"/>
                         <div class="page">
                             <div class="oe_structure"/>
                             <div class="row">
