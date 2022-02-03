@@ -18,32 +18,44 @@ import logging
 _logger = logging.getLogger(__name__)
 
 class WebhookController(http.Controller):
+    """valider les dossier cpf pour digimoov  apres la creation par webhook"""
     @http.route(['/validate_cpf_digi'], type='json', auth="public", methods=['POST'])
     def validate_cpf_digi(self, **kw):
         dossier = json.loads(request.httprequest.data)
         event=request.httprequest.headers.get('X-Wedof-Event')
         _logger.info("webhoooooooooook %s" % str(dossier))
         _logger.info("header %s" % str(event))
+        """recuperer l'api_key de wedof pour digimoov"""
+        company = request.env['res.company'].sudo().search([('id', "=", 2)])
+        api_key = ""
+        if company:
+            api_key = company.wedof_api_key
+        return self.validate_folder_cpf(dossier,event,api_key)
 
+    """valider les dossier cpf pour MCM  apres la creation par webhook"""
+
+    @http.route(['/validate_cpf_mcm'], type='json', auth="public", methods=['POST'])
+    def validate_cpf_mcm(self, **kw):
+        dossier = json.loads(request.httprequest.data)
+        event = request.httprequest.headers.get('X-Wedof-Event')
+        _logger.info("webhoooooooooook %s" % str(dossier))
+        _logger.info("header %s" % str(event))
+        """recuperer l'api_key de wedof pour MCM"""
+        company = request.env['res.company'].sudo().search([('id', "=", 1)])
+        api_key = ""
+        if company:
+            api_key = company.wedof_api_key
+        return self.validate_folder_cpf(dossier, event, api_key)
+    
+    def validate_folder_cpf(self,dossier,event,api_key):
         externalid = dossier['externalId']
-        _logger.info("external_id %s" %str(externalid))
+        _logger.info("external_id %s" % str(externalid))
         email = dossier['attendee']['email']
         email = email.replace("%", ".")  # remplacer % par .
         email = email.replace(" ", "")  # supprimer les espaces envoyés en paramètre email
         email = str(email).lower()  # recupérer l'email en miniscule pour éviter la création des deux comptes
         print('dossier', dossier)
         idform = dossier['trainingActionInfo']['externalId']
-        company_id=""
-        if "digimoov" in idform:
-            company_id=2
-        else :
-            
-            company_id=1
-        company = request.env['res.company'].sudo().search([('id', "=", company_id)])
-        api_key = ""
-        if company:
-            api_key = company.wedof_api_key
-
         headers = {
             'accept': 'application/json',
             'Content-Type': 'application/json',
@@ -114,7 +126,7 @@ class WebhookController(http.Controller):
             _logger.info("validate put _________ %s" % str(status))
             _logger.info("validate_________ %s" % str(statuss))
             response_post = requests.post('https://www.wedof.fr/api/registrationFolders/' + externalid + '/validate',
-                headers=headers, data=dat)
+                                          headers=headers, data=dat)
             status = str(response_post.status_code)
             statuss = str(json.loads(response_post.text))
             _logger.info("validate_________ %s" % str(status))
@@ -122,13 +134,15 @@ class WebhookController(http.Controller):
             """Si dossier passe à l'etat validé on met à jour statut cpf sur la fiche client"""
             if status == "200":
                 print('validate', email)
-                return self.cpf_validate(training_id, email, residence, num_voie, nom_voie, voie, street, tel, code_postal,
-                                  ville,
-                                  diplome, dossier['attendee']['lastName'], dossier['attendee']['firstName'],
-                                  dossier['externalId'], lastupd)
-
+                return self.cpf_validate(training_id, email, residence, num_voie, nom_voie, voie, street, tel,
+                                         code_postal,
+                                         ville,
+                                         diplome, dossier['attendee']['lastName'], dossier['attendee']['firstName'],
+                                         dossier['externalId'], lastupd)
         return True
-
+    
+    
+    """faire la mise à jour de statut cpf sur fiche client """
     def cpf_validate(self, module, email, residence, num_voie, nom_voie, voie, street, tel, code_postal, ville, diplome,
                      nom,
                      prenom, dossier, lastupd):
@@ -381,3 +395,17 @@ class WebhookController(http.Controller):
                                 line.price_unit = so.amount_total
 
         return True
+
+    """Mettre à jour statut cpf accepté et création de facture pour digimoov  apres l'acceptation sur edof """
+    @http.route(['/accepte_cpf_digi'], type='json', auth="public", methods=['POST'])
+    def accepte_cpf_digi(self, **kw):
+        dossier = json.loads(request.httprequest.data)
+        event = request.httprequest.headers.get('X-Wedof-Event')
+        _logger.info("webhoook accepted %s" % str(dossier))
+        _logger.info("header %s" % str(event))
+        """recuperer l'api_key de wedof pour digimoov"""
+        company = request.env['res.company'].sudo().search([('id', "=", 2)])
+        api_key = ""
+        if company:
+            api_key = company.wedof_api_key
+        
