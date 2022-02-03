@@ -144,7 +144,6 @@
               </div>
             </div>
           </section>
-          <!-- Voici les démarches pour devenir chauffeur TAXI-->
           <section id="sh_corpomate_theme_section_52">
             <div class="container">
               <h3 class="text-center mbe js-scroll slide-left" style="margin-top: 52px; max-width: 100% !important">
@@ -154,7 +153,7 @@
                 <div class="col-lg-4 col-md-4">
                   <div class="sh_content sh_animation_part">
                     <div class="sh_number">
-                      <a href="/mcm_website_theme/static/pdf/DEMARCHES_D'INSCRIPTION_A_LA_CMA_-_MCM_ACADEMY.pdf" alt="DEMARCHES D'INSCRIPTION A LA CMA" title="DEMARCHES D'INSCRIPTION A LA CMA">
+                      <a target="_blank" href="/mcm_website_theme/static/pdf/DEMARCHES_D'INSCRIPTION_A_LA_CMA_-_MCM_ACADEMY.pdf" alt="DEMARCHES D'INSCRIPTION A LA CMA" title="DEMARCHES D'INSCRIPTION A LA CMA">
                         <span class="sh_num o_default_snippet_text">01</span>
                       </a>
 
@@ -170,7 +169,7 @@
                 <div class="col-lg-4 col-md-4">
                   <div class="sh_content sh_animation_part">
                     <div class="sh_number">
-                      <a href="/mcm_website_theme/static/pdf/DEMARCHES_D'INSCRIPTION_SUR_LE_SITE_MCM_ACADEMY.pdf" title="DEMARCHES D'INSCRIPTION SUR LE SITE MCM ACADEMY">
+                      <a target="_blank" href="/mcm_website_theme/static/pdf/DEMARCHES_D'INSCRIPTION_SUR_LE_SITE_MCM_ACADEMY.pdf" title="DEMARCHES D'INSCRIPTION SUR LE SITE MCM ACADEMY">
                         <span class="sh_num o_default_snippet_text">02</span>
                       </a>
                     </div>
@@ -184,7 +183,7 @@
                 <div class="col-lg-4 col-md-4">
                   <div class="sh_content sh_animation_part">
                     <div class="sh_number">
-                      <a target="_blank" href="/mcm_website_theme/static/src/img/formation-moto-taxi/PROCÉDURE pour déposer son dossier à la préfecture.png" alt="Devenez chauffeur taxi vtc démarches dépôt dossier préfecture" title="démarches dépôt dossier préfecture">
+                      <a target="_blank" href="/mcm_website_theme/static/pdf/Devenez_chauffeur_taxi_vtc_démarches_dépôt_dossier_préfecture.pdf" alt="Devenez chauffeur taxi vtc démarches dépôt dossier préfecture" title="démarches dépôt dossier préfecture">
                         <span class="sh_num o_default_snippet_text">03</span>
                       </a>
 
