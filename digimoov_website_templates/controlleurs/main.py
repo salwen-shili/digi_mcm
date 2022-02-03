@@ -6,6 +6,7 @@ import werkzeug
 import base64
 from odoo.addons.website.controllers.main import Website  # import website controller
 import locale
+import pyshorteners
 
 
 class Website(Website):
@@ -31,7 +32,7 @@ class Website(Website):
             user.partner_id.renounce_request = True  # mettre la demande de renonce cocher dans la fiche client
 
     @http.route('/attestation-transport-leger-marchandises', type='http', auth='public', website=True)
-    def attestation_transport_leger_marchandises(self, **kw,):
+    def attestation_transport_leger_marchandises(self, **kw, ):
         if request.website.id == 2:
             digimoov_products = request.env['product.product'].sudo().search([('company_id', '=', 2)],
                                                                              order="list_price")
@@ -102,7 +103,6 @@ class Website(Website):
         else:
             raise werkzeug.exceptions.NotFound()
 
-
 class FAQ(http.Controller):
 
     @http.route('/faq', type='http', auth='public', website=True)
@@ -110,16 +110,17 @@ class FAQ(http.Controller):
         if request.website.id == 2:
             # recuperer la liste des villes pour l'afficher dans la page faq de siteweb digimoov
             last_ville = request.env['session.ville'].sudo().search(
-                [('company_id', '=', 2),('ville_formation',"=",False)] , order='name_ville desc', limit=1)
+                [('company_id', '=', 2), ('ville_formation', "=", False)], order='name_ville desc', limit=1)
             list_villes = request.env['session.ville'].sudo().search(
-                [('id', "!=", last_ville.id),('company_id', '=', 2),('ville_formation',"=",False)] , order='name_ville asc')
+                [('id', "!=", last_ville.id), ('company_id', '=', 2), ('ville_formation', "=", False)],
+                order='name_ville asc')
             values = {
                 'list_villes': list_villes,
                 'last_ville': last_ville
             }
             return request.render("digimoov_website_templates.digimoov_template_faq", values)
         else:
-            return request.render("mcm_website_theme.mcm_website_faq",{})
+            return request.render("mcm_website_theme.mcm_website_faq", {})
 
 
 class FINANCEMENT(http.Controller):
@@ -155,7 +156,7 @@ class FINANCEMENT(http.Controller):
             'mcm_products': mcm_products,  # send mcm product to homepage
         }
         if request.website.id == 2:
-            #get digimoov products to send them to pricing table 
+            # get digimoov products to send them to pricing table 
             digimoov_products = request.env['product.product'].sudo().search([('company_id', '=', 2)],
                                                                              order="list_price")
             values = {
@@ -192,7 +193,8 @@ class FINANCEMENT(http.Controller):
                     'error_ville': False,
                     'error_exam_date': False,
                 })
-                list_villes = request.env['session.ville'].sudo().search([('company_id', '=', 2),('ville_formation',"=",False)]) 
+                list_villes = request.env['session.ville'].sudo().search(
+                    [('company_id', '=', 2), ('ville_formation', "=", False)])
                 if list_villes:
                     values.update({
                         'list_villes': list_villes,
@@ -257,7 +259,8 @@ class FINANCEMENT(http.Controller):
             if user_connected.partner_id.partner_from and user_connected.partner_id.partner_from in ['ubereats',
                                                                                                      'deliveroo',
                                                                                                      'coursierjob',
-                                                                                                     'box2home','coursier2roues']:
+                                                                                                     'box2home',
+                                                                                                     'coursier2roues']:
                 return request.redirect("/%s#pricing" % str(user_connected.partner_id.partner_from))
             else:
                 return request.redirect("/#pricing")
@@ -285,12 +288,13 @@ class QUISOMMESNOUS(http.Controller):
         if request.website.id == 2:
             # recuperer la liste des villes pour l'afficher dans la page qui sommes nous de siteweb digimoov 
             last_ville = request.env['session.ville'].sudo().search(
-                [('company_id', '=', 2),('ville_formation',"=",False)] ,order='name_ville desc',limit=1)
+                [('company_id', '=', 2), ('ville_formation', "=", False)], order='name_ville desc', limit=1)
             list_villes = request.env['session.ville'].sudo().search(
-                [('id',"!=",last_ville.id),('company_id', '=', 2),('ville_formation',"=",False)] ,order='name_ville asc')
+                [('id', "!=", last_ville.id), ('company_id', '=', 2), ('ville_formation', "=", False)],
+                order='name_ville asc')
             values = {
                 'list_villes': list_villes,
-                'last_ville':last_ville
+                'last_ville': last_ville
             }
             return request.render("digimoov_website_templates.digimoov_template_quisommesnous", values)
         elif request.website.id == 1:
@@ -304,12 +308,13 @@ class NOSCENTRES(http.Controller):
         if request.website.id == 2:
             # recuperer la liste des villes pour l'afficher dans la page nos centres examen de siteweb digimoov
             last_ville = request.env['session.ville'].sudo().search(
-                [('company_id', '=', 2),('ville_formation',"=",False)] ,order='name_ville desc',limit=1)
+                [('company_id', '=', 2), ('ville_formation', "=", False)], order='name_ville desc', limit=1)
             list_villes = request.env['session.ville'].sudo().search(
-                [('id',"!=",last_ville.id),('company_id', '=', 2),('ville_formation',"=",False)] ,order='name_ville asc')
+                [('id', "!=", last_ville.id), ('company_id', '=', 2), ('ville_formation', "=", False)],
+                order='name_ville asc')
             values = {
                 'list_villes': list_villes,
-                'last_ville':last_ville
+                'last_ville': last_ville
             }
             return request.render("digimoov_website_templates.digimoov_template_noscentre", values)
         else:
@@ -337,7 +342,6 @@ class Conditions(http.Controller):
             return request.render("mcm_website_theme.mcm_template_conditions", {})
         elif request.website.id == 2:
             return request.render("digimoov_website_templates.digimoov_template_conditions", {})
-   
 
     @http.route('/politique-de-confidentialite', type='http', auth='public', website=True)
     def confidentialite(self, **kw, ):
@@ -417,7 +421,7 @@ class Services(http.Controller):
         return request.render("digimoov_website_templates.digimoov_template_service_partenariat",
                               {'email_from': email_from, 'phone': phone, 'contact_last_name': nom,
                                'contact_name': prenom})
-    
+
     @http.route('/service-presse', type='http', auth='public', website=True)
     def presse(self, **kw, ):
         if request.website.is_public_user():
@@ -560,7 +564,7 @@ class Services(http.Controller):
     def maintenance(self, **kw, ):
         raise werkzeug.exceptions.NotFound()
         if request.website.id == 2:
-            return request.render("digimoov_website_templates.support_maintenance", {}) # maintenance view
+            return request.render("digimoov_website_templates.support_maintenance", {})  # maintenance view
         else:
             raise werkzeug.exceptions.NotFound()
 
@@ -570,7 +574,7 @@ class Services(http.Controller):
         contact_last_name = kwargs.get('contact_lastname')
         contact_name = kwargs.get('contact_name')
         email_from = kwargs.get('email_from')
-        phone = kwargs.get('phone')
+        ticket_phone_number = kwargs.get('phone')
         name = kwargs.get('name')
         description = kwargs.get('description')
         files = request.httprequest.files.getlist('attachment')
@@ -578,28 +582,109 @@ class Services(http.Controller):
         if kwargs.get('name_company'):
             name_company = kwargs.get('name_company')
         service = kwargs.get('service')
-        user = http.request.env['res.users'].sudo().search([('login', "=", str(email_from))],
-                                                           limit=1)  # get only one user if there is double account with same email
+        user = request.env['res.users'].sudo().search([('login', "=", str(email_from).lower().replace(' ', ''))],
+                                                      limit=1)  # get only one user if there is double account with same email
+        if not user:
+            if ticket_phone_number:
+                user = request.env["res.users"].sudo().search(
+                    [("phone", "=",str(ticket_phone_number))], limit=1)
+                if not user:
+                    phone_number = str(ticket_phone_number).replace(' ', '')
+                    if '+33' not in str(phone_number): # check if the number of client with +33
+                        phone = phone_number[0:2]
+                        if str(phone) == '33' and ' ' not in str(ticket_phone_number): # check if the number of client in this format (number_format: 33xxxxxxx)
+                            phone = '+' + str(ticket_phone_number)
+                            user = request.env["res.users"].sudo().search( [("phone", "=", phone)], limit=1)
+                            if not user:
+                                phone = phone[0:3]+' '+phone[3:4] + ' ' + phone[4:6] + ' '+phone[6:8]+' '+phone[8:10]+' '+phone[10:]
+                                user = request.env["res.users"].sudo().search([("phone", "=", phone)], limit=1)
+                        phone = phone_number[0:2]
+                        if str(phone) == '33' and ' ' in str(ticket_phone_number): # check if the number of client in this format (number_format: 33 x xx xx xx)
+                            phone = '+' + str(ticket_phone_number)
+                            user = request.env["res.users"].sudo().search(['|',("phone", "=", phone),("phone","=",phone.replace(' ', ''))], limit=1)
+                        phone = phone_number[0:2]
+                        if str(phone) in ['06','07'] and ' ' not in str(ticket_phone_number): # check if the number of client in this format (number_format: 07xxxxxx)
+                            user = request.env["res.users"].sudo().search([("phone", "=", str(ticket_phone_number))], limit=1)
+                            print('user5 :', user.partner_id.name)
+                            if not user:
+                                phone = phone[0:2] + ' ' + phone[2:4] + ' ' + phone[4:6] + ' ' + phone[6:8] + ' ' + phone[8:]
+                                user = request.env["res.users"].sudo().search([("phone", "=", phone)], limit=1)
+                        phone = phone_number[0:2]
+                        if str(phone) in ['06', '07'] and ' ' in str(ticket_phone_number): # check if the number of client in this format (number_format: 07 xx xx xx)
+                            user = request.env["res.users"].sudo().search(
+                                ['|',("phone", "=", str(ticket_phone_number)),str(ticket_phone_number).replace(' ', '')], limit=1)
+                    else:  # check if the number of client with+33
+                        if ' ' not in str(ticket_phone_number):
+                            phone = str(ticket_phone_number)
+                            phone = phone[0:3] + ' ' + phone[3:4] + ' ' + phone[4:6] + ' ' + phone[6:8] + ' ' + phone[8:10] + ' ' + phone[10:]
+                            user = request.env["res.users"].sudo().search(
+                                [("phone", "=", phone)], limit=1)
+                        if not user :
+                            user = request.env["res.users"].sudo().search(
+                                [("phone", "=", str(phone_number).replace(' ', ''))], limit=1)
+                            if not user:
+                                phone = str(phone_number)
+                                phone = phone[3:]
+                                phone = '0' + str(phone)
+                                user = request.env["res.users"].sudo().search(
+                                    [("phone", "like", phone.replace(' ', ''))], limit=1)
         if not user:
             user = request.env['res.users'].sudo().create({
                 'name': str(contact_name) + " " + str(contact_last_name),
                 'login': str(email_from),
                 'groups_id': [(6, 0, [request.env.ref('base.group_portal').id])],
                 'email': email_from,
-                # 'phone': phone,
+                'phone': kwargs.get('phone'),
                 'notification_type': 'email',
                 # 'website_id': 2,
                 # 'company_ids': [1, 2],
                 # 'company_id': 2
             })
-        if user and name_company:
             if request.website.id == 1:
                 user.sudo().write({'company_id': 1, 'company_ids': [1, 2]})
-                user.partner_id.sudo().write({'phone': phone, 'website_id': 1, 'email': email_from})
+                user.partner_id.sudo().write({'phone': kwargs.get('phone'), 'website_id': 1, 'email': email_from})
             elif request.website.id == 2:
                 user.sudo().write({'company_id': 2, 'company_ids': [1, 2]})
-                user.partner_id.sudo().write({'phone': phone, 'website_id': 2, 'email': email_from})
-            user.partner_id.company_name = name_company
+                user.partner_id.sudo().write({'phone': kwargs.get('phone'), 'website_id': 2, 'email': email_from})
+            url = str(user.signup_url)  # get the signup_url
+            short_url = pyshorteners.Shortener()
+            short_url = short_url.tinyurl.short(url)  # convert the signup_url to be short using pyshorteners library
+            body = 'Chere(e) %s , Vous avez été invité par %s  à compléter votre inscription : %s . Votre courriel de connection est: %s' % (
+                user.partner_id.name, user.partner_id.company_id.name, short_url,
+                user.partner_id.email)  # content of sms
+            sms_body_contenu = 'Chere(e) %s , Vous avez été invité par %s  à compléter votre inscription : %s . Votre courriel de connection est: %s' % (
+                user.partner_id.name, user.partner_id.company_id.name, short_url,
+                user.partner_id.email)  # content of sms
+            sms = request.env['sms.sms'].sudo().create({
+                'partner_id': user.partner_id.id,
+                'number': phone,
+                'body': str(body)
+            })  # create sms
+            sms_id = sms.id
+            if (sms):
+                sms.send()  # send the sms
+                subtype_id = request.env['ir.model.data'].xmlid_to_res_id('mt_note')
+                body = False
+                sms = request.env["sms.sms"].sudo().search(
+                    [("id", "=", sms_id)], limit=1)
+                if (sms):
+                    if sms.state == 'error':
+                        body = "Le SMS suivant n'a pas pu être envoyé : %s " % (sms_body_contenu)
+                else:
+                    body = "Le SMS suivant a été bien envoyé : %s " % (sms_body_contenu)
+                if body:
+                    message = request.env['mail.message'].sudo().create({
+                        'subject': 'Invitation de rejoindre le site par sms',
+                        'model': 'res.partner',
+                        'res_id': user.partner_id.id,
+                        'message_type': 'notification',
+                        'subtype_id': subtype_id,
+                        'body': body,
+                    })  # create note in client view
+
+        if user:
+            if name_company:
+                user.partner_id.company_name = name_company
         if user:
             ticket_name = 'Digimoov : ' + str(name)
             ticket = request.env['helpdesk.ticket'].sudo().search(
@@ -609,7 +694,7 @@ class Services(http.Controller):
                 # if ticket has already created redirect client to contact page
                 return request.redirect('/contact')
         if service == 'client':
-            if request.website.id == 2 :
+            if request.website.id == 2:
                 vals = {
                     'partner_email': str(email_from),
                     'partner_id': user.partner_id.id,
@@ -619,7 +704,7 @@ class Services(http.Controller):
                         [('name', 'like', 'Client'), ('company_id', "=", 2)],
                         limit=1).id,
                 }
-            elif request.website.id == 1 :
+            elif request.website.id == 1:
                 vals = {
                     'partner_email': str(email_from),
                     'partner_id': user.partner_id.id,
@@ -643,7 +728,7 @@ class Services(http.Controller):
                     })
             return request.render("digimoov_website_templates.client_thank_you")
         elif service == 'Administration':
-            if request.website.id == 2 :
+            if request.website.id == 2:
                 vals = {
                     'partner_email': str(email_from),
                     'partner_id': user.partner_id.id,
@@ -653,7 +738,7 @@ class Services(http.Controller):
                         [('name', 'like', 'Admini'), ('company_id', "=", 2)],
                         limit=1).id,
                 }
-            elif request.website.id == 1 :
+            elif request.website.id == 1:
                 vals = {
                     'partner_email': str(email_from),
                     'partner_id': user.partner_id.id,
@@ -667,7 +752,7 @@ class Services(http.Controller):
                 vals)
             return request.render("digimoov_website_templates.administration_thank_you")
         elif service == 'Partenariat':
-            if request.website.id == 2 :
+            if request.website.id == 2:
                 vals = {
                     'partner_email': str(email_from),
                     'partner_id': user.partner_id.id,
@@ -677,7 +762,7 @@ class Services(http.Controller):
                         [('name', 'like', 'Admini'), ('company_id', "=", 2)],
                         limit=1).id,
                 }
-            elif request.website.id == 1 :
+            elif request.website.id == 1:
                 vals = {
                     'partner_email': str(email_from),
                     'partner_id': user.partner_id.id,
@@ -691,7 +776,7 @@ class Services(http.Controller):
                 vals)
             return request.render("digimoov_website_templates.administration_thank_you")
         elif service == 'presse':
-            if request.website.id == 2 :
+            if request.website.id == 2:
                 vals = {
                     'partner_email': str(email_from),
                     'partner_id': user.partner_id.id,
@@ -701,7 +786,7 @@ class Services(http.Controller):
                         [('name', 'like', 'Presse'), ('company_id', "=", 2)],
                         limit=1).id,
                 }
-            elif request.website.id == 1 :
+            elif request.website.id == 1:
                 vals = {
                     'partner_email': str(email_from),
                     'partner_id': user.partner_id.id,
@@ -725,7 +810,7 @@ class Services(http.Controller):
                     })
             return request.render("digimoov_website_templates.presse_thank_you")
         elif service == 'Comptabilité':
-            if request.website.id == 2 :
+            if request.website.id == 2:
                 vals = {
                     'partner_email': str(email_from),
                     'partner_id': user.partner_id.id,
@@ -735,7 +820,7 @@ class Services(http.Controller):
                         [('name', 'like', 'Compta'), ('company_id', "=", 2)],
                         limit=1).id,
                 }
-            elif request.website.id == 1 :
+            elif request.website.id == 1:
                 vals = {
                     'partner_email': str(email_from),
                     'partner_id': user.partner_id.id,
@@ -749,7 +834,7 @@ class Services(http.Controller):
                 vals)
             return request.render("digimoov_website_templates.comptabilite_thank_you")
         elif service == 'Pédagogique':
-            if request.website.id == 2 :
+            if request.website.id == 2:
                 vals = {
                     'partner_email': str(email_from),
                     'partner_id': user.partner_id.id,
@@ -759,7 +844,7 @@ class Services(http.Controller):
                         [('name', 'like', 'gogique'), ('company_id', "=", 2)],
                         limit=1).id,
                 }
-            elif request.website.id == 1 :
+            elif request.website.id == 1:
                 vals = {
                     'partner_email': str(email_from),
                     'partner_id': user.partner_id.id,
@@ -783,7 +868,8 @@ class Services(http.Controller):
                     })
             return request.render("digimoov_website_templates.pedagogique_thank_you")
 
-    #transport lourd 
+    # transport lourd 
+
 
 class Transport_Lourd(http.Controller):
     @http.route(['/formation-capacite-transport-lourd-marchandise'], type='http', auth='public', website=True)
@@ -791,8 +877,8 @@ class Transport_Lourd(http.Controller):
         digimoov_products = False
         values = False
         if request.website.id == 2:
-          
-            #get digimoov products to send them to pricing table 
+
+            # get digimoov products to send them to pricing table 
             digimoov_products = request.env['product.product'].sudo().search([('company_id', '=', 2)],
                                                                              order="list_price")
             values = {
@@ -802,7 +888,8 @@ class Transport_Lourd(http.Controller):
         else:
             raise werkzeug.exceptions.NotFound()
 
- # habilitation electrique
+
+# habilitation electrique
 
 class Habilitation_electrique(http.Controller):
     @http.route(['/habilitation-electrique'], type='http', auth='public', website=True)
@@ -810,7 +897,7 @@ class Habilitation_electrique(http.Controller):
         digimoov_products = False
         values = False
         if request.website.id == 2:
-            #get digimoov products to send them to pricing table 
+            # get digimoov products to send them to pricing table 
             digimoov_products = request.env['product.product'].sudo().search([('company_id', '=', 2)],
                                                                              order="list_price")
             values = {
@@ -819,4 +906,3 @@ class Habilitation_electrique(http.Controller):
             return request.render("digimoov_website_templates.habilitation-electrique", values)
         else:
             raise werkzeug.exceptions.NotFound()
-        
