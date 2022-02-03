@@ -35,7 +35,7 @@ class WebhookController(http.Controller):
     """valider les dossier cpf pour MCM  apres la creation par webhook"""
 
     @http.route(['/validate_cpf_mcm'], type='json', auth="public", methods=['POST'])
-    def validate_cpf_digi(self, **kw):
+    def validate_cpf_mcm(self, **kw):
         dossier = json.loads(request.httprequest.data)
         event = request.httprequest.headers.get('X-Wedof-Event')
         _logger.info("webhoooooooooook %s" % str(dossier))
