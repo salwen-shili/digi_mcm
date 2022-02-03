@@ -395,3 +395,17 @@ class WebhookController(http.Controller):
                                 line.price_unit = so.amount_total
 
         return True
+
+    """Mettre à jour statut cpf accepté et création de facture pour digimoov  apres l'acceptation sur edof """
+    @http.route(['/accepte_cpf_digi'], type='json', auth="public", methods=['POST'])
+    def accepte_cpf_digi(self, **kw):
+        dossier = json.loads(request.httprequest.data)
+        event = request.httprequest.headers.get('X-Wedof-Event')
+        _logger.info("webhoook accepted %s" % str(dossier))
+        _logger.info("header %s" % str(event))
+        """recuperer l'api_key de wedof pour digimoov"""
+        company = request.env['res.company'].sudo().search([('id', "=", 2)])
+        api_key = ""
+        if company:
+            api_key = company.wedof_api_key
+        
