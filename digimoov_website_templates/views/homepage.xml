@@ -6,42 +6,7 @@
 
             <br />
             <br />
-            <style>
-            
-             .blink-soft {
-            animation: blinker 1s linear infinite;
-            color:#fff900;
-            text-transform: uppercase;
-            font-size: 21px;
-            }
-            @keyframes blinker {
-            50% {
-                opacity: 0.1;
-            }
-            70%{
-            opacity: 1;
-            }
-            100%{
-            opacity: 1;
-            }
-            }
-            
-        .pricebar {
-        position: relative;
-      }
-      .pricebar::after {
-        content: " ";
-        display: block;
-        width: 100%;
-        border-top: 3px solid red;
-        height: 12px;
-        position: absolute;
-        bottom: 6px;
-        left: -3px;
-        transform: rotate(330deg);
-      }
-      
-            </style>
+
             <div id="wrap" class="oe_structure oe_empty">
                 <div id="homepage" t-if="partenaire!='coursier2roues'">
                     <section class="s_one_page_banner static-slider2" data-name="Home Banner Ten" style="">
@@ -708,7 +673,7 @@
                                                             </li>
                                                             <li class="mb-4">
                                                                 <i class="fa fa-lg fa-times-circle mr-2 text-danger" />
-                                                                Live avec un expert métier
+                                                                Séance en Live avec un expert métier
                                                             </li>
                                                             <li class="mb-4">
                                                                 <i class="fa fa-lg fa-times-circle mr-2 text-danger" />
@@ -724,7 +689,7 @@
                                                             </li>
                                                             <li class="mb-4">
                                                                 <i class="fa fa-check-circle fa-lg mr-2 text-success" />
-                                                                <b>Séance en Live pour la correction après l’examen &amp;nbsp;
+                                                                <b>Séance en Live pour corriger l’examen &amp;nbsp;
                                                                 &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;
                                                                 &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;
                                                                 &amp;nbsp; &amp;nbsp; &amp;nbsp;
@@ -840,7 +805,7 @@
                                                             </li>
                                                             <li class="mb-4">
                                                                 <span class="fa fa-lg fa-times-circle text-danger mr-2" style="font-size: 1.33333em" data-original-title="" title="" aria-describedby="tooltip288722" />
-                                                                Live avec un expert métier
+                                                                Séance en Live avec un expert métier
                                                             </li>
                                                             <li class="mb-4">
                                                                 <i class="fa fa-lg fa-times-circle text-danger mr-2" />
@@ -856,7 +821,7 @@
                                                             </li>
                                                             <li class="mb-4">
                                                                 <i class="fa fa-check-circle fa-lg mr-2 text-success" />
-                                                                <b>Séance en Live pour la correction après l’examen &amp;nbsp;
+                                                                <b>Séance en Live pour corriger l’examen &amp;nbsp;
                                                                 &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;
                                                                 &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;
                                                                 &amp;nbsp; &amp;nbsp; &amp;nbsp;
@@ -957,12 +922,12 @@
                                                             </li>
                                                             <li class="mb-4">
                                                                 <i class="fa fa-check-circle fa-lg mr-2 text-success" />
-                                                                <b>Séances Live avec un tuteur dédié</b>
+                                                                <b>Séances en Live avec un tuteur dédié</b>
                                                                 <br />
                                                             </li>
                                                             <li class="mb-4">
                                                                 <i class="fa fa-check-circle fa-lg mr-2 text-success" />
-                                                                <b>Séance Live avec un expert métier </b>
+                                                                <b>Séance en Live avec un expert métier </b>
                                                                 <b>&amp;nbsp;</b>
                                                                 <br />
                                                             </li>
@@ -977,7 +942,8 @@
                                                             </li>
                                                             <li class="mb-4">
                                                                 <i class="fa fa-lg fa-times-circle mr-2 text-success" />
-                                                                Séance en Live pour la correction après l’examen &amp;nbsp;
+                                                                <b>Séance en Live pour corriger l’examen</b>
+                                                                &amp;nbsp;
                                                                 &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;
                                                                 &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;
                                                                 &amp;nbsp; &amp;nbsp; &amp;nbsp;
