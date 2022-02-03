@@ -4,7 +4,7 @@
     <t t-call="website.layout">
       <div id="wrap" class="oe_structure oe_empty">
         <script defer="defer" type="text/javascript" src="/digimoov_website_templates/static/src/js/lazy-min.min.js" />
-        <script type="text/javascript" src="/mcm_website_theme/static/src/js/msAds.min.js" />
+
         <link rel="stylesheet" href="/mcm_website_theme/static/src/css/cta-button.min.css" />
         <link rel="stylesheet" href="/mcm_website_theme/static/src/css/style_taxi.min.css" />
 
@@ -203,7 +203,7 @@
               <div class="col-lg-4 col-md-4">
                 <div class="sh_content sh_animation_part">
                   <div class="sh_number">
-                    <a href="/mcm_website_theme/static/pdf/DEMARCHES_D'INSCRIPTION_A_LA_CMA_-_MCM_ACADEMY.pdf" alt="DEMARCHES D'INSCRIPTION A LA CMA" title="DEMARCHES D'INSCRIPTION A LA CMA">
+                    <a target="_blank" href="/mcm_website_theme/static/pdf/DEMARCHES_D'INSCRIPTION_A_LA_CMA_-_MCM_ACADEMY.pdf" alt="DEMARCHES D'INSCRIPTION A LA CMA" title="DEMARCHES D'INSCRIPTION A LA CMA">
                       <span class="sh_num o_default_snippet_text">01</span>
                     </a>
 
@@ -219,7 +219,7 @@
               <div class="col-lg-4 col-md-4">
                 <div class="sh_content sh_animation_part">
                   <div class="sh_number">
-                    <a href="/mcm_website_theme/static/pdf/DEMARCHES_D'INSCRIPTION_SUR_LE_SITE_MCM_ACADEMY.pdf" title="DEMARCHES D'INSCRIPTION SUR LE SITE MCM ACADEMY">
+                    <a target="_blank" href="/mcm_website_theme/static/pdf/DEMARCHES_D'INSCRIPTION_SUR_LE_SITE_MCM_ACADEMY.pdf" title="DEMARCHES D'INSCRIPTION SUR LE SITE MCM ACADEMY">
                       <span class="sh_num o_default_snippet_text">02</span>
                     </a>
                   </div>
@@ -233,7 +233,7 @@
               <div class="col-lg-4 col-md-4">
                 <div class="sh_content sh_animation_part">
                   <div class="sh_number">
-                    <a href="/mcm_website_theme/static/pdf/Devenez_chauffeur_taxi_vtc_démarches_dépôt_dossier_préfecture.pdf" alt="Devenez chauffeur taxi vtc démarches dépôt dossier préfecture" title="démarches dépôt dossier préfecture">
+                    <a target="_blank" href="/mcm_website_theme/static/pdf/Devenez_chauffeur_taxi_vtc_démarches_dépôt_dossier_préfecture.pdf" alt="Devenez chauffeur taxi vtc démarches dépôt dossier préfecture" title="démarches dépôt dossier préfecture">
                       <span class="sh_num o_default_snippet_text">03</span>
                     </a>
 
@@ -320,7 +320,7 @@
             <h3 style="color: rgb(0, 0, 0); font-size: 19px; max-width:100%">
             TÉLÉCHARGER LE PROGRAMME DE LA FORMATION VTC
           </h3>
-            <a class="animated-button-black" target="_blank" href="/mcm_website_theme/static/pdf/PROGRAMME DE  FORMATION a distance de 70H TAXI ET VTC.pdf" title="Programme de la formation VTC" alt="">
+            <a class="animated-button-black" target="_blank" href="/mcm_website_theme/static/pdf/PROGRAMME DE  FORMATION a distance de 70H  MOTO-TAXI - MCM ACADEMY.pdf" title="Programme de la formation VTC" alt="">
               <span />
               <span />
               <span />
@@ -425,17 +425,14 @@
 
           <section id="sh_corpomate_theme_section_188" class="sh_animation_part" data-name="Pricing">
             <div class="container">
-              <div class="sh_title mt48">
-                <h2>
-                  <b>Inscrivez-vous dès maintenant !</b>
-                  <br />
-                </h2>
-                <h3 style="margin-top: 20px; margin-bottom: 0.5rem; font-size: 18px">
-                Choisissez le pack qui vous convient&amp;nbsp;
-              </h3>
-                <p class="para">
-                  <br />
-                </p>
+              <div class="sh_title mt48 js-scroll fade-in-top">
+                <h2 style="max-width:100%">
+                     Inscrivez-vous dès maintenant !
+                 </h2>
+
+
+                <br />
+
               </div>
               <div class="row" style="justify-content: center !important">
                 <div class="col-md-5 sh_animation_part" style="border-style: none; border-width: 0px">
