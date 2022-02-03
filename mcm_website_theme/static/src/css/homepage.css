@@ -252,7 +252,7 @@
   }
 }
 /* strikethrough price */
-.pricebar {
+/* .pricebar {
   position: relative;
 }
 .pricebar::after {
@@ -263,4 +263,37 @@
   position: absolute;
   bottom: 16px;
   left: -8px;
+} */
+
+.blink-soft {
+  animation: blinker 1s linear infinite;
+  color: #fff900;
+  text-transform: uppercase;
+  font-size: 21px;
+}
+@keyframes blinker {
+  50% {
+    opacity: 0.1;
+  }
+  70% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.pricebar {
+  position: relative;
+}
+.pricebar::after {
+  content: ' ';
+  display: block;
+  width: 100%;
+  border-top: 3px solid red;
+  height: 12px;
+  position: absolute;
+  bottom: 6px;
+  left: -3px;
+  transform: rotate(330deg);
 }

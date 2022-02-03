@@ -675,7 +675,7 @@
                                                             </li>
                                                             <li class="mb-4">
                                                                 <i class="fa fa-lg fa-times-circle mr-2 text-danger" />
-                                                                Live avec un expert métier
+                                                                Séance en Live avec un expert métier
                                                             </li>
                                                             <li class="mb-4">
                                                                 <i class="fa fa-lg fa-times-circle mr-2 text-danger" />
@@ -691,7 +691,7 @@
                                                             </li>
                                                             <li class="mb-4">
                                                                 <i class="fa fa-check-circle fa-lg mr-2 text-success" />
-                                                                <b>Séance en Live pour la correction après l’examen &amp;nbsp;
+                                                                <b>Séance en Live pour corriger l’examen &amp;nbsp;
                                                                 &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;
                                                                 &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;
                                                                 &amp;nbsp; &amp;nbsp; &amp;nbsp;
@@ -807,7 +807,7 @@
                                                             </li>
                                                             <li class="mb-4">
                                                                 <span class="fa fa-lg fa-times-circle text-danger mr-2" style="font-size: 1.33333em" data-original-title="" title="" aria-describedby="tooltip288722" />
-                                                                Live avec un expert métier
+                                                                Séance en Live avec un expert métier
                                                             </li>
                                                             <li class="mb-4">
                                                                 <i class="fa fa-lg fa-times-circle text-danger mr-2" />
@@ -823,7 +823,7 @@
                                                             </li>
                                                             <li class="mb-4">
                                                                 <i class="fa fa-check-circle fa-lg mr-2 text-success" />
-                                                                <b>Séance en Live pour la correction après l’examen &amp;nbsp;
+                                                                <b>Séance en Live pour corriger l’examen &amp;nbsp;
                                                                 &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;
                                                                 &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;
                                                                 &amp;nbsp; &amp;nbsp; &amp;nbsp;
@@ -924,12 +924,12 @@
                                                             </li>
                                                             <li class="mb-4">
                                                                 <i class="fa fa-check-circle fa-lg mr-2 text-success" />
-                                                                <b>Séances Live avec un tuteur dédié</b>
+                                                                <b>Séances en Live avec un tuteur dédié</b>
                                                                 <br />
                                                             </li>
                                                             <li class="mb-4">
                                                                 <i class="fa fa-check-circle fa-lg mr-2 text-success" />
-                                                                <b>Séance Live avec un expert métier </b>
+                                                                <b>Séance en Live avec un expert métier </b>
                                                                 <b>&amp;nbsp;</b>
                                                                 <br />
                                                             </li>
@@ -944,7 +944,8 @@
                                                             </li>
                                                             <li class="mb-4">
                                                                 <i class="fa fa-lg fa-times-circle mr-2 text-success" />
-                                                                Séance en Live pour la correction après l’examen &amp;nbsp;
+                                                                <b>Séance en Live pour corriger l’examen</b>
+                                                                &amp;nbsp;
                                                                 &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;
                                                                 &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;
                                                                 &amp;nbsp; &amp;nbsp; &amp;nbsp;
