@@ -73,7 +73,7 @@
           <div class="container">
             <div class="row align-items-center">
               <div class="col-lg-6 pt16 pb16 js-scroll slide-left">
-                <img data-src="/mcm_website_theme/static/src/img/formation-moto-taxi/C'est-quoi-un-vmdtr.webp" data-srcsafari="/mcm_website_theme/static/src/img/formation-moto-taxi/C'est-quoi-un-vmdtr.png" class="img img-fluid lazy mx-auto" alt="chauffeur Moto-Taxi sur sa moto" title="C'EST QUOI UN VMDTR ?" />
+                <img data-src="/mcm_website_theme/static/src/img/formation-moto-taxi/C'est-quoi-un-vmdtr.webp" data-srcsafari="/mcm_website_theme/static/src/img/formation-moto-taxi/C'est-quoi-un-vmdtr.png" class="img img-fluid lazy mx-auto" alt="chauffeur Moto-Taxi sur sa moto" style="width: 86%;" title="C'EST QUOI UN VMDTR ?" />
               </div>
               <div class="col-lg-6 pt16 pb16 js-scroll slide-right">
                 <h2>
