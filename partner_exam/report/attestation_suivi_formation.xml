@@ -4,14 +4,14 @@
         <template id="attestation_suivi_formation_id">
             <t t-call="web.html_container">
                 <t t-foreach="docs" t-as="o">
-                    <t t-call="web.basic_layout" t-lang="o.lang or o.env.lang">
+                    <t t-call="web.basic_layout" t-lang='fr_FR'>
                         <style type="text/css">
                             .page {
                             line-height: 1.75 !important;
                             font-size:20px !important;
                             }
                         </style>
-                        <t t-set="docs" t-value="o.with_context(lang=o.lang)"/>
+                        <t t-set="o" t-value="o.with_context(lang='fr_FR')"/>
                         <div class="page">
                             <div class="oe_structure"/>
                             <div class="row">
@@ -68,7 +68,7 @@
                                                 </t>
                                             </t>
                                             <t t-else="not sales">
-                                                <span t-esc="datetime.datetime.strptime(str(o.date_creation).title(), '%d %B %Y').strftime('%d/%m/%Y')"/>
+                                                <span t-esc="datetime.datetime.strptime(str(o.date_creation), '%d %B %Y').strftime('%d/%m/%Y')"/>
                                             </t>
                                             au
                                             <span t-field="o.module_id.date_exam"
@@ -379,7 +379,7 @@
                                                 </t>
                                             </t>
                                             <t t-else="not sales">
-                                                <span t-esc="datetime.datetime.strptime(str(o.date_creation).title(), '%d %B %Y').strftime('%d/%m/%Y')"/>
+                                                <span t-esc="datetime.datetime.strptime(str(o.date_creation), '%d %B %Y').strftime('%d/%m/%Y')"/>
                                             </t>
                                             au
                                             <span t-field="o.module_id.date_exam"
