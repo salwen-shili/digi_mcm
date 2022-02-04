@@ -83,14 +83,10 @@ class partner(models.Model):
         """Convertir date d'inscription de string vers date avec une format %d/%m/%Y"""
         locale.setlocale(locale.LC_TIME, str(self.env.user.lang) + '.utf8')
         for rec in self.env['res.partner'].sudo().search([('statut', "=", "won")]):
-            print("nom", rec.date_creation)
             if rec.date_creation:
-                new_date_format = False
-                if new_date_format == datetime.strptime(str(rec.date_creation), "%d/%m/%Y").date().strftime('%d/%m/%Y'):
-                    print("new_date_format", new_date_format)
-                    rec.date_creation = new_date_format
-                else:
-                    rec.date_creation = new_date_format
+                new_date_format = datetime.strptime(str(rec.date_creation), "%d %B %Y").date().strftime('%d/%m/%Y')
+                print("new_date_format", )
+                rec.date_creation = new_date_format
 
     # Recuperer les utilisateurs de 360learning
     def getusers(self):
