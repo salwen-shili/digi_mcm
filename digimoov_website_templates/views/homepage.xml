@@ -623,7 +623,44 @@
                         </section>
                         <p />
 
-
+                        <style>
+    
+            
+             .blink-soft {
+            animation: blinker 1s linear infinite;
+            color:#fff900;
+            text-transform: uppercase;
+            font-size: 21px;
+            }
+            @keyframes blinker {
+            50% {
+                opacity: 0.1;
+            }
+            70%{
+            opacity: 1;
+            }
+            100%{
+            opacity: 1;
+            }
+            }
+            
+        .pricebar {
+        position: relative;
+      }
+      .pricebar::after {
+        content: " ";
+        display: block;
+        width: 100%;
+        border-top: 3px solid red;
+        height: 12px;
+        position: absolute;
+        bottom: 6px;
+        left: -3px;
+        transform: rotate(330deg);
+      }
+      
+            
+</style>
                         <div class="container">
                             <input t-att-value="request.website.microsoft_tracking_key" id="microsoft_tracking_key" type="hidden" />
                             <div class="row">
