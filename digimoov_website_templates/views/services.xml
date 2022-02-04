@@ -113,6 +113,11 @@
             <label class="form__label" for="message">Message *</label>
 
         </div>
+        <div class="outlined-input-field mb16 bg-c">
+            <div class="form-group m-t-15 ">
+                <input name="attachment" placeholder="Objet" type="file" style="height:auto !important;" multiple="True" class="outlined-text-field" />
+            </div>
+        </div>
 
 
         <div class="col-lg-12 mt32 mb32 text-center">
@@ -195,11 +200,7 @@
             <label class="form__label" for="message">Message *</label>
 
         </div>
-        <div class="outlined-input-field mb16 bg-c">
-            <div class="form-group m-t-15 ">
-                <input name="attachment" placeholder="Objet" type="file" style="height:auto !important;" multiple="True" class="outlined-text-field" />
-            </div>
-        </div>
+
 
         <div class="col-lg-12 mt32 mb32 text-center">
             <!-- <button class="o_website_form_send btn btn-alpha rounded-circle m-t-20 arrow-btn" type="submit">
