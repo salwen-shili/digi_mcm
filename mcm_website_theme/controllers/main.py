@@ -33,6 +33,7 @@ class Website(Home):
         , type='http', auth="public", website=True)
     def index(self, state='', partenaire='', **kw, ):
         # homepage=super(Website, self).index()
+        print('partenaire:',partenaire)
         if not request.env.user.lang:
             request.env.user.lang ='fr_FR'
         locale.setlocale(locale.LC_TIME, str(request.env.user.lang) + '.utf8')
@@ -119,7 +120,7 @@ class Website(Home):
             else:
                 values['promo'] = False
             return request.render("website.homepage", values)
-        else:
+        elif (request.website.id == 2):
             website_page = request.env['website.page'].sudo().search([('url', "=", '/' + str(partenaire)),('website_id',"=",2)])
             if website_page:
                 return request.render(str(website_page.view_id.key), values)
@@ -139,7 +140,7 @@ class Website(Home):
             if partner:
                 documents = request.env['documents.document'].sudo().search([('partner_id', '=', partner.id)])
             values['documents'] = documents
-            if (partenaire in ['', 'bolt'] and request.website.id == 1):
+            if (partenaire in [''] and request.website.id == 1):
                 values['partenaire'] = partenaire
                 if (promo):
                     values['promo'] = promo
@@ -151,7 +152,8 @@ class Website(Home):
                 if website_page:
                     return request.render(str(website_page.view_id.key), values)
                 else:
-                    return request.render("website.homepage", values)
+                    return werkzeug.utils.redirect('/',301)
+        return request.render("website.homepage", values)
         # --------------------------------------------------------------------------
         # states Search Bar
         # --------------------------------------------------------------------------
