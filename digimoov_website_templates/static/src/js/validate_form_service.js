@@ -1,50 +1,5 @@
 // move label on focus
 
-const listId = [
-  'contact_lastname',
-  'contact_name',
-  'phone',
-  'address',
-  'email_from',
-  'objet',
-  'message',
-];
-listId.map((id) => {
-  console.log($(`#${id}`).val());
-  if ($(`#${id}`).val()) {
-    $(`#${id} ~ label`).animate(
-      {
-        top: '0',
-        fontSize: '12px',
-      },
-      80
-    );
-  }
-});
-
-listId.map((id) => {
-  $(`#${id}`).focusin(function () {
-    $(`#${id} ~ label`).animate(
-      {
-        top: '0',
-        fontSize: '12px',
-      },
-      80
-    );
-  });
-  $(`#${id}`).focusout(function () {
-    if ($(this).val() === '') {
-      $(`#${id} ~ label`).animate(
-        {
-          top: '17px',
-          fontSize: '16px',
-        },
-        80
-      );
-    }
-  });
-});
-
 //validation functions
 
 function checkLetters(prop, value) {
@@ -71,6 +26,72 @@ function checkPhone(prop, value) {
 }
 
 $(document).ready(function () {
+  const listId = [
+    'contact_lastname',
+    'contact_name',
+    'phone',
+    'address',
+    'email_from',
+    'objet',
+    'message',
+    'entreprise',
+    'presse',
+  ];
+  listId.map((id) => {
+    if ($(`#${id}`).val()) {
+      $(`#${id} ~ label`).animate(
+        {
+          top: '0',
+          fontSize: '12px',
+        },
+        80
+      );
+    }
+    $(`#${id}`).focusin(function () {
+      $(`#${id} ~ label`).animate(
+        {
+          top: '0',
+          fontSize: '12px',
+        },
+        80
+      );
+    });
+    $(`#${id}`).focusout(function () {
+      if ($(this).val() === '') {
+        $(`#${id} ~ label`).animate(
+          {
+            top: '17px',
+            fontSize: '16px',
+          },
+          80
+        );
+      }
+    });
+  });
+
+  // listId.map((id) => {
+  //   $(`#${id}`).focusin(function () {
+  //     $(`#${id} ~ label`).animate(
+  //       {
+  //         top: '0',
+  //         fontSize: '12px',
+  //       },
+  //       80
+  //     );
+  //   });
+  //   $(`#${id}`).focusout(function () {
+  //     if ($(this).val() === '') {
+  //       $(`#${id} ~ label`).animate(
+  //         {
+  //           top: '17px',
+  //           fontSize: '16px',
+  //         },
+  //         80
+  //       );
+  //     }
+  //   });
+  // });
+
   $(`#contact_lastname`).keyup(function (e) {
     const contact_lastname = $('#contact_lastname').val();
     const errorMessage = checkLetters('nom', contact_lastname);
