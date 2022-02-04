@@ -85,7 +85,6 @@ class partner(models.Model):
         for rec in self.env['res.partner'].sudo().search([('statut', "=", "won")]):
             if rec.date_creation:
                 new_date_format = datetime.strptime(str(rec.date_creation), "%d %B %Y").date().strftime('%d/%m/%Y')
-                print("new_date_format", )
                 rec.date_creation = new_date_format
 
     # Recuperer les utilisateurs de 360learning
