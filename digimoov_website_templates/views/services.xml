@@ -304,6 +304,7 @@
     <!-- Vue helpdesk de Digimoov pour le service partenariat dans le siteweb -->
     <template id="digimoov_website_templates.digimoov_template_service_partenariat" name="Service Partenariat | Digimoov">
 
+        <t t-call="digimoov_website_templates.common_js" />
 
         <t t-call="website.layout">
             <t t-set="head">
@@ -326,7 +327,7 @@
                                     </div>
                                     <div class="col-lg-6">
                                         <div class="contact-box ">
-                                            <span style="font-size: 28px;">Partenariat</span>
+                                            <span class="cnx-title">Partenariat</span>
                                             <br />
                                             <form action="/helpdesk/submitted/" method="post" enctype="multipart/form-data">
                                                 <input name="service" type="hidden" class="o_website_form_input   font-14 form-control" value="Partenariat" />
