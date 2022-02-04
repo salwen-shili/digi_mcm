@@ -104,7 +104,7 @@
         </div>
 
         <div class="outlined-input-field mb16 bg-c" id="objet_container">
-            <input type="text" id="objet" name="objet" class="outlined-text-field" autocomplete="off" />
+            <input type="text" id="objet" name="objet" required="required" class="outlined-text-field" autocomplete="off" />
             <label for="objet">Objet *</label>
 
         </div>
@@ -191,7 +191,7 @@
         </div>
 
         <div class="outlined-input-field mb16 bg-c" id="objet_container">
-            <input type="text" id="objet" name="objet" class="outlined-text-field" autocomplete="off" />
+            <input type="text" id="objet" name="objet" required="required" class="outlined-text-field" autocomplete="off" />
             <label for="objet">Objet *</label>
 
         </div>
