@@ -18,7 +18,7 @@
         <xpath expr="//body" position="inside">
             <!-- Google Tag Manager (noscript) -->
             <noscript t-if="website and website.google_tag_manager_key">
-                <iframe src="https://www.googletagmanager.com/ns.html?id={{ website.google_tag_manager_key }}"
+                <iframe t-att-src="'https://www.googletagmanager.com/ns.html?id=%s'% (website.google_tag_manager_key or '')"
                         height="0" width="0" style="display:none;visibility:hidden"></iframe>
             </noscript>
             <!-- End Google Tag Manager (noscript) -->
