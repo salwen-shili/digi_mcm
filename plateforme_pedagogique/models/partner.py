@@ -79,6 +79,14 @@ class partner(models.Model):
         record = super(partner, self).write(vals)
         return record
 
+    def convertir_date_inscription(self):
+        """Convertir date d'inscription de string vers date avec une format %d/%m/%Y"""
+        locale.setlocale(locale.LC_TIME, str(self.env.user.lang) + '.utf8')
+        for rec in self.env['res.partner'].sudo().search([('statut', "=", "won")]):
+            if rec.date_creation:
+                new_date_format = datetime.strptime(str(rec.date_creation), "%d %B %Y").date().strftime('%d/%m/%Y')
+                rec.date_creation = new_date_format
+
     # Recuperer les utilisateurs de 360learning
     def getusers(self):
         locale.setlocale(locale.LC_TIME, str(self.env.user.lang) + '.utf8')
@@ -364,7 +372,7 @@ class partner(models.Model):
                 if (create):
                     _logger.info('create %s' % user.login)
                     today = date.today()
-                    new_format = '%d %B %Y'
+                    new_format = '%d %m %Y'
                     # Changer format de date et la mettre en majuscule
                     date_ajout = today.strftime(new_format)
                     partner.date_creation = date_ajout
