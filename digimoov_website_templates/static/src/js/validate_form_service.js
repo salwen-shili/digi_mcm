@@ -35,7 +35,6 @@ $(document).ready(function () {
     'objet',
     'message',
     'entreprise',
-    'presse',
   ];
   listId.map((id) => {
     if ($(`#${id}`).val()) {
