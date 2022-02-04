@@ -124,15 +124,101 @@
                 ENVOYER
                 <span class="fa fa-1x fa-fw fa-long-arrow-right ml-1" />
             </button> -->
-            <button id="inscrire" type="submit" class="rkmd-btn btn-indigo ripple-effect ripple-yellow">
+            <button id="inscrire" type="submit" t-attf-class="rkmd-btn  ripple-effect ripple-yellow #{'btn-indigo' if request.website.id==2 else 'btn-black'}">
                 ENVOYER
                 <i class="material-icons right">send</i>
-
             </button>
             <span id="o_website_form_result" class="text-danger ml8 mt16  mb16 col-md-12" />
         </div>
 
     </template>
+
+    <template id="digimoov_website_templates.common_partenariat_press" name="services digimoov common form+">
+
+
+        <link href="/mcm_website_theme/static/src/css/commun-form.css" rel="stylesheet" />
+        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+        <div class="row">
+            <div class="col-lg-6 mb16" style="margin:0">
+                <div class="outlined-input-field bg-c " id="contact_lastname_container">
+                    <input name="contact_lastname" type="text" t-attf-value="#{contact_last_name}" t-att-disabled="'disabled' if contact_last_name else None" id="contact_lastname" class="outlined-text-field" pattern="[A-Z,a-z,À-ÿ '-]{2,}" required="required" inputmode="latin-name" />
+                    <label for="contact_lastname">Nom *</label>
+                    <i class="material-icons error-icon">error_outline</i>
+                    <div class="helper-text bg-c" id="contact_lastname_helper">
+                        <span></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-6 mb16" style="margin:0">
+                <div class="outlined-input-field bg-c bt32" id="contact_name_container">
+                    <input type="text" id="contact_name" name="contact_name" class="outlined-text-field" autocomplete="off" t-attf-value="#{contact_name}" t-att-disabled="'disabled' if contact_name else None" pattern="[A-Z,a-z,À-ÿ '-]{2,}" required="required" inputmode="latin-name" />
+                    <label for="contact_name">Prénom *</label>
+                    <i class="material-icons error-icon">error_outline</i>
+                    <div class="helper-text bg-c" id="contact_name_helper">
+                        <span></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="outlined-input-field mb16 bg-c" id="email_from_container">
+            <input type="text" id="email_from" name="email_from" class="outlined-text-field" t-attf-value="#{email_from}" t-att-disabled="'disabled' if email_from else None" required="required" inputmode="email" />
+            <label for="email_from">Email *</label>
+            <i class="material-icons error-icon">error_outline</i>
+            <div class="helper-text bg-c" id="email_from_helper">
+                <span></span>
+            </div>
+        </div>
+
+        <div class="outlined-input-field mb16 bg-c" id="phone_container">
+            <input type="text" id="phone" name="phone" class="outlined-text-field" t-attf-value="#{phone}" maxlength="10" pattern="(07|06)[0-9]\d{7}" required="required" inputmode="numeric" t-att-disabled="'disabeld' if phone else None" />
+            <label for="phone">Téléphone *</label>
+            <i class="material-icons error-icon">error_outline</i>
+            <div class="helper-text bg-c" id="phone_helper">
+                <span></span>
+            </div>
+        </div>
+
+        <div class="outlined-input-field mb16 bg-c" id="entreprise_container">
+            <input type="text" id="entreprise" name="entreprise" class="outlined-text-field" required="required" />
+            <label for="entreprise">Entreprise *</label>
+            <i class="material-icons error-icon">error_outline</i>
+            <div class="helper-text bg-c" id="entreprise_helper">
+                <span></span>
+            </div>
+        </div>
+
+        <div class="outlined-input-field mb16 bg-c" id="objet_container">
+            <input type="text" id="objet" name="objet" class="outlined-text-field" autocomplete="off" />
+            <label for="objet">Objet *</label>
+
+        </div>
+        <div class="outlined-input-field mb16 bg-c" id="message_container">
+            <textarea class="outlined-text-field" type="text" rows="5" id="message" name="message" autocomplete="off" required="required" />
+            <label class="form__label" for="message">Message *</label>
+
+        </div>
+        <div class="outlined-input-field mb16 bg-c">
+            <div class="form-group m-t-15 ">
+                <input name="attachment" placeholder="Objet" required="required" type="file" style="height:auto !important;" multiple="True" class="outlined-text-field" />
+            </div>
+        </div>
+
+        <div class="col-lg-12 mt32 mb32 text-center">
+            <!-- <button class="o_website_form_send btn btn-alpha rounded-circle m-t-20 arrow-btn" type="submit">
+                ENVOYER
+                <span class="fa fa-1x fa-fw fa-long-arrow-right ml-1" />
+            </button> -->
+            <button id="inscrire" type="submit" t-attf-class="rkmd-btn  ripple-effect ripple-yellow #{'btn-indigo' if request.website.id==2 else 'btn-black'}">
+                ENVOYER
+                <i class="material-icons right">send</i>
+            </button>
+            <span id="o_website_form_result" class="text-danger ml8 mt16  mb16 col-md-12" />
+        </div>
+
+    </template>
+
 
     <template id="digimoov_website_templates.common_js" name="services digimoov common js">
         <t t-set="head">
@@ -146,6 +232,7 @@
     <template id="digimoov_website_templates.digimoov_template_service_clientele" name="Service Clientèle | Digimoov">
         <t t-call="website.layout">
             <t t-call="digimoov_website_templates.common_js" />
+
             <div id="wrap" class="oe_structure oe_empty">
 
                 <section class="s_contact_with_img">
@@ -157,7 +244,10 @@
                             </div>
                             <div class="col-lg-6">
                                 <div class="contact-box ">
-                                    <div class="contact-title">Contacter le service client</div>
+                                    <span class="contact-title">Contacter le service client
+                                
+                                
+                                    </span>
 
                                     <form action="/helpdesk/submitted/" method="post" enctype="multipart/form-data" id="form-check">
                                         <input type="hidden" name="service" value="client" />
@@ -240,50 +330,7 @@
                                             <br />
                                             <form action="/helpdesk/submitted/" method="post" enctype="multipart/form-data">
                                                 <input name="service" type="hidden" class="o_website_form_input   font-14 form-control" value="Partenariat" />
-                                                <div class="row">
-                                                    <div class="col-lg-6">
-                                                        <div class="form-group m-t-15 ">
-                                                            <input placeholder="Nom" name="contact_lastname" required="True" type="text" class="o_website_form_input   font-14 form-control" t-attf-value="#{contact_last_name}" />
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-lg-6">
-                                                        <div class="form-group m-t-15 ">
-                                                            <input placeholder="Prénom" name="contact_name" required="True" type="text" class="o_website_form_input   font-14 form-control" t-attf-value="#{contact_name}" />
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-lg-12">
-                                                        <div class="form-group m-t-15 ">
-                                                            <input name="email_from" placeholder="Adresse email" required="True" t-attf-value="#{email_from}" type="email" class="o_website_form_input form-control" />
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-lg-12">
-                                                        <div class="form-group m-t-15 ">
-                                                            <input name="phone" placeholder="Téléphone" type="text" required="True" t-attf-value="#{phone}" class="o_website_form_input form-control" value="" />
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-lg-12">
-                                                        <div class="form-group m-t-15 ">
-                                                            <input name="name_company" placeholder="Entreprise" required="True" value="" type="text" class="o_website_form_input form-control" />
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-lg-12">
-                                                        <div class="form-group m-t-15 ">
-                                                            <input name="name" placeholder="Objet" required="" type="text" class="o_website_form_input form-control" value="" />
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-lg-12">
-                                                        <div class="form-group m-t-15 ">
-                                                            <textarea name="description" rows="3" placeholder="Message" required="" class=" o_website_form_input form-control" value="" />
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-lg-12 s_name" data-name="Button">
-                                                        <button class="o_website_form_send btn btn-alpha rounded-circle m-t-20 arrow-btn" type="submit">
-                                                            ENVOYER
-                                                            <span class="fa fa-1x fa-fw fa-long-arrow-right ml-1" />
-                                                        </button>
-                                                        <span id="o_website_form_result" class="text-danger ml8 mt16  mb16 col-md-12" />
-                                                    </div>
-                                                </div>
+                                                <t t-call="digimoov_website_templates.common_partenariat_press" />
                                             </form>
                                         </div>
                                     </div>
@@ -295,8 +342,9 @@
             </div>
         </t>
     </template>
-    <!-- Vue helpdesk de Digimoov pour le service partenariat dans le siteweb -->
+    <!-- Vue helpdesk de Digimoov pour le service presse dans le siteweb -->
     <template id="digimoov_website_templates.digimoov_template_service_presse" name="Service Presse | Digimoov">
+        <t t-call="digimoov_website_templates.common_js" />
 
 
         <t t-call="website.layout">
@@ -319,63 +367,13 @@
                                     </div>
                                     <div class="col-lg-6">
                                         <div class="contact-box ">
-                                            <span style="font-size: 28px;">Presse</span>
+                                            <span class="contact-title">Presse
+                                        
+                                            </span>
                                             <br />
                                             <form action="/helpdesk/submitted/" method="post" enctype="multipart/form-data">
                                                 <input name="service" type="hidden" class="o_website_form_input   font-14 form-control" value="presse" />
-                                                <div class="row">
-                                                    <div class="col-lg-6">
-                                                        <div class="form-group m-t-15 ">
-                                                            <input placeholder="Nom" name="contact_lastname" required="True" type="text" class="o_website_form_input   font-14 form-control" t-attf-value="#{partner_id.lastName}" t-if="request.website.is_public_user()==False" />
-                                                            <input placeholder="Nom" name="contact_lastname" required="True" type="text" class="o_website_form_input   font-14 form-control" value="" t-if="request.website.is_public_user()==True" />
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-lg-6">
-                                                        <div class="form-group m-t-15 ">
-                                                            <input placeholder="Prénom" name="contact_name" required="True" type="text" class="o_website_form_input   font-14 form-control" t-attf-value="#{partner_id.firstname}" t-if="request.website.is_public_user()==False" />
-                                                            <input placeholder="Prénom" name="contact_name" required="True" type="text" class="o_website_form_input   font-14 form-control" value="" t-if="request.website.is_public_user()==True" />
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-lg-12">
-                                                        <div class="form-group m-t-15 ">
-                                                            <input name="email_from" placeholder="Adresse email" required="True" t-attf-value="#{partner_id.email}" type="email" class="o_website_form_input form-control" t-if="request.website.is_public_user()==False" />
-                                                            <input name="email_from" placeholder="Adresse email" required="True" value="" type="email" class="o_website_form_input form-control" t-if="request.website.is_public_user()==True" />
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-lg-12">
-                                                        <div class="form-group m-t-15 ">
-                                                            <input name="phone" placeholder="Téléphone" type="text" required="True" t-attf-value="#{partner_id.phone}" class="o_website_form_input form-control" t-if="request.website.is_public_user()==False" />
-                                                            <input name="phone" placeholder="Téléphone" type="text" required="True" value="" class="o_website_form_input form-control" t-if="request.website.is_public_user()==True" />
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-lg-12">
-                                                        <div class="form-group m-t-15 ">
-                                                            <input name="name_company" placeholder="Entreprise" required="True" value="" type="text" class="o_website_form_input form-control" />
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-lg-12">
-                                                        <div class="form-group m-t-15 ">
-                                                            <input name="name" placeholder="Objet" required="" type="text" class="o_website_form_input form-control" value="" />
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-lg-12">
-                                                        <div class="form-group m-t-15 ">
-                                                            <textarea name="description" rows="3" placeholder="Message" required="" class=" o_website_form_input form-control" value="" />
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-lg-12">
-                                                        <div class="form-group m-t-15 ">
-                                                            <input name="attachment" placeholder="Objet" type="file" style="height:auto !important;" multiple="True" class="o_website_form_input form-control" value="" />
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-lg-12 s_name" data-name="Button">
-                                                        <button class="o_website_form_send btn btn-alpha rounded-circle m-t-20 arrow-btn" type="submit">
-                                                            ENVOYER
-                                                            <span class="fa fa-1x fa-fw fa-long-arrow-right ml-1" />
-                                                        </button>
-                                                        <span id="o_website_form_result" class="text-danger ml8 mt16  mb16 col-md-12" />
-                                                    </div>
-                                                </div>
+                                                <t t-call="digimoov_website_templates.common_partenariat_press" />
                                             </form>
                                         </div>
                                     </div>
@@ -408,7 +406,8 @@
                                     </div>
                                     <div class="col-lg-6">
                                         <div class="contact-box ">
-                                            <span style="font-size: 28px;">Contacter le service comptabilité</span>
+                                            <span class="contact-title">Contacter le service comptabilité
+                                            </span>
                                             <br />
                                             <form action="/helpdesk/submitted/" method="post" enctype="multipart/form-data">
                                                 <input name="service" type="hidden" class="o_website_form_input   font-14 form-control" value="Comptabilité" />
@@ -449,7 +448,7 @@
                                     </div>
                                     <div class="col-lg-6">
                                         <div class="contact-box ">
-                                            <span style="font-size: 28px;">Contacter le service pédagogique</span>
+                                            <span class="contact-title">Contacter le service pédagogique</span>
                                             <br />
                                             <form action="/helpdesk/submitted/" method="post" enctype="multipart/form-data">
                                                 <input name="service" type="hidden" class="o_website_form_input   font-14 form-control" value="Pédagogique" />
