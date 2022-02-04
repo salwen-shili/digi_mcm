@@ -111,11 +111,17 @@ class WebhookController(http.Controller):
         else:
             prenom = ""
         diplome = dossier['trainingActionInfo']['title']
+        """recuperer date debut de session minimale """
+        url = "https://www.wedof.fr/api/registrationFolders/utils/sessionMinDates"
+        date_session_min = requests.request("GET", url, headers=headers)
+        print(date_session_min.text)
+        datemin = date_session_min.json()
+        date_debutstr = datemin.get('cpfSessionMinDate')
+        date_debut = datetime.strptime(date_debutstr, '%Y-%m-%dT%H:%M:%S.%fz')
+
         if str(event) == "registrationFolder.created":
-            today = date.today()
-            datedebut = today + timedelta(days=15)
-            datefin = str(datedebut + relativedelta(months=3) + timedelta(days=1))
-            datedebutstr = str(datedebut)
+            datefin = str(date_debut + relativedelta(months=3) + timedelta(days=1))
+            datedebutstr = str(date_debut)
             data = '{"trainingActionInfo":{"sessionStartDate":"' + datedebutstr + '","sessionEndDate":"' + datefin + '" }}'
             dat = '{\n  "weeklyDuration": 14,\n  "indicativeDuration": 102\n}'
             response_put = requests.put('https://www.wedof.fr/api/registrationFolders/' + externalid,
@@ -582,7 +588,7 @@ class WebhookController(http.Controller):
             user.partner_id.city = ville
             user.partner_id.diplome = diplome  # attestation capacitév ....
             user.partner_id.date_cpf = lastupd
-            user.partner_id.name = str(prenom) + " " + str(nom)
+            user.partner_id.name = str(dossier['attendee']['firstName']) + " " + str(dossier['attendee']['lastName'])
             module_id = False
             product_id = False
             """chercher le produit sur odoo selon id edof de formation"""
