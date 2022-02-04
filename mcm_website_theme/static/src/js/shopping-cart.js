@@ -273,7 +273,7 @@ function verify_payment_method() {
             break;
 
           default:
-            window.open('https://bit.ly/3GjhHn7', '_blank');
+            window.open('https://bit.ly/3GlCYMg', '_blank');
 
             break;
         }
