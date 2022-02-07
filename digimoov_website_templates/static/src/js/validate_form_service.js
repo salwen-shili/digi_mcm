@@ -122,7 +122,7 @@ $(document).ready(function () {
   });
 });
 
-$('#form-check').submit(function (e) {
+$('#contact-form').submit(function (e) {
   const check = document.querySelector('.error-input-field');
   if (check != null) {
     e.preventDefault();
