@@ -62,10 +62,10 @@
                                         <strong>En ligne, du
                                             <t t-set="sales"
                                                t-value="o.sale_order_ids.filtered(lambda tx: tx.state == 'sale')"/>
-                                            <t t-if="sales">
-                                                <t t-if="sales[0].signed_on">
+                                            <t t-set="financement_mode"
+                                               t-value="o.mode_de_financement == 'particulier'"/>
+                                            <t t-if="sales and financement_mode">
                                                     <span t-esc="(sales[0].signed_on).strftime('%d/%m/%Y')"/>
-                                                </t>
                                             </t>
                                             <t t-else="not sales">
                                                 <span t-esc="o.date_creation"/>
@@ -373,10 +373,10 @@
                                         <strong>En ligne, du
                                             <t t-set="sales"
                                                t-value="o.sale_order_ids.filtered(lambda tx: tx.state == 'sale')"/>
-                                            <t t-if="sales">
-                                                <t t-if="sales[0].signed_on">
+                                            <t t-set="financement_mode"
+                                               t-value="o.mode_de_financement == 'particulier'"/>
+                                            <t t-if="sales and financement_mode">
                                                     <span t-esc="(sales[0].signed_on).strftime('%d/%m/%Y')"/>
-                                                </t>
                                             </t>
                                             <t t-else="not sales">
                                                 <span t-esc="o.date_creation"/>
