@@ -1,7 +1,3 @@
-// move label on focus
-
-//validation functions
-
 function checkLetters(prop, value) {
   if (value.length > 0) {
     const pattern = /^[A-Z,a-z,À-ÿ '-]{2,}$/;
@@ -36,6 +32,7 @@ $(document).ready(function () {
     'message',
     'entreprise',
   ];
+
   listId.map((id) => {
     if ($(`#${id}`).val()) {
       $(`#${id} ~ label`).animate(
@@ -68,28 +65,13 @@ $(document).ready(function () {
     });
   });
 
-  // listId.map((id) => {
-  //   $(`#${id}`).focusin(function () {
-  //     $(`#${id} ~ label`).animate(
-  //       {
-  //         top: '0',
-  //         fontSize: '12px',
-  //       },
-  //       80
-  //     );
-  //   });
-  //   $(`#${id}`).focusout(function () {
-  //     if ($(this).val() === '') {
-  //       $(`#${id} ~ label`).animate(
-  //         {
-  //           top: '17px',
-  //           fontSize: '16px',
-  //         },
-  //         80
-  //       );
-  //     }
-  //   });
-  // });
+  //Phone number has another format that the validation pattern
+  //We created a hidden input to take the value of the disabled phone input so we can submitted
+  //Disabled input can not be submitted
+  $('#phone_copy').val($('#phone').val());
+  $('#phone').change(function () {
+    $('#phone_copy').val($('#phone').val());
+  });
 
   $(`#contact_lastname`).keyup(function (e) {
     const contact_lastname = $('#contact_lastname').val();

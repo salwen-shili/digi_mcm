@@ -10,15 +10,14 @@
                         <div class="row m-0">
                             <div class="col-lg-6">
                                 <div class="card-shadow ">
-                                    <img src="/digimoov_website_templates/static/img/Financer-formtaion-digimoov-avec-cpf-mon-compte-formation.webp" data-srcSafari="/digimoov_website_templates/static/img/Financer-formtaion-digimoov-avec-cpf-mon-compte-formation (3).jpg" class="img-responsive img img-fluid lazy" data-original-title="" title="" aria-describedby="tooltip508208"/>
+                                    <img src="/digimoov_website_templates/static/img/Financer-formtaion-digimoov-avec-cpf-mon-compte-formation.webp" data-srcSafari="/digimoov_website_templates/static/img/Financer-formtaion-digimoov-avec-cpf-mon-compte-formation (3).jpg" class="img-responsive img img-fluid lazy lazy" data-original-title="" title="" aria-describedby="tooltip508208" />
                                 </div>
                             </div>
-                            <div class="col-lg-6">
-                                <br/>
-                                <br/>
-                                <br/>
+                            <div class="col-lg-6" style="    display: flex;
+    align-items: center;">
+
                                 <h3 class="text-center">
-                                    <i class="fa fa-check-circle fa-2x text-success" role="img" aria-label="Success" title="Success"/>
+                                    <i class="fa fa-check-circle fa-2x text-success" role="img" aria-label="Success" title="Success" />
                                 </h3>
                                 <h3 class="text-center">Merci d'avoir choisi votre date et centre d'examen</h3>
                             </div>
@@ -37,17 +36,20 @@
                         <div class="row m-0">
                             <div class="col-lg-6">
                                 <div class="card-shadow ">
-                                    <img data-src="/digimoov_website_templates/static/img/Service client Digimoov.webp" data-srcSafari="/digimoov_website_templates/static/img/services/Service Clientèle Digimoov.jpg" class="img-responsive img img-fluid lazy" data-original-title="" title="" aria-describedby="tooltip508208"/>
+                                    <img data-src="/digimoov_website_templates/static/img/Service client Digimoov.webp" data-srcSafari="/digimoov_website_templates/static/img/services/Service Clientèle Digimoov.jpg" class="img-responsive img img-fluid lazy lazy" data-original-title="" title="" aria-describedby="tooltip508208" />
                                 </div>
                             </div>
-                            <div class="col-lg-6">
-                                <br/>
-                                <br/>
-                                <br/>
-                                <h3 class="text-center">
-                                    <i class="fa fa-check-circle fa-2x text-success" role="img" aria-label="Success" title="Success"/>
-                                </h3>
-                                <h3 class="text-center">Merci d'avoir ouvert un ticket, notre équipe le prendra en charge dans les plus bref délais.</h3>
+                            <div class="col-lg-6" style="    display: flex;
+    align-items: center;">
+
+                                <div>
+                                    <div style="   text-align:center; font-size: 24px;">
+                                        <i class="fa fa-check-circle fa-2x text-success" role="img" aria-label="Success" title="Success" />
+                                    </div>
+                                    <div style="   text-align:center; font-size: 24px;">
+                                        Merci d'avoir ouvert un ticket, notre équipe le prendra en charge dans les plus bref délais.
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -64,17 +66,20 @@
                         <div class="row m-0">
                             <div class="col-lg-6">
                                 <div class="card-shadow ">
-                                    <img data-src="/digimoov_website_templates/static/img/Service_pédagogique.webp" data-srcSafari="/digimoov_website_templates/static/img/services/Service pédagogique Digimoov formation (1).jpg" class="img-responsive img img-fluid" data-original-title="" title="" aria-describedby="tooltip508208"/>
+                                    <img data-src="/digimoov_website_templates/static/img/Service_pédagogique.webp" data-srcSafari="/digimoov_website_templates/static/img/services/Service pédagogique Digimoov formation (1).jpg" class="img-responsive img img-fluid lazy" data-original-title="" title="" aria-describedby="tooltip508208" />
                                 </div>
                             </div>
-                            <div class="col-lg-6">
-                                <br/>
-                                <br/>
-                                <br/>
-                                <h3 class="text-center">
-                                    <i class="fa fa-check-circle fa-2x text-success" role="img" aria-label="Success" title="Success"/>
-                                </h3>
-                                <h3 class="text-center">Merci d'avoir ouvert un ticket, notre équipe le prendra en charge dans les plus bref délais.</h3>
+                            <div class="col-lg-6" style="    display: flex;
+    align-items: center;">
+
+                                <div>
+                                    <div style="   text-align:center; font-size: 24px;">
+                                        <i class="fa fa-check-circle fa-2x text-success" role="img" aria-label="Success" title="Success" />
+                                    </div>
+                                    <div style="   text-align:center; font-size: 24px;">
+                                        Merci d'avoir ouvert un ticket, notre équipe le prendra en charge dans les plus bref délais.
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -91,17 +96,21 @@
                         <div class="row m-0">
                             <div class="col-lg-6">
                                 <div class="card-shadow ">
-                                    <img data-src="/digimoov_website_templates/static/img/Service compta Digimoov.webp" data-srcSafari="/digimoov_website_templates/static/img/services/Service comptabilité Digimoov.jpg" class="img-responsive img img-fluid lazy" data-original-title="" title="" aria-describedby="tooltip508208"/>
+                                    <img data-src="/digimoov_website_templates/static/img/Service compta Digimoov.webp" data-srcSafari="/digimoov_website_templates/static/img/services/Service comptabilité Digimoov.jpg" class="img-responsive img img-fluid lazy" data-original-title="" title="" aria-describedby="tooltip508208" />
                                 </div>
                             </div>
-                            <div class="col-lg-6">
-                                <br/>
-                                <br/>
-                                <br/>
-                                <h3 class="text-center">
-                                    <i class="fa fa-check-circle fa-2x text-success" role="img" aria-label="Success" title="Success"/>
-                                </h3>
-                                <h3 class="text-center">Merci d'avoir ouvert un ticket, notre équipe le prendra en charge dans les plus bref délais.</h3>
+                            <div class="col-lg-6" style="    display: flex;
+    align-items: center;">
+
+                                <div>
+                                    <div style="   text-align:center; font-size: 24px;">
+                                        <i class="fa fa-check-circle fa-2x text-success" role="img" aria-label="Success" title="Success" />
+                                    </div>
+                                    <div style="   text-align:center; font-size: 24px;">
+                                        Merci d'avoir ouvert un ticket, notre équipe le prendra en charge dans les plus bref délais.
+                                    </div>
+                                </div>
+
                             </div>
                         </div>
                     </div>
@@ -118,17 +127,20 @@
                         <div class="row m-0">
                             <div class="col-lg-6">
                                 <div class="card-shadow ">
-                                    <img data-src="/digimoov_website_templates/static/img/Administration-Digimoov.webp" data-srcSafari="/digimoov_website_templates/static/img/services/Administration-Digimoov.jpg" class="img-responsive img img-fluid" data-original-title="" title="" aria-describedby="tooltip508208"/>
+                                    <img data-src="/digimoov_website_templates/static/img/Administration-Digimoov.webp" data-srcSafari="/digimoov_website_templates/static/img/services/Administration-Digimoov.jpg" class="img-responsive img img-fluid lazy" data-original-title="" title="" aria-describedby="tooltip508208" />
                                 </div>
                             </div>
-                            <div class="col-lg-6">
-                                <br/>
-                                <br/>
-                                <br/>
-                                <h3 class="text-center">
-                                    <i class="fa fa-check-circle fa-2x text-success" role="img" aria-label="Success" title="Success"/>
-                                </h3>
-                                <h3 class="text-center">Merci d'avoir ouvert un ticket, notre équipe le prendra en charge dans les plus bref délais.</h3>
+                            <div class="col-lg-6" style="    display: flex;
+    align-items: center;">
+
+                                <div>
+                                    <div style="   text-align:center; font-size: 24px;">
+                                        <i class="fa fa-check-circle fa-2x text-success" role="img" aria-label="Success" title="Success" />
+                                    </div>
+                                    <div style="   text-align:center; font-size: 24px;">
+                                        Merci d'avoir ouvert un ticket, notre équipe le prendra en charge dans les plus bref délais.
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -145,17 +157,20 @@
                         <div class="row m-0">
                             <div class="col-lg-6">
                                 <div class="card-shadow ">
-                                    <img data-src="/digimoov_website_templates/static/img/services/Service presse Digimoov.png" data-srcSafari="/digimoov_website_templates/static/img/services/Service presse Digimoov.png" class="img-responsive img img-fluid lazy" data-original-title="" title="" aria-describedby="tooltip508208"/>
+                                    <img data-src="/digimoov_website_templates/static/img/services/Service presse Digimoov.png" data-srcSafari="/digimoov_website_templates/static/img/services/Service presse Digimoov.png" class="img-responsive img img-fluid lazy lazy" data-original-title="" title="" aria-describedby="tooltip508208" />
                                 </div>
                             </div>
-                            <div class="col-lg-6">
-                                <br/>
-                                <br/>
-                                <br/>
-                                <h3 class="text-center">
-                                    <i class="fa fa-check-circle fa-2x text-success" role="img" aria-label="Success" title="Success"/>
-                                </h3>
-                                <h3 class="text-center">Merci d'avoir ouvert un ticket, notre équipe le prendra en charge dans les plus bref délais.</h3>
+                            <div class="col-lg-6" style="    display: flex;
+    align-items: center;">
+
+                                <div>
+                                    <div style="   text-align:center; font-size: 24px;">
+                                        <i class="fa fa-check-circle fa-2x text-success" role="img" aria-label="Success" title="Success" />
+                                    </div>
+                                    <div style="   text-align:center; font-size: 24px;">
+                                        Merci d'avoir ouvert un ticket, notre équipe le prendra en charge dans les plus bref délais.
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>

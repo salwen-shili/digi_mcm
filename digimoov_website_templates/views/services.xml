@@ -2,63 +2,7 @@
 <odoo>
     <!-- Vue commun pour un formulaire sans le champs entreprise-->
     <template id="digimoov_website_templates.common_form" name="services digimoov common form">
-        <!-- <div class="row">
-            <div class="col-lg-6">
-                <div class="form-group m-t-15 ">
-                    <input placeholder="Nom" name="contact_lastname" required="True" type="text" class="o_website_form_input   font-14 form-control" t-attf-value="#{contact_last_name}" />
 
-                </div>
-                <div class="col-md-4 mgb outlined-input-field bg-c" id="zipcode_container" t-if="name">
-                    <input type="text" id="zipcode" name="zip" class="outlined-text-field" required="required" maxlength="5" pattern="[0-9]{5,5}" inputmode="numeric" autocomplete="off" t-att-value="zip_code" />
-                    <label for="zipcode" style="left: 2rem !important;top: -0.7rem;padding: 0.25rem;">Code Postal *
-                                                </label>
-                    <i class="material-icons error-icon">error_outline</i>
-                    <div class="helper-text bg-c" id="zipcode_helper">
-                        <span></span>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-6">
-                <div class="form-group m-t-15 ">
-                    <input placeholder="Prénom" name="contact_name" required="True" type="text" class="o_website_form_input   font-14 form-control" t-attf-value="#{contact_name}" />
-                </div>
-            </div>
-            <div class="col-lg-12">
-                <div class="form-group m-t-15 ">
-                    <input name="email_from" placeholder="Adresse email" required="True" t-attf-value="#{email_from}" type="email" class="o_website_form_input form-control" />
-                </div>
-            </div>
-            <div class="col-lg-12">
-                <div class="form-group m-t-15 ">
-                    <input type="text" id="phone" name="phone" autocomplete="off" maxlength="10" placeholder="Téléphone" pattern="(07|06)[0-9]\d{7}" inputmode="numeric" required="True" t-attf-value="#{phone}" class="o_website_form_input form-control" />
-                </div>
-                <div class="helper-text bg-c" id="phone_helper">
-                    <span></span>
-                </div>
-            </div>
-            <div class="col-lg-12">
-                <div class="form-group m-t-15 ">
-                    <input name="name" placeholder="Objet" required="" type="text" class="o_website_form_input form-control" value="" />
-                </div>
-            </div>
-            <div class="col-lg-12">
-                <div class="form-group m-t-15 ">
-                    <textarea name="description" rows="3" placeholder="Message" required="" class=" o_website_form_input form-control" value="" />
-                </div>
-            </div>
-            <div class="col-lg-12">
-                <div class="form-group m-t-15 ">
-                    <input name="attachment" placeholder="Objet" type="file" style="height:auto !important;" multiple="True" class="o_website_form_input form-control" value="" />
-                </div>
-            </div>
-            <div class="col-lg-12 s_name" data-name="Button">
-                <button class="o_website_form_send btn btn-alpha rounded-circle m-t-20 arrow-btn" type="submit">
-                    ENVOYER
-                    <span class="fa fa-1x fa-fw fa-long-arrow-right ml-1" />
-                </button>
-                <span id="o_website_form_result" class="text-danger ml8 mt16  mb16 col-md-12" />
-            </div>
-        </div> -->
 
         <link href="/mcm_website_theme/static/src/css/commun-form.css" rel="stylesheet" />
         <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
@@ -76,7 +20,7 @@
 
             <div class="col-lg-6 mb16" style="margin:0">
                 <div class="outlined-input-field bg-c bt32" id="contact_name_container">
-                    <input type="text" id="contact_name" name="contact_name" class="outlined-text-field" autocomplete="off" t-attf-value="#{contact_name}" t-att-disabled="'disabled' if contact_name else None" pattern="[A-Z,a-z,À-ÿ '-]{2,}" required="required" inputmode="latin-name" />
+                    <input type="text" id="contact_name" name="contact_name" class="outlined-text-field" autocomplete="off" t-attf-value="#{contact_name}" pattern="[A-Z,a-z,À-ÿ '-]{2,}" required="required" inputmode="latin-name" />
                     <label for="contact_name">Prénom *</label>
                     <i class="material-icons error-icon">error_outline</i>
                     <div class="helper-text bg-c" id="contact_name_helper">
@@ -87,7 +31,7 @@
         </div>
 
         <div class="outlined-input-field mb16 bg-c" id="email_from_container">
-            <input type="text" id="email_from" name="email_from" class="outlined-text-field" t-attf-value="#{email_from}" t-att-disabled="'disabled' if email_from else None" required="required" inputmode="email" />
+            <input type="text" id="email_from" name="email_from" class="outlined-text-field" t-attf-value="#{email_from}" required="required" inputmode="email" />
             <label for="email_from">Email *</label>
             <i class="material-icons error-icon">error_outline</i>
             <div class="helper-text bg-c" id="email_from_helper">
@@ -96,7 +40,9 @@
         </div>
 
         <div class="outlined-input-field mb16 bg-c" id="phone_container">
-            <input type="text" id="phone" name="phone" class="outlined-text-field" t-attf-value="#{phone}" maxlength="10" pattern="(07|06)[0-9]\d{7}" required="required" inputmode="numeric" t-att-disabled="'disabeld' if phone else None" />
+            <input type="hidden" id="phone_copy" name="phone" />
+
+            <input type="text" id="phone" name="phone_origin" class="outlined-text-field" t-attf-value="#{phone}" maxlength="10" pattern="(07|06)[0-9]\d{7}" required="required" inputmode="numeric" t-att-disabled="'disabeld' if phone else None" />
             <label for="phone">Téléphone *</label>
             <i class="material-icons error-icon">error_outline</i>
             <div class="helper-text bg-c" id="phone_helper">
@@ -105,27 +51,25 @@
         </div>
 
         <div class="outlined-input-field mb16 bg-c" id="objet_container">
-            <input type="text" id="objet" name="objet" required="required" class="outlined-text-field" autocomplete="off" />
-            <label for="objet">Objet *</label>
+            <input type="text" id="objet" name="name" required="required" class="outlined-text-field" autocomplete="off" />
+            <label for="name">Objet *</label>
 
         </div>
         <div class="outlined-input-field mb16 bg-c" id="message_container">
-            <textarea class="outlined-text-field" type="text" rows="5" id="message" name="message" autocomplete="off" required="required" />
-            <label class="form__label" for="message">Message *</label>
+            <textarea class="outlined-text-field" type="text" rows="4" id="message" name="description" autocomplete="off" required="required" />
+            <label class="form__label" for="description">Message *</label>
 
         </div>
         <div class="outlined-input-field mb16 bg-c">
             <div class="form-group m-t-15 ">
                 <input name="attachment" placeholder="Objet" type="file" style="height:auto !important;" multiple="True" class="outlined-text-field" />
             </div>
+
         </div>
 
 
         <div class="col-lg-12 mt32 mb32 text-center">
-            <!-- <button class="o_website_form_send btn btn-alpha rounded-circle m-t-20 arrow-btn" type="submit">
-                ENVOYER
-                <span class="fa fa-1x fa-fw fa-long-arrow-right ml-1" />
-            </button> -->
+
             <button id="inscrire" type="submit" t-attf-class="rkmd-btn  ripple-effect ripple-yellow #{'btn-indigo' if request.website.id==2 else 'btn-black'}">
                 ENVOYER
                 <i class="material-icons right">send</i>
@@ -134,6 +78,7 @@
         </div>
 
     </template>
+
 
     <template id="digimoov_website_templates.common_form2" name="services digimoov common form+">
 
@@ -154,7 +99,7 @@
 
             <div class="col-lg-6 mb16" style="margin:0">
                 <div class="outlined-input-field bg-c bt32" id="contact_name_container">
-                    <input type="text" id="contact_name" name="contact_name" class="outlined-text-field" autocomplete="off" t-attf-value="#{contact_name}" t-att-disabled="'disabled' if contact_name else None" pattern="[A-Z,a-z,À-ÿ '-]{2,}" required="required" inputmode="latin-name" />
+                    <input type="text" id="contact_name" name="contact_name" class="outlined-text-field" autocomplete="off" t-attf-value="#{contact_name}" pattern="[A-Z,a-z,À-ÿ '-]{2,}" required="required" inputmode="latin-name" />
                     <label for="contact_name">Prénom *</label>
                     <i class="material-icons error-icon">error_outline</i>
                     <div class="helper-text bg-c" id="contact_name_helper">
@@ -165,7 +110,7 @@
         </div>
 
         <div class="outlined-input-field mb16 bg-c" id="email_from_container">
-            <input type="text" id="email_from" name="email_from" class="outlined-text-field" t-attf-value="#{email_from}" t-att-disabled="'disabled' if email_from else None" required="required" inputmode="email" />
+            <input type="text" id="email_from" name="email_from" class="outlined-text-field" t-attf-value="#{email_from}" required="required" inputmode="email" />
             <label for="email_from">Email *</label>
             <i class="material-icons error-icon">error_outline</i>
             <div class="helper-text bg-c" id="email_from_helper">
@@ -174,17 +119,18 @@
         </div>
 
         <div class="outlined-input-field mb16 bg-c" id="phone_container">
-            <input type="text" id="phone" name="phone" class="outlined-text-field" t-attf-value="#{phone}" maxlength="10" pattern="(07|06)[0-9]\d{7}" required="required" inputmode="numeric" t-att-disabled="'disabeld' if phone else None" />
+            <input type="hidden" id="phone_copy" name="phone" />
+
+            <input type="text" id="phone" name="phone_origin" class="outlined-text-field" t-attf-value="#{phone}" maxlength="10" pattern="(07|06)[0-9]\d{7}" required="required" inputmode="numeric" t-att-disabled="'disabeld' if phone else None" />
             <label for="phone">Téléphone *</label>
             <i class="material-icons error-icon">error_outline</i>
             <div class="helper-text bg-c" id="phone_helper">
                 <span></span>
             </div>
         </div>
-
         <div class="outlined-input-field mb16 bg-c" id="entreprise_container">
-            <input type="text" id="entreprise" name="entreprise" class="outlined-text-field" required="required" />
-            <label for="entreprise">Entreprise *</label>
+            <input type="text" id="entreprise" name="name_company" class="outlined-text-field" required="required" />
+            <label for="name_company">Entreprise *</label>
             <i class="material-icons error-icon">error_outline</i>
             <div class="helper-text bg-c" id="entreprise_helper">
                 <span></span>
@@ -192,22 +138,19 @@
         </div>
 
         <div class="outlined-input-field mb16 bg-c" id="objet_container">
-            <input type="text" id="objet" name="objet" required="required" class="outlined-text-field" autocomplete="off" />
-            <label for="objet">Objet *</label>
+            <input type="text" id="objet" name="name" required="required" class="outlined-text-field" autocomplete="off" />
+            <label for="name">Objet *</label>
 
         </div>
         <div class="outlined-input-field mb16 bg-c" id="message_container">
-            <textarea class="outlined-text-field" type="text" rows="5" id="message" name="message" autocomplete="off" required="required" />
-            <label class="form__label" for="message">Message *</label>
+            <textarea class="outlined-text-field" type="text" rows="4" id="message" name="description" autocomplete="off" required="required" />
+            <label class="form__label" for="description">Message *</label>
 
         </div>
 
 
         <div class="col-lg-12 mt32 mb32 text-center">
-            <!-- <button class="o_website_form_send btn btn-alpha rounded-circle m-t-20 arrow-btn" type="submit">
-                ENVOYER
-                <span class="fa fa-1x fa-fw fa-long-arrow-right ml-1" />
-            </button> -->
+
             <button id="inscrire" type="submit" t-attf-class="rkmd-btn  ripple-effect ripple-yellow #{'btn-indigo' if request.website.id==2 else 'btn-black'}">
                 ENVOYER
                 <i class="material-icons right">send</i>
@@ -227,15 +170,15 @@
         <script defer="defer" type="text/javascript" src="/digimoov_website_templates/static/src/js/validate_form_service.js" />
     </template>
 
-
     <!-- Vue helpdesk de Digimoov pour le service clientèle dans le siteweb -->
     <template id="digimoov_website_templates.digimoov_template_service_clientele" name="Service Clientèle | Digimoov">
         <t t-call="website.layout">
             <t t-set="head">
                 <meta name="robots" content="noindex" />
             </t>
+            <t t-call="digimoov_website_templates.common_js" />
+
             <script defer="defer" type="text/javascript" src="/digimoov_website_templates/static/src/js/lazy-min.min.js" />
-            <script type="text/javascript" src="/mcm_website_theme/static/src/js/msAds.min.js" />
 
             <div id="wrap" class="oe_structure oe_empty">
                 <section class="s_contact_with_img" data-name="Contact Us Two" style="">
@@ -257,52 +200,7 @@
                                             <br />
                                             <form action="/helpdesk/submitted/" method="post" enctype="multipart/form-data" id="contact-form">
                                                 <input type="hidden" name="service" value="client" />
-                                                <div class="row">
-                                                    <div class="col-lg-6">
-                                                        <div class="form-group m-t-15 ">
-                                                            <input placeholder="Nom" name="contact_lastname" required="True" type="text" class="o_website_form_input   font-14 form-control" t-attf-value="#{contact_last_name}" />
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-lg-6">
-                                                        <div class="form-group m-t-15 ">
-                                                            <input placeholder="Prénom" name="contact_name" required="True" type="text" class="o_website_form_input   font-14 form-control" t-attf-value="#{contact_name}" />
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-lg-12">
-                                                        <div class="form-group m-t-15 ">
-                                                            <input name="email_from" placeholder="Adresse email" required="True" value="" type="email" class="o_website_form_input form-control" t-attf-value="#{email_from}" />
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-lg-12">
-                                                        <div class="form-group m-t-15 ">
-                                                            <input name="phone" placeholder="Téléphone" required="True" type="Phone" class="o_website_form_input form-control" t-attf-value="#{phone}" />
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-lg-12">
-                                                        <div class="form-group m-t-15 ">
-                                                            <input name="name" placeholder="Objet" required="True" type="Object" class="o_website_form_input form-control" value="" />
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-lg-12">
-                                                        <div class="form-group m-t-15 ">
-                                                            <textarea name="description" rows="3" placeholder="Message" required="True" class=" o_website_form_input form-control" value="" />
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-lg-12">
-                                                        <div class="form-group m-t-15 ">
-                                                            <input name="attachment" placeholder="Objet" type="file" style="height:auto !important;" multiple="True" class="o_website_form_input form-control" value="" />
-                                                        </div>
-                                                    </div>
-                                                    <input t-att-value="request.website.microsoft_tracking_key" id="microsoft_tracking_key" type="hidden" />
-
-                                                    <div class="col-lg-12 s_name pb32" data-name="Button">
-                                                        <button class="o_website_form_send btn btn-alpha rounded-circle m-t-20 arrow-btn" onClick="(function(){ document.getElementById('contact-form').submit();return false;})();return false;">
-                                                            ENVOYER
-                                                            <span class="fa fa-1x fa-fw fa-long-arrow-right ml-1" />
-                                                        </button>
-                                                        <span id="o_website_form_result" class="text-danger ml8 mt16  mb16 col-md-12" />
-                                                    </div>
-                                                </div>
+                                                <t t-call="digimoov_website_templates.common_form" />
                                             </form>
                                         </div>
                                     </div>
@@ -315,16 +213,60 @@
 
         </t>
     </template>
-    <!-- Vue helpdesk de Digimoov pour le service administration dans le siteweb -->
-    <template id="digimoov_website_templates.digimoov_template_service_administration" name="Service Administration | Digimoov">
+    <!-- Vue helpdesk de Digimoov pour le service comptabilité dans le siteweb -->
+    <template id="digimoov_website_templates.digimoov_template_service_comptabilite" name="Service Comptabilité | Digimoov">
+
 
         <t t-call="website.layout">
+            <t t-call="digimoov_website_templates.common_js" />
+
+            <script defer="defer" type="text/javascript" src="/digimoov_website_templates/static/src/js/lazy-min.min.js" />
             <t t-set="head">
                 <meta name="robots" content="noindex" />
             </t>
-            <t t-call="digimoov_website_templates.common_js" />
-            <script defer="defer" type="text/javascript" src="/digimoov_website_templates/static/src/js/lazy-min.min.js" />
 
+            <div id="wrap" class="oe_structure oe_empty">
+                <section class="s_contact_with_img" data-name="Contact Us Two">
+                    <div class="contact3 mini-spacer">
+                        <div class="container">
+                            <div class="row">
+                                <div class="row m-0">
+                                    <div class="col-lg-6">
+                                        <div class="card-shadow ">
+                                            <img t-if="request.website.id==2" data-src="/digimoov_website_templates/static/img/Service compta Digimoov.webp" data-srcSafari="/digimoov_website_templates/static/img/services/Service comptabilité Digimoov.jpg" class="img-responsive img img-fluid lazy" data-original-title="" title="" aria-describedby="tooltip917363" />
+                                            <img t-if="request.website.id==1" data-src="/mcm_website_theme/static/src/img/contact/service comptabilité.png" data-srcSafari="/mcm_website_theme/static/src/img/contact/service comptabilité.png" class="img-responsive img img-fluid lazy" data-original-title="" title="" aria-describedby="tooltip917363" />
+
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div class="contact-box ">
+                                            <span class="contact-title">Contacter le service comptabilité</span>
+                                            <br />
+                                            <form action="/helpdesk/submitted/" method="post" enctype="multipart/form-data">
+                                                <input name="service" type="hidden" class="o_website_form_input   font-14 form-control" value="Comptabilité" />
+                                                <t t-call="digimoov_website_templates.common_form" />
+                                            </form>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </t>
+    </template>
+    <!-- Vue helpdesk de Digimoov pour le service pédagogique dans le siteweb -->
+    <template id="digimoov_website_templates.digimoov_template_service_pedagogique" name="Service Pédagogique Digimoov">
+        <script defer="defer" type="text/javascript" src="/digimoov_website_templates/static/src/js/lazy-min.min.js" />
+        <t t-set="head">
+            <meta name="robots" content="noindex" />
+        </t>
+
+        <t t-call="digimoov_website_templates.common_js" />
+        <t t-call="website.layout">
             <div id="wrap" class="oe_structure oe_empty">
                 <section class="s_contact_with_img" data-name="Contact Us Two" style="">
                     <div class="contact3 mini-spacer">
@@ -333,54 +275,20 @@
                                 <div class="row m-0">
                                     <div class="col-lg-6">
                                         <div class="card-shadow ">
-                                            <img ddata-src="/digimoov_website_templates/static/img/Administration-Digimoov.webp" data-srcSafari="" class="img-responsive img img-fluid lazy" />
+                                            <img t-if="request.website.id==2" data-src="/digimoov_website_templates/static/img/Service_pédagogique.webp" data-srcSafari="/digimoov_website_templates/static/img/services/Service pédagogique Digimoov formation (1).jpg" class="img-responsive img img-fluid lazy" data-original-title="" title="" aria-describedby="tooltip821638" />
+                                            <img t-if="request.website.id==1" data-src="/mcm_website_theme/static/src/img/contact/service péda 2.png" data-srcSafari="/mcm_website_theme/static/src/img/contact/service péda 2.png" class="img-responsive img img-fluid lazy" data-original-title="" title="" aria-describedby="tooltip821638" />
+
                                         </div>
                                     </div>
                                     <div class="col-lg-6">
                                         <div class="contact-box ">
-                                            <span style="font-size: 28px;">Contacter l'administration de Digimoov</span>
+                                            <span class="contact-title">Contacter le service pédagogique</span>
                                             <br />
                                             <form action="/helpdesk/submitted/" method="post" enctype="multipart/form-data">
-                                                <input name="service" type="hidden" class="o_website_form_input   font-14 form-control" value="Administration" />
-                                                <div class="row">
-                                                    <div class="col-lg-6">
-                                                        <div class="form-group m-t-15 ">
-                                                            <input placeholder="Nom" name="contact_lastname" required="True" type="text" class="o_website_form_input   font-14 form-control" t-attf-value="#{contact_last_name}" />
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-lg-6">
-                                                        <div class="form-group m-t-15 ">
-                                                            <input placeholder="Prénom" name="contact_name" required="True" type="text" class="o_website_form_input   font-14 form-control" t-attf-value="#{contact_name}" />
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-lg-12">
-                                                        <div class="form-group m-t-15 ">
-                                                            <input name="email_from" placeholder="Adresse email" required="True" t-attf-value="#{email_from}" type="email" class="o_website_form_input form-control" />
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-lg-12">
-                                                        <div class="form-group m-t-15 ">
-                                                            <input name="phone" placeholder="Téléphone" required="True" type="Phone" t-attf-value="#{phone}" class="o_website_form_input form-control" value="" />
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-lg-12">
-                                                        <div class="form-group m-t-15 ">
-                                                            <input name="name" placeholder="Objet" required="True" type="Object" class="o_website_form_input form-control" value="" />
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-lg-12">
-                                                        <div class="form-group m-t-15 ">
-                                                            <textarea name="description" rows="3" placeholder="Message" required="True" class=" o_website_form_input form-control" value="" />
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-lg-12 s_name" data-name="Button">
-                                                        <button class="o_website_form_send btn btn-alpha rounded-circle m-t-20 arrow-btn" type="submit">
-                                                            ENVOYER
-                                                            <span class="fa fa-1x fa-fw fa-long-arrow-right ml-1" />
-                                                        </button>
-                                                        <span id="o_website_form_result" class="text-danger ml8 mt16  mb16 col-md-12" />
-                                                    </div>
-                                                </div>
+                                                <input name="service" type="hidden" class="o_website_form_input   font-14 form-control" value="Pédagogique" />
+
+
+                                                <t t-call="digimoov_website_templates.common_form" />
                                             </form>
                                         </div>
                                     </div>
@@ -392,6 +300,7 @@
             </div>
         </t>
     </template>
+
     <!-- Vue helpdesk de Digimoov pour le service partenariat dans le siteweb -->
     <template id="digimoov_website_templates.digimoov_template_service_partenariat" name="Service Partenariat | Digimoov">
 
@@ -418,7 +327,7 @@
                                     </div>
                                     <div class="col-lg-6">
                                         <div class="contact-box ">
-                                            <span style="font-size: 28px;">Partenariat</span>
+                                            <span class="contact-title">Partenariat</span>
                                             <br />
                                             <form action="/helpdesk/submitted/" method="post" enctype="multipart/form-data">
                                                 <input name="service" type="hidden" class="o_website_form_input   font-14 form-control" value="Partenariat" />
@@ -475,62 +384,16 @@
             </div>
         </t>
     </template>
-    <!-- Vue helpdesk de Digimoov pour le service comptabilité dans le siteweb -->
-    <template id="digimoov_website_templates.digimoov_template_service_comptabilite" name="Service Comptabilité | Digimoov">
-
+    <!-- Vue helpdesk de Digimoov pour le service administration dans le siteweb -->
+    <template id="digimoov_website_templates.digimoov_template_service_administration" name="Service Administration | Digimoov">
 
         <t t-call="website.layout">
-            <t t-call="digimoov_website_templates.common_form" />
-            <script defer="defer" type="text/javascript" src="/digimoov_website_templates/static/src/js/lazy-min.min.js" />
             <t t-set="head">
                 <meta name="robots" content="noindex" />
             </t>
-            <div id="wrap" class="oe_structure oe_empty">
-                <section class="s_contact_with_img" data-name="Contact Us Two">
-                    <div class="contact3 mini-spacer">
-                        <div class="container">
-                            <div class="row">
-                                <div class="row m-0">
-                                    <div class="col-lg-6">
-                                        <div class="card-shadow ">
-                                            <img t-if="request.website.id==2" data-src="/digimoov_website_templates/static/img/Service compta Digimoov.webp" data-srcSafari="/digimoov_website_templates/static/img/services/Service comptabilité Digimoov.jpg" class="img-responsive img img-fluid lazy" data-original-title="" title="" aria-describedby="tooltip917363" />
-                                            <img t-if="request.website.id==1" data-src="/mcm_website_theme/static/src/img/contact/service comptabilité.png" data-srcSafari="/mcm_website_theme/static/src/img/contact/service comptabilité.png" class="img-responsive img img-fluid lazy" data-original-title="" title="" aria-describedby="tooltip917363" />
+            <t t-call="digimoov_website_templates.common_js" />
+            <script defer="defer" type="text/javascript" src="/digimoov_website_templates/static/src/js/lazy-min.min.js" />
 
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-6">
-                                        <div class="contact-box ">
-                                            <span class="contact-title">Contacter le service comptabilité</span>
-                                            <br />
-                                            <form action="/helpdesk/submitted/" method="post" enctype="multipart/form-data">
-                                                <input name="service" type="hidden" class="o_website_form_input   font-14 form-control" value="Comptabilité" />
-
-                                                <t t-call="digimoov_website_templates.common_form" />
-                                            </form>
-                                        </div>
-                                        &amp;nbsp;
-                                    </div>
-                                    <div class="col-lg-12">
-                                        <div class="card m-t-40">
-                                            <div class="row"></div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-            </div>
-        </t>
-    </template>
-    <!-- Vue helpdesk de Digimoov pour le service pédagogique dans le siteweb -->
-    <template id="digimoov_website_templates.digimoov_template_service_pedagogique" name="Service Pédagogique Digimoov">
-        <script defer="defer" type="text/javascript" src="/digimoov_website_templates/static/src/js/lazy-min.min.js" />
-        <t t-set="head">
-            <meta name="robots" content="noindex" />
-        </t>
-        <t t-call="digimoov_website_templates.common_js" />
-        <t t-call="website.layout">
             <div id="wrap" class="oe_structure oe_empty">
                 <section class="s_contact_with_img" data-name="Contact Us Two" style="">
                     <div class="contact3 mini-spacer">
@@ -539,18 +402,15 @@
                                 <div class="row m-0">
                                     <div class="col-lg-6">
                                         <div class="card-shadow ">
-                                            <img t-if="request.website.id==2" data-src="/digimoov_website_templates/static/img/Service_pédagogique.webp" data-srcSafari="/digimoov_website_templates/static/img/services/Service pédagogique Digimoov formation (1).jpg" class="img-responsive img img-fluid lazy" data-original-title="" title="" aria-describedby="tooltip821638" />
-                                            <img t-if="request.website.id==1" data-src="/mcm_website_theme/static/src/img/contact/service péda 2.png" data-srcSafari="/mcm_website_theme/static/src/img/contact/service péda 2.png" class="img-responsive img img-fluid lazy" data-original-title="" title="" aria-describedby="tooltip821638" />
-
+                                            <img ddata-src="/digimoov_website_templates/static/img/Administration-Digimoov.webp" data-srcSafari="" class="img-responsive img img-fluid lazy" />
                                         </div>
                                     </div>
                                     <div class="col-lg-6">
                                         <div class="contact-box ">
-                                            <span style="font-size: 28px;">Contacter le service pédagogique</span>
+                                            <span style="font-size: 28px;">Contacter l'administration de Digimoov</span>
                                             <br />
                                             <form action="/helpdesk/submitted/" method="post" enctype="multipart/form-data">
-                                                <input name="service" type="hidden" class="o_website_form_input   font-14 form-control" value="Pédagogique" />
-
+                                                <input name="service" type="hidden" class="o_website_form_input   font-14 form-control" value="Administration" />
                                                 <t t-call="digimoov_website_templates.common_form" />
                                             </form>
                                         </div>
