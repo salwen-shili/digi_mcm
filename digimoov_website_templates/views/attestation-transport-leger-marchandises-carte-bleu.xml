@@ -11,13 +11,13 @@
                             <div class="bannarcol col-lg-6 col-md-12" style="border-style: none; border-width: 0px">
                                 <h2>
                                     <text class="h1-title">
-                                        <font style="color: rgb(198, 123, 165);">Formation&amp;nbsp;</font>
-                                        <font style="color: rgb(156, 0, 255);" />
-                                        <font style="color: rgb(198, 123, 165);">attestation de&amp;nbsp;</font>
+                                        <font style="color: rgb(198, 123, 165);">Formation attestation de</font>
+
+
                                     </text>
                                     <font style="color: rgb(0, 0, 0);">capacité de transport</font>
                                     <font style="color: rgb(198, 123, 165);"> léger de marchandises</font>
-                                    &amp;nbsp;
+
                                 </h2>
                                 <p class="paratext">
                                     Vous souhaitez entreprendre dans le transport léger de marchandise et créer votre propre entreprise ? Chez Digimoov, on vous propose&amp;nbsp;
@@ -27,20 +27,12 @@
                                             <span style="color: rgb(59, 210, 188); font-size: 18px;">
                                                 <b>agréée</b>
                                             </span>
-                                            <b style="color: rgb(59, 210, 188);">&amp;nbsp;par l'</b>
-                                            <b style="font-size: 18px;">État, </b>
-                                            <span style="color: rgb(59, 210, 188); font-size: 18px;">
-                                                <b>très</b>
-                                            </span>
-                                            <b style="font-size: 18px;">&amp;nbsp;complète</b>
+                                            <b style="color: rgb(59, 210, 188);">&amp;nbsp;par l'État, très complète </b>
+
+
                                         </font>
-                                        <b>&amp;nbsp;</b>
-                                        <font style="color: rgb(99, 99, 99);">afin</font>
                                     </text>
-                                    &amp;nbsp;que vous puissiez obtenir votre attestation de capacité de transport léger de marchandises et réaliser ainsi votre projet en un rien de temps !
-                                    <text style="color: rgb(156, 0, 255)">
-                                        <br />
-                                    </text>
+                                    afin que vous puissiez obtenir votre attestation de capacité de transport léger de marchandises et réaliser ainsi votre projet en un rien de temps !
                                 </p>
                                 <div class="banner-btn s_btn" data-name="Button">
                                     <a href="#pricing" class="bannerbtn btn btn-success rounded-circle" title="je m'inscirs" alt="boutton je m'inscris" aria-describedby="tooltip679124">Je m'inscris dès maintenant ! </a>
@@ -54,6 +46,19 @@
                         </div>
                     </div>
                 </section>
+                <section class="container pb32 pt40 section-padding">
+                    <div class="align-items-center justify-content-center row">
+                        <div class="col-md-4 col-sm-12 mb-4 mb-md-0 text-center">
+                            <img class="img-fluid" style="width: 188px;" src="/mcm_website_theme/static/src/img/qualiopi.png" />
+                        </div>
+                        <div class="col-md-4 col-sm-12 mb-4 mb-md-0 text-center">
+                            <img class="img-fluid" style="width: 110px;" src="/mcm_website_theme/static/src/img/Logo-vert-sur-fond-blanc-en-.jpg.jpg" />
+                        </div>
+                        <div class="col-md-4 col-sm-12 mb-4 mb-md-0 text-center">
+                            <img class="img-fluid" style="width: 188px;" src="/digimoov_website_templates/static/img/coursier2roues/logo-DREAL.png" />
+                        </div>
+                    </div>
+                </section>
                 <section class="s_text_image pt32 pb32" data-name="Text - Image">
                     <div class="container">
                         <div class="row align-items-center">
@@ -63,18 +68,22 @@
                                     <font style="" class="text-alpha">capacitaire de transport</font>
                                     <font style="" class="text-delta">léger (-3,5t)</font>
                                 </h2>
-                                <h6>
-                                    <span style="color: rgb(99, 99, 99); font-family: arial, sans-serif;">Pour créer une entreprise de&amp;nbsp;transport&amp;nbsp;léger de marchandises, il faut obligatoirement détenir une attestation de&amp;nbsp;capacité&amp;nbsp;professionnelle de&amp;nbsp;transport&amp;nbsp;de marchandises.</span>
-                                    <br />
-                                </h6>
-                                <h6>
-                                    <span style="color: rgb(99, 99, 99); font-family: arial, sans-serif;">Pour ce faire, vous devez passer un examen, obtenir l'équivalence de vos diplômes ou prouver une expérience de plus de 10 ans dans le domaine.</span>
-                                    <br />
-                                    <br />
-                                    <span style="color: rgb(99, 99, 99);">Si vous choisissez de suivre une formation et passer l'examen, sachez que tous les 60 jours, un examen national est organisé après la formation capacité de transport léger. Il comprend&amp;nbsp;deux épreuves&amp;nbsp;distinctes, avec un questionnaire à choix multiples (QCM) et un test exigeant des&amp;nbsp;réponses rédigées&amp;nbsp;qui concerne la gestion et l’exploitation de l’entreprise. L’examen est ensuite&amp;nbsp;validé par la DREAL&amp;nbsp;afin d’obtenir l’attestation d’aptitude professionnelle de transport. </span>
-                                    <br />
-                                    <span style="color: rgb(99, 99, 99);">En cas de réussite, le préfet de région vous octroie une attestation de fin de formation capacité de transport léger.</span>
-                                </h6>
+                                <p style="font-size: 15px;
+    line-height: 1.7;
+    color: #6a6c72;">
+Pour créer une entreprise de transport léger de marchandises, il faut obligatoirement détenir une attestation de capacité professionnelle de transport de marchandises.
+</p>
+                                <p style="font-size: 15px;
+    line-height: 1.7;
+    color: #6a6c72;">
+Pour ce faire, vous devez passer un examen, obtenir l'équivalence de vos diplômes ou prouver une expérience de plus de 10 ans dans le domaine.
+</p>
+                                <p style="font-size: 15px;
+    line-height: 1.7;
+    color: #6a6c72;">
+Si vous choisissez de suivre une formation et passer l'examen, sachez que tous les 60 jours, un examen national est organisé après la formation capacité de transport léger. Il comprend deux épreuves distinctes, avec un questionnaire à choix multiples (QCM) et un test exigeant des réponses rédigées qui concerne la gestion et l’exploitation de l’entreprise. L’examen est ensuite validé par la DREAL afin d’obtenir l’attestation d’aptitude professionnelle de transport.
+En cas de réussite, le préfet de région vous octroie une attestation de fin de formation capacité de transport léger.
+</p>
                             </div>
                             <div class="col-lg-6 pt16 pb16">
                                 <img src="/digimoov_website_templates/static/src/img/attestation_de_capacité_de_transport léger_de_marchandises/2.png" class="img img-fluid mx-auto" alt="Odoo • Texte et Image" />
@@ -164,19 +173,7 @@
                     }
                 
             </style>
-                    <section class="container pb32 pt40 section-padding">
-                        <div class="align-items-center justify-content-center row">
-                            <div class="col-md-4 col-sm-12 mb-4 mb-md-0 text-center">
-                                <img class="img-fluid" style="width: 188px;" src="/mcm_website_theme/static/src/img/qualiopi.png" />
-                            </div>
-                            <div class="col-md-4 col-sm-12 mb-4 mb-md-0 text-center">
-                                <img class="img-fluid" style="width: 110px;" src="/mcm_website_theme/static/src/img/Logo-vert-sur-fond-blanc-en-.jpg.jpg" />
-                            </div>
-                            <div class="col-md-4 col-sm-12 mb-4 mb-md-0 text-center">
-                                <img class="img-fluid" style="width: 188px;" src="/digimoov_website_templates/static/img/coursier2roues/logo-DREAL.png" />
-                            </div>
-                        </div>
-                    </section>
+
                     <section class="about-us centric_template pt128 section-padding pb0" data-name="About Us" id="en-savoir-plus">
                         <section>
                             <div class="container">
@@ -359,7 +356,7 @@
             </style>
                 <div class="container pt64 pb32" id="pricing">
                     <div class="row" style="place-content: center;">
-                        <div class="col-lg-6 col-md-8 col-sm-12">
+                        <div class="col-lg-5 col-md-8 col-sm-12">
                             <div class="card border-0 shadow" style="border-radius: 25px 25px">
                                 <div class="text-center text-white border-0" style="
                     background-color: #6e209f;
@@ -391,79 +388,62 @@
                                                     </li>
                                                     <li class="mb-4">
                                                         <i class="fa fa-check-circle fa-lg mr-2 text-success" />
-                                                        <b>Examen final en présentiel</b>
+                                                        <b>Accès à 5 examens d'entraînement</b>
                                                     </li>
                                                     <li class="mb-4">
                                                         <i class="fa fa-check-circle fa-lg mr-2 text-success" />
-                                                        <b>Accès à 5 examens d'entraînement</b>
+                                                        <b>Assistance par téléphone</b>
                                                     </li>
                                                     <li class="mb-4">
                                                         <i class="fa fa-check-circle fa-lg mr-2 text-success" />
                                                         <b>Assistance par mail</b>
                                                     </li>
+
                                                     <li class="mb-4">
-                                                        <i class="fa fa-lg fa-times-circle mr-2 text-danger" />
-                                                        Assistance par téléphone
-                                                    </li>
-                                                    <li class="mb-4">
-                                                        <span class="fa fa-lg fa-times-circle mr-2 text-danger" style="font-size: 1.33333em" />
-                                                        Assistance par visioconférence
-                                                        <br />
-                                                    </li>
-                                                    <li class="mb-4">
-                                                        <i class="fa fa-lg fa-times-circle mr-2 text-danger" />
+                                                        <i class="fa fa-times-circle fa-lg mr-2 text-danger" />
                                                         Livre d’entrainement version électronique
                                                     </li>
                                                     <li class="mb-4">
                                                         <i class="fa fa-lg fa-times-circle mr-2 text-danger" />
-                                                        Directs pour explication avec les formateurs
+                                                        Séances en Live avec les formateurs
                                                     </li>
                                                     <li class="mb-4">
                                                         <i class="fa fa-lg fa-times-circle mr-2 text-danger" />
-                                                        Révision du programme avant examen &amp;nbsp;
+                                                        Séance en Live avec un expert métier
+                                                    </li>
+                                                    <li class="mb-4">
+                                                        <i class="fa fa-lg fa-times-circle mr-2 text-danger" />
+                                                        Révision du programme avant l'examen
+                                                    </li>
+                                                    <li class="mb-4">
+                                                        <i class="fa fa-check-circle fa-lg mr-2 text-success" />
+                                                        <b>  &amp;nbsp;Examen final en présentiel 
+                                                                &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;
+                                                                &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;
+                                                                &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;
+                                                                &amp;nbsp;&amp;nbsp;</b>
+                                                    </li>
+                                                    <li class="mb-4">
+                                                        <i class="fa fa-check-circle fa-lg mr-2 text-success" />
+                                                        <b>Séance en Live pour corriger l’examen &amp;nbsp;
                                                                 &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;
                                                                 &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;
                                                                 &amp;nbsp; &amp;nbsp; &amp;nbsp;
-                                                                &amp;nbsp;&amp;nbsp;
+                                                                &amp;nbsp;&amp;nbsp;</b>
                                                     </li>
                                                     <li>
                                                         <i />
                                                     </li>
                                                 </ul>
-                                                <p class="
-                            text-center
-                            font-weight-bolder
-                            text-dark
-                            h1
-                            display-4
-                            mb-0
-                          ">
+                                                <p class="                             text-center                             font-weight-bolder                             text-dark                             h1                             display-4                             mb-0                           ">
                                                     <font>
-                                                        <p class="
-                                text-center
-                                font-weight-bolder
-                                text-dark
-                                h1
-                                display-4
-                                mb-0
-                              " t-if="not promo">
+                                                        <p class="                                 text-center                                 font-weight-bolder                                 text-dark                                 h1                                 display-4                                 mb-0                               " t-if="not promo">
                                                             <span class="pricebar" style="color: black;font-size: 25px;font-weight: 500;">590 €</span>
-                                                            <span style="font-size: 3.5rem;
-    font-weight: 700;
-    line-height: 1.2;" t-esc="round(product.list_price)" />
-                                                            <span style="font-size: 3.5rem;
-    font-weight: 700;
-    line-height: 1.2;" t-esc="product.currency_id.symbol" />
+                                                            <span t-esc="round(product.list_price)" />
+                                                            <span t-esc="product.currency_id.symbol" />
 
                                                         </p>
-                                                        <p class="
-                                text-center
-                                font-weight-bolder
-                                text-dark
-                                h1
-                                display-4
-                                mb-0
-                              " t-if="promo">
+                                                        <p class="                                 text-center                                 font-weight-bolder                                 text-dark                                 h1                                 display-4                                 mb-0                               " t-if="promo">
                                                             <t t-foreach="promo.item_ids" t-as="item">
                                                                 <t t-if="item.product_id.id==product.id">
                                                                     <span t-esc="round(item.fixed_price)" />
@@ -474,30 +454,21 @@
                                                     </font>
                                                 </p>
                                                 <t t-if="promo and promo.name!='box2home'">
-                                                    <p class="
-                              text-center
-                              font-weight-bolder
-                              text-secondary
-                            ">
+                                                    <p class="                               text-center                               font-weight-bolder                               text-secondary                             ">
                                                         <b style="font-size: 80%">
                                                             <t>avec le code</t>
                                                             <t t-esc="promo.code" />
                                                         </b>
                                                     </p>
                                                 </t>
-                                                <p class="
-                            medium
-                            text-center
-                            font-weight-bolder
-                            text-secondary
-                          " style="color: red !important" t-if="not partenaire or partenaire==''">
+                                                <p class="                             medium                             text-center                             font-weight-bolder                             text-secondary                           " style="color: red !important" t-if="not partenaire or partenaire==''">
                                                             Paiement 1 ou 2 fois
                                                         </p>
 
                                                 <br />
-                                                <button class="btn btn-block text-white" onClick="(function(){document.getElementById('form-1-1').submit();return false;})();return false;" style="background-color: #6e209f; border-radius: 25px">
+                                                <button class="btn btn-block text-white" onClick="(function(){ document.getElementById('form-1-1').submit();return false;})();return false;" style="background-color: #6e209f; border-radius: 25px">
                                                             Je m'inscris
-                                                        </button>
+                                                            </button>
                                             </div>
                                         </form>
                                     </t>
