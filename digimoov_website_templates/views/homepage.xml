@@ -789,7 +789,7 @@
                                                 <form action="/shop/cart/update" method="post" id="form-2-1">
                                                     <input type="hidden" class="product_id" name="product_id" t-att-value="product.id" />
                                                     <input type="hidden" name="promo" t-att-value="promo.id" t-if="promo" />
-                                                    <div class="card-body" style="background-color: white">
+                                                    <div class="card-body" style="background-color: white; padding-right:0 !important">
                                                         <ul class="list-unstyled">
                                                             <li class="mb-4">
                                                                 <i class="fa fa-check-circle fa-lg mr-2 text-success" />
