@@ -11,6 +11,7 @@
                             font-size:20px !important;
                             }
                         </style>
+                        <t t-set="docs" t-value="o.with_context(lang='fr_FR')"/>
                         <div class="page">
                             <div class="oe_structure"/>
                             <div class="row">
@@ -67,7 +68,7 @@
                                                 </t>
                                             </t>
                                             <t t-else="not sales">
-                                                <span t-esc="(o.date_cpf).strftime('%d/%m/%Y')"/>
+                                                <span t-esc="o.date_creation"/>
                                             </t>
                                             au
                                             <span t-field="o.module_id.date_exam"
@@ -378,7 +379,7 @@
                                                 </t>
                                             </t>
                                             <t t-else="not sales">
-                                                <span t-esc="(o.date_cpf).strftime('%d/%m/%Y')"/>
+                                                <span t-esc="o.date_creation"/>
                                             </t>
                                             au
                                             <span t-field="o.module_id.date_exam"
