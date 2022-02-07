@@ -21,14 +21,14 @@
                 }</script> -->
         </xpath>
     </template>
-    <template id="mcm_website_blog_post_short" inherit_id="website_blog.blog_post_short">
-        <xpath expr="//meta[@name='robots']" position="replace">
-            <meta name="robots" content="noindex" t-if="blog"/>
-        </xpath>
-        <xpath expr="//t[@t-set='opt_blog_cards_design']" position="before">
-            <t t-set="head" t-if="not blog">
-                <meta name="robots" content="noindex"/>
-            </t>
-        </xpath>
-    </template>
+<!--    <template id="mcm_website_blog_post_short" inherit_id="website_blog.blog_post_short">-->
+<!--        <xpath expr="//meta[@name='robots']" position="replace">-->
+<!--            <meta name="robots" content="noindex" t-if="blog"/>-->
+<!--        </xpath>-->
+<!--        <xpath expr="//t[@t-set='opt_blog_cards_design']" position="before">-->
+<!--            <t t-set="head" t-if="not blog">-->
+<!--                <meta name="robots" content="noindex"/>-->
+<!--            </t>-->
+<!--        </xpath>-->
+<!--    </template>-->
 </odoo>
