@@ -420,69 +420,67 @@ class WebsiteSale(WebsiteSale):
                     partner.mcm_session_id = module_id.session_id
                     partner.module_id = module_id
                     request.env.user.company_id = 2
-                    """chercher facture avec numero de dossier si n'existe pas on crée une facture"""
-                    invoice = request.env['account.move'].sudo().search(
-                        [('numero_cpf', "=", partner.numero_cpf),
-                         ('state', "=", 'posted'),
-                         ('partner_id', "=", partner.id)], limit=1)
-
-                    if not invoice :
-                        so = request.env['sale.order'].sudo().create({
-                            'partner_id': partner.id,
-                            'company_id': 2,
-                        })
-                        so.module_id = module_id
-                        so.session_id = module_id.session_id
-
-                        so_line = request.env['sale.order.line'].sudo().create({
-                            'name': product_id.name,
-                            'product_id': product_id.id,
-                            'product_uom_qty': 1,
-                            'product_uom': product_id.uom_id.id,
-                            'price_unit': product_id.list_price,
-                            'order_id': so.id,
-                            'tax_id': product_id.taxes_id,
-                            'company_id': 2,
-                        })
-                        # prix de la formation dans le devis
-                        amount_before_instalment = so.amount_total
-                        # so.amount_total = so.amount_total * 0.25
-                        for line in so.order_line:
-                            line.price_unit = so.amount_total
-                        so.action_confirm()
-                        ref = False
-                        # Creation de la Facture Cpf
-                        # Si la facture est de type CPF :  On parse le pourcentage qui est 25 %
-                        # methode_payment prend la valeur CPF pour savoir bien qui est une facture CPF qui prend la valeur 25 % par default
-
-                        if so.amount_total > 0 and so.order_line:
-                            moves = so._create_invoices(final=True)
-                            for move in moves:
-                                move.type_facture = 'interne'
-                                # move.cpf_acompte_invoice= True
-                                # move.cpf_invoice =True
-                                move.methodes_payment = 'cpf'
-                                move.numero_cpf=partner.numero_cpf
-                                move.pourcentage_acompte = 25
-                                move.module_id = so.module_id
-                                move.session_id = so.session_id
-                                if so.pricelist_id.code:
-                                    move.pricelist_id = so.pricelist_id
-                                move.company_id = so.company_id
-                                move.price_unit = so.amount_total
-                                # move.cpf_acompte_invoice=True
-                                # move.cpf_invoice = True
-                                move.methodes_payment = 'cpf'
-                                move.post()
-                                ref = move.name
-
-                        so.action_cancel()
-                        so.unlink()
-                        partner.statut = 'won'
-                        """changer step à validé dans espace client """
-                        partner.step = 'finish'
-
-                        
+                    # """chercher facture avec numero de dossier si n'existe pas on crée une facture"""
+                    # invoice = request.env['account.move'].sudo().search(
+                    #     [('numero_cpf', "=", partner.numero_cpf),
+                    #      ('state', "=", 'posted'),
+                    #      ('partner_id', "=", partner.id)], limit=1)
+                    #
+                    # if not invoice :
+                    #     so = request.env['sale.order'].sudo().create({
+                    #         'partner_id': partner.id,
+                    #         'company_id': 2,
+                    #     })
+                    #     so.module_id = module_id
+                    #     so.session_id = module_id.session_id
+                    #
+                    #     so_line = request.env['sale.order.line'].sudo().create({
+                    #         'name': product_id.name,
+                    #         'product_id': product_id.id,
+                    #         'product_uom_qty': 1,
+                    #         'product_uom': product_id.uom_id.id,
+                    #         'price_unit': product_id.list_price,
+                    #         'order_id': so.id,
+                    #         'tax_id': product_id.taxes_id,
+                    #         'company_id': 2,
+                    #     })
+                    #     # prix de la formation dans le devis
+                    #     amount_before_instalment = so.amount_total
+                    #     # so.amount_total = so.amount_total * 0.25
+                    #     for line in so.order_line:
+                    #         line.price_unit = so.amount_total
+                    #     so.action_confirm()
+                    #     ref = False
+                    #     # Creation de la Facture Cpf
+                    #     # Si la facture est de type CPF :  On parse le pourcentage qui est 25 %
+                    #     # methode_payment prend la valeur CPF pour savoir bien qui est une facture CPF qui prend la valeur 25 % par default
+                    #
+                    #     if so.amount_total > 0 and so.order_line:
+                    #         moves = so._create_invoices(final=True)
+                    #         for move in moves:
+                    #             move.type_facture = 'interne'
+                    #             # move.cpf_acompte_invoice= True
+                    #             # move.cpf_invoice =True
+                    #             move.methodes_payment = 'cpf'
+                    #             move.numero_cpf=partner.numero_cpf
+                    #             move.pourcentage_acompte = 25
+                    #             move.module_id = so.module_id
+                    #             move.session_id = so.session_id
+                    #             if so.pricelist_id.code:
+                    #                 move.pricelist_id = so.pricelist_id
+                    #             move.company_id = so.company_id
+                    #             move.price_unit = so.amount_total
+                    #             # move.cpf_acompte_invoice=True
+                    #             # move.cpf_invoice = True
+                    #             move.methodes_payment = 'cpf'
+                    #             move.post()
+                    #             ref = move.name
+                    #
+                    #     so.action_cancel()
+                    #     so.unlink()
+                    partner.statut = 'won'
+                    """changer step à validé dans espace client """
+                    partner.step = 'finish'
                     """Créer un historique de ssession pour cet apprenant """
                     session = request.env['partner.sessions'].search([('client_id', '=', partner.id),
                                                                       ('session_id', '=', module_id.session_id.id)])
@@ -509,54 +507,54 @@ class WebsiteSale(WebsiteSale):
                     partner.module_id = module_id
                     request.env.user.company_id = 1
                     """chercher facture avec numero de dossier si n'existe pas on crée une facture"""
-                    invoice = request.env['account.move'].sudo().search(
-                        [('numero_cpf', "=", partner.numero_cpf),
-                         ('state', "=", 'posted'),
-                         ('partner_id', "=", partner.id)], limit=1)
-
-                    if not invoice:
-                        so = request.env['sale.order'].sudo().create({
-                            'partner_id': partner.id,
-                            'company_id': 1,
-                        })
-                        request.env['sale.order.line'].sudo().create({
-                            'name': product_id.name,
-                            'product_id': product_id.id,
-                            'product_uom_qty': 1,
-                            'product_uom': product_id.uom_id.id,
-                            'price_unit': product_id.list_price,
-                            'order_id': so.id,
-                            'tax_id': product_id.taxes_id,
-                            'company_id': 1
-                        })
-                        # Enreggistrement des valeurs de la facture
-                        # Parser le pourcentage d'acompte
-                        # Creation de la fcture étape Finale
-                        # Facture comptabilisée
-                        so.action_confirm()
-                        so.module_id = module_id
-                        so.session_id = module_id.session_id
-                        moves = so._create_invoices(final=True)
-                        for move in moves:
-                            move.type_facture = 'interne'
-                            move.module_id = so.module_id
-                            # move.cpf_acompte_invoice=True
-                            # move.cpf_invoice =True
-                            move.methodes_payment = 'cpf'
-                            move.numero_cpf = partner.numero_cpf
-                            move.pourcentage_acompte = 25
-                            move.session_id = so.session_id
-                            move.company_id = so.company_id
-                            move.website_id = 1
-                            for line in move.invoice_line_ids:
-                                if line.account_id != line.product_id.property_account_income_id and line.product_id.property_account_income_id:
-                                    line.account_id = line.product_id.property_account_income_id
-                            move.post()
-                        so.action_cancel()
-                        so.unlink()
-                        partner.statut = 'won'
-                        """changer step à validé dans espace client """
-                        partner.step='finish'
+                    # invoice = request.env['account.move'].sudo().search(
+                    #     [('numero_cpf', "=", partner.numero_cpf),
+                    #      ('state', "=", 'posted'),
+                    #      ('partner_id', "=", partner.id)], limit=1)
+                    #
+                    # if not invoice:
+                    #     so = request.env['sale.order'].sudo().create({
+                    #         'partner_id': partner.id,
+                    #         'company_id': 1,
+                    #     })
+                    #     request.env['sale.order.line'].sudo().create({
+                    #         'name': product_id.name,
+                    #         'product_id': product_id.id,
+                    #         'product_uom_qty': 1,
+                    #         'product_uom': product_id.uom_id.id,
+                    #         'price_unit': product_id.list_price,
+                    #         'order_id': so.id,
+                    #         'tax_id': product_id.taxes_id,
+                    #         'company_id': 1
+                    #     })
+                    #     # Enreggistrement des valeurs de la facture
+                    #     # Parser le pourcentage d'acompte
+                    #     # Creation de la fcture étape Finale
+                    #     # Facture comptabilisée
+                    #     so.action_confirm()
+                    #     so.module_id = module_id
+                    #     so.session_id = module_id.session_id
+                    #     moves = so._create_invoices(final=True)
+                    #     for move in moves:
+                    #         move.type_facture = 'interne'
+                    #         move.module_id = so.module_id
+                    #         # move.cpf_acompte_invoice=True
+                    #         # move.cpf_invoice =True
+                    #         move.methodes_payment = 'cpf'
+                    #         move.numero_cpf = partner.numero_cpf
+                    #         move.pourcentage_acompte = 25
+                    #         move.session_id = so.session_id
+                    #         move.company_id = so.company_id
+                    #         move.website_id = 1
+                    #         for line in move.invoice_line_ids:
+                    #             if line.account_id != line.product_id.property_account_income_id and line.product_id.property_account_income_id:
+                    #                 line.account_id = line.product_id.property_account_income_id
+                    #         move.post()
+                    #     so.action_cancel()
+                    #     so.unlink()
+                    partner.statut = 'won'
+                    """changer step à validé dans espace client """
+                    partner.step='finish'
                     """Créer un historique de ssession pour cet apprenant """
                     session = request.env['partner.sessions'].search([('client_id', '=', partner.id),
                                                                       ('session_id', '=', module_id.session_id.id)])
@@ -571,13 +569,13 @@ class WebsiteSale(WebsiteSale):
             else:
                 if 'digimoov' in str(training_id):
                     vals = {
-                        'description': 'CPF: vérifier la date et ville de %s' % (user.name),
+                        'description': 'CPF: vérifier la date et ville de %s' % (partner.name),
                         'name': 'CPF : Vérifier Date et Ville ',
                         'team_id': request.env['helpdesk.team'].sudo().search(
                             [('name', 'like', 'Client'), ('company_id', "=", 2)],
                             limit=1).id,
                     }
-                    description = "CPF: vérifier la date et ville de " + str(user.name)
+                    description = "CPF: vérifier la date et ville de " + str(partner.name)
                     ticket = request.env['helpdesk.ticket'].sudo().search([("description", "=", description)])
                     if not ticket:
                         new_ticket = request.env['helpdesk.ticket'].sudo().create(
@@ -633,11 +631,11 @@ class WebsiteSale(WebsiteSale):
                                                                     ('session_id.date_exam', '>', date.today())
                                                                     ], limit=1, order="id desc")
                 # Pour chaque apprenant chercher sa facture
-                facture = request.env['account.move'].sudo().search([('session_id', '=', partner.mcm_session_id.id),
-                                                                    ('module_id', '=', partner.module_id.id),
-                                                                    ('state', '=', 'posted')
-                                                                    ], order="invoice_date desc", limit=1)
-                date_facture = facture.invoice_date
+                # facture = request.env['account.move'].sudo().search([('session_id', '=', partner.mcm_session_id.id),
+                #                                                     ('module_id', '=', partner.module_id.id),
+                #                                                     ('state', '=', 'posted')
+                #                                                     ], order="invoice_date desc", limit=1)
+                # date_facture = facture.invoice_date
                 today = date.today()
                 _logger.info('sale order %s ' % sale_order.name)
                 # Récupérer les documents et vérifier si ils sont validés ou non
