@@ -105,13 +105,13 @@
         </div>
 
         <div class="outlined-input-field mb16 bg-c" id="objet_container">
-            <input type="text" id="objet" name="objet" required="required" class="outlined-text-field" autocomplete="off" />
-            <label for="objet">Objet *</label>
+            <input type="text" id="objet" name="name" required="required" class="outlined-text-field" autocomplete="off" />
+            <label for="name">Objet *</label>
 
         </div>
         <div class="outlined-input-field mb16 bg-c" id="message_container">
-            <textarea class="outlined-text-field" type="text" rows="5" id="message" name="message" autocomplete="off" required="required" />
-            <label class="form__label" for="message">Message *</label>
+            <textarea class="outlined-text-field" type="text" rows="4" id="message" name="description" autocomplete="off" required="required" />
+            <label class="form__label" for="description">Message *</label>
 
         </div>
         <div class="outlined-input-field mb16 bg-c">
@@ -192,13 +192,13 @@
         </div>
 
         <div class="outlined-input-field mb16 bg-c" id="objet_container">
-            <input type="text" id="objet" name="objet" required="required" class="outlined-text-field" autocomplete="off" />
-            <label for="objet">Objet *</label>
+            <input type="text" id="objet" name="name" required="required" class="outlined-text-field" autocomplete="off" />
+            <label for="name">Objet *</label>
 
         </div>
         <div class="outlined-input-field mb16 bg-c" id="message_container">
-            <textarea class="outlined-text-field" type="text" rows="5" id="message" name="message" autocomplete="off" required="required" />
-            <label class="form__label" for="message">Message *</label>
+            <textarea class="outlined-text-field" type="text" rows="4" id="message" name="description" autocomplete="off" required="required" />
+            <label class="form__label" for="description">Message *</label>
 
         </div>
 
@@ -227,15 +227,15 @@
         <script defer="defer" type="text/javascript" src="/digimoov_website_templates/static/src/js/validate_form_service.js" />
     </template>
 
-
     <!-- Vue helpdesk de Digimoov pour le service clientèle dans le siteweb -->
     <template id="digimoov_website_templates.digimoov_template_service_clientele" name="Service Clientèle | Digimoov">
         <t t-call="website.layout">
             <t t-set="head">
                 <meta name="robots" content="noindex" />
             </t>
+            <t t-call="digimoov_website_templates.common_js" />
+
             <script defer="defer" type="text/javascript" src="/digimoov_website_templates/static/src/js/lazy-min.min.js" />
-            <script type="text/javascript" src="/mcm_website_theme/static/src/js/msAds.min.js" />
 
             <div id="wrap" class="oe_structure oe_empty">
                 <section class="s_contact_with_img" data-name="Contact Us Two" style="">
@@ -257,52 +257,7 @@
                                             <br />
                                             <form action="/helpdesk/submitted/" method="post" enctype="multipart/form-data" id="contact-form">
                                                 <input type="hidden" name="service" value="client" />
-                                                <div class="row">
-                                                    <div class="col-lg-6">
-                                                        <div class="form-group m-t-15 ">
-                                                            <input placeholder="Nom" name="contact_lastname" required="True" type="text" class="o_website_form_input   font-14 form-control" t-attf-value="#{contact_last_name}" />
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-lg-6">
-                                                        <div class="form-group m-t-15 ">
-                                                            <input placeholder="Prénom" name="contact_name" required="True" type="text" class="o_website_form_input   font-14 form-control" t-attf-value="#{contact_name}" />
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-lg-12">
-                                                        <div class="form-group m-t-15 ">
-                                                            <input name="email_from" placeholder="Adresse email" required="True" value="" type="email" class="o_website_form_input form-control" t-attf-value="#{email_from}" />
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-lg-12">
-                                                        <div class="form-group m-t-15 ">
-                                                            <input name="phone" placeholder="Téléphone" required="True" type="Phone" class="o_website_form_input form-control" t-attf-value="#{phone}" />
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-lg-12">
-                                                        <div class="form-group m-t-15 ">
-                                                            <input name="name" placeholder="Objet" required="True" type="Object" class="o_website_form_input form-control" value="" />
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-lg-12">
-                                                        <div class="form-group m-t-15 ">
-                                                            <textarea name="description" rows="3" placeholder="Message" required="True" class=" o_website_form_input form-control" value="" />
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-lg-12">
-                                                        <div class="form-group m-t-15 ">
-                                                            <input name="attachment" placeholder="Objet" type="file" style="height:auto !important;" multiple="True" class="o_website_form_input form-control" value="" />
-                                                        </div>
-                                                    </div>
-                                                    <input t-att-value="request.website.microsoft_tracking_key" id="microsoft_tracking_key" type="hidden" />
-
-                                                    <div class="col-lg-12 s_name pb32" data-name="Button">
-                                                        <button class="o_website_form_send btn btn-alpha rounded-circle m-t-20 arrow-btn" onClick="(function(){ document.getElementById('contact-form').submit();return false;})();return false;">
-                                                            ENVOYER
-                                                            <span class="fa fa-1x fa-fw fa-long-arrow-right ml-1" />
-                                                        </button>
-                                                        <span id="o_website_form_result" class="text-danger ml8 mt16  mb16 col-md-12" />
-                                                    </div>
-                                                </div>
+                                                <t t-call="digimoov_website_templates.common_form" />
                                             </form>
                                         </div>
                                     </div>
