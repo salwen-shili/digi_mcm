@@ -441,8 +441,8 @@ En cas de réussite, le préfet de région vous octroie une attestation de fin d
                                                     <font>
                                                         <p class="                                 text-center                                 font-weight-bolder                                 text-dark                                 h1                                 display-4                                 mb-0                               " t-if="not promo">
                                                             <span class="pricebar" style="color: black;font-size: 25px;font-weight: 500;">590 €</span>
-                                                            <span t-esc="round(product.list_price)" />
-                                                            <span t-esc="product.currency_id.symbol" />
+                                                            <span style="font-size: 3.5rem;" t-esc="round(product.list_price)" />
+                                                            <span style="font-size: 3.5rem;" t-esc="product.currency_id.symbol" />
 
                                                         </p>
                                                         <p class="                                 text-center                                 font-weight-bolder                                 text-dark                                 h1                                 display-4                                 mb-0                               " t-if="promo">
