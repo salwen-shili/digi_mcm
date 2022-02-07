@@ -556,29 +556,19 @@
 
 
         <template id="fl_auth_signup.reset_password" inherit_id="auth_signup.reset_password" name="Reset password">
-            <xpath expr="//div[1]" position="before">
+            <xpath expr="//div[1]" position="replace">
                 <t t-set="head">
                     <meta name="robots" content="noindex" />
                 </t>
-            </xpath>
-            <!-- <xpath expr="//div[1]//a" position="replace">
-                <a href="/web/login" class="btn btn-link float-right" role="button" style="font-size: large">Connexion
-                </a>
-            </xpath>
-            <xpath expr="//div[@class='clearfix oe_login_buttons']//div" position="replace">
-                <div class="d-flex justify-content-between align-items-center small mt-2">
-                    <button type="submit" class="rkmd-btn btn-black ripple-effect ripple-yellow" t-if="not login">
-                        Confirmer
-                    </button>
-
-                    <a t-if="not token" t-attf-href="/web/login?{{ keep_query() }}" style="font-size: large">Connexion
-                    </a>
-                    <a t-if="invalid_token" href="/web/login" style="font-size: large">Connexion
-                    </a>
+                <div t-if="message">
+                    <p class="alert alert-success" t-if="message" role="status">
+                        <t t-esc="message" />
+                    </p>
+                    <a href="/web/login" style="font-size: 16px; color: #5850ec; text-decoration: underline !important;" class=" float-right" role="button">Revenir à l’écran de connexion</a>
                 </div>
 
+            </xpath>
 
-            </xpath> -->
             <xpath expr="//form" position="replace">
                 <t t-if="request.website.id == 1">
 
