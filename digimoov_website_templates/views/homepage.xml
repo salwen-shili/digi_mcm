@@ -570,30 +570,6 @@
                                     </div>
                                 </div>
                             </section>
-                            <!-- Pricing table-->
-                            <section class="s_one_page_pricing_plan bg-light-1" data-name="Pricing plan two">
-                                <div class="pricing1 spacer" id="pricing">
-                                    <div class="container">
-                                        <div class="row justify-content-center">
-                                            <div class="col-md-8 text-center col-lg-11">
-                                                <h2 class="text-beta title">
-                                                    LET'S GO !
-                                                    <br />
-                                                    Inscrivez-vous dès maintenant !
-                                                </h2>
-                                                <h3 class="subtitle">
-                                                    <span style="color: rgb(66, 66, 66); font-size: 16px">
-                                                        Choisissez la formule qui vous convient</span>
-                                                    &amp;nbsp;
-                                                    <span style="color: rgb(66, 66, 66); font-size: 16px">&amp;nbsp;
-                                                        </span>
-                                                    <br />
-                                                </h3>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </section>
                             <p />
                         </div>
                         <!-- Pricing table-->
@@ -696,14 +672,15 @@
                                                             </li>
                                                             <li class="mb-4">
                                                                 <i class="fa fa-check-circle fa-lg mr-2 text-success" />
-                                                                <b>Assistance par mail</b>
-                                                            </li>
-                                                            <li class="mb-4">
-                                                                <i class="fa fa-check-circle fa-lg mr-2 text-success" />
                                                                 <b>Assistance par téléphone</b>
                                                             </li>
                                                             <li class="mb-4">
-                                                                <i class="fa fa-check-circle fa-lg mr-2 text-danger" />
+                                                                <i class="fa fa-check-circle fa-lg mr-2 text-success" />
+                                                                <b>Assistance par mail</b>
+                                                            </li>
+
+                                                            <li class="mb-4">
+                                                                <i class="fa fa-times-circle fa-lg mr-2 text-danger" />
                                                                 Livre d’entrainement version électronique
                                                             </li>
                                                             <li class="mb-4">
@@ -831,16 +808,17 @@
                                                                 <span class="additional-info">additional info</span> -->
                                                             </li>
                                                             <li class="mb-4">
-                                                                <i class="fa fa-check-circle fa-lg mr-2 text-success" />
-                                                                <b>Assistance par mail</b>
-                                                            </li>
-                                                            <li class="mb-4">
                                                                 <i class="fa fa-check-circle fa-lg mr-2 text-success" data-original-title="" title="" aria-describedby="tooltip131000" />
                                                                 <b>Assistance par téléphone</b>
                                                             </li>
                                                             <li class="mb-4">
+                                                                <i class="fa fa-check-circle fa-lg mr-2 text-success" />
+                                                                <b>Assistance par mail</b>
+                                                            </li>
+
+                                                            <li class="mb-4">
                                                                 <span class="fa fa-check-circle fa-lg mr-2 text-success" style="font-size: 1.33333em" data-original-title="" title="" aria-describedby="tooltip96053" />
-                                                                <b>Séances en Live avec les formateurs</b>
+                                                                <b>Séances de groupe en Live avec les formateurs</b>
                                                             </li>
                                                             <li class="mb-4">
                                                                 <span class="fa fa-lg fa-times-circle text-danger mr-2" style="font-size: 1.33333em" data-original-title="" title="" aria-describedby="tooltip288722" />
@@ -951,14 +929,15 @@
                                                             </li>
                                                             <li class="mb-4">
                                                                 <i class="fa fa-check-circle fa-lg mr-2 text-success" />
-                                                                <b>Assistance par mail</b>
+                                                                <b>Assistance par téléphone</b>
                                                                 <br />
                                                             </li>
                                                             <li class="mb-4">
                                                                 <i class="fa fa-check-circle fa-lg mr-2 text-success" />
-                                                                <b>Assistance par téléphone</b>
+                                                                <b>Assistance par mail</b>
                                                                 <br />
                                                             </li>
+
                                                             <li class="mb-4">
                                                                 <i class="fa fa-check-circle fa-lg mr-2 text-success" />
                                                                 <b>Séances en Live avec un tuteur dédié</b>
@@ -980,7 +959,7 @@
 
                                                             </li>
                                                             <li class="mb-4">
-                                                                <i class="fa fa-lg fa-times-circle mr-2 text-success" />
+                                                                <i class="fa fa-lg fa-check-circle mr-2 text-success" />
                                                                 <b>Séance en Live pour corriger l’examen</b>
                                                                 &amp;nbsp;
                                                                 &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;
