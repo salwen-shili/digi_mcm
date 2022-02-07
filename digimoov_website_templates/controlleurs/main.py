@@ -444,15 +444,19 @@ class Services(http.Controller):
     def get_ticket(self, **kwargs):
         contact_last_name = kwargs.get('contact_lastname')
         contact_name = kwargs.get('contact_name')
-        print(contact_name)
-        print(contact_last_name)
-        print("je suis la")
+        
 
         email_from = kwargs.get('email_from')
         ticket_phone_number = kwargs.get('phone')
         name = kwargs.get('name')
         description = kwargs.get('description')
         files = request.httprequest.files.getlist('attachment')
+        print(contact_name)
+        print(contact_last_name)
+        print(email_from)
+        print( ticket_phone_number)
+        print(description)
+       
         name_company = False
         if kwargs.get('name_company'):
             name_company = kwargs.get('name_company')
