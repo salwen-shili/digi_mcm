@@ -438,8 +438,9 @@
                           <form action="/shop/cart/update" method="post" id="form-1-2">
                             <input type="hidden" class="product_id" name="product_id" id="taxi_product" t-att-value="product.id" />
                             <input type="hidden" name="promo" t-att-value="promo.id" t-if="promo" />
-                            <h4>PACK TAXI</h4>
-                            <h5 style="color: #636161">Éligible au CPF</h5>
+
+                            <h3 style="max-width: 100%; font-size:35px;">PACK TAXI</h3>
+                            <h4 style="color: #636161; font-size: 1.09375rem">Éligible au CPF</h4>
                             <h4>
                               <span t-esc="round(product.list_price)" />
                               <span style="color: #fdd105" t-esc="product.currency_id.symbol" />
