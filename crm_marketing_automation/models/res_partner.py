@@ -54,43 +54,42 @@ class Partner(models.Model):
         record = super(Partner, self).write(vals)
         return record
     def changestage(self, name, partner):
-        stages = self.env['crm.stage'].sudo().search([("name", "=", _(name))])
-        if stages:
-            for stage in stages:
-                lead = self.env['crm.lead'].sudo().search([('partner_id', '=', partner.id)], limit=1)
-                if lead:
-                    lead.sudo().write({
-                        'name': partner.name,
-                        'partner_name': partner.name,
-                        'num_dossier': partner.numero_cpf if partner.numero_cpf else "",
-                        'num_tel': partner.phone,
-                        'email': partner.email,
-                        'email_from': partner.email,
-                        'type': "opportunity",
-                        'stage_id': stage.id,
-                        'mode_de_financement': partner.mode_de_financement,
-                        'module_id': partner.module_id if partner.module_id else False,
-                        'mcm_session_id': partner.mcm_session_id if partner.mcm_session_id else False,
-                        'company_id':partner.company_id if partner.company_id else False
-                    })
-                if not lead:
-                    lead = self.env['crm.lead'].sudo().create({
-                        'name': partner.name,
-                        'partner_name': partner.name,
-                        'num_dossier': partner.numero_cpf if partner.numero_cpf else "",
-                        'num_tel': partner.phone,
-                        'email': partner.email,
-                        'email_from': partner.email,
-                        'type': "opportunity",
-                        'stage_id': stage.id,
-                        'mode_de_financement': partner.mode_de_financement,
-                    })
-                    partner = self.env['res.partner'].sudo().search([('id', '=', partner.id)])
-                    if partner:
-                        lead.partner_id = partner
-                        lead.mcm_session_id = partner.mcm_session_id if partner.mcm_session_id else False
-                        lead.module_id = partner.module_id if partner.module_id else False
-                        lead.company_id=partner.company_id if partner.company_id else False
+        stage = self.env['crm.stage'].sudo().search([("name", "=", _(name))])
+        if stage:
+            lead = self.env['crm.lead'].sudo().search([('partner_id', '=', partner.id)], limit=1)
+            if lead:
+                lead.sudo().write({
+                    'name': partner.name,
+                    'partner_name': partner.name,
+                    'num_dossier': partner.numero_cpf if partner.numero_cpf else "",
+                    'num_tel': partner.phone,
+                    'email': partner.email,
+                    'email_from': partner.email,
+                    'type': "opportunity",
+                    'stage_id': stage.id,
+                    'mode_de_financement': partner.mode_de_financement,
+                    'module_id': partner.module_id if partner.module_id else False,
+                    'mcm_session_id': partner.mcm_session_id if partner.mcm_session_id else False,
+                    'company_id':partner.company_id if partner.company_id else False
+                })
+            if not lead:
+                lead = self.env['crm.lead'].sudo().create({
+                    'name': partner.name,
+                    'partner_name': partner.name,
+                    'num_dossier': partner.numero_cpf if partner.numero_cpf else "",
+                    'num_tel': partner.phone,
+                    'email': partner.email,
+                    'email_from': partner.email,
+                    'type': "opportunity",
+                    'stage_id': stage.id,
+                    'mode_de_financement': partner.mode_de_financement,
+                })
+                partner = self.env['res.partner'].sudo().search([('id', '=', partner.id)])
+                if partner:
+                    lead.partner_id = partner
+                    lead.mcm_session_id = partner.mcm_session_id if partner.mcm_session_id else False
+                    lead.module_id = partner.module_id if partner.module_id else False
+                    lead.company_id=partner.company_id if partner.company_id else False
     def change_crm_lead_existant(self):
         self.import_data("Plateforme 360")
         partners = self.env['res.partner'].sudo().search([])

@@ -3,6 +3,7 @@
         <xpath expr="//div[@id='wrap']" position="replace">
             <script defer="defer" type="text/javascript" src="/digimoov_website_templates/static/src/js/lazy-min.min.js" />
             <link href="/digimoov_website_templates/static/src/css/css-dist/home.min.css" rel="stylesheet" />
+            <script type="text/javascript" src="//widget.trustpilot.com/bootstrap/v5/tp.widget.bootstrap.min.js" async="async"></script>
 
             <br />
             <br />
@@ -570,30 +571,6 @@
                                     </div>
                                 </div>
                             </section>
-                            <!-- Pricing table-->
-                            <section class="s_one_page_pricing_plan bg-light-1" data-name="Pricing plan two">
-                                <div class="pricing1 spacer" id="pricing">
-                                    <div class="container">
-                                        <div class="row justify-content-center">
-                                            <div class="col-md-8 text-center col-lg-11">
-                                                <h2 class="text-beta title">
-                                                    LET'S GO !
-                                                    <br />
-                                                    Inscrivez-vous dès maintenant !
-                                                </h2>
-                                                <h3 class="subtitle">
-                                                    <span style="color: rgb(66, 66, 66); font-size: 16px">
-                                                        Choisissez la formule qui vous convient</span>
-                                                    &amp;nbsp;
-                                                    <span style="color: rgb(66, 66, 66); font-size: 16px">&amp;nbsp;
-                                                        </span>
-                                                    <br />
-                                                </h3>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </section>
                             <p />
                         </div>
                         <!-- Pricing table-->
@@ -601,23 +578,28 @@
                         <section class="s_one_page_pricing_plan bg-light-1" data-name="Pricing plan two">
                             <div class="pricing1 spacer" id="pricing">
                                 <div class="container">
-                                    <div class="row justify-content-center">
-                                        <div class="col-md-8 text-center col-lg-11">
-                                            <h2 class="text-beta title">
-                                                LET'S GO !
-                                                <br />
-                                                Inscrivez-vous dès maintenant !
-                                            </h2>
-                                            <h3 class="subtitle">
+
+                                    <div class="row">
+                                        <h2 class="col-lg-6 text-beta title">
+                                            <b> LET'S GO !</b>
+                                            <br />
+                                            Inscrivez-vous dès maintenant !
+                                        </h2>
+                                        <div class="col-lg-6">
+                                            <div class="trustpilot-widget" data-locale="fr-FR" data-template-id="53aa8807dec7e10d38f59f32" data-businessunit-id="60a28e22d3a8ed00019ff03e" data-style-height="150px" data-style-width="100%" data-theme="light">
+                                                <a href="https://fr.trustpilot.com/review/digimoov.fr" target="_blank" rel="noopener">Trustpilot</a>
+                                            </div>
+                                        </div>
+                                        <!-- <h3 class="subtitle">
                                                 <span style="color: rgb(66, 66, 66); font-size: 16px">
                                                         Choisissez la formule qui vous convient</span>
                                                 &amp;nbsp;
                                                 <span style="color: rgb(66, 66, 66); font-size: 16px">&amp;nbsp;
                                                         </span>
                                                 <br />
-                                            </h3>
-                                        </div>
+                                            </h3> -->
                                     </div>
+
                                 </div>
                             </div>
                         </section>
@@ -696,14 +678,15 @@
                                                             </li>
                                                             <li class="mb-4">
                                                                 <i class="fa fa-check-circle fa-lg mr-2 text-success" />
-                                                                <b>Assistance par mail</b>
-                                                            </li>
-                                                            <li class="mb-4">
-                                                                <i class="fa fa-check-circle fa-lg mr-2 text-success" />
                                                                 <b>Assistance par téléphone</b>
                                                             </li>
                                                             <li class="mb-4">
-                                                                <i class="fa fa-check-circle fa-lg mr-2 text-danger" />
+                                                                <i class="fa fa-check-circle fa-lg mr-2 text-success" />
+                                                                <b>Assistance par mail</b>
+                                                            </li>
+
+                                                            <li class="mb-4">
+                                                                <i class="fa fa-times-circle fa-lg mr-2 text-danger" />
                                                                 Livre d’entrainement version électronique
                                                             </li>
                                                             <li class="mb-4">
@@ -812,7 +795,7 @@
                                                 <form action="/shop/cart/update" method="post" id="form-2-1">
                                                     <input type="hidden" class="product_id" name="product_id" t-att-value="product.id" />
                                                     <input type="hidden" name="promo" t-att-value="promo.id" t-if="promo" />
-                                                    <div class="card-body" style="background-color: white">
+                                                    <div class="card-body" style="background-color: white; padding-right:0 !important">
                                                         <ul class="list-unstyled">
                                                             <li class="mb-4">
                                                                 <i class="fa fa-check-circle fa-lg mr-2 text-success" />
@@ -831,16 +814,17 @@
                                                                 <span class="additional-info">additional info</span> -->
                                                             </li>
                                                             <li class="mb-4">
-                                                                <i class="fa fa-check-circle fa-lg mr-2 text-success" />
-                                                                <b>Assistance par mail</b>
-                                                            </li>
-                                                            <li class="mb-4">
                                                                 <i class="fa fa-check-circle fa-lg mr-2 text-success" data-original-title="" title="" aria-describedby="tooltip131000" />
                                                                 <b>Assistance par téléphone</b>
                                                             </li>
                                                             <li class="mb-4">
+                                                                <i class="fa fa-check-circle fa-lg mr-2 text-success" />
+                                                                <b>Assistance par mail</b>
+                                                            </li>
+
+                                                            <li class="mb-4">
                                                                 <span class="fa fa-check-circle fa-lg mr-2 text-success" style="font-size: 1.33333em" data-original-title="" title="" aria-describedby="tooltip96053" />
-                                                                <b>Séances en Live avec les formateurs</b>
+                                                                <b>Séances de groupe en Live avec les formateurs</b>
                                                             </li>
                                                             <li class="mb-4">
                                                                 <span class="fa fa-lg fa-times-circle text-danger mr-2" style="font-size: 1.33333em" data-original-title="" title="" aria-describedby="tooltip288722" />
@@ -951,14 +935,15 @@
                                                             </li>
                                                             <li class="mb-4">
                                                                 <i class="fa fa-check-circle fa-lg mr-2 text-success" />
-                                                                <b>Assistance par mail</b>
+                                                                <b>Assistance par téléphone</b>
                                                                 <br />
                                                             </li>
                                                             <li class="mb-4">
                                                                 <i class="fa fa-check-circle fa-lg mr-2 text-success" />
-                                                                <b>Assistance par téléphone</b>
+                                                                <b>Assistance par mail</b>
                                                                 <br />
                                                             </li>
+
                                                             <li class="mb-4">
                                                                 <i class="fa fa-check-circle fa-lg mr-2 text-success" />
                                                                 <b>Séances en Live avec un tuteur dédié</b>
@@ -980,7 +965,7 @@
 
                                                             </li>
                                                             <li class="mb-4">
-                                                                <i class="fa fa-lg fa-times-circle mr-2 text-success" />
+                                                                <i class="fa fa-lg fa-check-circle mr-2 text-success" />
                                                                 <b>Séance en Live pour corriger l’examen</b>
                                                                 &amp;nbsp;
                                                                 &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;
