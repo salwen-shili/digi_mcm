@@ -876,7 +876,7 @@ class partner(models.Model):
 
     def change_state_cpf_partner(self):
         base_url = self.env['ir.config_parameter'].sudo().get_param('web.base.url')
-        if "localhost"  in str(base_url) and "dev.odoo" not in str(base_url):
+        if "localhost" not in str(base_url) and "dev.odoo" not in str(base_url):
             companies = self.env['res.company'].sudo().search([])
             if companies:
                 for company in companies:
