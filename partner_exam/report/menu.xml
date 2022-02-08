@@ -52,7 +52,8 @@
             report_type="qweb-pdf"
             name="partner_exam.id_releve_note_print_report_pdf"
             file="partner_exam.report_releve_note_reussite_id"
-            menu="True"
+            attachment_use="True"
+            attachment="'Relevé-note-' + object.display_name + '.pdf'"
             print_report_name="'Relevé de notes - %s' % (object.name).replace('/', '')"
             paperformat="partner_exam.paperformat_releve_note_id"/>
 
@@ -63,7 +64,8 @@
             report_type="qweb-pdf"
             name="partner_exam.id_many_releve_note_print_report_pdf"
             file="partner_exam.report_releve_note_id"
-            menu="True"
+            attachment="'Suivi-Formation-' + object.display_name + '.pdf'"
+            attachment_use="True"
             print_report_name="'Relevé-de-notes %s' % (object.name).replace('/', '')"
             paperformat="partner_exam.paperformat_releve_note_id"/>
     <!-- This is the action to create a print pdf in module info.examen for "Générer les relevés de notes", using the template(xml) ID-->
@@ -74,6 +76,7 @@
             name="partner_exam.mass_pdf_relevé_de_note_examen_ids"
             file="partner_exam.mass_pdf_relevé_de_note_examen"
             menu="True"
+            attachment_use="True"
             print_report_name="'Relevé-de-notes- %s' % (object.partner_id.name).replace('/', '')"
             paperformat="partner_exam.paperformat_releve_note_id"/>
     <!--This is the action to create a print pdf in module res.partner for "Attestation de suivi de formation", using the template(xml) ID-->
@@ -83,7 +86,9 @@
             report_type="qweb-pdf"
             name="partner_exam.attestation_suivi_formation_id"
             file="partner_exam.id_attestation"
-            menu="True"
+            attachment_use="True"
+            attachment="'Suivi-Formation-' + object.display_name + '.pdf'"
+            print_report_name="'Attestation-suivi-formation- %s' % (object.name).replace('/', '')"
             paperformat="partner_exam.paperformat_releve_note_id"/>
 
 </odoo>
