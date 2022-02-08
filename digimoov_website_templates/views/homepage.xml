@@ -3,8 +3,9 @@
         <xpath expr="//div[@id='wrap']" position="replace">
             <script defer="defer" type="text/javascript" src="/digimoov_website_templates/static/src/js/lazy-min.min.js" />
             <link href="/digimoov_website_templates/static/src/css/css-dist/home.min.css" rel="stylesheet" />
+            <!-- TrustBox script -->
             <script type="text/javascript" src="//widget.trustpilot.com/bootstrap/v5/tp.widget.bootstrap.min.js" async="async"></script>
-
+            <!-- End TrustBox script -->
             <br />
             <br />
 
@@ -51,7 +52,12 @@
                                             <br />
                                         </h1>
                                     </t>
-                                    <br />
+
+                                    <!-- TrustBox widget - Mini -->
+                                    <div style="max-width: 181px;" class="trustpilot-widget" data-locale="fr-FR" data-template-id="53aa8807dec7e10d38f59f32" data-businessunit-id="60a28e22d3a8ed00019ff03e" data-style-height="150px" data-style-width="100%" data-theme="light">
+                                        <a href="https://fr.trustpilot.com/review/digimoov.fr" target="_blank" rel="noopener">Trustpilot</a>
+                                    </div>
+                                    <!-- End TrustBox widget -->
                                     <div class="boosting-section tab-btn s_btn">
                                         <a href="/attestation-transport-leger-marchandises" class="
                     homebuttonspacing
@@ -103,8 +109,10 @@
                       <i class="fa fa-1x fa-fw fa-long-arrow-right ml-1" />
                     </a> -->
                                 </div>
+
                                 <div class="col-md-6 img-anim">
                                     <img class="img img-fluid" src="/digimoov_website_templates/static/img/Formation capacité de transport léger.gif" alt="Formation capacité transport léger de marchandises" data-original-title="" title="Formation capacité de transport leger de marchandise" aria-describedby="tooltip407937" />
+
                                 </div>
                             </div>
                         </div>
@@ -128,7 +136,7 @@
             justify-content: space-between;
             align-items: center;
           }
-        </style>
+                     </style>
                     <section class="pt40 pb32 js-scroll fade-in-top">
                         <div class="container js-scroll fade-in-top">
                             <div class="center-logo">
@@ -138,11 +146,10 @@
                                 <div class="pt32">
                                     <img class="img-fluid lazy" style="width: 188px;" data-src="/mcm_website_theme/static/src/img/formation-taxi-vtc-certifiée-qualiopi.webp" data-srcSafari="/mcm_website_theme/static/src/img/formation-taxi-vtc-certifiée-qualiopi.png" title="MCM Academy centre agrée par Qualiopi" alt="qualiopi" />
                                 </div>
-                                <div class="pt32">
+                                <!-- <div class="pt32">
                                     <img class="img-fluid lazy" style="width: 110px;" data-srcSafari="/mcm_website_theme/static/src/img/mcm academy-partenaire-france-relance.jpg" data-src="/mcm_website_theme/static/src/img/mcm academy-partenaire-france-relance.webp" title="France relance-MCM Academy" alt="France relance-MCM Academy" />
-                                </div>
-
-                                <div>
+                                </div> -->
+                                <div class="pt32">
                                     <img class="img-fluid lazy" style="width: 100px;" data-src="/mcm_website_theme/static/src/img/mcm academy-centre-de-formation-taxi-vtc-carte pro-préfecture.webp" data-srcSafari="/mcm_website_theme/static/src/img/mcm academy-centre-de-formation-taxi-vtc-carte pro-préfecture.png" title="Centre agrée de la préfecture" alt="Centre agrée de la préfecture" />
                                 </div>
                                 <div class="pt32">
@@ -642,7 +649,7 @@
       }
       
             
-</style>
+                        </style>
                         <div class="container">
                             <input t-att-value="request.website.microsoft_tracking_key" id="microsoft_tracking_key" type="hidden" />
                             <div class="row">
@@ -657,7 +664,7 @@
                                                 </strong>
                                             </p>
                                             <p class="blink-soft">
-                                                <b>Nouveau tarif 2022</b>
+                                                <b>Paiement en 2 fois</b>
                                             </p>
                                             <br />
                                         </div>
@@ -724,7 +731,6 @@
                                                         <p class="                             text-center                             font-weight-bolder                             text-dark                             h1                             display-4                             mb-0                           ">
                                                             <font>
                                                                 <p class="                                 text-center                                 font-weight-bolder                                 text-dark                                 h1                                 display-4                                 mb-0                               " t-if="not promo">
-                                                                    <span class="pricebar" style="color: black;font-size: 25px;font-weight: 500;">590 €</span>
                                                                     <span t-esc="round(product.list_price)" />
                                                                     <span t-esc="product.currency_id.symbol" />
 
@@ -747,9 +753,12 @@
                                                                 </b>
                                                             </p>
                                                         </t>
-                                                        <p class="                             medium                             text-center                             font-weight-bolder                             text-secondary                           " style="color: red !important" t-if="not partenaire or partenaire==''">
+                                                        <p class="                             medium                             text-center                             font-weight-bolder                             text-secondary                           " style="color: red !important; margin-bottom: 8px !important;" t-if="not partenaire or partenaire==''">
                                                             Paiement 1 ou 2 fois
                                                         </p>
+                                                        <p style="font-size:14px; color:red; font-weight:700; text-align:center">
+                                                        sans frais
+                                                            </p>
 
                                                         <br />
                                                         <button class="btn btn-block text-white" onClick="(function(){ document.getElementById('form-1-1').submit();return false;})();return false;" style="background-color: #6e209f; border-radius: 25px">
@@ -787,7 +796,10 @@
                                                     <font style="font-size: 30px">PRO</font>
                                                 </strong>
                                             </p>
-                                            <p>&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;</p>
+                                            <!-- <p>&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;</p> -->
+                                            <p class="blink-soft">
+                                                <b>Paiement en 2 fois</b>
+                                            </p>
                                             <br />
                                         </div>
                                         <t t-foreach="digimoov_products" t-as="product">
@@ -871,8 +883,11 @@
                                                                 </b>
                                                             </p>
                                                         </t>
-                                                        <p class="                             medium                             text-center                             font-weight-bolder                             text-secondary                           " style="color: red !important">
+                                                        <p class="                             medium                             text-center                             font-weight-bolder                             text-secondary                           " style="color: red !important; margin-bottom:8px !important">
                                                             Paiement 1 ou 2 fois
+                                                            </p>
+                                                        <p style="font-size:14px; color:red; font-weight:700; text-align:center">
+                                                            sans frais
                                                             </p>
                                                         <br />
                                                         <button class="btn btn-block text-white" onClick="(function(){document.getElementById('form-2-1').submit();return false;})();return false;" style="background-color: #6e209f; border-radius: 25px">
@@ -992,8 +1007,11 @@
                                                                 </b>
                                                             </p>
                                                         </t>
-                                                        <p class="                             medium                             text-center                             font-weight-bolder                             text-secondary                           " style="color: red !important">
+                                                        <p class="                             medium                             text-center                             font-weight-bolder                             text-secondary                           " style="color: red !important; margin-bottom:8px !important">
                                                             Paiement 1 ou 3 fois
+                                                            </p>
+                                                        <p style="font-size:14px; color:red; font-weight:700; text-align:center">
+                                                            sans frais
                                                             </p>
                                                         <br />
                                                         <button class="btn btn-block text-white" onClick="(function(){ document.getElementById('form-3-1').submit();return false;})();return false;" style="background-color: #6e209f; border-radius: 25px">
@@ -1492,12 +1510,12 @@
                                                     </b>
                                                 </div>
                                                 <p class="
-                       medium
-                       text-center
-                       font-weight-bolder
-                       text-secondary
-                     " style="color: red !important">
-                     Paiement 1 fois
+                        medium
+                        text-center
+                        font-weight-bolder
+                        text-secondary
+                      " style="color: red !important;">
+                      Paiement 1 fois
                                                 </p>
                                                 <br />
                                                 <button class="btn btn-block text-white" onClick="(function(){window.location.href='/service-clientele'; return false;})();return false;" style="background-color: #6e209f; border-radius: 25px">

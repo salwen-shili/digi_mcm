@@ -373,7 +373,7 @@ En cas de réussite, le préfet de région vous octroie une attestation de fin d
                                         </strong>
                                     </p>
                                     <p class="blink-soft">
-                                        <b>Nouveau tarif 2022</b>
+                                        <b>Paiement en 2 fois</b>
                                     </p>
                                     <br />
                                 </div>
@@ -390,48 +390,52 @@ En cas de réussite, le préfet de région vous octroie une attestation de fin d
                                                     </li>
                                                     <li class="mb-4">
                                                         <i class="fa fa-check-circle fa-lg mr-2 text-success" />
-                                                        <b>Accès à 5 examens d'entraînement</b>
+                                                        <b>Livre d’entrainement version électronique</b>
+                                                    </li>
+                                                    <li class="mb-4">
+                                                        <i class="fa fa-check-circle fa-lg mr-2 text-success" />
+                                                        <b>Accès à 14+ examens d'entraînement</b>
+
                                                     </li>
                                                     <li class="mb-4">
                                                         <i class="fa fa-check-circle fa-lg mr-2 text-success" />
                                                         <b>Assistance par téléphone</b>
+                                                        <br />
                                                     </li>
                                                     <li class="mb-4">
                                                         <i class="fa fa-check-circle fa-lg mr-2 text-success" />
                                                         <b>Assistance par mail</b>
+                                                        <br />
                                                     </li>
 
                                                     <li class="mb-4">
-                                                        <i class="fa fa-times-circle fa-lg mr-2 text-danger" />
-                                                        Livre d’entrainement version électronique
-                                                    </li>
-                                                    <li class="mb-4">
-                                                        <i class="fa fa-lg fa-times-circle mr-2 text-danger" />
-                                                        Séances en Live avec les formateurs
-                                                    </li>
-                                                    <li class="mb-4">
-                                                        <i class="fa fa-lg fa-times-circle mr-2 text-danger" />
-                                                        Séance en Live avec un expert métier
-                                                    </li>
-                                                    <li class="mb-4">
-                                                        <i class="fa fa-lg fa-times-circle mr-2 text-danger" />
-                                                        Révision du programme avant l'examen
+                                                        <i class="fa fa-check-circle fa-lg mr-2 text-success" />
+                                                        <b>Séances en Live avec un tuteur dédié</b>
+                                                        <br />
                                                     </li>
                                                     <li class="mb-4">
                                                         <i class="fa fa-check-circle fa-lg mr-2 text-success" />
-                                                        <b>  &amp;nbsp;Examen final en présentiel 
-                                                                &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;
-                                                                &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;
-                                                                &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;
-                                                                &amp;nbsp;&amp;nbsp;</b>
+                                                        <b>Séance en Live avec un expert métier </b>
+                                                        <b>&amp;nbsp;</b>
+                                                        <br />
                                                     </li>
                                                     <li class="mb-4">
                                                         <i class="fa fa-check-circle fa-lg mr-2 text-success" />
-                                                        <b>Séance en Live pour corriger l’examen &amp;nbsp;
+                                                        <b>Révision du programme avant l'examen</b>
+                                                    </li>
+                                                    <li class="mb-4">
+                                                        <span class="fa fa-check-circle fa-lg mr-2 text-success" style="font-size: 1.33333em" />
+                                                        <b>Examen final en présentiel</b>
+
+                                                    </li>
+                                                    <li class="mb-4">
+                                                        <i class="fa fa-lg fa-check-circle mr-2 text-success" />
+                                                        <b>Séance en Live pour corriger l’examen</b>
+                                                        &amp;nbsp;
                                                                 &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;
                                                                 &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;
                                                                 &amp;nbsp; &amp;nbsp; &amp;nbsp;
-                                                                &amp;nbsp;&amp;nbsp;</b>
+                                                                &amp;nbsp;&amp;nbsp;
                                                     </li>
                                                     <li>
                                                         <i />
@@ -440,7 +444,6 @@ En cas de réussite, le préfet de région vous octroie une attestation de fin d
                                                 <p class="                             text-center                             font-weight-bolder                             text-dark                             h1                             display-4                             mb-0                           ">
                                                     <font>
                                                         <p class="                                 text-center                                 font-weight-bolder                                 text-dark                                 h1                                 display-4                                 mb-0                               " t-if="not promo">
-                                                            <span class="pricebar" style="color: black;font-size: 25px;font-weight: 500;">590 €</span>
                                                             <span style="font-size: 3.5rem;" t-esc="round(product.list_price)" />
                                                             <span style="font-size: 3.5rem;" t-esc="product.currency_id.symbol" />
 
@@ -466,6 +469,9 @@ En cas de réussite, le préfet de région vous octroie une attestation de fin d
                                                 <p class="                             medium                             text-center                             font-weight-bolder                             text-secondary                           " style="color: red !important" t-if="not partenaire or partenaire==''">
                                                             Paiement 1 ou 2 fois
                                                         </p>
+                                                <p style="font-size:14px; color:red; font-weight:700; text-align:center">
+                                                        sans frais
+                                                            </p>
 
                                                 <br />
                                                 <button class="btn btn-block text-white" onClick="(function(){ document.getElementById('form-1-1').submit();return false;})();return false;" style="background-color: #6e209f; border-radius: 25px">
