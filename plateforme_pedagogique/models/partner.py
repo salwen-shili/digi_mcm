@@ -398,7 +398,7 @@ class partner(models.Model):
                 if (create):
                     _logger.info('create %s' % user.login)
                     today = date.today()
-                    new_format = '%d %m %Y'
+                    new_format = '%d/%m/%Y'
                     # Changer format de date et la mettre en majuscule
                     date_ajout = today.strftime(new_format)
                     partner.date_creation = date_ajout
