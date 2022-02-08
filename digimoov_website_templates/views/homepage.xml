@@ -586,25 +586,20 @@
                             <div class="pricing1 spacer" id="pricing">
                                 <div class="container">
 
-                                    <div class="row">
-                                        <h2 class="col-lg-6 text-beta title">
-                                            <b> LET'S GO !</b>
+                                    <div class="col-md-8 text-center col-lg-11">
+                                        <h2 class="text-beta title">
+                                            LET'S GO !
                                             <br />
                                             Inscrivez-vous dès maintenant !
                                         </h2>
-                                        <div class="col-lg-6">
-                                            <div class="trustpilot-widget" data-locale="fr-FR" data-template-id="53aa8807dec7e10d38f59f32" data-businessunit-id="60a28e22d3a8ed00019ff03e" data-style-height="150px" data-style-width="100%" data-theme="light">
-                                                <a href="https://fr.trustpilot.com/review/digimoov.fr" target="_blank" rel="noopener">Trustpilot</a>
-                                            </div>
-                                        </div>
-                                        <!-- <h3 class="subtitle">
-                                                <span style="color: rgb(66, 66, 66); font-size: 16px">
+                                        <h3 class="subtitle">
+                                            <span style="color: rgb(66, 66, 66); font-size: 16px">
                                                         Choisissez la formule qui vous convient</span>
-                                                &amp;nbsp;
-                                                <span style="color: rgb(66, 66, 66); font-size: 16px">&amp;nbsp;
-                                                        </span>
-                                                <br />
-                                            </h3> -->
+                                            &amp;nbsp;
+                                            <span style="color: rgb(66, 66, 66); font-size: 16px">&amp;nbsp;
+                                        </span>
+                                            <br />
+                                        </h3>
                                     </div>
 
                                 </div>
