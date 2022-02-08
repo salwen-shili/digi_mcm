@@ -467,9 +467,7 @@ En cas de réussite, le préfet de région vous octroie une attestation de fin d
                                                 <p class="                             medium                             text-center                             font-weight-bolder                             text-secondary                           " style="color: red !important" t-if="not partenaire or partenaire==''">
                                                             Paiement 1 ou 2 fois
                                                         </p>
-                                                <p style="font-size:14px; color:red; font-weight:700; text-align:center">
-                                                        sans frais
-                                                            </p>
+
 
                                                 <br />
                                                 <button class="btn btn-block text-white" onClick="(function(){ document.getElementById('form-1-1').submit();return false;})();return false;" style="background-color: #6e209f; border-radius: 25px">
