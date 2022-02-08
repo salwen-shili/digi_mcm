@@ -621,90 +621,90 @@ class WebhookController(http.Controller):
                     user.partner_id.module_id = module_id
                     request.env.user.company_id = 2
                     """chercher facture avec numero de dossier si n'existe pas on crée une facture"""
-                    invoice = request.env['account.move'].sudo().search(
-                        [('numero_cpf', "=", externalId),
-                         ('state', "=", 'posted'),
-                         ('partner_id', "=", user.partner_id.id)], limit=1)
-                    print('invoice', invoice.name)
-                    if not invoice:
-                        print('if  not invoice digi ')
-                        so = request.env['sale.order'].sudo().create({
-                            'partner_id': user.partner_id.id,
-                            'company_id': 2,
-                        })
-                        so.module_id = module_id
-                        so.session_id = module_id.session_id
-
-                        so_line = request.env['sale.order.line'].sudo().create({
-                            'name': product_id.name,
-                            'product_id': product_id.id,
-                            'product_uom_qty': 1,
-                            'product_uom': product_id.uom_id.id,
-                            'price_unit': product_id.list_price,
-                            'order_id': so.id,
-                            'tax_id': product_id.taxes_id,
-                            'company_id': 2,
-                        })
-                        # prix de la formation dans le devis
-                        amount_before_instalment = so.amount_total
-                        # so.amount_total = so.amount_total * 0.25
-                        for line in so.order_line:
-                            line.price_unit = so.amount_total
-                        so.action_confirm()
-                        ref = False
-                        # Creation de la Facture Cpf
-                        # Si la facture est de type CPF :  On parse le pourcentage qui est 25 %
-                        # methode_payment prend la valeur CPF pour savoir bien qui est une facture CPF qui prend la valeur 25 % par default
-
-                        if so.amount_total > 0 and so.order_line:
-                            moves = so._create_invoices(final=True)
-                            for move in moves:
-                                move.type_facture = 'interne'
-                                # move.cpf_acompte_invoice= True
-                                # move.cpf_invoice =True
-                                move.methodes_payment = 'cpf'
-                                move.numero_cpf = externalId
-                                move.pourcentage_acompte = 25
-                                move.module_id = so.module_id
-                                move.session_id = so.session_id
-                                if so.pricelist_id.code:
-                                    move.pricelist_id = so.pricelist_id
-                                move.company_id = so.company_id
-                                move.price_unit = so.amount_total
-                                # move.cpf_acompte_invoice=True
-                                # move.cpf_invoice = True
-                                move.methodes_payment = 'cpf'
-                                move.post()
-                                ref = move.name
-
-                        so.action_cancel()
-                        so.unlink()
-                        user.partner_id.statut = 'won'
-                        if not user.partner_id.renounce_request and product_id.default_code != 'habilitation-electrique':
+                    # invoice = request.env['account.move'].sudo().search(
+                    #     [('numero_cpf', "=", externalId),
+                    #      ('state', "=", 'posted'),
+                    #      ('partner_id', "=", user.partner_id.id)], limit=1)
+                    # print('invoice', invoice.name)
+                    # if not invoice:
+                    #     print('if  not invoice digi ')
+                    #     so = request.env['sale.order'].sudo().create({
+                    #         'partner_id': user.partner_id.id,
+                    #         'company_id': 2,
+                    #     })
+                    #     so.module_id = module_id
+                    #     so.session_id = module_id.session_id
+                    #
+                    #     so_line = request.env['sale.order.line'].sudo().create({
+                    #         'name': product_id.name,
+                    #         'product_id': product_id.id,
+                    #         'product_uom_qty': 1,
+                    #         'product_uom': product_id.uom_id.id,
+                    #         'price_unit': product_id.list_price,
+                    #         'order_id': so.id,
+                    #         'tax_id': product_id.taxes_id,
+                    #         'company_id': 2,
+                    #     })
+                    #     # prix de la formation dans le devis
+                    #     amount_before_instalment = so.amount_total
+                    #     # so.amount_total = so.amount_total * 0.25
+                    #     for line in so.order_line:
+                    #         line.price_unit = so.amount_total
+                    #     so.action_confirm()
+                    #     ref = False
+                    #     # Creation de la Facture Cpf
+                    #     # Si la facture est de type CPF :  On parse le pourcentage qui est 25 %
+                    #     # methode_payment prend la valeur CPF pour savoir bien qui est une facture CPF qui prend la valeur 25 % par default
+                    #
+                    #     if so.amount_total > 0 and so.order_line:
+                    #         moves = so._create_invoices(final=True)
+                    #         for move in moves:
+                    #             move.type_facture = 'interne'
+                    #             # move.cpf_acompte_invoice= True
+                    #             # move.cpf_invoice =True
+                    #             move.methodes_payment = 'cpf'
+                    #             move.numero_cpf = externalId
+                    #             move.pourcentage_acompte = 25
+                    #             move.module_id = so.module_id
+                    #             move.session_id = so.session_id
+                    #             if so.pricelist_id.code:
+                    #                 move.pricelist_id = so.pricelist_id
+                    #             move.company_id = so.company_id
+                    #             move.price_unit = so.amount_total
+                    #             # move.cpf_acompte_invoice=True
+                    #             # move.cpf_invoice = True
+                    #             move.methodes_payment = 'cpf'
+                    #             move.post()
+                    #             ref = move.name
+                    #
+                    #     so.action_cancel()
+                    #     so.unlink()
+                    user.partner_id.statut = 'won'
+                    if not user.partner_id.renounce_request and product_id.default_code != 'habilitation-electrique':
+                        if user.partner_id.phone:
+                            phone = str(user.partner_id.phone.replace(' ', ''))[-9:]
+                            phone = '+33' + ' ' + phone[0:1] + ' ' + phone[1:3] + ' ' + phone[3:5] + ' ' + phone[
+                                                                                                           5:7] + ' ' + phone[
+                                                                                                                        7:]
+                            user.partner_id.phone = phone
+                        url = str(user.partner_id.get_base_url()) + '/my'
+                        body = "Chere(e) %s félicitation pour votre inscription, votre formation commence dans 14 jours. Si vous souhaitez commencer dès maintenant cliquez sur le lien suivant : %s" % (
+                            user.partner_id.name, url)
+                        if body:
+                            composer = request.env['sms.composer'].with_context(
+                                default_res_model='res.partner',
+                                default_res_ids=user.partner_id.id,
+                                default_composition_mode='mass',
+                            ).sudo().create({
+                                'body': body,
+                                'mass_keep_log': True,
+                                'mass_force_send': True,
+                            })
+                            composer.action_send_sms()
                             if user.partner_id.phone:
-                                phone = str(user.partner_id.phone.replace(' ', ''))[-9:]
-                                phone = '+33' + ' ' + phone[0:1] + ' ' + phone[1:3] + ' ' + phone[3:5] + ' ' + phone[
-                                                                                                               5:7] + ' ' + phone[
-                                                                                                                            7:]
-                                user.partner_id.phone = phone
-                            url = str(user.partner_id.get_base_url()) + '/my'
-                            body = "Chere(e) %s félicitation pour votre inscription, votre formation commence dans 14 jours. Si vous souhaitez commencer dès maintenant cliquez sur le lien suivant : %s" % (
-                                user.partner_id.name, url)
-                            if body:
-                                composer = request.env['sms.composer'].with_context(
-                                    default_res_model='res.partner',
-                                    default_res_ids=user.partner_id.id,
-                                    default_composition_mode='mass',
-                                ).sudo().create({
-                                    'body': body,
-                                    'mass_keep_log': True,
-                                    'mass_force_send': True,
-                                })
-                                composer.action_send_sms()
-                                if user.partner_id.phone:
-                                    user.partner_id.phone = '0' + str(user.partner_id.phone.replace(' ', ''))[-9:]
-                        """changer step à validé dans espace client """
-                        user.partner_id.step = 'finish'
+                                user.partner_id.phone = '0' + str(user.partner_id.phone.replace(' ', ''))[-9:]
+                    """changer step à validé dans espace client """
+                    user.partner_id.step = 'finish'
                     session = request.env['partner.sessions'].search([('client_id', '=', user.partner_id.id),
                                                                    (
                                                                        'session_id', '=', module_id.session_id.id)])
@@ -733,105 +733,105 @@ class WebhookController(http.Controller):
                     today = date.today()
                     date_min = today - relativedelta(months=2)
                     """chercher facture avec numero de dossier si n'existe pas on crée une facture"""
-                    invoice = request.env['account.move'].sudo().search(
-                        [('numero_cpf', "=", externalId),
-                         ('state', "=", 'posted'),
-                         ('partner_id', "=", user.partner_id.id)], limit=1)
-                    print('invoice', invoice)
-                    if not invoice:
-                        print('if  not invoice mcm')
-                        so = request.env['sale.order'].sudo().create({
-                            'partner_id': user.partner_id.id,
-                            'company_id': 1,
-                        })
-                        request.env['sale.order.line'].sudo().create({
-                            'name': product_id.name,
-                            'product_id': product_id.id,
-                            'product_uom_qty': 1,
-                            'product_uom': product_id.uom_id.id,
-                            'price_unit': product_id.list_price,
-                            'order_id': so.id,
-                            'tax_id': product_id.taxes_id,
-                            'company_id': 1
-                        })
-                        # Enreggistrement des valeurs de la facture
-                        # Parser le pourcentage d'acompte
-                        # Creation de la fcture étape Finale
-                        # Facture comptabilisée
-                        so.action_confirm()
-                        so.module_id = module_id
-                        so.session_id = module_id.session_id
-                        moves = so._create_invoices(final=True)
-                        for move in moves:
-                            move.type_facture = 'interne'
-                            move.module_id = so.module_id
-                            # move.cpf_acompte_invoice=True
-                            # move.cpf_invoice =True
-                            move.methodes_payment = 'cpf'
-                            move.numero_cpf = externalId
-                            move.pourcentage_acompte = 25
-                            move.session_id = so.session_id
-                            move.company_id = so.company_id
-                            move.website_id = 1
-                            for line in move.invoice_line_ids:
-                                if line.account_id != line.product_id.property_account_income_id and line.product_id.property_account_income_id:
-                                    line.account_id = line.product_id.property_account_income_id
-                            move.post()
-                        so.action_cancel()
-                        so.unlink()
-                        user.partner_id.statut = 'won'
-                        if not user.partner_id.renounce_request:
+                    # invoice = request.env['account.move'].sudo().search(
+                    #     [('numero_cpf', "=", externalId),
+                    #      ('state', "=", 'posted'),
+                    #      ('partner_id', "=", user.partner_id.id)], limit=1)
+                    # print('invoice', invoice)
+                    # if not invoice:
+                    #     print('if  not invoice mcm')
+                    #     so = request.env['sale.order'].sudo().create({
+                    #         'partner_id': user.partner_id.id,
+                    #         'company_id': 1,
+                    #     })
+                    #     request.env['sale.order.line'].sudo().create({
+                    #         'name': product_id.name,
+                    #         'product_id': product_id.id,
+                    #         'product_uom_qty': 1,
+                    #         'product_uom': product_id.uom_id.id,
+                    #         'price_unit': product_id.list_price,
+                    #         'order_id': so.id,
+                    #         'tax_id': product_id.taxes_id,
+                    #         'company_id': 1
+                    #     })
+                    #     # Enreggistrement des valeurs de la facture
+                    #     # Parser le pourcentage d'acompte
+                    #     # Creation de la fcture étape Finale
+                    #     # Facture comptabilisée
+                    #     so.action_confirm()
+                    #     so.module_id = module_id
+                    #     so.session_id = module_id.session_id
+                    #     moves = so._create_invoices(final=True)
+                    #     for move in moves:
+                    #         move.type_facture = 'interne'
+                    #         move.module_id = so.module_id
+                    #         # move.cpf_acompte_invoice=True
+                    #         # move.cpf_invoice =True
+                    #         move.methodes_payment = 'cpf'
+                    #         move.numero_cpf = externalId
+                    #         move.pourcentage_acompte = 25
+                    #         move.session_id = so.session_id
+                    #         move.company_id = so.company_id
+                    #         move.website_id = 1
+                    #         for line in move.invoice_line_ids:
+                    #             if line.account_id != line.product_id.property_account_income_id and line.product_id.property_account_income_id:
+                    #                 line.account_id = line.product_id.property_account_income_id
+                    #         move.post()
+                    #     so.action_cancel()
+                    #     so.unlink()
+                    user.partner_id.statut = 'won'
+                    if not user.partner_id.renounce_request:
+                        if user.partner_id.phone:
+                            phone = str(user.partner_id.phone.replace(' ', ''))[-9:]
+                            phone = '+33' + ' ' + phone[0:1] + ' ' + phone[1:3] + ' ' + phone[
+                                                                                        3:5] + ' ' + phone[
+                                                                                                     5:7] + ' ' + phone[
+                                                                                                                  7:]
+                            user.partner_id.phone = phone
+                        url = str(user.partner_id.get_base_url()) + '/my'
+                        body = "Chere(e) %s félicitation pour votre inscription, votre formation commence dans 14 jours. Si vous souhaitez commencer dès maintenant cliquez sur le lien suivant : %s" % (
+                            user.partner_id.name, url)
+                        if body:
+                            composer = request.env['sms.composer'].with_context(
+                                default_res_model='res.partner',
+                                default_res_ids=user.partner_id.id,
+                                default_composition_mode='mass',
+                            ).sudo().create({
+                                'body': body,
+                                'mass_keep_log': True,
+                                'mass_force_send': True,
+                            })
+                            composer.action_send_sms()  # envoyer un sms de félicitation au client et l'informer que sa formation commence dans 14 jours car il n'a pas cocher la rénoncation
                             if user.partner_id.phone:
-                                phone = str(user.partner_id.phone.replace(' ', ''))[-9:]
-                                phone = '+33' + ' ' + phone[0:1] + ' ' + phone[1:3] + ' ' + phone[
-                                                                                            3:5] + ' ' + phone[
-                                                                                                         5:7] + ' ' + phone[
-                                                                                                                      7:]
-                                user.partner_id.phone = phone
-                            url = str(user.partner_id.get_base_url()) + '/my'
-                            body = "Chere(e) %s félicitation pour votre inscription, votre formation commence dans 14 jours. Si vous souhaitez commencer dès maintenant cliquez sur le lien suivant : %s" % (
-                                user.partner_id.name, url)
-                            if body:
-                                composer = request.env['sms.composer'].with_context(
-                                    default_res_model='res.partner',
-                                    default_res_ids=user.partner_id.id,
-                                    default_composition_mode='mass',
-                                ).sudo().create({
-                                    'body': body,
-                                    'mass_keep_log': True,
-                                    'mass_force_send': True,
-                                })
-                                composer.action_send_sms()  # envoyer un sms de félicitation au client et l'informer que sa formation commence dans 14 jours car il n'a pas cocher la rénoncation
-                                if user.partner_id.phone:
-                                    user.partner_id.phone = '0' + str(user.partner_id.phone.replace(' ', ''))[
-                                                                  -9:]
-                        else:
+                                user.partner_id.phone = '0' + str(user.partner_id.phone.replace(' ', ''))[
+                                                              -9:]
+                    else:
+                        if user.partner_id.phone:
+                            phone = str(user.partner_id.phone.replace(' ', ''))[-9:]
+                            phone = '+33' + ' ' + phone[0:1] + ' ' + phone[1:3] + ' ' + phone[
+                                                                                        3:5] + ' ' + phone[
+                                                                                                     5:7] + ' ' + phone[
+                                                                                                                  7:]
+                            user.partner_id.phone = phone
+                        url = 'https://formation.mcm-academy.fr/register'
+                        body = "Chere(e) %s : félicitation pour votre inscription, vous avez été invité par MCM ACADEMY à commencer votre formation via ce lien : %s . vous devez créer un compte avec les mêmes identifiants que MCM ACADEMY" % (
+                            user.partner_id.name, url)
+                        if body:
+                            composer = request.env['sms.composer'].with_context(
+                                default_res_model='res.partner',
+                                default_res_ids=user.partner_id.id,
+                                default_composition_mode='mass',
+                            ).sudo().create({
+                                'body': body,
+                                'mass_keep_log': True,
+                                'mass_force_send': True,
+                            })
+                            composer.action_send_sms()
                             if user.partner_id.phone:
-                                phone = str(user.partner_id.phone.replace(' ', ''))[-9:]
-                                phone = '+33' + ' ' + phone[0:1] + ' ' + phone[1:3] + ' ' + phone[
-                                                                                            3:5] + ' ' + phone[
-                                                                                                         5:7] + ' ' + phone[
-                                                                                                                      7:]
-                                user.partner_id.phone = phone
-                            url = 'https://formation.mcm-academy.fr/register'
-                            body = "Chere(e) %s : félicitation pour votre inscription, vous avez été invité par MCM ACADEMY à commencer votre formation via ce lien : %s . vous devez créer un compte avec les mêmes identifiants que MCM ACADEMY" % (
-                                user.partner_id.name, url)
-                            if body:
-                                composer = request.env['sms.composer'].with_context(
-                                    default_res_model='res.partner',
-                                    default_res_ids=user.partner_id.id,
-                                    default_composition_mode='mass',
-                                ).sudo().create({
-                                    'body': body,
-                                    'mass_keep_log': True,
-                                    'mass_force_send': True,
-                                })
-                                composer.action_send_sms()
-                                if user.partner_id.phone:
-                                    user.partner_id.phone = '0' + str(user.partner_id.phone.replace(' ', ''))[
-                                                                  -9:]
-                        """changer step à validé dans espace client """
-                        user.partner_id.step = 'finish'
+                                user.partner_id.phone = '0' + str(user.partner_id.phone.replace(' ', ''))[
+                                                              -9:]
+                    """changer step à validé dans espace client """
+                    user.partner_id.step = 'finish'
                     session = request.env['partner.sessions'].search([('client_id', '=', user.partner_id.id),
                                                                    (
                                                                        'session_id', '=', module_id.session_id.id)])
