@@ -653,10 +653,14 @@ class partner(models.Model):
     def wedof_api_integration(self):
         base_url = self.env['ir.config_parameter'].sudo().get_param('web.base.url')
         if "localhost" not in str(base_url) and "dev.odoo" not in str(base_url):
+            companies = self.env['res.company'].sudo().search([('id',"=",2)])
+            api_key=""
+            if companies:
+                api_key = companies.wedof_api_key
             headers = {
                 'accept': 'application/json',
                 'Content-Type': 'application/json',
-                'X-API-KEY': '026514d6bc7d880515a27eae4947bccef4fbbf03',
+                'X-API-KEY': api_key,
             }
             params_wedof = (
                 ('order', 'desc'),
@@ -700,8 +704,7 @@ class partner(models.Model):
                 print('date', today, dateFormation, certificat)
                 """Si date de formation <= ajourdhui et s'il a choisi  la formation de transport  léger de marchandises
                 on cherche l'apprenant par email sur 360"""
-                if (certificat == "Formation à l'obtention de l'attestation de capacité professionnelle en transport léger de marchandises") \
-                        and (dateFormation <= today):
+                if 'digimoov' in str(idform) and (dateFormation <= today):
                     _logger.info('wedooooffffff %s' % certificat)
                     _logger.info('dateformation %s' % dateFormation)
                     _logger.info('email %s' % email)
@@ -873,7 +876,7 @@ class partner(models.Model):
 
     def change_state_cpf_partner(self):
         base_url = self.env['ir.config_parameter'].sudo().get_param('web.base.url')
-        if "localhost" not in str(base_url) and "dev.odoo" not in str(base_url):
+        if "localhost"  in str(base_url) and "dev.odoo" not in str(base_url):
             companies = self.env['res.company'].sudo().search([])
             if companies:
                 for company in companies:
