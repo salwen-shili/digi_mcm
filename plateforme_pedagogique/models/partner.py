@@ -246,12 +246,15 @@ class partner(models.Model):
                                 'Content-Type': 'application/json',
                                 'X-API-KEY': partner.company_id.wedof_api_key,
                             }
-                            response = requests.get('https://www.wedof.fr/api/registrationFolders/'+partner.numero_cpf, headers=headers)
-                            dossier=response.json()
-                            dateDebutSession_str=dossier['trainingActionInfo']['sessionStartDate']
-                            dateDebutSession= datetime.strptime(dateDebutSession_str, '%Y-%m-%dT%H:%M:%S.%fz')
-                            if dateDebutSession <= datetime.today():
-                                self.ajouter_iOne(partner)
+                            responsesession = requests.get('https://www.wedof.fr/api/registrationFolders/'+partner.numero_cpf, headers=headers)
+                            dossier=responsesession.json()
+                            _logger.info('session %s' % str(dossier))
+                            dateDebutSession_str=""
+                            if "trainingActionInfo" in dossier:
+                                dateDebutSession_str=dossier['trainingActionInfo']['sessionStartDate']
+                                dateDebutSession= datetime.strptime(dateDebutSession_str, '%Y-%m-%dT%H:%M:%S.%fz')
+                                if dateDebutSession <= datetime.today():
+                                    self.ajouter_iOne(partner)
 
     # Ajouter ione manuellement
     def ajouter_iOne_manuelle(self):
@@ -306,13 +309,16 @@ class partner(models.Model):
                         'Content-Type': 'application/json',
                         'X-API-KEY': self.company_id.wedof_api_key,
                     }
-                    response = requests.get('https://www.wedof.fr/api/registrationFolders/' + partner.numero_cpf,
-                                            headers=headers)
-                    dossier = response.json()
-                    dateDebutSession_str = dossier['trainingActionInfo']['sessionStartDate']
-                    dateDebutSession = datetime.strptime(dateDebutSession_str, '%Y-%m-%dT%H:%M:%S.%fz')
-                    if dateDebutSession <= datetime.today():
-                        self.ajouter_iOne(self)
+                    responsesession = requests.get('https://www.wedof.fr/api/registrationFolders/' + partner.numero_cpf,
+                                                   headers=headers)
+                    dossier = responsesession.json()
+                    dateDebutSession_str = ""
+                    _logger.info('session %s' %str(dossier))
+                    if "trainingActionInfo" in dossier:
+                        dateDebutSession_str = dossier['trainingActionInfo']['sessionStartDate']
+                        dateDebutSession = datetime.strptime(dateDebutSession_str, '%Y-%m-%dT%H:%M:%S.%fz')
+                        if dateDebutSession <= datetime.today():
+                            self.ajouter_iOne(partner)
 
     def ajouter_iOne(self, partner):
         # Remplacez les paramètres régionaux de l'heure par le paramètre de langue actuel
