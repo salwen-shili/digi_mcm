@@ -52,30 +52,29 @@
                                             <br />
                                         </h1>
                                     </t>
-
-                                    <!-- TrustBox widget - Mini -->
-                                    <div style="max-width: 181px;" class="trustpilot-widget" data-locale="fr-FR" data-template-id="53aa8807dec7e10d38f59f32" data-businessunit-id="60a28e22d3a8ed00019ff03e" data-style-height="150px" data-style-width="100%" data-theme="light">
-                                        <a href="https://fr.trustpilot.com/review/digimoov.fr" target="_blank" rel="noopener">Trustpilot</a>
-                                    </div>
-                                    <!-- End TrustBox widget -->
                                     <div class="boosting-section tab-btn s_btn">
                                         <a href="/attestation-transport-leger-marchandises" class="
-                    homebuttonspacing
-                    boosting-section
-                    boostingbtn
-                    btn btn-alpha
-                    rounded-circle
-                  ">En savoir plus
+                                            homebuttonspacing
+                                            boosting-section
+                                            boostingbtn
+                                            btn btn-alpha
+                                            rounded-circle
+                                        ">En savoir plus
                                         </a>
                                         <a class="
-                    homebuttonspacing
-                    boosting-section
-                    boostingbtn
-                    btn btn-alpha
-                    rounded-circle
-                  " href="/contact" target="_blank" rel="noopner">
+                                            homebuttonspacing
+                                            boosting-section
+                                            boostingbtn
+                                            btn btn-alpha
+                                            rounded-circle
+                                        " href="/contact" target="_blank" rel="noopner">
                                             Contactez-nous
-                                            </a>
+                                        </a>
+                                        <!-- TrustBox widget - Mini -->
+                                        <div style="max-width: 181px;margin-block-start: 44px;" class="trustpilot-widget" data-locale="fr-FR" data-template-id="53aa8807dec7e10d38f59f32" data-businessunit-id="60a28e22d3a8ed00019ff03e" data-style-height="150px" data-style-width="100%" data-theme="light">
+                                            <a href="https://fr.trustpilot.com/review/digimoov.fr" target="_blank" rel="noopener">Trustpilot</a>
+                                        </div>
+                                        <!-- End TrustBox widget -->
                                     </div>
 
                                     <!-- <div class="s_btn" data-name="Button">
@@ -586,20 +585,25 @@
                             <div class="pricing1 spacer" id="pricing">
                                 <div class="container">
 
-                                    <div class="col-md-8 text-center col-lg-11">
-                                        <h2 class="text-beta title">
-                                            LET'S GO !
+                                    <div class="row">
+                                        <h2 class="col-lg-6 text-beta title">
+                                            <b> LET'S GO !</b>
                                             <br />
                                             Inscrivez-vous dès maintenant !
                                         </h2>
-                                        <h3 class="subtitle">
-                                            <span style="color: rgb(66, 66, 66); font-size: 16px">
+                                        <div class="col-lg-6">
+                                            <div class="trustpilot-widget" data-locale="fr-FR" data-template-id="53aa8807dec7e10d38f59f32" data-businessunit-id="60a28e22d3a8ed00019ff03e" data-style-height="150px" data-style-width="100%" data-theme="light">
+                                                <a href="https://fr.trustpilot.com/review/digimoov.fr" target="_blank" rel="noopener">Trustpilot</a>
+                                            </div>
+                                        </div>
+                                        <!-- <h3 class="subtitle">
+                                                <span style="color: rgb(66, 66, 66); font-size: 16px">
                                                         Choisissez la formule qui vous convient</span>
-                                            &amp;nbsp;
-                                            <span style="color: rgb(66, 66, 66); font-size: 16px">&amp;nbsp;
-                                        </span>
-                                            <br />
-                                        </h3>
+                                                &amp;nbsp;
+                                                <span style="color: rgb(66, 66, 66); font-size: 16px">&amp;nbsp;
+                                                        </span>
+                                                <br />
+                                            </h3> -->
                                     </div>
 
                                 </div>
@@ -751,9 +755,7 @@
                                                         <p class="                             medium                             text-center                             font-weight-bolder                             text-secondary                           " style="color: red !important; margin-bottom: 8px !important;" t-if="not partenaire or partenaire==''">
                                                             Paiement 1 ou 2 fois
                                                         </p>
-                                                        <p style="font-size:14px; color:red; font-weight:700; text-align:center">
-                                                        sans frais
-                                                            </p>
+
 
                                                         <br />
                                                         <button class="btn btn-block text-white" onClick="(function(){ document.getElementById('form-1-1').submit();return false;})();return false;" style="background-color: #6e209f; border-radius: 25px">
@@ -881,9 +883,7 @@
                                                         <p class="                             medium                             text-center                             font-weight-bolder                             text-secondary                           " style="color: red !important; margin-bottom:8px !important">
                                                             Paiement 1 ou 2 fois
                                                             </p>
-                                                        <p style="font-size:14px; color:red; font-weight:700; text-align:center">
-                                                            sans frais
-                                                            </p>
+
                                                         <br />
                                                         <button class="btn btn-block text-white" onClick="(function(){document.getElementById('form-2-1').submit();return false;})();return false;" style="background-color: #6e209f; border-radius: 25px">
                                                             Je m'inscris
@@ -1005,13 +1005,11 @@
                                                         <p class="                             medium                             text-center                             font-weight-bolder                             text-secondary                           " style="color: red !important; margin-bottom:8px !important">
                                                             Paiement 1 ou 3 fois
                                                             </p>
-                                                        <p style="font-size:14px; color:red; font-weight:700; text-align:center">
-                                                            sans frais
-                                                            </p>
+
                                                         <br />
                                                         <button class="btn btn-block text-white" onClick="(function(){ document.getElementById('form-3-1').submit();return false;})();return false;" style="background-color: #6e209f; border-radius: 25px">
                                                             Je m'inscris
-                                                            </button>
+                                                        </button>
                                                     </div>
                                                 </form>
                                             </t>
