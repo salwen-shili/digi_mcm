@@ -10,7 +10,7 @@
             <br />
 
             <div id="wrap" class="oe_structure oe_empty">
-                <div id="homepage" t-if="partenaire!='coursier2roues'">
+                <div id="homepage" t-if="partenaire!='coursier2roues' and partenaire!='habilitation-electrique' and partenaire!='eco-conduite' and partenaire!='transport-routier'">
 
                     <section class="s_one_page_banner static-slider2" data-name="Home Banner Ten" style="">
                         <div class="container">
