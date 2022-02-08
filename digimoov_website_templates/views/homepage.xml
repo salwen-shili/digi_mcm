@@ -10,8 +10,8 @@
             <br />
 
             <div id="wrap" class="oe_structure oe_empty">
-                <!-- Homepage Digimoov-->
                 <div id="homepage" t-if="partenaire!='coursier2roues' and partenaire!='habilitation-electrique' and partenaire!='eco-conduite' and partenaire!='transport-routier'">
+
                     <section class="s_one_page_banner static-slider2" data-name="Home Banner Ten" style="">
                         <div class="container">
                             <div class="row align-items-center">
@@ -52,26 +52,27 @@
                                             <br />
                                         </h1>
                                     </t>
+                                    <br />
                                     <div class="boosting-section tab-btn s_btn">
                                         <a href="/attestation-transport-leger-marchandises" class="
-                                            homebuttonspacing
-                                            boosting-section
-                                            boostingbtn
-                                            btn btn-alpha
-                                            rounded-circle
-                                        ">En savoir plus
+                    homebuttonspacing
+                    boosting-section
+                    boostingbtn
+                    btn btn-alpha
+                    rounded-circle
+                  ">En savoir plus
                                         </a>
                                         <a class="
-                                            homebuttonspacing
-                                            boosting-section
-                                            boostingbtn
-                                            btn btn-alpha
-                                            rounded-circle
-                                        " href="/contact" target="_blank" rel="noopner">
+                    homebuttonspacing
+                    boosting-section
+                    boostingbtn
+                    btn btn-alpha
+                    rounded-circle
+                  " href="/contact" target="_blank" rel="noopner">
                                             Contactez-nous
                                         </a>
                                         <!-- TrustBox widget - Mini -->
-                                        <div style="max-width: 181px;margin-block-start: 44px;" class="trustpilot-widget" data-locale="fr-FR" data-template-id="53aa8807dec7e10d38f59f32" data-businessunit-id="60a28e22d3a8ed00019ff03e" data-style-height="150px" data-style-width="100%" data-theme="light">
+                                        <div style="max-width: 181px;margin-block-start: 40px;" class="trustpilot-widget" data-locale="fr-FR" data-template-id="53aa8807dec7e10d38f59f32" data-businessunit-id="60a28e22d3a8ed00019ff03e" data-style-height="150px" data-style-width="100%" data-theme="light">
                                             <a href="https://fr.trustpilot.com/review/digimoov.fr" target="_blank" rel="noopener">Trustpilot</a>
                                         </div>
                                         <!-- End TrustBox widget -->
@@ -108,16 +109,13 @@
                       <i class="fa fa-1x fa-fw fa-long-arrow-right ml-1" />
                     </a> -->
                                 </div>
-
                                 <div class="col-md-6 img-anim">
                                     <img class="img img-fluid" src="/digimoov_website_templates/static/img/Formation capacité de transport léger.gif" alt="Formation capacité transport léger de marchandises" data-original-title="" title="Formation capacité de transport leger de marchandise" aria-describedby="tooltip407937" />
-
                                 </div>
                             </div>
                         </div>
                     </section>
-                    <br />
-                    <br />
+
                     <!-- Logos-->
                     <style>
            .center-logo {
@@ -136,7 +134,7 @@
             align-items: center;
           }
                      </style>
-                    <section class="pt40 pb32 js-scroll fade-in-top">
+                    <section class="pt16 pb32 js-scroll fade-in-top">
                         <div class="container js-scroll fade-in-top">
                             <div class="center-logo">
                                 <div>
