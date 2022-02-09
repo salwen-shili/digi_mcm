@@ -33,16 +33,16 @@
                                 </p>
                             </div>
                             <div class="col-md-4 col-lg-6 align-self-center ml-auto">
-                                <img src="/digimoov_website_templates/static/img/financement/Mon-compte-professionnel-formation-cpf-1 (1).png" alt="We are Digital Agency" class="img-fluid" data-original-title="" title="" aria-describedby="tooltip641485" />
+                                <img src="/digimoov_website_templates/static/img/financement/Mon-compte-professionnel-formation-cpf-1 (1).png" alt="We are Digital Agency" class="img-fluid" aria-describedby="tooltip641485" />
                             </div>
                         </div>
                     </div>
                 </section>
                 <section class="s_text_image pt32 pb0" data-name="Image - Text">
-                    <div class="container">
+                    <div class="spacer container">
                         <div class="row align-items-center">
                             <div class="col-lg-6 pt16 pb16">
-                                <img src="/digimoov_website_templates/static/img/financement/qu'est ce que le cpf - digimoov.png" class="img img-fluid mx-auto" alt="Odoo • Image et Texte" data-original-title="" title="" aria-describedby="tooltip435863" />
+                                <img src="/digimoov_website_templates/static/img/financement/qu'est ce que le cpf - digimoov.png" class="img img-fluid mx-auto" alt="Odoo • Image et Texte" aria-describedby="tooltip435863" />
                             </div>
                             <div class="col-lg-6 pt16 pb16" style="border-style: none; border-width: 0px;">
                                 <h2 class="text-beta title" style="text-align: center;">
@@ -83,7 +83,7 @@
                     </div>
                 </section>
                 <section class="s_restaurant_video_image" data-name="Two images with paragraph and video">
-                    <div class="spacer feature14">
+                    <div class="feature14">
                         <div class="container">
                             <div class="row">
                                 <div class="col-lg-4 col-md-4" style="border-style: none; border-width: 0px;">
@@ -129,7 +129,7 @@
                                 </div>
                                 <div class="col-lg-4 col-md-4 wrap-feature14-box">
                                     <div>
-                                        <img class="rounded img-responsive" src="/web/image/7452/Capacit%C3%A9%20de%20transport%20l%C3%A9ger%20de%20marchandise.gif" alt="bizople kit" data-original-title="" title="" aria-describedby="tooltip484413" />
+                                        <img class="rounded img-responsive" src="/web/image/7452/Capacit%C3%A9%20de%20transport%20l%C3%A9ger%20de%20marchandise.gif" alt="bizople kit" aria-describedby="tooltip484413" />
 
                                     </div>
                                 </div>
@@ -305,13 +305,16 @@
                             <div class="pt16 pb16 col-lg-4" style="border-style: none; border-width: 0px">
                                 <div id="myCollapse" class="accordion" role="tablist">
                                     <div class="card bg-white">
-                                        <a href="#" role="tab" data-toggle="collapse" aria-expanded="false" class="card-header collapsed" data-parent="#myCollapse" data-target="#myCollapseTab1616754726586" data-original-title="" title="" aria-describedby="tooltip5917">
+                                        <a href="#" role="tab" data-toggle="collapse" aria-expanded="false" class="card-header collapsed" data-parent="#myCollapse" data-target="#myCollapseTab1616754726586" aria-describedby="tooltip5917">
                                             Comment en bénéficier ?
                                         </a>
                                         <div class="collapse" role="tabpanel" id="myCollapseTab1616754726586">
                                             <div class="card-body">
                                                 <p class="card-text">
-                                                        Si vous avez un CPF depuis 2015 et que vous ne l'avez jamais utilisé, vous aurez à votre disposition 1 440&amp;nbsp;€. Vous pouvez également saisir vos heures de DIF (Droit individuel à la formation) s'il vous en reste
+                                                 Si vous avez un CPF depuis 2015 et que vous ne l'avez jamais utilisé, 
+                                                 vous aurez à votre disposition 1 440&amp;nbsp;€. Vous pouvez 
+                                                 également saisir vos heures de DIF (Droit individuel à la 
+                                                 formation) s'il vous en reste
                                                 </p>
                                             </div>
                                         </div>
@@ -321,12 +324,14 @@
                             <div class="pt16 pb16 col-lg-4" style="border-style: none; border-width: 0px">
                                 <div id="myCollapse" class="accordion" role="tablist">
                                     <div class="card bg-white">
-                                        <a href="#" role="tab" data-toggle="collapse" aria-expanded="false" class="card-header collapsed" data-parent="#myCollapse" data-original-title="" title="" aria-describedby="tooltip5917" data-target="#myCollapseTab1616754743649">Comment cela fonctionne?
+                                        <a href="#" role="tab" data-toggle="collapse" aria-expanded="false" class="card-header collapsed" data-parent="#myCollapse" aria-describedby="tooltip5917" data-target="#myCollapseTab1616754743649">Comment cela fonctionne?
                                         </a>
                                         <div class="collapse" role="tabpanel" id="myCollapseTab1616754743649">
                                             <div class="card-body">
                                                 <p class="card-text">
-                                                        Le Compte Personnel de Formation s'adresse à chaque actif désormais crédité de 500&amp;nbsp;€ par an (somme versée autour du mois d'avril). Cela peut monter à 800&amp;nbsp;€ pour les salariés moins qualifiés et les personnes en situation de handicap.
+                                                        Le Compte Personnel de Formation s'adresse à chaque actif désormais crédité de 500€ par an 
+                                                        (somme versée autour du mois d'avril). Cela peut monter à 800€ pour les salariés moins 
+                                                        qualifiés et les personnes en situation de handicap.
                                                 </p>
                                             </div>
                                         </div>
@@ -336,7 +341,7 @@
                             <div class="pt16 pb16 col-lg-4" style="border-style: none; border-width: 0px">
                                 <div id="myCollapse" class="accordion" role="tablist">
                                     <div class="card bg-white">
-                                        <a href="#" role="tab" data-toggle="collapse" aria-expanded="false" class="card-header collapsed" data-parent="#myCollapse" data-original-title="" title="" aria-describedby="tooltip5917" data-target="#myCollapseTab1616754743646">A quoi sert t-il ?
+                                        <a href="#" role="tab" data-toggle="collapse" aria-expanded="false" class="card-header collapsed" data-parent="#myCollapse" aria-describedby="tooltip5917" data-target="#myCollapseTab1616754743646">A quoi sert t-il ?
                                         </a>
                                         <div class="collapse" role="tabpanel" id="myCollapseTab1616754743646">
                                             <div class="card-body">
