@@ -1502,7 +1502,10 @@ class partner(models.Model):
                                                 'mass_keep_log': True,
                                                 'mass_force_send': True,
                                             })
-                                            composer.action_send_sms()
+                                            sms = self.env['mail.message'].search(
+                                                [('body', "=", body), ('res_id', "=", user.partner_id.id)])
+                                            if not sms:
+                                                composer.action_send_sms()
                                             if user.partner_id.phone:
                                                 user.partner_id.phone = '0' + str(user.partner_id.phone.replace(' ', ''))[-9:]
                                     """changer step à validé dans espace client """
@@ -1603,7 +1606,11 @@ class partner(models.Model):
                                                 'mass_keep_log': True,
                                                 'mass_force_send': True,
                                             })
-                                            composer.action_send_sms() # envoyer un sms de félicitation au client et l'informer que sa formation commence dans 14 jours car il n'a pas cocher la rénoncation
+                                            sms = self.env['mail.message'].sudo().search(
+                                                [("body", "=", body), ("message_type", "=", 'sms'),
+                                                 ("res_id", "=", partner.id)])
+                                            if not sms:
+                                                composer.action_send_sms() # envoyer un sms de félicitation d'inscription
                                             if user.partner_id.phone:
                                                 user.partner_id.phone = '0' + str(user.partner_id.phone.replace(' ', ''))[
                                                                               -9:]
@@ -1628,7 +1635,9 @@ class partner(models.Model):
                                                 'mass_keep_log': True,
                                                 'mass_force_send': True,
                                             })
-                                            composer.action_send_sms()
+                                            sms = self.env['mail.message'].search([('body', "=", body),('res_id',"=",user.partner_id.id)])
+                                            if not sms :
+                                                composer.action_send_sms()
                                             if user.partner_id.phone:
                                                 user.partner_id.phone = '0' + str(user.partner_id.phone.replace(' ', ''))[
                                                                               -9:]
