@@ -2,7 +2,9 @@
     <template id="digimoov_website_templates.digimoov_template_financement" name="Financer votre formation avec le CPF | Digimoov">
         <t t-call="website.layout">
             <script type="text/javascript" src="/mcm_website_theme/static/src/js/msAds.min.js" />
-
+            <!-- TrustBox script -->
+            <script type="text/javascript" src="//widget.trustpilot.com/bootstrap/v5/tp.widget.bootstrap.min.js" async="async"></script>
+            <!-- End TrustBox script -->
             <div id="wrap" class="oe_structure oe_empty">
                 <style>
                 @media (min-width: 1024px){
@@ -31,16 +33,16 @@
                                 </p>
                             </div>
                             <div class="col-md-4 col-lg-6 align-self-center ml-auto">
-                                <img src="/digimoov_website_templates/static/img/financement/Mon-compte-professionnel-formation-cpf-1 (1).png" alt="We are Digital Agency" class="img-fluid" data-original-title="" title="" aria-describedby="tooltip641485" />
+                                <img src="/digimoov_website_templates/static/img/financement/Mon-compte-professionnel-formation-cpf-1 (1).png" alt="We are Digital Agency" class="img-fluid" aria-describedby="tooltip641485" />
                             </div>
                         </div>
                     </div>
                 </section>
                 <section class="s_text_image pt32 pb0" data-name="Image - Text">
-                    <div class="container">
+                    <div class="spacer container">
                         <div class="row align-items-center">
                             <div class="col-lg-6 pt16 pb16">
-                                <img src="/digimoov_website_templates/static/img/financement/qu'est ce que le cpf - digimoov.png" class="img img-fluid mx-auto" alt="Odoo • Image et Texte" data-original-title="" title="" aria-describedby="tooltip435863" />
+                                <img src="/digimoov_website_templates/static/img/financement/qu'est ce que le cpf - digimoov.png" class="img img-fluid mx-auto" alt="Odoo • Image et Texte" aria-describedby="tooltip435863" />
                             </div>
                             <div class="col-lg-6 pt16 pb16" style="border-style: none; border-width: 0px;">
                                 <h2 class="text-beta title" style="text-align: center;">
@@ -81,7 +83,7 @@
                     </div>
                 </section>
                 <section class="s_restaurant_video_image" data-name="Two images with paragraph and video">
-                    <div class="spacer feature14">
+                    <div class="feature14">
                         <div class="container">
                             <div class="row">
                                 <div class="col-lg-4 col-md-4" style="border-style: none; border-width: 0px;">
@@ -122,22 +124,13 @@
                                             <iframe src="//www.youtube.com/embed/PN7gVHdT7x4?autoplay=0&amp;rel=0&amp;loop=1&amp;playlist=PN7gVHdT7x4&amp;modestbranding=1" frameborder="0" allowfullscreen="allowfullscreen" />
                                         </div>
                                         <div class="embed-responsive hide embed-responsive-16by9" data-animation="animated fadeIn"></div>
-                                        <div class="m-t-30">
-                                            <h5 class="font-medium">
-                                                <br />
-                                            </h5>
-                                            <h2 class="font-stylish-1 m-b-30 m-t-20 text-beta">&amp;nbsp;</h2>
-                                        </div>
+
                                     </div>
                                 </div>
                                 <div class="col-lg-4 col-md-4 wrap-feature14-box">
                                     <div>
-                                        <img class="rounded img-responsive" src="/web/image/7452/Capacit%C3%A9%20de%20transport%20l%C3%A9ger%20de%20marchandise.gif" alt="bizople kit" data-original-title="" title="" aria-describedby="tooltip484413" />
-                                        <div class="m-t-30">
-                                            <h5 class="font-medium">
-                                                <br />
-                                            </h5>
-                                        </div>
+                                        <img class="rounded img-responsive" src="/web/image/7452/Capacit%C3%A9%20de%20transport%20l%C3%A9ger%20de%20marchandise.gif" alt="bizople kit" aria-describedby="tooltip484413" />
+
                                     </div>
                                 </div>
                             </div>
@@ -146,290 +139,23 @@
                 </section>
 
                 <!-- Pricing table-->
-                <section class="s_one_page_pricing_plan bg-light-1" data-name="Pricing plan two">
-                    <div class="pricing1 spacer" id="pricing">
-                        <div class="container">
-                            <div class="row justify-content-center" style="justify-content: center;
-">
-                                <div class="col-md-8 text-center col-lg-11">
-                                    <h2 class="text-beta title">
-                                        LET'S GO !
-                                        <br />
-                                        Inscrivez-vous dès maintenant !
-                                    </h2>
-                                    <h3 class="subtitle">
-                                        <span style="color: rgb(66, 66, 66); font-size: 16px">
-                                                        Choisissez la formule qui vous convient</span>
-                                        &amp;nbsp;
-                                        <span style="color: rgb(66, 66, 66); font-size: 16px">&amp;nbsp;
-                                        </span>
-                                        <br />
-                                    </h3>
-                                </div>
+                <div class="row justify-content-center" style="justify-content: center;">
+                    <div class="col-md-8 text-center col-lg-11">
+                        <h2 class="text-beta title" style="margin-bottom: 19px;">
+                            LET'S GO !
+                            <br />
+                            Inscrivez-vous dès maintenant !
+                        </h2>
+                        <h3 class="subtitle" style="    margin: 0 !important;">
+                            <div class="trustpilot-widget" data-locale="fr-FR" data-template-id="53aa8807dec7e10d38f59f32" data-businessunit-id="60a28e22d3a8ed00019ff03e" data-style-height="150px" data-style-width="100%" data-theme="light">
+                                <a href="https://fr.trustpilot.com/review/digimoov.fr" target="_blank" rel="noopener">Trustpilot</a>
                             </div>
-                        </div>
+                        </h3>
                     </div>
-                </section>
+                </div>
                 <div class="container">
                     <input t-att-value="request.website.microsoft_tracking_key" id="microsoft_tracking_key" type="hidden" />
                     <div class="row" style="place-content: center;">
-                        <!-- <div class="col-md-4 col-sm-6">
-                            <div class="card border-0 shadow" style="border-radius: 25px 25px">
-                                <div class="text-center text-white border-0" style="
-                    background-color: #6e209f;
-                    border-top-left-radius: 25px;
-                    border-top-right-radius: 25px;
-                  ">
-                                    <br/>
-
-                                    <p>
-                                        <strong style="color: white">
-                                            <font style="font-size: 30px">SOLO</font>
-                                        </strong>
-                                    </p>
-                                    <p>&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;</p>
-                                    <br/>
-                                </div>
-                                <t t-foreach="digimoov_products" t-as="product">
-                                    <t t-if="product.default_code=='basique'">
-                                        <form action="/shop/cart/update" method="post" id="form-1-1">
-                                            <input type="hidden" class="product_id" name="product_id" t-att-value="product.id"/>
-                                            <input type="hidden" name="promo" t-att-value="promo.id" t-if="promo"/>
-                                            <div class="card-body" style="background-color: white">
-                                                <ul class="list-unstyled">
-                                                    <li class="mb-4">
-                                                        <i class="fa fa-check-circle fa-lg mr-2 text-success"/>
-                                                        <b>Formation 102h (100% en ligne)</b>
-                                                    </li>
-                                                    <li class="mb-4">
-                                                        <i class="fa fa-check-circle fa-lg mr-2 text-success"/>
-                                                        <b>Examen final en présentiel</b>
-                                                    </li>
-                                                    <li class="mb-4">
-                                                        <i class="fa fa-check-circle fa-lg mr-2 text-success"/>
-                                                        <b>Accès à 4 examens d'entraînement</b>
-                                                    </li>
-                                                    <li class="mb-4">
-                                                        <i class="fa fa-check-circle fa-lg mr-2 text-success"/>
-                                                        <b>Coaching par mail</b>
-                                                    </li>
-                                                    <li class="mb-4">
-                                                        <i class="fa fa-lg fa-times-circle mr-2 text-danger"/>
-                                                                Coaching par téléphone
-                                                    </li>
-                                                    <li class="mb-4">
-                                                        <span class="fa fa-lg fa-times-circle mr-2 text-danger" style="font-size: 1.33333em"/>
-                                                                Coaching par visioconférence
-                                                        <br/>
-                                                    </li>
-                                                    <li class="mb-4">
-                                                        <i class="fa fa-lg fa-times-circle mr-2 text-danger"/>
-                                                                Livre d’entrainement version électronique
-                                                    </li>
-                                                    <li class="mb-4">
-                                                        <i class="fa fa-lg fa-times-circle mr-2 text-danger"/>
-                                                                Directs pour explication avec les formateurs
-                                                    </li>
-                                                    <li class="mb-4">
-                                                        <i class="fa fa-lg fa-times-circle mr-2 text-danger"/>
-                                                                Révision du programme avant examen &amp;nbsp;
-                                                                &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;
-                                                                &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;
-                                                                &amp;nbsp; &amp;nbsp; &amp;nbsp;
-                                                                &amp;nbsp;&amp;nbsp;
-                                                    </li>
-                                                    <li>
-                                                        <i/>
-                                                    </li>
-                                                </ul>
-                                                <p class="
-                            text-center
-                            font-weight-bolder
-                            text-dark
-                            h1
-                            display-4
-                            mb-0
-                          ">
-                                                    <font>
-                                                        <p class="
-                                text-center
-                                font-weight-bolder
-                                text-dark
-                                h1
-                                display-4
-                                mb-0
-                              " t-if="not promo">
-                                                            <span t-esc="round(product.list_price)"/>
-                                                            <span t-esc="product.currency_id.symbol"/>
-                                                        </p>
-                                                        <p class="
-                                text-center
-                                font-weight-bolder
-                                text-dark
-                                h1
-                                display-4
-                                mb-0
-                              " t-if="promo">
-                                                            <t t-foreach="promo.item_ids" t-as="item">
-                                                                <t t-if="item.product_id.id==product.id">
-                                                                    <span t-esc="round(item.fixed_price)"/>
-                                                                    <span t-esc="product.currency_id.symbol"/>
-                                                                </t>
-                                                            </t>
-                                                        </p>
-                                                    </font>
-                                                </p>
-                                                <t t-if="promo and promo.name!='box2home'">
-                                                    <p class="
-                              text-center
-                              font-weight-bolder
-                              text-secondary
-                            ">
-                                                        <b style="font-size: 80%">
-                                                            <t>avec le code</t>
-                                                            <t t-esc="promo.code"/>
-                                                        </b>
-                                                    </p>
-                                                </t>
-                                                <p class="
-                            medium
-                            text-center
-                            font-weight-bolder
-                            text-secondary
-                          " style="color: red !important">
-                                                            Paiement 1 fois
-                                                </p>
-                                                <br/>
-                                                <button class="btn btn-block text-white" onClick="(function(){msTracking('clic sur inscrire pack solo','Pricing Table events','Inscrire pack solo Homepage','590'); document.getElementById('form-1-1').submit();return false;})();return false;" style="background-color: #6e209f; border-radius: 25px">
-                                                            Je m'inscris
-                                                </button>
-                                            </div>
-                                        </form>
-                                    </t>
-                                </t>
-                            </div>
-                        </div> -->
-                        <!-- <div class="col-md-4 col-sm-6">
-                            <div class="card border-0 shadow" style="border-radius: 25px 25px">
-                                <div class="text-center text-white border-0" style="
-                    background-color: #6e209f;
-                    border-top-left-radius: 25px;
-                    border-top-right-radius: 25px;
-                  ">
-                                    <br />
-                                    <p>
-                                        <strong style="color: white">
-                                            <font style="font-size: 30px">PRO</font>
-                                        </strong>
-                                    </p>
-                                    <p>
-                                        <p>&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;</p>
-                                    </p>
-                                    <br />
-                                </div>
-                                <t t-foreach="digimoov_products" t-as="product">
-                                    <t t-if="product.default_code=='avancee'">
-                                        <form action="/shop/cart/update" method="post" id="form-2-1">
-                                            <input type="hidden" class="product_id" name="product_id" t-att-value="product.id" />
-                                            <input type="hidden" name="promo" t-att-value="promo.id" t-if="promo" />
-                                            <div class="card-body" style="background-color: white">
-                                                <ul class="list-unstyled">
-                                                    <li class="mb-4">
-                                                        <i class="fa fa-check-circle fa-lg mr-2 text-success" />
-                                                        <b>Formation 102h (100% en ligne)</b>
-                                                    </li>
-                                                    <li class="mb-4">
-                                                        <i class="fa fa-check-circle fa-lg mr-2 text-success" />
-                                                        <b>Examen final en présentiel &amp;nbsp;</b>
-                                                    </li>
-                                                    <li class="mb-4">
-                                                        <i class="fa fa-check-circle fa-lg mr-2 text-success" />
-                                                        <b>Livre d’entrainement version électronique</b>
-                                                    </li>
-                                                    <li class="mb-4">
-                                                        <i class="fa fa-check-circle fa-lg mr-2 text-success" />
-                                                        <b>Accès à 8 examens d'entraînement</b>
-                                                    </li>
-                                                    <li class="mb-4">
-                                                        <i class="fa fa-check-circle fa-lg mr-2 text-success" data-original-title="" title="" aria-describedby="tooltip131000" />
-                                                        <b>Coaching par mail</b>
-                                                    </li>
-                                                    <li class="mb-4">
-                                                        <span class="fa fa-check-circle fa-lg mr-2 text-success" style="font-size: 1.33333em" data-original-title="" title="" aria-describedby="tooltip96053" />
-                                                        <b>Coaching par téléphone</b>
-                                                    </li>
-                                                    <li class="mb-4">
-                                                        <span class="fa fa-lg fa-times-circle text-danger mr-2" style="font-size: 1.33333em" data-original-title="" title="" aria-describedby="tooltip288722" />
-                                                        Coaching par visioconférence
-                                                    </li>
-                                                    <li class="mb-4">
-                                                        <i class="fa fa-lg fa-times-circle text-danger mr-2" />
-                                                        Directs pour explication avec les formateurs
-                                                    </li>
-                                                    <li class="mb-4">
-                                                        <i class="fa fa-lg fa-times-circle text-danger mr-2" />
-                                                        &amp;nbsp;Révision du programme avant examen
-                                                                &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;
-                                                                &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;
-                                                                &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;
-                                                                &amp;nbsp;&amp;nbsp;
-                                                    </li>
-                                                    <li>
-                                                        <i />
-                                                    </li>
-                                                </ul>
-                                                <p class="
-                            text-center
-                            font-weight-bolder
-                            text-dark
-                            h1
-                            display-4
-                            mb-0
-                          ">
-                                                    <font>
-                                                        <p class="
-                                text-center
-                                font-weight-bolder
-                                text-dark
-                                h1
-                                display-4
-                                mb-0
-                              ">
-                                                            <span t-esc="round(product.list_price)" />
-
-                                                            <span t-esc="product.currency_id.symbol" />
-                                                        </p>
-                                                    </font>
-                                                </p>
-                                                <t t-if="promo and promo.name!='box2home'">
-                                                    <p class="
-                              text-center
-                              font-weight-bolder
-                              text-secondary
-                            ">
-                                                        <b style="font-size: 80%">
-                                                            <t>&amp;nbsp; &amp;nbsp; &amp;nbsp;&amp;nbsp;</t>
-                                                        </b>
-                                                    </p>
-                                                </t>
-                                                <p class="
-                            medium
-                            text-center
-                            font-weight-bolder
-                            text-secondary
-                          " style="color: red !important">
-                                                            Paiement 1 ou 2 fois
-                                                </p>
-                                                <br />
-                                                <button class="btn btn-block text-white" onClick="(function(){msTracking('clic sur inscrire pack pro','Pricing Table events','Inscrire pack pro Homepage','680'); document.getElementById('form-2-1').submit();return false;})();return false;" style="background-color: #6e209f; border-radius: 25px">
-                                                            Je m'inscris
-                                                </button>
-                                            </div>
-                                        </form>
-                                    </t>
-                                </t>
-                            </div>
-                        </div> -->
                         <div class="col-md-5 col-sm-12">
                             <div class="card border-0 shadow" style="border-radius: 25px 25px">
                                 <div class="text-center text-white border-0" style="
@@ -553,13 +279,14 @@
                                                     </p>
                                                 </t>
                                                 <p class="
-                            medium
-                            text-center
-                            font-weight-bolder
-                            text-secondary
-                          " style="color: red !important">
+                                                    medium
+                                                    text-center
+                                                    font-weight-bolder
+                                                    text-secondary
+                                                " style="color: red !important; margin-bottom:8px;">
                                                             Paiement 1 ou 3 fois
                                                 </p>
+
                                                 <br />
                                                 <button class="btn btn-block text-white" onClick="(function(){ document.getElementById('form-3-1').submit();return false;})();return false;" style="background-color: #6e209f; border-radius: 25px">
                                                             Je m'inscris
@@ -578,13 +305,16 @@
                             <div class="pt16 pb16 col-lg-4" style="border-style: none; border-width: 0px">
                                 <div id="myCollapse" class="accordion" role="tablist">
                                     <div class="card bg-white">
-                                        <a href="#" role="tab" data-toggle="collapse" aria-expanded="false" class="card-header collapsed" data-parent="#myCollapse" data-target="#myCollapseTab1616754726586" data-original-title="" title="" aria-describedby="tooltip5917">
+                                        <a href="#" role="tab" data-toggle="collapse" aria-expanded="false" class="card-header collapsed" data-parent="#myCollapse" data-target="#myCollapseTab1616754726586" aria-describedby="tooltip5917">
                                             Comment en bénéficier ?
                                         </a>
                                         <div class="collapse" role="tabpanel" id="myCollapseTab1616754726586">
                                             <div class="card-body">
                                                 <p class="card-text">
-                                                        Si vous avez un CPF depuis 2015 et que vous ne l'avez jamais utilisé, vous aurez à votre disposition 1 440&amp;nbsp;€. Vous pouvez également saisir vos heures de DIF (Droit individuel à la formation) s'il vous en reste
+                                                 Si vous avez un CPF depuis 2015 et que vous ne l'avez jamais utilisé, 
+                                                 vous aurez à votre disposition 1 440&amp;nbsp;€. Vous pouvez 
+                                                 également saisir vos heures de DIF (Droit individuel à la 
+                                                 formation) s'il vous en reste
                                                 </p>
                                             </div>
                                         </div>
@@ -594,12 +324,14 @@
                             <div class="pt16 pb16 col-lg-4" style="border-style: none; border-width: 0px">
                                 <div id="myCollapse" class="accordion" role="tablist">
                                     <div class="card bg-white">
-                                        <a href="#" role="tab" data-toggle="collapse" aria-expanded="false" class="card-header collapsed" data-parent="#myCollapse" data-original-title="" title="" aria-describedby="tooltip5917" data-target="#myCollapseTab1616754743649">Comment cela fonctionne?
+                                        <a href="#" role="tab" data-toggle="collapse" aria-expanded="false" class="card-header collapsed" data-parent="#myCollapse" aria-describedby="tooltip5917" data-target="#myCollapseTab1616754743649">Comment cela fonctionne?
                                         </a>
                                         <div class="collapse" role="tabpanel" id="myCollapseTab1616754743649">
                                             <div class="card-body">
                                                 <p class="card-text">
-                                                        Le Compte Personnel de Formation s'adresse à chaque actif désormais crédité de 500&amp;nbsp;€ par an (somme versée autour du mois d'avril). Cela peut monter à 800&amp;nbsp;€ pour les salariés moins qualifiés et les personnes en situation de handicap.
+                                                        Le Compte Personnel de Formation s'adresse à chaque actif désormais crédité de 500€ par an 
+                                                        (somme versée autour du mois d'avril). Cela peut monter à 800€ pour les salariés moins 
+                                                        qualifiés et les personnes en situation de handicap.
                                                 </p>
                                             </div>
                                         </div>
@@ -609,7 +341,7 @@
                             <div class="pt16 pb16 col-lg-4" style="border-style: none; border-width: 0px">
                                 <div id="myCollapse" class="accordion" role="tablist">
                                     <div class="card bg-white">
-                                        <a href="#" role="tab" data-toggle="collapse" aria-expanded="false" class="card-header collapsed" data-parent="#myCollapse" data-original-title="" title="" aria-describedby="tooltip5917" data-target="#myCollapseTab1616754743646">A quoi sert t-il ?
+                                        <a href="#" role="tab" data-toggle="collapse" aria-expanded="false" class="card-header collapsed" data-parent="#myCollapse" aria-describedby="tooltip5917" data-target="#myCollapseTab1616754743646">A quoi sert t-il ?
                                         </a>
                                         <div class="collapse" role="tabpanel" id="myCollapseTab1616754743646">
                                             <div class="card-body">

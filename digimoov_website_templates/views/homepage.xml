@@ -3,12 +3,15 @@
         <xpath expr="//div[@id='wrap']" position="replace">
             <script defer="defer" type="text/javascript" src="/digimoov_website_templates/static/src/js/lazy-min.min.js" />
             <link href="/digimoov_website_templates/static/src/css/css-dist/home.min.css" rel="stylesheet" />
-
+            <!-- TrustBox script -->
+            <script type="text/javascript" src="//widget.trustpilot.com/bootstrap/v5/tp.widget.bootstrap.min.js" async="async"></script>
+            <!-- End TrustBox script -->
             <br />
             <br />
 
             <div id="wrap" class="oe_structure oe_empty">
-                <div id="homepage" t-if="partenaire!='coursier2roues'">
+                <div id="homepage" t-if="partenaire!='coursier2roues' and partenaire!='habilitation-electrique' and partenaire!='eco-conduite' and partenaire!='transport-routier'">
+
                     <section class="s_one_page_banner static-slider2" data-name="Home Banner Ten" style="">
                         <div class="container">
                             <div class="row align-items-center">
@@ -68,6 +71,11 @@
                   " href="/contact" target="_blank" rel="noopner">
                                             Contactez-nous
                                         </a>
+                                        <!-- TrustBox widget - Mini -->
+                                        <div style="max-width: 181px;margin-block-start: 40px;" class="trustpilot-widget" data-locale="fr-FR" data-template-id="53aa8807dec7e10d38f59f32" data-businessunit-id="60a28e22d3a8ed00019ff03e" data-style-height="150px" data-style-width="100%" data-theme="light">
+                                            <a href="https://fr.trustpilot.com/review/digimoov.fr" target="_blank" rel="noopener">Trustpilot</a>
+                                        </div>
+                                        <!-- End TrustBox widget -->
                                     </div>
 
                                     <!-- <div class="s_btn" data-name="Button">
@@ -107,8 +115,7 @@
                             </div>
                         </div>
                     </section>
-                    <br />
-                    <br />
+
                     <!-- Logos-->
                     <style>
            .center-logo {
@@ -126,20 +133,19 @@
             justify-content: space-between;
             align-items: center;
           }
-        </style>
-                    <section class="pt40 pb32 js-scroll fade-in-top">
+                     </style>
+                    <section class="pt16 pb32 js-scroll fade-in-top">
                         <div class="container js-scroll fade-in-top">
-                            <div class="center-logo">
+                            <div class="center-logo mt32">
                                 <div>
                                     <img data-src="/mcm_website_theme/static/src/img/formation-éligible-au-compte-personnel-de-formation.webp" data-srcSafari="/mcm_website_theme/static/src/img/formation-éligible-au-compte-personnel-de-formation.png" class="img-fluid lazy" style="width: 100px;" title="Formation éligible au CPF" alt="logo mon compte de formation" />
                                 </div>
                                 <div class="pt32">
                                     <img class="img-fluid lazy" style="width: 188px;" data-src="/mcm_website_theme/static/src/img/formation-taxi-vtc-certifiée-qualiopi.webp" data-srcSafari="/mcm_website_theme/static/src/img/formation-taxi-vtc-certifiée-qualiopi.png" title="MCM Academy centre agrée par Qualiopi" alt="qualiopi" />
                                 </div>
-                                <div class="pt32">
+                                <!-- <div class="pt32">
                                     <img class="img-fluid lazy" style="width: 110px;" data-srcSafari="/mcm_website_theme/static/src/img/mcm academy-partenaire-france-relance.jpg" data-src="/mcm_website_theme/static/src/img/mcm academy-partenaire-france-relance.webp" title="France relance-MCM Academy" alt="France relance-MCM Academy" />
-                                </div>
-
+                                </div> -->
                                 <div class="pt32">
                                     <img class="img-fluid lazy" style="width: 100px;" data-src="/mcm_website_theme/static/src/img/mcm academy-centre-de-formation-taxi-vtc-carte pro-préfecture.webp" data-srcSafari="/mcm_website_theme/static/src/img/mcm academy-centre-de-formation-taxi-vtc-carte pro-préfecture.png" title="Centre agrée de la préfecture" alt="Centre agrée de la préfecture" />
                                 </div>
@@ -577,23 +583,28 @@
                         <section class="s_one_page_pricing_plan bg-light-1" data-name="Pricing plan two">
                             <div class="pricing1 spacer" id="pricing">
                                 <div class="container">
-                                    <div class="row justify-content-center">
-                                        <div class="col-md-8 text-center col-lg-11">
-                                            <h2 class="text-beta title">
-                                                LET'S GO !
-                                                <br />
-                                                Inscrivez-vous dès maintenant !
-                                            </h2>
-                                            <h3 class="subtitle">
+
+                                    <div class="row">
+                                        <h2 class="col-lg-6 text-beta title">
+                                            <b> LET'S GO !</b>
+                                            <br />
+                                            Inscrivez-vous dès maintenant !
+                                        </h2>
+                                        <div class="col-lg-6">
+                                            <div class="trustpilot-widget" data-locale="fr-FR" data-template-id="53aa8807dec7e10d38f59f32" data-businessunit-id="60a28e22d3a8ed00019ff03e" data-style-height="150px" data-style-width="100%" data-theme="light">
+                                                <a href="https://fr.trustpilot.com/review/digimoov.fr" target="_blank" rel="noopener">Trustpilot</a>
+                                            </div>
+                                        </div>
+                                        <!-- <h3 class="subtitle">
                                                 <span style="color: rgb(66, 66, 66); font-size: 16px">
                                                         Choisissez la formule qui vous convient</span>
                                                 &amp;nbsp;
                                                 <span style="color: rgb(66, 66, 66); font-size: 16px">&amp;nbsp;
                                                         </span>
                                                 <br />
-                                            </h3>
-                                        </div>
+                                            </h3> -->
                                     </div>
+
                                 </div>
                             </div>
                         </section>
@@ -636,7 +647,7 @@
       }
       
             
-</style>
+                        </style>
                         <div class="container">
                             <input t-att-value="request.website.microsoft_tracking_key" id="microsoft_tracking_key" type="hidden" />
                             <div class="row">
@@ -651,7 +662,7 @@
                                                 </strong>
                                             </p>
                                             <p class="blink-soft">
-                                                <b>Nouveau tarif 2022</b>
+                                                <b>Paiement en 2 fois</b>
                                             </p>
                                             <br />
                                         </div>
@@ -718,7 +729,6 @@
                                                         <p class="                             text-center                             font-weight-bolder                             text-dark                             h1                             display-4                             mb-0                           ">
                                                             <font>
                                                                 <p class="                                 text-center                                 font-weight-bolder                                 text-dark                                 h1                                 display-4                                 mb-0                               " t-if="not promo">
-                                                                    <span class="pricebar" style="color: black;font-size: 25px;font-weight: 500;">590 €</span>
                                                                     <span t-esc="round(product.list_price)" />
                                                                     <span t-esc="product.currency_id.symbol" />
 
@@ -741,9 +751,10 @@
                                                                 </b>
                                                             </p>
                                                         </t>
-                                                        <p class="                             medium                             text-center                             font-weight-bolder                             text-secondary                           " style="color: red !important" t-if="not partenaire or partenaire==''">
+                                                        <p class="                             medium                             text-center                             font-weight-bolder                             text-secondary                           " style="color: red !important; margin-bottom: 8px !important;" t-if="not partenaire or partenaire==''">
                                                             Paiement 1 ou 2 fois
                                                         </p>
+
 
                                                         <br />
                                                         <button class="btn btn-block text-white" onClick="(function(){ document.getElementById('form-1-1').submit();return false;})();return false;" style="background-color: #6e209f; border-radius: 25px">
@@ -781,7 +792,10 @@
                                                     <font style="font-size: 30px">PRO</font>
                                                 </strong>
                                             </p>
-                                            <p>&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;</p>
+                                            <!-- <p>&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;</p> -->
+                                            <p class="blink-soft">
+                                                <b>Paiement en 2 fois</b>
+                                            </p>
                                             <br />
                                         </div>
                                         <t t-foreach="digimoov_products" t-as="product">
@@ -865,9 +879,10 @@
                                                                 </b>
                                                             </p>
                                                         </t>
-                                                        <p class="                             medium                             text-center                             font-weight-bolder                             text-secondary                           " style="color: red !important">
+                                                        <p class="                             medium                             text-center                             font-weight-bolder                             text-secondary                           " style="color: red !important; margin-bottom:8px !important">
                                                             Paiement 1 ou 2 fois
                                                             </p>
+
                                                         <br />
                                                         <button class="btn btn-block text-white" onClick="(function(){document.getElementById('form-2-1').submit();return false;})();return false;" style="background-color: #6e209f; border-radius: 25px">
                                                             Je m'inscris
@@ -986,13 +1001,14 @@
                                                                 </b>
                                                             </p>
                                                         </t>
-                                                        <p class="                             medium                             text-center                             font-weight-bolder                             text-secondary                           " style="color: red !important">
+                                                        <p class="                             medium                             text-center                             font-weight-bolder                             text-secondary                           " style="color: red !important; margin-bottom:8px !important">
                                                             Paiement 1 ou 3 fois
                                                             </p>
+
                                                         <br />
                                                         <button class="btn btn-block text-white" onClick="(function(){ document.getElementById('form-3-1').submit();return false;})();return false;" style="background-color: #6e209f; border-radius: 25px">
                                                             Je m'inscris
-                                                            </button>
+                                                        </button>
                                                     </div>
                                                 </form>
                                             </t>
@@ -1446,7 +1462,7 @@
                         text-center
                         font-weight-bolder
                         text-secondary
-                      " style="color: red !important">
+                      " style="color: red !important;">
                       Paiement 1 fois
                                                 </p>
                                                 <br />
