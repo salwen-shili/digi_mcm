@@ -411,52 +411,48 @@ En cas de réussite, le préfet de région vous octroie une attestation de fin d
                                                     </li>
                                                     <li class="mb-4">
                                                         <i class="fa fa-check-circle fa-lg mr-2 text-success" />
-                                                        <b>Livre d’entrainement version électronique</b>
-                                                    </li>
-                                                    <li class="mb-4">
-                                                        <i class="fa fa-check-circle fa-lg mr-2 text-success" />
-                                                        <b>Accès à 14+ examens d'entraînement</b>
-
+                                                        <b>Accès à 5 examens d'entraînement</b>
                                                     </li>
                                                     <li class="mb-4">
                                                         <i class="fa fa-check-circle fa-lg mr-2 text-success" />
                                                         <b>Assistance par téléphone</b>
-                                                        <br />
                                                     </li>
                                                     <li class="mb-4">
                                                         <i class="fa fa-check-circle fa-lg mr-2 text-success" />
                                                         <b>Assistance par mail</b>
-                                                        <br />
                                                     </li>
 
                                                     <li class="mb-4">
-                                                        <i class="fa fa-check-circle fa-lg mr-2 text-success" />
-                                                        <b>Séances en Live avec un tuteur dédié</b>
-                                                        <br />
+                                                        <i class="fa fa-times-circle fa-lg mr-2 text-danger" />
+                                                        Livre d’entrainement version électronique
+                                                    </li>
+                                                    <li class="mb-4">
+                                                        <i class="fa fa-lg fa-times-circle mr-2 text-danger" />
+                                                        Séances en Live avec les formateurs
+                                                    </li>
+                                                    <li class="mb-4">
+                                                        <i class="fa fa-lg fa-times-circle mr-2 text-danger" />
+                                                        Séance en Live avec un expert métier
+                                                    </li>
+                                                    <li class="mb-4">
+                                                        <i class="fa fa-lg fa-times-circle mr-2 text-danger" />
+                                                        Révision du programme avant l'examen
                                                     </li>
                                                     <li class="mb-4">
                                                         <i class="fa fa-check-circle fa-lg mr-2 text-success" />
-                                                        <b>Séance en Live avec un expert métier </b>
-                                                        <b>&amp;nbsp;</b>
-                                                        <br />
+                                                        <b>  &amp;nbsp;Examen final en présentiel 
+                                                                &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;
+                                                                &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;
+                                                                &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;
+                                                                &amp;nbsp;&amp;nbsp;</b>
                                                     </li>
                                                     <li class="mb-4">
                                                         <i class="fa fa-check-circle fa-lg mr-2 text-success" />
-                                                        <b>Révision du programme avant l'examen</b>
-                                                    </li>
-                                                    <li class="mb-4">
-                                                        <span class="fa fa-check-circle fa-lg mr-2 text-success" style="font-size: 1.33333em" />
-                                                        <b>Examen final en présentiel</b>
-
-                                                    </li>
-                                                    <li class="mb-4">
-                                                        <i class="fa fa-lg fa-check-circle mr-2 text-success" />
-                                                        <b>Séance en Live pour corriger l’examen</b>
-                                                        &amp;nbsp;
+                                                        <b>Séance en Live pour corriger l’examen &amp;nbsp;
                                                                 &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;
                                                                 &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;
                                                                 &amp;nbsp; &amp;nbsp; &amp;nbsp;
-                                                                &amp;nbsp;&amp;nbsp;
+                                                                &amp;nbsp;&amp;nbsp;</b>
                                                     </li>
                                                     <li>
                                                         <i />
