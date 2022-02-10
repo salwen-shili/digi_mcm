@@ -69,7 +69,7 @@ class SaleOrder(models.Model):
                                                                                              5:7] + ' ' + phone[
                                                                                                           7:]
                     self.partner_id.phone = phone
-                url = str(self.partner_id.get_base_url()) + '/my'
+                url = 'https://www.mcm-academy.fr/my'
                 body = "Chere(e) %s félicitation pour votre inscription, votre formation commence dans 14 jours. Si vous souhaitez commencer dès maintenant cliquez sur le lien suivant : %s" % (
                     self.partner_id.name, url)
                 if body:
