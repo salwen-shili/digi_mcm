@@ -19,7 +19,7 @@
         <script type="text/javascript">
           window.onload = function () {
             var url = window.location.pathname;
-            if (!url.includes('/web/login')) {
+            if (!url.includes('/web/login')||!url.includes('/reset_password') ) {
                 Calendly.initBadgeWidget({
                   url: 'https://calendly.com/digimoov/attestation-de-capacite-marchandise',
                   text: 'Rendez-vous par téléphone',
