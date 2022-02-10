@@ -24,6 +24,7 @@
             name="partner_exam.id_convocation_print_report_pdf_ids"
             file="partner_exam.id_convocation_print_report_pdf_ids"
             attachment_use="True"
+            attachment="'Convocation-' + object.display_name + '.pdf'"
             print_report_name="'Convocation- %s' % (object.name).replace('/', '')"
             paperformat="partner_exam.paperformat_convocation"
     />
