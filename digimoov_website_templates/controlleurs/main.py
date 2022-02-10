@@ -213,6 +213,7 @@ class DIGIEXAMEN(http.Controller):
                 [('company_id', '=', 2), ('default_code', "=", 'examen')])
             values = {
                 'echec_examen': echec_examen,
+                'default':False,
             }
             return request.render("digimoov_website_templates.digimoov_template_examen", values)
         else:
