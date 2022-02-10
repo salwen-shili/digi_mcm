@@ -13,7 +13,9 @@
     ],
     'data': [
       'security/security.xml',
+      'security/ir.model.access.csv',
       'views/crm_lead.xml',
+      'views/crm_stage.xml',
       'data/ir_cron.xml',
       'views/assets.xml',
       'views/partner.xml',
