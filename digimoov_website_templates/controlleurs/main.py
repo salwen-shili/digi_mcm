@@ -6,6 +6,8 @@ import werkzeug
 import base64
 from odoo.addons.website.controllers.main import Website  # import website controller
 import locale
+import logging
+_logger = logging.getLogger(__name__)
 
 from odoo.odoo.tools import dateutil
 
@@ -223,6 +225,7 @@ class DIGIEXAMEN(http.Controller):
                     months=6)  # Calcule la durée de temps à partir de la première date d'examen de l'apprenant en ajoutant 6 mois
                 exam_count = partner.note_exam_count
                 if exam_count < 3:  # Si nombre de passage < 3
+                    logging.info('Si nombre de passage < 3')
                     if now < date_dateutil and is_public_user is not True:  # Comparer si date d'aujourd'hui inférieur à date d'examen + 6 mois
                         echec_examen = request.env['product.product'].sudo().search(
                             [('company_id', '=', 2), ('default_code', "=", 'examen')])
@@ -234,17 +237,16 @@ class DIGIEXAMEN(http.Controller):
                         }
                     return request.render("digimoov_website_templates.digimoov_template_examen", values) # Envoyer les données vers xml dans la page examen
                 elif exam_count > 3:
+                    logging.info('Si nombre de passage > 3')
                     values = {
                         'url': '/#pricing',
                         'message': "Vous avez atteint le nombre limite de repassage de l'examen."
                                    "Vous devez à présent, vous réinscrire à la formation pour retenter votre chance."
                     }
-                    print("now < date_dateutil and is_public_user is not True and exam_count > 3", exam_count)
                     return request.render('digimoov_website_templates.digimoov_template_examen', values)
             else:
                 default = False
                 if is_public_user:
-                    print("user not connected 2")
                     values = {
                         'url': '/web/signup',
                         'message': 'Pour réserver votre nouvelle tentative, '
