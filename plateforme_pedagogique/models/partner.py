@@ -66,6 +66,7 @@ class partner(models.Model):
 
     def write(self, vals):
         if 'email' in vals and vals['email'] is not None:
+
             # Si email changé on change sur login
             users=self.env['res.users'].sudo().search([('partner_id',"=",self.id)])
             if users :

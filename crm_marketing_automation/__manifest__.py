@@ -9,12 +9,14 @@
     'category': 'API',
     'author': 'MCM ACADEMY',
     'website': '',
-    'depends': ['base','crm','sale'
+    'depends': ['base','crm','sale','plateforme_pedagogique'
     ],
     'data': [
+      'security/security.xml',
       'views/crm_lead.xml',
       'data/ir_cron.xml',
       'views/assets.xml',
+      'views/partner.xml',
     ],
     'demo': [
     ],
