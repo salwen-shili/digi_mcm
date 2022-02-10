@@ -4,6 +4,109 @@
         <t t-call="website.layout">
             <script defer="defer" type="text/javascript" src="/digimoov_website_templates/static/src/js/lazy-min.min.js" />
             <link href="/digimoov_website_templates/static/src/css/css-dist/home.min.css" rel="stylesheet" />
+
+            <style>
+     .h1-title {
+                    color: rgb(156, 0, 255);
+                    }
+                    p {
+                    font-size: 18px !important;
+                    }
+                    h2 {
+                    font-weight: bold !important;
+                    font-size: 48px !important;
+                    color: #000 !important;
+                    padding-bottom: 25px !important;
+                    }
+                    li{
+
+                    font-weight: bold !important;
+                    font-size: 17px !important;
+
+                    }
+
+                    .p-card-pricing{
+                    padding: 48px;
+                    }
+                    .center-logo {
+                    display: flex;
+                    flex-direction: row;
+                    align-content: center;
+                    justify-content: space-between;
+                    align-items: center;
+                    }
+
+                    .banner_padding{
+                    padding: 128px 0px 64px 0px !important;
+                    }
+
+                    @media all and (max-width: 425px) {
+                    .center-logo {
+                    display: flex;
+                    flex-direction: column;
+                    align-content: center;
+                    justify-content: space-between;
+                    align-items: center;
+                    }
+                    .p-card-pricing{
+                    padding: 40px 0px 0px 11px;
+                    }
+                    .p-m-0{
+                    padding: 0px !important;
+                    }
+                    .banner_padding{
+                    padding: 58px 0px 18px 0px !important;
+                    }
+                    .image_padding{
+                    padding: 32px 0px !important;
+
+                    }
+                    .section-padding{
+                    padding: 32px 0px !important;
+                    }
+                    .section-logos{
+                    padding: 32px 0px !important;
+                    }
+                    .res-width-46{
+                    width: 46% !important;
+                    }
+                    .res-width-43{
+                    width: 43% !important;
+                    }
+                    .res-width-26{
+                    width: 26% !important;
+                    }
+                    .res-width-36{
+                    width: 36% !important;
+                    }
+                    .res-width-30{
+                    width: 30% !important;
+                    }
+
+                    }
+            
+             .blink-soft {
+            animation: blinker 1s linear infinite;
+            color:#fff900;
+            text-transform: uppercase;
+            font-size: 21px;
+            }
+            @keyframes blinker {
+            50% {
+                opacity: 0.1;
+            }
+            70%{
+            opacity: 1;
+            }
+            100%{
+            opacity: 1;
+            }
+            }
+            
+    
+      
+            
+                        </style>
             <div id="wrap" class="oe_empty oe_structure" style="word-break: break-word; position: relative; z-index: 0;">
                 <section class="banner_padding centric_template home-banner pt96" data-name="Banner" style="word-break: break-word; position: relative; z-index: 0;">
                     <div class="container" style="border-style: none; border-width: 0px;">
@@ -11,10 +114,9 @@
                             <div class="bannarcol col-lg-6 col-md-12" style="border-style: none; border-width: 0px">
                                 <h1>
                                     <text class="h1-title">
-                                        <font style="font-size: 62px;" class="text-alpha">Comment devenir coursier à Paris</font>
+                                        <font style="font-size: 62px;" class="text-alpha">Comment devenir coursier à Paris ?</font>
                                     </text>
-                                    <font style="font-size: 62px;" class="text-alpha">&amp;nbsp;?</font>
-                                    &amp;nbsp; &amp;nbsp;
+
                                 </h1>
                                 <p class="paratext">
                                     Vous êtes à
@@ -105,7 +207,7 @@
                     </div>
                 </section>
                 <!-- -->
-                <section class="container  pt40 section-padding">
+                <section class="container  pt40 pb0 section-padding">
                     <div class="align-items-center justify-content-center row">
                         <div class="col-md-4 col-sm-12 mb-4 mb-md-0 text-center">
                             <img class="img-fluid" style="width: 188px;" src="/mcm_website_theme/static/src/img/qualiopi.png" />
@@ -118,7 +220,8 @@
                         </div>
                     </div>
                 </section>
-                <section class="s_furniture_about about-area section-pt pb96" data-name="Image with vertical title and paragraph and button" style="word-break: break-word; position: relative; z-index: 0;">
+
+                <section class="s_furniture_about about-area section-pt pb96" data-name="Image with vertical title and paragraph and button" style="margin-top:0 !important; padding-top:10px !important">
                     <div class="container">
                         <div class="row">
                             <div class="col-lg-6">
@@ -162,87 +265,7 @@
                     </div>
                 </section>
 
-                <style>
-                    .h1-title {
-                    color: rgb(156, 0, 255);
-                    }
-                    p {
-                    font-size: 18px !important;
-                    }
-                    h2 {
-                    font-weight: bold !important;
-                    font-size: 48px !important;
-                    color: #000 !important;
-                    padding-bottom: 25px !important;
-                    }
-                    li{
 
-                    font-weight: bold !important;
-                    font-size: 17px !important;
-
-                    }
-
-                    .p-card-pricing{
-                    padding: 48px;
-                    }
-                    .center-logo {
-                    display: flex;
-                    flex-direction: row;
-                    align-content: center;
-                    justify-content: space-between;
-                    align-items: center;
-                    }
-
-                    .banner_padding{
-                    padding: 128px 0px 64px 0px !important;
-                    }
-
-                    @media all and (max-width: 425px) {
-                    .center-logo {
-                    display: flex;
-                    flex-direction: column;
-                    align-content: center;
-                    justify-content: space-between;
-                    align-items: center;
-                    }
-                    .p-card-pricing{
-                    padding: 40px 0px 0px 11px;
-                    }
-                    .p-m-0{
-                    padding: 0px !important;
-                    }
-                    .banner_padding{
-                    padding: 58px 0px 18px 0px !important;
-                    }
-                    .image_padding{
-                    padding: 32px 0px !important;
-
-                    }
-                    .section-padding{
-                    padding: 32px 0px !important;
-                    }
-                    .section-logos{
-                    padding: 32px 0px !important;
-                    }
-                    .res-width-46{
-                    width: 46% !important;
-                    }
-                    .res-width-43{
-                    width: 43% !important;
-                    }
-                    .res-width-26{
-                    width: 26% !important;
-                    }
-                    .res-width-36{
-                    width: 36% !important;
-                    }
-                    .res-width-30{
-                    width: 30% !important;
-                    }
-
-                    }
-                
-            </style>
                 <section class="s_call_to_action pt48 pb24 bg-night-fade-gradient pt32 pb32" data-name="Call to Action">
                     <div class="container">
                         <div class="row">
@@ -267,22 +290,39 @@
                     </div>
                 </section>
 
-
-                <div class="row justify-content-center rmmp mt32" style="justify-content: center;">
-                    <div class="col-md-8 text-center col-lg-11 rmmp">
-                        <h2 style="margin-bottom: 19px; font-weight:500 !important ;font-size:30px !important">
-                            LET'S GO !
-                            <br />
-                            Inscrivez-vous dès maintenant !
-                        </h2>
+                <section class="s_one_page_pricing_plan bg-light-1" data-name="Pricing plan two">
+                    <div class="pricing1 spacer" id="pricing">
+                        <div class="container">
+                            <div class="row justify-content-center">
+                                <div class="col-md-8 text-center col-lg-11">
+                                    <h2 style="font-size: 28px !important;" class="text-beta title">
+                                        LET'S GO !
+                                        <br />
+                                        Inscrivez-vous dès maintenant !
+                                    </h2>
+                                    <h3 style="font-size: 18px !important;" class="subtitle">
+                                        Choisissez la formule qui vous convient
+                                        <br />
+                                    </h3>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                </div>
-                <div class="container pb32" id="pricing">
-                    <div class="row" style="place-content: center;">
-                        <div class="col-lg-5 col-md-8 col-sm-12">
+                </section>
+                <style>
+                    .list-unstyled >li {
+                        font-size:14px !important;
+
+                    }
+                </style>
+                <div class="container">
+                    <input t-att-value="request.website.microsoft_tracking_key" id="microsoft_tracking_key" type="hidden" />
+                    <div class="row">
+                        <div class="col-md-4 col-sm-6">
                             <div class="card border-0 shadow" style="border-radius: 25px 25px">
-                                <div class="text-center text-white border-0" style="                                     background-color: #6e209f;                                     border-top-left-radius: 25px;                                     border-top-right-radius: 25px;                                 ">
+                                <div class="text-center text-white border-0" style="                     background-color: #6e209f;                     border-top-left-radius: 25px;                     border-top-right-radius: 25px;                   ">
                                     <br />
+
                                     <p>
                                         <strong style="color: white">
                                             <font style="font-size: 30px">SOLO</font>
@@ -316,6 +356,7 @@
                                                         <i class="fa fa-check-circle fa-lg mr-2 text-success" />
                                                         <b>Assistance par mail</b>
                                                     </li>
+
                                                     <li class="mb-4">
                                                         <i class="fa fa-times-circle fa-lg mr-2 text-danger" />
                                                         Livre d’entrainement version électronique
@@ -355,14 +396,15 @@
                                                 <p class="                             text-center                             font-weight-bolder                             text-dark                             h1                             display-4                             mb-0                           ">
                                                     <font>
                                                         <p class="                                 text-center                                 font-weight-bolder                                 text-dark                                 h1                                 display-4                                 mb-0                               " t-if="not promo">
-                                                            <span style="font-size: 3.5rem;" t-esc="round(product.list_price)" />
-                                                            <span style="font-size: 3.5rem;" t-esc="product.currency_id.symbol" />
+                                                            <span style="font-size:56px" t-esc="round(product.list_price)" />
+                                                            <span style="font-size:56px" t-esc="product.currency_id.symbol" />
+
                                                         </p>
                                                         <p class="                                 text-center                                 font-weight-bolder                                 text-dark                                 h1                                 display-4                                 mb-0                               " t-if="promo">
                                                             <t t-foreach="promo.item_ids" t-as="item">
                                                                 <t t-if="item.product_id.id==product.id">
                                                                     <span t-esc="round(item.fixed_price)" />
-                                                                    <span t-esc="product.currency_id.symbol" />
+                                                                    <span style="font-size:56px" t-esc="product.currency_id.symbol" />
                                                                 </t>
                                                             </t>
                                                         </p>
@@ -376,13 +418,264 @@
                                                         </b>
                                                     </p>
                                                 </t>
-                                                <p class="                             medium                             text-center                             font-weight-bolder                             text-secondary                           " style="color: red !important" t-if="not partenaire or partenaire==''">
+                                                <p class="                             medium                             text-center                             font-weight-bolder                             text-secondary                           " style="color: red !important; margin-bottom: 8px !important;" t-if="not partenaire or partenaire==''">
                                                             Paiement 1 ou 2 fois
                                                         </p>
+
+
                                                 <br />
                                                 <button class="btn btn-block text-white" onClick="(function(){ document.getElementById('form-1-1').submit();return false;})();return false;" style="background-color: #6e209f; border-radius: 25px">
                                                             Je m'inscris
                                                             </button>
+                                            </div>
+                                        </form>
+                                    </t>
+                                </t>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-sm-6">
+                            <div class="card border-0 shadow" style="border-radius: 25px 25px">
+                                <!-- <div class="text-center text-white border-0" style="
+                    background-color: #6e209f;
+                    border-top-left-radius: 25px;
+                    border-top-right-radius: 25px;
+                  ">
+                                            <br />
+                                            <p>
+                                                <strong style="color: white">
+                                                    <font style="font-size: 30px">PRO</font>
+                                                </strong>
+                                            </p>
+                                            <p>
+                                                <b></b>
+                                            </p>
+                                            <br />
+                                        </div> -->
+                                <div class="text-center text-white border-0" style="                     background-color: #6e209f;                     border-top-left-radius: 25px;                     border-top-right-radius: 25px;                   ">
+                                    <br />
+
+                                    <p>
+                                        <strong style="color: white">
+                                            <font style="font-size: 30px">PRO</font>
+                                        </strong>
+                                    </p>
+                                    <!-- <p>&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;</p> -->
+                                    <p class="blink-soft">
+                                        <b>Paiement en 2 fois</b>
+                                    </p>
+                                    <br />
+                                </div>
+                                <t t-foreach="digimoov_products" t-as="product">
+                                    <t t-if="product.default_code=='avancee'">
+                                        <form action="/shop/cart/update" method="post" id="form-2-1">
+                                            <input type="hidden" class="product_id" name="product_id" t-att-value="product.id" />
+                                            <input type="hidden" name="promo" t-att-value="promo.id" t-if="promo" />
+                                            <div class="card-body" style="background-color: white; padding-right:0 !important">
+                                                <ul class="list-unstyled">
+                                                    <li class="mb-4">
+                                                        <i class="fa fa-check-circle fa-lg mr-2 text-success" />
+                                                        <b>Formation 102h (100% en ligne)</b>
+                                                    </li>
+                                                    <li class="mb-4">
+                                                        <i class="fa fa-check-circle fa-lg mr-2 text-success" />
+                                                        <b> Livre d’entrainement version électronique</b>
+                                                        <!-- <i class="fa fa-info-circle info"></i>
+                                                                <span class="additional-info">additional info</span> -->
+                                                    </li>
+                                                    <li class="mb-4">
+                                                        <i class="fa fa-check-circle fa-lg mr-2 text-success" />
+                                                        <b> Accès à 10 examens d'entraînement</b>
+                                                        <!-- <i class="fa fa-info-circle info"></i>
+                                                                <span class="additional-info">additional info</span> -->
+                                                    </li>
+                                                    <li class="mb-4">
+                                                        <i class="fa fa-check-circle fa-lg mr-2 text-success" data-original-title="" title="" aria-describedby="tooltip131000" />
+                                                        <b>Assistance par téléphone</b>
+                                                    </li>
+                                                    <li class="mb-4">
+                                                        <i class="fa fa-check-circle fa-lg mr-2 text-success" />
+                                                        <b>Assistance par mail</b>
+                                                    </li>
+
+                                                    <li class="mb-4">
+                                                        <span class="fa fa-check-circle fa-lg mr-2 text-success" style="font-size: 1.33333em" data-original-title="" title="" aria-describedby="tooltip96053" />
+                                                        <b>Séances de groupe en Live avec les formateurs</b>
+                                                    </li>
+                                                    <li class="mb-4">
+                                                        <span class="fa fa-lg fa-times-circle text-danger mr-2" style="font-size: 1.33333em" data-original-title="" title="" aria-describedby="tooltip288722" />
+                                                        Séance en Live avec un expert métier
+                                                    </li>
+                                                    <li class="mb-4">
+                                                        <i class="fa fa-lg fa-times-circle text-danger mr-2" />
+                                                        Révision du programme avant l'examen
+                                                    </li>
+                                                    <li class="mb-4">
+                                                        <i class="fa fa-check-circle fa-lg mr-2 text-success" />
+                                                        <b>  &amp;nbsp;Examen final en présentiel 
+                                                                &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;
+                                                                &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;
+                                                                &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;
+                                                                &amp;nbsp;&amp;nbsp;</b>
+                                                    </li>
+                                                    <li class="mb-4">
+                                                        <i class="fa fa-check-circle fa-lg mr-2 text-success" />
+                                                        <b>Séance en Live pour corriger l’examen &amp;nbsp;
+                                                                &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;
+                                                                &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;
+                                                                &amp;nbsp; &amp;nbsp; &amp;nbsp;
+                                                                &amp;nbsp;&amp;nbsp;</b>
+                                                    </li>
+
+                                                    <li>
+                                                        <i />
+                                                    </li>
+                                                </ul>
+                                                <p class="                             text-center                             font-weight-bolder                             text-dark                             h1                             display-4                             mb-0                           ">
+                                                    <font>
+                                                        <p class="                                 text-center                                 font-weight-bolder                                 text-dark                                 h1                                 display-4                                 mb-0                               ">
+                                                            <span style="font-size:56px" t-esc="round(product.list_price)" />
+
+                                                            <span style="font-size:56px" t-esc="product.currency_id.symbol" />
+                                                        </p>
+                                                    </font>
+                                                </p>
+                                                <t t-if="promo and promo.name!='box2home'">
+                                                    <p class="                               text-center                               font-weight-bolder                               text-secondary                             ">
+                                                        <b style="font-size: 80%">
+                                                            <t>&amp;nbsp; &amp;nbsp; &amp;nbsp;&amp;nbsp;</t>
+                                                        </b>
+                                                    </p>
+                                                </t>
+                                                <p class="                             medium                             text-center                             font-weight-bolder                             text-secondary                           " style="color: red !important; margin-bottom:8px !important">
+                                                            Paiement 1 ou 2 fois
+                                                            </p>
+
+                                                <br />
+                                                <button class="btn btn-block text-white" onClick="(function(){document.getElementById('form-2-1').submit();return false;})();return false;" style="background-color: #6e209f; border-radius: 25px">
+                                                            Je m'inscris
+                                                            </button>
+                                            </div>
+                                        </form>
+                                    </t>
+                                </t>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-sm-12">
+                            <div class="card border-0 shadow" style="border-radius: 25px 25px">
+                                <!-- <div class="text-center text-white border-0" style="
+                    background-color: #6e209f;
+                    border-top-left-radius: 25px;
+                    border-top-right-radius: 25px;
+                  ">
+                                            <br />
+                                            <h2>
+                                                <strong style="color: white">PREMIUM</strong>
+                                            </h2>
+                                            <p>
+                                                <b></b>
+                                            </p>
+                                            <br />
+                                        </div> -->
+                                <div class="text-center text-white border-0" style="                     background-color: #6e209f;                     border-top-left-radius: 25px;                     border-top-right-radius: 25px;                   ">
+                                    <br />
+
+                                    <p>
+                                        <strong style="color: white">
+                                            <font style="font-size: 30px">PREMUIM</font>
+                                        </strong>
+                                    </p>
+                                    <p class="blink-soft">
+                                        <b>Éligible au CPF</b>
+                                    </p>
+                                    <br />
+                                </div>
+                                <t t-foreach="digimoov_products" t-as="product">
+                                    <t t-if="product.default_code=='premium'">
+                                        <form action="/shop/cart/update" method="post" id="form-3-1">
+                                            <input type="hidden" class="product_id" name="product_id" t-att-value="product.id" />
+                                            <input type="hidden" name="promo" t-att-value="promo.id" t-if="promo" />
+                                            <div class="card-body">
+                                                <ul class="list-unstyled">
+                                                    <li class="mb-4">
+                                                        <i class="fa fa-check-circle fa-lg mr-2 text-success" />
+                                                        <b>Formation 102h (100% en ligne)</b>
+                                                    </li>
+                                                    <li class="mb-4">
+                                                        <i class="fa fa-check-circle fa-lg mr-2 text-success" />
+                                                        <b>Livre d’entrainement version électronique</b>
+                                                    </li>
+                                                    <li class="mb-4">
+                                                        <i class="fa fa-check-circle fa-lg mr-2 text-success" />
+                                                        <b>Accès à 14+ examens d'entraînement</b>
+
+                                                    </li>
+                                                    <li class="mb-4">
+                                                        <i class="fa fa-check-circle fa-lg mr-2 text-success" />
+                                                        <b>Assistance par téléphone</b>
+                                                        <br />
+                                                    </li>
+                                                    <li class="mb-4">
+                                                        <i class="fa fa-check-circle fa-lg mr-2 text-success" />
+                                                        <b>Assistance par mail</b>
+                                                        <br />
+                                                    </li>
+
+                                                    <li class="mb-4">
+                                                        <i class="fa fa-check-circle fa-lg mr-2 text-success" />
+                                                        <b>Séances en Live avec un tuteur dédié</b>
+                                                        <br />
+                                                    </li>
+                                                    <li class="mb-4">
+                                                        <i class="fa fa-check-circle fa-lg mr-2 text-success" />
+                                                        <b>Séance en Live avec un expert métier </b>
+                                                        <b>&amp;nbsp;</b>
+                                                        <br />
+                                                    </li>
+                                                    <li class="mb-4">
+                                                        <i class="fa fa-check-circle fa-lg mr-2 text-success" />
+                                                        <b>Révision du programme avant l'examen</b>
+                                                    </li>
+                                                    <li class="mb-4">
+                                                        <span class="fa fa-check-circle fa-lg mr-2 text-success" style="font-size: 1.33333em" />
+                                                        <b>Examen final en présentiel</b>
+
+                                                    </li>
+                                                    <li class="mb-4">
+                                                        <i class="fa fa-lg fa-check-circle mr-2 text-success" />
+                                                        <b>Séance en Live pour corriger l’examen</b>
+                                                        &amp;nbsp;
+                                                                &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;
+                                                                &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;
+                                                                &amp;nbsp; &amp;nbsp; &amp;nbsp;
+                                                                &amp;nbsp;&amp;nbsp;
+                                                    </li>
+                                                    <li>
+                                                        <i />
+                                                    </li>
+                                                </ul>
+                                                <p class="                             text-center                             font-weight-bolder                             text-dark                             h1                             display-4                             mb-0                           ">
+                                                    <font>
+                                                        <p class="                                 text-center                                 font-weight-bolder                                 text-dark                                 h1                                 display-4                                 mb-0                               ">
+                                                            <span style="font-size:56px" t-esc="round(product.list_price)" />
+                                                            <span style="font-size:56px" t-esc="product.currency_id.symbol" />
+                                                        </p>
+                                                    </font>
+                                                </p>
+                                                <t t-if="promo">
+                                                    <p class="                               text-center                               font-weight-bolder                               text-secondary                             ">
+                                                        <b style="font-size: 80%">
+                                                            <t>&amp;nbsp; &amp;nbsp; &amp;nbsp;&amp;nbsp;</t>
+                                                        </b>
+                                                    </p>
+                                                </t>
+                                                <p class="                             medium                             text-center                             font-weight-bolder                             text-secondary                           " style="color: red !important; margin-bottom:8px !important">
+                                                            Paiement 1 ou 3 fois
+                                                            </p>
+
+                                                <br />
+                                                <button class="btn btn-block text-white" onClick="(function(){ document.getElementById('form-3-1').submit();return false;})();return false;" style="background-color: #6e209f; border-radius: 25px">
+                                                            Je m'inscris
+                                                        </button>
                                             </div>
                                         </form>
                                     </t>
