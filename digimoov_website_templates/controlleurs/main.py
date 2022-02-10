@@ -222,39 +222,42 @@ class DIGIEXAMEN(http.Controller):
                 now = date.today()  # Date d'aujourd'hui
                 date_dateutil = date_exam + dateutil.relativedelta.relativedelta(
                     months=6)  # Calcule la durée de temps à partir de la première date d'examen de l'apprenant en ajoutant 6 mois
-                if now < date_dateutil and is_public_user is not True:  # Comparer si date d'aujourd'hui inférieur à date d'examen + 6 mois
-                    print("months=6")
-                    echec_examen = request.env['product.product'].sudo().search(
-                        [('company_id', '=', 2), ('default_code', "=", 'examen')])
-                    values = {
-                        'echec_examen': echec_examen,
-                        'url': '/#pricing',
-                        'message': "Test si apprenant depasse 6 mois",
-                    }
-                    return values
                 exam_count = partner.note_exam_count
                 print("exam_count", exam_count)
-                if exam_count > 3:
-                    print("user not connected ")
+                if exam_count < 3:
+                    if now < date_dateutil and is_public_user is not True:  # Comparer si date d'aujourd'hui inférieur à date d'examen + 6 mois
+                        print("months=6")
+                        echec_examen = request.env['product.product'].sudo().search(
+                            [('company_id', '=', 2), ('default_code', "=", 'examen')])
+                        values = {
+                            'echec_examen': echec_examen,
+                            'url': '/shop/cart/update',
+                            'message': "Vous avez dépassé la durée règlementaire de 6 mois pour réserver votre nouvelle date d'examen ."
+                                       "Vous devez à présent, vous réinscrire à la formation pour retenter votre chance.",
+                        }
+                elif exam_count > 3:
                     values = {
                         'url': '/#pricing',
-                        'message': 'Test superieur 3 passage'
+                        'message': "Vous avez atteint le nombre limite de repassage de l'examen."
+                                   "Vous devez à présent, vous réinscrire à la formation pour retenter votre chance."
                     }
-                    return values
+                    print("now < date_dateutil and is_public_user is not True and exam_count > 3", exam_count)
                 if is_public_user:
-                    print("user not connected ")
+                    print("user not connected 2")
                     values = {
                         'url': '/web/signup',
-                        'message': 'Test si un apprenant est non connecté',
+                        'message': 'Pour réserver votre nouvelle tentative, '
+                                   'merci de vous connecter ou de créer votre compte client.',
                     }
-                    return values
+                    return request.redirect("/web/signup")
             else:
                 print("elseee")
                 values = {
                     'url': '/web/signup',
-                    'message': 'No exam',
+                    'message': 'Pour réserver votre nouvelle tentative, '
+                               'merci de vous connecter ou de créer votre compte client.',
                 }
-                return values
+                return request.redirect("/web/signup")
             # echec_examen = request.env['product.product'].sudo().search(
             # [('company_id', '=', 2), ('default_code', "=", 'examen')])
         #     values = {
