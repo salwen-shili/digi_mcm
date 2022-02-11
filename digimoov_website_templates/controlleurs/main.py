@@ -225,7 +225,7 @@ class DIGIEXAMEN(http.Controller):
                     months=6)  # Calcule la durée de temps à partir de la première date d'examen de l'apprenant en ajoutant 6 mois
                 exam_count = partner.note_exam_count
                 if exam_count < 3:  # Si nombre de passage < 3
-                    logging.info('Si nombre de passage < 3')
+                    logging.info('Si nombre de passage < 3 °°°°°°°°°°°°°°°°°°°°')
                     if now < date_dateutil and is_public_user is not True:  # Comparer si date d'aujourd'hui inférieur à date d'examen + 6 mois
                         echec_examen = request.env['product.product'].sudo().search(
                             [('company_id', '=', 2), ('default_code', "=", 'examen')])
@@ -237,7 +237,7 @@ class DIGIEXAMEN(http.Controller):
                         }
                     return request.render("digimoov_website_templates.digimoov_template_examen", values) # Envoyer les données vers xml dans la page examen
                 elif exam_count > 3:
-                    logging.info('Si nombre de passage > 3')
+                    logging.info('Si nombre de passage > 3 °°°°°°°°°°°°°°°°°°')
                     values = {
                         'url': '/#pricing',
                         'message': "Vous avez atteint le nombre limite de repassage de l'examen."
