@@ -5,9 +5,8 @@
             <!-- popup-->
             <input type="text" t-att-value="default" />
             <div t-if="default == False">
-
-                <input type="text" value="/web/login" id="url" />
-                <input type="text" value="message notif" id="message" />
+                <input type="text" t-att-value="url" id="url" />
+                <input type="text" t-att-value="message" id="message" />
 
                 <script>
                     document.addEventListener('DOMContentLoaded', function () {
