@@ -7,6 +7,7 @@ import base64
 from odoo.addons.website.controllers.main import Website  # import website controller
 import locale
 import logging
+
 _logger = logging.getLogger(__name__)
 
 import dateutil
@@ -219,52 +220,67 @@ class DIGIEXAMEN(http.Controller):
             session = request.env['partner.sessions'].search([('client_id', '=', partner.id)], order='id asc', limit=1)
             date_exam = session.session_id.date_exam  # Récupérer date d'examen à partir de la première session
             is_public_user = request.website.is_public_user()  # PUBLIC USER = VISITOR OR USER ODOO NOT CONNECTED, return true or false
-            if date_exam:  # Si date examen exist
-                print("*********************************************************")
-                now = date.today()  # Date d'aujourd'hui
-                date_dateutil = date_exam + dateutil.relativedelta.relativedelta(
-                    months=6)  # Calcule la durée de temps à partir de la première date d'examen de l'apprenant en ajoutant 6 mois
-                exam_count = partner.note_exam_count
-                print("&&&&&&&&&&&&&&&77 ",exam_count)
-                if exam_count < 3:  # Si nombre de passage < 3
-                    logging.info('Si nombre de passage < 3 °°°°°°°°°°°°°°°°°°°°')
-                    if now < date_dateutil and is_public_user is not True:  # Comparer si date d'aujourd'hui inférieur à date d'examen + 6 mois
+            if is_public_user is False:
+                print("/////public user/////", is_public_user )
+                if date_exam:  # Si date examen exist
+                    print("****************Si date examen exist**********")
+                    now = date.today()  # Date d'aujourd'hui
+                    date_dateutil = date_exam + dateutil.relativedelta.relativedelta(
+                        months=6)  # Calcule la durée de temps à partir de la première date d'examen de l'apprenant en ajoutant 6 mois
+                    exam_count = partner.note_exam_count
+                    print("&&&&&&&&&&&&&&&77", exam_count)
+                    if exam_count < 3:  # Si nombre de passage < 3
+                        logging.info('Si nombre de passage < 3 °°°°°°°°°°°°°°°°°°°°')
+                        if now < date_dateutil and is_public_user is not True:  # Comparer si date d'aujourd'hui inférieur à date d'examen + 6 mois
+                            echec_examen = request.env['product.product'].sudo().search(
+                                [('company_id', '=', 2), ('default_code', "=", 'examen')])
+                            values = {
+                                'date_dateutil': date_dateutil,
+                                'now': now,
+                                'echec_examen': echec_examen,
+                                'url': '/shop/cart/update',
+                                'default': True,
+                            }
+                            return request.render("digimoov_website_templates.digimoov_template_examen",
+                                                  values)  # Envoyer les données vers xml dans la page examen
+                        else:
+                            echec_examen = request.env['product.product'].sudo().search(
+                                [('company_id', '=', 2), ('default_code', "=", 'examen')])
+                            values = {
+                                'echec_examen': echec_examen,
+                                'url': '/#pricing',
+                                'default': False,
+                                'message': "Vous avez dépassé la durée règlementaire de 6 mois pour réserver votre nouvelle date d'examen ."
+                                           "Vous devez à présent, vous réinscrire à la formation pour retenter votre chance.",
+                            }
+                            return request.render("digimoov_website_templates.digimoov_template_examen",
+                                                  values)  # Envoyer les données vers xml dans la page examen
+                    elif exam_count > 3:
+                        logging.info('Si nombre de passage > 3 °°°°°°°°°°°°°°°°°°')
                         echec_examen = request.env['product.product'].sudo().search(
                             [('company_id', '=', 2), ('default_code', "=", 'examen')])
-                        echec_examen_valid = True
                         values = {
+                            'default': False,
                             'echec_examen': echec_examen,
-                            'url': '/shop/cart/update',
-                            'default' : False,
-                            'message': "Vous avez dépassé la durée règlementaire de 6 mois pour réserver votre nouvelle date d'examen ."
+                            'url': '/#pricing',
+                            'message': "Vous avez atteint le nombre limite de repassage de l'examen."
                                        "Vous devez à présent, vous réinscrire à la formation pour retenter votre chance.",
                         }
-                        return request.render("digimoov_website_templates.digimoov_template_examen", values) # Envoyer les données vers xml dans la page examen
-                elif exam_count > 3:
-                    logging.info('Si nombre de passage > 3 °°°°°°°°°°°°°°°°°°')
-                    values = {
-                        'url': '/#pricing',
-                        'message': "Vous avez atteint le nombre limite de repassage de l'examen."
-                                   "Vous devez à présent, vous réinscrire à la formation pour retenter votre chance.",
-                        'default': False,
-                    }
-                    return request.render('digimoov_website_templates.digimoov_template_examen', values)
+                        return request.render('digimoov_website_templates.digimoov_template_examen', values)
             else:
-                default = False
-                if is_public_user:
-                    values = {
-                        'url': '/web/signup',
-                        'message': 'Pour réserver votre nouvelle tentative, '
-                                   'merci de vous connecter ou de créer votre compte client.',
-                        'default': False,
-                       
-                    }
-                    return request.render("digimoov_website_templates.digimoov_template_examen", values)
+                print("////public user///", is_public_user)
+                echec_examen = request.env['product.product'].sudo().search(
+                    [('company_id', '=', 2), ('default_code', "=", 'examen')])
                 values = {
-                    'default': True,
-                }
-                return request.render("digimoov_website_templates.digimoov_template_examen")
+                    'echec_examen': echec_examen,
+                    'is_public_user': is_public_user,
+                    'default': False,
+                    'url': '/web/signup',
+                    'message': 'Pour réserver votre nouvelle tentative, '
+                               'merci de vous connecter ou de créer votre compte client.',
 
+                }
+                return request.render("digimoov_website_templates.digimoov_template_examen", values)
         else:
             return request.redirect("/preparation-examen-taxi/vtc")
 
