@@ -235,8 +235,8 @@ class DIGIEXAMEN(http.Controller):
                             echec_examen = request.env['product.product'].sudo().search(
                                 [('company_id', '=', 2), ('default_code', "=", 'examen')])
                             values = {
-                                'date_dateutil': date_dateutil,
-                                'now': now,
+                                'date_dateutil': date_dateutil, #Date de 1ere inscription + 6 mois
+                                'now': now, #Date aujourd'hui
                                 'echec_examen': echec_examen,
                                 'url': '/shop/cart/update',
                                 'default': True,
