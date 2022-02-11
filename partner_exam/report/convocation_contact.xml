@@ -3,10 +3,11 @@
     <data>
         <template id="id_convocation_print_report_pdf_ids">
             <t t-call="web.html_container">
-                <t t-foreach="docs" t-as="all">
+                <t t-foreach="docs" t-as="o">
                     <t t-call="web.basic_layout">
                         <div class="page"
                              style="line-height:1.5;font-family:Montserrat;font-size:12 %;page-break-before: always;">
+                            <div class="oe_structure"/>
                             <div class="row">
                                 <div class="col-12">
                                     <br>
@@ -19,26 +20,30 @@
                                         </p>
                                         <strong>
                                             Prénom et Nom :
-                                            <t t-foreach="docs" t-as="client"
-                                               style="line-height:1.5;font-family:Montserrat;font-size:12 %;page-break-before: always;">
-                                                <span t-field="client.name"/>
-                                            </t>
+                                            <strong>
+                                                <span t-raw="'%s' % o.name if o.name else ''"/>
+                                            </strong>
                                         </strong>
                                         <br></br>
                                         <strong>Adresse :
-                                            <t t-foreach="docs.mcm_session_id" t-as="adresse">
-                                                <span t-esc="adresse.session_adresse_examen.adresse_centre_examen"/>
+                                            <t t-if="o.mcm_session_id[0].session_adresse_examen.adresse_centre_examen">
+                                                <span t-field="o.mcm_session_id[0].session_adresse_examen.adresse_centre_examen"/>
+                                            </t>
+                                            <t t-else="">
+                                                <span>
+                                                    .........................................................................
+                                                </span>
                                             </t>
                                         </strong>
                                         <br></br>
                                         <strong>Date :
-                                            <t t-foreach="docs.mcm_session_id" t-as="line">
+                                            <t t-foreach="o.mcm_session_id" t-as="line">
                                                 <span t-field="line.date_exam"/>
                                             </t>
                                         </strong>
                                         <br></br>
                                         <strong>Heure :</strong>
-                                        <t t-foreach="docs.mcm_session_id" t-as="matin">
+                                        <t t-foreach="o.mcm_session_id" t-as="matin">
                                             <t t-if="matin.temps_convocation == 'matin'">
                                                 <strong>
                                                     <span t-field="matin.heure_examen_matin"/>
@@ -50,7 +55,7 @@
                                                 l'épreuve).
                                             </t>
                                         </t>
-                                        <t t-foreach="docs.mcm_session_id" t-as="apres_midi">
+                                        <t t-foreach="o.mcm_session_id" t-as="apres_midi">
                                             <t t-if="apres_midi.temps_convocation == 'apres_midi'">
                                                 <strong>
                                                     <span t-field="apres_midi.heure_examen_apres_midi"/>
@@ -63,7 +68,7 @@
                                                 <br></br>
                                             </t>
                                         </t>
-                                        <t t-foreach="docs.mcm_session_id" t-as="none">
+                                        <t t-foreach="o.mcm_session_id" t-as="none">
                                             <t t-if="none.temps_convocation == ''">
                                                 <p></p>
                                             </t>
@@ -92,7 +97,7 @@
                                         <center>
                                             <center>
                                                 <bold>
-                                                    <a t-attf-href="#{docs.mcm_session_id.lien}">
+                                                    <a t-attf-href="#{o.mcm_session_id.lien}">
                                                         <b>Cliquer ici</b>
                                                     </a>
                                                     <b>pour consulter le plan d'accès au centre d'examen</b>
@@ -113,7 +118,7 @@
                                             <tbody>
                                                 <tr align="center">
                                                     <td>
-                                                        <t t-foreach="docs.mcm_session_id" t-as="footer">
+                                                        <t t-foreach="o.mcm_session_id" t-as="footer">
                                                             <span t-esc="context_timestamp(datetime.datetime.now()).strftime('%d/%m/%Y')"/>
                                                         </t>
                                                     </td>
