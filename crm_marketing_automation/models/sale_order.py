@@ -10,13 +10,16 @@ class Sale(models.Model):
     _inherit = 'sale.order'
     @api.model
     def create(self, vals):
+        res = super(Sale, self).create(vals)
         print('drafttt', vals)
         partner_id = vals['partner_id']
         partner = self.env['res.partner'].sudo().search([('id', '=', partner_id)], limit=1)
         print('partner', partner)
         if partner:
             self.change_stage_lead("Prospection", partner)
-        res = super(Sale, self).create(vals)
+            # for so in self.order_line:
+            print("order line",self.pricelist_id.name)
+
         return res
     def write(self, vals):
         record = super(Sale, self).write(vals)
@@ -28,14 +31,20 @@ class Sale(models.Model):
                 partner = self.partner_id
                 print('sent', partner)
                 print('change statut', partner.mcm_session_id.id, partner.session_id.id)
-                if (partner.mcm_session_id.id) and (partner.mcm_session_id.id == self.session_id.id):
+                if (partner.mcm_session_id.id) and (partner.mcm_session_id.id == self.session_id.id) and not partner.bolt:
                     self.change_stage_lead("Contrat non Signé", partner)
+                if (partner.mcm_session_id.id) and (partner.mcm_session_id.id == self.session_id.id) and partner.bolt:
+                    self.change_stage_lead("Bolt-Contrat non Signé", partner)
             if vals['state'] == 'sale':
                 partner = self.partner_id
                 print('sale', partner)
                 print('change statut', partner.mcm_session_id.id, partner.session_id.id)
                 if (partner.mcm_session_id.id) and (partner.mcm_session_id.id == self.session_id.id):
-                    self.change_stage_lead("Contrat Signé", partner)
+                    if not partner.bolt:
+                        self.change_stage_lead("Contrat Signé", partner)
+                    else :
+                        """classer les apprenant de bolt"""
+                        self.change_stage_lead("Bolt-Contrat Singé", partner)
         return record
     def change_stage_lead(self, statut, partner):
         print('if verifié')

@@ -17,6 +17,21 @@ class Partner(models.Model):
         partner = super(Partner, self).create(vals)
         return partner
     def write(self, vals):
+        if 'inscrit_mcm' in vals and self.bolt :
+            if self.renounce_request:
+                self.changestage("Bolt-Plateforme de formation",self)
+            else :
+                self.changestage("Bolt-Rétractation non Coché",self)
+
+        """pour bolt prendre la valeur d'examen blanc si > 30% sera classé  sur crm sous reussi si non echec """
+        if 'note_exam' in vals :
+            print("write",vals)
+            note_exam=vals['note_exam']
+            if self.bolt or ('bolt' in vals and vals['bolt']):
+                if float(note_exam) >= 30.0:
+                    self.changestage("Reussi dans Examen Blanc",self)
+                if float(note_exam) < 30.0:
+                    self.changestage("Echec d'Examen Blanc",self)
         if 'statut' in vals:
             if vals['statut'] == 'canceled':
                 self.changestage("Annulé", self)
@@ -138,19 +153,44 @@ class Partner(models.Model):
                     if partner.mode_de_financement == "particulier":
                         if sale_order and sale_order.state == "sent":
                             _logger.info('contrat non signé')
-                            self.changestage("Contrat non Signé", partner)
+                            if not partner.bolt:
+                                self.changestage("Contrat non Signé", partner)
+                            else:
+                                self.change_stage_lead("Bolt-Contrat non Signé", partner)
                         if sale_order and sale_order.state == "sale":
                             if not document_valide:
-                                self.changestage("Contrat Signé", partner)
+                                if not partner.bolt:
+                                    self.changestage("Contrat Signé", partner)
+                                if partner.bolt:
+                                    self.changestage("Bolt-Contrat Singé", partner)
                             if waiting:
-                                self.changestage("Document non Validé", partner)
+                                if partner.bolt:
+                                    self.changestage("Bolt-Document non Validé", partner)
+                                else :
+                                    self.changestage("Document non Validé", partner)
+
                             if document_valide:
+                                print("++++++++++++",partner.email,partner.inscrit_mcm)
                                 failure = sale_order.failures  # delai de retractation
                                 """Si Il n'as pas fait la renonciation au contrat et sur la fiche 
                                  on le classe sous retractation non coché et on doit vérifier la date de signature si n'as
                                      pas depassé 14jours"""
                                 if not (partner.renounce_request) and (date_facture) and (date_facture + timedelta(days=14)) > (today):
-                                    self.changestage("Rétractation non Coché", partner)
+                                    if partner.bolt:
+                                        self.changestage("Bolt-Rétractation non Coché", partner)
+                                    else :
+                                        self.changestage("Rétractation non Coché", partner)
+
+                                if partner.renounce_request and partner.bolt and partner.inscrit_mcm == False:
+                                    print("++++++",partner.email)
+                                    self.changestage("Inscription Examen Eval Box", partner)
+                                if partner.renounce_request and partner.bolt and  partner.inscrit_mcm:
+                                    print("======",partner.email)
+
+                                    self.changestage("Bolt-Plateforme de formation", partner)
+
+
+                    
                     """Si mode de financement cpf on doit vérifier seulement l'etat des documents  
                         et la renonciation sur la fiche client """
                     if partner.mode_de_financement == "cpf" and partner.mcm_session_id.date_exam and partner.mcm_session_id.date_exam > date.today():

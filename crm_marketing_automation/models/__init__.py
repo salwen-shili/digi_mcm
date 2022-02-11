@@ -4,3 +4,4 @@ from . import sale_order
 from . import document
 from . import Import_data
 from . import crm_stage
+from . import order_line
