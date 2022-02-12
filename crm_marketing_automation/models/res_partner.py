@@ -10,13 +10,33 @@ import logging
 _logger = logging.getLogger(__name__)
 class Partner(models.Model):
     _inherit = 'res.partner'
+    bolt=fields.Boolean('Client Bolt')
+    inscrit_mcm=fields.Date("Date d'inscription")
+    eval_box=fields.Boolean('Eval Box')
+
     def create(self, vals):
         partner = super(Partner, self).create(vals)
         return partner
     def write(self, vals):
+        if 'inscrit_mcm' in vals and self.bolt :
+            if self.renounce_request:
+                self.changestage("Bolt-Plateforme de formation",self)
+            else :
+                self.changestage("Bolt-Rétractation non Coché",self)
+
+        """pour bolt prendre la valeur d'examen blanc si > 30% sera classé  sur crm sous reussi si non echec """
+        if 'note_exam' in vals :
+            print("write",vals)
+            note_exam=vals['note_exam']
+            if self.bolt or ('bolt' in vals and vals['bolt']):
+                if float(note_exam) >= 40.0:
+                    self.changestage("Reussi dans Examen Blanc",self)
+                if float(note_exam) < 40.0:
+                    self.changestage("Echec d'Examen Blanc",self)
         if 'statut' in vals:
             if vals['statut'] == 'canceled':
                 self.changestage("Annulé", self)
+        """si date d'inscription remplit il sera classé sous l'etape plateforme de formation"""
         if 'statut_cpf' in vals :
             # Si statut cpf non traité on classe l'apprenant dans le pipeline du crm  sous etat non traité
             if vals['statut_cpf'] == 'untreated':
@@ -34,12 +54,6 @@ class Partner(models.Model):
                 self.changestage("Service fait déclaré", self)
             if vals['statut_cpf'] == 'bill':
                 self.changestage("Facturé", self)
-            # Si statut cpf non traité on classe l'apprenant dans le pipeline du crm  sous etat non traité
-            if vals['statut_cpf'] == 'untreated':
-                self.changestage("Non traité", self)
-            # Si statut cpf validé on classe l'apprenant dans le pipeline du crm  sous etat validé
-            if vals['statut_cpf'] == 'validated':
-                self.changestage("Validé", self)
             if vals['statut_cpf'] == 'accepted':
                 """Si statut cpf accepté et n'as pas encore choisi sa ville et sa date 
                  on classe l'apprenant   sous statut  choix date d'examen"""
@@ -92,8 +106,10 @@ class Partner(models.Model):
                         lead.module_id = partner.module_id if partner.module_id else False
                         lead.company_id=partner.company_id if partner.company_id else False
     def change_crm_lead_existant(self):
-        self.import_data("Plateforme 360")
+        self.import_data("Plateforme de formation")
         partners = self.env['res.partner'].sudo().search([])
+        today = date.today()
+
         for partner in partners:
             if partner.statut_cpf and (partner.statut_cpf == 'canceled' or partner.statut == 'canceled'):
                 self.changestage("Annulé", partner)
@@ -136,34 +152,57 @@ class Partner(models.Model):
                                 _logger.info("document waiting  %s" % partner.name)
                                 waiting = True
                     if partner.mode_de_financement == "particulier":
+                        if partner.bolt and float(partner.note_exam) < 40.0:
+                            self.changestage("Echec d'Examen Blanc", self)
                         if sale_order and sale_order.state == "sent":
                             _logger.info('contrat non signé')
-                            self.changestage("Contrat non Signé", partner)
+                            if not partner.bolt:
+                                self.changestage("Contrat non Signé", partner)
+                            else:
+                                self.change_stage_lead("Bolt-Contrat non Signé", partner)
                         if sale_order and sale_order.state == "sale":
                             if not document_valide:
-                                self.changestage("Contrat Signé", partner)
+                                if not partner.bolt:
+                                    self.changestage("Contrat Signé", partner)
+                                if partner.bolt:
+                                    self.changestage("Bolt-Contrat Singé", partner)
                             if waiting:
-                                self.changestage("Document non Validé", partner)
+                                if partner.bolt:
+                                    self.changestage("Bolt-Document non Validé", partner)
+                                else :
+                                    self.changestage("Document non Validé", partner)
+
                             if document_valide:
+                                print("++++++++++++",partner.email,partner.inscrit_mcm)
                                 failure = sale_order.failures  # delai de retractation
-                                today = date.today()
                                 """Si Il n'as pas fait la renonciation au contrat et sur la fiche 
                                  on le classe sous retractation non coché et on doit vérifier la date de signature si n'as
                                      pas depassé 14jours"""
                                 if not (partner.renounce_request) and (date_facture) and (date_facture + timedelta(days=14)) > (today):
-                                    self.changestage("Rétractation non Coché", partner)
+                                    if partner.bolt:
+                                        self.changestage("Bolt-Rétractation non Coché", partner)
+                                    else :
+                                        self.changestage("Rétractation non Coché", partner)
+
+                                if partner.renounce_request and partner.bolt and partner.inscrit_mcm == False and partner.eval_box == True:
+                                    print("++++++",partner.email)
+                                    self.changestage("Inscription Examen Eval Box", partner)
+                                if partner.renounce_request and partner.bolt and  partner.inscrit_mcm   and partner.eval_box == False:
+                                    print("======",partner.email)
+
+                                    self.changestage("Bolt-Plateforme de formation", partner)
+
                     """Si mode de financement cpf on doit vérifier seulement l'etat des documents  
                         et la renonciation sur la fiche client """
                     if partner.mode_de_financement == "cpf" and partner.mcm_session_id.date_exam and partner.mcm_session_id.date_exam > date.today():
                         if waiting:
                             self.changestage("Document non Validé", partner)
-                        if document_valide and not (partner.renounce_request) and (date_facture)and \
-                                (date_facture + timedelta(days=14)) > (today):
+                        if document_valide and not (partner.renounce_request) :
                             self.changestage("Rétractation non Coché", partner)
     """Methode pour importation des données à partir de 360"""
     def import_data(self, name):
         """Supprimer les anciens apprenants et les remplacer par les nouveaux importés par api"""
-        old_leads = self.env['crm.lead'].sudo().search([('stage_id.name', '=', 'Plateforme 360')])
+        old_leads = self.env['crm.lead'].sudo().search([('stage_id.name', '=', 'Plateforme de formation')])
         if old_leads:
             old_leads.unlink()
         params = (
