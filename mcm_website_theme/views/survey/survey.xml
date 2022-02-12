@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="bolt_survey_init" inherit_id="survey.survey_init">
+        <xpath expr="//div[1]" position="before">
+            <input type="hidden" name="exam_not_passed" id ="exam_not_passed" t-att-value="exam_not_passed"/>
+            <input type="hidden" name="exam_success" id="exam_success" t-att-value="exam_success"/>
+        </xpath>
+    </template>
+</odoo>

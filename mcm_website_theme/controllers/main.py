@@ -382,6 +382,35 @@ class Routes_Site(http.Controller):
         order = request.website.sale_get_order()
         if not order:
             return request.redirect("/pricing")
+        else:
+            default_code_bolt = False
+            if order.company_id.id ==1 :
+                if order.order_line:
+                    for line in order.order_line:
+                        if (line.product_id.default_code=='vtc_bolt'):
+                            default_code_bolt = True
+                    if default_code_bolt:
+                        survey = request.env['survey.survey'].sudo().search([('title', "=", 'Examen blanc Français')],
+                                                                            limit=1)
+                        if survey:
+                            print(survey)
+                            survey_user = request.env['survey.user_input'].sudo().search(
+                                [('partner_id', "=", request.env.user.partner_id.id), ('survey_id', '=', survey.id)],
+                                order='create_date asc', limit=1)
+                            if not survey_user:
+                                # url = 'https://www.mcm-academy.fr/survey/start/'+str(survey.access_token)
+                                url = str(survey.public_url)
+                                return werkzeug.utils.redirect(url,301)
+                            if survey_user and survey_user.state == 'new':
+                                # url = 'https://www.mcm-academy.fr/survey/start/' + str(survey.access_token)
+                                url = str(survey.public_url)
+                                return werkzeug.utils.redirect(url, 301)
+                            if survey_user and survey_user.state == 'skip':
+                                return werkzeug.utils.redirect(str('survey/fill/%s/%s' % (str(survey.access_token), str(survey_user.token))), 301)
+                            if survey_user and survey_user.state == 'done':
+                                if not survey_user.quizz_passed:
+                                    return werkzeug.utils.redirect('/bolt', 301)
+
         partner_has_documents = False
         if order.partner_id:
             documents = request.env['documents.document'].sudo().search([('partner_id', '=', order.partner_id.id)])
@@ -1102,8 +1131,7 @@ class Conditions(http.Controller):
 
     @http.route(['/shop/payment/update_condition'], type='json', auth="public", methods=['POST'], website=True)
     def cart_update_condition(self, condition):
-        """This route is called when changing quantity from the cart or adding
-        a product from the wishlist."""
+        """This route is called when changing conditions in shop cart"""
         print("POST request @ /shop/payment/update_condition")
         order = request.website.sale_get_order(force_create=0)
         if order:
@@ -1115,7 +1143,7 @@ class Conditions(http.Controller):
 
     @http.route(['/shop/payment/update_failures'], type='json', auth="public", methods=['POST'], website=True)
     def cart_update_failures(self, failures):
-        """This route is called when changing renounce request in shop cart."""
+        """This route is called when changing failures in shop cart."""
         order = request.website.sale_get_order(force_create=0)
         if order:
             if failures:
@@ -1124,6 +1152,48 @@ class Conditions(http.Controller):
             else:
                 order.failures = False
                 order.partner_id.renounce_request = False
+        return True
+
+    @http.route(['/shop/update_driver_licence'], type='json', auth="public", methods=['POST'], website=True)
+    def cart_update_driver_licence(self, driver_licence):
+        """This route is called when changing driver_licence in shop cart."""
+        order = request.website.sale_get_order(force_create=0)
+        if order:
+            if order.order_line:
+                for line in order.order_line:
+                    if line.product_id.default_code == 'vtc_bolt':
+                        if driver_licence:
+                            order.partner_id.driver_licence = True
+                        else:
+                            order.partner_id.driver_licence = False
+        return True
+
+    @http.route(['/shop/update_license_suspension'], type='json', auth="public", methods=['POST'], website=True)
+    def cart_update_license_suspension(self, license_suspension):
+        """This route is called when changing license_suspension in shop cart."""
+        order = request.website.sale_get_order(force_create=0)
+        if order:
+            if order.order_line:
+                for line in order.order_line:
+                    if line.product_id.default_code == 'vtc_bolt':
+                        if license_suspension:
+                            order.partner_id.license_suspension = True
+                        else:
+                            order.partner_id.license_suspension = False
+        return True
+
+    @http.route(['/shop/update_criminal_record'], type='json', auth="public", methods=['POST'], website=True)
+    def cart_update_criminal_record(self, criminal_record):
+        """This route is called when changing criminal_record in shop cart."""
+        order = request.website.sale_get_order(force_create=0)
+        if order:
+            if order.order_line:
+                for line in order.order_line:
+                    if line.product_id.default_code == 'vtc_bolt':
+                        if criminal_record:
+                            order.partner_id.criminal_record = True
+                        else:
+                            order.partner_id.criminal_record = False
         return True
 
     @http.route(['/shop/payment/update_accompagnement'], type='json', auth="public", methods=['POST'], website=True)

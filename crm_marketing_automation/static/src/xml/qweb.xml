@@ -5,4 +5,11 @@
         <button t-if="widget.modelName == 'crm.lead'"  class="btn btn-primary oe_action_button" type="button" access_key="f" >Supprimer les doublons</button>
       </t>
     </t>
+    <t t-name="crm.KanbanView.Group" t-extend="KanbanView.Group">
+        <t t-jquery=".o_kanban_group.ui-sortable" t-operation="append">
+            <t t-if="data.stage_id.data.bolt === true ">
+               <div  style="display:none;" ></div>
+            </t>
+        </t>
+    </t>
   </template>

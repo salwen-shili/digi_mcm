@@ -10,7 +10,9 @@
        </record>
 <!--héritage  Vue kanban -->
     <record id="marketing_automation_view_crm_lead_kanban" model="ir.ui.view">
+<!--        <input value="test"></input>-->
         <field name="name">crm.lead.kanban</field>
+
         <field name="model">crm.lead</field>
         <field name="inherit_id" ref="crm.crm_case_kanban_view_leads"/>
         <field name="arch" type="xml">
@@ -21,7 +23,11 @@
               <xpath expr="//kanban" position="inside">
                 <field name="name" />
               </xpath>
-
+<!--              <xpath expr="//div[hasclass('o_kanban_group ui-sortable')]" position="replace">-->
+<!--                <div class="o_kanban_header"-->
+<!--                     t-if="record.stage_id.bolt.raw_value != false and record.partner_id.raw_value != false" style=" display: none;">-->
+<!--                </div>-->
+<!--              </xpath>-->
              <xpath expr="//kanban/progressbar[@field='activity_state']" position="replace">
              </xpath>
             <xpath expr="//div[hasclass('oe_kanban_content')]" position="replace">

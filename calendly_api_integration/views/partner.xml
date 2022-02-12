@@ -6,22 +6,18 @@
         <field name="inherit_id" ref="base.view_partner_form"/>
         <field name="arch" type="xml">
             <xpath expr="//notebook" position="before">
-                <group string="Pré-requis" name="calendly" attrs="{'invisible': [('company_id', '=', 2)]}">
-                    <group>
-                        <field name="formation_type"/>
-                        <field name="pole_emploi"/>
-                        <field name="social_security_number"/>
-                        <field name="funding_type"/>
-                    </group>
-                    <group>
+                <group attrs="{'invisible': [('company_id', '=', 2)]}">
+                    <group string="Pré-requis" name="calendly" attrs="{'invisible': [('company_id', '=', 2)]}">
                         <field name="driver_licence"/>
                         <field name="license_suspension"/>
                         <field name="criminal_record"/>
                         <field name="statut_calendly"/>
                         <progressbar field="statut_calendly"
                                      colors='{"valid": "success", "waiting": "danger"}'/>
+
                     </group>
                 </group>
+
             </xpath>
         </field>
     </record>
