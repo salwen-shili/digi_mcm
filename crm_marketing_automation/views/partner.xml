@@ -111,4 +111,15 @@
             </xpath>
         </field>
     </record>
+    <record model="ir.ui.view" id="partner_mcm_form_view">
+        <field name="name">Apprenants</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="calendly_api_integration.mcm_calendly_view_res_partner_form"></field>
+        <field name="arch" type="xml">
+            <xpath expr="//group/group/field[@name='criminal_record']" position="after">
+                <field name="eval_box"></field>
+            </xpath>
+        </field>
+    </record>
+
 </odoo>

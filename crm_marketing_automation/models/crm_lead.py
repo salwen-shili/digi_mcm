@@ -21,15 +21,15 @@ class CRM(models.Model):
     mcm_session_id = fields.Many2one('mcmacademy.session')
     numero_action = fields.Char(string="Identifiant interne d'action")
 
-    # @api.model
-    # def search_read(self, domain=None, fields=None, offset=0, limit=None, order=None):
-    # 
-    #     if self.user_has_groups('crm_marketing_automation.group_bolt'):
-    #         domain += [('stage_id.bolt', '=',True)]
-    # 
-    #     res = super(CRM, self).search_read(domain, fields, offset, limit, order)
-    # 
-    #     return res
+    @api.model
+    def search_read(self, domain=None, fields=None, offset=0, limit=None, order=None):
+
+        if self.user_has_groups('crm_marketing_automation.group_bolt'):
+            domain += [('stage_id.bolt', '=',True)]
+
+        res = super(CRM, self).search_read(domain, fields, offset, limit, order)
+
+        return res
 
     """Affecter les crm lead aux apprenants convenables après l'importation
      Et supression des duplications"""

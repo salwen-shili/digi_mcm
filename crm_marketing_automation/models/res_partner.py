@@ -12,6 +12,7 @@ class Partner(models.Model):
     _inherit = 'res.partner'
     bolt=fields.Boolean('Client Bolt')
     inscrit_mcm=fields.Date("Date d'inscription")
+    eval_box=fields.Boolean('Eval Box')
 
     def create(self, vals):
         partner = super(Partner, self).create(vals)
@@ -28,9 +29,9 @@ class Partner(models.Model):
             print("write",vals)
             note_exam=vals['note_exam']
             if self.bolt or ('bolt' in vals and vals['bolt']):
-                if float(note_exam) >= 30.0:
+                if float(note_exam) >= 40.0:
                     self.changestage("Reussi dans Examen Blanc",self)
-                if float(note_exam) < 30.0:
+                if float(note_exam) < 40.0:
                     self.changestage("Echec d'Examen Blanc",self)
         if 'statut' in vals:
             if vals['statut'] == 'canceled':
@@ -151,6 +152,8 @@ class Partner(models.Model):
                                 _logger.info("document waiting  %s" % partner.name)
                                 waiting = True
                     if partner.mode_de_financement == "particulier":
+                        if partner.bolt and float(partner.note_exam) < 40.0:
+                            self.changestage("Echec d'Examen Blanc", self)
                         if sale_order and sale_order.state == "sent":
                             _logger.info('contrat non signé')
                             if not partner.bolt:
@@ -181,16 +184,14 @@ class Partner(models.Model):
                                     else :
                                         self.changestage("Rétractation non Coché", partner)
 
-                                if partner.renounce_request and partner.bolt and partner.inscrit_mcm == False:
+                                if partner.renounce_request and partner.bolt and partner.inscrit_mcm == False and partner.eval_box == True:
                                     print("++++++",partner.email)
                                     self.changestage("Inscription Examen Eval Box", partner)
-                                if partner.renounce_request and partner.bolt and  partner.inscrit_mcm:
+                                if partner.renounce_request and partner.bolt and  partner.inscrit_mcm   and partner.eval_box == False:
                                     print("======",partner.email)
 
                                     self.changestage("Bolt-Plateforme de formation", partner)
 
-
-                    
                     """Si mode de financement cpf on doit vérifier seulement l'etat des documents  
                         et la renonciation sur la fiche client """
                     if partner.mode_de_financement == "cpf" and partner.mcm_session_id.date_exam and partner.mcm_session_id.date_exam > date.today():
