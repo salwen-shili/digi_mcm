@@ -247,7 +247,11 @@ function verify_payment_method() {
 
   if (stripe_pm) {
     if (stripe_pm.checked == true) {
-      window.location.href = '/shop/checkout?express=1';
+      if (document.getElementById('from_bolt').value != 'False') {
+        addcheckBoxBolt();
+      } else {
+        window.location.href = '/shop/checkout?express=1';
+      }
     }
   }
   pole_emploi_pm = document.getElementById('pole_emploi_pm');
@@ -602,3 +606,159 @@ function hidePromo() {
 //     }
 //   }
 // }
+
+const update_driver_licence = (driver_licence) => {
+  sendHttpRequest('POST', '/shop/update_driver_licence', {
+    params: {
+      driver_licence: driver_licence,
+    },
+  })
+    .then((responseData) => {})
+    .catch((err) => {});
+};
+
+const update_license_suspension = (license_suspension) => {
+  sendHttpRequest('POST', '/shop/update_license_suspension', {
+    params: {
+      license_suspension: license_suspension,
+    },
+  })
+    .then((responseData) => {})
+    .catch((err) => {});
+};
+
+const update_criminal_record = (criminal_record) => {
+  sendHttpRequest('POST', '/shop/update_criminal_record ', {
+    params: {
+      criminal_record: criminal_record,
+    },
+  })
+    .then((responseData) => {})
+    .catch((err) => {});
+};
+//boltPopupContent
+const popContent = `<div class='input checkbox' style='width:90%'>
+    <input
+      type='checkbox'
+      id='driver-licence'
+      style='white-space: nowrap;'
+      class='text-xl-left border-0 mt24 mb24'
+    >
+      <label for='driver-licence' style='display:inline'>
+        Vous avez 3 ans de permis ou plus
+      </label>
+    </input>
+  </div>
+  <div class='input checkbox' style='width:90%'>
+    <input
+      type='checkbox'
+      id='license_suspension'
+      style='white-space: nowrap;'
+      class='text-xl-left border-0 mb24'
+    >
+      <label for='license_suspension' style='display:inline'>
+        Vous avez aucun retrait définitif de permis ces 10 dernières années
+      </label>
+    </input>
+  </div>
+  <div class='input checkbox' style='width:90%'>
+    <input
+      type='checkbox'
+      id='criminal_record'
+      style='white-space: nowrap;'
+      class='text-xl-left border-0 mb24'
+    >
+      <label for='criminal_record' style='display:inline'>
+        Vous avez un Casier judiciaire vierge B2
+      </label>
+    </input>
+  </div>
+  <p id="error_choix_bolt" class="alert alert-warning" style="margin-left: 0%; display: none;" >
+                                Vous devez avoir... 
+  </p>
+   <div  style="text-align:center">
+    <button type="button" class="btn btn-secondary action-button shake" id="continueBtn" onclick="paiementBolt()">Passer au paiement
+</button>
+</div>
+  `;
+//BoltinitPopup
+const popupContentinit = `<div class="input checkbox" style="width:90%">
+                                <input type="checkbox" id="checkbox_failures" style="white-space: nowrap;" class="text-xl-left border-0" t-att-checked="website_sale_order.failures" t-att-value="website_sale_order.failures">
+                                    <label for="failures" style="display:inline">
+                                        Je souhaite accéder à la formation dès maintenant sans attendre 14 jours. Je
+                                        reconnais que
+                                     
+                                        <span t-if="website_sale_order.company_id.id==1">MCM Academy</span>
+                                        procédera à l'exécution immédiate de ma formation en ligne et à ce titre, je
+                                        renonce expressément à exercer mon droit de rétractation conformément aux
+                                        dispositions de
+                                        l'article L.221-28 1° du code de la consommation.
+                                    </label>
+                                </input>
+                            </div>
+                            <div class="input checkbox" style="margin-top: 12px;">
+                                <input type="checkbox" id="checkbox_conditions" style="white-space: nowrap;" class="text-xl-left border-0" t-att-checked="website_sale_order.conditions" t-att-value="website_sale_order.conditions">
+                                    <label for="conditions" style="display:inline">
+                                        J'ai lu et j'accepte les
+                                        <a href="/conditions" target="blank" style="font-weight: 600; color: #000;">
+                                            conditions générales de vente
+                                        </a>
+                                    </label>
+                                </input>
+                            </div>
+                            <p id="error_conditions" class="alert alert-warning" style="margin-left:0%;display:none;">
+                                Vous devez acceptez les conditions générales de ventes
+                            </p>
+
+                            <p id="error_choix_date_popup" class="alert alert-warning" style="margin-left:0%;display:none;">
+                                Vous devez fermer cette fenêtre et selectionner votre date d'examen
+                            </p>
+                        </p>
+                        
+
+                        <div style="text-align:center">
+                            <button type="button" class="btn btn-secondary action-button" id="continueBtn" onclick="verify_payment_method()">Continuer
+                            </button>
+                        </div>`;
+
+const addcheckBoxBolt = () => {
+  var popupcontent = document.getElementById('popupcontent');
+  popupcontent.innerHTML = popContent;
+  var inputDriverLicence = document.getElementById('driver-licence');
+  var inputLicenceSuspension = document.getElementById('license_suspension');
+  var inputCriminalRecord = document.getElementById('criminal_record');
+
+  inputDriverLicence.addEventListener('change', function () {
+    update_driver_licence(inputDriverLicence.checked);
+  });
+  inputLicenceSuspension.addEventListener('change', function () {
+    update_license_suspension(inputLicenceSuspension.checked);
+  });
+  inputCriminalRecord.addEventListener('change', function () {
+    update_criminal_record(inputCriminalRecord.checked);
+  });
+};
+
+function resetPopupBolt() {
+  var popupcontent = document.getElementById('popupcontent');
+  popupcontent.innerHTML = popupContentinit;
+}
+function checkInputBolt() {
+  var inputDriverLicence = document.getElementById('driver-licence').checked;
+  var inputLicenceSuspension =
+    document.getElementById('license_suspension').checked;
+  var inputCriminalRecord = document.getElementById('criminal_record').checked;
+  if (inputDriverLicence && inputCriminalRecord & inputLicenceSuspension) {
+    return true;
+  } else return false;
+}
+function paiementBolt() {
+  if (checkInputBolt()) {
+    document.getElementById('error_choix_bolt').style.display = 'none';
+    window.location.href = '#';
+    window.location.href = '/shop/checkout?express=1';
+    resetPopupBolt();
+  } else {
+    document.getElementById('error_choix_bolt').style.display = 'unset';
+  }
+}
