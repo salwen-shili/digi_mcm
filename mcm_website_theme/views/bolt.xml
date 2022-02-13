@@ -38,7 +38,7 @@
                         word-break: break-word;
                         position: relative;
                         z-index: 0;
-                      "> PRÉ-inscription 
+                      "> je m'inscris 
                     </a>
                                         </div>
                                     </div>
@@ -403,16 +403,16 @@
                                                     </h4>
                                                     <br />
                                                     <div class="sh_btn">
-                                                         <a  class="btn btn-primary sh_btn_cm_8" data-original-title="" title="" aria-describedby="tooltip357369" onClick="(function(){document.getElementById('form-1-1').submit();return false;})();return false;">
+                                                        <a class="btn btn-primary sh_btn_cm_8" data-original-title="" title="" aria-describedby="tooltip357369" onClick="(function(){document.getElementById('form-1-1').submit();return false;})();return false;">
                         Je m'inscris
                                             </a>
-<!--                                                        <a class="animated-button-yellow" href="/service-clientele" rel="noopner" target="_blank">-->
-<!--                                                            <span />-->
-<!--                                                            <span />-->
-<!--                                                            <span />-->
-<!--                                                            <span />-->
-<!--                                                            PRÉ-inscription-->
-<!--                                                        </a>-->
+                                                        <!--                                                        <a class="animated-button-yellow" href="/service-clientele" rel="noopner" target="_blank">-->
+                                                        <!--                                                            <span />-->
+                                                        <!--                                                            <span />-->
+                                                        <!--                                                            <span />-->
+                                                        <!--                                                            <span />-->
+                                                        <!--                                                            PRÉ-inscription-->
+                                                        <!--                                                        </a>-->
                                                     </div>
                                                 </form>
                                             </t>

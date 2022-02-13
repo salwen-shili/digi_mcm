@@ -2,8 +2,34 @@
 <odoo>
     <template id="bolt_survey_init" inherit_id="survey.survey_init">
         <xpath expr="//div[1]" position="before">
-            <input type="hidden" name="exam_not_passed" id ="exam_not_passed" t-att-value="exam_not_passed"/>
-            <input type="hidden" name="exam_success" id="exam_success" t-att-value="exam_success"/>
+            <script type="text/javascript" src="/mcm_website_theme/static/src/js/survey_popup.js" />
+            <link rel="stylesheet" href="/mcm_website_theme/static/src/css/popup.css" />
+            <!-- popup-->
+            <div id="popup1" class="overlay">
+                <div class="popup">
+                    <h2 class="text-left">
+                        <i class="fa fa-info-circle" style="color: #111111"></i>
+                    </h2>
+                    <a class="close" onclick="closePopup()">
+                        <i class="fa fa-times"></i>
+                    </a>
+                    <div class="content">
+                        <p id="notifMessage" style="text-align: center; font-size: 16px"></p>
+                        <div class="" style="text-align-last: center; margin-block-start: 1.5rem">
+                            <div id="default">
+                                <a target="_blank" id="btn-inside-popup">
+                                    <button class="rkmd-btn btn-black" onclick="">Continuer</button>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- end popup-->
+
+            <input type="hidden" name="exam_not_passed" id="exam_not_passed" t-att-value="exam_not_passed" />
+            <input type="hidden" name="exam_success" id="exam_success" t-att-value="exam_success" />
         </xpath>
     </template>
 </odoo>
