@@ -41,6 +41,8 @@ add css and js files to website model
         'views/website_sale/cart_multistep_integration.xml',
         'views/website_sale/template.xml',
         'views/survey/survey.xml',
+        'views/survey/survey_wizard.xml',
+        'views/survey/survey_user_input.xml',
         'views/custom_footer.xml',
         'views/bolt.xml',
         'views/facture.xml'
