@@ -380,7 +380,7 @@
                         <div style="margin-left:0%;" id="exam_center">
                             <select name="region_examen" id="region_examen" class="form-control search-slt " t-if="modules_mcm">
                                 <option value="all" id="all">Sélectionnez votre région d'examen</option>
-                                <t t-if="not from_bolt">
+                                <t t-if="from_bolt == 'False'">
                                     <t t-foreach="list_villes_mcm" t-as="ville">
                                         <t t-if="ville">
                                             <b>
@@ -391,7 +391,7 @@
                                         </t>
                                     </t>
                                 </t>
-                                <t t-if="from_bolt">
+                                <t t-if="from_bolt == 'True'">
                                     <t t-foreach="list_villes_mcm" t-as="ville">
                                         <t t-if="ville and ville.name_ville=='Île-de-France'">
                                             <b>

@@ -169,6 +169,8 @@ class Home(Home):
                 for line in order.order_line:
                     if (line.product_id.default_code=='vtc_bolt'):
                         default_code_bolt = True
+                        request.env.user.partner_id.bolt = True
+                        
                 if default_code_bolt:
                     survey = request.env['survey.survey'].sudo().search([('title', "=", 'Examen blanc Français')],
                                                                         limit=1)
