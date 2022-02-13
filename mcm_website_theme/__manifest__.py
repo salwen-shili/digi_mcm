@@ -45,7 +45,8 @@ add css and js files to website model
         'views/survey/survey_user_input.xml',
         'views/custom_footer.xml',
         'views/bolt.xml',
-        'views/facture.xml'
+        'views/facture.xml',
+        'views/survey/post_payment_notification.xml'
     ],
 
     'installable': True,
