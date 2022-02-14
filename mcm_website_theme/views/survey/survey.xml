@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="bolt_survey_init" inherit_id="survey.survey_init">
+        <xpath expr="//div[1]" position="before">
+            <script type="text/javascript" src="/mcm_website_theme/static/src/js/survey_popup.js" />
+            <link rel="stylesheet" href="/mcm_website_theme/static/src/css/popup.css" />
+
+            <!-- popup-->
+            <div id="popup1" class="overlay">
+                <div class="popup">
+                    <h2 class="text-left">
+                        <i class="fa fa-info-circle" style="color: #111111"></i>
+                    </h2>
+                    <a class="close" onclick="closePopup()">
+                        <i class="fa fa-times"></i>
+                    </a>
+                    <!-- <div class="content">
+                        <p id="notifMessage" style="text-align: center; font-size: 16px"></p>
+                        <div class="" style="text-align-last: center; margin-block-start: 1.5rem">
+                            <div id="default">
+                                <a id="btn-inside-popup">
+                                    <button class="rkmd-btn btn-black" onclick="">Continuer</button>
+                                </a>
+                            </div>
+                        </div>
+                    </div> -->
+                    <div class="row align-items-center">
+                        <div class="col-lg-6 pt16 pb16 js-scroll slide-left ">
+                            <img data-src="/mcm_website_theme/static/src/img/homepage/mcm-academy-centre-de-formation-en-ligne-des-métiers-de-transports.webp" src="/mcm_website_theme/static/src/img/homepage/mcm-academy-centre-de-formation-en-ligne-des-métiers-de-transports.png" class="img img-fluid mx-auto lazy" alt="candidats centre de formation vtc" />
+                        </div>
+                        <div class="col-lg-6 pt16 pb16 js-scroll slide-right ">
+                            <h2 class="text-left">
+                                <b>Testons vos connaissances...</b>
+                            </h2>
+                            <p id="notifMessage" style="text-align: left; font-size: 16px"></p>
+                            <div class="" style=" ">
+                                <div id="default" class="text-center" style="margin: 1rem 0rem">
+                                    <a id="btn-inside-popup">
+                                        <button class="rkmd-btn btn-black" onclick="">Je me lance!</button>
+                                    </a>
+
+                                </div>
+                                <div class="btn-bot text-left" sytle="margin-top:12px">
+                                    <p>
+                                        <span>*Une seule tentative est prise en compte.</span>
+                                        <br />
+
+                                        <span>
+                                            *Si vous n'êtes pas disponible pour passer le test,
+                                            <a style="color: blue; cursor:pointer" onclick="openPopupMail();closePopup();">cliquez ici</a>
+                                            pour recevoir le lien par mail et le repasser plus tard.
+                                        </span>
+
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <!-- end popup-->
+
+            <!-- popup-->
+            <div id="popup2" class="overlay">
+                <div class="popup">
+                    <h2 class="text-left">
+                        <i class="fa fa-info-circle" style="color: #111111"></i>
+                    </h2>
+                    <a class="close" onclick="closePopupMail();">
+                        <i class="fa fa-times"></i>
+                    </a>
+
+                    <div class="" style="
+    display: flex;
+    /* flex-wrap: nowrap; */
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+">
+                        <div class="">
+                            <i class="fa fa-envelope-o" style="
+        font-size: 3rem;
+    margin-right: 30px;
+    margin-bottom: 8px;;
+"></i>
+                        </div>
+                        <div class="">
+                            <p id="notifMessage2" style="font-size: 16px">
+                                        Le lien de l'examen vous a été bien envoyé à votre adresse email.
+                                    </p>
+                        </div>
+
+                    </div>
+                    <div id="default" class="text-center" style="margin: 1rem 0rem">
+                        <a id="btn-inside-popup">
+                            <button class="rkmd-btn btn-black" onclick="closePopupMail();">Fermer</button>
+                        </a>
+                    </div>
+
+
+                </div>
+            </div>
+            <!-- end popup-->
+
+
+            <input type="hidden" name="exam_not_passed" id="exam_not_passed" t-att-value="exam_not_passed" />
+            <input type="hidden" name="exam_success" id="exam_success" t-att-value="exam_success" />
+        </xpath>
+    </template>
+    <template id="bolt_survey_sfinished" inherit_id="survey.sfinished">
+        <xpath expr="//t[1]" position="replace">
+            <t t-call="website.layout">
+                <div class="wrap">
+                    <div class="container">
+                        <div class="row">
+                            <div class="row m-0 mt40 mb64">
+                                <div class="col-lg-6">
+                                    <div class="card-shadow ">
+                                        <img src="/mcm_website_theme/static/src/img/examen/conditions-examens-taxi-vtc-vmdtr.webp"
+                                             data-srcSafari="/mcm_website_theme/static/src/img/examen/conditions-examens-taxi-vtc-vmdtr.png"
+                                             class="img-responsive img img-fluid lazy" data-original-title="" title=""
+                                             aria-describedby="tooltip508208"/>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <br/>
+                                    <br/>
+                                    <br/>
+                                    <h3 class="text-center">
+                                        <i class="fa fa-check-circle fa-2x text-success" role="img" aria-label="Success"
+                                           title="Success"/>
+                                    </h3>
+                                    <h3 class="text-center">Merci d'avoir pris le temps de finaliser votre examen. Votre
+                                        copie sera corrigée dans un délai de 24h hors week-end. Pour rappel pour être
+                                        admis il faut avoir une moyenne supérieur ou égale à 8/20 (40%).
+                                    </h3>
+<!--                                    <div t-if="survey.certificate" class="text-center mt16 mb16">-->
+<!--                                        <a role="button" class="btn btn-primary btn-lg"-->
+<!--                                           t-att-href="'/survey/%s/get_certification' % survey.id">-->
+<!--                                            <i class="fa fa-fw fa-trophy" role="img" aria-label="Download certification"-->
+<!--                                               title="Download certification"/>-->
+<!--                                            Download certification-->
+<!--                                        </a>-->
+<!--                                    </div>-->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </t>
+        </xpath>
+    </template>
+</odoo>

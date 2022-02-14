@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Ajouter les nouveaux champs sur la fiche du client -->
+        <record id="survey_user_input_bolt_view_form" model="ir.ui.view">
+            <field name="name">survey.user_input.view.form</field>
+            <field name="model">survey.user_input</field>
+            <field name="inherit_id" ref="survey.survey_user_input_view_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//button[@name='action_print_answers']" position="after">
+                    <button name="update_partner_exam_result" string="Mettre à jour" type="object" class="oe_highlight"
+                            attrs="{'invisible': ['|',('state', '!=', 'done'),('quizz_corrected','=',True)]}"/>
+                </xpath>
+                <xpath expr="//field[@name='quizz_passed']" position="after">
+                    <field name="quizz_corrected" attrs="{'invisible': [('state', '!=', 'done')]}" readonly="1"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

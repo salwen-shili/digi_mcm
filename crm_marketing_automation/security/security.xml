@@ -1,0 +1,59 @@
+<odoo>
+
+    <record model="ir.module.category" id="crm_marketing_automation.crm_bolt_category">
+        <field name="description">bolt users</field>
+        <field name="sequence">10</field>
+        <field name="name">Bolt</field>
+    </record>
+    <record id="group_bolt" model="res.groups">
+        <field name="name">CRM Bolt / Manager</field>
+        <field name="category_id" ref="crm_marketing_automation.crm_bolt_category"/>
+        <field name="users" eval="[(4, ref('base.user_root'))]"/>
+    </record>
+     <record id="group_non_bolt" model="res.groups">
+        <field name="name">CRM / Manager</field>
+        <field name="category_id" ref="crm_marketing_automation.crm_bolt_category"/>
+        <field name="users" eval="[(4, ref('base.user_root'))]"/>
+    </record>
+
+    <record id="manage_crm_bolt_only" model="ir.rule">
+        <field name="name">Gérer seulement CRM Bolt</field>
+        <field name="model_id" ref="crm.model_crm_lead"/>
+        <field name="groups" eval="[(4, ref('crm_marketing_automation.group_bolt'))]"/>
+        <field name="perm_read" eval="1"/>
+        <field name="perm_write" eval="1"/>
+        <field name="perm_create" eval="1"/>
+        <field name="perm_unlink" eval="1"/>
+        <field name="domain_force">
+            [('partner_id.bolt','=',True)
+            ]
+        </field>
+    </record>
+<!--      <record id="manage_crm_stage_bolt_only" model="ir.rule">-->
+<!--        <field name="name">Gérer seulement CRM Stage Bolt</field>-->
+<!--        <field name="model_id" ref="crm.model_crm_stage"/>-->
+<!--        <field name="groups" eval="[(4, ref('crm_marketing_automation.group_bolt'))]"/>-->
+<!--        <field name="perm_read" eval="1"/>-->
+<!--        <field name="perm_write" eval="1"/>-->
+<!--        <field name="perm_create" eval="1"/>-->
+<!--        <field name="perm_unlink" eval="1"/>-->
+<!--        <field name="domain_force">-->
+<!--            [('bolt','=',True)-->
+<!--            ]-->
+<!--        </field>-->
+<!--    </record>-->
+<!--      <record id="manage_crm_stage_bolt_only" model="ir.rule">-->
+<!--        <field name="name">Gérer  CRM Stage</field>-->
+<!--        <field name="model_id" ref="crm.model_crm_stage"/>-->
+<!--        <field name="groups" eval="[(4, ref('crm_marketing_automation.group_non_bolt'))]"/>-->
+<!--        <field name="perm_read" eval="1"/>-->
+<!--        <field name="perm_write" eval="1"/>-->
+<!--        <field name="perm_create" eval="1"/>-->
+<!--        <field name="perm_unlink" eval="1"/>-->
+<!--        <field name="domain_force">-->
+<!--            [('bolt','=',False)-->
+<!--            ]-->
+<!--        </field>-->
+<!--    </record>-->
+
+</odoo>

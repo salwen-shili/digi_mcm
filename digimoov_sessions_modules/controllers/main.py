@@ -16,7 +16,7 @@ from requests.structures import CaseInsensitiveDict
 from dateutil.relativedelta import relativedelta
 from odoo.exceptions import ValidationError
 from unidecode import unidecode
-
+import werkzeug
 PPG = 20  # Products Per Page
 PPR = 4  # Products Per Row
 _logger = logging.getLogger(__name__)
@@ -39,6 +39,49 @@ class WebsiteSale(WebsiteSale):
             request.env.user.lang ='fr_FR'
         locale.setlocale(locale.LC_TIME, str(request.env.user.lang) + '.utf8') #get local time of partner
         order = request.website.sale_get_order()
+        default_code_bolt = False
+        if order.company_id.id == 1 :
+            if order.order_line:
+                for line in order.order_line:
+                    if (line.product_id.default_code=='vtc_bolt'):
+                        default_code_bolt = True
+                        request.env.user.partner_id.bolt = True
+                        mail_compose_message = request.env['mail.compose.message']
+                        mail_compose_message.fetch_sendinblue_template()
+                        template_id = request.env['mail.template'].sudo().search(
+                            [('subject', "=", "Passez votre examen blanc avec MCM ACADEMY X BOLT"),
+                             ('model_id', "=", 'res.partner')], limit=1)
+                        if template_id:
+                            message = request.env['mail.message'].sudo().search(
+                                [('subject', "=", "Passez votre examen blanc avec MCM ACADEMY X BOLT"),
+                                 ('model', "=", 'res.partner'), ('res_id', "=", request.env.user.partner_id.id)],
+                                limit=1)
+                            if not message:
+                                partner.with_context(force_send=True).message_post_with_template(template_id.id,
+                                                                                                 composition_mode='comment',
+                                                                                                 )
+                if default_code_bolt:
+                    survey = request.env['survey.survey'].sudo().search([('title', "=", 'Examen blanc Français')],
+                                                                        limit=1)
+                    if survey:
+                        print(survey)
+                        survey_user = request.env['survey.user_input'].sudo().search(
+                            [('partner_id', "=", request.env.user.partner_id.id), ('survey_id', '=', survey.id)],
+                            order='create_date asc', limit=1)
+                        if not survey_user:
+                            # url = 'https://www.mcm-academy.fr/survey/start/'+str(survey.access_token)
+                            url = str(survey.public_url)
+                            return werkzeug.utils.redirect(url, 301)
+                        if survey_user and survey_user.state == 'new':
+                            # url = 'https://www.mcm-academy.fr/survey/start/' + str(survey.access_token)
+                            url = str(survey.public_url)
+                            return werkzeug.utils.redirect(url, 301)
+                        if survey_user and survey_user.state == 'skip':
+                            return werkzeug.utils.redirect(
+                                str('survey/fill/%s/%s' % (str(survey.access_token), str(survey_user.token))), 301)
+                        if survey_user and survey_user.state == 'done':
+                            if not survey_user.quizz_passed:
+                                return werkzeug.utils.redirect('/bolt', 301)
         if order and order.state != 'draft':
             request.session['sale_order_id'] = None
             order = request.website.sale_get_order()
@@ -283,13 +326,13 @@ class WebsiteSale(WebsiteSale):
                 statut='https://www.moncompteformation.gouv.fr/espace-prive/html/#/dossiers'
             if state=="accepted":
                 statut="accepted"
-
-        from_bolt = False
+            
+        from_bolt = 'False'
         from_habilitation_electrique = False
         list_villes_habilitation_electrique = False
         if product :
             if product.default_code == 'vtc_bolt' :
-                from_bolt = True
+                from_bolt = 'True'
             if product.default_code == 'habilitation-electrique' :
                 from_habilitation_electrique = True
                 list_villes_habilitation_electrique = request.env['session.ville'].sudo().search([('company_id', '=', 2),('ville_formation',"=",True)])
@@ -1014,6 +1057,34 @@ class WebsiteSale(WebsiteSale):
         order = request.website.sale_get_order()
         # if order.company_id.id == 1 and (partenaire or product):
         #     return request.redirect("/shop/payment/")
+        default_code_bolt = False
+        if order.company_id.id == 1:
+            if order.order_line:
+                for line in order.order_line:
+                    if (line.product_id.default_code=='vtc_bolt'):
+                        default_code_bolt = True
+                if default_code_bolt:
+                    survey = request.env['survey.survey'].sudo().search([('title', "=", 'Examen blanc Français')],
+                                                                        limit=1)
+                    if survey:
+                        print(survey)
+                        survey_user = request.env['survey.user_input'].sudo().search(
+                            [('partner_id', "=", request.env.user.partner_id.id), ('survey_id', '=', survey.id)],
+                            order='create_date asc', limit=1)
+                        if not survey_user:
+                            # url = 'https://www.mcm-academy.fr/survey/start/'+str(survey.access_token)
+                            url = str(survey.public_url)
+                            return werkzeug.utils.redirect(url, 301)
+                        if survey_user and survey_user.state == 'new':
+                            # url = 'https://www.mcm-academy.fr/survey/start/' + str(survey.access_token)
+                            url = str(survey.public_url)
+                            return werkzeug.utils.redirect(url, 301)
+                        if survey_user and survey_user.state == 'skip':
+                            return werkzeug.utils.redirect(
+                                str('survey/fill/%s/%s' % (str(survey.access_token), str(survey_user.token))), 301)
+                        if survey_user and survey_user.state == 'done':
+                            if not survey_user.quizz_passed:
+                                return werkzeug.utils.redirect('/bolt', 301)
         if order and order.company_id.id == 1:
             product_id = False
             if order:

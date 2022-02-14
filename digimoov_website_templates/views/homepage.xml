@@ -72,9 +72,15 @@
                                             Contactez-nous
                                         </a>
                                         <!-- TrustBox widget - Mini -->
-                                        <div style="max-width: 181px;margin-block-start: 40px;" class="trustpilot-widget" data-locale="fr-FR" data-template-id="53aa8807dec7e10d38f59f32" data-businessunit-id="60a28e22d3a8ed00019ff03e" data-style-height="150px" data-style-width="100%" data-theme="light">
+                                        <!-- <div style="max-width: 181px;margin-block-start: 40px;" class="trustpilot-widget" data-locale="fr-FR" data-template-id="53aa8807dec7e10d38f59f32" data-businessunit-id="60a28e22d3a8ed00019ff03e" data-style-height="150px" data-style-width="100%" data-theme="light">
                                             <a href="https://fr.trustpilot.com/review/digimoov.fr" target="_blank" rel="noopener">Trustpilot</a>
-                                        </div>
+                                        </div> -->
+
+                                        <!-- End TrustBox widget -->
+                                        <!-- TrustBox widget - Horizontal -->
+                                        <!-- TrustBox widget - Horizontal -->
+
+                                        <!-- End TrustBox widget -->
                                         <!-- End TrustBox widget -->
                                     </div>
 
@@ -134,6 +140,9 @@
             align-items: center;
           }
                      </style>
+                    <div class="trustpilot-widget" data-locale="fr-FR" data-template-id="5406e65db0d04a09e042d5fc" data-businessunit-id="60a28e22d3a8ed00019ff03e" data-style-height="28px" data-style-width="100%" data-theme="light">
+                        <a href="https://fr.trustpilot.com/review/digimoov.fr" target="_blank" rel="noopener">Trustpilot</a>
+                    </div>
                     <section class="pt16 pb32 js-scroll fade-in-top">
                         <div class="container js-scroll fade-in-top">
                             <div class="center-logo mt32">
@@ -783,6 +792,7 @@
                                             </p>
                                             <br />
                                         </div> -->
+
                                         <div class="text-center text-white border-0" style="                     background-color: #6e209f;                     border-top-left-radius: 25px;                     border-top-right-radius: 25px;                   ">
                                             <br />
 
@@ -791,9 +801,8 @@
                                                     <font style="font-size: 30px">PRO</font>
                                                 </strong>
                                             </p>
-                                            <!-- <p>&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;</p> -->
                                             <p class="blink-soft">
-                                                <b>Paiement en 2 fois</b>
+                                                <b>Éligible au CPF</b>
                                             </p>
                                             <br />
                                         </div>
