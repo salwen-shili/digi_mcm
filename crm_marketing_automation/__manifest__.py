@@ -12,7 +12,7 @@
     'depends': ['base','crm','sale','plateforme_pedagogique','calendly_api_integration',
     ],
     'data': [
-      # 'security/security.xml',
+      'security/security.xml',
       # 'security/ir.model.access.csv',
       'views/crm_lead.xml',
       'views/crm_stage.xml',
