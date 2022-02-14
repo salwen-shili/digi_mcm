@@ -18,7 +18,7 @@
                                     <div class="row">
                                         <div class="col-12">
                                             <br></br>
-                                            <t t-if="o.resultat == recu">
+                                            <t t-if="o.resultat == 'recu'">
                                                 <img src='/partner_exam/static/src/img/new_reussite.png' height="260"
                                                      width="970"/>
                                             </t>
