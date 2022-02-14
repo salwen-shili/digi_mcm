@@ -307,6 +307,7 @@
                                                 </strong>
                                                 pour son
                                                 <strong>
+
                                                     <span t-raw="'%s' % o.nombre_de_passage if o.nombre_de_passage else ''"/>
                                                 </strong>
                                                 passage, en ayant obtenu les notes
