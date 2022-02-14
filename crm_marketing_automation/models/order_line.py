@@ -18,7 +18,7 @@ class SaleLine(models.Model):
         product=self.env['product.product'].sudo().search([('id',"=",product_id)])
         if product:
             code=product.default_code
-            if code=="vtc_bot":
+            if code=="vtc_bolt":
                 sale=self.env['sale.order'].sudo().search([('id',"=",order_id)])
                 if sale:
                     partner_id=sale.partner_id
