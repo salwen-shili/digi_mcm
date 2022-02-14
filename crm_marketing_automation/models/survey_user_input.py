@@ -15,7 +15,7 @@ class Survey(models.Model):
         # on change le statut de l'apprenant dans le lead vers "encours de correction"
         if 'state' in vals:
             if vals['state'] == 'done' and self.survey_id.title=='Examen blanc Français':
-                partner =self.env['res.partner'].sudo().search([("id","=",partner_id.id)])
+                partner =self.env['res.partner'].sudo().search([("id","=",self.partner_id.id)])
                 if partner:
                     self.partner_id.change_stage_lead("En cours de correction - Examen Blanc", partner)
         return record 
