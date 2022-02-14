@@ -14,15 +14,27 @@ function setPopup() {
   if (document.getElementById('notifMessage')) {
     notifMessage = document.getElementById('notifMessage');
     condition = document.getElementById('exam_state');
+    btnContiner = document.getElementById('btn-inside-popup');
     if (condition.value == 'in_process') {
       notifMessage.innerHTML = message['in_process'];
+      btnContiner.addEventListener('click', function () {
+        closePopup();
+      });
       openPopup();
     } else if (condition.value == 'success') {
       notifMessage.innerHTML = message['success'];
       openPopup();
+      btnContiner.addEventListener('click', function () {
+        closePopup();
+        window.location.href = '/shop/cart';
+      });
     } else if (condition.value == 'failed') {
       notifMessage.innerHTML = message['failed'];
       openPopup();
+
+      btnContiner.addEventListener('click', function () {
+        closePopup();
+      });
     } else return;
   }
 
