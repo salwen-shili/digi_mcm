@@ -674,7 +674,7 @@ const popContent = `<div class='input checkbox' style='width:90%'>
     </input>
   </div>
   <p id="error_choix_bolt" class="alert alert-warning" style="margin-left: 0%; display: none;" >
-                                Vous devez avoir... 
+                                Veuillez confirmer que vous détenez bien ces prérequis pour passer l'examen. 
   </p>
    <div  style="text-align:center">
     <button type="button" class="btn btn-secondary action-button shake" id="continueBtn" onclick="paiementBolt()">Passer au paiement

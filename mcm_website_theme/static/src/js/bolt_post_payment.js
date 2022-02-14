@@ -1,3 +1,4 @@
+const msg_isSignedBolt = `Pour avoir une idée sur le processus d'inscription, merci de visualiser cette vidéo.`;
 var message = {
   is_signed_bolt:
     'Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugit animi, \n qui neque veniam repellendus labore! Iste quia illo rem illum!',
