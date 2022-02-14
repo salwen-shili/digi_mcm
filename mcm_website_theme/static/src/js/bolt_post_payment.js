@@ -1,7 +1,8 @@
-const msg_isSignedBolt = `Pour avoir une idée sur le processus d'inscription, merci de visualiser cette vidéo.`;
+const isSignedBolt = `Vous devrez visualiser cette vidéo, pour bien suivre le processus <a target="_blank" href="https://www.examentaxivtc.fr/#!/register" style="color:blue">d'inscription </a>
+            à la chambre des métiers et de l'artisanat.`;
+
 var message = {
-  is_signed_bolt:
-    'Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugit animi, \n qui neque veniam repellendus labore! Iste quia illo rem illum!',
+  is_signed_bolt: isSignedBolt,
   not_signed_bolt: '',
   is_signed: '',
   not_signed:
@@ -89,7 +90,7 @@ function onYouTubeIframeAPIReady() {
   player = new YT.Player('player', {
     height: '360',
     width: '640',
-    videoId: 'aOZ7MIhEHF8',
+    videoId: 'rWX_mjB4VU',
     events: {
       onReady: onPlayerReady,
       onStateChange: onPlayerStateChange,
