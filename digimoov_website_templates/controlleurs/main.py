@@ -220,6 +220,8 @@ class DIGIEXAMEN(http.Controller):
             session = request.env['partner.sessions'].search([('client_id', '=', partner.id)], order='id asc', limit=1)
             date_exam = session.session_id.date_exam  # Récupérer date d'examen à partir de la première session
             is_public_user = request.website.is_public_user()  # PUBLIC USER = VISITOR OR USER ODOO NOT CONNECTED, return true or false
+            echec_examen = request.env['product.product'].sudo().search(
+                [('company_id', '=', 2), ('default_code', "=", 'examen')])
             if is_public_user is False:
                 print("/////public user/////", is_public_user )
                 if date_exam:  # Si date examen exist
@@ -232,8 +234,6 @@ class DIGIEXAMEN(http.Controller):
                     if exam_count < 3:  # Si nombre de passage < 3
                         logging.info('Si nombre de passage < 3 °°°°°°°°°°°°°°°°°°°°')
                         if now < date_dateutil and is_public_user is not True:  # Comparer si date d'aujourd'hui inférieur à date d'examen + 6 mois
-                            echec_examen = request.env['product.product'].sudo().search(
-                                [('company_id', '=', 2), ('default_code', "=", 'examen')])
                             values = {
                                 'date_dateutil': date_dateutil, #Date de 1ere inscription + 6 mois
                                 'now': now, #Date aujourd'hui
@@ -244,8 +244,6 @@ class DIGIEXAMEN(http.Controller):
                             return request.render("digimoov_website_templates.digimoov_template_examen",
                                                   values)  # Envoyer les données vers xml dans la page examen
                         else:
-                            echec_examen = request.env['product.product'].sudo().search(
-                                [('company_id', '=', 2), ('default_code', "=", 'examen')])
                             values = {
                                 'echec_examen': echec_examen,
                                 'url': '/#pricing',
@@ -257,8 +255,6 @@ class DIGIEXAMEN(http.Controller):
                                                   values)  # Envoyer les données vers xml dans la page examen
                     elif exam_count > 3:
                         logging.info('Si nombre de passage > 3 °°°°°°°°°°°°°°°°°°')
-                        echec_examen = request.env['product.product'].sudo().search(
-                            [('company_id', '=', 2), ('default_code', "=", 'examen')])
                         values = {
                             'default': False,
                             'echec_examen': echec_examen,
@@ -269,8 +265,6 @@ class DIGIEXAMEN(http.Controller):
                         return request.render('digimoov_website_templates.digimoov_template_examen', values)
             else:
                 print("////public user///", is_public_user)
-                echec_examen = request.env['product.product'].sudo().search(
-                    [('company_id', '=', 2), ('default_code', "=", 'examen')])
                 values = {
                     'echec_examen': echec_examen,
                     'is_public_user': is_public_user,
@@ -278,7 +272,6 @@ class DIGIEXAMEN(http.Controller):
                     'url': '/web/signup',
                     'message': 'Pour réserver votre nouvelle tentative, '
                                'merci de vous connecter ou de créer votre compte client.',
-
                 }
                 return request.render("digimoov_website_templates.digimoov_template_examen", values)
         else:
