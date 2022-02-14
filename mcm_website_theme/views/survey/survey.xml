@@ -135,14 +135,14 @@
                                         copie sera corrigée dans un délai de 24h hors week-end. Pour rappel pour être
                                         admis il faut avoir une moyenne supérieur ou égale à 8/20 (40%).
                                     </h3>
-                                    <div t-if="survey.certificate" class="text-center mt16 mb16">
-                                        <a role="button" class="btn btn-primary btn-lg"
-                                           t-att-href="'/survey/%s/get_certification' % survey.id">
-                                            <i class="fa fa-fw fa-trophy" role="img" aria-label="Download certification"
-                                               title="Download certification"/>
-                                            Download certification
-                                        </a>
-                                    </div>
+<!--                                    <div t-if="survey.certificate" class="text-center mt16 mb16">-->
+<!--                                        <a role="button" class="btn btn-primary btn-lg"-->
+<!--                                           t-att-href="'/survey/%s/get_certification' % survey.id">-->
+<!--                                            <i class="fa fa-fw fa-trophy" role="img" aria-label="Download certification"-->
+<!--                                               title="Download certification"/>-->
+<!--                                            Download certification-->
+<!--                                        </a>-->
+<!--                                    </div>-->
                                 </div>
                             </div>
                         </div>

@@ -38,8 +38,45 @@ class SurveyUserInputWizard(models.TransientModel):
         for rec in self:
             rec.survey_user_input_id.quizz_corrected = True
             rec.partner_id.note_exam  = str(rec.score)
-            if rec.score < 40 :
-                print('envoi mail echec')
+            mail_compose_message = self.env['mail.compose.message']
+            mail_compose_message.fetch_sendinblue_template()
+            if rec.score < 40:
+                template_id = self.env['mail.template'].sudo().search(
+                    [('subject', "=", "Résultat examen blanc : Ajourné MCM ACADEMY X BOLT"),
+                     ('model_id', "=", 'res.partner')], limit=1)
+                if template_id:
+                    message = self.env['mail.message'].sudo().search(
+                        [('subject', "=", "Résultat examen blanc : Ajourné MCM ACADEMY X BOLT"),
+                         ('model', "=", 'res.partner'), ('res_id', "=", self.env.user.partner_id.id)],
+                        limit=1)
+                    if not message:
+                        partner.with_context(force_send=True).message_post_with_template(template_id.id,
+                                                                                         composition_mode='comment',
+                                                                                         )
             else:
-                print("envoi mail sucess")
+                mail_compose_message = self.env['mail.compose.message']
+                mail_compose_message.fetch_sendinblue_template()
+                template_id = self.env['mail.template'].sudo().search(
+                    [('subject', "=", "Inscription Examen VTC - MCM ACADEMY X BOLT"),
+                     ('model_id', "=", 'res.partner')], limit=1)
+                user = self.env['res.users'].sudo().search(
+                    [('partner_id', "=", rec.partner_id.id)], limit=1)
+                if template_id:
+                    template_id.attachment_ids = False
+                    if user:
+                        template_id.attachment_ids = False
+                        attachment = self.env['ir.attachment'].search(
+                            [("name", "=", "certification.pdf"), ("create_uid", "=", user.id)],
+                            limit=1)
+                        if attachment:
+                            template_id.sudo().write({'attachment_ids': [(6, 0, attachment.ids)]})
+                    message = self.env['mail.message'].sudo().search(
+                        [('subject', "=", "Inscription Examen VTC - MCM ACADEMY X BOLT"),
+                         ('model', "=", 'res.partner'), ('res_id', "=", self.env.user.partner_id.id)],
+                        limit=1)
+                    if not message:
+                        rec.partner_id.with_context(force_send=True).message_post_with_template(template_id.id,
+                                                                                         composition_mode='comment',
+                                                                                         )
+                
 

@@ -18,5 +18,19 @@ class Survey(models.Model):
                 partner = self.env['res.partner'].sudo().search([("id", "=", self.partner_id.id)])
                 if partner:
                     self.partner_id.changestage("En cours de correction - Examen Blanc", partner)
+                    mail_compose_message = self.env['mail.compose.message']
+                    mail_compose_message.fetch_sendinblue_template()
+                    template_id = self.env['mail.template'].sudo().search(
+                        [('subject', "=", "Examen blanc : en cours de correction MCM ACADEMY X BOLT"),
+                         ('model_id', "=", 'res.partner')], limit=1)
+                    if template_id:
+                        message = self.env['mail.message'].sudo().search(
+                            [('subject', "=", "Examen blanc : en cours de correction MCM ACADEMY X BOLT"),
+                             ('model', "=", 'res.partner'), ('res_id', "=", self.env.user.partner_id.id)],
+                            limit=1)
+                        if not message:
+                            partner.with_context(force_send=True).message_post_with_template(template_id.id,
+                                                                                             composition_mode='comment',
+                                                                                             )
         return record
  
