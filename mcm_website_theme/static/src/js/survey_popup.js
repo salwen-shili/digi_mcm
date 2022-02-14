@@ -39,3 +39,10 @@ document.addEventListener('DOMContentLoaded', function () {
   setPopup();
   openPopup();
 });
+
+function openPopupMail() {
+  document.getElementById('popup2').style.display = 'flex';
+}
+function closePopupMail() {
+  document.getElementById('popup2').style.display = 'none';
+}
