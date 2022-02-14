@@ -32,11 +32,7 @@
                             <h2 class="text-left">
                                 <b>Testons vos connaissances...</b>
                             </h2>
-                            <p id="notifMessage" style="text-align: left; font-size: 16px">
-                                Pour que vous puissiez profiter de notre offre, vous devez passer un petit examen blanc de
-                                <b>20 MINUTES</b>
-                                afin de tester vos connaissances en langue française. L'objet de cet examen est de mesurer votre degré d'assimilation des cours qui vous seront attribués lors de la formation.
-                            </p>
+                            <p id="notifMessage" style="text-align: left; font-size: 16px"></p>
                             <div class="" style=" ">
                                 <div id="default" class="text-center" style="margin: 1rem 0rem">
                                     <a id="btn-inside-popup">
@@ -51,7 +47,7 @@
 
                                         <span>
                                             *Si vous n'êtes pas disponible pour passer le test,
-                                            <a style="color: blue; cursor:pointer" onclick="">cliquez ici</a>
+                                            <a style="color: blue; cursor:pointer" onclick="openPopupMail();closePopup();">cliquez ici</a>
                                             pour recevoir le lien par mail et le repasser plus tard.
                                         </span>
 
@@ -60,6 +56,48 @@
                             </div>
                         </div>
                     </div>
+
+                </div>
+            </div>
+            <!-- end popup-->
+
+            <!-- popup-->
+            <div id="popup2" class="overlay">
+                <div class="popup">
+                    <h2 class="text-left">
+                        <i class="fa fa-info-circle" style="color: #111111"></i>
+                    </h2>
+                    <a class="close" onclick="closePopupMail();">
+                        <i class="fa fa-times"></i>
+                    </a>
+
+                    <div class="" style="
+    display: flex;
+    /* flex-wrap: nowrap; */
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+">
+                        <div class="">
+                            <i class="fa fa-envelope-o" style="
+        font-size: 3rem;
+    margin-right: 30px;
+    margin-bottom: 8px;;
+"></i>
+                        </div>
+                        <div class="">
+                            <p id="notifMessage2" style="font-size: 16px">
+                                        Le lien de l'examen vous a été bien envoyé à votre adresse email.
+                                    </p>
+                        </div>
+
+                    </div>
+                    <div id="default" class="text-center" style="margin: 1rem 0rem">
+                        <a id="btn-inside-popup">
+                            <button class="rkmd-btn btn-black" onclick="closePopupMail();">Fermer</button>
+                        </a>
+                    </div>
+
 
                 </div>
             </div>
