@@ -1,5 +1,9 @@
+const exam_not_passed_true = `Pour que vous puissiez profiter de notre offre, vous devez passer un petit examen blanc de
+                                <b>20 MINUTES</b>
+                                afin de tester vos connaissances en langue française. L'objet de cet examen est de mesurer votre degré d'assimilation des cours qui vous seront attribués lors de la formation.`;
+
 var message = {
-  exam_not_passed_true: 'Vous allez commencer votre examen',
+  exam_not_passed_true: exam_not_passed_true,
   exam_not_passed_false: 'Vous avez deja passe votre examen',
 };
 var notifMessage;
