@@ -77,7 +77,7 @@ class Survey(Survey):
                 survey_sudo.with_user(request.env.user).check_access_rights('read')
                 survey_sudo.with_user(request.env.user).check_access_rule('read')
             except:
-                return werkzeug.utils.redirect("/")
+                return werkzeug.utils.redirect("/bolt")
             else:
                 return request.render("survey.403", {'survey': survey_sudo})
 

@@ -372,6 +372,7 @@
                                                 <form action="/shop/cart/update" method="post" id="form-1-1">
                                                     <input type="hidden" class="product_id" name="product_id" id="bolt_product" t-att-value="bolt_product.id" />
                                                     <input type="hidden" name="promo" t-att-value="promo.id" t-if="promo" />
+                                                    <input t-att-value="exam_state" id="exam_state" name="exam_state" type="text" />
                                                     <h4>PACK VTC</h4>
                                                     <h4>
                                                         <span class="pricebar" t-esc="round(vtc_product.list_price)" />

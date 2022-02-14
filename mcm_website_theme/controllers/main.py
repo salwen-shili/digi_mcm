@@ -605,12 +605,60 @@ class Routes_Site(http.Controller):
     def bolttest(self):
         bolt_product = request.env['product.product'].sudo().search([('company_id', '=', 1),('default_code',"=",'vtc_bolt')], order="list_price",limit=1)
         vtc_product = request.env['product.product'].sudo().search([('company_id', '=', 1),('default_code',"=",'vtc')], order="list_price",limit=1)
+        
         promo = request.env['product.pricelist'].sudo().search(
             [('company_id', '=', 1), ('name', "=", 'bolt')],limit=1)
+        # 
+        # res['exam_not_passed'] = 'False'
+        # res['exam_success'] = 'False'
+        # if order:
+        #     if order.company_id.id == 1:
+        #         if order.order_line:
+        #             for line in order.order_line:
+        #                 if (line.product_id.default_code == 'vtc_bolt'):
+        #                     default_code_bolt = True
+        #             if default_code_bolt:
+        #                 survey = request.env['survey.survey'].sudo().search([('title', "=", 'Examen blanc Français')],
+        #                                                                     limit=1)
+        #                 if survey:
+        #                     survey_user = request.env['survey.user_input'].sudo().search(
+        #                         [('partner_id', "=", request.env.user.partner_id.id), ('survey_id', '=', survey.id)],
+        #                         order='create_date asc', limit=1)
+        #                     if not survey_user:
+        #                         res['exam_not_passed'] = 'True'
+        #                     if survey_user and survey_user.state == 'new':
+        #                         res['exam_not_passed'] = 'True'
+        # 
+        #                     if survey_user and survey_user.state == 'done':
+        #                         if survey_user.quizz_passed:
+        #                             res['exam_success'] = 'True'
+        exam_state = 'False'
+        if not request.website.is_public_user():
+            survey = request.env['survey.survey'].sudo().search([('title', "=", 'Examen blanc Français')],limit=1)
+            if survey:
+                survey_user = request.env['survey.user_input'].sudo().search(
+                    [('partner_id', "=", request.env.user.partner_id.id), ('survey_id', '=', survey.id)],
+                    order='create_date asc', limit=1)
+                if not survey_user:
+                    exam_state = 'exam_not_passed'
+                if survey_user and survey_user.state == 'new':
+                    exam_state = 'exam_not_passed'
+
+                if survey_user and survey_user.state == 'done':
+                    if not survey_user.quizz_corrected:
+                        exam_state = 'in_process'
+                    else:
+                        if survey_user.quizz_passed:
+                            exam_state = 'success'
+                        else:
+                            exam_state = 'failed'
+
+
         values = {
             'bolt_product' : bolt_product,
             'vtc_product' : vtc_product,
-            'promo' : promo
+            'promo' : promo,
+            'exam_state': exam_state,
         }
 
         if request.website.id == 2:
