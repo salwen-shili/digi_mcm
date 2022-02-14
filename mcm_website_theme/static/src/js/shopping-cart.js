@@ -637,53 +637,65 @@ const update_criminal_record = (criminal_record) => {
     .catch((err) => {});
 };
 //boltPopupContent
-const popContent = `<div class='input checkbox' style='width:90%'>
-<p>
-Veuillez confirmer que vous détenez bien ces prérequis pour passer l'examen.
-<p/>
-    <input
-      type='checkbox'
-      id='driver-licence'
-      style='white-space: nowrap;'
-      class='text-xl-left border-0 mt24 mb24'
-    >
-      <label for='driver-licence' style='display:inline'>
-        Vous avez 3 ans de permis ou plus.
-      </label>
-    </input>
-  </div>
-  <div class='input checkbox' style='width:90%'>
-    <input
-      type='checkbox'
-      id='license_suspension'
-      style='white-space: nowrap;'
-      class='text-xl-left border-0 mb24'
-    >
-      <label for='license_suspension' style='display:inline'>
-        Vous n'avez aucun retrait définitif du permis ces 10 dernières années.
-      </label>
-    </input>
-  </div>
-  <div class='input checkbox' style='width:90%'>
-    <input
-      type='checkbox'
-      id='criminal_record'
-      style='white-space: nowrap;'
-      class='text-xl-left border-0 mb24'
-    >
-      <label for='criminal_record' style='display:inline'>
-        Vous avez un casier judiciaire vierge B2.
-      </label>
-    </input>
-  </div>
-  <p id="error_choix_bolt" class="alert alert-warning" style="margin-left: 0%; display: none;" >
-          Si vous ne détenez pas ces 3 prérequis, vous ne pourrez pas vous inscrire à l'examen.                       
-  </p>
-   <div  style="text-align:center">
-    <button type="button" class="btn btn-secondary action-button shake" id="continueBtn" onclick="paiementBolt()">Passer au paiement
-</button>
+const popContent = `
+<b>
+  Veuillez confirmer que vous détenez bien ces prérequis pour passer
+  l'examen:</b
+>
+
+<div class="input checkbox" style="width: 90%">
+  <input
+    type="checkbox"
+    id="driver-licence"
+    style="white-space: nowrap"
+    class="text-xl-left border-0 mt24 mb24"
+  />
+  <label for="driver-licence" style="display: inline">
+    Vous avez 3 ans de permis ou plus.
+  </label>
 </div>
-  `;
+<div class="input checkbox" style="width: 90%">
+  <input
+    type="checkbox"
+    id="license_suspension"
+    style="white-space: nowrap"
+    class="text-xl-left border-0 mb24"
+  />
+  <label for="license_suspension" style="display: inline">
+    Vous n'avez aucun retrait définitif du permis ces 10 dernières années.
+  </label>
+</div>
+<div class="input checkbox" style="width: 90%">
+  <input
+    type="checkbox"
+    id="criminal_record"
+    style="white-space: nowrap"
+    class="text-xl-left border-0 mb24"
+  />
+  <label for="criminal_record" style="display: inline">
+    Vous avez un casier judiciaire vierge B2.
+  </label>
+</div>
+<p
+  id="error_choix_bolt"
+  class="alert alert-warning"
+  style="margin-left: 0%; margin-bottom: 13px; display: none"
+>
+  Si vous ne détenez pas ces 3 prérequis, vous ne pourrez pas vous inscrire à
+  l'examen.
+</p>
+<div style="text-align: center">
+  <button
+    type="button"
+    class="btn btn-secondary action-button"
+    style="margin-top: 19px"
+    id="continueBtn"
+    onclick="paiementBolt()"
+  >
+    Passer au paiement
+  </button>
+</div>
+`;
 //BoltinitPopup
 const popupContentinit = `<div class="input checkbox" style="width:90%">
                                 <input type="checkbox" id="checkbox_failures" style="white-space: nowrap;" class="text-xl-left border-0" t-att-checked="website_sale_order.failures" t-att-value="website_sale_order.failures">
