@@ -111,7 +111,7 @@
                                                                     </td>
                                                                     <td align="center">
                                                                         <strong>
-                                                                            <t t-if="res.resultat == 'recu'">
+                                                                            <t t-if="res.presence == 'present'">
                                                                                 <t t-if="o.note_exam_id[-1].epreuve_a &gt; 0 or o.note_exam_id[-1].epreuve_b &gt; 0">
                                                                                     <span t-raw="'%s' % o.note_exam_id[-1].epreuve_a "/>
                                                                                 </t>
@@ -129,7 +129,7 @@
                                                                     </td>
                                                                     <td align="center">
                                                                         <strong>
-                                                                            <t t-if="res.resultat == 'recu'">
+                                                                            <t t-if="res.presence == 'present'">
                                                                                 <span t-raw="'%s' % o.note_exam_id[-1].epreuve_b"/>
                                                                             </t>
                                                                             <t t-else="">
