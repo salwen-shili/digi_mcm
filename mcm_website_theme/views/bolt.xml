@@ -15,7 +15,7 @@
                 <link rel="stylesheet" href="/mcm_website_theme/static/src/css/popup.css" />
                 <script type="text/javascript" src="/mcm_website_theme/static/src/js/popup_page_bolt.js" />
                 <!-- popup-->
-                <input t-att-value="exam_state" id="exam_state" name="exam_state" type="text" />
+                <input t-att-value="exam_state" id="exam_state" name="exam_state" type="hidden" />
                 <div id="popup1" class="overlay">
                     <div class="popup">
                         <h2 class="text-left">
@@ -458,13 +458,9 @@
                         Je m'inscris
                                             </a> -->
                                                         <!-- onClick="(function(){packVtcPageFormationTaxi();document.getElementById('form-1-1').submit();return false;})();return false;"-->
-                                                        <a class="animated-button-yellow" href="/service-clientele" rel="noopner" target="_blank">
-                                                            <span />
-                                                            <span />
-                                                            <span />
-                                                            <span />
-                                                            Je m'inscris
-                                                        </a>
+                                                        <a class="btn btn-primary sh_btn_cm_8" data-original-title="" title="" aria-describedby="tooltip357369" onClick="(function(){document.getElementById('form-1-1').submit();return false;})();return false;">
+                        Je m'inscris
+                                            </a>
                                                     </div>
                                                 </form>
                                             </t>
