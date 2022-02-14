@@ -56,8 +56,8 @@
                                                 l’attestation de capacité de transport léger de marchandises
                                                 organisé au centre d’examen situé au
                                                 <strong>
-                                                    <t t-if="o.mcm_session_id.adresse_examen">
-                                                        <span t-field='o.mcm_session_id[0].adresse_examen'/>
+                                                    <t t-if="o.mcm_session_id.session_adresse_examen.adresse_centre_examen">
+                                                        <span t-field='o.mcm_session_id[0].session_adresse_examen.adresse_centre_examen'/>
                                                     </t>
                                                 </strong>
                                                 <br></br>
@@ -276,7 +276,7 @@
                                                 l’attestation de capacité de transport léger de marchandises
                                                 organisé au centre d’examen situé au
                                                 <strong>
-                                                    <span t-field='o.mcm_session_id[0].adresse_examen'/>
+                                                    <span t-field='o.mcm_session_id[0].session_adresse_examen.adresse_centre_examen'/>
                                                 </strong>
                                                 <br></br>
                                                 le
