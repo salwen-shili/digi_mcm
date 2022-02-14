@@ -18,6 +18,10 @@ class Partner(models.Model):
         partner = super(Partner, self).create(vals)
         return partner
     def write(self, vals):
+        if 'eval_box' in vals and vals['eval_box']==True and self.bolt:
+            eval_box=vals['eval_box']
+            self.change_crm_lead_i_One(self,eval_box)
+
         if 'inscrit_mcm' in vals and self.bolt :
             if self.renounce_request:
                 self.changestage("Bolt-Plateforme de formation",self)
@@ -243,3 +247,99 @@ class Partner(models.Model):
                     #  'company_id': user.company_id.id
                     # })
                     _logger.info("after add %s" % partner.company_id)
+
+    """changer le statut d'un seul apprenant """
+    def change_crm_lead_i_One(self,partner,eval_box):
+        self.import_data("Plateforme de formation")
+        partners = self.env['res.partner'].sudo().search([('id',"=",partner.id)])
+        today = date.today()
+
+        for partner in partners:
+            if partner.statut_cpf and (partner.statut_cpf == 'canceled' or partner.statut == 'canceled'):
+                self.changestage("Annulé", partner)
+            if (partner.statut != 'canceled') and (partner.statut_cpf) and (partner.statut_cpf != 'canceled'):
+                date_creation = partner.create_date
+                year = date_creation.year
+                month = date_creation.month
+                if (year > 2020) and (month > 1):
+                    if partner.statut_cpf == "accepted":
+                        """Pour etape accepté on doit vérifier la date et la ville """
+                        if (not (partner.session_ville_id) or not (partner.date_examen_edof)) and not (
+                                partner.mcm_session_id) and not (partner.module_id):
+                            self.changestage("Choix date d'examen - CPF", partner)
+                    # Recuperer le contrat pour vérifier son statut
+                    sale_order = self.env['sale.order'].sudo().search([('partner_id', '=', partner.id),
+                                                                       ('session_id', '=',
+                                                                        partner.mcm_session_id.id),
+                                                                       ('module_id', '=', partner.module_id.id),
+                                                                       ('session_id.date_exam', '>',
+                                                                        date.today()),
+                                                                       ], order="date_order desc", limit=1)
+                    facture = self.env['account.move'].sudo().search([('session_id', '=', partner.mcm_session_id.id),
+                                                                      ('module_id', '=', partner.module_id.id),
+                                                                      ('state', '=', 'posted')
+                                                                      ], order="invoice_date desc", limit=1)
+                    date_facture = facture.invoice_date
+                    # Récupérer les documents
+                    documents = self.env['documents.document'].sudo().search([('partner_id', '=', partner.id)])
+                    # pour classer sous document non validé dans crm lead
+                    waiting = False
+                    document_valide = False
+                    if documents:
+                        count = 0
+                        for document in documents:
+                            if (document.state == "validated"):
+                                count = count + 1
+                            if (count == len(documents) and count != 0):
+                                document_valide = True
+                            if (document.state == "waiting"):
+                                _logger.info("document waiting  %s" % partner.name)
+                                waiting = True
+                    if partner.mode_de_financement == "particulier":
+                        if partner.bolt and float(partner.note_exam) < 40.0:
+                            self.changestage("Echec d'Examen Blanc", self)
+                        if sale_order and sale_order.state == "sent":
+                            _logger.info('contrat non signé')
+                            if not partner.bolt:
+                                self.changestage("Contrat non Signé", partner)
+                            else:
+                                self.change_stage_lead("Bolt-Contrat non Signé", partner)
+                        if sale_order and sale_order.state == "sale":
+                            if not document_valide:
+                                if not partner.bolt:
+                                    self.changestage("Contrat Signé", partner)
+                                if partner.bolt:
+                                    self.changestage("Bolt-Contrat Singé", partner)
+                            if waiting:
+                                if partner.bolt:
+                                    self.changestage("Bolt-Document non Validé", partner)
+                                else :
+                                    self.changestage("Document non Validé", partner)
+
+                            if document_valide:
+                                print("++++++++++++",partner.email,partner.inscrit_mcm)
+                                failure = sale_order.failures  # delai de retractation
+                                """Si Il n'as pas fait la renonciation au contrat et sur la fiche 
+                                 on le classe sous retractation non coché et on doit vérifier la date de signature si n'as
+                                     pas depassé 14jours"""
+                                if not (partner.renounce_request) and (date_facture) and (date_facture + timedelta(days=14)) > (today):
+                                    if partner.bolt:
+                                        self.changestage("Bolt-Rétractation non Coché", partner)
+                                    else :
+                                        self.changestage("Rétractation non Coché", partner)
+
+                                if partner.renounce_request and partner.bolt and partner.inscrit_mcm == False and eval_box == True:
+                                    print("++++++",partner.email)
+                                    self.changestage("Inscription Examen Eval Box", partner)
+                                if partner.renounce_request and partner.bolt and  partner.inscrit_mcm   and eval_box == False:
+                                    print("======",partner.email)
+
+                                    self.changestage("Bolt-Plateforme de formation", partner)
+
+                    """Si mode de financement cpf on doit vérifier seulement l'etat des documents  
+                        et la renonciation sur la fiche client """
+                    if partner.mode_de_financement == "cpf" and partner.mcm_session_id.date_exam and partner.mcm_session_id.date_exam > date.today():
+                        if waiting:
+                            self.changestage("Document non Validé", partner)
+                        if document_valide and not (partner.renounce_request) :
+                            self.changestage("Rétractation non Coché", partner)
