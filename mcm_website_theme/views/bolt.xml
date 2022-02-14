@@ -12,6 +12,32 @@
                 <link rel="stylesheet" href="/mcm_website_theme/static/src/css/homepage.min.css" />
                 <script defer="defer" type="text/javascript" src="/digimoov_website_templates/static/src/js/lazy-min.min.js" />
                 <link rel="stylesheet" href="/mcm_website_theme/static/src/css/cta-button.min.css" />
+                <link rel="stylesheet" href="/mcm_website_theme/static/src/css/popup.css" />
+                <script type="text/javascript" src="/mcm_website_theme/static/src/js/popup_page_bolt.js" />
+                <!-- popup-->
+                <input t-att-value="exam_state" id="exam_state" name="exam_state" type="text" />
+                <div id="popup1" class="overlay">
+                    <div class="popup">
+                        <h2 class="text-left">
+                            <i class="fa fa-info-circle" style="color: #111111"></i>
+                        </h2>
+                        <a class="close" onclick="closePopup()">
+                            <i class="fa fa-times"></i>
+                        </a>
+                        <div class="content">
+                            <p id="notifMessage" style="text-align: center; font-size: 16px"></p>
+                            <div class="" style="text-align-last: center; margin-block-start: 1.5rem">
+                                <div id="default">
+                                    <a target="_blank" id="btn-inside-popup">
+                                        <button class="rkmd-btn btn-black" onclick="">Continuer</button>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
                 <div id="wrap" class="oe_structure" style="border-style: none; border-width: 0px">
                     <section id="sh_corpomate_theme_section_258" class="sh_animation_part pt8">
                         <div class="container-banner">
@@ -32,7 +58,7 @@
                         satisfait.</span>
                                                 <br />
                                             </p>
-                                            <a class="animated-button-yellow" href="#pricing" data-original-title="" title="" aria-describedby="tooltip955896" style="                         word-break: break-word;                         position: relative;                         z-index: 0;                       ">PRÉ-inscription</a>
+                                            <a class="animated-button-yellow" href="#pricing" data-original-title="" title="" aria-describedby="tooltip955896" style="                         word-break: break-word;                         position: relative;                         z-index: 0;                       ">Je m'inscris</a>
                                         </div>
                                     </div>
                                 </div>
@@ -206,9 +232,7 @@
                             </div>
                         </div>
                     </section>
-                    <section id="sh_corpomate_theme_section_162" class="sh_animation_part" data-name="Text Image">
-                        <br />
-                    </section>
+
                     <section id="sh_corpomate_theme_section_257" class="sh_animation_part" data-name="text img">
                         <div class="container">
                             <div class="row">
@@ -255,7 +279,7 @@
                                 </div>
                                 <div class="col-lg-5 col-md-5 sh_animation_part">
                                     <div class="sh_img">
-                                        <img src="/web/image/240186/im%202%20H.png" />
+                                        <img src="/mcm_website_theme/static/src/img/im 2 H.png" />
                                     </div>
                                 </div>
                             </div>
@@ -399,7 +423,6 @@
                                                 <form action="/shop/cart/update" method="post" id="form-1-1">
                                                     <input type="hidden" class="product_id" name="product_id" id="bolt_product" t-att-value="bolt_product.id" />
                                                     <input type="hidden" name="promo" t-att-value="promo.id" t-if="promo" />
-                                                    <input t-att-value="exam_state" id="exam_state" name="exam_state" type="text" />
                                                     <h4>PACK VTC</h4>
                                                     <h4>
                                                         <span class="pricebar" t-esc="round(vtc_product.list_price)" />
@@ -440,7 +463,7 @@
                                                             <span />
                                                             <span />
                                                             <span />
-                                                            PRÉ-inscription
+                                                            Je m'inscris
                                                         </a>
                                                     </div>
                                                 </form>
