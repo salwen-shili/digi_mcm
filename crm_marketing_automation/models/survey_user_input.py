@@ -17,5 +17,5 @@ class Survey(models.Model):
             if vals['state'] == 'done' and self.survey_id.title=='Examen blanc Français':
                 partner =self.env['res.partner'].sudo().search([("id","=",self.partner_id.id)])
                 if partner:
-                    self.partner_id.change_stage_lead("En cours de correction - Examen Blanc", partner)
+                    self.partner_id.changestage("En cours de correction - Examen Blanc", partner)
         return record 
