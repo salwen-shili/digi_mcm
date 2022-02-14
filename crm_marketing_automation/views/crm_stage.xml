@@ -9,6 +9,7 @@
                <xpath expr="//group//group/field[@name='is_won']" position="after">
                <field name="bolt"></field>
                </xpath>
+
               </field>
     </record>
 </odoo>

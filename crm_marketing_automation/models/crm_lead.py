@@ -25,7 +25,7 @@ class CRM(models.Model):
     def search_read(self, domain=None, fields=None, offset=0, limit=None, order=None):
 
         if self.user_has_groups('crm_marketing_automation.group_bolt'):
-            domain += [('stage_id.bolt', '=',True)]
+            domain += [('partner_id.bolt', '=',True)]
 
         res = super(CRM, self).search_read(domain, fields, offset, limit, order)
 
