@@ -398,12 +398,10 @@ class Routes_Site(http.Controller):
                                 [('partner_id', "=", request.env.user.partner_id.id), ('survey_id', '=', survey.id)],
                                 order='create_date asc', limit=1)
                             if not survey_user:
-                                # url = 'https://www.mcm-academy.fr/survey/start/'+str(survey.access_token)
-                                url = str(survey.public_url)
+                                url = '/survey/start/'+str(survey.access_token)
                                 return werkzeug.utils.redirect(url,301)
                             if survey_user and survey_user.state == 'new':
-                                # url = 'https://www.mcm-academy.fr/survey/start/' + str(survey.access_token)
-                                url = str(survey.public_url)
+                                url = '/survey/start/'+str(survey.access_token)
                                 return werkzeug.utils.redirect(url, 301)
                             if survey_user and survey_user.state == 'skip':
                                 return werkzeug.utils.redirect(str('survey/fill/%s/%s' % (str(survey.access_token), str(survey_user.token))), 301)
