@@ -64,10 +64,13 @@ class WebsiteSale(WebsiteSale):
                     survey = request.env['survey.survey'].sudo().search([('title', "=", 'Examen blanc Français')],
                                                                         limit=1)
                     if survey:
-                        print(survey)
+                        print()
+                        _logger.info('survey : %s' %(str(survey)))
+                        _logger.info('survey : %s' %(str(request.env.user.partner_id.email)))
                         survey_user = request.env['survey.user_input'].sudo().search(
                             [('partner_id', "=", request.env.user.partner_id.id), ('survey_id', '=', survey.id)],
                             order='create_date asc', limit=1)
+                        _logger.info('survey_user : %s' % (str(survey_user)))
                         if not survey_user:
                             url = '/survey/start/'+str(survey.access_token)
                             return werkzeug.utils.redirect(url, 301)
@@ -78,8 +81,10 @@ class WebsiteSale(WebsiteSale):
                             return werkzeug.utils.redirect(
                                 str('survey/fill/%s/%s' % (str(survey.access_token), str(survey_user.token))), 301)
                         if survey_user and survey_user.state == 'done':
+                            _logger.info('survey_user : %s' % (str(survey_user.quizz_passed)))
                             if not survey_user.quizz_passed:
                                 return werkzeug.utils.redirect('/bolt', 301)
+                                 
         if order and order.state != 'draft':
             request.session['sale_order_id'] = None
             order = request.website.sale_get_order()
