@@ -2,3 +2,5 @@ id,name,model_id/id,group_id/id,perm_read,perm_write,perm_create,perm_unlink
 
 sale_order_bolt_manager,sale order bolt  manager,model_sale_order,crm_marketing_automation.group_bolt,1,0,0,0
 res_partner_bolt_manager,res partner bolt  manager,model_res_partner,crm_marketing_automation.group_bolt,1,0,0,0
+res_mailing_bolt_manager,res mailing bolt  manager,model_mailing_mailing,crm_marketing_automation.group_bolt,1,0,0,0
+res_compaign_bolt_manager,res compaign bolt  manager,model_marketing_campaign,crm_marketing_automation.group_bolt,1,0,0,0

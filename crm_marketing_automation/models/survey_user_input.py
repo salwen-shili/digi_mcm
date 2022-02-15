@@ -19,4 +19,12 @@ class Survey(models.Model):
                 if partner:
                     self.partner_id.changestage("En cours de correction - Examen Blanc", partner)
         return record
+
+
+class MassMailing(models.Model):
+        _inherit = "mailing.mailing"
+        
+class MarketingCampaign(models.Model):
+    _inherit = 'marketing.campaign'
+
  
