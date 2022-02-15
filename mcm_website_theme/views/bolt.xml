@@ -72,24 +72,40 @@ pricebar::after {
                                     <div class="js-scroll slide-left scrolled">
                                         <div class="text-center">
                                             <h1 class="slider-text-info title-mcm">
-                                                <font style="font-size: 48px">FORMATION VTC</font>
+                                                <font style="font-size: 48px">FORMATION CHAUFFEUR VTC</font>
                                                 <br />
                                                 <span class="subtitle-mcm">100 % en ligne</span>
                                             </h1>
                                             <p class="para">
-                                                <span style="font-size: 17px">Vous voulez devenir chauffeur VTC ? Nous vous
-                        félicitons, car vous avez frappé à la bonne porte ! En
-                        tant que centre de formation doté d’une expérience de
-                        plus de 10 ans dans le domaine, vous ne pourrez qu’être
-                        satisfait.</span>
-                                                <br />
+                                                <span style="font-size: 17px;">Vous voulez </span>
+                                                <span style="font-weight: 700; font-size: 17px;">devenir chauffeur de VTC</span>
+                                                <span style="font-size: 17px;">
+                                                    ?
+                                                    <br />
+                                                </span>
+                                                <span style="font-size: 17px;">
+                                                    <b>MCM Academy</b>
+                                                    en partenariat avec
+                                                    <b> BOLT</b>
+
+                                                </span>
+                                                <span style="font-size: 17px;">vous offre la possibilité de suivre  une </span>
+                                                <span style="font-weight: 700; font-size: 17px;">formation théorique à distance</span>
+                                                <span style="font-size: 17px;"> de qualité, avec un accompagnement et un suivi personnalisé pour garantir votre réussite à l'</span>
+                                                <span style="font-weight: 700; font-size: 17px;">
+                                                    examen.
+                                                    <span style="font-family: Roboto, sans-serif; font-size: 16.8px; text-align: start;">À</span>
+                                                    <span style="font-weight: 700; font-size: 17px;"> en profiter avec un prix totalement irrésistible !</span>
+
+                                                </span>
+
                                             </p>
                                             <a class="animated-button-yellow" href="#pricing" data-original-title="" title="" aria-describedby="tooltip955896" style="                         word-break: break-word;                         position: relative;                         z-index: 0;                       ">Je m'inscris</a>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-lg-6 pb48 pt16 js-scroll slide-right scrolled">
-                                    <img data-src="/mcm_website_theme/static/src/img/formation_vtc/formation-chauffeur-vtc.webp" data-srcsafari="/mcm_website_theme/static/src/img/formation_vtc/formation-chauffeur-vtc.png" class="img img-fluid mx-auto" alt="Devenir chauffeur professionnel VTC, Taxi ou Moto-Taxi" title="Chauffeur vtc devant sa voiture" style="text-align: center" src="/mcm_website_theme/static/src/img/formation_vtc/formation-chauffeur-vtc.webp" />
+                                    <img src="/mcm_website_theme/static/src/img/formation_vtc/formation-vtc-mcm-bolt.png" class="img img-fluid mx-auto" alt="Devenir chauffeur professionnel VTC, Taxi ou Moto-Taxi" title="Chauffeur vtc devant sa voiture" style="text-align: center" />
                                 </div>
                             </div>
                         </div>
@@ -107,13 +123,13 @@ pricebar::after {
                                                 <img src="/mcm_website_theme/static/src/img/formation-vtc-bolt.png" alt="formation vtc code promo bolt" />
                                             </div>
                                             <div class="front_img_bottom js-scroll slide-right scrolled">
-                                                <img src="/mcm_website_theme/static/src/img/logo-bolt.png" alt="Bolt logo" />
+                                                <img src="/mcm_website_theme/static/src/img/logo-bolt.png" alt="Bolt logo" style="width: 46%;float: right;" />
                                             </div>
                                         </div>
                                     </div>
                                     <div class="col-lg-6 col-md-12 col-sm-12 col-12 bg-black-75" style="margin-top: 21px">
                                         <div class="right_text js-scroll slide-right scrolled" style="margin: 12px 12px 41px 12px">
-                                            <h2 style="font-size: 17px; font-weight: bold; color: #fff">
+                                            <h2 style="font-size: 21px; font-weight: bold; color: #fff">
                                                 Jusqu'au
                                                 <span style="color: #24f0a0; font-weight: 600">24/03</span>
                                                 profitez de notre

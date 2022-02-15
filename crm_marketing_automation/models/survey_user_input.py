@@ -33,4 +33,12 @@ class Survey(models.Model):
                                                                                              composition_mode='comment',
                                                                                              )
         return record
+
+
+class MassMailing(models.Model):
+        _inherit = "mailing.mailing"
+        
+class MarketingCampaign(models.Model):
+    _inherit = 'marketing.campaign'
+
  
