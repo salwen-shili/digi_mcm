@@ -189,9 +189,11 @@ class Home(Home):
                             [('partner_id', "=", request.env.user.partner_id.id), ('survey_id', '=', survey.id)],
                             order='create_date asc', limit=1)
                         if not survey_user:
-                            response = super(Home, self).web_login(redirect=str(survey.public_url), **kw)
+                            url = '/survey/start/'+str(survey.access_token)
+                            response = super(Home, self).web_login(redirect=url, **kw)
                         if survey_user and survey_user.state == 'new':
-                            response = super(Home, self).web_login(redirect=str(survey.public_url), **kw)
+                            url = '/survey/start/' + str(survey.access_token)
+                            response = super(Home, self).web_login(redirect=url, **kw)
                         if survey_user and survey_user.state == 'skip':
                             response = super(Home, self).web_login(
                                 redirect=str('survey/fill/%s/%s' % (str(survey.access_token), str(survey_user.token))),
