@@ -24,6 +24,10 @@
     font-size: 16px;
     overflow: hidden;
 }
+#sh_corpomate_theme_section_257 .sh_content p {
+        font-size: 16px;
+    color: #6c6a6a;
+}
                 </style>
                 <!-- popup-->
                 <input t-att-value="exam_state" id="exam_state" name="exam_state" type="hidden" />
