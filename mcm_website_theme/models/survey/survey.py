@@ -38,7 +38,15 @@ class SurveyUserInputWizard(models.TransientModel):
     def action_validate_correction_exam(self):
         for rec in self:
             rec.survey_user_input_id.quizz_corrected = True
-            rec.partner_id.note_exam  = str(rec.score)
+            rec.partner_id.note_exam = str(rec.score)
+            other_user_input = self.env['survey.user_input'].sudo().search([
+                ('partner_id', '=', rec.partner_id.id),
+                ('survey_id', '=', rec.survey_user_input_id.survey_id.id),
+                ('id',"!=",rec.survey_user_input_id.id)
+            ])
+            if other_user_input :
+                for user_input in other_user_input:
+                    user_input.sudo().unlink()
             mail_compose_message = self.env['mail.compose.message']
             mail_compose_message.fetch_sendinblue_template()
             if rec.score < 40:
