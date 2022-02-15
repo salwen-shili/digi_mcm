@@ -54,6 +54,20 @@ class SurveyUserInputWizard(models.TransientModel):
                                                                                          composition_mode='comment',
                                                                                          )
             else:
+                succeeded_attempt = self.env['survey.user_input'].sudo().search([
+                    ('partner_id', '=', rec.partner_id.id),
+                    ('survey_id', '=', rec.survey_user_input_id.survey_id.id),
+                ], limit=1)
+
+                if succeeded_attempt:
+                    report_sudo = self.env.ref('survey.certification_report').sudo()
+
+                    report = report_sudo.render_qweb_pdf([succeeded_attempt.id], data={'report_type': 'pdf'})[0]
+                    reporthttpheaders = [
+                        ('Content-Type', 'application/pdf'),
+                        ('Content-Length', len(report)),
+                    ]
+                    reporthttpheaders.append(('Content-Disposition', content_disposition('Certification.pdf')))
                 mail_compose_message = self.env['mail.compose.message']
                 mail_compose_message.fetch_sendinblue_template()
                 template_id = self.env['mail.template'].sudo().search(
