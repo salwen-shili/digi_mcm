@@ -65,7 +65,7 @@
                     <h2 class="text-left">
                         <i class="fa fa-info-circle" style="color: #111111"></i>
                     </h2>
-                    <a class="close" onclick="closePopupMail();">
+                    <a class="close" onclick="closePopupMail();scrolltoTop();">
                         <i class="fa fa-times"></i>
                     </a>
 
@@ -92,7 +92,7 @@
                     </div>
                     <div id="default" class="text-center" style="margin: 1rem 0rem">
                         <a id="btn-inside-popup">
-                            <button class="rkmd-btn btn-black" onclick="closePopupMail();">Fermer</button>
+                            <button class="rkmd-btn btn-black" onclick="closePopupMail();scrolltoTop();">Fermer</button>
                         </a>
                     </div>
 

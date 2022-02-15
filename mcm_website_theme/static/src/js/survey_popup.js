@@ -49,5 +49,4 @@ function openPopupMail() {
 }
 function closePopupMail() {
   document.getElementById('popup2').style.display = 'none';
-  scrolltoTop();
 }
