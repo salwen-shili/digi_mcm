@@ -34,6 +34,9 @@ class WebsiteSale(WebsiteSale):
         access_token: Abandoned cart SO access token
         revive: Revival method when abandoned cart. Can be 'merge' or 'squash'
         """
+        if post.get('type') == 'popover':
+            # force no-cache so IE11 doesn't cache this XHR
+            return request.render("website_sale.cart_popover", values, headers={'Cache-Control': 'no-cache'})
         statut ="False"
         if not request.env.user.lang:
             request.env.user.lang ='fr_FR'
@@ -110,9 +113,6 @@ class WebsiteSale(WebsiteSale):
             'date': fields.Date.today(),
             'suggested_products': [],
         })
-        if post.get('type') == 'popover':
-            # force no-cache so IE11 doesn't cache this XHR
-            return request.render("website_sale.cart_popover", values, headers={'Cache-Control': 'no-cache'})
         if not request.env.user.has_group('base.group_user'):
             documents = False
             if order.partner_id:
