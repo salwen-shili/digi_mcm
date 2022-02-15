@@ -26,7 +26,7 @@
 }
 #sh_corpomate_theme_section_257 .sh_content p {
         font-size: 16px;
-    color: #6c6a6a;
+    color: #6c6a6a !important;
 }
 pricebar::after {
     content: ' ';
