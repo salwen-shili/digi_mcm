@@ -34,9 +34,13 @@
         <field name="model_id" ref="base.model_res_partner"/>
         <field name="groups" eval="[(4, ref('crm_marketing_automation.group_bolt'))]"/>
         <field name="perm_read" eval="1"/>
-        <field name="perm_write" eval="0"/>
-        <field name="perm_create" eval="0"/>
-        <field name="perm_unlink" eval="0"/>
+        <field name="perm_write" eval="1"/>
+        <field name="perm_create" eval="1"/>
+        <field name="perm_unlink" eval="1"/>
+         <field name="domain_force">
+            [('bolt','=',True)
+            ]
+        </field>
         </record>
 <!--      <record id="manage_crm_stage_bolt_only" model="ir.rule">-->
 <!--        <field name="name">Gérer seulement CRM Stage Bolt</field>-->

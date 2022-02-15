@@ -1,5 +1,4 @@
 id,name,model_id/id,group_id/id,perm_read,perm_write,perm_create,perm_unlink
 
-crm_bolt_stage_manager,crm bolt stage manager,model_crm_stage,crm_marketing_automation.group_bolt,1,1,1,1
 sale_order_bolt_manager,sale order bolt  manager,model_sale_order,crm_marketing_automation.group_bolt,1,0,0,0
 res_partner_bolt_manager,res partner bolt  manager,model_res_partner,crm_marketing_automation.group_bolt,1,0,0,0
