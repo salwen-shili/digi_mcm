@@ -35,10 +35,9 @@
                             <p id="notifMessage" style="text-align: left; font-size: 16px"></p>
                             <div class="" style=" ">
                                 <div id="default" class="text-center" style="margin: 1rem 0rem">
-                                    <a id="btn-inside-popup">
-                                        <button class="rkmd-btn btn-black" onclick="">Je me lance!</button>
+                                    <a id="btn-inside-popup" onclick="closePopup();scrolltoTop();">
+                                        <button class="rkmd-btn btn-black">Je me lance!</button>
                                     </a>
-
                                 </div>
                                 <div class="btn-bot text-left" sytle="margin-top:12px">
                                     <p>
@@ -50,7 +49,6 @@
                                             <a style="color: blue; cursor:pointer" onclick="openPopupMail();closePopup();">cliquez ici</a>
                                             pour recevoir le lien par mail et le repasser plus tard.
                                         </span>
-
                                     </p>
                                 </div>
                             </div>
@@ -117,32 +115,28 @@
                             <div class="row m-0 mt40 mb64">
                                 <div class="col-lg-6">
                                     <div class="card-shadow ">
-                                        <img src="/mcm_website_theme/static/src/img/examen/conditions-examens-taxi-vtc-vmdtr.webp"
-                                             data-srcSafari="/mcm_website_theme/static/src/img/examen/conditions-examens-taxi-vtc-vmdtr.png"
-                                             class="img-responsive img img-fluid lazy" data-original-title="" title=""
-                                             aria-describedby="tooltip508208"/>
+                                        <img src="/mcm_website_theme/static/src/img/examen/conditions-examens-taxi-vtc-vmdtr.webp" data-srcSafari="/mcm_website_theme/static/src/img/examen/conditions-examens-taxi-vtc-vmdtr.png" class="img-responsive img img-fluid lazy" data-original-title="" title="" aria-describedby="tooltip508208" />
                                     </div>
                                 </div>
                                 <div class="col-lg-6">
-                                    <br/>
-                                    <br/>
-                                    <br/>
+                                    <br />
+                                    <br />
+                                    <br />
                                     <h3 class="text-center">
-                                        <i class="fa fa-check-circle fa-2x text-success" role="img" aria-label="Success"
-                                           title="Success"/>
+                                        <i class="fa fa-check-circle fa-2x text-success" role="img" aria-label="Success" title="Success" />
                                     </h3>
                                     <h3 class="text-center">Merci d'avoir pris le temps de finaliser votre examen. Votre
                                         copie sera corrigée dans un délai de 24h hors week-end. Pour rappel pour être
                                         admis il faut avoir une moyenne supérieur ou égale à 8/20 (40%).
                                     </h3>
-<!--                                    <div t-if="survey.certificate" class="text-center mt16 mb16">-->
-<!--                                        <a role="button" class="btn btn-primary btn-lg"-->
-<!--                                           t-att-href="'/survey/%s/get_certification' % survey.id">-->
-<!--                                            <i class="fa fa-fw fa-trophy" role="img" aria-label="Download certification"-->
-<!--                                               title="Download certification"/>-->
-<!--                                            Download certification-->
-<!--                                        </a>-->
-<!--                                    </div>-->
+                                    <!--                                    <div t-if="survey.certificate" class="text-center mt16 mb16">-->
+                                    <!--                                        <a role="button" class="btn btn-primary btn-lg"-->
+                                    <!--                                           t-att-href="'/survey/%s/get_certification' % survey.id">-->
+                                    <!--                                            <i class="fa fa-fw fa-trophy" role="img" aria-label="Download certification"-->
+                                    <!--                                               title="Download certification"/>-->
+                                    <!--                                            Download certification-->
+                                    <!--                                        </a>-->
+                                    <!--                                    </div>-->
                                 </div>
                             </div>
                         </div>
