@@ -81,7 +81,7 @@ class SurveyUserInputWizard(models.TransientModel):
                     if user:
                         template_id.attachment_ids = False
                         attachment = self.env['ir.attachment'].search(
-                            [("name", "=", "certification.pdf"), ("create_uid", "=", user.id)],
+                            [("name", "=", "certification.pdf"),('res_id',"=",rec.partner_id.id)], order='create_date desc',
                             limit=1)
                         if attachment:
                             template_id.sudo().write({'attachment_ids': [(6, 0, attachment.ids)]})
