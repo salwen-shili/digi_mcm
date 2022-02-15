@@ -28,6 +28,17 @@
         font-size: 16px;
     color: #6c6a6a;
 }
+pricebar::after {
+    content: ' ';
+    display: block;
+    width: 100%;
+    border-top: 3px solid red;
+    height: 12px;
+    position: absolute;
+    bottom: 9px;
+    left: 2px;
+    transform: rotate(310deg);
+}
                 </style>
                 <!-- popup-->
                 <input t-att-value="exam_state" id="exam_state" name="exam_state" type="hidden" />
