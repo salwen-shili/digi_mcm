@@ -62,7 +62,7 @@
                     </div>
                     <div style="text-align: center; padding-right: 337px; font-size: 20px">
                         Date de la certification :
-                        <span>13/02/2022</span>
+                        <span t-field="user_input.create_date" t-field-options='{"format": "dd/MM/yyyy"}'/>
                     </div>
                 </section>
             </div>
