@@ -35,9 +35,10 @@ class Facture(models.Model):
         # Value in field financement related to field payment in invoice tree view
         for rec in self:
             for partner in self.env['res.partner'].sudo().search([('id', '=', rec.partner_id.id)]):
-                if partner and rec.amount_residual == 0:
-                    partner.etat_financement_cpf_cb = 'paid'
-                else:
-                    partner.etat_financement_cpf_cb = 'not_paid'
+                if partner.mode_de_financement != 'cpf':
+                    if partner and rec.amount_residual == 0:
+                        partner.etat_financement_cpf_cb = 'paid'
+                    else:
+                        partner.etat_financement_cpf_cb = 'not_paid'
         record = super(Facture, self).write(vals)
         return record

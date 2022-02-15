@@ -53,6 +53,7 @@
                                                     style="text-decoration : underline;">30 minutes
                                             </b> avant
                                                 l'épreuve).
+                                                <br></br>
                                             </t>
                                         </t>
                                         <t t-foreach="o.mcm_session_id" t-as="apres_midi">
@@ -78,8 +79,11 @@
                                             (passeport ou
                                             carte
                                             d'identité) ainsi que d'un stylo bille noir ou bleu, d'un blanco et d'une
-                                            calculatrice
-                                            non scientifique.
+                                            calculatrice non scientifique.
+                                        </p>
+                                        <br></br>
+                                        <p>
+                                            <strong>NB :</strong>  Aucun retard ne sera toléré.
                                         </p>
                                         <br></br>
                                         <center>

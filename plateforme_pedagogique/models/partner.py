@@ -560,7 +560,7 @@ class partner(models.Model):
                                     [('name', 'like', 'IT'), ('company_id', "=", 2)],
                                     limit=1).id,
                             }
-                            description = "Apprenant non ajouté sur 360 " + str(partner.name) +" "+str(responce_api)
+                            description = "Apprenant non ajouté sur 360"+" " + str(partner.name) +" "+str(responce_api)
                             ticket = self.env['helpdesk.ticket'].sudo().search([("description", "=", description),
                                                                                    ("team_id.name", 'like', 'IT')])
 
@@ -574,7 +574,7 @@ class partner(models.Model):
                                     [('name', 'like', 'Client'), ('company_id', "=", 2)],
                                     limit=1).id,
                             }
-                            description_client = "Apprenant non ajouté sur 360 " + str(partner.name) +" "+ str(
+                            description_client = "Apprenant non ajouté sur 360"+" "+ str(partner.name) +" "+ str(
                                 responce_api)
                             ticket_client = self.env['helpdesk.ticket'].sudo().search(
                                 [("description", "=", description_client),
