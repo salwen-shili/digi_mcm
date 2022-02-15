@@ -89,8 +89,14 @@ class SurveyUserInputWizard(models.TransientModel):
                     if user:
                         template_id.attachment_ids = False
                         attachment = self.env['ir.attachment'].search(
-                            [("name", "=", "certification.pdf"),('res_id',"=",rec.partner_id.id)], order='create_date desc',
+                            [("name", "=", "certification.pdf"),('res_id',"=",rec.partner_id.id),('res_model',"=",'res.partner')], order='create_date desc',
                             limit=1)
+                        if not attachment :
+                            if succeeded_attempt:
+                                attachment = self.env['ir.attachment'].search(
+                                    [("name", "=", "certification.pdf"), ('res_id', "=", succeeded_attempt.id),
+                                     ('res_model', "=", 'survey.user_input')], order='create_date desc',
+                                    limit=1)
                         if attachment:
                             template_id.sudo().write({'attachment_ids': [(6, 0, attachment.ids)]})
                     message = self.env['mail.message'].sudo().search(
