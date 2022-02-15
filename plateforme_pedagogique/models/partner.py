@@ -555,7 +555,7 @@ class partner(models.Model):
                         else:
 
                             vals = {
-                                'description': 'Apprenant non ajouté sur 360%s %s' % (partner.name, responce_api),
+                                'description': 'Apprenant non ajouté sur 360 %s %s' % (partner.name, responce_api),
                                 'name': 'Apprenant non ajouté sur 360 ',
                                 'team_id': self.env['helpdesk.team'].sudo().search(
                                     [('name', 'like', 'IT'), ('company_id', "=", 2)],
@@ -569,7 +569,7 @@ class partner(models.Model):
                                 new_ticket = self.env['helpdesk.ticket'].sudo().create(
                                     vals)
                             vals_client = {
-                                'description': 'Apprenant non ajouté sur 360%s %s' % (partner.name, responce_api),
+                                'description': 'Apprenant non ajouté sur 360 %s %s' % (partner.name, responce_api),
                                 'name': 'Apprenant non ajouté sur 360 ',
                                 'team_id': self.env['helpdesk.team'].sudo().search(
                                     [('name', 'like', 'Client'), ('company_id', "=", 2)],
