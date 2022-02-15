@@ -28,7 +28,7 @@
                             <div class="">
                                 <div
                                         style="
-                                            padding-top: 170px !important;
+                                            padding-top: 150px !important;
                                             font-size: 35px;
                                             margin-bottom: 13px;
                                             text-align: center;
@@ -62,7 +62,7 @@
                     </div>
                     <div style="text-align: center; padding-right: 337px; font-size: 20px">
                         Date de la certification :
-                        <span t-field="user_input.create_date" t-field-options='{"format": "dd/MM/yyyy"}'/>
+                        <span t-field="user_input.create_date" t-options='{"widget": "date"}'/>
                     </div>
                 </section>
             </div>

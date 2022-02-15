@@ -43,7 +43,7 @@
                                         <button class="rkmd-btn btn-black">Je me lance!</button>
                                     </a>
                                 </div>
-                                <div class="btn-bot text-left" sytle="margin-top:12px">
+                                <div class="btn-bot text-left" sytle="margin-top:12px;font-size: 14px;">
                                     <p>
                                         <span>*Une seule tentative est prise en compte.</span>
                                         <br />
