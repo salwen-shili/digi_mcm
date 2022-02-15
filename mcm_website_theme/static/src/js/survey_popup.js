@@ -1,5 +1,5 @@
 const exam_not_passed_true = `Pour que vous puissiez profiter de notre offre, vous devez passer un petit examen blanc de
-                                <b>20 MINUTES</b>
+                                <b>30 MINUTES</b>
                                 afin de tester vos connaissances en langue française. L'objet de cet examen est de mesurer votre degré d'assimilation des cours qui vous seront attribués lors de la formation.`;
 
 var message = {
@@ -20,12 +20,16 @@ function setPopup() {
       ? (notifMessage.innerHTML = message['exam_not_passed_true'])
       : (notifMessage.innerHTML = message['exam_not_passed_false']);
     //set button href
-    btnContiner = document.getElementById('btn-inside-popup');
-    surveybtn = document.querySelector('.btn');
-    btnContiner.href = surveybtn.href;
+    // btnContiner = document.getElementById('btn-inside-popup');
+    // surveybtn = document.querySelector('.btn');
+    // btnContiner.href = surveybtn.href;
   }
 
   return;
+}
+
+function scrolltoTop() {
+  window.scrollTo(0, 0);
 }
 
 function openPopup() {
