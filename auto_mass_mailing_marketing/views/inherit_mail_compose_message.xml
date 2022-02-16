@@ -2,6 +2,6 @@
 <odoo>
     <record id="inherit_mail_compose_message_form_id" model="ir.ui.view">
         <field name="inherit_id" ref="mail.email_compose_message_wizard_form"/>
-        <field name="groups_id" eval="[(6, 0, [])]"/>
+        <field name="groups_id" eval="False"/>
     </record>
 </odoo>
