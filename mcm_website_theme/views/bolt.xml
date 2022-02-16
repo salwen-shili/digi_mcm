@@ -8,6 +8,7 @@
                     <meta name="robots" content="noindex" />
                 </t>
             </xpath>
+
             <div id="wrap" class="oe_structure oe_empty" style="word-break: break-word; position: relative; z-index: 0">
                 <link rel="stylesheet" href="/mcm_website_theme/static/src/css/homepage.min.css" />
                 <script defer="defer" type="text/javascript" src="/digimoov_website_templates/static/src/js/lazy-min.min.js" />
@@ -15,6 +16,28 @@
                 <link rel="stylesheet" href="/mcm_website_theme/static/src/css/popup.css" />
                 <script type="text/javascript" src="/mcm_website_theme/static/src/js/popup_page_bolt.js" />
                 <style>
+                    function scrollTo(id){
+                     
+                    window.scroll(0,findPos(document.getElementById(id)) - 50);
+                }
+
+
+
+                    function findPos(obj) {
+                        var curtop = 0;
+                        if (obj.offsetParent) {
+                            do {
+                                curtop += obj.offsetTop;
+                            } while (obj = obj.offsetParent);
+                        return [curtop];
+                        }
+                    }
+                    
+                </style>
+                <style>
+                    .body{
+                       scroll-behavior: smooth;
+                    }
                     #sh_corpomate_theme_section_257 .sh_content p {
     color: #6c6a6a;
     margin-bottom: 20px;
@@ -45,13 +68,13 @@ pricebar::after {
                 <div id="popup1" class="overlay">
                     <div class="popup">
                         <h2 class="text-left">
-                            <i class="fa fa-info-circle" style="color: #111111"></i>
+                            <i class="fa fa-info-circle" style="color: #111111" />
                         </h2>
                         <a class="close" onclick="closePopup()">
-                            <i class="fa fa-times"></i>
+                            <i class="fa fa-times" />
                         </a>
                         <div class="content">
-                            <p id="notifMessage" style="text-align: center; font-size: 16px"></p>
+                            <p id="notifMessage" style="text-align: center; font-size: 16px" />
                             <div class="" style="text-align-last: center; margin-block-start: 1.5rem">
                                 <div id="default">
                                     <a target="_blank" id="btn-inside-popup">
@@ -62,14 +85,12 @@ pricebar::after {
                         </div>
                     </div>
                 </div>
-
-
                 <div id="wrap" class="oe_structure" style="border-style: none; border-width: 0px">
                     <section id="sh_corpomate_theme_section_258" class="sh_animation_part pt8">
                         <div class="container-banner">
                             <div class="row">
                                 <div class="col-lg-6 pb16 pt56">
-                                    <div class="js-scroll slide-left scrolled">
+                                    <div class="js-scroll slide-left ">
                                         <div class="text-center">
                                             <h1 class="slider-text-info title-mcm">
                                                 <font style="font-size: 48px">FORMATION CHAUFFEUR VTC</font>
@@ -83,28 +104,20 @@ pricebar::after {
                                                     ?
                                                     <br />
                                                 </span>
-                                                <span style="font-size: 17px;">
-                                                    <b>MCM Academy</b>
-                                                    en partenariat avec
-                                                    <b> BOLT</b>
-
-                                                </span>
-                                                <span style="font-size: 17px;">vous offre la possibilité de suivre  une </span>
-                                                <span style="font-weight: 700; font-size: 17px;">formation théorique à distance</span>
-                                                <span style="font-size: 17px;"> de qualité, avec un accompagnement et un suivi personnalisé pour garantir votre réussite à l'</span>
-                                                <span style="font-weight: 700; font-size: 17px;">
-                                                    examen.
-                                                    <span style="font-family: Roboto, sans-serif; font-size: 16.8px; text-align: start;">À</span>
-                                                    <span style="font-weight: 700; font-size: 17px;"> en profiter avec un prix totalement irrésistible !</span>
-
-                                                </span>
+                                                <b>MCM Academy</b>
+                                                en partenariat avec
+                                                <b>BOLT</b>
+                                                vous offre la possibilité de suivre une
+                                                <b>formation théorique à distance</b>
+                                                de qualité, avec un accompagnement et un suivi personnalisé pour garantir votre réussite à
+                                                <b>l'examen.</b>
 
                                             </p>
                                             <a class="animated-button-yellow" href="#pricing" data-original-title="" title="" aria-describedby="tooltip955896" style="                         word-break: break-word;                         position: relative;                         z-index: 0;                       ">Je m'inscris</a>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-lg-6 pb48 pt16 js-scroll slide-right scrolled">
+                                <div class="col-lg-6 pb48 pt16 js-scroll slide-right ">
                                     <img src="/mcm_website_theme/static/src/img/formation_vtc/formation-vtc-mcm-bolt.png" class="img img-fluid mx-auto" alt="Devenir chauffeur professionnel VTC, Taxi ou Moto-Taxi" title="Chauffeur vtc devant sa voiture" style="text-align: center" />
                                 </div>
                             </div>
@@ -119,16 +132,16 @@ pricebar::after {
                                 <div class="row align-items-center">
                                     <div class="col-lg-6 col-md-12 col-sm-12 col-12">
                                         <div class="left_image">
-                                            <div class="behind_img js-scroll slide-left scrolled">
+                                            <div class="behind_img js-scroll slide-left ">
                                                 <img src="/mcm_website_theme/static/src/img/formation-vtc-bolt.png" alt="formation vtc code promo bolt" />
                                             </div>
-                                            <div class="front_img_bottom js-scroll slide-right scrolled">
+                                            <div class="front_img_bottom js-scroll slide-right ">
                                                 <img src="/mcm_website_theme/static/src/img/logo-bolt.png" alt="Bolt logo" style="width: 46%;float: right;" />
                                             </div>
                                         </div>
                                     </div>
                                     <div class="col-lg-6 col-md-12 col-sm-12 col-12 bg-black-75" style="margin-top: 21px">
-                                        <div class="right_text js-scroll slide-right scrolled" style="margin: 12px 12px 41px 12px">
+                                        <div class="right_text js-scroll slide-right " style="margin: 12px 12px 41px 12px">
                                             <h2 style="font-size: 21px; font-weight: bold; color: #fff">
                                                 Jusqu'au
                                                 <span style="color: #24f0a0; font-weight: 600">24/03</span>
@@ -143,14 +156,18 @@ pricebar::after {
                                                 <span style="color: #24f0a0; font-weight: 600">20 €</span>
                                                 Seulement !
                                             </h2>
-                                            <p style="font-size: 16px !important ; color: #fff">MCM Academy vous offre l'opportunité de profiter d'une
-                      formation théorique de qualité 100% en ligne pour devenir
-                      chauffeur VTC. Une formation de 70 heures dont 40 heures
-                      de Live avec un expert métier pour une préparation
-                      optimale de votre examen !</p>
-                                            <a href="/bolt#pricing" class="_viewmore btn btn-warning" style="                         word-break: break-word;                         position: relative;                         z-index: 0;                       " data-original-title="" title="" aria-describedby="tooltip467674">
+                                            <p style="">
+                                                <font color="#ffffff">
+                                                    <span style="font-size: 16px;">
+                                                        Une formation de 70 heures dont 40 heures de Live avec un expert métier pour une préparation optimale de votre examen !&amp;nbsp;
+                                                        <br />
+                                                    </span>
+                                                    <span style="font-size: 16px;">Pour profiter de cette offre, vous devrez passer un &amp;nbsp;examen blanc de 30 min afin de tester vos connaissances en français&amp;nbsp;.</span>
+                                                </font>
+                                            </p>
+                                            <a href="#sh_corpomate_theme_section_76" class="_viewmore btn btn-warning" style="                         word-break: break-word;                         position: relative;                         z-index: 0;                       " data-original-title="" title="" aria-describedby="tooltip467674">
                                                 <font style="font-size: 18px">
-                                                    <b>J'en profite !</b>
+                                                    <b data-original-title="" title="" aria-describedby="tooltip858847">En savoir plus</b>
                                                 </font>
                                             </a>
                                         </div>
@@ -162,10 +179,10 @@ pricebar::after {
                     <section class="s_text_image pt32 pb32" data-name="Text - Image" style="word-break: break-word; position: relative; z-index: 0">
                         <div class="container">
                             <div class="row align-items-center">
-                                <div class="col-lg-6 pt16 pb16 js-scroll slide-left scrolled">
+                                <div class="col-lg-6 pt16 pb16 js-scroll slide-left ">
                                     <img data-src="/mcm_website_theme/static/src/img/homepage/mcm-academy-centre-de-formation-en-ligne-des-métiers-de-transports.webp" data-srcsafari="/mcm_website_theme/static/src/img/homepage/mcm-academy-centre-de-formation-en-ligne-des-métiers-de-transports.png" class="img img-fluid mx-auto" alt="candidats centre de formation vtc" src="/mcm_website_theme/static/src/img/homepage/mcm-academy-centre-de-formation-en-ligne-des-métiers-de-transports.webp" />
                                 </div>
-                                <div class="col-lg-6 pt16 pb16 js-scroll slide-right scrolled">
+                                <div class="col-lg-6 pt16 pb16 js-scroll slide-right ">
                                     <h2>
                                         <b>Faisons connaissance…</b>
                                     </h2>
@@ -185,7 +202,7 @@ pricebar::after {
                     <section class="s_text_image pt32 pb32" data-name="Text - Image" style="word-break: break-word; position: relative; z-index: 0">
                         <div class="container">
                             <div class="row align-items-center">
-                                <div class="col-lg-6 pt16 pb16 js-scroll slide-left scrolled">
+                                <div class="col-lg-6 pt16 pb16 js-scroll slide-left ">
                                     <h2>
                                         <b>Plus qu'une formation !&amp;nbsp;</b>
                                     </h2>
@@ -195,11 +212,12 @@ pricebar::after {
                   e-learning. Les cours sont présentés sous forme de vidéos
                   interactives, de Live avec nos formateurs, de QCM et d’examens
                   blancs, soigneusement concoctés par nos experts métiers afin
-                  de mieux vous préparer à l’examen final.&amp;nbsp;
+                                        de mieux vous préparer à l’examen final.
+                                        <span id="scroll">&amp;nbsp;</span>
                                         <br />
                                     </p>
                                 </div>
-                                <div class="col-lg-6 pt16 pb16 js-scroll slide-right scrolled">
+                                <div class="col-lg-6 pt16 pb16 js-scroll slide-right ">
                                     <img class="img img-fluid mx-auto" alt="candidats formation taxi vtc" src="/mcm_website_theme/static/src/img/comment-s'inscrire-au-registre-VTC.png" />
                                 </div>
                             </div>
@@ -217,8 +235,8 @@ pricebar::after {
           }</style>
                     <section id="sh_corpomate_theme_section_76" style="margin: 3rem 0rem 4rem 0rem">
                         <div class="container">
-                            <h2 class="fade-in-bottom js-scroll text-center scrolled">Voici les démarches à suivre pour profiter de l'offre</h2>
-                            <div class="row js-scroll fade-in-bottom scrolled">
+                            <h2 class="fade-in-bottom js-scroll text-center ">Voici les démarches à suivre pour profiter de l'offre</h2>
+                            <div class="row js-scroll fade-in-bottom ">
                                 <div class="col-md-3">
                                     <div class="sh_content">
                                         <div class="sh_num_icon">
@@ -274,7 +292,6 @@ pricebar::after {
                             </div>
                         </div>
                     </section>
-
                     <section id="sh_corpomate_theme_section_257" class="sh_animation_part" data-name="text img">
                         <div class="container">
                             <div class="row">
@@ -330,7 +347,7 @@ pricebar::after {
                     <section class="s_text_image pt32 pb32" data-name="Text - Image">
                         <div class="container">
                             <div class="row align-items-center">
-                                <div class="col-md-6 sh_animation_part js-scroll slide-left scrolled">
+                                <div class="col-md-6 sh_animation_part js-scroll slide-left ">
                                     <div class="sh_content_right">
                                         <div class="sh_img">
                                             <div class="media_iframe_video" data-oe-expression="https://www.youtube.com/embed/GrsLyNnmghE?autoplay=1&amp;mute=1&amp;rel=0&amp;modestbranding=1">
@@ -341,7 +358,7 @@ pricebar::after {
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-lg-6 pt16 pb16 js-scroll slide-right scrolled">
+                                <div class="col-lg-6 pt16 pb16 js-scroll slide-right ">
                                     <h2>
                                         <b>S'inscrire à l'examen VTC</b>
                                     </h2>
@@ -380,7 +397,7 @@ pricebar::after {
                     <section class="s_text_image pt32 pb32 bg-100" data-name="Text - Image" style="word-break: break-word; position: relative; z-index: 0">
                         <div class="container" style="border-style: none; border-width: 0px">
                             <div class="row align-items-center">
-                                <div class="col-lg-6 pt16 pb16 js-scroll slide-left scrolled">
+                                <div class="col-lg-6 pt16 pb16 js-scroll slide-left ">
                                     <h3>
                                         <b>Déroulement de l'examen VTC</b>
                                     </h3>
@@ -398,7 +415,7 @@ pricebar::after {
                                     </p>
                                     <p />
                                 </div>
-                                <div class="col-lg-6 pt16 pb16 js-scroll slide-right scrolled">
+                                <div class="col-lg-6 pt16 pb16 js-scroll slide-right ">
                                     <img data-src="/mcm_website_theme/static/src/img/homepage/inscription-à-l’examen-taxi-vtc.webp" data-srcsafari="mcm_website_theme/static/src/img/homepage/inscription-à-l’examen-taxi-vtc.png" class="img img-fluid mx-auto" alt="inscription-à-l’examen-taxi-vtc" src="/mcm_website_theme/static/src/img/homepage/inscription-à-l’examen-taxi-vtc.webp" />
                                 </div>
                             </div>
