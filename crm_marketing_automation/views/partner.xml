@@ -126,7 +126,7 @@
     <record model="ir.ui.view" id="crm_partner_mcm_form_view">
         <field name="name">Apprenants</field>
         <field name="model">res.partner</field>
-        <field name="inherit_id" ref="crm.view_partners_form_crm1"></field>
+        <field name="inherit_id" ref="crm.crm_iap_lead_mining_request_form"></field>
         <field name="arch" type="xml">
             <xpath expr="//button[@name='action_get_opportunity_action']" position="attributes">
                 <attribute name="groups"></attribute>
