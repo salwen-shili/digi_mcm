@@ -635,7 +635,7 @@
                             </form>
                         </div>
                         <div class="col-lg-6 text-center logo-flex " t-if="not token">
-                            >
+
                             <img t-if="request.website.id == 2" class="img img img-fluid" style="width:54%;margin-bottom: 50px;" src="/mcm_website_theme/static/src/img/logos/logo-digimoov.png" />
                             <img t-if="request.website.id == 1" class="img img img-fluid" style="width:60%;margin-bottom: 101px;" src="/mcm_website_theme/static/src/img/logos/MCM ACADEMY.png" />
                         </div>
