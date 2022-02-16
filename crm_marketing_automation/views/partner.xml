@@ -128,7 +128,7 @@
         <field name="model">res.partner</field>
         <field name="inherit_id" ref="crm.view_partners_form_crm1"></field>
         <field name="arch" type="xml">
-            <xpath expr="//gbutton[1]" position="attributes">
+            <xpath expr="//button[1]" position="attributes">
                 <attribute name="groups">base.group_user</attribute>
             </xpath>
         </field>
