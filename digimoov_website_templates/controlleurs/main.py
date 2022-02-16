@@ -47,6 +47,18 @@ class Website(Website):
         else:
             raise werkzeug.exceptions.NotFound()
 
+    @http.route('/capacité-de-transport/paris', type='http', auth='public', website=True)
+    def attestation_transport_leger_marchandises_paris(self, **kw,):
+        if request.website.id == 2:
+            digimoov_products = request.env['product.product'].sudo().search([('company_id', '=', 2)],
+                                                                             order="list_price")
+            values = {
+                'digimoov_products': digimoov_products,
+            }
+            return request.render("digimoov_website_templates.digimoov_template_transport_leger_marchandises_paris", values)
+        else:
+            raise werkzeug.exceptions.NotFound()
+
 
 class FAQ(http.Controller):
 
@@ -239,7 +251,7 @@ class DIGIEXAMEN(http.Controller):
                                 'now': now, #Date aujourd'hui
                                 'echec_examen': echec_examen,
                                 'url': '/shop/cart/update',
-                                'default': True,
+                                'default': 'True',
                             }
                             return request.render("digimoov_website_templates.digimoov_template_examen",
                                                   values)  # Envoyer les données vers xml dans la page examen
@@ -247,7 +259,7 @@ class DIGIEXAMEN(http.Controller):
                             values = {
                                 'echec_examen': echec_examen,
                                 'url': '/#pricing',
-                                'default': False,
+                                'default': 'False',
                                 'message': "Vous avez dépassé la durée règlementaire de 6 mois pour réserver votre nouvelle date d'examen ."
                                            "Vous devez à présent, vous réinscrire à la formation pour retenter votre chance.",
                             }
@@ -256,19 +268,32 @@ class DIGIEXAMEN(http.Controller):
                     elif exam_count > 3:
                         logging.info('Si nombre de passage > 3 °°°°°°°°°°°°°°°°°°')
                         values = {
-                            'default': False,
+                            'default': 'False',
                             'echec_examen': echec_examen,
                             'url': '/#pricing',
                             'message': "Vous avez atteint le nombre limite de repassage de l'examen."
                                        "Vous devez à présent, vous réinscrire à la formation pour retenter votre chance.",
                         }
                         return request.render('digimoov_website_templates.digimoov_template_examen', values)
+                else:
+                    print("////connected exam 0///", is_public_user)
+                    values = {
+                        'echec_examen': echec_examen,
+                        'is_public_user': is_public_user,
+                        'default': 'False',
+                        'url': '/#pricing',
+                        'message': 'non, ',
+                                
+                    }
+                    return request.render("digimoov_website_templates.digimoov_template_examen", values)
+
+
             else:
                 print("////public user///", is_public_user)
                 values = {
                     'echec_examen': echec_examen,
                     'is_public_user': is_public_user,
-                    'default': False,
+                    'default': 'False',
                     'url': '/web/signup',
                     'message': 'Pour réserver votre nouvelle tentative, '
                                'merci de vous connecter ou de créer votre compte client.',
