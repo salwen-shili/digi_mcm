@@ -162,7 +162,7 @@
 
                                         <div class="outlined-input-field bg-c" id="phone_container" t-if="not name">
                                             <input type="text" id="phone" name="phone" class="outlined-text-field" autocomplete="off" t-att-value="phone" maxlength="10" pattern="(07|06)[0-9]\d{7}" required="required" inputmode="numeric" />
-                                            <label for="phone">Téléphone *</label>
+                                            <label for="phone">Téléphone11 *</label>
                                             <i class="material-icons error-icon">error_outline</i>
                                             <div class="helper-text bg-c" id="phone_helper">
                                                 <span></span>
@@ -170,7 +170,7 @@
                                         </div>
                                         <div class="outlined-input-field bg-c" id="phone_container" t-if="phone">
                                             <input type="text" id="phone" name="phone" class="outlined-text-field" autocomplete="off" t-att-value="phone" maxlength="10" pattern="(07|06)[0-9]\d{7}" required="required" inputmode="numeric" t-att-readonly="'readonly' if phone else None" />
-                                            <label for="phone" style="top: -0.7rem;padding: 0.25rem;">Téléphone *
+                                            <label for="phone" style="top: -0.7rem;padding: 0.25rem;">Téléphon222e *
                                             </label>
                                             <i class="material-icons error-icon">error_outline</i>
 
@@ -570,28 +570,32 @@
             </xpath>
 
             <xpath expr="//form" position="replace">
-                <t t-if="request.website.id == 1">
+                <t t-if="not token">
+                    <t t-if="request.website.id == 1">
 
-                    <link href="/mcm_website_theme/static/src/css/material_form.css" rel="stylesheet" />
-                    <link href="/fl_auth_signup/static/css/style_mcm.css" rel="stylesheet" />
+                        <link href="/mcm_website_theme/static/src/css/material_form.css" rel="stylesheet" />
+                        <link href="/fl_auth_signup/static/css/style_mcm.css" rel="stylesheet" />
 
-                </t>
-                <t t-if="request.website.id == 2">
-                    <link href="/digimoov_website_templates/static/src/css/material_form.css" rel="stylesheet" />
-                    <link href="/fl_auth_signup/static/css/style_dig.css" rel="stylesheet" />
-                </t>
-                <style>
+                    </t>
+                    <t t-if="request.website.id == 2">
+                        <link href="/digimoov_website_templates/static/src/css/material_form.css" rel="stylesheet" />
+                        <link href="/fl_auth_signup/static/css/style_dig.css" rel="stylesheet" />
+                    </t>
+                    <style>
                     .cnx-subtitle{
                         margin-bottom:13px;
                     }
                 </style>
-
-                <div class="container">
-                    <div class="row">
-                        <div class="col-lg-6">
+                </t>
 
 
-                            <form class="oe_login_form" role="form" method="post" t-if="not message">
+                <div t-attf-class="#{'container' if not token else ''}">
+
+                    <div t-attf-class="#{'row' if not token else ''}">
+
+                        <div t-attf-class="#{'col-lg-6' if not token else ''}">
+
+                            <form class="oe_login_form" t-attf-class="#{'oe_login_form' if not token else ' form-group field-login'}" role="form" method="post" t-if="not message">
                                 <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()" />
 
                                 <t t-if="token and not invalid_token">
@@ -599,8 +603,8 @@
                                         <t t-set="only_passwords" t-value="1" />
                                     </t>
                                 </t>
-                                <div class="cnx-title">Problèmes de connexion ? </div>
-                                <div class="cnx-subtitle">
+                                <div class="cnx-title" t-if="not token">Problèmes de connexion ? </div>
+                                <div class="cnx-subtitle" t-if="not token">
                                     <span>Merci de confirmer votre adresse email, pour qu'on puisse vous aider à réinitialiser votre mot de passe.</span>
                                 </div>
                                 <t t-if="not token">
@@ -615,7 +619,7 @@
                                 </p>
                                 <input type="hidden" name="redirect" t-att-value="redirect" />
                                 <input type="hidden" name="token" t-att-value="token" />
-                                <div class="clearfix oe_login_buttons">
+                                <div class="clearfix oe_login_buttons" t-if="not token">
                                     <div class="d-flex justify-content-between align-items-center small mt-2 mb16">
                                         <a style="font-size: 16px; color: #5850ec; text-decoration: underline !important;" t-if="not token" t-attf-href="/web/login?{{ keep_query() }}">Revenir à l’écran de connexion</a>
                                         <a style="font-size: 16px; color: #5850ec; text-decoration: underline !important;" t-if="invalid_token" href="/web/login">Revenir à l’écran de connexion</a>
@@ -630,7 +634,8 @@
 
                             </form>
                         </div>
-                        <div class="col-lg-6 text-center logo-flex ">
+                        <div class="col-lg-6 text-center logo-flex " t-if="not token">
+                            >
                             <img t-if="request.website.id == 2" class="img img img-fluid" style="width:54%;margin-bottom: 50px;" src="/mcm_website_theme/static/src/img/logos/logo-digimoov.png" />
                             <img t-if="request.website.id == 1" class="img img img-fluid" style="width:60%;margin-bottom: 101px;" src="/mcm_website_theme/static/src/img/logos/MCM ACADEMY.png" />
                         </div>
