@@ -229,7 +229,7 @@ class DIGIEXAMEN(http.Controller):
     def exam(self, **kw, ):
         if request.website.id == 2:
             partner = request.env.user.partner_id  # Récupérer id de l'apprenant connecté
-            session = request.env['partner.sessions'].search([('client_id', '=', partner.id)], order='id asc', limit=1)
+            session = request.env['partner.sessions'].sudo().search([('client_id', '=', partner.id)], order='id asc', limit=1)
             date_exam = session.session_id.date_exam  # Récupérer date d'examen à partir de la première session
             is_public_user = request.website.is_public_user()  # PUBLIC USER = VISITOR OR USER ODOO NOT CONNECTED, return true or false
             echec_examen = request.env['product.product'].sudo().search(
@@ -282,7 +282,7 @@ class DIGIEXAMEN(http.Controller):
                         'is_public_user': is_public_user,
                         'default': 'False',
                         'url': '/#pricing',
-                        'message': 'non, ',
+                        'message': 'Pour pouvoir vous inscrire vous devez choisir un de ses packs à toi de voir!',
                                 
                     }
                     return request.render("digimoov_website_templates.digimoov_template_examen", values)
