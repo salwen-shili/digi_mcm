@@ -149,4 +149,12 @@
             </t>
         </xpath>
     </template>
+    <template id="bolt_survey_button_text" inherit_id="survey.page">
+        <xpath expr="//button[@value='next']" position="before">
+            <a target='blank' class="btn btn-primary" t-att-href="'/survey/start/%s' % (survey.access_token)">
+                Revenir au texte
+            </a>
+        </xpath>
+    </template>
+
 </odoo>
