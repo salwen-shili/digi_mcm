@@ -14,15 +14,15 @@ class Partner(models.Model):
     inscrit_mcm=fields.Date("Date d'inscription")
     eval_box=fields.Boolean('Eval Box')
 
-    @api.model
-    def search_read(self, domain=None, fields=None, offset=0, limit=None, order=None):
-
-        if self.user_has_groups('crm_marketing_automation.group_bolt'):
-            domain += [('bolt', '=', True)]
-
-        res = super(Partner, self).search_read(domain, fields, offset, limit, order)
-
-        return res
+    # @api.model
+    # def search_read(self, domain=None, fields=None, offset=0, limit=None, order=None):
+    # 
+    #     if self.user_has_groups('crm_marketing_automation.group_bolt'):
+    #         domain += [('bolt', '=', True)]
+    # 
+    #     res = super(Partner, self).search_read(domain, fields, offset, limit, order)
+    # 
+    #     return res
     def create(self, vals):
         partner = super(Partner, self).create(vals)
         return partner

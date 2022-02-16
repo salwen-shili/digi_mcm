@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
 
-<record model="ir.ui.view" id="partner_bolt_form_view">
+    <record model="ir.ui.view" id="partner_bolt_form_view">
         <field name="name">Apprenants</field>
         <field name="model">res.partner</field>
         <field name="inherit_id" ref="base.view_partner_form"></field>
@@ -9,21 +9,22 @@
             <xpath expr="//group//div[@class='row form-panel']//div[1]//div[3]//div[5]" position="after">
                 <div class="col-sm-12">
                     <div attrs="{'invisible': [('company_id', '=', 2)]}">
-                        <label for="bolt" string="Client Bolt:" >Client Bolt
+                        <label for="bolt" string="Client Bolt:">Client Bolt
                         </label>
-                        <field name="bolt"  attrs="{'invisible': [('company_id', '=', 2)]}"/>
+                        <field name="bolt" attrs="{'invisible': [('company_id', '=', 2)]}"/>
                     </div>
                 </div>
             </xpath>
             <xpath expr="//page[@name='internal_notes']" position="after">
-                <page string="Statistiques sur MOOCit" name="mcm_plateforme" attrs="{'invisible': [('company_id', '=', 2)]}">
+                <page string="Statistiques sur MOOCit" name="mcm_plateforme"
+                      attrs="{'invisible': [('company_id', '=', 2)]}">
                     <group>
                         <group col="12">
                         </group>
                         <group col="8" colspan="4" string="Géneral">
                             <div>
                                 <span class="o_stat_text">
-<!--                                    <field name="averageScore" widget="percentpie"/>-->
+                                    <!--                                    <field name="averageScore" widget="percentpie"/>-->
                                 </span>
                             </div>
                             <div>
@@ -33,7 +34,7 @@
                                 </span>
                                 <br/>
                                 <span>
-<!--                                    <field name="last_login"/>-->
+                                    <!--                                    <field name="last_login"/>-->
                                 </span>
                             </div>
                             <div>
@@ -45,10 +46,10 @@
                                 </span>
                                 <br/>
                                 <span class="o_stat_text">
-<!--                                    <field name="totalTimeSpentInMinutes"></field>-->
+                                    <!--                                    <field name="totalTimeSpentInMinutes"></field>-->
                                 </span>
                                 <span class="o_stat_text">
-<!--                                    <field name="temps_minute" class="oe_edit_only"/>-->
+                                    <!--                                    <field name="temps_minute" class="oe_edit_only"/>-->
                                 </span>
                             </div>
                             <div>
@@ -72,7 +73,7 @@
                                 </span>
                                 <br/>
                                 <span class="o_stat_value">
-<!--                                    <field name="messages"/>-->
+                                    <!--                                    <field name="messages"/>-->
                                 </span>
                             </div>
                             <div>
@@ -82,7 +83,7 @@
                                 </span>
                                 <br/>
                                 <span class="o_stat_value">
-<!--                                    <field name="comments"/>-->
+                                    <!--                                    <field name="comments"/>-->
                                 </span>
                             </div>
                             <div>
@@ -92,7 +93,7 @@
                                 </span>
                                 <br/>
                                 <span class="o_stat_value">
-<!--                                    <field name="reactions"/>-->
+                                    <!--                                    <field name="reactions"/>-->
                                 </span>
                             </div>
                             <div>
@@ -102,7 +103,7 @@
                                 </span>
                                 <br/>
                                 <span class="o_stat_value">
-<!--                                    <field name="publications"/>-->
+                                    <!--                                    <field name="publications"/>-->
                                 </span>
                             </div>
                         </group>
@@ -122,4 +123,15 @@
         </field>
     </record>
 
+    <record model="ir.ui.view" id="crm_partner_mcm_form_view">
+        <field name="name">Apprenants</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="crm.view_partners_form_crm1"></field>
+        <field name="arch" type="xml">
+           <xpath expr="//button[@class='oe_stat_button o_res_partner_tip_opp']" position="attributes">
+                <attribute name="groups">base.group_user</attribute>
+                <attribute name="groups"></attribute>
+           </xpath>
+        </field>
+    </record>
 </odoo>
