@@ -87,7 +87,7 @@ class Partner(models.Model):
                 lead = self.env['crm.lead'].sudo().search([('partner_id', '=', partner.id)], limit=1)
                 if lead and partner.name:
                     lead.sudo().write({
-                        'name': partner.name if name else "",
+                        'name': partner.name if partner.name else "",
                         'partner_name': partner.name,
                         'num_dossier': partner.numero_cpf if partner.numero_cpf else "",
                         'num_tel': partner.phone,
