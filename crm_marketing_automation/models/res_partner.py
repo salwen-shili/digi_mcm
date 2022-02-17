@@ -124,9 +124,9 @@ class Partner(models.Model):
         today = date.today()
 
         for partner in partners:
-            if partner.statut_cpf and (partner.statut_cpf == 'canceled' or partner.statut == 'canceled'):
+            if (partner.statut_cpf and partner.statut_cpf == 'canceled') or (partner.statut == 'canceled'):
                 self.changestage("Annulé", partner)
-            if (partner.statut != 'canceled') and (partner.statut_cpf) and (partner.statut_cpf != 'canceled'):
+            if (partner.statut != 'canceled'):
                 date_creation = partner.create_date
                 year = date_creation.year
                 month = date_creation.month
@@ -278,9 +278,9 @@ class Partner(models.Model):
         today = date.today()
 
         for partner in partners:
-            if partner.statut_cpf and (partner.statut_cpf == 'canceled' or partner.statut == 'canceled'):
+            if (partner.statut_cpf and partner.statut_cpf == 'canceled') or (partner.statut == 'canceled'):
                 self.changestage("Annulé", partner)
-            if (partner.statut != 'canceled') and (partner.statut_cpf) and (partner.statut_cpf != 'canceled'):
+            if (partner.statut != 'canceled'):
                 date_creation = partner.create_date
                 year = date_creation.year
                 month = date_creation.month
