@@ -87,7 +87,7 @@ class Partner(models.Model):
                 lead = self.env['crm.lead'].sudo().search([('partner_id', '=', partner.id)], limit=1)
                 if lead:
                     lead.sudo().write({
-                        'name': partner.name,
+                        'name': partner.name if name else "",
                         'partner_name': partner.name,
                         'num_dossier': partner.numero_cpf if partner.numero_cpf else "",
                         'num_tel': partner.phone,
@@ -102,7 +102,7 @@ class Partner(models.Model):
                     })
                 if not lead:
                     lead = self.env['crm.lead'].sudo().create({
-                        'name': partner.name,
+                        'name': partner.name if partner.name else "",
                         'partner_name': partner.name,
                         'num_dossier': partner.numero_cpf if partner.numero_cpf else "",
                         'num_tel': partner.phone,
@@ -149,6 +149,7 @@ class Partner(models.Model):
                                                                       ('state', '=', 'posted')
                                                                       ], order="invoice_date desc", limit=1)
                     date_facture = facture.invoice_date
+                    _logger.info('facture %s' %str(date_facture))
                     # Récupérer les documents
                     documents = self.env['documents.document'].sudo().search([('partner_id', '=', partner.id)])
                     # pour classer sous document non validé dans crm lead
