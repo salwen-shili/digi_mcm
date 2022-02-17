@@ -149,7 +149,7 @@
             </div> -->
 
             <div id="popup1" class="overlay">
-                <div class="popup">
+                <div class="popup" style="max-height: 72vh;overflow-y: auto;">
                     <h2 class="text-left">
                         <i class="fa fa-info-circle" style="color: #111111"></i>
                     </h2>
