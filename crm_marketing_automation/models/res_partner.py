@@ -85,7 +85,7 @@ class Partner(models.Model):
         if stages:
             for stage in stages:
                 lead = self.env['crm.lead'].sudo().search([('partner_id', '=', partner.id)], limit=1)
-                if lead:
+                if lead and partner.name:
                     lead.sudo().write({
                         'name': partner.name if name else "",
                         'partner_name': partner.name,
@@ -100,7 +100,7 @@ class Partner(models.Model):
                         'mcm_session_id': partner.mcm_session_id if partner.mcm_session_id else False,
                         'company_id':partner.company_id if partner.company_id else False
                     })
-                if not lead:
+                if not lead and partner.name:
                     lead = self.env['crm.lead'].sudo().create({
                         'name': partner.name if partner.name else "",
                         'partner_name': partner.name,
