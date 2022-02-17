@@ -257,6 +257,12 @@ class Routes_Site(http.Controller):
         elif request.website.id == 1:
             return request.render("mcm_website_theme.mcm_template_taxi", values)
 
+    @http.route('/formation-chauffeur-taxi', type='http', auth='public', website=True)
+    def chauffeur_taxi(self):
+        if request.website.id == 1 :
+            return werkzeug.utils.redirect('/formation-taxi',301)
+        else:
+            raise werkzeug.exceptions.NotFound()
     @http.route('/formation-vtc', type='http', auth='public', website=True)
     def vtc(self):
 
@@ -294,6 +300,13 @@ class Routes_Site(http.Controller):
         elif request.website.id == 1:
             return request.render("mcm_website_theme.mcm_website_theme_vtc", values)
 
+    @http.route('/formation-chauffeur-vtc', type='http', auth='public', website=True)
+    def chauffeur_vtc(self):
+        if request.website.id == 1 :
+            return werkzeug.utils.redirect('/formation-vtc',301)
+        else:
+            raise werkzeug.exceptions.NotFound()
+
     @http.route('/formation-moto-taxi', type='http', auth='public', website=True)
     def vmdtr(self):
 
@@ -330,6 +343,13 @@ class Routes_Site(http.Controller):
             raise werkzeug.exceptions.NotFound()
         elif request.website.id == 1:
             return request.render("mcm_website_theme.mcm_template_vmdtr", values)
+
+    @http.route('/formation-taximoto-vmtdr', type='http', auth='public', website=True)
+    def chauffeur_vmdtr(self):
+        if request.website.id == 1 :
+            return werkzeug.utils.redirect('/formation-moto-taxi',301)
+        else:
+            raise werkzeug.exceptions.NotFound()
 
     @http.route('/examen-vtc-taxi-moto-taxi', type='http', auth='public', website=True)
     def examen(self):
@@ -615,7 +635,18 @@ class WebsiteSale(WebsiteSale):
     ], type='http', auth="public", website=True, sitemap=False)
     def shop(self, page=0, category=None, state='', taxi_state='', vmdtr_state='', vtc_state='', search='', ppg=False,
              **post):
-        return request.redirect("/#pricing")
+
+        if category and category.website_id and category.website_id.id == 1:
+            if any(taxi in category.name for taxi in ['TAXI', 'Taxi', 'taxi']):
+                return werkzeug.utils.redirect('/formation-taxi#pricing', 301)
+            elif any(vtc in category.name for vtc in ['VTC', 'Vtc', 'vtc']):
+                return werkzeug.utils.redirect('/formation-vtc#pricing', 301)
+            elif any(vmdtr in category.name for vmdtr in ['VMDTR', 'Vmdtr', 'vmdtr']):
+                return werkzeug.utils.redirect('/formation-moto-taxi#pricing', 301)
+            else:
+                return werkzeug.utils.redirect('/#pricing', 301)
+        else:
+            return werkzeug.utils.redirect('/#pricing', 301)
         add_qty = int(post.get('add_qty', 1))
         Category = request.env['product.public.category']
         if category and category != 'all':
@@ -1050,6 +1081,24 @@ class WebsiteSale(WebsiteSale):
 
         return error, error_message
 
+    @http.route(['/shop/product/<model("product.template"):product>'], type='http', auth="public", website=True)
+    def product(self, product, category='', search='', **kwargs):
+        res = super(WebsiteSale, self).product(product,category,search)
+        if product and product.website_id and product.website_id.id == 1:
+            if product.default_code == 'vtc_bolt':
+                return werkzeug.utils.redirect('/bolt#pricing',301)
+            elif any(taxi in product.name for taxi in ['TAXI','Taxi','taxi']):
+                return werkzeug.utils.redirect('/formation-taxi#pricing', 301)
+            elif any(vtc in product.name for vtc in ['VTC', 'Vtc', 'vtc']) :
+                return werkzeug.utils.redirect('/formation-vtc#pricing', 301)
+            elif any(vmdtr in product.name for vmdtr in ['VMDTR', 'Vmdtr', 'vmdtr']):
+                return werkzeug.utils.redirect('/formation-moto-taxi#pricing', 301)
+            else:
+                return werkzeug.utils.redirect('/#pricing', 301)
+        return res
+    
+    
+
 
 class Payment3x(http.Controller):
 
@@ -1137,6 +1186,8 @@ class Conditions(http.Controller):
             else:
                 order.accompagnement = False
         return True
+    
+    
 
 
 class CustomerPortal(CustomerPortal):
