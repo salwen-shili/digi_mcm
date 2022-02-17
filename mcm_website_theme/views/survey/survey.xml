@@ -150,11 +150,101 @@
         </xpath>
     </template>
     <template id="bolt_survey_button_text" inherit_id="survey.page">
+        <xpath expr="//form" position="before">
+            <!-- popup-->
+            <link rel="stylesheet" href="/mcm_website_theme/static/src/css/popup.css" />
+            <script>
+            function scrolltoTop() {
+  window.scrollTo(0, 0);
+}
+
+function openPopup() {
+  document.getElementById('popup1').style.display = 'flex';
+}
+function closePopup() {
+  document.getElementById('popup1').style.display = 'none';
+  scrolltoTop();
+}
+        </script>
+            <div id="popup1" class="overlay">
+                <div class="popup">
+                    <h2 class="text-left">
+                        <i class="fa fa-info-circle" style="color: #111111"></i>
+                    </h2>
+                    <a class="close" onclick="closePopup();">
+                        <i class="fa fa-times"></i>
+                    </a>
+
+                    <!-- <t id='description' t-att-value='survey.description' /> -->
+                    <div class="text-left">
+                        <div id="notifMessage" class="c-text">
+                            <div>
+                                <h3 style="text-align: center;font-weight: 600;">
+                                    La voiture autonome restera encore longtemps un mythe
+                                </h3>
+                                <div style="letter-spacing: 1px; font-size: 16px; line-height: 26px">
+                                    <p>
+          On dit que toutes les technologies sont prêtes pour réaliser une
+          voiture autonome. La preuve : on peut voir circuler de tels véhicules
+          à l'état de prototype. C'est oublier bien vite le cycle de maturation
+          des technologies, ainsi que les contraintes techniques et juridiques
+          qui s'appliquent à un domaine aussi vaste que celui de l'automobile.
+          Si des prototypes circulent effectivement, ce n'est que sur des
+          portions de routes bien sages, avec un pilote pour veiller au grain et
+          dans des conditions climatiques correctes. La robotique nous promet
+          depuis des dizaines d'années des machines capables de réagir comme les
+          humains. Pourtant, malgré des travaux incessants et des progrès
+          importants en intelligence artificielle, l'échéance à laquelle la
+          machine sera capable de la même puissance d'interprétation des
+          situations de la vie courante que les hommes recule sans arrêt. La
+          raison en est que non seulement l'homme est doué de cinq sens très
+          performants (et un sixième : l'intuition, qu'il ne faut pas négliger
+          !), mais en plus ces cinq sens sont couplés en permanence, et leurs
+          informations sont traitées par un système cognitif d'une puissance
+          encore hors d'atteinte des ordinateurs les plus performants. Aucun
+          système de navigation n'est capable aujourd'hui de fonctionner en
+          situation dégradée : sous la pluie battante, chaussée glissante,
+          visibilité quasi nulle, trafic dense, etc. Une voiture autonome devra
+          être dotée elle aussi de multiples capteurs : caméras, radars, GPS,
+          centrale inertielle (accéléromètres + gyroscopes), micros, sonars,
+          lasers, etc. Si le traitement du signal d'un seul de ces capteurs est
+          déjà complexe, la fusion de leurs informations entraîne une
+          incroyable, et actuellement insurmontable, complexité technique,
+          surtout en situation dégradée. (...)
+        </p>
+                                    <p>
+          Alors, la voiture autonome condamnée ? Non, mais ceux qui lisent ces
+          lignes ne la connaîtront probablement pas.
+        </p>
+                                </div>
+                                <p style="color: #525050">Ronan Carrolage Les Échos, août 2016</p>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div id="default" class="text-center" style="margin: 1rem 0rem">
+                        <a id="btn-inside-popup">
+                            <button class="rkmd-btn btn-black" onclick="closePopup();">Fermer</button>
+                        </a>
+                    </div>
+
+
+                </div>
+            </div>
+            <!-- end popup-->
+
+        </xpath>
+
         <xpath expr="//button[@value='next']" position="before">
-            <a target='blank' class="btn btn-primary" t-att-href="'/survey/start/%s' % (survey.access_token)">
+
+
+            <a onclick="openPopup()" style="color: #fff;" class="btn btn-primary">
                 Revenir au texte
             </a>
         </xpath>
+
+
     </template>
 
 </odoo>
