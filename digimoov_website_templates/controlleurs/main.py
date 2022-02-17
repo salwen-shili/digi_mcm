@@ -246,6 +246,7 @@ class DIGIEXAMEN(http.Controller):
                     if exam_count < 3:  # Si nombre de passage < 3
                         logging.info('Si nombre de passage < 3 °°°°°°°°°°°°°°°°°°°°')
                         if now < date_dateutil and is_public_user is not True:  # Comparer si date d'aujourd'hui inférieur à date d'examen + 6 mois
+                            print("%%%%%%%%%%%%%% 6 mois")
                             values = {
                                 'date_dateutil': date_dateutil, #Date de 1ere inscription + 6 mois
                                 'now': now, #Date aujourd'hui
@@ -256,6 +257,7 @@ class DIGIEXAMEN(http.Controller):
                             return request.render("digimoov_website_templates.digimoov_template_examen",
                                                   values)  # Envoyer les données vers xml dans la page examen
                         else:
+                            print("supp///////// 6 mois")
                             values = {
                                 'echec_examen': echec_examen,
                                 'url': '/#pricing',
@@ -265,7 +267,7 @@ class DIGIEXAMEN(http.Controller):
                             }
                             return request.render("digimoov_website_templates.digimoov_template_examen",
                                                   values)  # Envoyer les données vers xml dans la page examen
-                    elif exam_count > 3:
+                    elif exam_count >= 3:
                         logging.info('Si nombre de passage > 3 °°°°°°°°°°°°°°°°°°')
                         values = {
                             'default': 'False',
