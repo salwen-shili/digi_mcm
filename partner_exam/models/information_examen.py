@@ -93,13 +93,29 @@ class NoteExamen(models.Model):
             #     rec.is_recu = False
             #     rec.is_Absent = False
 
+    def _calcul_ancien_client(self):
+        """ Suit au changements pour les notes des examens,
+        en va lancer cette fonction une fois pour changer les anciennes notes existante tel que moyenne génerale/200"""
+        for line in self.env['info.examen'].sudo().search([]):
+            print("line in ")
+            if line.epreuve_a > 0 or line.epreuve_b > 0:
+                qcm = line.epreuve_a * 5
+                print("A ", qcm)
+                line.epreuve_a = qcm
+                qro = line.epreuve_b * 5
+                print(line.epreuve_b)
+                print(self.epreuve_b)
+                line.epreuve_b = qro
+                print("line.epreuve_b%%qro%%", line.epreuve_b)
+                line.moyenne_generale = (line.epreuve_a + line.epreuve_b) / 2
+
     @api.onchange('partner_id', 'epreuve_a', 'epreuve_b', 'presence')
     def compute_moyenne_generale(self):
         """ This function used to auto display some result
         like the "Moyenne Generale" & "Mention" & "Resultat" """
         for rec in self:
             rec.moyenne_generale = (rec.epreuve_a + rec.epreuve_b) / 2
-            if rec.epreuve_a >= 10 and rec.epreuve_b >= 8 and rec.moyenne_generale >= 12 and rec.partner_id:
+            if rec.epreuve_a >= 50 and rec.epreuve_b >= 40 and rec.moyenne_generale >= 120 and rec.partner_id:
                 rec.moyenne_generale = rec.moyenne_generale
                 rec.mention = 'recu'
                 rec.resultat = 'recu'
@@ -120,7 +136,7 @@ class NoteExamen(models.Model):
                 last_line = self.env['partner.sessions'].search(
                     [('client_id', '=', rec.partner_id.id), ('date_exam', '<', date.today())], limit=1,
                     order='id desc')
-                if 1 <= rec.epreuve_a < 21 or 1 <= rec.epreuve_b < 21 and not last_line.justification and rec.partner_id:
+                if 1 <= rec.epreuve_a < 201 or 1 <= rec.epreuve_b < 201 and not last_line.justification and rec.partner_id:
                     self.session_id = self.partner_id.mcm_session_id
                     self.date_exam = self.partner_id.mcm_session_id.date_exam
                     self.presence = 'present'
