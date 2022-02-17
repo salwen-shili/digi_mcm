@@ -149,6 +149,9 @@ class Partner(models.Model):
                                                                       ('state', '=', 'posted')
                                                                       ], order="invoice_date desc", limit=1)
                     date_facture = facture.invoice_date
+                    _logger.info('facture %s' %str(date_facture))
+                    _logger.info('facture %s' %str(partner.email))
+
                     # Récupérer les documents
                     documents = self.env['documents.document'].sudo().search([('partner_id', '=', partner.id)])
                     # pour classer sous document non validé dans crm lead
@@ -178,14 +181,20 @@ class Partner(models.Model):
                                 if not partner.bolt:
                                     self.changestage("Contrat Signé", partner)
                                 if partner.bolt:
+                                    _logger.info('contrat  signé %s' %str(partner.email))
                                     self.changestage("Bolt-Contrat Singé", partner)
                             if waiting:
+
                                 if partner.bolt:
+                                    _logger.info('wait bolt %s' % str(partner.email))
+
                                     self.changestage("Bolt-Document non Validé", partner)
                                 else :
                                     self.changestage("Document non Validé", partner)
 
                             if document_valide:
+                                _logger.info('document valide %s' % str(partner.email))
+
                                 print("++++++++++++",partner.email,partner.inscrit_mcm)
                                 failure = sale_order.failures  # delai de retractation
                                 """Si Il n'as pas fait la renonciation au contrat et sur la fiche 
@@ -193,15 +202,20 @@ class Partner(models.Model):
                                      pas depassé 14jours"""
                                 if not (partner.renounce_request) and (date_facture) and (date_facture + timedelta(days=14)) > (today):
                                     if partner.bolt:
+                                        _logger.info('bolt retract %s' % str(partner.email))
+
                                         self.changestage("Bolt-Rétractation non Coché", partner)
                                     else :
                                         self.changestage("Rétractation non Coché", partner)
 
                                 if partner.renounce_request and partner.bolt and partner.inscrit_mcm == False and partner.eval_box == True:
+                                    _logger.info('eval box %s' % str(partner.email))
+
                                     print("++++++",partner.email)
                                     self.changestage("Inscription Examen Eval Box", partner)
                                 if partner.renounce_request and partner.bolt and  partner.inscrit_mcm   and partner.eval_box == False:
                                     print("======",partner.email)
+                                    _logger.info('plateforme %s' % str(partner.email))
 
                                     self.changestage("Bolt-Plateforme de formation", partner)
 
