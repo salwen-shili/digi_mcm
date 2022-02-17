@@ -272,8 +272,7 @@
             <input type='hidden' t-att-value='from_bolt' id='from_bolt' />
 
             <div id="popup1" class="overlay_popup  " style="position: fixed !important;">
-                <div class="popup" style="top: 20%;z-index:999;    max-height: 72vh;
-    overflow-y: auto;">
+                <div class="popup" style="top: 20%;z-index:999;    max-height:unset">
 
 
                     <h2 class="text-left">
