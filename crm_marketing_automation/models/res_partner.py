@@ -130,7 +130,7 @@ class Partner(models.Model):
                 date_creation = partner.create_date
                 year = date_creation.year
                 month = date_creation.month
-                if (year > 2020) and (month > 1):
+                if (year > 2020) and (month > 3):
                     if partner.statut_cpf == "accepted":
                         """Pour etape accepté on doit vérifier la date et la ville """
                         if (not (partner.session_ville_id) or not (partner.date_examen_edof)) and not (
@@ -175,7 +175,7 @@ class Partner(models.Model):
                             if not partner.bolt:
                                 self.changestage("Contrat non Signé", partner)
                             else:
-                                self.change_stage_lead("Bolt-Contrat non Signé", partner)
+                                self.changestage("Bolt-Contrat non Signé", partner)
                         if sale_order and sale_order.state == "sale":
                             if not document_valide:
                                 if not partner.bolt:
@@ -326,7 +326,7 @@ class Partner(models.Model):
                             if not partner.bolt:
                                 self.changestage("Contrat non Signé", partner)
                             else:
-                                self.change_stage_lead("Bolt-Contrat non Signé", partner)
+                                self.changestage("Bolt-Contrat non Signé", partner)
                         if sale_order and sale_order.state == "sale":
                             if not document_valide:
                                 if not partner.bolt:
