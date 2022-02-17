@@ -44,7 +44,7 @@ class Document(models.Model):
             lead = self.env['crm.lead'].sudo().search([('partner_id', '=', partner.id)], limit=1)
             if lead:
                 lead.sudo().write({
-                    'name': partner.name,
+                    'name': partner.name if partner.name else "",
                     'partner_name': partner.name,
                     'num_dossier': partner.numero_cpf if partner.numero_cpf else "",
                     'num_tel': partner.phone,
@@ -59,7 +59,7 @@ class Document(models.Model):
                 })
             if not lead:
                 lead = self.env['crm.lead'].sudo().create({
-                    'name': partner.name,
+                    'name':  partner.name if partner.name else "",
                     'partner_name': partner.name,
                     'num_dossier': partner.numero_cpf if partner.numero_cpf else "",
                     'email': partner.email,
