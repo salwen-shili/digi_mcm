@@ -130,7 +130,7 @@ class Partner(models.Model):
                 date_creation = partner.create_date
                 year = date_creation.year
                 month = date_creation.month
-                if (year > 2020) and (month > 3):
+                if (year > 2020):
                     if partner.statut_cpf == "accepted":
                         """Pour etape accepté on doit vérifier la date et la ville """
                         if (not (partner.session_ville_id) or not (partner.date_examen_edof)) and not (
@@ -284,7 +284,7 @@ class Partner(models.Model):
                 date_creation = partner.create_date
                 year = date_creation.year
                 month = date_creation.month
-                if (year > 2020) and (month > 1):
+                if (year > 2020) :
                     if partner.statut_cpf == "accepted":
                         """Pour etape accepté on doit vérifier la date et la ville """
                         if (not (partner.session_ville_id) or not (partner.date_examen_edof)) and not (
