@@ -48,6 +48,7 @@ class Partner(models.Model):
                             'email_from': self.email if self.email else "",
                             'type': "opportunity",
                             'stage_id': stage.id,
+                            'partner_id':id,
                             'mode_de_financement': 'particulier'
                         })
 
@@ -64,6 +65,7 @@ class Partner(models.Model):
                             'mode_de_financement': 'particulier'
 
                         })
+                        lead.partner_id = self
 
             
 
