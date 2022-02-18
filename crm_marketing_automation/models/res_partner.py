@@ -29,11 +29,13 @@ class Partner(models.Model):
         partner = super(Partner, self).create(vals)
         return partner
     def write(self, vals):
+        _logger.info('write %s' % str(vals))
+
         if 'eval_box' in vals and vals['eval_box']==True and self.bolt:
             eval_box=vals['eval_box']
             self.change_crm_lead_i_One(self,eval_box)
         if 'bolt' in vals and vals['bolt'] == True:
-            print('vals', vals)
+            _logger.info('vals %s'%str(vals) )
             stages = self.env['crm.stage'].sudo().search([("name", "=", "Bolt-Prospection")])
             if stages:
                 for stage in stages:
@@ -48,6 +50,7 @@ class Partner(models.Model):
                             'email_from': self.email if self.email else "",
                             'type': "opportunity",
                             'stage_id': stage.id,
+                            'partner_id':id,
                             'mode_de_financement': 'particulier'
                         })
 
@@ -64,6 +67,7 @@ class Partner(models.Model):
                             'mode_de_financement': 'particulier'
 
                         })
+                        lead.partner_id = self
 
             
 
