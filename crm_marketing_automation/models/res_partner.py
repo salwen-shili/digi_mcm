@@ -31,7 +31,7 @@ class Partner(models.Model):
             eval_box=vals['eval_box']
             self.change_crm_lead_i_One(self,eval_box)
         # if 'bolt' in vals and vals['bolt'] == True :
-        #     self.changestage("Bolt-Prospection", self)
+        #      self.changestage("Bolt-Prospection", self)
             
 
         if 'inscrit_mcm' in vals and self.bolt :
