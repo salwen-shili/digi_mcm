@@ -162,7 +162,7 @@
 
                                         <div class="outlined-input-field bg-c" id="phone_container" t-if="not name">
                                             <input type="text" id="phone" name="phone" class="outlined-text-field" autocomplete="off" t-att-value="phone" maxlength="10" pattern="(07|06)[0-9]\d{7}" required="required" inputmode="numeric" />
-                                            <label for="phone">Téléphone11 *</label>
+                                            <label for="phone">Téléphone *</label>
                                             <i class="material-icons error-icon">error_outline</i>
                                             <div class="helper-text bg-c" id="phone_helper">
                                                 <span></span>
