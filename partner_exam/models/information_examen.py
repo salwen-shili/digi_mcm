@@ -97,17 +97,23 @@ class NoteExamen(models.Model):
         """ Suit au changements pour les notes des examens,
         en va lancer cette fonction une fois pour changer les anciennes notes existante tel que moyenne génerale/200"""
         for line in self.env['info.examen'].sudo().search([]):
-            print("line in ")
-            if line.epreuve_a > 0 or line.epreuve_b > 0:
-                qcm = line.epreuve_a * 5
-                print("A ", qcm)
-                line.epreuve_a = qcm
-                qro = line.epreuve_b * 5
-                print(line.epreuve_b)
-                print(self.epreuve_b)
-                line.epreuve_b = qro
-                print("line.epreuve_b%%qro%%", line.epreuve_b)
-                line.moyenne_generale = (line.epreuve_a + line.epreuve_b) / 2
+
+            for sessions in line.session_id:
+                name = sessions.name
+                domain = [(name, "ilike", "2022")]
+
+                print("line in domain", domain)
+                print("line in sesssion_name", sessions(domain))
+                if line.epreuve_a > 0 or line.epreuve_b > 0:
+                    qcm = line.epreuve_a * 5
+                    print("A ", qcm)
+                    line.epreuve_a = qcm
+                    qro = line.epreuve_b * 5
+                    print(line.epreuve_b)
+                    print(self.epreuve_b)
+                    line.epreuve_b = qro
+                    print("line.epreuve_b%%qro%%", line.epreuve_b)
+                    line.moyenne_generale = (line.epreuve_a + line.epreuve_b)
 
     @api.onchange('partner_id', 'epreuve_a', 'epreuve_b', 'presence')
     def compute_moyenne_generale(self):
