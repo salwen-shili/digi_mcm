@@ -1,1 +1,1 @@
-from . import product_public_category,website,payment_acquirer,sale_order,payment_transaction, res_partner,payment_stripe,product, questionnaire,facture
+from . import product_public_category,website,payment_acquirer,sale_order,payment_transaction, res_partner,payment_stripe,product, questionnaire,facture,survey

@@ -14,16 +14,28 @@ class Document(models.Model):
         if 'state' in vals and not ('partner_id' in vals):
             if vals['state'] == 'waiting':
                 partner = self.partner_id
-                _logger.info('if state in write  %s' % partner.name)
-                self.change_stage_lead("Document non Validé", partner)
+                partner_=self.env['res.partner'].sudo().search([('id',"=",partner.id)])
+                if partner_ and not partner_.bolt:
+                    _logger.info('if state in write  %s' % partner_.name)
+                    self.change_stage_lead("Document non Validé", partner_)
+                if partner_ and  partner_.bolt:
+                    self.change_stage_lead("Bolt-Document non Validé", partner_)
         if 'state' in vals and 'partner_id' in vals:
             if vals['state'] == 'waiting':
                 partner = vals['partner_id']
-                self.change_stage_lead("Document non Validé", partner)
+                partner_ = self.env['res.partner'].sudo().search([('id', "=", partner.id)])
+                if partner_ and not partner_.bolt:
+                    self.change_stage_lead("Document non Validé", partner_)
+                if partner_ and  partner_.bolt:
+                    self.change_stage_lead("Bolt-Document non Validé", partner_)
         if not ('state' in vals) and 'partner_id' in vals:
             if self.state == 'waiting':
                 partner = vals['partner_id']
-                self.change_stage_lead("Document non Validé", partner)
+                partner_ = self.env['res.partner'].sudo().search([('id', "=", partner.id)])
+                if partner_ and not partner_.bolt:
+                    self.change_stage_lead("Document non Validé", partner_)
+                if partner_ and  partner_.bolt:
+                    self.change_stage_lead("Bolt-Document non Validé", partner_)
         record = super(Document, self).write(vals)
         return record
     def change_stage_lead(self, statut, partner):
@@ -32,7 +44,7 @@ class Document(models.Model):
             lead = self.env['crm.lead'].sudo().search([('partner_id', '=', partner.id)], limit=1)
             if lead:
                 lead.sudo().write({
-                    'name': partner.name,
+                    'name': partner.name if partner.name else "",
                     'partner_name': partner.name,
                     'num_dossier': partner.numero_cpf if partner.numero_cpf else "",
                     'num_tel': partner.phone,
@@ -47,7 +59,7 @@ class Document(models.Model):
                 })
             if not lead:
                 lead = self.env['crm.lead'].sudo().create({
-                    'name': partner.name,
+                    'name':  partner.name if partner.name else "",
                     'partner_name': partner.name,
                     'num_dossier': partner.numero_cpf if partner.numero_cpf else "",
                     'email': partner.email,

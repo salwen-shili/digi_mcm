@@ -9,25 +9,28 @@
             </field>
        </record>
 <!--héritage  Vue kanban -->
-    <record id="marketing_automation_view_crm_lead_kanban" model="ir.ui.view">
+  <record id="marketing_automation_view_crm_lead_kanban" model="ir.ui.view">
+<!--        <input value="test"></input>-->
         <field name="name">crm.lead.kanban</field>
+
         <field name="model">crm.lead</field>
         <field name="inherit_id" ref="crm.crm_case_kanban_view_leads"/>
         <field name="arch" type="xml">
-              <xpath expr="//kanban[1]" position="attributes">
-               <attribute name="default_order">name</attribute>
-              </xpath>
-
               <xpath expr="//kanban" position="inside">
                 <field name="name" />
               </xpath>
 
+<!--              <xpath expr="//div[hasclass('o_kanban_group ui-sortable')]" position="replace">-->
+<!--                <div class="o_kanban_header"-->
+<!--                     t-if="record.stage_id.bolt.raw_value != false and record.partner_id.raw_value != false" style=" display: none;">-->
+<!--                </div>-->
+<!--              </xpath>-->
              <xpath expr="//kanban/progressbar[@field='activity_state']" position="replace">
              </xpath>
             <xpath expr="//div[hasclass('oe_kanban_content')]" position="replace">
-                <div class="oe_kanban_color_0 oe_kanban_global_click o_kanban_record oe_kanban_card_muted"
+                <div class="oe_kanban_color_0 oe_kanban_global_click o_kanban_record oe_kanban_card"
                      t-if="record.mode_de_financement.raw_value!='particulier' and record.partner_id.raw_value != false" style=" background-color: #FBEDC9;">
-                    <div class="oe_kanban_content">
+                    <div class="oe_kanban_content ">
                         <div>
                             <strong class="o_kanban_record_title" style="font-weight: bold; font-size:17px; color:#00A09D;">
                                 <field name="name"/>
@@ -64,9 +67,9 @@
                         </div>
                     </div>
                 </div>
-                <div class="oe_kanban_color_0 oe_kanban_global_click o_kanban_record oe_kanban_card_muted"
+                <div class="oe_kanban_color_0 oe_kanban_global_click o_kanban_record oe_kanban_card"
                      t-if="record.mode_de_financement.raw_value=='particulier' and record.partner_id.raw_value != false" style="background-color: #D2E9E1;">
-                    <div class="oe_kanban_content">
+                    <div class="oe_kanban_content ">
                         <div>
                             <strong class="o_kanban_record_title" style="font-weight: bold; font-size:17px; color:#00A09D;">
                                 <field name="name"/>
@@ -98,9 +101,9 @@
                         </div>
                     </div>
                 </div>
-                <div class="oe_kanban_color_0 oe_kanban_global_click o_kanban_record oe_kanban_card_muted"
+                <div class="oe_kanban_color_0 oe_kanban_global_click o_kanban_record oe_kanban_card"
                      t-if="record.mode_de_financement.raw_value=='particulier' and record.partner_id.raw_value === false" style="background-color: #FFA873;">
-                    <div class="oe_kanban_content">
+                    <div class="oe_kanban_content ">
                         <div>
                             <strong class="o_kanban_record_title" style="font-weight: bold; font-size:17px;">
                              <field name="name"/>  <field name="contact_name"></field>
@@ -132,9 +135,9 @@
                         </div>
                     </div>
                 </div>
-    <div class="oe_kanban_color_0 oe_kanban_global_click o_kanban_record oe_kanban_card_muted"
+    <div class="oe_kanban_color_0 oe_kanban_global_click o_kanban_record oe_kanban_card"
                      t-if="record.mode_de_financement.raw_value!='particulier' and record.partner_id.raw_value === false" style="background-color: #FFA873;">
-                    <div class="oe_kanban_content">
+                    <div class="oe_kanban_content ">
                         <div>
                             <strong class="o_kanban_record_title" style="font-weight: bold; font-size:17px;">
                               <field name="name"/>  <field name="contact_name"></field>

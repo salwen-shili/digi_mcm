@@ -11,7 +11,7 @@ add css and js files to website model
     'category': 'website',
     'website': 'https://www.odoo.com/page/billing',
     # 'images' : ['images/accounts.jpeg','images/bank_statement.jpeg','images/cash_register.jpeg','images/chart_of_accounts.jpeg','images/customer_invoice.jpeg','images/journal_entries.jpeg'],
-    'depends' : ['web','website','website_sale','sale','payment','mcm_session','mcm_cpf_partner'],
+    'depends' : ['web','website','website_sale','sale','payment','mcm_session','mcm_cpf_partner','survey'],
     'data': [
         'security/ir.model.access.csv',
         'security/questionnaire_security.xml',
@@ -40,9 +40,14 @@ add css and js files to website model
         'views/felicitations.xml',
         'views/website_sale/cart_multistep_integration.xml',
         'views/website_sale/template.xml',
+        'views/survey/survey.xml',
+        'views/survey/survey_wizard.xml',
+        'views/survey/survey_user_input.xml',
+        'views/survey/survey_report_templates.xml',
         'views/custom_footer.xml',
         'views/bolt.xml',
-        'views/facture.xml'
+        'views/facture.xml',
+        'views/survey/post_payment_notification.xml'
     ],
 
     'installable': True,
