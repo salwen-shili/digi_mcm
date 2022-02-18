@@ -30,44 +30,11 @@ class Partner(models.Model):
         return partner
     def write(self, vals):
         _logger.info('write %s' % str(vals))
-
+        record = super(Partner, self).write(vals)
         if 'eval_box' in vals and vals['eval_box']==True and self.bolt:
             eval_box=vals['eval_box']
             self.change_crm_lead_i_One(self,eval_box)
-        if 'bolt' in vals and vals['bolt'] == True:
-            _logger.info('vals %s'%str(vals) )
-            stages = self.env['crm.stage'].sudo().search([("name", "=", "Bolt-Prospection")])
-            if stages:
-                for stage in stages:
-                    lead = self.env['crm.lead'].sudo().search([('partner_id', '=', self.id)], limit=1)
-                    if lead and self.name:
-                        lead.sudo().write({
-                            'name': self.name if self.name else "",
-                            'partner_name': self.name if self.name else "",
-                            'num_dossier': self.numero_cpf if self.numero_cpf else "",
-                            'num_tel': self.phone if self.phone else "",
-                            'email': self.email if self.email else "",
-                            'email_from': self.email if self.email else "",
-                            'type': "opportunity",
-                            'stage_id': stage.id,
-                            'partner_id':id,
-                            'mode_de_financement': 'particulier'
-                        })
-
-                    if not lead and self.name:
-                        lead = self.env['crm.lead'].sudo().create({
-                            'name': self.name if self.name else "",
-                            'partner_name': self.name if self.name else "",
-                            'num_dossier': self.numero_cpf if self.numero_cpf else "",
-                            'num_tel': self.phone if self.phone else "",
-                            'email': self.email if self.email else "",
-                            'email_from': self.email if self.email else "",
-                            'type': "opportunity",
-                            'stage_id': stage.id,
-                            'mode_de_financement': 'particulier'
-
-                        })
-                        lead.partner_id = self
+        
 
             
 
@@ -118,7 +85,7 @@ class Partner(models.Model):
             # Si statut cpf annulé on classe l'apprenant dans le pipeline du crm  sous statut  annulé
             if vals['statut_cpf'] == 'canceled':
                 self.changestage("Annulé", self)
-        record = super(Partner, self).write(vals)
+
         return record
     def changestage(self, name, partner):
         stages = self.env['crm.stage'].sudo().search([("name", "=", _(name))])
