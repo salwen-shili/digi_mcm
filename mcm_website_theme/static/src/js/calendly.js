@@ -3,6 +3,8 @@ window.onload = function () {
   var user_email = document.getElementById('user_email_connected').value;
   var url = window.location.pathname;
   const queryString = window.location.search;
+  var isReserved = true;
+
   console.log(!url.includes('message=sign_ok'));
 
   if (
@@ -11,7 +13,8 @@ window.onload = function () {
       url.includes('/shop') ||
       url.includes('/bolt') ||
       url.includes('/my/orders/') ||
-      url.includes('/charger')
+      url.includes('/charger') ||
+      url.includes('/my/home')
     )
   ) {
     Calendly.initBadgeWidget({
@@ -24,7 +27,10 @@ window.onload = function () {
       color: '#1A1A1A',
       textColor: '#FFFFFF',
     });
-  } else if (queryString.includes('message=sign_ok')) {
+  } else if (
+    url.includes('/my/home') ||
+    queryString.includes('message=sign_ok')
+  ) {
     Calendly.initBadgeWidget({
       url: 'https://calendly.com/mcm-academy/examen-vtc-cma',
       prefill: {
