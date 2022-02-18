@@ -9,6 +9,15 @@ _logger = logging.getLogger(__name__)
 class Survey(models.Model):
     _inherit = 'survey.user_input'
 
+    @api.model
+    def create(self, vals):
+        # if 'partner_id' in vals :
+            print('vals', vals)
+            partner_id=vals['partner_id']
+            partner = self.env['res.partner'].sudo().search([("id", "=",partner_id)])
+            if partner:
+                partner.changestage("Bolt-Prospection", partner)
+            return super(Survey, self).create(vals)
     def write(self, vals):
         record = super(Survey, self).write(vals)
         # Si le test de français est terminé
