@@ -333,12 +333,13 @@ class WebsiteSale(WebsiteSale):
         from_bolt = 'False'
         from_habilitation_electrique = False
         list_villes_habilitation_electrique = False
-        if product :
-            if product.default_code == 'vtc_bolt' :
-                from_bolt = 'True'
-            if product.default_code == 'habilitation-electrique' :
-                from_habilitation_electrique = True
-                list_villes_habilitation_electrique = request.env['session.ville'].sudo().search([('company_id', '=', 2),('ville_formation',"=",True)])
+        if order :
+            if product :
+                if product.default_code == 'vtc_bolt' :
+                    from_bolt = 'True'
+                if product.default_code == 'habilitation-electrique' :
+                    from_habilitation_electrique = True
+                    list_villes_habilitation_electrique = request.env['session.ville'].sudo().search([('company_id', '=', 2),('ville_formation',"=",True)])
         values.update({
             'modules_digimoov': list_modules_digimoov,
             'modules_mcm': list_modules_mcm,
