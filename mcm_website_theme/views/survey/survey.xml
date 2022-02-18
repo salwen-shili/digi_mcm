@@ -11,7 +11,7 @@
             </style>
             <!-- popup-->
             <div id="popup1" class="overlay">
-                <div class="popup" style="max-height: unset;">
+                <div class="popup">
                     <h2 class="text-left">
                         <i class="fa fa-info-circle" style="color: #111111"></i>
                     </h2>
@@ -28,7 +28,7 @@
                             </div>
                         </div>
                     </div> -->
-                    <div class="row align-items-center">
+                    <div class="row align-items-center popup-body">
                         <div class="col-lg-6 pt16 pb16 js-scroll slide-left ">
                             <img data-src="/mcm_website_theme/static/src/img/homepage/mcm-academy-centre-de-formation-en-ligne-des-métiers-de-transports.webp" src="/mcm_website_theme/static/src/img/homepage/mcm-academy-centre-de-formation-en-ligne-des-métiers-de-transports.png" class="img img-fluid mx-auto lazy" alt="candidats centre de formation vtc" />
                         </div>
