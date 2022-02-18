@@ -643,34 +643,34 @@ const popContent = `
   l'examen:</b
 >
 
-<div class="input checkbox" style="width: 90%">
+<div class="input checkbox mt24 mb24" style="width: 90%">
   <input
     type="checkbox"
     id="driver-licence"
     style="white-space: nowrap"
-    class="text-xl-left border-0 mt24 mb24"
+    class="text-xl-left border-0 "
   />
   <label for="driver-licence" style="display: inline">
     Vous avez 3 ans de permis ou plus.
   </label>
 </div>
-<div class="input checkbox" style="width: 90%">
+<div class="input checkbox mb24" style="width: 90%">
   <input
     type="checkbox"
     id="license_suspension"
     style="white-space: nowrap"
-    class="text-xl-left border-0 mb24"
+    class="text-xl-left border-0 
   />
   <label for="license_suspension" style="display: inline">
     Vous n'avez aucun retrait définitif du permis ces 10 dernières années.
   </label>
 </div>
-<div class="input checkbox" style="width: 90%">
+<div class="input checkbox mb24" style="width: 90%">
   <input
     type="checkbox"
     id="criminal_record"
     style="white-space: nowrap"
-    class="text-xl-left border-0 mb24"
+    class="text-xl-left border-0
   />
   <label for="criminal_record" style="display: inline">
     Vous avez un casier judiciaire vierge B2.
@@ -774,6 +774,6 @@ function paiementBolt() {
     window.location.href = '/shop/checkout?express=1';
     resetPopupBolt();
   } else {
-    document.getElementById('error_choix_bolt').style.display = 'unset';
+    document.getElementById('error_choix_bolt').style.display = 'block';
   }
 }
