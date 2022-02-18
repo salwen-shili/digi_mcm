@@ -24,14 +24,47 @@ class Partner(models.Model):
     # 
     #     return res
     def create(self, vals):
+        print('vals', vals)
+
         partner = super(Partner, self).create(vals)
         return partner
     def write(self, vals):
         if 'eval_box' in vals and vals['eval_box']==True and self.bolt:
             eval_box=vals['eval_box']
             self.change_crm_lead_i_One(self,eval_box)
-        # if 'bolt' in vals and vals['bolt'] == True :
-        #      self.changestage("Bolt-Prospection", self)
+        if 'bolt' in vals and vals['bolt'] == True:
+            print('vals', vals)
+            stages = self.env['crm.stage'].sudo().search([("name", "=", "Bolt-Prospection")])
+            if stages:
+                for stage in stages:
+                    lead = self.env['crm.lead'].sudo().search([('partner_id', '=', self.id)], limit=1)
+                    if lead and self.name:
+                        lead.sudo().write({
+                            'name': self.name if self.name else "",
+                            'partner_name': self.name if self.name else "",
+                            'num_dossier': self.numero_cpf if self.numero_cpf else "",
+                            'num_tel': self.phone if self.phone else "",
+                            'email': self.email if self.email else "",
+                            'email_from': self.email if self.email else "",
+                            'type': "opportunity",
+                            'stage_id': stage.id,
+                            'mode_de_financement': 'particulier'
+                        })
+
+                    if not lead and self.name:
+                        lead = self.env['crm.lead'].sudo().create({
+                            'name': self.name if self.name else "",
+                            'partner_name': self.name if self.name else "",
+                            'num_dossier': self.numero_cpf if self.numero_cpf else "",
+                            'num_tel': self.phone if self.phone else "",
+                            'email': self.email if self.email else "",
+                            'email_from': self.email if self.email else "",
+                            'type': "opportunity",
+                            'stage_id': stage.id,
+                            'mode_de_financement': 'particulier'
+
+                        })
+
             
 
         if 'inscrit_mcm' in vals and self.bolt :
