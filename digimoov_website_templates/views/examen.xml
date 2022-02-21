@@ -685,11 +685,11 @@
                                             <form action="/shop/cart/update" method="post">
                                                 <input type="hidden" class="product_id" name="product_id" t-att-value="echec_examen.id" />
                                                 <!-- no constraints  -->
-                                                <td t-if="default == True">
-                                                    <button type="submit" class="btn btn-alpha o_anim_fade_in_up o_animate" style="animation-name: o_anim_fade_in_up; visibility: visible; animation-play-state: paused;">
+                                                <!-- <td t-if="default == True"> -->
+                                                <button type="submit" class="btn btn-alpha o_anim_fade_in_up o_animate" style="animation-name: o_anim_fade_in_up; visibility: visible; animation-play-state: paused;">
                                                         Réservez votre tentative
                                                     </button>
-                                                </td>
+                                                <!-- </td> -->
 
 
                                             </form>
