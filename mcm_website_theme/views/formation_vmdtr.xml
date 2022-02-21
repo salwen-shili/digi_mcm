@@ -2,33 +2,39 @@
 <odoo>
   <template id="mcm_website_theme.mcm_template_vmdtr" name="Formation VMDTR">
     <t t-call="website.layout">
+
       <div id="wrap" class="oe_empty oe_structure">
         <script defer="defer" type="text/javascript" src="/digimoov_website_templates/static/src/js/lazy-min.min.js" />
         <link rel="stylesheet" href="/mcm_website_theme/static/src/css/cta-button.min.css" />
         <link rel="stylesheet" href="/mcm_website_theme/static/src/css/style_taxi.min.css" />
-
         <style>
-  .para{
-    line-height: 1.6384615384615385!important;
-  }
-</style>
+          .para{
+            line-height: 1.6384615384615385!important;
+          }
+        </style>
         <!-- taxi moto-->
         <!-- section couverture-->
         <section id="sh_corpomate_theme_section_258 " class="pt8 sh_animation_part" data-name="Formation chauffeur TAXI">
           <div class="container-banner">
             <div class="row">
-              <div class="col-lg-6 js-scroll pb16 pt56 slide-left">
+              <div class="col-lg-6 js-scroll pb16 pt56 slide-left ">
                 <div class="text-center">
                   <h1 class="slider-text-info title-mcm">
                     Formation
-                    <span class="subtitle-mcm-formation">MOTO-TAXI </span>
+                    <span class="subtitle-mcm-formation">MOTO TAXI &amp;nbsp;à distance</span>
                   </h1>
                   <br />
                   <p class="para text-center">
                     Passionné de motos, vous adorez circuler en milieu urbain ?
                     Indépendant de nature, et vous voulez lancer votre carrière
                     professionnelle ? C'est simple : devenez chauffeur de
-                    MOTO-TAXI avec MCM Academy !
+                    MOTO-TAXI avec
+                    <a href="/qui-sommes-nous">
+                      <b>
+                        <u>MCM Academy </u>
+                      </b>
+                    </a>
+                    !
                   </p>
                   <br />
                   <a class="animated-button-yellow" href="#pricing" title="Inscription">
@@ -36,15 +42,13 @@
                   </a>
                 </div>
               </div>
-              <div class="col-lg-6 js-scroll pb48 pt16 slide-right">
+              <div class="col-lg-6 js-scroll pb48 pt16 slide-right ">
                 <br />
-                <img data-src="/mcm_website_theme/static/src/img/formation-moto-taxi/Formation moto-taxi.webp" data-srcsafari="/mcm_website_theme/static/src/img/formation-moto-taxi/Formation moto-taxi.png" class="img img-fluid lazy mx-auto" alt="Chauffeur vmdtr sur sa moto" title="Formation moto-taxi" style="text-align: center" />
+                <img data-src="/mcm_website_theme/static/src/img/formation-moto-taxi/Formation moto-taxi.webp" data-srcsafari="/mcm_website_theme/static/src/img/formation-moto-taxi/Formation moto-taxi.png" class="img img-fluid mx-auto lazy" alt="Chauffeur vmdtr sur sa moto" title="Formation moto-taxi" style="text-align: center" />
               </div>
             </div>
           </div>
         </section>
-
-
         <!-- logo -->
         <section class="fade-in-top js-scroll pb32 pt40">
           <div class="container fade-in-top js-scroll">
@@ -67,15 +71,14 @@
             </div>
           </div>
         </section>
-
         <!-- C'est quoi un vmdtr ? -->
         <section class="s_text_image pt32 pb32" data-name="Image - Text">
           <div class="container">
             <div class="row align-items-center">
-              <div class="col-lg-6 pt16 pb16 js-scroll slide-left">
-                <img data-src="/mcm_website_theme/static/src/img/formation-moto-taxi/C'est-quoi-un-vmdtr.webp" data-srcsafari="/mcm_website_theme/static/src/img/formation-moto-taxi/C'est-quoi-un-vmdtr.png" class="img img-fluid lazy mx-auto" alt="chauffeur Moto-Taxi sur sa moto" style="width: 86%;" title="C'EST QUOI UN VMDTR ?" />
+              <div class="col-lg-6 pt16 pb16 js-scroll slide-left ">
+                <img data-src="/mcm_website_theme/static/src/img/formation-moto-taxi/C'est-quoi-un-vmdtr.webp" data-srcsafari="/mcm_website_theme/static/src/img/formation-moto-taxi/C'est-quoi-un-vmdtr.png" class="img img-fluid mx-auto lazy" alt="chauffeur Moto-Taxi sur sa moto" style="width: 86%;" title="C'EST QUOI UN VMDTR ?" />
               </div>
-              <div class="col-lg-6 pt16 pb16 js-scroll slide-right">
+              <div class="col-lg-6 pt16 pb16 js-scroll slide-right ">
                 <h2>
                 C'est quoi un vmdtr ?
               </h2>
@@ -91,25 +94,32 @@
                   <b>conducteur</b>
                   doit être titulaire d’une
                   <b>carte professionnelle de conducteur de VMDTR </b>
-                  et doit pouvoir justifier d’une réservation préalable du client.
+                  et doit pouvoir justifier d’une réservation préalable du client.&amp;nbsp;
                 </p>
                 <p class="para">
                   A la différence des taxi, le VMDTR ne peut ni circuler, ni
                 stationner sur la voie publique en quête de client, et les
                 tarifs de la course sont libres.
                   <br />
+                  Consultez
+                  <a href="/blog/blog-taxi-moto-6/post/reglementation-moto-taxi-le-guide-complet-24">
+                    <b>
+                      <u>cet article</u>
+                    </b>
+                  </a>
+                  pour en savoir plus sur la règlementation moto taxi.
+                  <br />
                 </p>
               </div>
             </div>
           </div>
         </section>
-
         <!-- COMMENT DEVENIR CHAUFFEUR MOTO-TAXI (VMDTR) ? -->
         <section class="pb32 pt32 s_text_image" data-name="Text - Image">
           <div class="container">
             <div class="align-items-center row">
-              <div class="col-lg-6 pb16 pt16 js-scroll slide-left">
-                <h2>COMMENT DEVENIR CHAUFFEUR MOTO-TAXI (VMDTR) ?</h2>
+              <div class="col-lg-6 pb16 pt16 js-scroll slide-left ">
+                <h2>COMMENT DEVENIR CHAUFFEUR MOTO TAXI (VMDTR) ?</h2>
                 <p class="para">
                   Pour exercer le métier de
                   <b>chauffeur moto-taxi&amp;nbsp;</b>
@@ -155,24 +165,21 @@
                   à l’exercice de la profession délivrée par le préfet.
                 </p>
               </div>
-              <div class="col-lg-6 pb16 pt16 js-scroll slide-right">
-                <img data-src="/mcm_website_theme/static/src/img/formation-moto-taxi/comment-devenir-chauffeur-moto-taxi.webp" data-srcsafari="/mcm_website_theme/static/src/img/formation-moto-taxi/comment-devenir-chauffeur-moto-taxi.png" class="img img-fluid lazy mx-auto" alt="Chauffeur moto-taxi" title="COMMENT DEVENIR CHAUFFEUR MOTO-TAXI (VMDTR) ?" />
+              <div class="col-lg-6 pb16 pt16 js-scroll slide-right ">
+                <img data-src="/mcm_website_theme/static/src/img/formation-moto-taxi/comment-devenir-chauffeur-moto-taxi.webp" data-srcsafari="/mcm_website_theme/static/src/img/formation-moto-taxi/comment-devenir-chauffeur-moto-taxi.png" class="img img-fluid mx-auto lazy" alt="Chauffeur moto-taxi" title="COMMENT DEVENIR CHAUFFEUR MOTO-TAXI (VMDTR) ?" />
               </div>
             </div>
           </div>
         </section>
-
         <!-- FORMATION MOTO-TAXI -->
         <section class="s_text_image pt32 pb32" data-name="Image - Text">
           <div class="container">
             <div class="row align-items-center ">
-              <div class="col-lg-6 pt16 pb16 js-scroll slide-left">
-                <img data-src="/mcm_website_theme/static/src/img/formation-moto-taxi/Formateur-moto-taxi-pc-à-la-main.png" data-srcsafari="mcm_website_theme/static/src/img/formation-moto-taxi/Formateur-moto-taxi-pc-à-la-main.webp" class="img img-fluid lazy mx-auto" alt="Formateur moto-taxi pc à la main" title="FORMATION MOTO-TAXI" />
+              <div class="col-lg-6 pt16 pb16 js-scroll slide-left ">
+                <img data-src="/mcm_website_theme/static/src/img/formation-moto-taxi/Formateur-moto-taxi-pc-à-la-main.png" data-srcsafari="mcm_website_theme/static/src/img/formation-moto-taxi/Formateur-moto-taxi-pc-à-la-main.webp" class="img img-fluid mx-auto" alt="Formateur moto-taxi pc à la main" title="FORMATION MOTO-TAXI" />
               </div>
-              <div class="col-lg-6 pt16 pb16 js-scroll slide-right">
-                <h2>
-                FORMATION MOTO-TAXI
-              </h2>
+              <div class="col-lg-6 pt16 pb16 js-scroll slide-right ">
+                <h2> FORMATION VMDTR</h2>
                 <p class="para">
                   Notre
                   <span style="font-weight: 700">
@@ -205,7 +212,6 @@
             </div>
           </div>
         </section>
-
         <!-- PROGRAMME DE FORMATION MOTO-TAXI-->
         <section id="sh_corpomate_theme_section_167" class="sh_animation_part" style="background-color: rgb(253, 209, 5); margin: 76px 0px">
           <div class="container js-scroll fade-in-top">
@@ -221,23 +227,20 @@
             </a>
           </div>
         </section>
-
         <!-- EXAMEN POUR OBTENIR SA CARTE PRO TAXI-MOTO -->
         <section class="s_text_image pt32 pb32" data-name="Image - Text">
           <div class="container">
             <div class="row align-items-center">
-              <div class="col-lg-6 pt16 pb16 js-scroll slide-left">
-                <img data-src="/mcm_website_theme/static/src/img/formation-moto-taxi/condidats-examen-taxi-moto.png" data-srcsafari="/mcm_website_theme/static/src/img/formation-moto-taxi/condidats-examen-taxi-moto.webp" class="img img-fluid lazy mx-auto" alt="3 condidats pour l'examen taxi-moto" title="EXAMEN POUR OBTENIR SA CARTE PRO TAXI-MOTO" />
+              <div class="col-lg-6 pt16 pb16 js-scroll slide-left ">
+                <img data-src="/mcm_website_theme/static/src/img/formation-moto-taxi/condidats-examen-taxi-moto.png" data-srcsafari="/mcm_website_theme/static/src/img/formation-moto-taxi/condidats-examen-taxi-moto.webp" class="img img-fluid mx-auto lazy" alt="3 condidats pour l'examen taxi-moto" title="EXAMEN POUR OBTENIR SA CARTE PRO TAXI-MOTO" />
               </div>
-              <div class="col-lg-6 pt16 pb16 js-scroll slide-right">
-                <h2>
-                EXAMEN POUR OBTENIR SA CARTE PRO TAXI-MOTO
-              </h2>
+              <div class="col-lg-6 pt16 pb16 js-scroll slide-right ">
+                <h2> EXAMEN POUR OBTENIR SA CARTE PRO TAXI MOTO </h2>
                 <p class="para">
                   Selon la loi Grandguillaume de 2017, devenir
                   <b>chauffeur de VMDTR</b>
                   passe inévitablement par le passage d’un
-                  <b>examen moto-taxi</b>
+                  <b>examen moto taxi</b>
                   .
                 </p>
                 <p class="para">
@@ -260,7 +263,7 @@
                 français et en anglais.
                 </p>
                 <p class="para">
-                  L'accés à la deuxième épreuve et qui est l'
+                  L'accès à la deuxième épreuve et qui est l'
                   <b>épreuve pratique</b>
                   &amp;nbsp;,ne peut être fait que si vous réussissez la partie
                 théorique. Cette épreuve sera sous forme de
@@ -279,12 +282,11 @@
             </div>
           </div>
         </section>
-
         <!-- Alert -->
         <section class="pb4 pt0 s_text_image" data-name="Text - Image">
           <div class="container">
             <div class="row align-items-center js-scroll fade-in-top">
-              <div class="col-lg-6 js-scroll pb24 pt0 slide-left"></div>
+              <div class="col-lg-6 js-scroll pb24 pt0 slide-left" />
               <div class="col-lg-12 fade-in-bottom js-scroll pb0 pt24 s_title" style="text-align: center; border-style: none; border-width: 0px">
                 <div class="alert-100 clearfix s_alert s_alert_sm w-100" data-name="Alert">
                   <i class="fa fa-2x fa-info-circle s_alert_icon" />
@@ -306,7 +308,6 @@
             </div>
           </div>
         </section>
-
         <!--Les démarches a suivre pour devenir chauffeur moto-taxi -->
         <section id="sh_corpomate_theme_section_52">
           <div class="container">
@@ -361,8 +362,6 @@
             </div>
           </div>
         </section>
-
-
         <!-- COMMENT FINANCER MA FORMATION TAXI-MOTO ? -->
         <section class="s_text_image pt32 pb32" data-name="Text - Image">
           <div class="container">
@@ -385,7 +384,6 @@
             </div>
           </div>
         </section>
-
         <!-- -->
         <div id="pricing">
           <input t-att-value="request.website.microsoft_tracking_key" id="microsoft_tracking_key" type="hidden" />
@@ -395,10 +393,7 @@
                 <h2 style="max-width:100%">
                      Inscrivez-vous dès maintenant !
                  </h2>
-
-
                 <br />
-
               </div>
               <div class="row" style="justify-content: center !important">
                 <div class="col-md-5 sh_animation_part js-scroll slide-right">
@@ -427,17 +422,14 @@
                             <li>Révision du programme avant examen</li>
                           </ul>
                           <div class="sh_btn">
-
                             <!-- <a class="btn btn-primary sh_btn_cm_8" data-original-title="" title="" aria-describedby="tooltip196298">
                             Je m'inscris
                                                 </a> -->
-
-
                             <a class="animated-button-yellow" href="#pricing" onClick="(function(){document.getElementById('form-1-3').submit();return false;})();return false;">
-                              <span></span>
-                              <span></span>
-                              <span></span>
-                              <span></span>
+                              <span />
+                              <span />
+                              <span />
+                              <span />
                               Je m'inscris
                             </a>
                             <div>
@@ -460,7 +452,6 @@
         <section class="pt40 pb32">
           <div class="container js-scroll fade-in-top">
             <div class="center-logo">
-
               <div class="pt32" t-if="partenaire=='bolt'  or partenaire !='bolt'">
                 <a href="https://www.digimoov.fr/" target="_blank" rel="noopner">
                   <img class="img-fluid lazy" style="width: 94px" data-src="/mcm_website_theme/static/src/img/logos/logo-digimoov.png" data-srcSafari="/mcm_website_theme/static/src/img/logos/logo-digimoov.png" alt="Logo partenaire Digimoov" title="Digimoov partenaire MCM ACADEMY" />
@@ -476,7 +467,6 @@
                   <img class="img-fluid lazy" style="width: 100px" data-srcSafari="/mcm_website_theme/static/src/img/logos/logo-CMA.png" data-src="/mcm_website_theme/static/src/img/logos/logo-CMA.png" title="Chambre de métiers et de l'artisanat partenaire MCM ACADEMY" alt="Chambre de métiers et de l'artisanat partenaire MCM ACADEMY" />
                 </a>
               </div>
-
               <div class="pt32" t-if="partenaire=='' or not partenaire ">
                 <a href="https://www.comptable-douai.com/" target="_blank" rel="noopner">
                   <img class="img-fluid lazy" style="width: 250px" data-src="/mcm_website_theme/static/src/img/logos/logo-joel-pruvost.jpg" data-srcSafari="/mcm_website_theme/static/src/img/logos/logo-joel-pruvost.jpg" title="Joel partenaire MCM ACADEMY" alt="Joel partenaire MCM ACADEMY" />
@@ -487,6 +477,7 @@
         </section>
       </div>
     </t>
+
 
   </template>
 </odoo>
