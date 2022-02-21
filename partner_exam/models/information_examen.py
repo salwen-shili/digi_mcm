@@ -98,14 +98,12 @@ class NoteExamen(models.Model):
         en va lancer cette fonction une fois pour changer les anciennes notes existantes telle que moyenne générale/200"""
         for line in self.env['info.examen'].sudo().search([]):
             if line.date_exam:
-                if datetime.strptime(str(line.date_exam), '%Y-%m-%d').date() > datetime.strptime('2021-12-31',
-                                                                                                 '%Y-%m-%d').date():
-                    if line.epreuve_a > 0 or line.epreuve_b > 0:
-                        qcm = line.epreuve_a * 5
-                        line.epreuve_a = qcm
-                        qro = line.epreuve_b * 5
-                        line.epreuve_b = qro
-                        line.moyenne_generale = (line.epreuve_a + line.epreuve_b)
+                if line.epreuve_a > 0 or line.epreuve_b > 0:
+                    qcm = line.epreuve_a * 5
+                    line.epreuve_a = qcm
+                    qro = line.epreuve_b * 5
+                    line.epreuve_b = qro
+                    line.moyenne_generale = (line.epreuve_a + line.epreuve_b)
 
     @api.onchange('partner_id', 'epreuve_a', 'epreuve_b', 'presence')
     def compute_moyenne_generale(self):
