@@ -700,12 +700,11 @@
 
 
                                         </form>
-                                        <!-- display popup -->
-                                        <td t-if="default == False">
+                                        <!-- <td t-if="default == False">
                                             <button t-if="default == False" onclick="openPopup()" id="btnRepassage" class="btn btn-alpha o_anim_fade_in_up o_animate" style="animation-name: o_anim_fade_in_up; visibility: visible; animation-play-state: paused;">
                                                         Réservez votre tentative
                                                     </button>
-                                        </td>
+                                        </td> -->
 
                                     </div>
                                 </div>
