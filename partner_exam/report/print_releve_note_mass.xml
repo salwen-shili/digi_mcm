@@ -102,7 +102,7 @@
                                                                style="border:1px solid black;">
                                                             <tr align="center">
                                                                 <th>EPREUVES</th>
-                                                                <th>NOTES/20</th>
+                                                                <th>NOTES/200</th>
                                                             </tr>
                                                             <tbody>
                                                                 <tr>
@@ -196,12 +196,10 @@
                                                         public routier, sont déclarés reçus
                                                         les candidats qui ont obtenu, pour l'ensemble des épreuves, une
                                                         note au
-                                                        moins égale à 120 sur 200 soit
-                                                        12/20, sous réserve qu'ils aient obtenu au moins 50 points soit
-                                                        10/20
+                                                        moins égale à 120 sur 200, sous réserve qu'ils aient obtenu au moins 50 points
                                                         pour
                                                         le questionnaire à choix
-                                                        multiples et 40 points soit 8/20 pour l'épreuve à réponses
+                                                        multiples et 40 points pour l'épreuve à réponses
                                                         rédigées.
                                                     </b>
                                                 </p>
