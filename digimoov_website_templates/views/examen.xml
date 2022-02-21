@@ -1,6 +1,7 @@
 <odoo>
     <template id="digimoov_website_templates.digimoov_template_examen" name="examen Digimoov">
 
+
         <t t-call="website.layout">
             <div id="wrap" class="oe_empty oe_structure" style="word-break: break-word; position: relative; z-index: 0">
                 <style>
@@ -433,41 +434,28 @@
                   d'inscription à la formation et le passage du premier examen.
                                     </span>
                                     <br />
-                                    <br style="                     box-sizing: inherit;                     color: rgb(29, 28, 29);                     font-family: Slack-Lato, appleLogo, sans-serif;                     font-size: 15px;                     font-variant-ligatures: common-ligatures;                   " />
-                                    <span style="                     font-family: Slack-Lato, appleLogo, sans-serif;                     font-size: 15px;                     font-variant-ligatures: common-ligatures;                   " class="text-beta">
-                                        <b>Report gratuit du passage de l'examen :</b>
-                                        Une seule demande de report gratuit est acceptée, à condition de la
-                                        <b></b>
-                                        présenter
-                                    </span>
-                                    <span style="color: rgb(103, 67, 148); font-family: Slack-Lato, appleLogo, sans-serif; font-size: 15px; font-variant-ligatures: common-ligatures;">
-                                        <b>72h avant la date d'examen</b>
-                                    </span>
-                                    <span style="color: rgb(0, 0, 0); font-family: Slack-Lato, appleLogo, sans-serif; font-size: 15px; font-variant-ligatures: common-ligatures;">
-                                        en plus d'un
-                                        <b></b>
-                                    </span>
-                                    <span style="color: rgb(103, 67, 148); font-family: Slack-Lato, appleLogo, sans-serif; font-size: 15px; font-variant-ligatures: common-ligatures;">
-                                        <b>justificatif</b>
-                                        prouvant une
-                                        <b>force majeure</b>
-                                    </span>
-                                    <span style="color: rgb(66, 66, 66); font-family: Slack-Lato, appleLogo, sans-serif; font-size: 15px; font-variant-ligatures: common-ligatures;">
-                                        <b></b>
-                                        et avoir déja un
-                                    </span>
-                                    <span style="color: rgb(103, 67, 148); font-family: Slack-Lato, appleLogo, sans-serif; font-size: 15px; font-variant-ligatures: common-ligatures;">
-                                        <b>avancement de 80% sur la formation.</b>
-                                    </span>
+                                    <font color="#1d1c1d" face="Slack-Lato, appleLogo, sans-serif">
+                                        <span style="font-size: 15px; font-variant-ligatures: common-ligatures;" class="text-beta">
+                                            <b>Repassage d'examen à 200€ :</b>
+                                            En cas d'absence ou d'échec à votre premier examen et que vous souhaitez le repasser, il suffit de réserver votre nouvelle tentative à 200€, sachant qu'il ne faut pas dépasser un délai de 6 mois entre le premier examen et les deux autres repassages (C'est-à-dire le deuxième et le troisième passage).
+                                            <br />
+                                            Aucune demande de report sans frais ne pourra être acceptée sauf en
+                                            <b>cas de force majeure</b>
+                                            accompagnée d'un justificatif, à condition qu'elle soit
+                                            <b>envoyée 72h</b>
+                                            avant la date de l'examen et que vous ayez un avancement de 80% dans la formation. Une seule demande de report sans frais sera étudiée.
+                                        </span>
+                                    </font>
                                 </p>
-                                <p>
-                                    <span style="                     font-family: Slack-Lato, appleLogo, sans-serif;                     font-size: 15px;                     font-variant-ligatures: common-ligatures;                   " class="text-beta">
-                                        <b>Repassage :</b>
-
+                                <hr />
+                                <font color="#1d1c1d" face="Slack-Lato, appleLogo, sans-serif">
+                                    <span style="font-size: 15px; font-variant-ligatures: common-ligatures;" class="text-beta">
+                                        Si l'une de ces conditions n'est pas remplie, nous n'accepterons aucun report sans frais.
+                                        <b>Il faut tenir compte que pour chaque examen que vous soyez présent, absent ou que ça soit un report un passage sera automatiquement décompté.</b>
                                     </span>
-                                    <span style="color: rgb(29, 28, 29); font-family: Slack-Lato, appleLogo, sans-serif; font-size: 14px; font-variant-ligatures: common-ligatures;">En cas d'absence ou d'échec à votre premier examen et que vous souhaitez le repasser, vous ne devez pas dépasser un délai de 6 mois entre le passage du premier examen et les deux autres repassages (C'est-à-dire le deuxième et le troisième passage)</span>
-                                    <span style="color: rgb(32, 38, 71); font-family: Slack-Lato, appleLogo, sans-serif; font-size: 14px; font-variant-ligatures: common-ligatures;">.</span>
-                                </p>
+                                </font>
+                                <br style="                     box-sizing: inherit;                     color: rgb(29, 28, 29);                     font-family: Slack-Lato, appleLogo, sans-serif;                     font-size: 15px;                     font-variant-ligatures: common-ligatures;                   " />
+                                <br />
                             </div>
                         </div>
                     </div>
