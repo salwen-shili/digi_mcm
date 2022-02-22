@@ -50,14 +50,15 @@ class Website(Website):
             raise werkzeug.exceptions.NotFound()
 
     @http.route('/capacité-de-transport/paris', type='http', auth='public', website=True)
-    def attestation_transport_leger_marchandises_paris(self, **kw,):
+    def attestation_transport_leger_marchandises_paris(self, **kw, ):
         if request.website.id == 2:
             digimoov_products = request.env['product.product'].sudo().search([('company_id', '=', 2)],
                                                                              order="list_price")
             values = {
                 'digimoov_products': digimoov_products,
             }
-            return request.render("digimoov_website_templates.digimoov_template_transport_leger_marchandises_paris", values)
+            return request.render("digimoov_website_templates.digimoov_template_transport_leger_marchandises_paris",
+                                  values)
         else:
             raise werkzeug.exceptions.NotFound()
 
@@ -235,6 +236,12 @@ class DIGIEXAMEN(http.Controller):
 
     @http.route('/examen-capacite-transport-marchandises', type='http', auth='public', website=True)
     def exam(self, **kw, ):
+        """ Ajouter les conditions suivant au niveau de la page examen dans le Site Web,
+        lorsque un utulisateur clique sur le bouton de Tentative de repassage
+        :param request.website.id: Si siteweb = digimoov alors :
+        I- :param : is_public_user: Si l'utilisateur est un visiteur (False)
+            1- Redirection: /web/signup
+        II- :param: is_public_user: Si l'utilisateur n'est pas un visiteur (True)"""
         if request.website.id == 2:
             partner = request.env.user.partner_id  # Récupérer id de l'apprenant connecté
             session = request.env['partner.sessions'].sudo().search(
@@ -253,12 +260,12 @@ class DIGIEXAMEN(http.Controller):
                     date_dateutil = date_exam + dateutil.relativedelta.relativedelta(
                         months=6)  # Calcule la durée de temps à partir de la première date d'examen de l'apprenant en ajoutant 6 mois
                     exam_count = partner.note_exam_count
-                    print("&&&&&&&&&&&&&&&77", exam_count)
+                    print("&&&&&&&&&&&&&&&", exam_count)
                     if exam_count < 3:  # Si nombre de passage < 3
                         logging.info(
                             'Si nombre de passage < 3 °°°°°°°°°°°°°°°°°°°°')
                         print("Comparer si date d'aujourd'hui inférieur à date d'examen + 6 mois: ",
-                              now, date_dateutil, date_exam,  now < date_dateutil)
+                              now, date_dateutil, date_exam, now < date_dateutil)
                         # Comparer si date d'aujourd'hui inférieur à date d'examen + 6 mois
                         if now < date_dateutil and is_public_user is not True:
                             print("%%%%%%%%%%%%%% 6 mois")
@@ -300,10 +307,8 @@ class DIGIEXAMEN(http.Controller):
                         'is_public_user': is_public_user,
                         'default': 'False',
                         'url': '/#pricing',
-                        'message': "Oups ! vous ne pouvez pas accéder à cette option."
-                        "Vous devez vous inscrire à une formation pour pouvoir choisir votre date d'examen."
-                        "Si vous avez déjà passé un examen et que vous n'arrivez pas à vous connecter, merci d'insérer vos identifiants utilisés lors de l'inscription à la formation initiale."
-                        "Pour plus d'informations vous pouvez contacter notre service sur le +33986878866.",
+                        'message': "Oups ! Vous devez vous inscrire à une formation pour pouvoir choisir votre date d'examen, ou vous connecter avec vos identifiants utilisés lors de votre inscription à la formation initiale."
+                                   "Pour plus d'informations vous pouvez contacter notre service sur le +33986878866.",
 
                     }
                     return request.render("digimoov_website_templates.digimoov_template_examen", values)
