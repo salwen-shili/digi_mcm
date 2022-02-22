@@ -257,6 +257,8 @@ class DIGIEXAMEN(http.Controller):
                     if exam_count < 3:  # Si nombre de passage < 3
                         logging.info(
                             'Si nombre de passage < 3 °°°°°°°°°°°°°°°°°°°°')
+                        print("Comparer si date d'aujourd'hui inférieur à date d'examen + 6 mois: ",
+                              now, date_dateutil, date_exam,  now < date_dateutil)
                         # Comparer si date d'aujourd'hui inférieur à date d'examen + 6 mois
                         if now < date_dateutil and is_public_user is not True:
                             print("%%%%%%%%%%%%%% 6 mois")
@@ -275,8 +277,8 @@ class DIGIEXAMEN(http.Controller):
                                 'echec_examen': echec_examen,
                                 'url': '/#pricing',
                                 'default': 'False',
-                                'message': "Vous avez dépassé la durée règlementaire de 6 mois pour réserver votre nouvelle date d'examen ."
-                                           "Vous devez à présent, vous réinscrire à la formation pour retenter votre chance.",
+                                'message': "Vous avez dépassé la durée règlementaire de 6 mois pour réserver votre nouvelle date d'examen."
+                                           " Vous devez à présent, vous réinscrire à la formation pour retenter votre chance.",
                             }
                             return request.render("digimoov_website_templates.digimoov_template_examen",
                                                   values)  # Envoyer les données vers xml dans la page examen
@@ -287,7 +289,7 @@ class DIGIEXAMEN(http.Controller):
                             'default': 'False',
                             'echec_examen': echec_examen,
                             'url': '/#pricing',
-                            'message': "Vous avez atteint le nombre limite de repassage de l'examen."
+                            'message': "Vous avez atteint le nombre limité de repassage de l'examen."
                                        "Vous devez à présent, vous réinscrire à la formation pour retenter votre chance.",
                         }
                         return request.render('digimoov_website_templates.digimoov_template_examen', values)
@@ -298,7 +300,10 @@ class DIGIEXAMEN(http.Controller):
                         'is_public_user': is_public_user,
                         'default': 'False',
                         'url': '/#pricing',
-                        'message': 'Pour pouvoir vous inscrire vous devez choisir un de ses packs à toi de voir!',
+                        'message': "Oups ! vous ne pouvez pas accéder à cette option."
+                        "Vous devez vous inscrire à une formation pour pouvoir choisir votre date d'examen."
+                        "Si vous avez déjà passé un examen et que vous n'arrivez pas à vous connecter, merci d'insérer vos identifiants utilisés lors de l'inscription à la formation initiale."
+                        "Pour plus d'informations vous pouvez contacter notre service sur le +33986878866.",
 
                     }
                     return request.render("digimoov_website_templates.digimoov_template_examen", values)
