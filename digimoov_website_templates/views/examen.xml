@@ -1,126 +1,15 @@
 <odoo>
     <template id="digimoov_website_templates.digimoov_template_examen" name="examen Digimoov">
-
         <t t-call="website.layout">
+            <script defer="defer" type="text/javascript" src="/digimoov_website_templates/static/src/js/examen.min.js" />
+            <link rel="stylesheet" href="/digimoov_website_templates/static/src/css/popup-examen.min.css" />
             <!-- popup-->
             <input type="hidden" t-att-value="default" />
             <div t-if="default == 'False'">
                 <input type="hidden" t-att-value="url" id="url" />
                 <input type="hidden" t-att-value="message" id="message" />
 
-                <script>
-                    document.addEventListener('DOMContentLoaded', function () {
-                    var url;
-                    var message;
-                    if (document.getElementById('url')) {
-                    url = document.getElementById('url').value;
-                    }
 
-                    if (document.getElementById('message')) {
-                    message = document.getElementById('message').value;
-                    }
-                    if (!document.getElementById('echec_examen').value) {
-                    document.getElementById('notifMessage').innerHTML = message;
-                    document.getElementById('btnRepassage').href = url;
-                    }
-                    return;
-                    });
-                    function openPopup() {
-                    //console.log(document.getElementById('popup1'));
-                    document.getElementById('popup1').style.display = 'unset';
-                    }
-                    function closePopup() {
-                    //console.log(document.getElementById('popup1'));
-                    document.getElementById('popup1').style.display = 'none';
-                    }
-                </script>
-                <style>
-                    .content {
-                    color: #000;
-                    margin-block-start: 1rem;
-                    }
-
-                    .overlay {
-                    position: fixed;
-                    top: 0;
-                    bottom: 0;
-                    left: 0;
-                    right: 0;
-                    background: rgba(0, 0, 0, 0.7);
-                    transition: opacity 500ms;
-                    display:none;
-                    z-index: 1;
-                    }
-
-
-                    .popup {
-                    top: 33%;
-                    margin: 70px auto;
-                    padding: 20px;
-                    background: #fff;
-                    border-radius: 5px;
-                    width: 40%;
-                    position: relative;
-                    transition: all 5s ease-in-out;
-                    }
-
-                    .popup h2 {
-                    margin-top: 0;
-                    color: #333;
-                    font-family: Tahoma, Arial, sans-serif;
-                    }
-                    .popup .close {
-                    position: absolute;
-                    top: 20px;
-                    right: 30px;
-                    transition: all 200ms;
-                    font-size: 30px;
-                    font-weight: bold;
-                    text-decoration: none;
-                    color: #152856;
-                    cursor:pointer;
-                    }
-                    .popup .close:hover {
-                    color: hsl(222, 61%, 41%);
-                    }
-                    .popup .content {
-                    max-height: 30%;
-                    overflow: auto;
-                    }
-
-                    @media screen and (max-width: 700px) {
-                    .box {
-                    width: 70%;
-                    }
-                    .popup {
-                    width: 70%;
-                    }
-                    }
-                    .action-button {
-                    height: 40px;
-                    width: 150px;
-                    font-size: 15px;
-                    background-color: #152856;
-                    border: 1px solid hsl(240, 44%, 28%);
-                    color: #ffffff;
-                    font-weight: 600;
-                    border-radius: 5px;
-                    box-shadow: 0 2px 4px 0 rgba(87, 71, 81, 0.2);
-                    cursor: pointer;
-                    transition: all 2s ease-out;
-                    transition: all 0.2s ease-out;
-
-                    }
-                    .action-button:hover,
-                    .action-button:focus {
-                    background-color: #ffffff;
-                    border: 1px solid hsl(240, 44%, 28%);
-                    color: #000000;
-                    transition: all 0.2s ease-out;
-                    }
-
-
-                </style>
                 <!-- popup-->
                 <div id="popup1" class="overlay">
                     <div class="popup">
