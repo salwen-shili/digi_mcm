@@ -60,7 +60,7 @@ class WebsiteSale(WebsiteSale):
                                  ('model', "=", 'res.partner'), ('res_id', "=", request.env.user.partner_id.id)],
                                 limit=1)
                             if not message:
-                                partner.with_context(force_send=True).message_post_with_template(template_id.id,
+                                request.env.user.partner_id.with_context(force_send=True).message_post_with_template(template_id.id,
                                                                                                  composition_mode='comment',
                                                                                                  )
                 if default_code_bolt:
