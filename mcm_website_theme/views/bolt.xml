@@ -8,7 +8,6 @@
                     <meta name="robots" content="noindex" />
                 </t>
             </xpath>
-
             <div id="wrap" class="oe_structure oe_empty" style="word-break: break-word; position: relative; z-index: 0">
                 <link rel="stylesheet" href="/mcm_website_theme/static/src/css/homepage.min.css" />
                 <script defer="defer" type="text/javascript" src="/digimoov_website_templates/static/src/js/lazy-min.min.js" />
@@ -86,7 +85,7 @@ pricebar::after {
                     </div>
                 </div>
                 <div id="wrap" class="oe_structure" style="border-style: none; border-width: 0px">
-                    <section id="sh_corpomate_theme_section_258" class="sh_animation_part pt8">
+                    <section id="sh_corpomate_theme_section_258" class="sh_animation_part pt8" style="word-break: break-word; position: relative; z-index: 0;">
                         <div class="container-banner">
                             <div class="row">
                                 <div class="col-lg-6 pb16 pt56">
@@ -98,18 +97,20 @@ pricebar::after {
                                                 <span class="subtitle-mcm">100 % en ligne</span>
                                             </h1>
                                             <p class="para">
-                                                <span style="font-size: 17px;">Vous voulez </span>
+                                                <span style="font-size: 17px;">V</span>
+                                                <span style="font-family: Roboto, sans-serif; font-size: 16.8px; text-align: start;">ous souhaitez</span>
+                                                &amp;nbsp;
                                                 <span style="font-weight: 700; font-size: 17px;">devenir chauffeur de VTC</span>
                                                 <span style="font-size: 17px;">
-                                                    ?
-                                                    <br />
-                                                </span>
+                                                    ?</span>
+                                            </p>
+                                            <p class="para">
                                                 <b>MCM Academy</b>
                                                 en partenariat avec
                                                 <b>BOLT</b>
                                                 vous offre la possibilité de suivre une
                                                 <b>formation théorique à distance</b>
-                                                de qualité, avec un accompagnement et un suivi personnalisé pour garantir votre réussite à
+                                                de qualité, avec un accompagnement et un suivi personnalisés pour garantir votre réussite à
                                                 <b>l'examen.</b>
 
                                             </p>
@@ -146,9 +147,14 @@ pricebar::after {
                                                 Jusqu'au
                                                 <span style="color: #24f0a0; font-weight: 600">24/03</span>
                                                 profitez de notre
-                                                <span style="color: #24f0a0; font-weight: 600">OFFRE SPÉCIALE</span>
+                                                <span style="color: #24f0a0; font-weight: 600">OFFRE SPÉCIALE </span>
+                                                <span style="font-weight: 600;" class="text-epsilon">
+                                                    <br />
+                                                </span>
+                                                <span style="color: #24f0a0; font-weight: 600">&amp;nbsp;</span>
                                                 en collaboration avec
-                                                <span style="color: #24f0a0; font-weight: 600">BOLT</span>
+                                                <span style="color: rgb(36, 240, 160);">BOLT</span>
+                                                <span style="" class="text-epsilon">&amp;nbsp; </span>
                                             </h2>
                                             <h2 style="font-size: 32px; font-weight: bold; color: #fff">
                                                 <span style="color: #24f0a0; font-weight: 600">FORMATION VTC + EXAMEN VTC</span>
@@ -157,13 +163,13 @@ pricebar::after {
                                                 Seulement !
                                             </h2>
                                             <p style="">
-                                                <font color="#ffffff">
-                                                    <span style="font-size: 16px;">
-                                                        Une formation de 70 heures dont 40 heures de Live avec un expert métier pour une préparation optimale de votre examen !&amp;nbsp;
-                                                        <br />
-                                                    </span>
-                                                    <span style="font-size: 16px;">Pour profiter de cette offre, vous devrez passer un &amp;nbsp;examen blanc de 30 min afin de tester vos connaissances en français&amp;nbsp;.</span>
-                                                </font>
+                                                <span style="font-size: 16px;"></span>
+                                                <span style="font-size: 16px;" class="text-epsilon">
+                                                    Une formation de 70 heures dont 40 heures de Live avec un expert métier pour une préparation optimale de votre examen !&amp;nbsp;
+                                                    <br />
+                                                    Pour profiter de cette offre, vous devrez passer un &amp;nbsp;examen blanc de 30 min afin de tester vos connaissances en français&amp;nbsp;.
+                                                    <br />
+                                                </span>
                                             </p>
                                             <a href="#sh_corpomate_theme_section_76" class="_viewmore btn btn-warning" style="                         word-break: break-word;                         position: relative;                         z-index: 0;                       " data-original-title="" title="" aria-describedby="tooltip467674">
                                                 <font style="font-size: 18px">
@@ -180,7 +186,7 @@ pricebar::after {
                         <div class="container">
                             <div class="row align-items-center">
                                 <div class="col-lg-6 pt16 pb16 js-scroll slide-left ">
-                                    <img data-src="/mcm_website_theme/static/src/img/homepage/mcm-academy-centre-de-formation-en-ligne-des-métiers-de-transports.webp" data-srcsafari="/mcm_website_theme/static/src/img/homepage/mcm-academy-centre-de-formation-en-ligne-des-métiers-de-transports.png" class="img img-fluid mx-auto" alt="candidats centre de formation vtc" src="/mcm_website_theme/static/src/img/homepage/mcm-academy-centre-de-formation-en-ligne-des-métiers-de-transports.webp" />
+                                    <img data-src="/mcm_website_theme/static/src/img/homepage/mcm-academy-centre-de-formation-en-ligne-des-métiers-de-transports.webp" data-srcsafari="/mcm_website_theme/static/src/img/homepage/mcm-academy-centre-de-formation-en-ligne-des-métiers-de-transports.png" class="img img-fluid mx-auto lazy" alt="candidats centre de formation vtc" />
                                 </div>
                                 <div class="col-lg-6 pt16 pb16 js-scroll slide-right ">
                                     <h2>
@@ -402,21 +408,22 @@ pricebar::after {
                                         <b>Déroulement de l'examen VTC</b>
                                     </h3>
                                     <p class="para">
-                                        Il est composé de
+                                        L'examen se passera au centre d'examen de la chambre des métiers et de l'artisanat de l
+                                        <b>'</b>
+                                        <span style="font-family: Roboto, sans-serif; font-size: 16.8px;">
+                                            <b>Île de France</b>
+                                            ,il
+                                        </span>
+                                        &amp;nbsp;sera composé de
                                         <b>deux épreuves</b>
                                         : une épreuve théorique d'
                                         <b>admissibilité</b>
-                                        sous forme de QCM axée sur les réglementations du transport et
-                  du VTC, la gestion des entreprises , le développement
-                  commercial, les langues et la sécurité. Et une épreuve
-                  pratique d’admission&amp;nbsp;sous forme de parcours de 20 min
-                  pour tester les connaissances du candidat sur le territoire
-                  parcouru, et sa capacité à accueillir et à facturer un client.
+                                        sous forme de QCM axée sur les réglementations du transport et du VTC, la gestion des entreprises , le développement commercial, les langues et la sécurité. Et une épreuve pratique d’admission, sous forme d'un parcours de 20 min pour tester les connaissances du candidat sur le territoire parcouru, la qualité de son acceuil vis à vis des clients, et sa maîtrise du&amp;nbsp; logiciel de facturation.
                                     </p>
                                     <p />
                                 </div>
                                 <div class="col-lg-6 pt16 pb16 js-scroll slide-right ">
-                                    <img data-src="/mcm_website_theme/static/src/img/homepage/inscription-à-l’examen-taxi-vtc.webp" data-srcsafari="mcm_website_theme/static/src/img/homepage/inscription-à-l’examen-taxi-vtc.png" class="img img-fluid mx-auto" alt="inscription-à-l’examen-taxi-vtc" src="/mcm_website_theme/static/src/img/homepage/inscription-à-l’examen-taxi-vtc.webp" />
+                                    <img data-src="/mcm_website_theme/static/src/img/homepage/inscription-à-l’examen-taxi-vtc.webp" data-srcsafari="mcm_website_theme/static/src/img/homepage/inscription-à-l’examen-taxi-vtc.png" class="img img-fluid mx-auto lazy" alt="inscription-à-l’examen-taxi-vtc" />
                                 </div>
                             </div>
                         </div>
@@ -487,17 +494,31 @@ pricebar::after {
                                                         <span class="pricebar" t-esc="round(vtc_product.list_price)" />
                                                         <span style="color: #fdd105" t-esc="vtc_product.currency_id.symbol" />
                                                     </h4>
-                                                    <ul class="">
-                                                        <li>Examen à la CMA inclus</li>
+                                                    <ul class="" style="word-break: break-word; position: relative; z-index: 0;">
                                                         <li>Formation 40h ( En direct )</li>
                                                         <li>Formation 30h ( 100% à distance )</li>
                                                         <li>Accès à + de 12 examens d'entraînement</li>
                                                         <li>Assistance par mail</li>
                                                         <li>Assistance&amp;nbsp;par téléphone</li>
-                                                        <li>Assistance&amp;nbsp;par visioconférence</li>
                                                         <li>
-                            Lives&amp;nbsp;avec les formateurs pour explications
-                          </li>
+                                                            Lives&amp;nbsp;avec les formateurs pour explications
+                                                            <br />
+                                                        </li>
+                                                        <li>
+                                                            Assistance&amp;nbsp;par visioconférence
+                                                            <br />
+                                                            <br />
+                                                        </li>
+                                                        <li>
+                                                            <span style="font-weight: 700;">
+                                                                Examen en présentiel à la CMA de l'
+                                                                <span style="color: rgb(0, 0, 0); font-family: Roboto, sans-serif; font-size: 16.8px; text-align: start;">Î</span>
+                                                                le de France
+                                                            </span>
+                                                        </li>
+                                                        <li>
+                                                            <br />
+                                                        </li>
                                                     </ul>
                                                     <t t-if="promo and promo.name=='bolt'">
                                                         <p class="text-center font-weight-bolder text-secondary">
