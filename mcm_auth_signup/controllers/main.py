@@ -18,25 +18,26 @@ class AuthSignupHome(AuthSignupHome):
 
     def do_signup(self, qcontext):
         """ Shared helper that creates a res.partner out of a token """
-        #Get all the inputs
-        values = {key: qcontext.get(key) for key in ('login', 'name', 'firstname', 'lastName','password', 'phone', "zip", "city", "voie", "nom_voie",
-            "num_voie",'street2')}
-        #Remove spaces and lower cases in login
+        # Get all the inputs
+        values = {key: qcontext.get(key) for key in
+                  ('login', 'name', 'firstname', 'lastName', 'password', 'phone', "zip", "city", "voie", "nom_voie",
+                   "num_voie", 'street2')}
+        # Remove spaces and lower cases in login
         values['login'] = values['login'].replace(' ', '').lower()
-        #Generate when mandatory fields are empty
+        # Generate when mandatory fields are empty
         if not values:
             raise UserError(_("Le formulaire n'est pas correctement rempli."))
-        #This block of code was commented after fix error in button "s'inscrire" that was disabled
+        # This block of code was commented after fix error in button "s'inscrire" that was disabled
         """if '+33' not in values['phone']:
             phone = values['phone']
             phone = phone[1:]
             phone = '+33' + str(phone)
             values['phone'] = phone"""
-        #Generate error when email and confirm email do not have the same value
+        # Generate error when email and confirm email do not have the same value
         # if not qcontext.get('token'):
         #     if values.get('login') != qcontext.get('confirm_email').replace(' ', '').lower():
         #         raise UserError(_("Les emails ne correspondent pas, veuillez les saisir à nouveau."))
-        #Concatenate num_voie, voie and nom_voie inti street
+        # Concatenate num_voie, voie and nom_voie inti street
         if (values['num_voie'] and values['voie'] and values['nom_voie']):
             values['street'] = values['num_voie'] + " " + values['voie'] + " " + values['nom_voie']
         supported_lang_codes = [code for code, _ in request.env['res.lang'].get_installed()]
@@ -47,13 +48,13 @@ class AuthSignupHome(AuthSignupHome):
         if request.website.id == 2:
             values['company_ids'] = [1, 2]
             values['company_id'] = 2
-        #Le step suivant est le questionnaire
+        # Le step suivant est le questionnaire
         values['step'] = "coordonnées"
         values['notification_type'] = 'email'  # make default notificatication type by email for new users
-        #Concatenate first name and last name into name
+        # Concatenate first name and last name into name
         if values['firstname'] and values['lastName']:
             values['name'] = values['firstname'] + ' ' + values['lastName']
-        #Mettre par défaut France dans le pays
+        # Mettre par défaut France dans le pays
         values['country_id'] = request.env['res.country'].sudo().search([('code', 'ilike', 'FR')]).id
         self._signup_with_values(qcontext.get('token'), values)
         request.env.cr.commit()
@@ -66,7 +67,7 @@ class AuthSignupHome(AuthSignupHome):
         qcontext['login'] = str(qcontext.get('login')).replace(' ', '').lower()
         if not qcontext.get('token') and not qcontext.get('signup_enabled'):
             raise werkzeug.exceptions.NotFound()
-        #Generate an error when a user already uses this email
+        # Generate an error when a user already uses this email
         if request.env["res.users"].sudo().search(
                 [("login", "=", qcontext.get("login").replace(' ', '').lower())]):
             qcontext["error"] = _("Another user is already registered using this email address.")
@@ -101,10 +102,10 @@ class AuthSignupHome(AuthSignupHome):
                     qcontext["error"] = _("Another user is already registered using this email address.")
                 else:
                     _logger.error("%s", e)
-                    #Log signup error
+                    # Log signup error
                     if SignupError:
-                        _logger.error("name %s", SignupError )
-                    #Log assertion error
+                        _logger.error("name %s", SignupError)
+                    # Log assertion error
                     if AssertionError:
                         _logger.error("name %s", AssertionError)
                     qcontext['error'] = _("Could not create a new account.")
@@ -114,6 +115,7 @@ class AuthSignupHome(AuthSignupHome):
         response.headers['X-Frame-Options'] = 'DENY'
         if response.status_code != 204:
             return response
+
 
 class Home(Home):
 
@@ -125,10 +127,12 @@ class Home(Home):
             login = request.params['login']
         response = super(Home, self).web_login(redirect=redirect, **kw)
         partner = request.env['res.partner'].sudo().search([('email', "=", login)], limit=1)
-        order = request.env['sale.order'].sudo().search([('partner_id', "=", partner.id)], order='create_date desc', limit=1)
+        order = request.env['sale.order'].sudo().search([('partner_id', "=", partner.id)], order='create_date desc',
+                                                        limit=1)
         order1 = request.website.sale_get_order()
+        print()
         if redirect and request.website.is_public_user():
-            url = '/web/signup?redirect=%s' %(redirect)
+            url = '/web/signup?redirect=%s' % (redirect)
             return werkzeug.utils.redirect(url, '301')
         if request.website.id == 1 or request.website.id == 2:
             step = partner.step
@@ -136,31 +140,67 @@ class Home(Home):
                 response = super(Home, self).web_login(redirect='/felicitations', **kw)
             elif order:
                 if step == "document":
-                    redirect='/charger_mes_documents'
-                    #response = super(Home, self).web_login(redirect='/charger_mes_documents', **kw)
+                    redirect = '/charger_mes_documents'
+                    # response = super(Home, self).web_login(redirect='/charger_mes_documents', **kw)
                 elif step == "coordonnées":
-                    redirect='/coordonnees'
-                    #response = super(Home, self).web_login(redirect='/coordonnées', **kw)
+                    redirect = '/coordonnees'
+                    # response = super(Home, self).web_login(redirect='/coordonnées', **kw)
                 elif step == "financement":
-                    redirect='/shop/cart'
-                    #response = super(Home, self).web_login(redirect='/shop/cart', **kw)
+                    redirect = '/shop/cart'
+                    # response = super(Home, self).web_login(redirect='/shop/cart', **kw)
                 elif step == "finish":
-                    redirect='/my'
-                    #response = super(Home, self).web_login(redirect='/my', **kw)
+                    redirect = '/my'
+                    # response = super(Home, self).web_login(redirect='/my', **kw)
             else:
 
                 if request.website.sale_get_order() and not request.website.is_public_user():
                     redirect = '/shop/cart'
                     response = super(Home, self).web_login(redirect='/shop/cart', **kw)
-                else :
+                else:
                     redirect = '/#pricing'
                     response = super(Home, self).web_login(redirect='/#pricing', **kw)
+
         else:
             response = super(Home, self).web_login(redirect=redirect, **kw)
+        if request.httprequest.method == 'POST':
+            order = request.website.sale_get_order()
+            default_code_bolt = False
+            if order:
+                for line in order.order_line:
+                    if (line.product_id.default_code=='vtc_bolt'):
+                        default_code_bolt = True
+                        request.env.user.partner_id.bolt = True
+                        mail_compose_message = request.env['mail.compose.message']
+                        mail_compose_message.fetch_sendinblue_template()
+                        template_id = request.env['mail.template'].sudo().search([('subject', "=", "Passez votre examen blanc avec MCM ACADEMY X BOLT"),('model_id',"=",'res.partner')],limit=1)
+                        if template_id:
+                            message = request.env['mail.message'].sudo().search(
+                                [('subject', "=", "Passez votre examen blanc avec MCM ACADEMY X BOLT"),
+                                 ('model', "=", 'res.partner'),('res_id',"=",request.env.user.partner_id.id)], limit=1)
+                            if not message:
+                                partner.with_context(force_send=True).message_post_with_template(template_id.id,
+                                                                                             composition_mode='comment',
+                                                                                             )
+                if default_code_bolt:
+                    survey = request.env['survey.survey'].sudo().search([('title', "=", 'Examen blanc Français')],
+                                                                        limit=1)
+                    if survey:
+                        survey_user = request.env['survey.user_input'].sudo().search(
+                            [('partner_id', "=", request.env.user.partner_id.id), ('survey_id', '=', survey.id)],
+                            order='create_date asc', limit=1)
+                        if not survey_user:
+                            url = '/survey/start/'+str(survey.access_token)
+                            response = super(Home, self).web_login(redirect=url, **kw)
+                        if survey_user and survey_user.state == 'new':
+                            url = '/survey/start/' + str(survey.access_token)
+                            response = super(Home, self).web_login(redirect=url, **kw)
+                        if survey_user and survey_user.state == 'skip':
+                            response = super(Home, self).web_login(
+                                redirect=str('survey/fill/%s/%s' % (str(survey.access_token), str(survey_user.token))),
+                                **kw)
+                        if survey_user and survey_user.state == 'done':
+                            if survey_user.quizz_passed:
+                                response = super(Home, self).web_login(redirect='/shop/cart', **kw)
+                            else:
+                                response = super(Home, self).web_login(redirect='/bolt ', **kw)
         return response
-
-
-
-
-
-

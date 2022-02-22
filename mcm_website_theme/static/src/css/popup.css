@@ -1,0 +1,131 @@
+.content {
+  color: #000;
+  margin-block-start: 1rem;
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.7);
+  transition: opacity 500ms;
+  display: none;
+  z-index: 1;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.popup {
+  text-align: center;
+  max-height: 81vh;
+  height: 61vh;
+  overflow-y: auto;
+  padding: 20px;
+  background: #fff;
+  border-radius: 5px;
+  width: 50vw;
+  height: fit-content;
+  position: relative;
+  transition: all 5s ease-in-out;
+}
+
+.popup h2 {
+  margin-top: 0;
+  color: #333;
+  font-family: Tahoma, Arial, sans-serif;
+}
+
+.popup .close {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  transition: all 200ms;
+  font-size: 30px;
+  font-weight: bold;
+  text-decoration: none;
+  color: #000;
+  cursor: pointer;
+}
+
+.popup .close:hover {
+  color: hsl(222, 61%, 41%);
+}
+
+.popup .content {
+  max-height: 30%;
+  overflow: auto;
+}
+#notifMessage {
+  font-family: 'Poppins', sans-serif;
+}
+.c-text {
+  overflow-y: scroll;
+  max-height: 40vh;
+}
+.popup-body {
+  overflow-y: auto;
+}
+
+@media screen and (max-width: 435px) {
+  .popup {
+    width: 80vw;
+    max-height: 85vh;
+  }
+
+  .embed-responsive-item {
+    width: 90%;
+    height: auto;
+  }
+  .c-text {
+    overflow-y: scroll;
+    max-height: 25vh;
+  }
+}
+.rkmd-btn {
+  display: inline-block;
+  position: relative;
+  cursor: pointer;
+  height: 35px;
+  line-height: 35px;
+  padding: 0 1.5rem;
+  color: #424242;
+  font-size: 15px;
+  font-weight: 600;
+  font-family: 'Roboto', sans-serif;
+  letter-spacing: 0.8px;
+  text-align: center;
+  text-decoration: none;
+  text-transform: uppercase;
+  vertical-align: middle;
+  white-space: nowrap;
+  outline: none;
+  border: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  border-radius: 2px;
+  transition: all 0.3s ease-out;
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.225);
+}
+.rkmd-btn:hover {
+  text-decoration: none;
+  box-shadow: 0 4px 10px 0px rgba(0, 0, 0, 0.225);
+}
+.rkmd-btn.btn-black {
+  color: #bdbdbd;
+  background-color: #111;
+}
+.rkmd-btn.btn-black:hover {
+  background-color: #252525;
+}
+@media screen and (min-width: 436px) and (max-width: 1200px) {
+  .popup {
+    width: 80vw;
+  }
+  .embed-responsive-item {
+    width: 60%;
+  }
+}

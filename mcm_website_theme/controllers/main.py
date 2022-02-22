@@ -257,6 +257,12 @@ class Routes_Site(http.Controller):
         elif request.website.id == 1:
             return request.render("mcm_website_theme.mcm_template_taxi", values)
 
+    @http.route('/formation-chauffeur-taxi', type='http', auth='public', website=True)
+    def chauffeur_taxi(self):
+        if request.website.id == 1 :
+            return werkzeug.utils.redirect('/formation-taxi',301)
+        else:
+            raise werkzeug.exceptions.NotFound()
     @http.route('/formation-vtc', type='http', auth='public', website=True)
     def vtc(self):
 
@@ -294,6 +300,13 @@ class Routes_Site(http.Controller):
         elif request.website.id == 1:
             return request.render("mcm_website_theme.mcm_website_theme_vtc", values)
 
+    @http.route('/formation-chauffeur-vtc', type='http', auth='public', website=True)
+    def chauffeur_vtc(self):
+        if request.website.id == 1 :
+            return werkzeug.utils.redirect('/formation-vtc',301)
+        else:
+            raise werkzeug.exceptions.NotFound()
+
     @http.route('/formation-moto-taxi', type='http', auth='public', website=True)
     def vmdtr(self):
 
@@ -330,6 +343,13 @@ class Routes_Site(http.Controller):
             raise werkzeug.exceptions.NotFound()
         elif request.website.id == 1:
             return request.render("mcm_website_theme.mcm_template_vmdtr", values)
+
+    @http.route('/formation-taximoto-vmtdr', type='http', auth='public', website=True)
+    def chauffeur_vmdtr(self):
+        if request.website.id == 1 :
+            return werkzeug.utils.redirect('/formation-moto-taxi',301)
+        else:
+            raise werkzeug.exceptions.NotFound()
 
     @http.route('/examen-vtc-taxi-moto-taxi', type='http', auth='public', website=True)
     def examen(self):
@@ -382,6 +402,33 @@ class Routes_Site(http.Controller):
         order = request.website.sale_get_order()
         if not order:
             return request.redirect("/pricing")
+        else:
+            default_code_bolt = False
+            if order.company_id.id ==1 :
+                if order.order_line:
+                    for line in order.order_line:
+                        if (line.product_id.default_code=='vtc_bolt'):
+                            default_code_bolt = True
+                    if default_code_bolt:
+                        survey = request.env['survey.survey'].sudo().search([('title', "=", 'Examen blanc Français')],
+                                                                            limit=1)
+                        if survey:
+                            print(survey)
+                            survey_user = request.env['survey.user_input'].sudo().search(
+                                [('partner_id', "=", request.env.user.partner_id.id), ('survey_id', '=', survey.id)],
+                                order='create_date asc', limit=1)
+                            if not survey_user:
+                                url = '/survey/start/'+str(survey.access_token)
+                                return werkzeug.utils.redirect(url,301)
+                            if survey_user and survey_user.state == 'new':
+                                url = '/survey/start/'+str(survey.access_token)
+                                return werkzeug.utils.redirect(url, 301)
+                            if survey_user and survey_user.state == 'skip':
+                                return werkzeug.utils.redirect(str('survey/fill/%s/%s' % (str(survey.access_token), str(survey_user.token))), 301)
+                            if survey_user and survey_user.state == 'done':
+                                if not survey_user.quizz_passed:
+                                    return werkzeug.utils.redirect('/bolt', 301)
+
         partner_has_documents = False
         if order.partner_id:
             documents = request.env['documents.document'].sudo().search([('partner_id', '=', order.partner_id.id)])
@@ -576,12 +623,60 @@ class Routes_Site(http.Controller):
     def bolttest(self):
         bolt_product = request.env['product.product'].sudo().search([('company_id', '=', 1),('default_code',"=",'vtc_bolt')], order="list_price",limit=1)
         vtc_product = request.env['product.product'].sudo().search([('company_id', '=', 1),('default_code',"=",'vtc')], order="list_price",limit=1)
+        
         promo = request.env['product.pricelist'].sudo().search(
             [('company_id', '=', 1), ('name', "=", 'bolt')],limit=1)
+        # 
+        # res['exam_not_passed'] = 'False'
+        # res['exam_success'] = 'False'
+        # if order:
+        #     if order.company_id.id == 1:
+        #         if order.order_line:
+        #             for line in order.order_line:
+        #                 if (line.product_id.default_code == 'vtc_bolt'):
+        #                     default_code_bolt = True
+        #             if default_code_bolt:
+        #                 survey = request.env['survey.survey'].sudo().search([('title', "=", 'Examen blanc Français')],
+        #                                                                     limit=1)
+        #                 if survey:
+        #                     survey_user = request.env['survey.user_input'].sudo().search(
+        #                         [('partner_id', "=", request.env.user.partner_id.id), ('survey_id', '=', survey.id)],
+        #                         order='create_date asc', limit=1)
+        #                     if not survey_user:
+        #                         res['exam_not_passed'] = 'True'
+        #                     if survey_user and survey_user.state == 'new':
+        #                         res['exam_not_passed'] = 'True'
+        # 
+        #                     if survey_user and survey_user.state == 'done':
+        #                         if survey_user.quizz_passed:
+        #                             res['exam_success'] = 'True'
+        exam_state = 'False'
+        if not request.website.is_public_user():
+            survey = request.env['survey.survey'].sudo().search([('title', "=", 'Examen blanc Français')],limit=1)
+            if survey:
+                survey_user = request.env['survey.user_input'].sudo().search(
+                    [('partner_id', "=", request.env.user.partner_id.id), ('survey_id', '=', survey.id)],
+                    order='create_date asc', limit=1)
+                if not survey_user:
+                    exam_state = 'exam_not_passed'
+                if survey_user and survey_user.state == 'new':
+                    exam_state = 'exam_not_passed'
+
+                if survey_user and survey_user.state == 'done':
+                    if not survey_user.quizz_corrected:
+                        exam_state = 'in_process'
+                    else:
+                        if survey_user.quizz_passed:
+                            exam_state = 'success'
+                        else:
+                            exam_state = 'failed'
+
+
         values = {
             'bolt_product' : bolt_product,
             'vtc_product' : vtc_product,
-            'promo' : promo
+            'promo' : promo,
+            'exam_state': exam_state,
         }
 
         if request.website.id == 2:
@@ -615,7 +710,18 @@ class WebsiteSale(WebsiteSale):
     ], type='http', auth="public", website=True, sitemap=False)
     def shop(self, page=0, category=None, state='', taxi_state='', vmdtr_state='', vtc_state='', search='', ppg=False,
              **post):
-        return request.redirect("/#pricing")
+
+        if category and category.website_id and category.website_id.id == 1:
+            if any(taxi in category.name for taxi in ['TAXI', 'Taxi', 'taxi']):
+                return werkzeug.utils.redirect('/formation-taxi#pricing', 301)
+            elif any(vtc in category.name for vtc in ['VTC', 'Vtc', 'vtc']):
+                return werkzeug.utils.redirect('/formation-vtc#pricing', 301)
+            elif any(vmdtr in category.name for vmdtr in ['VMDTR', 'Vmdtr', 'vmdtr']):
+                return werkzeug.utils.redirect('/formation-moto-taxi#pricing', 301)
+            else:
+                return werkzeug.utils.redirect('/#pricing', 301)
+        else:
+            return werkzeug.utils.redirect('/#pricing', 301)
         add_qty = int(post.get('add_qty', 1))
         Category = request.env['product.public.category']
         if category and category != 'all':
@@ -1050,6 +1156,24 @@ class WebsiteSale(WebsiteSale):
 
         return error, error_message
 
+    @http.route(['/shop/product/<model("product.template"):product>'], type='http', auth="public", website=True)
+    def product(self, product, category='', search='', **kwargs):
+        res = super(WebsiteSale, self).product(product,category,search)
+        if product and product.website_id and product.website_id.id == 1:
+            if product.default_code == 'vtc_bolt':
+                return werkzeug.utils.redirect('/bolt#pricing',301)
+            elif any(taxi in product.name for taxi in ['TAXI','Taxi','taxi']):
+                return werkzeug.utils.redirect('/formation-taxi#pricing', 301)
+            elif any(vtc in product.name for vtc in ['VTC', 'Vtc', 'vtc']) :
+                return werkzeug.utils.redirect('/formation-vtc#pricing', 301)
+            elif any(vmdtr in product.name for vmdtr in ['VMDTR', 'Vmdtr', 'vmdtr']):
+                return werkzeug.utils.redirect('/formation-moto-taxi#pricing', 301)
+            else:
+                return werkzeug.utils.redirect('/#pricing', 301)
+        return res
+    
+    
+
 
 class Payment3x(http.Controller):
 
@@ -1102,8 +1226,7 @@ class Conditions(http.Controller):
 
     @http.route(['/shop/payment/update_condition'], type='json', auth="public", methods=['POST'], website=True)
     def cart_update_condition(self, condition):
-        """This route is called when changing quantity from the cart or adding
-        a product from the wishlist."""
+        """This route is called when changing conditions in shop cart"""
         print("POST request @ /shop/payment/update_condition")
         order = request.website.sale_get_order(force_create=0)
         if order:
@@ -1115,7 +1238,7 @@ class Conditions(http.Controller):
 
     @http.route(['/shop/payment/update_failures'], type='json', auth="public", methods=['POST'], website=True)
     def cart_update_failures(self, failures):
-        """This route is called when changing renounce request in shop cart."""
+        """This route is called when changing failures in shop cart."""
         order = request.website.sale_get_order(force_create=0)
         if order:
             if failures:
@@ -1124,6 +1247,48 @@ class Conditions(http.Controller):
             else:
                 order.failures = False
                 order.partner_id.renounce_request = False
+        return True
+
+    @http.route(['/shop/update_driver_licence'], type='json', auth="public", methods=['POST'], website=True)
+    def cart_update_driver_licence(self, driver_licence):
+        """This route is called when changing driver_licence in shop cart."""
+        order = request.website.sale_get_order(force_create=0)
+        if order:
+            if order.order_line:
+                for line in order.order_line:
+                    if line.product_id.default_code == 'vtc_bolt':
+                        if driver_licence:
+                            order.partner_id.driver_licence = True
+                        else:
+                            order.partner_id.driver_licence = False
+        return True
+
+    @http.route(['/shop/update_license_suspension'], type='json', auth="public", methods=['POST'], website=True)
+    def cart_update_license_suspension(self, license_suspension):
+        """This route is called when changing license_suspension in shop cart."""
+        order = request.website.sale_get_order(force_create=0)
+        if order:
+            if order.order_line:
+                for line in order.order_line:
+                    if line.product_id.default_code == 'vtc_bolt':
+                        if license_suspension:
+                            order.partner_id.license_suspension = True
+                        else:
+                            order.partner_id.license_suspension = False
+        return True
+
+    @http.route(['/shop/update_criminal_record'], type='json', auth="public", methods=['POST'], website=True)
+    def cart_update_criminal_record(self, criminal_record):
+        """This route is called when changing criminal_record in shop cart."""
+        order = request.website.sale_get_order(force_create=0)
+        if order:
+            if order.order_line:
+                for line in order.order_line:
+                    if line.product_id.default_code == 'vtc_bolt':
+                        if criminal_record:
+                            order.partner_id.criminal_record = True
+                        else:
+                            order.partner_id.criminal_record = False
         return True
 
     @http.route(['/shop/payment/update_accompagnement'], type='json', auth="public", methods=['POST'], website=True)
@@ -1137,6 +1302,8 @@ class Conditions(http.Controller):
             else:
                 order.accompagnement = False
         return True
+    
+    
 
 
 class CustomerPortal(CustomerPortal):

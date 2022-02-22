@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 import functools
 import xmlrpc.client
 import requests
@@ -66,6 +67,7 @@ class partner(models.Model):
 
     def write(self, vals):
         if 'email' in vals and vals['email'] is not None:
+
             # Si email changé on change sur login
             users=self.env['res.users'].sudo().search([('partner_id',"=",self.id)])
             if users :
@@ -374,10 +376,10 @@ class partner(models.Model):
                 # Si non si mot de passe récupéré on l'ajoute sur la plateforme avec le meme mot de passe
                 if (user.password360) and (company == '2'):
                     partner.password360 = user.password360
-
+                    password=str(user.password360.encode('utf-8'))
 
                     # Ajouter i-One to table user
-                    data_user = '{"mail":"' + partner.email + '" , "password":"' + user.password360 + '", "firstName":"' + partner.firstName + '", "lastName":"' + partner.lastName + '", "phone":"' + partner.phone + '", "lang":"fr","sendCredentials":"true"}'
+                    data_user = '{"mail":"' + partner.email + '" , "password":"' + password + '", "firstName":"' + partner.firstName + '", "lastName":"' + partner.lastName + '", "phone":"' + partner.phone + '", "lang":"fr","sendCredentials":"true"}'
                     resp = requests.post(urluser, headers=headers, data=data_user)
                     print(data_user, 'user', resp.status_code)
                     respo = str(json.loads(resp.text))
@@ -550,37 +552,37 @@ class partner(models.Model):
                                 new_ticket = self.env['helpdesk.ticket'].sudo().create(
                                     vals)
 
-                        else:
+                        # else:
 
-                            vals = {
-                                'description': 'Apprenant non ajouté sur 360 %s %s' % (partner.name, responce_api),
-                                'name': 'Apprenant non ajouté sur 360 ',
-                                'team_id': self.env['helpdesk.team'].sudo().search(
-                                    [('name', 'like', 'IT'), ('company_id', "=", 2)],
-                                    limit=1).id,
-                            }
-                            description = "Apprenant non ajouté sur 360 " + str(partner.name) +" "+str(responce_api)
-                            ticket = self.env['helpdesk.ticket'].sudo().search([("description", "=", description),
-                                                                                   ("team_id.name", 'like', 'IT')])
-
-                            if not ticket:
-                                new_ticket = self.env['helpdesk.ticket'].sudo().create(
-                                    vals)
-                            vals_client = {
-                                'description': 'Apprenant non ajouté sur 360 %s %s' % (partner.name, responce_api),
-                                'name': 'Apprenant non ajouté sur 360 ',
-                                'team_id': self.env['helpdesk.team'].sudo().search(
-                                    [('name', 'like', 'Client'), ('company_id', "=", 2)],
-                                    limit=1).id,
-                            }
-                            description_client = "Apprenant non ajouté sur 360 " + str(partner.name) +" "+ str(
-                                responce_api)
-                            ticket_client = self.env['helpdesk.ticket'].sudo().search(
-                                [("description", "=", description_client),
-                                 ("team_id.name", 'like', 'Client')])
-                            if not ticket_client:
-                                new_ticket_client = self.env['helpdesk.ticket'].sudo().create(
-                                    vals_client)
+                            # vals = {
+                            #     'description': 'Apprenant non ajouté sur 360 %s %s' % (partner.name, responce_api),
+                            #     'name': 'Apprenant non ajouté sur 360 ',
+                            #     'team_id': self.env['helpdesk.team'].sudo().search(
+                            #         [('name', 'like', 'IT'), ('company_id', "=", 2)],
+                            #         limit=1).id,
+                            # }
+                            # description = "Apprenant non ajouté sur 360"+" " + str(partner.name) +" "+str(responce_api)
+                            # ticket = self.env['helpdesk.ticket'].sudo().search([("description", "=", description),
+                            #                                                        ("team_id.name", 'like', 'IT')])
+                            #
+                            # if not ticket:
+                            #     new_ticket = self.env['helpdesk.ticket'].sudo().create(
+                            #         vals)
+                            # vals_client = {
+                            #     'description': 'Apprenant non ajouté sur 360 %s %s' % (partner.name, responce_api),
+                            #     'name': 'Apprenant non ajouté sur 360 ',
+                            #     'team_id': self.env['helpdesk.team'].sudo().search(
+                            #         [('name', 'like', 'Client'), ('company_id', "=", 2)],
+                            #         limit=1).id,
+                            # }
+                            # description_client = "Apprenant non ajouté sur 360"+" "+ str(partner.name) +" "+ str(
+                            #     responce_api)
+                            # ticket_client = self.env['helpdesk.ticket'].sudo().search(
+                            #     [("description", "=", description_client),
+                            #      ("team_id.name", 'like', 'Client')])
+                            # if not ticket_client:
+                            #     new_ticket_client = self.env['helpdesk.ticket'].sudo().create(
+                            #         vals_client)
     def supprimer_ione_auto(self):
 
         base_url = self.env['ir.config_parameter'].sudo().get_param('web.base.url')

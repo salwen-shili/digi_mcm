@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="survey_user_input_wizard">
+            <field name="name">survey.user_input.wizard</field>
+            <field name="model">survey.user_input.wizard</field>
+            <field name="arch" type="xml">
+                <form string="Confirmer la correction d'examen">
+                    <sheet>
+                        <group>
+                            <field name="survey_user_input_id" readonly="1"/>
+                            <field name="partner_id" readonly="1"/>
+                            <field name="score" readonly="1"/>
+                        </group>
+                    </sheet>
+                    <footer>
+                        <button string="Valider la Correction" name="action_validate_correction_exam"
+                                type="object" class="btn-primary"/>
+                        <button string="Cancel" class="btn-secondary" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+    </data>
+</odoo>

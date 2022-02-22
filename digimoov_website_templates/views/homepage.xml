@@ -17,35 +17,21 @@
                             <div class="row align-items-center">
                                 <div class="col-md-6 align-self-center">
                                     <t t-if="partenaire=='' or partenaire!='box2home'">
-                                        <h1 class="subtitle" style="
-                    font-size: 31px;
-                    color: #202647;
-                    line-height: 0.8cm !important;
-                    height: 150px;
-                  " t-if="partenaire=='' or partenaire!='box2home'">
+                                        <h1 class="subtitle" style="                     font-size: 31px;                     color: #202647;                     line-height: 0.8cm !important;                     height: 150px;                   " t-if="partenaire=='' or partenaire!='box2home'">
                                             FORMATION EN CAPACITÉ DE TRANSPORT LÉGER DE
                                             <span class="stabiloblue">MARCHANDISES</span>
                                             POUR DEVENIR LIVREUR EN
-                                            <span class="typewrite" data-period="2000" data-type='[ "SCOOTER", "VOITURE", "CAMIONNETTE"]'></span>
+                                            <span class="typewrite" data-period="2000" data-type="[ &quot;SCOOTER&quot;, &quot;VOITURE&quot;, &quot;CAMIONNETTE&quot;]" />
                                         </h1>
                                     </t>
                                     <t t-if="partenaire=='box2home'">
-                                        <h1 class="subtitle" style="
-                    font-size: 25px;
-                    color: #202647;
-                    line-height: 0.8cm !important;
-                    height: 150px;
-                  " t-if="partenaire=='box2home'">
+                                        <h1 class="subtitle" style="                     font-size: 25px;                     color: #202647;                     line-height: 0.8cm !important;                     height: 150px;                   " t-if="partenaire=='box2home'">
                                             <b>FORMATION EN CAPACITÉ DE TRANSPORT LÉGER DE</b>
                                             <span class="stabiloblue">MARCHANDISES</span>
-                                            <b style="
-                      font-size: 25px;
-                      color: #202647;
-                      line-height: 0.8cm !important;
-                    ">POUR DEVENIR LIVREUR EN
+                                            <b style="                       font-size: 25px;                       color: #202647;                       line-height: 0.8cm !important;                     ">POUR DEVENIR LIVREUR EN
                                             </b>
                                             <b>
-                                                <span class="typewrite" data-period="2000" data-type='[ "PARTENARIAT AVEC BOX2HOME" ]'>
+                                                <span class="typewrite" data-period="2000" data-type="[ &quot;PARTENARIAT AVEC BOX2HOME&quot; ]">
                                                     <span class="wrap">PARTENARIAT AVEC BOX2HOME</span>
                                                 </span>
                                             </b>
@@ -54,27 +40,15 @@
                                     </t>
                                     <br />
                                     <div class="boosting-section tab-btn s_btn">
-                                        <a href="/attestation-transport-leger-marchandises" class="
-                    homebuttonspacing
-                    boosting-section
-                    boostingbtn
-                    btn btn-alpha
-                    rounded-circle
-                  ">En savoir plus
+                                        <a href="/attestation-transport-leger-marchandises" class="                     homebuttonspacing                     boosting-section                     boostingbtn                     btn btn-alpha                     rounded-circle                   ">En savoir plus
                                         </a>
-                                        <a class="
-                    homebuttonspacing
-                    boosting-section
-                    boostingbtn
-                    btn btn-alpha
-                    rounded-circle
-                  " href="/contact" target="_blank" rel="noopner">
+                                        <a class="                     homebuttonspacing                     boosting-section                     boostingbtn                     btn btn-alpha                     rounded-circle                   " href="/contact" target="_blank" rel="noopner">
                                             Contactez-nous
                                         </a>
                                         <!-- TrustBox widget - Mini -->
-                                        <!-- <div style="max-width: 181px;margin-block-start: 40px;" class="trustpilot-widget" data-locale="fr-FR" data-template-id="53aa8807dec7e10d38f59f32" data-businessunit-id="60a28e22d3a8ed00019ff03e" data-style-height="150px" data-style-width="100%" data-theme="light">
+                                        <div style="max-width: 181px;margin-block-start: 40px;" class="trustpilot-widget" data-locale="fr-FR" data-template-id="53aa8807dec7e10d38f59f32" data-businessunit-id="60a28e22d3a8ed00019ff03e" data-style-height="150px" data-style-width="100%" data-theme="light">
                                             <a href="https://fr.trustpilot.com/review/digimoov.fr" target="_blank" rel="noopener">Trustpilot</a>
-                                        </div> -->
+                                        </div>
 
                                         <!-- End TrustBox widget -->
                                         <!-- TrustBox widget - Horizontal -->
@@ -140,9 +114,7 @@
             align-items: center;
           }
                      </style>
-                    <div class="trustpilot-widget" data-locale="fr-FR" data-template-id="5406e65db0d04a09e042d5fc" data-businessunit-id="60a28e22d3a8ed00019ff03e" data-style-height="28px" data-style-width="100%" data-theme="light">
-                        <a href="https://fr.trustpilot.com/review/digimoov.fr" target="_blank" rel="noopener">Trustpilot</a>
-                    </div>
+
                     <section class="pt16 pb32 js-scroll fade-in-top">
                         <div class="container js-scroll fade-in-top">
                             <div class="center-logo mt32">
@@ -207,11 +179,7 @@
                                                 &amp;nbsp;
                                                 <br />
                                                 <br />
-                                                <span style="
-                        color: rgb(0, 0, 0);
-                        font-size: 18px;
-                        text-align: left;
-                      ">Se préparer à l’examen de capacité de transport léger de
+                                                <span style="                         color: rgb(0, 0, 0);                         font-size: 18px;                         text-align: left;                       ">Se préparer à l’examen de capacité de transport léger de
                                                     marchandises.
                                                 </span>
                                             </div>
@@ -234,10 +202,7 @@
                                                             </font>
                                                         </h3>
                                                         <p class="m-t-20">
-                                                            <span style="
-                              font-family: Roboto, 'Odoo Unicode Support Noto',
-                                sans-serif;
-                            ">
+                                                            <span style="                               font-family: Roboto, 'Odoo Unicode Support Noto',                                 sans-serif;                             ">
                                                                 Choisissez quand et pour combien de temps vous
                                                                 souhaitez travailler
                                                             </span>
@@ -257,10 +222,7 @@
                                                             </font>
                                                         </h3>
                                                         <p class="m-t-20">
-                                                            <span style="
-                              font-family: Roboto, 'Odoo Unicode Support Noto',
-                                sans-serif;
-                            ">
+                                                            <span style="                               font-family: Roboto, 'Odoo Unicode Support Noto',                                 sans-serif;                             ">
                                                                 Vous serez pris en charge et accompagné par une
                                                                 équipe hautement qualifiée
                                                             </span>
@@ -279,10 +241,7 @@
                                                             <font style="font-size: 20px">Examens blancs</font>
                                                         </h3>
                                                         <p class="m-t-20">
-                                                            <span style="
-                              font-family: Roboto, 'Odoo Unicode Support Noto',
-                                sans-serif;
-                            " id="en-savoir-plus">
+                                                            <span style="                               font-family: Roboto, 'Odoo Unicode Support Noto',                                 sans-serif;                             " id="en-savoir-plus">
                                                                 Afin de se préparer efficacement à l'examen final
                                                             </span>
                                                             <br />
@@ -298,14 +257,7 @@
                                 <div class="container">
                                     <div class="row s_nb_column_fixed" id="en-savoir-plus">
                                         <div class="s_title pt16 offset-lg-2 col-lg-8 pb0" style="text-align: center">
-                                            <h2 style="
-                      margin-bottom: 10px;
-                      font-family: Roboto;
-                      font-weight: 500;
-                      line-height: 1.3;
-                      color: rgb(58, 58, 71);
-                      font-size: 28px;
-                    ">
+                                            <h2 style="                       margin-bottom: 10px;                       font-family: Roboto;                       font-weight: 500;                       line-height: 1.3;                       color: rgb(58, 58, 71);                       font-size: 28px;                     ">
                                                 <font style="font-size: 24px">Digimoov vous accompagne pour obtenir
                                                     votre
                                                     attestation
@@ -335,22 +287,14 @@
                                                         <br />
                                                     </p>
                                                     <div class="boosting-section tab-btn s_btn text-right">
-                                                        <a href="/blog/digimoov-3/post/bon-a-savoir-sur-la-formation-capacite-de-transport-leger-6#details-formation" target="_blank" rel="noopner" class="
-                            boosting-section
-                            boostingbtn
-                            btn btn-alpha
-                            rounded-circle
-                          ">
+                                                        <a href="/blog/digimoov-3/post/bon-a-savoir-sur-la-formation-capacite-de-transport-leger-6#details-formation" target="_blank" rel="noopner" class="                             boosting-section                             boostingbtn                             btn btn-alpha                             rounded-circle                           ">
                                                             Détails sur la formation
                                                         </a>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="col-md-5 col-md-5">
-                                                <img data-src="/digimoov_website_templates/static/img/compressed/formation en ligne.webp" data-srcSafari="/digimoov_website_templates/static/img/Homepage/formation en ligne.jpg" alt=" Apprenant en formation à distance" class="img-responsive img img-fluid lazy" data-original-title="" title="formation en ligne" aria-describedby="tooltip971717" style="
-                        transform: translateX(6.9%) translateY(1.3%)
-                          scaleX(1.11) scaleY(1.11);
-                      " />
+                                                <img data-src="/digimoov_website_templates/static/img/compressed/formation en ligne.webp" data-srcSafari="/digimoov_website_templates/static/img/Homepage/formation en ligne.jpg" alt=" Apprenant en formation à distance" class="img-responsive img img-fluid lazy" data-original-title="" title="formation en ligne" aria-describedby="tooltip971717" style="                         transform: translateX(6.9%) translateY(1.3%)                           scaleX(1.11) scaleY(1.11);                       " />
                                             </div>
                                             <!-- <div class="banner-btn s_btn text-right" style="margin-top: 20px" data-name="Button" aria-describedby="tooltip272185">
                                 <a class="bannerbtn btn btn-alpha rounded-circle o_default_snippet_text" href="/blog/digimoov-3/post/bon-a-savoir-sur-la-formation-capacite-de-transport-leger-6#details-formation">Détails sur la formation&amp;nbsp;&amp;nbsp;</a>
@@ -384,12 +328,7 @@
                                                 </p>
 
                                                 <div class="boosting-section tab-btn s_btn text-left">
-                                                    <a target="_blank" rel="noopner" href="/examen-capacite-transport-marchandises" class="
-                          boosting-section
-                          boostingbtn
-                          btn btn-alpha
-                          rounded-circle
-                        " data-original-title="" title="" aria-describedby="tooltip959694">
+                                                    <a target="_blank" rel="noopner" href="/examen-capacite-transport-marchandises" class="                           boosting-section                           boostingbtn                           btn btn-alpha                           rounded-circle                         " data-original-title="" title="" aria-describedby="tooltip959694">
                                                         Détails sur l'examen&amp;nbsp;&amp;nbsp;
                                                     </a>
                                                 </div>
@@ -420,12 +359,7 @@
                                                     </p>
 
                                                     <div class="boosting-section tab-btn s_btn text-right">
-                                                        <a target="_blank" rel="noopner" href="/blog/digimoov-3/post/bon-a-savoir-sur-la-formation-capacite-de-transport-leger-6#details-formation" class="
-                            boosting-section
-                            boostingbtn
-                            btn btn-alpha
-                            rounded-circle
-                          " data-original-title="" title="" aria-describedby="tooltip272185">
+                                                        <a target="_blank" rel="noopner" href="/blog/digimoov-3/post/bon-a-savoir-sur-la-formation-capacite-de-transport-leger-6#details-formation" class="                             boosting-section                             boostingbtn                             btn btn-alpha                             rounded-circle                           " data-original-title="" title="" aria-describedby="tooltip272185">
                                                             En-savoir plus&amp;nbsp;&amp;nbsp;
                                                         </a>
                                                     </div>
@@ -459,11 +393,7 @@
                                     <div class="container">
                                         <div class="row m-t-40">
                                             <div class="col-md-4 wrap-feature7-box">
-                                                <section class="o_anim_zoom_in o_animate o_animated" style="
-                        animation-name: o_anim_zoom_in;
-                        visibility: visible;
-                        animation-play-state: running;
-                      ">
+                                                <section class="o_anim_zoom_in o_animate o_animated" style="                         animation-name: o_anim_zoom_in;                         visibility: visible;                         animation-play-state: running;                       ">
                                                     <img class="rounded img-responsive lazy" data-src="/digimoov_website_templates/static/img/Transport léger sur scooter.webp" data-srcSafari="/digimoov_website_templates/static/img/Homepage/Transport léger sur scooter.png" alt="Scooter pour faire de la livraison" data-original-title="" title="Transport léger sur scooter" aria-describedby="tooltip533278" style="transform: scaleX(0.78) scaleY(0.85)" />
                                                     <div class="m-t-30">
                                                         <h3 class="font-medium" style="text-align: center">
@@ -479,11 +409,7 @@
                                                 </section>
                                             </div>
                                             <div class="col-md-4 wrap-feature7-box">
-                                                <section class="o_animate o_anim_zoom_in o_animated" style="
-                        animation-name: o_anim_zoom_in;
-                        visibility: visible;
-                        animation-play-state: running;
-                      ">
+                                                <section class="o_animate o_anim_zoom_in o_animated" style="                         animation-name: o_anim_zoom_in;                         visibility: visible;                         animation-play-state: running;                       ">
                                                     <img class="rounded img-responsive lazy" data-src="/digimoov_website_templates/static/img/Transport léger  sur voiture.webp" data-srcSafari="/digimoov_website_templates/static/img/Homepage/Transport léger  sur voiture.png" alt="Voiture pour Transport léger de marchandise" data-original-title="" title="Transport léger  sur voiture" aria-describedby="tooltip970873" style="transform: scaleX(0.85) scaleY(0.89)" />
                                                     <div class="m-t-30">
                                                         <h3 class="font-medium" style="text-align: center">
@@ -499,11 +425,7 @@
                                                 </section>
                                             </div>
                                             <div class="col-md-4 wrap-feature7-box">
-                                                <section class="o_animate o_anim_zoom_in o_animated" style="
-                        animation-name: o_anim_zoom_in;
-                        visibility: visible;
-                        animation-play-state: running;
-                      ">
+                                                <section class="o_animate o_anim_zoom_in o_animated" style="                         animation-name: o_anim_zoom_in;                         visibility: visible;                         animation-play-state: running;                       ">
                                                     <img class="rounded img-responsive lazy" data-src="/digimoov_website_templates/static/img/Transport léger sur camionnette 3,5t.webp" data-srcSafari="/digimoov_website_templates/static/img/Homepage/Transport léger sur camionnette 3,5t.png" alt="camionnette pour transport -3.5t PTAC" data-original-title="" title="Transport léger sur camionnette 3,5t" aria-describedby="tooltip38151" style="transform: scaleX(0.89) scaleY(0.9)" />
                                                     <div class="m-t-30">
                                                         <h3 class="font-medium lazy" style="text-align: center">
@@ -522,10 +444,7 @@
                                     </div>
                                 </div>
                             </section>
-                            <section class="s_furniture_fun-fact-section oe_img_bg oe_custom_bg" style="
-              background-image: url('/digimoov_website_templates/static/img/Monter boite de transport.png');
-              background-position: 55.8% 54.4%;
-            " alt="Transport routier de marchandise" data-name="Counter with parallex image">
+                            <section class="s_furniture_fun-fact-section oe_img_bg oe_custom_bg" style="               background-image: url('/digimoov_website_templates/static/img/Monter boite de transport.png');               background-position: 55.8% 54.4%;             " alt="Transport routier de marchandise" data-name="Counter with parallex image">
                                 <div class="container">
                                     <div class="row clearfix">
                                         <div class="title-column col-lg-5 col-md-12 col-sm-12">
@@ -793,6 +712,7 @@
                                             </p>
                                             <br />
                                         </div> -->
+
                                         <div class="text-center text-white border-0" style="                     background-color: #6e209f;                     border-top-left-radius: 25px;                     border-top-right-radius: 25px;                   ">
                                             <br />
 
@@ -801,9 +721,8 @@
                                                     <font style="font-size: 30px">PRO</font>
                                                 </strong>
                                             </p>
-                                            <!-- <p>&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;</p> -->
                                             <p class="blink-soft">
-                                                <b>Paiement en 2 fois</b>
+                                                <b>Éligible au CPF</b>
                                             </p>
                                             <br />
                                         </div>
@@ -1402,12 +1321,7 @@
                         <div class="row" style="place-content: center">
                             <div class="col-lg-6 col-md-8 col-sm-12">
                                 <div class="card border-0 shadow" style="border-radius: 25px 25px">
-                                    <div class="text-center text-white border-0" style="
-                  background-color: #6e209f;
-                  border-top-left-radius: 25px;
-                  border-top-right-radius: 25px;
-                  padding-bottom: 14px;
-                ">
+                                    <div class="text-center text-white border-0" style="                   background-color: #6e209f;                   border-top-left-radius: 25px;                   border-top-right-radius: 25px;                   padding-bottom: 14px;                 ">
                                         <br />
                                         <p>
                                             <span style="font-size: 30px; font-weight: 700; padding-bottom: 10px">SOLO</span>
@@ -1466,12 +1380,7 @@
                                                         </t>
                                                     </b>
                                                 </div>
-                                                <p class="
-                        medium
-                        text-center
-                        font-weight-bolder
-                        text-secondary
-                      " style="color: red !important;">
+                                                <p class="                         medium                         text-center                         font-weight-bolder                         text-secondary                       " style="color: red !important;">
                       Paiement 1 fois
                                                 </p>
                                                 <br />

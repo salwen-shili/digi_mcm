@@ -269,15 +269,21 @@
         <xpath expr="//table[@id='cart_products']" position="after">
             <script></script>
             <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.4.0/dist/confetti.browser.min.js"></script>
+            <input type='hidden' t-att-value='from_bolt' id='from_bolt' />
 
             <div id="popup1" class="overlay_popup  " style="position: fixed !important;">
-                <div class="popup" style="top: 20%;z-index:999;">
+                <div class="popup" style="top: 20%;z-index:999;    max-height:unset">
 
 
                     <h2 class="text-left">
                         <i class="fa fa-info-circle" style="color: #152856;"></i>
                     </h2>
-                    <a class="close" href="#" onclick=" closepopup()">
+                    <!-- bolt =  false-->
+                    <a t-if="from_bolt == 'False'" class="close" href="#" onclick="closepopup()">
+                        <i class="fa fa-times"></i>
+                    </a>
+                    <!-- bolt = true-->
+                    <a t-if="from_bolt == 'True'" class="close" href="#" onclick="resetPopupBolt()">
                         <i class="fa fa-times"></i>
                     </a>
                     <div class="content" id="popupcontent">
@@ -359,11 +365,15 @@
                             }
 
                         </style>
-
                         <div style="text-align:center">
                             <button type="button" class="btn btn-secondary action-button shake" id="continueBtn" onclick="verify_payment_method()">Continuer
                             </button>
                         </div>
+
+                        <!-- <div t-if="from_bolt" style="text-align:center">
+                            <button type="button" class="btn btn-secondary action-button shake" id="continueBtn" onclick="addcheckBoxBolt()">Continuer
+                            </button>
+                        </div> -->
                     </div>
                 </div>
             </div>
@@ -380,7 +390,7 @@
                         <div style="margin-left:0%;" id="exam_center">
                             <select name="region_examen" id="region_examen" class="form-control search-slt " t-if="modules_mcm">
                                 <option value="all" id="all">Sélectionnez votre région d'examen</option>
-                                <t t-if="not from_bolt">
+                                <t t-if="from_bolt == 'False'">
                                     <t t-foreach="list_villes_mcm" t-as="ville">
                                         <t t-if="ville">
                                             <b>
@@ -391,7 +401,7 @@
                                         </t>
                                     </t>
                                 </t>
-                                <t t-if="from_bolt">
+                                <t t-if="from_bolt == 'True'">
                                     <t t-foreach="list_villes_mcm" t-as="ville">
                                         <t t-if="ville and ville.name_ville=='Île-de-France'">
                                             <b>

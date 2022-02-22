@@ -4,6 +4,7 @@
         <xpath expr="//div[@id='sidebar_content']" position="inside">
             <script t-if="sale_order" type="text/javascript" src="/digimoov_website_templates/static/src/js/contract_notif.js"></script>
             <input type="hidden" id='issigned' t-if="sale_order" t-att-value='sale_order.state'></input>
+            <input type="hidden" id='bolt' t-if="sale_order" t-att-value='sale_order.pricelist_id.name'></input>
             <style>
                 .content {
                 color: #000;

@@ -2,12 +2,13 @@
 <odoo>
   <template id="mcm_website_theme_vtc" name="Formation VTC">
     <t t-call="website.layout">
+
       <div id="wrap" class="oe_structure oe_empty">
         <script defer="defer" type="text/javascript" src="/digimoov_website_templates/static/src/js/lazy-min.min.js" />
         <link rel="stylesheet" href="/mcm_website_theme/static/src/css/cta-button.min.css" />
         <link rel="stylesheet" href="/mcm_website_theme/static/src/css/style_taxi.min.css" />
         <!-- section 1-->
-        <section id="sh_corpomate_theme_section_258" class="sh_animation_part pt8" data-name="Formation chauffeur TAXI" style="word-break: break-word; position: relative; z-index: 0;">
+        <section id="sh_corpomate_theme_section_258" class="sh_animation_part pt8" data-name="Formation chauffeur TAXI" style="">
           <div class="container-banner">
             <div class="row">
               <div class="col-lg-6 pb16 pt56" style="border-style: none; border-width: 0px">
@@ -16,7 +17,7 @@
                     <h1 class="slider-text-info title-mcm">
                       Formation
                       <br />
-                      <span class="subtitle-mcm-formation"> VTC </span>
+                      <span class="subtitle-mcm-formation"> VTC à distance</span>
                     </h1>
                     <br />
                     <p class="para text-center">
@@ -28,7 +29,14 @@
                     vous offre une
                       <b>formation théorique à distance</b>
                       de qualité avec un accompagnement et un suivi personnalisé pour garantir votre réussite à l'
-                      <b>examen</b>
+                      <a href="/examen-vtc-taxi-moto-taxi">
+                        <u>
+                          <b>examen </b>
+                        </u>
+                      </a>
+                      <u>
+                        <b>&amp;nbsp;</b>
+                      </u>
                       &amp;nbsp;.
                     </p>
                     <br />
@@ -44,7 +52,7 @@
               </div>
               <div class="col-lg-6 pb48 pt16 js-scroll slide-right ">
                 <br />
-                <img data-src="/mcm_website_theme/static/src/img/formation_vtc/formation-chauffeur-vtc.webp" data-srcsafari="/mcm_website_theme/static/src/img/formation_vtc/formation-chauffeur-vtc.png" class="img img-fluid mx-auto" alt="chaffeur vtc devant sa voiture" title="Formation VTC" aria-describedby="tooltip202025" style="text-align: center" src="/mcm_website_theme/static/src/img/formation_vtc/formation-chauffeur-vtc.webp" />
+                <img data-src="/mcm_website_theme/static/src/img/formation_vtc/formation-chauffeur-vtc.webp" data-srcsafari="/mcm_website_theme/static/src/img/formation_vtc/formation-chauffeur-vtc.png" class="img img-fluid mx-auto lazy" alt="chaffeur vtc devant sa voiture" title="Formation VTC" aria-describedby="tooltip202025" style="text-align: center" />
               </div>
             </div>
           </div>
@@ -89,13 +97,13 @@
           </div>
         </section>
         <!-- fin LOGOS-->
-        <section class="s_text_image pt40 pb4 ">
+        <section class="s_text_image pt40 pb4">
           <div class="container">
             <div class="row align-items-center">
-              <div class="col-lg-6 pt16 pb16 js-scroll slide-left">
+              <div class="col-lg-6 pt16 pb16 js-scroll slide-left ">
                 <img src="/mcm_website_theme/static/src/img/formation_vtc/formation-vtc.png" class="img img-fluid mx-auto" title="c'est quoi un chauffeur vtc ?" alt="chauffeur vtc dans sa voiture" />
               </div>
-              <div class="col-lg-6 pt16 pb16 js-scroll slide-right">
+              <div class="col-lg-6 pt16 pb16 js-scroll slide-right ">
                 <h2 style="max-width: 70%">c'est quoi un chauffeur vtc ?</h2>
                 <p class="para">
                   L’abréviation
@@ -105,10 +113,12 @@
                 <p class="para">
                   La
                   <b> GrandGuillaume </b>
-                  implique que le VTC peut se déplacer
-                uniquement si la course a été réservée à l'avance. Justement, en
-                réservant un VTC, le client connait à l’avance , le trajet de sa
-                destination ainsi que le coût de sa course.
+                  implique que le VTC peut se déplacer uniquement si la course a été réservée à l'avance. Justement, en réservant un VTC, le client connait à l’avance , le trajet de sa destination ainsi que le coût de sa course. Pour mieux connaître le métier, consultez notre article :
+                  <a href="/blog/blog-vtc-7/post/debouches-ou-travailler-comme-conducteur-vtc-25">
+                    <b>
+                      <u>Où travailler comme conducteur VTC ?</u>
+                    </b>
+                  </a>
                 </p>
               </div>
             </div>
@@ -118,7 +128,7 @@
         <section class="s_text_image pt32 pb32">
           <div class="container">
             <div class="row align-items-center">
-              <div class="col-lg-6 pt16 pb16 js-scroll slide-left">
+              <div class="col-lg-6 pt16 pb16 js-scroll slide-left ">
                 <h2>COMMENT DEVENIR CHAUFFEUR VTC ?</h2>
                 <p class="para">
                   Pour devenir&amp;nbsp;
@@ -157,11 +167,15 @@
                   </b>
                   &amp;nbsp;auprès du
                   <b>
-                    <a target="_blank" href="https://www.mcm-academy.fr/blog/blog-vtc-7/post/comment-sinscrire-au-registre-vtc-35">registre des VTC</a>
+                    <a target="_blank" href="https://www.mcm-academy.fr/blog/blog-vtc-7/post/comment-sinscrire-au-registre-vtc-35" data-original-title="" title="" aria-describedby="tooltip563356">
+                      <u>registre des VTC</u>
+                    </a>
                   </b>
                   . Et enfin, choisir votre
                   <b>
-                    <a target="_blank" href="https://www.mcm-academy.fr/blog/blog-vtc-7/post/quel-statut-juridique-choisir-pour-un-chauffeur-vtc-21">statut juridique VTC</a>
+                    <a target="_blank" href="https://www.mcm-academy.fr/blog/blog-vtc-7/post/quel-statut-juridique-choisir-pour-un-chauffeur-vtc-21" data-original-title="" title="" aria-describedby="tooltip251114">
+                      <u>statut juridique VTC</u>
+                    </a>
                     ,&amp;nbsp;
                   </b>
                   un statut qui&amp;nbsp;s’accorde en principe à vos attentes et à
@@ -169,6 +183,14 @@
                   <b>&amp;nbsp;</b>
                   en tant que chauffeur indépendant ou pour le compte d'une
                 plateforme dédiée.
+                  <br />
+                  Si vous êtes femme et vous cherchez aussi à exercer le métier, n'hésitez pas à consulter notre article :
+                  <a href="/blog/blog-vtc-7/post/comment-devenir-chauffeur-vtc-femme-32">
+                    <b>
+                      <u>Comment devenir chauffeur VTC femme </u>
+                    </b>
+                  </a>
+                  ?&amp;nbsp;
                 </p>
                 <div class="s_btn text-left pt16 pb16" data-name="Buttons">
                   <a href="#pricing" alt="inscription formation vtc MCM Academy">
@@ -178,14 +200,14 @@
                   </a>
                 </div>
               </div>
-              <div class="col-lg-6 pt16 pb16 js-scroll slide-right">
+              <div class="col-lg-6 pt16 pb16 js-scroll slide-right ">
                 <img src="/mcm_website_theme/static/src/img/formation_vtc/candidat-chauffeur-vtc.png" alt="chauffeur vtc" title="comment devenir chauffeur vtc" class="img img-fluid mx-auto" />
               </div>
             </div>
           </div>
         </section>
         <!-- section 6-->
-        <section id="sh_corpomate_theme_section_52" style="word-break: break-word; position: relative; z-index: 0;" class="">
+        <section id="sh_corpomate_theme_section_52" style="" class="">
           <div class="container">
             <h3 class="fade-in-top js-scroll pb32  text-center" style="max-width: 100%"> Les démarches administratives pour avoir la carte PRO </h3>
             <div class="row js-scroll fade-in-top ">
@@ -237,14 +259,14 @@
           </div>
         </section>
         <!-- section 8-->
-        <section class="s_text_image pt40 pb4" style="word-break: break-word; position: relative; z-index: 0;">
+        <section class="s_text_image pt40 pb4" style="">
           <div class="container">
             <div class="pt16 pb16 js-scroll fade-in-top " style="text-align: center">
-              <h2 class="s_title_default">Formation chauffeur VTC</h2>
+              <h2 class="s_title_default">Formation chauffeur VTC à distance</h2>
             </div>
             <div class="row align-items-center">
               <div class="col-lg-6 pb24 pt0 js-scroll slide-left ">
-                <img data-src="/mcm_website_theme/static/src/img/formation_vtc/profil-candidat-chauffeur-vtc.webp" data-srcsafari="/mcm_website_theme/static/src/img/formation_vtc/profil-candidat-chauffeur-vtc.png" class="img img-fluid mx-auto" alt="Devenir chauffeur professionnel VTC" title="Chauffeur vtc dans sa voiture" style="text-align: center" src="/mcm_website_theme/static/src/img/formation_vtc/profil-candidat-chauffeur-vtc.webp" />
+                <img data-src="/mcm_website_theme/static/src/img/formation_vtc/profil-candidat-chauffeur-vtc.webp" data-srcsafari="/mcm_website_theme/static/src/img/formation_vtc/profil-candidat-chauffeur-vtc.png" class="img img-fluid mx-auto lazy" alt="Devenir chauffeur professionnel VTC" title="Chauffeur vtc dans sa voiture" style="text-align: center" />
               </div>
               <div class="col-lg-6 js-scroll slide-right " style="border-style: none; border-width: 0px">
                 <h3 style="                   font-size: 26px;                   color: rgb(0, 0, 0);                   margin-block-end: 1.2rem;                 ">
@@ -299,7 +321,7 @@
           </div>
         </section>
         <!-- section 10-->
-        <section class="s_text_image mt24 mb40" style="word-break: break-word; position: relative; z-index: 0;">
+        <section class="s_text_image mt24 mb40" style="">
           <div class="container">
             <div class="row align-items-center">
               <div class="col-lg-6 js-scroll slide-right " style="border-style: none; border-width: 0px">
@@ -332,13 +354,13 @@
                 </p>
               </div>
               <div class="col-lg-6 pb24 pt0 js-scroll slide-left ">
-                <img data-src="/mcm_website_theme/static/src/img/formation_vtc/formation-en-ligne-vtc.webp" data-srcsafari="/mcm_website_theme/static/src/img/formation_vtc/formation-en-ligne-vtc.png" class="img img-fluid mx-auto" alt="Candidat vtc suit une formation en ligne sur pc" title="Candidat vtc suit une formation en ligne sur pc" style="text-align: center" src="/mcm_website_theme/static/src/img/formation_vtc/formation-en-ligne-vtc.webp" />
+                <img data-src="/mcm_website_theme/static/src/img/formation_vtc/formation-en-ligne-vtc.webp" data-srcsafari="/mcm_website_theme/static/src/img/formation_vtc/formation-en-ligne-vtc.png" class="img img-fluid mx-auto lazy" alt="Candidat vtc suit une formation en ligne sur pc" title="Candidat vtc suit une formation en ligne sur pc" style="text-align: center" />
               </div>
             </div>
           </div>
         </section>
         <!-- section 11-->
-        <section id="sh_corpomate_theme_section_46 mt24 mb16" style="word-break: break-word; position: relative; z-index: 0;" class="">
+        <section id="sh_corpomate_theme_section_46 mt24 mb16" style="" class="">
           <div class="container" style="border-style: none; border-width: 0px;">
             <div class="row">
               <div class="col-lg-6 js-scroll slide-left ">
@@ -348,7 +370,6 @@
                     <div class="media_iframe_video_size">&amp;nbsp;</div>
                     <iframe src="//www.youtube.com/embed/vLIr9mckz8M?autoplay=1&amp;mute=1&amp;rel=0&amp;loop=1&amp;playlist=vLIr9mckz8M&amp;modestbranding=1" frameborder="0" allowfullscreen="allowfullscreen" />
                   </div>
-
                 </div>
               </div>
               <div class="col-lg-6 js-scroll slide-right " style="border-style: none; border-width: 0px">
@@ -414,7 +435,7 @@
                             <!-- <a class="btn btn-primary sh_btn_cm_8" data-original-title="" title="" aria-describedby="tooltip357369" onClick="(function(){document.getElementById('form-1-1').submit();return false;})();return false;">
                             Je m'inscris
                                                 </a> -->
-                            <a class="animated-button-yellow" href="#pricing" onClick="(function(){packVtcPageFormationTaxi();document.getElementById('form-1-1').submit();return false;})();return false;">
+                            <a class="animated-button-yellow" href="#pricing" onClick="(function(){document.getElementById('form-1-1').submit();return false;})();return false;">
                               <span />
                               <span />
                               <span />
@@ -465,6 +486,7 @@
           </div>
         </section>
       </div>
+
     </t>
   </template>
 </odoo>

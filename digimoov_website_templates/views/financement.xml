@@ -156,17 +156,32 @@
                 <div class="container">
                     <input t-att-value="request.website.microsoft_tracking_key" id="microsoft_tracking_key" type="hidden" />
                     <div class="row" style="place-content: center;">
-                        <div class="col-md-5 col-sm-12">
+                        <div class="col-md-4 col-sm-6">
                             <div class="card border-0 shadow" style="border-radius: 25px 25px">
-                                <div class="text-center text-white border-0" style="
+                                <!-- <div class="text-center text-white border-0" style="
                     background-color: #6e209f;
                     border-top-left-radius: 25px;
                     border-top-right-radius: 25px;
                   ">
+                                            <br />
+                                            <p>
+                                                <strong style="color: white">
+                                                    <font style="font-size: 30px">PRO</font>
+                                                </strong>
+                                            </p>
+                                            <p>
+                                                <b></b>
+                                            </p>
+                                            <br />
+                                        </div> -->
+                                <div class="text-center text-white border-0" style="                     background-color: #6e209f;                     border-top-left-radius: 25px;                     border-top-right-radius: 25px;                   ">
                                     <br />
-                                    <h2>
-                                        <strong style="color: white">PREMIUM</strong>
-                                    </h2>
+
+                                    <p>
+                                        <strong style="color: white">
+                                            <font style="font-size: 30px">PRO</font>
+                                        </strong>
+                                    </p>
                                     <style>
                                              .blink-soft {
             animation: blinker 1s linear infinite;
@@ -186,6 +201,131 @@
             }
             }
                                     </style>
+                                    <!-- <p>&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;</p> -->
+                                    <p class="blink-soft">
+                                        <b>Éligible au CPF</b>
+                                    </p>
+                                    <br />
+                                </div>
+                                <t t-foreach="digimoov_products" t-as="product">
+                                    <t t-if="product.default_code=='avancee'">
+                                        <form action="/shop/cart/update" method="post" id="form-2-1">
+                                            <input type="hidden" class="product_id" name="product_id" t-att-value="product.id" />
+                                            <input type="hidden" name="promo" t-att-value="promo.id" t-if="promo" />
+                                            <div class="card-body" style="background-color: white; padding-right:0 !important">
+                                                <ul class="list-unstyled">
+                                                    <li class="mb-4">
+                                                        <i class="fa fa-check-circle fa-lg mr-2 text-success" />
+                                                        <b>Formation 102h (100% en ligne)</b>
+                                                    </li>
+                                                    <li class="mb-4">
+                                                        <i class="fa fa-check-circle fa-lg mr-2 text-success" />
+                                                        <b> Livre d’entrainement version électronique</b>
+                                                        <!-- <i class="fa fa-info-circle info"></i>
+                                                                <span class="additional-info">additional info</span> -->
+                                                    </li>
+                                                    <li class="mb-4">
+                                                        <i class="fa fa-check-circle fa-lg mr-2 text-success" />
+                                                        <b> Accès à 10 examens d'entraînement</b>
+                                                        <!-- <i class="fa fa-info-circle info"></i>
+                                                                <span class="additional-info">additional info</span> -->
+                                                    </li>
+                                                    <li class="mb-4">
+                                                        <i class="fa fa-check-circle fa-lg mr-2 text-success" data-original-title="" title="" aria-describedby="tooltip131000" />
+                                                        <b>Assistance par téléphone</b>
+                                                    </li>
+                                                    <li class="mb-4">
+                                                        <i class="fa fa-check-circle fa-lg mr-2 text-success" />
+                                                        <b>Assistance par mail</b>
+                                                    </li>
+
+                                                    <li class="mb-4">
+                                                        <span class="fa fa-check-circle fa-lg mr-2 text-success" style="font-size: 1.33333em" data-original-title="" title="" aria-describedby="tooltip96053" />
+                                                        <b>Séances de groupe en Live avec les formateurs</b>
+                                                    </li>
+                                                    <li class="mb-4">
+                                                        <span class="fa fa-lg fa-times-circle text-danger mr-2" style="font-size: 1.33333em" data-original-title="" title="" aria-describedby="tooltip288722" />
+                                                        Séance en Live avec un expert métier
+                                                    </li>
+                                                    <li class="mb-4">
+                                                        <i class="fa fa-lg fa-times-circle text-danger mr-2" />
+                                                        Révision du programme avant l'examen
+                                                    </li>
+                                                    <li class="mb-4">
+                                                        <i class="fa fa-check-circle fa-lg mr-2 text-success" />
+                                                        <b>  &amp;nbsp;Examen final en présentiel 
+                                                                &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;
+                                                                &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;
+                                                                &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;
+                                                                &amp;nbsp;&amp;nbsp;</b>
+                                                    </li>
+                                                    <li class="mb-4">
+                                                        <i class="fa fa-check-circle fa-lg mr-2 text-success" />
+                                                        <b>Séance en Live pour corriger l’examen &amp;nbsp;
+                                                                &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;
+                                                                &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;
+                                                                &amp;nbsp; &amp;nbsp; &amp;nbsp;
+                                                                &amp;nbsp;&amp;nbsp;</b>
+                                                    </li>
+
+                                                    <li>
+                                                        <i />
+                                                    </li>
+                                                </ul>
+                                                <p class="                             text-center                             font-weight-bolder                             text-dark                             h1                             display-4                             mb-0                           ">
+                                                    <font>
+                                                        <p class="                                 text-center                                 font-weight-bolder                                 text-dark                                 h1                                 display-4                                 mb-0                               ">
+                                                            <span t-esc="round(product.list_price)" />
+
+                                                            <span t-esc="product.currency_id.symbol" />
+                                                        </p>
+                                                    </font>
+                                                </p>
+                                                <t t-if="promo and promo.name!='box2home'">
+                                                    <p class="                               text-center                               font-weight-bolder                               text-secondary                             ">
+                                                        <b style="font-size: 80%">
+                                                            <t>&amp;nbsp; &amp;nbsp; &amp;nbsp;&amp;nbsp;</t>
+                                                        </b>
+                                                    </p>
+                                                </t>
+                                                <p class="                             medium                             text-center                             font-weight-bolder                             text-secondary                           " style="color: red !important; margin-bottom:8px !important">
+                                                            Paiement 1 ou 2 fois
+                                                            </p>
+
+                                                <br />
+                                                <button class="btn btn-block text-white" onClick="(function(){document.getElementById('form-2-1').submit();return false;})();return false;" style="background-color: #6e209f; border-radius: 25px">
+                                                            Je m'inscris
+                                                            </button>
+                                            </div>
+                                        </form>
+                                    </t>
+                                </t>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-sm-12">
+                            <div class="card border-0 shadow" style="border-radius: 25px 25px">
+                                <!-- <div class="text-center text-white border-0" style="
+                    background-color: #6e209f;
+                    border-top-left-radius: 25px;
+                    border-top-right-radius: 25px;
+                  ">
+                                            <br />
+                                            <h2>
+                                                <strong style="color: white">PREMIUM</strong>
+                                            </h2>
+                                            <p>
+                                                <b></b>
+                                            </p>
+                                            <br />
+                                        </div> -->
+                                <div class="text-center text-white border-0" style="                     background-color: #6e209f;                     border-top-left-radius: 25px;                     border-top-right-radius: 25px;                   ">
+                                    <br />
+
+                                    <p>
+                                        <strong style="color: white">
+                                            <font style="font-size: 30px">PREMUIM</font>
+                                        </strong>
+                                    </p>
                                     <p class="blink-soft">
                                         <b>Éligible au CPF</b>
                                     </p>
@@ -204,93 +344,80 @@
                                                     </li>
                                                     <li class="mb-4">
                                                         <i class="fa fa-check-circle fa-lg mr-2 text-success" />
-                                                        <b>Examen final en présentiel</b>
+                                                        <b>Livre d’entrainement version électronique</b>
                                                     </li>
                                                     <li class="mb-4">
                                                         <i class="fa fa-check-circle fa-lg mr-2 text-success" />
-                                                        <b>Livre d’entrainement version&amp;nbsp;</b>
-                                                        <span style="font-weight: bolder">électronique
-                                                        </span>
+                                                        <b>Accès à 14+ examens d'entraînement</b>
+
+                                                    </li>
+                                                    <li class="mb-4">
+                                                        <i class="fa fa-check-circle fa-lg mr-2 text-success" />
+                                                        <b>Assistance par téléphone</b>
                                                         <br />
                                                     </li>
                                                     <li class="mb-4">
                                                         <i class="fa fa-check-circle fa-lg mr-2 text-success" />
-                                                        <b>Accès à 12+ examens d'entraînement</b>
+                                                        <b>Assistance par mail</b>
+                                                        <br />
+                                                    </li>
+
+                                                    <li class="mb-4">
+                                                        <i class="fa fa-check-circle fa-lg mr-2 text-success" />
+                                                        <b>Séances en Live avec un tuteur dédié</b>
                                                         <br />
                                                     </li>
                                                     <li class="mb-4">
                                                         <i class="fa fa-check-circle fa-lg mr-2 text-success" />
-                                                        <b>Coaching par mail</b>
-                                                        <br />
-                                                    </li>
-                                                    <li class="mb-4">
-                                                        <i class="fa fa-check-circle fa-lg mr-2 text-success" />
-                                                        <b>Coaching par téléphone</b>
-                                                        <br />
-                                                    </li>
-                                                    <li class="mb-4">
-                                                        <i class="fa fa-check-circle fa-lg mr-2 text-success" />
-                                                        <b>Coaching par visioconférence</b>
+                                                        <b>Séance en Live avec un expert métier </b>
                                                         <b>&amp;nbsp;</b>
                                                         <br />
                                                     </li>
                                                     <li class="mb-4">
                                                         <i class="fa fa-check-circle fa-lg mr-2 text-success" />
-                                                        <b>Directs pour explication avec les formateurs</b>
+                                                        <b>Révision du programme avant l'examen</b>
                                                     </li>
                                                     <li class="mb-4">
                                                         <span class="fa fa-check-circle fa-lg mr-2 text-success" style="font-size: 1.33333em" />
-                                                        <b>Révision du programme avant examen</b>
-                                                        <br />
-                                                        <br />
+                                                        <b>Examen final en présentiel</b>
+
+                                                    </li>
+                                                    <li class="mb-4">
+                                                        <i class="fa fa-lg fa-check-circle mr-2 text-success" />
+                                                        <b>Séance en Live pour corriger l’examen</b>
+                                                        &amp;nbsp;
+                                                                &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;
+                                                                &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;
+                                                                &amp;nbsp; &amp;nbsp; &amp;nbsp;
+                                                                &amp;nbsp;&amp;nbsp;
+                                                    </li>
+                                                    <li>
+                                                        <i />
                                                     </li>
                                                 </ul>
-                                                <p class="
-                            text-center
-                            font-weight-bolder
-                            text-dark
-                            h1
-                            display-4
-                            mb-0
-                          ">
+                                                <p class="                             text-center                             font-weight-bolder                             text-dark                             h1                             display-4                             mb-0                           ">
                                                     <font>
-                                                        <p class="
-                                text-center
-                                font-weight-bolder
-                                text-dark
-                                h1
-                                display-4
-                                mb-0
-                              ">
+                                                        <p class="                                 text-center                                 font-weight-bolder                                 text-dark                                 h1                                 display-4                                 mb-0                               ">
                                                             <span t-esc="round(product.list_price)" />
                                                             <span t-esc="product.currency_id.symbol" />
                                                         </p>
                                                     </font>
                                                 </p>
                                                 <t t-if="promo">
-                                                    <p class="
-                              text-center
-                              font-weight-bolder
-                              text-secondary
-                            ">
+                                                    <p class="                               text-center                               font-weight-bolder                               text-secondary                             ">
                                                         <b style="font-size: 80%">
                                                             <t>&amp;nbsp; &amp;nbsp; &amp;nbsp;&amp;nbsp;</t>
                                                         </b>
                                                     </p>
                                                 </t>
-                                                <p class="
-                                                    medium
-                                                    text-center
-                                                    font-weight-bolder
-                                                    text-secondary
-                                                " style="color: red !important; margin-bottom:8px;">
+                                                <p class="                             medium                             text-center                             font-weight-bolder                             text-secondary                           " style="color: red !important; margin-bottom:8px !important">
                                                             Paiement 1 ou 3 fois
-                                                </p>
+                                                            </p>
 
                                                 <br />
                                                 <button class="btn btn-block text-white" onClick="(function(){ document.getElementById('form-3-1').submit();return false;})();return false;" style="background-color: #6e209f; border-radius: 25px">
                                                             Je m'inscris
-                                                </button>
+                                                        </button>
                                             </div>
                                         </form>
                                     </t>

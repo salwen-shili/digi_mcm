@@ -1,27 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
   <template id="mcm_website_theme.mcm_template_taxi" name="Formation TAXI">
-
     <t t-call="website.layout">
       <div id="wrap" class="oe_structure oe_empty">
         <link rel="stylesheet" href="/mcm_website_theme/static/src/css/style_taxi.min.css" />
         <script type="text/javascript" src="/mcm_website_theme/static/src/js/msAds.min.js" defer="defer" />
         <link rel="stylesheet" href="/mcm_website_theme/static/src/css/cta-button.min.css" />
         <script defer="defer" type="text/javascript" src="/digimoov_website_templates/static/src/js/lazy-min.min.js" />
-
-
         <div id="wrap" class="oe_structure oe_empty">
           <!-- section 1-->
           <section id="sh_corpomate_theme_section_258" class="sh_animation_part pt8" data-name="Formation chauffeur TAXI">
             <div class="container-banner">
               <div class="row">
                 <div class="col-lg-6 pb16 pt56">
-                  <div class="js-scroll slide-left">
+                  <div class="js-scroll slide-left ">
                     <div class="text-center">
                       <h1 class="title-mcm slider-text-info">
                         Formation
                         <br />
-                        <span class="subtitle-mcm-formation"> Taxi</span>
+                        <span class="subtitle-mcm-formation"> Taxi à distance</span>
                       </h1>
                       <br />
                       <p class="para">
@@ -33,8 +30,15 @@
                         renouveler votre
                         <b>carte professionnelle</b>
                         , ou encore pour une
-                        <b>passerelle TAXI-VTC</b>
-                        ? MCM Academy a tout pour satisfaire vos
+                        <b>passerelle VTC Taxi</b>
+                        ?
+                        <u>
+                          <b>
+                            <a href="/qui-sommes-nous">MCM Academy</a>
+                            &amp;nbsp;
+                          </b>
+                        </u>
+                        a tout pour satisfaire vos
                     besoins en formations !
                       </p>
                       <br />
@@ -48,9 +52,9 @@
                     </div>
                   </div>
                 </div>
-                <div class="col-lg-6 pb48 pt16 js-scroll slide-right">
+                <div class="col-lg-6 pb48 pt16 js-scroll slide-right ">
                   <br />
-                  <img data-src="/mcm_website_theme/static/src/img/formation_taxi/devenir_chauffeur_taxi.webp" data-srcsafari="/mcm_website_theme/static/src/img/formation_taxi/devenir_chauffeur_taxi.png" class="img img-fluid mx-auto lazy text-center" alt="Devenir chauffeur Taxi, VTC ou Moto-Taxi" title="Chauffeur taxi" />
+                  <img data-src="/mcm_website_theme/static/src/img/formation_taxi/devenir_chauffeur_taxi.webp" data-srcsafari="/mcm_website_theme/static/src/img/formation_taxi/devenir_chauffeur_taxi.png" class="img img-fluid mx-auto text-center lazy" alt="Devenir chauffeur Taxi, VTC ou Moto-Taxi" title="Chauffeur taxi" />
                 </div>
               </div>
             </div>
@@ -85,7 +89,6 @@
                 <div class="pt32">
                   <img class="img-fluid lazy" style="width: 110px;" data-srcSafari="/mcm_website_theme/static/src/img/mcm academy-partenaire-france-relance.jpg" data-src="/mcm_website_theme/static/src/img/mcm academy-partenaire-france-relance.webp" title="France relance-MCM Academy" alt="France relance-MCM Academy" />
                 </div>
-
                 <div class="pt32">
                   <img class="img-fluid lazy" style="width: 100px;" data-src="/mcm_website_theme/static/src/img/mcm academy-centre-de-formation-taxi-vtc-carte pro-préfecture.webp" data-srcSafari="/mcm_website_theme/static/src/img/mcm academy-centre-de-formation-taxi-vtc-carte pro-préfecture.png" title="Centre agrée de la préfecture" alt="Centre agrée de la préfecture" />
                 </div>
@@ -127,7 +130,17 @@
                     est composé d’une
                     <b>épreuve d'admission</b>
                     et une
-                    <b>épreuve d’admissibilité</b>
+                    <b>épreuve d’admissibilité.</b>
+                    <br />
+                    Si vous souhaitez savoir comment
+                    <b>devenir chauffeur taxi indépendan</b>
+                    t consultez
+                    <b>
+                      <u>
+                        <a href="/blog/blog-taxi-10/post/devenir-chauffeur-taxi-independant-38">cet article</a>
+                      </u>
+                    </b>
+                    .&amp;nbsp;
                   </p>
                   <div class="s_btn text-left pt16 pb16" data-name="Buttons">
                     <a t-if="request.website.is_public_user()==True" alt="inscription MCM academy fomration chauffeur de taxi en ligne" title="inscription à la formation chauffeur de taxi en ligne" href="/web/signup" target="_blank" rel="noopener">
@@ -156,7 +169,6 @@
                       <a target="_blank" href="/mcm_website_theme/static/pdf/DEMARCHES_D'INSCRIPTION_A_LA_CMA_-_MCM_ACADEMY.pdf" alt="DEMARCHES D'INSCRIPTION A LA CMA" title="DEMARCHES D'INSCRIPTION A LA CMA">
                         <span class="sh_num o_default_snippet_text">01</span>
                       </a>
-
                     </div>
                     <div class="sh_description">
                       <h4 style="font-size: 18px">
@@ -186,7 +198,6 @@
                       <a target="_blank" href="/mcm_website_theme/static/pdf/Devenez_chauffeur_taxi_vtc_démarches_dépôt_dossier_préfecture.pdf" alt="Devenez chauffeur taxi vtc démarches dépôt dossier préfecture" title="démarches dépôt dossier préfecture">
                         <span class="sh_num o_default_snippet_text">03</span>
                       </a>
-
                     </div>
                     <div class="sh_description">
                       <h4 style="font-size: 18px">
@@ -218,13 +229,11 @@
           <section class="s_text_image pt0 pb4">
             <div class="container">
               <div class="row align-items-center">
-                <div class="col-lg-6 pb24 pt0 js-scroll slide-left">
-                  <img data-src="/mcm_website_theme/static/src/img/formation_taxi/formation-taxi.webp" data-srcsafari="/mcm_website_theme/static/src/img/formation_taxi/formation-taxi.png" class="img img-fluid mx-auto lazy res_height text-center" alt="deux personnes en formation taxi" title="deux personnes en formation taxi" />
+                <div class="col-lg-6 pb24 pt0 js-scroll slide-left ">
+                  <img data-src="/mcm_website_theme/static/src/img/formation_taxi/formation-taxi.webp" data-srcsafari="/mcm_website_theme/static/src/img/formation_taxi/formation-taxi.png" class="img img-fluid mx-auto res_height text-center lazy" alt="deux personnes en formation taxi" title="deux personnes en formation taxi" />
                 </div>
-                <div class="col-lg-6 js-scroll slide-right">
-                  <h2 class="s_title_default pb16" style="font-size: 33px; font-weight: 700">
-                La formation taxi
-              </h2>
+                <div class="col-lg-6 js-scroll slide-right ">
+                  <h2 class="pb16 s_title_default" style="font-size: 33px; font-weight: 700"> La formation taxi à distance</h2>
                   <h3>À qui s’adresse cette formation ?</h3>
                   <p class="para">
                     Nos
@@ -239,9 +248,7 @@
                     , ou en
                     <b>reconversion professionnelle.</b>
                   </p>
-
                   <h3 class="mbe">Objectifs :</h3>
-
                   <ul class="fa-ul" style="font-size: 16.5px; line-height: 1.5rem">
                     <li>
                       <i class="fa fa-chevron-right" style="font-size: 13px; margin: 0px 7px 5px -17px" />
@@ -257,8 +264,7 @@
                   </ul>
                   <p />
                 </div>
-
-                <div class="s_title col-lg-12 pt24 pb0 js-scroll slide-left">
+                <div class="s_title col-lg-12 pt24 pb0 js-scroll slide-left ">
                   <div class="s_alert clearfix w-100 s_alert_sm alert-100">
                     <i class="fa fa-2x fa-info-circle s_alert_icon" />
                     <div class="s_alert_content">
@@ -286,7 +292,6 @@
               <div class="row align-items-center">
                 <div class="col-lg-6 pt16 pb16 js-scroll slide-left">
                   <h3>FORMATION THÉORIQUE AU MÉTIER DE TAXI</h3>
-
                   <p class="para">
                     Ce que nous vous proposons chez MCM Academy, c’est la garantie
                 d'une
@@ -311,7 +316,6 @@
                     d’expression et de compréhension et ainsi assurer une bonne
                 communication avec vos futurs clients.
                   </p>
-
                   <a t-if="request.website.is_public_user()==True" alt="inscription MCM academy fomration chauffeur de taxi en ligne" title="inscription à la formation chauffeur de taxi en ligne" href="/web/signup" target="_blank" rel="noopener">
                     <button class="home-btn">Je m'inscris</button>
                   </a>
@@ -329,11 +333,11 @@
           <section class="s_text_image pt32">
             <div class="container">
               <div class="row align-items-center">
-                <div class="col-lg-6 pt16 pb16 js-scroll slide-left">
+                <div class="col-lg-6 pt16 pb16 js-scroll slide-left ">
                   <img data-src="/mcm_website_theme/static/src/img/formation_taxi/devenir_chauffeur_taxi.webp" data-srcsafari="/mcm_website_theme/static/src/img/formation_taxi/devenir_chauffeur_taxi.png" class="img img-fluid mx-auto lazy" alt="chauffeur taxi vtc" title="chauffeur taxi vtc" />
                 </div>
-                <div class="col-lg-6 js-scroll slide-right">
-                  <h3>FORMATION PASSERELLE VTC-TAXI</h3>
+                <div class="col-lg-6 js-scroll slide-right ">
+                  <h3>FORMATION PASSERELLE VTC TAXI</h3>
                   <p class="para">
                     Depuis mai 2017, il est possible pour un stagiaire qui a réussi
                 l’
@@ -368,8 +372,8 @@
           <section class="s_text_image pt32 pb32">
             <div class="container">
               <div class="row align-items-center">
-                <div class="col-lg-6 pt16 pb16 js-scroll slide-left">
-                  <h3>RENOUVELLEMENT CARTE PROFESSIONNELLE</h3>
+                <div class="col-lg-6 pt16 pb16 js-scroll slide-left ">
+                  <h3>RENOUVELLEMENT CARTE PROFESSIONNELLE TAXI</h3>
                   <p class="para">
                     Cette
                     <b>formation</b>
@@ -386,36 +390,34 @@
                     <b>carte professionnelle.</b>
                   </p>
                 </div>
-                <div class="col-lg-6 pt16 pb16 js-scroll slide-right">
+                <div class="col-lg-6 pt16 pb16 js-scroll slide-right ">
                   <img data-src="/mcm_website_theme/static/src/img/homepage/Chauffeur vtc femme-mcm-academy.png" data-srcsafari="/mcm_website_theme/static/src/img/homepage/Chauffeur vtc femme-mcm-academy.png" class="img img-fluid mx-auto lazy" alt="Chauffeur vtc femme mcm academy" />
                 </div>
               </div>
             </div>
           </section>
-
           <!-- FORMATION CONTINUE AU METIER DE TAXI-->
           <section class="s_text_image pt32 pb32">
             <div class="container">
               <div class="row align-items-center">
-                <div class="col-lg-6 pt16 pb16 js-scroll slide-left">
-                  <img data-src="/mcm_website_theme/static/src/img/formation_taxi/chaffeur-taxi-au-volant.webp" data-srcsafari="/mcm_website_theme/static/src/img/formation_taxi/chaffeur-taxi-au-volant.png" class="img img-fluid mx-auto lazy" alt="chauffeur taxi femme au volant" />
+                <div class="col-lg-6 pt16 pb16 js-scroll slide-left ">
+                  <img data-src="/mcm_website_theme/static/src/img/formation_taxi/chaffeur-taxi-au-volant.webp" data-srcsafari="/mcm_website_theme/static/src/img/formation_taxi/chaffeur-taxi-au-volant.png" class="img img-fluid mx-auto" alt="chauffeur taxi femme au volant" />
                 </div>
-                <div class="col-lg-6 pt16 pb16 js-scroll slide-right">
+                <div class="col-lg-6 pt16 pb16 js-scroll slide-right ">
                   <h3>NOS TARIFS DE FORMATIONS TAXI</h3>
                   <p class="para">
-                    Nous proposons à nos candidats des
+                    Nous proposons à nos candidats un&amp;nbsp;
                     <b>prix</b>
-                    assez abordables qui varient entre 250 euros et 680 euros avec
-                possibilité de mobilisation de votre compte de
+                    assez abordable de 680 euros avec possibilité de mobilisation de votre compte de
                     <b>formation</b>
                     personnel pour la
-                    <b>formation initiale.</b>
+                    <b>formation initiale.
+                  </b>
                   </p>
                 </div>
               </div>
             </div>
           </section>
-
           <!-- pricing table formation taxi-->
           <div id="pricing" class="js-scroll fade-in-top">
             <input t-att-value="request.website.microsoft_tracking_key" id="microsoft_tracking_key" type="hidden" />
@@ -425,10 +427,7 @@
                   <h2 style="max-width:100%">
                      Inscrivez-vous dès maintenant !
                  </h2>
-
-
                   <br />
-
                 </div>
                 <div class="row" style="justify-content: center !important">
                   <div class="col-md-5 sh_animation_part">
@@ -438,7 +437,6 @@
                           <form action="/shop/cart/update" method="post" id="form-1-2">
                             <input type="hidden" class="product_id" name="product_id" id="taxi_product" t-att-value="product.id" />
                             <input type="hidden" name="promo" t-att-value="promo.id" t-if="promo" />
-
                             <h3 style="max-width: 100%; font-size:35px;">PACK TAXI</h3>
                             <h4 style="color: #636161; font-size: 1.09375rem">Éligible au CPF</h4>
                             <h4>
@@ -456,16 +454,11 @@
                               explications
                             </li>
                               <li>Révision du programme avant examen</li>
-
                             </ul>
                             <div class="sh_btn">
-
-
                               <!-- <a class="btn btn-primary sh_btn_cm_8" data-original-title="" title="" aria-describedby="tooltip209445" onClick="(function(){document.getElementById('form-1-2').submit();return false;})();return false;">
                             Je m'inscris
                                                 </a> -->
-
-
                               <a class="animated-button-yellow" href="#pricing" onClick="(function(){packTaxiPageFormationTaxi();document.getElementById('form-1-2').submit();return false;})();return false;">
                                 <span />
                                 <span />
@@ -484,7 +477,6 @@
                       </t>
                     </div>
                   </div>
-
                 </div>
               </div>
             </section>
@@ -494,7 +486,6 @@
           <section class="pt40 pb32">
             <div class="container js-scroll fade-in-top">
               <div class="center-logo">
-
                 <div class="pt32" t-if="partenaire=='bolt'  or partenaire !='bolt'">
                   <a href="https://www.digimoov.fr/" target="_blank" rel="noopner">
                     <img class="img-fluid lazy" style="width: 94px" data-src="/mcm_website_theme/static/src/img/logos/logo-digimoov.png" data-srcSafari="/mcm_website_theme/static/src/img/logos/logo-digimoov.png" alt="Logo partenaire Digimoov" title="Digimoov partenaire MCM ACADEMY" />
@@ -510,7 +501,6 @@
                     <img class="img-fluid lazy" style="width: 100px" data-srcSafari="/mcm_website_theme/static/src/img/logos/logo-CMA.png" data-src="/mcm_website_theme/static/src/img/logos/logo-CMA.png" title="Chambre de métiers et de l'artisanat partenaire MCM ACADEMY" alt="Chambre de métiers et de l'artisanat partenaire MCM ACADEMY" />
                   </a>
                 </div>
-
                 <div class="pt32" t-if="partenaire=='' or not partenaire ">
                   <a href="https://www.comptable-douai.com/" target="_blank" rel="noopner">
                     <img class="img-fluid lazy" style="width: 250px" data-src="/mcm_website_theme/static/src/img/logos/logo-joel-pruvost.jpg" data-srcSafari="/mcm_website_theme/static/src/img/logos/logo-joel-pruvost.jpg" title="Joel partenaire MCM ACADEMY" alt="Joel partenaire MCM ACADEMY" />
@@ -519,10 +509,7 @@
               </div>
             </div>
           </section>
-
-
         </div>
-
       </div>
     </t>
   </template>
