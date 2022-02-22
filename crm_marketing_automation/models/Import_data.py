@@ -69,8 +69,7 @@ class Import(models.TransientModel):
                         #     partner.statut_cpf = "canceled"
 
                         lead.sudo().write({
-                                'nom': partner.firstName if firstName else "",
-                                'prenom': partner.lastName if lastName else "",
+                               
                                 'partner_id': partner,
                                 'name': partner.name,
                                 'mode_de_financement': 'cpf',
