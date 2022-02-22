@@ -1,30 +1,171 @@
 <odoo>
     <template id="digimoov_website_templates.digimoov_template_examen" name="examen Digimoov">
 
-
         <t t-call="website.layout">
+            <!-- popup-->
+            <input type="text" t-att-value="default" />
+            <div t-if="default == 'False'">
+                <input type="text" t-att-value="url" id="url" />
+                <input type="text" t-att-value="message" id="message" />
+
+                <script>
+                    document.addEventListener('DOMContentLoaded', function () {
+                    var url;
+                    var message;
+                    if (document.getElementById('url')) {
+                    url = document.getElementById('url').value;
+                    }
+
+                    if (document.getElementById('message')) {
+                    message = document.getElementById('message').value;
+                    }
+                    if (!document.getElementById('echec_examen').value) {
+                    document.getElementById('notifMessage').innerHTML = message;
+                    document.getElementById('btnRepassage').href = url;
+                    }
+                    return;
+                    });
+                    function openPopup() {
+                    //console.log(document.getElementById('popup1'));
+                    document.getElementById('popup1').style.display = 'unset';
+                    }
+                    function closePopup() {
+                    //console.log(document.getElementById('popup1'));
+                    document.getElementById('popup1').style.display = 'none';
+                    }
+                </script>
+                <style>
+                    .content {
+                    color: #000;
+                    margin-block-start: 1rem;
+                    }
+
+                    .overlay {
+                    position: fixed;
+                    top: 0;
+                    bottom: 0;
+                    left: 0;
+                    right: 0;
+                    background: rgba(0, 0, 0, 0.7);
+                    transition: opacity 500ms;
+                    display:none;
+                    z-index: 1;
+                    }
+
+
+                    .popup {
+                    top: 33%;
+                    margin: 70px auto;
+                    padding: 20px;
+                    background: #fff;
+                    border-radius: 5px;
+                    width: 40%;
+                    position: relative;
+                    transition: all 5s ease-in-out;
+                    }
+
+                    .popup h2 {
+                    margin-top: 0;
+                    color: #333;
+                    font-family: Tahoma, Arial, sans-serif;
+                    }
+                    .popup .close {
+                    position: absolute;
+                    top: 20px;
+                    right: 30px;
+                    transition: all 200ms;
+                    font-size: 30px;
+                    font-weight: bold;
+                    text-decoration: none;
+                    color: #152856;
+                    cursor:pointer;
+                    }
+                    .popup .close:hover {
+                    color: hsl(222, 61%, 41%);
+                    }
+                    .popup .content {
+                    max-height: 30%;
+                    overflow: auto;
+                    }
+
+                    @media screen and (max-width: 700px) {
+                    .box {
+                    width: 70%;
+                    }
+                    .popup {
+                    width: 70%;
+                    }
+                    }
+                    .action-button {
+                    height: 40px;
+                    width: 150px;
+                    font-size: 15px;
+                    background-color: #152856;
+                    border: 1px solid hsl(240, 44%, 28%);
+                    color: #ffffff;
+                    font-weight: 600;
+                    border-radius: 5px;
+                    box-shadow: 0 2px 4px 0 rgba(87, 71, 81, 0.2);
+                    cursor: pointer;
+                    transition: all 2s ease-out;
+                    transition: all 0.2s ease-out;
+
+                    }
+                    .action-button:hover,
+                    .action-button:focus {
+                    background-color: #ffffff;
+                    border: 1px solid hsl(240, 44%, 28%);
+                    color: #000000;
+                    transition: all 0.2s ease-out;
+                    }
+
+
+                </style>
+                <!-- popup-->
+                <div id="popup1" class="overlay">
+                    <div class="popup">
+                        <h2 class="text-left">
+                            <i class="fa fa-info-circle" style="color: #152856"></i>
+                        </h2>
+                        <a class="close" onclick="closePopup()">
+                            <i class="fa fa-times"></i>
+                        </a>
+                        <div class="content">
+                            <p id="notifMessage" style="text-align: center; font-size: 16px"></p>
+                            <div class="" style="text-align-last: center; margin-block-start: 1.5rem">
+                                <div id="echec_examen">
+                                    <a target="_blank" id="btnRepassage">
+                                        <button class="action-button">Continuer</button>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- end popup-->
             <div id="wrap" class="oe_empty oe_structure" style="word-break: break-word; position: relative; z-index: 0">
                 <style>
                     @media (max-width: 720px) {
                     .padding-xl {
-                        padding: 0px !important;
-                        width: 100% !important;
-                        transform: translateX(-1.3%) translateY(-22.5%) scaleX(1.92)
-                        scaleY(1.92) !important;
+                    padding: 0px !important;
+                    width: 100% !important;
+                    transform: translateX(-1.3%) translateY(-22.5%) scaleX(1.92)
+                    scaleY(1.92) !important;
                     }
                     }
                     @media (min-width: 720px) {
                     .padding-xl {
-                        padding: 32px !important;
-                        width: 50% !important;
-                        transform: translateX(-1.3%) translateY(-22.5%) scaleX(1.92)
-                        scaleY(1.92) !important;
+                    padding: 32px !important;
+                    width: 50% !important;
+                    transform: translateX(-1.3%) translateY(-22.5%) scaleX(1.92)
+                    scaleY(1.92) !important;
                     }
                     }
-                 </style>
+                </style>
                 <script defer="defer" type="text/javascript" src="/digimoov_website_templates/static/src/js/lazy-min.js" />
                 <section id="slider-sec" class="web_agency_banner slider4 oe_img_bg oe_custom_bg" data-name="Home Banner Eight" style="           background-image: url('/web/image/13078/Digimoov%20qui%20somme%20nous.png');           background-position: 37.71% 54.72%;           width: 100%;         ">
-                    <div id="myCarousel1605624033206" class="s_carousel carousel slide s_carousel_default" data-ride="carousel" data-pause="hover" data-interval="7000" data-name="Carousel">
+                    <div id="myCarousel1605624033206" class="s_carousel carousel slide s_carousel_echec_examen" data-ride="carousel" data-pause="hover" data-interval="7000" data-name="Carousel">
                         <ol class="carousel-indicators d-none">
                             <li data-target="#myCarousel1605624033206" data-slide-to="0" class="active" />
                         </ol>
@@ -36,8 +177,8 @@
                                             <h1 class="custom_p">
                                                 <span style="font-size: 24px" class="text-delta">
                                                     <b>L'examen de l'attestation de capacité professionnelle
-                          en transport routier léger de marchandises
-                        </b>
+                                                        en transport routier léger de marchandises
+                                                    </b>
                                                     <b>
                                                         <br />
                                                     </b>
@@ -45,13 +186,14 @@
                                                         <br />
                                                     </b>
                                                 </span>
-                                                <font style="color: rgb(0, 0, 0); font-size: 18px">L’accès au métier de transporteur de marchandises se
-                        fait par le passage d’un examen portant sur 6 matières.
-                        Les questions sont proposées sous forme de QCM
-                        (questions à choix multiples) et de Questions rédigées.
-                        Découvrez comment réussir l’examen Capacité de transport
-                        de marchandises facilement.
-                      </font>
+                                                <font style="color: rgb(0, 0, 0); font-size: 18px">L’accès au métier de
+                                                    transporteur de marchandises se
+                                                    fait par le passage d’un examen portant sur 6 matières.
+                                                    Les questions sont proposées sous forme de QCM
+                                                    (questions à choix multiples) et de Questions rédigées.
+                                                    Découvrez comment réussir l’examen Capacité de transport
+                                                    de marchandises facilement.
+                                                </font>
                                                 <font style="color: rgb(66, 66, 66)" />
                                             </h1>
                                         </div>
@@ -61,11 +203,11 @@
                             <div class="slider-control">
                                 <a class="left carousel-control-prev text-white font-14 d-none" data-target="#myCarousel1605624033206" role="button" data-slide="prev">
                                     <span class="fa fa-arrow-left" />
-                                    <b class="sr-only font-normal o_default_snippet_text">Previous</b>
+                                    <b class="sr-only font-normal o_echec_examen_snippet_text">Previous</b>
                                 </a>
                                 <a class="right carousel-control-next text-white font-14 d-none" data-target="#myCarousel1605624033206" role="button" data-slide="next">
                                     <span class="fa fa-arrow-right" />
-                                    <b class="sr-only font-normal o_default_snippet_text">Next</b>
+                                    <b class="sr-only font-normal o_echec_examen_snippet_text">Next</b>
                                 </a>
                             </div>
                         </div>
@@ -85,11 +227,11 @@
                                     <b>
                                         <u>
                                             <a href="/blog/digimoov-3/post/comment-obtenir-votre-capacite-de-transport-leger-6" target="_blank" rel="noopener">6 matières
-                    </a>
+                                            </a>
                                         </u>
                                     </b>
                                     . Les questions sont proposées sous forme de QCM (questions à
-                choix multiples) et de Questions rédigées (QRC).
+                                    choix multiples) et de Questions rédigées (QRC).
                                     <br />
                                     <br />
                                 </font>
@@ -139,45 +281,49 @@
                                             <br />
                                             <b>Questionnaires de 50 Questions à Choix Multiples</b>
                                             (4 propositions : une seule bonne réponse) à 2 points
-                    chacune, soit 100 points, réparties sur l’ensemble des
-                    thématiques du référentiel des connaissances :
+                                            chacune, soit 100 points, réparties sur l’ensemble des
+                                            thématiques du référentiel des connaissances :
                                             <br />
                                         </p>
                                         <p class="font-medium" />
                                         <p>
                                             <font color="#000000">e) L’entreprise et le droit civil et commercial : 14
-                      questions ;
-                    </font>
+                                                questions ;
+                                            </font>
                                         </p>
                                         <p>
-                                            <font color="#000000">f) L’entreprise et son activité commerciale : 2 questions
-                      ;
-                    </font>
+                                            <font color="#000000">f) L’entreprise et son activité commerciale : 2
+                                                questions
+                                                ;
+                                            </font>
                                         </p>
                                         <p>
-                                            <font color="#000000">g) L’entreprise et le cadre réglementaire de l’activité
-                      de transport : 13 questions ;
-                    </font>
+                                            <font color="#000000">g) L’entreprise et le cadre réglementaire de
+                                                l’activité
+                                                de transport : 13 questions ;
+                                            </font>
                                         </p>
                                         <p>
-                                            <font color="#000000">h) L’entreprise et son activité financière : 5 questions
-                      ;
-                    </font>
+                                            <font color="#000000">h) L’entreprise et son activité financière : 5
+                                                questions
+                                                ;
+                                            </font>
                                         </p>
                                         <p>
                                             <font color="#000000">i) L’entreprise et ses salariés : 10 questions ;
-                    </font>
+                                            </font>
                                         </p>
                                         <p>
                                             <font color="#000000">j) L’entreprise et la sécurité : 6 questions.</font>
                                         </p>
                                         <p />
                                         <p>
-                                            <font color="#000000">Dans chaque thématique, le créateur de l’examen veillera
-                      à ce que les QCM ne portent pas sur les mêmes sujets que
-                      les questions à réponse rédigée de la seconde partie de
-                      l’examen.
-                    </font>
+                                            <font color="#000000">Dans chaque thématique, le créateur de l’examen
+                                                veillera
+                                                à ce que les QCM ne portent pas sur les mêmes sujets que
+                                                les questions à réponse rédigée de la seconde partie de
+                                                l’examen.
+                                            </font>
                                         </p>
                                         <p class="font-medium">
                                             <b>Note minimale à obtenir : 50/100</b>
@@ -198,8 +344,9 @@
                                                 </b>
                                             </span>
                                             <img class="img-fluid o_we_custom_image d-block mx-auto padding-xl lazy" data-src="/digimoov_website_templates/static/img/compressed/Examen capacité de marchandise.webp" data-srcsafari="/digimoov_website_templates/static/img/Homepage/Examen capacité de marchandise.jpg" />
-                                            <b style="color: rgb(103, 67, 148); font-size: 24px">L'épreuve Questions Rédigées
-                    </b>
+                                            <b style="color: rgb(103, 67, 148); font-size: 24px">L'épreuve Questions
+                                                Rédigées
+                                            </b>
                                         </h5>
                                         <p class="font-medium">
                                             <b>
@@ -207,7 +354,8 @@
                                             </b>
                                             <br />
                                             <b>Questions et exercices exigeant une réponse rédigée sur
-                      100 points :</b>
+                                                100 points :
+                                            </b>
                                             <br />
                                         </p>
                                         <ul>
@@ -215,17 +363,17 @@
                                                 <p>
                                                     <font color="#000000">
                                                         Exercices sur la thématique « D. L’entreprise et son
-                          activité financière » exigeant une réponse rédigée,
-                          sur 50 points, comportant au moins un calcul de coût
-                          de revient complet et deux questions rédigées portant
-                          sur les autres connaissances de la thématique « D.
-                          L’entreprise et son&amp;nbsp; activité&amp;nbsp;
-                          financière&amp;nbsp; ».&amp;nbsp; Un&amp;nbsp;
-                          calcul&amp;nbsp; de&amp;nbsp; seuil&amp;nbsp;
-                          de&amp;nbsp; rentabilité&amp;nbsp; ou&amp;nbsp;
-                          un&amp;nbsp; exercice d’organisation/classement de
-                          postes financiers peuvent remplacer une de ces
-                          questions ;
+                                                        activité financière » exigeant une réponse rédigée,
+                                                        sur 50 points, comportant au moins un calcul de coût
+                                                        de revient complet et deux questions rédigées portant
+                                                        sur les autres connaissances de la thématique « D.
+                                                        L’entreprise et son&amp;nbsp; activité&amp;nbsp;
+                                                        financière&amp;nbsp; ».&amp;nbsp; Un&amp;nbsp;
+                                                        calcul&amp;nbsp; de&amp;nbsp; seuil&amp;nbsp;
+                                                        de&amp;nbsp; rentabilité&amp;nbsp; ou&amp;nbsp;
+                                                        un&amp;nbsp; exercice d’organisation/classement de
+                                                        postes financiers peuvent remplacer une de ces
+                                                        questions ;
                                                         <br />
                                                         <br />
                                                     </font>
@@ -235,8 +383,8 @@
                                                 <p>
                                                     <font color="#000000">
                                                         25 à 30 points pour le coût de revient et 20 à 25
-                          points à répartir sur les autres questions, soit 50
-                          points au total ;
+                                                        points à répartir sur les autres questions, soit 50
+                                                        points au total ;
                                                         <br />
                                                         <br />
                                                     </font>
@@ -244,14 +392,15 @@
                                             </li>
                                             <li>
                                                 <p>
-                                                    <font color="#000000">5 questions à réponses rédigées portant sur les
-                          thématiques « C. L’entreprise et le son cadre
-                          réglementaire de l’activité de transport », « E.
-                          L’entreprise et ses salariés » et « F. L’entreprise et
-                          la sécurité » (dont 3 questions sur la thématique E et
-                          1 question sur chaque thématique C et F); Entre 6 à 10
-                          points par question, pour un total de 50 points ;
-                        </font>
+                                                    <font color="#000000">5 questions à réponses rédigées portant sur
+                                                        les
+                                                        thématiques « C. L’entreprise et le son cadre
+                                                        réglementaire de l’activité de transport », « E.
+                                                        L’entreprise et ses salariés » et « F. L’entreprise et
+                                                        la sécurité » (dont 3 questions sur la thématique E et
+                                                        1 question sur chaque thématique C et F); Entre 6 à 10
+                                                        points par question, pour un total de 50 points ;
+                                                    </font>
                                                 </p>
                                             </li>
                                         </ul>
@@ -297,13 +446,13 @@
                                         </div>
                                         <h3 class="m-b-30 m-t-20 text-beta" style="text-align: center">
                                             <font style="color: rgb(103, 67, 148)">Les conditions d'obtention du diplôme
-                    </font>
+                                            </font>
                                         </h3>
                                         <p class="m-b-30 m-t-20 text-beta" style="text-align: justify">
                                             Pour réussir son examen, le candidat doit obtenir au moins
-                    un total de 120 points sur 200, c'est-à-dire une moyenne de
-                    12/20, avec des notes minimales de 50/100 sur la partie QCM
-                    et de 40/100 sur la partie Questions à Réponses Courtes.
+                                            un total de 120 points sur 200, c'est-à-dire une moyenne de
+                                            12/20, avec des notes minimales de 50/100 sur la partie QCM
+                                            et de 40/100 sur la partie Questions à Réponses Courtes.
                                             <br />
                                         </p>
                                     </div>
@@ -322,16 +471,16 @@
                                         </div>
                                         <h3 class="m-b-30 m-t-20 text-beta" style="text-align: center">
                                             <font style="color: rgb(103, 67, 148)">Les conditions administratives
-                    </font>
+                                            </font>
                                         </h3>
                                         <p class="m-b-30 m-t-20 text-beta" style="text-align: justify">
                                             La présence du stagiaire à l’intégralité de la formation
-                    (102 heures en présentiel ou en e-learning) est une
-                    condition indispensable à sa présentation à l’examen. Dans
-                    le cas où le candidat serait dispensé de formation (candidat
-                    en accès direct ou en échec), il faudrait qu'il fournisse le
-                    dossier d’inscription au moins 2 mois avant la date
-                    d’examen.
+                                            (102 heures en présentiel ou en e-learning) est une
+                                            condition indispensable à sa présentation à l’examen. Dans
+                                            le cas où le candidat serait dispensé de formation (candidat
+                                            en accès direct ou en échec), il faudrait qu'il fournisse le
+                                            dossier d’inscription au moins 2 mois avant la date
+                                            d’examen.
                                             <br />
                                         </p>
                                     </div>
@@ -349,23 +498,24 @@
                                             <section class="icon-round bg-alpha" />
                                         </div>
                                         <h3 class="m-b-30 m-t-20 text-beta" style="text-align: center">
-                                            <span style="color: rgb(103, 67, 148)">Les documents requis pour l'inscription
-                    </span>
+                                            <span style="color: rgb(103, 67, 148)">Les documents requis pour
+                                                l'inscription
+                                            </span>
                                             <br />
                                         </h3>
                                         <p class="m-b-30 m-t-20 text-beta" />
                                         <div style="text-align: justify">
                                             <span style="                         color: rgb(32, 38, 71);                         font-size: 16px;                         background-color: unset;                       ">
-                      La photocopie de la pièce d'identité ou d'un titre de
-                      séjour européen
-                    </span>
+                                                La photocopie de la pièce d'identité ou d'un titre de
+                                                séjour européen
+                                            </span>
                                             <span style="color: rgb(32, 38, 71); font-size: 16px">
                                                 <br />
                                                 <br />
                                             </span>
                                             <span style="                         color: rgb(32, 38, 71);                         font-size: 16px;                         background-color: unset;                       ">
-                      Une justification de domicile de moins de 3 mois
-                    </span>
+                                                Une justification de domicile de moins de 3 mois
+                                            </span>
                                             <span style="color: rgb(32, 38, 71); font-size: 16px">&amp;nbsp;</span>
                                             <br />
                                         </div>
@@ -387,10 +537,12 @@
                                         <p class="m-b-30 m-t-20 text-beta" />
                                         <div style="text-align: justify">
                                             <font color="#202647">
-                                                <span style="font-size: 16px">Afin d'assurer le bon déroulement de l'examen, le
-                        candidat doit être présent avant une demi heure du début
-                        de l'examen. Il doit aussi être accompagné par sa CNI et
-                        sa convocation.</span>
+                                                <span style="font-size: 16px">Afin d'assurer le bon déroulement de
+                                                    l'examen, le
+                                                    candidat doit être présent avant une demi heure du début
+                                                    de l'examen. Il doit aussi être accompagné par sa CNI et
+                                                    sa convocation.
+                                                </span>
                                             </font>
                                             <br />
                                             <span style="text-align: center; color: rgb(206, 0, 0)">
@@ -401,10 +553,10 @@
                                                     </u>
                                                 </span>
                                                 &amp;nbsp;: Toute fraude, tentative de fraude ou de
-                      perturbation de déroulement de l'examen, est un acte grave
-                      dont les conséquences sont très lourdes et peuvent aller
-                      jusqu'à l'interdiction de passer tout examen de
-                      l’Éducation nationale pour une période de 5 ans.
+                                                perturbation de déroulement de l'examen, est un acte grave
+                                                dont les conséquences sont très lourdes et peuvent aller
+                                                jusqu'à l'interdiction de passer tout examen de
+                                                l’Éducation nationale pour une période de 5 ans.
                                             </span>
                                             <br />
                                             <br />
@@ -424,14 +576,16 @@
                             </div>
                             <div class="col-lg-6 pt16 pb0" style="border-style: none; border-width: 0px">
                                 <h2 style="padding-bottom:13px; line-height:1 !important; ">
-                                    <font style="color: rgb(103, 67, 148); font-size: 24px">Les conditions relatives aux passages et aux repassages des
-                  examens</font>
+                                    <font style="color: rgb(103, 67, 148); font-size: 24px">Les conditions relatives aux
+                                        passages et aux repassages des
+                                        examens
+                                    </font>
                                 </h2>
                                 <p>
                                     <span style="                     font-family: Slack-Lato, appleLogo, sans-serif;                     font-size: 15px;                     font-variant-ligatures: common-ligatures;                   " class="text-beta">
                                         <b>Le premier passage</b>
                                         : Légalement, il ne faut pas dépasser 4 mois entre la date
-                  d'inscription à la formation et le passage du premier examen.
+                                        d'inscription à la formation et le passage du premier examen.
                                     </span>
                                     <br />
                                     <font color="#1d1c1d" face="Slack-Lato, appleLogo, sans-serif">
@@ -481,24 +635,26 @@
                                 <figure class="figure">
                                     <img data-src="/digimoov_website_templates/static/img/Jury pour la délibération.webp" data-srcsafari="/digimoov_website_templates/static/img/examen/Jury.png" class="figure-img img-fluid img-thumbnail padding-large rounded float-right lazy" alt="Jury pour la délibération" style="                     transform: translateX(54.1%) translateY(6.2%) scaleX(1.35)                       scaleY(1.35);                   " />
                                     <figcaption class="figure-caption py-3 text-center">
-                  &amp;nbsp;
-                </figcaption>
+                                        &amp;nbsp;
+                                    </figcaption>
                                 </figure>
                             </div>
                             <div class="col-lg-12 pt16 pb16" style="">
                                 <p style="text-align: center">
-                                    <font style="color: rgb(0, 0, 0)">Les copies sont corrigées par un correcteur qui ne fait pas
-                  partie de l’équipe pédagogique.
-                </font>
+                                    <font style="color: rgb(0, 0, 0)">Les copies sont corrigées par un correcteur qui ne
+                                        fait pas
+                                        partie de l’équipe pédagogique.
+                                    </font>
                                 </p>
                                 <p style="text-align: center">
-                                    <font style="color: rgb(0, 0, 0)">Un mois plus tard, un jury de validation (composé d’un
-                  représentant de la DREAL concernée, du directeur de centre,
-                  d’un expert métier compétent dans une thématique du
-                  référentiel, ainsi que d’un professionnel ou d’un représentant
-                  des entreprises concourant à l’activité de transport dans la
-                  région) se réunit pour vérifier et confirmer les résultats.
-                </font>
+                                    <font style="color: rgb(0, 0, 0)">Un mois plus tard, un jury de validation (composé
+                                        d’un
+                                        représentant de la DREAL concernée, du directeur de centre,
+                                        d’un expert métier compétent dans une thématique du
+                                        référentiel, ainsi que d’un professionnel ou d’un représentant
+                                        des entreprises concourant à l’activité de transport dans la
+                                        région) se réunit pour vérifier et confirmer les résultats.
+                                    </font>
                                 </p>
                             </div>
                         </div>
@@ -513,32 +669,50 @@
                                     <h1 class="text-uppercase font-weight-bold">
                                         <font style="color: rgb(103, 67, 148); font-size: 24px;">Et si vous souhaitez
                                             réserver votre nouvelle tentative d'examen ?
-                                    </font>
+                                        </font>
                                     </h1>
                                     <p>
                                         <span class="fa fa-check" />
                                         <font style="color: rgb(0, 0, 0); font-size: 18px;">&amp;nbsp;Dispense des 102 h
                                             de formation
-                                    </font>
+                                        </font>
                                         <span class="fa fa-check" />
                                         <font style="color: rgb(0, 0, 0); font-size: 18px;">Jusqu'à 2 tentatives</font>
                                         <span class="fa fa-check" />
                                         <font style="color: rgb(0, 0, 0); font-size: 18px;">&amp;nbsp;Paiement en une
                                             fois
-                                    </font>
+                                        </font>
                                         <br />
                                     </p>
                                     <div class="pb16 pt16 s_btn text-center" data-name="Button">
-                                        <t t-if="echec_examen">
-                                            <form action="/shop/cart/update" method="post">
-                                                <input type="hidden" class="product_id" name="product_id" t-att-value="echec_examen.id" />
-                                                <td>
-                                                    <button type="submit" class="btn btn-alpha o_anim_fade_in_up o_animate" data-original-title="" title="" aria-describedby="tooltip906293" style="animation-name: o_anim_fade_in_up; visibility: visible; animation-play-state: paused;">
-                                                        Réservez votre tentative
-                                                </button>
-                                                </td>
-                                            </form>
+                                        <!-- Comparer si période < 6 mois  -->
+                                        <t t-if="now">
+                                            <t t-if="now &lt; date_dateutil and is_public_user == True">
+                                                <t t-if="default == 'True' ">
+                                                    <form action="/shop/cart/update" method="post">
+                                                        <input type="hidden" class="product_id" name="product_id" t-att-value="echec_examen.id" t-if="echec_examen" />
+                                                        <td>
+                                                            <button type="submit" class="btn btn-alpha o_anim_fade_in_up o_animate" style="animation-name: o_anim_fade_in_up; visibility: visible; animation-play-state: paused;">
+                                                                Réservez votre tentative
+                                                            </button>
+                                                        </td>
+                                                    </form>
+                                                </t>
+                                            </t>
                                         </t>
+
+                                        <form action="/shop/cart/update" method="post">
+                                            <input type="hidden" class="product_id" name="product_id" t-att-value="echec_examen.id" />
+
+
+                                        </form>
+                                        <!-- display popup -->
+                                        <td t-if="default == 'False'">
+                                            <button onclick="openPopup()" id="btnRepassage" class="btn btn-alpha o_anim_fade_in_up o_animate" style="animation-name: o_anim_fade_in_up; visibility: visible; animation-play-state: paused;">
+                                                Réservez votre tentative
+                                            </button>
+                                        </td>
+
                                     </div>
                                 </div>
                             </div>
@@ -547,9 +721,5 @@
                 </section>
             </div>
         </t>
-
-
     </template>
-
-
 </odoo>
