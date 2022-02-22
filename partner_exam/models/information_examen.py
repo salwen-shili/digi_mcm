@@ -110,7 +110,7 @@ class NoteExamen(models.Model):
         """ This function used to auto display some result
         like the "Moyenne Generale" & "Mention" & "Resultat" """
         for rec in self:
-            rec.moyenne_generale = (rec.epreuve_a + rec.epreuve_b) / 2
+            rec.moyenne_generale = (rec.epreuve_a + rec.epreuve_b)
             if rec.epreuve_a >= 50 and rec.epreuve_b >= 40 and rec.moyenne_generale >= 120 and rec.partner_id:
                 rec.moyenne_generale = rec.moyenne_generale
                 rec.mention = 'recu'
