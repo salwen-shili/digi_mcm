@@ -20,8 +20,8 @@ class Survey(models.Model):
             return super(Survey, self).create(vals)
     def write(self, vals):
         record = super(Survey, self).write(vals)
-        # Si le test de français est terminé
-        # on change le statut de l'apprenant dans le lead vers "encours de correction"
+        # Si le test "Examen blanc Français" est terminé
+        # on change le statut de l'apprenant dans le crm vers "encours de correction"
         if 'state' in vals:
             if vals['state'] == 'done' and self.survey_id.title == 'Examen blanc Français':
                 partner = self.env['res.partner'].sudo().search([("id", "=", self.partner_id.id)])
@@ -29,6 +29,7 @@ class Survey(models.Model):
                     self.partner_id.changestage("En cours de correction - Examen Blanc", partner)
                     mail_compose_message = self.env['mail.compose.message']
                     mail_compose_message.fetch_sendinblue_template()
+                    """chercher l'email si n'est pas trouvé dans la liste des emails envoyés  on l'envoi"""
                     template_id = self.env['mail.template'].sudo().search(
                         [('subject', "=", "Examen blanc : en cours de correction MCM ACADEMY X BOLT"),
                          ('model_id', "=", 'res.partner')], limit=1)

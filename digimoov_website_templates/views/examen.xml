@@ -444,13 +444,19 @@
                                             accompagnée d'un justificatif, à condition qu'elle soit
                                             <b>envoyée 72h</b>
                                             avant la date de l'examen et que vous ayez un avancement de 80% dans la formation. Une seule demande de report sans frais sera étudiée.
+                                            <br />
+                                            Si l'une de ces conditions n'est pas remplie, nous n'accepterons pas le report sans frais.
                                         </span>
                                     </font>
                                 </p>
-                                <hr />
+
+
                                 <font color="#1d1c1d" face="Slack-Lato, appleLogo, sans-serif">
                                     <span style="font-size: 15px; font-variant-ligatures: common-ligatures;" class="text-beta">
-                                        Si l'une de ces conditions n'est pas remplie, nous n'accepterons aucun report sans frais.
+
+                                        <hr />
+
+
                                         <b>Il faut tenir compte que pour chaque examen que vous soyez présent, absent ou que ça soit un report un passage sera automatiquement décompté.</b>
                                     </span>
                                 </font>

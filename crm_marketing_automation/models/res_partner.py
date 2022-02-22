@@ -94,6 +94,8 @@ class Partner(models.Model):
                 lead = self.env['crm.lead'].sudo().search([('partner_id', '=', partner.id)], limit=1)
                 if lead and partner.name:
                     lead.sudo().write({
+                        'nom': partner.firstName if firstName else "",
+                        'prenom': partner.lastName if lastName else "",
                         'name': partner.name if partner.name else "",
                         'partner_name': partner.name,
                         'num_dossier': partner.numero_cpf if partner.numero_cpf else "",
@@ -109,6 +111,8 @@ class Partner(models.Model):
                     })
                 if not lead and partner.name:
                     lead = self.env['crm.lead'].sudo().create({
+                        'nom': partner.firstName if firstName else "",
+                        'prenom': partner.lastName if lastName else "",
                         'name': partner.name if partner.name else "",
                         'partner_name': partner.name,
                         'num_dossier': partner.numero_cpf if partner.numero_cpf else "",
@@ -189,7 +193,7 @@ class Partner(models.Model):
                                     self.changestage("Contrat Signé", partner)
                                 if partner.bolt:
                                     _logger.info('contrat  signé %s' %str(partner.email))
-                                    self.changestage("Bolt-Contrat Singé", partner)
+                                    self.changestage("Bolt-Contrat Signé", partner)
                             if waiting:
 
                                 if partner.bolt:
@@ -339,7 +343,7 @@ class Partner(models.Model):
                                 if not partner.bolt:
                                     self.changestage("Contrat Signé", partner)
                                 if partner.bolt:
-                                    self.changestage("Bolt-Contrat Singé", partner)
+                                    self.changestage("Bolt-Contrat Signé", partner)
                             if waiting:
                                 if partner.bolt:
                                     self.changestage("Bolt-Document non Validé", partner)
