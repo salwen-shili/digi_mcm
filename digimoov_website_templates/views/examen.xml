@@ -3,10 +3,10 @@
 
         <t t-call="website.layout">
             <!-- popup-->
-            <input type="text" t-att-value="default" />
+            <input type="hidden" t-att-value="default" />
             <div t-if="default == 'False'">
-                <input type="text" t-att-value="url" id="url" />
-                <input type="text" t-att-value="message" id="message" />
+                <input type="hidden" t-att-value="url" id="url" />
+                <input type="hidden" t-att-value="message" id="message" />
 
                 <script>
                     document.addEventListener('DOMContentLoaded', function () {
