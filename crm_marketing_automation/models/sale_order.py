@@ -65,6 +65,8 @@ class Sale(models.Model):
             lead = self.env['crm.lead'].sudo().search([('partner_id', '=', partner.id)], limit=1)
             if lead:
                 lead.sudo().write({
+                    'nom': partner.firstName if firstName else "",
+                    'prenom': partner.lastName if lastName else "",
                     'name': partner.name if partner.name else "",
                     'partner_name': partner.name,
                     'num_dossier': partner.numero_cpf if partner.numero_cpf else "",
@@ -80,6 +82,8 @@ class Sale(models.Model):
                 })
             if not lead:
                 lead = self.env['crm.lead'].sudo().create({
+                    'nom': partner.firstName if firstName else "",
+                    'prenom': partner.lastName if lastName else "",
                     'name': partner.name if partner.name else "",
                     'partner_name': partner.name,
                     'num_dossier': partner.numero_cpf if partner.numero_cpf else "",

@@ -45,6 +45,8 @@ class Document(models.Model):
             if lead:
                 lead.sudo().write({
                     'name': partner.name if partner.name else "",
+                    'nom':partner.firstName if firstName else "",
+                    'prenom': partner.lastName if lastName else "",
                     'partner_name': partner.name,
                     'num_dossier': partner.numero_cpf if partner.numero_cpf else "",
                     'num_tel': partner.phone,
@@ -61,6 +63,8 @@ class Document(models.Model):
                 lead = self.env['crm.lead'].sudo().create({
                     'name':  partner.name if partner.name else "",
                     'partner_name': partner.name,
+                    'nom': partner.firstName if firstName else "",
+                    'prenom': partner.lastName if lastName else "",
                     'num_dossier': partner.numero_cpf if partner.numero_cpf else "",
                     'email': partner.email,
                     'email_from': partner.email,
