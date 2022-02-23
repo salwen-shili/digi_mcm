@@ -1,3 +1,6 @@
+import logging
+import pyshorteners
+import dateutil
 from odoo import http
 from odoo.http import request
 from datetime import datetime, date
@@ -6,7 +9,11 @@ import werkzeug
 import base64
 from odoo.addons.website.controllers.main import Website  # import website controller
 import locale
-import pyshorteners
+<< << << < HEAD
+== == == =
+
+_logger = logging.getLogger(__name__)
+>>>>>> > feature_repassage_examen
 
 
 class Website(Website):
@@ -17,8 +24,10 @@ class Website(Website):
         Attachment = request.env['ir.attachment'].sudo()
         mimetype = 'application/xml;charset=utf-8'
         content = None
-        dom = [('url', '=', '/sitemap-%d.xml' % current_website.id), ('type', '=', 'binary')]
-        sitemap = Attachment.search(dom, limit=1)  # check existing of a sitemap attachment in database
+        dom = [('url', '=', '/sitemap-%d.xml' %
+                current_website.id), ('type', '=', 'binary')]
+        # check existing of a sitemap attachment in database
+        sitemap = Attachment.search(dom, limit=1)
         if sitemap and sitemap.datas:  # if sitemap exist get it from database and don't generate a new one
             content = base64.b64decode(sitemap.datas)
             return request.make_response(content, [('Content-Type', mimetype)])
@@ -29,7 +38,8 @@ class Website(Website):
     def update_renonce(self, demande_renonce):
         user = request.env.user  # recuperer l'utilisateur connecté
         if demande_renonce:  # testé si l'utilisateur a cocher la demande de renonce dans son portal client
-            user.partner_id.renounce_request = True  # mettre la demande de renonce cocher dans la fiche client
+            # mettre la demande de renonce cocher dans la fiche client
+            user.partner_id.renounce_request = True
 
     @http.route('/attestation-transport-leger-marchandises', type='http', auth='public', website=True)
     def attestation_transport_leger_marchandises(self, **kw, ):
@@ -43,15 +53,16 @@ class Website(Website):
         else:
             raise werkzeug.exceptions.NotFound()
 
-    @http.route('/attestation-transport-leger-marchandises/paris', type='http', auth='public', website=True)
-    def attestation_transport_leger_marchandises_paris(self, **kw,):
+    @http.route('/capacité-de-transport/paris', type='http', auth='public', website=True)
+    def attestation_transport_leger_marchandises_paris(self, **kw, ):
         if request.website.id == 2:
             digimoov_products = request.env['product.product'].sudo().search([('company_id', '=', 2)],
                                                                              order="list_price")
             values = {
                 'digimoov_products': digimoov_products,
             }
-            return request.render("digimoov_website_templates.digimoov_template_transport_leger_marchandises_paris", values)
+            return request.render("digimoov_website_templates.digimoov_template_transport_leger_marchandises_paris",
+                                  values)
         else:
             raise werkzeug.exceptions.NotFound()
 
@@ -91,17 +102,6 @@ class Website(Website):
         else:
             raise werkzeug.exceptions.NotFound()
 
-    @http.route('/attestation-transport-leger-marchandises/marseille', type='http', auth='public', website=True)
-    def attestation_transport_leger_marchandises_marseille(self, **kw,):
-        if request.website.id == 2:
-            digimoov_products = request.env['product.product'].sudo().search([('company_id', '=', 2)],
-                                                                             order="list_price")
-            values = {
-                'digimoov_products': digimoov_products,
-            }
-            return request.render("digimoov_website_templates.digimoov_template_transport_leger_marchandises_marseille", values)
-        else:
-            raise werkzeug.exceptions.NotFound()
 
 class FAQ(http.Controller):
 
@@ -112,7 +112,8 @@ class FAQ(http.Controller):
             last_ville = request.env['session.ville'].sudo().search(
                 [('company_id', '=', 2), ('ville_formation', "=", False)], order='name_ville desc', limit=1)
             list_villes = request.env['session.ville'].sudo().search(
-                [('id', "!=", last_ville.id), ('company_id', '=', 2), ('ville_formation', "=", False)],
+                [('id', "!=", last_ville.id), ('company_id', '=', 2),
+                 ('ville_formation', "=", False)],
                 order='name_ville asc')
             values = {
                 'list_villes': list_villes,
@@ -127,12 +128,16 @@ class FINANCEMENT(http.Controller):
 
     @http.route('/mon-compte-de-formation-cpf', type='http', auth='public', website=True)
     def financement(self, **kw, ):
-        taxi_category = request.env['product.public.category'].sudo().search([('name', 'ilike', 'Formation TAXI')])
-        vtc_category = request.env['product.public.category'].sudo().search([('name', 'ilike', 'Formation VTC')])
-        vmdtr_category = request.env['product.public.category'].sudo().search([('name', 'ilike', 'Formation VMDTR')])
+        taxi_category = request.env['product.public.category'].sudo().search(
+            [('name', 'ilike', 'Formation TAXI')])
+        vtc_category = request.env['product.public.category'].sudo().search(
+            [('name', 'ilike', 'Formation VTC')])
+        vmdtr_category = request.env['product.public.category'].sudo().search(
+            [('name', 'ilike', 'Formation VMDTR')])
 
         # Pricelist sur la page financement
-        mcm_products = request.env['product.product'].sudo().search([('company_id', '=', 1)], order="list_price")
+        mcm_products = request.env['product.product'].sudo().search(
+            [('company_id', '=', 1)], order="list_price")
         print(mcm_products)
         taxi_price = False
         vtc_price = False
@@ -156,7 +161,7 @@ class FINANCEMENT(http.Controller):
             'mcm_products': mcm_products,  # send mcm product to homepage
         }
         if request.website.id == 2:
-            # get digimoov products to send them to pricing table 
+            # get digimoov products to send them to pricing table
             digimoov_products = request.env['product.product'].sudo().search([('company_id', '=', 2)],
                                                                              order="list_price")
             values = {
@@ -183,7 +188,8 @@ class FINANCEMENT(http.Controller):
                 if (all_digimoov_modules):
                     for module in all_digimoov_modules:
                         if module.date_exam:
-                            print('interval days :' + str((module.date_exam - today).days))
+                            print('interval days :' +
+                                  str((module.date_exam - today).days))
                             if (module.date_exam - today).days > int(
                                     module.session_id.intervalle_jours) and module.session_id.website_published == True:
                                 list_modules_digimoov.append(module)
@@ -270,14 +276,95 @@ class DIGIEXAMEN(http.Controller):
 
     @http.route('/examen-capacite-transport-marchandises', type='http', auth='public', website=True)
     def exam(self, **kw, ):
+        """ Ajouter les conditions suivant au niveau de la page examen dans le Site Web,
+        lorsque un utulisateur clique sur le bouton de Tentative de repassage
+        :param request.website.id: Si siteweb = digimoov alors :
+        I- :param : is_public_user: Si l'utilisateur est un visiteur (False)
+            1- Redirection: /web/signup
+        II- :param: is_public_user: Si l'utilisateur n'est pas un visiteur (True)
+            2- Si date examen != 0 : redirection:/#pricing"""
         if request.website.id == 2:
+            partner = request.env.user.partner_id  # Récupérer id de l'apprenant connecté
+            session = request.env['partner.sessions'].sudo().search(
+                [('client_id', '=', partner.id)], order='id asc', limit=1)
+            # Récupérer date d'examen à partir de la première session
+            date_exam = session.session_id.date_exam
+            # PUBLIC USER = VISITOR OR USER ODOO NOT CONNECTED, return true or false
+            is_public_user = request.website.is_public_user()
             echec_examen = request.env['product.product'].sudo().search(
                 [('company_id', '=', 2), ('default_code', "=", 'examen')])
-            values = {
-                'echec_examen': echec_examen,
-                'default':False,
-            }
-            return request.render("digimoov_website_templates.digimoov_template_examen", values)
+            if is_public_user is False:
+                print("/////public user/////", is_public_user)
+                if date_exam:  # Si date examen exist
+                    print("****************Si date examen exist**********")
+                    now = date.today()  # Date d'aujourd'hui
+                    date_dateutil = date_exam + dateutil.relativedelta.relativedelta(
+                        months=6)  # Calcule la durée de temps à partir de la première date d'examen de l'apprenant en ajoutant 6 mois
+                    exam_count = partner.note_exam_count
+                    print("&&&&&&&&&&&&&&&", exam_count)
+                    if exam_count < 3:  # Si nombre de passage < 3
+                        logging.info(
+                            'Si nombre de passage < 3 °°°°°°°°°°°°°°°°°°°°')
+                        print("Comparer si date d'aujourd'hui inférieur à date d'examen + 6 mois: ",
+                              now, date_dateutil, date_exam, now < date_dateutil)
+                        # Comparer si date d'aujourd'hui inférieur à date d'examen + 6 mois
+                        if now < date_dateutil and is_public_user is not True:
+                            print("%%%%%%%%%%%%%% 6 mois")
+                            values = {
+                                'date_dateutil': date_dateutil,  # Date de 1ere inscription + 6 mois
+                                'now': now,  # Date aujourd'hui
+                                'echec_examen': echec_examen,
+                                'url': '/shop/cart/update',
+                                'default': 'True',
+                            }
+                            return request.render("digimoov_website_templates.digimoov_template_examen",
+                                                  values)  # Envoyer les données vers xml dans la page examen
+                        else:
+                            print("supp///////// 6 mois")
+                            values = {
+                                'echec_examen': echec_examen,
+                                'url': '/#pricing',
+                                'default': 'False',
+                                'message': "Vous avez dépassé la durée règlementaire de 6 mois pour réserver votre nouvelle date d'examen."
+                                           " Vous devez à présent, vous réinscrire à la formation pour retenter votre chance.",
+                            }
+                            return request.render("digimoov_website_templates.digimoov_template_examen",
+                                                  values)  # Envoyer les données vers xml dans la page examen
+                    elif exam_count >= 3:
+                        logging.info(
+                            'Si nombre de passage > 3 °°°°°°°°°°°°°°°°°°')
+                        values = {
+                            'default': 'False',
+                            'echec_examen': echec_examen,
+                            'url': '/#pricing',
+                            'message': "Vous avez atteint le nombre limité de repassage de l'examen."
+                                       "Vous devez à présent, vous réinscrire à la formation pour retenter votre chance.",
+                        }
+                        return request.render('digimoov_website_templates.digimoov_template_examen', values)
+                else:
+                    print("////connected exam 0///", is_public_user)
+                    values = {
+                        'echec_examen': echec_examen,
+                        'is_public_user': is_public_user,
+                        'default': 'False',
+                        'url': '/#pricing',
+                        'message': "Oups ! Vous devez vous inscrire à une formation pour pouvoir choisir votre date d'examen, ou vous connecter avec vos identifiants utilisés lors de votre inscription à la formation initiale."
+                                   "Pour plus d'informations vous pouvez contacter notre service sur le +33986878866.",
+
+                    }
+                    return request.render("digimoov_website_templates.digimoov_template_examen", values)
+
+            else:
+                print("////public user///", is_public_user)
+                values = {
+                    'echec_examen': echec_examen,
+                    'is_public_user': is_public_user,
+                    'default': 'False',
+                    'url': '/web/signup',
+                    'message': 'Pour réserver votre nouvelle tentative, '
+                               'merci de vous connecter ou de créer votre compte client.',
+                }
+                return request.render("digimoov_website_templates.digimoov_template_examen", values)
         else:
             return request.redirect("/preparation-examen-taxi/vtc")
 
@@ -287,11 +374,12 @@ class QUISOMMESNOUS(http.Controller):
     @http.route('/qui-sommes-nous', type='http', auth='public', website=True)
     def quisommesnous(self, **kw, ):
         if request.website.id == 2:
-            # recuperer la liste des villes pour l'afficher dans la page qui sommes nous de siteweb digimoov 
+            # recuperer la liste des villes pour l'afficher dans la page qui sommes nous de siteweb digimoov
             last_ville = request.env['session.ville'].sudo().search(
                 [('company_id', '=', 2), ('ville_formation', "=", False)], order='name_ville desc', limit=1)
             list_villes = request.env['session.ville'].sudo().search(
-                [('id', "!=", last_ville.id), ('company_id', '=', 2), ('ville_formation', "=", False)],
+                [('id', "!=", last_ville.id), ('company_id', '=', 2),
+                 ('ville_formation', "=", False)],
                 order='name_ville asc')
             values = {
                 'list_villes': list_villes,
@@ -311,7 +399,8 @@ class NOSCENTRES(http.Controller):
             last_ville = request.env['session.ville'].sudo().search(
                 [('company_id', '=', 2), ('ville_formation', "=", False)], order='name_ville desc', limit=1)
             list_villes = request.env['session.ville'].sudo().search(
-                [('id', "!=", last_ville.id), ('company_id', '=', 2), ('ville_formation', "=", False)],
+                [('id', "!=", last_ville.id), ('company_id', '=', 2),
+                 ('ville_formation', "=", False)],
                 order='name_ville asc')
             values = {
                 'list_villes': list_villes,
@@ -353,7 +442,8 @@ class Services(http.Controller):
 
     @http.route('/service-clientele', type='http', auth='public', website=True)
     def clientele(self, **kw, ):
-        public_user = http.request.env['res.users'].sudo().search([('id', '=', 4), ('active', '=', False)])
+        public_user = http.request.env['res.users'].sudo().search(
+            [('id', '=', 4), ('active', '=', False)])
 
         if http.request.uid == public_user.id:
             email_from = ""
@@ -377,7 +467,8 @@ class Services(http.Controller):
 
     @http.route('/administration', type='http', auth='public', website=True)
     def administration(self, **kw, ):
-        public_user = http.request.env['res.users'].sudo().search([('id', '=', 4), ('active', '=', False)])
+        public_user = http.request.env['res.users'].sudo().search(
+            [('id', '=', 4), ('active', '=', False)])
 
         if http.request.uid == public_user.id:
             email_from = ""
@@ -401,7 +492,8 @@ class Services(http.Controller):
 
     @http.route('/partenariat', type='http', auth='public', website=True)
     def partenariat(self, **kw, ):
-        public_user = http.request.env['res.users'].sudo().search([('id', '=', 4), ('active', '=', False)])
+        public_user = http.request.env['res.users'].sudo().search(
+            [('id', '=', 4), ('active', '=', False)])
 
         if http.request.uid == public_user.id:
             email_from = ""
@@ -438,7 +530,8 @@ class Services(http.Controller):
 
     @http.route('/service-comptabilite', type='http', auth='user', website=True)
     def comptabilite(self, **kw, ):
-        public_user = http.request.env['res.users'].sudo().search([('id', '=', 4), ('active', '=', False)])
+        public_user = http.request.env['res.users'].sudo().search(
+            [('id', '=', 4), ('active', '=', False)])
 
         if http.request.uid == public_user.id:
             email_from = ""
@@ -462,7 +555,8 @@ class Services(http.Controller):
 
     @http.route('/service-pedagogique', type='http', auth='user', website=True)
     def pedagogique(self, **kw, ):
-        public_user = http.request.env['res.users'].sudo().search([('id', '=', 4), ('active', '=', False)])
+        public_user = http.request.env['res.users'].sudo().search(
+            [('id', '=', 4), ('active', '=', False)])
         if http.request.uid == public_user.id:
             email_from = ""
             nom = ""
@@ -491,40 +585,43 @@ class Services(http.Controller):
         else:
             return request.render("mcm_website_theme.mcm_template_contact", {})
       ##############################
-    
-    #test routes a supprimer
+
+    # test routes a supprimer
     @http.route('/test1', type='http', auth='public', website=True)
     def test1(self, **kw, ):
         if request.website.id == 2:
             return request.render("digimoov_website_templates.digimoov_template_habilitation_electrique", {})
         else:
             raise werkzeug.exceptions.NotFound()
+
     @http.route('/test6', type='http', auth='public', website=True)
     def test1(self, **kw, ):
         if request.website.id == 2:
             return request.render("digimoov_website_templates.digimoov_template_test6", {})
         else:
             raise werkzeug.exceptions.NotFound()
+
     @http.route('/test7', type='http', auth='public', website=True)
     def test7(self, **kw, ):
         if request.website.id == 2:
             return request.render("digimoov_website_templates.digimoov_template_test7", {})
         else:
             raise werkzeug.exceptions.NotFound()
-    
+
     @http.route('/test8', type='http', auth='public', website=True)
     def test8(self, **kw, ):
         if request.website.id == 2:
             return request.render("digimoov_website_templates.digimoov_template_test8", {})
         else:
             raise werkzeug.exceptions.NotFound()
-    
+
     @http.route('/test9', type='http', auth='public', website=True)
     def test1(self, **kw, ):
         if request.website.id == 2:
             return request.render("digimoov_website_templates.digimoov_template_test9", {})
         else:
             raise werkzeug.exceptions.NotFound()
+
     @http.route('/test10', type='http', auth='public', website=True)
     def test1(self, **kw, ):
         if request.website.id == 2:
@@ -552,6 +649,7 @@ class Services(http.Controller):
             return request.render("digimoov_website_templates.digimoov_template_capacite_lourde", {})
         else:
             raise werkzeug.exceptions.NotFound()
+
     @http.route('/test5', type='http', auth='public', website=True)
     def test4(self, **kw, ):
         if request.website.id == 2:
@@ -561,11 +659,13 @@ class Services(http.Controller):
     # test a supprimer
     ##############################
 
-    @http.route('/maintenance', type='http', auth='public', website=True) # url of maintenance page 
+    # url of maintenance page
+    @http.route('/maintenance', type='http', auth='public', website=True)
     def maintenance(self, **kw, ):
         raise werkzeug.exceptions.NotFound()
         if request.website.id == 2:
-            return request.render("digimoov_website_templates.support_maintenance", {})  # maintenance view
+            # maintenance view
+            return request.render("digimoov_website_templates.support_maintenance", {})
         else:
             raise werkzeug.exceptions.NotFound()
 
@@ -588,39 +688,55 @@ class Services(http.Controller):
         if not user:
             if ticket_phone_number:
                 user = request.env["res.users"].sudo().search(
-                    [("phone", "=",str(ticket_phone_number))], limit=1)
+                    [("phone", "=", str(ticket_phone_number))], limit=1)
                 if not user:
                     phone_number = str(ticket_phone_number).replace(' ', '')
-                    if '+33' not in str(phone_number): # check if the number of client with +33
+                    # check if the number of client with +33
+                    if '+33' not in str(phone_number):
                         phone = phone_number[0:2]
-                        if str(phone) == '33' and ' ' not in str(ticket_phone_number): # check if the number of client in this format (number_format: 33xxxxxxx)
+                        # check if the number of client in this format (number_format: 33xxxxxxx)
+                        if str(phone) == '33' and ' ' not in str(ticket_phone_number):
                             phone = '+' + str(ticket_phone_number)
-                            user = request.env["res.users"].sudo().search( [("phone", "=", phone)], limit=1)
+                            user = request.env["res.users"].sudo().search(
+                                [("phone", "=", phone)], limit=1)
                             if not user:
-                                phone = phone[0:3]+' '+phone[3:4] + ' ' + phone[4:6] + ' '+phone[6:8]+' '+phone[8:10]+' '+phone[10:]
-                                user = request.env["res.users"].sudo().search([("phone", "=", phone)], limit=1)
+                                phone = phone[0:3]+' '+phone[3:4] + ' ' + phone[4:6] + \
+                                    ' '+phone[6:8]+' ' + \
+                                    phone[8:10]+' '+phone[10:]
+                                user = request.env["res.users"].sudo().search(
+                                    [("phone", "=", phone)], limit=1)
                         phone = phone_number[0:2]
-                        if str(phone) == '33' and ' ' in str(ticket_phone_number): # check if the number of client in this format (number_format: 33 x xx xx xx)
+                        # check if the number of client in this format (number_format: 33 x xx xx xx)
+                        if str(phone) == '33' and ' ' in str(ticket_phone_number):
                             phone = '+' + str(ticket_phone_number)
-                            user = request.env["res.users"].sudo().search(['|',("phone", "=", phone),("phone","=",phone.replace(' ', ''))], limit=1)
+                            user = request.env["res.users"].sudo().search(
+                                ['|', ("phone", "=", phone), ("phone", "=", phone.replace(' ', ''))], limit=1)
                         phone = phone_number[0:2]
-                        if str(phone) in ['06','07'] and ' ' not in str(ticket_phone_number): # check if the number of client in this format (number_format: 07xxxxxx)
-                            user = request.env["res.users"].sudo().search([("phone", "=", str(ticket_phone_number))], limit=1)
+                        # check if the number of client in this format (number_format: 07xxxxxx)
+                        if str(phone) in ['06', '07'] and ' ' not in str(ticket_phone_number):
+                            user = request.env["res.users"].sudo().search(
+                                [("phone", "=", str(ticket_phone_number))], limit=1)
                             print('user5 :', user.partner_id.name)
                             if not user:
-                                phone = phone[0:2] + ' ' + phone[2:4] + ' ' + phone[4:6] + ' ' + phone[6:8] + ' ' + phone[8:]
-                                user = request.env["res.users"].sudo().search([("phone", "=", phone)], limit=1)
+                                phone = phone[0:2] + ' ' + phone[2:4] + ' ' + \
+                                    phone[4:6] + ' ' + \
+                                    phone[6:8] + ' ' + phone[8:]
+                                user = request.env["res.users"].sudo().search(
+                                    [("phone", "=", phone)], limit=1)
                         phone = phone_number[0:2]
-                        if str(phone) in ['06', '07'] and ' ' in str(ticket_phone_number): # check if the number of client in this format (number_format: 07 xx xx xx)
+                        # check if the number of client in this format (number_format: 07 xx xx xx)
+                        if str(phone) in ['06', '07'] and ' ' in str(ticket_phone_number):
                             user = request.env["res.users"].sudo().search(
-                                ['|',("phone", "=", str(ticket_phone_number)),str(ticket_phone_number).replace(' ', '')], limit=1)
+                                ['|', ("phone", "=", str(ticket_phone_number)), str(ticket_phone_number).replace(' ', '')], limit=1)
                     else:  # check if the number of client with+33
                         if ' ' not in str(ticket_phone_number):
                             phone = str(ticket_phone_number)
-                            phone = phone[0:3] + ' ' + phone[3:4] + ' ' + phone[4:6] + ' ' + phone[6:8] + ' ' + phone[8:10] + ' ' + phone[10:]
+                            phone = phone[0:3] + ' ' + phone[3:4] + ' ' + phone[4:6] + \
+                                ' ' + phone[6:8] + ' ' + \
+                                phone[8:10] + ' ' + phone[10:]
                             user = request.env["res.users"].sudo().search(
                                 [("phone", "=", phone)], limit=1)
-                        if not user :
+                        if not user:
                             user = request.env["res.users"].sudo().search(
                                 [("phone", "=", str(phone_number).replace(' ', ''))], limit=1)
                             if not user:
@@ -643,49 +759,13 @@ class Services(http.Controller):
             })
             if request.website.id == 1:
                 user.sudo().write({'company_id': 1, 'company_ids': [1, 2]})
-                user.partner_id.sudo().write({'phone': kwargs.get('phone'), 'website_id': 1, 'email': email_from})
+                user.partner_id.sudo().write(
+                    {'phone': phone, 'website_id': 1, 'email': email_from})
             elif request.website.id == 2:
                 user.sudo().write({'company_id': 2, 'company_ids': [1, 2]})
-                user.partner_id.sudo().write({'phone': kwargs.get('phone'), 'website_id': 2, 'email': email_from})
-            url = str(user.signup_url)  # get the signup_url
-            short_url = pyshorteners.Shortener()
-            short_url = short_url.tinyurl.short(url)  # convert the signup_url to be short using pyshorteners library
-            body = 'Chere(e) %s , Vous avez été invité par %s  à compléter votre inscription : %s . Votre courriel de connection est: %s' % (
-                user.partner_id.name, user.partner_id.company_id.name, short_url,
-                user.partner_id.email)  # content of sms
-            sms_body_contenu = 'Chere(e) %s , Vous avez été invité par %s  à compléter votre inscription : %s . Votre courriel de connection est: %s' % (
-                user.partner_id.name, user.partner_id.company_id.name, short_url,
-                user.partner_id.email)  # content of sms
-            sms = request.env['sms.sms'].sudo().create({
-                'partner_id': user.partner_id.id,
-                'number': phone,
-                'body': str(body)
-            })  # create sms
-            sms_id = sms.id
-            if (sms):
-                sms.send()  # send the sms
-                subtype_id = request.env['ir.model.data'].xmlid_to_res_id('mt_note')
-                body = False
-                sms = request.env["sms.sms"].sudo().search(
-                    [("id", "=", sms_id)], limit=1)
-                if (sms):
-                    if sms.state == 'error':
-                        body = "Le SMS suivant n'a pas pu être envoyé : %s " % (sms_body_contenu)
-                else:
-                    body = "Le SMS suivant a été bien envoyé : %s " % (sms_body_contenu)
-                if body:
-                    message = request.env['mail.message'].sudo().create({
-                        'subject': 'Invitation de rejoindre le site par sms',
-                        'model': 'res.partner',
-                        'res_id': user.partner_id.id,
-                        'message_type': 'notification',
-                        'subtype_id': subtype_id,
-                        'body': body,
-                    })  # create note in client view
-
-        if user:
-            if name_company:
-                user.partner_id.company_name = name_company
+                user.partner_id.sudo().write(
+                    {'phone': phone, 'website_id': 2, 'email': email_from})
+            user.partner_id.company_name = name_company
         if user:
             ticket_name = 'Digimoov : ' + str(name)
             ticket = request.env['helpdesk.ticket'].sudo().search(
@@ -869,7 +949,7 @@ class Services(http.Controller):
                     })
             return request.render("digimoov_website_templates.pedagogique_thank_you")
 
-    # transport lourd 
+    # transport lourd
 
 
 class Transport_Lourd(http.Controller):
@@ -879,7 +959,7 @@ class Transport_Lourd(http.Controller):
         values = False
         if request.website.id == 2:
 
-            # get digimoov products to send them to pricing table 
+            # get digimoov products to send them to pricing table
             digimoov_products = request.env['product.product'].sudo().search([('company_id', '=', 2)],
                                                                              order="list_price")
             values = {
@@ -898,7 +978,7 @@ class Habilitation_electrique(http.Controller):
         digimoov_products = False
         values = False
         if request.website.id == 2:
-            # get digimoov products to send them to pricing table 
+            # get digimoov products to send them to pricing table
             digimoov_products = request.env['product.product'].sudo().search([('company_id', '=', 2)],
                                                                              order="list_price")
             values = {
