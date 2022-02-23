@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <data>
+        <!--        View form of aircall call contains details of call -->
+        <record id="calendly_rendezvous_form" model="ir.ui.view">
+            <field name="name">calendly.rendezvous.form</field>
+            <field name="model">calendly.rendezvous</field>
+            <field name="arch" type="xml">
+                <form string="Rendez vous form">
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="partner_id"/>
+                                <field name="event_starttime"/>
+                                <field name="event_endtime"/>
+                                <field name="name"/>
+                            </group>
+                        </group>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers" groups="base.group_user"/>
+                        <field name="activity_ids" widget="mail_activity"/>
+                        <field name="message_ids" widget="mail_thread"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+        <!--        View tree of aircall call contains details of call -->
+        <record id="call_detail_tree" model="ir.ui.view">
+            <field name="name">calendly.rendezvous.tree</field>
+            <field name="model">calendly.rendezvous</field>
+            <field name="arch" type="xml">
+                <tree string="Rendez vous tree">
+                    <field name="name"/>
+                    <field name="partner_id"/>
+                    <field name="event_starttime"/>
+                    <field name="event_endtime"/>
+                </tree>
+            </field>
+        </record>
+        <!--        View Kanban of aircall call contains details of call -->
+        <record id="rendezvous_action" model="ir.actions.act_window">
+            <field name="name">Rendez-vous Calendly</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">calendly.rendezvous</field>
+            <field name="domain">[('partner_id.id','=', active_id)]</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+    </data>
+</odoo>

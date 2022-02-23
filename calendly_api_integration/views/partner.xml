@@ -21,4 +21,18 @@
             </xpath>
         </field>
     </record>
+    <record id="res_partner_view_button_rendezvous" model="ir.ui.view">
+        <field name="name">res.partner.view.buttons.rendezvous</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form" />
+        <field name="priority" eval="1"/>
+        <field name="arch" type="xml">
+            <div name="button_box" position="inside">
+                <button class="oe_stat_button" type="action" name="%(calendly_api_integration.rendezvous_action)d"
+                        string="Rendez-vous"
+                        icon="fa-phone">
+                </button>
+            </div>
+        </field>
+    </record>
 </odoo>

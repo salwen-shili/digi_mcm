@@ -29,6 +29,7 @@
   height: fit-content;
   position: relative;
   transition: all 5s ease-in-out;
+  top: unset;
 }
 
 .popup h2 {
