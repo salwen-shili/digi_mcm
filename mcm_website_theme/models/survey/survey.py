@@ -59,7 +59,7 @@ class SurveyUserInputWizard(models.TransientModel):
                          ('model', "=", 'res.partner'), ('res_id', "=", self.env.user.partner_id.id)],
                         limit=1)
                     if not message:
-                        partner.with_context(force_send=True).message_post_with_template(template_id.id,
+                        rec.partner_id.with_context(force_send=True).message_post_with_template(template_id.id,
                                                                                          composition_mode='comment',
                                                                                          )
             else:
