@@ -41,6 +41,7 @@ class Document(models.Model):
     def change_stage_lead(self, statut, partner):
         if partner.name:
             partner.diviser_nom(partner)
+            print('first , last',partner.firstName,partner.lastName)
 
         stage = self.env['crm.stage'].sudo().search([("name", "=", _(statut))])
         if stage:

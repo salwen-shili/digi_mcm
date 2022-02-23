@@ -90,6 +90,7 @@ class Partner(models.Model):
     def changestage(self, name, partner):
         if partner.name:
             partner.diviser_nom(partner)
+            print('first , last',partner.firstName,partner.lastName)
         stages = self.env['crm.stage'].sudo().search([("name", "=", _(name))])
         if stages:
             for stage in stages:
@@ -142,7 +143,8 @@ class Partner(models.Model):
             if (partner.statut_cpf and partner.statut_cpf == 'canceled') or (partner.statut == 'canceled'):
                 self.changestage("Annulé", partner)
             if (partner.statut != 'canceled'):
-                print("-------------------",partner.email,partner.firstName,partner.lastName)
+                if partner.name:
+                    partner.diviser_nom(partner)
                 date_creation = partner.create_date
                 year = date_creation.year
                 month = date_creation.month
