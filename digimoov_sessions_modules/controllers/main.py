@@ -368,15 +368,26 @@ class WebsiteSale(WebsiteSale):
             values.update({
                 'list_villes_mcm': list_villes_mcm,
             })
-        partner_orders = request.env['sale.order'].sudo().search([('partner_id', '=', request.env.user.partner_id.id),('company_id', '=', 2),('state',"=",'sale')])
+        partner_orders_signed = request.env['sale.order'].sudo().search([('partner_id', '=', request.env.user.partner_id.id),('company_id', '=', 1),('state',"=",'sale')])
         isSigned = "False"
-        if partner_orders :
-            for order in partner_orders :
+        if partner_orders_signed :
+            for order in partner_orders_signed :
                 if order.order_line :
                     for line in order.order_line :
                         if (line.product_id.default_code=='vtc_bolt'):
                             isSigned = "True"
-
+        bolt_order = False
+        partner_orders_not_signed = request.env['sale.order'].sudo().search(
+            [('partner_id', '=', request.env.user.partner_id.id), ('company_id', '=', 1), ('state', "=", 'sent')])
+        if partner_orders_not_signed :
+            for order in partner_orders_not_signed :
+                if order.order_line :
+                    for line in order.order_line :
+                        if (line.product_id.default_code=='vtc_bolt'):
+                            bolt_order = order
+        bolt_contract_uri = "False"
+        if bolt_order :
+            bolt_contract_uri = "/my/orders/%s?access_token=%s" % (str(bolt_order.id), str(bolt_order.access_token))
         rdvIsBooked = "False"
         rendezvous = request.env['calendly.rendezvous'].sudo().search([('partner_id', '=', request.env.user.partner_id.id)],limit=1)
         if rendezvous :
@@ -391,6 +402,7 @@ class WebsiteSale(WebsiteSale):
             'rdvIsBooked' : rdvIsBooked,
             'cartIsEmpty' : cartIsEmpty,
             'isSigned' : isSigned,
+            'bolt_contract_uri':bolt_contract_uri
         })
         return request.render("website_sale.cart", values)
 
