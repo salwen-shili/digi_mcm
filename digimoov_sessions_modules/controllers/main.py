@@ -393,6 +393,7 @@ class WebsiteSale(WebsiteSale):
         if rendezvous :
             rdvIsBooked = "True"
         cartIsEmpty = "False"
+        order = request.website.sale_get_order()
         if not order:
             cartIsEmpty = "True"
         if order and not order.order_line :
