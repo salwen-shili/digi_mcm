@@ -340,6 +340,8 @@ class WebsiteSale(WebsiteSale):
                 if product.default_code == 'habilitation-electrique' :
                     from_habilitation_electrique = True
                     list_villes_habilitation_electrique = request.env['session.ville'].sudo().search([('company_id', '=', 2),('ville_formation',"=",True)])
+        if request.env.user.partner_id.bolt ==True :
+            from_bolt = 'True'
         values.update({
             'modules_digimoov': list_modules_digimoov,
             'modules_mcm': list_modules_mcm,
