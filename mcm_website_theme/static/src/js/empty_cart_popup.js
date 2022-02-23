@@ -4,7 +4,9 @@ var rdvIsBooked = false;
 const messages = {
   rdvIsBooked: `félicitations pour votre inscription, l'un de nos agents va vous contacter suite au rendez-vous réservé pour finaliser le financement de votre examen`,
   rdvIsnotbooked: `Veuillez réserver un créneau pour finaliser votre inscription a l'examen VTC afin d'accéder à la plateforme de formation`,
+  isNotSigned: `Nous vous remercions pour votre confiance, votre paiement a été effectué avec succès! Vous pouvez maintenant finaliser votre inscription en signant votre contrat pour avoir accès à notre plateforme de formation.`,
 };
+var urlContract = '/';
 var btnAction;
 function setPopup() {
   if (document.getElementById('cartIsEmpty')) {
@@ -18,23 +20,37 @@ function setPopup() {
         notifMessage = document.getElementById('notifMessageBolt');
         //set the message
       }
-      if (document.getElementById('rdvIsBooked')) {
-        rdvIsBooked = document.getElementById('rdvIsBooked').value;
-        if (rdvIsBooked) {
-          notifMessage.textContent = messages['rdvIsBooked'];
-          if (document.getElementById('btn-action')) {
-            btnAction = document.getElementById('btn-action');
-            btnAction.addEventListener('click', function () {
-              window.location.href = '/my/home';
-            });
+      if (isSigned) {
+        if (document.getElementById('rdvIsBooked')) {
+          rdvIsBooked = document.getElementById('rdvIsBooked').value;
+          if (rdvIsBooked) {
+            notifMessage.textContent = messages['rdvIsBooked'];
+            if (document.getElementById('btn-action')) {
+              btnAction = document.getElementById('btn-action');
+              btnAction.addEventListener('click', function () {
+                window.location.href = '/my/home';
+              });
+            }
+          } else {
+            notifMessage.textContent = messages['rdvIsnotbooked'];
+            if (document.getElementById('btn-action')) {
+              btnAction = document.getElementById('btn-action');
+              btnAction.innerText = 'Réserver un créneau';
+              btnAction.addEventListener('click', function () {
+                openCalendly();
+              });
+            }
           }
-        } else {
-          notifMessage.textContent = messages['rdvIsnotbooked'];
+        }
+      } else {
+        if (document.getElementsByTagName('urlContract')) {
+          urlContract = document.getElementsByTagName('urlContract');
           if (document.getElementById('btn-action')) {
+            notifMessage.textContent = messages['isNotSigned'];
             btnAction = document.getElementById('btn-action');
-            btnAction.innerText = 'Réserver un créneau';
+            btnAction.innerText = 'Signer mon contrat';
             btnAction.addEventListener('click', function () {
-              openCalendly();
+              window.location.href = url;
             });
           }
         }
