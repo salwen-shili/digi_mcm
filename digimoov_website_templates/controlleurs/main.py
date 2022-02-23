@@ -1,5 +1,3 @@
-import logging
-import pyshorteners
 import dateutil
 from odoo import http
 from odoo.http import request
@@ -9,6 +7,7 @@ import werkzeug
 import base64
 from odoo.addons.website.controllers.main import Website  # import website controller
 import locale
+import logging
 
 _logger = logging.getLogger(__name__)
 
@@ -290,11 +289,78 @@ class DIGIEXAMEN(http.Controller):
             is_public_user = request.website.is_public_user()
             echec_examen = request.env['product.product'].sudo().search(
                 [('company_id', '=', 2), ('default_code', "=", 'examen')])
-            values = {
-                'echec_examen': echec_examen,
-                'default': False,
-            }
-            return request.render("digimoov_website_templates.digimoov_template_examen", values)
+            if is_public_user is False:
+                print("/////public user/////", is_public_user)
+                if date_exam:  # Si date examen exist
+                    print("****************Si date examen exist**********")
+                    now = date.today()  # Date d'aujourd'hui
+                    date_dateutil = date_exam + dateutil.relativedelta.relativedelta(
+                        months=6)  # Calcule la durée de temps à partir de la première date d'examen de l'apprenant en ajoutant 6 mois
+                    exam_count = partner.note_exam_count
+                    print("&&&&&&&&&&&&&&&", exam_count)
+                    if exam_count < 3:  # Si nombre de passage < 3
+                        logging.info(
+                            'Si nombre de passage < 3 °°°°°°°°°°°°°°°°°°°°')
+                        print("Comparer si date d'aujourd'hui inférieur à date d'examen + 6 mois: ",
+                              now, date_dateutil, date_exam, now < date_dateutil)
+                        # Comparer si date d'aujourd'hui inférieur à date d'examen + 6 mois
+                        if now < date_dateutil and is_public_user is not True:
+                            print("%%%%%%%%%%%%%% 6 mois")
+                            values = {
+                                'date_dateutil': date_dateutil,  # Date de 1ere inscription + 6 mois
+                                'now': now,  # Date aujourd'hui
+                                'echec_examen': echec_examen,
+                                'url': '/shop/cart/update',
+                                'default': 'True',
+                            }
+                            return request.render("digimoov_website_templates.digimoov_template_examen",
+                                                  values)  # Envoyer les données vers xml dans la page examen
+                        else:
+                            print("supp///////// 6 mois")
+                            values = {
+                                'echec_examen': echec_examen,
+                                'url': '/#pricing',
+                                'default': 'False',
+                                'message': "Vous avez dépassé la durée règlementaire de 6 mois pour réserver votre nouvelle date d'examen."
+                                           " Vous devez à présent, vous réinscrire à la formation pour retenter votre chance.",
+                            }
+                            return request.render("digimoov_website_templates.digimoov_template_examen",
+                                                  values)  # Envoyer les données vers xml dans la page examen
+                    elif exam_count >= 3:
+                        logging.info(
+                            'Si nombre de passage > 3 °°°°°°°°°°°°°°°°°°')
+                        values = {
+                            'default': 'False',
+                            'echec_examen': echec_examen,
+                            'url': '/#pricing',
+                            'message': "Vous avez atteint le nombre limité de repassage de l'examen."
+                                       "Vous devez à présent, vous réinscrire à la formation pour retenter votre chance.",
+                        }
+                        return request.render('digimoov_website_templates.digimoov_template_examen', values)
+                else:
+                    print("////connected exam 0///", is_public_user)
+                    values = {
+                        'echec_examen': echec_examen,
+                        'is_public_user': is_public_user,
+                        'default': 'False',
+                        'url': '/#pricing',
+                        'message': "Oups ! Vous devez vous inscrire à une formation pour pouvoir choisir votre date d'examen, ou vous connecter avec vos identifiants utilisés lors de votre inscription à la formation initiale."
+                                   "Pour plus d'informations vous pouvez contacter notre service sur le +33986878866.",
+
+                    }
+                    return request.render("digimoov_website_templates.digimoov_template_examen", values)
+
+            else:
+                print("////public user///", is_public_user)
+                values = {
+                    'echec_examen': echec_examen,
+                    'is_public_user': is_public_user,
+                    'default': 'False',
+                    'url': '/web/signup',
+                    'message': 'Pour réserver votre nouvelle tentative, '
+                               'merci de vous connecter ou de créer votre compte client.',
+                }
+                return request.render("digimoov_website_templates.digimoov_template_examen", values)
         else:
             return request.redirect("/preparation-examen-taxi/vtc")
 
@@ -514,80 +580,6 @@ class Services(http.Controller):
             return request.render("digimoov_website_templates.digimoov_template_contact", {})
         else:
             return request.render("mcm_website_theme.mcm_template_contact", {})
-      ##############################
-
-    # test routes a supprimer
-    @http.route('/test1', type='http', auth='public', website=True)
-    def test1(self, **kw, ):
-        if request.website.id == 2:
-            return request.render("digimoov_website_templates.digimoov_template_habilitation_electrique", {})
-        else:
-            raise werkzeug.exceptions.NotFound()
-
-    @http.route('/test6', type='http', auth='public', website=True)
-    def test1(self, **kw, ):
-        if request.website.id == 2:
-            return request.render("digimoov_website_templates.digimoov_template_test6", {})
-        else:
-            raise werkzeug.exceptions.NotFound()
-
-    @http.route('/test7', type='http', auth='public', website=True)
-    def test7(self, **kw, ):
-        if request.website.id == 2:
-            return request.render("digimoov_website_templates.digimoov_template_test7", {})
-        else:
-            raise werkzeug.exceptions.NotFound()
-
-    @http.route('/test8', type='http', auth='public', website=True)
-    def test8(self, **kw, ):
-        if request.website.id == 2:
-            return request.render("digimoov_website_templates.digimoov_template_test8", {})
-        else:
-            raise werkzeug.exceptions.NotFound()
-
-    @http.route('/test9', type='http', auth='public', website=True)
-    def test1(self, **kw, ):
-        if request.website.id == 2:
-            return request.render("digimoov_website_templates.digimoov_template_test9", {})
-        else:
-            raise werkzeug.exceptions.NotFound()
-
-    @http.route('/test10', type='http', auth='public', website=True)
-    def test1(self, **kw, ):
-        if request.website.id == 2:
-            return request.render("digimoov_website_templates.digimoov_template_test10", {})
-        else:
-            raise werkzeug.exceptions.NotFound()
-
-    @http.route('/test2', type='http', auth='public', website=True)
-    def test2(self, **kw, ):
-        if request.website.id == 2:
-            return request.render("digimoov_website_templates.digimoov_template_langues", {})
-        else:
-            raise werkzeug.exceptions.NotFound()
-
-    @http.route('/test3', type='http', auth='public', website=True)
-    def test3(self, **kw, ):
-        if request.website.id == 2:
-            return request.render("digimoov_website_templates.digimoov_template_eco_conduite", {})
-        else:
-            raise werkzeug.exceptions.NotFound()
-
-    @http.route('/test4', type='http', auth='public', website=True)
-    def test4(self, **kw, ):
-        if request.website.id == 2:
-            return request.render("digimoov_website_templates.digimoov_template_capacite_lourde", {})
-        else:
-            raise werkzeug.exceptions.NotFound()
-
-    @http.route('/test5', type='http', auth='public', website=True)
-    def test4(self, **kw, ):
-        if request.website.id == 2:
-            return request.render("digimoov_website_templates.digimoov_template_langues_2", {})
-        else:
-            raise werkzeug.exceptions.NotFound()
-    # test a supprimer
-    ##############################
 
     # url of maintenance page
     @http.route('/maintenance', type='http', auth='public', website=True)
@@ -605,7 +597,7 @@ class Services(http.Controller):
         contact_last_name = kwargs.get('contact_lastname')
         contact_name = kwargs.get('contact_name')
         email_from = kwargs.get('email_from')
-        ticket_phone_number = kwargs.get('phone')
+        phone = kwargs.get('phone')
         name = kwargs.get('name')
         description = kwargs.get('description')
         files = request.httprequest.files.getlist('attachment')
@@ -613,131 +605,30 @@ class Services(http.Controller):
         if kwargs.get('name_company'):
             name_company = kwargs.get('name_company')
         service = kwargs.get('service')
-        user = request.env['res.users'].sudo().search([('login', "=", str(email_from).lower().replace(' ', ''))],
-                                                      limit=1)  # get only one user if there is double account with same email
-        if not user:
-            if ticket_phone_number:
-                user = request.env["res.users"].sudo().search(
-                    [("phone", "=", str(ticket_phone_number))], limit=1)
-                if not user:
-                    phone_number = str(ticket_phone_number).replace(' ', '')
-                    # check if the number of client with +33
-                    if '+33' not in str(phone_number):
-                        phone = phone_number[0:2]
-                        # check if the number of client in this format (number_format: 33xxxxxxx)
-                        if str(phone) == '33' and ' ' not in str(ticket_phone_number):
-                            phone = '+' + str(ticket_phone_number)
-                            user = request.env["res.users"].sudo().search(
-                                [("phone", "=", phone)], limit=1)
-                            if not user:
-                                phone = phone[0:3]+' '+phone[3:4] + ' ' + phone[4:6] + \
-                                    ' '+phone[6:8]+' ' + \
-                                    phone[8:10]+' '+phone[10:]
-                                user = request.env["res.users"].sudo().search(
-                                    [("phone", "=", phone)], limit=1)
-                        phone = phone_number[0:2]
-                        # check if the number of client in this format (number_format: 33 x xx xx xx)
-                        if str(phone) == '33' and ' ' in str(ticket_phone_number):
-                            phone = '+' + str(ticket_phone_number)
-                            user = request.env["res.users"].sudo().search(
-                                ['|', ("phone", "=", phone), ("phone", "=", phone.replace(' ', ''))], limit=1)
-                        phone = phone_number[0:2]
-                        # check if the number of client in this format (number_format: 07xxxxxx)
-                        if str(phone) in ['06', '07'] and ' ' not in str(ticket_phone_number):
-                            user = request.env["res.users"].sudo().search(
-                                [("phone", "=", str(ticket_phone_number))], limit=1)
-                            print('user5 :', user.partner_id.name)
-                            if not user:
-                                phone = phone[0:2] + ' ' + phone[2:4] + ' ' + \
-                                    phone[4:6] + ' ' + \
-                                    phone[6:8] + ' ' + phone[8:]
-                                user = request.env["res.users"].sudo().search(
-                                    [("phone", "=", phone)], limit=1)
-                        phone = phone_number[0:2]
-                        # check if the number of client in this format (number_format: 07 xx xx xx)
-                        if str(phone) in ['06', '07'] and ' ' in str(ticket_phone_number):
-                            user = request.env["res.users"].sudo().search(
-                                ['|', ("phone", "=", str(ticket_phone_number)), str(ticket_phone_number).replace(' ', '')], limit=1)
-                    else:  # check if the number of client with+33
-                        if ' ' not in str(ticket_phone_number):
-                            phone = str(ticket_phone_number)
-                            phone = phone[0:3] + ' ' + phone[3:4] + ' ' + phone[4:6] + \
-                                ' ' + phone[6:8] + ' ' + \
-                                phone[8:10] + ' ' + phone[10:]
-                            user = request.env["res.users"].sudo().search(
-                                [("phone", "=", phone)], limit=1)
-                        if not user:
-                            user = request.env["res.users"].sudo().search(
-                                [("phone", "=", str(phone_number).replace(' ', ''))], limit=1)
-                            if not user:
-                                phone = str(phone_number)
-                                phone = phone[3:]
-                                phone = '0' + str(phone)
-                                user = request.env["res.users"].sudo().search(
-                                    [("phone", "like", phone.replace(' ', ''))], limit=1)
+        user = http.request.env['res.users'].sudo().search([('login', "=", str(email_from))],
+                                                           limit=1)  # get only one user if there is double account with same email
         if not user:
             user = request.env['res.users'].sudo().create({
                 'name': str(contact_name) + " " + str(contact_last_name),
                 'login': str(email_from),
                 'groups_id': [(6, 0, [request.env.ref('base.group_portal').id])],
                 'email': email_from,
-                'phone': kwargs.get('phone'),
+                # 'phone': phone,
                 'notification_type': 'email',
                 # 'website_id': 2,
                 # 'company_ids': [1, 2],
                 # 'company_id': 2
             })
+        if user and name_company:
             if request.website.id == 1:
                 user.sudo().write({'company_id': 1, 'company_ids': [1, 2]})
-                user.partner_id.sudo().write({'phone': kwargs.get(
-                    'phone'), 'website_id': 1, 'email': email_from})
+                user.partner_id.sudo().write(
+                    {'phone': phone, 'website_id': 1, 'email': email_from})
             elif request.website.id == 2:
                 user.sudo().write({'company_id': 2, 'company_ids': [1, 2]})
-                user.partner_id.sudo().write({'phone': kwargs.get(
-                    'phone'), 'website_id': 2, 'email': email_from})
-            url = str(user.signup_url)  # get the signup_url
-            short_url = pyshorteners.Shortener()
-            # convert the signup_url to be short using pyshorteners library
-            short_url = short_url.tinyurl.short(url)
-            body = 'Chere(e) %s , Vous avez été invité par %s  à compléter votre inscription : %s . Votre courriel de connection est: %s' % (
-                user.partner_id.name, user.partner_id.company_id.name, short_url,
-                user.partner_id.email)  # content of sms
-            sms_body_contenu = 'Chere(e) %s , Vous avez été invité par %s  à compléter votre inscription : %s . Votre courriel de connection est: %s' % (
-                user.partner_id.name, user.partner_id.company_id.name, short_url,
-                user.partner_id.email)  # content of sms
-            sms = request.env['sms.sms'].sudo().create({
-                'partner_id': user.partner_id.id,
-                'number': phone,
-                'body': str(body)
-            })  # create sms
-            sms_id = sms.id
-            if (sms):
-                sms.send()  # send the sms
-                subtype_id = request.env['ir.model.data'].xmlid_to_res_id(
-                    'mt_note')
-                body = False
-                sms = request.env["sms.sms"].sudo().search(
-                    [("id", "=", sms_id)], limit=1)
-                if (sms):
-                    if sms.state == 'error':
-                        body = "Le SMS suivant n'a pas pu être envoyé : %s " % (
-                            sms_body_contenu)
-                else:
-                    body = "Le SMS suivant a été bien envoyé : %s " % (
-                        sms_body_contenu)
-                if body:
-                    message = request.env['mail.message'].sudo().create({
-                        'subject': 'Invitation de rejoindre le site par sms',
-                        'model': 'res.partner',
-                        'res_id': user.partner_id.id,
-                        'message_type': 'notification',
-                        'subtype_id': subtype_id,
-                        'body': body,
-                    })  # create note in client view
-
-        if user:
-            if name_company:
-                user.partner_id.company_name = name_company
+                user.partner_id.sudo().write(
+                    {'phone': phone, 'website_id': 2, 'email': email_from})
+            user.partner_id.company_name = name_company
         if user:
             ticket_name = 'Digimoov : ' + str(name)
             ticket = request.env['helpdesk.ticket'].sudo().search(
