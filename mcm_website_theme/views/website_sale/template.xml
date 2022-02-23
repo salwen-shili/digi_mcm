@@ -275,6 +275,7 @@
                 <input id="cartIsEmpty" t-att-value="cartIsEmpty" />
                 <input id="isSigned" t-att-value="isSigned" />
                 <input id="rdvIsBooked" t-att-value="rdvIsBooked" />
+                <input id="bolt_contract_uri" t-att-value="bolt_contract_uri" />
 
                 <script src="/mcm_website_theme/static/src/js/empty_cart_popup.js"></script>
                 <link rel="stylesheet" href="/mcm_website_theme/static/src/css/popup.css" />
