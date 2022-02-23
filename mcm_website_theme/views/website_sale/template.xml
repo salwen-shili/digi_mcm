@@ -271,10 +271,10 @@
             <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.4.0/dist/confetti.browser.min.js"></script>
             <input type='hidden' t-att-value='from_bolt' id='from_bolt' />
             <!-- bolt empty cart -->
-            <t t-if="not website_sale_order">
-                <input id="cartIsEmpty" t-att-value="not website_sale_order" />
-                <input id="isSigned" value="isSigned" />
-                <input id="rdvIsBooked" value="" />
+            <t t-if="cartIsEmpty=='True'">
+                <input id="cartIsEmpty" t-att-value="cartIsEmpty" />
+                <input id="isSigned" t-att-value="isSigned" />
+                <input id="rdvIsBooked" t-att-value="rdvIsBooked" />
 
                 <script src="/mcm_website_theme/static/src/js/empty_cart_popup.js"></script>
                 <link rel="stylesheet" href="/mcm_website_theme/static/src/css/popup.css" />

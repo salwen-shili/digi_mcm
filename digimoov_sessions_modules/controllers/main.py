@@ -34,6 +34,32 @@ class WebsiteSale(WebsiteSale):
         access_token: Abandoned cart SO access token
         revive: Revival method when abandoned cart. Can be 'merge' or 'squash'
         """
+        order = request.website.sale_get_order()
+        if order and order.state != 'draft':
+            request.session['sale_order_id'] = None
+            order = request.website.sale_get_order()
+        values = {}
+        if access_token:
+            abandoned_order = request.env['sale.order'].sudo().search([('access_token', '=', access_token)], limit=1)
+            if not abandoned_order:  # wrong token (or SO has been deleted)
+                raise NotFound()
+            if abandoned_order.state != 'draft':  # abandoned cart already finished
+                values.update({'abandoned_proceed': True})
+            elif revive == 'squash' or (revive == 'merge' and not request.session.get(
+                    'sale_order_id')):  # restore old cart or merge with unexistant
+                request.session['sale_order_id'] = abandoned_order.id
+                return request.redirect('/shop/cart')
+            elif revive == 'merge':
+                abandoned_order.order_line.write({'order_id': request.session['sale_order_id']})
+                abandoned_order.action_cancel()
+            elif abandoned_order.id != request.session.get(
+                    'sale_order_id'):  # abandoned cart found, user have to choose what to do
+                values.update({'access_token': abandoned_order.access_token})
+        values.update({
+            'website_sale_order': order,
+            'date': fields.Date.today(),
+            'suggested_products': [],
+        })
         if post.get('type') == 'popover':
             # force no-cache so IE11 doesn't cache this XHR
             return request.render("website_sale.cart_popover", values, headers={'Cache-Control': 'no-cache'})
@@ -87,32 +113,6 @@ class WebsiteSale(WebsiteSale):
                             _logger.info('survey_user : %s' % (str(survey_user.quizz_passed)))
                             if not survey_user.quizz_passed:
                                 return werkzeug.utils.redirect('/bolt', 301)
-                                 
-        if order and order.state != 'draft':
-            request.session['sale_order_id'] = None
-            order = request.website.sale_get_order()
-        values = {}
-        if access_token:
-            abandoned_order = request.env['sale.order'].sudo().search([('access_token', '=', access_token)], limit=1)
-            if not abandoned_order:  # wrong token (or SO has been deleted)
-                raise NotFound()
-            if abandoned_order.state != 'draft':  # abandoned cart already finished
-                values.update({'abandoned_proceed': True})
-            elif revive == 'squash' or (revive == 'merge' and not request.session.get(
-                    'sale_order_id')):  # restore old cart or merge with unexistant
-                request.session['sale_order_id'] = abandoned_order.id
-                return request.redirect('/shop/cart')
-            elif revive == 'merge':
-                abandoned_order.order_line.write({'order_id': request.session['sale_order_id']})
-                abandoned_order.action_cancel()
-            elif abandoned_order.id != request.session.get(
-                    'sale_order_id'):  # abandoned cart found, user have to choose what to do
-                values.update({'access_token': abandoned_order.access_token})
-        values.update({
-            'website_sale_order': order,
-            'date': fields.Date.today(),
-            'suggested_products': [],
-        })
         if not request.env.user.has_group('base.group_user'):
             documents = False
             if order.partner_id:
@@ -366,7 +366,30 @@ class WebsiteSale(WebsiteSale):
             values.update({
                 'list_villes_mcm': list_villes_mcm,
             })
-        print('valuuuuuuuue',values)
+        partner_orders = request.env['sale.order'].sudo().search([('partner_id', '=', request.env.user.partner_id.id),('company_id', '=', 2),('state',"=",'sale')])
+        isSigned = "False"
+        if partner_orders :
+            for order in partner_orders :
+                if order.order_line :
+                    for line in order.order_line :
+                        if (line.product_id.default_code=='vtc_bolt'):
+                            isSigned = "True"
+
+        rdvIsBooked = "False"
+        rendezvous = request.env['calendly.rendezvous'].sudo().search([('partner_id', '=', request.env.user.partner_id.id)],limit=1)
+        if rendezvous :
+            rdvIsBooked = "True"
+        cartIsEmpty = "False"
+        if not order:
+            cartIsEmpty = "True"
+        if order and not order.order_line :
+            cartIsEmpty = "True"
+
+        values.update({
+            'rdvIsBooked' : rdvIsBooked,
+            'cartIsEmpty' : cartIsEmpty,
+            'isSigned' : isSigned,
+        })
         return request.render("website_sale.cart", values)
 
     # def checkout_redirection(self, order):
