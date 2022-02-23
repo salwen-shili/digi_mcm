@@ -173,6 +173,7 @@ class Home(Home):
                         mail_compose_message = request.env['mail.compose.message']
                         mail_compose_message.fetch_sendinblue_template()
                         template_id = request.env['mail.template'].sudo().search([('subject', "=", "Passez votre examen blanc avec MCM ACADEMY X BOLT"),('model_id',"=",'res.partner')],limit=1)
+                        print('template :',template_id)
                         if template_id:
                             message = request.env['mail.message'].sudo().search(
                                 [('subject', "=", "Passez votre examen blanc avec MCM ACADEMY X BOLT"),
