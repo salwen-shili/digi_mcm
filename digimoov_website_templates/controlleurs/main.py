@@ -241,7 +241,8 @@ class DIGIEXAMEN(http.Controller):
         :param request.website.id: Si siteweb = digimoov alors :
         I- :param : is_public_user: Si l'utilisateur est un visiteur (False)
             1- Redirection: /web/signup
-        II- :param: is_public_user: Si l'utilisateur n'est pas un visiteur (True)"""
+        II- :param: is_public_user: Si l'utilisateur n'est pas un visiteur (True)
+            2- Si date examen != 0 : redirection:/#pricing"""
         if request.website.id == 2:
             partner = request.env.user.partner_id  # Récupérer id de l'apprenant connecté
             session = request.env['partner.sessions'].sudo().search(
