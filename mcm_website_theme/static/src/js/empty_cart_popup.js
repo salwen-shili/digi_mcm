@@ -6,7 +6,7 @@ const messages = {
   rdvIsnotbooked: `Veuillez réserver un créneau pour finaliser votre inscription a l'examen VTC afin d'accéder à la plateforme de formation`,
   isNotSigned: `Nous vous remercions pour votre confiance, votre paiement a été effectué avec succès! Vous pouvez maintenant finaliser votre inscription en signant votre contrat pour avoir accès à notre plateforme de formation.`,
 };
-var urlContract = '/';
+var bolt_contract_uri = '/';
 var btnAction;
 function setPopup() {
   if (document.getElementById('cartIsEmpty')) {
@@ -43,14 +43,15 @@ function setPopup() {
           }
         }
       } else {
-        if (document.getElementsByTagName('urlContract')) {
-          urlContract = document.getElementsByTagName('urlContract');
+        if (document.getElementsByTagName('bolt_contract_uri')) {
+          bolt_contract_uri =
+            document.getElementsByTagName('bolt_contract_uri');
           if (document.getElementById('btn-action')) {
             notifMessage.textContent = messages['isNotSigned'];
             btnAction = document.getElementById('btn-action');
             btnAction.innerText = 'Signer mon contrat';
             btnAction.addEventListener('click', function () {
-              window.location.href = url;
+              window.location.href = bolt_contract_uri;
             });
           }
         }
