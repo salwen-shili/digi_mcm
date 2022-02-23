@@ -9,11 +9,8 @@ import werkzeug
 import base64
 from odoo.addons.website.controllers.main import Website  # import website controller
 import locale
-<< << << < HEAD
-== == == =
 
 _logger = logging.getLogger(__name__)
->>>>>> > feature_repassage_examen
 
 
 class Website(Website):
