@@ -1,3 +1,6 @@
+import logging
+import pyshorteners
+import dateutil
 from odoo import http
 from odoo.http import request
 from datetime import datetime, date
@@ -6,7 +9,11 @@ import werkzeug
 import base64
 from odoo.addons.website.controllers.main import Website  # import website controller
 import locale
-import pyshorteners
+<< << << < HEAD
+== == == =
+
+_logger = logging.getLogger(__name__)
+>>>>>> > feature_repassage_examen
 
 
 class Website(Website):
@@ -46,15 +53,16 @@ class Website(Website):
         else:
             raise werkzeug.exceptions.NotFound()
 
-    @http.route('/attestation-transport-leger-marchandises/paris', type='http', auth='public', website=True)
-    def attestation_transport_leger_marchandises_paris(self, **kw,):
+    @http.route('/capacité-de-transport/paris', type='http', auth='public', website=True)
+    def attestation_transport_leger_marchandises_paris(self, **kw, ):
         if request.website.id == 2:
             digimoov_products = request.env['product.product'].sudo().search([('company_id', '=', 2)],
                                                                              order="list_price")
             values = {
                 'digimoov_products': digimoov_products,
             }
-            return request.render("digimoov_website_templates.digimoov_template_transport_leger_marchandises_paris", values)
+            return request.render("digimoov_website_templates.digimoov_template_transport_leger_marchandises_paris",
+                                  values)
         else:
             raise werkzeug.exceptions.NotFound()
 
@@ -91,18 +99,6 @@ class Website(Website):
                 'digimoov_products': digimoov_products,
             }
             return request.render("digimoov_website_templates.digimoov_template_transport_leger_marchandises_nantes", values)
-        else:
-            raise werkzeug.exceptions.NotFound()
-
-    @http.route('/attestation-transport-leger-marchandises/marseille', type='http', auth='public', website=True)
-    def attestation_transport_leger_marchandises_marseille(self, **kw,):
-        if request.website.id == 2:
-            digimoov_products = request.env['product.product'].sudo().search([('company_id', '=', 2)],
-                                                                             order="list_price")
-            values = {
-                'digimoov_products': digimoov_products,
-            }
-            return request.render("digimoov_website_templates.digimoov_template_transport_leger_marchandises_marseille", values)
         else:
             raise werkzeug.exceptions.NotFound()
 
@@ -280,7 +276,21 @@ class DIGIEXAMEN(http.Controller):
 
     @http.route('/examen-capacite-transport-marchandises', type='http', auth='public', website=True)
     def exam(self, **kw, ):
+        """ Ajouter les conditions suivant au niveau de la page examen dans le Site Web,
+        lorsque un utulisateur clique sur le bouton de Tentative de repassage
+        :param request.website.id: Si siteweb = digimoov alors :
+        I- :param : is_public_user: Si l'utilisateur est un visiteur (False)
+            1- Redirection: /web/signup
+        II- :param: is_public_user: Si l'utilisateur n'est pas un visiteur (True)
+            2- Si date examen != 0 : redirection:/#pricing"""
         if request.website.id == 2:
+            partner = request.env.user.partner_id  # Récupérer id de l'apprenant connecté
+            session = request.env['partner.sessions'].sudo().search(
+                [('client_id', '=', partner.id)], order='id asc', limit=1)
+            # Récupérer date d'examen à partir de la première session
+            date_exam = session.session_id.date_exam
+            # PUBLIC USER = VISITOR OR USER ODOO NOT CONNECTED, return true or false
+            is_public_user = request.website.is_public_user()
             echec_examen = request.env['product.product'].sudo().search(
                 [('company_id', '=', 2), ('default_code', "=", 'examen')])
             values = {
