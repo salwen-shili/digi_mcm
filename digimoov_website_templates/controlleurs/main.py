@@ -242,7 +242,10 @@ class DIGIEXAMEN(http.Controller):
         I- :param : is_public_user: Si l'utilisateur est un visiteur (False)
             1- Redirection: /web/signup
         II- :param: is_public_user: Si l'utilisateur n'est pas un visiteur (True)
-            2- Si date examen != 0 : redirection:/#pricing"""
+            2- Si date examen != 0 : redirection:/#pricing
+            3- Sinon si date examen existe, nombre de passage < 3 et date_dateutil(1er date_examen + 6 mois)
+                Redirection: /shop/cart/update
+            4- Si nombre de passage > 3: Redirection : /#pricing """
         if request.website.id == 2:
             partner = request.env.user.partner_id  # Récupérer id de l'apprenant connecté
             session = request.env['partner.sessions'].sudo().search(
@@ -308,7 +311,8 @@ class DIGIEXAMEN(http.Controller):
                         'is_public_user': is_public_user,
                         'default': 'False',
                         'url': '/#pricing',
-                        'message': "Oups ! Vous devez vous inscrire à une formation pour pouvoir choisir votre date d'examen, ou vous connecter avec vos identifiants utilisés lors de votre inscription à la formation initiale."
+                        'message': "Oups ! Vous devez vous inscrire à une formation pour pouvoir choisir votre date d'examen, "
+                                   "ou vous connecter avec vos identifiants utilisés lors de votre inscription à la formation initiale."
                                    "Pour plus d'informations vous pouvez contacter notre service sur le +33986878866.",
 
                     }
