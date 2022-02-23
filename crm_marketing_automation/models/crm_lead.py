@@ -80,3 +80,13 @@ class CRM(models.Model):
                     duplicate_lead.append(dup.id)
                     _logger.info("duplicate_contacts %s" % dup.name)
         self.browse(duplicate_lead).unlink()
+    """Au moment de suppression d'un client sur crm on change la valeur de client bolt pour qu'il ne soit pas réécrit"""
+    def unlink(self):
+
+        partner=self.partner_id
+        if partner and partner.bolt:
+            partner.sudo().write({
+                'bolt':False,
+            })
+        res = super(CRM, self).unlink()
+        return res
