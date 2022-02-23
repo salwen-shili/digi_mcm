@@ -200,8 +200,8 @@
             </xpath>
             <xpath expr="//field[@name='name']" position="replace">
 
-                  <field name="email_from" style="margin-right:10px;"></field>
-                <field name="prenom" style="margin-right:10px;"></field>
+                  <field name="nom" style="margin-right:10px;"></field>
+                <field name="prenom" style="margin-right:16px;"></field>
                          <field name="contact_name" attrs="{'invisible': [('partner_id', '!=', False)]}"></field>
             </xpath>
             <xpath expr="//field[@name='planned_revenue']" position="replace">

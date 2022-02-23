@@ -59,14 +59,16 @@ class Sale(models.Model):
         return record
     def change_stage_lead(self, statut, partner):
         print('if verifié')
+        if partner.name:
+            partner.diviser_nom(partner)
         stage = self.env['crm.stage'].sudo().search([("name", "=", _(statut))])
         print('stageeeee', stage)
         if stage:
             lead = self.env['crm.lead'].sudo().search([('partner_id', '=', partner.id)], limit=1)
             if lead:
                 lead.sudo().write({
-                    'nom': partner.firstName if firstName else "",
-                    'prenom': partner.lastName if lastName else "",
+                    'nom': partner.firstName if partner.firstName else "",
+                    'prenom': partner.lastName if partner.lastName else "",
                     'name': partner.name if partner.name else "",
                     'partner_name': partner.name,
                     'num_dossier': partner.numero_cpf if partner.numero_cpf else "",
@@ -82,8 +84,8 @@ class Sale(models.Model):
                 })
             if not lead:
                 lead = self.env['crm.lead'].sudo().create({
-                    'nom': partner.firstName if firstName else "",
-                    'prenom': partner.lastName if lastName else "",
+                    'nom': partner.firstName if partner.firstName else "",
+                    'prenom': partner.lastName if partner.lastName else "",
                     'name': partner.name if partner.name else "",
                     'partner_name': partner.name,
                     'num_dossier': partner.numero_cpf if partner.numero_cpf else "",
