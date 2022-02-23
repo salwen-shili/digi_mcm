@@ -1,4 +1,3 @@
-import dateutil
 from odoo import http
 from odoo.http import request
 from datetime import datetime, date
@@ -7,9 +6,6 @@ import werkzeug
 import base64
 from odoo.addons.website.controllers.main import Website  # import website controller
 import locale
-import logging
-
-_logger = logging.getLogger(__name__)
 
 
 class Website(Website):
@@ -38,7 +34,7 @@ class Website(Website):
             user.partner_id.renounce_request = True
 
     @http.route('/attestation-transport-leger-marchandises', type='http', auth='public', website=True)
-    def attestation_transport_leger_marchandises(self, **kw, ):
+    def attestation_transport_leger_marchandises(self, **kw,):
         if request.website.id == 2:
             digimoov_products = request.env['product.product'].sudo().search([('company_id', '=', 2)],
                                                                              order="list_price")
@@ -50,51 +46,14 @@ class Website(Website):
             raise werkzeug.exceptions.NotFound()
 
     @http.route('/capacité-de-transport/paris', type='http', auth='public', website=True)
-    def attestation_transport_leger_marchandises_paris(self, **kw, ):
+    def attestation_transport_leger_marchandises_paris(self, **kw,):
         if request.website.id == 2:
             digimoov_products = request.env['product.product'].sudo().search([('company_id', '=', 2)],
                                                                              order="list_price")
             values = {
                 'digimoov_products': digimoov_products,
             }
-            return request.render("digimoov_website_templates.digimoov_template_transport_leger_marchandises_paris",
-                                  values)
-        else:
-            raise werkzeug.exceptions.NotFound()
-
-    @http.route('/attestation-transport-leger-marchandises/lyon', type='http', auth='public', website=True)
-    def attestation_transport_leger_marchandises_lyon(self, **kw,):
-        if request.website.id == 2:
-            digimoov_products = request.env['product.product'].sudo().search([('company_id', '=', 2)],
-                                                                             order="list_price")
-            values = {
-                'digimoov_products': digimoov_products,
-            }
-            return request.render("digimoov_website_templates.digimoov_template_transport_leger_marchandises_lyon", values)
-        else:
-            raise werkzeug.exceptions.NotFound()
-
-    @http.route('/attestation-transport-leger-marchandises/lille', type='http', auth='public', website=True)
-    def attestation_transport_leger_marchandises_lille(self, **kw,):
-        if request.website.id == 2:
-            digimoov_products = request.env['product.product'].sudo().search([('company_id', '=', 2)],
-                                                                             order="list_price")
-            values = {
-                'digimoov_products': digimoov_products,
-            }
-            return request.render("digimoov_website_templates.digimoov_template_transport_leger_marchandises_lille", values)
-        else:
-            raise werkzeug.exceptions.NotFound()
-
-    @http.route('/attestation-transport-leger-marchandises/nantes', type='http', auth='public', website=True)
-    def attestation_transport_leger_marchandises_nantes(self, **kw,):
-        if request.website.id == 2:
-            digimoov_products = request.env['product.product'].sudo().search([('company_id', '=', 2)],
-                                                                             order="list_price")
-            values = {
-                'digimoov_products': digimoov_products,
-            }
-            return request.render("digimoov_website_templates.digimoov_template_transport_leger_marchandises_nantes", values)
+            return request.render("digimoov_website_templates.digimoov_template_transport_leger_marchandises_paris", values)
         else:
             raise werkzeug.exceptions.NotFound()
 
@@ -108,9 +67,7 @@ class FAQ(http.Controller):
             last_ville = request.env['session.ville'].sudo().search(
                 [('company_id', '=', 2), ('ville_formation', "=", False)], order='name_ville desc', limit=1)
             list_villes = request.env['session.ville'].sudo().search(
-                [('id', "!=", last_ville.id), ('company_id', '=', 2),
-                 ('ville_formation', "=", False)],
-                order='name_ville asc')
+                [('id', "!=", last_ville.id), ('company_id', '=', 2), ('ville_formation', "=", False)], order='name_ville asc')
             values = {
                 'list_villes': list_villes,
                 'last_ville': last_ville
@@ -157,7 +114,7 @@ class FINANCEMENT(http.Controller):
             'mcm_products': mcm_products,  # send mcm product to homepage
         }
         if request.website.id == 2:
-            # get digimoov products to send them to pricing table
+            #get digimoov products to send them to pricing table
             digimoov_products = request.env['product.product'].sudo().search([('company_id', '=', 2)],
                                                                              order="list_price")
             values = {
@@ -261,8 +218,7 @@ class FINANCEMENT(http.Controller):
             if user_connected.partner_id.partner_from and user_connected.partner_id.partner_from in ['ubereats',
                                                                                                      'deliveroo',
                                                                                                      'coursierjob',
-                                                                                                     'box2home',
-                                                                                                     'coursier2roues']:
+                                                                                                     'box2home', 'coursier2roues']:
                 return request.redirect("/%s#pricing" % str(user_connected.partner_id.partner_from))
             else:
                 return request.redirect("/#pricing")
@@ -272,99 +228,14 @@ class DIGIEXAMEN(http.Controller):
 
     @http.route('/examen-capacite-transport-marchandises', type='http', auth='public', website=True)
     def exam(self, **kw, ):
-        """ Ajouter les conditions suivant au niveau de la page examen dans le Site Web,
-        lorsque un utulisateur clique sur le bouton de Tentative de repassage
-        :param request.website.id: Si siteweb = digimoov alors :
-        I- :param : is_public_user: Si l'utilisateur est un visiteur (False)
-            1- Redirection: /web/signup
-        II- :param: is_public_user: Si l'utilisateur n'est pas un visiteur (True)
-            2- Si date examen != 0 : redirection:/#pricing
-            3- Sinon si date examen existe, nombre de passage < 3 et date_dateutil(1er date_examen + 6 mois)
-                Redirection: /shop/cart/update
-            4- Si nombre de passage > 3: Redirection : /#pricing """
         if request.website.id == 2:
-            partner = request.env.user.partner_id  # Récupérer id de l'apprenant connecté
-            session = request.env['partner.sessions'].sudo().search(
-                [('client_id', '=', partner.id)], order='id asc', limit=1)
-            # Récupérer date d'examen à partir de la première session
-            date_exam = session.session_id.date_exam
-            # PUBLIC USER = VISITOR OR USER ODOO NOT CONNECTED, return true or false
-            is_public_user = request.website.is_public_user()
             echec_examen = request.env['product.product'].sudo().search(
                 [('company_id', '=', 2), ('default_code', "=", 'examen')])
-            if is_public_user is False:
-                print("/////public user/////", is_public_user)
-                if date_exam:  # Si date examen exist
-                    print("****************Si date examen exist**********")
-                    now = date.today()  # Date d'aujourd'hui
-                    date_dateutil = date_exam + dateutil.relativedelta.relativedelta(
-                        months=6)  # Calcule la durée de temps à partir de la première date d'examen de l'apprenant en ajoutant 6 mois
-                    exam_count = partner.note_exam_count
-                    print("&&&&&&&&&&&&&&&", exam_count)
-                    if exam_count < 3:  # Si nombre de passage < 3
-                        logging.info(
-                            'Si nombre de passage < 3 °°°°°°°°°°°°°°°°°°°°')
-                        print("Comparer si date d'aujourd'hui inférieur à date d'examen + 6 mois: ",
-                              now, date_dateutil, date_exam, now < date_dateutil)
-                        # Comparer si date d'aujourd'hui inférieur à date d'examen + 6 mois
-                        if now < date_dateutil and is_public_user is not True:
-                            print("%%%%%%%%%%%%%% 6 mois")
-                            values = {
-                                'date_dateutil': date_dateutil,  # Date de 1ere inscription + 6 mois
-                                'now': now,  # Date aujourd'hui
-                                'echec_examen': echec_examen,
-                                'url': '/shop/cart/update',
-                                'default': 'True',
-                            }
-                            return request.render("digimoov_website_templates.digimoov_template_examen",
-                                                  values)  # Envoyer les données vers xml dans la page examen
-                        else:
-                            print("supp///////// 6 mois")
-                            values = {
-                                'echec_examen': echec_examen,
-                                'url': '/#pricing',
-                                'default': 'False',
-                                'message': "Vous avez dépassé la durée règlementaire de 6 mois pour réserver votre nouvelle date d'examen."
-                                           " Vous devez à présent, vous réinscrire à la formation pour retenter votre chance.",
-                            }
-                            return request.render("digimoov_website_templates.digimoov_template_examen",
-                                                  values)  # Envoyer les données vers xml dans la page examen
-                    elif exam_count >= 3:
-                        logging.info(
-                            'Si nombre de passage > 3 °°°°°°°°°°°°°°°°°°')
-                        values = {
-                            'default': 'False',
-                            'echec_examen': echec_examen,
-                            'url': '/#pricing',
-                            'message': "Vous avez atteint le nombre limité de repassage de l'examen."
-                                       "Vous devez à présent, vous réinscrire à la formation pour retenter votre chance.",
-                        }
-                        return request.render('digimoov_website_templates.digimoov_template_examen', values)
-                else:
-                    print("////connected exam 0///", is_public_user)
-                    values = {
-                        'echec_examen': echec_examen,
-                        'is_public_user': is_public_user,
-                        'default': 'False',
-                        'url': '/#pricing',
-                        'message': "Oups ! Vous devez vous inscrire à une formation pour pouvoir choisir votre date d'examen, "
-                                   "ou vous connecter avec vos identifiants utilisés lors de votre inscription à la formation initiale."
-                                   "Pour plus d'informations vous pouvez contacter notre service sur le +33986878866.",
-
-                    }
-                    return request.render("digimoov_website_templates.digimoov_template_examen", values)
-
-            else:
-                print("////public user///", is_public_user)
-                values = {
-                    'echec_examen': echec_examen,
-                    'is_public_user': is_public_user,
-                    'default': 'False',
-                    'url': '/web/signup',
-                    'message': 'Pour réserver votre nouvelle tentative, '
-                               'merci de vous connecter ou de créer votre compte client.',
-                }
-                return request.render("digimoov_website_templates.digimoov_template_examen", values)
+            values = {
+                'echec_examen': echec_examen,
+                'default': False,
+            }
+            return request.render("digimoov_website_templates.digimoov_template_examen", values)
         else:
             return request.redirect("/preparation-examen-taxi/vtc")
 
@@ -378,9 +249,7 @@ class QUISOMMESNOUS(http.Controller):
             last_ville = request.env['session.ville'].sudo().search(
                 [('company_id', '=', 2), ('ville_formation', "=", False)], order='name_ville desc', limit=1)
             list_villes = request.env['session.ville'].sudo().search(
-                [('id', "!=", last_ville.id), ('company_id', '=', 2),
-                 ('ville_formation', "=", False)],
-                order='name_ville asc')
+                [('id', "!=", last_ville.id), ('company_id', '=', 2), ('ville_formation', "=", False)], order='name_ville asc')
             values = {
                 'list_villes': list_villes,
                 'last_ville': last_ville
@@ -399,9 +268,7 @@ class NOSCENTRES(http.Controller):
             last_ville = request.env['session.ville'].sudo().search(
                 [('company_id', '=', 2), ('ville_formation', "=", False)], order='name_ville desc', limit=1)
             list_villes = request.env['session.ville'].sudo().search(
-                [('id', "!=", last_ville.id), ('company_id', '=', 2),
-                 ('ville_formation', "=", False)],
-                order='name_ville asc')
+                [('id', "!=", last_ville.id), ('company_id', '=', 2), ('ville_formation', "=", False)], order='name_ville asc')
             values = {
                 'list_villes': list_villes,
                 'last_ville': last_ville
@@ -816,7 +683,7 @@ class Services(http.Controller):
                     })
             return request.render("digimoov_website_templates.pedagogique_thank_you")
 
-    # transport lourd
+    #transport lourd
 
 
 class Transport_Lourd(http.Controller):
@@ -826,7 +693,7 @@ class Transport_Lourd(http.Controller):
         values = False
         if request.website.id == 2:
 
-            # get digimoov products to send them to pricing table
+            #get digimoov products to send them to pricing table
             digimoov_products = request.env['product.product'].sudo().search([('company_id', '=', 2)],
                                                                              order="list_price")
             values = {
@@ -836,8 +703,8 @@ class Transport_Lourd(http.Controller):
         else:
             raise werkzeug.exceptions.NotFound()
 
+ # habilitation electrique
 
-# habilitation electrique
 
 class Habilitation_electrique(http.Controller):
     @http.route(['/habilitation-electrique'], type='http', auth='public', website=True)
@@ -845,7 +712,7 @@ class Habilitation_electrique(http.Controller):
         digimoov_products = False
         values = False
         if request.website.id == 2:
-            # get digimoov products to send them to pricing table
+            #get digimoov products to send them to pricing table
             digimoov_products = request.env['product.product'].sudo().search([('company_id', '=', 2)],
                                                                              order="list_price")
             values = {
