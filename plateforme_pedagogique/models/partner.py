@@ -643,10 +643,10 @@ class partner(models.Model):
             partner.lastName = partner.name
         # Cas d'un nom composé
         else:
-            _logger.info('partnerr-------- avant if %s' % str(part.name))
+            _logger.info('partnerr-------- avant if %s' % str(partner.name))
 
             if " " in partner.name:
-                _logger.info('partnerr-------- if espace %s' % str(part.name))
+                _logger.info('partnerr-------- if espace %s' % str(partner.name))
 
                 name = partner.name.split(" ", 1)
                 if name:
@@ -654,7 +654,7 @@ class partner(models.Model):
                     partner.lastName = name[1]
             # Cas d'un seul nom
             else:
-                _logger.info('partnerr-------- else  %s' % str(part.name))
+                _logger.info('partnerr-------- else  %s' % str(partner.name))
 
                 partner.firstName = partner.name
                 partner.lastName = partner.name
