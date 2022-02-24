@@ -3,6 +3,8 @@ window.onload = function () {
   var user_email = document.getElementById('user_email_connected').value;
   var url = window.location.pathname;
   const queryString = window.location.search;
+  var isReserved = true;
+
   console.log(!url.includes('message=sign_ok'));
 
   if (
@@ -11,7 +13,10 @@ window.onload = function () {
       url.includes('/shop') ||
       url.includes('/bolt') ||
       url.includes('/my/orders/') ||
-      url.includes('/charger')
+      url.includes('/charger') ||
+      url.includes('/my/home') ||
+      url.includes('/web/signup') ||
+      url.includes('/survey')
     )
   ) {
     Calendly.initBadgeWidget({

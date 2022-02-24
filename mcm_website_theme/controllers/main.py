@@ -653,7 +653,7 @@ class Routes_Site(http.Controller):
                     return request.redirect('/shop/cart')
         return http.request.render('mcm_contact_documents.portal_my_home', {'step': 'document'})
 
-    @http.route(['''/bolt''', '''/BOLT''', '''/Bolt'''], type='http', auth='public', website=True)
+    @http.route(['''/bolt''', '''/BOLT''', '''/Bolt'''], type='http', auth='public', website=True, )
     def bolttest(self):
         bolt_product = request.env['product.product'].sudo().search(
             [('company_id', '=', 1), ('default_code', "=", 'vtc_bolt')], order="list_price", limit=1)

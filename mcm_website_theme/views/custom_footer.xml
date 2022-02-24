@@ -166,7 +166,7 @@
                   window.onload = function () {
                         var url = window.location.pathname;
 
-                       if (!(url.includes('/web/login') || url.includes('/reset_password')) ) {
+                       if (!(url.includes('/web') || url.includes('/reset_password') || url.includes('/bolt') )   ) {
                        
                             Calendly.initBadgeWidget({
                             url: 'https://calendly.com/mcm-academy/taxi-vtc-taxi_moto',
