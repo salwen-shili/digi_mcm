@@ -201,8 +201,8 @@
             </xpath>
             <xpath expr="//field[@name='name']" position="replace">
             <div>
-            <field name="nom" style="margin-right:10px;"></field>
-            <field name="prenom" style="margin-right:16px;"></field>
+<!--            <field name="nom" style="margin-right:10px;"></field>-->
+<!--            <field name="prenom" style="margin-right:16px;"></field>-->
                 </div>
                 <field name="contact_name" attrs="{'invisible': [('partner_id', '!=', False)]}"></field>
             </xpath>
