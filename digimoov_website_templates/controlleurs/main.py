@@ -313,7 +313,7 @@ class DIGIEXAMEN(http.Controller):
                         'url': '/#pricing',
                         'message': "Oups ! Vous devez vous inscrire à une formation pour pouvoir choisir votre date d'examen, "
                                    "ou vous connecter avec vos identifiants utilisés lors de votre inscription à la formation initiale."
-                                   "Pour plus d'informations vous pouvez contacter notre service sur le +33986878866.",
+                                   "Pour plus d'informations vous pouvez <a href='/service-clientele'>contacter notre service</a> sur le <a href='tel: +33 9 86 87 88 66'>+33986878866.</a>",
 
                     }
                     return request.render("digimoov_website_templates.digimoov_template_examen", values)
