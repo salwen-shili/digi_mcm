@@ -94,7 +94,7 @@ class Api(models.Model):
                             response = werkzeug.utils.unescape(r.content.decode())
                             event_invitees = json.loads(r.text)
                 now = date.today()
-                min_start_time=str(now)+'T23:59:59Z'
+                min_start_time=str(now)+'T23:23:59Z'
                 headers = {
                     'Authorization': 'Bearer ' + str(json_data["access_token"]),
                     'Content-Type': 'application/json',
@@ -116,6 +116,13 @@ class Api(models.Model):
                         end_time = event['end_time']
                         event_name = event['name']
                         event_type = event["event_type"]
+                        start_time = str(start_time).replace('T', ' ')
+                        end_time = str(end_time).replace('T', ' ')
+                        start_time = start_time.split(".")
+                        end_time = end_time.split(".")
+                        start_time = start_time[0]
+                        end_time = end_time[0]
+                        # or '49454c3b-fb2a-4255-be45-50c0447801a9' in str(event_type)
                         if 'ae1aafc2-ae62-4151-b6a6-e75d1db9c736' in str(event_type):
 
                             uri = event['uri']
@@ -139,6 +146,7 @@ class Api(models.Model):
                                     odoo_contact = False
                                     res_user = self.env['res.users']
                                     if email :
+                                        print('email :',email)
                                         odoo_contact = res_user.search([('login', "=", str(email).lower().replace(' ', ''))], limit=1)
                                         if not odoo_contact:
                                             if tel:
@@ -205,18 +213,16 @@ class Api(models.Model):
                                                                 phone = '0' + str(phone)
                                                                 odoo_contact = self.env["res.users"].sudo().search(
                                                                     [("phone", "like", phone.replace(' ', ''))], limit=1)
+
                                     if odoo_contact :
+                                        print('odoo contact :',odoo_contact.partner_id)
                                         rendez_vous = self.env["calendly.rendezvous"].sudo().search(
-                                                                    [("partner_id", "=", odoo_contact.id),("event_starttime", "=", str(start_time),("event_endtime", "=", str(end_time)))], limit=1)
+                                                                    [("partner_id", "=", odoo_contact.partner_id.id),("event_starttime", "=", str(start_time)),("event_endtime", "=", str(end_time))], limit=1)
+
                                         if not rendez_vous :
                                             rendez_vous = self.env['calendly.rendezvous'].sudo().create({
-                                                'name': contact['first_name'] + ' ' + (contact['last_name'] if contact['last_name'] else ''),
-                                                'login': str(email).lower().replace(' ', ''),
-                                                'groups_id': [(6, 0, [self.env.ref('base.group_portal').id])],
-                                                'email': str(email).lower().replace(' ', ''),
-                                                'notification_type': 'email',
-                                                'company_id': 1,
-                                                'company_ids': [1, 2]
+                                                'name': str(event_name),
+                                                'partner_id': odoo_contact.partner_id.id,
+                                                'event_starttime' : str(start_time),
+                                                'event_endtime' : str(end_time)
                                             })
-                                            
-                                        

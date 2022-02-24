@@ -27,3 +27,10 @@ class resPartner(models.Model):
         ('valid', 'Validé'),
     ], string='Statut client')
 
+    rendezvous_count = fields.Integer(compute='compute_rendezvous_count')
+    
+    def compute_rendezvous_count(self):
+        for record in self:
+            record.rendezvous_count = self.env['calendly.rendezvous'].search_count(
+                [('partner_id', 'child_of', self.id)])
+

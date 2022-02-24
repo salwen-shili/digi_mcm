@@ -29,8 +29,9 @@
         <field name="arch" type="xml">
             <div name="button_box" position="inside">
                 <button class="oe_stat_button" type="action" name="%(calendly_api_integration.rendezvous_action)d"
-                        string="Rendez-vous"
+
                         icon="fa-phone">
+                    <field string="Rendez-vous" name="rendezvous_count" widget="statinfo"/>
                 </button>
             </div>
         </field>
