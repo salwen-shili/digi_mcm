@@ -217,8 +217,8 @@
         <field name="inherit_id" ref="crm.crm_case_tree_view_oppor"/>
        <field name="arch" type="xml">
            <xpath expr="//field[@name='name']" position="replace">
-               <field name="nom" ></field>
-                <field name="prenom"></field>
+<!--               <field name="nom" ></field>-->
+<!--                <field name="prenom"></field>-->
                <field name="email_from"></field>
            </xpath>
            <xpath expr="//field[@name='country_id']" position="replace">
