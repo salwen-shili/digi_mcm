@@ -390,4 +390,6 @@ class Partner(models.Model):
             if part and part.name:
                     _logger.info('partnerr--------%s' %str(part.name))
                     part.diviser_nom(part)
+                    lead.nom=part.lastName
+                    lead.prenom=part.firstName
                 
