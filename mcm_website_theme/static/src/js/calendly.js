@@ -27,10 +27,7 @@ window.onload = function () {
       color: '#1A1A1A',
       textColor: '#FFFFFF',
     });
-  } else if (
-    url.includes('/my/home') ||
-    queryString.includes('message=sign_ok')
-  ) {
+  } else if (queryString.includes('message=sign_ok')) {
     Calendly.initBadgeWidget({
       url: 'https://calendly.com/mcm-academy/examen-vtc-cma',
       prefill: {

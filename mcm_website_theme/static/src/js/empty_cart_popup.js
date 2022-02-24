@@ -1,5 +1,6 @@
 var cartIsEmpty = false;
-var isSigned = false;
+
+var isSigned = '';
 var rdvIsBooked = false;
 const messages = {
   rdvIsBooked: `félicitations pour votre inscription, l'un de nos agents va vous contacter suite au rendez-vous réservé pour finaliser le financement de votre examen`,
@@ -20,10 +21,10 @@ function setPopup() {
         notifMessage = document.getElementById('notifMessageBolt');
         //set the message
       }
-      if (isSigned) {
+      if (isSigned == 'True') {
         if (document.getElementById('rdvIsBooked')) {
           rdvIsBooked = document.getElementById('rdvIsBooked').value;
-          if (rdvIsBooked) {
+          if (rdvIsBooked == 'True') {
             notifMessage.textContent = messages['rdvIsBooked'];
             if (document.getElementById('btn-action')) {
               btnAction = document.getElementById('btn-action');
@@ -43,15 +44,15 @@ function setPopup() {
           }
         }
       } else {
-        if (document.getElementsByTagName('bolt_contract_uri')) {
-          bolt_contract_uri =
-            document.getElementsByTagName('bolt_contract_uri');
+        if (document.getElementById('bolt_contract_uri') !== 'False') {
+          bolt_contract_uri = document.getElementById('bolt_contract_uri');
+          console.log(bolt_contract_uri);
           if (document.getElementById('btn-action')) {
             notifMessage.textContent = messages['isNotSigned'];
             btnAction = document.getElementById('btn-action');
             btnAction.innerText = 'Signer mon contrat';
             btnAction.addEventListener('click', function () {
-              window.location.href = bolt_contract_uri;
+              window.location.href = bolt_contract_uri.value;
             });
           }
         }
@@ -86,11 +87,15 @@ document.addEventListener('DOMContentLoaded', function () {
   if (document.getElementById('user_email_connected')) {
     user_email = document.getElementById('user_email_connected').value;
   }
-  if (isSigned) {
+  if (document.getElementById('isSigned')) {
+    isSigned = document.getElementById('isSigned').value;
+  }
+
+  if (isSigned == 'True') {
     console.log('isSigned', isSigned);
     console.log('rdvIsBooked', rdvIsBooked);
 
-    if (!rdvIsBooked) {
+    if (rdvIsBooked == 'False') {
       Calendly.initBadgeWidget({
         url: 'https://calendly.com/mcm-academy/examen-vtc-cma',
         prefill: {
@@ -103,5 +108,11 @@ document.addEventListener('DOMContentLoaded', function () {
       });
     }
     openPopup();
+  } else {
+    if (document.getElementsByTagName('bolt_contract_uri')) {
+      if (document.getElementsByTagName('bolt_contract_uri')) {
+        openPopup();
+      }
+    }
   }
 });

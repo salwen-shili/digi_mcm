@@ -270,10 +270,7 @@
             <script></script>
             <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.4.0/dist/confetti.browser.min.js"></script>
             <input t-att-value='from_bolt' id='from_bolt' />
-            <input id="cartIsEmpty" t-att-value="cartIsEmpty" />
-            <input id="isSigned" t-att-value="isSigned" />
-            <input id="rdvIsBooked" t-att-value="rdvIsBooked" />
-            <input id="bolt_contract_uri" t-att-value="bolt_contract_uri" />
+
             <!-- bolt empty cart -->
             <t t-if="cartIsEmpty=='True'">
                 <input id="cartIsEmpty" t-att-value="cartIsEmpty" />

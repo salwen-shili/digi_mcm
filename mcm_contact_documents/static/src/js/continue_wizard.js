@@ -1,8 +1,9 @@
-document.addEventListener('DOMContentLoaded', function () {
-  const current = document.getElementById('step_value');
-  // console.log(current.value);
+function openCalendly() {
+  document.querySelector('.calendly-badge-content').click();
+}
 
-  const finish = `<h2 class="purple-text text-center"><strong>FÉLICITATIONS !</strong></h2> <br>
+//
+const finish = `<h2 class="purple-text text-center"><strong>FÉLICITATIONS !</strong></h2> <br>
                             <div class="row justify-content-center">
                                 <div class="col-3"> <img src="/mcm_contact_documents/static/img/GwStPmg.png" class="fit-image"> </div>
                             </div> <br><br>
@@ -21,7 +22,7 @@ document.addEventListener('DOMContentLoaded', function () {
                                     </a>
                                 </div>
                            `;
-  const rdv = `<h2 class="purple-text text-center"><strong>FÉLICITATIONS !</strong></h2> <br>
+const rdv = `<h2 class="purple-text text-center"><strong>FÉLICITATIONS !</strong></h2> <br>
                             <div class="row justify-content-center">
                                 <div class="col-3"> <img src="/mcm_contact_documents/static/img/GwStPmg.png" class="fit-image"> </div>
                             </div> <br><br>
@@ -38,7 +39,7 @@ document.addEventListener('DOMContentLoaded', function () {
                                   
                                 </div>
                            `;
-  const noRdv = `<h2 class="purple-text text-center"><strong>FÉLICITATIONS !</strong></h2> <br>
+const noRdv = `<h2 class="purple-text text-center"><strong>FÉLICITATIONS !</strong></h2> <br>
                             <div class="row justify-content-center">
                                 <div class="col-3"> <img src="/mcm_contact_documents/static/img/GwStPmg.png" class="fit-image"> </div>
                             </div> <br><br>
@@ -56,6 +57,19 @@ document.addEventListener('DOMContentLoaded', function () {
                                 </div>
                            `;
 
+const textCoordonnees = `<b>Félicitations!</b> Vous avez terminé la première étape d'inscription, cliquez sur <b>continuer</b> pour passer à l'<b>étape suivante<b/>. `;
+const textDocuments = `<b>Félicitations!</b> Vous avez terminé la deuxième étape d'inscription, cliquez sur <b>continuer</b> pour passer à l'<b>étape suivante<b/>. `;
+const textFinancement = `<b>Félicitations!</b> Vous avez terminé la troisième étape d'inscription, cliquez sur <b>continuer</b> pour passer à l'<b>étape suivante<b/>. `;
+
+const finishBolt = {
+  rdv: rdv,
+  noRdv: noRdv,
+};
+
+document.addEventListener('DOMContentLoaded', function () {
+  const current = document.getElementById('step_value');
+  // console.log(current.value);
+
   const finished = document.getElementById('finished');
   const documents = document.getElementById('personal');
   const documentsUrl = '/charger_mes_documents';
@@ -65,13 +79,11 @@ document.addEventListener('DOMContentLoaded', function () {
   const validationUrl = '/validation';
   const btnContinuer = document.getElementById('button-continuer');
   const questionnaireUrl = '/coordonnees';
+  const texttextDescription = document.getElementById('textDescription');
   //is Bolt
 
   var isBolt = document.getElementById('isBolt');
-  const finishBolt = {
-    rdv: rdv,
-    noRdv: noRdv,
-  };
+
   // const isReserved = document.getElementById('finished');
   const isReserved = document.getElementById('isReserved').value;
   const contractIsSigned = document.getElementById('contractIsSigned').value;
@@ -83,13 +95,19 @@ document.addEventListener('DOMContentLoaded', function () {
   switch (current.value) {
     case 'coordonnées':
       step = 1;
-
       btnContinuer.setAttribute('href', questionnaireUrl);
+
+      if (current.value === 'coordonnées') {
+        textDescription.innerHTML = textCoordonnees;
+      }
 
       break;
     case 'document':
       step = 2;
       documents.classList.add('active');
+      if (current.value === 'documents') {
+        textDescription.innerHTML = textDocuments;
+      }
       btnContinuer.setAttribute('href', documentsUrl);
 
       break;
@@ -97,7 +115,9 @@ document.addEventListener('DOMContentLoaded', function () {
       step = 3;
       documents.classList.add('active');
       financement.classList.add('active');
-
+      if (current.value === 'financement') {
+        textDescription.innerHTML = textFinancement;
+      }
       btnContinuer.setAttribute('href', financementUrl);
 
       break;
@@ -149,7 +169,3 @@ document.addEventListener('DOMContentLoaded', function () {
   document.getElementsByClassName('progress-bar')[0].style.width =
     progressBarValue + '%';
 });
-
-function openCalendly() {
-  document.querySelector('.calendly-badge-content').click();
-}
