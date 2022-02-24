@@ -3,6 +3,7 @@ function openCalendly() {
 }
 
 //
+
 const finish = `<h2 class="purple-text text-center"><strong>FÉLICITATIONS !</strong></h2> <br>
                             <div class="row justify-content-center">
                                 <div class="col-3"> <img src="/mcm_contact_documents/static/img/GwStPmg.png" class="fit-image"> </div>
@@ -60,13 +61,20 @@ const noRdv = `<h2 class="purple-text text-center"><strong>FÉLICITATIONS !</str
 const textCoordonnees = `<b>Félicitations!</b> Vous avez terminé la première étape d'inscription, cliquez sur <b>continuer</b> pour passer à l'<b>étape suivante<b/>. `;
 const textDocuments = `<b>Félicitations!</b> Vous avez terminé la deuxième étape d'inscription, cliquez sur <b>continuer</b> pour passer à l'<b>étape suivante<b/>. `;
 const textFinancement = `<b>Félicitations!</b> Vous avez terminé la troisième étape d'inscription, cliquez sur <b>continuer</b> pour passer à l'<b>étape suivante<b/>. `;
-
+var rdvIsBooked = false;
+var bolt_contract_uri = '/';
 const finishBolt = {
   rdv: rdv,
   noRdv: noRdv,
 };
-
+if (document.getElementById('rdvIsBooked')) {
+  rdvIsBooked = document.getElementById('rdvIsBooked').value;
+}
 document.addEventListener('DOMContentLoaded', function () {
+  //calendly inputs
+  var user_name = document.getElementById('user_name_connected').value;
+  var user_email = document.getElementById('user_email_connected').value;
+  //
   const current = document.getElementById('step_value');
   // console.log(current.value);
 
@@ -79,15 +87,14 @@ document.addEventListener('DOMContentLoaded', function () {
   const validationUrl = '/validation';
   const btnContinuer = document.getElementById('button-continuer');
   const questionnaireUrl = '/coordonnees';
-  const texttextDescription = document.getElementById('textDescription');
+  const textDescription = document.getElementById('textDescription');
   //is Bolt
 
-  var isBolt = document.getElementById('isBolt');
+  var isBolt = document.getElementById('isBolt').value;
 
-  // const isReserved = document.getElementById('finished');
-  const isReserved = document.getElementById('isReserved').value;
-  const contractIsSigned = document.getElementById('contractIsSigned').value;
-
+  // const rdvIsBooked = document.getElementById('finished');
+  // const rdvIsBooked = document.getElementById('rdvIsBooked').value;
+  // const contractIsSigned = document.getElementById('contractIsSigned').value;
   //
 
   var step = 1;
@@ -130,7 +137,6 @@ document.addEventListener('DOMContentLoaded', function () {
       if (current.value === 'finish') {
         finished.innerHTML = finish;
       }
-
       break;
     case 'finish':
       step = 4;
@@ -139,8 +145,8 @@ document.addEventListener('DOMContentLoaded', function () {
       financement.classList.add('active');
       validation.classList.add('active');
 
-      if (isBolt) {
-        if (isReserved == 'isReserved') {
+      if (isBolt == 'True') {
+        if (rdvIsBooked == 'rdvIsBooked') {
           finished.innerHTML = finishBolt['rdv'];
         } else {
           finished.innerHTML = finishBolt['noRdv'];
