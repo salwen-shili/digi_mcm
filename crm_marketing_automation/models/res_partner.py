@@ -388,5 +388,6 @@ class Partner(models.Model):
         for lead in leads:
             part=lead.partner_id
             if part and part.name:
+                    _logger.info('partnerr--------%s' %str(part.name))
                     part.diviser_nom(part)
                 
