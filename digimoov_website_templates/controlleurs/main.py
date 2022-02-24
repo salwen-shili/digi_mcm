@@ -324,8 +324,8 @@ class DIGIEXAMEN(http.Controller):
                                 'echec_examen': echec_examen,
                                 'url': '/#pricing',
                                 'default': 'False',
-                                'message': "Vous avez dépassé la durée règlementaire de 6 mois pour réserver votre nouvelle date d'examen."
-                                           " Vous devez à présent, vous réinscrire à la formation pour retenter votre chance.",
+                                'message': "Vous avez dépassé la durée règlementaire de 6 mois pour réserver votre nouvelle date d'examen.<br/>"
+                                           "Vous devez à présent, vous réinscrire à la formation pour retenter votre chance.",
                             }
                             return request.render("digimoov_website_templates.digimoov_template_examen",
                                                   values)  # Envoyer les données vers xml dans la page examen
@@ -336,7 +336,7 @@ class DIGIEXAMEN(http.Controller):
                             'default': 'False',
                             'echec_examen': echec_examen,
                             'url': '/#pricing',
-                            'message': "Vous avez atteint le nombre limité de repassage de l'examen."
+                            'message': "Vous avez atteint le nombre limité de repassage de l'examen. <br/>"
                                        "Vous devez à présent, vous réinscrire à la formation pour retenter votre chance.",
                         }
                         return request.render('digimoov_website_templates.digimoov_template_examen', values)
@@ -348,8 +348,8 @@ class DIGIEXAMEN(http.Controller):
                         'default': 'False',
                         'url': '/#pricing',
                         'message': "Oups ! Vous devez vous inscrire à une formation pour pouvoir choisir votre date d'examen, "
-                                   "ou vous connecter avec vos identifiants utilisés lors de votre inscription à la formation initiale."
-                                   "Pour plus d'informations vous pouvez contacter notre service sur le +33986878866.",
+                                   "ou vous connecter avec vos identifiants utilisés lors de votre inscription à la formation initiale.<br/>"
+                                   "Pour plus d'informations vous pouvez <a href='/service-clientele'>contacter notre service</a> sur le <a href='tel: +33 9 86 87 88 66'>+33986878866.</a>",
 
                     }
                     return request.render("digimoov_website_templates.digimoov_template_examen", values)
