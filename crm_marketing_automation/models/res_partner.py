@@ -384,7 +384,7 @@ class Partner(models.Model):
                         if document_valide and not (partner.renounce_request) :
                             self.changestage("Rétractation non Coché", partner)
     def name_convert(self):
-        leads =self.env['crm.lead'].sudo().search([])
+        leads =self.env['crm.lead'].sudo().search([('partner_id.bolt',"=",True)])
         for lead in leads:
             part=lead.partner_id
             if part and part.name:
