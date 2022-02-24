@@ -57,6 +57,7 @@ const noRdv = `<h2 class="purple-text text-center"><strong>FÉLICITATIONS !</str
                                             <i class="material-icons right">send</i>Réserver un rendez-vous</button>
                                 </div>
                            `;
+const isNotSignedMessage = `Nous vous remercions pour votre confiance, votre paiement a été effectué avec succès! Vous pouvez maintenant finaliser votre inscription en signant votre contrat pour avoir accès à notre plateforme de formation.`;
 
 const textCoordonnees = `<b>Félicitations!</b> Vous avez terminé la première étape d'inscription, cliquez sur <b>continuer</b> pour passer à l'<b>étape suivante<b/>. `;
 const textDocuments = `<b>Félicitations!</b> Vous avez terminé la deuxième étape d'inscription, cliquez sur <b>continuer</b> pour passer à l'<b>étape suivante<b/>. `;
@@ -67,11 +68,12 @@ const finishBolt = {
   rdv: rdv,
   noRdv: noRdv,
 };
-if (document.getElementById('rdvIsBooked')) {
-  rdvIsBooked = document.getElementById('rdvIsBooked').value;
-}
+
 document.addEventListener('DOMContentLoaded', function () {
   //calendly inputs
+  if (document.getElementById('rdvIsBooked')) {
+    rdvIsBooked = document.getElementById('rdvIsBooked').value;
+  }
   var user_name = document.getElementById('user_name_connected').value;
   var user_email = document.getElementById('user_email_connected').value;
   //
@@ -88,10 +90,11 @@ document.addEventListener('DOMContentLoaded', function () {
   const btnContinuer = document.getElementById('button-continuer');
   const questionnaireUrl = '/coordonnees';
   const textDescription = document.getElementById('textDescription');
+  var bolt_contract_uri = '/';
   //is Bolt
 
   var isBolt = document.getElementById('isBolt').value;
-
+  const isSigned = document.getElementById('isSigned').value;
   // const rdvIsBooked = document.getElementById('finished');
   // const rdvIsBooked = document.getElementById('rdvIsBooked').value;
   // const contractIsSigned = document.getElementById('contractIsSigned').value;
@@ -104,28 +107,42 @@ document.addEventListener('DOMContentLoaded', function () {
       step = 1;
       btnContinuer.setAttribute('href', questionnaireUrl);
 
-      if (current.value === 'coordonnées') {
-        textDescription.innerHTML = textCoordonnees;
-      }
+      textDescription.innerHTML = textCoordonnees;
 
       break;
     case 'document':
       step = 2;
       documents.classList.add('active');
-      if (current.value === 'documents') {
-        textDescription.innerHTML = textDocuments;
-      }
+
+      textDescription.innerHTML = textDocuments;
+
       btnContinuer.setAttribute('href', documentsUrl);
 
       break;
     case 'financement':
-      step = 3;
-      documents.classList.add('active');
-      financement.classList.add('active');
-      if (current.value === 'financement') {
+      //has not signed his contract
+      //he has paid so he must has a contract
+      //we recheck if we have an url
+      if (document.getElementById('bolt_contract_uri').value !== 'False') {
+        bolt_contract_uri = document.getElementById('bolt_contract_uri').value;
+        console.log(bolt_contract_uri);
+        if (document.getElementById('btn-action')) {
+          textDescription.textContent = isNotSignedMessage;
+          btnAction = document.getElementById('btn-action');
+          btnAction.innerText = 'Signer mon contrat';
+          btnAction.addEventListener('click', function () {
+            window.location.href = bolt_contract_uri;
+          });
+        }
+      } else {
+        step = 3;
+        documents.classList.add('active');
+        financement.classList.add('active');
+
         textDescription.innerHTML = textFinancement;
+
+        btnContinuer.setAttribute('href', financementUrl);
       }
-      btnContinuer.setAttribute('href', financementUrl);
 
       break;
     case 'validation':
@@ -146,22 +163,35 @@ document.addEventListener('DOMContentLoaded', function () {
       validation.classList.add('active');
 
       if (isBolt == 'True') {
-        if (rdvIsBooked == 'rdvIsBooked') {
-          finished.innerHTML = finishBolt['rdv'];
-        } else {
-          finished.innerHTML = finishBolt['noRdv'];
-          Calendly.initBadgeWidget({
-            url: 'https://calendly.com/mcm-academy/examen-vtc-cma',
-            prefill: {
-              name: user_name,
-              email: user_email,
-            },
-            text: "Inscription à l'examen VTC",
-            color: '#1A1A1A',
-            textColor: '#FFFFFF',
-          });
+        if (isSigned == 'True') {
+          alert();
+          //Client bolt + contrat is signed
+          //check if he has reserved an appointment
+          if (rdvIsBooked == 'True') {
+            //has reserved => he will wait for his call
+            finished.innerHTML = finishBolt['rdv'];
+            console.log("rdvIsBooked == 'True'", rdvIsBooked == 'True');
+          } else {
+            console.log("else rdvIsBooked == 'True'", rdvIsBooked == 'True');
+            // has to reserve appointment
+            //  => Show bolt calendly
+            finished.innerHTML = finishBolt['noRdv'];
+            Calendly.initBadgeWidget({
+              url: 'https://calendly.com/mcm-academy/examen-vtc-cma',
+              prefill: {
+                name: user_name,
+                email: user_email,
+              },
+              text: "Inscription à l'examen VTC",
+              color: '#1A1A1A',
+              textColor: '#FFFFFF',
+            });
+          }
         }
       } else {
+        // his not bolt
+        // => Step 4 is his final step
+        // => redirect to e-learning plateform
         finished.innerHTML = finish;
       }
 

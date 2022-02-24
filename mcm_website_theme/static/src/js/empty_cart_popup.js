@@ -44,8 +44,9 @@ function setPopup() {
           }
         }
       } else {
-        if (document.getElementById('bolt_contract_uri') !== 'False') {
-          bolt_contract_uri = document.getElementById('bolt_contract_uri');
+        if (document.getElementById('bolt_contract_uri').value !== 'False') {
+          bolt_contract_uri =
+            document.getElementById('bolt_contract_uri').value;
           console.log(bolt_contract_uri);
           if (document.getElementById('btn-action')) {
             notifMessage.textContent = messages['isNotSigned'];
