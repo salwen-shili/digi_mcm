@@ -11,6 +11,8 @@ class CRM(models.Model):
     num_dossier=fields.Char(string="numéro de dossier",)
     num_tel=fields.Char(string="numéro de téléphone")
     email=fields.Char(string="email")
+    nom=fields.Char(string="Nom")
+    prenom = fields.Char(string="Prénom")
     mode_de_financement = fields.Selection(selection=[
         ('particulier', 'Personnel'),
         ('cpf', 'Mon Compte Formation, CPF'),

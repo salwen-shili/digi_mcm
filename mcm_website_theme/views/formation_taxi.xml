@@ -105,42 +105,43 @@
               <div class="row align-items-center">
                 <div class="col-lg-6 js-scroll slide-left">
                   <h2>COMMENT DEVENIR CHAUFFEUR DE TAXI ?</h2>
-                  <p class="para">
-                    Afin d'exercer la profession de
-                    <b>chauffeur taxi</b>
-                    en toute légalité, vous devez remplir trois
-                    <b>conditions</b>
-                    : avoir un
-                    <b> permis de conduire (B) </b>
-                    de plus de 3 ans de validité, passer une
-                    <b>visite médicale</b>
-                    à la
-                    <b>préfecture</b>
-                    de votre région pour être reconnu apte à exercer ce métier, et
-                enfin avoir un
-                    <b>casier</b>
-                    judiciaire
-                    <b>vierge</b>
-                    . De même, pour avoir votre
-                    <b>carte professionnelle</b>
-                    , vous devez impérativement, passer un
-                    <b>examen</b>
-                    et le réussir. Cet
-                    <b>examen</b>
-                    est composé d’une
-                    <b>épreuve d'admission</b>
-                    et une
-                    <b>épreuve d’admissibilité.</b>
-                    <br />
-                    Si vous souhaitez savoir comment
-                    <b>devenir chauffeur taxi indépendan</b>
-                    t consultez
-                    <b>
-                      <u>
-                        <a href="/blog/blog-taxi-10/post/devenir-chauffeur-taxi-independant-38">cet article</a>
-                      </u>
-                    </b>
-                    .&amp;nbsp;
+                  <p class="para" style="word-break: break-word; position: relative; z-index: 0;">
+                    <span style="color: rgb(29, 28, 29); font-family: Slack-Lato, appleLogo, sans-serif; font-variant-ligatures: common-ligatures;">
+                      Afin d'exercer la profession de
+                      <b>conducteur taxi</b>
+                      en toute légalité, vous devez remplir trois conditions : avoir un
+                      <b>permis de conduire (B)</b>
+                      de plus de 3 ans de validité, passer une
+                      <b>visite médicale</b>
+                      à la préfecture de votre région pour être reconnu apte à exercer ce métier, et enfin avoir un
+                      <b>casier judiciaire vierge</b>
+                      . De même, pour avoir votre
+                      <b>carte professionnelle</b>
+                      , vous devez impérativement, passer un examen et le réussir. Cet examen est composé d’une
+                      <b>épreuve d'admission</b>
+                      (théorique) et une
+                      <b>épreuve d’admissibilité</b>
+                      (pratique).
+                    </span>
+                    <br style="box-sizing: inherit; color: rgb(29, 28, 29); font-family: Slack-Lato, appleLogo, sans-serif; font-size: 15px; font-variant-ligatures: common-ligatures; background-color: rgb(248, 248, 248);" />
+                    <span style="color: rgb(29, 28, 29); font-family: Slack-Lato, appleLogo, sans-serif; font-variant-ligatures: common-ligatures;">
+                      Pour passer l'examen pratique de conducteur taxi, vous devrez choisir un
+                      <b>véhicule à double commandes</b>
+                      .
+                    </span>
+                    <br style="box-sizing: inherit; color: rgb(29, 28, 29); font-family: Slack-Lato, appleLogo, sans-serif; font-size: 15px; font-variant-ligatures: common-ligatures; background-color: rgb(248, 248, 248);" />
+                    <span style="color: rgb(29, 28, 29); font-family: Slack-Lato, appleLogo, sans-serif; font-variant-ligatures: common-ligatures;">Vous pourrez louer votre véhicule dans une auto-école de votre région.</span>
+                    <br style="box-sizing: inherit; color: rgb(29, 28, 29); font-family: Slack-Lato, appleLogo, sans-serif; font-size: 15px; font-variant-ligatures: common-ligatures; background-color: rgb(248, 248, 248);" />
+                    <span style="color: rgb(29, 28, 29); font-family: Slack-Lato, appleLogo, sans-serif; font-variant-ligatures: common-ligatures;">
+                      Suite à l'obtention de votre carte pro vous devrez choisir votre
+                      <b>statut juridique</b>
+                      afin d'exercer en tant que
+                      <b>
+                        <a href="/blog/blog-taxi-10/post/devenir-chauffeur-taxi-independant-38">chauffeur taxi indépendant </a>
+                      </b>
+                      ou pour le compte d'une plateforme dédiée.
+                    </span>
+                    &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;&amp;nbsp;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;&amp;nbsp;
                   </p>
                   <div class="s_btn text-left pt16 pb16" data-name="Buttons">
                     <a t-if="request.website.is_public_user()==True" alt="inscription MCM academy fomration chauffeur de taxi en ligne" title="inscription à la formation chauffeur de taxi en ligne" href="/web/signup" target="_blank" rel="noopener">
@@ -226,7 +227,7 @@
             </div>
           </section>
           <!--  La formation taxi-->
-          <section class="s_text_image pt0 pb4">
+          <section class="s_text_image pt0 pb4" style="word-break: break-word; position: relative; z-index: 0;">
             <div class="container">
               <div class="row align-items-center">
                 <div class="col-lg-6 pb24 pt0 js-scroll slide-left ">
@@ -236,17 +237,18 @@
                   <h2 class="pb16 s_title_default" style="font-size: 33px; font-weight: 700"> La formation taxi à distance</h2>
                   <h3>À qui s’adresse cette formation ?</h3>
                   <p class="para">
-                    Nos
-                    <b>formations </b>
-                    taxis s’adressent à toute personne majeure intéressée par les
-                métiers de
-                    <b>transport</b>
-                    , en recherche d’
-                    <b>emploi</b>
-                    stable, souhaitant devenir
-                    <b>autoentrepreneur</b>
-                    , ou en
-                    <b>reconversion professionnelle.</b>
+                    <span style="color: rgb(29, 28, 29); font-family: Slack-Lato, appleLogo, sans-serif; font-variant-ligatures: common-ligatures;">
+                      Nos formations taxis s’adressent à toute personne majeure désirant devenir
+                      <b>chauffeur de taxi</b>
+                      , en recherche d’
+                      <b>emploi</b>
+                      stable, souhaitant devenir
+                      <b> auto-entrepreneur</b>
+                      , ou en
+                      <b>reconversion professionnelle</b>
+                      .
+                    </span>
+                    <br />
                   </p>
                   <h3 class="mbe">Objectifs :</h3>
                   <ul class="fa-ul" style="font-size: 16.5px; line-height: 1.5rem">
@@ -292,29 +294,32 @@
               <div class="row align-items-center">
                 <div class="col-lg-6 pt16 pb16 js-scroll slide-left">
                   <h3>FORMATION THÉORIQUE AU MÉTIER DE TAXI</h3>
-                  <p class="para">
-                    Ce que nous vous proposons chez MCM Academy, c’est la garantie
-                d'une
-                    <b>formation en ligne</b>
-                    théorique de qualité, qui vous permettra non seulement
-                d’acquérir de nouvelles connaissances, mais également de réussir
-                votre préparation à l’
-                    <b>examen</b>
-                    . Les
-                    <b>modules de formation </b>
-                    seront axés sur la
-                    <b>réglementation</b>
-                    du
-                    <b>transport public</b>
-                    , la
-                    <b>sécurité</b>
-                    routière, la
-                    <b>gestion</b>
-                    , la connaissance du territoire et la réglementation locale et
-                les langues française et anglaise pour évaluer la
-                    <b>capacité</b>
-                    d’expression et de compréhension et ainsi assurer une bonne
-                communication avec vos futurs clients.
+                  <p class="para" style="word-break: break-word; position: relative; z-index: 0;">
+                    <span style="color: rgb(29, 28, 29); font-family: Slack-Lato, appleLogo, sans-serif; font-variant-ligatures: common-ligatures;">
+                      Ce que nous vous proposons chez MCM Academy, c’est la
+                      <b>garantie d'une formation en ligne théorique de qualité</b>
+                      , qui vous permettra non seulement d’acquérir de nouvelles connaissances, mais également de réussir votre
+                      <b>préparation à l’ examen</b>
+                      . Les
+                      <b>cours</b>
+                      de la formation seront axés sur la
+                      <b>réglementation </b>
+                      du transport public , la
+                      <b> sécurité</b>
+                      routière, la
+                      <b>gestion</b>
+                      , la connaissance du territoire et la réglementation locale et les langues française et anglaise pour évaluer la capacité d’expression et de compréhension et ainsi assurer une bonne communication avec vos futurs clients.
+                    </span>
+                    <br style="box-sizing: inherit; color: rgb(29, 28, 29); font-family: Slack-Lato, appleLogo, sans-serif; font-size: 15px; font-variant-ligatures: common-ligatures; background-color: rgb(248, 248, 248);" />
+                    <span style="color: rgb(29, 28, 29); font-family: Slack-Lato, appleLogo, sans-serif; font-variant-ligatures: common-ligatures;">
+                      Comme nous avons prévu des
+                      <b>exercices</b>
+                      sous formes de
+                      <b>QCM</b>
+                      et d'
+                      <b>examens blancs</b>
+                      , afin d'évaluer vos acquis et vous entraîner à l'examen final.
+                    </span>
                   </p>
                   <a t-if="request.website.is_public_user()==True" alt="inscription MCM academy fomration chauffeur de taxi en ligne" title="inscription à la formation chauffeur de taxi en ligne" href="/web/signup" target="_blank" rel="noopener">
                     <button class="home-btn">Je m'inscris</button>
@@ -330,7 +335,7 @@
             </div>
           </section>
           <!-- FORMATION PASSERELLE VTC-TAXI-->
-          <section class="s_text_image pt32">
+          <section class="s_text_image pt32" style="word-break: break-word; position: relative; z-index: 0;">
             <div class="container">
               <div class="row align-items-center">
                 <div class="col-lg-6 pt16 pb16 js-scroll slide-left ">
@@ -339,30 +344,28 @@
                 <div class="col-lg-6 js-scroll slide-right ">
                   <h3>FORMATION PASSERELLE VTC TAXI</h3>
                   <p class="para">
-                    Depuis mai 2017, il est possible pour un stagiaire qui a réussi
-                l’
-                    <b>examen VTC</b>
-                    de tronc commun de bénéficier d’
-                    <b>une passerelle VTC-TAXI</b>
-                    . Il devra donc passer deux modules théoriques : Une
-                    <b>épreuve</b>
-                    « F (T) » portant sur la connaissance du territoire et la
-                réglementation locale, d’une durée de vingt minutes. Et une
-                    <b>épreuve</b>
-                    « G (T) » portant sur la
-                    <b>réglementation</b>
-                    nationale de l’activité taxis ainsi que sur la
-                    <b>gestion</b>
-                    propre à cette activité d’une durée de trente minutes. À ceci se
-                rajoute une
-                    <b>épreuve pratique</b>
-                    de 20min dont l'objectif est d’évaluer la capacité du
-                    <b>candidat</b>
-                    à assurer, par sa
-                    <b>conduite</b>
-                    en circulation, la sécurité des passagers et des autres usagers
-                de la route tout en proposant aux clients un service commercial
-                de qualité.
+                    <span style="color: rgb(29, 28, 29); font-family: Slack-Lato, appleLogo, sans-serif; font-variant-ligatures: common-ligatures;">
+                      Depuis mai 2017, il est possible pour un stagiaire qui a réussi l’examen VTC de
+                      <b>tronc commun</b>
+                      de bénéficier d’une
+                      <b>passerelle VTC-TAXI</b>
+                      . Il devra donc passer
+                      <b>deux modules théoriques</b>
+                      : Une épreuve « F (T) » portant sur la
+                      <b> connaissance du territoire</b>
+                      et la
+                      <b> réglementation locale</b>
+                      , d’une durée de vingt minutes. Et une épreuve « G (T) » portant sur la réglementation nationale de l’activité taxis ainsi que sur la
+                      <b>gestion</b>
+                      propre à cette activité d’une durée de trente minutes. À ceci se rajoute une
+                      <b> épreuve pratique</b>
+                      de 20min dont l'objectif est d’évaluer la capacité du candidat à assurer, par sa
+                      <b>conduite</b>
+                      en circulation, la
+                      <b>sécurité</b>
+                      des passagers et des autres usagers de la route tout en proposant aux clients un service de qualité.
+                    </span>
+                    <br />
                   </p>
                 </div>
               </div>
@@ -397,22 +400,27 @@
             </div>
           </section>
           <!-- FORMATION CONTINUE AU METIER DE TAXI-->
-          <section class="s_text_image pt32 pb32">
+          <section class="s_text_image pt32 pb32" style="word-break: break-word; position: relative; z-index: 0;">
             <div class="container">
               <div class="row align-items-center">
                 <div class="col-lg-6 pt16 pb16 js-scroll slide-left ">
-                  <img data-src="/mcm_website_theme/static/src/img/formation_taxi/chaffeur-taxi-au-volant.webp" data-srcsafari="/mcm_website_theme/static/src/img/formation_taxi/chaffeur-taxi-au-volant.png" class="img img-fluid mx-auto" alt="chauffeur taxi femme au volant" />
+                  <img data-src="/mcm_website_theme/static/src/img/formation_taxi/chaffeur-taxi-au-volant.webp" data-srcsafari="/mcm_website_theme/static/src/img/formation_taxi/chaffeur-taxi-au-volant.png" class="img img-fluid mx-auto lazy" alt="chauffeur taxi femme au volant" />
                 </div>
                 <div class="col-lg-6 pt16 pb16 js-scroll slide-right ">
                   <h3>NOS TARIFS DE FORMATIONS TAXI</h3>
                   <p class="para">
-                    Nous proposons à nos candidats un&amp;nbsp;
-                    <b>prix</b>
-                    assez abordable de 680 euros avec possibilité de mobilisation de votre compte de
-                    <b>formation</b>
-                    personnel pour la
-                    <b>formation initiale.
-                  </b>
+                    <span style="color: rgb(29, 28, 29); font-family: Slack-Lato, appleLogo, sans-serif; font-variant-ligatures: common-ligatures;">
+                      Nous proposons à nos candidats un
+                      <b>prix</b>
+                      assez abordable de 680 euros avec possibilité de
+                      <b>financement</b>
+                      en
+                      <b>CPF</b>
+                      (en mobilisation de votre compte de formation personnel) pour la
+                      <b>formation initiale</b>
+                      .
+                    </span>
+                    <br />
                   </p>
                 </div>
               </div>
@@ -512,5 +520,7 @@
         </div>
       </div>
     </t>
+
+
   </template>
 </odoo>
