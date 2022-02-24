@@ -5,8 +5,15 @@
             <t t-call="web.html_container">
                 <t t-foreach="docs" t-as="o">
                     <t t-call="web.basic_layout">
-                        <div class="page"
-                             style="line-height:1.5;font-family:Montserrat;font-size:12 %;page-break-before: always;">
+                        <style type="text/css">
+                            .page {
+                            line-height: 1.75 !important;
+                            font-size:20px !important;
+                            padding-left: 10px;
+                            padding-right: 10px;
+                            }
+                        </style>
+                        <div class="page">
                             <div class="oe_structure"/>
                             <div class="row">
                                 <div class="col-12">
@@ -135,9 +142,81 @@
                                             </tbody>
                                         </table>
                                     </div>
-                                    <div class="row" style="padding-top:150px!important;">
+                                    <div class="row" style="padding-top:10px!important;">
                                         <img src='/partner_exam/static/src/img/footer.png' height="250" width="1000"/>
                                     </div>
+                                </div>
+                            </div>
+                            <p style="page-break-after:always;"/>
+                            <!-- Attestation sur l'honneur-->
+                            <div class="row">
+                                <div class="col-12" style="padding-top:40px!important;">
+                                    <div class="col-6" name="company_logo">
+                                        <!--                                        <img src='/partner_exam/static/src/img/1.png' height="150" width="950"/>-->
+                                        <img src='/partner_exam/static/src/img/logo_digimoov.png'
+                                             style="max-height: 200px; float:left; padding-top:0px!important;"/>
+                                    </div>
+
+                                    <span style="padding-top:100px!important;">
+                                        <h3 style="padding-top:20px!important;">Organisme de formation : DIGIMOOV</h3>
+                                        <b>DIGIMOOV</b>|10 rue de PENTHIEVRE PARIS 75008
+                                        <br/>
+                                        <b>Numéro SIRET :</b>
+                                        81121988000085
+                                        <br/>
+                                        <b>Numéro de déclaration d’activité :</b>
+                                        11755542075 (auprès du préfet de région de : 75)
+                                        <br/>
+                                    </span>
+                                    <br/>
+                                    <br/>
+                                    <center>
+                                        <h2>Attestation sur l'honneur</h2>
+                                    </center>
+                                    <br/>
+                                    <br/>
+                                    <span>
+                                        Je soussigné(e) Madame/Mademoiselle/Monsieur (prénom nom), né(e) le (date de
+                                        naissance) à (commune de naissance) et demeurant au (adresse), atteste sur
+                                        l'honneur
+                                        que j'ai lu et approuvé les informations suivantes:
+                                    </span>
+                                    <br/>
+                                    <br/>
+                                    <span>
+                                        1. Je comprends qu’aucun report d’examen n’est possible une fois la date fixée
+                                        lors
+                                        de l’inscription.
+                                        <br/>
+
+                                        2. Je comprends que légalement, je ne peux pas dépasser 4 mois entre la date
+                                        d'inscription à la formation et le passage du premier examen.
+                                        <br/>
+                                        <br/>
+
+                                        3. Je comprends qu’en cas d'absence ou d'échec au premier examen et si je
+                                        souhaite
+                                        le repasser, je devrai réserver une nouvelle tentative au tarif de 200€, et que
+                                        je
+                                        ne pourrai pas dépasser un délai de 6 mois entre le premier examen et les deux
+                                        autres repassages autorisés.
+                                        <br/>
+                                        <br/>
+                                        4. Je comprends qu’aucune demande de report sans frais ne pourra être acceptée
+                                        sauf
+                                        en cas de force majeure accompagnée d'un justificatif, à condition qu'elle soit
+                                        envoyée 72h avant la date de l'examen et que j’ai un avancement de 80% dans la
+                                        formation. Une seule demande de report sans frais sera étudiée. Si l'une de ces
+                                        conditions n'est pas remplie, le report sans frais ne sera pas accepté.
+                                        <br/>
+                                        <br/>
+
+                                        5. Je comprends que chaque examen sera automatiquement décompté comme un passage
+                                        que
+                                        je sois présent, absent ou qu’il s’agisse d’un report.
+                                        <br/>
+                                        <br/>
+                                    </span>
                                 </div>
                             </div>
                         </div>
