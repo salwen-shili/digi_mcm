@@ -257,22 +257,16 @@ class DIGIEXAMEN(http.Controller):
             echec_examen = request.env['product.product'].sudo().search(
                 [('company_id', '=', 2), ('default_code', "=", 'examen')])
             if is_public_user is False:
-                print("/////public user/////", is_public_user)
                 if date_exam:  # Si date examen exist
-                    print("****************Si date examen exist**********")
                     now = date.today()  # Date d'aujourd'hui
                     date_dateutil = date_exam + dateutil.relativedelta.relativedelta(
                         months=6)  # Calcule la durée de temps à partir de la première date d'examen de l'apprenant en ajoutant 6 mois
                     exam_count = partner.note_exam_count
-                    print("&&&&&&&&&&&&&&&", exam_count)
                     if exam_count < 3:  # Si nombre de passage < 3
                         logging.info(
                             'Si nombre de passage < 3 °°°°°°°°°°°°°°°°°°°°')
-                        print("Comparer si date d'aujourd'hui inférieur à date d'examen + 6 mois: ",
-                              now, date_dateutil, date_exam, now < date_dateutil)
                         # Comparer si date d'aujourd'hui inférieur à date d'examen + 6 mois
                         if now < date_dateutil and is_public_user is not True:
-                            print("%%%%%%%%%%%%%% 6 mois")
                             values = {
                                 'date_dateutil': date_dateutil,  # Date de 1ere inscription + 6 mois
                                 'now': now,  # Date aujourd'hui
@@ -283,13 +277,12 @@ class DIGIEXAMEN(http.Controller):
                             return request.render("digimoov_website_templates.digimoov_template_examen",
                                                   values)  # Envoyer les données vers xml dans la page examen
                         else:
-                            print("supp///////// 6 mois")
                             values = {
                                 'echec_examen': echec_examen,
                                 'url': '/#pricing',
                                 'default': 'False',
                                 'message': "Vous avez dépassé la limite de 6 mois pour réserver votre nouvelle date d'examen."
-                                           "Vous devez maintenant vous réinscrire à la formation afin de tenter votre chance.",
+                                           "Vous devez à présent vous réinscrire à la formation pour retenter votre chance de nouveau.",
                             }
                             return request.render("digimoov_website_templates.digimoov_template_examen",
                                                   values)  # Envoyer les données vers xml dans la page examen
@@ -300,27 +293,24 @@ class DIGIEXAMEN(http.Controller):
                             'default': 'False',
                             'echec_examen': echec_examen,
                             'url': '/#pricing',
-                            'message': "Vous avez atteint le nombre maximum autorisé de repassages d'examen. "
+                            'message': "Vous avez atteint le nombre maximum autorisé de repassages d'examen."
                                        "Vous devez à présent vous réinscrire à la formation pour retenter votre chance de nouveau.",
                         }
                         return request.render('digimoov_website_templates.digimoov_template_examen', values)
                 else:
-                    print("////connected exam 0///", is_public_user)
                     values = {
                         'echec_examen': echec_examen,
                         'is_public_user': is_public_user,
                         'default': 'False',
                         'url': '/#pricing',
                         'message': "Oups ! Vous ne pouvez pas accéder à cette option. Vous devez vous inscrire à la formation pour pouvoir choisir la date de votre examen."
-                                   "Si vous avez déjà passé un examen et que vous ne pouvez pas vous connecter, "
-                                   "veuillez saisir vos identifiants utilisés lors de l'inscription à la formation initiale.<br/>"
-                                   "Pour en savoir plus, veuillez <a href='/service-clientele'>contacter notre service</a> sur le <a href='tel: +33 9 86 87 88 66'>+33986878866.</a>",
+                                   "Si vous avez déjà passé un examen, veuillez saisir les identifiants utilisés lors de la première inscription.<br/>"
+                                   "Pour en savoir plus, veuillez contacter notre <a href='/service-clientele'>service clientèle</a>",
 
                     }
                     return request.render("digimoov_website_templates.digimoov_template_examen", values)
 
             else:
-                print("////public user///", is_public_user)
                 values = {
                     'echec_examen': echec_examen,
                     'is_public_user': is_public_user,
