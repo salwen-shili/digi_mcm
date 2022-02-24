@@ -8,6 +8,7 @@
              <xpath expr="//filter[@name='assigned_to_me']" position="replace"/>
             </field>
        </record>
+
 <!--héritage  Vue kanban -->
   <record id="marketing_automation_view_crm_lead_kanban" model="ir.ui.view">
 <!--        <input value="test"></input>-->
@@ -199,8 +200,10 @@
              <xpath expr="//group//group[4]" position="replace">
             </xpath>
             <xpath expr="//field[@name='name']" position="replace">
-
-                  <field name="name" style="margin-right:10px;"></field>
+            <div>
+            <field name="nom" style="margin-right:10px;"></field>
+            <field name="prenom" style="margin-right:16px;"></field>
+                </div>
                 <field name="contact_name" attrs="{'invisible': [('partner_id', '!=', False)]}"></field>
             </xpath>
             <xpath expr="//field[@name='planned_revenue']" position="replace">
@@ -208,17 +211,34 @@
             <xpath expr="//field[@name='probability']" position="replace"></xpath>
         </field>
     </record>
- <record id="crm_lead_marketing_view_tree_inherit" model="ir.ui.view">
-        <field name="name">crm.lead.opportunity</field>
+     <record id="crm_lead_marketing_view_tree" model="ir.ui.view">
+        <field name="name">crm.lead.tree</field>
         <field name="model">crm.lead</field>
         <field name="inherit_id" ref="crm.crm_case_tree_view_oppor"/>
-        <field name="arch" type="xml">
-              <xpath expr="//field[@name='planned_revenue']" position="replace">
-              <field name="num_dossier"></field>
-              </xpath>
-                <xpath expr="//field[@name='probability']" position="replace">
-                <field name="module_id"></field>
-              </xpath>
-        </field>
-  </record>
+       <field name="arch" type="xml">
+           <xpath expr="//field[@name='name']" position="replace">
+               <field name="nom"  ></field>
+                <field name="prenom" ></field>
+               <field name="email_from"></field>
+           </xpath>
+           <xpath expr="//field[@name='country_id']" position="replace">
+               <field name="num_tel" ></field>
+
+           </xpath>
+           <xpath expr="//field[@name='partner_id']" position="replace"></xpath>
+           <xpath expr="//field[@name='activity_date_deadline']" position="attributes">
+                            <attribute name="optional">hide</attribute>
+           </xpath>
+           <xpath expr="//field[@name='activity_summary']" position="attributes">
+                       <attribute name="optional">hide</attribute>
+           </xpath>
+           <xpath expr="//field[@name='team_id']" position="replace"></xpath>
+               <xpath expr="//field[@name='planned_revenue']" position="replace">
+            </xpath>
+            <xpath expr="//field[@name='probability']" position="replace"></xpath>
+
+
+
+       </field>
+    </record>
 </odoo>
