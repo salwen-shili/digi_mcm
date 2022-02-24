@@ -203,8 +203,8 @@ class WebsiteSale(WebsiteSale):
         sale_order = request.website.sale_get_order(force_create=True)
         if not product_id:
             partner =http.request.env.user.partner_id
-            if partner.choosed_product and partner.choosed_product != 0:
-                product_id = partner.choosed_product
+            # if partner.choosed_product and partner.choosed_product != 0:
+            #     product_id = partner.choosed_product
         if sale_order.order_line:
             list = []
             sale_order.write({'order_line': [(6, 0, list)]})
