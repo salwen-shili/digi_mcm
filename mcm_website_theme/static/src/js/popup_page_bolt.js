@@ -26,7 +26,7 @@ function setPopup() {
       openPopup();
       btnContiner.addEventListener('click', function () {
         closePopup();
-        window.location.href = '/shop/cart';
+        window.location.href = '/my/home';
       });
     } else if (condition.value == 'failed') {
       notifMessage.innerHTML = message['failed'];

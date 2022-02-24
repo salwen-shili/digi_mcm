@@ -15,7 +15,8 @@ window.onload = function () {
       url.includes('/my/orders/') ||
       url.includes('/charger') ||
       url.includes('/my/home') ||
-      url.includes(' web/signup')
+      url.includes('/web/signup') ||
+      url.includes('/survey')
     )
   ) {
     Calendly.initBadgeWidget({

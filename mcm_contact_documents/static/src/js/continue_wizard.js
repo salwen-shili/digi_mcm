@@ -123,6 +123,9 @@ document.addEventListener('DOMContentLoaded', function () {
       //has not signed his contract
       //he has paid so he must has a contract
       //we recheck if we have an url
+         step = 3;
+         documents.classList.add('active');
+         financement.classList.add('active');
       if (document.getElementById('bolt_contract_uri').value !== 'False') {
         bolt_contract_uri = document.getElementById('bolt_contract_uri').value;
         console.log(bolt_contract_uri);
@@ -135,9 +138,7 @@ document.addEventListener('DOMContentLoaded', function () {
           });
         }
       } else {
-        step = 3;
-        documents.classList.add('active');
-        financement.classList.add('active');
+     
 
         textDescription.innerHTML = textFinancement;
 
@@ -164,7 +165,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
       if (isBolt == 'True') {
         if (isSigned == 'True') {
-          alert();
           //Client bolt + contrat is signed
           //check if he has reserved an appointment
           if (rdvIsBooked == 'True') {
