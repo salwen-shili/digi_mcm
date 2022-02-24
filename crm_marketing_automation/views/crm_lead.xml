@@ -219,6 +219,7 @@
            <xpath expr="//field[@name='name']" position="replace">
                <field name="nom" ></field>
                 <field name="prenom"></field>
+               <field name="email_from"></field>
            </xpath>
            <xpath expr="//field[@name='country_id']" position="replace">
                <field name="num_tel" ></field>
@@ -231,25 +232,23 @@
            <xpath expr="//field[@name='activity_summary']" position="attributes">
                        <attribute name="optional">hide</attribute>
            </xpath>
-           <xpath expr="//field[@name='num_dossier']" position="replace"></xpath>
            <xpath expr="//field[@name='team_id']" position="replace"></xpath>
-           <xpath expr="//field[@name='module_id']" position="replace"></xpath>
 
 
 
        </field>
     </record>
- <record id="crm_lead_marketing_view_tree_inherit" model="ir.ui.view">
-        <field name="name">crm.lead.opportunity</field>
-        <field name="model">crm.lead</field>
-        <field name="inherit_id" ref="crm.crm_case_tree_view_oppor"/>
-        <field name="arch" type="xml">
-              <xpath expr="//field[@name='planned_revenue']" position="replace">
-              <field name="num_dossier"></field>
-              </xpath>
-                <xpath expr="//field[@name='probability']" position="replace">
-                <field name="module_id"></field>
-              </xpath>
-        </field>
-  </record>
+<!-- <record id="crm_lead_marketing_view_tree_inherit" model="ir.ui.view">-->
+<!--        <field name="name">crm.lead.opportunity</field>-->
+<!--        <field name="model">crm.lead</field>-->
+<!--        <field name="inherit_id" ref="crm.crm_case_tree_view_oppor"/>-->
+<!--        <field name="arch" type="xml">-->
+<!--              <xpath expr="//field[@name='planned_revenue']" position="replace">-->
+<!--              <field name="num_dossier"></field>-->
+<!--              </xpath>-->
+<!--                <xpath expr="//field[@name='probability']" position="replace">-->
+<!--                <field name="module_id"></field>-->
+<!--              </xpath>-->
+<!--        </field>-->
+<!--  </record>-->
 </odoo>

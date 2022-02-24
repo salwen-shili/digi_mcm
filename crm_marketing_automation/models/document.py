@@ -41,16 +41,14 @@ class Document(models.Model):
     def change_stage_lead(self, statut, partner):
         if partner.name:
             partner.diviser_nom(partner)
-            print('first , last',partner.firstName,partner.lastName)
 
         stage = self.env['crm.stage'].sudo().search([("name", "=", _(statut))])
         if stage:
             lead = self.env['crm.lead'].sudo().search([('partner_id', '=', partner.id)], limit=1)
             if lead:
                 lead.sudo().write({
-                    'name': partner.name if partner.name else "",
-                    'nom':partner.firstName if partner.firstName else "",
-                    'prenom': partner.lastName if partner.lastName else "",
+                     'prenom': partner.firstName if partner.firstName else "",
+                     'nom': partner.lastName if partner.lastName else "",
                     'partner_name': partner.name,
                     'num_dossier': partner.numero_cpf if partner.numero_cpf else "",
                     'num_tel': partner.phone,
@@ -67,8 +65,8 @@ class Document(models.Model):
                 lead = self.env['crm.lead'].sudo().create({
                     'name':  partner.name if partner.name else "",
                     'partner_name': partner.name,
-                    'nom': partner.firstName if partner.firstName else "",
-                    'prenom': partner.lastName if partner.lastName else "",
+                    'prenom': partner.firstName if partner.firstName else "",
+                    'nom': partner.lastName if partner.lastName else "",
                     'num_dossier': partner.numero_cpf if partner.numero_cpf else "",
                     'email': partner.email,
                     'email_from': partner.email,

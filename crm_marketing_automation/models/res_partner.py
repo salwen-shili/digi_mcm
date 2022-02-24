@@ -90,15 +90,14 @@ class Partner(models.Model):
     def changestage(self, name, partner):
         if partner.name:
             partner.diviser_nom(partner)
-            print('first , last',partner.firstName,partner.lastName)
         stages = self.env['crm.stage'].sudo().search([("name", "=", _(name))])
         if stages:
             for stage in stages:
                 lead = self.env['crm.lead'].sudo().search([('partner_id', '=', partner.id)], limit=1)
                 if lead and partner.name:
                     lead.sudo().write({
-                        'nom': partner.firstName if partner.firstName else "",
-                        'prenom': partner.lastName if partner.lastName else "",
+                        'prenom': partner.firstName if partner.firstName else "",
+                        'nom': partner.lastName if partner.lastName else "",
 
                         'name': partner.name if partner.name else "",
                         'partner_name': partner.name,
@@ -115,8 +114,8 @@ class Partner(models.Model):
                     })
                 if not lead and partner.name:
                     lead = self.env['crm.lead'].sudo().create({
-                        'nom': partner.firstName if partner.firstName else "",
-                        'prenom': partner.lastName if partner.lastName else "",
+                        'prenom': partner.firstName if partner.firstName else "",
+                        'nom': partner.lastName if partner.lastName else "",
                         'name': partner.name if partner.name else "",
                         'partner_name': partner.name,
                         'num_dossier': partner.numero_cpf if partner.numero_cpf else "",
@@ -143,12 +142,12 @@ class Partner(models.Model):
             if (partner.statut_cpf and partner.statut_cpf == 'canceled') or (partner.statut == 'canceled'):
                 self.changestage("Annulé", partner)
             if (partner.statut != 'canceled'):
-                if partner.name:
-                    partner.diviser_nom(partner)
+
                 date_creation = partner.create_date
                 year = date_creation.year
                 month = date_creation.month
                 if (year > 2020):
+                   
                     if partner.statut_cpf == "accepted":
                         """Pour etape accepté on doit vérifier la date et la ville """
                         if (not (partner.session_ville_id) or not (partner.date_examen_edof)) and not (
@@ -384,3 +383,10 @@ class Partner(models.Model):
                             self.changestage("Document non Validé", partner)
                         if document_valide and not (partner.renounce_request) :
                             self.changestage("Rétractation non Coché", partner)
+    def name_convert(self):
+        leads =self.env['crm.lead'].sudo().search([])
+        for lead in leads:
+            part=lead.partner_id
+            if part and part.name:
+                    part.diviser_nom(part)
+                
