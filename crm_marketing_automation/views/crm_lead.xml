@@ -233,9 +233,9 @@
                        <attribute name="optional">hide</attribute>
            </xpath>
            <xpath expr="//field[@name='team_id']" position="replace"></xpath>
-               <xpath expr="//field[@name='planned_revenue']" position="replace">
-            </xpath>
-            <xpath expr="//field[@name='probability']" position="replace"></xpath>
+<!--               <xpath expr="//field[@name='planned_revenue']" position="replace">-->
+<!--            </xpath>-->
+<!--            <xpath expr="//field[@name='probability']" position="replace"></xpath>-->
 
 
 
