@@ -201,8 +201,8 @@
             </xpath>
             <xpath expr="//field[@name='name']" position="replace">
             <div>
-<!--            <field name="nom" style="margin-right:10px;"></field>-->
-<!--            <field name="prenom" style="margin-right:16px;"></field>-->
+            <field name="nom" style="margin-right:10px;"></field>
+            <field name="prenom" style="margin-right:16px;"></field>
                 </div>
                 <field name="contact_name" attrs="{'invisible': [('partner_id', '!=', False)]}"></field>
             </xpath>
@@ -217,8 +217,8 @@
         <field name="inherit_id" ref="crm.crm_case_tree_view_oppor"/>
        <field name="arch" type="xml">
            <xpath expr="//field[@name='name']" position="replace">
-<!--               <field name="nom" ></field>-->
-<!--                <field name="prenom"></field>-->
+               <field name="nom" ></field>
+                <field name="prenom"></field>
                <field name="email_from"></field>
            </xpath>
            <xpath expr="//field[@name='country_id']" position="replace">
