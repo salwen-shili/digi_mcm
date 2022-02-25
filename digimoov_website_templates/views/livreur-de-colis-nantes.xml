@@ -1,5 +1,5 @@
 <odoo>
-    <template id="digimoov_website_templates.livreur-de-colis-nantes" name="Devenir coursier à Nantes">
+    <template id="digimoov_website_templates.livreur_de_colis_nantes" name="Devenir coursier à Nantes">
         <t t-call="website.layout">
 
 
