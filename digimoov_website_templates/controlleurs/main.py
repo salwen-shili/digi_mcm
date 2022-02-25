@@ -49,7 +49,7 @@ class Website(Website):
         else:
             raise werkzeug.exceptions.NotFound()
 
-    # page de destination
+    # Page de destination Paris
 
     @http.route('/devenir-coursier-paris', type='http', auth='public', website=True)
     def attestation_transport_leger_marchandises_paris(self, **kw, ):
@@ -65,6 +65,7 @@ class Website(Website):
                                   values)
         else:
             raise werkzeug.exceptions.NotFound()
+    # Page de destination Lyon
 
     @http.route('/devenir-coursier-lyon', type='http', auth='public', website=True)
     def attestation_transport_leger_marchandises_lyon(self, **kw, ):
@@ -79,6 +80,7 @@ class Website(Website):
         else:
             raise werkzeug.exceptions.NotFound()
 
+    # Page de destination nantes
     @http.route('/livreur-de-colis-nantes', type='http', auth='public', website=True)
     def attestation_transport_leger_marchandises_nantes(self, **kw, ):
         if request.website.id == 2:
@@ -91,6 +93,7 @@ class Website(Website):
                                   values)
         else:
             raise werkzeug.exceptions.NotFound()
+    # Page de destination bordeaux
 
     @http.route('/capacitaire-transport-bordeaux', type='http', auth='public', website=True)
     def attestation_transport_leger_marchandises_bordeaux(self, **kw, ):
@@ -104,6 +107,7 @@ class Website(Website):
                                   values)
         else:
             raise werkzeug.exceptions.NotFound()
+    # Page de destination Marseille
 
     @http.route('/capacité-de-transport-marseille', type='http', auth='public', website=True)
     def attestation_transport_leger_marchandises_marseille(self, **kw, ):
