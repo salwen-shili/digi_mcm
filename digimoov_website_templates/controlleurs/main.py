@@ -49,7 +49,9 @@ class Website(Website):
         else:
             raise werkzeug.exceptions.NotFound()
 
-    @http.route('/capacité-de-transport/paris', type='http', auth='public', website=True)
+    # page de destination
+
+    @http.route('/devenir-coursier-paris', type='http', auth='public', website=True)
     def attestation_transport_leger_marchandises_paris(self, **kw, ):
         if request.website.id == 2:
             digimoov_products = request.env['product.product'].sudo().search([('company_id', '=', 2)],
@@ -57,7 +59,59 @@ class Website(Website):
             values = {
                 'digimoov_products': digimoov_products,
             }
-            return request.render("digimoov_website_templates.digimoov_template_transport_leger_marchandises_paris",
+            return request.render("digimoov_website_templates.devenir-coursier-paris",
+                                  values)
+        else:
+            raise werkzeug.exceptions.NotFound()
+
+    @http.route('/devenir-coursier-lyon', type='http', auth='public', website=True)
+    def attestation_transport_leger_marchandises_paris(self, **kw, ):
+        if request.website.id == 2:
+            digimoov_products = request.env['product.product'].sudo().search([('company_id', '=', 2)],
+                                                                             order="list_price")
+            values = {
+                'digimoov_products': digimoov_products,
+            }
+            return request.render("digimoov_website_templates.devenir-coursier-Lyon",
+                                  values)
+        else:
+            raise werkzeug.exceptions.NotFound()
+
+    @http.route('/livreur-de-colis-nantes', type='http', auth='public', website=True)
+    def attestation_transport_leger_marchandises_paris(self, **kw, ):
+        if request.website.id == 2:
+            digimoov_products = request.env['product.product'].sudo().search([('company_id', '=', 2)],
+                                                                             order="list_price")
+            values = {
+                'digimoov_products': digimoov_products,
+            }
+            return request.render("digimoov_website_templates.livreur-de-colis-nantes",
+                                  values)
+        else:
+            raise werkzeug.exceptions.NotFound()
+
+    @http.route('/capacitaire-transport-bordeaux', type='http', auth='public', website=True)
+    def attestation_transport_leger_marchandises_paris(self, **kw, ):
+        if request.website.id == 2:
+            digimoov_products = request.env['product.product'].sudo().search([('company_id', '=', 2)],
+                                                                             order="list_price")
+            values = {
+                'digimoov_products': digimoov_products,
+            }
+            return request.render("digimoov_website_templates.capacitaire-transport-bordeaux",
+                                  values)
+        else:
+            raise werkzeug.exceptions.NotFound()
+
+    @http.route('/capacité-de-transport-marseille', type='http', auth='public', website=True)
+    def attestation_transport_leger_marchandises_paris(self, **kw, ):
+        if request.website.id == 2:
+            digimoov_products = request.env['product.product'].sudo().search([('company_id', '=', 2)],
+                                                                             order="list_price")
+            values = {
+                'digimoov_products': digimoov_products,
+            }
+            return request.render("digimoov_website_templates.capacité-de-transport-marseille",
                                   values)
         else:
             raise werkzeug.exceptions.NotFound()
