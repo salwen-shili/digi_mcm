@@ -1,0 +1,265 @@
+<odoo>
+    <template id="digimoov_website_templates.devenir-coursier-paris" name="Devenir coursier à Paris">
+        <t t-call="website.layout">
+
+
+            <script defer="defer" type="text/javascript" src="/digimoov_website_templates/static/src/js/lazy-min.min.js" />
+            <link href="/digimoov_website_templates/static/src/css/css-dist/home.min.css" rel="stylesheet" />
+            <div id="wrap" class="oe_empty oe_structure" style="word-break: break-word; position: relative; z-index: 0;">
+                <section class="banner_padding centric_template home-banner pt96" data-name="Banner" style="word-break: break-word; position: relative; z-index: 0;">
+                    <div class="container" style="border-style: none; border-width: 0px;">
+                        <div class="row">
+                            <div class="bannarcol col-lg-6 col-md-12" style="border-style: none; border-width: 0px">
+                                <h2>
+                                    <text class="h1-title">
+                                        <font style="font-size: 62px;" class="text-alpha">Comment devenir coursier à Paris</font>
+                                    </text>
+                                    <font style="font-size: 62px;" class="text-alpha">&amp;nbsp;?</font>
+                                    &amp;nbsp; &amp;nbsp;
+                                </h2>
+                                <p class="paratext">
+                                    Vous êtes à
+                                    <b>Paris</b>
+                                    &amp;nbsp;? Et vous désirez créer votre propre entreprise de transport ? Notre centre de formation en capacité de transport Digimoov , vous propose&amp;nbsp;
+                                    <text class="text-delta" style="">
+                                        <font style="color: rgb(59, 210, 188);">
+                                            <b style="color: rgb(59, 210, 188);">une formation de 102 h 100 % en ligne </b>
+                                            <span style="color: rgb(59, 210, 188); font-size: 18px;">
+                                                <b>agréée</b>
+                                            </span>
+                                            <b style="color: rgb(59, 210, 188);">&amp;nbsp;par l'</b>
+                                            <b style="font-size: 18px;">État, </b>
+                                        </font>
+                                        <font style="color: rgb(99, 99, 99);">afin</font>
+                                    </text>
+                                    &amp;nbsp;que vous puissiez obtenir votre attestation de capacité de transport léger de marchandises et réaliser ainsi votre projet professionnel.
+                                    <text style="color: rgb(156, 0, 255)">
+                                        <br />
+                                    </text>
+                                </p>
+                                <div class="banner-btn s_btn" data-name="Button">
+                                    <a href="#pricing" class="bannerbtn btn btn-success rounded-circle" title="je m'inscirs" alt="boutton je m'inscris" aria-describedby="tooltip679124">Je m'inscris dès maintenant ! </a>
+                                </div>
+                            </div>
+                            <div class="bannercol col-lg-6 col-md-12 image_padding" style="border-style: none; border-width: 0px">
+                                <div class="banner_image">
+                                    <img class="img img-fluid" src="/web/image/239287/formation-langue-fran%C3%A7aise-transport-digimoov.png" title="Devenir coursier en scooter" alt="formation coursier en scooter" aria-describedby="tooltip653698" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <section class="s_text_image pt32 pb32" data-name="Text - Image" style="word-break: break-word; position: relative; z-index: 0;">
+                    <div class="container" style="border-style: none; border-width: 0px;">
+                        <div class="row align-items-center">
+                            <div class="col-lg-6 pt16 pb16" style="border-style: none; border-width: 0px;">
+                                <h2 style="font-weight: 500; color: rgb(85, 85, 85); font-size: 30px;">
+                                    <span style="-webkit-font-smoothing: antialiased; font-weight: bolder;">
+                                        <font style="color: rgb(99, 74, 165);">Obtenir sa capacité de transport pour devenir coursier à Paris</font>
+                                    </span>
+                                </h2>
+                                <blockquote>
+                                    <font style="font-size: 18px;">Avoir une&amp;nbsp;</font>
+                                    <b>
+                                        <font style="color: rgb(66, 66, 66); font-size: 18px;">capacité de transport</font>
+                                    </b>
+                                    <font style="color: rgb(99, 99, 99); font-size: 18px;">&amp;nbsp;pour créer son&amp;nbsp;entreprise de livraison</font>
+                                    <font class="text-beta" style="font-weight: bold; font-size: 18px;">&amp;nbsp;</font>
+                                    <font style="font-size: 18px;">et&amp;nbsp;</font>
+                                    <b>
+                                        <font style="color: rgb(66, 66, 66); font-size: 18px;">devenir coursier en voiture, scooter ou encore en camionette</font>
+                                        <font class="text-alpha" style="font-size: 18px;"></font>
+                                    </b>
+                                    <font style="font-size: 18px;">ne peut s’obtenir qu’après le passage d'un examen.&amp;nbsp; </font>
+                                    <br />
+                                    <font style="font-size: 18px;">Cet&amp;nbsp;</font>
+                                    <font style="font-size: 18px;">examen</font>
+                                    <font style="font-size: 18px;">, est organisé par la&amp;nbsp;</font>
+                                    <font style="font-size: 18px;">DREAL
+</font>
+                                    <font style="font-size: 18px;">pour tester vos connaissances du milieu du transport et de la livraison, suite au suivi d'une formation sur la capacité de transport léger de marchandises. </font>
+                                    <br />
+                                    <font style="font-size: 18px;">En effet, notre&amp;nbsp;</font>
+                                    <font style="font-size: 18px;">formation
+</font>
+                                    <font style="font-size: 18px;">vous donnera toutes les clés en main pour obtenir votre capacité de transport et vous permettera ainsi de remplir les conditions pour créer votre&amp;nbsp;</font>
+                                    <b>
+                                        <font style="color: rgb(66, 66, 66); font-size: 18px;">entreprise de transport</font>
+                                        <font class="text-alpha" style="font-size: 18px;"></font>
+                                        <font class="text-beta" style="font-size: 18px;">.
+                
+              
+                
+              </font>
+                                    </b>
+                                </blockquote>
+                                <h5>&amp;nbsp;</h5>
+                            </div>
+                            <div class="col-lg-6 pt16 pb16">
+                                <img src="/web/image/229877/1%20%281%29.png" class="img img-fluid mx-auto" alt="Odoo • Texte et Image" />
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <section class="s_furniture_about about-area section-pt" data-name="Image with vertical title and paragraph and button">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="about-image">
+                                    <a href="#">
+                                        <img src="/web/image/240002/Formation%20Attestation%20de%20Transport%20L%C3%A9ger%20de%20Marchandises.png" alt="About Product images" class="img img-fluid" data-original-title="" title="" aria-describedby="tooltip121024" />
+                                    </a>
+                                    <span class="text_left">&amp;nbsp;</span>
+                                </div>
+                            </div>
+                            <div class="col-lg-6" style="border-style: none; border-width: 0px;">
+                                <div class="about-contents">
+                                    <h2>
+                                        <font style="color: rgb(57, 132, 198);">Formation Attestation de Transport Léger de Marchandises</font>
+                                        &amp;nbsp;
+                                    </h2>
+                                    <blockquote style="margin-top: 15px; margin-bottom: 0px; line-height: 1.7; font-size: 15px; color: rgb(106, 108, 114); font-family: Roboto, &quot;Odoo Unicode Support Noto&quot;, sans-serif;">
+                                        <span style="color: rgb(99, 99, 99); font-size: 18px; text-align: justify;">La formation capacité de transport léger est portée sur 6 modules : L'entreprise et le droit civile commercial, l'entreprise et son activité commerciale, le cadre règlementaire de l'activité de transport, l'entreprise et son activité financière, la gestion des ressources humaines, et enfin la sécurité routière.</span>
+                                        <br />
+                                        <span style="color: rgb(99, 99, 99); font-size: 18px; text-align: justify;">
+                                            Les modules seront présentés sur notre plateforme e-learning sous forme de vidéos intéractives, diapositives et de Live avec les formateurs.
+                                            <br />
+                                            La formation dure 102 h, et vous pourrez la suivre à votre rythme avec un accés illimité durant un mois.
+                                            <br />
+                                        </span>
+                                        <br />
+                                    </blockquote>
+                                    <div class="s_btn" data-name="Button">
+                                        <a class="bizople_button shop-btn-two btn btn-success" href="#" data-mci-spellchecked="true" spellcheck="false" style="word-break: break-word; position: relative; z-index: 0;" lang="merciapp">JE M'INSCRIS</a>
+                                    </div>
+                                </div>
+                                <mci-extension data-role="overlay" />
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <div style="border-style: none; border-width: 0px; word-break: break-word; position: relative; z-index: 0;">
+                    <style>
+                    .h1-title {
+                    color: rgb(156, 0, 255);
+                    }
+                    p {
+                    font-size: 18px !important;
+                    }
+                    h2 {
+                    font-weight: bold !important;
+                    font-size: 48px !important;
+                    color: #000 !important;
+                    padding-bottom: 25px !important;
+                    }
+                    li{
+
+                    font-weight: bold !important;
+                    font-size: 17px !important;
+
+                    }
+
+                    .p-card-pricing{
+                    padding: 48px;
+                    }
+                    .center-logo {
+                    display: flex;
+                    flex-direction: row;
+                    align-content: center;
+                    justify-content: space-between;
+                    align-items: center;
+                    }
+
+                    .banner_padding{
+                    padding: 128px 0px 64px 0px !important;
+                    }
+
+                    @media all and (max-width: 425px) {
+                    .center-logo {
+                    display: flex;
+                    flex-direction: column;
+                    align-content: center;
+                    justify-content: space-between;
+                    align-items: center;
+                    }
+                    .p-card-pricing{
+                    padding: 40px 0px 0px 11px;
+                    }
+                    .p-m-0{
+                    padding: 0px !important;
+                    }
+                    .banner_padding{
+                    padding: 58px 0px 18px 0px !important;
+                    }
+                    .image_padding{
+                    padding: 32px 0px !important;
+
+                    }
+                    .section-padding{
+                    padding: 32px 0px !important;
+                    }
+                    .section-logos{
+                    padding: 32px 0px !important;
+                    }
+                    .res-width-46{
+                    width: 46% !important;
+                    }
+                    .res-width-43{
+                    width: 43% !important;
+                    }
+                    .res-width-26{
+                    width: 26% !important;
+                    }
+                    .res-width-36{
+                    width: 36% !important;
+                    }
+                    .res-width-30{
+                    width: 30% !important;
+                    }
+
+                    }
+                
+            </style>
+                    <section class="container pb32 pt40 section-padding">
+                        <div class="align-items-center justify-content-center row">
+                            <div class="col-md-4 col-sm-12 mb-4 mb-md-0 text-center">
+                                <img class="img-fluid" style="width: 188px;" src="/mcm_website_theme/static/src/img/qualiopi.png" />
+                            </div>
+                            <div class="col-md-4 col-sm-12 mb-4 mb-md-0 text-center">
+                                <img class="img-fluid" style="width: 110px;" src="/mcm_website_theme/static/src/img/Logo-vert-sur-fond-blanc-en-.jpg.jpg" />
+                            </div>
+                            <div class="col-md-4 col-sm-12 mb-4 mb-md-0 text-center">
+                                <img class="img-fluid" style="width: 188px;" src="/digimoov_website_templates/static/img/coursier2roues/logo-DREAL.png" data-original-title="" title="" aria-describedby="tooltip888476" />
+                            </div>
+                        </div>
+                    </section>
+                    <section class="s_call_to_action pt48 pb24 bg-night-fade-gradient" data-name="Call to Action">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-lg-9 pb24" style="border-style: none; border-width: 0px;">
+                                    <h3>
+                                        <b>Téléchargez notre programme&amp;nbsp;complet</b>
+                                        <b style="background-color: initial;">de formation et le barème d'évaluation
+                                    </b>
+                                    </h3>
+                                    <p class="lead">
+                                        <b>Pour garantir votre réussite !</b>
+                                    </p>
+                                </div>
+                                <div class="col-lg-3 s_btn text-right pt8 pb24" data-name="Button">
+                                    <a href="/digimoov_website_templates/static/pdf/PROGRAMME-DE-FORMATION-DE-TRANSPORT-LEGER-DE-MARCHANDISES-DIGIMOOV.pdf" class="btn btn-primary btn-lg" target="_blank" rel="noopener" data-original-title="" title="" aria-describedby="tooltip643098">
+                                        <span data-original-title="" title="" aria-describedby="tooltip516238">Je télécharge !</span>
+                                        &amp;nbsp;
+                                        <i class="fa fa-1x fa-fw fa-arrow-circle-right ml-1" />
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+
+
+        </t>
+    </template>
+</odoo>

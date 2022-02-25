@@ -1,17 +1,19 @@
 # -*- coding: utf-8 -*-
 # Part of Odoo. See LICENSE file for full copyright and licensing details.
 #
-from odoo import api, fields, models,_
+from odoo import api, fields, models, _
 import calendar
-from datetime import date,datetime
+from datetime import date, datetime
 import logging
 _logger = logging.getLogger(__name__)
+
+
 class CRM(models.Model):
     _inherit = "crm.lead"
-    num_dossier=fields.Char(string="numéro de dossier",)
-    num_tel=fields.Char(string="numéro de téléphone")
-    email=fields.Char(string="email")
-    nom=fields.Char(string="Nom")
+    num_dossier = fields.Char(string="numéro de dossier",)
+    num_tel = fields.Char(string="numéro de téléphone")
+    email = fields.Char(string="email")
+    nom = fields.Char(string="Nom")
     prenom = fields.Char(string="Prénom")
     mode_de_financement = fields.Selection(selection=[
         ('particulier', 'Personnel'),
@@ -25,16 +27,17 @@ class CRM(models.Model):
 
     # @api.model
     # def search_read(self, domain=None, fields=None, offset=0, limit=None, order=None):
-    # 
+    #
     #     if self.user_has_groups('crm_marketing_automation.group_bolt'):
     #         domain += [('partner_id.bolt', '=',True)]
-    # 
+    #
     #     res = super(CRM, self).search_read(domain, fields, offset, limit, order)
-    # 
+    #
     #     return res
 
     """Affecter les crm lead aux apprenants convenables après l'importation
      Et supression des duplications"""
+
     def crm_import_data(self):
         _logger.info('------------lead ')
         leads = self.env['crm.lead'].search([])
@@ -43,36 +46,37 @@ class CRM(models.Model):
         attribuer cette fiche au crm lead de meme apprenant"""
         for lead in leads:
             num_dossier = str(lead.num_dossier)
-            partners = self.env['res.partner'].search([('numero_cpf', "=", num_dossier)])
+            partners = self.env['res.partner'].search(
+                [('numero_cpf', "=", num_dossier)])
             _logger.info('lead %s' % lead.name)
             # for partner in partners:
-                # if lead.stage_id.name != "Plateforme 360":
-                #     if (partner.numero_cpf) and (partner.numero_cpf == lead.num_dossier):
-                #         """Changer statut_cpf des fiches client selon
-                #           statut de dossier nsur edof"""
-                #         # if lead.stage_id.name == "En formation":
-                #         #     partner.statut_cpf = "in_training"
-                #         # if "Annulé" in lead.stage_id.name:
-                #         #     partner.statut_cpf = "canceled"
-                #         # if lead.stage_id.name == "Sortie de formation":
-                #         #     partner.statut_cpf = "out_training"
-                #         # if lead.stage_id.name == "Facturé":
-                #         #     partner.statut_cpf = "bill"
-                #         # if lead.stage_id.name == "Service fait déclaré":
-                #         #     partner.statut_cpf = "service_declared"
-                #         # if "Service fait validé" in lead.stage_id.name:
-                #         #     partner.statut_cpf = "service_validated"
-                #         # if lead.stage_id.name == "Annulation titulaire":
-                #         #     partner.statut_cpf = "canceled"
-                # lead.sudo().write({
-                #             'partner_id': partner,
-                #             'name': partner.name,
-                #             'mode_de_financement': 'cpf',
-                #             'module_id': partner.module_id,
-                #             'mcm_session_id': partner.mcm_session_id,
-                #             'company_id': partner.company_id if partner.company_id else False
-                #         })
-                # _logger.info("lead %s" % lead.name)
+            # if lead.stage_id.name != "Plateforme 360":
+            #     if (partner.numero_cpf) and (partner.numero_cpf == lead.num_dossier):
+            #         """Changer statut_cpf des fiches client selon
+            #           statut de dossier nsur edof"""
+            #         # if lead.stage_id.name == "En formation":
+            #         #     partner.statut_cpf = "in_training"
+            #         # if "Annulé" in lead.stage_id.name:
+            #         #     partner.statut_cpf = "canceled"
+            #         # if lead.stage_id.name == "Sortie de formation":
+            #         #     partner.statut_cpf = "out_training"
+            #         # if lead.stage_id.name == "Facturé":
+            #         #     partner.statut_cpf = "bill"
+            #         # if lead.stage_id.name == "Service fait déclaré":
+            #         #     partner.statut_cpf = "service_declared"
+            #         # if "Service fait validé" in lead.stage_id.name:
+            #         #     partner.statut_cpf = "service_validated"
+            #         # if lead.stage_id.name == "Annulation titulaire":
+            #         #     partner.statut_cpf = "canceled"
+            # lead.sudo().write({
+            #             'partner_id': partner,
+            #             'name': partner.name,
+            #             'mode_de_financement': 'cpf',
+            #             'module_id': partner.module_id,
+            #             'mcm_session_id': partner.mcm_session_id,
+            #             'company_id': partner.company_id if partner.company_id else False
+            #         })
+            # _logger.info("lead %s" % lead.name)
             """Supprimer les doublons par num_dossier"""
             if lead.num_dossier and lead.id not in duplicate_lead:
                 duplicates = self.env['crm.lead'].search(
