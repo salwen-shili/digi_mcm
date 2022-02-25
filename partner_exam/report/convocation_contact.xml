@@ -152,9 +152,10 @@
                             <p style="page-break-after:always;"/>
                             <!-- Attestation sur l'honneur-->
                             <div class="row">
-                                <div style="padding-top:70px!important;">
+                                <div style="padding-top:50px!important;">
                                     <img src='/partner_exam/static/src/img/logo_digimoov.png'
-                                         style="max-height: 190px; float:left;padding-right:30px;"/><br/>
+                                         style="max-height: 190px; float:left;padding-right:30px;"/>
+                                    <br/>
                                     <p style="line-height: 1.26 !important;">
                                         <b>Organisme de formation : DIGIMOOV</b>
                                     </p>
@@ -173,6 +174,8 @@
                                     </p>
                                     <br/>
                                     <br/>
+                                    <br/>
+                                    <br/>
                                     <center>
                                         <h1>Attestation sur l'honneur</h1>
                                     </center>
@@ -180,11 +183,13 @@
                                     <br/>
                                     <span>
                                         Je soussigné(e)
+                                        <!-- Madame/Mademoiselle/Monsieur -->
                                         <strong>
                                             <span t-field="o.title.shortcut"/>
                                             <span t-raw="'%s' % o.name if o.name else ''"/>
                                         </strong>
                                         , né(e) le
+                                        <!-- Ajout de t-field-options permet de-->
                                         <strong>
                                             <span t-field="o.birthday" t-field-options='{"format": "dd/MM/yyyy"}'/>
                                         </strong>
@@ -245,6 +250,7 @@
                                                 <span t-raw="'%s' % o.city if o.city else '..............'"/>
                                             </strong>
                                             , le
+                                            <!-- date système-->
                                             <span t-esc="context_timestamp(datetime.datetime.now()).strftime('%d/%m/%Y')"/>
                                             <br/>
                                             Signature
