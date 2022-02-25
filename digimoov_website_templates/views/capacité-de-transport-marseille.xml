@@ -1,5 +1,5 @@
 <odoo>
-    <template id="digimoov_website_templates.capacité-de-transport-marseille" name="Devenir coursier à Marseille">
+    <template id="digimoov_website_templates.capacité_de_transport_marseille" name="Devenir coursier à Marseille">
         <t t-call="website.layout">
 
 

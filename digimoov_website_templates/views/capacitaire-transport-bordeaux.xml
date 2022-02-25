@@ -1,5 +1,5 @@
 <odoo>
-    <template id="digimoov_website_templates.capacitaire-transport-bordeaux" name="Capacitaire de transport à Bordeaux">
+    <template id="digimoov_website_templates.capacitaire_transport_bordeaux" name="Capacitaire de transport à Bordeaux">
         <t t-call="website.layout">
 
             <script defer="defer" type="text/javascript" src="/digimoov_website_templates/static/src/js/lazy-min.min.js" />

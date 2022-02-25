@@ -60,12 +60,12 @@
         # 'views/sitemap.xml',
 
         'views/habilitation-eletrique.xml',
-        'views/attestation-transport-leger-marchandises-paris.xml',
-        'views/Capacitaire-transport-Bordeaux.xml',
-        'views/Capacité-de-transport-Marseille.xml',
-        'views/Livreur-de-colis-Nantes.xml',
-        'views/Devenir-coursier-Paris.xml',
-        'views/Devenir-coursier-Lyon.xml',
+        # page de destination
+        'views/devenir-coursier-paris.xml',
+        'views/capacité-de-transport-marseille.xml',
+        'views/livreur-de-colis-nantes.xml',
+        'views/devenir-coursier-lyon.xml',
+        'views/capacitaire-transport-bordeaux.xml',
 
     ],
     'qweb': [],

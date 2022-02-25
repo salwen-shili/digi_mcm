@@ -1,5 +1,5 @@
 <odoo>
-    <template id="digimoov_website_templates.devenir-coursier-paris" name="Devenir coursier à Paris">
+    <template id="digimoov_website_templates.devenir_coursier_paris" name="Devenir coursier à Paris">
         <t t-call="website.layout">
 
 
