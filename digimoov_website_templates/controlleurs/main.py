@@ -52,7 +52,7 @@ class Website(Website):
     # Page de destination Paris
 
     @http.route('/devenir-coursier-paris', type='http', auth='public', website=True)
-    def attestation_transport_leger_marchandises_paris(self, **kw, ):
+    def attestation_transport_leger_marchandises_destination_paris(self, **kw, ):
 
         if request.website.id == 2:
             digimoov_products = request.env['product.product'].sudo().search([('company_id', '=', 2)],
@@ -68,7 +68,7 @@ class Website(Website):
     # Page de destination Lyon
 
     @http.route('/devenir-coursier-lyon', type='http', auth='public', website=True)
-    def attestation_transport_leger_marchandises_lyon(self, **kw, ):
+    def attestation_transport_leger_marchandises_destination_lyon(self, **kw, ):
         if request.website.id == 2:
             digimoov_products = request.env['product.product'].sudo().search([('company_id', '=', 2)],
                                                                              order="list_price")
@@ -110,7 +110,7 @@ class Website(Website):
     # Page de destination Marseille
 
     @http.route('/capacité-de-transport-marseille', type='http', auth='public', website=True)
-    def attestation_transport_leger_marchandises_marseille(self, **kw, ):
+    def attestation_transport_leger_marchandises_destination_marseille(self, **kw, ):
         if request.website.id == 2:
             digimoov_products = request.env['product.product'].sudo().search([('company_id', '=', 2)],
                                                                              order="list_price")
