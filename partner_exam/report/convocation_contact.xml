@@ -5,112 +5,120 @@
             <t t-call="web.html_container">
                 <t t-foreach="docs" t-as="o">
                     <t t-call="web.basic_layout">
-                        <div class="page"
-                             style="line-height:1.5;font-family:Montserrat;font-size:12 %;page-break-before: always;">
+                        <style>
+                            .page {
+                            line-height: 1.75 ;
+                            font-size:18px ;
+                            padding-left: 10px;
+                            padding-right: 10px;
+                            }
+                        </style>
+                        <div class="page">
                             <div class="oe_structure"/>
                             <div class="row">
                                 <div class="col-12">
-                                    <br>
-                                        <img src='/partner_exam/static/src/img/1.png' height="150" width="950"/>
-                                        <img src='/partner_exam/static/src/img/header2.png' height="300" width="1000"/>
-                                        <p>
-                                            Vous êtes invité(e) à vous présenter à l'examen de capacité de transport de
-                                            marchandises
-                                            léger.
-                                        </p>
-                                        <strong>
-                                            Prénom et Nom :
+                                    <br/>
+                                    <img src='/partner_exam/static/src/img/1.png' height="150" width="950"/>
+                                    <img src='/partner_exam/static/src/img/header2.png' height="300" width="1000"/>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-8">
+                                    <p>
+                                        Vous êtes invité(e) à vous présenter à l'examen de capacité de transport de
+                                        marchandises
+                                        léger.
+                                    </p>
+                                    <strong>
+                                        Prénom et Nom :
+                                        <span t-raw="'%s' % o.name if o.name else ''"/>
+                                    </strong>
+                                    <br></br>
+                                    <strong>Adresse :
+                                        <t t-if="o.mcm_session_id[0].session_adresse_examen.adresse_centre_examen">
+                                            <span t-field="o.mcm_session_id[0].session_adresse_examen.adresse_centre_examen"/>
+                                        </t>
+                                        <t t-else="">
+                                            <span>
+                                                .........................................................................
+                                            </span>
+                                        </t>
+                                    </strong>
+                                    <br></br>
+                                    <strong>Date :
+                                        <t t-foreach="o.mcm_session_id" t-as="line">
+                                            <span t-field="line.date_exam"/>
+                                        </t>
+                                    </strong>
+                                    <br></br>
+                                    <strong>Heure :</strong>
+                                    <t t-foreach="o.mcm_session_id" t-as="matin">
+                                        <t t-if="matin.temps_convocation == 'matin'">
                                             <strong>
-                                                <span t-raw="'%s' % o.name if o.name else ''"/>
+                                                <span t-field="matin.heure_examen_matin"/>
+                                                Matin
                                             </strong>
-                                        </strong>
-                                        <br></br>
-                                        <strong>Adresse :
-                                            <t t-if="o.mcm_session_id[0].session_adresse_examen.adresse_centre_examen">
-                                                <span t-field="o.mcm_session_id[0].session_adresse_examen.adresse_centre_examen"/>
-                                            </t>
-                                            <t t-else="">
-                                                <span>
-                                                    .........................................................................
-                                                </span>
-                                            </t>
-                                        </strong>
-                                        <br></br>
-                                        <strong>Date :
-                                            <t t-foreach="o.mcm_session_id" t-as="line">
-                                                <span t-field="line.date_exam"/>
-                                            </t>
-                                        </strong>
-                                        <br></br>
-                                        <strong>Heure :</strong>
-                                        <t t-foreach="o.mcm_session_id" t-as="matin">
-                                            <t t-if="matin.temps_convocation == 'matin'">
-                                                <strong>
-                                                    <span t-field="matin.heure_examen_matin"/>
-                                                    Matin
-                                                </strong>
-                                                (Tous les candidats doivent impérativement se présenter <b
-                                                    style="text-decoration : underline;">30 minutes
-                                            </b> avant
-                                                l'épreuve).
-                                                <br></br>
-                                            </t>
+                                            (Tous les candidats doivent impérativement se présenter <b
+                                                style="text-decoration : underline;">30 minutes
+                                        </b> avant
+                                            l'épreuve).
+                                            <br></br>
                                         </t>
-                                        <t t-foreach="o.mcm_session_id" t-as="apres_midi">
-                                            <t t-if="apres_midi.temps_convocation == 'apres_midi'">
-                                                <strong>
-                                                    <span t-field="apres_midi.heure_examen_apres_midi"/>
-                                                    Après-Midi
-                                                </strong>
-                                                (Tous les candidats doivent impérativement se présenter <b
-                                                    style="text-decoration : underline;">45 minutes (13H15)
-                                            </b> avant
-                                                l'épreuve).
-                                                <br></br>
-                                            </t>
+                                    </t>
+                                    <t t-foreach="o.mcm_session_id" t-as="apres_midi">
+                                        <t t-if="apres_midi.temps_convocation == 'apres_midi'">
+                                            <strong>
+                                                <span t-field="apres_midi.heure_examen_apres_midi"/>
+                                                Après-Midi
+                                            </strong>
+                                            (Tous les candidats doivent impérativement se présenter <b
+                                                style="text-decoration : underline;">45 minutes (13H15)
+                                        </b> avant
+                                            l'épreuve).
+                                            <br></br>
                                         </t>
-                                        <t t-foreach="o.mcm_session_id" t-as="none">
-                                            <t t-if="none.temps_convocation == ''">
-                                                <p></p>
-                                            </t>
+                                    </t>
+                                    <t t-foreach="o.mcm_session_id" t-as="none">
+                                        <t t-if="none.temps_convocation == ''">
+                                            <p></p>
                                         </t>
-                                        <br></br>
-                                        <p>Merci de vous munir de la présente convocation, d'une pièce d'identité
-                                            (passeport ou
-                                            carte
-                                            d'identité) ainsi que d'un stylo bille noir ou bleu, d'un blanco et d'une
-                                            calculatrice non scientifique.
-                                        </p>
-                                        <br></br>
-                                        <p>
-                                            <strong>NB : Aucun retard ne sera toléré.</strong>
-                                        </p>
-                                        <br></br>
+                                    </t>
+                                    <br></br>
+                                    <p>Merci de vous munir de la présente convocation, d'une pièce d'identité
+                                        (passeport ou
+                                        carte
+                                        d'identité) ainsi que d'un stylo bille noir ou bleu, d'un blanco et d'une
+                                        calculatrice non scientifique.
+                                    </p>
+                                    <br></br>
+                                    <p>
+                                        <strong>NB : Aucun retard ne sera toléré.</strong>
+                                    </p>
+                                    <br></br>
+                                    <center>
+                                        <strong>Pour vous préparer, nous vous invitons à consulter le guide de
+                                            l'examen en cliquant
+                                        </strong>
+                                        <bold>
+                                            <a class="alert-link"
+                                               href="https://www.digimoov.fr/examen-capacite-transport-marchandises">
+                                                ici.
+                                            </a>
+                                        </bold>
+                                    </center>
+                                    <br></br>
+                                    <center>
                                         <center>
-                                            <strong>Pour vous préparer, nous vous invitons à consulter le guide de
-                                                l'examen en cliquant
-                                            </strong>
                                             <bold>
-                                                <a class="alert-link"
-                                                   href="https://www.digimoov.fr/examen-capacite-transport-marchandises">
-                                                    ici.
+                                                <a t-attf-href="#{o.mcm_session_id.lien}">
+                                                    <b>Cliquer ici</b>
                                                 </a>
+                                                <b>pour consulter le plan d'accès au centre d'examen</b>
                                             </bold>
                                         </center>
-                                        <br></br>
-                                        <center>
-                                            <center>
-                                                <bold>
-                                                    <a t-attf-href="#{o.mcm_session_id.lien}">
-                                                        <b>Cliquer ici</b>
-                                                    </a>
-                                                    <b>pour consulter le plan d'accès au centre d'examen</b>
-                                                </bold>
-                                            </center>
-                                        </center>
-                                    </br>
+                                    </center>
                                     <br></br>
-                                    <div class="row" style="padding-left:100px;padding-top:100px!important;">
+                                    <div class="row" style="padding-left:100px;padding-top:60px!important;">
                                         <table border="0" width="800">
                                             <thead>
                                                 <tr align="center">
@@ -135,9 +143,113 @@
                                             </tbody>
                                         </table>
                                     </div>
-                                    <div class="row" style="padding-top:150px!important;">
-                                        <img src='/partner_exam/static/src/img/footer.png' height="250" width="1000"/>
+                                    <div class="col-12">
+                                        <img src='/partner_exam/static/src/img/footer.png' height="200"
+                                             width="950"/>
                                     </div>
+                                </div>
+                            </div>
+                            <p style="page-break-after:always;"/>
+                            <!-- Attestation sur l'honneur-->
+                            <div class="row">
+                                <div style="padding-top:70px!important;">
+                                    <img src='/partner_exam/static/src/img/logo_digimoov.png'
+                                         style="max-height: 190px; float:left;padding-right:30px;"/><br/>
+                                    <p style="line-height: 1.26 !important;">
+                                        <b>Organisme de formation : DIGIMOOV</b>
+                                    </p>
+                                    <br/>
+                                    <p style="font-size:14px;line-height: 0.5 !important;">
+                                        <strong>DIGIMOOV</strong>
+                                        10 rue de PENTHIEVRE PARIS 75008
+                                    </p>
+                                    <p style="font-size:14px;">
+                                        <b>Numéro SIRET :</b>
+                                        81121988000085
+                                    </p>
+                                    <p style="font-size:14px;line-height: 0.5 !important;">
+                                        <b>Numéro de déclaration d’activité :</b>
+                                        11755542075 (auprès du préfet de région de : 75)
+                                    </p>
+                                    <br/>
+                                    <br/>
+                                    <center>
+                                        <h1>Attestation sur l'honneur</h1>
+                                    </center>
+                                    <br/>
+                                    <br/>
+                                    <span>
+                                        Je soussigné(e)
+                                        <strong>
+                                            <span t-field="o.title.shortcut"/>
+                                            <span t-raw="'%s' % o.name if o.name else ''"/>
+                                        </strong>
+                                        , né(e) le
+                                        <strong>
+                                            <span t-field="o.birthday" t-field-options='{"format": "dd/MM/yyyy"}'/>
+                                        </strong>
+                                        à
+                                        <strong>
+                                            <span t-raw="'%s' % o.birth_city if o.birth_city else '..............'"/>
+                                        </strong>
+                                        et demeurant au
+                                        <strong>
+                                            <span t-raw="'%s' % o.street if o.street else '..............'"/>
+                                        </strong>
+                                        , atteste sur
+                                        l'honneur
+                                        que j'ai lu et approuvé les informations suivantes:
+                                    </span>
+                                    <br/>
+                                    <br/>
+                                    <span>
+                                        1. Je comprends qu’aucun report d’examen n’est possible une fois la date fixée
+                                        lors de l’inscription.
+                                        <br/>
+                                        <br/>
+
+                                        2. Je comprends que légalement, je ne peux pas dépasser 4 mois entre la date
+                                        d'inscription à la formation et le passage du premier examen.
+                                        <br/>
+                                        <br/>
+
+                                        3. Je comprends qu’en cas d'absence ou d'échec au premier examen et si je
+                                        souhaite
+                                        le repasser, je devrai réserver une nouvelle tentative au tarif de 200€, et que
+                                        je
+                                        ne pourrai pas dépasser un délai de 6 mois entre le premier examen et les deux
+                                        autres repassages autorisés.
+                                        <br/>
+                                        <br/>
+                                        4. Je comprends qu’aucune demande de report sans frais ne pourra être acceptée
+                                        sauf
+                                        en cas de force majeure accompagnée d'un justificatif, à condition qu'elle soit
+                                        envoyée 72h avant la date de l'examen et que j’ai un avancement de 80% dans la
+                                        formation. Une seule demande de report sans frais sera étudiée. Si l'une de ces
+                                        conditions n'est pas remplie, le report sans frais ne sera pas accepté.
+                                        <br/>
+                                        <br/>
+
+                                        5. Je comprends que chaque examen sera automatiquement décompté comme un passage
+                                        que
+                                        je sois présent, absent ou qu’il s’agisse d’un report.
+                                        <br/>
+                                        <br/>
+                                    </span>
+                                    <span>
+                                        Fait pour servir et valoir ce que de droit.
+                                        <br/>
+                                        <br/>
+                                        <strong>Fait à
+                                            <strong>
+                                                <span t-raw="'%s' % o.city if o.city else '..............'"/>
+                                            </strong>
+                                            , le
+                                            <span t-esc="context_timestamp(datetime.datetime.now()).strftime('%d/%m/%Y')"/>
+                                            <br/>
+                                            Signature
+                                        </strong>
+                                    </span>
                                 </div>
                             </div>
                         </div>

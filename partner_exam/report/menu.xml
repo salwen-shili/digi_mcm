@@ -25,7 +25,7 @@
             file="partner_exam.id_convocation_print_report_pdf_ids"
             attachment_use="False"
             attachment="'Convocation-' + object.display_name + '.pdf'"
-            print_report_name="'Convocation- %s' % (object.name).replace('/', '')"
+            print_report_name="'Convocation- %s - %s' % ((object.mcm_session_id.date_exam),(object.name).replace('/', ''))"
             paperformat="partner_exam.paperformat_convocation"
     />
 
