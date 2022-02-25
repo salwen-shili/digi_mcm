@@ -82,21 +82,21 @@ class Website(Website):
 
     # Page de destination nantes
     @http.route('/livreur-de-colis-nantes', type='http', auth='public', website=True)
-    def attestation_transport_leger_marchandises_nantes(self, **kw, ):
+    def attestation_transport_leger_marchandises_destination_nantes(self, **kw, ):
         if request.website.id == 2:
             digimoov_products = request.env['product.product'].sudo().search([('company_id', '=', 2)],
                                                                              order="list_price")
             values = {
                 'digimoov_products': digimoov_products,
             }
-            return request.render("digimoov_website_templates.livreur-de-colis-nantes",
+            return request.render("digimoov_website_templates.livreur_de_colis_nantes",
                                   values)
         else:
             raise werkzeug.exceptions.NotFound()
     # Page de destination bordeaux
 
     @http.route('/capacitaire-transport-bordeaux', type='http', auth='public', website=True)
-    def attestation_transport_leger_marchandises_bordeaux(self, **kw, ):
+    def attestation_transport_leger_marchandises_destination_bordeaux(self, **kw, ):
         if request.website.id == 2:
             digimoov_products = request.env['product.product'].sudo().search([('company_id', '=', 2)],
                                                                              order="list_price")
