@@ -153,7 +153,7 @@
                             <!-- Attestation sur l'honneur-->
                             <div class="row">
                                 <div class="col-12" style="padding-left:10px;padding-top:30px!important;">
-                                    <table>
+                                    <table border="1" width="800">
                                         <thead>
                                             <tr>
                                                 <th>
@@ -165,6 +165,8 @@
                                                     <p >
                                                         <b>Organisme de formation : DIGIMOOV</b>
                                                     </p>
+                                                    <br/>
+                                                    <br/>
                                                     <p style="font-size:14px;">
                                                         <strong>DIGIMOOV</strong>
                                                         10 rue de PENTHIEVRE PARIS 75008
