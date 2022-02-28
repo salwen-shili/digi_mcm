@@ -42,6 +42,30 @@ class Survey(models.Model):
                             partner.with_context(force_send=True).message_post_with_template(template_id.id,
                                                                                              composition_mode='comment',
                                                                                              )
+                    if partner.phone:
+                        phone = str(partner.phone.replace(' ', ''))[-9:]
+                        phone = '+33' + ' ' + phone[0:1] + ' ' + phone[1:3] + ' ' + phone[3:5] + ' ' + phone[
+                                                                                                       5:7] + ' ' + phone[
+                                                                                                                    7:]
+                        partner.phone = phone
+                    body = "Bonjour %s, merci d'avoir complété votre test d'entré, vous recevrez vos résultats dans un délai de 24h hors weekend.MCM ACADEMY" % (
+                        partner.name)
+                    if body:
+                        sms = self.env['mail.message'].sudo().search(
+                            [("body", "=", body), ("message_type", "=", 'sms'), ("res_id", "=", partner.id)])
+                        if not sms:
+                            composer = self.env['sms.composer'].with_context(
+                                default_res_model='res.partner',
+                                default_res_ids=partner.id,
+                                default_composition_mode='mass',
+                            ).sudo().create({
+                                'body': body,
+                                'mass_keep_log': True,
+                                'mass_force_send': True,
+                            })
+                            composer.action_send_sms()  # envoyer un sms de reussite à l'examen
+                        if partner.phone:
+                            partner.phone = '0' + str(partner.phone.replace(' ', ''))[-9:]
         return record
 
 
