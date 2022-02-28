@@ -207,7 +207,12 @@
                                     </span>
                                     <br/>
                                     <br/>
-                                    <span>
+                                    <style>.tab {
+                                        display: inline-block;
+                                        margin-left: 40px;
+                                        }
+                                    </style>
+                                    <span class="tab">
                                         1. Je comprends qu’aucun report d’examen n’est possible une fois la date fixée
                                         lors de l’inscription.
                                         <br/>
