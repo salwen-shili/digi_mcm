@@ -72,23 +72,23 @@ class WebsiteSale(WebsiteSale):
         if order.company_id.id == 1 :
             if order.order_line:
                 for line in order.order_line:
-                    if (line.product_id.default_code=='vtc_bolt'):
+                    if (line.product_id.default_code=='vtc_bolt'): # check the shop cart if the product choosed is bolt based on default code of product 'vtc_bolt'
                         default_code_bolt = True
                         request.env.user.partner_id.bolt = True
                         mail_compose_message = request.env['mail.compose.message']
                         mail_compose_message.fetch_sendinblue_template()
                         template_id = request.env['mail.template'].sudo().search(
                             [('subject', "=", "Passez votre examen blanc avec MCM ACADEMY X BOLT"),
-                             ('model_id', "=", 'res.partner')], limit=1)
+                             ('model_id', "=", 'res.partner')], limit=1) # if product of bolt in shop cart we send mail contains link of exam to client. we get the mail template from sendinblue
                         if template_id:
                             message = request.env['mail.message'].sudo().search(
                                 [('subject', "=", "Passez votre examen blanc avec MCM ACADEMY X BOLT"),
                                  ('model', "=", 'res.partner'), ('res_id', "=", request.env.user.partner_id.id)],
                                 limit=1)
-                            if not message:
+                            if not message: # check if we have already sent the email
                                 request.env.user.partner_id.with_context(force_send=True).message_post_with_template(template_id.id,
                                                                                                  composition_mode='comment',
-                                                                                                 )
+                                                                                                 ) #send the email to client
                         if request.env.user.partner_id.phone:
                             phone = str(request.env.user.partner_id.phone.replace(' ', ''))[-9:]
                             phone = '+33' + ' ' + phone[0:1] + ' ' + phone[1:3] + ' ' + phone[3:5] + ' ' + phone[
@@ -112,7 +112,7 @@ class WebsiteSale(WebsiteSale):
                                     'mass_force_send': True,
                                 })
 
-                                composer.action_send_sms()  # envoyer un sms d'inscription à l'examen blanc
+                                composer.action_send_sms()  # send sms of exam inscription
                             if request.env.user.partner_id.phone:
                                 request.env.user.partner_id.phone = '0' + str(request.env.user.partner_id.phone.replace(' ', ''))[-9:]
                 if default_code_bolt:
@@ -130,7 +130,7 @@ class WebsiteSale(WebsiteSale):
                             url = '/survey/start/'+str(survey.access_token)
                             return werkzeug.utils.redirect(url, 301)
                         if survey_user and survey_user.state == 'new':
-                            url = '/survey/start/'+str(survey.access_token)
+                            url = '/survey/start/'+str(survey.access_token) #check if client has not yet passed the exam , we redirect him to the exam
                             return werkzeug.utils.redirect(url, 301)
                         if survey_user and survey_user.state == 'skip':
                             return werkzeug.utils.redirect(

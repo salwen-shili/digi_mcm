@@ -18,6 +18,7 @@ class SurveyUserInput(models.Model):
 
     quizz_corrected = fields.Boolean(default=False,string="Examen corrigé")
     def update_partner_exam_result(self):
+        #open wizard to validate exam score
         for record in self:
             return {
                 'type': 'ir.actions.act_window',
@@ -43,9 +44,7 @@ class SurveyUserInput(models.Model):
                                                                     limit=1)
                 if survey :
                     if survey.title == 'Examen blanc Français' :
-                        print('title')
                         if partner :
-                            print('partner')
                             if partner.phone:
                                 phone = str(partner.phone.replace(' ', ''))[-9:]
                                 phone = '+33' + ' ' + phone[0:1] + ' ' + phone[1:3] + ' ' + phone[3:5] + ' ' + phone[
@@ -67,25 +66,15 @@ class SurveyUserInput(models.Model):
                                         'mass_keep_log': True,
                                         'mass_force_send': True,
                                     })
-                                    composer.action_send_sms()  # envoyer un sms d'inscription à l'examen blanc
+                                    composer.action_send_sms()  # send sms of exam inscription
                                 if partner.phone:
                                     partner.phone = '0' + str(partner.phone.replace(' ', ''))[-9:]
         print('vals_list:', vals_list)
         return super(SurveyUserInput, self).create(vals_list)
-    @api.depends('user_input_line_ids.answer_score', 'user_input_line_ids.question_id')
-    def _compute_quizz_score(self):
-        res = super(SurveyUserInput, self)._compute_quizz_score()
-        for user_input in self:
-            if user_input.question_ids :
-                for question in user_input.question_ids :
-                    if not question.labels_ids :
-                        print('question :', question.title)
-
-        return res
 
     @api.depends('user_input_line_ids.answer_score', 'user_input_line_ids.question_id')
     def _compute_quizz_score(self):
-        for user_input in self:
+        for user_input in self:  # compute the score of client
             total_possible_score = sum([
                 answer_score if answer_score > 0 else 0
                 for answer_score in user_input.question_ids.mapped('labels_ids.answer_score')
@@ -115,14 +104,6 @@ class SurveyUserInputWizard(models.TransientModel):
         for rec in self:
             rec.survey_user_input_id.quizz_corrected = True
             rec.partner_id.note_exam = str(rec.score)
-            other_user_input = self.env['survey.user_input'].sudo().search([
-                ('partner_id', '=', rec.partner_id.id),
-                ('survey_id', '=', rec.survey_user_input_id.survey_id.id),
-                ('id', "!=", rec.survey_user_input_id.id)
-            ])
-            # if other_user_input:
-            #     for user_input in other_user_input:
-            #         user_input.sudo().unlink()
             mail_compose_message = self.env['mail.compose.message']
             mail_compose_message.fetch_sendinblue_template()
             if rec.score < 40:
@@ -137,7 +118,7 @@ class SurveyUserInputWizard(models.TransientModel):
                     if not message:
                         rec.partner_id.with_context(force_send=True).message_post_with_template(template_id.id,
                                                                                          composition_mode='comment',
-                                                                                         )
+                                                                                         ) #send an exam failure email
 
                 if rec.partner_id.phone:
                     phone = str(rec.partner_id.phone.replace(' ', ''))[-9:]
@@ -161,7 +142,7 @@ class SurveyUserInputWizard(models.TransientModel):
                             'mass_force_send': True,
                         })
 
-                        composer.action_send_sms()  # envoyer un sms d'echec d'examen
+                        composer.action_send_sms()  #send an exam failure sms
                     if rec.partner_id.phone:
                         rec.partner_id.phone = '0' + str(rec.partner_id.phone.replace(' ', ''))[-9:]
 
@@ -209,7 +190,7 @@ class SurveyUserInputWizard(models.TransientModel):
 
                     rec.partner_id.with_context(force_send=True).message_post_with_template(template_id.id,
                                                                                      composition_mode='comment',
-                                                                                     )
+                                                                                     )  #send an exam success email
                     template_id.attachment_ids = False
 
                     if rec.partner_id.phone:
@@ -235,6 +216,6 @@ class SurveyUserInputWizard(models.TransientModel):
                                 'mass_force_send': True,
                             })
 
-                            composer.action_send_sms()  # envoyer un sms de reussite à l'examen
+                            composer.action_send_sms() #send an exam success sms
                         if rec.partner_id.phone:
                             rec.partner_id.phone = '0' + str(rec.partner_id.phone.replace(' ', ''))[-9:]
