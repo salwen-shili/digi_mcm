@@ -155,7 +155,7 @@
                                 <div style="padding-left:10px;padding-top:30px!important;">
                                     <table>
                                         <thead>
-                                            <tr align="center">
+                                            <tr>
                                                 <th>
                                                     <img src='/partner_exam/static/src/img/logo_digimoov.png'
                                                          style="max-height: 190px; float:left;padding-right:30px;"/>
