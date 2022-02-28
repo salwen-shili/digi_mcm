@@ -1613,7 +1613,7 @@ class partner(models.Model):
                                             })
                                             sms = self.env['mail.message'].sudo().search(
                                                 [("body", "=", body), ("message_type", "=", 'sms'),
-                                                 ("res_id", "=", partner.id)])
+                                                 ("res_id", "=", user.partner_id.id)])
                                             if not sms:
                                                 composer.action_send_sms() # envoyer un sms de félicitation d'inscription
                                             if user.partner_id.phone:
