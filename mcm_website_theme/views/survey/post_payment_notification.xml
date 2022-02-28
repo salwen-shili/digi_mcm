@@ -157,10 +157,7 @@
                         <i class="fa fa-times"></i>
                     </a>
                     <div class="content">
-                        <p id="notifMessage" style="text-align: center; font-size: 16px">
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugit animi, 
-                            qui neque veniam repellendus labore! Iste quia illo rem illum!
-                         </p>
+                        <p id="notifMessage" style="text-align: center; font-size: 16px"></p>
 
                         <div id="iframe"></div>
                         <div class="" style="text-align-last: center; margin-block-start: 1.5rem">

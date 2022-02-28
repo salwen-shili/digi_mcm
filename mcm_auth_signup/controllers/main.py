@@ -130,7 +130,6 @@ class Home(Home):
         order = request.env['sale.order'].sudo().search([('partner_id', "=", partner.id)], order='create_date desc',
                                                         limit=1)
         order1 = request.website.sale_get_order()
-        print()
         if redirect and request.website.is_public_user():
             url = '/web/signup?redirect=%s' % (redirect)
             return werkzeug.utils.redirect(url, '301')
@@ -167,29 +166,30 @@ class Home(Home):
             default_code_bolt = False
             if order:
                 for line in order.order_line:
-                    if (line.product_id.default_code=='vtc_bolt'):
+                    if (line.product_id.default_code=='vtc_bolt'): # check the shop cart if the product choosed is bolt based on default code of product 'vtc_bolt'
                         default_code_bolt = True
                         request.env.user.partner_id.bolt = True
                         mail_compose_message = request.env['mail.compose.message']
                         mail_compose_message.fetch_sendinblue_template()
-                        template_id = request.env['mail.template'].sudo().search([('subject', "=", "Passez votre examen blanc avec MCM ACADEMY X BOLT"),('model_id',"=",'res.partner')],limit=1)
+                        template_id = request.env['mail.template'].sudo().search([('subject', "=", "Passez votre examen blanc avec MCM ACADEMY X BOLT"),('model_id',"=",'res.partner')],limit=1) # if product of bolt in shop cart we send mail contains link of exam to client. we get the mail template from sendinblue
+                        print('template :',template_id)
                         if template_id:
                             message = request.env['mail.message'].sudo().search(
                                 [('subject', "=", "Passez votre examen blanc avec MCM ACADEMY X BOLT"),
-                                 ('model', "=", 'res.partner'),('res_id',"=",request.env.user.partner_id.id)], limit=1)
+                                 ('model', "=", 'res.partner'),('res_id',"=",request.env.user.partner_id.id)], limit=1) # check if we have already sent the email
                             if not message:
                                 partner.with_context(force_send=True).message_post_with_template(template_id.id,
                                                                                              composition_mode='comment',
-                                                                                             )
+                                                                                             ) #send the email to client
                 if default_code_bolt:
                     survey = request.env['survey.survey'].sudo().search([('title', "=", 'Examen blanc Français')],
-                                                                        limit=1)
+                                                                        limit=1) # search in survey model for exam with title ' Examen blanc Français'
                     if survey:
                         survey_user = request.env['survey.user_input'].sudo().search(
                             [('partner_id', "=", request.env.user.partner_id.id), ('survey_id', '=', survey.id)],
                             order='create_date asc', limit=1)
                         if not survey_user:
-                            url = '/survey/start/'+str(survey.access_token)
+                            url = '/survey/start/'+str(survey.access_token) #check if client has not yet passed the exam , we redirect him to the exam
                             response = super(Home, self).web_login(redirect=url, **kw)
                         if survey_user and survey_user.state == 'new':
                             url = '/survey/start/' + str(survey.access_token)
@@ -200,7 +200,7 @@ class Home(Home):
                                 **kw)
                         if survey_user and survey_user.state == 'done':
                             if survey_user.quizz_passed:
-                                response = super(Home, self).web_login(redirect='/shop/cart', **kw)
+                                response = super(Home, self).web_login(redirect='/shop/cart', **kw) #check if client has passed the exam and he succeeded we redirect him to shop cart to continue the process of document and payment
                             else:
-                                response = super(Home, self).web_login(redirect='/bolt ', **kw)
+                                response = super(Home, self).web_login(redirect='/bolt ', **kw) #check if client has passed the exam and he failed, we redirect him to bolt page
         return response

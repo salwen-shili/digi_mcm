@@ -160,7 +160,7 @@
                                         </div>
                                         <br t-if="not name or not last_login" />
 
-                                        <div class="outlined-input-field bg-c" id="phone_container" t-if="not name">
+                                        <div class="outlined-input-field bg-c" id="phone_container" t-if="not phone">
                                             <input type="text" id="phone" name="phone" class="outlined-text-field" autocomplete="off" t-att-value="phone" maxlength="10" pattern="(07|06)[0-9]\d{7}" required="required" inputmode="numeric" />
                                             <label for="phone">Téléphone *</label>
                                             <i class="material-icons error-icon">error_outline</i>
@@ -170,7 +170,7 @@
                                         </div>
                                         <div class="outlined-input-field bg-c" id="phone_container" t-if="phone">
                                             <input type="text" id="phone" name="phone" class="outlined-text-field" autocomplete="off" t-att-value="phone" maxlength="10" pattern="(07|06)[0-9]\d{7}" required="required" inputmode="numeric" t-att-readonly="'readonly' if phone else None" />
-                                            <label for="phone" style="top: -0.7rem;padding: 0.25rem;">Téléphon222e *
+                                            <label for="phone" style="top: -0.7rem;padding: 0.25rem;">Téléphone *
                                             </label>
                                             <i class="material-icons error-icon">error_outline</i>
 

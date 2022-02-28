@@ -46,6 +46,42 @@ class CustomerPortal(CustomerPortal):
         values['invoice_count'] = invoice_count
         print('invoice_count')
         print(invoice_count)
+        partner_orders_signed = request.env['sale.order'].sudo().search([('partner_id', '=', request.env.user.partner_id.id),('company_id', '=', 1),('state',"=",'sale')])
+        isSigned = "False"
+        if partner_orders_signed :
+            for order in partner_orders_signed :
+                if order.order_line :
+                    for line in order.order_line :
+                        if (line.product_id.default_code=='vtc_bolt'):
+                            isSigned = "True"
+        bolt_order = False
+        partner_orders_not_signed = request.env['sale.order'].sudo().search(
+            [('partner_id', '=', request.env.user.partner_id.id), ('company_id', '=', 1), ('state', "=", 'sent')])
+        if partner_orders_not_signed :
+            for order in partner_orders_not_signed :
+                if order.order_line :
+                    for line in order.order_line :
+                        if (line.product_id.default_code=='vtc_bolt'):
+                            bolt_order = order
+        bolt_contract_uri = "False"
+        if bolt_order :
+            bolt_contract_uri = "/my/orders/%s?access_token=%s" % (str(bolt_order.id), str(bolt_order.access_token))
+        rdvIsBooked = "False"
+        rendezvous = request.env['calendly.rendezvous'].sudo().search([('partner_id', '=', request.env.user.partner_id.id)],limit=1)
+        if rendezvous :
+            rdvIsBooked = "True"
+        cartIsEmpty = "False"
+        order = request.website.sale_get_order()
+        if not order:
+            cartIsEmpty = "True"
+        if order and not order.order_line :
+            cartIsEmpty = "True"
+        values.update({
+            'rdvIsBooked' : rdvIsBooked,
+            'cartIsEmpty' : cartIsEmpty,
+            'isSigned' : isSigned,
+            'bolt_contract_uri':bolt_contract_uri
+        })
         return values
 
     # def _document_check_access(self, document_id):

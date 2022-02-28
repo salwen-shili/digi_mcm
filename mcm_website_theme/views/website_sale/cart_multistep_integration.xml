@@ -8,7 +8,7 @@
             </a>
         </xpath>
         <xpath expr="//div[hasclass('row')]" position="before">
-            <script src="/mcm_website_theme/static/src/js/shopping-cart.js"></script>
+            <script t-if="website_sale_order" src="/mcm_website_theme/static/src/js/shopping-cart.js"></script>
             <style>
                 .wizard{
                 display:none !important;
@@ -21,6 +21,7 @@
                 }
             </style>
             <link href="/mcm_website_theme/static/src/css/register_form.min.css" rel="stylesheet" />
+
 
             <div class="container-fluid">
                 <div class="row justify-content-center paper">

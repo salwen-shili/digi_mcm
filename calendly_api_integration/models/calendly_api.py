@@ -24,23 +24,38 @@ class Api(models.Model):
     refresh_token = fields.Char(string="Calendly refresh token", required=True)
 
     def _refresh_token(self):
-        headers = {
-            'Content-Type': 'application/x-www-form-urlencoded',
-        }
-        url = "http://calendly.com/oauth/token"
-
+        print('x')
+        # calendly = self.env['calendly.api'].sudo().search([])
+        # if calendly:
+        #     headers = {
+        #         'Content-Type': 'application/x-www-form-urlencoded',
+        #     }
+        #     data = {
+        #         'client_id': calendly.client_id,
+        #         'grant_type': 'authorization_code',
+        #         'client_secret':  calendly.client_secret,
+        #         'code': 'xWZ-pGYWw-DLdKZkqx3KxK0Q9quuv83MVbg_jWtEEI0',
+        #         'redirect_uri': calendly.redirect_uri,
+        #     }
+        #
+        # r = requests.post('https://auth.calendly.com/oauth/token', headers=headers, data=data)
+        # response = werkzeug.utils.unescape(r.content.decode())
+        # json_data = json.loads(r.text)
+        # print(json_data)
         calendly = self.env['calendly.api'].sudo().search([])
         if calendly:
+            headers = {
+                'Content-Type': 'application/x-www-form-urlencoded',
+            }
             data = {'client_id': calendly.client_id,
                     'client_secret': calendly.client_secret,
                     'grant_type': 'refresh_token',
-                    'refresh_token': calendly.refresh_token}
-            r = requests.post(url, data=data, headers=headers, timeout=65)
+                    'refresh_token' : calendly.refresh_token,
+                    }
+            r = requests.post('https://auth.calendly.com/oauth/token', headers=headers, data=data)
             response = werkzeug.utils.unescape(r.content.decode())
             json_data = json.loads(r.text)
             print(json_data)
-            now = date.today()
-            min_start_time=str(now)+'T00:00:00Z'
             if "access_token" in json_data:
                 access=str(json_data["access_token"])
                 refresh=str(json_data["refresh_token"])
@@ -48,219 +63,166 @@ class Api(models.Model):
                 self._cr.commit()
                 self._cr.execute("""UPDATE calendly_api SET refresh_token = %s WHERE id=%s""", (refresh,calendly.id,))
                 self._cr.commit()
-                calendly = self.env['calendly.api'].sudo().search([])
+
                 headers = {
                     'Authorization': 'Bearer ' + str(json_data["access_token"]),
+                    'Content-Type': 'application/json',
                 }
-                data = {
-                    'min_start_time': min_start_time,
-                    'order': 'desc'
-                }
-
-                response = requests.get('https://calendly.com/api/v2/users/me/events', headers=headers,data=data)
-                json_data_events = json.loads(response.text)
-
-                headers1 = {
-                    'X-TOKEN': 'OGIKABGGLJGSFHATPAZZ4DQ4KSM4XV3N',
+                params = {
+                    'organization': 'https://api.calendly.com/organizations/GCFAGOCMF67ONDTO',
+                    'user':'https://api.calendly.com/users/HEDHGMALE7VZKP3Q'
                 }
 
-                response1 = requests.get('https://calendly.com/api/v1/users/me/event_types', headers=headers1)
-                json_data_type_events=json.loads(response1.text)
+                r = requests.get('https://api.calendly.com/event_types', headers=headers,params=params)
+                response = werkzeug.utils.unescape(r.content.decode())
+                json_data_events = json.loads(r.text)
                 if "collection" in json_data_events:
                     collection = json_data_events["collection"]
-                    print('-----------------collection-------------')
-                    print(collection)
                     for event in collection:
-                        event_type = event["event_type"]
-                        uuid_type = event_type["uuid"]
-                        if uuid_type == 'ADFC5PM4NYKEQ3TZ':
-                            if "uuid" in event:
-                                uuid = event["uuid"]
-                                url_event = 'https://calendly.com/api/v2/events/' + str(uuid) + '/invitees'
-                                event_response = requests.get(url_event,
-                                                              headers=headers)
-                                json_data_event = json.loads(event_response.text)
-                                lead = self.env['crm.lead'].sudo().search(
-                                    [('uuid', "=", str(uuid))])
-                                start_date = str(event["start_time"])
-                                start_time = start_date[12:19]
-                                start_date = start_date[:10]
-                                end_date = str(event["end_time"])
-                                end_time = end_date[12:19]
-                                end_date = end_date[:10]
-                                invitees_counter = event["invitees_counter"]
-                                invitees_active = invitees_counter["active"]
-                                invitees_limit = invitees_counter["limit"]
-                                type_evenement = event["event_type"]
-                                type_evenement = type_evenement["name"]
-                                start_date = datetime.strptime(str(start_date), '%Y-%m-%d')
-                                end_date = datetime.strptime(str(end_date), '%Y-%m-%d')
-                                stage = ''
-                                if (start_date.date() == date.today()):
-                                    stage = self.env['crm.stage'].sudo().search(
-                                        [('name', "=", _('Jour J'))])
-                                elif (start_date.date() > date.today()):
-                                    stage = self.env['crm.stage'].sudo().search(
-                                        [('name', "=", _('À Venir'))])
-                                elif (start_date.date() < date.today()):
-                                    stage = self.env['crm.stage'].sudo().search(
-                                        [('name', "=", _('Passé'))])
-                                if not lead:
-                                    lead = self.env['crm.lead'].sudo().create({
-                                        'name': "Session d'info",
-                                        'uuid': str(uuid),
-                                        'type_evenement': str(type_evenement),
-                                        'invitees_limit': int(invitees_limit),
-                                        'invitees_active': int(invitees_active),
-                                        'start_time': str(start_time),
-                                        'end_time': str(end_time),
-                                        'start_date': start_date.date(),
-                                        'end_date': end_date.date(),
-                                        'stage_id': stage.id if stage else ''
-                                    })
-                                else:
-                                    lead.type_evenement=str(type_evenement)
-                                    lead.invitees_limit=int(invitees_limit)
-                                    lead.invitees_active=int(invitees_active)
-                                    lead.start_time=str(start_time)
-                                    lead.end_time=str(end_time)
-                                    lead.start_date=start_date.date()
-                                    lead.end_date=end_date.date()
-                                    lead.stage_id=stage.id if stage else ''
-                                if "collection" in json_data_event:
-                                    collection = json_data_event["collection"]
-                                    for invitee in collection:
-                                        email = invitee["email"]
-                                        user = self.env['res.users'].sudo().search(
-                                            [('login', 'ilike', str(email))])
-                                        if not user:
-                                            email = invitee["email"].replace(' ', '')
-                                            email = email.lower()
-                                            client = self.env['res.partner'].sudo().search(
-                                                [('email', 'ilike', str(email))])
-                                            user = self.env['res.users'].sudo().search(
-                                                [('login', 'ilike', str(email))])
-                                            # if not client:
-                                            #     contact = self.env['res.partner'].sudo().create({
-                                            #         'name': str(invitee["name"]),
-                                            #         'email': str(invitee["email"]),
-                                            #         'company_type': 'person'
-                                            #     })
-                                            phone_mobile = ''
-                                            if not user:
-                                                infos = invitee["questions_and_answers"]
-                                                for inf in infos:
-                                                    if (str(inf["question"]) == "Numéro de téléphone "):
-                                                        phone_mobile = str(inf["answer"])
-                                                        client = self.env['res.partner'].sudo().search(
-                                                            ['|', ('mobile', "=", phone_mobile),
-                                                             (('phone', "=", phone_mobile))],limit=1)
-                                                        if client:
-                                                            user = self.env['res.users'].sudo().search(
-                                                                [('partner_id', "=", client.id)])
-                                                        else:
-                                                            phone_mobile = phone_mobile.replace(' ', '')
-                                                            client = self.env['res.partner'].sudo().search(
-                                                                ['|', ('mobile', "=", phone_mobile),
-                                                                 (('phone', "=", phone_mobile))],limit=1)
-                                                            if client:
-                                                                user = self.env['res.users'].sudo().search(
-                                                                    [('partner_id', "=", client.id)])
-                                                            phone_mobile = phone_mobile[3:]
-                                                            phone_mobile = "0" + str(phone_mobile)
-                                                            client = self.env['res.partner'].sudo().search(
-                                                                ['|', ('mobile', "=", phone_mobile),
-                                                                 (('phone', "=", phone_mobile))],limit=1)
-                                                            if client:
-                                                                user = self.env['res.users'].sudo().search(
-                                                                    [('partner_id', "=", client.id)])
-                                            if not user:
-                                                client = self.env['res.partner'].sudo().search(
-                                                    [('email', 'ilike', invitee["email"])])
-                                                group_portal = self.env.ref('base.group_portal')
-                                                user = self.env['res.users'].sudo().create({
-                                                    'name': str(invitee["name"]),
-                                                    'login': str(invitee["email"]),
-                                                    'groups_id': [(6, 0, [self.env.ref('base.group_portal').id])],
-                                                    'email': False,
-                                                    'notification_type': 'email',
+                        print ('uri_event:',event)
+                        if 'ae1aafc2-ae62-4151-b6a6-e75d1db9c736' in event['uri'] :
+                            headers = {
+                                'Authorization': 'Bearer ' + str(json_data["access_token"]),
+                                'Content-Type': 'application/json',
+                            }
+                            params = {
+                                'statuts' : 'active'
+                            }
+                            uuid = 'ae1aafc2-ae62-4151-b6a6-e75d1db9c736'
+                            r = requests.get('https://api.calendly.com/scheduled_events/%s/invitees' %(uuid),
+                                                    headers=headers , params=params)
+                            response = werkzeug.utils.unescape(r.content.decode())
+                            event_invitees = json.loads(r.text)
+                now = date.today()
+                min_start_time=str(now)+'T23:23:59Z'
+                headers = {
+                    'Authorization': 'Bearer ' + str(json_data["access_token"]),
+                    'Content-Type': 'application/json',
+                }
 
-                                                })
-                                            user = self.env['res.users'].sudo().search(
-                                                [('login', "=", invitee["email"])])
-                                            client= False
-                                            if user:
-                                                client = self.env['res.partner'].sudo().search(
-                                                        [('id', "=" , user.partner_id.id)])
-                                                if client:
-                                                    x = str(user.login)
-                                                    client.email = x
-                                                    infos = invitee["questions_and_answers"]
-                                                    print('infos')
-                                                    print(infos)
-                                                    for inf in infos:
-                                                        if (str(inf["question"]) == "Ville"):
-                                                            if str(inf["answer"]):
-                                                                client.city = str(inf["answer"])
-                                                        if (str(inf["question"]) == "Votre adresse postale"):
-                                                            if str(inf["answer"]):
-                                                                client.street = str(inf["answer"])
-                                                        if (str(inf[
-                                                                    "question"]) == "Date de naissance : JJ / MM / AAAA"):
-                                                            if str(inf["answer"]):
-                                                                date_str = str(inf["answer"])
-                                                                if (len(date_str) == 10 and date_str[2] == '/' and
-                                                                        date_str[
-                                                                            5] == '/'):
-                                                                    date_object = datetime.strptime(date_str,
-                                                                                                    '%d/%m/%Y').date()
-                                                                    client.birthday = date_object
-                                                        if (str(inf["question"]) == "Code postale"):
-                                                            if str(inf["answer"]):
-                                                                client.zip = str(inf["answer"])
-                                                        if (str(inf["question"]) == "Formation :" or str(
-                                                                inf["question"]) == "Formation : "):
-                                                            if str(inf["answer"]):
-                                                                formation_type = str(inf["answer"]).lower()
-                                                                if (
-                                                                        formation_type == 'taxi' or formation_type == 'vtc'):
-                                                                    client.formation_type = formation_type
-                                                        if (str(inf["question"]) == "Quel est votre financement"):
-                                                            if str(inf["answer"]):
-                                                                if (str(inf["answer"]) == "Mon Compte Formation, CPF"):
-                                                                    client.funding_type = 'cpf'
-                                                                if (str(inf["answer"]) == "Pass'formation"):
-                                                                    client.funding_type = 'passformation'
-                                                                if (str(inf["answer"]) == "Personnel"):
-                                                                    client.funding_type = 'perso'
-                                                                if (str(inf["answer"]) == "Pôle emploi(AIF)"):
-                                                                    client.funding_type = 'pole_emploi'
-                                                        if (str(inf["question"]) == "ID POLE EMPLOI"):
-                                                            if str(inf["answer"]):
-                                                                client.pole_emploi = str(inf["answer"])
-                                                        if (str(inf["question"]) == "Numéro de sécurité social"):
-                                                            if str(inf["answer"]):
-                                                                client.social_security_number = str(inf["answer"])
-                                                        if (str(inf["question"]) == "Numéro de téléphone "):
-                                                            if str(inf["answer"]):
-                                                                client.mobile = str(inf["answer"])
-                                                        if (str(inf[
-                                                                    "question"]) == "Veuillez répondre aux questions(Case vide = Non éligible pour la formation)"):
-                                                            if str(inf["answer"]):
-                                                                requis = str(inf["answer"])
-                                                                if "J'ai 3 ans de permis ou plus" in requis:
-                                                                    client.driver_licence = True
-                                                                if "J'ai aucun retrait définitif du permis ces 10 dernières années" in requis:
-                                                                    client.license_suspension = True
-                                                                if "J'ai un casier judiciaire vierge B2" in requis:
-                                                                    client.criminal_record = True
-                                                                if client.driver_licence and client.license_suspension and client.criminal_record:
-                                                                    client.statut_calendly = 'valid'
-                                                                else:
-                                                                    client.statut_calendly = 'waiting'
-                                                    list = []
-                                                    for partner in lead.partner_ids:
-                                                        list.append(partner.id)
-                                                    list.append(client.id)
-                                                    lead.write({'partner_ids': [(6, 0, list)]})
-                                                    return True
+                params = {
+                    'organization': 'https://api.calendly.com/organizations/GCFAGOCMF67ONDTO',
+                    'min_start_time': min_start_time,
+                    'user': 'https://api.calendly.com/users/HEDHGMALE7VZKP3Q'
+                }
+                r = requests.get('https://api.calendly.com/scheduled_events', headers=headers, params=params)
+                response = werkzeug.utils.unescape(r.content.decode())
+                json_data_events = json.loads(r.text)
+                if "collection" in json_data_events:
+                    collection = json_data_events["collection"]
+                    for event in collection:
+                        print('event :',event)
+                        start_time = event['start_time']
+                        end_time = event['end_time']
+                        event_name = event['name']
+                        event_type = event["event_type"]
+                        start_time = str(start_time).replace('T', ' ')
+                        end_time = str(end_time).replace('T', ' ')
+                        start_time = start_time.split(".")
+                        end_time = end_time.split(".")
+                        start_time = start_time[0]
+                        end_time = end_time[0]
+                        # or '49454c3b-fb2a-4255-be45-50c0447801a9' in str(event_type)
+                        if 'ae1aafc2-ae62-4151-b6a6-e75d1db9c736' in str(event_type):
+
+                            uri = event['uri']
+                            headers = {
+                                'Authorization': 'Bearer ' + str(json_data["access_token"]),
+                                'Content-Type': 'application/json',
+                            }
+
+                            r = requests.get(str(uri)+'/invitees',headers=headers)
+                            response = werkzeug.utils.unescape(r.content.decode())
+                            json_data_event_invitees = json.loads(r.text)
+                            if 'collection' in json_data_event_invitees:
+                                invitee_collection = json_data_event_invitees['collection']
+                                for invitee in invitee_collection :
+                                    email = False
+                                    if 'email' in invitee :
+                                        email= str(invitee['email'])
+                                    tel = False
+                                    if 'text_reminder_number' in invitee :
+                                        tel = invitee['text_reminder_number']
+                                    odoo_contact = False
+                                    res_user = self.env['res.users']
+                                    if email :
+                                        print('email :',email)
+                                        odoo_contact = res_user.search([('login', "=", str(email).lower().replace(' ', ''))], limit=1)
+                                        if not odoo_contact:
+                                            if tel:
+                                                odoo_contact = self.env["res.users"].sudo().search([("phone", "=", str(tel))], limit=1)
+                                                if not odoo_contact:
+                                                    phone_number = str(tel).replace(' ','')
+                                                    if '+33' not in str(phone_number):  # check if aircall api send the number of client with +33
+                                                        phone = phone_number[0:2]
+                                                        if str(phone) == '33' and ' ' not in str(tel):  # check if aircall api send the number of client in this format (number_format: 33xxxxxxx)
+                                                            phone = '+' + str(tel)
+                                                            odoo_contact = self.env["res.users"].sudo().search(
+                                                                [("phone", "=", phone)], limit=1)
+                                                            if not odoo_contact:
+                                                                phone = phone[0:3] + ' ' + phone[3:4] + ' ' + phone[
+                                                                                                              4:6] + ' ' + phone[
+                                                                                                                           6:8] + ' ' + phone[
+                                                                                                                                        8:10] + ' ' + phone[
+                                                                                                                                                      10:]
+                                                                odoo_contact = self.env["res.users"].sudo().search(
+                                                                    [("phone", "=", phone)], limit=1)
+                                                        phone = phone_number[0:2]
+                                                        if str(phone) == '33' and ' ' in str(tel):  # check if aircall api send the number of client in this format (number_format: 33 x xx xx xx)
+                                                            phone = '+' + str(tel)
+                                                            odoo_contact = self.env["res.users"].sudo().search(
+                                                                ['|', ("phone", "=", phone),
+                                                                 ("phone", "=", phone.replace(' ', ''))], limit=1)
+                                                        phone = phone_number[0:2]
+                                                        if str(phone) in ['06', '07'] and ' ' not in str(tel):  # check if aircall api send the number of client in this format (number_format: 07xxxxxx)
+                                                            odoo_contact = self.env["res.users"].sudo().search(
+                                                                [("phone", "=", str(tel))],
+                                                                limit=1)
+                                                            if not odoo_contact:
+                                                                phone = phone[0:2] + ' ' + phone[2:4] + ' ' + phone[
+                                                                                                              4:6] + ' ' + phone[
+                                                                                                                           6:8] + ' ' + phone[
+                                                                                                                                        8:]
+                                                                odoo_contact = self.env["res.users"].sudo().search(
+                                                                    [("phone", "=", phone)], limit=1)
+                                                        phone = phone_number[0:2]
+                                                        if str(phone) in ['06', '07'] and ' ' in str(tel):  # check if aircall api send the number of client in this format (number_format: 07 xx xx xx)
+                                                            odoo_contact = self.env["res.users"].sudo().search(
+                                                                ['|',
+                                                                 ("phone", "=", str(tel)),
+                                                                 str(tel).replace(' ',
+                                                                                                                   '')],
+                                                                limit=1)
+                                                    else:  # check if aircall api send the number of client with+33
+                                                        if ' ' not in str(tel):
+                                                            phone = str(tel)
+                                                            phone = phone[0:3] + ' ' + phone[3:4] + ' ' + phone[
+                                                                                                          4:6] + ' ' + phone[
+                                                                                                                       6:8] + ' ' + phone[
+                                                                                                                                    8:10] + ' ' + phone[
+                                                                                                                                                  10:]
+                                                            odoo_contact = self.env["res.users"].sudo().search(
+                                                                [("phone", "=", phone)], limit=1)
+                                                        if not odoo_contact:
+                                                            odoo_contact = self.env["res.users"].sudo().search(
+                                                                [("phone", "=", str(phone_number).replace(' ', ''))],
+                                                                limit=1)
+                                                            if not odoo_contact:
+                                                                phone = str(phone_number)
+                                                                phone = phone[3:]
+                                                                phone = '0' + str(phone)
+                                                                odoo_contact = self.env["res.users"].sudo().search(
+                                                                    [("phone", "like", phone.replace(' ', ''))], limit=1)
+
+                                    if odoo_contact :
+                                        print('odoo contact :',odoo_contact.partner_id)
+                                        rendez_vous = self.env["calendly.rendezvous"].sudo().search(
+                                                                    [("partner_id", "=", odoo_contact.partner_id.id),("event_starttime", "=", str(start_time)),("event_endtime", "=", str(end_time))], limit=1)
+
+                                        if not rendez_vous :
+                                            rendez_vous = self.env['calendly.rendezvous'].sudo().create({
+                                                'name': str(event_name),
+                                                'partner_id': odoo_contact.partner_id.id,
+                                                'event_starttime' : str(start_time),
+                                                'event_endtime' : str(end_time)
+                                            })
