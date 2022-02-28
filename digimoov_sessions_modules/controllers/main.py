@@ -89,6 +89,32 @@ class WebsiteSale(WebsiteSale):
                                 request.env.user.partner_id.with_context(force_send=True).message_post_with_template(template_id.id,
                                                                                                  composition_mode='comment',
                                                                                                  )
+                        if request.env.user.partner_id.phone:
+                            phone = str(request.env.user.partner_id.phone.replace(' ', ''))[-9:]
+                            phone = '+33' + ' ' + phone[0:1] + ' ' + phone[1:3] + ' ' + phone[3:5] + ' ' + phone[
+                                                                                                           5:7] + ' ' + phone[
+                                                                                                                        7:]
+                            request.env.user.partner_id.phone = phone
+                        url = 'https://tinyurl.com/mtw2tv8z'
+                        body = "Cher %s, Pour profiter de la formation VTC à 20 euros vous devez passer un test d'entré de 30 min.Commencez ici : %s" % (
+                            request.env.user.partner_id.name, url)
+                        if body:
+                            sms = request.env['mail.message'].sudo().search(
+                                [("body", "=", body), ("message_type", "=", 'sms'), ("res_id", "=", request.env.user.partner_id.id)])
+                            if not sms:
+                                composer = request.env['sms.composer'].with_context(
+                                    default_res_model='res.partner',
+                                    default_res_ids=request.env.user.partner_id.id,
+                                    default_composition_mode='mass',
+                                ).sudo().create({
+                                    'body': body,
+                                    'mass_keep_log': True,
+                                    'mass_force_send': True,
+                                })
+
+                                composer.action_send_sms()  # envoyer un sms d'inscription à l'examen blanc
+                            if request.env.user.partner_id.phone:
+                                request.env.user.partner_id.phone = '0' + str(request.env.user.partner_id.phone.replace(' ', ''))[-9:]
                 if default_code_bolt:
                     survey = request.env['survey.survey'].sudo().search([('title', "=", 'Examen blanc Français')],
                                                                         limit=1)
@@ -1006,16 +1032,20 @@ class WebsiteSale(WebsiteSale):
                     body = "Chere(e) %s : félicitation pour votre inscription, vous avez été invité par Digimoov à commencer votre formation via ce lien : %s .Vos identifiants sont identiques que sur Digimoov" % (
                         partner.name, url)
                     if body:
-                        composer = self.env['sms.composer'].with_context(
-                            default_res_model='res.partner',
-                            default_res_ids=partner.id,
-                            default_composition_mode='mass',
-                        ).sudo().create({
-                            'body': body,
-                            'mass_keep_log': True,
-                            'mass_force_send': True,
-                        })
-                        composer.action_send_sms()  # envoyer un sms de félicitation à l'apprenant et l'inviter à commncer sa formation
+                        sms = request.env['mail.message'].sudo().search(
+                            [("body", "=", body), ("message_type", "=", 'sms'), ("res_id", "=", partner.id)])
+                        if not sms:
+                            composer = request.env['sms.composer'].with_context(
+                                default_res_model='res.partner',
+                                default_res_ids=partner.id,
+                                default_composition_mode='mass',
+                            ).sudo().create({
+                                'body': body,
+                                'mass_keep_log': True,
+                                'mass_force_send': True,
+                            })
+                            
+                            composer.action_send_sms()  # envoyer un sms de félicitation à l'apprenant et l'inviter à commncer sa formation
                         if partner.phone:
                             partner.phone = '0' + str(partner.phone.replace(' ', ''))[-9:]
                     return {'ajout':'Félicitations! Vous pouvez dés maintenant accéder à notre plateforme de formation,\nPour ce faire, veuillez cliquer sur continuer, et rentrez vos identifiants de connexion que vous utilisez sur notre site web.','url': 'https://digimoov.360learning.com'}

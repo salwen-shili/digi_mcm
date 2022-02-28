@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Ajouter les nouveaux champs sur la fiche du question -->
+        <record id="survey_question_bolt_view_form" model="ir.ui.view">
+            <field name="name">Form view for survey question</field>
+            <field name="model">survey.question</field>
+            <field name="inherit_id" ref="survey.survey_question_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='question_type']" position="after">
+                    <field name="answer_score" attrs="{'invisible': [('question_type', 'in', ['simple_choice', 'multiple_choice', 'matrix'])]}"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

@@ -1,12 +1,8 @@
 function openCalendly() {
-  if (document.querySelector('.calendly-badge-content')) {
-    document.querySelector('.calendly-badge-content').click();
-  } else {
-    console.log('Problem loading calendly...');
-  }
+  document.querySelector('.calendly-badge-content').click();
 }
 
-//finish rdv and nor rdv has html inside to set popup content
+//
 
 const finish = `<h2 class="purple-text text-center"><strong>FÉLICITATIONS !</strong></h2> <br>
                             <div class="row justify-content-center">
@@ -63,9 +59,9 @@ const noRdv = `<h2 class="purple-text text-center"><strong>FÉLICITATIONS !</str
                            `;
 const isNotSignedMessage = `Nous vous remercions pour votre confiance, votre paiement a été effectué avec succès! Vous pouvez maintenant finaliser votre inscription en signant votre contrat pour avoir accès à notre plateforme de formation.`;
 
-const textCoordonnees = `<b>Félicitations!</b> Vous avez terminé la première étape d'inscription, cliquez sur <b>continuer</b> pour passer à l'<b>étape suivante<b/>. `;
-const textDocuments = `<b>Félicitations!</b> Vous avez terminé la deuxième étape d'inscription, cliquez sur <b>continuer</b> pour passer à l'<b>étape suivante<b/>. `;
-const textFinancement = `<b>Félicitations!</b> Vous avez terminé la troisième étape d'inscription, cliquez sur <b>continuer</b> pour passer à l'<b>étape suivante<b/>. `;
+const textCoordonnees = `<b>Félicitations!</b> Vous avez terminé la première étape de votre inscription. Cliquez sur <b>continuer</b> pour passer à l'<b>étape suivante<b/>. `;
+const textDocuments = `<b>Félicitations!</b> Vous avez terminé l'étape <b>Coordonnées</b> de votre inscription. Pour passer à l'étape suivante merci de vous munir d'une copie originale de votre carte d'identité et cliquer sur <b>continuer</b>.`;
+const textFinancement = `<b>Félicitations!</b> Vous avez chargé vos documents. Vous pourrez désormais choisir votre date et centre d'examen et financer votre formation.`;
 var rdvIsBooked = false;
 var bolt_contract_uri = '/';
 const finishBolt = {
@@ -131,15 +127,12 @@ document.addEventListener('DOMContentLoaded', function () {
       documents.classList.add('active');
       financement.classList.add('active');
       if (document.getElementById('bolt_contract_uri').value !== 'False') {
-        //contract uri
         bolt_contract_uri = document.getElementById('bolt_contract_uri').value;
         console.log(bolt_contract_uri);
         if (document.getElementById('btn-action')) {
-          //set description to not signed message
           textDescription.textContent = isNotSignedMessage;
           btnAction = document.getElementById('btn-action');
           btnAction.innerText = 'Signer mon contrat';
-          //redirect to uri on click btn
           btnAction.addEventListener('click', function () {
             window.location.href = bolt_contract_uri;
           });
@@ -181,16 +174,18 @@ document.addEventListener('DOMContentLoaded', function () {
             // has to reserve appointment
             //  => Show bolt calendly
             finished.innerHTML = finishBolt['noRdv'];
-            Calendly.initBadgeWidget({
-              url: 'https://calendly.com/mcm-academy/examen-vtc-cma',
-              prefill: {
-                name: user_name,
-                email: user_email,
-              },
-              text: "Inscription à l'examen VTC",
-              color: '#1A1A1A',
-              textColor: '#FFFFFF',
-            });
+            setTimeout(function () {
+              Calendly.initBadgeWidget({
+                url: 'https://calendly.com/mcm-academy/examen-vtc-cma',
+                prefill: {
+                  name: user_name,
+                  email: user_email,
+                },
+                text: "Inscription à l'examen VTC",
+                color: '#1A1A1A',
+                textColor: '#FFFFFF',
+              });
+            }, 1500);
           }
         }
       } else {

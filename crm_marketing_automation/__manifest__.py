@@ -9,7 +9,7 @@
     'category': 'API',
     'author': 'MCM ACADEMY',
     'website': '',
-    'depends': ['base','crm','sale','plateforme_pedagogique','calendly_api_integration','mass_mailing',
+    'depends': ['base','crm','sale','plateforme_pedagogique','calendly_api_integration','mass_mailing','survey'
     ],
     'data': [
       'security/security.xml',
