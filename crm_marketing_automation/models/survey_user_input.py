@@ -41,7 +41,7 @@ class Survey(models.Model):
                         if not message:
                             partner.with_context(force_send=True).message_post_with_template(template_id.id,
                                                                                              composition_mode='comment',
-                                                                                             )
+                                                                                             )  # send mail of end of exam and waiting for result
                     if partner.phone:
                         phone = str(partner.phone.replace(' ', ''))[-9:]
                         phone = '+33' + ' ' + phone[0:1] + ' ' + phone[1:3] + ' ' + phone[3:5] + ' ' + phone[
@@ -63,7 +63,7 @@ class Survey(models.Model):
                                 'mass_keep_log': True,
                                 'mass_force_send': True,
                             })
-                            composer.action_send_sms()  # envoyer un sms de reussite à l'examen
+                            composer.action_send_sms()  # send sms of end of exam and waiting for result
                         if partner.phone:
                             partner.phone = '0' + str(partner.phone.replace(' ', ''))[-9:]
         return record

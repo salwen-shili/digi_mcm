@@ -1,5 +1,9 @@
 function openCalendly() {
-  document.querySelector('.calendly-badge-content').click();
+  if (document.querySelector('.calendly-badge-content')) {
+    document.querySelector('.calendly-badge-content').click();
+  } else {
+    console.log('Error Loading Calendly...');
+  }
 }
 
 //
