@@ -1,3 +1,4 @@
+//required values to check necessary action
 var cartIsEmpty = false;
 
 var isSigned = '';
@@ -12,7 +13,7 @@ var btnAction;
 function setPopup() {
   if (document.getElementById('cartIsEmpty')) {
     cartIsEmpty = document.getElementById('cartIsEmpty');
-
+    //check if value exist
     if (cartIsEmpty) {
       if (document.getElementById('isSigned')) {
         isSigned = document.getElementById('isSigned').value;
@@ -21,18 +22,26 @@ function setPopup() {
         notifMessage = document.getElementById('notifMessageBolt');
         //set the message
       }
+      //contract is signed
       if (isSigned == 'True') {
         if (document.getElementById('rdvIsBooked')) {
           rdvIsBooked = document.getElementById('rdvIsBooked').value;
+          // rdv is booked
           if (rdvIsBooked == 'True') {
+            //set description inside popup
             notifMessage.textContent = messages['rdvIsBooked'];
             if (document.getElementById('btn-action')) {
               btnAction = document.getElementById('btn-action');
               btnAction.addEventListener('click', function () {
+                // rdv is booked + contract is signed
+                // redirection to my/home
+                console.log('redirection...', 'myhome');
                 window.location.href = '/my/home';
               });
             }
           } else {
+            //rdv is not booked
+            //open calendly to book appointment
             notifMessage.textContent = messages['rdvIsnotbooked'];
             if (document.getElementById('btn-action')) {
               btnAction = document.getElementById('btn-action');
@@ -44,16 +53,22 @@ function setPopup() {
           }
         }
       } else {
+        //contract is not signed
+        //get uri to sign contract
         if (document.getElementById('bolt_contract_uri').value !== 'False') {
           bolt_contract_uri =
             document.getElementById('bolt_contract_uri').value;
           console.log(bolt_contract_uri);
           if (document.getElementById('btn-action')) {
+            //set notification message to the right description
             notifMessage.textContent = messages['isNotSigned'];
             btnAction = document.getElementById('btn-action');
+            //change button to 'signer mon contrat'
             btnAction.innerText = 'Signer mon contrat';
             btnAction.addEventListener('click', function () {
-              window.location.href = bolt_contract_uri.value;
+              //redirection to the uri
+              console.log('redirection...', bolt_contract_uri);
+              window.location.href = bolt_contract_uri;
             });
           }
         }
@@ -65,23 +80,32 @@ function setPopup() {
 
   return;
 }
-
+//open popup
 function openPopup() {
   document.getElementById('popupEmptyCart').style.display = 'flex';
 }
+//close popup
 function closePopup() {
   document.getElementById('popupEmptyCart').style.display = 'none';
   window.location.href = '/my/home';
 }
 function openCalendly() {
-  document.querySelector('.calendly-badge-content').click();
+  //Open Calendly on firing click action on calendly div
+  if (document.querySelector('.calendly-badge-content')) {
+    document.querySelector('.calendly-badge-content').click();
+  } else {
+    console.log('Calendly could not open');
+  }
 }
 
+// Wait for the page to load, to set the popup btn action and message description
 //
 document.addEventListener('DOMContentLoaded', function () {
   setPopup();
+  // receive user and user email address
   var user_name = '';
   var user_email = '';
+  //check if values are available
   if (document.getElementById('user_name_connected')) {
     user_name = document.getElementById('user_name_connected').value;
   }
@@ -91,12 +115,16 @@ document.addEventListener('DOMContentLoaded', function () {
   if (document.getElementById('isSigned')) {
     isSigned = document.getElementById('isSigned').value;
   }
+  //Actions on signed contract
 
+  //contract is signed
   if (isSigned == 'True') {
+    //loggin info
     console.log('isSigned', isSigned);
     console.log('rdvIsBooked', rdvIsBooked);
 
     if (rdvIsBooked == 'False') {
+      //set calendly if rdv is not booked
       Calendly.initBadgeWidget({
         url: 'https://calendly.com/mcm-academy/examen-vtc-cma',
         prefill: {
@@ -110,8 +138,9 @@ document.addEventListener('DOMContentLoaded', function () {
     }
     openPopup();
   } else {
-    if (document.getElementsByTagName('bolt_contract_uri')) {
-      if (document.getElementsByTagName('bolt_contract_uri')) {
+    //contract is not signed open popup
+    if (document.getElementById('bolt_contract_uri')) {
+      if (document.getElementById('bolt_contract_uri')) {
         openPopup();
       }
     }
