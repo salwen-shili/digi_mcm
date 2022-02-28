@@ -152,26 +152,44 @@
                             <p style="page-break-after:always;"/>
                             <!-- Attestation sur l'honneur-->
                             <div class="row">
-                                <div style="padding-top:50px!important;">
-                                    <img src='/partner_exam/static/src/img/logo_digimoov.png'
-                                         style="max-height: 190px; float:left;padding-right:30px;"/>
-                                    <br/>
-                                    <p style="line-height: 1.26 !important;">
-                                        <b>Organisme de formation : DIGIMOOV</b>
-                                    </p>
-                                    <br/>
-                                    <p style="font-size:14px;line-height: 0.5 !important;">
-                                        <strong>DIGIMOOV</strong>
-                                        10 rue de PENTHIEVRE PARIS 75008
-                                    </p>
-                                    <p style="font-size:14px;">
-                                        <b>Numéro SIRET :</b>
-                                        81121988000085
-                                    </p>
-                                    <p style="font-size:14px;line-height: 0.5 !important;">
-                                        <b>Numéro de déclaration d’activité :</b>
-                                        11755542075 (auprès du préfet de région de : 75)
-                                    </p>
+                                <div class="col-12" style="padding-left:10px;padding-top:30px!important;">
+                                    <table border="1" width="800">
+                                        <thead>
+                                            <tr>
+                                                <th>
+                                                    <img src='/partner_exam/static/src/img/logo_digimoov.png'
+                                                         style="max-height: 190px; float:left;padding-right:30px;"/>
+                                                    <br/>
+                                                </th>
+                                                <th style="line-height:0.5!important;">
+                                                    <br/>
+                                                    <br/>
+                                                    <p >
+                                                        <b>Organisme de formation : DIGIMOOV</b>
+                                                    </p>
+                                                    <br/>
+                                                    <br/>
+                                                    <p style="font-size:14px;">
+                                                        <strong>DIGIMOOV</strong>
+                                                        10 rue de PENTHIEVRE PARIS 75008
+                                                    </p>
+                                                    <p style="font-size:14px;">
+                                                        <b>Numéro SIRET :</b>
+                                                        81121988000085
+                                                    </p>
+                                                    <style>.line-height-three {
+                                                        font-size:14px;
+                                                        line-height: 0.5 !important;
+                                                        }
+                                                    </style>
+                                                    <p style="font-size:14px;">
+                                                        <b>Numéro de déclaration d’activité :</b>
+                                                        11755542075 (auprès du préfet de région de : 75)
+                                                    </p>
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                    </table>
                                     <br/>
                                     <br/>
                                     <br/>
