@@ -161,11 +161,11 @@
                                                          style="max-height: 190px; float:left;padding-right:30px;"/>
                                                     <br/>
                                                 </th>
-                                                <th>
-                                                    <p style="line-height: 1.26 !important;">
+                                                <th style="line-height:0.5!important;">
+                                                    <p >
                                                         <b>Organisme de formation : DIGIMOOV</b>
                                                     </p>
-                                                    <p style="font-size:14px;line-height: 0.5 !important;">
+                                                    <p style="font-size:14px;">
                                                         <strong>DIGIMOOV</strong>
                                                         10 rue de PENTHIEVRE PARIS 75008
                                                     </p>
@@ -178,7 +178,7 @@
                                                         line-height: 0.5 !important;
                                                         }
                                                     </style>
-                                                    <p class="line-height-three">
+                                                    <p style="font-size:14px;">
                                                         <b>Numéro de déclaration d’activité :</b>
                                                         11755542075 (auprès du préfet de région de : 75)
                                                     </p>
