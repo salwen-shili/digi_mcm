@@ -152,30 +152,30 @@
                             <p style="page-break-after:always;"/>
                             <!-- Attestation sur l'honneur-->
                             <div class="row">
-                                <div style="padding-left:100px;padding-top:60px!important;">
-                                    <table border="0" width="800">
+                                <div >
+                                    <table >
                                         <thead>
                                             <tr align="center">
                                                 <th>
                                                     <img src='/partner_exam/static/src/img/logo_digimoov.png'
-                                                         style="max-height: 190px; float:left;padding-right:30px;"/>
+                                                         />
                                                     <br/>
                                                 </th>
-                                                <th width="400"></th>
+                                                <th ></th>
                                                 <th>
-                                                    <p style="line-height: 1.26 !important;">
+                                                    <p >
                                                         <b>Organisme de formation : DIGIMOOV</b>
                                                     </p>
                                                     <br/>
-                                                    <p style="font-size:14px;line-height: 0.5 !important;">
+                                                    <p >
                                                         <strong>DIGIMOOV</strong>
                                                         10 rue de PENTHIEVRE PARIS 75008
                                                     </p>
-                                                    <p style="font-size:14px;">
+                                                    <p >
                                                         <b>Numéro SIRET :</b>
                                                         81121988000085
                                                     </p>
-                                                    <p class="line-height-three">
+                                                    <p >
                                                         <b>Numéro de déclaration d’activité :</b>
                                                         11755542075 (auprès du préfet de région de : 75)
                                                     </p>
