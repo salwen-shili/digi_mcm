@@ -150,7 +150,7 @@
                                 </div>
                             </div>
                             <p style="page-break-after:always;"/>
-                            <!-- Attestation sur l'honneur-->
+                            <!-- Deuxiéme page de pdf pour l'attestation sur l'honneur-->
                             <div class="row">
                                 <div class="col-12" style="padding-left:10px;padding-top:30px!important;">
                                     <table border="1" width="800">
@@ -161,10 +161,11 @@
                                                          style="max-height: 190px; float:left;padding-right:30px;"/>
                                                     <br/>
                                                 </th>
+                                                <!-- Ajouter les interlignes avec 0.5 -->
                                                 <th style="line-height:0.5!important;">
                                                     <br/>
                                                     <br/>
-                                                    <p >
+                                                    <p>
                                                         <b>Organisme de formation : DIGIMOOV</b>
                                                     </p>
                                                     <br/>
@@ -190,6 +191,26 @@
                                             </tr>
                                         </thead>
                                     </table>
+                                    <!--                                <img src='/partner_exam/static/src/img/logo_digimoov.png'-->
+                                    <!--                                     style="max-height: 190px; float:left;padding-right:30px;"/>-->
+                                    <!--                                <br/>-->
+
+                                    <!--                                <p style="line-height: 1.26 !important;">-->
+                                    <!--                                    <b>Organisme de formation : DIGIMOOV</b>-->
+                                    <!--                                </p>-->
+                                    <!--                                <br/>-->
+                                    <!--                                <p style="font-size:14px;line-height: 0.5 !important;">-->
+                                    <!--                                    <strong>DIGIMOOV</strong>-->
+                                    <!--                                    10 rue de PENTHIEVRE PARIS 75008-->
+                                    <!--                                </p>-->
+                                    <!--                                <p style="font-size:14px;">-->
+                                    <!--                                    <b>Numéro SIRET :</b>-->
+                                    <!--                                    81121988000085-->
+                                    <!--                                </p>-->
+                                    <!--                                <p class="line-height-three">-->
+                                    <!--                                    <b>Numéro de déclaration d’activité :</b>-->
+                                    <!--                                    11755542075 (auprès du préfet de région de : 75)-->
+                                    <!--                                </p>-->
                                     <br/>
                                     <br/>
                                     <br/>
@@ -207,7 +228,7 @@
                                             <span t-raw="'%s' % o.name if o.name else ''"/>
                                         </strong>
                                         , né(e) le
-                                        <!-- Ajout de t-field-options permet de-->
+                                        <!-- Ajout de t-field-options permet d'afficher day month and year avec une format spécifique-->
                                         <strong>
                                             <span t-field="o.birthday" t-field-options='{"format": "dd/MM/yyyy"}'/>
                                         </strong>
