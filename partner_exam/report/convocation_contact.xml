@@ -150,7 +150,7 @@
                                 </div>
                             </div>
                             <p style="page-break-after:always;"/>
-                            <!-- Attestation sur l'honneur-->
+                            <!-- Deuxiéme page de pdf pour l'attestation sur l'honneur-->
                             <div class="row">
                                 <div class="col-12" style="padding-left:10px;padding-top:30px!important;">
                                     <table border="1" width="800">
@@ -161,10 +161,11 @@
                                                          style="max-height: 190px; float:left;padding-right:30px;"/>
                                                     <br/>
                                                 </th>
+                                                <!-- Ajouter les interlignes avec 0.5 -->
                                                 <th style="line-height:0.5!important;">
                                                     <br/>
                                                     <br/>
-                                                    <p >
+                                                    <p>
                                                         <b>Organisme de formation : DIGIMOOV</b>
                                                     </p>
                                                     <br/>
@@ -227,7 +228,7 @@
                                             <span t-raw="'%s' % o.name if o.name else ''"/>
                                         </strong>
                                         , né(e) le
-                                        <!-- Ajout de t-field-options permet de-->
+                                        <!-- Ajout de t-field-options permet d'afficher day month and year avec une format spécifique-->
                                         <strong>
                                             <span t-field="o.birthday" t-field-options='{"format": "dd/MM/yyyy"}'/>
                                         </strong>
