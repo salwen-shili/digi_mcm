@@ -69,7 +69,11 @@ function setPopup() {
 
 function openCalendly() {
   stopVideo();
-  document.querySelector('.calendly-badge-content').click();
+  if (document.querySelector('.calendly-badge-content')) {
+    document.querySelector('.calendly-badge-content').click();
+  } else {
+    console.log('Problem loading calendly...');
+  }
 }
 function openPopup() {
   //console.log(document.getElementById('popup1'));
