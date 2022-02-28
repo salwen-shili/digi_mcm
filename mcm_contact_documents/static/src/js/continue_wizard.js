@@ -1,8 +1,12 @@
 function openCalendly() {
-  document.querySelector('.calendly-badge-content').click();
+  if (document.querySelector('.calendly-badge-content')) {
+    document.querySelector('.calendly-badge-content').click();
+  } else {
+    console.log('Problem loading calendly...');
+  }
 }
 
-//
+//finish rdv and nor rdv has html inside to set popup content
 
 const finish = `<h2 class="purple-text text-center"><strong>FÉLICITATIONS !</strong></h2> <br>
                             <div class="row justify-content-center">
@@ -127,12 +131,15 @@ document.addEventListener('DOMContentLoaded', function () {
       documents.classList.add('active');
       financement.classList.add('active');
       if (document.getElementById('bolt_contract_uri').value !== 'False') {
+        //contract uri
         bolt_contract_uri = document.getElementById('bolt_contract_uri').value;
         console.log(bolt_contract_uri);
         if (document.getElementById('btn-action')) {
+          //set description to not signed message
           textDescription.textContent = isNotSignedMessage;
           btnAction = document.getElementById('btn-action');
           btnAction.innerText = 'Signer mon contrat';
+          //redirect to uri on click btn
           btnAction.addEventListener('click', function () {
             window.location.href = bolt_contract_uri;
           });
