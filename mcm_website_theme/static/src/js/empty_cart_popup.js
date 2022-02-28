@@ -125,16 +125,18 @@ document.addEventListener('DOMContentLoaded', function () {
 
     if (rdvIsBooked == 'False') {
       //set calendly if rdv is not booked
-      Calendly.initBadgeWidget({
-        url: 'https://calendly.com/mcm-academy/examen-vtc-cma',
-        prefill: {
-          name: user_name,
-          email: user_email,
-        },
-        text: "Inscription à l'examen VTC",
-        color: '#1A1A1A',
-        textColor: '#FFFFFF',
-      });
+      setTimeout(function () {
+        Calendly.initBadgeWidget({
+          url: 'https://calendly.com/mcm-academy/examen-vtc-cma',
+          prefill: {
+            name: user_name,
+            email: user_email,
+          },
+          text: "Inscription à l'examen VTC",
+          color: '#1A1A1A',
+          textColor: '#FFFFFF',
+        });
+      }, 1500);
     }
     openPopup();
   } else {
