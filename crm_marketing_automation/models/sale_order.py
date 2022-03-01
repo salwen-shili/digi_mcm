@@ -55,7 +55,7 @@ class Sale(models.Model):
                         self.change_stage_lead("Contrat Signé", partner)
                     else :
                         """classer les apprenant de bolt"""
-                        self.change_stage_lead("Bolt-Contrat Singé", partner)
+                        self.change_stage_lead("Bolt-Contrat Signé", partner)
         return record
     def change_stage_lead(self, statut, partner):
         if partner.name:

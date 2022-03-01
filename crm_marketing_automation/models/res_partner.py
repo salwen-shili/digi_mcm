@@ -199,7 +199,7 @@ class Partner(models.Model):
                                     self.changestage("Contrat Signé", partner)
                                 if partner.bolt:
                                     _logger.info('contrat  signé %s' %str(partner.email))
-                                    self.changestage("Bolt-Contrat Singé", partner)
+                                    self.changestage("Bolt-Contrat Signé", partner)
                             if waiting:
 
                                 if partner.bolt:
@@ -349,7 +349,7 @@ class Partner(models.Model):
                                 if not partner.bolt:
                                     self.changestage("Contrat Signé", partner)
                                 if partner.bolt:
-                                    self.changestage("Bolt-Contrat Singé", partner)
+                                    self.changestage("Bolt-Contrat Signé", partner)
                             if waiting:
                                 if partner.bolt:
                                     self.changestage("Bolt-Document non Validé", partner)
