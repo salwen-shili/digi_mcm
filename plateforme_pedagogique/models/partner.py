@@ -233,7 +233,7 @@ class partner(models.Model):
                             if partner.renounce_request:
                                 self.ajouter_iOne(partner)
                             # si non il doit attendre 14jours pour etre ajouté
-                            if not partner.renounce_request and (sale_order.signed_on + timedelta(days=14)) <= today:
+                            if not partner.renounce_request and (sale_order.signed_on + timedelta(days=14)) <=  datetime.today():
                                 self.ajouter_iOne(partner)
                 """cas de cpf on vérifie la validation des document , la case de renonciation et la date d'examen qui doit etre au futur """
                 if partner.mode_de_financement == "cpf":
