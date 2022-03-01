@@ -40,7 +40,7 @@ switch (true) {
     });
     break;
   case url.includes('/shop/cart'):
-                 alert();
+               
     fbq('trackCustom', 'Documents chargés', {
       pack: formation,
       url: window.location.pathname,
