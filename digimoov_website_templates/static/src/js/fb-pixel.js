@@ -21,7 +21,7 @@
 );
 fbq('init', '<t t-esc="website.facebook_pixel_key"/>'.trim());
 fbq('track', 'PageView');
-const url = window.location.href;
+const url = window.location.pathname;
 var formation = null;
 //set pack
 switch (true) {
