@@ -706,6 +706,7 @@ class partner(models.Model):
                     idforma = idform.split("_", 1)
                     if idforma:
                         module = idforma[1]
+                
                 today = date.today()
                 lastupdatestr = str(dossier['lastUpdate'])
                 lastupdate = datetime.strptime(lastupdatestr, '%Y-%m-%dT%H:%M:%S.%fz')
