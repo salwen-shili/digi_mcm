@@ -5,116 +5,84 @@
             <script t-if="sale_order" type="text/javascript" src="/digimoov_website_templates/static/src/js/contract_notif.js"></script>
             <input type="hidden" id='issigned' t-if="sale_order" t-att-value='sale_order.state'></input>
             <input type="hidden" id='bolt' t-if="sale_order" t-att-value='sale_order.pricelist_id.name'></input>
-            <style>
-                .content {
-                color: #000;
-                margin-block-start: 1rem;
-                }
+            <input type="hidden" id='renonceValue' t-if="sale_order" t-att-value='str(sale_order.partner_id.renounce_request)'></input>
 
-                .overlay {
-                position: fixed;
-                top: 0;
-                bottom: 0;
-                left: 0;
-                right: 0;
-                background: rgba(0, 0, 0, 0.7);
-                transition: opacity 500ms;
-                visibility: hidden;
-                opacity: 0;
-                }
-                .overlay:target {
-                visibility: visible;
-                opacity: 1;
-                z-index: 1;
-                }
+            <link rel="stylesheet" href="/digimoov_website_templates/static/src/css/popup.css" />
+            <link href="/digimoov_website_templates/static/src/css/material_form.css" rel="stylesheet" />
 
-                .popup {
-                top: 33%;
-                margin: 70px auto;
-                padding: 20px;
-                background: #fff;
-                border-radius: 5px;
-                width: 40%;
-                position: relative;
-                transition: all 5s ease-in-out;
-                }
-
-                .popup h2 {
-                margin-top: 0;
-                color: #333;
-                font-family: Tahoma, Arial, sans-serif;
-                }
-                .popup .close {
-                position: absolute;
-                top: 20px;
-                right: 30px;
-                transition: all 200ms;
-                font-size: 30px;
-                font-weight: bold;
-                text-decoration: none;
-                color: #152856;
-                }
-                .popup .close:hover {
-                color: hsl(222, 61%, 41%);
-                }
-                .popup .content {
-                max-height: 30%;
-                overflow: auto;
-                }
-
-                @media screen and (max-width: 700px) {
-                .box {
-                    width: 70%;
-                }
-                .popup {
-                    width: 70%;
-                }
-                }
-                .action-button {
-  height: 40px;
-  width: 150px;
-  font-size: 15px;
-  background-color: #152856;
-  border: 1px solid hsl(240, 44%, 28%);
-  color: #ffffff;
-  font-weight: 600;
-  border-radius: 5px;
-  box-shadow: 0 2px 4px 0 rgba(87, 71, 81, 0.2);
-  cursor: pointer;
-  transition: all 2s ease-out;
-  transition: all 0.2s ease-out;
-  float: right;
-}
-.action-button:hover,
-.action-button:focus {
-  background-color: #ffffff;
-  border: 1px solid hsl(240, 44%, 28%);
-  color: #000000;
-  transition: all 0.2s ease-out;
-}
-
-
-            </style>
+            <!-- popup 1 -->
             <div id="popup1" class="overlay">
                 <div class="popup" style="">
                     <h2 class="text-left">
-                        <i class="fa fa-info-circle" style="color: #152856;"></i>
+                        <i class="fa fa-info-circle" style="color: #152856"></i>
                     </h2>
-                    <a class="close" href="#">
+                    <a class="close" onclick="closePopup1()">
                         <i class="fa fa-times"></i>
                     </a>
-                    <div class="content text-center">
-                        <p id="notifMessage">
+                    <div class="content">
+                        <p id="">
                             Nous vous remercions pour votre confiance, votre paiement a été effectué avec succès!
                             <br />
                             Vous pouvez maintenant finaliser votre inscription en signant votre contrat pour avoir accès à notre plateforme de formation.
                         </p>
-                        <div class="" style="margin-block-start: 1.5rem;">
-                            <a type="button" href="#" class="next action-button" style="padding: 7px;float: unset !important;">Continuer</a>
+                        <div class="" style="text-align-last: center; margin-block-start: 1.5rem">
+                            <div class="" style="margin-block-start: 1.5rem;">
+                                <button class="btn btn-secondary action-button" onclick="openPopup2()" style="padding: 7px 29px;">Continuer</button>
+                            </div>
+
                         </div>
                     </div>
                 </div>
             </div>
+
+
+            <!-- popup 2 renonce-->
+            <div id="popup2" class="overlay">
+                <div class="popup">
+                    <h2 class="text-left">
+                        <i class="fa fa-info-circle" style="color: #152856"></i>
+                    </h2>
+                    <a class="close" onclick="closePopup2()">
+                        <i class="fa fa-times"></i>
+                    </a>
+                    <div class="content text-left">
+                        <!-- paragraphe-->
+                        <p id="" style=" font-size: 16px">
+                    Vous avez choisi de préserver votre droit de rétractation sous un délai de 14 jours. 
+                    Si vous souhaitez renoncer à ce droit et commencer votre formation dés maintenant, veuillez cocher la case ci-dessous et cliquer sur continuer.
+                        </p>
+                        <!-- renonce-->
+                        <div class="input checkbox" style="width:90%">
+                            <input type="checkbox" id="checkbox_failures" onclick="renonce()" style="white-space: nowrap;" class="text-xl-left border-0">
+                                <label for="failures" style="display:inline">
+                                    Je souhaite accéder à la formation dès maintenant sans attendre 14 jours. Je reconnais que
+                                    <span t-esc="user_id.company_id.name" />
+                                    procédera à l'exécution immédiate de ma formation en ligne et à ce titre, je
+                            renonce expressément à exercer mon droit de rétractation conformément aux dispositions de
+                            l'article L.221-28 1° du code de la consommation.
+                                </label>
+                            </input>
+                        </div>
+
+                        <!-- error-->
+                        <div>
+                            <p id="error_conditions" class="alert alert-info" style="margin-block-start: 11px;display:none">
+                                Merci de cocher la case ci-dessus pour continuer.
+                            </p>
+                        </div>
+
+                    </div>
+
+                    <div class="" style="text-align-last: center; margin-block-start: 1.5rem">
+                        <div id="echec_examen">
+                            <button class="btn btn-secondary action-button" id="non_renonce" style="padding: 7.5px 38.5px;" onclick="closePopup2()">Attendre 14 jours</button>
+                            <button class="btn btn-secondary action-button shake" style="padding: 7.5px 38.5px;" onclick="continuebtn()"> Continuer </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
         </xpath>
 
 
