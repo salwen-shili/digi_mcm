@@ -272,7 +272,7 @@
             <input type="hidden" t-att-value='from_bolt' id='from_bolt' />
 
             <!-- bolt empty cart -->
-            <t t-if="cartIsEmpty=='True'">
+            <t t-if="cartIsEmpty=='True' and request.website.id == 1">
                 <input id="cartIsEmpty" type="hidden" t-att-value="cartIsEmpty" />
                 <input id="isSigned" type="hidden" t-att-value="isSigned" />
                 <input id="rdvIsBooked" type="hidden" t-att-value="rdvIsBooked" />
