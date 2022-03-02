@@ -1286,6 +1286,7 @@ class Payment3x(http.Controller):
         order = request.website.sale_get_order(force_create=1)
         if cartebleu and order.partner_id.statut != 'won':
             order.partner_id.mode_de_financement = 'particulier'
+            order.partner_id.is_pole_emploi=False
         return True
 
 
