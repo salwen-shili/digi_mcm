@@ -13,7 +13,7 @@ function closePopup1() {
 function openPopup2() {
   closePopup1();
   console.log('renonceValue:', renonceValue);
-  if (renonceValue == 'True') {
+  if (renonceValue == 'False') {
     document.getElementById('popup2').style.display = 'flex';
   }
 }
