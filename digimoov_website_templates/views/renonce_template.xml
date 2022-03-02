@@ -1,0 +1,9 @@
+<odoo>
+    <template id="digimoov_contract_renounce_request" inherit_id="portal.portal_record_sidebar">
+        <xpath expr="//div[@id='sidebar_content']" position="inside">
+            <!-- Passer une valeur boulean de renounce_request si true ou false et forcer output par str(string)-->
+            <input type="hidden" id='renounce' t-if="sale_order"
+                   t-att-value='str(sale_order.partner_id.renounce_request)'></input>
+        </xpath>
+    </template>
+</odoo>

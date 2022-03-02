@@ -1416,7 +1416,10 @@ class Conditions(http.Controller):
     @http.route(['/shop/payment/update_failures'], type='json', auth="public", methods=['POST'], website=True)
     def cart_update_failures(self, failures):
         """This route is called when changing failures in shop cart."""
+        print(failures)
+
         order = request.website.sale_get_order(force_create=0)
+        print(order)
         if order:
             if failures:
                 order.failures = True
@@ -1425,6 +1428,21 @@ class Conditions(http.Controller):
                 order.failures = False
                 order.partner_id.renounce_request = False
         return True
+
+    @http.route(['/shop/payment/update_failures_not_signed'], type='json', auth="public", methods=['POST'], website=True)
+    def cart_update_failures_not_signed(self, failures, token):
+        """This route is called when changing failures in contract not signed."""
+        order = request.env['sale.order'].sudo().search(
+            [('access_token', "=", str(token))], limit=1)
+        print('/shop/payment/update_failures_not_signed', failures, token, order)
+        if order:
+            if failures:
+                order.failures = True
+                order.partner_id.renounce_request = True
+            else:
+                order.failures = False
+                order.partner_id.renounce_request = False
+        return (token, failures)
 
     @http.route(['/shop/update_driver_licence'], type='json', auth="public", methods=['POST'], website=True)
     def cart_update_driver_licence(self, driver_licence):
