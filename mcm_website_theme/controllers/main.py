@@ -1266,6 +1266,19 @@ class Payment3x(http.Controller):
             # order.partner_id.date_cpf = datetime.now()
             order.partner_id.mode_de_financement = 'cpf'
             # order.partner_id.statut_cpf = 'untreated'
+            #Si mode de financement est cpf, le champ pole emploi sur fiche client sera décoché
+            order.partner_id.is_pole_emploi=False
+        return True
+
+    """Route est appelé quand Pole emploi dans panier est coché """
+    @http.route(['/shop/cart/update_pole_emploie'], type='json', auth="public", methods=['POST'], website=True, csrf=False)
+    def cart_update_pole_emploi(self, pole):
+        order = request.website.sale_get_order(force_create=1)
+        if pole and order.partner_id.statut != 'won':
+            # order.partner_id.date_cpf = datetime.now()
+            order.partner_id.mode_de_financement = 'cpf'
+            #Si mode de financement est pole emploi, le champ pole emploi sur fiche client sera coché
+            order.partner_id.is_pole_emploi=pole
         return True
 
     @http.route(['/shop/payment/update_cartebleu'], type='json', auth="public", methods=['POST'], website=True, csrf=False)
