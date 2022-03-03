@@ -23,21 +23,12 @@ class Partner(models.Model):
     #     res = super(Partner, self).search_read(domain, fields, offset, limit, order)
     # 
     #     return res
-    def create(self, vals):
-        print('vals', vals)
-
-        partner = super(Partner, self).create(vals)
-        return partner
     def write(self, vals):
         _logger.info('write %s' % str(vals))
         record = super(Partner, self).write(vals)
         if 'eval_box' in vals and vals['eval_box']==True and self.bolt:
             eval_box=vals['eval_box']
             self.change_crm_lead_i_One(self,eval_box)
-        
-
-            
-
         if 'inscrit_mcm' in vals and self.bolt :
             if self.renounce_request:
                 self.changestage("Bolt-Plateforme de formation",self)
