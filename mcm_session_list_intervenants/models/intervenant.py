@@ -15,7 +15,7 @@ class Intervenant(models.Model):
     _inherit = ["mail.thread", "mail.activity.mixin"]
     _name = "info.listeintervenants"
     _description = "Add fields in session view"
-    intervenant_id = fields.Many2one('res.partner', string="Nom et Prenom de l'intervenant" , required = True )
+    intervenant_id = fields.Many2one('res.partner', string="Nom" , required = True )
     session_id = fields.Many2one('mcmacademy.session', string="session")
     state = fields.Many2one('res.country.state', string="Département")
     partner_ids = fields.One2many('res.partner', 'session_id', 'Partners')
@@ -55,7 +55,7 @@ class Intervenant(models.Model):
     rapport_entretient_embauche = fields.Binary("Rapport d'entretient d'embauche", help="Charger votre document")
     formation_faite = fields.Char(string=" Formations Faites")
     formation_programme = fields.Char(string=" Formations Programmés")
-    fonction = fields.Many2one('intervenant.fonction', string="Fonction", help="Choisir une fonction ")
+    fonction_id = fields.Many2one('intervenant.fonction', string="Fonction", help="Choisir une fonction ")
 
     @api.constrains('curriculum_viatae')
     def _check_attachments(self):

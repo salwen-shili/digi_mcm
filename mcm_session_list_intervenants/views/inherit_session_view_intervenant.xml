@@ -8,7 +8,13 @@
         <field name="arch" type="xml">
             <xpath expr="//form/div/group/group[@name='dates']" position="after">
                 <group name="Intervenants" string="Liste des intervenants" >
-                    <field name="intervenant_id" nolabel="1"/>
+                    <field name="intervenant_id" nolabel="1" create="0">
+                        <tree>
+                            <field name="intervenant_id"/>
+                            <field name="email"/>
+                            <field name="fonction_id"/>
+                        </tree>
+                    </field>
 
                 </group>
             </xpath>
