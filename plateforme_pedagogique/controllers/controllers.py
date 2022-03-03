@@ -120,6 +120,110 @@ class WebhookController(http.Controller):
         date_debut = datetime.strptime(date_debutstr, '%Y-%m-%dT%H:%M:%S.%fz')
 
         if str(event) == "registrationFolder.created":
+            """chercher user sur odoo par tel ou par email """
+            user = self.env['res.users'].sudo().search([('login', "=", email)], limit=1)
+            exist = True
+            if not user:
+                if tel:
+                    user = self.env["res.users"].sudo().search(
+                        [("phone", "=", str(tel))], limit=1)
+                    if not user:
+                        phone_number = str(tel).replace(' ', '')
+                        if '+33' not in str(
+                                phone_number):  # check if edof api send the number of client with +33
+                            phone = phone_number[0:2]
+                            if str(phone) == '33' and ' ' not in str(
+                                    tel):  # check if edof api send the number of client in this format (number_format: 33xxxxxxx)
+                                phone = '+' + str(tel)
+                                user = self.env["res.users"].sudo().search([("phone", "=", phone)], limit=1)
+                                if not user:
+                                    phone = phone[0:3] + ' ' + phone[3:4] + ' ' + phone[4:6] + ' ' + phone[
+                                                                                                     6:8] + ' ' + phone[
+                                                                                                                  8:10] + ' ' + phone[
+                                                                                                                                10:]
+                                    user = self.env["res.users"].sudo().search([("phone", "=", phone)],
+                                                                               limit=1)
+                                if not user:
+                                    phone = '0' + str(phone[4:])
+                                    user = self.env["res.users"].sudo().search(
+                                        ['|', ("phone", "=", phone),
+                                         ("phone", "=", phone.replace(' ', ''))], limit=1)
+                            phone = phone_number[0:2]
+                            if str(phone) == '33' and ' ' in str(
+                                    tel):  # check if edof api send the number of client in this format (number_format: 33 x xx xx xx)
+                                phone = '+' + str(tel)
+                                user = self.env["res.users"].sudo().search(
+                                    ['|', ("phone", "=", phone), ("phone", "=", phone.replace(' ', ''))],
+                                    limit=1)
+                                if not user:
+                                    phone = '0' + str(phone[4:])
+                                    user = self.env["res.users"].sudo().search(
+                                        ['|', ("phone", "=", phone),
+                                         ("phone", "=", phone.replace(' ', ''))], limit=1)
+                            phone = phone_number[0:2]
+                            if str(phone) in ['06', '07'] and ' ' not in str(
+                                    tel):  # check if edof api send the number of client in this format (number_format: 07xxxxxx)
+                                user = self.env["res.users"].sudo().search(
+                                    ['|', ("phone", "=", str(tel)),
+                                     ("phone", "=", str('+33' + tel.replace(' ', '')[-9:]))],
+                                    limit=1)
+                                if not user:
+                                    phone = phone[0:2] + ' ' + phone[2:4] + ' ' + phone[4:6] + ' ' + phone[
+                                                                                                     6:8] + ' ' + phone[
+                                                                                                                  8:]
+                                    user = self.env["res.users"].sudo().search([("phone", "=", phone)],
+                                                                               limit=1)
+                                if not user:
+                                    phone = '0' + str(phone[4:])
+                                    user = self.env["res.users"].sudo().search(
+                                        ['|', ("phone", "=", phone),
+                                         ("phone", "=", phone.replace(' ', ''))], limit=1)
+                            phone = phone_number[0:2]
+                            if str(phone) in ['06', '07'] and ' ' in str(
+                                    tel):  # check if edof api send the number of client in this format (number_format: 07 xx xx xx)
+                                user = self.env["res.users"].sudo().search(
+                                    ['|', ("phone", "=", str(tel)), str(tel).replace(' ', '')], limit=1)
+                                if not user:
+                                    phone_number = str(tel[1:])
+                                    user = self.env["res.users"].sudo().search(
+                                        ['|', ("phone", "=", str('+33' + phone_number)),
+                                         ("phone", "=", ('+33' + phone_number.replace(' ', '')))], limit=1)
+                        else:  # check if edof api send the number of client with+33
+                            if ' ' not in str(tel):
+                                phone = str(tel)
+                                phone = phone[0:3] + ' ' + phone[3:4] + ' ' + phone[4:6] + ' ' + phone[
+                                                                                                 6:8] + ' ' + phone[
+                                                                                                              8:10] + ' ' + phone[
+                                                                                                                            10:]
+                                user = self.env["res.users"].sudo().search(
+                                    [("phone", "=", phone)], limit=1)
+                            if not user:
+                                user = self.env["res.users"].sudo().search(
+                                    [("phone", "=", str(phone_number).replace(' ', ''))], limit=1)
+                                if not user:
+                                    phone = str(phone_number)
+                                    phone = phone[3:]
+                                    phone = '0' + str(phone)
+                                    user = self.env["res.users"].sudo().search(
+                                        [("phone", "like", phone.replace(' ', ''))], limit=1)
+                if not user:
+                    """si l'apprenant n'est pas sur odoo, date debut de session sera celle de cpfSessionMinDate"""
+                    date_debutstr = datemin.get('cpfSessionMinDate')
+                    date_debut = datetime.strptime(date_debutstr, '%Y-%m-%dT%H:%M:%S.%fz')
+                    _logger.info("cpf")
+            if user:
+                _logger.info("if userrr++++++++ %s" %str(user.email))
+                """Si pole emploi coché , l'apprenant commence sa formation apres 21 jours"""
+                if user.partner_id.is_pole_emploi:
+                    date_debutstr = datemin.get('poleEmploiSessionMinDate')
+                    date_debut = datetime.strptime(date_debutstr, '%Y-%m-%dT%H:%M:%S.%fz')
+                    _logger.info("pole emploi")
+                else:
+                    """Si non l'apprenant commence sa formation apres 14 jours"""
+                    date_debutstr = datemin.get('cpfSessionMinDate')
+                    date_debut = datetime.strptime(date_debutstr, '%Y-%m-%dT%H:%M:%S.%fz')
+                    _logger.info("cpf")
+
             datefin = str(date_debut + relativedelta(months=3) + timedelta(days=1))
             datedebutstr = str(date_debut)
             data = '{"trainingActionInfo":{"sessionStartDate":"' + datedebutstr + '","sessionEndDate":"' + datefin + '" }}'
