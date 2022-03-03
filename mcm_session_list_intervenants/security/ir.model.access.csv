@@ -1,3 +1,4 @@
 id,name,model_id/id,group_id/id,perm_read,perm_write,perm_create,perm_unlink
 access_infos_intervenant,infos intervenant,model_info_listeintervenants,hr.group_hr_user,0,0,0,1
 access_infos_intervenant,infos intervenant,model_info_listeintervenants,,1,1,1,1
+access_intervenant_fonction,intervenant fonction,model_intervenant_fonction,,1,1,1,1

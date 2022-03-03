@@ -7,7 +7,7 @@
         <field name="inherit_id" ref="mcm_session.mcmacademy_session_form_view"/>
         <field name="arch" type="xml">
             <xpath expr="//form/div/group/group[@name='horaire']" position="after">
-                <group name="surveillant" string="Liste des surveillant(e)s d'examens">
+                <group name="surveillant" string="Liste des surveillant(e)s d'examens" attrs="{'invisible' : [('company_id', '!=', 2)]}">
                     <field name="surveillant_id" nolabel="1"/>
                 </group>
             </xpath>

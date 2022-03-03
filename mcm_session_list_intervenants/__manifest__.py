@@ -33,6 +33,7 @@
         'views/inherit_intervenant_partner_view.xml',
         'views/inherit_session_view_intervenant.xml',
         'views/add_js_intervenant.xml',
+        'views/intervenant_fonction.xml',
 
 
     ],
