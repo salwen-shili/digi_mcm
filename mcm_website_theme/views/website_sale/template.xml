@@ -255,6 +255,7 @@
                         </p>
                     </label>
                     <!-- logo and arrow down pole emploi-->
+                    <!-- Ajouter le logo et une phrase descriptive-->
                     <ul class="cpf_position" t-if="line.product_id.product_tmpl_id.cpf_available">
                         <li class="list-inline-item">
                             <span>
@@ -276,7 +277,7 @@
                     </ul>
                 </t>
             </div>
-
+            <!-- Intégrer la vidéo explicative pour pole emploie-->
             <div id="pole-emploi-details" class="hide">
                 <h5 style="
                 letter-spacing: 0.5px;
@@ -364,7 +365,7 @@
                         <i class="fa fa-times"></i>
                     </a>
                     <!-- bolt = true-->
-                    <a t-if="from_bolt == 'True'" class="close" href="#" onclick="resetPopupBolt()">
+                    <a t-if="from_bolt == 'True' and order.company_id.id == 1" class="close" href="#" onclick="resetPopupBolt()">
                         <i class="fa fa-times"></i>
                     </a>
                     <div class="content" id="popupcontent">
