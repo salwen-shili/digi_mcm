@@ -40,7 +40,6 @@
                         <field name="country_id"/>
                         <field name="code_postale"/>
                         <field name="fonction_id"/>
-                        <field name="mcm_session_id"/>
                         <field name="entreprise"/>
                         <field name="diplome"/>
                         <field name="social_security_number"/>
@@ -100,7 +99,6 @@
                 <field name="adresse"/>
                 <field name="telephone"/>
                 <field name="date_naissance"/>
-                <field name="mcm_session_id"/>
                 <separator/>
                 <filter name="active" string="Active" domain="[('active', '=', True)]"/>
                 <separator/>
