@@ -34,6 +34,7 @@
                                 <field name="email"/>
                                 <field name="adresse"/>
                                 <field name="country_id"/>
+                                <field name="fonction"/>
                                 <field name="mcm_session_id"/>
                                 <field name="ville"/>
                                 <field name="telephone"/>

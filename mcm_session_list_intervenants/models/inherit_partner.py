@@ -5,8 +5,6 @@ from odoo import api, fields, models, _
 # est_intervenant fields boolean c'est le type du contact
 
 class InheritPartner(models.Model) :
-
     _inherit = "res.partner"
-    _description = "Les intervenants"
 
     est_intervenant = fields.Boolean(default=False)

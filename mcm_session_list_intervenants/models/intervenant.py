@@ -9,6 +9,8 @@ from odoo import api, fields, models, _
 # cette application fait la gestions des intervenants dans une session
 # on a herité des fields de res.partner par le champs intervenant_id pour la reecuperation automatique des fields
 #chargement des documents curriculum_viatae,contrat_travail,rapport_entretient_embauche avec visualisation des attachements
+from odoo.odoo import exceptions
+
 
 class Intervenant(models.Model):
     _inherit = ["mail.thread", "mail.activity.mixin"]
@@ -54,6 +56,7 @@ class Intervenant(models.Model):
     rapport_entretient_embauche = fields.Binary("Rapport d'entretient d'embauche", help="Charger votre document")
     formation_faite = fields.Char(string=" Formations Faites")
     formation_programme = fields.Char(string=" Formations Programmés")
+    fonction = fields.Many2one('intervenant.fonction', string="Fonction", help="Choisir une fonction ")
 
     @api.constrains('curriculum_viatae')
     def _check_attachments(self):
