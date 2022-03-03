@@ -820,6 +820,9 @@ const addcheckBoxBolt = () => {
   });
 };
 //emploie state value
+// Création d'une fonction showpoleemploidetails pour afficher les détails de pole emploi et hidepoleemploidetails pour masquer les détails pole emploi.
+// // Création d'une fonction sendpoleemploistate qui récupère l'état de radio button et envoyer cet état au backend avec un post request vers /shop/cart/update_pole_emploi  (checked : true ou false)
+// // Cette méthode est utilise à chaque clic d'un radio button
 const sendPoleEmploiState = (pole_emploi_state) => {
   sendHttpRequest('POST', '/shop/cart/update_pole_emploi', {
     params: {
