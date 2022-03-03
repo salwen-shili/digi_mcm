@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <template id="template_raport_jury_ids">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="o">
+                    <t t-call="web.basic_layout">
+                        <style>
+                            .page {
+                            line-height: 1.75 ;
+                            font-size:18px ;
+                            padding-left: 10px;
+                            padding-right: 10px;
+                            }
+                        </style>
+                        <div class="page">
+                            <div class="oe_structure"/>
+                            <div class="row">
+                                <div class="col-12">
+                                    <br/>
+                                    <img src='/partner_exam/static/src/img/1.png' height="150" width="950"/>
+                                    <img src='/partner_exam/static/src/img/header2.png' height="300" width="1000"/>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12">
+
+                                </div>
+                            </div>
+                        </div>
+                    </t>
+                </t>
+            </t>
+        </template>
+    </data>
+</odoo>

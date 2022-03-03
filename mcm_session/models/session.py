@@ -39,6 +39,11 @@ class Session(models.Model):
     count_prospect=fields.Integer('',compute='_compute_count_clients',copy=False)
     count_panier_perdu=fields.Integer('',compute='_compute_count_clients',copy=False)
     company_id = fields.Many2one('res.company', string='Company', default=lambda self: self.env.company)
+    #Les champs pour le rapport jury
+    date_jury = fields.Date()
+    date_session_en_lettre = fields.Char()
+    heure_jury = fields.Char()
+    num_agrement_jury = fields.Char()
 
     @api.model
     def _read_group_stage_ids(self, stages, domain, order):
