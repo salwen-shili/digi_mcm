@@ -1,121 +1,124 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-        <!-- Action -->
-        <record id="action_infos_intervenants" model="ir.actions.act_window" >
-            <field name="name">Les Intervenants</field>
-            <field name="res_model">info.listeintervenants</field>
-            <field name="view_mode">tree,form</field>
-            <field name="help" type="html">
-                <p class="o_view_nocontent_smiling_face">Create the first Information</p>
-            </field>
-        </record>
+    <!-- Action -->
+    <record id="action_infos_intervenants" model="ir.actions.act_window">
+        <field name="name">Les Intervenants</field>
+        <field name="res_model">info.listeintervenants</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Create the first Information</p>
+        </field>
+    </record>
 
-        <!-- Form View -->
-        <record id="infos_intervenant_form" model="ir.ui.view">
-            <field name="name">info.listeintervenants.form</field>
-            <field name="model">info.listeintervenants</field>
-            <field name="arch" type="xml">
-                <form string="Infos Intervenants Form"  id="infos_intervenants_form">
-                    <sheet>
-                        <widget name="web_ribbon" title="Archived" bg_color="bg-danger"
-                                attrs="{'invisible': [('active', '=', True)]}"/>
-                        <group>
-                            <td name="infos_intervenants" string="Fiche Formateur" style="width: 70%" text-align="center"/>
+    <!-- Form View -->
+    <record id="infos_intervenant_form" model="ir.ui.view">
+        <field name="name">info.listeintervenants.form</field>
+        <field name="model">info.listeintervenants</field>
+        <field name="arch" type="xml">
+            <form string="Infos Intervenants Form" id="infos_intervenants_form">
+                <sheet>
+                    <widget name="web_ribbon" title="Archived" bg_color="bg-danger"
+                            attrs="{'invisible': [('active', '=', True)]}"/>
+                    <group>
+                        <td name="infos_intervenants" string="Fiche Formateur" style="width: 70%" text-align="center"/>
 
-                                <div class="oe_title" colspan="6" text-align="center">
-                                    <label for="intervenant_id" class="oe_edit_only"/>
-                                    <h1>
-                                        <field name="mcm_session_id" invisible="1"/>
-                                        <field name="intervenant_id" class="oe_inline"
-                                               domain="[('est_intervenant', '=', True)]"/>
-                                    </h1>
-                                </div>
-                                <field name="active" invisible="1"/>
-                                <field name="email"/>
-                                <field name="adresse"/>
-                                <field name="country_id"/>
-                                <field name="fonction_id"/>
-                                <field name="mcm_session_id"/>
-                                <field name="ville"/>
-                                <field name="telephone"/>
-                                <field name="date_naissance"/>
-                                <field name="nationalite"/>
-                                <field name="code_postale"/>
-                                <field name="entreprise"/>
-                                <field name="diplome"/>
-                                <field name="social_security_number"/>
-                                <field name="num_declaration_activité"/>
-                                <field name="num_siret"/>
-                                <field name="num_assurance"/>
-                                <field name="default_status"/>
-                                <field name="default_tarif"/>
-                                <field name="code_interne"/>
-                                <field name="filename_curiculum_vitae" invisible="1" />
-                                <field name="curriculum_viatae" filename="filename_curiculum_vitae"/>
-                                <field name="filename_contrat_travail" invisible="1"/>
-                                <field name="contrat_travail" filename="filename_contrat_travail"/>
-                                <field name="rapport_entretient_embauche"  groups="mcm_session_list_intervenants.group_hr_intervenants" context="{'mimetype': '*/jpeg,*/jpg,*/pneg,*/png,application/pdf'}" />
-                                <field name="formation_programme"/>
-                                <field name="bio"/>
-                                <field name="note_libre"/>
-<!--                            <script type="text/javascript" src="/mcm_session_list_intervenants/static/src/js/portal_intervenant.js"></script>-->
+                        <div class="oe_title" colspan="6" text-align="center">
+                            <label for="intervenant_id" class="oe_edit_only"/>
+                            <h1>
+                                <field name="mcm_session_id" invisible="1"/>
+                                <field name="intervenant_id" class="oe_inline"
+                                       domain="[('est_intervenant', '=', True)]"/>
+                            </h1>
+                        </div>
+                        <field name="active" invisible="1"/>
+                        <field name="date_naissance"/>
+                        <field name="nationalite"/>
+                        <field name="email"/>
+                        <field name="telephone"/>
+                        <field name="adresse"/>
+                        <field name="ville"/>
+                        <field name="country_id"/>
+                        <field name="code_postale"/>
+                        <field name="fonction_id"/>
+                        <field name="mcm_session_id"/>
+                        <field name="entreprise"/>
+                        <field name="diplome"/>
+                        <field name="social_security_number"/>
+                        <field name="num_declaration_activité"/>
+                        <field name="num_siret"/>
+                        <field name="num_assurance"/>
+                        <field name="default_status"/>
+                        <field name="default_tarif"/>
+                        <field name="code_interne"/>
+                        <field name="filename_curiculum_vitae" invisible="1"/>
+                        <field name="curriculum_viatae" filename="filename_curiculum_vitae"/>
+                        <field name="filename_contrat_travail" invisible="1"/>
+                        <field name="contrat_travail" filename="filename_contrat_travail"/>
+                        <field name="rapport_entretient_embauche"
+                               groups="mcm_session_list_intervenants.group_hr_intervenants"
+                               context="{'mimetype': '*/jpeg,*/jpg,*/pneg,*/png,application/pdf'}"/>
+                        <field name="formation_programme"/>
+                        <field name="bio"/>
+                        <field name="note_libre"/>
+                        <!--                            <script type="text/javascript" src="/mcm_session_list_intervenants/static/src/js/portal_intervenant.js"></script>-->
 
-                        </group>
-                    </sheet>
-                    <div class="oe_chatter">
-                        <field name="message_follower_ids" widget="mail_followers" groups="base.group_user"/>
-                        <field name="activity_ids" widget="mail_activity"/>
-                        <field name="message_ids" widget="mail_thread"/>
-                    </div>
-                </form>
+                    </group>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers" groups="base.group_user"/>
+                    <field name="activity_ids" widget="mail_activity"/>
+                    <field name="message_ids" widget="mail_thread"/>
+                </div>
+            </form>
 
-            </field>
-        </record>
-        <!-- Tree View -->
-        <record id="infos_intervenant_tree_view" model="ir.ui.view">
-            <field name="name">infos.intervenant.tree</field>
-            <field name="model">info.listeintervenants</field>
-            <field name="arch" type="xml">
-                <tree string="Infos Intervenants" >
-                     <field name="active" invisible="1"/>
-                     <field name="email"/>
-                     <field name="telephone"/>
-                     <field name="adresse"/>
-                     <field name="date_naissance"/>
-                     <field name="entreprise"/>
-                </tree>
-            </field>
-        </record>
-        <!-- Searsh View -->
-        <record id="infos_surveillant_view_search" model="ir.ui.view">
-            <field name="name">infos.intervenant.search</field>
-            <field name="model">info.listeintervenants</field>
-            <field name="arch" type="xml">
-                <search string="Search">
-                    <field name="intervenant_id"/>
-                    <field name="active" invisible="1"/>
-                    <field name="email"/>
-                    <field name="adresse"/>
-                    <field name="telephone"/>
-                    <field name="date_naissance"/>
-                    <field name="mcm_session_id"/>
-                    <separator/>
-                    <filter name="active" string="Active" domain="[('active', '=', True)]"/>
-                    <separator/>
-                    <filter string="Archived" name="inactive" domain="[('active', '=', False)]"/>
-                </search>
-            </field>
-        </record>
-        <record id="inherit_digimoov_session_form" model="ir.ui.view">
-            <field name="name">digimoov.session.form</field>
-            <field name="model">mcmacademy.session</field>
-            <field name="inherit_id" ref="mcm_session.mcmacademy_session_form_view"/>
-            <field name="arch" type="xml">
-                <xpath expr="//div[@name='button_box']/button[@name='get_list_of_partner_gagne']" position="before">
-                    <button class="oe_stat_button"  type = "action" name = "%(action_infos_intervenants)d"  string ="Les intervenants" icon="fa-list-alt" >
-                    </button>
-                </xpath>
+        </field>
+    </record>
+    <!-- Tree View -->
+    <record id="infos_intervenant_tree_view" model="ir.ui.view">
+        <field name="name">infos.intervenant.tree</field>
+        <field name="model">info.listeintervenants</field>
+        <field name="arch" type="xml">
+            <tree string="Infos Intervenants">
+                <field name="active" invisible="1"/>
+                <field name="email"/>
+                <field name="telephone"/>
+                <field name="adresse"/>
+                <field name="date_naissance"/>
+                <field name="entreprise"/>
+            </tree>
+        </field>
+    </record>
+    <!-- Searsh View -->
+    <record id="infos_surveillant_view_search" model="ir.ui.view">
+        <field name="name">infos.intervenant.search</field>
+        <field name="model">info.listeintervenants</field>
+        <field name="arch" type="xml">
+            <search string="Search">
+                <field name="intervenant_id"/>
+                <field name="active" invisible="1"/>
+                <field name="email"/>
+                <field name="adresse"/>
+                <field name="telephone"/>
+                <field name="date_naissance"/>
+                <field name="mcm_session_id"/>
+                <separator/>
+                <filter name="active" string="Active" domain="[('active', '=', True)]"/>
+                <separator/>
+                <filter string="Archived" name="inactive" domain="[('active', '=', False)]"/>
+            </search>
+        </field>
+    </record>
+    <record id="inherit_digimoov_session_form" model="ir.ui.view">
+        <field name="name">digimoov.session.form</field>
+        <field name="model">mcmacademy.session</field>
+        <field name="inherit_id" ref="mcm_session.mcmacademy_session_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[@name='button_box']/button[@name='get_list_of_partner_gagne']" position="before">
+                <button class="oe_stat_button" type="action" name="%(action_infos_intervenants)d"
+                        string="Les intervenants" icon="fa-list-alt">
+                </button>
+            </xpath>
 
-            </field>
-        </record>
+        </field>
+    </record>
 </odoo>

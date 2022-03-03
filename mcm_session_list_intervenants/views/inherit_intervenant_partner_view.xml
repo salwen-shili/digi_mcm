@@ -7,7 +7,7 @@
         <field name="arch" type="xml">
             <xpath expr="//div[@class='oe_title']" position="after">
                 <div class="col-sm-12">
-                    <label for="est_intervenant" string="Formatteur :">Formatteur </label>
+                    <label for="est_intervenant" string="Est un intervenant:">Est un intervenant:</label>
                           <field name="est_intervenant" widget="boolean_toggle"/>
                 </div>
             </xpath>
