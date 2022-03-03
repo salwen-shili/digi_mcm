@@ -819,7 +819,7 @@ const addcheckBoxBolt = () => {
     update_criminal_record(inputCriminalRecord.checked);
   });
 };
-
+//emploie state value
 const sendPoleEmploiState = (pole_emploi_state) => {
   sendHttpRequest('POST', '/shop/cart/update_pole_emploi', {
     params: {
