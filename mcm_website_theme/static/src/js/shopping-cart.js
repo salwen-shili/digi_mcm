@@ -490,6 +490,10 @@ function onchangeTextButton() {
     document.getElementById('pm_shop_checkout').innerText = 'Mobiliser mon CPF';
     displayInstalmentPayment(); //hide instalment
     displayPromo(); //hide promo
+
+    order_instalment.style.display = 'none'; //hide instalment
+    order_instalment_number.style.display = 'none';
+    order_amount_to_pay.style.display = 'none';
   }
 }
 function onchangeTextButton1() {
