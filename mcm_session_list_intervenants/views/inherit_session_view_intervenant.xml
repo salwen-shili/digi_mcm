@@ -12,6 +12,7 @@
                         <tree>
                             <field name="intervenant_id"/>
                             <field name="email"/>
+                            <field name="telephone"/>
                             <field name="fonction_id"/>
                         </tree>
                     </field>
