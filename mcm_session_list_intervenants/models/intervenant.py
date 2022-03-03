@@ -9,7 +9,6 @@ from odoo import api, fields, models, _
 # cette application fait la gestions des intervenants dans une session
 # on a herité des fields de res.partner par le champs intervenant_id pour la reecuperation automatique des fields
 #chargement des documents curriculum_viatae,contrat_travail,rapport_entretient_embauche avec visualisation des attachements
-from odoo.odoo import exceptions
 
 
 class Intervenant(models.Model):
