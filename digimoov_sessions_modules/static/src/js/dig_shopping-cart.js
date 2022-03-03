@@ -542,8 +542,11 @@ function showCpfDetails() {
 //on click cpf / carte bleu
 function onchangeTextButton() {
   //hide cpf details when pole_emploi is checked
+
   if (pole_emploi_checkbox) {
     if (pole_emploi_checkbox.checked) {
+      //hide instalment
+
       //send pole emploi checked = true
       //hide cpf details
       hideCpfDetails();
@@ -613,8 +616,13 @@ function onchangeTextButton() {
       // }
 
       // hide instalment
+
       displayInstalmentPayment(); //hide instalment
+
       displayPromo(); //hide promo
+      order_instalment.style.display = 'none'; //hide instalment
+      order_instalment_number.style.display = 'none';
+      order_amount_to_pay.style.display = 'none';
     }
   }
 
