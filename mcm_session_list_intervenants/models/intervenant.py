@@ -18,7 +18,7 @@ class Intervenant(models.Model):
     _name = "info.listeintervenants"
     _description = "Add fields in session view"
 
-    intervenant_id = fields.Many2one('res.partner', string="Nom", required=True)
+    intervenant_id = fields.Many2one('res.partner', string="Nom & Prenom d'intervenant", required=True)
     session_id = fields.Many2one('mcmacademy.session', string="session")
     state = fields.Many2one('res.country.state', string="Département")
     partner_ids = fields.One2many('res.partner', 'session_id', 'Partners')
