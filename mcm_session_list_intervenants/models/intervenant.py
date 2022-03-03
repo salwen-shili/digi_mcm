@@ -25,7 +25,7 @@ class Intervenant(models.Model):
     country_id = fields.Many2one('res.country', string="Pays_id")
     adresse = fields.Char(string="Adresse", related="intervenant_id.street", required=True)
     email = fields.Char(related="intervenant_id.email", string="Email", required=True)
-    code_interne = fields.Char(string="Code interne", required=True)
+    code_interne = fields.Char(string="Code interne")
     mcm_session_id = fields.Many2one(string="session name", related="intervenant_id.mcm_session_id")
     ville = fields.Char(string="Ville", related="intervenant_id.city")
     telephone = fields.Char(string="Téléphone", related="intervenant_id.phone", required=True)
