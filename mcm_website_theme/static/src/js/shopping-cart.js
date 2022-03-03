@@ -265,7 +265,7 @@ function verify_payment_method() {
   var state = document.getElementById('state').value;
 
   if (cpf_pm) {
-    if (cpf_pm.checked == true) {
+    if (cpf_pm.checked == true || pole_emploi_checkbox.checked == true) {
       if (cpf_pm.value == 'Formation à distance TAXI') {
         switch (true) {
           case state.includes('https://www.moncompteformation.gouv.fr/'):
@@ -339,7 +339,7 @@ function showPopup() {
   }
   var continueBtn = document.getElementById('continueBtn');
   var textbtn;
-  cpfChecked
+  cpfChecked || pole_emploi_checkbox.checked
     ? (textbtn = 'Mobiliser mon CPF')
     : (textbtn = 'Passer au paiement');
 
@@ -416,10 +416,72 @@ function closepopup(msg) {
                         </div>`;
 }
 
+//hide pole emploie details
+function hidePoleEmploiDetails() {
+  if (document.getElementById('pole-emploi-details')) {
+    document.getElementById('pole-emploi-details').classList.add('hide');
+    if (document.getElementById('arrow-down-pole-emploi')) {
+      document.getElementById('arrow-down-pole-emploi').classList.add('hide');
+    }
+  }
+}
+//show pole emploie details
+function showPoleEmploiDetails() {
+  if (document.getElementById('pole-emploi-details')) {
+    document.getElementById('pole-emploi-details').classList.remove('hide');
+    if (document.getElementById('arrow-down-pole-emploi')) {
+      document
+        .getElementById('arrow-down-pole-emploi')
+        .classList.remove('hide');
+    }
+  }
+}
+
+//hide pole emploie details
+function hideCpfDetails() {
+  if (document.getElementById('cpf-details')) {
+    document.getElementById('cpf-details').classList.add('hide');
+    if (document.getElementById('arrow-down')) {
+      document.getElementById('arrow-down').classList.add('hide');
+    }
+  }
+}
+//show pole emploie details
+function showCpfDetails() {
+  if (document.getElementById('cpf-details')) {
+    document.getElementById('cpf-details').classList.remove('hide');
+    if (document.getElementById('arrow-down')) {
+      document.getElementById('arrow-down').classList.remove('hide');
+    }
+  }
+}
+
 //change button to mobiliser mon cpf or passer au paiment if cpf is checked or not
 // according to that we show or hide cpf details and video
 
 function onchangeTextButton() {
+  //hide cpf details when pole_emploi is checked
+  if (pole_emploi_checkbox) {
+    if (pole_emploi_checkbox.checked) {
+      //send pole emploi checked = true
+      //hide cpf details
+      hideCpfDetails();
+      //show pole emploi details
+      showPoleEmploiDetails();
+      sendPoleEmploiState(pole_emploi_checkbox.checked);
+      if (document.getElementById('cpf-details')) {
+        document.getElementById('cpf-details').classList.add('hide');
+        if (document.getElementById('arrow-down')) {
+          document.getElementById('arrow-down').classList.add('hide');
+        }
+      }
+    } else {
+      //hide poleEmploi details
+      hidePoleEmploiDetails();
+      //send pole emploi checked
+      sendPoleEmploiState(pole_emploi_checkbox.checked);
+    }
+  }
   if (document.getElementById('pm_shop_checkout2')) {
     document.getElementById('pm_shop_checkout2').innerText =
       'Mobiliser mon CPF';
@@ -431,6 +493,10 @@ function onchangeTextButton() {
   }
 }
 function onchangeTextButton1() {
+  //hide poleEmploi details
+  hidePoleEmploiDetails();
+  //send pole emploi checked
+  sendPoleEmploiState(pole_emploi_checkbox.checked);
   //onchange carte de credit
   if (document.getElementById('pm_shop_checkout')) {
     document.getElementById('pm_shop_checkout').innerText =
@@ -753,7 +819,20 @@ const addcheckBoxBolt = () => {
     update_criminal_record(inputCriminalRecord.checked);
   });
 };
-
+//emploie state value
+const sendPoleEmploiState = (pole_emploi_state) => {
+  sendHttpRequest('POST', '/shop/cart/update_pole_emploi', {
+    params: {
+      pole_emploi_state: pole_emploi_state,
+    },
+  })
+    .then((res) => {
+      console.log(res);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+};
 function resetPopupBolt() {
   var popupcontent = document.getElementById('popupcontent');
   popupcontent.innerHTML = popupContentinit;
