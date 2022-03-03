@@ -20,6 +20,15 @@ function openPopup2() {
 
 function closePopup2() {
   document.getElementById('popup2').style.display = 'none';
+  error_conditions.style.display = 'none';
+}
+function continuebtn() {
+  console.log('checkbox_failures.checked', checkbox_failures.checked);
+  if (checkbox_failures.checked) {
+    document.getElementById('popup2').style.display = 'none';
+  } else {
+    error_conditions.style.display = 'inline-block';
+  }
 }
 
 // Popup 3
