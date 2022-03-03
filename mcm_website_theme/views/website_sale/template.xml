@@ -249,9 +249,9 @@
                     <label for="pole_emploi_checkbox" class="radio" t-if="line.product_id.product_tmpl_id.cpf_available">
                         <input type="radio" name="pm_method" data-acquirer-id="16" data-form-payment="True" data-provider="transfer" class="hidden" id="pole_emploi_checkbox" t-att-value="line.name_short" t-attf-onclick="onchangeTextButton()" />
                         <span class="label"></span>
-                        Pole emploi
+                        Pôle emploi
                         <p style="font-style: italic;font-size: 12px; padding: 0.5rem 0rem 0rem 2rem;">
-                            Financer votre formationa avec pole emploi
+                            Financer votre formation avec pôle emploi
                         </p>
                     </label>
                     <!-- logo and arrow down pole emploi-->
@@ -284,8 +284,7 @@
                 
                 display: inline-block;
                 font-size:17px">
-                    Je suis demandeur d'emploi et je n'ai pas assez de droits sur Mon Compte Formation pour financer ma formation. Existent-ils d'autres financements pour m'aider à finaliser mon projet de formation ? 
-                </h5>
+Lorem ipsum dolor sit amet consectetur adipisicing elit. Odio cumque enim eum dignissimos cupiditate architecto voluptatibus consectetur unde dolorum praesentium fugit vel qui eligendi saepe sunt, ea id ipsum dolores doloremque facere eos? Aperiam, pariatur. Quae nam vel eligendi, dolorem tempora voluptate animi iure illum sed corrupti libero aut laudantium.                </h5>
                 <!-- <p style="letter-spacing: 1.5px; text-align: justify;">Salariés, demandeurs d’emploi ou encore travailleurs indépendants ? Vous avez tous droit à la formation professionnelle. D’où la nécessité de la mise en place du Compte personnel de formation (CPF). Besoin de tuto? lancez cette vidéo !</p> -->
 
 
