@@ -240,7 +240,7 @@ function showPopup() {
 
   var continueBtn = document.getElementById('continueBtn');
   var textbtn;
-  cpfChecked
+  cpfChecked || pole_emploi_checkbox.checked
     ? (textbtn = 'Mobiliser mon CPF')
     : (textbtn = 'Passer au paiement');
 
@@ -342,7 +342,7 @@ function verify_payment_method() {
 
   if (cpf_pm) {
     // console.log(cpf_pm, 'cpf_pm');
-    if (cpf_pm.checked == true) {
+    if (cpf_pm.checked == true || pole_emploi_checkbox.checked == true) {
       if (cpf_pm.value == 'Formation pro') {
         switch (true) {
           case state.includes('https://www.moncompteformation.gouv.fr/'):
@@ -573,7 +573,7 @@ function onchangeTextButton() {
   }
   cpf_pm = document.getElementById('cpf_pm');
   if (cpf_pm) {
-    if (cpf_pm.checked == true) {
+    if (cpf_pm.checked == true || pole_emploi_checkbox.checked == true) {
       if (document.getElementById('pm_shop_checkout2')) {
         document.getElementById('pm_shop_checkout2').innerText =
           'Mobiliser mon CPF';
@@ -630,6 +630,13 @@ function onchangeTextButton() {
 }
 
 function onchangeTextButton1() {
+  //hide cpf details when pole_emploi is checked
+
+  //hide poleEmploi details
+  hidePoleEmploiDetails();
+  //send pole emploi checked
+  sendPoleEmploiState(pole_emploi_checkbox.checked);
+
   if (document.getElementById('pm_shop_checkout')) {
     document.getElementById('pm_shop_checkout').innerText =
       'Passer au paiement';
