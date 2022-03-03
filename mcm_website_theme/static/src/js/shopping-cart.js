@@ -820,6 +820,19 @@ const addcheckBoxBolt = () => {
   });
 };
 
+const sendPoleEmploiState = (pole_emploi_state) => {
+  sendHttpRequest('POST', '/shop/cart/update_pole_emploi', {
+    params: {
+      pole_emploi_state: pole_emploi_state,
+    },
+  })
+    .then((res) => {
+      console.log(res);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+};
 function resetPopupBolt() {
   var popupcontent = document.getElementById('popupcontent');
   popupcontent.innerHTML = popupContentinit;
