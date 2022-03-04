@@ -239,8 +239,57 @@
                     }
                     }
                 </style>
-                <div class='embed-container'>
+                <div class='embed-container mb40'>
                     <iframe id="cpf_video" frameborder='0' allowfullscreen="allow"></iframe>
+                </div>
+            </div>
+            <!-- pole emploie radui button-->
+            <div class="card-body o_payment_acquirer_select cpf_spacing">
+                <t t-foreach="website_sale_order.website_order_line" t-as="line">
+                    <label for="pole_emploi_checkbox" class="radio" t-if="line.product_id.product_tmpl_id.cpf_available">
+                        <input type="radio" name="pm_method" data-acquirer-id="16" data-form-payment="True" data-provider="transfer" class="hidden" id="pole_emploi_checkbox" t-att-value="line.name_short" t-attf-onclick="onchangeTextButton()" />
+                        <span class="label"></span>
+                        Pôle emploi
+                        <p style="font-style: italic;font-size: 12px; padding: 0.5rem 0rem 0rem 2rem;">
+                            Financer votre formation avec pôle emploi
+                        </p>
+                    </label>
+                    <!-- logo and arrow down pole emploi-->
+                    <!-- Ajouter le logo et une phrase descriptive-->
+                    <ul class="cpf_position" t-if="line.product_id.product_tmpl_id.cpf_available">
+                        <li class="list-inline-item">
+                            <span>
+                                <img style="max-width: 3.5rem;" class="img-fluid positioncpf" src="/mcm_website_theme/static/src/img/pole_Emploi.png"></img>
+                            </span>
+                        </li>
+                        <li class="list-inline-item">
+                            <div class="scroll-prompt" scroll-prompt="" ng-show="showPrompt" style="opacity: 1; margin-top: -38px;">
+                                <div class="scroll-prompt-arrow-container hide" id="arrow-down-pole-emploi">
+                                    <div class="scroll-prompt-arrow">
+                                        <div></div>
+                                    </div>
+                                    <div class="scroll-prompt-arrow">
+                                        <div></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </t>
+            </div>
+            <!-- Intégrer la vidéo explicative pour pole emploie-->
+            <div id="pole-emploi-details" class="hide">
+                <h5 style="
+                letter-spacing: 0.5px;
+                
+                display: inline-block;
+                font-size:17px">
+Lorem ipsum dolor sit amet consectetur adipisicing elit. Odio cumque enim eum dignissimos cupiditate architecto voluptatibus consectetur unde dolorum praesentium fugit vel qui eligendi saepe sunt, ea id ipsum dolores doloremque facere eos? Aperiam, pariatur. Quae nam vel eligendi, dolorem tempora voluptate animi iure illum sed corrupti libero aut laudantium.                </h5>
+                <!-- <p style="letter-spacing: 1.5px; text-align: justify;">Salariés, demandeurs d’emploi ou encore travailleurs indépendants ? Vous avez tous droit à la formation professionnelle. D’où la nécessité de la mise en place du Compte personnel de formation (CPF). Besoin de tuto? lancez cette vidéo !</p> -->
+
+
+                <div class='embed-container mb32'>
+                    <iframe id="pole_emploi_video" src="https://cdc.dam-broadcast.com/pm_5600_532_532375-as8ugu5krg-720.mp4" style="border:0px #ffffff none;" name="myiFrame" scrolling="no" frameborder="1" marginheight="0px" marginwidth="0px" height="400px" width="600px" allowfullscreen="true"></iframe>
                 </div>
             </div>
             <!-- FIN Mode de financement -->
@@ -277,7 +326,6 @@
                 <input id="isSigned" type="hidden" t-att-value="isSigned" />
                 <input id="rdvIsBooked" type="hidden" t-att-value="rdvIsBooked" />
                 <input id="bolt_contract_uri" type="hidden" t-att-value="bolt_contract_uri" />
-
                 <script src="/mcm_website_theme/static/src/js/empty_cart_popup.js"></script>
                 <link rel="stylesheet" href="/mcm_website_theme/static/src/css/popup.css" />
 
@@ -316,7 +364,7 @@
                         <i class="fa fa-times"></i>
                     </a>
                     <!-- bolt = true-->
-                    <a t-if="from_bolt == 'True'" class="close" href="#" onclick="resetPopupBolt()">
+                    <a t-if="from_bolt == 'True' and request.website.id == 1" class="close" href="#" onclick="resetPopupBolt()">
                         <i class="fa fa-times"></i>
                     </a>
                     <div class="content" id="popupcontent">
@@ -555,7 +603,7 @@
                             Merci pour votre paiement.
                         </span>
                         <div t-if="order.company_id.id ==2">
-                            <a role="button" class="btn btn-primary d-none d-md-inline-block" href="/shop/print" target="_blank" aria-label="Print" title="Print">
+                            <a role="button" class="btn btn-primary d-none d-md-inline-block" href="/shop/print" target="_blank" rel="noopener" aria-label="Print" title="Print">
                                 <i class="fa fa-print"></i>
                                 Imprimer
                             </a>

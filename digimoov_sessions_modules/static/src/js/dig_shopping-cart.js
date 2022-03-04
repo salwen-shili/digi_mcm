@@ -240,7 +240,7 @@ function showPopup() {
 
   var continueBtn = document.getElementById('continueBtn');
   var textbtn;
-  cpfChecked
+  cpfChecked || pole_emploi_checkbox.checked
     ? (textbtn = 'Mobiliser mon CPF')
     : (textbtn = 'Passer au paiement');
 
@@ -342,7 +342,7 @@ function verify_payment_method() {
 
   if (cpf_pm) {
     // console.log(cpf_pm, 'cpf_pm');
-    if (cpf_pm.checked == true) {
+    if (cpf_pm.checked == true || pole_emploi_checkbox.checked == true) {
       if (cpf_pm.value == 'Formation pro') {
         switch (true) {
           case state.includes('https://www.moncompteformation.gouv.fr/'):
@@ -483,8 +483,90 @@ function renonce() {
          `;
 }
 
+// Création d'une fonction showpoleemploidetails pour afficher les détails de pole emploi et hidepoleemploidetails pour masquer les détails pole emploi.
+// Création d'une fonction sendpoleemploistate qui récupère l'état de radio button et envoyer cet état au backend avec un post request vers /shop/cart/update_pole_emploi  (checked : true ou false)
+// Cette méthode est utilise à chaque clic d'un radio button
+const sendPoleEmploiState = (pole_emploi_state) => {
+  sendHttpRequest('POST', '/shop/cart/update_pole_emploi', {
+    params: {
+      pole_emploi_state: pole_emploi_state,
+    },
+  })
+    .then((res) => {
+      console.log(res);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+};
+
+//hide pole emploie details
+function hidePoleEmploiDetails() {
+  if (document.getElementById('pole-emploi-details')) {
+    document.getElementById('pole-emploi-details').classList.add('hide');
+    if (document.getElementById('arrow-down-pole-emploi')) {
+      document.getElementById('arrow-down-pole-emploi').classList.add('hide');
+    }
+  }
+}
+//show pole emploie details
+function showPoleEmploiDetails() {
+  if (document.getElementById('pole-emploi-details')) {
+    document.getElementById('pole-emploi-details').classList.remove('hide');
+    if (document.getElementById('arrow-down-pole-emploi')) {
+      document
+        .getElementById('arrow-down-pole-emploi')
+        .classList.remove('hide');
+    }
+  }
+}
+
+//hide pole emploie details
+function hideCpfDetails() {
+  if (document.getElementById('cpf-details')) {
+    document.getElementById('cpf-details').classList.add('hide');
+    if (document.getElementById('arrow-down')) {
+      document.getElementById('arrow-down').classList.add('hide');
+    }
+  }
+}
+//show pole emploie details
+function showCpfDetails() {
+  if (document.getElementById('cpf-details')) {
+    document.getElementById('cpf-details').classList.remove('hide');
+    if (document.getElementById('arrow-down')) {
+      document.getElementById('arrow-down').classList.remove('hide');
+    }
+  }
+}
+
 //on click cpf / carte bleu
 function onchangeTextButton() {
+  //hide cpf details when pole_emploi is checked
+
+  if (pole_emploi_checkbox) {
+    if (pole_emploi_checkbox.checked) {
+      //hide instalment
+
+      //send pole emploi checked = true
+      //hide cpf details
+      hideCpfDetails();
+      //show pole emploi details
+      showPoleEmploiDetails();
+      sendPoleEmploiState(pole_emploi_checkbox.checked);
+      if (document.getElementById('cpf-details')) {
+        document.getElementById('cpf-details').classList.add('hide');
+        if (document.getElementById('arrow-down')) {
+          document.getElementById('arrow-down').classList.add('hide');
+        }
+      }
+    } else {
+      //hide poleEmploi details
+      hidePoleEmploiDetails();
+      //send pole emploi checked
+      sendPoleEmploiState(pole_emploi_checkbox.checked);
+    }
+  }
   var stripe_pm = document.getElementById('stripe_pm');
   if (stripe_pm) {
     if (stripe_pm.checked == true) {
@@ -497,7 +579,7 @@ function onchangeTextButton() {
   }
   cpf_pm = document.getElementById('cpf_pm');
   if (cpf_pm) {
-    if (cpf_pm.checked == true) {
+    if (cpf_pm.checked == true || pole_emploi_checkbox.checked == true) {
       if (document.getElementById('pm_shop_checkout2')) {
         document.getElementById('pm_shop_checkout2').innerText =
           'Mobiliser mon CPF';
@@ -535,8 +617,13 @@ function onchangeTextButton() {
       // }
 
       // hide instalment
+
       displayInstalmentPayment(); //hide instalment
+
       displayPromo(); //hide promo
+      order_instalment.style.display = 'none'; //hide instalment
+      order_instalment_number.style.display = 'none';
+      order_amount_to_pay.style.display = 'none';
     }
   }
 
@@ -554,6 +641,13 @@ function onchangeTextButton() {
 }
 
 function onchangeTextButton1() {
+  //hide cpf details when pole_emploi is checked
+
+  //hide poleEmploi details
+  hidePoleEmploiDetails();
+  //send pole emploi checked
+  sendPoleEmploiState(pole_emploi_checkbox.checked);
+
   if (document.getElementById('pm_shop_checkout')) {
     document.getElementById('pm_shop_checkout').innerText =
       'Passer au paiement';

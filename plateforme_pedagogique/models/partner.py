@@ -47,7 +47,7 @@ class partner(models.Model):
     stats_ids = fields.Many2one('plateforme_pedagogique.user_stats')
     second_email= fields.Char(string='Email secondaire')
     temps_minute = fields.Integer(string="Temps passé en minutes")  # Champs pour récuperer temps en minute par api360
-
+    is_pole_emploi=fields.Boolean(string="Pole Emploi") #champ pour distinguer le mode de financement cpf+pole emploi
     # Recuperation de l'état de facturation pour cpf de wedof et carte bleu de odoo
     etat_financement_cpf_cb = fields.Selection([('untreated', 'Non Traité'),
                                                 ('validated', 'Validé'),
@@ -769,7 +769,7 @@ class partner(models.Model):
 
     def change_state_wedof_validate(self):
         base_url = self.env['ir.config_parameter'].sudo().get_param('web.base.url')
-        if "localhost"  not in str(base_url) and "dev.odoo" not in str(base_url):
+        if "localhost" not in str(base_url) and "dev.odoo" not in str(base_url):
             companies = self.env['res.company'].sudo().search([])
             if companies:
                 for company in companies:
@@ -833,10 +833,9 @@ class partner(models.Model):
                         if "roadName" in dossier['attendee']['address']:
                             nom_voie = dossier['attendee']['address']['roadName']
                         street = str(num_voie) + ' ' + str(voie) + ' ' + str(nom_voie)
+                        tel=""
                         if "phoneNumber" in dossier['attendee']:
                             tel = dossier['attendee']['phoneNumber']
-                        else:
-                            tel = ""
                         if "zipCode" in dossier['attendee']['address']:
                             code_postal = dossier['attendee']['address']['zipCode']
                         else:
@@ -858,11 +857,116 @@ class partner(models.Model):
 
                         today = date.today()
                         # datedebut = today + timedelta(days=15)
+                        """chercher user sur odoo par tel ou par email """
+                        user = self.env['res.users'].sudo().search([('login', "=", email)],limit=1)
+                        exist = True
+                        if not user:
+                            if tel:
+                                user = self.env["res.users"].sudo().search(
+                                    [("phone", "=", str(tel))], limit=1)
+                                if not user:
+                                    phone_number = str(tel).replace(' ', '')
+                                    if '+33' not in str(
+                                            phone_number):  # check if edof api send the number of client with +33
+                                        phone = phone_number[0:2]
+                                        if str(phone) == '33' and ' ' not in str(
+                                                tel):  # check if edof api send the number of client in this format (number_format: 33xxxxxxx)
+                                            phone = '+' + str(tel)
+                                            user = self.env["res.users"].sudo().search([("phone", "=", phone)], limit=1)
+                                            if not user:
+                                                phone = phone[0:3] + ' ' + phone[3:4] + ' ' + phone[4:6] + ' ' + phone[
+                                                                                                                 6:8] + ' ' + phone[
+                                                                                                                              8:10] + ' ' + phone[
+                                                                                                                                            10:]
+                                                user = self.env["res.users"].sudo().search([("phone", "=", phone)],
+                                                                                           limit=1)
+                                            if not user:
+                                                phone = '0' + str(phone[4:])
+                                                user = self.env["res.users"].sudo().search(
+                                                    ['|', ("phone", "=", phone),
+                                                     ("phone", "=", phone.replace(' ', ''))], limit=1)
+                                        phone = phone_number[0:2]
+                                        if str(phone) == '33' and ' ' in str(
+                                                tel):  # check if edof api send the number of client in this format (number_format: 33 x xx xx xx)
+                                            phone = '+' + str(tel)
+                                            user = self.env["res.users"].sudo().search(
+                                                ['|', ("phone", "=", phone), ("phone", "=", phone.replace(' ', ''))],
+                                                limit=1)
+                                            if not user:
+                                                phone = '0' + str(phone[4:])
+                                                user = self.env["res.users"].sudo().search(
+                                                    ['|', ("phone", "=", phone),
+                                                     ("phone", "=", phone.replace(' ', ''))], limit=1)
+                                        phone = phone_number[0:2]
+                                        if str(phone) in ['06', '07'] and ' ' not in str(
+                                                tel):  # check if edof api send the number of client in this format (number_format: 07xxxxxx)
+                                            user = self.env["res.users"].sudo().search(
+                                                ['|', ("phone", "=", str(tel)),
+                                                 ("phone", "=", str('+33' + tel.replace(' ', '')[-9:]))],
+                                                limit=1)
+                                            if not user:
+                                                phone = phone[0:2] + ' ' + phone[2:4] + ' ' + phone[4:6] + ' ' + phone[
+                                                                                                                 6:8] + ' ' + phone[
+                                                                                                                              8:]
+                                                user = self.env["res.users"].sudo().search([("phone", "=", phone)],
+                                                                                           limit=1)
+                                            if not user:
+                                                phone = '0' + str(phone[4:])
+                                                user = self.env["res.users"].sudo().search(
+                                                    ['|', ("phone", "=", phone),
+                                                     ("phone", "=", phone.replace(' ', ''))], limit=1)
+                                        phone = phone_number[0:2]
+                                        if str(phone) in ['06', '07'] and ' ' in str(
+                                                tel):  # check if edof api send the number of client in this format (number_format: 07 xx xx xx)
+                                            user = self.env["res.users"].sudo().search(
+                                                ['|', ("phone", "=", str(tel)), str(tel).replace(' ', '')], limit=1)
+                                            if not user:
+                                                phone_number = str(tel[1:])
+                                                user = self.env["res.users"].sudo().search(
+                                                    ['|', ("phone", "=", str('+33' + phone_number)),
+                                                     ("phone", "=", ('+33' + phone_number.replace(' ', '')))], limit=1)
+                                    else:  # check if edof api send the number of client with+33
+                                        if ' ' not in str(tel):
+                                            phone = str(tel)
+                                            phone = phone[0:3] + ' ' + phone[3:4] + ' ' + phone[4:6] + ' ' + phone[
+                                                                                                             6:8] + ' ' + phone[
+                                                                                                                          8:10] + ' ' + phone[
+                                                                                                                                        10:]
+                                            user = self.env["res.users"].sudo().search(
+                                                [("phone", "=", phone)], limit=1)
+                                        if not user:
+                                            user = self.env["res.users"].sudo().search(
+                                                [("phone", "=", str(phone_number).replace(' ', ''))], limit=1)
+                                            if not user:
+                                                phone = str(phone_number)
+                                                phone = phone[3:]
+                                                phone = '0' + str(phone)
+                                                user = self.env["res.users"].sudo().search(
+                                                    [("phone", "like", phone.replace(' ', ''))], limit=1)
+                            if not user :
+                                """si l'apprenant n'est pas sur odoo, date debut de session sera celle de cpfSessionMinDate"""
+                                date_debutstr = datemin.get('cpfSessionMinDate')
+                                date_debut = datetime.strptime(date_debutstr, '%Y-%m-%dT%H:%M:%S.%fz')
+                                print('cpf')
+                        if user:
+                            print('if userrr++++++++', user.email)
+                            """Si pole emploi coché , l'apprenant commence sa formation apres 21 jours"""
+                            if user.partner_id.is_pole_emploi:
+                                date_debutstr = datemin.get('poleEmploiSessionMinDate')
+                                date_debut = datetime.strptime(date_debutstr, '%Y-%m-%dT%H:%M:%S.%fz')
+                                print('pole emploi')
+                            else :
+                                """Si non l'apprenant commence sa formation apres 14 jours"""
+                                date_debutstr = datemin.get('cpfSessionMinDate')
+                                date_debut = datetime.strptime(date_debutstr, '%Y-%m-%dT%H:%M:%S.%fz')
+                                print('cpf')
+
 
                         datefin = str(date_debut + relativedelta(months=3) + timedelta(days=1))
                         datedebutstr = str(date_debut)
                         data = '{"trainingActionInfo":{"sessionStartDate":"' + datedebutstr + '","sessionEndDate":"' + datefin + '" }}'
                         dat = '{\n  "weeklyDuration": 14,\n  "indicativeDuration": 102\n}'
+                        """Avant validation modifier les dates de session selon le mode de financement pole emploi/cpf """
                         response_put = requests.put('https://www.wedof.fr/api/registrationFolders/' + externalid,
                                                     headers=headers, data=data)
 
@@ -888,7 +992,7 @@ class partner(models.Model):
 
     def change_state_cpf_partner(self):
         base_url = self.env['ir.config_parameter'].sudo().get_param('web.base.url')
-        if "localhost" not in str(base_url) and "dev.odoo" not in str(base_url):
+        if "localhost" not in str(base_url) and "dev.odoo"  not in str(base_url):
             companies = self.env['res.company'].sudo().search([])
             if companies:
                 for company in companies:
@@ -1068,7 +1172,7 @@ class partner(models.Model):
 
     def cpf_validate(self, module, email,residence, num_voie, nom_voie, voie, street, tel, code_postal, ville, diplome, nom,
                      prenom, dossier, lastupd):
-        user = self.env['res.users'].sudo().search([('login', "=", email)])
+        user = self.env['res.users'].sudo().search([('login', "=", email)],limit=1)
         exist = True
         if not user:
             if tel:
@@ -1208,7 +1312,7 @@ class partner(models.Model):
         # user = request.env['res.users'].sudo().search([('login', "=", email)])
         if user:
             client = self.env['res.partner'].sudo().search(
-                [('id', '=', user.partner_id.id)])
+                [('id', '=', user.partner_id.id)],limit=1)
             if client:
                 _logger.info("if client %s" % str(client.email))
                 _logger.info("dossier %s" % str(dossier))
