@@ -1668,10 +1668,10 @@ class CustomerPortal(CustomerPortal):
         values['invoice_count'] = invoice_count
         # add users_tasks_domain to filter tasks in portal view
         users = request.env.user
-        users_tasks_domain = [
-            '|', ('parent_id.user_id', '=', users.id), ('user_id', '=', users.id)]
-        values['task_count'] = request.env['project.task'].search_count(
-            users_tasks_domain)
+        # users_tasks_domain = [
+        #     '|', ('parent_id.user_id', '=', users.id), ('user_id', '=', users.id)]
+        # values['task_count'] = request.env['project.task'].search_count(
+        #     users_tasks_domain)
         return values
 
     """@override this function to add filter can display 
