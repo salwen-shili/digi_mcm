@@ -173,7 +173,7 @@
                 </section>
 
                 <!-- Pricing table-->
-                <div class="row justify-content-center">
+                <div id="pricing" class="row justify-content-center">
                     <div class="col-md-8 text-center col-lg-11">
                         <h2 class="text-beta title mb20">
                             LET'S GO !
