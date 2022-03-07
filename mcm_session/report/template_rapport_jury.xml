@@ -136,19 +136,22 @@
                             <div class="row" style="padding-top:5px!important;">
                                 <div class="col-1"></div>
                                 <div class="col-12">
-                                    <table class="table table-bordered"
-                                           style="border:1px solid black;">
+                                    <table style="border:1px solid black;">
                                         <tbody>
                                             <tr>
                                                 <td align="center" style="height: 150px; width: 200px;">
                                                     <b>Remarques</b>
                                                 </td>
-                                                <td align="center" style="height: 150px; width: 900px;">test
+                                                <td align="center" style="height: 150px; width: 800px;">test
                                                 </td>
                                             </tr>
                                         </tbody>
                                     </table>
                                 </div>
+                            </div>
+                            <div class="col-12">
+                                <img src='/mcm_session/static/src/img/footer_jury.png' height="200%"
+                                     width="100%" style="padding-top:100px!important;"/>
                             </div>
                             <p style="page-break-after:always;"/>
                             <p style="padding-top: 50px;">
@@ -199,8 +202,8 @@
                             </p>
                         </div>
                         <div class="col-12">
-                            <img src='/mcm_session/static/src/img/footer_jury.png' height="200"
-                                 width="950"/>
+                            <img src='/mcm_session/static/src/img/footer_jury.png' height="200%"
+                                 width="100%" style="padding-top:100px!important;"/>
                         </div>
                     </t>
                 </t>
