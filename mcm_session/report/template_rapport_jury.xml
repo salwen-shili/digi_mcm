@@ -160,7 +160,6 @@
                                                     <th>Signature</th>
                                                 </tr>
                                             </thead>
-
                                             <tr t-foreach='o.intervenant_id' t-as='line'>
                                                 <td style="width:200px;">
                                                     <span t-esc="line.intervenant_id.display_name"/>
