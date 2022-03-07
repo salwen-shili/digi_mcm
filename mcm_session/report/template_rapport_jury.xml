@@ -86,41 +86,50 @@
                                     </strong>
                                 </p>
                             </span>
-                            <p>a) Nombre de candidats inscrits et présents :</p>
-                            <p>- Le nombre de candidats inscrits était de
-                                <span t-esc="docs.nbr_client_par_session(nbr_inscrits)"/>
-                                personnes
-                            </p>
-                            <p>
-                                - Le nombre de candidats présents était de
-                                <span t-esc="docs.nbr_present_par_session(nbr_present)"/>
-                                personnes
-                            </p>
-                            <br/>
-                            <p>B) Nombre de candidats reçus à l’examen
-                                <span t-esc="docs.nbr_recus_par_session(nbr_recu)"/>
-                                sur
-                                <span t-esc="docs.nbr_client_par_session(nbr_inscrits)"/>
-                            </p>
-                            <p>- Le taux de réussite est donc de<span
-                                    t-esc="docs.pourcentage_client_recu(pourcentage)"/>%.
-                            </p>
-                            <br/>
-                            <p>c) Liste récapitulative des candidats inscrits, absents, reçus ou ajournés en annexe.</p>
-                            <br/>
-                            <p>d) Le constat du déroulement des épreuves ainsi que la mention des éventuelles
-                                difficultés rencontrées lors du déroulement de la
-                                session :
-                            </p>
-                            <br/>
-                            <p>Aucune difficulté n’est à mentionner, tout s’est bien déroulé.</p>
-                            <br/>
-                            <p>e) Le dossier d’inscription à l’examen du candidat, accompagné du relevé des notes
-                                obtenues
-                                aux différentes épreuves ainsi que de la
-                                copie d’examen.
+                            <style>.tab {
+                                display: inline-block;
+                                margin-left: 40px;
+                                }
+                            </style>
+                            <p class="tab">
+                                <p>a) Nombre de candidats inscrits et présents :</p>
+                                <p>- Le nombre de candidats inscrits était de
+                                    <span t-esc="docs.nbr_client_par_session(nbr_inscrits)"/>
+                                    personnes
+                                </p>
+                                <p>
+                                    - Le nombre de candidats présents était de
+                                    <span t-esc="docs.nbr_present_par_session(nbr_present)"/>
+                                    personnes
+                                </p>
                                 <br/>
-                                Ces éléments se trouvent dans le dossier de chaque candidat
+                                <p>B) Nombre de candidats reçus à l’examen
+                                    <span t-esc="docs.nbr_recus_par_session(nbr_recu)"/>
+                                    sur
+                                    <span t-esc="docs.nbr_client_par_session(nbr_inscrits)"/>
+                                </p>
+                                <p>- Le taux de réussite est donc de<span
+                                        t-esc="docs.pourcentage_client_recu(pourcentage)"/>%.
+                                </p>
+                                <br/>
+                                <p>c) Liste récapitulative des candidats inscrits, absents, reçus ou ajournés en
+                                    annexe.
+                                </p>
+                                <br/>
+                                <p>d) Le constat du déroulement des épreuves ainsi que la mention des éventuelles
+                                    difficultés rencontrées lors du déroulement de la
+                                    session :
+                                </p>
+                                <br/>
+                                <p>Aucune difficulté n’est à mentionner, tout s’est bien déroulé.</p>
+                                <br/>
+                                <p>e) Le dossier d’inscription à l’examen du candidat, accompagné du relevé des notes
+                                    obtenues
+                                    aux différentes épreuves ainsi que de la
+                                    copie d’examen.
+                                    <br/>
+                                    Ces éléments se trouvent dans le dossier de chaque candidat
+                                </p>
                             </p>
                             <br/>
 
@@ -162,30 +171,32 @@
                                             </thead>
 
                                             <tr t-foreach='o.intervenant_id' t-as='line'>
-                                                <td style="width:200px;">
+                                                <td style="height:100px;width:200px;">
                                                     <span t-esc="line.intervenant_id.display_name"/>
                                                 </td>
-                                                <td style="width:200px;">
+                                                <td style="height:100px;width:200px;">
                                                     <span t-esc="line.fonction_id.name"/>
                                                 </td>
-                                                <td style="width:200px;">
-                                                    <span></span>
+                                                <td style="height:100px;width:200px;">
+                                                    <span t-esc="context_timestamp(datetime.datetime.now()).strftime('%d/%m/%Y')"/>
                                                 </td>
-                                                <td style="width:200px;">
+                                                <td style="height:100px;width:200px;">
                                                     <span></span>
                                                 </td>
                                             </tr>
                                             <tr>
-                                                <td style="width:200px;"></td>
-                                                <td style="width:200px;"></td>
-                                                <td style="width:200px;"></td>
-                                                <td style="width:200px;"></td>
+                                                <td style="height:100px;width:200px;"></td>
+                                                <td style="height:100px;width:200px;"></td>
+                                                <td style="height:100px;width:200px;"></td>
+                                                <td style="height:100px;width:200px;"></td>
                                             </tr>
                                         </tbody>
                                     </table>
                                 </div>
                             </div>
-                            <p style="padding-top: 20px;">Cette session est présidée par le Directeur ................................ :</p>
+                            <p style="padding-top: 20px;">Cette session est présidée par le Directeur
+                                ................................ :
+                            </p>
                         </div>
                     </t>
                 </t>
