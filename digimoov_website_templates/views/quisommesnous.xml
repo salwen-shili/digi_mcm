@@ -2,7 +2,7 @@
     <template id="digimoov_website_templates.digimoov_template_quisommesnous" name="Qui Sommes Nous | Digimoov">
         <t t-call="website.layout">
             <t t-set="head">
-                <!--structured data-->
+                <!-- structured data -->
                 <script type="application/ld+json">
                     {
                     "@context": "https://schema.org",
