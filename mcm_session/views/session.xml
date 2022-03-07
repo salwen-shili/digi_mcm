@@ -30,6 +30,8 @@
                                 <field name="company_id"/>
                             </group>
                             <group name="rapport_jury" string="Rapport jury">
+                                <field name="ville_jury_id" />
+                                <field name="adresse_jury_id" />
                                 <field name="date_jury" />
                                 <field name="heure_jury"/>
                                 <field name="date_session_en_lettre"/>

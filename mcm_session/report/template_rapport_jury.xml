@@ -24,9 +24,151 @@
                             </div>
                             <div class="row">
                                 <div class="col-12">
-
+                                    <style>
+                                        .souligne
+                                        {
+                                        text-decoration: underline;
+                                        }
+                                    </style>
+                                    <span class="souligne">
+                                        <b>SESSION DU
+                                            <span t-esc="(o.date_exam).strftime('%d %B %Y')"/>
+                                        </b>
+                                    </span>
+                                    <p>L'AN
+                                        <span t-esc="docs.date_to_text(yearformat,monthformat,monthformat)"/>
+                                    </p>
+                                    <br/>
+                                    <div class="row" style="padding-top:5px!important;">
+                                        <div class="col-1"></div>
+                                        <div class="col-10">
+                                            <center>
+                                                <table class="table table-bordered"
+                                                       style="border:1px solid black;">
+                                                    <tr align="center">
+                                                        <th>CENTRE ORGANISATEUR DE L’EXAMEN</th>
+                                                    </tr>
+                                                    <tbody>
+                                                        <tr>
+                                                            <td align="center">
+                                                                <b>Numéro d’agrément</b>
+                                                            </td>
+                                                            <td align="center">
+                                                                <strong>
+                                                                    <p>MCM ACADEMY</p>
+                                                                    <span t-raw="'%s' % o.num_agrement_jury"/>
+                                                                </strong>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td align="center">
+                                                                <b>Lieu de réalisation de la session</b>
+                                                            </td>
+                                                            <td align="center">
+                                                                <strong>
+                                                                    <span t-raw="'%s' % o.ville_jury_id.name_ville"/>:
+                                                                    <span t-raw="'%s' % o.adresse_jury_id.adresse_centre_examen"/>
+                                                                </strong>
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </center>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
+                            <p style="page-break-after:always;"/>
+                            <span>
+                                <p style="padding-top: 50px;">
+                                    <strong>
+                                        <u>Stagiaires :</u>
+                                    </strong>
+                                </p>
+                            </span>
+                            <p>a) Nombre de candidats inscrits et présents :</p>
+                            <p>- Le nombre de candidats inscrits était de
+                                <span t-esc="docs.nbr_client_par_session(nbr_inscrits)"/>
+                                personnes
+                            </p>
+                            <p>
+                                - Le nombre de candidats présents était de
+                                <span t-esc="docs.nbr_present_par_session(nbr_present)"/>
+                                personnes
+                            </p>
+                            <br/>
+                            <p>B) Nombre de candidats reçus à l’examen
+                                <span t-esc="docs.nbr_recus_par_session(nbr_recu)"/>
+                                sur
+                                <span t-esc="docs.nbr_client_par_session(nbr_inscrits)"/>
+                            </p>
+                            <p>- Le taux de réussite est donc de<span
+                                    t-esc="docs.pourcentage_client_recu(pourcentage)"/>%.
+                            </p>
+                            <br/>
+                            <p>c) Liste récapitulative des candidats inscrits, absents, reçus ou ajournés en annexe.</p>
+                            <br/>
+                            <p>d) Le constat du déroulement des épreuves ainsi que la mention des éventuelles
+                                difficultés rencontrées lors du déroulement de la
+                                session :
+                            </p>
+                            <br/>
+                            <p>Aucune difficulté n’est à mentionner, tout s’est bien déroulé.</p>
+                            <br/>
+                            <p>e) Le dossier d’inscription à l’examen du candidat, accompagné du relevé des notes
+                                obtenues
+                                aux différentes épreuves ainsi que de la
+                                copie d’examen.
+                                <br/>
+                                Ces éléments se trouvent dans le dossier de chaque candidat
+                            </p>
+                            <br/>
+
+                            <div class="row" style="padding-top:5px!important;">
+                                <div class="col-1"></div>
+                                <div class="col-12">
+                                    <table class="table table-bordered"
+                                           style="border:1px solid black;">
+                                        <tbody>
+                                            <tr>
+                                                <td align="center" style="height: 150px; width: 200px;">
+                                                    <b>Remarques</b>
+                                                </td>
+                                                <td align="center" style="height: 150px; width: 900px;">test
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <p style="page-break-after:always;"/>
+                            <p>
+                                <b>
+                                    <u>PERSONNES PRESENTES :</u>
+                                </b>
+                            </p>
+                            <div class="row" style="padding-top:5px!important;">
+                                <div class="col-12">
+                            <table class="table table-bordered"
+                                   style="border:1px solid black;">
+                                <tbody>
+                                    <tr t-foreach='o.intervenant_id' t-as='line'>
+                                        <td>
+                                            <span t-esc="line.intervenant_id.display_name"/>
+                                        </td>
+                                        <td>
+                                            <span t-esc="line.telephone"/>
+                                        </td>
+                                        <td>
+                                            <span t-esc="line.email"/>
+                                        </td>
+                                        <td>
+                                            <span t-esc="line.fonction_id.name"/>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                                </div></div>
                         </div>
                     </t>
                 </t>
