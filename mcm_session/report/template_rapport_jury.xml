@@ -18,8 +18,7 @@
                             <div class="row">
                                 <div class="col-12">
                                     <br/>
-                                    <img src='/partner_exam/static/src/img/1.png' height="150" width="950"/>
-                                    <img src='/partner_exam/static/src/img/header2.png' height="300" width="1000"/>
+                                    <img src='/mcm_session/static/src/img/header_jury.png' height="150" width="950"/>
                                 </div>
                             </div>
                             <div class="row">
@@ -43,10 +42,10 @@
                                         <div class="col-1"></div>
                                         <div class="col-10">
                                             <center>
-                                                <table class="table table-bordered"
+                                                <table class="table"
                                                        style="border:1px solid black;">
                                                     <tr align="center">
-                                                        <th>CENTRE ORGANISATEUR DE L’EXAMEN</th>
+                                                        <th colspan="2">CENTRE ORGANISATEUR DE L’EXAMEN</th>
                                                     </tr>
                                                     <tbody>
                                                         <tr>
@@ -197,6 +196,10 @@
                             <p style="padding-top: 20px;">Cette session est présidée par le Directeur
                                 ................................ :
                             </p>
+                        </div>
+                        <div class="col-12">
+                            <img src='/mcm_session/static/src/img/footer_jury.png' height="200"
+                                 width="950"/>
                         </div>
                     </t>
                 </t>
