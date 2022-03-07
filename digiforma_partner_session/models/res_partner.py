@@ -9,3 +9,4 @@ class resPartner(models.Model):
     from_digiforma=fields.Boolean('De digiforma',default=False)
     digiforma_sessions=fields.Text('Liste des sessions')
     note_digiforma = fields.Text('Notes sur Digiforma')
+    duplicate_have = fields.Boolean(default=False)
