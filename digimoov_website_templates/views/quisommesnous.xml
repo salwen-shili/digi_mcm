@@ -1,10 +1,30 @@
 <odoo>
     <template id="digimoov_website_templates.digimoov_template_quisommesnous" name="Qui Sommes Nous | Digimoov">
         <t t-call="website.layout">
-            <script defer="defer" type="text/javascript" src="/digimoov_website_templates/static/src/js/lazy-min.min.js" />
+            <t t-set="head">
+                <script type="application/ld+json">
+                    {
+                    "@context": "https://schema.org",
+                    "@type": "Organization",
+                    "name": "Digimoov",
+                    "url": "https://www.digimoov.fr/",
+                    "logo": "https://www.digimoov.fr/web/image/website/2/logo/DIGIMOOV?unique=75150a5",
+                    "contactPoint": {
+                    "@type": "ContactPoint",
+                    "telephone": "+33 9 86 87 88 66",
+                    "contactType": "customer service"
+                    }
+                    }
+                </script>
+            </t>
+            <script defer="defer" type="text/javascript"
+                    src="/digimoov_website_templates/static/src/js/lazy-min.min.js"/>
             <!-- <script defer='defer' type="text/javascript" src="/digimoov_website_templates/static/src/js/bg-examen.js" /> -->
             <div id="wrap" class="oe_structure oe_empty">
-                <section id="img-quisommenous" class="s_furniture_with_bg_imag_para lg-banner-area lg-banner-bg pt104 pb128 oe_img_bg oe_custom_bg" style="background-image: url(&quot;/digimoov_website_templates/static/img/Qui sont Digimoov.webp&quot;); width: 100%;" data-name="Background imagge with button and paragraph">
+                <section id="img-quisommenous"
+                         class="s_furniture_with_bg_imag_para lg-banner-area lg-banner-bg pt104 pb128 oe_img_bg oe_custom_bg"
+                         style="background-image: url(&quot;/digimoov_website_templates/static/img/Qui sont Digimoov.webp&quot;); width: 100%;"
+                         data-name="Background imagge with button and paragraph">
                     <div class="container">
                         <div class="row">
                             <div class="col-md-10 col-lg-6">
@@ -37,7 +57,7 @@
                                     <div class="whychoose-content">
                                         <h3>Fort de son expérience, DIGIMOOV est aujourd'hui LEADER en France.</h3>
                                         <div class="choose">
-                                            <span class="fa fa-check" />
+                                            <span class="fa fa-check"/>
                                             <h4>Une expérience de dizaine d’années</h4>
                                             <p>Digimoov est le fruit d'une expérience professionnelle acquise depuis une
                                                 dizaine d’années. Notre envie a été de transmettre notre expertise et
@@ -45,7 +65,7 @@
                                             </p>
                                         </div>
                                         <div class="choose">
-                                            <span class="fa fa-check" />
+                                            <span class="fa fa-check"/>
                                             <h4>Une formation complète</h4>
                                             <p>Notre centre met à votre disposition des formations complètes et
                                                 attrayantes, vous assure un suivi personnalisé et une préparation à
@@ -53,7 +73,7 @@
                                             </p>
                                         </div>
                                         <div class="choose">
-                                            <span class="fa fa-check" />
+                                            <span class="fa fa-check"/>
                                             <h4>Un service complet</h4>
                                             <p>Digimoov se mobilise pour vous assurer un suivi jusqu'au démarrage de
                                                 votre activité dans les meilleures conditions. Nos conseillers et notre
@@ -75,7 +95,11 @@
                         <div class="container">
                             <div class="row">
                                 <div class="col-lg-6">
-                                    <img data-src="/digimoov_website_templates/static/img/Digimoov_-_des-centres-d'examen-partout-en-france.png" data-srcsafari="/digimoov_website_templates/static/img/Digimoov_-_des-centres-d'examen-partout-en-france.png" class="img-fluid lazy" alt="bizople" data-original-title="" title="" aria-describedby="tooltip969892" style="transform: translateX(-0.9%) translateY(18.4%) scaleX(1.05) scaleY(1.05);" />
+                                    <img data-src="/digimoov_website_templates/static/img/Digimoov_-_des-centres-d'examen-partout-en-france.png"
+                                         data-srcsafari="/digimoov_website_templates/static/img/Digimoov_-_des-centres-d'examen-partout-en-france.png"
+                                         class="img-fluid lazy" alt="bizople" data-original-title="" title=""
+                                         aria-describedby="tooltip969892"
+                                         style="transform: translateX(-0.9%) translateY(18.4%) scaleX(1.05) scaleY(1.05);"/>
                                 </div>
                                 <div class="col-lg-6">
                                     <div class="card-body">
@@ -94,12 +118,12 @@
                                             l’un des centres suivants:
                                             <t t-foreach="list_villes" t-as="ville">
                                                 <t t-if="ville">
-                                                    <t t-esc="ville.name_ville" />
+                                                    <t t-esc="ville.name_ville"/>
                                                     ,
                                                 </t>
                                             </t>
                                             <t t-if="last_ville">
-                                                <t t-esc="last_ville.name_ville" />
+                                                <t t-esc="last_ville.name_ville"/>
                                                 .
                                             </t>
                                         </p>
@@ -109,7 +133,7 @@
                                             Professionnel de Formation (CPF).
                                         </p>
                                         <div>
-                                            <br />
+                                            <br/>
                                         </div>
                                     </div>
                                 </div>
@@ -117,14 +141,16 @@
                         </div>
                     </div>
                 </section>
-                <section id="img-fond" class="s_furniture_fun-fact-section oe_img_bg oe_custom_bg pt40" style="background-image: url(&quot;/digimoov_website_templates/static/img/Monter boite de transport.webp&quot;);" data-name="Counter with parallex image">
+                <section id="img-fond" class="s_furniture_fun-fact-section oe_img_bg oe_custom_bg pt40"
+                         style="background-image: url(&quot;/digimoov_website_templates/static/img/Monter boite de transport.webp&quot;);"
+                         data-name="Counter with parallex image">
                     <div class="container">
                         <div class="row clearfix">
                             <div class="title-column col-lg-6 col-md-12 col-sm-12">
                                 <div class="inner-column">
                                     <h3>Digimoov en quelque chiffres</h3>
                                     <div class="text">
-                                        <br />
+                                        <br/>
                                     </div>
                                 </div>
                             </div>
@@ -134,9 +160,9 @@
                                         <div class="counter-column col-lg-4 col-md-4 col-sm-12">
                                             <div class="count-box counter-box">
                                                 <span class="count-text counter">1500</span>
-                                                <br />
+                                                <br/>
                                                 +
-                                                <br />
+                                                <br/>
                                                 <h4 class="counter-title">Plus de 1500 Stagiaires formés</h4>
                                             </div>
                                         </div>
@@ -145,7 +171,7 @@
                                                 <span class="count-text counter">4</span>
                                                 <span>.</span>
                                                 <span class="count-text counter">6</span>
-                                                <br />
+                                                <br/>
                                                 &amp;nbsp;
                                                 <h4 class="counter-title">Une note de 4,6/5 sur +100 avis sur Google
                                                 </h4>
@@ -154,7 +180,7 @@
                                         <div class="counter-column col-lg-4 col-md-4 col-sm-12">
                                             <div class="count-box counter-box">
                                                 <span class="count-text counter">96</span>
-                                                <br />
+                                                <br/>
                                                 %
                                                 <h4 class="counter-title">Un taux de satisfaction qui s’élève à 96%</h4>
                                             </div>
@@ -207,7 +233,7 @@
                     </div>
                 </section>
                 <div class="s_btn text-center pt16 pb16" data-name="Button">
-                    <a href="https://www.google.fr/search?source=hp&amp;ei=2gDjX575DIKalwS3trWIDg&amp;q=digimoov&amp;oq=digimoov&amp;gs_lcp=CgZwc3ktYWIQAzIICAAQxwEQrwEyAggAMgIIADICCAAyAggAMgIIADICCAAyAggAMgQILhAKMggIABDHARCvAToCCC46CAgAEMcBEKMCUKQBWM0JYOMKaABwAHgAgAFeiAHeBJIBATeYAQCgAQGqAQdnd3Mtd2l6&amp;sclient=psy-ab&amp;ved=0ahUKEwiezobe2OPtAhUCzYUKHTdbDeEQ4dUDCAc&amp;uact=5#lrd=0x47e66f4105e53b4d:0x9b8c7c90c4de0b74,1,,," class="btn btn-primary" data-original-title="" title="" aria-describedby="tooltip755390" target="_blank" rel="noopener">Voir tous les avis sur Google
+                    <a href="https://www.google.fr/search?source=hp&amp;ei=2gDjX575DIKalwS3trWIDg&amp;q=digimoov&amp;oq=digimoov&amp;gs_lcp=CgZwc3ktYWIQAzIICAAQxwEQrwEyAggAMgIIADICCAAyAggAMgIIADICCAAyAggAMgQILhAKMggIABDHARCvAToCCC46CAgAEMcBEKMCUKQBWM0JYOMKaABwAHgAgAFeiAHeBJIBATeYAQCgAQGqAQdnd3Mtd2l6&amp;sclient=psy-ab&amp;ved=0ahUKEwiezobe2OPtAhUCzYUKHTdbDeEQ4dUDCAc&amp;uact=5#lrd=0x47e66f4105e53b4d:0x9b8c7c90c4de0b74,1,,," class="btn btn-primary" target="_blank" rel="noopner">Voir tous les avis sur Google
                     </a>
                 </div>
                 <section class="clients s_references bg-200 pt16 pb16" data-name="References" style="">

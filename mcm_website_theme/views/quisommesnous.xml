@@ -1,708 +1,781 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-  <template id="mcm_website_theme_qui_sommes_nous" name="Qui Sommes Nous | MCM ACADEMY">
-    <t t-call="website.layout">
-      <div id="wrap" class="oe_structure oe_empty">
-        <script defer="defer" type="text/javascript" src="/digimoov_website_templates/static/src/js/lazy-min.min.js"></script>
-        <link rel="stylesheet" href="/mcm_website_theme/static/src/css/homepage.min.css" />
-        <script type="text/javascript" src="/mcm_website_theme/static/src/js/msAds.min.js"></script>
-        <link rel="stylesheet" href="/mcm_website_theme/static/src/css/cta-button.min.css" />
-        <!-- <script type="text/javascript" src="/mcm_website_theme/static/src/js/scrollAnimation.js"></script> -->
-        <style>
-          h1{
-            font-size: 54px !important;
-          }
-          h2{
-            font-size: 26px !important;
-          }
-          h3{
-            font-size: 26px !important;
-          }
-          #sh_corpomate_theme_section_258 {
-            padding: 0 !important;
-          }
+    <template id="mcm_website_theme_qui_sommes_nous" name="Qui Sommes Nous | MCM ACADEMY">
+        <t t-call="website.layout">
+            <t t-set="//head//script[@type='application/ld+json']">
+                <script type="application/ld+json">
+                    {
+                    "@context": "https://schema.org",
+                    "@type": "Organization",
+                    "name": "MCM Academy",
+                    "url": "https://www.mcm-academy.fr/",
+                    "logo": "https://www.mcm-academy.fr/web/image/website/1/logo/MCM%20ACADEMY?unique=d42375d",
+                    "contactPoint": {
+                    "@type": "ContactPoint",
+                    "telephone": "09 86 87 88 67",
+                    "contactType": "customer service"
+                    }
+                    }
+                </script>
+            </t>
+            <div id="wrap" class="oe_structure oe_empty">
+                <script defer="defer" type="text/javascript"
+                        src="/digimoov_website_templates/static/src/js/lazy-min.min.js"></script>
+                <link rel="stylesheet" href="/mcm_website_theme/static/src/css/homepage.min.css"/>
+                <script type="text/javascript" src="/mcm_website_theme/static/src/js/msAds.min.js"></script>
+                <link rel="stylesheet" href="/mcm_website_theme/static/src/css/cta-button.min.css"/>
+                <!-- <script type="text/javascript" src="/mcm_website_theme/static/src/js/scrollAnimation.js"></script> -->
+                <style>
+                    h1{
+                    font-size: 54px !important;
+                    }
+                    h2{
+                    font-size: 26px !important;
+                    }
+                    h3{
+                    font-size: 26px !important;
+                    }
+                    #sh_corpomate_theme_section_258 {
+                    padding: 0 !important;
+                    }
 
-          .fa-ul {
-            padding-left: 0;
-            margin-left: 8px;
-            list-style-type: none;
-            font-size: 16.5px;
-            line-height: 27px !important;
-          }
+                    .fa-ul {
+                    padding-left: 0;
+                    margin-left: 8px;
+                    list-style-type: none;
+                    font-size: 16.5px;
+                    line-height: 27px !important;
+                    }
 
-          p {
-            font-size: 17px;
-            line-height: 28px;
-            color: #000;
-          }
+                    p {
+                    font-size: 17px;
+                    line-height: 28px;
+                    color: #000;
+                    }
 
-          .nav-pills .nav-link.active,
-          .nav-pills .show .nav-link {
-            background-color: #000;
-          }
+                    .nav-pills .nav-link.active,
+                    .nav-pills .show .nav-link {
+                    background-color: #000;
+                    }
 
-          a {
-            color: #000;
-          }
+                    a {
+                    color: #000;
+                    }
 
-          a:hover {
-            color: #000;
-          }
+                    a:hover {
+                    color: #000;
+                    }
 
-          .btn {
-            background-color: #000;
-            border-color: #000;
-            color: #fff;
-          }
+                    .btn {
+                    background-color: #000;
+                    border-color: #000;
+                    color: #fff;
+                    }
 
-          .btn:hover {
-            background-color: #7f7e7e;
-          }
+                    .btn:hover {
+                    background-color: #7f7e7e;
+                    }
 
-          #sh_corpomate_theme_section_290 .sh_feature_box p {
-            margin-bottom: 0px !important;
-            transition: 0.5s;
-            font-size: 17px;
-            line-height: 1.8;
-            display: block !important;
-            -webkit-line-clamp: 6 !important;
-            -webkit-box-orient: initital;
-            overflow: hidden;
-            color: #616161;
-            font-family: 'Poppins', sans-serif;
-          }
+                    #sh_corpomate_theme_section_290 .sh_feature_box p {
+                    margin-bottom: 0px !important;
+                    transition: 0.5s;
+                    font-size: 17px;
+                    line-height: 1.8;
+                    display: block !important;
+                    -webkit-line-clamp: 6 !important;
+                    -webkit-box-orient: initital;
+                    overflow: hidden;
+                    color: #616161;
+                    font-family: 'Poppins', sans-serif;
+                    }
 
-          .feature_container {
-            margin-block-start: 15px;
-            flex-direction: column;
-            justify-content: space-between;
-          }
+                    .feature_container {
+                    margin-block-start: 15px;
+                    flex-direction: column;
+                    justify-content: space-between;
+                    }
 
-          .read_more {
-            color: #2667ae !important;
-            font: inherit !important;
-            font-size: 16px !important;
-          }
+                    .read_more {
+                    color: #2667ae !important;
+                    font: inherit !important;
+                    font-size: 16px !important;
+                    }
 
-          #sh_corpomate_theme_section_76 .sh_content .sh_num_icon {
-            font-size: 30px;
-            color: #000000;
-            border: 1px solid #cecece;
-            border-radius: 50%;
-            padding: 16px 20px 20px 19px;
-            width: 78px;
-            height: 78px;
-            margin-top: -15px;
-            position: relative;
-            margin: 0 auto;
-            background: #fdd125;
-          }
+                    #sh_corpomate_theme_section_76 .sh_content .sh_num_icon {
+                    font-size: 30px;
+                    color: #000000;
+                    border: 1px solid #cecece;
+                    border-radius: 50%;
+                    padding: 16px 20px 20px 19px;
+                    width: 78px;
+                    height: 78px;
+                    margin-top: -15px;
+                    position: relative;
+                    margin: 0 auto;
+                    background: #fdd125;
+                    }
 
-          #sh_corpomate_theme_section_76 .sh_content:hover .sh_num_icon {
-            font-size: 30px;
-            color: #fff;
-            border: 1px solid #cecece;
-            border-radius: 50%;
-            padding: 18px 20px 20px 19px;
-            width: 83px;
-            height: 83px;
-            margin-top: -15px;
-            position: relative;
-            margin: 0 auto;
-            background: #000000;
-          }
+                    #sh_corpomate_theme_section_76 .sh_content:hover .sh_num_icon {
+                    font-size: 30px;
+                    color: #fff;
+                    border: 1px solid #cecece;
+                    border-radius: 50%;
+                    padding: 18px 20px 20px 19px;
+                    width: 83px;
+                    height: 83px;
+                    margin-top: -15px;
+                    position: relative;
+                    margin: 0 auto;
+                    background: #000000;
+                    }
 
-          #sh_corpomate_theme_section_76 .sh_content p {
-            padding: 0 0 !important;
-            overflow: visible;
-            -webkit-box-orient: horizontal;
-          }
+                    #sh_corpomate_theme_section_76 .sh_content p {
+                    padding: 0 0 !important;
+                    overflow: visible;
+                    -webkit-box-orient: horizontal;
+                    }
 
-          .res_height {
-            height: 423px;
-          }
+                    .res_height {
+                    height: 423px;
+                    }
 
-          @media (max-width: 467.98px) {
-            .res_height {
-              height: 243px;
-            }
-          }
+                    @media (max-width: 467.98px) {
+                    .res_height {
+                    height: 243px;
+                    }
+                    }
 
-          #sh_corpomate_theme_section_76 .sh_content {
-            padding-top: 0;
-          }
+                    #sh_corpomate_theme_section_76 .sh_content {
+                    padding-top: 0;
+                    }
 
-          #sh_corpomate_theme_section_76 .sh_content p:after {
-            top: 20px;
-          }
+                    #sh_corpomate_theme_section_76 .sh_content p:after {
+                    top: 20px;
+                    }
 
-          .card-title {
-            font-size: 23px;
-            font-weight: 700;
-            margin-block-end: 18px;
-            text-align: center;
-          }
-        </style>
-        <!-- cover-->
-        <section id="sh_corpomate_theme_section_258 " class="sh_animation_part pt8" data-name="Formation chauffeur TAXI">
-          <div class="container-banner">
-            <div class="row">
-              <div class="col-lg-6 pb16 pt56 js-scroll slide-left" style="border-style: none; border-width: 0px">
-                <div class="">
-                  <div class="text-center">
-                    <h1 class="title-mcm slider-text-info">MCM Academy</h1>
-                    <br />
-                    <p class="heading text-center">
-                      CENTRE DE FORMATION EN LIGNE DES MÉTIERS DE TRANSPORT.
-                    </p>
-                    <br />
-                    <a class="animated-button-yellow" href="#pricing" title="Inscription">
-                      <span></span>
-                      <span></span>
-                      <span></span>
-                      <span></span>
-                      S'inscrire
-                    </a>
-                  </div>
-                </div>
-              </div>
-              <div class="col-lg-6 pb48 pt16 js-scroll slide-right">
-                <br />
-                <img data-src="/mcm_website_theme/static/src/img/quisommesnous/couv MCM.png" data-srcSafari="/mcm_website_theme/static/src/img/quisommesnous/couv MCM.webp" class="img img-fluid mx-auto lazy" alt="Devenir chauffeur Taxi, VTC ou Moto-Taxi" title="Taxi chauffeur" style="text-align: center" />
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <!--Notre histoire -->
-
-        <section class="s_text_image pt32 pb0 " data-name="Text - Image">
-          <div class="container js-scroll fade-in-top">
-            <div class="row s_nb_column_fixed">
-              <div class="col-lg-12 s_title" style="padding: 0px">
-                <h2 class="s_title_lines" style="font-size: 36px; font-weight: 700; text-align: left">
-                  Notre histoire
-                </h2>
-              </div>
-            </div>
-            <div class="row align-items-center">
-              <div class="pt16 pb16 col-lg-7" style="border-style: none; border-width: 0px">
-                <p>
-                  Créée en 2015,
-                  <b>MCM Academy</b>
-                  est une structure
-                  spécialisée dans la formation des métiers de chauffeurs de
-                  TAXI, VTC et VMDTR. Forte de son expérience, elle est
-                  aujourd'hui leader du marché de la formation de TAXIS et VTC
-                  en France.
-                </p>
-                <p>
-                  <b>MCM Academy</b>
-                  est le fruit de notre expérience
-                  professionnelle, acquise durant une dizaine d’années, et de
-                  notre envie de transmettre notre expertise et nos
-                  connaissances par la création de ce centre de formation.
-                </p>
-                <p>
-                  À ce jour,&amp;nbsp;
-                  <b>MCM Academy</b>
-                  compte à son actif
-                  plus d'une centaine de chauffeurs de TAXI et VTC formés.
-                </p>
-                <p>
-                  Chez
-                  <b>MCM Academy</b>
-                  , chaque candidat est unique. Le centre
-                  de formation met à votre disposition des formations complètes
-                  et attrayantes, vous assure un suivi personnalisé et une
-                  préparation à votre rythme afin de vous accompagner jusqu’au
-                  bout de votre projet.
-                </p>
-              </div>
-              <div class="pt16 pb16 col-lg-5" style="border-style: none; border-width: 0px">
-                <img data-src="/mcm_website_theme/static/src/img/quisommesnous/apprenants-satisfaits.webp" data-srcsafari="/mcm_website_theme/static/src/img/quisommesnous/apprenants-satisfaits.png" class="img img-fluid mx-auto lazy" alt="Apprenants satisfaits" data-original-title="" title="" aria-describedby="tooltip771176" />
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <!--Pourquoi nous choisir ? -->
-
-        <section class="s_text_image pt32 pb0" data-name="Text - Image">
-          <div class="container js-scroll fade-in-top">
-            <div class="row s_nb_column_fixed">
-              <div class="col-lg-12 s_title" style="padding: 0px">
-                <h2 class="s_title_lines" style="font-size: 36px; font-weight: 700; text-align: left">
-                  Pourquoi nous choisir ?
-                </h2>
-              </div>
-            </div>
-            <div class="row align-items-center">
-              <div class="pt16 pb16 col-lg-5" style="border-style: none; border-width: 0px">
-                <img data-src="/mcm_website_theme/static/src/img/quisommesnous/MCM-Acadmy-centre-de-renommée.webp" data-srcsafari="/mcm_website_theme/static/src/img/quisommesnous/MCM-Acadmy-centre-de-renommée.png" class="img img-fluid mx-auto lazy" alt="" data-original-title="" title="" aria-describedby="tooltip771176" />
-              </div>
-              <div class="pt16 pb16 col-lg-7" style="border-style: none; border-width: 0px">
-                <ul class="fa-ul" style="font-size: 16.5px; line-height: 1.2rem">
-                  <li style="padding-block-end: 10px">
-                    <i class="fa fa-chevron-right" style="margin-top: 2px"></i>
-                    <b>Notre expérience</b>
-                    : En tant qu’anciens chauffeurs de
-                    VTC, nous connaissons bien notre métier. Nous mettons notre
-                    expertise et notre savoir-faire à votre service. Nos agents
-                    mettent à votre disposition un suivi personnalisé, des
-                    informations indispensables et un bilan individuel pour bien
-                    démarrer votre activité et vous faciliter les démarches.
-                  </li>
-                  <li style="padding-block-end: 10px">
-                    <i class="fa fa-chevron-right" style="margin-top: 2px"></i>
-                    <b>Nos prix</b>
-                    : Un rapport qualité prix imbattable
-                  </li>
-                  <li style="padding-block-end: 10px">
-                    <i class="fa fa-chevron-right" style="margin-top: 2px"></i>
-                    <b> Une formation e-learning experte </b>
-                    :nous vous
-                    offrons, c’est une formation 100 % en ligne, à organiser à
-                    votre rythme selon vos disponibilités, et à un prix
-                    raisonnable que vous pouvez financer en mobilisant votre
-                    CPF.
-                  </li>
-                </ul>
-                <p>
-                  Nous vous donnons accès à des vidéos, des cours en
-                  visioconférence, un livre d'entraînement en version
-                  électronique pour bien vous préparer. Nous vous assurons un
-                  suivi après la formation – avec des Assistances par mail, par
-                  téléphone et par visioconférence avec les formateurs pour les
-                  explications éventuelles – et la révision du programme avant
-                  examen.
-                </p>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <section class="" data-name="Title">
-          <div class="container js-scroll fade-in-top">
-            <div class="row s_nb_column_fixed">
-              <div class="col-lg-12 s_title" style="padding: 0px">
-                <h2 class="s_title_lines" style="font-size: 36px; font-weight: 700; text-align: left">
-                  Une équipe pédagogique experte
-                </h2>
-              </div>
-            </div>
-          </div>
-        </section>
-        <section id="sh_corpomate_theme_section_56" data-name="About Snippet 5">
-          <div class="container">
-            <div class="row js-scroll fade-in-top">
-              <div class="col-lg-4 col-md-6">
-                <div class="sh_content">
-                  <div class="sh_left_content">
-                    <div class="sh_left_icon">
-                      <span class="fa fa-briefcase" />
+                    .card-title {
+                    font-size: 23px;
+                    font-weight: 700;
+                    margin-block-end: 18px;
+                    text-align: center;
+                    }
+                </style>
+                <!-- cover-->
+                <section id="sh_corpomate_theme_section_258 " class="sh_animation_part pt8"
+                         data-name="Formation chauffeur TAXI">
+                    <div class="container-banner">
+                        <div class="row">
+                            <div class="col-lg-6 pb16 pt56 js-scroll slide-left"
+                                 style="border-style: none; border-width: 0px">
+                                <div class="">
+                                    <div class="text-center">
+                                        <h1 class="title-mcm slider-text-info">MCM Academy</h1>
+                                        <br/>
+                                        <p class="heading text-center">
+                                            CENTRE DE FORMATION EN LIGNE DES MÉTIERS DE TRANSPORT.
+                                        </p>
+                                        <br/>
+                                        <a class="animated-button-yellow" href="#pricing" title="Inscription">
+                                            <span></span>
+                                            <span></span>
+                                            <span></span>
+                                            <span></span>
+                                            S'inscrire
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 pb48 pt16 js-scroll slide-right">
+                                <br/>
+                                <img data-src="/mcm_website_theme/static/src/img/quisommesnous/couv MCM.png"
+                                     data-srcSafari="/mcm_website_theme/static/src/img/quisommesnous/couv MCM.webp"
+                                     class="img img-fluid mx-auto lazy" alt="Devenir chauffeur Taxi, VTC ou Moto-Taxi"
+                                     title="Taxi chauffeur" style="text-align: center"/>
+                            </div>
+                        </div>
                     </div>
-                    <div class="sh_right_content">
-                      <h5>DAVID L.</h5>
-                      <p style="
-                          margin-right: 0px;
-                          margin-left: 0px;
-                          line-height: 1.9;
-                        ">
-                        <font color="#9c9c94" style="color: rgb(66, 66, 66)">
-                          <b>COMPÉTENCES</b>
-                        </font>
-                        <br />
-                      </p>
-                      <p style="
-                          margin-right: 0px;
-                          margin-left: 0px;
-                          line-height: 1.9;
-                        ">
-                        <font color="#9c9c94" style="color: rgb(66, 66, 66)">Gestion administrative</font>
-                      </p>
-                      <p style="
-                          margin-right: 0px;
-                          margin-left: 0px;
-                          line-height: 1.9;
-                        ">
-                        <font color="#9c9c94" style="color: rgb(66, 66, 66)">Gestion des ressources humaines Gestion de
-                          trésorerie, recouvrement Audit, contrôle de
-                          gestion</font>
-                      </p>
-                      <p style="
-                          margin-right: 0px;
-                          margin-left: 0px;
-                          line-height: 1.9;
-                        ">
-                        <font color="#9c9c94" style="color: rgb(66, 66, 66)">Comptabilité analytique</font>
-                      </p>
-                      <p style="
-                          margin-right: 0px;
-                          margin-left: 0px;
-                          line-height: 1.9;
-                        " />
-                      <p style="
-                          margin-right: 0px;
-                          margin-left: 0px;
-                          line-height: 1.9;
-                        ">
-                        <font color="#9c9c94" style="color: rgb(66, 66, 66)">Certification et procédure</font>
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="col-lg-4 col-md-6">
-                <div class="sh_content">
-                  <div class="sh_left_content">
-                    <div class="sh_left_icon">
-                      <span class="fa fa-briefcase" />
-                    </div>
-                    <div class="sh_right_content">
-                      <h5>ÉRIC B.</h5>
-                      <p style="
-                          margin-right: 0px;
-                          margin-left: 0px;
-                          line-height: 1.9;
-                        ">
-                        <font color="#9c9c94" style="color: rgb(66, 66, 66)">
-                          <b>COMPÉTENCES</b>
-                        </font>
-                      </p>
-                      <p style="
-                          margin-right: 0px;
-                          margin-left: 0px;
-                          line-height: 1.9;
-                        ">
-                        <font color="#9c9c94" style="color: rgb(66, 66, 66)">Chef de la brigade des transports Spécialisé dans
-                          :</font>
-                      </p>
-                      <p style="
-                          margin-right: 0px;
-                          margin-left: 0px;
-                          line-height: 1.9;
-                        ">
-                        <font color="#9c9c94" style="color: rgb(66, 66, 66)">T3P</font>
-                      </p>
-                      <p style="
-                          margin-right: 0px;
-                          margin-left: 0px;
-                          line-height: 1.9;
-                        ">
-                        <font color="#9c9c94" style="color: rgb(66, 66, 66)">Réglementation VTC</font>
-                      </p>
-                      <p style="
-                          margin-right: 0px;
-                          margin-left: 0px;
-                          line-height: 1.9;
-                        ">
-                        <font color="#9c9c94" style="color: rgb(66, 66, 66)">Réglementation TAXI</font>
-                      </p>
-                      <p style="
-                          margin-right: 0px;
-                          margin-left: 0px;
-                          line-height: 1.9;
-                        ">
-                        <font color="#9c9c94" style="color: rgb(66, 66, 66)">Réglementation locale</font>
-                        <span style="color: rgb(107, 123, 144); font-size: 15px" />
-                        <font style="color: rgb(156, 156, 148); font-size: 15px" />
-                        <br />
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="col-lg-4 col-md-6" style="border-style: none; border-width: 0px">
-                <div class="sh_content">
-                  <div class="sh_left_content">
-                    <div class="sh_left_icon">
-                      <span class="fa fa-briefcase" />
-                    </div>
-                    <div class="sh_right_content">
-                      <h5>MOUNIR T.</h5>
-                      <p style="
-                          margin-right: 0px;
-                          margin-left: 0px;
-                          line-height: 1.9;
-                        ">
-                        <font color="#9c9c94" style="color: rgb(66, 66, 66)">
-                          <b>COMPÉTENCES</b>
-                        </font>
-                      </p>
-                      <p style="
-                          margin-right: 0px;
-                          margin-left: 0px;
-                          line-height: 1.9;
-                        ">
-                        <font color="#9c9c94" style="color: rgb(66, 66, 66)">Gérant d'auto-école</font>
-                      </p>
-                      <p style="
-                          margin-right: 0px;
-                          margin-left: 0px;
-                          line-height: 1.9;
-                        ">
-                        <font color="#9c9c94" style="color: rgb(66, 66, 66)">Conduite d'un véhicule léger</font>
-                      </p>
-                      <p style="
-                          margin-right: 0px;
-                          margin-left: 0px;
-                          line-height: 1.9;
-                        ">
-                        <font color="#9c9c94" style="color: rgb(66, 66, 66)">Sécurité routière</font>
-                      </p>
-                      <p style="
-                          margin-right: 0px;
-                          margin-left: 0px;
-                          line-height: 1.9;
-                        ">
-                        <font color="#9c9c94" style="color: rgb(66, 66, 66)">Organisation des tournées</font>
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="col-lg-4 col-md-6">
-                <div class="sh_content">
-                  <div class="sh_left_content">
-                    <div class="sh_left_icon">
-                      <span class="fa fa-briefcase" />
-                    </div>
-                    <div class="sh_right_content">
-                      <h5>Priscilla D.</h5>
-                      <p style="
-                          margin-right: 0px;
-                          margin-left: 0px;
-                          line-height: 1.9;
-                        ">
-                        <font color="#9c9c94" style="color: rgb(66, 66, 66)">
-                          <b>COMPÉTENCES</b>
-                        </font>
-                      </p>
-                      <p style="
-                          margin-right: 0px;
-                          margin-left: 0px;
-                          line-height: 1.9;
-                        ">
-                        <font color="#9c9c94" style="color: rgb(66, 66, 66)">Développement commercial</font>
-                      </p>
-                      <p style="
-                          margin-right: 0px;
-                          margin-left: 0px;
-                          line-height: 1.9;
-                        ">
-                        <font color="#9c9c94" style="color: rgb(66, 66, 66)">Économie et gestion des entreprises Marketing</font>
-                        <span style="color: rgb(66, 66, 66); font-size: 15px" />
-                        <br />
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="col-lg-4 col-md-6">
-                <div class="sh_content">
-                  <div class="sh_left_content">
-                    <div class="sh_left_icon">
-                      <span class="fa fa-briefcase" />
-                    </div>
-                    <div class="sh_right_content">
-                      <h5>VINCENT H.</h5>
-                      <p>
-                        <span style="color: rgb(66, 66, 66); font-size: 16px">
-                          <b>COMPÉTENCES</b>
-                        </span>
-                      </p>
-                      <p>
-                        <span style="color: rgb(66, 66, 66); font-size: 16px">Formation en langues française et anglaise.</span>
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
+                </section>
 
-        <section class="s_three_columns bg-200 pt32 pb0" data-name="Columns">
-          <div class="container">
-            <div class="row s_nb_column_fixed js-scroll fade-in-top">
-              <div class="col-lg-12 s_title" style="padding: 0px">
-                <h3 class="s_title_lines" style="font-size: 36px; font-weight: 700; text-align: left">
-                  Nos formations
-                </h3>
-              </div>
-            </div>
-            <div class="row d-flex align-items-stretch js-scroll fade-in-top">
-              <div class="col-lg-4 s_col_no_bgcolor pt16 pb16" style="border-style: none; border-width: 0px">
-                <div class="card bg-white">
-                  <img class="card-img-top" src="/mcm_website_theme/static/src/img/quisommesnous/Formation-chauffeur-vtc.png" alt="Odoo - Echantillon n°1 pour trois colonnes " data-original-title="" title="" aria-describedby="tooltip160830" />
-                  <div class="card-body">
-                    <h4 class="card-title" style="text-align: center">
-                      <b>
-                        <font style="color: rgb(66, 66, 66)">Formation VTC</font>
-                      </b>
-                    </h4>
-                    <p class="card-text">
-                      Nous vous offrons non seulement une formation à distance,
-                      mais également un accompagnement et un suivi personnalisé
-                      pour garantir votre réussite.
-                    </p>
-                    <div class="s_btn text-center pt16 pb16" data-name="Button">
-                      <a href="#" class="btn btn-secondary" data-original-title="" title="">En savoir plus</a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="col-lg-4 s_col_no_bgcolor pt16 pb16" style="border-style: none; border-width: 0px">
-                <div class="card bg-white">
-                  <img class="card-img-top" src="/mcm_website_theme/static/src/img/quisommesnous/Formation-chauffeur-taxi.png" alt="Odoo- Echantillon n° 3 pour trois colonnes" data-original-title="" title="" aria-describedby="tooltip67402" />
-                  <div class="card-body">
-                    <h4 class="card-title" style="text-align: center">
-                      <b>
-                        <font style="color: rgb(66, 66, 66)">Formation TAXI</font>
-                      </b>
-                    </h4>
-                    <p class="card-text">
-                      MCM Academy a tout pour satisfaire vos besoins en
-                      formation TAXI et vous offre un suivi complet du jour de
-                      l'inscription à l'obtention de votre carte
-                      professionnelle.
-                      <br />
-                    </p>
-                    <div class="s_btn text-center pt16 pb16" data-name="Button">
-                      <a href="#" class="btn btn-secondary">En savoir plus</a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="col-lg-4 s_col_no_bgcolor pt16 pb16" style="border-style: none; border-width: 0px">
-                <div class="card bg-white">
-                  <img class="card-img-top" src="/mcm_website_theme/static/src/img/quisommesnous/Formation-chauffeur-mototaxi.png" alt="Odoo- Echantillon n° 3 pour trois colonnes" data-original-title="" title="" aria-describedby="tooltip67402" />
-                  <div class="card-body">
-                    <h4 class="card-title" style="text-align: center">
-                      <b>
-                        <font style="color: rgb(66, 66, 66)">Formation&amp;nbsp;</font>
-                      </b>
-                      <font color="#424242">
-                        <b>MOTO-TAXI</b>
-                      </font>
-                    </h4>
-                    <p class="card-text">
-                      Passionné de motos, vous adorez circuler en milieu urbain
-                      ? Indépendant de nature, vous voulez lancer votre carrière
-                      professionnelle ? C'est simple : devenez chauffeur de
-                      MOTO-TAXI avec MCM Academy !
-                      <br />
-                    </p>
-                    <div class="s_btn text-center pt16 pb16" data-name="Button">
-                      <a href="#" class="btn btn-secondary">En savoir plus</a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
+                <!--Notre histoire -->
 
-        <section id="sh_corpomate_theme_section_58" data-name="About Snippet 7">
-          <div class="container">
-            <div class="row">
-              <div class="col-lg-3 col-md-6 col-sm-6  js-scroll slide-left" style="border-style: none; border-width: 0px">
-                <div class="sh_content">
-                  <div class="sh_number">
-                    <section class="sh_num o_default_snippet_text">1</section>
-                  </div>
-                  <div class="sh_icon_content">
-                    <div class="sh_icon">
-                      <span class="fa fa-connectdevelop" />
+                <section class="s_text_image pt32 pb0 " data-name="Text - Image">
+                    <div class="container js-scroll fade-in-top">
+                        <div class="row s_nb_column_fixed">
+                            <div class="col-lg-12 s_title" style="padding: 0px">
+                                <h2 class="s_title_lines" style="font-size: 36px; font-weight: 700; text-align: left">
+                                    Notre histoire
+                                </h2>
+                            </div>
+                        </div>
+                        <div class="row align-items-center">
+                            <div class="pt16 pb16 col-lg-7" style="border-style: none; border-width: 0px">
+                                <p>
+                                    Créée en 2015,
+                                    <b>MCM Academy</b>
+                                    est une structure
+                                    spécialisée dans la formation des métiers de chauffeurs de
+                                    TAXI, VTC et VMDTR. Forte de son expérience, elle est
+                                    aujourd'hui leader du marché de la formation de TAXIS et VTC
+                                    en France.
+                                </p>
+                                <p>
+                                    <b>MCM Academy</b>
+                                    est le fruit de notre expérience
+                                    professionnelle, acquise durant une dizaine d’années, et de
+                                    notre envie de transmettre notre expertise et nos
+                                    connaissances par la création de ce centre de formation.
+                                </p>
+                                <p>
+                                    À ce jour,&amp;nbsp;
+                                    <b>MCM Academy</b>
+                                    compte à son actif
+                                    plus d'une centaine de chauffeurs de TAXI et VTC formés.
+                                </p>
+                                <p>
+                                    Chez
+                                    <b>MCM Academy</b>
+                                    , chaque candidat est unique. Le centre
+                                    de formation met à votre disposition des formations complètes
+                                    et attrayantes, vous assure un suivi personnalisé et une
+                                    préparation à votre rythme afin de vous accompagner jusqu’au
+                                    bout de votre projet.
+                                </p>
+                            </div>
+                            <div class="pt16 pb16 col-lg-5" style="border-style: none; border-width: 0px">
+                                <img data-src="/mcm_website_theme/static/src/img/quisommesnous/apprenants-satisfaits.webp"
+                                     data-srcsafari="/mcm_website_theme/static/src/img/quisommesnous/apprenants-satisfaits.png"
+                                     class="img img-fluid mx-auto lazy" alt="Apprenants satisfaits"
+                                     data-original-title="" title="" aria-describedby="tooltip771176"/>
+                            </div>
+                        </div>
                     </div>
-                  </div>
-                  <div class="sh_description">
-                    <h4>Innovation</h4>
-                    <p>
-                      Nous vous offrons une plateforme assez structurée,
-                      intuitive, et simple d'utilisation.
-                    </p>
-                  </div>
-                </div>
-              </div>
-              <div class="col-lg-3 col-md-6 col-sm-6  js-scroll slide-left">
-                <div class="sh_content sh_sec_content">
-                  <div class="sh_number">
-                    <section class="sh_num o_default_snippet_text">2</section>
-                  </div>
-                  <div class="sh_icon_content">
-                    <div class="sh_icon">
-                      <span class="fa fa-group" />
+                </section>
+
+                <!--Pourquoi nous choisir ? -->
+
+                <section class="s_text_image pt32 pb0" data-name="Text - Image">
+                    <div class="container js-scroll fade-in-top">
+                        <div class="row s_nb_column_fixed">
+                            <div class="col-lg-12 s_title" style="padding: 0px">
+                                <h2 class="s_title_lines" style="font-size: 36px; font-weight: 700; text-align: left">
+                                    Pourquoi nous choisir ?
+                                </h2>
+                            </div>
+                        </div>
+                        <div class="row align-items-center">
+                            <div class="pt16 pb16 col-lg-5" style="border-style: none; border-width: 0px">
+                                <img data-src="/mcm_website_theme/static/src/img/quisommesnous/MCM-Acadmy-centre-de-renommée.webp"
+                                     data-srcsafari="/mcm_website_theme/static/src/img/quisommesnous/MCM-Acadmy-centre-de-renommée.png"
+                                     class="img img-fluid mx-auto lazy" alt="" data-original-title="" title=""
+                                     aria-describedby="tooltip771176"/>
+                            </div>
+                            <div class="pt16 pb16 col-lg-7" style="border-style: none; border-width: 0px">
+                                <ul class="fa-ul" style="font-size: 16.5px; line-height: 1.2rem">
+                                    <li style="padding-block-end: 10px">
+                                        <i class="fa fa-chevron-right" style="margin-top: 2px"></i>
+                                        <b>Notre expérience</b>
+                                        : En tant qu’anciens chauffeurs de
+                                        VTC, nous connaissons bien notre métier. Nous mettons notre
+                                        expertise et notre savoir-faire à votre service. Nos agents
+                                        mettent à votre disposition un suivi personnalisé, des
+                                        informations indispensables et un bilan individuel pour bien
+                                        démarrer votre activité et vous faciliter les démarches.
+                                    </li>
+                                    <li style="padding-block-end: 10px">
+                                        <i class="fa fa-chevron-right" style="margin-top: 2px"></i>
+                                        <b>Nos prix</b>
+                                        : Un rapport qualité prix imbattable
+                                    </li>
+                                    <li style="padding-block-end: 10px">
+                                        <i class="fa fa-chevron-right" style="margin-top: 2px"></i>
+                                        <b>Une formation e-learning experte</b>
+                                        :nous vous
+                                        offrons, c’est une formation 100 % en ligne, à organiser à
+                                        votre rythme selon vos disponibilités, et à un prix
+                                        raisonnable que vous pouvez financer en mobilisant votre
+                                        CPF.
+                                    </li>
+                                </ul>
+                                <p>
+                                    Nous vous donnons accès à des vidéos, des cours en
+                                    visioconférence, un livre d'entraînement en version
+                                    électronique pour bien vous préparer. Nous vous assurons un
+                                    suivi après la formation – avec des Assistances par mail, par
+                                    téléphone et par visioconférence avec les formateurs pour les
+                                    explications éventuelles – et la révision du programme avant
+                                    examen.
+                                </p>
+                            </div>
+                        </div>
                     </div>
-                  </div>
-                  <div class="sh_description">
-                    <h4>Accompagnement</h4>
-                    <p>
-                      &amp;nbsp;Nous vous assurons un accompagnement durant tout
-                      le processus de formation&amp;nbsp;&amp;nbsp;
-                    </p>
-                  </div>
-                </div>
-              </div>
-              <div class="col-lg-3 col-md-6 col-sm-6  js-scroll slide-left">
-                <div class="sh_content">
-                  <div class="sh_number">
-                    <section class="sh_num o_default_snippet_text">3</section>
-                  </div>
-                  <div class="sh_icon_content">
-                    <div class="sh_icon">
-                      <span class="fa fa-cog" />
+                </section>
+
+                <section class="" data-name="Title">
+                    <div class="container js-scroll fade-in-top">
+                        <div class="row s_nb_column_fixed">
+                            <div class="col-lg-12 s_title" style="padding: 0px">
+                                <h2 class="s_title_lines" style="font-size: 36px; font-weight: 700; text-align: left">
+                                    Une équipe pédagogique experte
+                                </h2>
+                            </div>
+                        </div>
                     </div>
-                  </div>
-                  <div class="sh_description">
-                    <h4>Adaptabilité</h4>
-                    <p>
-                      Une formation en ligne assez flexible , vous vous formez
-                      ou vous voulez quand vous voulez
-                    </p>
-                  </div>
-                </div>
-              </div>
-              <div class="col-lg-3 col-md-6 col-sm-6  js-scroll slide-left">
-                <div class="sh_content sh_last">
-                  <div class="sh_number">
-                    <section class="sh_num o_default_snippet_text">4</section>
-                  </div>
-                  <div class="sh_icon_content">
-                    <div class="sh_icon">
-                      <span class="fa fa-trophy" />
+                </section>
+                <section id="sh_corpomate_theme_section_56" data-name="About Snippet 5">
+                    <div class="container">
+                        <div class="row js-scroll fade-in-top">
+                            <div class="col-lg-4 col-md-6">
+                                <div class="sh_content">
+                                    <div class="sh_left_content">
+                                        <div class="sh_left_icon">
+                                            <span class="fa fa-briefcase"/>
+                                        </div>
+                                        <div class="sh_right_content">
+                                            <h5>DAVID L.</h5>
+                                            <p style="
+                          margin-right: 0px;
+                          margin-left: 0px;
+                          line-height: 1.9;
+                        ">
+                                                <font color="#9c9c94" style="color: rgb(66, 66, 66)">
+                                                    <b>COMPÉTENCES</b>
+                                                </font>
+                                                <br/>
+                                            </p>
+                                            <p style="
+                          margin-right: 0px;
+                          margin-left: 0px;
+                          line-height: 1.9;
+                        ">
+                                                <font color="#9c9c94" style="color: rgb(66, 66, 66)">Gestion
+                                                    administrative
+                                                </font>
+                                            </p>
+                                            <p style="
+                          margin-right: 0px;
+                          margin-left: 0px;
+                          line-height: 1.9;
+                        ">
+                                                <font color="#9c9c94" style="color: rgb(66, 66, 66)">Gestion des
+                                                    ressources humaines Gestion de
+                                                    trésorerie, recouvrement Audit, contrôle de
+                                                    gestion
+                                                </font>
+                                            </p>
+                                            <p style="
+                          margin-right: 0px;
+                          margin-left: 0px;
+                          line-height: 1.9;
+                        ">
+                                                <font color="#9c9c94" style="color: rgb(66, 66, 66)">Comptabilité
+                                                    analytique
+                                                </font>
+                                            </p>
+                                            <p style="
+                          margin-right: 0px;
+                          margin-left: 0px;
+                          line-height: 1.9;
+                        "/>
+                                            <p style="
+                          margin-right: 0px;
+                          margin-left: 0px;
+                          line-height: 1.9;
+                        ">
+                                                <font color="#9c9c94" style="color: rgb(66, 66, 66)">Certification et
+                                                    procédure
+                                                </font>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-6">
+                                <div class="sh_content">
+                                    <div class="sh_left_content">
+                                        <div class="sh_left_icon">
+                                            <span class="fa fa-briefcase"/>
+                                        </div>
+                                        <div class="sh_right_content">
+                                            <h5>ÉRIC B.</h5>
+                                            <p style="
+                          margin-right: 0px;
+                          margin-left: 0px;
+                          line-height: 1.9;
+                        ">
+                                                <font color="#9c9c94" style="color: rgb(66, 66, 66)">
+                                                    <b>COMPÉTENCES</b>
+                                                </font>
+                                            </p>
+                                            <p style="
+                          margin-right: 0px;
+                          margin-left: 0px;
+                          line-height: 1.9;
+                        ">
+                                                <font color="#9c9c94" style="color: rgb(66, 66, 66)">Chef de la brigade
+                                                    des transports Spécialisé dans
+                                                    :
+                                                </font>
+                                            </p>
+                                            <p style="
+                          margin-right: 0px;
+                          margin-left: 0px;
+                          line-height: 1.9;
+                        ">
+                                                <font color="#9c9c94" style="color: rgb(66, 66, 66)">T3P</font>
+                                            </p>
+                                            <p style="
+                          margin-right: 0px;
+                          margin-left: 0px;
+                          line-height: 1.9;
+                        ">
+                                                <font color="#9c9c94" style="color: rgb(66, 66, 66)">Réglementation
+                                                    VTC
+                                                </font>
+                                            </p>
+                                            <p style="
+                          margin-right: 0px;
+                          margin-left: 0px;
+                          line-height: 1.9;
+                        ">
+                                                <font color="#9c9c94" style="color: rgb(66, 66, 66)">Réglementation
+                                                    TAXI
+                                                </font>
+                                            </p>
+                                            <p style="
+                          margin-right: 0px;
+                          margin-left: 0px;
+                          line-height: 1.9;
+                        ">
+                                                <font color="#9c9c94" style="color: rgb(66, 66, 66)">Réglementation
+                                                    locale
+                                                </font>
+                                                <span style="color: rgb(107, 123, 144); font-size: 15px"/>
+                                                <font style="color: rgb(156, 156, 148); font-size: 15px"/>
+                                                <br/>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-6" style="border-style: none; border-width: 0px">
+                                <div class="sh_content">
+                                    <div class="sh_left_content">
+                                        <div class="sh_left_icon">
+                                            <span class="fa fa-briefcase"/>
+                                        </div>
+                                        <div class="sh_right_content">
+                                            <h5>MOUNIR T.</h5>
+                                            <p style="
+                          margin-right: 0px;
+                          margin-left: 0px;
+                          line-height: 1.9;
+                        ">
+                                                <font color="#9c9c94" style="color: rgb(66, 66, 66)">
+                                                    <b>COMPÉTENCES</b>
+                                                </font>
+                                            </p>
+                                            <p style="
+                          margin-right: 0px;
+                          margin-left: 0px;
+                          line-height: 1.9;
+                        ">
+                                                <font color="#9c9c94" style="color: rgb(66, 66, 66)">Gérant
+                                                    d'auto-école
+                                                </font>
+                                            </p>
+                                            <p style="
+                          margin-right: 0px;
+                          margin-left: 0px;
+                          line-height: 1.9;
+                        ">
+                                                <font color="#9c9c94" style="color: rgb(66, 66, 66)">Conduite d'un
+                                                    véhicule léger
+                                                </font>
+                                            </p>
+                                            <p style="
+                          margin-right: 0px;
+                          margin-left: 0px;
+                          line-height: 1.9;
+                        ">
+                                                <font color="#9c9c94" style="color: rgb(66, 66, 66)">Sécurité routière
+                                                </font>
+                                            </p>
+                                            <p style="
+                          margin-right: 0px;
+                          margin-left: 0px;
+                          line-height: 1.9;
+                        ">
+                                                <font color="#9c9c94" style="color: rgb(66, 66, 66)">Organisation des
+                                                    tournées
+                                                </font>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-6">
+                                <div class="sh_content">
+                                    <div class="sh_left_content">
+                                        <div class="sh_left_icon">
+                                            <span class="fa fa-briefcase"/>
+                                        </div>
+                                        <div class="sh_right_content">
+                                            <h5>Priscilla D.</h5>
+                                            <p style="
+                          margin-right: 0px;
+                          margin-left: 0px;
+                          line-height: 1.9;
+                        ">
+                                                <font color="#9c9c94" style="color: rgb(66, 66, 66)">
+                                                    <b>COMPÉTENCES</b>
+                                                </font>
+                                            </p>
+                                            <p style="
+                          margin-right: 0px;
+                          margin-left: 0px;
+                          line-height: 1.9;
+                        ">
+                                                <font color="#9c9c94" style="color: rgb(66, 66, 66)">Développement
+                                                    commercial
+                                                </font>
+                                            </p>
+                                            <p style="
+                          margin-right: 0px;
+                          margin-left: 0px;
+                          line-height: 1.9;
+                        ">
+                                                <font color="#9c9c94" style="color: rgb(66, 66, 66)">Économie et gestion
+                                                    des entreprises Marketing
+                                                </font>
+                                                <span style="color: rgb(66, 66, 66); font-size: 15px"/>
+                                                <br/>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-6">
+                                <div class="sh_content">
+                                    <div class="sh_left_content">
+                                        <div class="sh_left_icon">
+                                            <span class="fa fa-briefcase"/>
+                                        </div>
+                                        <div class="sh_right_content">
+                                            <h5>VINCENT H.</h5>
+                                            <p>
+                                                <span style="color: rgb(66, 66, 66); font-size: 16px">
+                                                    <b>COMPÉTENCES</b>
+                                                </span>
+                                            </p>
+                                            <p>
+                                                <span style="color: rgb(66, 66, 66); font-size: 16px">Formation en
+                                                    langues française et anglaise.
+                                                </span>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                  </div>
-                  <div class="sh_description">
-                    <h4>Performance</h4>
-                    <p>
-                      Nous enregistrons plus de 80% de taux de réussite , et un
-                      taux de satisfaction client de 90%
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-        <section class="pt24 pb24" data-name="Title">
-          <div class="container">
-            <div class="row s_nb_column_fixed  js-scroll fade-in-top">
-              <div class="col-lg-12 s_title" style="
+                </section>
+
+                <section class="s_three_columns bg-200 pt32 pb0" data-name="Columns">
+                    <div class="container">
+                        <div class="row s_nb_column_fixed js-scroll fade-in-top">
+                            <div class="col-lg-12 s_title" style="padding: 0px">
+                                <h3 class="s_title_lines" style="font-size: 36px; font-weight: 700; text-align: left">
+                                    Nos formations
+                                </h3>
+                            </div>
+                        </div>
+                        <div class="row d-flex align-items-stretch js-scroll fade-in-top">
+                            <div class="col-lg-4 s_col_no_bgcolor pt16 pb16"
+                                 style="border-style: none; border-width: 0px">
+                                <div class="card bg-white">
+                                    <img class="card-img-top"
+                                         src="/mcm_website_theme/static/src/img/quisommesnous/Formation-chauffeur-vtc.png"
+                                         alt="Odoo - Echantillon n°1 pour trois colonnes " data-original-title=""
+                                         title="" aria-describedby="tooltip160830"/>
+                                    <div class="card-body">
+                                        <h4 class="card-title" style="text-align: center">
+                                            <b>
+                                                <font style="color: rgb(66, 66, 66)">Formation VTC</font>
+                                            </b>
+                                        </h4>
+                                        <p class="card-text">
+                                            Nous vous offrons non seulement une formation à distance,
+                                            mais également un accompagnement et un suivi personnalisé
+                                            pour garantir votre réussite.
+                                        </p>
+                                        <div class="s_btn text-center pt16 pb16" data-name="Button">
+                                            <a href="#" class="btn btn-secondary" data-original-title="" title="">En
+                                                savoir plus
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 s_col_no_bgcolor pt16 pb16"
+                                 style="border-style: none; border-width: 0px">
+                                <div class="card bg-white">
+                                    <img class="card-img-top"
+                                         src="/mcm_website_theme/static/src/img/quisommesnous/Formation-chauffeur-taxi.png"
+                                         alt="Odoo- Echantillon n° 3 pour trois colonnes" data-original-title=""
+                                         title="" aria-describedby="tooltip67402"/>
+                                    <div class="card-body">
+                                        <h4 class="card-title" style="text-align: center">
+                                            <b>
+                                                <font style="color: rgb(66, 66, 66)">Formation TAXI</font>
+                                            </b>
+                                        </h4>
+                                        <p class="card-text">
+                                            MCM Academy a tout pour satisfaire vos besoins en
+                                            formation TAXI et vous offre un suivi complet du jour de
+                                            l'inscription à l'obtention de votre carte
+                                            professionnelle.
+                                            <br/>
+                                        </p>
+                                        <div class="s_btn text-center pt16 pb16" data-name="Button">
+                                            <a href="#" class="btn btn-secondary">En savoir plus</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 s_col_no_bgcolor pt16 pb16"
+                                 style="border-style: none; border-width: 0px">
+                                <div class="card bg-white">
+                                    <img class="card-img-top"
+                                         src="/mcm_website_theme/static/src/img/quisommesnous/Formation-chauffeur-mototaxi.png"
+                                         alt="Odoo- Echantillon n° 3 pour trois colonnes" data-original-title=""
+                                         title="" aria-describedby="tooltip67402"/>
+                                    <div class="card-body">
+                                        <h4 class="card-title" style="text-align: center">
+                                            <b>
+                                                <font style="color: rgb(66, 66, 66)">Formation&amp;nbsp;</font>
+                                            </b>
+                                            <font color="#424242">
+                                                <b>MOTO-TAXI</b>
+                                            </font>
+                                        </h4>
+                                        <p class="card-text">
+                                            Passionné de motos, vous adorez circuler en milieu urbain
+                                            ? Indépendant de nature, vous voulez lancer votre carrière
+                                            professionnelle ? C'est simple : devenez chauffeur de
+                                            MOTO-TAXI avec MCM Academy !
+                                            <br/>
+                                        </p>
+                                        <div class="s_btn text-center pt16 pb16" data-name="Button">
+                                            <a href="#" class="btn btn-secondary">En savoir plus</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="sh_corpomate_theme_section_58" data-name="About Snippet 7">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-3 col-md-6 col-sm-6  js-scroll slide-left"
+                                 style="border-style: none; border-width: 0px">
+                                <div class="sh_content">
+                                    <div class="sh_number">
+                                        <section class="sh_num o_default_snippet_text">1</section>
+                                    </div>
+                                    <div class="sh_icon_content">
+                                        <div class="sh_icon">
+                                            <span class="fa fa-connectdevelop"/>
+                                        </div>
+                                    </div>
+                                    <div class="sh_description">
+                                        <h4>Innovation</h4>
+                                        <p>
+                                            Nous vous offrons une plateforme assez structurée,
+                                            intuitive, et simple d'utilisation.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-md-6 col-sm-6  js-scroll slide-left">
+                                <div class="sh_content sh_sec_content">
+                                    <div class="sh_number">
+                                        <section class="sh_num o_default_snippet_text">2</section>
+                                    </div>
+                                    <div class="sh_icon_content">
+                                        <div class="sh_icon">
+                                            <span class="fa fa-group"/>
+                                        </div>
+                                    </div>
+                                    <div class="sh_description">
+                                        <h4>Accompagnement</h4>
+                                        <p>
+                                            &amp;nbsp;Nous vous assurons un accompagnement durant tout
+                                            le processus de formation&amp;nbsp;&amp;nbsp;
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-md-6 col-sm-6  js-scroll slide-left">
+                                <div class="sh_content">
+                                    <div class="sh_number">
+                                        <section class="sh_num o_default_snippet_text">3</section>
+                                    </div>
+                                    <div class="sh_icon_content">
+                                        <div class="sh_icon">
+                                            <span class="fa fa-cog"/>
+                                        </div>
+                                    </div>
+                                    <div class="sh_description">
+                                        <h4>Adaptabilité</h4>
+                                        <p>
+                                            Une formation en ligne assez flexible , vous vous formez
+                                            ou vous voulez quand vous voulez
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-md-6 col-sm-6  js-scroll slide-left">
+                                <div class="sh_content sh_last">
+                                    <div class="sh_number">
+                                        <section class="sh_num o_default_snippet_text">4</section>
+                                    </div>
+                                    <div class="sh_icon_content">
+                                        <div class="sh_icon">
+                                            <span class="fa fa-trophy"/>
+                                        </div>
+                                    </div>
+                                    <div class="sh_description">
+                                        <h4>Performance</h4>
+                                        <p>
+                                            Nous enregistrons plus de 80% de taux de réussite , et un
+                                            taux de satisfaction client de 90%
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <section class="pt24 pb24" data-name="Title">
+                    <div class="container">
+                        <div class="row s_nb_column_fixed  js-scroll fade-in-top">
+                            <div class="col-lg-12 s_title" style="
                   text-align: center;
                   border-style: none;
                   border-width: 0px;
                 ">
-                <h3 class="s_title_lines" style="font-size: 18px; text-align: left; color: #424242">
-                  <i>Chez MCM Academy, nous croyons en ce que nous faisons, en
-                    nos valeurs, et en vous !</i>
-                </h3>
-              </div>
-            </div>
-          </div>
-        </section>
-        <section id="sh_corpomate_theme_section_394" class="
+                                <h3 class="s_title_lines" style="font-size: 18px; text-align: left; color: #424242">
+                                    <i>Chez MCM Academy, nous croyons en ce que nous faisons, en
+                                        nos valeurs, et en vous !
+                                    </i>
+                                </h3>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <section id="sh_corpomate_theme_section_394" class="
             js_cls_sh_corpomate_theme_section_394
             oe_img_bg
             o_colored_level
@@ -712,361 +785,382 @@
            
             background-attachment: fixed;
           ">
-          <div class="container">
-            <div class="sh_title">
-              <h4>TEMOIGNAGES</h4>
-              <h2>UN TAUX DE SATISFACTION DE PLUS DE 80%</h2>
-            </div>
-            <div class="owl-carousel owl-theme owl-loaded owl-drag">
-              <div class="owl-stage-outer">
-                <div class="owl-stage" style="
+                    <div class="container">
+                        <div class="sh_title">
+                            <h4>TEMOIGNAGES</h4>
+                            <h2>UN TAUX DE SATISFACTION DE PLUS DE 80%</h2>
+                        </div>
+                        <div class="owl-carousel owl-theme owl-loaded owl-drag">
+                            <div class="owl-stage-outer">
+                                <div class="owl-stage" style="
                     width: 8400px;
                     transform: translate3d(-2800px, 0px, 0px);
                     transition: all 2s ease 0s;
                   ">
-                  <div class="owl-item cloned" style="width: 550px; margin-right: 10px">
-                    <div class="item">
-                      <div class="sh_content">
-                        <div class="sh_des">
-                          <p>
-                            "Centre de formation agréable qui nous apporte tous
-                            les éléments nécessaires pour réussir, formateurs
-                            compétents et sympathiques. Les cours sont très
-                            enrichissant, j’ai appris beaucoup de choses en peu
-                            de temps. Je recommande à 100%"
-                          </p>
+                                    <div class="owl-item cloned" style="width: 550px; margin-right: 10px">
+                                        <div class="item">
+                                            <div class="sh_content">
+                                                <div class="sh_des">
+                                                    <p>
+                                                        "Centre de formation agréable qui nous apporte tous
+                                                        les éléments nécessaires pour réussir, formateurs
+                                                        compétents et sympathiques. Les cours sont très
+                                                        enrichissant, j’ai appris beaucoup de choses en peu
+                                                        de temps. Je recommande à 100%"
+                                                    </p>
+                                                </div>
+                                                <div class="sh_img_part">
+                                                    <div class="sh_img">
+                                                        <img src="/mcm_website_theme/static/src/img/testimonial/omar saadaoui.png"/>
+                                                    </div>
+                                                    <div class="sh_text">
+                                                        <h3>Omar Saadaoui</h3>
+                                                        <h6>Nov 2020</h6>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="owl-item cloned" style="width: 550px; margin-right: 10px">
+                                        <div class="item">
+                                            <div class="sh_content">
+                                                <div class="sh_des">
+                                                    <p>
+                                                        "Formation extrêmement complète, avec d'excellents
+                                                        profs et des modules en ligne très complets . A
+                                                        noter le sérieux et le suivi de l'équipe MCM qui
+                                                        s'est toujours montré disponible"
+                                                    </p>
+                                                </div>
+                                                <div class="sh_img_part">
+                                                    <div class="sh_img">
+                                                        <img src="/mcm_website_theme/static/src/img/testimonial/henry serda.png"/>
+                                                    </div>
+                                                    <div class="sh_text">
+                                                        <h3>Henry Serda</h3>
+                                                        <h6>Nov 2020</h6>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="owl-item cloned" style="width: 550px; margin-right: 10px">
+                                        <div class="item">
+                                            <div class="sh_content">
+                                                <div class="sh_des">
+                                                    <p>
+                                                        "MCM ACADEMY est un très bon centre de formation,
+                                                        les formateurs sont à l'écoute et de très bons
+                                                        pédagogues.Merci à Nasser et son équipe pour leurs
+                                                        disponibilités et leurs écoutes ainsi que leurs
+                                                        paroles rassurantes et encourageantes. Je vous
+                                                        recommande ce centre de formation les yeux fermés"
+                                                    </p>
+                                                </div>
+                                                <div class="sh_img_part">
+                                                    <div class="sh_img">
+                                                        <img src="/mcm_website_theme/static/src/img/testimonial/cathy e.png"/>
+                                                    </div>
+                                                    <div class="sh_text">
+                                                        <h3>Cathy E</h3>
+                                                        <h6>Jan 2018</h6>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="owl-item cloned" style="width: 550px; margin-right: 10px">
+                                        <div class="item">
+                                            <div class="sh_content">
+                                                <div class="sh_des">
+                                                    <p>
+                                                        "Centre de formation agréable qui nous apporte tous
+                                                        les éléments nécessaires pour réussir, formateurs
+                                                        compétents et sympathiques. Les cours sont très
+                                                        enrichissant, j’ai appris beaucoup de choses en peu
+                                                        de temps. Je recommande à 100%"
+                                                    </p>
+                                                </div>
+                                                <div class="sh_img_part">
+                                                    <div class="sh_img">
+                                                        <img src="/mcm_website_theme/static/src/img/testimonial/omar saadaoui.png"/>
+                                                    </div>
+                                                    <div class="sh_text">
+                                                        <h3>Omar Saadaoui</h3>
+                                                        <h6>Nov 2020</h6>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="owl-item" style="width: 550px; margin-right: 10px">
+                                        <div class="item">
+                                            <div class="sh_content">
+                                                <div class="sh_des">
+                                                    <p>
+                                                        "MCM ACADEMY est un très bon centre de formation,
+                                                        les formateurs sont à l'écoute et de très bons
+                                                        pédagogues.Merci à Nasser et son équipe pour leurs
+                                                        disponibilités et leurs écoutes ainsi que leurs
+                                                        paroles rassurantes et encourageantes. Je vous
+                                                        recommande ce centre de formation les yeux fermés"
+                                                    </p>
+                                                </div>
+                                                <div class="sh_img_part">
+                                                    <div class="sh_img">
+                                                        <img src="/mcm_website_theme/static/src/img/testimonial/cathy e.png"/>
+                                                    </div>
+                                                    <div class="sh_text">
+                                                        <h3>Cathy E</h3>
+                                                        <h6>Jan 2018</h6>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="owl-item active" style="width: 550px; margin-right: 10px">
+                                        <div class="item">
+                                            <div class="sh_content">
+                                                <div class="sh_des">
+                                                    <p>
+                                                        "Centre de formation agréable qui nous apporte tous
+                                                        les éléments nécessaires pour réussir, formateurs
+                                                        compétents et sympathiques. Les cours sont très
+                                                        enrichissant, j’ai appris beaucoup de choses en peu
+                                                        de temps. Je recommande à 100%"
+                                                    </p>
+                                                </div>
+                                                <div class="sh_img_part">
+                                                    <div class="sh_img">
+                                                        <img src="/mcm_website_theme/static/src/img/testimonial/omar saadaoui.png"/>
+                                                    </div>
+                                                    <div class="sh_text">
+                                                        <h3>Omar Saadaoui</h3>
+                                                        <h6>Nov 2020</h6>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="owl-item active" style="width: 550px; margin-right: 10px">
+                                        <div class="item">
+                                            <div class="sh_content">
+                                                <div class="sh_des">
+                                                    <p>
+                                                        "Formation extrêmement complète, avec d'excellents
+                                                        profs et des modules en ligne très complets . A
+                                                        noter le sérieux et le suivi de l'équipe MCM qui
+                                                        s'est toujours montré disponible"
+                                                    </p>
+                                                </div>
+                                                <div class="sh_img_part">
+                                                    <div class="sh_img">
+                                                        <img src="/mcm_website_theme/static/src/img/testimonial/henry serda.png"/>
+                                                    </div>
+                                                    <div class="sh_text">
+                                                        <h3>Henry Serda</h3>
+                                                        <h6>Nov 2020</h6>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="owl-item cloned" style="width: 550px; margin-right: 10px">
+                                        <div class="item">
+                                            <div class="sh_content">
+                                                <div class="sh_des">
+                                                    <p>
+                                                        "Centre de formation agréable qui nous apporte tous
+                                                        les éléments nécessaires pour réussir, formateurs
+                                                        compétents et sympathiques. Les cours sont très
+                                                        enrichissant, j’ai appris beaucoup de choses en peu
+                                                        de temps. Je recommande à 100%"
+                                                    </p>
+                                                </div>
+                                                <div class="sh_img_part">
+                                                    <div class="sh_img">
+                                                        <img src="/mcm_website_theme/static/src/img/testimonial/omar saadaoui.png"/>
+                                                    </div>
+                                                    <div class="sh_text">
+                                                        <h3>Omar Saadaoui</h3>
+                                                        <h6>Nov 2020</h6>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="owl-item cloned" style="width: 550px; margin-right: 10px">
+                                        <div class="item">
+                                            <div class="sh_content">
+                                                <div class="sh_des">
+                                                    <p>
+                                                        "Formation extrêmement complète, avec d'excellents
+                                                        profs et des modules en ligne très complets . A
+                                                        noter le sérieux et le suivi de l'équipe MCM qui
+                                                        s'est toujours montré disponible"
+                                                    </p>
+                                                </div>
+                                                <div class="sh_img_part">
+                                                    <div class="sh_img">
+                                                        <img src="/mcm_website_theme/static/src/img/testimonial/henry serda.png"/>
+                                                    </div>
+                                                    <div class="sh_text">
+                                                        <h3>Henry Serda</h3>
+                                                        <h6>Nov 2020</h6>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="owl-item cloned" style="width: 550px; margin-right: 10px">
+                                        <div class="item">
+                                            <div class="sh_content">
+                                                <div class="sh_des">
+                                                    <p>
+                                                        "MCM ACADEMY est un très bon centre de formation,
+                                                        les formateurs sont à l'écoute et de très bons
+                                                        pédagogues.Merci à Nasser et son équipe pour leurs
+                                                        disponibilités et leurs écoutes ainsi que leurs
+                                                        paroles rassurantes et encourageantes. Je vous
+                                                        recommande ce centre de formation les yeux fermés"
+                                                    </p>
+                                                </div>
+                                                <div class="sh_img_part">
+                                                    <div class="sh_img">
+                                                        <img src="/mcm_website_theme/static/src/img/testimonial/cathy e.png"/>
+                                                    </div>
+                                                    <div class="sh_text">
+                                                        <h3>Cathy E</h3>
+                                                        <h6>Jan 2018</h6>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="owl-item cloned" style="width: 550px; margin-right: 10px">
+                                        <div class="item">
+                                            <div class="sh_content">
+                                                <div class="sh_des">
+                                                    <p>
+                                                        "Centre de formation agréable qui nous apporte tous
+                                                        les éléments nécessaires pour réussir, formateurs
+                                                        compétents et sympathiques. Les cours sont très
+                                                        enrichissant, j’ai appris beaucoup de choses en peu
+                                                        de temps. Je recommande à 100%"
+                                                    </p>
+                                                </div>
+                                                <div class="sh_img_part">
+                                                    <div class="sh_img">
+                                                        <img src="/mcm_website_theme/static/src/img/testimonial/omar saadaoui.png"/>
+                                                    </div>
+                                                    <div class="sh_text">
+                                                        <h3>Omar Saadaoui</h3>
+                                                        <h6>Nov 2020</h6>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="owl-nav disabled">
+                                <button type="button" role="presentation" class="owl-prev">
+                                    <span aria-label="Previous">‹</span>
+                                </button>
+                                <button type="button" role="presentation" class="owl-next">
+                                    <span aria-label="Next">›</span>
+                                </button>
+                            </div>
+                            <div class="owl-dots disabled"/>
+                            <div class="owl-nav disabled">
+                                <button type="button" role="presentation" class="owl-prev">
+                                    <span aria-label="Previous">‹</span>
+                                </button>
+                                <button type="button" role="presentation" class="owl-next">
+                                    <span aria-label="Next">›</span>
+                                </button>
+                            </div>
+                            <div class="owl-dots disabled"/>
+                            <div class="owl-nav disabled">
+                                <button type="button" role="presentation" class="owl-prev">
+                                    <span aria-label="Previous">‹</span>
+                                </button>
+                                <button type="button" role="presentation" class="owl-next">
+                                    <span aria-label="Next">›</span>
+                                </button>
+                            </div>
+                            <div class="owl-dots disabled"/>
                         </div>
-                        <div class="sh_img_part">
-                          <div class="sh_img">
-                            <img src="/mcm_website_theme/static/src/img/testimonial/omar saadaoui.png" />
-                          </div>
-                          <div class="sh_text">
-                            <h3>Omar Saadaoui</h3>
-                            <h6>Nov 2020</h6>
-                          </div>
-                        </div>
-                      </div>
                     </div>
-                  </div>
-                  <div class="owl-item cloned" style="width: 550px; margin-right: 10px">
-                    <div class="item">
-                      <div class="sh_content">
-                        <div class="sh_des">
-                          <p>
-                            "Formation extrêmement complète, avec d'excellents
-                            profs et des modules en ligne très complets . A
-                            noter le sérieux et le suivi de l'équipe MCM qui
-                            s'est toujours montré disponible"
-                          </p>
-                        </div>
-                        <div class="sh_img_part">
-                          <div class="sh_img">
-                            <img src="/mcm_website_theme/static/src/img/testimonial/henry serda.png" />
-                          </div>
-                          <div class="sh_text">
-                            <h3>Henry Serda</h3>
-                            <h6>Nov 2020</h6>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="owl-item cloned" style="width: 550px; margin-right: 10px">
-                    <div class="item">
-                      <div class="sh_content">
-                        <div class="sh_des">
-                          <p>
-                            "MCM ACADEMY est un très bon centre de formation,
-                            les formateurs sont à l'écoute et de très bons
-                            pédagogues.Merci à Nasser et son équipe pour leurs
-                            disponibilités et leurs écoutes ainsi que leurs
-                            paroles rassurantes et encourageantes. Je vous
-                            recommande ce centre de formation les yeux fermés"
-                          </p>
-                        </div>
-                        <div class="sh_img_part">
-                          <div class="sh_img">
-                            <img src="/mcm_website_theme/static/src/img/testimonial/cathy e.png" />
-                          </div>
-                          <div class="sh_text">
-                            <h3>Cathy E</h3>
-                            <h6>Jan 2018</h6>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="owl-item cloned" style="width: 550px; margin-right: 10px">
-                    <div class="item">
-                      <div class="sh_content">
-                        <div class="sh_des">
-                          <p>
-                            "Centre de formation agréable qui nous apporte tous
-                            les éléments nécessaires pour réussir, formateurs
-                            compétents et sympathiques. Les cours sont très
-                            enrichissant, j’ai appris beaucoup de choses en peu
-                            de temps. Je recommande à 100%"
-                          </p>
-                        </div>
-                        <div class="sh_img_part">
-                          <div class="sh_img">
-                            <img src="/mcm_website_theme/static/src/img/testimonial/omar saadaoui.png" />
-                          </div>
-                          <div class="sh_text">
-                            <h3>Omar Saadaoui</h3>
-                            <h6>Nov 2020</h6>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="owl-item" style="width: 550px; margin-right: 10px">
-                    <div class="item">
-                      <div class="sh_content">
-                        <div class="sh_des">
-                          <p>
-                            "MCM ACADEMY est un très bon centre de formation,
-                            les formateurs sont à l'écoute et de très bons
-                            pédagogues.Merci à Nasser et son équipe pour leurs
-                            disponibilités et leurs écoutes ainsi que leurs
-                            paroles rassurantes et encourageantes. Je vous
-                            recommande ce centre de formation les yeux fermés"
-                          </p>
-                        </div>
-                        <div class="sh_img_part">
-                          <div class="sh_img">
-                            <img src="/mcm_website_theme/static/src/img/testimonial/cathy e.png" />
-                          </div>
-                          <div class="sh_text">
-                            <h3>Cathy E</h3>
-                            <h6>Jan 2018</h6>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="owl-item active" style="width: 550px; margin-right: 10px">
-                    <div class="item">
-                      <div class="sh_content">
-                        <div class="sh_des">
-                          <p>
-                            "Centre de formation agréable qui nous apporte tous
-                            les éléments nécessaires pour réussir, formateurs
-                            compétents et sympathiques. Les cours sont très
-                            enrichissant, j’ai appris beaucoup de choses en peu
-                            de temps. Je recommande à 100%"
-                          </p>
-                        </div>
-                        <div class="sh_img_part">
-                          <div class="sh_img">
-                            <img src="/mcm_website_theme/static/src/img/testimonial/omar saadaoui.png" />
-                          </div>
-                          <div class="sh_text">
-                            <h3>Omar Saadaoui</h3>
-                            <h6>Nov 2020</h6>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="owl-item active" style="width: 550px; margin-right: 10px">
-                    <div class="item">
-                      <div class="sh_content">
-                        <div class="sh_des">
-                          <p>
-                            "Formation extrêmement complète, avec d'excellents
-                            profs et des modules en ligne très complets . A
-                            noter le sérieux et le suivi de l'équipe MCM qui
-                            s'est toujours montré disponible"
-                          </p>
-                        </div>
-                        <div class="sh_img_part">
-                          <div class="sh_img">
-                            <img src="/mcm_website_theme/static/src/img/testimonial/henry serda.png" />
-                          </div>
-                          <div class="sh_text">
-                            <h3>Henry Serda</h3>
-                            <h6>Nov 2020</h6>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="owl-item cloned" style="width: 550px; margin-right: 10px">
-                    <div class="item">
-                      <div class="sh_content">
-                        <div class="sh_des">
-                          <p>
-                            "Centre de formation agréable qui nous apporte tous
-                            les éléments nécessaires pour réussir, formateurs
-                            compétents et sympathiques. Les cours sont très
-                            enrichissant, j’ai appris beaucoup de choses en peu
-                            de temps. Je recommande à 100%"
-                          </p>
-                        </div>
-                        <div class="sh_img_part">
-                          <div class="sh_img">
-                            <img src="/mcm_website_theme/static/src/img/testimonial/omar saadaoui.png" />
-                          </div>
-                          <div class="sh_text">
-                            <h3>Omar Saadaoui</h3>
-                            <h6>Nov 2020</h6>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="owl-item cloned" style="width: 550px; margin-right: 10px">
-                    <div class="item">
-                      <div class="sh_content">
-                        <div class="sh_des">
-                          <p>
-                            "Formation extrêmement complète, avec d'excellents
-                            profs et des modules en ligne très complets . A
-                            noter le sérieux et le suivi de l'équipe MCM qui
-                            s'est toujours montré disponible"
-                          </p>
-                        </div>
-                        <div class="sh_img_part">
-                          <div class="sh_img">
-                            <img src="/mcm_website_theme/static/src/img/testimonial/henry serda.png" />
-                          </div>
-                          <div class="sh_text">
-                            <h3>Henry Serda</h3>
-                            <h6>Nov 2020</h6>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="owl-item cloned" style="width: 550px; margin-right: 10px">
-                    <div class="item">
-                      <div class="sh_content">
-                        <div class="sh_des">
-                          <p>
-                            "MCM ACADEMY est un très bon centre de formation,
-                            les formateurs sont à l'écoute et de très bons
-                            pédagogues.Merci à Nasser et son équipe pour leurs
-                            disponibilités et leurs écoutes ainsi que leurs
-                            paroles rassurantes et encourageantes. Je vous
-                            recommande ce centre de formation les yeux fermés"
-                          </p>
-                        </div>
-                        <div class="sh_img_part">
-                          <div class="sh_img">
-                            <img src="/mcm_website_theme/static/src/img/testimonial/cathy e.png" />
-                          </div>
-                          <div class="sh_text">
-                            <h3>Cathy E</h3>
-                            <h6>Jan 2018</h6>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="owl-item cloned" style="width: 550px; margin-right: 10px">
-                    <div class="item">
-                      <div class="sh_content">
-                        <div class="sh_des">
-                          <p>
-                            "Centre de formation agréable qui nous apporte tous
-                            les éléments nécessaires pour réussir, formateurs
-                            compétents et sympathiques. Les cours sont très
-                            enrichissant, j’ai appris beaucoup de choses en peu
-                            de temps. Je recommande à 100%"
-                          </p>
-                        </div>
-                        <div class="sh_img_part">
-                          <div class="sh_img">
-                            <img src="/mcm_website_theme/static/src/img/testimonial/omar saadaoui.png" />
-                          </div>
-                          <div class="sh_text">
-                            <h3>Omar Saadaoui</h3>
-                            <h6>Nov 2020</h6>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="owl-nav disabled">
-                <button type="button" role="presentation" class="owl-prev">
-                  <span aria-label="Previous">‹</span>
-                </button>
-                <button type="button" role="presentation" class="owl-next">
-                  <span aria-label="Next">›</span>
-                </button>
-              </div>
-              <div class="owl-dots disabled" />
-              <div class="owl-nav disabled">
-                <button type="button" role="presentation" class="owl-prev">
-                  <span aria-label="Previous">‹</span>
-                </button>
-                <button type="button" role="presentation" class="owl-next">
-                  <span aria-label="Next">›</span>
-                </button>
-              </div>
-              <div class="owl-dots disabled" />
-              <div class="owl-nav disabled">
-                <button type="button" role="presentation" class="owl-prev">
-                  <span aria-label="Previous">‹</span>
-                </button>
-                <button type="button" role="presentation" class="owl-next">
-                  <span aria-label="Next">›</span>
-                </button>
-              </div>
-              <div class="owl-dots disabled" />
-            </div>
-          </div>
-        </section>
-        <section class="clients s_references bg-200 pt16 pb16" data-name="References">
-          <center>
-            <div class="container  js-scroll fade-in-top">
-              <div class="center-logo">
-                <!-- <div t-if="partenaire=='' or not partenaire or partenaire=='bolt'">
+                </section>
+                <section class="clients s_references bg-200 pt16 pb16" data-name="References">
+                    <center>
+                        <div class="container  js-scroll fade-in-top">
+                            <div class="center-logo">
+                                <!-- <div t-if="partenaire=='' or not partenaire or partenaire=='bolt'">
+                                                    <a href="https://www.digimoov.fr/" target="_blank" rel="noopner">
+                                                        <img data-src="/mcm_website_theme/static/src/img/partenaires/digimoov.png" data-srcSafari="/mcm_website_theme/static/src/img/partenaires/digimoov.png" class="img img-fluid lazy" alt="Logo partenaire Digimoov" data-original-title="" title="Digimoov partenaire MCM ACADEMY" aria-describedby="tooltip843653" style="margin-top: 30px; width: 72%"/>
+                                                    </a>
+                                                </div> -->
+
+                                <div t-if="partenaire=='' or partenaire !='bolt'">
+                                    <a href="#">
+                                        <img data-src="/mcm_website_theme/static/src/img/partenaires/cma.png"
+                                             data-srcSafari="/mcm_website_theme/static/src/img/partenaires/cma.png"
+                                             class="img img-fluid lazy" alt="Logo partenaire CMA" data-original-title=""
+                                             title="CMA partenaire MCM ACADEMY" aria-describedby="tooltip623872"
+                                             style="margin-top: 30px; width: 50%"/>
+                                    </a>
+                                </div>
+
+                                <div t-if="partenaire=='' or not partenaire ">
+                                    <a href="https://bolt.eu/fr/" target="_blank" rel="noopner">
+                                        <img data-src="/mcm_website_theme/static/src/img/partenaires/bolt.png"
+                                             data-srcSafari="/mcm_website_theme/static/src/img/partenaires/bolt.png"
+                                             class="img img-fluid lazy" alt="Logo partenaire bolt"
+                                             data-original-title="" title="Bolt partenaire MCM ACADEMY"
+                                             aria-describedby="tooltip843653" style="margin-top: 30px; width: 38%"/>
+                                    </a>
+                                </div>
+                                <div t-if="partenaire=='bolt' ">
+                                    <a href="https://bolt.eu/fr/" target="_blank" rel="noopner">
+                                        <img data-src="/mcm_website_theme/static/src/img/partenaires/Bolt_logo.svg.png"
+                                             data-srcSafari="/mcm_website_theme/static/src/img/partenaires/Bolt_logo.svg.png"
+                                             class="img img-fluid lazy" alt="Logo partenaire bolt"
+                                             data-original-title="" title="Bolt partenaire MCM ACADEMY"
+                                             aria-describedby="tooltip843653" style="margin-top: 30px; width: 38%"/>
+                                    </a>
+                                </div>
+                                <!-- <div t-if="partenaire=='' or partenaire !='bolt'">
+                                                    <a href="https://www.uber.com/fr/fr/">
+                                                        <img data-src="/mcm_website_theme/static/src/img/partenaires/uber.png" data-srcSafari="/mcm_website_theme/static/src/img/partenaires/uber.png" class="img img-fluid lazy" alt="Logo partenaire uber" data-original-title="" title="Uber partenaire MCM ACADEMY" aria-describedby="tooltip843653" style="margin-top: 30px; width: 50%"/>
+                                                    </a>
+                                                </div> -->
+
+                                <div t-if="partenaire=='' or not partenaire ">
+                                    <a href="https://www.comptable-douai.com/" target="_blank" rel="noopner">
+                                        <img data-src="/mcm_website_theme/static/src/img/partenaires/joel.png"
+                                             data-srcSafari="/mcm_website_theme/static/src/img/partenaires/joel.png"
+                                             class="img img-fluid lazy"
+                                             alt="Logo partenaire Cabinet Comptable Joël Pruvost" data-original-title=""
+                                             title="Cabinet Comptable Joël Pruvost partenaire Digimoov"
+                                             aria-describedby="tooltip175558" style="margin-top: 30px; width: 68%"/>
+                                    </a>
+                                </div>
+                                <div t-if="partenaire=='bolt'">
                                     <a href="https://www.digimoov.fr/" target="_blank" rel="noopner">
-                                        <img data-src="/mcm_website_theme/static/src/img/partenaires/digimoov.png" data-srcSafari="/mcm_website_theme/static/src/img/partenaires/digimoov.png" class="img img-fluid lazy" alt="Logo partenaire Digimoov" data-original-title="" title="Digimoov partenaire MCM ACADEMY" aria-describedby="tooltip843653" style="margin-top: 30px; width: 72%"/>
+                                        <img data-src="/mcm_website_theme/static/src/img/partenaires/digimoov.png"
+                                             data-srcSafari="/mcm_website_theme/static/src/img/partenaires/digimoov.png"
+                                             class="img img-fluid lazy" alt="Logo partenaire Digimoov"
+                                             data-original-title="" title="Digimoov partenaire MCM ACADEMY"
+                                             aria-describedby="tooltip843653" style="margin-top: 30px; width: 46%"/>
                                     </a>
-                                </div> -->
-
-                <div t-if="partenaire=='' or partenaire !='bolt'">
-                  <a href="#">
-                    <img data-src="/mcm_website_theme/static/src/img/partenaires/cma.png" data-srcSafari="/mcm_website_theme/static/src/img/partenaires/cma.png" class="img img-fluid lazy" alt="Logo partenaire CMA" data-original-title="" title="CMA partenaire MCM ACADEMY" aria-describedby="tooltip623872" style="margin-top: 30px; width: 50%" />
-                  </a>
-                </div>
-
-                <div t-if="partenaire=='' or not partenaire ">
-                  <a href="https://bolt.eu/fr/" target="_blank" rel="noopner">
-                    <img data-src="/mcm_website_theme/static/src/img/partenaires/bolt.png" data-srcSafari="/mcm_website_theme/static/src/img/partenaires/bolt.png" class="img img-fluid lazy" alt="Logo partenaire bolt" data-original-title="" title="Bolt partenaire MCM ACADEMY" aria-describedby="tooltip843653" style="margin-top: 30px; width: 38%" />
-                  </a>
-                </div>
-                <div t-if="partenaire=='bolt' ">
-                  <a href="https://bolt.eu/fr/" target="_blank" rel="noopner">
-                    <img data-src="/mcm_website_theme/static/src/img/partenaires/Bolt_logo.svg.png" data-srcSafari="/mcm_website_theme/static/src/img/partenaires/Bolt_logo.svg.png" class="img img-fluid lazy" alt="Logo partenaire bolt" data-original-title="" title="Bolt partenaire MCM ACADEMY" aria-describedby="tooltip843653" style="margin-top: 30px; width: 38%" />
-                  </a>
-                </div>
-                <!-- <div t-if="partenaire=='' or partenaire !='bolt'">
-                                    <a href="https://www.uber.com/fr/fr/">
-                                        <img data-src="/mcm_website_theme/static/src/img/partenaires/uber.png" data-srcSafari="/mcm_website_theme/static/src/img/partenaires/uber.png" class="img img-fluid lazy" alt="Logo partenaire uber" data-original-title="" title="Uber partenaire MCM ACADEMY" aria-describedby="tooltip843653" style="margin-top: 30px; width: 50%"/>
-                                    </a>
-                                </div> -->
-
-                <div t-if="partenaire=='' or not partenaire ">
-                  <a href="https://www.comptable-douai.com/" target="_blank" rel="noopner">
-                    <img data-src="/mcm_website_theme/static/src/img/partenaires/joel.png" data-srcSafari="/mcm_website_theme/static/src/img/partenaires/joel.png" class="img img-fluid lazy" alt="Logo partenaire Cabinet Comptable Joël Pruvost" data-original-title="" title="Cabinet Comptable Joël Pruvost partenaire Digimoov" aria-describedby="tooltip175558" style="margin-top: 30px; width: 68%" />
-                  </a>
-                </div>
-                <div t-if="partenaire=='bolt'">
-                  <a href="https://www.digimoov.fr/" target="_blank" rel="noopner">
-                    <img data-src="/mcm_website_theme/static/src/img/partenaires/digimoov.png" data-srcSafari="/mcm_website_theme/static/src/img/partenaires/digimoov.png" class="img img-fluid lazy" alt="Logo partenaire Digimoov" data-original-title="" title="Digimoov partenaire MCM ACADEMY" aria-describedby="tooltip843653" style="margin-top: 30px; width: 46%" />
-                  </a>
-                </div>
-              </div>
+                                </div>
+                            </div>
+                        </div>
+                    </center>
+                </section>
             </div>
-          </center>
-        </section>
-      </div>
-    </t>
-  </template>
+        </t>
+    </template>
 </odoo>

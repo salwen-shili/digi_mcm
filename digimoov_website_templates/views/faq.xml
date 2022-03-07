@@ -1,6 +1,107 @@
 <odoo>
     <template id="digimoov_website_templates.digimoov_template_faq" name="FAQ | Digimoov">
         <t t-call="website.layout">
+            <t t-set="head">
+                <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [{
+    "@type": "Question",
+    "name": "Qu'est ce que Digimoov ?",
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Digimoov est un centre de formation à distance qui propose des formations 100 % en ligne certifiées par la DRIEA Île-de-France (Direction Régionale et Interdépartementale de l'Équipement et de l'Aménagement) à destination des métiers de transport de marchandises léger (-3,5 T de PTAC)."
+    }
+  },{
+    "@type": "Question",
+    "name": "Que propose Digimoov ?",
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Notre centre propose une formation 100 % en ligne pour la Capacité de transport léger de marchandises."
+    }
+  },{
+    "@type": "Question",
+    "name": "êtes-vous un centre agréé par l'Etat (DRIEA) ?",
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Oui, numéro d'agrément : DRIEA IDF N° 2019-0110."
+    }
+  },{
+    "@type": "Question",
+    "name": "Quelle est la différence entre les offres  Solo, Pro et Premium ?",
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Avec le pack Solo vous aurez un accès à la plateforme pédagogique de Digimoov et à l'examen en présentiel. Pendant la formation, vous aurez accès à un seul examen blanc d’entraînement (niveau facile).
+
+Avec le pack Pro, vous aurez la possibilité de payer en deux fois et vous bénéficierez de l'accompagnement d'un coach dédié tout au long de votre formation. Vous aurez aussi accès à 5 examens blancs d’entraînement de tous les niveaux (facile, moyen, difficile) et vous aurez à votre disposition un livre d’entraînement en version électronique pour une meilleure préparation à l'examen.
+
+⦁ Avec le pack Premium, vous aurez la possibilité de payer en trois fois. Vous bénéficierez non seulement de l'accompagnement d'un coach dédié tout au long de votre formation mais vous aurez aussi une invitation pour participer aux lives (directs) hebdomadaires avec des formateurs hautement qualifiés. Vous aurez un accès illimité à tous les examens blancs d’entraînement et vous aurez à votre disposition les deux livres d’entraînement, à la fois en version électronique et en version papier, pour une préparation optimale à l'examen."
+    }
+  },{
+    "@type": "Question",
+    "name": "À quoi servira la formation ?",
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "L'objectif de la formation est de vous préparer efficacement à l'examen en vue de l'obtention de l'attestation de capacité professionnelle et de vous préparer également à votre futur métier de livreur indépendant."
+    }
+  },{
+    "@type": "Question",
+    "name": "Comment se passe la formation en ligne ?",
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "La formation en ligne est une nouvelle méthode d'apprentissage utile et pratique à la fois. Il suffit d’avoir un ordinateur, une tablette ou un smartphone. Vous pouvez accéder à la formation n'importe où et n'importe quand ! Eh oui, c’est génial ! Plus de limites avec Digimoov : tout est réuni pour une formation en ligne réussie ! Vous serez invités sur une plateforme interactive qui contient des cours, des vidéos, des exercices et même des examens blancs avec corrigés. Vous serez accompagnés par un coach et vous aurez accès à des directs (lives) avec les formateurs qui répondront à toutes vos questions."
+    }
+  },{
+    "@type": "Question",
+    "name": "Qu’est-ce que je vais apprendre pendant la formation ?",
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "C’est une formation complète pour réussir en tant que professionnel en transport routier de marchandises. La formation chez Digimoov vous permettra de maîtriser les parcours suivants :
+L’entreprise et son activité commerciale.
+L’entreprise et le cadre réglementaire de l’activité de transport.
+L’entreprise et son activité financière. L’entreprise et ses salariés.
+L’entreprise et la sécurité."
+    }
+  },{
+    "@type": "Question",
+    "name": "Est-ce que je peux choisir de faire qu'une partie des modules formation en ligne ?",
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Non, vous devez passer tous les modules pour obtenir l’attestation de fin de formation."
+    }
+  },{
+    "@type": "Question",
+    "name": "Combien de temps dure la formation ?",
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "La formation dure au total 102 h. Vous disposez d'un délai allant de l’inscription jusqu’à la date d’examen choisie pour compléter la formation."
+    }
+  },{
+    "@type": "Question",
+    "name": "Est-ce qu’on doit faire un minimum d'heures de formation par jour ?",
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Pour vous inscrire à la formation, il vous suffit de vous rendre sur www.digimoov.fr et de cliquer sur l'onglet Nos tarifs. Vous pourrez alors choisir votre formule en cliquant sur « je m’inscris ». Sélectionnez votre centre d’examen, la date et choisissez de payer par carte bleue ou par CPF. Si vous avez choisi de mobiliser votre CPF, vous serez redirigé vers l’interface Mon compte formation où vous devrez suivre les étapes d’inscription. Si vous avez choisi de payer par carte bleue, remplissez le formulaire avec vos informations personnelles et validez en effectuant le paiement"
+    }
+  },{
+    "@type": "Question",
+    "name": "Une fois le paiement validé, quelle sera la prochaine étape ?",
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Une fois le paiement validé, vous recevrez par e-mail votre contrat de formation et une liste de documents à fournir. Vous devez uploader le contrat signé et les documents demandés en cliquant sur le bouton « envoyer mes documents » dans l’email."
+    }
+  },{
+    "@type": "Question",
+    "name": "Quand est ce que j’obtiens les accès à ma formation en ligne ?",
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Une fois votre contrat de formation signé et vos documents validés, vous recevrez une invitation à la plateforme de e-learning dans un délai de 14 jours. Si vous souhaitez commencer plus rapidement, il suffit de cocher la case « Je renonce expressément à exercer mon droit de rétractation » dans la page d’inscription."
+    }
+  }]
+}
+</script>
+            </t>
             <!-- <link href="/digimoov_website_templates/static/src/css/styledigimoov.css" rel="stylesheet"/> -->
             <link href="/digimoov_website_templates/static/src/css/faq.css" rel="stylesheet" />
             <!-- <link href="/digimoov_website_templates/static/src/css/fontawesome.css" rel="stylesheet"/> -->
