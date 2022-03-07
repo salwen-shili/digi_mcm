@@ -77,10 +77,10 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="row" style="padding-top:100px!important;">
+                            <div class="row" style="padding-top:200px!important;">
                                 <div class="col-12">
                                     <br/>
-                                    <img src='/mcm_session/static/src/img/footer_jury.png' height="50" width="1200"/>
+                                    <img src='/mcm_session/static/src/img/footer_jury.png' height="80" width="1200"/>
                                 </div>
                             </div>
                             <p style="page-break-after:always;"/>
