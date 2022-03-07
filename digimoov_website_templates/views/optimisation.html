@@ -1,236 +1,246 @@
-<odoo>
-    <template id="digimoov_website_templates.devenir_coursier_lyon" name="Devenir coursier à Lyon">
-        <t t-call="website.layout">
+<div id="wrap" class="oe_empty oe_structure">
+  <section
+    class="banner_padding centric_template home-banner pt96"
+    data-name="Banner"
+  >
+    <div class="container">
+      <div class="row">
+        <div class="bannarcol col-lg-6 col-md-12">
+          <h1 class="h1-title">
+            <text class="blue-v">Comment devenir</text>
+            Comment devenir livreur de colis à Nantes
+            <text class="blue-v">?</text>
+          </h1>
+          <p class="paratext">
+            Vous souhaitez devenir livreur à Nantes en voiture ou en camion ?
+            <br />
+            Obtenez votre capacité de transport léger avec Digimoov ! Digimoov
+            est un centre de formation e-learning agrée spécialisé dans les
+            formations en ligne sur la capacité de transport de marchandises.
+          </p>
+          <div class="banner-btn s_btn" data-name="Button">
+            <a
+              href="#pricing"
+              class="bannerbtn btn btn-success rounded-circle"
+              title="je m'inscirs"
+              alt="boutton je m'inscris"
+              >Je m'inscris dès maintenant !
+            </a>
+          </div>
+        </div>
+        <div class="bannercol col-lg-6 col-md-12 image_padding">
+          <div class="banner_image">
+            <img
+              class="img img-fluid"
+              data-src="/digimoov_website_templates/static/img/nantes/capacité de transport léger de marchandises- bordeaux.webp"
+              data-srcsafari="/digimoov_website_templates/static/img/nantes/capacité de transport léger de marchandises- bordeaux.png"
+              title="devenir livreur de colis  à Nantes"
+              alt="devenir livreur de colis  à Nantes"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="s_text_image pt32 pb32" data-name="Text - Image">
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-lg-6 pt16 pb16">
+          <img
+            src="/digimoov_website_templates/static/img/nantes/C'est quoi une capacité de transport -nantes-digimoov.png"
+            class="img img-fluid mx-auto"
+            alt="capacité de transport"
+            title="Capacité de transport"
+          />
+        </div>
+        <div class="col-lg-6 pt16 pb16">
+          <h2 class="h2-title">
+            C'est quoi une <text class="pink-v">capacité de transport ?</text>
+          </h2>
+          <p class="para">
+            Pour exercer le métier de transporteur professionnel de
+            marchandises, vous devez obtenir votre capacité de transport.
+            <br />
+            Une licence que vous pouvez détenir par trois voies : en suivant une
+            formation et en passant un examen auprés de la DREAL et qui est le
+            chemin le plus classique opté par les candidats, en obtenant une
+            <a
+              href="https://www.digimoov.fr/blog/digimoov-3/post/comment-obtenir-la-capacite-professionnelle-de-transport-leger-de-marchandises-par-equivalence-30"
+              >équivalence de vos diplômes</a
+            >
+            , ou en justifiant une gestion en continu d'une société de transport
+            public routier de marchandises durant au moins deux ans, sans avoir
+            arrêté l’activité depuis plus de 10 ans.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
 
-            <script defer="defer" type="text/javascript" src="/digimoov_website_templates/static/src/js/lazy-min.min.js" />
-            <!-- TrustBox script -->
-            <script type="text/javascript" src="//widget.trustpilot.com/bootstrap/v5/tp.widget.bootstrap.min.js" async="async" />
-            <!-- End TrustBox script -->
-
-            <link href="/digimoov_website_templates/static/src/css/style-landing.min.css" rel="stylesheet"></link>
-
-            <div id="wrap" class="oe_empty oe_structure">
-
-                <!--Comment devenir coursier à Lyon ? banner-->
-                <section class="banner_padding centric_template home-banner pt96" data-name="Banner">
-                    <div class="container">
-                        <div class="row">
-                            <div class="bannarcol col-lg-6 col-md-12">
-                                <h1 class="h1-title purple-title">Comment devenir coursier à Lyon ?</h1>
-                                <p class="paratext">
-                                    Vous souhaitez devenir
-                                    <b>coursier à Lyon</b>
-                                    , travailler pour une plateforme spécialisée dans la
-                                    <b>livraison de colis</b>
-                                    de -3.5 tonnes ? Ou
-                                    <b>créer votre micro-entreprise de transport</b>
-                                    pour être indépendant ? Obtenez votre
-                                    <b>capacité de transport</b>
-                                    léger de marchandises avec
-                                    <b>Digimoov</b>
-                                    !
-                                </p>
-                                <div class="banner-btn s_btn" data-name="Button">
-                                    <a href="#pricing" class="bannerbtn btn btn-alpha rounded-circle" title="je m'inscirs" alt="boutton je m'inscris">Je m'inscris dès maintenant !
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="bannercol col-lg-6 col-md-12 image_padding">
-                                <div class="banner_image">
-                                    <img class="img img-fluid lazy" data-srcsafari="/digimoov_website_templates/static/img/lyon/Comment devenir coursier à Lyon - Digimoov.png" data-src="/digimoov_website_templates/static/img/lyon/Comment devenir coursier à Lyon - Digimoov.png" title="Devenir coursier à Lyon ?" alt="Devenir coursier à Lyon ?" />
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-
-                <!-- section obligation d'une licence pour livrer en scooter, voiture ou
-            camionnette -->
-                <section class="s_text_image pt32 pb32">
-                    <div class="container">
-                        <div class="row align-items-center">
-                            <div class="col-lg-6 pt16 pb16">
-                                <h2 class="h2-title">
-            L'obligation d'une licence pour livrer en scooter, voiture ou
-            camionnette
-                                </h2>
-                                <p class="para">
-            La livraison de colis sur scooter, en voiture, ou en camionnette,
-            est une activité reglementée par la loi française et qui nécessite
-            d'avoir une licence pour l'exercer.&amp;nbsp;À&amp;nbsp;savoir, une
-            capacité de transport léger de marchandises, sans laquelle vous
-            risquez, lors d'un contrôle policier de payer une amende pouvant
-            aller jusqu'a 15000 euros.
-                                </p>
-                                <p class="para">
-            En effet, exercer le métier de livreur nécessite une connaissance
-            approfondie du domaine de transport mais surtout des régles de la
-            sécurité routière que vous allez pouvoir découvrir lors de notre
-            formation.
-                                </p>
-                            </div>
-                            <div class="col-lg-6 pt16 pb16">
-                                <img data-srcsafari="/digimoov_website_templates/static/img/lyon/P 1 LYON.png" data-src="/digimoov_website_templates/static/img/lyon/P 1 LYON.webp" class="img img-fluid mx-auto lazy" alt="Livraison de colis sur scooter, en voiture, ou en camionnette" title="Livraison de colis sur scooter, en voiture, ou en camionnette" />
-                            </div>
-                        </div>
-                    </div>
-                </section>
-
-                <!-- section logo-->
-                <section class="pt16 pb32 js-scroll fade-in-top">
-                    <div class="container js-scroll fade-in-top">
-                        <div class="center-logo mt32">
-                            <div>
-                                <img data-src="/mcm_website_theme/static/src/img/formation-éligible-au-compte-personnel-de-formation.webp" data-srcSafari="/mcm_website_theme/static/src/img/formation-éligible-au-compte-personnel-de-formation.png" class="img-fluid lazy" style="width: 100px;" title="Formation éligible au CPF" alt="logo mon compte de formation" />
-                            </div>
-                            <div class="pt32">
-                                <img class="img-fluid lazy" style="width: 188px;" data-src="/mcm_website_theme/static/src/img/formation-taxi-vtc-certifiée-qualiopi.webp" data-srcSafari="/mcm_website_theme/static/src/img/formation-taxi-vtc-certifiée-qualiopi.png" title="MCM Academy centre agrée par Qualiopi" alt="qualiopi" />
-                            </div>
-                            <!-- <div class="pt32">
+  <section class="pt16 pb32 js-scroll fade-in-top">
+    <div class="container js-scroll fade-in-top">
+      <div class="center-logo mt32">
+        <div>
+          <img
+            data-src="/mcm_website_theme/static/src/img/formation-éligible-au-compte-personnel-de-formation.webp"
+            data-srcSafari="/mcm_website_theme/static/src/img/formation-éligible-au-compte-personnel-de-formation.png"
+            class="img-fluid lazy"
+            style="width: 100px"
+            title="Formation éligible au CPF"
+            alt="logo mon compte de formation"
+          />
+        </div>
+        <div class="pt32">
+          <img
+            class="img-fluid lazy"
+            style="width: 188px"
+            data-src="/mcm_website_theme/static/src/img/formation-taxi-vtc-certifiée-qualiopi.webp"
+            data-srcSafari="/mcm_website_theme/static/src/img/formation-taxi-vtc-certifiée-qualiopi.png"
+            title="MCM Academy centre agrée par Qualiopi"
+            alt="qualiopi"
+          />
+        </div>
+        <!-- <div class="pt32">
                                     <img class="img-fluid lazy" style="width: 110px;" data-srcSafari="/mcm_website_theme/static/src/img/mcm academy-partenaire-france-relance.jpg" data-src="/mcm_website_theme/static/src/img/mcm academy-partenaire-france-relance.webp" title="France relance-MCM Academy" alt="France relance-MCM Academy" />
                                 </div> -->
-                            <!-- dreal-->
-                            <div class="pt32">
-                                <img class="img-fluid lazy" style="width: 160px;" data-src="/digimoov_website_templates/static/img/coursier2roues/logo-DREAL.webp" data-srcsafari="/digimoov_website_templates/static/img/coursier2roues/logo-DREAL.png" title="Centre agrée de la préfecture" alt="dreal" />
-                            </div>
+        <!-- dreal-->
+        <div class="pt32">
+          <img
+            class="img-fluid lazy"
+            style="width: 160px"
+            data-src="/digimoov_website_templates/static/img/coursier2roues/logo-DREAL.webp"
+            data-srcsafari="/digimoov_website_templates/static/img/coursier2roues/logo-DREAL.png"
+            title="Centre agrée de la préfecture"
+            alt="dreal"
+          />
+        </div>
 
-                            <div class="pt32">
-                                <img class="img-fluid lazy" style="width:263px" data-srcSafari="/mcm_website_theme/static/src/img/logo-investir-avenir.png" data-src="/mcm_website_theme/static/src/img/logo-investir-avenir.webp" title="Investir dans vos compétences avec MCM Academy" alt="Investir dans vos compétences avec MCM Academy" />
-                            </div>
-                        </div>
-                    </div>
-                </section>
+        <div class="pt32">
+          <img
+            class="img-fluid lazy"
+            style="width: 263px"
+            data-srcSafari="/mcm_website_theme/static/src/img/logo-investir-avenir.png"
+            data-src="/mcm_website_theme/static/src/img/logo-investir-avenir.webp"
+            title="Investir dans vos compétences avec MCM Academy"
+            alt="Investir dans vos compétences avec MCM Academy"
+          />
+        </div>
+      </div>
+    </div>
+  </section>
 
-                <!-- Attestation de transport léger de marchandises-->
-                <section class="about-us centric_template pt128 section-padding pb0">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-lg-6 col-md-12">
-                                <div class="aboutus-img">
-                                    <img class="img img-fluid lazy" data-src="/digimoov_website_templates/static/img/lyon/Formation en ligne sur la capacité de transport léger de marchandises-lyon-digimoov.webp" data-srcsafari="/digimoov_website_templates/static/img/lyon/Formation en ligne sur la capacité de transport léger de marchandises-lyon-digimoov.png" title="Attestation de transport léger de marchandises" alt="Attestation de transport léger de marchandises" />
-                                </div>
-                            </div>
-                            <div class="col-lg-6 col-md-12">
-                                <div class="aboutus-content">
-                                    <h2 class="h2-title">
-              Attestation de transport léger de marchandises
-                                    </h2>
-                                    <p class="para">
-                                        L’attestation de capacité de transport est une licence obligatoire
-              pour toute personne souhaitant devenir capacitaire.
-                                        <br />
-                                        Les demandes d’attestations de capacité professionnelle doivent
-              être déposées à la DREAL via le
-                                        <b>
-                                            formulaire
-                                            <a href="https://www.formulaires.service-public.fr/gf/showFormulaireSignaletiqueConsulter.do?numCerfaAndExtension=11414">
-                  CERFA n 11414-05
-                                        </a>
-                                        </b>
-                                        ,suite au suivi d'une formation sur la capacité de transport et le passage et la réussite d'un examen
-              national.
-                                    </p>
+  <section
+    class="about-us centric_template pt128 section-padding pb0"
+    data-name="About Us"
+    id="en-savoir-plus"
+  >
+    <section>
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-6 col-md-12">
+            <div class="aboutus-img">
+              <img
+                class="img img-fluid"
+                data-srcsafari="/digimoov_website_templates/static/img/nantes/Formation sur la capacité de transport léger de marchandises-nantes-digimoov.png"
+                data-src="/digimoov_website_templates/static/img/nantes/Formation sur la capacité de transport léger de marchandises-nantes-digimoov.webp"
+                title="formation coursier en scooter en ligne"
+                alt="formation en ligne capacité de transport de marchandise sur 2 roues"
+                aria-describedby="tooltip664574"
+              />
+            </div>
+          </div>
+          <div class="col-lg-6 col-md-12">
+            <div class="aboutus-content">
+              <h2 class="h2-title">
+                Formation sur la capacité de transport léger de marchandises
+              </h2>
+              <p class="para">
+                Nous proposons une formation sur la capacité de transport léger
+                de marchandises 100% en ligne, c'est à dire à distance, sur une
+                plateforme e-learning, avec des cours sous formes de
+                vidéo-conférences et de vidéos en Live avec des formateurs
+                qualifiés.
+              </p>
+              <p class="para">
+                Notre formation concerne toute personne qui souhaite intégrer le
+                domaine du transport en exploitant un véhicule motorisé.
+              </p>
+              <p class="para">
+                Les principaux modules de la formation sont axés sur l'activité
+                commerciale, la règlementation, le droit civil, et la gestion
+                financière et salariale de l'entreprise ce qui respecte les
+                exigences du référentiel de l’examen organisé par la DREAL/DREA.
+              </p>
+              <p class="para">
+                Afin de maximiser vos chances de réussite et vous aider à
+                obtenir votre licence, notre équipe pédagogique sera là pour
+                vous encadrer et vous guider tout au long de votre parcours.
+              </p>
 
-                                    <div class="s_btn text-center pt16 pb16" data-name="Button">
-                                        <a href="/blog/digimoov-3/post/a-quoi-sert-l-attestation-de-capacite-de-transport-leger-3" class="btn btn-alpha" data-original-title="" alt="Attestation de transport léger de marchandises">En
-                savoir plus</a>
-                                    </div>
-                                </div>
+              <div class="s_btn text-center pt16 pb16" data-name="Button">
+                <a
+                  href="#pricing"
+                  class="btn btn-success"
+                  data-original-title=""
+                  title=""
+                  aria-describedby="tooltip819548"
+                  spellcheck="false"
+                  data-mci-spellchecked="true"
+                  style="word-break: break-word; position: relative; z-index: 0"
+                  >Inscrivez-vous !</a
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </section>
+  <section
+    class="s_call_to_action pt48 pb24 bg-night-fade-gradient"
+    data-name="Call to Action"
+  >
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-9 pb24">
+          <h3>
+            <b>Téléchargez notre programme&amp;nbsp;complet</b>
+            &amp;nbsp;
+            <b style="background-color: initial"
+              >de formation et d'évaluation
+            </b>
+          </h3>
+          <p class="lead">
+            <b>Pour garantir votre réussite !</b>
+          </p>
+        </div>
+        <div class="col-lg-3 s_btn text-right pt8 pb24" data-name="Button">
+          <a
+            href="/digimoov_website_templates/static/pdf/PROGRAMME-DE-FORMATION-DE-TRANSPORT-LEGER-DE-MARCHANDISES-DIGIMOOV.pdf"
+            class="btn btn-primary btn-lg"
+            target="_blank"
+            rel="noopener"
+            data-original-title=""
+            title=""
+            aria-describedby="tooltip643098"
+          >
+            <span
+              data-original-title=""
+              title=""
+              aria-describedby="tooltip516238"
+              >Je télécharge !</span
+            >
+            &amp;nbsp;
+            <i class="fa fa-1x fa-fw fa-arrow-circle-right ml-1" />
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
 
-                            </div>
-                        </div>
-                    </div>
-                </section>
+  <section class="s_text_image pt32 pb32" data-name="Image - Text"></section>
 
-                <!-- Formation en ligne sur la capacité de transport léger de marchandises-->
-                <section class="pt32 s_text_image pb0">
-                    <div class="container">
-                        <div class="row align-items-center">
-                            <div class="col-lg-6 pb16 pt16">
-                                <h2 class="h2-title">
-            Formation en ligne sur la capacité de transport léger de marchandises
-                            </h2>
-                                <p class="para">
-                                    Que vous habitiez à Lyon ou toute autre ville de la France, notre centre de formation étant à distance, vous
-            offre la possibilité de suivre une formation en ligne de 102h, axée sur 6 modules principaux sur lesquels
-            vous allez passer votre examen, et que vous allez pouvoir découvrir dans notre programme de formation
-            ci-dessous.
-                                    <br />
-                                    Suite à votre inscription, et en accédant à notre plateforme
-            e-learning, vous aurez à votre disposition nos cours sous formes de diapositives et de vidéos, mais encore,
-            vous aurez droit à des Live avec nos formateurs pour vous accompagner et vous apporter d'amples explications
-            sur les modules étudiés.
-                                    <br />
-                                    Pour tester vos connaissances tout au long du parcours de la formation, nos experts métiers ont mis en place
-            des tests sous forme de QCM, et d'examens blancs à la fin de chaque module pour mieux vous entraîner et vous
-            habituer aux conditions de l'examen final.
-                                </p>
-                            </div>
-                            <div class="col-lg-6">
-                                <img data-src="/digimoov_website_templates/static/img/lyon/Formation sur la capacité de transport léger de marchandises-nantes-digimoov.webp" data-srcsafari="/digimoov_website_templates/static/img/lyon/Formation sur la capacité de transport léger de marchandises-nantes-digimoov.png" class="img img-fluid mx-auto lazy" title="Formation en ligne sur la capacité de transport léger de marchandises" alt="Formation en ligne sur la capacité de transport léger de marchandises" />
-                            </div>
-                        </div>
-                    </div>
-                </section>
-
-                <!-- Téléchargez notre programme complet de formation et d'évaluation-->
-                <section class="s_call_to_action pt48 pb24 bg-night-fade-gradient" data-name="Call to Action">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-lg-9 pb24">
-                                <h3>
-            Téléchargez notre programme complet de formation et d'évaluation
-                            </h3>
-                                <p class="lead">
-                                    <b>Pour garantir votre réussite !</b>
-                                </p>
-                            </div>
-                            <div class="col-lg-3 s_btn text-right pt8 pb24" data-name="Button">
-                                <a href="/digimoov_website_templates/static/pdf/PROGRAMME-DE-FORMATION-DE-TRANSPORT-LEGER-DE-MARCHANDISES-DIGIMOOV.pdf" class="btn btn-primary btn-lg" target="_blank" rel="noopener" title="Programme complet de formation et d'évaluation" alt="Téléchargez le programme complet de formation et d'évaluation pour la capacité de transport léger de marchandises">
-                                    <span>Je télécharge !</span>
-
-                                    <i class="fa fa-1x fa-fw fa-arrow-circle-right ml-1" />
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-                <!-- Comment financer ma formation ?-->
-                <section class="s_text_image pt32 pb32" data-name="Image - Text">
-                    <div class="container">
-                        <div class="row align-items-center">
-                            <div class="col-lg-6 pt16 pb16">
-                                <img data-src="/digimoov_website_templates/static/img/lyon/Financer ma formation -capacité de transport-digimoov.webp" data-srcsafari="/digimoov_website_templates/static/img/lyon/Financer ma formation -capacité de transport-digimoov.png" class="img img-fluid mx-auto lazy" alt="financer ma formation" title="financer ma formation capacité de transport léger de marchandises" />
-                            </div>
-                            <div class="col-lg-6 pb16 pt16">
-                                <h2 class="h2-title">
-                                    Comment
-                                    <text class="purple-title">financer ma formation</text>
-                                    ?
-                                </h2>
-                                <p class="para">
-                                    Pour ce faire, vous devez suivre les étapes suivantes :
-                                    <br />
-                                    1 - Choisir la formule SOLO
-                                    <br />
-                                    2 - Remplir&amp;nbsp;le formulaire des coordonnées
-                                    <br />
-                                    3 - Insérer une copie lisible de votre CNI/Passeport
-                                    <br />
-                                    4 - Procéder au paiement en entrant vos coordonnées bancaires
-                                    <br />
-                                    5 - Valider&amp;nbsp;
-                                    <br />
-                                    <br />
-                                    *Vous pouvez consulter notre règlement pour plus d’informations ou
-                                         détails.
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-
-                <!-- Pricing table-->
+   <!-- Pricing table-->
                 <div id="pricing-table-trustpilot-partner">
                     <div id="pricing" class="row justify-content-center">
                         <div class="col-md-8 text-center col-lg-11">
@@ -663,10 +673,4 @@
                     </section>
                 </div>
 
-
-            </div>
-
-
-        </t>
-    </template>
-</odoo>
+</div>
