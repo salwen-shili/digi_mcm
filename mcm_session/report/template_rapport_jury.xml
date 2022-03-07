@@ -18,7 +18,7 @@
                             <div class="row">
                                 <div class="col-12">
                                     <br/>
-                                    <img src='/mcm_session/static/src/img/header_jury.png' height="150" width="950"/>
+                                    <img src='/mcm_session/static/src/img/header_jury.png' height="300" width="1200"/>
                                 </div>
                             </div>
                             <div class="row">
@@ -42,8 +42,7 @@
                                         <div class="col-1"></div>
                                         <div class="col-10">
                                             <center>
-                                                <table class="table"
-                                                       style="border:1px solid black;">
+                                                <table class="table table-bordered" style="border:1px solid black;">
                                                     <tr align="center">
                                                         <th colspan="2">CENTRE ORGANISATEUR DE L’EXAMEN</th>
                                                     </tr>
@@ -76,6 +75,12 @@
                                             </center>
                                         </div>
                                     </div>
+                                </div>
+                            </div>
+                            <div class="row" style="padding-top:100px!important;">
+                                <div class="col-12">
+                                    <br/>
+                                    <img src='/mcm_session/static/src/img/footer_jury.png' height="50" width="1200"/>
                                 </div>
                             </div>
                             <p style="page-break-after:always;"/>
@@ -149,12 +154,14 @@
                                     </table>
                                 </div>
                             </div>
-                            <div class="col-12">
-                                <img src='/mcm_session/static/src/img/footer_jury.png' height="200%"
-                                     width="100%" style="padding-top:100px!important;"/>
+                            <div class="row">
+                                <div class="col-12">
+                                    <br/>
+                                    <img src='/mcm_session/static/src/img/footer_jury.png' height="50" width="1200"/>
+                                </div>
                             </div>
                             <p style="page-break-after:always;"/>
-                            <p style="padding-top: 50px;">
+                            <p style="padding-top: 70px;">
                                 <b>
                                     <u>PERSONNES PRESENTES :</u>
                                 </b>
@@ -165,7 +172,7 @@
                                            style="border:1px solid black;">
                                         <tbody>
                                             <thead>
-                                                <tr align="center">
+                                                <tr>
                                                     <th>Nom et prénom</th>
                                                     <th width="0">Fonction</th>
                                                     <th>Date</th>
@@ -196,6 +203,15 @@
                                         </tbody>
                                     </table>
                                 </div>
+                            </div>
+                            <p style="padding-top: 20px;">Cette session est présidée par le Directeur
+                                ................................ :
+                            </p>
+                        </div>
+                        <div class="row">
+                            <div class="col-12">
+                                <br/>
+                                <img src='/mcm_session/static/src/img/footer_jury.png' height="50" width="1200"/>
                             </div>
                             <p style="padding-top: 20px;">Cette session est présidée par le Directeur
                                 ................................ :
