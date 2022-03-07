@@ -109,7 +109,7 @@
                         <div class="row">
                             <div class="col-lg-6 col-md-12">
                                 <div class="aboutus-img">
-                                    <img class="img img-fluid" data-src="/digimoov_website_templates/static/img/bordeaux/La formation  capacité de transport léger de marchandises - digimoov.webp" data-srcsafari="/digimoov_website_templates/static/img/bordeaux/La formation  capacité de transport léger de marchandises - digimoov.png" title="capacité de transport léger de marchandises" alt="formation en ligne capacité de transport de marchandise" />
+                                    <img class="img img-fluid lazy" data-src="/digimoov_website_templates/static/img/bordeaux/La formation  capacité de transport léger de marchandises - digimoov.webp" data-srcsafari="/digimoov_website_templates/static/img/bordeaux/La formation  capacité de transport léger de marchandises - digimoov.png" title="capacité de transport léger de marchandises" alt="formation en ligne capacité de transport de marchandise" />
                                 </div>
                             </div>
                             <div class="col-lg-6 col-md-12">
