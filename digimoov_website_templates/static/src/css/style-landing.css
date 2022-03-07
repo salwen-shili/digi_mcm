@@ -29,7 +29,6 @@
 }
 
 .h1-title {
-  color: rgb(156, 0, 255);
   font-size: 62px !important;
 }
 .para {
@@ -179,4 +178,8 @@
 }
 .green-v {
   color: #295218 !important;
+}
+.title {
+  font-weight: bold;
+  font-size: 48px;
 }
