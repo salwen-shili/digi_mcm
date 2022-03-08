@@ -37,7 +37,7 @@
                                         }
                                     </style>
                                     <center>
-                                        <table class="table">
+                                        <table class="table" style="padding-top:100px!important;">
                                             <tr align="center">
                                                 <th colspan="2">CENTRE ORGANISATEUR DE L’EXAMEN</th>
                                             </tr>
@@ -69,7 +69,7 @@
                                     </center>
                                 </div>
                             </div>
-                            <div class="row" style="padding-top:80px!important;">
+                            <div class="row" style="padding-top:200px!important;">
                                 <div class="col-12">
                                     <br/>
                                     <img src='/mcm_session/static/src/img/footer_jury.png' height="100" width="1600"/>
@@ -195,10 +195,12 @@
                                 ................................ :
                             </p>
                         </div>
-                        <footer>
-                            <img src='/mcm_session/static/src/img/footer_jury.png'
-                                 style="margin: 50px 50px 20px;"/>
-                        </footer>
+                        <div class="row" style="padding-top:100px!important;">
+                            <div class="col-12">
+                                <img src='/mcm_session/static/src/img/footer_jury.png'
+                                     height="125" width="1500"/>
+                            </div>
+                        </div>
                     </t>
                 </t>
             </t>
