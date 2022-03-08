@@ -160,8 +160,17 @@
                         </div>
                     </section>
 
-                    <!-- Pricing table-->
                     <div id="pricing-table-trustpilot-partner">
+                        <!-- TrustBox widget - Carousel -->
+                        <section class="mt96 mb96">
+                            <div class="container">
+                                <div class="trustpilot-widget" data-locale="fr-FR" data-template-id="53aa8912dec7e10d38f59f36" data-businessunit-id="60a28e22d3a8ed00019ff03e" data-style-height="140px" data-style-width="100%" data-theme="light" data-stars="4,5" data-review-languages="fr">
+                                    <a href="https://fr.trustpilot.com/review/digimoov.fr" target="_blank" rel="noopener">Trustpilot</a>
+                                </div>
+                            </div>
+                        </section>
+
+                        <!-- End TrustBox widget -->
                         <div id="pricing" class="row justify-content-center">
                             <div class="col-md-8 text-center col-lg-11">
                                 <h2 class="text-beta title mb20">
@@ -528,16 +537,7 @@
                         </div>
                         <!-- End pricing table-->
 
-                        <!-- TrustBox widget - Carousel -->
-                        <section class="mt96 mb96">
-                            <div class="container">
-                                <div class="trustpilot-widget" data-locale="fr-FR" data-template-id="53aa8912dec7e10d38f59f36" data-businessunit-id="60a28e22d3a8ed00019ff03e" data-style-height="140px" data-style-width="100%" data-theme="light" data-stars="4,5" data-review-languages="fr">
-                                    <a href="https://fr.trustpilot.com/review/digimoov.fr" target="_blank" rel="noopener">Trustpilot</a>
-                                </div>
-                            </div>
-                        </section>
 
-                        <!-- End TrustBox widget -->
                         <!-- partenaires-->
                         <section class="bg-200 bg-light-1 s_estate_logo_partners">
                             <div class="feature14 spacer">

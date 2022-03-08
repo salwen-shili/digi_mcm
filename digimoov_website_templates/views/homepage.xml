@@ -53,41 +53,9 @@
                                         </div>
                                         -->
                                         <!-- End TrustBox widget -->
-                                        <!-- TrustBox widget - Horizontal -->
-                                        <!-- TrustBox widget - Horizontal -->
-                                        <!-- End TrustBox widget -->
-                                        <!-- End TrustBox widget -->
+
                                     </div>
-                                    <!-- <div class="s_btn" data-name="Button">
-                      <a class="btn btn-alpha rounded-circle btn-md arrow-btn m-t-20 m-b-10 bizople_button" href="/#en-savoir-plus">
-                                            En-savoir plus
-                      </a>
-                      <a class="btn btn-outline-alpha btn-rounded rounded-circle btn-md arrow-btn m-t-20 m-b-10 font-medium underline bizople_button" href="/contact">
-                                            Contactez-nous
 
-                      </a>
-
-                    </div> -->
-                                    <!-- <a class="
-                          arrow-btn
-                          font-medium
-                          m-b-10 m-t-20
-                          btn btn-alpha
-                          rounded-circle
-                        " href="/#en-savoir-plus" data-original-title="" title="">En-savoir plus
-                      <i class="fa fa-1x fa-fw fa-long-arrow-right ml-1" data-original-title="" title="" aria-describedby="tooltip633757" />
-                    </a>
-                    <a class="
-                          arrow-btn
-                          m-t-20 m-b-10
-                          font-medium
-                          underline
-                          btn btn-alpha
-                          rounded-circle
-                        " href="/contact" data-original-title="" title="" aria-describedby="tooltip881944">
-                        Contactez-nous
-                      <i class="fa fa-1x fa-fw fa-long-arrow-right ml-1" />
-                    </a> -->
                                 </div>
                                 <div class="col-md-6 img-anim">
                                     <img class="img img-fluid" src="/digimoov_website_templates/static/img/Formation capacité de transport léger.gif" alt="Formation capacité transport léger de marchandises" data-original-title="" title="Formation capacité de transport leger de marchandise" aria-describedby="tooltip407937" />
@@ -218,9 +186,32 @@
                             <div class="row s_nb_column_fixed" id="en-savoir-plus">
                                 <div class="s_title pt16 offset-lg-2 col-lg-8 pb0 text-center">
                                     <h2 class="title-3">
-              Digimoov vous accompagne pour obtenir votre attestation en
-              capacité de transport léger de marchandises
-            </h2>
+                                        Que vous soyez à
+                                        <b>
+                                            <a href="/devenir-coursier-paris">Paris</a>
+                                            ,
+                                        </b>
+
+                                        <b>
+                                            <a href="/devenir-coursier-lyon">Lyon</a>
+                                            ,
+                                        </b>
+                                        <b>
+                                            <a href="/capacite-de-transport-marseille">Marseille</a>
+                                            ,
+                                        </b>
+                                        <b>
+                                            <a href="/livreur-de-colis-nantes">Nantes</a>
+                                            ,
+                                        </b>
+                                        <b>
+                                            <a href="/capacitaire-transport-bordeaux">Bordeaux</a>
+                                            ,
+                                        </b>
+                                        ou toute autre ville,
+                                        <b>Digimoov</b>
+                                        vous accompagne pour obtenir votre attestation en capacité de transport léger de marchandises.
+                                    </h2>
                                 </div>
                             </div>
                         </div>
@@ -441,6 +432,16 @@
                         </div>
                     </section>
 
+                    <!-- TrustBox widget - Carousel -->
+                    <section class="mt96 mb96">
+                        <div class="container">
+                            <div class="trustpilot-widget" data-locale="fr-FR" data-template-id="53aa8912dec7e10d38f59f36" data-businessunit-id="60a28e22d3a8ed00019ff03e" data-style-height="140px" data-style-width="100%" data-theme="light" data-stars="4,5" data-review-languages="fr">
+                                <a href="https://fr.trustpilot.com/review/digimoov.fr" target="_blank" rel="noopener">Trustpilot</a>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- End TrustBox widget -->
                     <!-- Pricing table-->
                     <div id="pricing-table-trustpilot-partner">
                         <div id="pricing" class="row justify-content-center">
@@ -809,16 +810,6 @@
                         </div>
                         <!-- End pricing table-->
 
-                        <!-- TrustBox widget - Carousel -->
-                        <section class="mt96 mb96">
-                            <div class="container">
-                                <div class="trustpilot-widget" data-locale="fr-FR" data-template-id="53aa8912dec7e10d38f59f36" data-businessunit-id="60a28e22d3a8ed00019ff03e" data-style-height="140px" data-style-width="100%" data-theme="light" data-stars="4,5" data-review-languages="fr">
-                                    <a href="https://fr.trustpilot.com/review/digimoov.fr" target="_blank" rel="noopener">Trustpilot</a>
-                                </div>
-                            </div>
-                        </section>
-
-                        <!-- End TrustBox widget -->
 
                     </div>
 

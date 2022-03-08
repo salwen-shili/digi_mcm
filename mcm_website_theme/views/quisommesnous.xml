@@ -2,7 +2,8 @@
 <odoo>
     <template id="mcm_website_theme_qui_sommes_nous" name="Qui Sommes Nous | MCM ACADEMY">
         <t t-call="website.layout">
-            <t t-set="//head//script[@type='application/ld+json']">
+            <t t-set="head">
+                <!--script of structured data-->
                 <script type="application/ld+json">
                     {
                     "@context": "https://schema.org",
