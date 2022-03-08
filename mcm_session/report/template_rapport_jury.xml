@@ -16,10 +16,10 @@
                         <div class="page">
                             <div class="oe_structure"/>
                             <div class="row">
-                                <div class="col-12">
+<!--                                <div class="col-12">-->
                                     <br/>
-                                    <img src='/mcm_session/static/src/img/header_jury.png' height="300" width="1200"/>
-                                </div>
+                                    <img src='/mcm_session/static/src/img/header_jury.png' height="300" width="1400"/>
+<!--                                </div>-->
                             </div>
                             <div class="row">
                                 <div class="col-12">
@@ -83,10 +83,10 @@
                                     </div>
 <!--                                </div>-->
 <!--                            </div>-->
-                            <div class="row" style="padding-top:100px!important;">
+                            <div class="row" style="padding-top:50px!important;">
                                 <div class="col-12">
                                     <br/>
-                                    <img src='/mcm_session/static/src/img/footer_jury.png' height="200" width="1100"/>
+                                    <img src='/mcm_session/static/src/img/footer_jury.png' height="100" width="1200"/>
                                 </div>
                             </div>
                             <p style="page-break-after:always;"/>
