@@ -176,7 +176,7 @@
           <div class="container">
             <div class="row align-items-center ">
               <div class="col-lg-6 pt16 pb16 js-scroll slide-left ">
-                <img data-src="/mcm_website_theme/static/src/img/formation-moto-taxi/Formateur-moto-taxi-pc-à-la-main.png" data-srcsafari="mcm_website_theme/static/src/img/formation-moto-taxi/Formateur-moto-taxi-pc-à-la-main.webp" class="img img-fluid mx-auto" alt="Formateur moto-taxi pc à la main" title="FORMATION MOTO-TAXI" />
+                <img data-src="/mcm_website_theme/static/src/img/formation-moto-taxi/Formateur-moto-taxi-pc-à-la-main.png" data-srcsafari="mcm_website_theme/static/src/img/formation-moto-taxi/Formateur-moto-taxi-pc-à-la-main.webp" class="img img-fluid mx-auto lazy" alt="Formateur moto-taxi pc à la main" title="FORMATION MOTO-TAXI" />
               </div>
               <div class="col-lg-6 pt16 pb16 js-scroll slide-right ">
                 <h2> FORMATION VMDTR</h2>
