@@ -8,7 +8,7 @@
                         <style>
                             .page {
                             line-height: 1.75 ;
-                            font-size:18px ;
+                            font-size:20px ;
                             padding-left: 10px;
                             padding-right: 10px;
                             }
@@ -38,6 +38,12 @@
                                         <span t-esc="docs.date_to_text(yearformat,monthformat,monthformat)"/>
                                     </p>
                                     <br/>
+                                    <style>
+                                        tr, td {
+                                        padding: 3px;
+                                        border-right-style: solid;
+                                        }
+                                    </style>
                                     <div class="row" style="padding-top:5px!important;">
                                         <div class="col-1"></div>
                                         <div class="col-10">
@@ -166,7 +172,7 @@
                                     <u>PERSONNES PRESENTES :</u>
                                 </b>
                             </p>
-                            <div class="row" style="padding-top:5px!important;">
+                            <div class="row" style="padding-top:20px!important;">
                                 <div class="col-12">
                                     <table class="table table-bordered"
                                            style="border:1px solid black;">
@@ -204,7 +210,7 @@
                                     </table>
                                 </div>
                             </div>
-                            <p style="padding-top: 20px;">Cette session est présidée par le Directeur
+                            <p style="padding-top: 40px;">Cette session est présidée par le Directeur
                                 ................................ :
                             </p>
                         </div>
