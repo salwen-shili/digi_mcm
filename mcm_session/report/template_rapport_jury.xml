@@ -18,7 +18,7 @@
                             <div class="row">
                                 <div class="col-12">
                                     <br/>
-                                    <img src='/mcm_session/static/src/img/header_jury.png' height="600%" width="1000%"/>
+                                    <img src='/mcm_session/static/src/img/header_jury.png' height="600" width="1000"/>
                                 </div>
                             </div>
                             <div class="row">
@@ -39,7 +39,7 @@
                                     </p>
                                     <br/>
                                     <style>
-                                        tr, td , .table, .tbody{
+                                        .tr, td , .table, .tbody{
                                         padding: 3px;
                                         border-right-style: solid;
                                         }
@@ -53,8 +53,8 @@
                                                         <th colspan="2">CENTRE ORGANISATEUR DE L’EXAMEN</th>
                                                     </tr>
 
-                                                    <tbody class="tbody">
-                                                        <tr>
+                                                    <tbody >
+                                                        <tr class="tr">
                                                             <td align="center">
                                                                 <b>Numéro d’agrément</b>
                                                             </td>
@@ -65,7 +65,7 @@
                                                                 </strong>
                                                             </td>
                                                         </tr>
-                                                        <tr>
+                                                        <tr class="tr">
                                                             <td align="center">
                                                                 <b>Lieu de réalisation de la session</b>
                                                             </td>
@@ -86,7 +86,7 @@
                             <div class="row" style="padding-top:400px!important;">
                                 <div class="col-12">
                                     <br/>
-                                    <img src='/mcm_session/static/src/img/footer_jury.png' height="100" width="1500"/>
+                                    <img src='/mcm_session/static/src/img/footer_jury.png' height="100" width="500"/>
                                 </div>
                             </div>
                             <p style="page-break-after:always;"/>
@@ -119,7 +119,7 @@
                                     sur
                                     <span t-esc="docs.nbr_client_par_session(nbr_inscrits)"/>
                                 </p>
-                                <p>- Le taux de réussite est donc de<span
+                                <p>- Le taux de réussite est donc de <span
                                         t-esc="docs.pourcentage_client_recu(pourcentage)"/>%.
                                 </p>
                                 <br/>
@@ -172,10 +172,10 @@
                                     <u>PERSONNES PRESENTES :</u>
                                 </b>
                             </p>
-                            <div class="row" style="padding-top:20px!important;">
-                                <div class="col-12">
-                                    <table class="table table-bordered"
-                                           style="border:1px solid black;">
+<!--                            <div class="row" style="padding-top:20px!important;">-->
+<!--                                <div class="col-12">-->
+                                    <table class="table"
+                                           style="border:2px solid black;">
                                         <tbody>
                                             <thead>
                                                 <tr>
@@ -208,15 +208,15 @@
                                             </tr>
                                         </tbody>
                                     </table>
-                                </div>
-                            </div>
+<!--                                </div>-->
+<!--                            </div>-->
                             <p style="padding-top: 40px;">Cette session est présidée par le Directeur
                                 ................................ :
                             </p>
                         </div>
                         <div class="col-12">
-                            <img src='/mcm_session/static/src/img/footer_jury.png' height="300%"
-                                 width="300%" style="padding-top:50px!important;"/>
+                            <img src='/mcm_session/static/src/img/footer_jury.png' height="300"
+                                 width="300" style="padding-top:50px!important;"/>
                         </div>
                     </t>
                 </t>
