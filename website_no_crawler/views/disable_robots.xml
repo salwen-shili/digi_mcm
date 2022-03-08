@@ -1,12 +1,32 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
-    <template id="robots" inherit_id="website.robots">
+    <template id="mcm_academy_robots" inherit_id="website.robots" name="Mcm Academy robots">
         <xpath expr="t" position="replace">
-            <t>
+            <t t-translation="off">
 User-agent: *
-Disallow: /
-Sitemap: <t t-esc="url_root" />sitemap.xml
-</t>
+Disallow: /web/*
+Disallow: /service-comptabilite
+Disallow: /service-clientele
+Disallow: /service-pedagogique
+Disallow: /shop/cart
+Disallow: /contact
+Disallow: /conditions
+Sitemap:<t t-esc="url_root"/>sitemap.xml
+            </t>
+        </xpath>
+    </template>
+    <template id="digi_robots" inherit_id="website.robots" name="Digimoov robots">
+        <xpath expr="t" position="replace">
+            <t t-translation="off">
+User-agent: *
+Disallow: /web/*
+Disallow: /service-comptabilite
+Disallow: /service-clientele
+Disallow: /service-pedagogique
+Disallow: /shop/cart
+Disallow: /contact
+Sitemap:<t t-esc="url_root"/>sitemap.xml
+            </t>
         </xpath>
     </template>
 </odoo>
