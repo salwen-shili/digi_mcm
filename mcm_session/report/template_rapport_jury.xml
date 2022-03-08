@@ -9,8 +9,8 @@
                             .page {
                             line-height: 1.75 ;
                             font-size:20px ;
-                            padding-left: 10px;
-                            padding-right: 10px;
+                            padding-left: 20px;
+                            padding-right: 20px;
                             }
                         </style>
                         <div class="page">
@@ -18,7 +18,7 @@
                             <div class="row">
                                 <div class="col-12">
                                     <br/>
-                                    <img src='/mcm_session/static/src/img/header_jury.png' height="300" width="1500"/>
+                                    <img src='/mcm_session/static/src/img/header_jury.png' height="600%" width="1000%"/>
                                 </div>
                             </div>
                             <div class="row">
@@ -39,7 +39,7 @@
                                     </p>
                                     <br/>
                                     <style>
-                                        tr, td , .table{
+                                        tr, td , .table, .tbody{
                                         padding: 3px;
                                         border-right-style: solid;
                                         }
@@ -53,7 +53,7 @@
                                                         <th colspan="2">CENTRE ORGANISATEUR DE L’EXAMEN</th>
                                                     </tr>
 
-                                                    <tbody>
+                                                    <tbody class="tbody">
                                                         <tr>
                                                             <td align="center">
                                                                 <b>Numéro d’agrément</b>
@@ -86,7 +86,7 @@
                             <div class="row" style="padding-top:400px!important;">
                                 <div class="col-12">
                                     <br/>
-                                    <img src='/mcm_session/static/src/img/footer_jury.png' height="80" width="1200"/>
+                                    <img src='/mcm_session/static/src/img/footer_jury.png' height="100" width="1500"/>
                                 </div>
                             </div>
                             <p style="page-break-after:always;"/>
@@ -147,7 +147,7 @@
 <!--                            <div class="row" style="padding-top:5px!important;">-->
 <!--                                <div class="col-1"></div>-->
 <!--                                <div class="col-12">-->
-                                    <table >
+                                    <table style="padding-top:10px!important;">
                                         <tbody>
                                             <tr>
                                                 <td align="center" style="height: 150px; width: 200px;">
@@ -163,7 +163,7 @@
                             <div class="row">
                                 <div class="col-12">
                                     <br/>
-                                    <img src='/mcm_session/static/src/img/footer_jury.png' height="50" width="1200"/>
+                                    <img src='/mcm_session/static/src/img/footer_jury.png' height="50" width="1200" style="padding-top:50px!important;"/>
                                 </div>
                             </div>
                             <p style="page-break-after:always;"/>
@@ -216,7 +216,7 @@
                         </div>
                         <div class="col-12">
                             <img src='/mcm_session/static/src/img/footer_jury.png' height="300%"
-                                 width="300%" style="padding-top:100px!important;"/>
+                                 width="300%" style="padding-top:50px!important;"/>
                         </div>
                     </t>
                 </t>
