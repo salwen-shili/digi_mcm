@@ -16,10 +16,10 @@
                         <div class="page">
                             <div class="oe_structure"/>
                             <div class="row">
-<!--                                <div class="col-12">-->
-                                    <br/>
-                                    <img src='/mcm_session/static/src/img/header_jury.png' height="300" width="1400"/>
-<!--                                </div>-->
+                                <!--                                <div class="col-12">-->
+                                <br/>
+                                <img src='/mcm_session/static/src/img/header_jury.png' height="300" width="1600"/>
+                                <!--                                </div>-->
                             </div>
                             <div class="row">
                                 <div class="col-12">
@@ -44,49 +44,49 @@
                                         border: solid;
                                         }
                                     </style>
-<!--                                    <div class="row" style="padding-top:5px!important;">-->
-<!--                                        <div class="col-1"></div>-->
-<!--                                        <div class="col-10">-->
-                                            <center>
-                                                <table class="table">
-                                                    <tr align="center">
-                                                        <th colspan="2">CENTRE ORGANISATEUR DE L’EXAMEN</th>
-                                                    </tr>
+                                    <!--                                    <div class="row" style="padding-top:5px!important;">-->
+                                    <!--                                        <div class="col-1"></div>-->
+                                    <!--                                        <div class="col-10">-->
+                                    <center>
+                                        <table class="table">
+                                            <tr align="center">
+                                                <th colspan="2">CENTRE ORGANISATEUR DE L’EXAMEN</th>
+                                            </tr>
 
-                                                    <tbody >
-                                                        <tr class="tr">
-                                                            <td class="td" align="center">
-                                                                <b>Numéro d’agrément</b>
-                                                            </td>
-                                                            <td class="td" align="center">
-                                                                <strong>
-                                                                    <p>MCM ACADEMY</p>
-                                                                    <span t-raw="'%s' % o.num_agrement_jury"/>
-                                                                </strong>
-                                                            </td>
-                                                        </tr>
-                                                        <tr class="tr">
-                                                            <td class="td" align="center">
-                                                                <b>Lieu de réalisation de la session</b>
-                                                            </td>
-                                                            <td align="center">
-                                                                <strong>
-                                                                    <span t-raw="'%s' % o.ville_jury_id.name_ville"/>:
-                                                                    <span t-raw="'%s' % o.adresse_jury_id.adresse_centre_examen"/>
-                                                                </strong>
-                                                            </td>
-                                                        </tr>
-                                                    </tbody>
-                                                </table>
-                                            </center>
-                                        </div>
-                                    </div>
-<!--                                </div>-->
-<!--                            </div>-->
-                            <div class="row" style="padding-top:50px!important;">
+                                            <tbody>
+                                                <tr class="tr">
+                                                    <td class="td" align="center">
+                                                        <b>Numéro d’agrément</b>
+                                                    </td>
+                                                    <td class="td" align="center">
+                                                        <strong>
+                                                            <p>MCM ACADEMY</p>
+                                                            <span t-raw="'%s' % o.num_agrement_jury"/>
+                                                        </strong>
+                                                    </td>
+                                                </tr>
+                                                <tr class="tr">
+                                                    <td class="td" align="center">
+                                                        <b>Lieu de réalisation de la session</b>
+                                                    </td>
+                                                    <td align="center">
+                                                        <strong>
+                                                            <span t-raw="'%s' % o.ville_jury_id.name_ville"/>:
+                                                            <span t-raw="'%s' % o.adresse_jury_id.adresse_centre_examen"/>
+                                                        </strong>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </center>
+                                </div>
+                            </div>
+                            <!--                                </div>-->
+                            <!--                            </div>-->
+                            <div class="row" style="padding-top:60px!important;">
                                 <div class="col-12">
                                     <br/>
-                                    <img src='/mcm_session/static/src/img/footer_jury.png' height="100" width="1200"/>
+                                    <img src='/mcm_session/static/src/img/footer_jury.png' height="100" width="1400"/>
                                 </div>
                             </div>
                             <p style="page-break-after:always;"/>
@@ -102,7 +102,7 @@
                                 margin-left: 40px;
                                 }
                             </style>
-                            <span class="tab">
+                            <span class="tab" style="font-size:18px;">
                                 <p>a) Nombre de candidats inscrits et présents :</p>
                                 <p>- Le nombre de candidats inscrits était de
                                     <span t-esc="docs.nbr_client_par_session(nbr_inscrits)"/>
@@ -119,7 +119,7 @@
                                     sur
                                     <span t-esc="docs.nbr_client_par_session(nbr_inscrits)"/>
                                 </p>
-                                <p>- Le taux de réussite est donc de <span
+                                <p>- Le taux de réussite est donc de<span
                                         t-esc="docs.pourcentage_client_recu(pourcentage)"/>%.
                                 </p>
                                 <br/>
@@ -144,26 +144,33 @@
                             </span>
                             <br/>
 
-<!--                            <div class="row" style="padding-top:5px!important;">-->
-<!--                                <div class="col-1"></div>-->
-<!--                                <div class="col-12">-->
-                                    <table style="padding-top:10px!important;">
-                                        <tbody>
-                                            <tr>
-                                                <td align="center" style="height: 150px; width: 200px;">
-                                                    <b>Remarques</b>
-                                                </td>
-                                                <td align="center" style="height: 150px; width: 800px;">test
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-<!--                                </div>-->
-<!--                            </div>-->
+                            <!--                            <div class="row" style="padding-top:5px!important;">-->
+                            <!--                                <div class="col-1"></div>-->
+                            <!--                                <div class="col-12">-->
+                            <style>
+                                .tr, .td , .table{
+                                padding: 3px;
+                                border: solid;
+                                }
+                            </style>
+                            <table class="table" style="padding-top:10px!important;">
+                                <tbody>
+                                    <tr>
+                                        <td class="td" align="center" style="height: 150px; width: 200px;">
+                                            <b>Remarques</b>
+                                        </td>
+                                        <td class="td" align="center" style="height: 150px; width: 800px;">test
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <!--                                </div>-->
+                            <!--                            </div>-->
                             <div class="row">
                                 <div class="col-12">
                                     <br/>
-                                    <img src='/mcm_session/static/src/img/footer_jury.png' height="50" width="1200" style="padding-top:50px!important;"/>
+                                    <img src='/mcm_session/static/src/img/footer_jury.png' height="50" width="1200"
+                                         style="padding-top:50px!important;"/>
                                 </div>
                             </div>
                             <p style="page-break-after:always;"/>
@@ -172,44 +179,44 @@
                                     <u>PERSONNES PRESENTES :</u>
                                 </b>
                             </p>
-<!--                            <div class="row" style="padding-top:20px!important;">-->
-<!--                                <div class="col-12">-->
-                                    <table class="table"
-                                           style="border:2px solid black;">
-                                        <tbody>
-                                            <thead>
-                                                <tr>
-                                                    <th>Nom et prénom</th>
-                                                    <th width="0">Fonction</th>
-                                                    <th>Date</th>
-                                                    <th>Signature</th>
-                                                </tr>
-                                            </thead>
+                            <!--                            <div class="row" style="padding-top:20px!important;">-->
+                            <!--                                <div class="col-12">-->
+                            <table class="table"
+                                   style="border:2px solid black;">
+                                <tbody>
+                                    <thead>
+                                        <tr>
+                                            <th>Nom et prénom</th>
+                                            <th width="0">Fonction</th>
+                                            <th>Date</th>
+                                            <th>Signature</th>
+                                        </tr>
+                                    </thead>
 
-                                            <tr t-foreach='o.intervenant_id' t-as='line'>
-                                                <td style="height:100px;width:200px;">
-                                                    <span t-esc="line.intervenant_id.display_name"/>
-                                                </td>
-                                                <td style="height:100px;width:200px;">
-                                                    <span t-esc="line.fonction_id.name"/>
-                                                </td>
-                                                <td style="height:100px;width:200px;">
-                                                    <span t-esc="context_timestamp(datetime.datetime.now()).strftime('%d/%m/%Y')"/>
-                                                </td>
-                                                <td style="height:100px;width:200px;">
-                                                    <span></span>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td style="height:100px;width:200px;"></td>
-                                                <td style="height:100px;width:200px;"></td>
-                                                <td style="height:100px;width:200px;"></td>
-                                                <td style="height:100px;width:200px;"></td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-<!--                                </div>-->
-<!--                            </div>-->
+                                    <tr t-foreach='o.intervenant_id' t-as='line'>
+                                        <td style="height:100px;width:200px;">
+                                            <span t-esc="line.intervenant_id.display_name"/>
+                                        </td>
+                                        <td style="height:100px;width:200px;">
+                                            <span t-esc="line.fonction_id.name"/>
+                                        </td>
+                                        <td style="height:100px;width:200px;">
+                                            <span t-esc="context_timestamp(datetime.datetime.now()).strftime('%d/%m/%Y')"/>
+                                        </td>
+                                        <td style="height:100px;width:200px;">
+                                            <span></span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="height:100px;width:200px;"></td>
+                                        <td style="height:100px;width:200px;"></td>
+                                        <td style="height:100px;width:200px;"></td>
+                                        <td style="height:100px;width:200px;"></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <!--                                </div>-->
+                            <!--                            </div>-->
                             <p style="padding-top: 40px;">Cette session est présidée par le Directeur
                                 ................................ :
                             </p>
