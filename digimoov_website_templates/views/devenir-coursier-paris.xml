@@ -116,21 +116,21 @@
                         <div class="container js-scroll fade-in-top">
                             <div class="center-logo mt32">
                                 <div>
-                                    <img data-src="/mcm_website_theme/static/src/img/formation-éligible-au-compte-personnel-de-formation.webp" data-srcSafari="/mcm_website_theme/static/src/img/formation-éligible-au-compte-personnel-de-formation.png" class="img-fluid lazy" style="width: 100px;" title="Formation éligible au CPF" alt="logo mon compte de formation" />
+                                    <img data-src="/mcm_website_theme/static/src/img/formation-éligible-au-compte-personnel-de-formation.webp" data-srcSafari="/mcm_website_theme/static/src/img/formation-éligible-au-compte-personnel-de-formation.png" class="img-fluid lazy" style="width: 100px" title="Formation éligible au CPF" alt="logo mon compte de formation" />
                                 </div>
                                 <div class="pt32">
-                                    <img class="img-fluid lazy" style="width: 188px;" data-src="/mcm_website_theme/static/src/img/formation-taxi-vtc-certifiée-qualiopi.webp" data-srcSafari="/mcm_website_theme/static/src/img/formation-taxi-vtc-certifiée-qualiopi.png" title="MCM Academy centre agrée par Qualiopi" alt="qualiopi" />
+                                    <img class="img-fluid lazy" style="width: 188px" data-src="/mcm_website_theme/static/src/img/formation-taxi-vtc-certifiée-qualiopi.webp" data-srcSafari="/mcm_website_theme/static/src/img/formation-taxi-vtc-certifiée-qualiopi.png" title="MCM Academy centre agrée par Qualiopi" alt="qualiopi" />
                                 </div>
                                 <!-- <div class="pt32">
                                     <img class="img-fluid lazy" style="width: 110px;" data-srcSafari="/mcm_website_theme/static/src/img/mcm academy-partenaire-france-relance.jpg" data-src="/mcm_website_theme/static/src/img/mcm academy-partenaire-france-relance.webp" title="France relance-MCM Academy" alt="France relance-MCM Academy" />
                                 </div> -->
                                 <!-- dreal-->
                                 <div class="pt32">
-                                    <img class="img-fluid lazy" style="width: 160px;" data-src="/digimoov_website_templates/static/img/coursier2roues/logo-DREAL.webp" data-srcsafari="/digimoov_website_templates/static/img/coursier2roues/logo-DREAL.png" title="Centre agrée de la préfecture" alt="dreal" />
+                                    <img class="img-fluid lazy" style="width: 160px" data-src="/digimoov_website_templates/static/img/coursier2roues/logo-DREAL.webp" data-srcsafari="/digimoov_website_templates/static/img/coursier2roues/logo-DREAL.png" title="Centre agrée de la préfecture" alt="dreal" />
                                 </div>
 
                                 <div class="pt32">
-                                    <img class="img-fluid lazy" style="width:263px" data-srcSafari="/mcm_website_theme/static/src/img/logo-investir-avenir.png" data-src="/mcm_website_theme/static/src/img/logo-investir-avenir.webp" title="Investir dans vos compétences avec MCM Academy" alt="Investir dans vos compétences avec MCM Academy" />
+                                    <img class="img-fluid lazy" style="width: 263px" data-srcSafari="/mcm_website_theme/static/src/img/logo-investir-avenir.png" data-src="/mcm_website_theme/static/src/img/logo-investir-avenir.webp" title="Investir dans vos compétences avec MCM Academy" alt="Investir dans vos compétences avec MCM Academy" />
                                 </div>
                             </div>
                         </div>
