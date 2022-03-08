@@ -195,10 +195,12 @@
                                 ................................ :
                             </p>
                         </div>
-                        <footer>
-                            <img src='/mcm_session/static/src/img/footer_jury.png'
-                                 style="margin: 50px 50px 20px;"/>
-                        </footer>
+                        <div class="row" style="padding-top:100px!important;">
+                            <div class="col-12">
+                                <img src='/mcm_session/static/src/img/footer_jury.png'
+                                     height="125" width="1000" />
+                            </div>
+                        </div>
                     </t>
                 </t>
             </t>
