@@ -214,18 +214,9 @@
                                 ................................ :
                             </p>
                         </div>
-                        <div class="row">
-                            <div class="col-12">
-                                <br/>
-                                <img src='/mcm_session/static/src/img/footer_jury.png' height="50" width="1200"/>
-                            </div>
-                            <p style="padding-top: 20px;">Cette session est présidée par le Directeur
-                                ................................ :
-                            </p>
-                        </div>
                         <div class="col-12">
-                            <img src='/mcm_session/static/src/img/footer_jury.png' height="200%"
-                                 width="100%" style="padding-top:100px!important;"/>
+                            <img src='/mcm_session/static/src/img/footer_jury.png' height="200"
+                                 width="100" style="padding-top:100px!important;"/>
                         </div>
                     </t>
                 </t>
