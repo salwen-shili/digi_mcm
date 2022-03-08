@@ -195,8 +195,17 @@
                     </div>
                 </section>
 
-                <!-- Pricing table-->
                 <div id="pricing-table-trustpilot-partner">
+                    <!-- TrustBox widget - Carousel -->
+                    <section class="mt96 mb96">
+                        <div class="container">
+                            <div class="trustpilot-widget" data-locale="fr-FR" data-template-id="53aa8912dec7e10d38f59f36" data-businessunit-id="60a28e22d3a8ed00019ff03e" data-style-height="140px" data-style-width="100%" data-theme="light" data-stars="4,5" data-review-languages="fr">
+                                <a href="https://fr.trustpilot.com/review/digimoov.fr" target="_blank" rel="noopener">Trustpilot</a>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- End TrustBox widget -->
                     <div id="pricing" class="row justify-content-center">
                         <div class="col-md-8 text-center col-lg-11">
                             <h2 class="text-beta title mb20">
@@ -265,17 +274,17 @@
                                                         <li class="mb-4">
                                                             <i class="fa fa-check-circle fa-lg mr-2 text-success" />
                                                             <b>
-          &amp;nbsp;Examen final en présentiel &amp;nbsp; &amp;nbsp;
-          &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;
-          &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;
-          &amp;nbsp;&amp;nbsp;</b>
+                        &amp;nbsp;Examen final en présentiel &amp;nbsp; &amp;nbsp;
+                        &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;
+                        &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;
+                        &amp;nbsp;&amp;nbsp;</b>
                                                         </li>
                                                         <li class="mb-4">
                                                             <i class="fa fa-check-circle fa-lg mr-2 text-success" />
                                                             <b>Séance en Live pour corriger l'examen &amp;nbsp;
-          &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;
-          &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;
-          &amp;nbsp; &amp;nbsp;&amp;nbsp;</b>
+                        &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;
+                        &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;
+                        &amp;nbsp; &amp;nbsp;&amp;nbsp;</b>
                                                         </li>
                                                         <li>
                                                             <i />
@@ -306,12 +315,12 @@
                                                         </p>
                                                     </t>
                                                     <p class="medium text-center font-weight-bolder text-secondary paiement" t-if="not partenaire or partenaire==''">
-      Paiement 1 ou 2 fois
-                              </p>
+                    Paiement 1 ou 2 fois
+                                            </p>
                                                     <br />
                                                     <button class="btn btn-block text-white btn-inscription" onClick="(function(){ document.getElementById('form-1-1').submit();return false;})();">
-      Je m'inscris
-                              </button>
+                    Je m'inscris
+                                            </button>
                                                 </div>
                                             </form>
                                         </t>
@@ -321,21 +330,21 @@
                             <div class="col-md-4 col-sm-6">
                                 <div class="card border-0 shadow border-pricing">
                                     <!-- <div class="text-center text-white border-0" style="
-      background-color: #6e209f;
-      border-top-left-radius: 25px;
-      border-top-right-radius: 25px;
-    ">
-                              <br />
-                              <p>
-                                  <strong style="color: white">
-                                      <font style="font-size: 30px">PRO</font>
-                                  </strong>
-                              </p>
-                              <p>
-                                  <b></b>
-                              </p>
-                              <br />
-                          </div> -->
+                    background-color: #6e209f;
+                    border-top-left-radius: 25px;
+                    border-top-right-radius: 25px;
+                  ">
+                                            <br />
+                                            <p>
+                                                <strong style="color: white">
+                                                    <font style="font-size: 30px">PRO</font>
+                                                </strong>
+                                            </p>
+                                            <p>
+                                                <b></b>
+                                            </p>
+                                            <br />
+                                        </div> -->
                                     <div class="text-center text-white border-0 pack-wrap">
                                         <br />
 
@@ -364,13 +373,13 @@
                                                             <i class="fa fa-check-circle fa-lg mr-2 text-success" />
                                                             <b> Livre d’entrainement version électronique</b>
                                                             <!-- <i class="fa fa-info-circle info"></i>
-                                                  <span class="additional-info">additional info</span> -->
+                                                                <span class="additional-info">additional info</span> -->
                                                         </li>
                                                         <li class="mb-4">
                                                             <i class="fa fa-check-circle fa-lg mr-2 text-success" />
                                                             <b> Accès à 10 examens d'entraînement</b>
                                                             <!-- <i class="fa fa-info-circle info"></i>
-                                                  <span class="additional-info">additional info</span> -->
+                                                                <span class="additional-info">additional info</span> -->
                                                         </li>
                                                         <li class="mb-4">
                                                             <i class="fa fa-check-circle fa-lg mr-2 text-success" data-original-title="" title="" aria-describedby="tooltip131000" />
@@ -396,17 +405,17 @@
                                                         <li class="mb-4">
                                                             <i class="fa fa-check-circle fa-lg mr-2 text-success" />
                                                             <b>
-          &amp;nbsp;Examen final en présentiel &amp;nbsp; &amp;nbsp;
-          &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;
-          &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;
-          &amp;nbsp;&amp;nbsp;</b>
+                        &amp;nbsp;Examen final en présentiel &amp;nbsp; &amp;nbsp;
+                        &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;
+                        &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;
+                        &amp;nbsp;&amp;nbsp;</b>
                                                         </li>
                                                         <li class="mb-4">
                                                             <i class="fa fa-check-circle fa-lg mr-2 text-success" />
                                                             <b>Séance en Live pour corriger l’examen &amp;nbsp;
-          &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;
-          &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;
-          &amp;nbsp; &amp;nbsp;&amp;nbsp;</b>
+                        &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;
+                        &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;
+                        &amp;nbsp; &amp;nbsp;&amp;nbsp;</b>
                                                         </li>
 
                                                         <li>
@@ -430,13 +439,13 @@
                                                         </p>
                                                     </t>
                                                     <p class="paiement medium text-center font-weight-bolder text-secondary">
-      Paiement 1 ou 2 fois
-                              </p>
+                    Paiement 1 ou 2 fois
+                                            </p>
 
                                                     <br />
                                                     <button class="btn-inscription btn btn-block text-white" onClick="(function(){document.getElementById('form-2-1').submit();return false;})();">
-      Je m'inscris
-                              </button>
+                    Je m'inscris
+                                            </button>
                                                 </div>
                                             </form>
                                         </t>
@@ -446,19 +455,19 @@
                             <div class="col-md-4 col-sm-12">
                                 <div class="card border-0 shadow border-pricing">
                                     <!-- <div class="text-center text-white border-0" style="
-      background-color: #6e209f;
-      border-top-left-radius: 25px;
-      border-top-right-radius: 25px;
-    ">
-                              <br />
-                              <h2>
-                                  <strong style="color: white">PREMIUM</strong>
-                              </h2>
-                              <p>
-                                  <b></b>
-                              </p>
-                              <br />
-                          </div> -->
+                    background-color: #6e209f;
+                    border-top-left-radius: 25px;
+                    border-top-right-radius: 25px;
+                  ">
+                                            <br />
+                                            <h2>
+                                                <strong style="color: white">PREMIUM</strong>
+                                            </h2>
+                                            <p>
+                                                <b></b>
+                                            </p>
+                                            <br />
+                                        </div> -->
                                     <div class="text-center text-white border-0 pack-wrap">
                                         <br />
 
@@ -523,8 +532,8 @@
                                                             <i class="fa fa-lg fa-check-circle mr-2 text-success" />
                                                             <b>Séance en Live pour corriger l’examen</b>
                                                             &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;
-        &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;
-        &amp;nbsp; &amp;nbsp; &amp;nbsp;&amp;nbsp;
+                      &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;
+                      &amp;nbsp; &amp;nbsp; &amp;nbsp;&amp;nbsp;
                                                         </li>
                                                         <li>
                                                             <i />
@@ -546,13 +555,13 @@
                                                         </p>
                                                     </t>
                                                     <p class="paiement medium text-center font-weight-bolder text-secondary">
-      Paiement 1 ou 3 fois
-                              </p>
+                    Paiement 1 ou 3 fois
+                                            </p>
 
                                                     <br />
                                                     <button class="btn-inscription btn btn-block text-white" onClick="(function(){ document.getElementById('form-3-1').submit();return false;})();">
-      Je m'inscris
-                              </button>
+                    Je m'inscris
+                                            </button>
                                                 </div>
                                             </form>
                                         </t>
@@ -563,16 +572,7 @@
                     </div>
                     <!-- End pricing table-->
 
-                    <!-- TrustBox widget - Carousel -->
-                    <section class="mt96 mb96">
-                        <div class="container">
-                            <div class="trustpilot-widget" data-locale="fr-FR" data-template-id="53aa8912dec7e10d38f59f36" data-businessunit-id="60a28e22d3a8ed00019ff03e" data-style-height="140px" data-style-width="100%" data-theme="light" data-stars="4,5" data-review-languages="fr">
-                                <a href="https://fr.trustpilot.com/review/digimoov.fr" target="_blank" rel="noopener">Trustpilot</a>
-                            </div>
-                        </div>
-                    </section>
 
-                    <!-- End TrustBox widget -->
                     <!-- partenaires-->
                     <section class="bg-200 bg-light-1 s_estate_logo_partners">
                         <div class="feature14 spacer">
@@ -581,10 +581,10 @@
                                     <div class="col-md-7 text-center">
                                         <h2 class="text-beta title">Nos Partenaires</h2>
                                         <p class="subtitle">
-Afin de vous aider à réaliser vos objectifs professionnels dans les
-meilleures conditions nous avons développé de nombreux partenariats
-avec les leaders du marché de la livraison à domicile
-                  </p>
+              Afin de vous aider à réaliser vos objectifs professionnels dans les
+              meilleures conditions nous avons développé de nombreux partenariats
+              avec les leaders du marché de la livraison à domicile
+                                </p>
                                     </div>
                                 </div>
                                 <section class="bg-200 clients p-m-0 pb16 pt16 s_references" data-name="References">
