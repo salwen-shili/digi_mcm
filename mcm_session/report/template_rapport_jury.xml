@@ -144,10 +144,10 @@
                             </p>
                             <br/>
 
-                            <div class="row" style="padding-top:5px!important;">
-                                <div class="col-1"></div>
-                                <div class="col-12">
-                                    <table class="table table-bordered" style="border:1px solid black;">
+<!--                            <div class="row" style="padding-top:5px!important;">-->
+<!--                                <div class="col-1"></div>-->
+<!--                                <div class="col-12">-->
+                                    <table >
                                         <tbody>
                                             <tr>
                                                 <td align="center" style="height: 150px; width: 200px;">
@@ -158,8 +158,8 @@
                                             </tr>
                                         </tbody>
                                     </table>
-                                </div>
-                            </div>
+<!--                                </div>-->
+<!--                            </div>-->
                             <div class="row">
                                 <div class="col-12">
                                     <br/>
