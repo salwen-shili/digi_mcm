@@ -3,6 +3,7 @@
     <template id="mcm_website_faq" name="FAQ | MCM ACADEMY" t-name="mcm_website_theme.mcm_website_faq">
         <t t-call="website.layout">
             <t t-set="head">
+                <!--script of structured data-->
                 <script type="application/ld+json">
                     {
                     "@context": "https://schema.org",
