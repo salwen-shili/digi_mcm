@@ -22,6 +22,7 @@ class CRM(models.Model):
     module_id = fields.Many2one('mcmacademy.module')
     mcm_session_id = fields.Many2one('mcmacademy.session')
     numero_action = fields.Char(string="Identifiant interne d'action")
+    motif=fields.Char(string="Motif de l'archivage")
 
     # @api.model
     # def search_read(self, domain=None, fields=None, offset=0, limit=None, order=None):
