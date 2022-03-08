@@ -18,7 +18,7 @@
                             <div class="row">
                                 <div class="col-12">
                                     <br/>
-                                    <img src='/mcm_session/static/src/img/header_jury.png' height="400" width="1100"/>
+                                    <img src='/mcm_session/static/src/img/header_jury.png' height="300" width="1200"/>
                                 </div>
                             </div>
                             <div class="row">
@@ -83,10 +83,10 @@
                                     </div>
 <!--                                </div>-->
 <!--                            </div>-->
-                            <div class="row" style="padding-top:400px!important;">
+                            <div class="row" style="padding-top:100px!important;">
                                 <div class="col-12">
                                     <br/>
-                                    <img src='/mcm_session/static/src/img/footer_jury.png' height="400" width="1100"/>
+                                    <img src='/mcm_session/static/src/img/footer_jury.png' height="200" width="1100"/>
                                 </div>
                             </div>
                             <p style="page-break-after:always;"/>
