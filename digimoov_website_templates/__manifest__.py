@@ -67,9 +67,11 @@
         'views/livreur-de-colis-nantes.xml',
         'views/devenir-coursier-lyon.xml',
         'views/capacitaire-transport-bordeaux.xml',
+        #page de blog
+        'views/blog/website_blog_posts.xml',
 
     ],
-    'qweb': [],
+    'qweb': ['static/src/xml/website_blog_posts_loop.xml'],
     'demo': [
     ],
     'test': [
