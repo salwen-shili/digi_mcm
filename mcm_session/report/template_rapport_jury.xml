@@ -16,20 +16,12 @@
                         <div class="page">
                             <div class="oe_structure"/>
                             <div class="row">
-                                <!--                                <div class="col-12">-->
                                 <br/>
                                 <img src='/mcm_session/static/src/img/header_jury.png' height="300" width="1600"/>
-                                <!--                                </div>-->
                             </div>
                             <div class="row">
                                 <div class="col-12">
-                                    <style>
-                                        .souligne
-                                        {
-                                        text-decoration: underline;
-                                        }
-                                    </style>
-                                    <span class="souligne">
+                                    <span>
                                         <b>SESSION DU
                                             <span t-esc="(o.date_exam).strftime('%d %B %Y')"/>
                                         </b>
@@ -44,9 +36,6 @@
                                         border: solid;
                                         }
                                     </style>
-                                    <!--                                    <div class="row" style="padding-top:5px!important;">-->
-                                    <!--                                        <div class="col-1"></div>-->
-                                    <!--                                        <div class="col-10">-->
                                     <center>
                                         <table class="table">
                                             <tr align="center">
@@ -69,7 +58,7 @@
                                                     <td class="td" align="center">
                                                         <b>Lieu de réalisation de la session</b>
                                                     </td>
-                                                    <td align="center">
+                                                    <td class="td" align="center">
                                                         <strong>
                                                             <span t-raw="'%s' % o.ville_jury_id.name_ville"/>:
                                                             <span t-raw="'%s' % o.adresse_jury_id.adresse_centre_examen"/>
@@ -81,12 +70,10 @@
                                     </center>
                                 </div>
                             </div>
-                            <!--                                </div>-->
-                            <!--                            </div>-->
-                            <div class="row" style="padding-top:60px!important;">
+                            <div class="row" style="padding-top:80px!important;">
                                 <div class="col-12">
                                     <br/>
-                                    <img src='/mcm_session/static/src/img/footer_jury.png' height="100" width="1400"/>
+                                    <img src='/mcm_session/static/src/img/footer_jury.png' height="100" width="1600"/>
                                 </div>
                             </div>
                             <p style="page-break-after:always;"/>
@@ -143,10 +130,6 @@
                                 </p>
                             </span>
                             <br/>
-
-                            <!--                            <div class="row" style="padding-top:5px!important;">-->
-                            <!--                                <div class="col-1"></div>-->
-                            <!--                                <div class="col-12">-->
                             <style>
                                 .tr, .td , .table{
                                 padding: 3px;
@@ -159,18 +142,15 @@
                                         <td class="td" align="center" style="height: 150px; width: 200px;">
                                             <b>Remarques</b>
                                         </td>
-                                        <td class="td" align="center" style="height: 150px; width: 800px;">test
+                                        <td class="td" align="center" style="height: 150px; width: 800px;">
                                         </td>
                                     </tr>
                                 </tbody>
                             </table>
-                            <!--                                </div>-->
-                            <!--                            </div>-->
                             <div class="row">
                                 <div class="col-12">
                                     <br/>
-                                    <img src='/mcm_session/static/src/img/footer_jury.png' height="50" width="1200"
-                                         style="padding-top:50px!important;"/>
+                                    <img src='/mcm_session/static/src/img/footer_jury.png' height="100" width="1600" style="padding-top:50px!important;"/>
                                 </div>
                             </div>
                             <p style="page-break-after:always;"/>
@@ -179,10 +159,13 @@
                                     <u>PERSONNES PRESENTES :</u>
                                 </b>
                             </p>
-                            <!--                            <div class="row" style="padding-top:20px!important;">-->
-                            <!--                                <div class="col-12">-->
-                            <table class="table"
-                                   style="border:2px solid black;">
+                            <style>
+                                .tr, .td , .table{
+                                padding: 3px;
+                                border: solid;
+                                }
+                            </style>
+                            <table class="table">
                                 <tbody>
                                     <thead>
                                         <tr>
@@ -194,7 +177,7 @@
                                     </thead>
 
                                     <tr t-foreach='o.intervenant_id' t-as='line'>
-                                        <td style="height:100px;width:200px;">
+                                        <td class="td" style="height:100px;width:200px;">
                                             <span t-esc="line.intervenant_id.display_name"/>
                                         </td>
                                         <td style="height:100px;width:200px;">
@@ -215,15 +198,12 @@
                                     </tr>
                                 </tbody>
                             </table>
-                            <!--                                </div>-->
-                            <!--                            </div>-->
                             <p style="padding-top: 40px;">Cette session est présidée par le Directeur
                                 ................................ :
                             </p>
                         </div>
                         <div class="col-12">
-                            <img src='/mcm_session/static/src/img/footer_jury.png' height="300"
-                                 width="900" style="padding-top:50px!important;"/>
+                            <img src='/mcm_session/static/src/img/footer_jury.png' height="100" width="1600" style="padding-top:50px!important;"/>
                         </div>
                     </t>
                 </t>
