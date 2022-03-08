@@ -20,6 +20,14 @@ class Document(models.Model):
                     self.change_stage_lead("Document non Validé", partner_)
                 if partner_ and  partner_.bolt:
                     self.change_stage_lead("Bolt-Document non Validé", partner_)
+            """si les documents sont refusés, on classe l'apprenant bolt sous Non éligible"""
+            if vals['state'] == 'refused' :
+                partner = self.partner_id
+                partner_ = self.env['res.partner'].sudo().search([('id', "=", partner.id)])
+                if partner_ and partner_.bolt:
+                    _logger.info('if state in refused  %s' % partner_.name)
+                    self.change_stage_lead("Non Éligible", partner_)
+
         if 'state' in vals and 'partner_id' in vals:
             if vals['state'] == 'waiting':
                 partner = vals['partner_id']
@@ -32,7 +40,7 @@ class Document(models.Model):
             print('vals partner_id ')
             if self.state == 'waiting':
                 partner = vals['partner_id']
-                partner_ = self.env['res.partner'].sudo().search([('id', "=", partner.id)])
+                partner_ = self.env['res.partner'].sudo().search([('id', "=", partner)])
                 if partner_ and not partner_.bolt:
                     self.change_stage_lead("Document non Validé", partner_)
                 if partner_ and  partner_.bolt:
