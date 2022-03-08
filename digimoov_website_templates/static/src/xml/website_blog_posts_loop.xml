@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Add button near create button in tree view crm -->
+<template xml:space="preserve">
+    <t t-extend="website_blog.posts_loop">
+      <t t-jquery="div.mt-3" t-operation="replace">
+        <a t-attf-href="#{blog_post.website_url}" class="btn btn-primary"> Read more <i class="fa fa-chevron-right ml-2"/>
+        </a>
+      </t>
+    </t>
+</template>
