@@ -162,7 +162,7 @@
                             <table class="table" style="padding-top:50px!important;">
                                 <tbody>
                                     <thead>
-                                        <tr>
+                                        <tr class="tr">
                                             <th class="td">Nom et prénom</th>
                                             <th width="0" class="td">Fonction</th>
                                             <th class="td">Date</th>
@@ -197,7 +197,7 @@
                         </div>
                         <footer>
                             <img src='/mcm_session/static/src/img/footer_jury.png' height="125" width="1600"
-                                 style="padding-top:50px!important;"/>
+                                 style="margin_top: 16px 0px 16px 0px;"/>
                         </footer>
                     </t>
                 </t>
