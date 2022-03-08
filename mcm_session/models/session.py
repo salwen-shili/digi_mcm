@@ -103,6 +103,8 @@ class Session(models.Model):
         print(nbr_recu_total)
         nbr_inscrits_total = self.nbr_client_par_session(self)
         pourcentage = nbr_recu_total * 100 / nbr_inscrits_total
+        pourcentage = round(pourcentage)
+        print(pourcentage)
         return pourcentage
 
     @api.model
