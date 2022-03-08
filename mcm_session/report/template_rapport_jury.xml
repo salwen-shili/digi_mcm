@@ -39,7 +39,7 @@
                                     </p>
                                     <br/>
                                     <style>
-                                        tr, td {
+                                        tr, td , table{
                                         padding: 3px;
                                         border-right-style: solid;
                                         }
