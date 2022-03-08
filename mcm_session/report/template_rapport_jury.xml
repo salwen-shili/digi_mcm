@@ -39,7 +39,7 @@
                                     </p>
                                     <br/>
                                     <style>
-                                        tr, td , table{
+                                        tr, td , .table{
                                         padding: 3px;
                                         border-right-style: solid;
                                         }
@@ -48,7 +48,7 @@
 <!--                                        <div class="col-1"></div>-->
 <!--                                        <div class="col-10">-->
                                             <center>
-                                                <table class="table table-bordered" style="border:1px solid black;">
+                                                <table class="table" style="border:2px solid black;">
                                                     <tr align="center">
                                                         <th colspan="2">CENTRE ORGANISATEUR DE L’EXAMEN</th>
                                                     </tr>
@@ -102,7 +102,7 @@
                                 margin-left: 40px;
                                 }
                             </style>
-                            <p class="tab">
+                            <span class="tab">
                                 <p>a) Nombre de candidats inscrits et présents :</p>
                                 <p>- Le nombre de candidats inscrits était de
                                     <span t-esc="docs.nbr_client_par_session(nbr_inscrits)"/>
@@ -141,7 +141,7 @@
                                     <br/>
                                     Ces éléments se trouvent dans le dossier de chaque candidat
                                 </p>
-                            </p>
+                            </span>
                             <br/>
 
 <!--                            <div class="row" style="padding-top:5px!important;">-->
@@ -215,8 +215,8 @@
                             </p>
                         </div>
                         <div class="col-12">
-                            <img src='/mcm_session/static/src/img/footer_jury.png' height="200"
-                                 width="100" style="padding-top:100px!important;"/>
+                            <img src='/mcm_session/static/src/img/footer_jury.png' height="300%"
+                                 width="300%" style="padding-top:100px!important;"/>
                         </div>
                     </t>
                 </t>
