@@ -50,7 +50,7 @@
                                         border: solid;
                                         }
                                     </style>
-                                    <center style="padding-top:100px!important;">
+                                    <center style="padding-top:80px!important;">
                                         <table class="table">
                                             <tr align="center">
                                                 <th colspan="2">CENTRE ORGANISATEUR DE L’EXAMEN</th>
@@ -155,9 +155,8 @@
                                     </tbody>
                                 </table>
                             </center>
-                            <div class="row">
-                                <img src='/mcm_session/static/src/img/footer_jury.png' height="125" width="1600"
-                                     style="padding-top:80px!important;"/>
+                            <div class="row" style="padding-top:100px!important;">
+                                <img src='/mcm_session/static/src/img/footer_jury.png' height="125" width="1600"/>
                             </div>
                             <p style="page-break-after:always;"/>
                             <p style="padding-top: 70px;">
@@ -219,9 +218,9 @@
                                 <b>Signature :</b>
                             </p>
                         </div>
-                        <div class="row" style="page-break-inside: avoid;position:absolute;">
+                        <div class="row" style="padding-top:30px!important;page-break-inside: avoid;position:absolute;">
                             <img src='/mcm_session/static/src/img/footer_jury.png'
-                                 height="125" width="1600"/>
+                                 height="100" width="1600"/>
                         </div>
                     </t>
                 </t>
