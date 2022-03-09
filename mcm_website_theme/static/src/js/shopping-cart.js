@@ -266,7 +266,7 @@ function verify_payment_method() {
 
   if (cpf_pm) {
     var emploichecked = false;
-    if (pole_emploi_checkbox) {
+    if (document.getElementById('pole_emploi_checkbox')) {
       emploichecked = pole_emploi_checkbox.checked;
     }
     if (cpf_pm.checked == true || emploichecked == true) {
@@ -344,7 +344,7 @@ function showPopup() {
   var continueBtn = document.getElementById('continueBtn');
   var textbtn;
   var polechecked = false;
-  if (pole_emploi_checkbox) {
+  if (document.getElementById('pole_emploi_checkbox')) {
     polechecked = pole_emploi_checkbox.checked;
   }
   cpfChecked || polechecked
@@ -469,7 +469,7 @@ function showCpfDetails() {
 
 function onchangeTextButton() {
   //hide cpf details when pole_emploi is checked
-  if (pole_emploi_checkbox) {
+  if (document.getElementById('pole_emploi_checkbox')) {
     if (pole_emploi_checkbox.checked) {
       //send pole emploi checked = true
       //hide cpf details
@@ -505,7 +505,7 @@ function onchangeTextButton() {
   }
 }
 function onchangeTextButton1() {
-  if (pole_emploi_checkbox) {
+  if (document.getElementById('pole_emploi_checkbox')) {
     //hide poleEmploi details
 
     sendPoleEmploiState(pole_emploi_checkbox.checked);
