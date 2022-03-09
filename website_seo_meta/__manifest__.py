@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 # Copyright 2018 Xavier Brochard
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl.html).
+#delete maxlength of metatitle  
 {
     'name': 'SEO Meta',
     'summary': 'Improve meta fields according to new Google rules.',
