@@ -19,7 +19,7 @@ from odoo.addons.website_blog.controllers.main import WebsiteBlog
 
 
 class CustomWebsiteBlog(WebsiteBlog):
-
+    #prepare website route for blog post /blog/blog_post_website_url
     @http.route([
         '''/blog/<string:blog_post>''',
     ], type='http', auth="public", website=True)
@@ -98,7 +98,7 @@ class CustomWebsiteBlog(WebsiteBlog):
         }
         response = request.render("website_blog.blog_post_complete", values)
         return response
-
+    #redirect old blog post website url to the new url
     @http.route([
         '''/blog/<model("blog.blog", "[('website_id', 'in', (False, current_website_id))]"):blog>/post/<model("blog.post", "[('blog_id','=',blog[0])]"):blog_post>''',
     ], type='http', auth="public", website=True)

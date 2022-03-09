@@ -36,6 +36,7 @@ class Website(Website):
     
     @http.route(['/robots.txt'], type='http',website=True, auth="public")
     def robots(self, **kwargs):
+        #personalize robots txt of website
         if request.website.id == 2 :
             return request.render('website_no_crawler.digi_robots', {'url_root': request.httprequest.url_root}, mimetype='text/plain')
         else:

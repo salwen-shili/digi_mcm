@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright Xavier Brochard <xavier@zeroheure.info>
+     License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl). -->
+<templates id="template" xml:space="preserve">
+    <t t-extend="website.seo_configuration">
+        <t t-jquery="input[name='seo_page_title']" t-operation="replace">
+            <!-- site name must be in the first 600 pixels (home page), Title size is not otherwise limited  -->
+            <input type="text" name="seo_page_title" class="form-control"/>
+            <p><span class="text-muted">At least 10 words. Start with page title, then category and site name. But home page must start with site name then page title. Google will display around 70 characters, Bing 40. You can put more.</span></p>
+        </t>
+        <t t-jquery="textarea[name='seo_page_description']" t-operation="replace">
+            <!-- Google truncate to nearly 300 characters (november 2017) -->
+            <textarea name="seo_page_description" class="form-control" rows="5" cols="70"
+                      t-att-maxlength="widget.maxDescriptionSize"/>
+            <p><span class="text-muted">At least 200 characters, max ~ 300. Google will display around 160 chars in its search results, but can use the other sentences if they are relevant to the search query.</span></p>
+        </t>
+    </t>
+
+    <t t-extend="website.seo_preview">
+    <!--  update with Google colors    -->
+        <t t-jquery="div[class='s']" t-operation="replace">
+                <div class="s">
+                    <div>
+                        <div class="f kv" style="white-space:nowrap">
+                            <span style="color:#006621"><t t-esc="widget.url"/></span>
+                        </div>
+                        <div class="f slp"></div>
+                        <span class="st" style="color: #545454"><t t-esc="widget.description"/></span>
+                    </div>
+                </div>
+                </t>
+    </t>
+    <t t-extend="website.seo_meta_title_description">
+        <t t-jquery='input[id="website_meta_title"]' t-operation='replace'>
+            <input type="text" name="website_meta_title" id="website_meta_title" class="form-control" placeholder="Keep empty to use default value"/>
+        </t>
+    </t>
+</templates>
