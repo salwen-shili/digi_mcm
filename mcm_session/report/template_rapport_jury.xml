@@ -31,10 +31,14 @@
                             <div class="row">
                                 <div class="col-12">
                                     <span>
-                                        <b>SESSION DU
-                                            <span t-esc="(o.date_exam).strftime('%d %B %Y')"/>
+                                        <b>
+                                            <u>SESSION DU
+                                                <span t-esc="(o.date_exam).strftime('%d %B %Y')"/>
+                                            </u>
                                         </b>
                                     </span>
+                                    <br/>
+                                    <br/>
                                     <p>L'AN
                                         <span t-esc="docs.date_to_text(yearformat,monthformat)"/>
                                         <span t-esc="(o.date_exam).strftime('%B').upper()"/>
@@ -46,8 +50,8 @@
                                         border: solid;
                                         }
                                     </style>
-                                    <center>
-                                        <table class="table" style="padding-top:100px!important;">
+                                    <center style="padding-top:100px!important;">
+                                        <table class="table">
                                             <tr align="center">
                                                 <th colspan="2">CENTRE ORGANISATEUR DE L’EXAMEN</th>
                                             </tr>
@@ -79,11 +83,9 @@
                                     </center>
                                 </div>
                             </div>
-                            <div class="row" style="padding-top:200px!important;">
-                                <div class="col-12">
-                                    <br/>
-                                    <img src='/mcm_session/static/src/img/footer_jury.png' height="100" width="1600"/>
-                                </div>
+                            <div class="row" style="padding-top:230px!important;">
+                                <br/>
+                                <img src='/mcm_session/static/src/img/footer_jury.png' height="125" width="1600"/>
                             </div>
                             <p style="page-break-after:always;"/>
                             <span>
@@ -140,8 +142,8 @@
                                 border: solid;
                                 }
                             </style>
-                            <center>
-                                <table class="table" style="padding-top:10px!important;">
+                            <center style="padding-top:40px!important;">
+                                <table class="table">
                                     <tbody>
                                         <tr>
                                             <td class="td" align="center" style="height: 200px; width: 200px;">
@@ -155,7 +157,7 @@
                             </center>
                             <div class="row">
                                 <img src='/mcm_session/static/src/img/footer_jury.png' height="125" width="1600"
-                                     style="padding-top:50px!important;"/>
+                                     style="padding-top:80px!important;"/>
                             </div>
                             <p style="page-break-after:always;"/>
                             <p style="padding-top: 70px;">
@@ -202,21 +204,19 @@
                                 </tbody>
                             </table>
                             <p style="padding-top: 40px;">Cette session est présidée
-                                ........................................................................... :
+                                ......................................................................................................... :
                             </p>
-                            <p>Date :
+                            <p><b>Date :</b>
                                 <span t-esc="context_timestamp(datetime.datetime.now()).strftime('%d/%m/%Y')"/>
                             </p>
-                            <p>Heure :
+                            <p><b>Heure :</b>
                                 <span t-esc="context_timestamp(datetime.datetime.now()).strftime('%H:%M:%S')"/>
                             </p>
-                            <p>Signature :</p>
+                            <p><b>Signature :</b></p>
                         </div>
                         <div class="row" style="padding-top:200px!important;">
-                            <div class="col-12">
                                 <img src='/mcm_session/static/src/img/footer_jury.png'
-                                     height="125" width="1500"/>
-                            </div>
+                                     height="125" width="1600"/>
                         </div>
                     </t>
                 </t>
