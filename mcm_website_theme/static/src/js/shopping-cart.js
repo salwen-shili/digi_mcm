@@ -265,7 +265,11 @@ function verify_payment_method() {
   var state = document.getElementById('state').value;
 
   if (cpf_pm) {
-    if (cpf_pm.checked == true || pole_emploi_checkbox.checked == true) {
+    var emploichecked = false;
+    if (pole_emploi_checkbox) {
+      emploichecked = pole_emploi_checkbox.checked;
+    }
+    if (cpf_pm.checked == true || emploichecked == true) {
       if (cpf_pm.value == 'Formation à distance TAXI') {
         switch (true) {
           case state.includes('https://www.moncompteformation.gouv.fr/'):
@@ -339,7 +343,11 @@ function showPopup() {
   }
   var continueBtn = document.getElementById('continueBtn');
   var textbtn;
-  cpfChecked || pole_emploi_checkbox.checked
+  var polechecked = false;
+  if (pole_emploi_checkbox) {
+    polechecked = pole_emploi_checkbox.checked;
+  }
+  cpfChecked || polechecked
     ? (textbtn = 'Mobiliser mon CPF')
     : (textbtn = 'Passer au paiement');
 
@@ -497,10 +505,13 @@ function onchangeTextButton() {
   }
 }
 function onchangeTextButton1() {
-  //hide poleEmploi details
-  hidePoleEmploiDetails();
-  //send pole emploi checked
-  sendPoleEmploiState(pole_emploi_checkbox.checked);
+  if (pole_emploi_checkbox) {
+    //hide poleEmploi details
+
+    sendPoleEmploiState(pole_emploi_checkbox.checked);
+    //send pole emploi checked
+    hidePoleEmploiDetails();
+  }
   //onchange carte de credit
   if (document.getElementById('pm_shop_checkout')) {
     document.getElementById('pm_shop_checkout').innerText =
