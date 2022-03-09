@@ -164,6 +164,7 @@ class Partner(models.Model):
                     documents = self.env['documents.document'].sudo().search([('partner_id', '=', partner.id)])
                     # pour classer sous document non validé dans crm lead
                     waiting = False
+                    refuse =False
                     document_valide = False
                     if documents:
                         count = 0
@@ -175,6 +176,9 @@ class Partner(models.Model):
                             if (document.state == "waiting"):
                                 _logger.info("document waiting  %s" % partner.name)
                                 waiting = True
+                            if (document.state =="refused"):
+                                _logger.info("refused %s " %str(partner.name))
+                                refuse=True
                     if partner.mode_de_financement == "particulier":
                         if partner.bolt and float(partner.note_exam) < 40.0:
                             self.changestage("Echec d'Examen Blanc", self)
@@ -185,24 +189,19 @@ class Partner(models.Model):
                             else:
                                 self.changestage("Bolt-Contrat non Signé", partner)
                         if sale_order and sale_order.state == "sale":
-                            if not document_valide:
-                                if not partner.bolt:
-                                    self.changestage("Contrat Signé", partner)
-                                if partner.bolt:
-                                    _logger.info('contrat  signé %s' %str(partner.email))
-                                    self.changestage("Bolt-Contrat Signé", partner)
                             if waiting:
-
                                 if partner.bolt:
                                     _logger.info('wait bolt %s' % str(partner.email))
-
                                     self.changestage("Bolt-Document non Validé", partner)
                                 else :
                                     self.changestage("Document non Validé", partner)
+                            """si les documents sont refusés, on classe l'apprenant bolt sous Non éligible"""
+                            if refuse and partner.bolt:
+                                -logger.info("Archivé %s" %str(partner.name))
+                                self.changestage("Archivé", partner)
 
                             if document_valide:
                                 _logger.info('document valide %s' % str(partner.email))
-
                                 print("++++++++++++",partner.email,partner.inscrit_mcm)
                                 failure = sale_order.failures  # delai de retractation
                                 """Si Il n'as pas fait la renonciation au contrat et sur la fiche 
@@ -211,21 +210,27 @@ class Partner(models.Model):
                                 if not (partner.renounce_request) and (date_facture) and (date_facture + timedelta(days=14)) > (today):
                                     if partner.bolt:
                                         _logger.info('bolt retract %s' % str(partner.email))
-
                                         self.changestage("Bolt-Rétractation non Coché", partner)
                                     else :
                                         self.changestage("Rétractation non Coché", partner)
+                                if partner.renounce_request :
+                                    if partner.bolt:
+                                        """S'il a renoncé et son contrat est signé et ses documents sont validé sera classé sous contrat Signé """
+                                        self.changestage("Bolt-Contrat Signé",partner)
+                                        """Si client bolt et inscrit à l'examen eval box, et n'a pas encore commencé
+                                         sa formation sera classé sous examen eval box 
+                                        si non sous Plateforme de formation """
+                                        if partner.inscrit_mcm == False and partner.eval_box == True:
+                                            _logger.info('eval box %s' % str(partner.email))
+                                            print("++++++", partner.email)
+                                            self.changestage("Inscription Examen Eval Box", partner)
+                                        if partner.inscrit_mcm and partner.eval_box == False:
+                                            print("======", partner.email)
+                                            _logger.info('plateforme %s' % str(partner.email))
+                                            self.changestage("Bolt-Plateforme de formation", partner)
+                                    else :
+                                        self.changestage("Contrat Signé", partner)
 
-                                if partner.renounce_request and partner.bolt and partner.inscrit_mcm == False and partner.eval_box == True:
-                                    _logger.info('eval box %s' % str(partner.email))
-
-                                    print("++++++",partner.email)
-                                    self.changestage("Inscription Examen Eval Box", partner)
-                                if partner.renounce_request and partner.bolt and  partner.inscrit_mcm   and partner.eval_box == False:
-                                    print("======",partner.email)
-                                    _logger.info('plateforme %s' % str(partner.email))
-
-                                    self.changestage("Bolt-Plateforme de formation", partner)
 
                     """Si mode de financement cpf on doit vérifier seulement l'etat des documents  
                         et la renonciation sur la fiche client """
