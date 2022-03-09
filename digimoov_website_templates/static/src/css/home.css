@@ -1,6 +1,6 @@
 @font-face {
   font-family: someFont;
-  src: url(/path/to/fonts/someFont.woff) format("woff");
+  src: url(/path/to/fonts/someFont.woff) format('woff');
   font-weight: 400;
   font-style: normal;
   font-display: fallback;
@@ -59,7 +59,7 @@ img {
   position: relative;
 }
 .flex-inner .f-text .left-content a {
-  font-family: "Montserrat";
+  font-family: 'Montserrat';
   font-size: 14px;
   font-weight: bold;
   color: #8798ab;
@@ -273,7 +273,7 @@ img {
 .table-left .pricing-details span,
 .table-right .pricing-details span {
   display: block;
-  font-family: "Montserrat";
+  font-family: 'Montserrat';
   font-size: 32px;
   font-weight: 600;
   color: #364655;
@@ -307,7 +307,7 @@ img {
 
 .table-left .pricing-details li,
 .table-right .pricing-details li {
-  font-family: "Montserrat";
+  font-family: 'Montserrat';
   font-size: 16px;
   font-weight: 500;
   color: #97a6b5;
@@ -336,7 +336,7 @@ img {
 }
 
 .btn-action {
-  font-family: "Montserrat";
+  font-family: 'Montserrat';
   display: inline-block;
   height: 38px;
   padding: 0 30px;
@@ -401,7 +401,7 @@ img {
 }
 
 .btn-cta {
-  font-family: "Montserrat";
+  font-family: 'Montserrat';
   display: inline-block;
   height: 30px;
   padding: 0 30px;
@@ -538,7 +538,7 @@ footer {
   padding: 20px 0;
 }
 figure.snip1256 {
-  font-family: "Raleway", Arial, sans-serif;
+  font-family: 'Raleway', Arial, sans-serif;
   color: #fff;
   position: relative;
   overflow: hidden;
@@ -716,7 +716,7 @@ figure.snip1256.hover figcaption {
   margin: 0 auto;
 }
 .flex-inner .f-text .left-content a::after {
-  content: "";
+  content: '';
   position: absolute;
   left: 0;
   bottom: -20%;
@@ -727,7 +727,7 @@ figure.snip1256.hover figcaption {
   transition: 0.3s;
 }
 .flex-inner .f-text .left-content a {
-  font-family: "Montserrat";
+  font-family: 'Montserrat';
   font-size: 14px;
   font-weight: bold;
   color: #8798ab;
@@ -736,7 +736,7 @@ figure.snip1256.hover figcaption {
   text-decoration: none;
 }
 .btn-action {
-  font-family: "Montserrat";
+  font-family: 'Montserrat';
   display: inline-block;
   height: 38px;
   padding: 0 30px;
@@ -1030,7 +1030,7 @@ figure.snip1256.hover figcaption {
   white-space: nowrap;
 }
 .banner {
-  background-image: url("/digimoov_website_templates/static/img/faq7-01.png");
+  background-image: url('/digimoov_website_templates/static/img/faq7-01.png');
   width: 100%;
   height: 100%;
 }
@@ -1101,7 +1101,7 @@ figure.snip1256.hover figcaption {
 }
 
 .yd-link a {
-  font-family: "Montserrat";
+  font-family: 'Montserrat';
   font-size: 15px;
   font-weight: 500;
   color: #6d48e5;
@@ -1224,15 +1224,15 @@ figure.snip1256.hover figcaption {
 }
 
 .m-t-20 > span {
-  font-family: Roboto, "Odoo Unicode Support Noto", sans-serif;
+  font-family: Roboto, 'Odoo Unicode Support Noto', sans-serif;
 }
 
 .m-t-20 > span {
-  font-family: Roboto, "Odoo Unicode Support Noto", sans-serif;
+  font-family: Roboto, 'Odoo Unicode Support Noto', sans-serif;
 }
 
 .m-t-20 > span {
-  font-family: Roboto, "Odoo Unicode Support Noto", sans-serif;
+  font-family: Roboto, 'Odoo Unicode Support Noto', sans-serif;
 }
 
 .s_title.pt16.offset-lg-2.col-lg-8.pb0 > h2 {
@@ -1381,7 +1381,7 @@ figure.snip1256.hover figcaption {
 }
 
 .s_furniture_fun-fact-section.oe_img_bg.oe_custom_bg {
-  background-image: url("/digimoov_website_templates/static/img/Monter boite de transport.webp");
+  background-image: url('/digimoov_website_templates/static/img/Monter boite de transport.webp');
   background-position: 55.8% 54.4%;
 }
 
@@ -1424,4 +1424,502 @@ figure.snip1256.hover figcaption {
 .pt16.pb16.col-lg-4 {
   border-style: none;
   border-width: 0px;
+}
+
+.center-logo {
+  display: flex;
+  flex-direction: row;
+  align-content: center;
+  justify-content: space-between;
+  align-items: center;
+}
+@media all and (max-width: 575px) {
+  .center-logo {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content: space-between;
+    align-items: center;
+  }
+}
+
+.pos-cpf {
+  width: 100px;
+  margin-top: 30px;
+}
+.pos-qualopi {
+  width: 188px;
+}
+.pos-dreal {
+  width: 160px;
+}
+.pos-mcm {
+  width: 263px;
+}
+
+.row-res {
+  text-align: center;
+  display: flex;
+  align-content: stretch;
+  justify-content: center;
+  align-items: baseline;
+}
+@media (max-width: 524px) {
+  .row-res {
+    display: unset;
+  }
+}
+
+.para {
+  font-size: 18px;
+}
+.pos-img-Formation_100_pour_cent {
+  transform: scaleX(1.27) scaleY(1.27);
+}
+
+.purple-v {
+  color: #634aa5;
+}
+.icon-title {
+  font-size: 20px;
+}
+.black-v {
+  color: #555555 !important;
+}
+.black {
+  color: #000 !important;
+}
+.fs-30 {
+  font-size: 30px !important;
+}
+.fs-18 {
+  font-size: 18px !important;
+}
+.pos-formation {
+  transform: translateX(6.9%) translateY(1.3%) scaleX(1.11) scaleY(1.11);
+}
+.feature-pos-2 {
+  transform: scaleX(0.88) scaleY(0.88);
+  padding-right: 67px !important;
+}
+.scooter-pos {
+  transform: scaleX(0.78) scaleY(0.85);
+}
+.img-3-style {
+  animation-name: o_anim_zoom_in;
+  visibility: visible;
+  animation-play-state: running;
+}
+.voiture-pos {
+  transform: scaleX(0.85) scaleY(0.89);
+}
+.camionnette-pos {
+  transform: scaleX(0.89) scaleY(0.9);
+}
+.parallax-section {
+  background-image: url('/digimoov_website_templates/static/img/Monter boite de transport.png');
+  background-position: 55.8% 54.4%;
+}
+.fs-36 {
+  font-size: 36px !important;
+}
+.color-white {
+  color: rgb(255, 255, 255) !important;
+}
+.fs-16 {
+  font-size: 16px !important;
+}
+.blink-soft {
+  animation: blinker 1s linear infinite;
+  color: #fff900;
+  text-transform: uppercase;
+  font-size: 21px;
+}
+@keyframes blinker {
+  50% {
+    opacity: 0.1;
+  }
+  70% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.pricebar {
+  position: relative;
+}
+.pricebar::after {
+  content: ' ';
+  display: block;
+  width: 100%;
+  border-top: 3px solid red;
+  height: 12px;
+  position: absolute;
+  bottom: 6px;
+  left: -3px;
+  transform: rotate(330deg);
+}
+.stabilo,
+.stabiloblue {
+  display: inline-block;
+  position: relative;
+  z-index: 100;
+}
+.stabiloblue:before {
+  content: '';
+  display: block;
+  background: rgba(0, 137, 255, 0.3);
+  position: absolute;
+  top: 40%;
+  left: 0;
+  right: 0;
+  bottom: 5%;
+  transform: rotate(-5deg);
+  z-index: -1;
+  border-radius: 100% 100% 10% 10%/100% 100% 100% 100%;
+}
+.stabiloblue {
+  display: inline-block;
+  position: relative;
+  z-index: 100;
+}
+.stabiloblue:before {
+  content: '';
+  display: block;
+  background: rgba(0, 137, 255, 0.3);
+  position: absolute;
+  top: 40%;
+  left: 0;
+  right: 0;
+  bottom: 5%;
+  transform: rotate(-5deg);
+  z-index: -1;
+  border-radius: 100% 100% 10% 10%/100% 100% 100% 100%;
+}
+.counter-box {
+  background-color: transparent;
+}
+.img-fluid {
+  max-width: 100%;
+  height: auto;
+}
+.features {
+  padding: 30px 0;
+}
+.container-m {
+  max-width: 1024px;
+  margin: 0 auto !important;
+  padding-left: 20px;
+  padding-right: 20px;
+  position: relative;
+}
+.wrap {
+  max-width: 960px;
+  width: 100%;
+  margin: 0 auto;
+}
+.accordion {
+  font-size: 18px;
+}
+p {
+  font-size: 16px;
+  line-height: 18px;
+  margin-bottom: 20px;
+}
+p:last-of-type {
+  margin-bottom: 0;
+}
+footer {
+  text-align: center;
+  padding: 20px 0;
+}
+.features {
+  padding: 30px 0;
+}
+@media (min-width: 1199px) {
+  .homebuttonspacing {
+    margin-top: -15px !important;
+  }
+}
+@media only screen and (min-width: 991px) and (max-width: 1198px) {
+  .homebuttonspacing {
+    margin-top: 17px !important;
+  }
+}
+@media only screen and (min-width: 992px) and (max-width: 1198px) {
+  .homebuttonspacing {
+    margin-top: 26px !important;
+  }
+}
+@media only screen and (min-width: 767px) and (max-width: 991px) {
+  .homebuttonspacing {
+    margin-top: 50px !important;
+  }
+}
+@media only screen and (min-width: 405px) and (max-width: 766px) {
+  .homebuttonspacing {
+    margin-top: -15px !important;
+  }
+}
+@media only screen and (min-width: 345px) and (max-width: 404px) {
+  .homebuttonspacing {
+    margin-top: 72px !important;
+  }
+}
+
+.lheight24 {
+  line-height: 24px !important;
+}
+.mtop24 {
+  margin-top: 24px;
+}
+.uber-p {
+  margin-top: 30px;
+  width: 50%;
+}
+
+.width-qualiopi {
+  width: 188px;
+}
+.width-france-realnce {
+  width: 110px;
+}
+.width-dreal {
+  width: 188px;
+}
+.blue-v {
+  color: #3bd2bc !important;
+}
+.blue-v2 {
+  color: #3984c6 !important;
+}
+.black-v {
+  color: #6a6c72 !important;
+}
+.purple-v {
+  color: #634aa5 !important;
+}
+
+.h1-title {
+  font-size: 62px !important;
+}
+
+.h2-title {
+  font-weight: bold !important;
+  font-size: 48px !important;
+  color: #000;
+  padding-bottom: 25px !important;
+}
+.li_style {
+  font-weight: bold !important;
+  font-size: 17px !important;
+}
+
+.p-card-pricing {
+  padding: 48px;
+}
+.center-logo {
+  display: flex;
+  flex-direction: row;
+  align-content: center;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.banner_padding {
+  padding: 128px 0px 64px 0px !important;
+}
+
+@media all and (max-width: 425px) {
+  .center-logo {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .p-card-pricing {
+    padding: 40px 0px 0px 11px;
+  }
+  .p-m-0 {
+    padding: 0px !important;
+  }
+  .banner_padding {
+    padding: 58px 0px 18px 0px !important;
+  }
+  .image_padding {
+    padding: 32px 0px !important;
+  }
+  .section-padding {
+    padding: 32px 0px !important;
+  }
+  .section-logos {
+    padding: 32px 0px !important;
+  }
+  .res-width-46 {
+    width: 46% !important;
+  }
+  .res-width-43 {
+    width: 43% !important;
+  }
+  .res-width-26 {
+    width: 26% !important;
+  }
+  .res-width-36 {
+    width: 36% !important;
+  }
+  .res-width-30 {
+    width: 30% !important;
+  }
+}
+.content-center {
+  place-content: center;
+}
+.border-pricing {
+  border-radius: 25px 25px;
+}
+.pack-wrap {
+  background-color: #6e209f !important;
+  border-top-left-radius: 25px;
+  border-top-right-radius: 25px;
+}
+.pack-name {
+  color: white;
+  font-size: 30px;
+}
+.bg-white {
+  background-color: white !important;
+}
+.promo-code {
+  font-size: 80%;
+}
+.paiement {
+  color: red !important;
+  margin-bottom: 8px !important;
+}
+.btn-inscription {
+  background-color: #6e209f !important;
+  border-radius: 25px;
+}
+.blink-soft {
+  animation: blinker 1s linear infinite;
+  color: #fff900;
+  text-transform: uppercase;
+  font-size: 21px;
+}
+@keyframes blinker {
+  50% {
+    opacity: 0.1;
+  }
+  70% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+.desc-size {
+  font-size: 1.33333em;
+}
+
+.deliveroo-pos {
+  margin-top: 30px;
+  width: 70%;
+}
+.coursier-job {
+  margin-top: 24px;
+  width: 54%;
+}
+.box2home-pos {
+  margin-top: 34px;
+  width: 60%;
+}
+.joel-pos {
+  margin-top: 30px;
+  width: 50%;
+}
+.car-body-c {
+  background-color: white;
+  padding-right: 0 !important;
+}
+.purple-title {
+  color: #9c00ff !important;
+}
+.green-v {
+  color: #295218 !important;
+}
+.title-pricing {
+  font-weight: bold !important;
+  font-size: 40px !important;
+  margin: 80px 0px !important;
+}
+.red-v {
+  color: #e76363;
+}
+
+.pink-v {
+  color: #c67ba5;
+}
+.blue-v {
+  color: #085294;
+}
+.title-1 {
+  font-size: 33px !important;
+  color: #202647 !important;
+  line-height: 0.8cm !important;
+}
+
+@media only screen and (min-width: 320px) {
+  .s_btn .btn + .btn {
+    margin-left: 0;
+  }
+}
+
+.trustbox-trustpilot {
+  max-width: 181px !important;
+  margin-block-start: 40px !important;
+}
+.icon-color {
+  color: #634aa5 !important;
+}
+.title-3 {
+  margin-bottom: 10px !important;
+
+  font-weight: 500 !important;
+  line-height: 1.3 !important;
+  color: rgb(58, 58, 71) !important;
+  font-size: 24px !important;
+}
+
+.mcm-icon {
+  margin-bottom: 10px;
+  width: 200px;
+}
+.uber-icon {
+  margin: 0 10px;
+  margin-bottom: 23px;
+}
+.deliveroo-icon {
+  margin: 0 4px;
+  margin-bottom: 23px;
+}
+.coursier-icon {
+  margin: 0 8px;
+  margin-bottom: 20px;
+  width: 97px;
+}
+.box2home-icon {
+  margin: 0 18px;
+  margin-bottom: 30px;
+  width: 113px;
+}
+.joel-icon {
+  margin: 0px 18px;
+  margin-bottom: 20px;
+  width: 98px;
+}
+.prev-easy {
+  margin: 0 16px;
 }

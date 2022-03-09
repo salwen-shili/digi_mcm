@@ -1,0 +1,195 @@
+.mtop24 {
+  margin-top: 24px;
+}
+.uber-p {
+  margin-top: 30px;
+  width: 50%;
+}
+
+.width-qualiopi {
+  width: 188px;
+}
+.width-france-realnce {
+  width: 110px;
+}
+.width-dreal {
+  width: 188px;
+}
+.blue-v {
+  color: #3bd2bc !important;
+}
+.blue-v2 {
+  color: #3984c6 !important;
+}
+.black-v {
+  color: #6a6c72 !important;
+}
+.purple-v {
+  color: #634aa5 !important;
+}
+
+.h1-title {
+  font-size: 62px !important;
+}
+.para {
+  font-size: 18px !important;
+  line-height: 1.7;
+}
+.h2-title {
+  font-weight: bold !important;
+  font-size: 48px !important;
+  color: #000;
+  padding-bottom: 25px !important;
+}
+.li_style {
+  font-weight: bold !important;
+  font-size: 17px !important;
+}
+
+.p-card-pricing {
+  padding: 48px;
+}
+.center-logo {
+  display: flex;
+  flex-direction: row;
+  align-content: center;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.banner_padding {
+  padding: 128px 0px 64px 0px !important;
+}
+
+@media all and (max-width: 425px) {
+  .center-logo {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .p-card-pricing {
+    padding: 40px 0px 0px 11px;
+  }
+  .p-m-0 {
+    padding: 0px !important;
+  }
+  .banner_padding {
+    padding: 58px 0px 18px 0px !important;
+  }
+  .image_padding {
+    padding: 32px 0px !important;
+  }
+  .section-padding {
+    padding: 32px 0px !important;
+  }
+  .section-logos {
+    padding: 32px 0px !important;
+  }
+  .res-width-46 {
+    width: 46% !important;
+  }
+  .res-width-43 {
+    width: 43% !important;
+  }
+  .res-width-26 {
+    width: 26% !important;
+  }
+  .res-width-36 {
+    width: 36% !important;
+  }
+  .res-width-30 {
+    width: 30% !important;
+  }
+}
+.content-center {
+  place-content: center;
+}
+.border-pricing {
+  border-radius: 25px 25px;
+}
+.pack-wrap {
+  background-color: #6e209f !important;
+  border-top-left-radius: 25px;
+  border-top-right-radius: 25px;
+}
+.pack-name {
+  color: white;
+  font-size: 30px;
+}
+.bg-white {
+  background-color: white !important;
+}
+.promo-code {
+  font-size: 80%;
+}
+.paiement {
+  color: red !important;
+  margin-bottom: 8px !important;
+}
+.btn-inscription {
+  background-color: #6e209f !important;
+  border-radius: 25px;
+}
+.blink-soft {
+  animation: blinker 1s linear infinite;
+  color: #fff900;
+  text-transform: uppercase;
+  font-size: 21px;
+}
+@keyframes blinker {
+  50% {
+    opacity: 0.1;
+  }
+  70% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+.desc-size {
+  font-size: 1.33333em;
+}
+
+.deliveroo-pos {
+  margin-top: 30px;
+  width: 70%;
+}
+.coursier-job {
+  margin-top: 24px;
+  width: 54%;
+}
+.box2home-pos {
+  margin-top: 34px;
+  width: 60%;
+}
+.joel-pos {
+  margin-top: 30px;
+  width: 50%;
+}
+.car-body-c {
+  background-color: white;
+  padding-right: 0 !important;
+}
+.purple-title {
+  color: #9c00ff !important;
+}
+.green-v {
+  color: #295218 !important;
+}
+.title {
+  font-weight: bold;
+  font-size: 48px;
+}
+.red-v {
+  color: #e76363;
+}
+
+.pink-v {
+  color: #c67ba5;
+}
+.blue-v {
+  color: #085294;
+}
