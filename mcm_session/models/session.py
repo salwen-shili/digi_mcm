@@ -70,7 +70,7 @@ class Session(models.Model):
         dayformat = (int(date.strftime(dayformat)))
         yearformat_txt = num2words(yearformat, lang='fr').upper().replace(',', ' ')
         dayformat_txt = num2words(dayformat, lang='fr').upper()
-        date_en_lettre = yearformat_txt + dayformat_txt
+        date_en_lettre = yearformat_txt + " " + dayformat_txt
         return date_en_lettre
 
     def nbr_client_par_session(self, nbr_inscrits):

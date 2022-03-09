@@ -46,7 +46,7 @@
                                     <br/>
                                     <style>
                                         .tr, .td , .table, .tbody{
-                                        padding: 3px;
+                                        padding: 2px;
                                         border: solid;
                                         }
                                     </style>
@@ -57,21 +57,21 @@
                                             </tr>
                                             <tbody>
                                                 <tr class="tr" style="height:100px;width:200px;">
-                                                    <td class="td" align="center">
+                                                    <td class="td" align="center" style="height: 80px; width: 80px;">
                                                         <b>Numéro d’agrément</b>
                                                     </td>
-                                                    <td class="td" align="center">
+                                                    <td class="td" align="center" style="height: 80px; width: 80px;">
                                                         <strong>
                                                             <p>MCM ACADEMY</p>
                                                             <span t-raw="'%s' % o.num_agrement_jury"/>
                                                         </strong>
                                                     </td>
                                                 </tr>
-                                                <tr class="tr">
-                                                    <td class="td" align="center">
+                                                <tr class="tr" style="height:100px;width:200px;">
+                                                    <td class="td" align="center" style="height: 80px; width: 80px;">
                                                         <b>Lieu de réalisation de la session</b>
                                                     </td>
-                                                    <td class="td" align="center">
+                                                    <td class="td" align="center" style="height: 80px; width: 80px;">
                                                         <strong>
                                                             <span t-raw="'%s' % o.ville_jury_id.name_ville"/>:
                                                             <span t-raw="'%s' % o.adresse_jury_id.adresse_centre_examen"/>
@@ -138,7 +138,7 @@
                             <br/>
                             <style>
                                 .tr, .td , .table{
-                                padding: 3px;
+                                padding: 2px;
                                 border: solid;
                                 }
                             </style>
@@ -167,11 +167,11 @@
                             </p>
                             <style>
                                 .tr, .td , .table{
-                                padding: 3px;
+                                padding: 2px;
                                 border: solid;
                                 }
                             </style>
-                            <table class="table" style="padding-top:50px!important;">
+                            <table class="table" style="padding-top:40px!important;">
                                 <tbody>
                                     <thead>
                                         <tr class="tr">
@@ -182,24 +182,24 @@
                                         </tr>
                                     </thead>
                                     <tr t-foreach='o.intervenant_id' t-as='line'>
-                                        <td class="td" style="height:80px;width:200px;">
+                                        <td class="td" style="height:60px;width:200px;">
                                             <span t-esc="line.intervenant_id.display_name"/>
                                         </td>
-                                        <td class="td" style="height:80px;width:200px;">
+                                        <td class="td" style="height:60px;width:200px;">
                                             <span t-esc="line.fonction_id.name"/>
                                         </td>
-                                        <td class="td" style="height:80px;width:200px;">
+                                        <td class="td" style="height:60px;width:200px;">
                                             <span t-esc="(o.date_exam).strftime('%d/%m/%Y')"/>
                                         </td>
-                                        <td class="td" style="height:80px;width:200px;">
+                                        <td class="td" style="height:60px;width:200px;">
                                             <span></span>
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td class="td" style="height:80px;width:200px;"></td>
-                                        <td class="td" style="height:80px;width:200px;"></td>
-                                        <td class="td" style="height:80px;width:200px;"></td>
-                                        <td class="td" style="height:80px;width:200px;"></td>
+                                        <td class="td" style="height:60px;width:200px;"></td>
+                                        <td class="td" style="height:60px;width:200px;"></td>
+                                        <td class="td" style="height:60px;width:200px;"></td>
+                                        <td class="td" style="height:60px;width:200px;"></td>
                                     </tr>
                                 </tbody>
                             </table>
