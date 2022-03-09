@@ -26,7 +26,7 @@ class Document(models.Model):
                 partner_ = self.env['res.partner'].sudo().search([('id', "=", partner.id)])
                 if partner_ and partner_.bolt:
                     _logger.info('if state in refused  %s' % partner_.name)
-                    self.change_stage_lead("Non Éligible", partner_)
+                    self.change_stage_lead("Archivé", partner_)
 
         if 'state' in vals and 'partner_id' in vals:
             if vals['state'] == 'waiting':

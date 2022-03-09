@@ -197,8 +197,8 @@ class Partner(models.Model):
                                     self.changestage("Document non Validé", partner)
                             """si les documents sont refusés, on classe l'apprenant bolt sous Non éligible"""
                             if refuse and partner.bolt:
-                                -logger.info("non eligible %s" %str(partner.name))
-                                self.changestage("Non Éligible", partner)
+                                -logger.info("Archivé %s" %str(partner.name))
+                                self.changestage("Archivé", partner)
 
                             if document_valide:
                                 _logger.info('document valide %s' % str(partner.email))

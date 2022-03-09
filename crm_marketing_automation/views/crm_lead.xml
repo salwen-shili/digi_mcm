@@ -74,6 +74,10 @@
                                     <field name="description"
                                            attrs="{'invisible': [('description', '=',False),('stage_id','!=','Non Traité')]}"/>
                                 </div>
+                                 <div>
+                                    <field name="motif"
+                                           attrs="{'invisible': [('motif', '=',False)]}"/>
+                                </div>
                             </div>
 
                         </div>
@@ -114,6 +118,10 @@
                                     <field name="description"
                                            attrs="{'invisible': [('description', '=',False),('stage_id','!=','Non Traité')]}"/>
                                 </div>
+                                  <div>
+                                    <field name="motif"
+                                           attrs="{'invisible': [('motif', '=',False)]}"/>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -153,6 +161,10 @@
                                     <field name="description"
                                            attrs="{'invisible': [('description', '=',False),('stage_id','!=','Non Traité')]}"/>
                                 </div>
+                                <div>
+                                    <field name="motif"
+                                           attrs="{'invisible': [('motif', '=',False)]}"/>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -190,6 +202,10 @@
                                 <div>
                                     <field name="description"
                                            attrs="{'invisible': [('description', '=',False),('stage_id','!=','Non Traité')]}"/>
+                                </div>
+                                 <div>
+                                    <field name="motif"
+                                           attrs="{'invisible': [('motif', '=',False)]}"/>
                                 </div>
                             </div>
                         </div>
@@ -236,7 +252,7 @@
     </xpath>
     <xpath expr="//field[@name='probability']" position="replace"></xpath>
       <xpath expr="//notebook/page[1]/field[@name='description']" position="replace">
-          <group attrs="{'invisible': [('stage_id', '!=', 'Archivé')]}" >
+          <group  >
           <field name="motif" ></field>
           </group>
     </xpath>
