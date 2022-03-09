@@ -34,8 +34,7 @@
                                 <field name="adresse_jury_id" />
                                 <field name="date_jury" />
                                 <field name="heure_jury"/>
-                                <field name="date_session_en_lettre"/>
-                                <field name="num_agrement_jury" string="Numéro d'agrément de jury"/>
+                                <field name="num_agrement_jury" string="Numéro d'agrément"/>
                             </group>
                         </group>
                         <group string="Liste des modules">

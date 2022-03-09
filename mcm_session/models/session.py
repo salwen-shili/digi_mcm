@@ -50,7 +50,6 @@ class Session(models.Model):
                                        track_visibility='always')  # edit the field to be required and show field edit history
     adresse_jury_id = fields.Many2one('session.adresse.examen', "Adresse de jury")
     date_jury = fields.Date()
-    date_session_en_lettre = fields.Char()
     heure_jury = fields.Char()
     num_agrement_jury = fields.Char()
 
@@ -62,19 +61,17 @@ class Session(models.Model):
             return {'domain': {'adresse_jury_id': [('adresse_jury_id', '=', rec.ville_jury_id.id)]}}
 
     # define a function in python to convert
-    def date_to_text(self, yearformat, dayformat,monthformat):
+    def date_to_text(self, yearformat, dayformat):
         """ Convertir date vers lettre en utilisant la bibliothéque python: num2words (pour template de rapport jury)"""
         date = self.date_exam
         yearformat = "%Y"
         dayformat = "%d"
-        monthformat = "%m"
         yearformat = (int(date.strftime(yearformat)))
-        monthformat = (int(date.strftime(monthformat)))
         dayformat = (int(date.strftime(dayformat)))
         yearformat_txt = num2words(yearformat, lang='fr').upper().replace(',', ' ')
         dayformat_txt = num2words(dayformat, lang='fr').upper()
-        monthformat_txt = num2words(monthformat, lang='fr').upper()
-        return yearformat_txt, dayformat_txt, monthformat_txt
+        date_en_lettre = yearformat_txt + dayformat_txt
+        return date_en_lettre
 
     def nbr_client_par_session(self, nbr_inscrits):
         """ Cette fonction permet de faire la somme d'inscrit de nombre de client avec statut (gagné, annulé et perdu).
@@ -102,8 +99,8 @@ class Session(models.Model):
         nbr_recu_total = self.nbr_recus_par_session(self)
         print(nbr_recu_total)
         nbr_inscrits_total = self.nbr_client_par_session(self)
-        pourcentage_without_round = nbr_recu_total * 100 / nbr_inscrits_total
-        pourcentage = round(pourcentage_without_round)
+        pourcentage_without_round = (nbr_recu_total * 100 / nbr_inscrits_total)
+        pourcentage = f'{pourcentage_without_round:.2f}'
         return pourcentage
 
     @api.model
@@ -121,6 +118,7 @@ class Session(models.Model):
             rec.count = len(rec.client_ids) + len(rec.prospect_ids)
 
     def _get_session_number(self):
+        """ Digiforma """
         for rec in self:
             rec.number = 'AF' + str(random.randint(1000000000, 9999999999))
 
