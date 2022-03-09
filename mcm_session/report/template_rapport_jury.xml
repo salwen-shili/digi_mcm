@@ -204,19 +204,24 @@
                                 </tbody>
                             </table>
                             <p style="padding-top: 40px;">Cette session est présidée
-                                ......................................................................................................... :
+                                .........................................................................................................
+                                :
                             </p>
-                            <p><b>Date :</b>
+                            <p>
+                                <b>Date :</b>
                                 <span t-esc="context_timestamp(datetime.datetime.now()).strftime('%d/%m/%Y')"/>
                             </p>
-                            <p><b>Heure :</b>
+                            <p>
+                                <b>Heure :</b>
                                 <span t-esc="context_timestamp(datetime.datetime.now()).strftime('%H:%M:%S')"/>
                             </p>
-                            <p><b>Signature :</b></p>
+                            <p>
+                                <b>Signature :</b>
+                            </p>
                         </div>
-                        <div class="row" style="padding-top:200px!important;">
-                                <img src='/mcm_session/static/src/img/footer_jury.png'
-                                     height="125" width="1600"/>
+                        <div class="row" style="padding-top:200px!important;page-break-inside: avoid;position:absolute;">
+                            <img src='/mcm_session/static/src/img/footer_jury.png'
+                                 height="125" width="1600"/>
                         </div>
                     </t>
                 </t>
