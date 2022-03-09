@@ -219,7 +219,7 @@
                                 <b>Signature :</b>
                             </p>
                         </div>
-                        <div class="row" style="padding-top:200px!important;page-break-inside: avoid;position:absolute;">
+                        <div class="row" style="page-break-inside: avoid;position:absolute;">
                             <img src='/mcm_session/static/src/img/footer_jury.png'
                                  height="125" width="1600"/>
                         </div>
