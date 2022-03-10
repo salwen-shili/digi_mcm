@@ -46,7 +46,7 @@ class Session(models.Model):
     count_panier_perdu = fields.Integer('', compute='_compute_count_clients', copy=False)
     company_id = fields.Many2one('res.company', string='Company', default=lambda self: self.env.company)
     # Les champs pour le rapport jury
-    ville_jury_id = fields.Many2one('session.ville', string="Ville de jury", required=True,
+    ville_jury_id = fields.Many2one('session.ville', string="Ville de jury",
                                        track_visibility='always')  # edit the field to be required and show field edit history
     adresse_jury_id = fields.Many2one('session.adresse.examen', "Adresse de jury")
     date_jury = fields.Date()
