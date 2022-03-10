@@ -100,7 +100,7 @@ class Session(models.Model):
         print(nbr_recu_total)
         nbr_inscrits_total = self.nbr_client_par_session(self)
         pourcentage_without_round = (nbr_recu_total * 100 / nbr_inscrits_total)
-        pourcentage = f'{pourcentage_without_round:.2f}'
+        pourcentage = f'{pourcentage_without_round:.2f}' #Garder justes deux chiddre après la virgule
         return pourcentage
 
     @api.model
