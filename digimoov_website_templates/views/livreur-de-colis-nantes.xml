@@ -32,7 +32,7 @@
                             </div>
                             <div class="bannercol col-lg-6 col-md-12 image_padding">
                                 <div class="banner_image">
-                                    <img class="img img-fluid" data-src="/digimoov_website_templates/static/img/nantes/capacité de transport léger de marchandises- bordeaux.webp" data-srcsafari="/digimoov_website_templates/static/img/nantes/capacité de transport léger de marchandises- bordeaux.png" title="devenir livreur de colis  à Nantes" alt="devenir livreur de colis  à Nantes" />
+                                    <img class="img img-fluid lazy" data-src="/digimoov_website_templates/static/img/nantes/capacité de transport léger de marchandises- bordeaux.webp" data-srcsafari="/digimoov_website_templates/static/img/nantes/capacité de transport léger de marchandises- bordeaux.png" title="devenir livreur de colis  à Nantes" alt="devenir livreur de colis  à Nantes" />
                                 </div>
                             </div>
                         </div>
@@ -95,7 +95,7 @@
                             <div class="row">
                                 <div class="col-lg-6 col-md-12">
                                     <div class="aboutus-img">
-                                        <img class="img img-fluid" data-srcsafari="/digimoov_website_templates/static/img/nantes/Formation sur la capacité de transport léger de marchandises-nantes-digimoov.png" data-src="/digimoov_website_templates/static/img/nantes/Formation sur la capacité de transport léger de marchandises-nantes-digimoov.webp" title="formation coursier en scooter en ligne" alt="formation en ligne capacité de transport de marchandise sur 2 roues" aria-describedby="tooltip664574" />
+                                        <img class="img img-fluid lazy" data-srcsafari="/digimoov_website_templates/static/img/nantes/Formation sur la capacité de transport léger de marchandises-nantes-digimoov.png" data-src="/digimoov_website_templates/static/img/nantes/Formation sur la capacité de transport léger de marchandises-nantes-digimoov.webp" title="formation coursier en scooter en ligne" alt="formation en ligne capacité de transport de marchandise sur 2 roues" aria-describedby="tooltip664574" />
                                     </div>
                                 </div>
                                 <div class="col-lg-6 col-md-12">
