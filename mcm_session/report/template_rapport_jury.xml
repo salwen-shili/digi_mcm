@@ -50,7 +50,7 @@
                                         border: solid;
                                         }
                                     </style>
-                                    <center style="padding-top:100px!important;">
+                                    <center style="padding-top:60px!important;">
                                         <table class="table">
                                             <tr align="center">
                                                 <th colspan="2">CENTRE ORGANISATEUR DE L’EXAMEN</th>
@@ -83,7 +83,7 @@
                                     </center>
                                 </div>
                             </div>
-                            <div class="row" style="padding-top:230px!important;">
+                            <div class="row" style="padding-top:190px!important;">
                                 <br/>
                                 <img src='/mcm_session/static/src/img/footer_jury.png' height="125" width="1600"/>
                             </div>
