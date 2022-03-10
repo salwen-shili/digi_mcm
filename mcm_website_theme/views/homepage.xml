@@ -426,7 +426,7 @@
                         <!-- counter section-->
                         <section id="sh_corpomate_theme_section_229" class="sh_animation_part bg-900 oe_img_bg oe_custom_bg" style="           background-image: url('/mcm_website_theme/static/src/img/homepage/fond.png');           background-position: 1.58% 78.71%;         " data-oe-model="ir.ui.view" data-oe-id="2090" data-oe-field="arch" data-oe-xpath="/data/xpath/div/section[9]">
                             <div class="container">
-                                <div class="row clearfix">
+                                <div class="row clearfix pt48 pb48">
                                     <div class="title-column col-lg-5 col-md-12 col-sm-12">
                                         <div class="inner-column js-scroll slide-left ">
                                             <h4 style="font-size: 35px">
@@ -479,6 +479,45 @@
                         </section>
                         <!-- End counter section-->
                         <!-- section google avis-->
+                        <section id="sh_corpomate_theme_section_155" class="pb24 bg-100 pt16">
+                            <div class="container">
+                                <div class="row js-scroll fade-in-top">
+                                    <div class="col-md-3 col-sm-12 text-center mb-4 mb-md-0">
+                                        <img class="img-fluid lazy" data-src="/mcm_website_theme/static/src/img/avis_google.webp" data-srcsafari="/mcm_website_theme/static/src/img/avis_google.png" alt="avis google MCM ACADEMY" title="Google" style="width: 182px" />
+                                    </div>
+                                    <div class="col-md-9 col-sm-12 s_title pt16 pb0 text-center">
+                                        <div class="text-left">
+                                            <span class="bold-desc">
+                                                - Le nombre de stagiaires formés depuis l'ouverture de centre
+                  et jusqu'à Septembre 2021
+                                                <br />
+                                            </span>
+                                            <span class="bold-desc">
+                                                - Selon l'avis de la majorité de nos apprenants sur google.
+                                                <a target="_blank" style="color: #2d74f7" href="https://www.google.com/search?q=mcm+academy&amp;rlz=1C1CHBF_frTN911TN916&amp;sxsrf=AOaemvLXgPjmp_LUdcBr_VYoZZbfCUXnQQ%3A1632154532783&amp;ei=pLNIYZv4LoTDlwT8z6igCw&amp;oq=mcm+a&amp;gs_lcp=Cgdnd3Mtd2l6EAMYADIECCMQJzIFCAAQgAQyCwguEIAEEMcBEK8BMgUIABCABDIFCAAQgAQyBQgAEIAEMgUIABCABDIFCAAQgAQyBQgAEIAEMgUIABCABDoHCCMQsAMQJzoHCAAQRxCwAzoQCC4QxwEQ0QMQyAMQsAMQQzoHCAAQsQMQQzoECAAQQzoKCAAQsQMQgwEQQzoLCAAQgAQQsQMQgwE6CAgAEIAEELEDOgoILhDHARDRAxBDOgQILhBDOg4ILhCABBCxAxDHARDRAzoLCC4QgAQQxwEQ0QM6CAguEIAEELEDOgUILhCABEoFCDgSATFKBAhBGABQpOQLWIbqC2Dc8AtoAXACeACAAcMBiAGbBpIBAzAuNZgBAKABAcgBC8ABAQ&amp;sclient=gws-wiz#lrd=0x47c2d584b3f426a3:0x8c9722c8da9f4da3,1,,,">
+                    Cliquez ici pour lire les avis
+                  </a>
+                                                .
+                                                <br />
+                                            </span>
+                                            <span class="bold-desc">- Moyenne de taux de réussite de </span>
+                                            <span class="bold-desc">
+                  Novembre 2020 à juillet 2021 ( VTC : 71%, TAXI : 85%, VMDTR :
+                  80%).
+                </span>
+
+                                            <span class="bold-desc">
+                                                Pour connaître les statistiques détaillées (données brutes et
+                  formules de calcul),
+                                                <a href="https://www.mcm-academy.fr/service-clientele" target="_blank">contactez-nous</a>
+                                                .
+                                            </span>
+                                        </div>
+                                        <br />
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
                         <!-- section - Comment financer ma formation ?-->
                         <section id="sh_corpomate_theme_section_60">
                             <div class="container">
