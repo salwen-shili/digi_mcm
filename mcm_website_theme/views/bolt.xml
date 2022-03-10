@@ -358,7 +358,7 @@ pricebar::after {
                                     </h2>
 
                                     <p class="para">
-                                        <ul class="para">
+                                        <ul style="font-size: 16px !important;">
                                             <li style="margin-bottom: 8px;">
                                                 <b>Un accompagnement</b>
                                                 du premier clic à la première course avec des
@@ -422,7 +422,7 @@ pricebar::after {
                                     </div>
                                 </div>
                                 <div class="col-lg-6 pt16 pb16" style="border-style: none; border-width: 0px;">
-                                    <img src="/mcm_website_theme/static/src/img/logo-bolt.png" class="img img-fluid mx-auto" alt="Odoo • Image et Texte" />
+                                    <img src="/mcm_website_theme/static/src/img/bolt-mcm.png" class="img img-fluid mx-auto" alt="Odoo • Image et Texte" />
                                 </div>
                             </div>
                         </div>
