@@ -189,6 +189,7 @@
                                         </td>
                                         <td class="td" style="height:60px;width:200px;">
                                             <span t-esc="(o.date_exam).strftime('%d/%m/%Y')"/>
+                                            <span t-esc="o.date_session_frensh(date_examen)"/>
                                         </td>
                                         <td class="td" style="height:60px;width:200px;">
                                             <span></span>
