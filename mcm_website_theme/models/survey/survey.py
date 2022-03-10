@@ -57,6 +57,7 @@ class SurveyUserInput(models.Model):
                             if body:
                                 sms = self.env['mail.message'].sudo().search(
                                     [("body", "=", body), ("message_type", "=", 'sms'), ("res_id", "=", partner.id)])
+                                print('sms2:', sms)
                                 if not sms:
                                     composer = self.env['sms.composer'].sudo().create({
                                         'res_model': 'res.partner',

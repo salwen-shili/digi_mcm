@@ -101,7 +101,9 @@ class WebsiteSale(WebsiteSale):
                         if body:
                             sms = request.env['mail.message'].sudo().search(
                                 [("body", "=", body), ("message_type", "=", 'sms'), ("res_id", "=", request.env.user.partner_id.id)])
+                            print('sms:',sms)
                             if not sms:
+                                print('not sms')
                                 composer = request.env['sms.composer'].with_context(
                                     default_res_model='res.partner',
                                     default_res_ids=request.env.user.partner_id.id,
