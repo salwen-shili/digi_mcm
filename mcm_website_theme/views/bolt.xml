@@ -399,7 +399,9 @@ pricebar::after {
                                                 <b>meilleure tarification du marché</b>
                                                 et un accès aux meilleures offres avec
                                                 <b>
-                                                    <u href="https://www.club.bolt.eu/">Le Club Bolt</u>
+                                                    <a href="https://www.club.bolt.eu/">
+                                                        <u>Le Club Bolt</u>
+                                                    </a>
                                                 </b>
                                             </li>
 
