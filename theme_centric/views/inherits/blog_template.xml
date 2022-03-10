@@ -6,7 +6,7 @@
 	<template id="blog_page_button_inherit_centric" inherit_id="website_blog.post_teaser" name="Blog Page Inherit Centric">
 			<xpath expr="//div[@class='o_wblog_post_short_tag_section d-flex align-items-center flex-wrap pt-2']" position="after">
 				<div class="mt-3">
-                <a t-attf-href="/blog/#{slug(blog_post.blog_id)}/post/#{slug(blog_post)}" class="btn btn-primary">
+                <a t-attf-href="#{blog_post.website_url}" class="btn btn-primary">
                         Lire la suite
                     <i class="fa fa-chevron-right ml-2"/>
                 </a>

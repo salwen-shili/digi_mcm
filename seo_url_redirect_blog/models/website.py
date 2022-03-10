@@ -35,9 +35,9 @@ class WebsiteRedirect(models.Model):
     def getSuffix(self, modelname):
         suffix = super(WebsiteRedirect, self).getSuffix(modelname)
         website_id = request.env['website'].get_current_website()
-        if modelname == 'blog.post':
+        if modelname == 'blog.post' and website_id.id == 1:
             suffix = website_id.suffix_post
-        if modelname == 'blog.blog':
+        if modelname == 'blog.blog' and website_id.id == 1:
             suffix = website_id.suffix_blog
         return suffix
 
@@ -45,18 +45,21 @@ class WebsiteRedirect(models.Model):
         value = super(WebsiteRedirect, self).unsetUrlSuffix(value)
         website_id = request.env['website'].get_current_website()
         suffix = website_id.suffix_post
-        if suffix:
-            value = value.replace(suffix, '')
-        suffix = website_id.suffix_blog
-        if suffix:
-            value = value.replace(suffix, '')
+        if website_id.id == 1 :
+            if suffix:
+                value = value.replace(suffix, '')
+            suffix = website_id.suffix_blog
+            if suffix:
+                value = value.replace(suffix, '')
         return value
 
     def getSlugUrlKeyModel(self, value, model):
         model = super(WebsiteRedirect, self).getSlugUrlKeyModel(value, model)
         res = request.env['blog.post'].sudo().search([('url_key', '=', value)])
-        if not res:
-            res = request.env['blog.blog'].sudo().search([('url_key', '=', value)])
-        if res:
-            model = res._name
+        website_id = request.env['website'].get_current_website()
+        if website_id.id ==1 :
+            if not res:
+                res = request.env['blog.blog'].sudo().search([('url_key', '=', value)])
+            if res:
+                model = res._name
         return model

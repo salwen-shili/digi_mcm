@@ -45,6 +45,8 @@ ajouter un ensemble des sessions et des modules lié au session
         'views/res_partner_session_wizard.xml',
         'data/payment_stripe_3X.xml',
         'security/ir.model.access.csv',
+        'report/template_rapport_jury.xml',
+        'report/session_menu.xml',
     ],
     'qweb': [],
     'demo': [

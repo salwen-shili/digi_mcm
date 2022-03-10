@@ -21,8 +21,7 @@ class NoteExamen(models.Model):
     partner_id = fields.Many2one('res.partner', string="Client")
     epreuve_a = fields.Float(string="Epreuve A(QCM):", track_visibility='always', group_operator='avg')
     epreuve_b = fields.Float(string="Epreuve B(QRO)", track_visibility='always', default=1, group_operator='avg')
-    moyenne_generale = fields.Float(string="Moyenne Générale", track_visibility='always', store=True,
-                                    group_operator='avg')
+    moyenne_generale = fields.Float(string="Moyenne Générale", track_visibility='always', store=True, group_operator='avg')
     mention = fields.Selection([
         ('recu', 'Reçu'),
         ('ajourne', 'Ajourné')],
@@ -205,7 +204,6 @@ class NoteExamen(models.Model):
         self.browse(duplicates_exams).unlink()
 
     """ Mettre à jour le champ mode de financement selon la facture """
-
     def mise_ajour_mode_financement(self):
         for client in self:
             facture = self.env['account.move'].sudo().search([('partner_id', '=', client.partner_id.id),

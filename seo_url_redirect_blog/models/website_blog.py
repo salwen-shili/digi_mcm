@@ -17,20 +17,21 @@ class Blog(Models):
     @api.model
     def create(self, vals):
         res = super(Blog, self).create(vals)
-        if res.url_key in ['', False, None]:
+        if res.url_key in ['', False, None] and res.website_id==1:
             self.env['website.rewrite'].setSeoUrlKey('pattern_blog', res)
         return res
 
 
     def write(self, vals):
         for blogObj in self:
-            vals = self.env['website.rewrite'].createRedirectForRewrite(vals, blogObj, 'blog.blog', 'pattern_blog')
+            if blogObj.website_id==1:
+                vals = self.env['website.rewrite'].createRedirectForRewrite(vals, blogObj, 'blog.blog', 'pattern_blog')
         res = super(Blog, self).write(vals)
         return res
 
     def update_seo_url(self):
         blogIds = self._context.get('active_ids')
-        blogObjs = self.search([('id', 'in', blogIds)])
+        blogObjs = self.search([('id', 'in', blogIds),('website_id',"=",1)])
         self.env['website.rewrite'].setSeoUrlKey('pattern_blog', blogObjs)
         text = "SEO Url key of {} blog(s) have been successfully updated.".format(len(blogObjs))
         return self.env['wk.wizard.message'].genrated_message(text)
@@ -42,19 +43,20 @@ class BlogPost(Models):
     @api.model
     def create(self, vals):
         res = super(BlogPost, self).create(vals)
-        if res.url_key in ['', False, None]:
+        if res.url_key in ['', False, None] and res.website_id==1:
             self.env['website.rewrite'].setSeoUrlKey('pattern_post', res)
         return res
 
     def write(self, vals):
         for blogPostObj in self:
-            vals = self.env['website.rewrite'].createRedirectForRewrite(vals, blogPostObj, 'blog.post', 'pattern_post')
+            if blogPostObj.website_id == 1:
+                vals = self.env['website.rewrite'].createRedirectForRewrite(vals, blogPostObj, 'blog.post', 'pattern_post')
         res = super(BlogPost, self).write(vals)
         return res
 
     def update_seo_url(self):
         blogPostIds = self._context.get('active_ids')
-        blogPostObjs = self.search([('id', 'in', blogPostIds)])
+        blogPostObjs = self.search([('id', 'in', blogPostIds),('website_id',"=",1)])
         self.env['website.rewrite'].setSeoUrlKey('pattern_post', blogPostObjs)
         text = "SEO Url key of {} blog post(s) have been successfully updated.".format(len(blogPostObjs))
         return self.env['wk.wizard.message'].genrated_message(text)

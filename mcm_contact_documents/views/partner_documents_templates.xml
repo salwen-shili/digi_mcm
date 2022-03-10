@@ -188,16 +188,11 @@
                     <h2 class="text-left">
                         <i class="fa fa-info-circle" style="color: #152856;"></i>
                     </h2>
-                    <a class="close" href="#">
+                    <a class="close" href="#" onclick="">
                         <i class="fa fa-times"></i>
                     </a>
                     <div class="content" id="popupcontent">
-                        <p id="notifMessage">
-                            <div style="text-align: -webkit-center;">
-                                <div class="spinner"></div>
-                            </div>
-                            `
-                        </p>
+                        <p id="notifMessage"></p>
                         <style t-if="request.website.id==2">
                             .action-button {
                             height: 40px;
@@ -242,10 +237,6 @@
                             }
 
                         </style>
-
-                        <div style="text-align:center">
-                            <button type="button" class="btn btn-secondary action-button shake" id="continueBtn" onclick="verify_payment_method()">Continuer</button>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -257,6 +248,7 @@
                         <i class="fa fa-check-circle text-success" role="img" aria-label="Success" title="Success" />
                     </span>
                 </h5>
+
                 <div class="renonce" style="padding-top:24px;" t-if="user_id.partner_id.renounce_request==False">
                     <input type="checkbox" id="renonce_request_box" name="renonce" t-att-checked="user_id.partner_id.renounce_request" style="white-space: nowrap;width:20px;height:14px;" class="text-xl-left border-0">
                         <label for="renonce" style="display:inline;color:#202647;font-weight:bold;">

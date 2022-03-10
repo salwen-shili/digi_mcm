@@ -2,399 +2,301 @@
     <template id="digimoov_website_templates.livreur_de_colis_nantes" name="Devenir coursier à Nantes">
         <t t-call="website.layout">
 
+            <script defer="defer" type="text/javascript" src="/digimoov_website_templates/static/src/js/lazy-min.min.js" />
+            <!-- TrustBox script -->
+            <script type="text/javascript" src="//widget.trustpilot.com/bootstrap/v5/tp.widget.bootstrap.min.js" async="async" />
+            <!-- End TrustBox script -->
 
+            <link href="/digimoov_website_templates/static/src/css/style-landing.min.css" rel="stylesheet"></link>
             <div id="wrap" class="oe_empty oe_structure">
-                <script defer="defer" type="text/javascript" src="/digimoov_website_templates/static/src/js/lazy-min.min.js" />
-                <!-- TrustBox script -->
-                <script type="text/javascript" src="//widget.trustpilot.com/bootstrap/v5/tp.widget.bootstrap.min.js" async="async" />
-                <!-- End TrustBox script -->
-                <section class="banner_padding centric_template home-banner pt96" data-name="Banner" style="word-break: break-word; position: relative; z-index: 0;">
-                    <div class="container" style="border-style: none; border-width: 0px;">
+                <section class="banner_padding centric_template home-banner pt96" data-name="Banner">
+                    <div class="container">
                         <div class="row">
-                            <div class="bannarcol col-lg-6 col-md-12" style="border-style: none; border-width: 0px">
-                                <h1>
-                                    <text class="h1-title">
-                                        <font style="color: rgb(8, 82, 148);">Comment devenir </font>
-                                        <font style="color: rgb(66, 66, 66);">livreur</font>
-                                        <font style="color: rgb(66, 66, 66);">&amp;nbsp;</font>
-                                        <font style="color: rgb(66, 66, 66);">
-                                            <br />
-                                        </font>
-                                        <font style="color: rgb(66, 66, 66);">de colis&amp;nbsp;</font>
-                                        <font style="color: rgb(66, 66, 66);">à </font>
-                                        <font style="color: rgb(66, 66, 66);">Nantes</font>
-                                        <font style="" class="text-epsilon"></font>
-                                        <font style="color: rgb(8, 82, 148);">?</font>
-                                    </text>
+                            <div class="bannarcol col-lg-6 col-md-12">
+                                <h1 class="h1-title">
+                                    <text class="blue-v">Comment devenir</text>
+                                    Comment devenir livreur de colis à Nantes
+                                    <text class="blue-v">?</text>
                                 </h1>
                                 <p class="paratext">
                                     Vous souhaitez devenir livreur à Nantes en voiture ou en camion ?
                                     <br />
-                                    <text style="color: rgb(156, 0, 255)">
-                                        <font style="color: rgb(99, 99, 99);">Obtenez votre capacité de transport léger avec Digimoov !</font>
-                                        <br />
-                                        <font style="color: rgb(99, 99, 99);">Digimoov est un centre de formation e-learning agrée spécialisé dans les formations en ligne sur la capacité de transport de marchandises.</font>
-                                    </text>
+                                    Obtenez votre capacité de transport léger avec Digimoov ! Digimoov
+            est un centre de formation e-learning agrée spécialisé dans les
+            formations en ligne sur la capacité de transport de marchandises.
                                 </p>
                                 <div class="banner-btn s_btn" data-name="Button">
-                                    <a href="#pricing" class="bannerbtn btn btn-success rounded-circle" title="je m'inscirs" alt="boutton je m'inscris" aria-describedby="tooltip679124" spellcheck="false" data-mci-spellchecked="true" style="word-break: break-word; position: relative; z-index: 0;" lang="merciapp">Je m'inscris dès maintenant ! </a>
+                                    <a href="#pricing" class="bannerbtn btn btn-success rounded-circle" title="je m'inscirs" alt="boutton je m'inscris">Je m'inscris dès maintenant !
+            </a>
                                 </div>
-                                <mci-extension data-role="overlay" />
                             </div>
-                            <div class="bannercol col-lg-6 col-md-12 image_padding" style="border-style: none; border-width: 0px">
+                            <div class="bannercol col-lg-6 col-md-12 image_padding">
                                 <div class="banner_image">
-                                    <img class="img img-fluid" src="/digimoov_website_templates/static/img/nantes/capacité de transport léger de marchandises- bordeaux.png" title="Devenir coursier en scooter" alt="formation coursier en scooter" aria-describedby="tooltip653698" />
+                                    <img class="img img-fluid" data-src="/digimoov_website_templates/static/img/nantes/capacité de transport léger de marchandises- bordeaux.webp" data-srcsafari="/digimoov_website_templates/static/img/nantes/capacité de transport léger de marchandises- bordeaux.png" title="devenir livreur de colis  à Nantes" alt="devenir livreur de colis  à Nantes" />
                                 </div>
                             </div>
                         </div>
                     </div>
                 </section>
-                <section class="s_text_image pt32 pb32" data-name="Text - Image" style="word-break: break-word; position: relative; z-index: 0;">
-                    <div class="container" style="border-style: none; border-width: 0px;">
+                <section class="s_text_image pt32 pb32" data-name="Text - Image">
+                    <div class="container">
                         <div class="row align-items-center">
                             <div class="col-lg-6 pt16 pb16">
-                                <img src="/digimoov_website_templates/static/img/nantes/C'est quoi une capacité de transport -nantes-digimoov.png" class="img img-fluid mx-auto" alt="Odoo • Texte et Image" data-original-title="" title="" aria-describedby="tooltip928533" />
+                                <img src="/digimoov_website_templates/static/img/nantes/C'est quoi une capacité de transport -nantes-digimoov.png" class="img img-fluid mx-auto" alt="capacité de transport" title="Capacité de transport" />
                             </div>
-                            <div class="col-lg-6 pt16 pb16" style="border-style: none; border-width: 0px;">
-                                <h2>
-                                    <font style="color: rgb(57, 132, 198);">C'est quoi une </font>
-                                    <font style="color: rgb(198, 123, 165);">capacité de transport&amp;nbsp;?</font>
+                            <div class="col-lg-6 pt16 pb16">
+                                <h2 class="h2-title">
+                                    C'est quoi une
+                                    <text class="pink-v">capacité de transport ?</text>
                                 </h2>
-                                <p>
-                                    Pour exercer le métier de transporteur professionnel de marchandises, vous devez obtenir votre capacité de transport.
+                                <p class="para">
+                                    Pour exercer le métier de transporteur professionnel de
+            marchandises, vous devez obtenir votre capacité de transport.
                                     <br />
-                                    Une licence que vous pouvez détenir par trois voies : en suivant une formation et en passant un examen auprés de la DREAL et qui est le chemin le plus classique opté par les candidats, en obtenant une
-                                    <a href="https://www.digimoov.fr/blog/digimoov-3/post/comment-obtenir-la-capacite-professionnelle-de-transport-leger-de-marchandises-par-equivalence-30">équivalence de vos diplômes</a>
-                                    , ou en justifiant une gestion en continu d'une société de transport public routier de marchandises durant au moins deux ans, sans avoir arrêté l’activité depuis plus de 10 ans.
-                                </p>
-                                <div>
-                                    <span style="color: rgb(0, 0, 0); font-size: 1rem; text-align: justify;">
-                                        <br />
-                                    </span>
-                                </div>
-                                <p style="box-sizing: inherit; margin: 8px 0px; max-width: 100%; line-height: 31.5px;">
-                                    <font color="#474d6b" face="Inter, sans-serif" style="color: rgb(99, 99, 99);">
-                                        <span style="font-weight: 400;">&amp;nbsp;</span>
-                                    </font>
-                                    <br />
+                                    Une licence que vous pouvez détenir par trois voies : en suivant une
+            formation et en passant un examen auprés de la DREAL et qui est le
+            chemin le plus classique opté par les candidats, en obtenant une
+                                    <a href="/blog/digimoov-3/post/comment-obtenir-la-capacite-professionnelle-de-transport-leger-de-marchandises-par-equivalence-30">équivalence de vos diplômes</a>
+                                    , ou en justifiant une gestion en continu d'une société de transport
+            public routier de marchandises durant au moins deux ans, sans avoir
+            arrêté l’activité depuis plus de 10 ans.
                                 </p>
                             </div>
                         </div>
                     </div>
                 </section>
-                <div style="border-style: none; border-width: 0px; word-break: break-word; position: relative; z-index: 0;" class="">
-                    <style>
-                    .h1-title {
-                    color: rgb(156, 0, 255);
-                    }
-                    p {
-                    font-size: 18px !important;
-                    }
-                    h2 {
-                    font-weight: bold !important;
-                    font-size: 48px !important;
-                    color: #000 !important;
-                    padding-bottom: 25px !important;
-                    }
-                    .li{
-
-                    font-weight: bold !important;
-                    font-size: 17px !important;
-
-                    }
-
-                    .p-card-pricing{
-                    padding: 48px;
-                    }
-                    .center-logo {
-                    display: flex;
-                    flex-direction: row;
-                    align-content: center;
-                    justify-content: space-between;
-                    align-items: center;
-                    }
-
-                    .banner_padding{
-                    padding: 128px 0px 64px 0px !important;
-                    }
-
-                    @media all and (max-width: 425px) {
-                    .center-logo {
-                    display: flex;
-                    flex-direction: column;
-                    align-content: center;
-                    justify-content: space-between;
-                    align-items: center;
-                    }
-                    .p-card-pricing{
-                    padding: 40px 0px 0px 11px;
-                    }
-                    .p-m-0{
-                    padding: 0px !important;
-                    }
-                    .banner_padding{
-                    padding: 58px 0px 18px 0px !important;
-                    }
-                    .image_padding{
-                    padding: 32px 0px !important;
-
-                    }
-                    .section-padding{
-                    padding: 32px 0px !important;
-                    }
-                    .section-logos{
-                    padding: 32px 0px !important;
-                    }
-                    .res-width-46{
-                    width: 46% !important;
-                    }
-                    .res-width-43{
-                    width: 43% !important;
-                    }
-                    .res-width-26{
-                    width: 26% !important;
-                    }
-                    .res-width-36{
-                    width: 36% !important;
-                    }
-                    .res-width-30{
-                    width: 30% !important;
-                    }
-
-                    }
-                
-            </style>
-                    <section class="pt16 pb32 js-scroll fade-in-top">
-                        <div class="container js-scroll fade-in-top">
-                            <div class="center-logo mt32">
-                                <div>
-                                    <img data-src="/mcm_website_theme/static/src/img/formation-éligible-au-compte-personnel-de-formation.webp" data-srcSafari="/mcm_website_theme/static/src/img/formation-éligible-au-compte-personnel-de-formation.png" class="img-fluid lazy" style="width: 100px;" title="Formation éligible au CPF" alt="logo mon compte de formation" />
-                                </div>
-                                <div class="pt32">
-                                    <img class="img-fluid lazy" style="width: 188px;" data-src="/mcm_website_theme/static/src/img/formation-taxi-vtc-certifiée-qualiopi.webp" data-srcSafari="/mcm_website_theme/static/src/img/formation-taxi-vtc-certifiée-qualiopi.png" title="MCM Academy centre agrée par Qualiopi" alt="qualiopi" />
-                                </div>
-                                <!-- <div class="pt32">
+                <section class="pt16 pb32 js-scroll fade-in-top">
+                    <div class="container js-scroll fade-in-top">
+                        <div class="center-logo mt32">
+                            <div>
+                                <img data-src="/mcm_website_theme/static/src/img/formation-éligible-au-compte-personnel-de-formation.webp" data-srcSafari="/mcm_website_theme/static/src/img/formation-éligible-au-compte-personnel-de-formation.png" class="img-fluid lazy" style="width: 100px" title="Formation éligible au CPF" alt="logo mon compte de formation" />
+                            </div>
+                            <div class="pt32">
+                                <img class="img-fluid lazy" style="width: 188px" data-src="/mcm_website_theme/static/src/img/formation-taxi-vtc-certifiée-qualiopi.webp" data-srcSafari="/mcm_website_theme/static/src/img/formation-taxi-vtc-certifiée-qualiopi.png" title="MCM Academy centre agrée par Qualiopi" alt="qualiopi" />
+                            </div>
+                            <!-- <div class="pt32">
                                     <img class="img-fluid lazy" style="width: 110px;" data-srcSafari="/mcm_website_theme/static/src/img/mcm academy-partenaire-france-relance.jpg" data-src="/mcm_website_theme/static/src/img/mcm academy-partenaire-france-relance.webp" title="France relance-MCM Academy" alt="France relance-MCM Academy" />
                                 </div> -->
-                                <!-- dreal-->
-                                <!-- dreal-->
-                                <div class="pt32">
-                                    <img class="img-fluid lazy" style="width: 160px;" data-src="/digimoov_website_templates/static/img/coursier2roues/logo-DREAL.webp" data-srcsafari="/digimoov_website_templates/static/img/coursier2roues/logo-DREAL.png" title="Centre agrée de la préfecture" alt="dreal" />
-                                </div>
+                            <!-- dreal-->
+                            <div class="pt32">
+                                <img class="img-fluid lazy" style="width: 160px" data-src="/digimoov_website_templates/static/img/coursier2roues/logo-DREAL.webp" data-srcsafari="/digimoov_website_templates/static/img/coursier2roues/logo-DREAL.png" title="Centre agrée de la préfecture" alt="dreal" />
+                            </div>
 
-                                <div class="pt32">
-                                    <img class="img-fluid lazy" style="width:263px" data-srcSafari="/mcm_website_theme/static/src/img/logo-investir-avenir.png" data-src="/mcm_website_theme/static/src/img/logo-investir-avenir.webp" title="Investir dans vos compétences avec MCM Academy" alt="Investir dans vos compétences avec MCM Academy" />
-                                </div>
+                            <div class="pt32">
+                                <img class="img-fluid lazy" style="width: 263px" data-srcSafari="/mcm_website_theme/static/src/img/logo-investir-avenir.png" data-src="/mcm_website_theme/static/src/img/logo-investir-avenir.webp" title="Investir dans vos compétences avec MCM Academy" alt="Investir dans vos compétences avec MCM Academy" />
                             </div>
                         </div>
-                    </section>
-                    <section class="about-us centric_template pt128 section-padding pb0" data-name="About Us" id="en-savoir-plus">
-                        <section>
-                            <div class="container">
-                                <div class="row">
-                                    <div class="col-lg-6 col-md-12" style="border-style: none; border-width: 0px">
-                                        <div class="aboutus-img">
-                                            <img class="img img-fluid" src="/digimoov_website_templates/static/img/nantes/Formation sur la capacité de transport léger de marchandises-nantes-digimoov.png" title="formation coursier en scooter en ligne" alt="formation en ligne capacité de transport de marchandise sur 2 roues" aria-describedby="tooltip664574" />
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-6 col-md-12" style="border-style: none; border-width: 0px">
-                                        <div class="aboutus-content">
-                                            <h2>Formation sur la capacité de transport léger de marchandises</h2>
-                                            <p>
-                                                <span style="color: rgb(99, 99, 99); font-size: 18px; text-align: justify;">
-                                                    Nous proposons une formation sur la capacité de transport léger de marchandises 100% en ligne, c'est à dire à distance, sur une plateforme e-learning, avec des cours sous formes de vidéo-conférences et de vidéos en Live avec des formateurs qualifiés.
-                                                    <br />
-                                                    <br />
-                                                    Notre formation&amp;nbsp;
-                                                </span>
-                                                <span style="font-size: 18px; color: rgb(99, 99, 99); text-align: justify;">concerne toute personne</span>
-                                                <span style="font-size: 18px; color: rgb(99, 99, 99); text-align: justify;">&amp;nbsp;qui souhaite intégrer le domaine du transport en exploitant un véhicule motorisé.&amp;nbsp;</span>
-                                            </p>
-                                            <p>
-                                                <span style="color: rgb(99, 99, 99); font-size: 18px; text-align: justify;">Les principaux modules de la formation sont axés sur&amp;nbsp;</span>
-                                                <span style="color: rgb(99, 99, 99); font-size: 18px; text-align: justify;">l'activité commerciale,&amp;nbsp;</span>
-                                                <span style="font-size: 18px; color: rgb(99, 99, 99); text-align: justify;">la règlementation, le droit civil, et la gestion financière et salariale de l'entreprise ce qui&amp;nbsp;</span>
-                                                <span style="font-size: 18px; color: rgb(99, 99, 99); text-align: justify;">respecte les exigences du référentiel de l’examen organisé par la DREAL/DREA.</span>
-                                                <span style="font-size: 18px; color: rgb(99, 99, 99); text-align: justify;">
-                                                    &amp;nbsp;
-                                                    <br />
-                                                </span>
-                                                <span style="font-size: 18px; color: rgb(99, 99, 99); text-align: justify;">
-                                                    <br />
-                                                    Afin de maximiser vos chances de réussite et vous aider à obtenir votre licence, notre équipe pédagogique sera là pour vous encadrer et vous guider tout au long de votre parcours.
-                                                </span>
-                                            </p>
-                                            <div class="s_btn text-center pt16 pb16" data-name="Button">
-                                                <a href="#pricing" class="btn btn-success" data-original-title="" title="" aria-describedby="tooltip819548" spellcheck="false" data-mci-spellchecked="true" style="word-break: break-word; position: relative; z-index: 0;">Inscrivez-vous !</a>
-                                            </div>
-                                        </div>
-                                        <mci-extension data-role="overlay" />
-                                    </div>
-                                </div>
-                            </div>
-                        </section>
-                    </section>
-                    <section class="s_call_to_action pt48 pb24 bg-night-fade-gradient" data-name="Call to Action">
+                    </div>
+                </section>
+
+                <section class="about-us centric_template pt128 section-padding pb0" data-name="About Us" id="en-savoir-plus">
+                    <section>
                         <div class="container">
                             <div class="row">
-                                <div class="col-lg-9 pb24" style="border-style: none; border-width: 0px;">
-                                    <h3>
-                                        <b>Téléchargez notre programme&amp;nbsp;complet</b>
-                                        &amp;nbsp;
-                                        <b style="background-color: initial;">de formation et d'évaluation
-                                    </b>
-                                    </h3>
-                                    <p class="lead">
-                                        <b>Pour garantir votre réussite !</b>
-                                    </p>
+                                <div class="col-lg-6 col-md-12">
+                                    <div class="aboutus-img">
+                                        <img class="img img-fluid" data-srcsafari="/digimoov_website_templates/static/img/nantes/Formation sur la capacité de transport léger de marchandises-nantes-digimoov.png" data-src="/digimoov_website_templates/static/img/nantes/Formation sur la capacité de transport léger de marchandises-nantes-digimoov.webp" title="formation coursier en scooter en ligne" alt="formation en ligne capacité de transport de marchandise sur 2 roues" aria-describedby="tooltip664574" />
+                                    </div>
                                 </div>
-                                <div class="col-lg-3 s_btn text-right pt8 pb24" data-name="Button">
-                                    <a href="/digimoov_website_templates/static/pdf/PROGRAMME-DE-FORMATION-DE-TRANSPORT-LEGER-DE-MARCHANDISES-DIGIMOOV.pdf" class="btn btn-primary btn-lg" target="_blank" rel="noopener" data-original-title="" title="" aria-describedby="tooltip643098">
-                                        <span data-original-title="" title="" aria-describedby="tooltip516238">Je télécharge !</span>
-                                        &amp;nbsp;
-                                        <i class="fa fa-1x fa-fw fa-arrow-circle-right ml-1" />
-                                    </a>
+                                <div class="col-lg-6 col-md-12">
+                                    <div class="aboutus-content">
+                                        <h2 class="h2-title">
+                Formation sur la capacité de transport léger de marchandises
+              </h2>
+                                        <p class="para">
+                Nous proposons une formation sur la capacité de transport léger
+                de marchandises 100% en ligne, c'est à dire à distance, sur une
+                plateforme e-learning, avec des cours sous formes de
+                vidéo-conférences et de vidéos en Live avec des formateurs
+                qualifiés.
+              </p>
+                                        <p class="para">
+                Notre formation concerne toute personne qui souhaite intégrer le
+                domaine du transport en exploitant un véhicule motorisé.
+              </p>
+                                        <p class="para">
+                Les principaux modules de la formation sont axés sur l'activité
+                commerciale, la règlementation, le droit civil, et la gestion
+                financière et salariale de l'entreprise ce qui respecte les
+                exigences du référentiel de l’examen organisé par la DREAL/DREA.
+              </p>
+                                        <p class="para">
+                Afin de maximiser vos chances de réussite et vous aider à
+                obtenir votre licence, notre équipe pédagogique sera là pour
+                vous encadrer et vous guider tout au long de votre parcours.
+              </p>
+
+                                        <div class="s_btn text-center pt16 pb16" data-name="Button">
+                                            <a href="#pricing" class="btn btn-success" data-original-title="" title="" aria-describedby="tooltip819548" spellcheck="false" data-mci-spellchecked="true" style="word-break: break-word; position: relative; z-index: 0">Inscrivez-vous !</a>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </section>
-                </div>
-                <section class="s_text_image pt32 pb32" data-name="Image - Text" style="word-break: break-word; position: relative; z-index: 0;"></section>
+                </section>
+                <section class="s_call_to_action pt48 pb24 bg-night-fade-gradient" data-name="Call to Action">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-9 pb24">
+                                <h3>
+                                    <b>Téléchargez notre programme&amp;nbsp;complet</b>
+                                    &amp;nbsp;
+                                    <b style="background-color: initial">de formation et d'évaluation
+            </b>
+                                </h3>
+                                <p class="lead">
+                                    <b>Pour garantir votre réussite !</b>
+                                </p>
+                            </div>
+                            <div class="col-lg-3 s_btn text-right pt8 pb24" data-name="Button">
+                                <a href="/digimoov_website_templates/static/pdf/PROGRAMME-DE-FORMATION-DE-TRANSPORT-LEGER-DE-MARCHANDISES-DIGIMOOV.pdf" class="btn btn-primary btn-lg" target="_blank" rel="noopener" data-original-title="" title="" aria-describedby="tooltip643098">
+                                    <span data-original-title="" title="" aria-describedby="tooltip516238">Je télécharge !</span>
+                                    &amp;nbsp;
+                                    <i class="fa fa-1x fa-fw fa-arrow-circle-right ml-1" />
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </section>
 
+                <section class="s_text_image pt32 pb32" data-name="Image - Text"></section>
 
-                <!-- pricing table-->
-
-                <!-- Pricing table-->
-                <div class="row justify-content-center" style="justify-content: center;">
-                    <div class="col-md-8 text-center col-lg-11">
-                        <h2 class="text-beta title" style="margin-bottom: 19px;">
-                            LET'S GO !
-                            <br />
-                            Inscrivez-vous dès maintenant !
-                        </h2>
-                        <h3 class="subtitle" style="    margin: 0 !important;">
-                            <div class="trustpilot-widget" data-locale="fr-FR" data-template-id="53aa8807dec7e10d38f59f32" data-businessunit-id="60a28e22d3a8ed00019ff03e" data-style-height="150px" data-style-width="100%" data-theme="light">
+                <div id="pricing-table-trustpilot-partner">
+                    <!-- TrustBox widget - Carousel -->
+                    <section class="mt96 mb96">
+                        <div class="container">
+                            <div class="trustpilot-widget" data-locale="fr-FR" data-template-id="53aa8912dec7e10d38f59f36" data-businessunit-id="60a28e22d3a8ed00019ff03e" data-style-height="140px" data-style-width="100%" data-theme="light" data-stars="4,5" data-review-languages="fr">
                                 <a href="https://fr.trustpilot.com/review/digimoov.fr" target="_blank" rel="noopener">Trustpilot</a>
                             </div>
-                        </h3>
+                        </div>
+                    </section>
+
+                    <!-- End TrustBox widget -->
+                    <div id="pricing" class="row justify-content-center">
+                        <div class="col-md-8 text-center col-lg-11">
+                            <h2 class="text-beta title mb20">
+                                LET'S GO !
+                                <br />
+                                Inscrivez-vous dès maintenant !
+                            </h2>
+
+                        </div>
                     </div>
-                </div>
-                <div class="container">
-                    <input t-att-value="request.website.microsoft_tracking_key" id="microsoft_tracking_key" type="hidden" />
-                    <div class="row" style="place-content: center;">
-                        <div class="col-md-4 col-sm-6">
-                            <div class="card border-0 shadow" style="border-radius: 25px 25px">
-                                <div class="text-center text-white border-0" style="                     background-color: #6e209f;                     border-top-left-radius: 25px;                     border-top-right-radius: 25px;                   ">
-                                    <br />
-                                    <p>
-                                        <strong style="color: white">
-                                            <font style="font-size: 30px">SOLO</font>
-                                        </strong>
-                                    </p>
-                                    <p class="blink-soft">
-                                        <b>Paiement en 2 fois</b>
-                                    </p>
-                                    <br />
-                                </div>
-                                <t t-foreach="digimoov_products" t-as="product">
-                                    <t t-if="product.default_code=='basique'">
-                                        <form action="/shop/cart/update" method="post" id="form-1-1">
-                                            <input type="hidden" class="product_id" name="product_id" t-att-value="product.id" />
-                                            <input type="hidden" name="promo" t-att-value="promo.id" t-if="promo" />
-                                            <div class="card-body" style="background-color: white">
-                                                <ul class="list-unstyled">
-                                                    <li class="mb-4">
-                                                        <i class="fa fa-check-circle fa-lg mr-2 text-success" />
-                                                        <b>Formation 102h (100% en ligne)</b>
-                                                    </li>
-                                                    <li class="mb-4">
-                                                        <i class="fa fa-check-circle fa-lg mr-2 text-success" />
-                                                        <b>Accès à 5 examens d'entraînement</b>
-                                                    </li>
-                                                    <li class="mb-4">
-                                                        <i class="fa fa-check-circle fa-lg mr-2 text-success" />
-                                                        <b>Assistance par téléphone</b>
-                                                    </li>
-                                                    <li class="mb-4">
-                                                        <i class="fa fa-check-circle fa-lg mr-2 text-success" />
-                                                        <b>Assistance par mail</b>
-                                                    </li>
-                                                    <li class="mb-4">
-                                                        <i class="fa fa-times-circle fa-lg mr-2 text-danger" />
-                                                        Livre d'entrainement version électronique
-                                                    </li>
-                                                    <li class="mb-4">
-                                                        <i class="fa fa-lg fa-times-circle mr-2 text-danger" />
-                                                        Séances en Live avec les formateurs
-                                                    </li>
-                                                    <li class="mb-4">
-                                                        <i class="fa fa-lg fa-times-circle mr-2 text-danger" />
-                                                        Séance en Live avec un expert métier
-                                                    </li>
-                                                    <li class="mb-4">
-                                                        <i class="fa fa-lg fa-times-circle mr-2 text-danger" />
-                                                        Révision du programme avant l'examen
-                                                    </li>
-                                                    <li class="mb-4">
-                                                        <i class="fa fa-check-circle fa-lg mr-2 text-success" />
-                                                        <b>  &amp;nbsp;Examen final en présentiel 
-                                                                &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;
-                                                                &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;
-                                                                &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;
-                                                                &amp;nbsp;&amp;nbsp;</b>
-                                                    </li>
-                                                    <li class="mb-4">
-                                                        <i class="fa fa-check-circle fa-lg mr-2 text-success" />
-                                                        <b>Séance en Live pour corriger l'examen &amp;nbsp;
-                                                                &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;
-                                                                &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;
-                                                                &amp;nbsp; &amp;nbsp; &amp;nbsp;
-                                                                &amp;nbsp;&amp;nbsp;</b>
-                                                    </li>
-                                                    <li>
-                                                        <i />
-                                                    </li>
-                                                </ul>
-                                                <p class="                             text-center                             font-weight-bolder                             text-dark                             h1                             display-4                             mb-0                           ">
-                                                    <font>
-                                                        <p class="                                 text-center                                 font-weight-bolder                                 text-dark                                 h1                                 display-4                                 mb-0                               " t-if="not promo">
-                                                            <span style="font-size:48px" t-esc="round(product.list_price)" />
-                                                            <span style="font-size:48px" t-esc="product.currency_id.symbol" />
+                    <div class="container">
+                        <input t-att-value="request.website.microsoft_tracking_key" id="microsoft_tracking_key" type="hidden" />
+
+                        <div class="row content-center">
+                            <div class="col-md-4 col-sm-6">
+                                <div class="card border-0 shadow border-pricing">
+                                    <div class="text-center text-white border-0 pack-wrap">
+                                        <br />
+                                        <p>
+                                            <strong class="pack-name"> SOLO </strong>
+                                        </p>
+                                        <p class="blink-soft">
+                                            <b>Paiement en 2 fois</b>
+                                        </p>
+                                        <br />
+                                    </div>
+                                    <t t-foreach="digimoov_products" t-as="product">
+                                        <t t-if="product.default_code=='basique'">
+                                            <form action="/shop/cart/update" method="post" id="form-1-1">
+                                                <input type="hidden" class="product_id" name="product_id" t-att-value="product.id" />
+                                                <input type="hidden" name="promo" t-att-value="promo.id" t-if="promo" />
+                                                <div class="card-body bg-white">
+                                                    <ul class="list-unstyled">
+                                                        <li class="mb-4">
+                                                            <i class="fa fa-check-circle fa-lg mr-2 text-success" />
+                                                            <b>Formation 102h (100% en ligne)</b>
+                                                        </li>
+                                                        <li class="mb-4">
+                                                            <i class="fa fa-check-circle fa-lg mr-2 text-success" />
+                                                            <b>Accès à 5 examens d'entraînement</b>
+                                                        </li>
+                                                        <li class="mb-4">
+                                                            <i class="fa fa-check-circle fa-lg mr-2 text-success" />
+                                                            <b>Assistance par téléphone</b>
+                                                        </li>
+                                                        <li class="mb-4">
+                                                            <i class="fa fa-check-circle fa-lg mr-2 text-success" />
+                                                            <b>Assistance par mail</b>
+                                                        </li>
+                                                        <li class="mb-4">
+                                                            <i class="fa fa-times-circle fa-lg mr-2 text-danger" />
+                                                            Livre d'entraînement version électronique
+                                                        </li>
+                                                        <li class="mb-4">
+                                                            <i class="fa fa-lg fa-times-circle mr-2 text-danger" />
+                                                            Séances en Live avec les formateurs
+                                                        </li>
+                                                        <li class="mb-4">
+                                                            <i class="fa fa-lg fa-times-circle mr-2 text-danger" />
+                                                            Séance en Live avec un expert métier
+                                                        </li>
+                                                        <li class="mb-4">
+                                                            <i class="fa fa-lg fa-times-circle mr-2 text-danger" />
+                                                            Révision du programme avant l'examen
+                                                        </li>
+                                                        <li class="mb-4">
+                                                            <i class="fa fa-check-circle fa-lg mr-2 text-success" />
+                                                            <b>
+                        &amp;nbsp;Examen final en présentiel &amp;nbsp; &amp;nbsp;
+                        &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;
+                        &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;
+                        &amp;nbsp;&amp;nbsp;</b>
+                                                        </li>
+                                                        <li class="mb-4">
+                                                            <i class="fa fa-check-circle fa-lg mr-2 text-success" />
+                                                            <b>Séance en Live pour corriger l'examen &amp;nbsp;
+                        &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;
+                        &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;
+                        &amp;nbsp; &amp;nbsp;&amp;nbsp;</b>
+                                                        </li>
+                                                        <li>
+                                                            <i />
+                                                        </li>
+                                                    </ul>
+                                                    <p class="text-center font-weight-bolder text-dark h1 display-4 mb-0">
+
+                                                        <p class="text-center font-weight-bolder text-dark h1 display-4 mb-0" t-if="not promo">
+                                                            <span t-esc="round(product.list_price)" />
+                                                            <span t-esc="product.currency_id.symbol" />
                                                         </p>
-                                                        <p class="                                 text-center                                 font-weight-bolder                                 text-dark                                 h1                                 display-4                                 mb-0                               " t-if="promo">
+                                                        <p class="text-center font-weight-bolder text-dark h1 display-4 mb-0" t-if="promo">
                                                             <t t-foreach="promo.item_ids" t-as="item">
                                                                 <t t-if="item.product_id.id==product.id">
-                                                                    <span style="font-size:48px" t-esc="round(item.fixed_price)" />
-                                                                    <span style="font-size:48px" t-esc="product.currency_id.symbol" />
+                                                                    <span t-esc="round(item.fixed_price)" />
+                                                                    <span t-esc="product.currency_id.symbol" />
                                                                 </t>
                                                             </t>
                                                         </p>
-                                                    </font>
-                                                </p>
-                                                <t t-if="promo and promo.name!='box2home'">
-                                                    <p class="                               text-center                               font-weight-bolder                               text-secondary                             ">
-                                                        <b style="font-size: 80%">
-                                                            <t>avec le code</t>
-                                                            <t t-esc="promo.code" />
-                                                        </b>
+
                                                     </p>
-                                                </t>
-                                                <p class="                             medium                             text-center                             font-weight-bolder                             text-secondary                           " style="color: red !important; margin-bottom: 8px !important;" t-if="not partenaire or partenaire==''">
-                                                            Paiement 1 ou 2 fois
+                                                    <t t-if="promo and promo.name!='box2home'">
+                                                        <p class="text-center font-weight-bolder text-secondary">
+                                                            <b class="promo-code">
+                                                                <t>avec le code</t>
+                                                                <t t-esc="promo.code" />
+                                                            </b>
                                                         </p>
-                                                <br />
-                                                <button class="btn btn-block text-white" onClick="(function(){ document.getElementById('form-1-1').submit();return false;})();return false;" style="background-color: #6e209f; border-radius: 25px">
-                                                            Je m'inscris
-                                                            </button>
-                                            </div>
-                                        </form>
+                                                    </t>
+                                                    <p class="medium text-center font-weight-bolder text-secondary paiement" t-if="not partenaire or partenaire==''">
+                    Paiement 1 ou 2 fois
+                                            </p>
+                                                    <br />
+                                                    <button class="btn btn-block text-white btn-inscription" onClick="(function(){ document.getElementById('form-1-1').submit();return false;})();">
+                    Je m'inscris
+                                            </button>
+                                                </div>
+                                            </form>
+                                        </t>
                                     </t>
-                                </t>
+                                </div>
                             </div>
-                        </div>
-                        <div class="col-md-4 col-sm-6">
-                            <div class="card border-0 shadow" style="border-radius: 25px 25px">
-                                <!-- <div class="text-center text-white border-0" style="
+                            <div class="col-md-4 col-sm-6">
+                                <div class="card border-0 shadow border-pricing">
+                                    <!-- <div class="text-center text-white border-0" style="
                     background-color: #6e209f;
                     border-top-left-radius: 25px;
                     border-top-right-radius: 25px;
@@ -410,137 +312,116 @@
                                             </p>
                                             <br />
                                         </div> -->
-                                <div class="text-center text-white border-0" style="                     background-color: #6e209f;                     border-top-left-radius: 25px;                     border-top-right-radius: 25px;                   ">
-                                    <br />
+                                    <div class="text-center text-white border-0 pack-wrap">
+                                        <br />
 
-                                    <p>
-                                        <strong style="color: white">
-                                            <font style="font-size: 30px">PRO</font>
-                                        </strong>
-                                    </p>
-                                    <style>
-                                             .blink-soft {
-            animation: blinker 1s linear infinite;
-            color:#fff900;
-            text-transform: uppercase;
-            font-size: 21px;
-            }
-            @keyframes blinker {
-            50% {
-                opacity: 0.1;
-            }
-            70%{
-            opacity: 1;
-            }
-            100%{
-            opacity: 1;
-            }
-            }
-                                    </style>
-                                    <!-- <p>&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;</p> -->
-                                    <p class="blink-soft">
-                                        <b>Éligible au CPF</b>
-                                    </p>
-                                    <br />
-                                </div>
-                                <t t-foreach="digimoov_products" t-as="product">
-                                    <t t-if="product.default_code=='avancee'">
-                                        <form action="/shop/cart/update" method="post" id="form-2-1">
-                                            <input type="hidden" class="product_id" name="product_id" t-att-value="product.id" />
-                                            <input type="hidden" name="promo" t-att-value="promo.id" t-if="promo" />
-                                            <div class="card-body" style="background-color: white; padding-right:0 !important">
-                                                <ul class="list-unstyled">
-                                                    <li class="mb-4">
-                                                        <i class="fa fa-check-circle fa-lg mr-2 text-success" />
-                                                        <b>Formation 102h (100% en ligne)</b>
-                                                    </li>
-                                                    <li class="mb-4">
-                                                        <i class="fa fa-check-circle fa-lg mr-2 text-success" />
-                                                        <b> Livre d’entrainement version électronique</b>
-                                                        <!-- <i class="fa fa-info-circle info"></i>
+                                        <p>
+                                            <strong class="pack-name"> PRO </strong>
+                                        </p>
+
+                                        <!-- <p>&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;</p> -->
+                                        <p class="blink-soft">
+                                            <b>Éligible au CPF</b>
+                                        </p>
+                                        <br />
+                                    </div>
+                                    <t t-foreach="digimoov_products" t-as="product">
+                                        <t t-if="product.default_code=='avancee'">
+                                            <form action="/shop/cart/update" method="post" id="form-2-1">
+                                                <input type="hidden" class="product_id" name="product_id" t-att-value="product.id" />
+                                                <input type="hidden" name="promo" t-att-value="promo.id" t-if="promo" />
+                                                <div class="card-body car-body-c">
+                                                    <ul class="list-unstyled">
+                                                        <li class="mb-4">
+                                                            <i class="fa fa-check-circle fa-lg mr-2 text-success" />
+                                                            <b>Formation 102h (100% en ligne)</b>
+                                                        </li>
+                                                        <li class="mb-4">
+                                                            <i class="fa fa-check-circle fa-lg mr-2 text-success" />
+                                                            <b> Livre d’entraînement version électronique</b>
+                                                            <!-- <i class="fa fa-info-circle info"></i>
                                                                 <span class="additional-info">additional info</span> -->
-                                                    </li>
-                                                    <li class="mb-4">
-                                                        <i class="fa fa-check-circle fa-lg mr-2 text-success" />
-                                                        <b> Accès à 10 examens d'entraînement</b>
-                                                        <!-- <i class="fa fa-info-circle info"></i>
+                                                        </li>
+                                                        <li class="mb-4">
+                                                            <i class="fa fa-check-circle fa-lg mr-2 text-success" />
+                                                            <b> Accès à 10 examens d'entraînement</b>
+                                                            <!-- <i class="fa fa-info-circle info"></i>
                                                                 <span class="additional-info">additional info</span> -->
-                                                    </li>
-                                                    <li class="mb-4">
-                                                        <i class="fa fa-check-circle fa-lg mr-2 text-success" data-original-title="" title="" aria-describedby="tooltip131000" />
-                                                        <b>Assistance par téléphone</b>
-                                                    </li>
-                                                    <li class="mb-4">
-                                                        <i class="fa fa-check-circle fa-lg mr-2 text-success" />
-                                                        <b>Assistance par mail</b>
-                                                    </li>
+                                                        </li>
+                                                        <li class="mb-4">
+                                                            <i class="fa fa-check-circle fa-lg mr-2 text-success" data-original-title="" title="" aria-describedby="tooltip131000" />
+                                                            <b>Assistance par téléphone</b>
+                                                        </li>
+                                                        <li class="mb-4">
+                                                            <i class="fa fa-check-circle fa-lg mr-2 text-success" />
+                                                            <b>Assistance par mail</b>
+                                                        </li>
 
-                                                    <li class="mb-4">
-                                                        <span class="fa fa-check-circle fa-lg mr-2 text-success" style="font-size: 1.33333em" data-original-title="" title="" aria-describedby="tooltip96053" />
-                                                        <b>Séances de groupe en Live avec les formateurs</b>
-                                                    </li>
-                                                    <li class="mb-4">
-                                                        <span class="fa fa-lg fa-times-circle text-danger mr-2" style="font-size: 1.33333em" data-original-title="" title="" aria-describedby="tooltip288722" />
-                                                        Séance en Live avec un expert métier
-                                                    </li>
-                                                    <li class="mb-4">
-                                                        <i class="fa fa-lg fa-times-circle text-danger mr-2" />
-                                                        Révision du programme avant l'examen
-                                                    </li>
-                                                    <li class="mb-4">
-                                                        <i class="fa fa-check-circle fa-lg mr-2 text-success" />
-                                                        <b>  &amp;nbsp;Examen final en présentiel 
-                                                                &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;
-                                                                &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;
-                                                                &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;
-                                                                &amp;nbsp;&amp;nbsp;</b>
-                                                    </li>
-                                                    <li class="mb-4">
-                                                        <i class="fa fa-check-circle fa-lg mr-2 text-success" />
-                                                        <b>Séance en Live pour corriger l’examen &amp;nbsp;
-                                                                &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;
-                                                                &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;
-                                                                &amp;nbsp; &amp;nbsp; &amp;nbsp;
-                                                                &amp;nbsp;&amp;nbsp;</b>
-                                                    </li>
+                                                        <li class="mb-4">
+                                                            <span class="desc-size fa fa-check-circle fa-lg mr-2 text-success" data-original-title="" title="" aria-describedby="tooltip96053" />
+                                                            <b>Séances de groupe en Live avec les formateurs</b>
+                                                        </li>
+                                                        <li class="mb-4">
+                                                            <span class="desc-size fa fa-lg fa-times-circle text-danger mr-2" data-original-title="" title="" aria-describedby="tooltip288722" />
+                                                            Séance en Live avec un expert métier
+                                                        </li>
+                                                        <li class="mb-4">
+                                                            <i class="fa fa-lg fa-times-circle text-danger mr-2" />
+                                                            Révision du programme avant l'examen
+                                                        </li>
+                                                        <li class="mb-4">
+                                                            <i class="fa fa-check-circle fa-lg mr-2 text-success" />
+                                                            <b>
+                        &amp;nbsp;Examen final en présentiel &amp;nbsp; &amp;nbsp;
+                        &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;
+                        &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;
+                        &amp;nbsp;&amp;nbsp;</b>
+                                                        </li>
+                                                        <li class="mb-4">
+                                                            <i class="fa fa-check-circle fa-lg mr-2 text-success" />
+                                                            <b>Séance en Live pour corriger l’examen &amp;nbsp;
+                        &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;
+                        &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;
+                        &amp;nbsp; &amp;nbsp;&amp;nbsp;</b>
+                                                        </li>
 
-                                                    <li>
-                                                        <i />
-                                                    </li>
-                                                </ul>
-                                                <p class="                             text-center                             font-weight-bolder                             text-dark                             h1                             display-4                             mb-0                           ">
-                                                    <font>
-                                                        <p class="                                 text-center                                 font-weight-bolder                                 text-dark                                 h1                                 display-4                                 mb-0                               ">
-                                                            <span style="font-size:48px" t-esc="round(product.list_price)" />
+                                                        <li>
+                                                            <i />
+                                                        </li>
+                                                    </ul>
+                                                    <p class="text-center font-weight-bolder text-dark h1 display-4 mb-0">
 
-                                                            <span style="font-size:48px" t-esc="product.currency_id.symbol" />
+                                                        <p class="text-center font-weight-bolder text-dark h1 display-4 mb-0">
+                                                            <span t-esc="round(product.list_price)" />
+
+                                                            <span t-esc="product.currency_id.symbol" />
                                                         </p>
-                                                    </font>
-                                                </p>
-                                                <t t-if="promo and promo.name!='box2home'">
-                                                    <p class="                               text-center                               font-weight-bolder                               text-secondary                             ">
-                                                        <b style="font-size: 80%">
-                                                            <t>&amp;nbsp; &amp;nbsp; &amp;nbsp;&amp;nbsp;</t>
-                                                        </b>
-                                                    </p>
-                                                </t>
-                                                <p class="                             medium                             text-center                             font-weight-bolder                             text-secondary                           " style="color: red !important; margin-bottom:8px !important">
-                                                            Paiement 1 ou 2 fois
-                                                            </p>
 
-                                                <br />
-                                                <button class="btn btn-block text-white" onClick="(function(){document.getElementById('form-2-1').submit();return false;})();return false;" style="background-color: #6e209f; border-radius: 25px">
-                                                            Je m'inscris
-                                                            </button>
-                                            </div>
-                                        </form>
+                                                    </p>
+                                                    <t t-if="promo and promo.name!='box2home'">
+                                                        <p class="text-center font-weight-bolder text-secondary">
+                                                            <b class="promo-code">
+                                                                <t>&amp;nbsp; &amp;nbsp; &amp;nbsp;&amp;nbsp;</t>
+                                                            </b>
+                                                        </p>
+                                                    </t>
+                                                    <p class="paiement medium text-center font-weight-bolder text-secondary">
+                    Paiement 1 ou 2 fois
+                                            </p>
+
+                                                    <br />
+                                                    <button class="btn-inscription btn btn-block text-white" onClick="(function(){document.getElementById('form-2-1').submit();return false;})();">
+                    Je m'inscris
+                                            </button>
+                                                </div>
+                                            </form>
+                                        </t>
                                     </t>
-                                </t>
+                                </div>
                             </div>
-                        </div>
-                        <div class="col-md-4 col-sm-12">
-                            <div class="card border-0 shadow" style="border-radius: 25px 25px">
-                                <!-- <div class="text-center text-white border-0" style="
+                            <div class="col-md-4 col-sm-12">
+                                <div class="card border-0 shadow border-pricing">
+                                    <!-- <div class="text-center text-white border-0" style="
                     background-color: #6e209f;
                     border-top-left-radius: 25px;
                     border-top-right-radius: 25px;
@@ -554,169 +435,165 @@
                                             </p>
                                             <br />
                                         </div> -->
-                                <div class="text-center text-white border-0" style="                     background-color: #6e209f;                     border-top-left-radius: 25px;                     border-top-right-radius: 25px;                   ">
-                                    <br />
+                                    <div class="text-center text-white border-0 pack-wrap">
+                                        <br />
 
-                                    <p>
-                                        <strong style="color: white">
-                                            <font style="font-size: 30px">PREMUIM</font>
-                                        </strong>
-                                    </p>
-                                    <p class="blink-soft">
-                                        <b>Éligible au CPF</b>
-                                    </p>
-                                    <br />
-                                </div>
-                                <t t-foreach="digimoov_products" t-as="product">
-                                    <t t-if="product.default_code=='premium'">
-                                        <form action="/shop/cart/update" method="post" id="form-3-1">
-                                            <input type="hidden" class="product_id" name="product_id" t-att-value="product.id" />
-                                            <input type="hidden" name="promo" t-att-value="promo.id" t-if="promo" />
-                                            <div class="card-body">
-                                                <ul class="list-unstyled">
-                                                    <li class="mb-4">
-                                                        <i class="fa fa-check-circle fa-lg mr-2 text-success" />
-                                                        <b>Formation 102h (100% en ligne)</b>
-                                                    </li>
-                                                    <li class="mb-4">
-                                                        <i class="fa fa-check-circle fa-lg mr-2 text-success" />
-                                                        <b>Livre d’entrainement version électronique</b>
-                                                    </li>
-                                                    <li class="mb-4">
-                                                        <i class="fa fa-check-circle fa-lg mr-2 text-success" />
-                                                        <b>Accès à 14+ examens d'entraînement</b>
+                                        <p>
+                                            <strong class="pack-name"> PREMIUM </strong>
+                                        </p>
+                                        <p class="blink-soft">
+                                            <b>Éligible au CPF</b>
+                                        </p>
+                                        <br />
+                                    </div>
+                                    <t t-foreach="digimoov_products" t-as="product">
+                                        <t t-if="product.default_code=='premium'">
+                                            <form action="/shop/cart/update" method="post" id="form-3-1">
+                                                <input type="hidden" class="product_id" name="product_id" t-att-value="product.id" />
+                                                <input type="hidden" name="promo" t-att-value="promo.id" t-if="promo" />
+                                                <div class="card-body">
+                                                    <ul class="list-unstyled">
+                                                        <li class="mb-4">
+                                                            <i class="fa fa-check-circle fa-lg mr-2 text-success" />
+                                                            <b>Formation 102h (100% en ligne)</b>
+                                                        </li>
+                                                        <li class="mb-4">
+                                                            <i class="fa fa-check-circle fa-lg mr-2 text-success" />
+                                                            <b>Livre d’entraînement version électronique</b>
+                                                        </li>
+                                                        <li class="mb-4">
+                                                            <i class="fa fa-check-circle fa-lg mr-2 text-success" />
+                                                            <b>Accès à 14+ examens d'entraînement</b>
+                                                        </li>
+                                                        <li class="mb-4">
+                                                            <i class="fa fa-check-circle fa-lg mr-2 text-success" />
+                                                            <b>Assistance par téléphone</b>
+                                                            <br />
+                                                        </li>
+                                                        <li class="mb-4">
+                                                            <i class="fa fa-check-circle fa-lg mr-2 text-success" />
+                                                            <b>Assistance par mail</b>
+                                                            <br />
+                                                        </li>
 
-                                                    </li>
-                                                    <li class="mb-4">
-                                                        <i class="fa fa-check-circle fa-lg mr-2 text-success" />
-                                                        <b>Assistance par téléphone</b>
-                                                        <br />
-                                                    </li>
-                                                    <li class="mb-4">
-                                                        <i class="fa fa-check-circle fa-lg mr-2 text-success" />
-                                                        <b>Assistance par mail</b>
-                                                        <br />
-                                                    </li>
+                                                        <li class="mb-4">
+                                                            <i class="fa fa-check-circle fa-lg mr-2 text-success" />
+                                                            <b>Séances en Live avec un tuteur dédié</b>
+                                                            <br />
+                                                        </li>
+                                                        <li class="mb-4">
+                                                            <i class="fa fa-check-circle fa-lg mr-2 text-success" />
+                                                            <b>Séance en Live avec un expert métier </b>
+                                                            <b>&amp;nbsp;</b>
+                                                            <br />
+                                                        </li>
+                                                        <li class="mb-4">
+                                                            <i class="fa fa-check-circle fa-lg mr-2 text-success" />
+                                                            <b>Révision du programme avant l'examen</b>
+                                                        </li>
+                                                        <li class="mb-4">
+                                                            <span class="desc-size fa fa-check-circle fa-lg mr-2 text-success" />
+                                                            <b>Examen final en présentiel</b>
+                                                        </li>
+                                                        <li class="mb-4">
+                                                            <i class="fa fa-lg fa-check-circle mr-2 text-success" />
+                                                            <b>Séance en Live pour corriger l’examen</b>
+                                                            &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;
+                      &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;
+                      &amp;nbsp; &amp;nbsp; &amp;nbsp;&amp;nbsp;
+                                                        </li>
+                                                        <li>
+                                                            <i />
+                                                        </li>
+                                                    </ul>
+                                                    <p class="text-center font-weight-bolder text-dark h1 display-4 mb-0">
 
-                                                    <li class="mb-4">
-                                                        <i class="fa fa-check-circle fa-lg mr-2 text-success" />
-                                                        <b>Séances en Live avec un tuteur dédié</b>
-                                                        <br />
-                                                    </li>
-                                                    <li class="mb-4">
-                                                        <i class="fa fa-check-circle fa-lg mr-2 text-success" />
-                                                        <b>Séance en Live avec un expert métier </b>
-                                                        <b>&amp;nbsp;</b>
-                                                        <br />
-                                                    </li>
-                                                    <li class="mb-4">
-                                                        <i class="fa fa-check-circle fa-lg mr-2 text-success" />
-                                                        <b>Révision du programme avant l'examen</b>
-                                                    </li>
-                                                    <li class="mb-4">
-                                                        <span class="fa fa-check-circle fa-lg mr-2 text-success" style="font-size: 1.33333em" />
-                                                        <b>Examen final en présentiel</b>
-
-                                                    </li>
-                                                    <li class="mb-4">
-                                                        <i class="fa fa-lg fa-check-circle mr-2 text-success" />
-                                                        <b>Séance en Live pour corriger l’examen</b>
-                                                        &amp;nbsp;
-                                                                &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;
-                                                                &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;
-                                                                &amp;nbsp; &amp;nbsp; &amp;nbsp;
-                                                                &amp;nbsp;&amp;nbsp;
-                                                    </li>
-                                                    <li>
-                                                        <i />
-                                                    </li>
-                                                </ul>
-                                                <p class="                             text-center                             font-weight-bolder                             text-dark                             h1                             display-4                             mb-0                           ">
-                                                    <font>
-                                                        <p class="                                 text-center                                 font-weight-bolder                                 text-dark                                 h1                                 display-4                                 mb-0                               ">
-                                                            <span style="font-size:48px" t-esc="round(product.list_price)" />
-                                                            <span style="font-size:48px" t-esc="product.currency_id.symbol" />
+                                                        <p class="text-center font-weight-bolder text-dark h1 display-4 mb-0">
+                                                            <span t-esc="round(product.list_price)" />
+                                                            <span t-esc="product.currency_id.symbol" />
                                                         </p>
-                                                    </font>
-                                                </p>
-                                                <t t-if="promo">
-                                                    <p class="                               text-center                               font-weight-bolder                               text-secondary                             ">
-                                                        <b style="font-size: 80%">
-                                                            <t>&amp;nbsp; &amp;nbsp; &amp;nbsp;&amp;nbsp;</t>
-                                                        </b>
-                                                    </p>
-                                                </t>
-                                                <p class="                             medium                             text-center                             font-weight-bolder                             text-secondary                           " style="color: red !important; margin-bottom:8px !important">
-                                                            Paiement 1 ou 3 fois
-                                                            </p>
 
-                                                <br />
-                                                <button class="btn btn-block text-white" onClick="(function(){ document.getElementById('form-3-1').submit();return false;})();return false;" style="background-color: #6e209f; border-radius: 25px">
-                                                            Je m'inscris
-                                                        </button>
-                                            </div>
-                                        </form>
+                                                    </p>
+                                                    <t t-if="promo">
+                                                        <p class="text-center font-weight-bolder text-secondary">
+                                                            <b class="promo-code">
+                                                                <t>&amp;nbsp; &amp;nbsp; &amp;nbsp;&amp;nbsp;</t>
+                                                            </b>
+                                                        </p>
+                                                    </t>
+                                                    <p class="paiement medium text-center font-weight-bolder text-secondary">
+                    Paiement 1 ou 3 fois
+                                            </p>
+
+                                                    <br />
+                                                    <button class="btn-inscription btn btn-block text-white" onClick="(function(){ document.getElementById('form-3-1').submit();return false;})();">
+                    Je m'inscris
+                                            </button>
+                                                </div>
+                                            </form>
+                                        </t>
                                     </t>
-                                </t>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <!-- partenaires-->
-                <section class="bg-200 bg-light-1 s_estate_logo_partners" data-name="Partners with logos and paragraph">
-                    <div class="feature14 spacer">
-                        <div class="container">
-                            <div class="justify-content-center row">
-                                <div class="col-md-7 text-center">
-                                    <h2 class="text-beta title">Nos Partenaires</h2>
-                                    <p class="subtitle">
-                                            Afin de vous aider à réaliser vos objectifs professionnels
-                                            dans les meilleures conditions nous avons développé de
-                                            nombreux partenariats avec les leaders du marché de la
-                                            livraison à domicile
-                                        </p>
-                                </div>
-                            </div>
-                            <section class="bg-200 clients p-m-0 pb16 pt16 s_references" data-name="References">
-                                <div class="container">
-                                    <div class="row">
-                                        <div class="col-sm-2">
-                                            <a href="https://www.mcm-academy.fr/" target="_blank" rel="noopener">
-                                                <img data-src="/digimoov_website_templates/static/img/Homepage/MCMACADEMY.webp" data-srcsafari="/digimoov_website_templates/static/img/Homepage/MCMACADEMY.png" class="img img-fluid lazy res-width-46" alt="Logo partenaire MCM ACADEMY" title="MCM ACADEMY" style="margin-top: 24px;" />
-                                            </a>
-                                        </div>
-                                        <div class="col-sm-2">
-                                            <a href="https://www.ubereats.com/fr" target="_blank" rel="noopener">
-                                                <img data-src="/digimoov_website_templates/static/img/compressed/ubereats partenaire Digimoov.webp" data-srcsafari="digimoov_website_templates/static/img/Homepage/uber.png" class="img img-fluid lazy res-width-26" alt="Logo partenaire ubereats" title="Ubereats partenaire Digimoov" style="margin-top: 30px; width: 50%" />
-                                            </a>
-                                        </div>
-                                        <div class="col-sm-2">
-                                            <a href="https://deliveroo.fr/fr/" target="_blank" rel="noopener">
-                                                <img data-src="/digimoov_website_templates/static/img/compressed/deliveroo partenaire Digimoov.webp" data-srcsafari="/digimoov_website_templates/static/img/Homepage/deliveroo.png" class="img img-fluid lazy res-width-43" alt="Logo partenaire Deliveroo" title="Deliveroo partenaire Digimoov" style="margin-top: 30px; width: 70%" />
-                                            </a>
-                                        </div>
-                                        <div class="col-sm-2">
-                                            <a href="https://www.coursierjob.com/" target="_blank" rel="noopener">
-                                                <img data-src="/digimoov_website_templates/static/img/compressed/coursierjob partenaire Digimoov.webp" data-srcsafari="/digimoov_website_templates/static/img/Homepage/coursierjob.png" class="img img-fluid lazy res-width-36" alt="Logo partenaire Coursierjob" title="Coursierjob partenaire Digimoov" style="margin-top: 24px; width: 54%" />
-                                            </a>
-                                        </div>
-                                        <div class="col-sm-2">
-                                            <a href="https://www.box2home.fr/" target="_blank" rel="noopener">
-                                                <img data-src="/digimoov_website_templates/static/img/coursier2roues/box2home.png" data-srcsafari="/digimoov_website_templates/static/img/coursier2roues/box2home.png" class="img img-fluid lazy res-width-30" alt="Logo partenaire Box2home" title="Box2home partenaire Digimoov" style="margin-top: 34px; width: 60%" />
-                                            </a>
-                                        </div>
-                                        <div class="col-sm-2">
-                                            <a href="http://www.comptable-douai.com/" target="_blank" rel="noopener">
-                                                <img data-src="/digimoov_website_templates/static/img/coursier2roues/Cabinet Comptable Joel Pruvost.png" data-srcsafari="/digimoov_website_templates/static/img/coursier2roues/Cabinet Comptable Joel Pruvost.png" class="img img-fluid lazy res-width-30" alt="Logo partenaire Cabinet Comptable Joël Pruvost" title="Cabinet Comptable Joël Pruvost partenaire Digimoov" style="margin-top: 30px; width: 50%" />
-                                            </a>
-                                        </div>
+                    <!-- End pricing table-->
+
+
+                    <!-- partenaires-->
+                    <section class="bg-200 bg-light-1 s_estate_logo_partners">
+                        <div class="feature14 spacer">
+                            <div class="container">
+                                <div class="justify-content-center row">
+                                    <div class="col-md-7 text-center">
+                                        <h2 class="text-beta title">Nos Partenaires</h2>
+                                        <p class="subtitle">
+              Afin de vous aider à réaliser vos objectifs professionnels dans les
+              meilleures conditions nous avons développé de nombreux partenariats
+              avec les leaders du marché de la livraison à domicile
+                                </p>
                                     </div>
                                 </div>
-                            </section>
+                                <section class="bg-200 clients p-m-0 pb16 pt16 s_references" data-name="References">
+                                    <div class="container">
+                                        <div class="row">
+                                            <div class="col-sm-2">
+                                                <a href="https://www.mcm-academy.fr/" target="_blank" rel="noopener">
+                                                    <img data-src="/digimoov_website_templates/static/img/Homepage/MCMACADEMY.webp" data-srcsafari="/digimoov_website_templates/static/img/Homepage/MCMACADEMY.png" class="img img-fluid lazy res-width-46 mtop24" alt="Logo partenaire MCM ACADEMY" title="MCM ACADEMY" />
+                                                </a>
+                                            </div>
+                                            <div class="col-sm-2">
+                                                <a href="https://www.ubereats.com/fr" target="_blank" rel="noopener">
+                                                    <img data-src="/digimoov_website_templates/static/img/compressed/ubereats partenaire Digimoov.webp" data-srcsafari="digimoov_website_templates/static/img/Homepage/uber.png" class="img img-fluid lazy res-width-26 uber-p" alt="Logo partenaire ubereats" title="Ubereats partenaire Digimoov" />
+                                                </a>
+                                            </div>
+                                            <div class="col-sm-2">
+                                                <a href="https://deliveroo.fr/fr/" target="_blank" rel="noopener">
+                                                    <img data-src="/digimoov_website_templates/static/img/compressed/deliveroo partenaire Digimoov.webp" data-srcsafari="/digimoov_website_templates/static/img/Homepage/deliveroo.png" class="deliveroo-pos img img-fluid lazy res-width-43" alt="Logo partenaire Deliveroo" title="Deliveroo partenaire Digimoov" />
+                                                </a>
+                                            </div>
+                                            <div class="col-sm-2">
+                                                <a href="https://www.coursierjob.com/" target="_blank" rel="noopener">
+                                                    <img data-src="/digimoov_website_templates/static/img/compressed/coursierjob partenaire Digimoov.webp" data-srcsafari="/digimoov_website_templates/static/img/Homepage/coursierjob.png" class="img img-fluid lazy res-width-36 coursier-job " alt="Logo partenaire Coursierjob" title="Coursierjob partenaire Digimoov" />
+                                                </a>
+                                            </div>
+                                            <div class="col-sm-2">
+                                                <a href="https://www.box2home.fr/" target="_blank" rel="noopener">
+                                                    <img data-src="/digimoov_website_templates/static/img/coursier2roues/box2home.png" data-srcsafari="/digimoov_website_templates/static/img/coursier2roues/box2home.png" class="box2home-pos img img-fluid lazy res-width-30" alt="Logo partenaire Box2home" title="Box2home partenaire Digimoov" />
+                                                </a>
+                                            </div>
+                                            <div class="col-sm-2">
+                                                <a href="http://www.comptable-douai.com/" target="_blank" rel="noopener">
+                                                    <img data-src="/digimoov_website_templates/static/img/coursier2roues/Cabinet Comptable Joel Pruvost.png" data-srcsafari="/digimoov_website_templates/static/img/coursier2roues/Cabinet Comptable Joel Pruvost.png" class="joel-pos img img-fluid lazy res-width-30" alt="Logo partenaire Cabinet Comptable Joël Pruvost" title="Cabinet Comptable Joël Pruvost partenaire Digimoov" />
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </section>
+                            </div>
                         </div>
-                    </div>
-                </section>
-
+                    </section>
+                </div>
 
             </div>
 

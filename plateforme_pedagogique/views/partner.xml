@@ -56,11 +56,12 @@
             </xpath>
             <xpath expr="//group//div[@class='row form-panel']//div[1]//div[3]//div[5]" position="after">
                 <div class="col-sm-12">
-                    <div>
-                        <label for="second_email" string="Email secondaire:" class="oe_edit_only">Email secondaire
-                        </label>
-                        <field name="second_email" class="oe_edit_only"/>
-                    </div>
+
+                     <div>
+                        <label for="second_email" string="Email secondaire:" class="oe_edit_only">Email secondaire</label>
+                        <field name="second_email"  class="oe_edit_only" />
+                     </div>
+
                 </div>
             </xpath>
             <xpath expr="//page/group[@name='session']/group" position="inside">

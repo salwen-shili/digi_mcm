@@ -12,7 +12,7 @@
                     <field name="session_id"/>
                     <field name="module_id" domain="[('session_id', '=', session_id)]"/>
                     <field name="methodes_payment" widget="radio" attrs="{'invisible':[('company_id','=',1)]}"/>
-                     <field name="numero_cpf"  attrs="{'invisible':[('methodes_payment','=','cartebleu')]}"/>
+                     <field name="numero_cpf"  attrs="{'invisible':['|',('methodes_payment','=','cartebleu'),('numero_cpf','=', False)]}"/>
 
                 </xpath>
             </field>

@@ -355,7 +355,7 @@ function verify_payment_method() {
             break;
 
           default:
-            window.open('https://bit.ly/33oWZ7e', '_blank');
+            window.open('https://bit.ly/3uLde9W', '_blank');
 
             break;
         }
@@ -368,11 +368,10 @@ function verify_payment_method() {
             break;
           case state == 'accepted':
             cpfAccepted();
-
             break;
 
           default:
-            window.open('https://bit.ly/3LypmRy', '_blank');
+            window.open('https://bit.ly/3LJQLQP', '_blank');
 
             break;
         }
@@ -590,15 +589,15 @@ function onchangeTextButton() {
       }
       if (cpf_pm.value == 'Formation pro') {
         document.getElementById('pm_shop_check').href =
-          'https://bit.ly/33oWZ7e';
+          'https://bit.ly/3uLde9W';
         document.getElementById('pm_shop_checkout').href =
-          'https://bit.ly/33oWZ7e';
+          'https://bit.ly/3uLde9W';
       }
       if (cpf_pm.value == 'Formation premium') {
         document.getElementById('pm_shop_check').href =
-          'https://bit.ly/3LypmRy';
+          'https://bit.ly/3LJQLQP';
         document.getElementById('pm_shop_checkout').href =
-          'https://bit.ly/3LypmRy';
+          'https://bit.ly/3LJQLQP';
       }
       // if (document.getElementById('promo_code')) {
       //   document.getElementById('promo_code').style.display = 'none';

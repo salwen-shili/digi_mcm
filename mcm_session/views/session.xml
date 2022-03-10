@@ -29,6 +29,13 @@
                                 <field name="date_fin"/>
                                 <field name="company_id"/>
                             </group>
+                            <group name="rapport_jury" string="Rapport jury">
+                                <field name="ville_jury_id" />
+                                <field name="adresse_jury_id" />
+                                <field name="date_jury" />
+                                <field name="heure_jury"/>
+                                <field name="num_agrement_jury" string="Numéro d'agrément"/>
+                            </group>
                         </group>
                         <group string="Liste des modules">
                             <field name="module_ids" string="" mode="kanban" edit="True" delete="True" context="{'default_session_id': active_id}">
