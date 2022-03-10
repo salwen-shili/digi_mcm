@@ -1,0 +1,28 @@
+<odoo>
+    <!-- This is used to reformat paper format of report PDF rapport jury-->
+    <record id="paperformat_rapport_jury" model="report.paperformat">
+        <field name="name">Rapport jury</field>
+        <field name="default" eval="False"/>
+        <field name="format">A4</field>
+        <field name="page_height">0</field>
+        <field name="page_width">0</field>
+        <field name="orientation">Landscape</field>
+        <field name="margin_top">0</field>
+        <field name="margin_bottom">0</field>
+        <field name="margin_left">10</field>
+        <field name="margin_right">10</field>
+        <field name="header_line" eval="False"/>
+        <field name="header_spacing">10</field>
+        <field name="dpi">90</field>
+    </record>
+    <!-- This report action create a print pdf for "rapport jury", using the template(xml) ID in contact view-->
+    <report id="report_jury_pdf_ids"
+            string="Rapport jury"
+            model="mcmacademy.session"
+            report_type="qweb-pdf"
+            name="mcm_session.template_raport_jury_ids"
+            file="mcm_session.template_raport_jury_ids"
+            attachment_use="False"
+            paperformat="mcm_session.paperformat_rapport_jury"
+    />
+</odoo>

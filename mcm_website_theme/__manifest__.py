@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 # Part of Odoo. See LICENSE file for full copyright and licensing details.
 {
-    'name' : 'mcm academy website theme',
-    'version' : '1.1',
+    'name': 'mcm academy website theme',
+    'version': '1.1',
     'summary': 'Website',
     'sequence': 15,
     'description': """
@@ -11,12 +11,11 @@ add css and js files to website model
     'category': 'website',
     'website': 'https://www.odoo.com/page/billing',
     # 'images' : ['images/accounts.jpeg','images/bank_statement.jpeg','images/cash_register.jpeg','images/chart_of_accounts.jpeg','images/customer_invoice.jpeg','images/journal_entries.jpeg'],
-    'depends' : ['web','website','website_sale','sale','payment','mcm_session','mcm_cpf_partner','survey'],
+    'depends': ['web', 'website', 'website_sale', 'sale', 'payment', 'mcm_session', 'mcm_cpf_partner', 'survey'],
     'data': [
         'security/ir.model.access.csv',
         'security/questionnaire_security.xml',
         # 'views/ressources.xml',
-      
         'views/templates.xml',
         'views/product_public_category.xml',
         'views/payment_acquirer.xml',
@@ -48,7 +47,10 @@ add css and js files to website model
         'views/custom_footer.xml',
         'views/bolt.xml',
         'views/facture.xml',
-        'views/survey/post_payment_notification.xml'
+        'views/survey/post_payment_notification.xml',
+        'views/formation-taxi-Lille.xml',
+        'views/formation-taxi-Paris.xml',
+        'views/formation-taxi-Lyon.xml',
     ],
 
     'installable': True,

@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <template id="template_raport_jury_ids">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="o">
+                    <t t-call="web.basic_layout">
+                        <style>
+                            .page {
+                            line-height: 1.75 ;
+                            font-size:20px ;
+                            padding-left: 20px;
+                            padding-right: 20px;
+                            }
+                        </style>
+                        <div class="page">
+                            <div class="oe_structure"/>
+                            <t t-if="o.ville_jury_id.name_ville != 'Paris'">
+                                <div class="row">
+                                    <br/>
+                                    <img src='/mcm_session/static/src/img/header_jury.png' height="300" width="1600"/>
+                                </div>
+                            </t>
+                            <t t-else="">
+                                <div class="row">
+                                    <br/>
+                                    <img src='/mcm_session/static/src/img/La_DRIEAT_Ile-de-France.png' height="300"
+                                         width="1600"/>
+                                </div>
+                            </t>
+                            <div class="row">
+                                <div class="col-12">
+                                    <span>
+                                        <b>
+                                            <u>SESSION DU
+                                                <span t-esc="(o.date_exam).strftime('%d %B %Y')"/>
+                                            </u>
+                                        </b>
+                                    </span>
+                                    <br/>
+                                    <br/>
+                                    <p>L'AN
+                                        <span t-esc="docs.date_to_text(yearformat,monthformat)"/>
+                                        <span t-esc="(o.date_exam).strftime('%B').upper()"/>
+                                    </p>
+                                    <br/>
+                                    <style>
+                                        .tr, .td , .table, .tbody{
+                                        padding: 2px;
+                                        border: solid;
+                                        }
+                                    </style>
+                                    <center style="padding-top:100px!important;">
+                                        <table class="table">
+                                            <tr align="center">
+                                                <th colspan="2">CENTRE ORGANISATEUR DE L’EXAMEN</th>
+                                            </tr>
+                                            <tbody>
+                                                <tr class="tr" style="height:100px;width:200px;">
+                                                    <td class="td" align="center" style="height: 80px; width: 80px;">
+                                                        <b>Numéro d’agrément</b>
+                                                    </td>
+                                                    <td class="td" align="center" style="height: 80px; width: 80px;">
+                                                        <strong>
+                                                            <p>MCM ACADEMY</p>
+                                                            <span t-raw="'%s' % o.num_agrement_jury"/>
+                                                        </strong>
+                                                    </td>
+                                                </tr>
+                                                <tr class="tr" style="height:100px;width:200px;">
+                                                    <td class="td" align="center" style="height: 80px; width: 80px;">
+                                                        <b>Lieu de réalisation de la session</b>
+                                                    </td>
+                                                    <td class="td" align="center" style="height: 80px; width: 80px;">
+                                                        <strong>
+                                                            <span t-raw="'%s' % o.ville_jury_id.name_ville"/>:
+                                                            <span t-raw="'%s' % o.adresse_jury_id.adresse_centre_examen"/>
+                                                        </strong>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </center>
+                                </div>
+                            </div>
+                            <div class="row" style="padding-top:230px!important;">
+                                <br/>
+                                <img src='/mcm_session/static/src/img/footer_jury.png' height="125" width="1600"/>
+                            </div>
+                            <p style="page-break-after:always;"/>
+                            <span>
+                                <p style="padding-top: 50px;">
+                                    <strong>
+                                        <u>Stagiaires :</u>
+                                    </strong>
+                                </p>
+                            </span>
+                            <style>.tab {
+                                display: inline-block;
+                                margin-left: 40px;
+                                }
+                            </style>
+                            <span class="tab" style="font-size:18px;">
+                                <p>a) Nombre de candidats inscrits et présents :</p>
+                                <p>- Le nombre de candidats inscrits était de
+                                    <span t-esc="docs.nbr_client_par_session(nbr_inscrits)"/>
+                                    personnes
+                                </p>
+                                <p>
+                                    - Le nombre de candidats présents était de
+                                    <span t-esc="docs.nbr_present_par_session(nbr_present)"/>
+                                    personnes
+                                </p>
+                                <p>B) Nombre de candidats reçus à l’examen
+                                    <span t-esc="docs.nbr_recus_par_session(nbr_recu)"/>
+                                    sur
+                                    <span t-esc="docs.nbr_client_par_session(nbr_inscrits)"/>
+                                </p>
+                                <p>- Le taux de réussite est donc de<span
+                                        t-esc="docs.pourcentage_client_recu(pourcentage)"/>%.
+                                </p>
+                                <p>c) Liste récapitulative des candidats inscrits, absents, reçus ou ajournés en
+                                    annexe.
+                                </p>
+                                <p>d) Le constat du déroulement des épreuves ainsi que la mention des éventuelles
+                                    difficultés rencontrées lors du déroulement de la
+                                    session :
+                                </p>
+                                <p>Aucune difficulté n’est à mentionner, tout s’est bien déroulé.</p>
+                                <p>e) Le dossier d’inscription à l’examen du candidat, accompagné du relevé des notes
+                                    obtenues
+                                    aux différentes épreuves ainsi que de la
+                                    copie d’examen.
+                                    <br/>
+                                    Ces éléments se trouvent dans le dossier de chaque candidat
+                                </p>
+                            </span>
+                            <br/>
+                            <style>
+                                .tr, .td , .table{
+                                padding: 2px;
+                                border: solid;
+                                }
+                            </style>
+                            <center style="padding-top:40px!important;">
+                                <table class="table">
+                                    <tbody>
+                                        <tr>
+                                            <td class="td" align="center" style="height: 200px; width: 200px;">
+                                                <b>Remarques</b>
+                                            </td>
+                                            <td class="td" align="center" style="height: 200px; width: 600px;">
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </center>
+                            <div class="row" style="padding-top:100px!important;">
+                                <img src='/mcm_session/static/src/img/footer_jury.png' height="125" width="1600"/>
+                            </div>
+                            <p style="page-break-after:always;"/>
+                            <p style="padding-top: 70px;">
+                                <b>
+                                    <u>PERSONNES PRESENTES :</u>
+                                </b>
+                            </p>
+                            <style>
+                                .tr, .td , .table{
+                                padding: 2px;
+                                border: solid;
+                                }
+                            </style>
+                            <table class="table" style="padding-top:40px!important;">
+                                <tbody>
+                                    <thead>
+                                        <tr class="tr">
+                                            <th class="td">Nom et prénom</th>
+                                            <th width="0" class="td">Fonction</th>
+                                            <th class="td">Date</th>
+                                            <th class="td">Signature</th>
+                                        </tr>
+                                    </thead>
+                                    <tr t-foreach='o.intervenant_id' t-as='line'>
+                                        <td class="td" style="height:60px;width:200px;">
+                                            <span t-esc="line.intervenant_id.display_name"/>
+                                        </td>
+                                        <td class="td" style="height:60px;width:200px;">
+                                            <span t-esc="line.fonction_id.name"/>
+                                        </td>
+                                        <td class="td" style="height:60px;width:200px;">
+                                            <span t-esc="(o.date_exam).strftime('%d/%m/%Y')"/>
+                                        </td>
+                                        <td class="td" style="height:60px;width:200px;">
+                                            <span></span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="td" style="height:60px;width:200px;"></td>
+                                        <td class="td" style="height:60px;width:200px;"></td>
+                                        <td class="td" style="height:60px;width:200px;"></td>
+                                        <td class="td" style="height:60px;width:200px;"></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <p style="padding-top: 40px;">Cette session est présidée par
+                                .........................................................................................................
+                                :
+                            </p>
+                            <p>
+                                <b>Date :</b>
+                                <span t-esc="context_timestamp(datetime.datetime.now()).strftime('%d/%m/%Y')"/>
+                            </p>
+                            <p>
+                                <b>Heure :</b>
+                                <span t-esc="context_timestamp(datetime.datetime.now()).strftime('%H:%M:%S')"/>
+                            </p>
+                            <p>
+                                <b>Signature :</b>
+                            </p>
+                        </div>
+                        <div class="row" style="padding-top:30px!important;page-break-inside: avoid;position:absolute;">
+                            <img src='/mcm_session/static/src/img/footer_jury.png'
+                                 height="100" width="1600"/>
+                        </div>
+                    </t>
+                </t>
+            </t>
+        </template>
+    </data>
+</odoo>

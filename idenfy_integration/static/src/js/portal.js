@@ -8,30 +8,30 @@ odoo.define('idenfy_integration.portal', function (require) {
     var button = $('#submit_documents_next_button');
     var button = $('#submit_documents_next_button');
 
-    console.log('start');
-    console.log(event);
-    console.log(this);
+    //console.log('start');
+    //console.log(event);
+    //console.log(this);
     var button = $('#submit_documents_next_button');
     var buttons = $('#document_next');
-    console.log(button);
-    console.log(buttons);
-    console.log(event.data.status);
+    //console.log(button);
+    //console.log(buttons);
+    //console.log(event.data.status);
     if (event.data.status == 'approved') {
       button.removeAttr('disabled');
     }
     if (event.data.status == 'failed') {
       if (window.location.pathname == '/charger_mes_documents') {
-        console.log(
-          'localstorage',
-          localStorage.getItem('failed_status_counter')
-        );
+        //console.log(
+        //   'localstorage',
+        //   localStorage.getItem('failed_status_counter')
+        // );
         var popup = $('#idenfy_popup');
         var statusCounter = localStorage.getItem('failed_status_counter');
         //second try redirect to manual upload
         if (parseInt(statusCounter) == 1) {
           localStorage.setItem('failed_status_counter', 0);
-          console.log($('#notifMessage'));
-          console.log('idenfy message');
+          //console.log($('#notifMessage'));
+          //console.log('idenfy message');
           $('#notifMessage').text(
             "L'identification automatique et la vérification de l'authenticité vos documents n'a pas pu se faire. Vous serez redirigé pour charger vos documents manuellement"
           );
@@ -51,7 +51,7 @@ odoo.define('idenfy_integration.portal', function (require) {
         else {
           localStorage.setItem('failed_status_counter', 1);
           //refraichir la page
-          console.log('idenfy message');
+          //console.log('idenfy message');
           $('#notifMessage').text(
             `L'identification automatique et la vérification de l'authenticité vos documents n'a pas pu se faire. Vous allez réessayer dans quelques instant`
           );

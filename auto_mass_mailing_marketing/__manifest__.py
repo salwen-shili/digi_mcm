@@ -16,6 +16,7 @@
     'data': [
         'views/inherit_session_add_fields.xml',
         'views/inherit_template_abonnement.xml',
+        # 'views/inherit_mail_compose_message.xml',
         'data/ir_actions.server.xml',
     ],
     'qweb': [],

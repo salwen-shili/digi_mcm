@@ -184,6 +184,7 @@
                             <div class="col-lg-6 pt16 pb16" style="border-style: none; border-width: 0px">
                                 <h2>
                                     Formation capacité transport routier :
+                                   
                                 </h2>
                                 <p class="para">
                                     Afin de maximiser vos chances d'obtenir votre carte professionnelle 
@@ -193,11 +194,6 @@
                                     Une formation accessible, à suivre à votre rythme, où vous 
                                     voulez quand vous voulez.
                                 </p>
-                                <div class="banner-btn s_btn" data-name="Button" style="text-align: center; ">
-                                    <a href="#pricing" class="bannerbtn btn btn-alpha rounded-circle" title="je m'inscirs" alt="boutton je m'inscris" aria-describedby="tooltip679124">
-                                        S'inscrire
-                                    </a>
-                                </div>
                             </div>
                             <div class="col-lg-6">
                                 <img src="/digimoov_website_templates/static/img/transport-routier/33.png" class="img img-fluid mx-auto" />

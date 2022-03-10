@@ -1,9 +1,9 @@
 <odoo>
-    <template id="digimoov_website_templates.digimoov_template_langues_2" name="Digimoov | Langues">
+    <template id="digimoov_website_templates.digimoov_template_transport_leger_marchandises_marseille" name="Digimoov | capacité de transport léger de marchandises Marseille">
+
         <t t-call="website.layout">
             <script defer="defer" type="text/javascript" src="/digimoov_website_templates/static/src/js/lazy-min.min.js" />
             <link href="/digimoov_website_templates/static/src/css/css-dist/home.min.css" rel="stylesheet" />
-            <script type="text/javascript" src="/mcm_website_theme/static/src/js/msAds.min.js" />
             <div id="wrap" class="oe_empty oe_structure">
                 <section class="banner_padding centric_template home-banner pt96" data-name="Banner">
                     <div class="container" style="border-style: none; border-width: 0px;">
@@ -11,36 +11,44 @@
                             <div class="bannarcol col-lg-6 col-md-12" style="border-style: none; border-width: 0px">
                                 <h2>
                                     <text class="h1-title">
-                                        <font style="color: rgb(0, 0, 0);">Formation</font>
-                                        <font style="color: rgb(156, 0, 255);"></font>
+                                        <font style="color: rgb(198, 123, 165);">Formation&amp;nbsp;</font>
+                                        <font style="color: rgb(156, 0, 255);" />
                                         <font style="color: rgb(198, 123, 165);">attestation de&amp;nbsp;</font>
                                     </text>
-                                    <font style="color: rgb(198, 123, 165);">capacité de transport léger de marchandises</font>
+                                    <font style="color: rgb(0, 0, 0);">capacité de transport</font>
+                                    <font style="color: rgb(198, 123, 165);"> léger de marchandises</font>
                                     &amp;nbsp;
                                 </h2>
                                 <p class="paratext">
-                                    Vous souhaitez entreprendre dans le transport léger de marchandise et créer votre propre entreprise ? Chez Digimoov on vous propose&amp;nbsp;
+                                    Vous souhaitez entreprendre dans le transport léger de marchandise et créer votre propre entreprise ? Chez Digimoov, on vous propose&amp;nbsp;
                                     <text class="text-delta" style="">
                                         <font style="color: rgb(59, 210, 188);">
-                                            <b>une formation de 102H 100% en ligne agrée par l'Etat</b>
+                                            <b style="color: rgb(59, 210, 188);">une formation de 102 h 100 % en ligne </b>
+                                            <span style="color: rgb(59, 210, 188); font-size: 18px;">
+                                                <b>agréée</b>
+                                            </span>
+                                            <b style="color: rgb(59, 210, 188);">&amp;nbsp;par l'</b>
+                                            <b style="font-size: 18px;">État, </b>
+                                            <span style="color: rgb(59, 210, 188); font-size: 18px;">
+                                                <b>très</b>
+                                            </span>
+                                            <b style="font-size: 18px;">&amp;nbsp;complète</b>
                                         </font>
-                                        <b>
-                                            <font style="color: rgb(59, 210, 188);"> et&amp;nbsp;assez pertinente</font>
-                                            &amp;nbsp;
-                                        </b>
+                                        <b>&amp;nbsp;</b>
+                                        <font style="color: rgb(99, 99, 99);">afin</font>
                                     </text>
-                                    pour que vous puissiez avoir votre attestation de capacité de transport léger de marchandises et réaliser ainsi votre projet en un rien de temps!
+                                    &amp;nbsp;que vous puissiez obtenir votre attestation de capacité de transport léger de marchandises et réaliser ainsi votre projet en un rien de temps !
                                     <text style="color: rgb(156, 0, 255)">
                                         <br />
                                     </text>
                                 </p>
                                 <div class="banner-btn s_btn" data-name="Button">
-                                    <a href="#pricing" class="bannerbtn btn btn-success rounded-circle" title="je m'inscirs" alt="boutton je m'inscris" aria-describedby="tooltip679124">Je m'inscris dés maintenant ! </a>
+                                    <a href="#pricing" class="bannerbtn btn btn-success rounded-circle" title="je m'inscirs" alt="boutton je m'inscris" aria-describedby="tooltip679124">Je m'inscris dès maintenant ! </a>
                                 </div>
                             </div>
                             <div class="bannercol col-lg-6 col-md-12 image_padding" style="border-style: none; border-width: 0px">
                                 <div class="banner_image">
-                                    <img class="img img-fluid" src="/web/image/218652/devenir-livreur-camionette-digimoov.png" title="Devenir coursier en scooter" alt="formation coursier en scooter" aria-describedby="tooltip653698" />
+                                    <img class="img img-fluid" src="/digimoov_website_templates/static/src/img/attestation_de_capacité_de_transport léger_de_marchandises/1.png" title="Devenir coursier en scooter" alt="formation coursier en scooter" aria-describedby="tooltip653698" />
                                 </div>
                             </div>
                         </div>
@@ -53,28 +61,28 @@
                                 <h2>
                                     <font style="" class="text-delta">Devenez</font>
                                     <font style="" class="text-alpha">capacitaire de transport</font>
-                                    <font style="" class="text-delta">léger (-3.5t)</font>
+                                    <font style="" class="text-delta">léger (-3,5t)</font>
                                 </h2>
                                 <h6>
                                     <span style="color: rgb(99, 99, 99); font-family: arial, sans-serif;">Pour créer une entreprise de&amp;nbsp;transport&amp;nbsp;léger de marchandises, il faut obligatoirement détenir une attestation de&amp;nbsp;capacité&amp;nbsp;professionnelle de&amp;nbsp;transport&amp;nbsp;de marchandises.</span>
                                     <br />
                                 </h6>
                                 <h6>
-                                    <span style="color: rgb(99, 99, 99); font-family: arial, sans-serif;">Pour ce faire vous devez passer un examen, obtenir l'équivalence de vos diplômes ou prouver une expérience de plus de 10ans dans le domaine.</span>
+                                    <span style="color: rgb(99, 99, 99); font-family: arial, sans-serif;">Pour ce faire, vous devez passer un examen, obtenir l'équivalence de vos diplômes ou prouver une expérience de plus de 10 ans dans le domaine.</span>
                                     <br />
                                     <br />
-                                    <span style="color: rgb(99, 99, 99);">Si vous choisissez de suivre une formation et passer l'examen sachez que tous les 60 jours, un examen national est organisé après la formation capacité de transport léger. Il comprend&amp;nbsp;deux épreuves&amp;nbsp;distinctes avec un questionnaire à choix multiples (QCM) et un test exigeant des&amp;nbsp;réponses rédigées&amp;nbsp;qui concerne la gestion et l’exploitation de l’entreprise. L’examen est ensuite&amp;nbsp;validé par la DREAL&amp;nbsp;afin d’obtenir l’attestation d’aptitude professionnelle de transport. </span>
+                                    <span style="color: rgb(99, 99, 99);">Si vous choisissez de suivre une formation et passer l'examen, sachez que tous les 60 jours, un examen national est organisé après la formation capacité de transport léger. Il comprend&amp;nbsp;deux épreuves&amp;nbsp;distinctes, avec un questionnaire à choix multiples (QCM) et un test exigeant des&amp;nbsp;réponses rédigées&amp;nbsp;qui concerne la gestion et l’exploitation de l’entreprise. L’examen est ensuite&amp;nbsp;validé par la DREAL&amp;nbsp;afin d’obtenir l’attestation d’aptitude professionnelle de transport. </span>
                                     <br />
                                     <span style="color: rgb(99, 99, 99);">En cas de réussite, le préfet de région vous octroie une attestation de fin de formation capacité de transport léger.</span>
                                 </h6>
                             </div>
                             <div class="col-lg-6 pt16 pb16">
-                                <img src="/web/image/218561/1%20page%20fiancement.png" class="img img-fluid mx-auto" alt="Odoo • Texte et Image" />
+                                <img src="/digimoov_website_templates/static/src/img/attestation_de_capacité_de_transport léger_de_marchandises/2.png" class="img img-fluid mx-auto" alt="Odoo • Texte et Image" />
                             </div>
                         </div>
                     </div>
                 </section>
-                <div id="coursier2roues" style="border-style: none; border-width: 0px;">
+                <div style="border-style: none; border-width: 0px;" class="">
                     <style>
                     .h1-title {
                     color: rgb(156, 0, 255);
@@ -175,7 +183,7 @@
                                 <div class="row">
                                     <div class="col-lg-6 col-md-12" style="border-style: none; border-width: 0px">
                                         <div class="aboutus-img">
-                                            <img class="img img-fluid" src="/web/image/218613/devenir-livreuse-digimoov.png" title="formation coursier en scooter en ligne" alt="formation en ligne capacité de transport de marchandise sur 2 roues" aria-describedby="tooltip664574" />
+                                            <img class="img img-fluid" src="/digimoov_website_templates/static/src/img/attestation_de_capacité_de_transport léger_de_marchandises/3.png" title="formation coursier en scooter en ligne" alt="formation en ligne capacité de transport de marchandise sur 2 roues" aria-describedby="tooltip664574" />
                                         </div>
                                     </div>
                                     <div class="col-lg-6 col-md-12" style="border-style: none; border-width: 0px">
@@ -188,18 +196,18 @@
                                                 <b>Digimoov</b>
                                                 vous offre une
                                                 <b>
-                                                    <font style="color: rgb(57, 132, 198);">formation en ligne de 102h</font>
+                                                    <font style="color: rgb(57, 132, 198);">formation en ligne de 102 h
+                                        </font>
                                                 </b>
                                                 <font style="color: rgb(57, 132, 198);">,</font>
-                                                que vous pourrez suivre
-                                                            où vous voulez , quand vous voulez , à votre rythme.
+                                                que vous pourrez suivre où vous voulez, quand vous voulez, à votre rythme.
                                             </p>
-                                            <p> Tout ce qu'il vous faut c'est une connexion internet stable pour suivre la formation en ligne.</p>
+                                            <p> Tout ce qu'il vous faut, c'est une connexion internet stable pour suivre la formation en ligne.</p>
                                             <p>
                                                 Une fois votre formation terminée, vous passerez un examen
                                                             et vous obtiendrez votre attestation de
                                                 <b>
-                                                    <font style="color: rgb(57, 132, 198);">capacité de transport léger de marchandises .</font>
+                                                    <font style="color: rgb(57, 132, 198);">capacité de transport léger de marchandises.</font>
                                                 </b>
                                             </p>
                                             <p>
@@ -208,14 +216,10 @@
                                                     <font style="color: rgb(57, 132, 198);">livreur</font>
                                                     &amp;nbsp;
                                                 </b>
-                                                en toute légalité en tant
-                                                            qu'indépendant ou pour le compte de l'un de
-                                        nos partenaires
-                                                            leaders du domaine de la livraison
-                                                            .
+                                                en toute légalité, en tant qu'indépendant ou pour le compte de l'un de nos partenaires leaders du domaine de la livraison.
                                             </p>
                                             <div class="s_btn text-center pt16 pb16" data-name="Button">
-                                                <a href="#" class="btn btn-success" data-original-title="" title="" aria-describedby="tooltip819548">Je m'inscris !</a>
+                                                <a href="#pricing" class="btn btn-success" data-original-title="" title="" aria-describedby="tooltip819548">Je m'inscris !</a>
                                             </div>
                                         </div>
                                     </div>
@@ -230,28 +234,28 @@
                                     <h2>
                                         <text class="h1-title">
                                             <font color="#000000">Comment se déroule la </font>
-                                            <font color="#000000" style="color: rgb(156, 0, 255);">formation capacité de transport</font>
+                                            <font color="#000000" style="color: rgb(156, 0, 255);">formation capacité de transport&amp;nbsp;</font>
                                             ?
                                         </text>
                                     </h2>
                                     <blockquote>
-                                        <font style="font-size: 18px;">En adhérant à notre formation en ligne vous aurez accès à notre plateforme de formation, sur laquelle vous aurez à votre disposition nos cours en modes PDF et en Vidéos .</font>
+                                        <font style="font-size: 18px;">En adhérant à notre formation en ligne, vous aurez accès à notre plateforme de formation, sur laquelle vous aurez à votre disposition nos cours sous formes de diapositives et de vidéos.</font>
                                         <font style="font-size: 18px;">
                                             <br />
                                         </font>
                                         <br />
-                                        <font style="font-size: 18px;">Comme vous pourrez suite aux cours tester vos connaissances grâces à nos quiz et examens blancs préparés par nos experts pédagogiques pour mieux vous préparer à l'examen final.</font>
+                                        <font style="font-size: 18px;">Suite aux cours, vous pourrez tester vos connaissances grâce à nos quiz et examens blancs type, concoctés par nos experts pédagogiques, afin de mieux vous entraîner à l'examen final.</font>
                                         <font style="font-size: 18px;">
                                             <br />
                                         </font>
                                         <br />
-                                        <font style="font-size: 18px;">Vous aurez de même la possibilité d'être coaché par nos formateurs et experts du métier à la fin de la formation pour d'amples explications et afin de maximiser vos chances de réussite.&amp;nbsp;</font>
+                                        <font style="font-size: 18px;">&amp;nbsp;</font>
                                     </blockquote>
                                     <p></p>
                                     <p></p>
                                 </div>
                                 <div class="col-lg-6">
-                                    <img src="/web/image/218545/formation%20en%20ligne%20chez%20digimoov.png" class="img img-fluid mx-auto" title="coursier sur 2 roues" alt="compétences pour exercer le métier de coursier en scooter" />
+                                    <img src="/digimoov_website_templates/static/src/img/attestation_de_capacité_de_transport léger_de_marchandises/4.png" class="img img-fluid mx-auto" title="coursier sur 2 roues" alt="compétences pour exercer le métier de coursier en scooter" />
                                 </div>
                             </div>
                         </div>
@@ -261,7 +265,8 @@
                             <div class="row">
                                 <div class="col-lg-9 pb24" style="border-style: none; border-width: 0px;">
                                     <h3>
-                                        <b>Téléchargez notre programme&amp;nbsp;complet&amp;nbsp;</b>
+                                        <b>Téléchargez notre programme&amp;nbsp;complet</b>
+                                        &amp;nbsp;
                                         <b style="background-color: initial;">de formation et d'évaluation</b>
                                     </h3>
                                     <p class="lead">
@@ -269,7 +274,7 @@
                                     </p>
                                 </div>
                                 <div class="col-lg-3 s_btn text-right pt8 pb24" data-name="Button">
-                                    <a href="/digimoov_website_templates/static/pdf/PROGRAMME DE FORMATION - COURSIER 2 ROUES - DIGIMOOV.pdf" class="btn btn-primary btn-lg" data-original-title="" title="" aria-describedby="tooltip643098">
+                                    <a href="/digimoov_website_templates/static/pdf/PROGRAMME-DE-FORMATION-DE-TRANSPORT-LEGER-DE-MARCHANDISES-DIGIMOOV.pdf" class="btn btn-primary btn-lg" target="_blank" rel="noopener" data-original-title="" title="" aria-describedby="tooltip643098">
                                         <span data-original-title="" title="" aria-describedby="tooltip516238">Je télécharge !</span>
                                         &amp;nbsp;
                                         <i class="fa fa-1x fa-fw fa-arrow-circle-right ml-1" />
@@ -283,7 +288,7 @@
                     <div class="container">
                         <div class="row align-items-center">
                             <div class="col-lg-6 pt16 pb16">
-                                <img src="/web/image/218663/financement-carte-bleu-digimoov.png" class="img img-fluid mx-auto" alt="Odoo • Image et Texte" data-original-title="" title="" aria-describedby="tooltip74951" />
+                                <img src="/digimoov_website_templates/static/src/img/attestation_de_capacité_de_transport léger_de_marchandises/5.png" class="img img-fluid mx-auto" alt="Odoo • Image et Texte" data-original-title="" title="" aria-describedby="tooltip74951" />
                             </div>
                             <div class="col-lg-6 pb16 pt16" style="border-style: none; border-width: 0px;">
                                 <h4>
@@ -294,13 +299,13 @@
                                     </b>
                                 </h4>
                                 <blockquote>
-                                    <font style="font-size: 18px;">Pour ce faire, vous devez suivre les étapes suivantes:</font>
+                                    <font style="font-size: 18px;">Pour ce faire, vous devez suivre les étapes suivantes :</font>
                                     <br />
                                     <font style="font-size: 18px;">1 - Choisir la formule SOLO</font>
                                     <br />
                                     <font style="font-size: 18px;">2 - Remplir&amp;nbsp;le formulaire des coordonnées</font>
                                     <br />
-                                    <font style="font-size: 18px;">3 - Insérer une copie originale de votre pièce d'identité/Passeport</font>
+                                    <font style="font-size: 18px;">3 - Insérer une copie lisible de votre CNI/Passeport</font>
                                     <br />
                                     <font style="font-size: 18px;">
                                         4 - Procéder au paiement en entrant vos coordonnées bancaires
@@ -309,28 +314,205 @@
                                         <br />
                                         <br />
                                     </font>
-                                    *Vous pouvez consulter nos règlements pour plus d’informations ou détails.
+                                    *Vous pouvez consulter notre règlement pour plus d’informations ou détails.
                                 </blockquote>
                             </div>
                         </div>
                     </div>
                 </section>
+                <!-- pricing table-->
+                <style>
+            
+             .blink-soft {
+            animation: blinker 1s linear infinite;
+            color:#fff900;
+            text-transform: uppercase;
+            font-size: 21px;
+            }
+            @keyframes blinker {
+            50% {
+                opacity: 0.1;
+            }
+            70%{
+            opacity: 1;
+            }
+            100%{
+            opacity: 1;
+            }
+            }
+            
+        .pricebar {
+        position: relative;
+      }
+      .pricebar::after {
+        content: " ";
+        display: block;
+        width: 100%;
+        border-top: 3px solid red;
+        height: 12px;
+        position: absolute;
+        bottom: 6px;
+        left: -3px;
+        transform: rotate(330deg);
+      }
+      
+            </style>
+                <div class="container pt64 pb32" id="pricing">
+                    <div class="row" style="place-content: center;">
+                        <div class="col-lg-6 col-md-8 col-sm-12">
+                            <div class="card border-0 shadow" style="border-radius: 25px 25px">
+                                <div class="text-center text-white border-0" style="
+                    background-color: #6e209f;
+                    border-top-left-radius: 25px;
+                    border-top-right-radius: 25px;
+                  ">
+                                    <br />
+
+                                    <p>
+                                        <strong style="color: white">
+                                            <font style="font-size: 30px">SOLO</font>
+                                        </strong>
+                                    </p>
+                                    <p class="blink-soft">
+                                        <b>Nouveau tarif 2022</b>
+                                    </p>
+                                    <br />
+                                </div>
+                                <t t-foreach="digimoov_products" t-as="product">
+                                    <t t-if="product.default_code=='basique'">
+                                        <form action="/shop/cart/update" method="post" id="form-1-1">
+                                            <input type="hidden" class="product_id" name="product_id" t-att-value="product.id" />
+                                            <input type="hidden" name="promo" t-att-value="promo.id" t-if="promo" />
+                                            <div class="card-body" style="background-color: white">
+                                                <ul class="list-unstyled">
+                                                    <li class="mb-4">
+                                                        <i class="fa fa-check-circle fa-lg mr-2 text-success" />
+                                                        <b>Formation 102h (100% en ligne)</b>
+                                                    </li>
+                                                    <li class="mb-4">
+                                                        <i class="fa fa-check-circle fa-lg mr-2 text-success" />
+                                                        <b>Examen final en présentiel</b>
+                                                    </li>
+                                                    <li class="mb-4">
+                                                        <i class="fa fa-check-circle fa-lg mr-2 text-success" />
+                                                        <b>Accès à 5 examens d'entraînement</b>
+                                                    </li>
+                                                    <li class="mb-4">
+                                                        <i class="fa fa-check-circle fa-lg mr-2 text-success" />
+                                                        <b>Assistance par mail</b>
+                                                    </li>
+                                                    <li class="mb-4">
+                                                        <i class="fa fa-lg fa-times-circle mr-2 text-danger" />
+                                                        Assistance par téléphone
+                                                    </li>
+                                                    <li class="mb-4">
+                                                        <span class="fa fa-lg fa-times-circle mr-2 text-danger" style="font-size: 1.33333em" />
+                                                        Assistance par visioconférence
+                                                        <br />
+                                                    </li>
+                                                    <li class="mb-4">
+                                                        <i class="fa fa-lg fa-times-circle mr-2 text-danger" />
+                                                        Livre d’entrainement version électronique
+                                                    </li>
+                                                    <li class="mb-4">
+                                                        <i class="fa fa-lg fa-times-circle mr-2 text-danger" />
+                                                        Directs pour explication avec les formateurs
+                                                    </li>
+                                                    <li class="mb-4">
+                                                        <i class="fa fa-lg fa-times-circle mr-2 text-danger" />
+                                                        Révision du programme avant examen &amp;nbsp;
+                                                                &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;
+                                                                &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;
+                                                                &amp;nbsp; &amp;nbsp; &amp;nbsp;
+                                                                &amp;nbsp;&amp;nbsp;
+                                                    </li>
+                                                    <li>
+                                                        <i />
+                                                    </li>
+                                                </ul>
+                                                <p class="
+                            text-center
+                            font-weight-bolder
+                            text-dark
+                            h1
+                            display-4
+                            mb-0
+                          ">
+                                                    <font>
+                                                        <p class="
+                                text-center
+                                font-weight-bolder
+                                text-dark
+                                h1
+                                display-4
+                                mb-0
+                              " t-if="not promo">
+                                                            <span class="pricebar" style="color: black;font-size: 25px;font-weight: 500;">590 €</span>
+                                                            <span style="font-size: 3.5rem;
+    font-weight: 700;
+    line-height: 1.2;" t-esc="round(product.list_price)" />
+                                                            <span style="font-size: 3.5rem;
+    font-weight: 700;
+    line-height: 1.2;" t-esc="product.currency_id.symbol" />
+
+                                                        </p>
+                                                        <p class="
+                                text-center
+                                font-weight-bolder
+                                text-dark
+                                h1
+                                display-4
+                                mb-0
+                              " t-if="promo">
+                                                            <t t-foreach="promo.item_ids" t-as="item">
+                                                                <t t-if="item.product_id.id==product.id">
+                                                                    <span t-esc="round(item.fixed_price)" />
+                                                                    <span t-esc="product.currency_id.symbol" />
+                                                                </t>
+                                                            </t>
+                                                        </p>
+                                                    </font>
+                                                </p>
+                                                <t t-if="promo and promo.name!='box2home'">
+                                                    <p class="
+                              text-center
+                              font-weight-bolder
+                              text-secondary
+                            ">
+                                                        <b style="font-size: 80%">
+                                                            <t>avec le code</t>
+                                                            <t t-esc="promo.code" />
+                                                        </b>
+                                                    </p>
+                                                </t>
+                                                <p class="
+                            medium
+                            text-center
+                            font-weight-bolder
+                            text-secondary
+                          " style="color: red !important" t-if="not partenaire or partenaire==''">
+                                                            Paiement 1 ou 2 fois
+                                                        </p>
+
+                                                <br />
+                                                <button class="btn btn-block text-white" onClick="(function(){document.getElementById('form-1-1').submit();return false;})();return false;" style="background-color: #6e209f; border-radius: 25px">
+                                                            Je m'inscris
+                                                        </button>
+                                            </div>
+                                        </form>
+                                    </t>
+                                </t>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <section class="bg-200 bg-light-1 s_estate_logo_partners" data-name="Partners with logos and paragraph" style="">
                     <div class="feature14 spacer">
                         <div class="container">
                             <div class="justify-content-center row">
                                 <div class="col-md-7 text-center">
-                                    <h2 class="text-beta title">Nos Partenaires
-                </h2>
-                                    <p class="subtitle">
-                                                            Afin de vous aider à réaliser vos objectifs professionnels
-                                                            dans les meilleures conditions&amp;nbsp; nous avons
-                                                            développé de nombreux partenariats avec les leaders du
-                                                            marché de la livraison à domicile&amp;nbsp;
-                                                        
-                                
-                            
-                </p>
+                                    <h2 class="text-beta title">Nos partenaires </h2>
+                                    <p class="subtitle"> Afin de vous aider à réaliser vos objectifs professionnels dans les meilleures conditions, nous avons développé de nombreux partenariats avec les leaders du marché de la livraison à domicile.&amp;nbsp;&amp;nbsp;</p>
                                 </div>
                             </div>
                             <section class="bg-200 clients p-m-0 s_references pt0 pb0" data-name="References">
@@ -376,7 +558,5 @@
                 </section>
             </div>
         </t>
-
     </template>
-
 </odoo>

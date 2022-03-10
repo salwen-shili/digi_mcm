@@ -156,6 +156,8 @@
         color: #fdd103 !important;
     }
             </style>
+            <script src="https://tracker.quadran.eu/qa-combined.js" type="text/javascript"></script>
+            <script type="text/javascript">QWATracker.activate("28ad2b0ad239a85d705f9619783380da");</script>
             <t t-if="request.website.is_public_user()==True">
                 <!-- Début de widget de badge Calendly -->
                 <link rel="stylesheet" href="/digimoov_website_templates/static/src/css/widget_calendly.min.css" />

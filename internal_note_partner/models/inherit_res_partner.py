@@ -1,6 +1,7 @@
 from datetime import date
 
 from odoo import api, fields, models
+
 import logging
 
 _logger = logging.getLogger(__name__)
@@ -48,6 +49,13 @@ class InheritResPartner(models.Model):
                         rec.resultat = "Admis(e)"
                     elif not resultat.resultat:
                         rec.resultat = "_______"
+                for nb_passage in rec.env['info.examen'].sudo().search([('partner_id', "=", rec.id), ('date_exam', '<', date.today())], limit=1, order="id desc"):
+                    if nb_passage.nombre_de_passage == 'premier':
+                        rec.nombre_de_passage = "deuxieme"
+                    if nb_passage.nombre_de_passage == 'recu':
+                        rec.nombre_de_passage = "troisieme"
+                    elif not nb_passage.nombre_de_passage:
+                        rec.nombre_de_passage = "_______"
 
     def _compute_get_last_internal_log(self):
         for record in self:

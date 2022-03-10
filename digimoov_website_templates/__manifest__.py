@@ -44,10 +44,22 @@
         'views/my_account_progress.xml',
         'views/cart_progressbar.xml',
         'views/edit_info.xml',
+        # 'views/test1.xml',
+        # 'views/test2.xml',
+        # 'views/test3.xml',
+        # 'views/test4.xml',
+        # 'views/test5.xml',
+        # 'views/test7.xml',
+        'views/test8.xml',
+        'views/test9.xml',
+        'views/test10.xml',
+
         'views/attestation-transport-leger-marchandises-carte-bleu.xml',
+        'views/formation_capacité_de_transport_lourd_de_marchandise.xml',
+
         # 'views/charger_mes_documents'
         # 'views/sitemap.xml',
-        'views/formation_capacité_de_transport_lourd_de_marchandise.xml',
+
         'views/habilitation-eletrique.xml',
         # page de destination
         'views/devenir-coursier-paris.xml',
@@ -57,7 +69,6 @@
         'views/capacitaire-transport-bordeaux.xml',
         #page de blog
         'views/blog/website_blog_posts.xml',
-
 
     ],
     'qweb': ['static/src/xml/website_blog_posts_loop.xml'],

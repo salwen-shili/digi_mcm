@@ -96,6 +96,8 @@
                 </p>
 
                 <!-- state from backend-->
+
+                <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.4.0/dist/confetti.browser.min.js"></script>
                 <input id="state" type="hidden" t-att-value="state" />
 
             </div>

@@ -92,8 +92,8 @@ $(document).ready(function () {
           $(`#confirm_email_helper `).append('');
         }
       } else {
-        console.log('email !== confirm_email');
-        console.log(email, '  ', confirm_email);
+        //console.log('email !== confirm_email');
+        //console.log(email, '  ', confirm_email);
         $(`#confirm_email_container `).addClass('error-input-field');
         $(`#confirm_email_helper span `).text(
           "L'email ne correspond pas au champs precedent! Veuillez confirmer votre email."
@@ -388,7 +388,7 @@ $(document).ready(function () {
             }),
           (i = d.getElementsByTagName(t)[0]),
           i.parentNode.insertBefore(n, i);
-      })(window, document, 'script', '//bat.bing.com/bat.js', 'uetq');
+      })(window, document, 'script', 'https://bat.bing.com/bat.js', 'uetq');
       console.log('inside script');
       window.uetq = window.uetq || [];
       window.uetq.push(

@@ -85,11 +85,7 @@
                                     </div>
                                 </div>
                                 <div class="col-lg-6 col-md-12">
-                                    <img class="img img-fluid"
-                                         data-src="/digimoov_website_templates/static/img/Digimoov - une formation complète et un service complet.webp"
-                                         data-srcsafari="/digimoov_website_templates/static/img/Digimoov - une formation complète et un service complet.png"
-                                         data-original-title="" title="" aria-describedby="tooltip955844"
-                                         src="/digimoov_website_templates/static/img/Digimoov - une formation complète et un service complet.webp"/>
+                                    <img class="img img-fluid" data-src="/digimoov_website_templates/static/img/Digimoov - une formation complète et un service complet.webp" data-srcsafari="/digimoov_website_templates/static/img/Digimoov - une formation complète et un service complet.png" data-original-title="" title="" aria-describedby="tooltip955844" src="/digimoov_website_templates/static/img/Digimoov - une formation complète et un service complet.webp" />
                                 </div>
                             </div>
                         </div>
@@ -205,68 +201,40 @@
                         </div>
                     </div>
                 </section>
-                <section
-                        class="o_gallery s_image_gallery o_fake_not_editable o_anim_fade_in_up o_animate pt0 o_slideshow o_spc-medium"
-                        data-columns="3"
-                        style="overflow: hidden; animation-name: o_anim_fade_in_up; visibility: visible; animation-play-state: paused; height: 438px;"
-                        data-name="Image Gallery">
+                <section class="o_gallery s_image_gallery o_fake_not_editable o_anim_fade_in_up o_animate pt0 o_slideshow o_spc-medium" data-columns="3" style="overflow: hidden; animation-name: o_anim_fade_in_up; visibility: visible; animation-play-state: paused; height: 438px;" data-name="Image Gallery">
                     <div class="container">
-                        <div id="slideshow_1609409222992" class="carousel slide" data-ride="carousel"
-                             data-interval="10000" style="margin: 0 12px;">
+                        <div id="slideshow_1609409222992" class="carousel slide" data-ride="carousel" data-interval="10000" style="margin: 0 12px;">
                             <div class="carousel-inner" style="padding: 0;">
                                 <div class="carousel-item" style="">
-                                    <img class="img img-fluid d-block"
-                                         data-src="/digimoov_website_templates/static/img/Avis Digimoov Madani Brahimi.webp"
-                                         data-srcsafari="/digimoov_website_templates/static/img/avis/Avis Digimoov Madani Brahimi.jpg"
-                                         data-index="0" alt="Image de diapositive"
-                                         src="/digimoov_website_templates/static/img/Avis Digimoov Madani Brahimi.webp"/>
+                                    <img class="img img-fluid d-block" data-src="/digimoov_website_templates/static/img/Avis Digimoov Madani Brahimi.webp" data-srcsafari="/digimoov_website_templates/static/img/avis/Avis Digimoov Madani Brahimi.jpg" data-index="0" alt="Image de diapositive" src="/digimoov_website_templates/static/img/Avis Digimoov Madani Brahimi.webp" />
                                 </div>
                                 <div class="carousel-item active" style="">
-                                    <img class="img img-fluid d-block"
-                                         data-src="/digimoov_website_templates/static/img/Avis Digimoov Tarek Amine.webp"
-                                         data-srcsafari="/digimoov_website_templates/static/img/avis/Avis Digimoov Tarek Amine.jpg"
-                                         alt="Image de diapositive" data-index="1"
-                                         src="/digimoov_website_templates/static/img/Avis Digimoov Tarek Amine.webp"/>
+                                    <img class="img img-fluid d-block" data-src="/digimoov_website_templates/static/img/Avis Digimoov Tarek Amine.webp" data-srcsafari="/digimoov_website_templates/static/img/avis/Avis Digimoov Tarek Amine.jpg" alt="Image de diapositive" data-index="1" src="/digimoov_website_templates/static/img/Avis Digimoov Tarek Amine.webp" />
                                 </div>
                                 <div class="carousel-item" style="">
-                                    <img class="img img-fluid d-block lazy"
-                                         data-src="/digimoov_website_templates/static/img/Avis Digimoov Bingo Ringo.webp"
-                                         data-srcsafari="/digimoov_website_templates/static/img/avis/Avis Digimoov Bingo Ringo.jpg"
-                                         alt="Image de diapositive" data-index="2"/>
+                                    <img class="img img-fluid d-block lazy" data-src="/digimoov_website_templates/static/img/Avis Digimoov Bingo Ringo.webp" data-srcsafari="/digimoov_website_templates/static/img/avis/Avis Digimoov Bingo Ringo.jpg" alt="Image de diapositive" data-index="2" />
                                 </div>
                                 <div class="carousel-item" style="">
-                                    <img class="img img-fluid d-block lazy"
-                                         data-src="/digimoov_website_templates/static/img/Avis Digimoov Walid Sgh.webp"
-                                         data-srcsafari="/digimoov_website_templates/static/img/avis/Avis Digimoov Walid Sgh (1).jpg"
-                                         alt="Image de diapositive" data-index="3"/>
+                                    <img class="img img-fluid d-block lazy" data-src="/digimoov_website_templates/static/img/Avis Digimoov Walid Sgh.webp" data-srcsafari="/digimoov_website_templates/static/img/avis/Avis Digimoov Walid Sgh (1).jpg" alt="Image de diapositive" data-index="3" />
                                 </div>
                                 <div class="carousel-item" style="">
-                                    <img class="img img-fluid d-block lazy"
-                                         data-src="/digimoov_website_templates/static/img/Avis digimoov Rayan Ferjani.webp"
-                                         data-srcsafari="/digimoov_website_templates/static/img/avis/Avis digimoov Rayan Ferjani.jpg"
-                                         alt="Image de diapositive" data-index="4"/>
+                                    <img class="img img-fluid d-block lazy" data-src="/digimoov_website_templates/static/img/Avis digimoov Rayan Ferjani.webp" data-srcsafari="/digimoov_website_templates/static/img/avis/Avis digimoov Rayan Ferjani.jpg" alt="Image de diapositive" data-index="4" />
                                 </div>
                                 <div class="carousel-item" style="">
-                                    <img class="img img-fluid d-block lazy"
-                                         data-src="/digimoov_website_templates/static/img/Avis Digimoov Yaser Ilyas.webp"
-                                         data-srcsafari="digimoov_website_templates/static/img/avis/Avis Digimoov Yaser Ilyas.jpg"
-                                         alt="Image de diapositive" data-index="5"/>
+                                    <img class="img img-fluid d-block lazy" data-src="/digimoov_website_templates/static/img/Avis Digimoov Yaser Ilyas.webp" data-srcsafari="digimoov_website_templates/static/img/avis/Avis Digimoov Yaser Ilyas.jpg" alt="Image de diapositive" data-index="5" />
                                 </div>
                             </div>
-                            <a class="carousel-control-prev text-black" href="#slideshow_1609409222992"
-                               data-slide="prev" aria-label="Précedent" title="Précedent">
-                                <span class="fa fa-chevron-left"/>
+                            <a class="carousel-control-prev text-black" href="#slideshow_1609409222992" data-slide="prev" aria-label="Précedent" title="Précedent">
+                                <span class="fa fa-chevron-left" />
                             </a>
-                            <a class="carousel-control-next text-black" href="#slideshow_1609409222992"
-                               data-slide="next" aria-label="Suivant" title="Suivant">
-                                <span class="fa fa-chevron-right"/>
+                            <a class="carousel-control-next text-black" href="#slideshow_1609409222992" data-slide="next" aria-label="Suivant" title="Suivant">
+                                <span class="fa fa-chevron-right" />
                             </a>
                         </div>
                     </div>
                 </section>
                 <div class="s_btn text-center pt16 pb16" data-name="Button">
-                    <a href="https://www.google.fr/search?source=hp&amp;ei=2gDjX575DIKalwS3trWIDg&amp;q=digimoov&amp;oq=digimoov&amp;gs_lcp=CgZwc3ktYWIQAzIICAAQxwEQrwEyAggAMgIIADICCAAyAggAMgIIADICCAAyAggAMgQILhAKMggIABDHARCvAToCCC46CAgAEMcBEKMCUKQBWM0JYOMKaABwAHgAgAFeiAHeBJIBATeYAQCgAQGqAQdnd3Mtd2l6&amp;sclient=psy-ab&amp;ved=0ahUKEwiezobe2OPtAhUCzYUKHTdbDeEQ4dUDCAc&amp;uact=5#lrd=0x47e66f4105e53b4d:0x9b8c7c90c4de0b74,1,,,"
-                       class="btn btn-primary" target="_blank" rel="noopner">Voir tous les avis sur Google
+                    <a href="https://www.google.fr/search?source=hp&amp;ei=2gDjX575DIKalwS3trWIDg&amp;q=digimoov&amp;oq=digimoov&amp;gs_lcp=CgZwc3ktYWIQAzIICAAQxwEQrwEyAggAMgIIADICCAAyAggAMgIIADICCAAyAggAMgQILhAKMggIABDHARCvAToCCC46CAgAEMcBEKMCUKQBWM0JYOMKaABwAHgAgAFeiAHeBJIBATeYAQCgAQGqAQdnd3Mtd2l6&amp;sclient=psy-ab&amp;ved=0ahUKEwiezobe2OPtAhUCzYUKHTdbDeEQ4dUDCAc&amp;uact=5#lrd=0x47e66f4105e53b4d:0x9b8c7c90c4de0b74,1,,," class="btn btn-primary" target="_blank" rel="noopner">Voir tous les avis sur Google
                     </a>
                 </div>
                 <section class="clients s_references bg-200 pt16 pb16" data-name="References" style="">
@@ -274,49 +242,22 @@
                         <div class="container">
                             <div class="row">
                                 <div class="col-lg-2">
-                                    <img data-src="/digimoov_website_templates/static/img/MCMACADEMY.webp"
-                                         data-srcsafari="/digimoov_website_templates/static/img/Homepage/MCMACADEMY.png"
-                                         style="width:50%" class="img img-fluid" alt="Logo partenaire MCM Academy"
-                                         data-original-title="" title="" aria-describedby="tooltip843653"
-                                         src="/digimoov_website_templates/static/img/MCMACADEMY.webp"/>
+                                    <img data-src="/digimoov_website_templates/static/img/MCMACADEMY.webp" data-srcsafari="/digimoov_website_templates/static/img/Homepage/MCMACADEMY.png" style="width:50%" class="img img-fluid" alt="Logo partenaire MCM Academy" data-original-title="" title="" aria-describedby="tooltip843653" src="/digimoov_website_templates/static/img/MCMACADEMY.webp" />
                                 </div>
                                 <div class="col-lg-2">
-                                    <img data-src="/digimoov_website_templates/static/img/ubereats partenaire Digimoov.webp"
-                                         data-srcsafari="/digimoov_website_templates/static/img/Homepage/uber.png"
-                                         style="width:50%" class="img img-fluid" alt="Logo partenaire Ubereats"
-                                         data-original-title="" title="" aria-describedby="tooltip843653"
-                                         src="/digimoov_website_templates/static/img/ubereats partenaire Digimoov.webp"/>
+                                    <img data-src="/digimoov_website_templates/static/img/ubereats partenaire Digimoov.webp" data-srcsafari="/digimoov_website_templates/static/img/Homepage/uber.png" style="width:50%" class="img img-fluid" alt="Logo partenaire Ubereats" data-original-title="" title="" aria-describedby="tooltip843653" src="/digimoov_website_templates/static/img/ubereats partenaire Digimoov.webp" />
                                 </div>
                                 <div class="col-lg-2">
-                                    <img data-src="/digimoov_website_templates/static/img/deliveroo partenaire Digimoov.webp"
-                                         data-srcsafari="/digimoov_website_templates/static/img/Homepage/deliveroo.png"
-                                         style="width:70%" class="img img-fluid" alt="Logo partenaire Deliveroo"
-                                         data-original-title="" title="" aria-describedby="tooltip623872"
-                                         src="/digimoov_website_templates/static/img/deliveroo partenaire Digimoov.webp"/>
+                                    <img data-src="/digimoov_website_templates/static/img/deliveroo partenaire Digimoov.webp" data-srcsafari="/digimoov_website_templates/static/img/Homepage/deliveroo.png" style="width:70%" class="img img-fluid" alt="Logo partenaire Deliveroo" data-original-title="" title="" aria-describedby="tooltip623872" src="/digimoov_website_templates/static/img/deliveroo partenaire Digimoov.webp" />
                                 </div>
                                 <div class="col-lg-2">
-                                    <img data-src="/digimoov_website_templates/static/img/coursierjob partenaire Digimoov.webp"
-                                         data-srcsafari="/digimoov_website_templates/static/img/Homepage/coursierjob.png"
-                                         style="width:50%" class="img img-fluid" alt="Logo partenaire Coursierjob"
-                                         data-original-title="" title="" aria-describedby="tooltip175558"
-                                         src="/digimoov_website_templates/static/img/coursierjob partenaire Digimoov.webp"/>
+                                    <img data-src="/digimoov_website_templates/static/img/coursierjob partenaire Digimoov.webp" data-srcsafari="/digimoov_website_templates/static/img/Homepage/coursierjob.png" style="width:50%" class="img img-fluid" alt="Logo partenaire Coursierjob" data-original-title="" title="" aria-describedby="tooltip175558" src="/digimoov_website_templates/static/img/coursierjob partenaire Digimoov.webp" />
                                 </div>
                                 <div class="col-lg-2">
-                                    <img data-src="/digimoov_website_templates/static/img/Box2home-partenaire-digimoov.webp"
-                                         data-srcsafari="/digimoov_website_templates/static/img/Homepage/Box2home-partenaire-digimoov.png"
-                                         class="img img-fluid" alt="Logo partenaire Box2home" data-original-title=""
-                                         title="Box2home partenaire Digimoov" aria-describedby="tooltip175558"
-                                         style="width:50%"
-                                         src="/digimoov_website_templates/static/img/Box2home-partenaire-digimoov.webp"/>
+                                    <img data-src="/digimoov_website_templates/static/img/Box2home-partenaire-digimoov.webp" data-srcsafari="/digimoov_website_templates/static/img/Homepage/Box2home-partenaire-digimoov.png" class="img img-fluid" alt="Logo partenaire Box2home" data-original-title="" title="Box2home partenaire Digimoov" aria-describedby="tooltip175558" style="width:50%" src="/digimoov_website_templates/static/img/Box2home-partenaire-digimoov.webp" />
                                 </div>
                                 <div class="col-lg-2">
-                                    <img data-src="/digimoov_website_templates/static/img/Cabinet Comptable Joel Pruvost.webp"
-                                         data-srcsafari="/digimoov_website_templates/static/img/Homepage/Cabinet_Comptable_Joel_Pruvost.png"
-                                         style="width:50%" class="img img-fluid"
-                                         alt="Logo partenaire Cabinet Comptable Joël Pruvost" data-original-title=""
-                                         title="Cabinet Comptable Joël Pruvost partenaire Digimoov"
-                                         aria-describedby="tooltip175558"
-                                         src="/digimoov_website_templates/static/img/Cabinet Comptable Joel Pruvost.webp"/>
+                                    <img data-src="/digimoov_website_templates/static/img/Cabinet Comptable Joel Pruvost.webp" data-srcsafari="/digimoov_website_templates/static/img/Homepage/Cabinet_Comptable_Joel_Pruvost.png" style="width:50%" class="img img-fluid" alt="Logo partenaire Cabinet Comptable Joël Pruvost" data-original-title="" title="Cabinet Comptable Joël Pruvost partenaire Digimoov" aria-describedby="tooltip175558" src="/digimoov_website_templates/static/img/Cabinet Comptable Joel Pruvost.webp" />
                                 </div>
                             </div>
                         </div>
