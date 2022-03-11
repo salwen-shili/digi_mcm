@@ -597,22 +597,116 @@ pricebar::after {
                         </div>
                     </section>
 
-                    <section class="clients s_references bg-200 pt16 pb32 js-scroll fade-in-top scrolled" data-name="References">
+                    <div id="pricing" class="js-scroll fade-in-top">
+                        <input t-att-value="request.website.microsoft_tracking_key" id="microsoft_tracking_key" type="hidden" />
+                        <section id="sh_corpomate_theme_section_188" class="sh_animation_part" data-name="Pricing">
+                            <div class="container">
+                                <div class="sh_title mt48">
+                                    <h2>
+                                        <b>Inscrivez-vous dès maintenant !</b>
+                                        <br />
+                                    </h2>
+                                    <!-- <h4 style="
+                    margin-top: 20px;
+                    margin-bottom: 0.5rem;
+                    font-size: 18px;
+                  ">
+                  Choisissez le pack qui vous convient&amp;nbsp;
+                </h4> -->
+                                    <p>
+                                        <br />
+                                    </p>
+                                </div>
+                                <div class="row" style="justify-content: center !important">
+                                    <div class="col-md-5 sh_animation_part" style="border-style: none; border-width: 0px">
+                                        <div class="sh_pricing">
+                                            <t t-if="bolt_product.default_code=='vtc_bolt'">
+                                                <form action="/shop/cart/update" method="post" id="form-1-1">
+                                                    <input type="hidden" class="product_id" name="product_id" id="bolt_product" t-att-value="bolt_product.id" />
+                                                    <input type="hidden" name="promo" t-att-value="promo.id" t-if="promo" />
+                                                    <h4>PACK VTC</h4>
+                                                    <h4>
+                                                        <span class="pricebar" t-esc="round(vtc_product.list_price)" />
+                                                        <span style="color: #fdd105" t-esc="vtc_product.currency_id.symbol" />
+                                                    </h4>
+                                                    <ul class="" style="word-break: break-word; position: relative; z-index: 0;">
+                                                        <li>Formation 40h ( En direct )</li>
+                                                        <li>Formation 30h ( 100% à distance )</li>
+                                                        <li>Accès à + de 12 examens d'entraînement</li>
+                                                        <li>Assistance par mail</li>
+                                                        <li>Assistance&amp;nbsp;par téléphone</li>
+                                                        <li>
+                                                            Lives&amp;nbsp;avec les formateurs pour explications
+                                                            <br />
+                                                        </li>
+                                                        <li>
+                                                            Assistance&amp;nbsp;par visioconférence
+                                                            <br />
+                                                            <br />
+                                                        </li>
+                                                        <li>
+                                                            <span style="font-weight: 700;">
+                                                                Examen en présentiel à la CMA de l'
+                                                                <span style="color: rgb(0, 0, 0); font-family: Roboto, sans-serif; font-size: 16.8px; text-align: start;">Î</span>
+                                                                le de France
+                                                            </span>
+                                                        </li>
+                                                        <li>
+                                                            <br />
+                                                        </li>
+                                                    </ul>
+                                                    <t t-if="promo and promo.name=='bolt'">
+                                                        <p class="text-center font-weight-bolder text-secondary">
+                                                            <b style="font-size: 80%">
+                                                                <t>avec le code</t>
+                                                                <t style="color: #24f0a0" t-esc="promo.code" />
+                                                            </b>
+                                                        </p>
+                                                    </t>
+                                                    <h4>
+                                                        <span t-esc="round(bolt_product.list_price)" />
+                                                        <span style="color: #fdd105" t-esc="bolt_product.currency_id.symbol" />
+                                                    </h4>
+                                                    <br />
+                                                    <div class="sh_btn">
+                                                        <!-- <a class="btn btn-primary sh_btn_cm_8" data-original-title="" title="" aria-describedby="tooltip357369" onClick="(function(){document.getElementById('form-1-1').submit();return false;})();return false;">
+                        Je m'inscris
+                                            </a> -->
+                                                        <!-- onClick="(function(){packVtcPageFormationTaxi();document.getElementById('form-1-1').submit();return false;})();return false;"-->
+                                                        <a class="btn btn-primary sh_btn_cm_8" data-original-title="" title="" aria-describedby="tooltip357369" onClick="(function(){document.getElementById('form-1-1').submit();return false;})();return false;">
+                        Je m'inscris
+                                            </a>
+                                                    </div>
+                                                </form>
+                                            </t>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+                    <!-- FIN PRICING TABLE-->
+                    <section class="clients s_references bg-200 pt16 pb32 js-scroll fade-in-top" data-name="References">
                         <div class="container text-center">
                             <div class="center-logo">
+                                <!-- <div t-if="partenaire=='' or not partenaire or partenaire=='bolt'">
+                                    <a href="https://www.digimoov.fr/">
+                                        <img data-src="/mcm_website_theme/static/src/img/partenaires/digimoov.png" data-srcSafari="/mcm_website_theme/static/src/img/partenaires/digimoov.png" class="img img-fluid lazy" alt="Logo partenaire Digimoov" data-original-title="" title="Digimoov partenaire MCM ACADEMY" aria-describedby="tooltip843653" style="margin-top: 30px; width: 72%"/>
+                                    </a>
+                                </div> -->
                                 <div>
                                     <a href="https://partners.bolt.eu/driver-signup?utm_source=website&amp;utm_medium=header&amp;utm_campaign=bolt-drivers" target="_blank">
-                                        <img data-src="/mcm_website_theme/static/src/img/partenaires/bolt.png" data-srcsafari="/mcm_website_theme/static/src/img/partenaires/bolt.png" class="img img-fluid" alt="Logo partenaire bolt" data-original-title="" title="Bolt partenaire MCM ACADEMY" aria-describedby="tooltip843653" style="margin-top: 30px; width: 38%" src="/mcm_website_theme/static/src/img/partenaires/bolt.png" />
+                                        <img data-src="/mcm_website_theme/static/src/img/partenaires/bolt.png" data-srcSafari="/mcm_website_theme/static/src/img/partenaires/bolt.png" class="img img-fluid lazy" alt="Logo partenaire bolt" data-original-title="" title="Bolt partenaire MCM ACADEMY" aria-describedby="tooltip843653" style="margin-top: 30px; width: 38%" />
                                     </a>
                                 </div>
                                 <div>
                                     <a href="https://www.examentaxivtc.fr/#!/login" target="_blank">
-                                        <img data-src="/mcm_website_theme/static/src/img/partenaires/cma.png" data-srcsafari="/mcm_website_theme/static/src/img/partenaires/cma.png" class="img img-fluid" alt="Logo partenaire CMA" data-original-title="" title="CMA partenaire MCM ACADEMY" aria-describedby="tooltip623872" style="margin-top: 30px; width: 50%" src="/mcm_website_theme/static/src/img/partenaires/cma.png" />
+                                        <img data-src="/mcm_website_theme/static/src/img/partenaires/cma.png" data-srcSafari="/mcm_website_theme/static/src/img/partenaires/cma.png" class="img img-fluid lazy" alt="Logo partenaire CMA" data-original-title="" title="CMA partenaire MCM ACADEMY" aria-describedby="tooltip623872" style="margin-top: 30px; width: 50%" />
                                     </a>
                                 </div>
                                 <div>
                                     <a href="https://www.digimoov.fr/" target="_blank">
-                                        <img data-src="/mcm_website_theme/static/src/img/partenaires/digimoov.png" data-srcsafari="/mcm_website_theme/static/src/img/partenaires/digimoov.png" class="img img-fluid" alt="Logo partenaire Digimoov" data-original-title="" title="Digimoov partenaire MCM ACADEMY" aria-describedby="tooltip843653" style="margin-top: 30px; width: 46%" src="/mcm_website_theme/static/src/img/partenaires/digimoov.png" />
+                                        <img data-src="/mcm_website_theme/static/src/img/partenaires/digimoov.png" data-srcSafari="/mcm_website_theme/static/src/img/partenaires/digimoov.png" class="img img-fluid lazy" alt="Logo partenaire Digimoov" data-original-title="" title="Digimoov partenaire MCM ACADEMY" aria-describedby="tooltip843653" style="margin-top: 30px; width: 46%" />
                                     </a>
                                 </div>
                             </div>
