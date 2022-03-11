@@ -20,7 +20,7 @@
             <field name="state">code</field>
             <field name="active">1</field>
             <field name="code">model.import_calls()</field>
-            <field name="interval_number">1</field>
+            <field name="interval_number">8</field>
             <field name="interval_type">minutes</field>
             <field name="numbercall">-1</field>
         </record>
