@@ -57,14 +57,16 @@ class SurveyUserInput(models.Model):
                             if body:
                                 sms = self.env['mail.message'].sudo().search(
                                     [("body", "=", body), ("message_type", "=", 'sms'), ("res_id", "=", partner.id)])
+                                print('sms2:', sms)
                                 if not sms:
                                     composer = self.env['sms.composer'].sudo().create({
                                         'res_model': 'res.partner',
-                                        'res_ids': partner.id,
-                                        'composition_mode': 'mass',
+                                        'res_id': partner.id,
+                                        'composition_mode': 'comment', #change composition mode to comment
                                         'body': body,
                                         'mass_keep_log': True,
-                                        'mass_force_send': True,
+                                        'mass_force_send': False,
+                                        'use_active_domain': False,
                                     })
                                     composer.action_send_sms()  # send sms of exam inscription
                                 if partner.phone:
