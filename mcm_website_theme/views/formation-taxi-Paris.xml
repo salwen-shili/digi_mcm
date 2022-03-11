@@ -295,72 +295,8 @@ Des
                   <br />
                 </p>
               </div>
-              <div class="row">
-                <div class="col-md-4 sh_animation_part js-scroll slide-left">
-                  <div class="sh_pricing">
-                    <t t-foreach="mcm_products" t-as="product">
-                      <t t-if="product.default_code=='vtc'">
-                        <form action="/shop/cart/update" method="post" id="form-1-1">
-                          <input type="hidden" class="product_id" name="product_id" id="vtc_product" t-att-value="product.id" />
-                          <input type="hidden" name="promo" t-att-value="promo.id" t-if="promo" />
-                          <h4>PACK VTC</h4>
-                          <h5 class="el-cpf">Éligible au CPF</h5>
-                          <h4 t-if="not promo">
-                            <span t-esc="round(product.list_price)" />
-                            <span class="prod-cur" t-esc="product.currency_id.symbol" />
-                          </h4>
-                          <h4 t-if="promo">
-                            <t t-foreach="promo.item_ids" t-as="item">
-                              <t t-if="item.product_id.id==product.id">
-                                <span t-esc="round(item.fixed_price)" />
-                                <span t-esc="product.currency_id.symbol" class="prod-cur" />
-                              </t>
-                            </t>
-                          </h4>
-                          <ul class="">
-                            <li>Formation 70 h (100 % en ligne)</li>
-                            <li>Accès à + de 12 examens d'entraînement</li>
-                            <li>Assistance par mail</li>
-                            <li>Assistance par téléphone</li>
-                            <li>Assistance par visioconférence</li>
-                            <li>Lives avec les formateurs pour explications</li>
-                            <li>Révision du programme avant examen</li>
-                          </ul>
-                          <br />
-                          <t t-if="promo">
-                            <p class="text-center font-weight-bolder text-secondary">
-                              <b style="font-size: 50%">
-                                <t>90</t>
-                                <span t-esc="product.currency_id.symbol" class="prod-cur" />
-                                <span style="text-transform: none !important">avec le code</span>
-                                <t t-esc="promo.code" />
-                              </b>
-                            </p>
-                          </t>
-                          <div class="sh_btn">
-                            <!-- <a class="btn btn-primary sh_btn_cm_8"   aria-describedby="tooltip357369" onClick="(function(){document.getElementById('form-1-1').submit();return false;})();return false;">
-                            Je m'inscris
-                                                </a> -->
-                            <!-- Call Mircorsoft ads script onclick-->
-                            <a class="animated-button-yellow" href="#pricing" onClick="(function(){  document.getElementById('form-1-1').submit();return false;})();return false;">
-                              <span />
-                              <span />
-                              <span />
-                              <span />
-                              Je m'inscris
-                            </a>
-                            <div>
-                              <span style="color: red !important;font-size: 17px;font-weight: 600;">
-                                                            Paiement 1 ou 2 fois
-                                                            </span>
-                            </div>
-                          </div>
-                        </form>
-                      </t>
-                    </t>
-                  </div>
-                </div>
-                <div class="col-md-4 sh_animation_part js-scroll fade-in-top">
+              <div class="row justify-content-center">
+                <div class="col-md-5 sh_animation_part js-scroll fade-in-top">
                   <div class="sh_pricing">
                     <t t-foreach="mcm_products" t-as="product">
                       <t t-if="product.default_code=='taxi'">
@@ -401,58 +337,6 @@ Des
                             <div>
                               <span style="color: red !important;font-size: 17px;font-weight: 600;">
                                                             Paiement 1 ou 2 fois
-                                                            </span>
-                            </div>
-                          </div>
-                        </form>
-                      </t>
-                    </t>
-                  </div>
-                </div>
-                <div class="col-md-4 sh_animation_part js-scroll slide-right">
-                  <div class="sh_pricing">
-                    <t t-foreach="mcm_products" t-as="product">
-                      <t t-if="product.default_code=='vmdtr'">
-                        <form action="/shop/cart/update" method="post" id="form-1-3">
-                          <input type="hidden" class="product_id" name="product_id" id="vmdtr_product" t-att-value="product.id" />
-                          <input type="hidden" name="promo" t-att-value="promo.id" t-if="promo" />
-                          <h4>PACK TAXI-MOTO</h4>
-                          <h5 class="el-cpf">&amp;nbsp; &amp;nbsp;&amp;nbsp; &amp;nbsp;</h5>
-                          <h4>
-                            <span t-esc="round(product.list_price)" />
-                            <span class="prod-cur" t-esc="product.currency_id.symbol" />
-                          </h4>
-                          <ul class="">
-                            <li>Formation 70 h (100 % en ligne)</li>
-                            <li>Accès à + de 12 examens d'entraînement</li>
-                            <li>Assistance par mail</li>
-                            <li>Assistance par téléphone</li>
-                            <li>Assistance par visioconférence</li>
-                            <li>Lives avec les formateurs pour explications</li>
-                            <li>Révision du programme avant examen</li>
-                          </ul>
-                          <br />
-                          <t t-if="promo">
-                            <p class="text-center font-weight-bolder text-secondary">
-                              <b style="font-size: 50%">
-                                <t />
-                              </b>
-                            </p>
-                          </t>
-                          <div class="sh_btn">
-                            <!-- <a class="btn btn-primary sh_btn_cm_8"   aria-describedby="tooltip196298">
-                            Je m'inscris
-                                                </a> -->
-                            <a class="animated-button-yellow" href="#pricing" onClick="(function(){ document.getElementById('form-1-3').submit();return false;})();return false;">
-                              <span />
-                              <span />
-                              <span />
-                              <span />
-                              Je m'inscris
-                            </a>
-                            <div>
-                              <span style="color: red !important;font-size: 17px;font-weight: 600;">
-                                                            Paiement 1 ou 3 fois
                                                             </span>
                             </div>
                           </div>
