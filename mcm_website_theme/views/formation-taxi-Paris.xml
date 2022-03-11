@@ -1,8 +1,386 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-  <template id="mcm_website_theme.formation-taxi-Paris" name="Formation TAXI">
+  <template id="mcm_website_theme.formation-taxi-Paris" name="Formation TAXI PARISIEN">
     <t t-call="website.layout">
-      <div id="wrap" class="oe_structure oe_empty"></div>
+      <script defer="defer" type="text/javascript" src="/digimoov_website_templates/static/src/js/lazy-min.min.js" />
+      <link rel="stylesheet" href="/mcm_website_theme/static/src/css/cta-button.min.css" />
+      <link rel="stylesheet" href="/mcm_website_theme/static/src/css/style_landing.css" />
+      <div id="wrap" class="oe_structure oe_empty">
+        <section class="s_text_image pt32 pb32" data-name="Text - Image">
+          <div class="container">
+            <div class="row align-items-center">
+              <div class="col-lg-6 pt16 pb16">
+                <h1 class="title-1">
+                  Formation
+                  <br />
+                  <text class="yellow-mcm">Taxi parisien</text>
+                </h1>
+                <p class="para">
+                  Paris est une ville très attractive pour
+                  <b>devenir conducteur de taxi</b>
+                  et chacun parvient à y trouver sa clientèle tant la démographie y
+            prédispose. Alors si vous souhaitez devenir
+                  <b>chauffeur de taxi parisien</b>
+                  , n'attendez plus !
+                  <a href="#pricing">
+                    <b>
+                      <u>Inscrivez-vous</u>
+                    </b>
+                  </a>
+                  dès maintenant à notre formation à distance . Une formation de 70h à
+            la hauteur de vos espérance avec des formateurs qualifiés et un
+            programme complet pour vous aider à réussir votre examen et détenir
+            votre carte professionnelle.
+                </p>
+
+                <div class="s_btn text-left pt16 pb16" data-name="Buttons">
+                  <a href="/formation-taxi-Paris#pricing" class="btn btn-primary">
+              Je m'inscris !
+            </a>
+                </div>
+              </div>
+
+              <div class="col-lg-6 pt16 pb16">
+                <img alt="Chauffeur taxi parisien" class="img img-fluid mx-auto lazy" title="chauffeur taxi parisien" data-src="/mcm_website_theme/static/src/img/taxi paris/couv taxi paris.webp" data-srcsafari="/mcm_website_theme/static/src/img/taxi paris/couv taxi paris.png" />
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="s_text_image pt32 pb32" data-name="Image - Text">
+          <div class="container">
+            <div class="row align-items-center">
+              <div class="col-lg-6 pt16 pb16">
+                <img alt="Conducteur de Taxi" class="img img-fluid mx-auto lazy" data-src="/mcm_website_theme/static/src/img/taxi paris/COUV 2 (2).webp" data-srcsafari="/mcm_website_theme/static/src/img/taxi paris/COUV 2 (2).png" />
+              </div>
+              <div class="col-lg-6 pt16 pb16">
+                <h2 class="title-2">
+          Quels sont les prérequis pour devenir chauffeur de Taxi à Paris? 
+         </h2>
+                <p class="para">
+                  Pour devenir conducteur taxi en toute légalité, vous devez répondre à ces critères :
+                  <ul class="liste">
+                    <li>Avoir un permis de conduire catégorie (B) de plus de 3 ans de validité</li>
+                    <li>Passer une visite médicale à la préfecture de votre région pour être reconnu apte à exercer ce métier</li>
+                    <li>Avoir un casier judiciaire vierge</li>
+                    <li>Détenir le brevet de secourisme depuis moins de 2 ans</li>
+                  </ul>
+                </p>
+
+                <div class="s_btn text-left pt16 pb16" data-name="Button">
+                  <a href="/blog/les-prérequis-pour-exercer-les-métiers-de-chauffeur-vtc-ou-taxi" class="btn btn-outline-alpha">
+              En savoir plus
+            </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="sh_corpomate_theme_section_152" data-name="Title">
+          <div class="container">
+            <div class="row">
+              <h2 class="title-2">
+          Les démarches pour devenir conducteur de taxi
+        </h2>
+            </div>
+          </div>
+        </section>
+
+        <section id="sh_corpomate_theme_section_20" data-name="Key Points" style="background-color: rgb(239, 198, 49)">
+          <div class="container">
+            <div class="row">
+              <div class="col-md-4 bg-white sh_border_right sh_disable_hover_part">
+                <div class="sh_content">
+                  <div class="sh_icon">
+                    <div class="sh_dia">
+                      <span class="fa fa-diamond sh_icon1" />
+                      <span class="fa fa-laptop sh_icon2" data-original-title="" title="" aria-describedby="tooltip731997" style="color: rgb(239, 198, 49)" />
+                    </div>
+                  </div>
+                  <div class="sh_right_content">
+                    <h4>Inscription à la CMA</h4>
+                    <p>
+                      <text style="color: rgb(0, 0, 0); font-size: 14px">
+                        L'
+                        <a href="https://www.examentaxivtc.fr/">
+                          <b>inscription</b>
+                        </a>
+                        à la chambre des métiers et de l'artisanat se fait en ligne .
+                      </text>
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-4 bg-white sh_border_right sh_disable_hover_part">
+                <div class="sh_content">
+                  <div class="sh_icon">
+                    <div class="sh_dia">
+                      <span class="fa fa-building sh_icon1" />
+                      <span class="fa fa-sign-in sh_icon2" style="color: rgb(239, 198, 49)" />
+                    </div>
+                  </div>
+                  <div class="sh_right_content">
+                    <h4>Inscription à la formation</h4>
+                    <p>
+                      <text style="font-size: 14px">Inscrivez-vous à notre formation en ligne et choisissez votre
+                  date d'examen.</text>
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-4 bg-white sh_disable_hover_part">
+                <div class="sh_content">
+                  <div class="sh_icon">
+                    <div class="sh_dia">
+                      <span class="fa fa-file-text-o sh_icon1" />
+                      <span class="fa fa-file-text-o sh_icon2" style="color: rgb(239, 198, 49)" />
+                    </div>
+                  </div>
+                  <div class="sh_right_content">
+                    <h4>Examen Final</h4>
+                    <p>
+                      <text style="font-size: 14px">
+                        Pour obtenir votre carte pro, vous devez réussir l
+                        <a href="/examen-vtc-taxi-moto-taxi">
+                          <b>'examen.</b>
+                        </a>
+                        3 tentatives &amp;nbsp;possibles.
+                      </text>
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="s_text_image pt32 pb32" data-name="Text - Image">
+          <div class="container">
+            <div class="row align-items-center">
+              <div class="col-lg-6 pt16 pb16">
+                <h2>
+                  <b>Formation Taxi à Paris</b>
+                </h2>
+                <p class="para">
+                  Vous souhaitez obtenir votre carte professionnelle, et devenir taxi parisien ? 
+Avec plus de 10 ans d'expérience dans le domaine du transport de personnes, MCM Academy, vous
+                  <b>garantie une formation à distance 100% théorique</b>
+                  de qualité, grâce à laquelle vous pourrez acquérir toutes les connaissances nécessaires pour exercer le métier de conducteur de taxi, en vous offrant une préparation optimale à l'examen final .
+Les  cours  de la formation seront accessibles depuis notre plateforme e-learning en illimité.
+Ils portent sur la
+                  <b>réglementation</b>
+                  du transport public , la
+                  <b>sécurité</b>
+                  routière, la
+                  <b>gestion</b>
+                  , la connaissance du territoire et la réglementation locale et les
+                  <b>langues française et anglaise</b>
+                  afin d'évaluer votre capacité d’expression et de compréhension et ainsi assurer une bonne communication avec vos futurs clients.
+Des
+                  <b>exercices</b>
+                  sous forme de
+                  <b>QCM</b>
+                  et d'
+                  <b>examens blancs</b>
+                  ont été concoctés par nos experts métiers, afin de vous permettre de vous auto-évaluer et de vous habituer aux conditions de l'examen.
+                </p>
+
+
+                <div class="s_btn text-left pt16 pb16" data-name="Buttons">
+                  <a href="/qui-sommes-nous" class="btn btn-primary">En savoir plus</a>
+                </div>
+              </div>
+
+              <div class="col-lg-6 pt16 pb16">
+                <img alt="Conducteur taxi épanoui" class="img img-fluid lazy" data-src="/mcm_website_theme/static/src/img/taxi paris/FORMATION TAXI PARISIEN (1).webp" data-srcsafari="mcm_website_theme/static/src/img/taxi paris/FORMATION TAXI PARISIEN (1).png" />
+
+
+              </div>
+
+            </div>
+          </div>
+        </section>
+
+        <!--TÉLÉCHARGER LE PROGRAMME DE LA FORMATION TAXI -->
+        <section id="sh_corpomate_theme_section_167" class="sh_animation_part" style="background-color: rgb(253, 209, 5); margin: 76px 0px">
+          <div class="container js-scroll fade-in-top">
+            <h3 style="color: rgb(0, 0, 0); font-size: 19px; max-width: 100%">
+              <b>Téléchargez notre programme de formation taxi parisien</b>
+            </h3>
+            <p class="lead o_default_snippet_text">
+            Rejoignez-nous et passez à la vitesse supérieure.
+          </p>
+            <a class="animated-button-black" href="/mcm_website_theme/static/pdf/PROGRAMME DE  FORMATION a distance de 70H TAXI ET VTC.pdf" title="Programme de la formation TAXI" alt="Programme de la formation TAXI">
+              <span />
+              <span />
+              <span />
+              <span />
+              JE TÉLÉCHARGE
+            </a>
+          </div>
+        </section>
+
+
+        <section class="s_text_image pt32 pb32" data-name="Image - Text">
+          <div class="container">
+            <div class="row align-items-center">
+              <div class="col-lg-6 pt16 pb16">
+                <img alt="candidat examen taxi" class="img img-fluid lazy" data-src="/mcm_website_theme/static/src/img/taxi paris/1.webp" data-srcsafari="/mcm_website_theme/static/src/img/taxi paris/1.png" title="candidat examen taxi" />
+              </div>
+              <div class="col-lg-6 pt16 pb16">
+                <h2 class="title-2">
+            Examen Taxi parisien
+          </h2>
+                <p class="para">
+                  Devenir taxi parisien nécessitera de passer l’
+                  <a href="/examen-vtc-taxi-moto-taxi">examen</a>
+                  de chauffeur de taxi
+                  <b>( Certificat de Capacité Professionnel de Chauffeur de Taxi )</b>
+                  organisé par la chambre des métiers et de l'artisanat de l'Île de France.
+                  <br />
+                  Vous devrez passer des épreuves théoriques d’
+                  <b>admissibilité</b>
+                  , sous forme de questions à choix multiples et de questions
+                  <b>(QCM)</b>
+                  à réponses courtes, et d’une épreuve pratique d’
+                  <b>admission</b>
+                  , qui consiste en une mise en situation pratique de réalisation d’une course de taxi ou d’une mission de transport en taxi. La réussite aux épreuves d’admissibilité permet d’accéder à l’
+                  <b>épreuve d’admission</b>
+                  .
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="s_text_image pt32 pb32" data-name="Text - Image">
+          <div class="container">
+            <div class="row align-items-center">
+              <div class="col-lg-6 pt16 pb16">
+                <h2 class="title-2">Comment financer ma formation Taxi parisien?</h2>
+
+                <p class="para">
+                  MCM Academy vous offre deux moyens de financement assez intéressants ! Et vous offrant le choix de financer votre formation taxi par carte bancaire avec possibilité de paiement sur deux tranches, ou en mobilisant votre
+                  <a href="/mon-compte-de-formation-cpf">
+                    <b>
+                      <u>compte de formation personnel</u>
+                    </b>
+                  </a>
+                  .
+                </p>
+                <div class="s_btn text-left pt16 pb16" data-name="Buttons">
+                  <a href="/formation-taxi-Paris#pricing" class="btn btn-primary">Je me lance !</a>
+                </div>
+              </div>
+              <div class="col-lg-6 pt16 pb16">
+                <img data-src="/mcm_website_theme/static/src/img/taxi paris/Comment financer ma formation taxi -mcm academy.webp" data-srcsafari="/mcm_website_theme/static/src/img/taxi paris/Comment financer ma formation taxi -mcm academy.png" class="img img-fluid mx-auto lazy" alt="financer ma formation Taxi parisien" />
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- PRICING TABLE-->
+        <div id="pricing" class="pb32 mt-5">
+          <input t-att-value="request.website.microsoft_tracking_key" id="microsoft_tracking_key" type="hidden" />
+          <section id="sh_corpomate_theme_section_188" class="sh_animation_part" data-name="Pricing">
+            <div class="container">
+              <div class="sh_title js-scroll fade-in-top">
+                <h3 style="font-size: 26px;                                                 font-weight: 700;                                                 color: #000                                                 ;max-width:100%">
+                  <b>LET'S GO ! </b>
+                  <br />
+                  Inscrivez-vous dès maintenant !
+                </h3>
+                <p>
+                  <br />
+                </p>
+              </div>
+              <div class="row justify-content-center">
+                <div class="col-md-5 sh_animation_part js-scroll fade-in-top">
+                  <div class="sh_pricing">
+                    <t t-foreach="mcm_products" t-as="product">
+                      <t t-if="product.default_code=='taxi'">
+                        <form action="/shop/cart/update" method="post" id="form-1-2">
+                          <input type="hidden" class="product_id" name="product_id" id="taxi_product" t-att-value="product.id" />
+                          <input type="hidden" name="promo" t-att-value="promo.id" t-if="promo" />
+                          <h4>PACK TAXI</h4>
+                          <h5 class="el-cpf">Éligible au CPF</h5>
+                          <h4>
+                            <span t-esc="round(product.list_price)" />
+                            <span class="prod-cur" t-esc="product.currency_id.symbol" />
+                          </h4>
+                          <ul class="">
+                            <li>Formation 70 h (100 % en ligne)</li>
+                            <li>Accès à + de 12 examens d'entraînement</li>
+                            <li>Assistance par mail</li>
+                            <li>Assistance par téléphone</li>
+                            <li>Assistance par visioconférence</li>
+                            <li>Lives avec les formateurs pour explications</li>
+                            <li>Révision du programme avant examen</li>
+                          </ul>
+                          <br />
+                          <t t-if="promo">
+                            <p class="text-center font-weight-bolder text-secondary">
+                              <b style="font-size: 50%">
+                                <t />
+                              </b>
+                            </p>
+                          </t>
+                          <div class="sh_btn">
+                            <a class="animated-button-yellow" href="#pricing" onClick="(function(){ document.getElementById('form-1-2').submit();return false;})();return false;">
+                              <span />
+                              <span />
+                              <span />
+                              <span />
+                              Je m'inscris
+                            </a>
+                            <div>
+                              <span style="color: red !important;font-size: 17px;font-weight: 600;">
+                                                            Paiement 1 ou 2 fois
+                                                            </span>
+                            </div>
+                          </div>
+                        </form>
+                      </t>
+                    </t>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+        </div>
+        <!-- FIN PRICING TABLE-->
+        <!-- partenaires-->
+        <section class="pt40 pb32">
+          <div class="container js-scroll fade-in-top">
+            <div class="center-logo">
+              <div class="pt32" t-if="partenaire=='bolt'  or partenaire !='bolt'">
+                <a href="https://www.digimoov.fr/" target="_blank" rel="noopner">
+                  <img class="img-fluid lazy" style="width: 94px" data-src="/mcm_website_theme/static/src/img/logos/logo-digimoov.png" data-srcSafari="/mcm_website_theme/static/src/img/logos/logo-digimoov.png" alt="Logo partenaire Digimoov" title="Digimoov partenaire MCM ACADEMY" />
+                </a>
+              </div>
+              <div class="pt32" t-if="partenaire=='bolt'  or partenaire !='bolt'">
+                <a href="https://bolt.eu/fr/" target="_blank" rel="noopner">
+                  <img data-src="/mcm_website_theme/static/src/img/logos/logo-bolt.png" data-srcSafari="/mcm_website_theme/static/src/img/logos/logo-bolt.png" class="img-fluid lazy" style="width: 100px; margin-top: 9px" alt="Logo partenaire MCM-ACADEMY" title="Bolt partenaire MCM ACADEMY" />
+                </a>
+              </div>
+              <div class="pt32" t-if="partenaire=='' or partenaire !='bolt'">
+                <a href="https://www.artisanat.fr/">
+                  <img class="img-fluid lazy" style="width: 100px" data-srcSafari="/mcm_website_theme/static/src/img/logos/logo-CMA.png" data-src="/mcm_website_theme/static/src/img/logos/logo-CMA.png" title="Chambre de métiers et de l'artisanat partenaire MCM ACADEMY" alt="Chambre de métiers et de l'artisanat partenaire MCM ACADEMY" />
+                </a>
+              </div>
+              <div class="pt32" t-if="partenaire=='' or not partenaire ">
+                <a href="https://www.comptable-douai.com/" target="_blank" rel="noopner">
+                  <img class="img-fluid lazy" style="width: 250px" data-src="/mcm_website_theme/static/src/img/logos/logo-joel-pruvost.jpg" data-srcSafari="/mcm_website_theme/static/src/img/logos/logo-joel-pruvost.jpg" title="Joel partenaire MCM ACADEMY" alt="Joel partenaire MCM ACADEMY" />
+                </a>
+              </div>
+            </div>
+          </div>
+        </section>
+
+      </div>
+
+
     </t>
   </template>
 </odoo>

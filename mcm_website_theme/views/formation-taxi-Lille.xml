@@ -2,7 +2,362 @@
 <odoo>
   <template id="mcm_website_theme.formation-taxi-Lille" name="Formation TAXI">
     <t t-call="website.layout">
-      <div id="wrap" class="oe_structure oe_empty"></div>
+      <script defer="defer" type="text/javascript" src="/digimoov_website_templates/static/src/js/lazy-min.min.js" />
+      <link rel="stylesheet" href="/mcm_website_theme/static/src/css/cta-button.min.css" />
+      <link rel="stylesheet" href="/mcm_website_theme/static/src/css/style_landing.css" />
+      <div id="wrap" class="oe_structure oe_empty">
+        <section class="s_text_image pt32 pb32" data-name="Text - Image">
+          <div class="container">
+            <div class="row align-items-center">
+              <div class="col-lg-6 pt16 pb16">
+                <h1 class="title-1">
+                  Formation
+                  <text class="yellow-mcm">taxi</text>
+                  à Lille
+                </h1>
+                <p class="para">
+                  Vous souhaitez obtenir votre
+                  <b>carte professionnelle</b>
+                  et devenir
+                  <b>chauffeur taxi à Lille ?</b>
+
+                  <br />
+                  Notre
+                  <b>centre de formation taxi</b>
+                  <a href="/qui-sommes-nous">
+                    <b>MCM Academy</b>
+                  </a>
+                  vous propose une formation
+                  <b>100% en ligne</b>
+                  complète et bien détaillée, avec des cours en Live et en vidéoconférences, concoctés par des
+                  <b> professionnels du métier</b>
+                  , pour une préparation optimale à l'examen de CCPT (Certificat de capacité professionnelle Taxi).
+                </p>
+
+                <div class="s_btn text-left pt16 pb16" data-name="Buttons">
+                  <a href="/formation-taxi-Lille#pricing" class="btn btn-primary" spellcheck="false" data-mci-spellchecked="true" data-original-title="" title="" aria-describedby="tooltip737699">Je m'inscris !</a>
+                </div>
+
+              </div>
+              <div class="col-lg-6 pt16 pb16">
+                <img src="/web/image/65210/Formation-chauffeur-taxi.png" class="img img-fluid mx-auto" alt="Odoo • Texte et Image" data-original-title="" title="" aria-describedby="tooltip145600" />
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="s_text_image pt32 mb64" data-name="Image - Text">
+          <div class="container">
+            <div class="row align-items-center">
+              <div class="col-lg-6 pt16 pb16">
+                <img src="/web/image/237365/A%20P%201%20%281%29.png" class="img img-fluid mx-auto" alt="Odoo • Image et Texte" data-original-title="" title="" aria-describedby="tooltip818686" />
+              </div>
+              <div class="col-lg-6 pt16 pb16">
+                <h2 class="title-2">
+                  <b>Comment faire pour devenir conducteur de taxi à Lille ?</b>
+
+                </h2>
+                <p class="para">
+                  Pour pouvoir passer votre
+                  <b>examen taxi</b>
+                  et exercer le métier de
+                  <b>conducteur taxi à Lille</b>
+                  , un métier réglementé, il est nécessaire que vous répondiez à ces quatre conditions :
+                  <ol class="liste">
+                    <li>Être titulaire du permis de conduire de la catégorie B en cours de validité ;</li>
+                    <li>Être reconnu apte suite à une visite médicale effectuée par un médecin agréé par la préfecture de police ;</li>
+                    <li>Être titulaire du diplôme PSC1 (diplôme de 1ers secours) depuis moins de 2 ans ; et enfin,</li>
+                    <li>Avoir un casier judiciaire ne comportant aucune condamnation.</li>
+
+                  </ol>
+                </p>
+                <p class="para">
+                  La deuxième étape pour vous, serait de vous inscrire à l'examen, en déposant votre dossier d'inscription en ligne sur le site :
+                  <a href="https://www.examentaxivtc.fr">
+                    <b>
+                      <u>examentaxivtc.fr</u>
+                    </b>
+
+                  </a>
+                  . Ensuite, vous devez vous préparer au passage de l'examen et le réussir pour pouvoir obtenir votre carte professionnelle taxi .
+                </p>
+                <p class="para">La dernière étape, sera de choisir votre statut juridique et de déposer une demande de votre licence  (une autorisation de stationnement) pour pouvoir démarrer votre activité taxi. </p>
+
+
+              </div>
+            </div>
+          </div>
+        </section>
+        <section id="sh_corpomate_theme_section_2" data-name="Key Points">
+          <div class="container">
+            <div class="row mb32 mt32">
+              <div class="col-md-4 sh_disable_hover_part">
+                <section class="icon-bx-1 p-20 box-services  m-b30 sh_animation_part">
+                  <div class="icon-md  m-b20">
+                    <a href="#" class="icon-cell">
+                      <span class="fa fa-laptop" data-original-title="" title="" aria-describedby="tooltip872433" />
+                    </a>
+                  </div>
+                  <div class="icon-content">
+                    <h3 class="tilte">Inscription à la CMA</h3>
+                    <p class="m-b0">L'inscription à la chambre des métiers et de l'artisanat se fait en ligne.</p>
+                  </div>
+                  <span class="fa fa-diamond" />
+                </section>
+              </div>
+              <div class="col-md-4">
+                <section class="icon-bx-1 p-20 box-services m-b30 sh_animation_part">
+                  <div class="icon-md  m-b20">
+                    <a href="#" class="icon-cell">
+                      <span class="fa fa-edit" data-original-title="" title="" aria-describedby="tooltip958888" />
+                    </a>
+                  </div>
+                  <div class="icon-content">
+                    <h3 class="tilte">Inscription à la formation</h3>
+                    <p class="m-b0">
+                      <a href="/formation-taxi-Lille#pricing">
+                        <b>Inscrivez-vous</b>
+                      </a>
+                      à notre formation en ligne&amp;nbsp; et choisissez votre date d'examen.
+                    </p>
+                  </div>
+                  <span class="fa fa-building" />
+                </section>
+              </div>
+              <div class="col-md-4">
+                <section class="icon-bx-1 p-20 box-services m-b30 sh_animation_part">
+                  <div class="icon-md  m-b20">
+                    <a href="#" class="icon-cell">
+                      <span class="fa fa-flag" data-original-title="" title="" aria-describedby="tooltip617183" />
+                    </a>
+                  </div>
+                  <div class="icon-content">
+                    <h3 class="tilte">Examen final</h3>
+                    <p class="m-b0">Pour obtenir votre carte pro, vous devez vous réussir l'examen taxi.</p>
+                  </div>
+                  <span class="fa fa-lightbulb-o" />
+                </section>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="s_text_image pt32 pb32" data-name="Text - Image">
+          <div class="container">
+            <div class="row align-items-center">
+              <div class="col-lg-6 pt16 pb16">
+                <h2 class="title-2">
+                  <b>Certificat de capacité professionnelle taxi</b>
+                </h2>
+                <b>
+                  <br />
+                </b>
+                <p>
+                  <text style="">
+                    <span style="font-size: 18px;">Le certificat de capacité professionnelle taxi, est l'examen organisé par la&amp;nbsp;</span>
+                    <b style="font-size: 18px;">chambre des métiers et de l'artisanat
+                  </b>
+                    <span style="font-size: 18px;"> en vue d'évaluer les connaissances et les compétences des candidats souhaitant devenir 
+                  </span>
+                    <b style="font-size: 18px;">chauffeurs de taxi
+                  </b>
+                    <span style="font-size: 18px;">, en se basant sur deux épreuves principales&amp;nbsp;se composant d'</span>
+                    <b style="font-size: 18px;">épreuves théoriques d’admissibilité
+                  </b>
+                    <span style="font-size: 18px;">, sous forme de questions à choix multiples et de questions à réponses courtes, et d’une 
+                  </span>
+                    <b style="font-size: 18px;">épreuve pratique d’admission
+                  </b>
+                    <span style="font-size: 18px;">
+                      , qui consiste en une mise en situation pratique de réalisation d’une course de taxi ou d’une mission de transport en VTC.
+                      <br />
+                    </span>
+                    <br />
+                    <span style="font-size: 18px;">Pour réussir cet examen, vous devez avoir une moyenne minimale de 10/20&amp;nbsp;calculée sur l’ensemble des épreuves d’admissibilité.
+                  </span>
+                    <br />
+                    <span style="font-size: 18px;">Un candidat déclaré admissible, peut se présenter trois fois à l’épreuve d’admission dans un délai d’un an à compter de la publication des résultats des épreuves d’admissibilité.
+                  </span>
+                    <br />
+                  </text>
+                </p>
+                <div class="s_btn text-left pt16 pb16" data-name="Buttons">
+                  <a href="https://www.cma-hautsdefrance.fr/examen-taxi-et-vtc/" class="btn btn-primary" spellcheck="false" data-mci-spellchecked="true" data-original-title="" title="" aria-describedby="tooltip162489">En savoir plus</a>
+                </div>
+
+
+              </div>
+              <div class="col-lg-6 pt16 pb16">
+                <img src="/web/image/237368/A%20P%202%20%281%29.png" class="img img-fluid mx-auto" alt="Odoo • Texte et Image" data-original-title="" title="" aria-describedby="tooltip26435" />
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="s_text_image pt32 pb32" data-name="Text - Image">
+          <div class="container">
+            <div class="row align-items-center">
+              <div class="col-lg-6 pt16 pb16">
+                <img src="/web/image/236291/im%202.png" class="img img-fluid mx-auto" alt="Odoo • Texte et Image" data-original-title="" title="" aria-describedby="tooltip12197" />
+              </div>
+              <div class="col-lg-6 pt16 pb16">
+                <h2 class="title-2">
+                  <b>Suivre une formation taxi à Lille</b>
+                </h2>
+                <b>
+                  <br />
+                </b>
+                <p>
+                  <text style="font-size: 18px;">
+                    Afin de garantir votre chance de réussite à l'examen taxi, le suivi d'une formation taxi avec un centre agréé comme le nôtre est très recommandé.
+                    <br />
+                    En effet,&amp;nbsp;doté de plus de 10 ans d'expérience dans le secteur de transport de personnes, MCM Academy, vous propose une formation initiale&amp;nbsp;
+                    <b>100% théorique,&amp;nbsp;</b>
+                    à distance, de 70h, à suivre à votre rythme, et selon vos disponibilités sur notre plateforme e-learning.
+                    <br />
+                    <br />
+                    Les cours&amp;nbsp;sont basés sur le référentiel de l'examen.
+                    <br />
+                    Ils vous seront exposés sous forme de vidéoconférences avec lesquelles vous pourrez interagir, ainsi que des Lives orchestrés par des formateurs assez qualifiés, afin de mieux vous guider dans votre parcours, et vous diriger vers les axes les plus importants sur lesquels vous devez vous concentrer pour réussir vos épreuves.&amp;nbsp;
+                    <br />
+                    Comme nous avons pris le soin de mettre à votre disposition des examens blancs en
+                    <b>QCM</b>
+                    et
+                    <b>QRO</b>
+                    , pour aider à vous auto-évaluer et vous habituer aux conditions de l
+                    <b>
+                      <a href="/examen-vtc-taxi-moto-taxi">'examen</a>
+                    </b>
+                    final.
+                  </text>
+                </p>
+                <div class="s_btn text-left pt16 pb16" data-name="Buttons">
+                  <a href="/formation-taxi-Lille#pricing" class="btn btn-primary" spellcheck="false" data-mci-spellchecked="true" data-original-title="" title="" aria-describedby="tooltip568638">Je m'inscris !</a>
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!--TÉLÉCHARGER LE PROGRAMME DE LA FORMATION TAXI -->
+        <section id="sh_corpomate_theme_section_167" class="sh_animation_part" style="background-color: rgb(253, 209, 5); margin: 76px 0px">
+          <div class="container js-scroll fade-in-top">
+            <h3 style="color: rgb(0, 0, 0); font-size: 19px; max-width: 100%">
+              <b>Téléchargez notre programme de formation taxi</b>
+            </h3>
+            <p class="lead o_default_snippet_text">
+            Rejoignez-nous et passez à la vitesse supérieure.
+          </p>
+            <a class="animated-button-black" href="/mcm_website_theme/static/pdf/PROGRAMME DE  FORMATION a distance de 70H TAXI ET VTC.pdf" title="Programme de la formation TAXI" alt="Programme de la formation TAXI">
+              <span />
+              <span />
+              <span />
+              <span />
+              JE TÉLÉCHARGE
+            </a>
+          </div>
+        </section>
+
+
+        <!-- PRICING TABLE-->
+        <div id="pricing" class="pb32 mt-5">
+          <input t-att-value="request.website.microsoft_tracking_key" id="microsoft_tracking_key" type="hidden" />
+          <section id="sh_corpomate_theme_section_188" class="sh_animation_part" data-name="Pricing">
+            <div class="container">
+              <div class="sh_title js-scroll fade-in-top">
+                <h3 style="font-size: 26px;                                                 font-weight: 700;                                                 color: #000                                                 ;max-width:100%">
+                  <b>LET'S GO ! </b>
+                  <br />
+                  Inscrivez-vous dès maintenant !
+                </h3>
+                <p>
+                  <br />
+                </p>
+              </div>
+              <div class="row justify-content-center">
+                <div class="col-md-5 sh_animation_part js-scroll fade-in-top">
+                  <div class="sh_pricing">
+                    <t t-foreach="mcm_products" t-as="product">
+                      <t t-if="product.default_code=='taxi'">
+                        <form action="/shop/cart/update" method="post" id="form-1-2">
+                          <input type="hidden" class="product_id" name="product_id" id="taxi_product" t-att-value="product.id" />
+                          <input type="hidden" name="promo" t-att-value="promo.id" t-if="promo" />
+                          <h4>PACK TAXI</h4>
+                          <h5 class="el-cpf">Éligible au CPF</h5>
+                          <h4>
+                            <span t-esc="round(product.list_price)" />
+                            <span class="prod-cur" t-esc="product.currency_id.symbol" />
+                          </h4>
+                          <ul class="">
+                            <li>Formation 70 h (100 % en ligne)</li>
+                            <li>Accès à + de 12 examens d'entraînement</li>
+                            <li>Assistance par mail</li>
+                            <li>Assistance par téléphone</li>
+                            <li>Assistance par visioconférence</li>
+                            <li>Lives avec les formateurs pour explications</li>
+                            <li>Révision du programme avant examen</li>
+                          </ul>
+                          <br />
+                          <t t-if="promo">
+                            <p class="text-center font-weight-bolder text-secondary">
+                              <b style="font-size: 50%">
+                                <t />
+                              </b>
+                            </p>
+                          </t>
+                          <div class="sh_btn">
+                            <a class="animated-button-yellow" href="#pricing" onClick="(function(){ document.getElementById('form-1-2').submit();return false;})();return false;">
+                              <span />
+                              <span />
+                              <span />
+                              <span />
+                              Je m'inscris
+                            </a>
+                            <div>
+                              <span style="color: red !important;font-size: 17px;font-weight: 600;">
+                                                            Paiement 1 ou 2 fois
+                                                            </span>
+                            </div>
+                          </div>
+                        </form>
+                      </t>
+                    </t>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+        </div>
+        <!-- FIN PRICING TABLE-->
+        <!-- partenaires-->
+        <section class="pt40 pb32">
+          <div class="container js-scroll fade-in-top">
+            <div class="center-logo">
+              <div class="pt32" t-if="partenaire=='bolt'  or partenaire !='bolt'">
+                <a href="https://www.digimoov.fr/" target="_blank" rel="noopner">
+                  <img class="img-fluid lazy" style="width: 94px" data-src="/mcm_website_theme/static/src/img/logos/logo-digimoov.png" data-srcSafari="/mcm_website_theme/static/src/img/logos/logo-digimoov.png" alt="Logo partenaire Digimoov" title="Digimoov partenaire MCM ACADEMY" />
+                </a>
+              </div>
+              <div class="pt32" t-if="partenaire=='bolt'  or partenaire !='bolt'">
+                <a href="https://bolt.eu/fr/" target="_blank" rel="noopner">
+                  <img data-src="/mcm_website_theme/static/src/img/logos/logo-bolt.png" data-srcSafari="/mcm_website_theme/static/src/img/logos/logo-bolt.png" class="img-fluid lazy" style="width: 100px; margin-top: 9px" alt="Logo partenaire MCM-ACADEMY" title="Bolt partenaire MCM ACADEMY" />
+                </a>
+              </div>
+              <div class="pt32" t-if="partenaire=='' or partenaire !='bolt'">
+                <a href="https://www.artisanat.fr/">
+                  <img class="img-fluid lazy" style="width: 100px" data-srcSafari="/mcm_website_theme/static/src/img/logos/logo-CMA.png" data-src="/mcm_website_theme/static/src/img/logos/logo-CMA.png" title="Chambre de métiers et de l'artisanat partenaire MCM ACADEMY" alt="Chambre de métiers et de l'artisanat partenaire MCM ACADEMY" />
+                </a>
+              </div>
+              <div class="pt32" t-if="partenaire=='' or not partenaire ">
+                <a href="https://www.comptable-douai.com/" target="_blank" rel="noopner">
+                  <img class="img-fluid lazy" style="width: 250px" data-src="/mcm_website_theme/static/src/img/logos/logo-joel-pruvost.jpg" data-srcSafari="/mcm_website_theme/static/src/img/logos/logo-joel-pruvost.jpg" title="Joel partenaire MCM ACADEMY" alt="Joel partenaire MCM ACADEMY" />
+                </a>
+              </div>
+            </div>
+          </div>
+        </section>
+
+      </div>
+
     </t>
   </template>
 </odoo>
