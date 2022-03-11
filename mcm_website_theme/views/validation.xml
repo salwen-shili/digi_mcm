@@ -4,9 +4,8 @@
         <t t-call="website.layout">
             <style>
                  .action-button {
-  height: 40px;
-  width: 150px;
-  font-size: 15px;
+     padding: 10px 10px;
+  font-size: 13px;
 background-color: #000000;  
   border: 1px solid hsl(240, 44%, 28%);
   color: #ffffff;
@@ -41,9 +40,11 @@ background-color: #000000;
                             <i class="fa fa-times"></i>
                         </a>
                         <div class="content">
-                            <p id="notifMessage" style="text-align: center;font-size: 16px;"></p>
+                            <p id="notifMessage" style="text-align: center;font-size: 16px; color:#000"></p>
                             <div class="" style="text-align-last: center;margin-block-start: 1.5rem;">
-                                <input type="submit" class="text-center next action-button" style="float: unset !important;" value="Continuer" onclick="(function(){document.getElementById('msform').submit();;return false;})();return false;" />
+                                <input type="submit" class="text-center next action-button" style="float: unset !important;" value="Téléchargement Manuel" onclick="onSubmitForm('manuelle')" />
+                                <input type="submit" class="text-center next action-button" style="float: unset !important;" value="Téléchargement Automatique" onclick="onSubmitForm('automatique')" />
+
                             </div>
                         </div>
                     </div>
@@ -71,6 +72,8 @@ background-color: #000000;
                                 }
                             </style>
                             <form id="msform" action="/validation/submit" method="POST">
+                                <input type="hidden" value="" id="redirection" name="redirection" />
+
                                 <div class="card px-0 pt-4 pb-0 mt-3 mb-3 bg-c">
                                     <h2 id="heading">Inscription</h2>
                                     <p class="p_class">Remplissez tous les champs du formulaire pour passer à l'étape suivante</p>
