@@ -14,7 +14,7 @@ class Document(models.Model):
         if 'state' in vals and not ('partner_id' in vals):
             if vals['state'] == 'waiting':
                 partner = self.partner_id
-                partner_=self.env['res.partner'].sudo().search([('id',"=",partner.id)])
+                partner_=self.env['res.partner'].sudo().search([('id',"=",int(partner))])
                 if partner_ and not partner_.bolt:
                     _logger.info('if state in write  %s' % partner_.name)
                     self.change_stage_lead("Document non Validé", partner_)
@@ -23,7 +23,7 @@ class Document(models.Model):
             """si les documents sont refusés, on classe l'apprenant bolt sous Non éligible"""
             if vals['state'] == 'refused' :
                 partner = self.partner_id
-                partner_ = self.env['res.partner'].sudo().search([('id', "=", partner.id)])
+                partner_ = self.env['res.partner'].sudo().search([('id', "=", int(partner))])
                 if partner_ and partner_.bolt:
                     _logger.info('if state in refused  %s' % partner_.name)
                     self.change_stage_lead("Archivé", partner_)
@@ -31,7 +31,7 @@ class Document(models.Model):
         if 'state' in vals and 'partner_id' in vals:
             if vals['state'] == 'waiting':
                 partner = vals['partner_id']
-                partner_ = self.env['res.partner'].sudo().search([('id', "=", partner.id)])
+                partner_ = self.env['res.partner'].sudo().search([('id', "=", int(partner))])
                 if partner_ and not partner_.bolt:
                     self.change_stage_lead("Document non Validé", partner_)
                 if partner_ and  partner_.bolt:
@@ -40,7 +40,7 @@ class Document(models.Model):
             print('vals partner_id ')
             if self.state == 'waiting':
                 partner = vals['partner_id']
-                partner_ = self.env['res.partner'].sudo().search([('id', "=", partner)])
+                partner_ = self.env['res.partner'].sudo().search([('id', "=", int(partner))])
                 if partner_ and not partner_.bolt:
                     self.change_stage_lead("Document non Validé", partner_)
                 if partner_ and  partner_.bolt:
