@@ -33,7 +33,7 @@
                                     <span>
                                         <b>
                                             <u>SESSION DU
-                                                <span t-esc="(o.date_exam).strftime('%d %B %Y')"/>
+                                                <span t-esc="o.date_session_frensh(date_examen)"/>
                                             </u>
                                         </b>
                                     </span>
@@ -41,7 +41,7 @@
                                     <br/>
                                     <p>L'AN
                                         <span t-esc="docs.date_to_text(yearformat,monthformat)"/>
-                                        <span t-esc="(o.date_exam).strftime('%B').upper()"/>
+                                        <span t-esc="o.month_session_in_lettre(month_format)"/>
                                     </p>
                                     <br/>
                                     <style>
@@ -189,7 +189,6 @@
                                         </td>
                                         <td class="td" style="height:60px;width:200px;">
                                             <span t-esc="(o.date_exam).strftime('%d/%m/%Y')"/>
-                                            <span t-esc="o.date_session_frensh(date_examen)"/>
                                         </td>
                                         <td class="td" style="height:60px;width:200px;">
                                             <span></span>

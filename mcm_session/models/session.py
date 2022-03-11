@@ -106,11 +106,17 @@ class Session(models.Model):
 
     def date_session_frensh(self, date_examen):
         """ FORCER la date en francais par ce que odoo.sh applique """
-        date_format = '%d %B, %Y'
+        date_format = '%d %B %Y'
         locale.setlocale(locale.LC_TIME, str(self.env.user.lang) + '.utf8')
         date_examen = (self.date_exam).strftime(date_format)
         print("date_examen", date_examen)
         return date_examen
+
+    def month_session_in_lettre(self, month_format):
+        """ Fonction qui affiche les mois de date d'examen en lettres et en majuscules"""
+        month_format = '%B'
+        month_format = (self.date_exam).strftime(month_format).upper()
+        return month_format
 
     @api.model
     def _read_group_stage_ids(self, stages, domain, order):
