@@ -468,7 +468,7 @@ class partner(models.Model):
                                                                                                                             7:]
                                 partner.phone = phone
                             url = 'https://digimoov.360learning.com/'
-                            body = "Chere(e) %s : félicitation pour votre inscription, vous avez été invité par Digimoov à commencer votre formation via ce lien : %s .Vos identifiants sont identiques que sur Digimoov" % (
+                            body = "Chere(e) %s : félicitation pour votre inscription, vous avez été invité par Digimoov à commencer votre formation via ce lien : %s .Vos identifiants sont identiques que sur le site web Digimoov.fr" % (
                                 partner.name, url)
                             if body:
                                 sms = self.env['mail.message'].sudo().search(
