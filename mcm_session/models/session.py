@@ -108,7 +108,7 @@ class Session(models.Model):
         """ FORCER la date en francais par ce que odoo.sh applique """
         date_format = '%d %B %Y'
         locale.setlocale(locale.LC_TIME, str(self.env.user.lang) + '.utf8')
-        date_examen = (self.date_exam).strftime(date_format)
+        date_examen = (self.date_exam).strftime(date_format).title()
         print("date_examen", date_examen)
         return date_examen
 
