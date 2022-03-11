@@ -101,27 +101,35 @@ class WebsiteSale(WebsiteSale):
                         if body:
                             sms = request.env['mail.message'].sudo().search(
                                 [("body", "=", body), ("message_type", "=", 'sms'), ("res_id", "=", request.env.user.partner_id.id)])
-                            print('sms:',sms)
                             if not sms:
-                                print('not sms')
-                                composer = request.env['sms.composer'].with_context(
-                                    default_res_model='res.partner',
-                                    default_res_ids=request.env.user.partner_id.id,
-                                    default_composition_mode='mass',
-                                ).sudo().create({
-                                    'body': body,
-                                    'mass_keep_log': True,
-                                    'mass_force_send': True,
-                                })
+                                survey = request.env['survey.survey'].sudo().search(
+                                    [('title', "=", 'Examen blanc Français')],
+                                    limit=1)
+                                if survey :
+                                    survey_user = request.env['survey.user_input'].sudo().search(
+                                        [('partner_id', "=", request.env.user.partner_id.id),
+                                         ('survey_id', '=', survey.id)],
+                                        order='create_date asc', limit=1)
+                                    #check if the client has already passed his exam 
+                                    if not survey_user :
+                                        composer = request.env['sms.composer'].with_context(
+                                            default_res_model='res.partner',
+                                            default_res_id=request.env.user.partner_id.id,
+                                            default_composition_mode='comment', #change composition mode to comment
+                                        ).sudo().create({
+                                            'body': body,
+                                            'mass_keep_log': True,
+                                            'mass_force_send': False,
+                                            'use_active_domain': False,
+                                        })
 
-                                composer.action_send_sms()  # send sms of exam inscription
+                                        composer.action_send_sms()  # send sms of exam inscription
                             if request.env.user.partner_id.phone:
                                 request.env.user.partner_id.phone = '0' + str(request.env.user.partner_id.phone.replace(' ', ''))[-9:]
                 if default_code_bolt:
                     survey = request.env['survey.survey'].sudo().search([('title', "=", 'Examen blanc Français')],
                                                                         limit=1)
                     if survey:
-                        print()
                         _logger.info('survey : %s' %(str(survey)))
                         _logger.info('survey : %s' %(str(request.env.user.partner_id.email)))
                         survey_user = request.env['survey.user_input'].sudo().search(
@@ -1040,7 +1048,7 @@ class WebsiteSale(WebsiteSale):
                             composer = request.env['sms.composer'].with_context(
                                 default_res_model='res.partner',
                                 default_res_ids=partner.id,
-                                default_composition_mode='mass',
+                                default_composition_mode='comment',
                             ).sudo().create({
                                 'body': body,
                                 'mass_keep_log': True,
