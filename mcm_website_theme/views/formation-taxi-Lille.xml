@@ -6,6 +6,7 @@
       <link rel="stylesheet" href="/mcm_website_theme/static/src/css/cta-button.min.css" />
       <link rel="stylesheet" href="/mcm_website_theme/static/src/css/style_landing.css" />
       <div id="wrap" class="oe_structure oe_empty">
+
         <section class="s_text_image pt32 pb32" data-name="Text - Image">
           <div class="container">
             <div class="row align-items-center">
@@ -35,12 +36,12 @@
                 </p>
 
                 <div class="s_btn text-left pt16 pb16" data-name="Buttons">
-                  <a href="/formation-taxi-Lille#pricing" class="btn btn-primary" spellcheck="false" data-mci-spellchecked="true" data-original-title="" title="" aria-describedby="tooltip737699">Je m'inscris !</a>
+                  <a href="/formation-taxi-Lille#pricing" class="btn btn-primary" aria-describedby="tooltip737699">Je m'inscris !</a>
                 </div>
 
               </div>
               <div class="col-lg-6 pt16 pb16">
-                <img src="/web/image/65210/Formation-chauffeur-taxi.png" class="img img-fluid mx-auto" alt="Odoo • Texte et Image" data-original-title="" title="" aria-describedby="tooltip145600" />
+                <img data-src="/mcm_website_theme/static/src/img/lille/couv.webp" data-srcsafari="/mcm_website_theme/static/src/img/lille/couv.png" class="img img-fluid mx-auto lazy" alt="Formation taxi lille" data-original-title="" title="" aria-describedby="tooltip145600" />
               </div>
             </div>
           </div>
@@ -50,7 +51,7 @@
           <div class="container">
             <div class="row align-items-center">
               <div class="col-lg-6 pt16 pb16">
-                <img src="/web/image/237365/A%20P%201%20%281%29.png" class="img img-fluid mx-auto" alt="Odoo • Image et Texte" data-original-title="" title="" aria-describedby="tooltip818686" />
+                <img data-srcsafari="/mcm_website_theme/static/src/img/lille/T 1 LILLE.png" data-src="/mcm_website_theme/static/src/img/lille/T 1 LILLE.webp" class="img img-fluid mx-auto lazy" alt="formation lille" style="max-width: 85%" data-original-title="" title="" aria-describedby="tooltip818686" />
               </div>
               <div class="col-lg-6 pt16 pb16">
                 <h2 class="title-2">
@@ -88,6 +89,7 @@
             </div>
           </div>
         </section>
+
         <section id="sh_corpomate_theme_section_2" data-name="Key Points">
           <div class="container">
             <div class="row mb32 mt32">
@@ -141,6 +143,7 @@
             </div>
           </div>
         </section>
+
         <section class="s_text_image pt32 pb32" data-name="Text - Image">
           <div class="container">
             <div class="row align-items-center">
@@ -181,56 +184,53 @@
                   </text>
                 </p>
                 <div class="s_btn text-left pt16 pb16" data-name="Buttons">
-                  <a href="https://www.cma-hautsdefrance.fr/examen-taxi-et-vtc/" class="btn btn-primary" spellcheck="false" data-mci-spellchecked="true" data-original-title="" title="" aria-describedby="tooltip162489">En savoir plus</a>
+                  <a href="https://www.cma-hautsdefrance.fr/examen-taxi-et-vtc/" class="btn btn-primary" spellcheck="false" aria-describedby="tooltip162489">En savoir plus</a>
                 </div>
 
 
               </div>
               <div class="col-lg-6 pt16 pb16">
-                <img src="/web/image/237368/A%20P%202%20%281%29.png" class="img img-fluid mx-auto" alt="Odoo • Texte et Image" data-original-title="" title="" aria-describedby="tooltip26435" />
+                <img data-src="" data-srcsafari="" class="img img-fluid mx-auto lazy" alt="Certificat de capacité professionnelle taxi" aria-describedby="tooltip26435" />
               </div>
             </div>
           </div>
         </section>
+
         <section class="s_text_image pt32 pb32" data-name="Text - Image">
           <div class="container">
             <div class="row align-items-center">
               <div class="col-lg-6 pt16 pb16">
-                <img src="/web/image/236291/im%202.png" class="img img-fluid mx-auto" alt="Odoo • Texte et Image" data-original-title="" title="" aria-describedby="tooltip12197" />
+                <img data-src="" data-srcsafari="" class="img img-fluid mx-auto lazy" alt="formation taxi a distance lille" aria-describedby="tooltip12197" />
               </div>
               <div class="col-lg-6 pt16 pb16">
                 <h2 class="title-2">
                   <b>Suivre une formation taxi à Lille</b>
                 </h2>
-                <b>
+
+                <p class="para">
+                  Afin de garantir votre chance de réussite à l'examen taxi, le suivi d'une formation taxi avec un centre agréé comme le nôtre est très recommandé.
                   <br />
-                </b>
-                <p>
-                  <text style="font-size: 18px;">
-                    Afin de garantir votre chance de réussite à l'examen taxi, le suivi d'une formation taxi avec un centre agréé comme le nôtre est très recommandé.
-                    <br />
-                    En effet,&amp;nbsp;doté de plus de 10 ans d'expérience dans le secteur de transport de personnes, MCM Academy, vous propose une formation initiale&amp;nbsp;
-                    <b>100% théorique,&amp;nbsp;</b>
-                    à distance, de 70h, à suivre à votre rythme, et selon vos disponibilités sur notre plateforme e-learning.
-                    <br />
-                    <br />
-                    Les cours&amp;nbsp;sont basés sur le référentiel de l'examen.
-                    <br />
-                    Ils vous seront exposés sous forme de vidéoconférences avec lesquelles vous pourrez interagir, ainsi que des Lives orchestrés par des formateurs assez qualifiés, afin de mieux vous guider dans votre parcours, et vous diriger vers les axes les plus importants sur lesquels vous devez vous concentrer pour réussir vos épreuves.&amp;nbsp;
-                    <br />
-                    Comme nous avons pris le soin de mettre à votre disposition des examens blancs en
-                    <b>QCM</b>
-                    et
-                    <b>QRO</b>
-                    , pour aider à vous auto-évaluer et vous habituer aux conditions de l
-                    <b>
-                      <a href="/examen-vtc-taxi-moto-taxi">'examen</a>
-                    </b>
-                    final.
-                  </text>
+                  En effet,&amp;nbsp;doté de plus de 10 ans d'expérience dans le secteur de transport de personnes, MCM Academy, vous propose une formation initiale&amp;nbsp;
+                  <b>100% théorique,&amp;nbsp;</b>
+                  à distance, de 70h, à suivre à votre rythme, et selon vos disponibilités sur notre plateforme e-learning.
+                  <br />
+                  <br />
+                  Les cours&amp;nbsp;sont basés sur le référentiel de l'examen.
+                  <br />
+                  Ils vous seront exposés sous forme de vidéoconférences avec lesquelles vous pourrez interagir, ainsi que des Lives orchestrés par des formateurs assez qualifiés, afin de mieux vous guider dans votre parcours, et vous diriger vers les axes les plus importants sur lesquels vous devez vous concentrer pour réussir vos épreuves.&amp;nbsp;
+                  <br />
+                  Comme nous avons pris le soin de mettre à votre disposition des examens blancs en
+                  <b>QCM</b>
+                  et
+                  <b>QRO</b>
+                  , pour aider à vous auto-évaluer et vous habituer aux conditions de l
+                  <b>
+                    <a href="/examen-vtc-taxi-moto-taxi">'examen</a>
+                  </b>
+                  final.
                 </p>
                 <div class="s_btn text-left pt16 pb16" data-name="Buttons">
-                  <a href="/formation-taxi-Lille#pricing" class="btn btn-primary" spellcheck="false" data-mci-spellchecked="true" data-original-title="" title="" aria-describedby="tooltip568638">Je m'inscris !</a>
+                  <a href="/formation-taxi-Lille#pricing" class="btn btn-primary" spellcheck="false" aria-describedby="tooltip568638">Je m'inscris !</a>
                 </div>
 
               </div>
