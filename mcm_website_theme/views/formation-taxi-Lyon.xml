@@ -38,7 +38,7 @@
                 </div>
               </div>
               <div class="col-lg-6 pt16 pb16">
-                <img src="/web/image/242340/couv%20%283%29.png" class="img img-fluid mx-auto" alt="Formation taxi Lyon" data-original-title="" title="chauffeur taxi lyonnais" aria-describedby="tooltip742488" />
+                <img data-src="/mcm_website_theme/static/src/img/Lyon/devenir-taxi-lyonnais.webp" data-srcsafari="/mcm_website_theme/static/src/img/Lyon/devenir-taxi-lyonnais.png" class="img img-fluid mx-auto lazy" alt="Formation taxi Lyon" title="chauffeur taxi lyonnais" />
               </div>
             </div>
           </div>
@@ -47,7 +47,7 @@
           <div class="container">
             <div class="row align-items-center">
               <div class="col-lg-6 pt16 pb16">
-                <img src="/web/image/237379/A%20P%201%20%281%29.png" class="img img-fluid mx-auto" alt="Odoo • Image et Texte" />
+                <img data-src="/mcm_website_theme/static/src/img/Lyon/chauffeur-taxi-Lyon.png" srcsafari="/mcm_website_theme/static/src/img/Lyon/chauffeur-taxi-Lyon.png" class="img img-fluid mx-auto lazy" alt="Devenir chauffeur taxi à Lyon" />
               </div>
               <div class="col-lg-6 pt16 pb16">
                 <h2 class="title-2">
@@ -76,7 +76,6 @@ Les prérequis
             <div class="row align-items-center">
               <div class="col-lg-6 pt16 pb16">
                 <h2 class="title-2">
-
                   <text class="yellow-mcm">
                       Carte professionnelle
                     </text>
@@ -98,7 +97,7 @@ Les prérequis
                 </p>
               </div>
               <div class="col-lg-6 pt16 pb16">
-                <img src="/web/image/242334/COMMENT%20DEVENIR%20CHAUFFEUR%20DE%20TAXI%202.png" class="img img-fluid mx-auto" alt="Odoo • Texte et Image" data-original-title="" title="" aria-describedby="tooltip287737" />
+                <img data-srcsafari="/mcm_website_theme/static/src/img/Lyon/comment-devenir-chauffeur-taxi.png" data-src="mcm_website_theme/static/src/img/Lyon/comment-devenir-chauffeur-taxi.webp" class="img img-fluid mx-auto lazy" alt="Carte professionnelle taxi" />
               </div>
             </div>
           </div>
@@ -107,7 +106,7 @@ Les prérequis
           <div class="container">
             <div class="row align-items-center">
               <div class="col-lg-6 pt16 pb16">
-                <img src="/web/image/242339/formation-taxi-%C3%A0-distance-Lyon.png" class="img img-fluid mx-auto" alt="Odoo • Image et Texte" />
+                <img data-src="/mcm_website_theme/static/src/img/Lyon/Formation-taxi-distance.webp" data-srcsafari="/mcm_website_theme/static/src/img/Lyon/Formation-taxi-distance.png" class="img img-fluid mx-auto lazy" alt="Odoo • Image et Texte" />
               </div>
               <div class="col-lg-6 pt16 pb16">
                 <h2 class="title-2">
