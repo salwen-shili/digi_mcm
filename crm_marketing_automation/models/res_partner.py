@@ -24,7 +24,6 @@ class Partner(models.Model):
     # 
     #     return res
     def write(self, vals):
-        _logger.info('write %s' % str(vals))
         record = super(Partner, self).write(vals)
         if 'eval_box' in vals and vals['eval_box']==True and self.bolt:
             eval_box=vals['eval_box']
