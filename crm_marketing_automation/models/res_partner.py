@@ -156,8 +156,8 @@ class Partner(models.Model):
                                                                       ('state', '=', 'posted')
                                                                       ], order="invoice_date desc", limit=1)
                     date_facture = facture.invoice_date
-                    _logger.info('facture %s' %str(date_facture))
-                    _logger.info('facture %s' %str(partner.email))
+                    # _logger.info('facture %s' %str(date_facture))
+                    # _logger.info('facture %s' %str(partner.email))
 
                     # Récupérer les documents
                     documents = self.env['documents.document'].sudo().search([('partner_id', '=', partner.id)])
@@ -182,7 +182,7 @@ class Partner(models.Model):
                         if partner.bolt and float(partner.note_exam) < 40.0:
                             self.changestage("Echec d'Examen Blanc", self)
                         if sale_order and sale_order.state == "sent":
-                            _logger.info('contrat non signé')
+                            # _logger.info('contrat non signé')
                             if not partner.bolt:
                                 self.changestage("Contrat non Signé", partner)
                             else:
@@ -190,13 +190,13 @@ class Partner(models.Model):
                         if sale_order and sale_order.state == "sale":
                             if waiting:
                                 if partner.bolt:
-                                    _logger.info('wait bolt %s' % str(partner.email))
+                                    # _logger.info('wait bolt %s' % str(partner.email))
                                     self.changestage("Bolt-Document non Validé", partner)
                                 else :
                                     self.changestage("Document non Validé", partner)
                             """si les documents sont refusés, on classe l'apprenant bolt sous Non éligible"""
                             if refuse and partner.bolt:
-                                _logger.info("Archivé %s" %str(partner.name))
+                                # _logger.info("Archivé %s" %str(partner.name))
                                 self.changestage("Archivé", partner)
 
                             if document_valide:
@@ -208,7 +208,7 @@ class Partner(models.Model):
                                      pas depassé 14jours"""
                                 if not (partner.renounce_request) and (date_facture) and (date_facture + timedelta(days=14)) > (today):
                                     if partner.bolt:
-                                        _logger.info('bolt retract %s' % str(partner.email))
+                                        # _logger.info('bolt retract %s' % str(partner.email))
                                         self.changestage("Bolt-Rétractation non Coché", partner)
                                     else :
                                         self.changestage("Rétractation non Coché", partner)
@@ -222,10 +222,8 @@ class Partner(models.Model):
                                         si non sous Plateforme de formation """
                                         if partner.inscrit_mcm == False and partner.eval_box == True:
                                             _logger.info('eval box %s' % str(partner.email))
-                                            print("++++++", partner.email)
                                             self.changestage("Inscription Examen Eval Box", partner)
                                         if partner.inscrit_mcm and partner.eval_box == False:
-                                            print("======", partner.email)
                                             _logger.info('plateforme %s' % str(partner.email))
                                             self.changestage("Bolt-Plateforme de formation", partner)
                                     else :
