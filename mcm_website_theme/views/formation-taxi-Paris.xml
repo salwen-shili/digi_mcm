@@ -1,91 +1,93 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-  <template id="mcm_website_theme.formation-taxi-Paris" name="Formation TAXI">
+  <template id="mcm_website_theme.formation-taxi-Paris" name="Formation TAXI PARISIEN">
     <t t-call="website.layout">
-      <div id="wrap" class="oe_structure oe_empty" style="word-break: break-word; position: relative; z-index: 0;">
+      <script defer="defer" type="text/javascript" src="/digimoov_website_templates/static/src/js/lazy-min.min.js" />
+      <link rel="stylesheet" href="/mcm_website_theme/static/src/css/cta-button.min.css" />
+      <link rel="stylesheet" href="/mcm_website_theme/static/src/css/style_landing.css" />
+      <div id="wrap" class="oe_structure oe_empty">
         <section class="s_text_image pt32 pb32" data-name="Text - Image">
           <div class="container">
             <div class="row align-items-center">
-              <div class="col-lg-6 pt16 pb16" style="border-style: none; border-width: 0px;">
-                <h1>
-                  <font style="font-size: 62px;">
-                    <b>
-                      Devenir&amp;nbsp;
-                      <br />
-                    </b>
-                  </font>
-                  <font style="color: rgb(239, 198, 49); font-size: 62px;">
-                    <b>taxi parisien</b>
-                  </font>
-                </h1>
-                <p>
-                  <span style="color: rgb(0, 0, 0); font-size: 18px;">
-                    Paris est une ville très attractive pour
-                    <b>devenir conducteur de taxi</b>
-                    et chacun parvient à y trouver sa clientèle tant la démographie y prédispose. Alors si vous souhaitez devenir chauffeur de taxi parisien, n'attendez plus ! Inscrivez-vous dés maintenant à notre formation à distance . Une formation de 70h à la hauteur de vos espérance avec des formateurs qualifiés et un programme complet pour vous aider à réussir votre examen et détenir votre carte professionnelle.
-                  </span>
-                  <br />
-                </p>
-                <div class="s_btn text-left pt16 pb16" data-name="Buttons">
-                  <a href="#" class="btn btn-primary" spellcheck="false" data-mci-spellchecked="true" style="word-break: break-word; position: relative; z-index: 0;">
-                    <font style="font-size: 18px;">Je m'inscris !</font>
-                  </a>
-                </div>
-                <mci-extension data-role="overlay" />
-                <mci-extension data-role="overlay" />
-              </div>
               <div class="col-lg-6 pt16 pb16">
-                <img src="/web/image/241539/formation-taxi-parisien.png" class="img img-fluid mx-auto" alt="Odoo • Texte et Image" />
+                <h1 class="title-1">
+                  Formation
+                  <br />
+                  <text class="yellow-mcm">Taxi parisien</text>
+                </h1>
+                <p class="para">
+                  Paris est une ville très attractive pour
+                  <b>devenir conducteur de taxi</b>
+                  et chacun parvient à y trouver sa clientèle tant la démographie y
+            prédispose. Alors si vous souhaitez devenir
+                  <b>chauffeur de taxi parisien</b>
+                  , n'attendez plus !
+                  <a href="#pricing">
+                    <b>
+                      <u>Inscrivez-vous</u>
+                    </b>
+                  </a>
+                  dès maintenant à notre formation à distance . Une formation de 70h à
+            la hauteur de vos espérance avec des formateurs qualifiés et un
+            programme complet pour vous aider à réussir votre examen et détenir
+            votre carte professionnelle.
+                </p>
+
+                <div class="s_btn text-left pt16 pb16" data-name="Buttons">
+                  <a href="/formation-taxi-Paris#pricing" class="btn btn-primary">
+              Je m'inscris !
+            </a>
+                </div>
+              </div>
+
+              <div class="col-lg-6 pt16 pb16">
+                <img alt="Chauffeur taxi parisien" class="img img-fluid mx-auto lazy" title="chauffeur taxi parisien" data-src="/mcm_website_theme/static/src/img/taxi paris/couv taxi paris.webp" data-srcsafari="/mcm_website_theme/static/src/img/taxi paris/couv taxi paris.png" />
               </div>
             </div>
           </div>
         </section>
+
         <section class="s_text_image pt32 pb32" data-name="Image - Text">
           <div class="container">
             <div class="row align-items-center">
               <div class="col-lg-6 pt16 pb16">
-                <img src="/web/image/235827/COUV%202%20%282%29.png" class="img img-fluid mx-auto" alt="Odoo • Image et Texte" />
+                <img alt="Conducteur de Taxi" class="img img-fluid mx-auto lazy" data-src="/mcm_website_theme/static/src/img/taxi paris/COUV 2 (2).webp" data-srcsafari="/mcm_website_theme/static/src/img/taxi paris/COUV 2 (2).png" />
               </div>
-              <div class="col-lg-6 pt16 pb16" style="border-style: none; border-width: 0px;">
-                <h2>
-                  <b>QUELS SONT LES PRÉREQUIS POUR DEVENIR CHAUFFEUR DE TAXI&amp;nbsp;À&amp;nbsp;PARIS ?&amp;nbsp;</b>
-                </h2>
-                <p>
-                  <font style="font-size: 18px;">Pour devenir&amp;nbsp;</font>
-                  <span style="color: rgb(29, 28, 29); font-family: Slack-Lato, appleLogo, sans-serif; font-size: 18px; font-variant-ligatures: common-ligatures; font-weight: 700;">conducteur taxi</span>
-                  <span style="color: rgb(29, 28, 29); font-family: Slack-Lato, appleLogo, sans-serif; font-size: 18px; font-variant-ligatures: common-ligatures;">&amp;nbsp;en toute légalité, vous devez répondre à ces critères : avoir un&amp;nbsp;</span>
-                  <span style="color: rgb(29, 28, 29); font-family: Slack-Lato, appleLogo, sans-serif; font-size: 18px; font-variant-ligatures: common-ligatures; font-weight: 700;">permis de conduire </span>
-                  <span style="color: rgb(29, 28, 29); font-family: Slack-Lato, appleLogo, sans-serif; font-size: 18px; font-variant-ligatures: common-ligatures;">catégorie</span>
-                  <span style="color: rgb(29, 28, 29); font-family: Slack-Lato, appleLogo, sans-serif; font-size: 18px; font-variant-ligatures: common-ligatures; font-weight: 700;"> (B)</span>
-                  <span style="color: rgb(29, 28, 29); font-family: Slack-Lato, appleLogo, sans-serif; font-size: 18px; font-variant-ligatures: common-ligatures;">&amp;nbsp;de plus de 3 ans de validité, passer une&amp;nbsp;</span>
-                  <span style="color: rgb(29, 28, 29); font-family: Slack-Lato, appleLogo, sans-serif; font-size: 18px; font-variant-ligatures: common-ligatures; font-weight: 700;">visite médicale</span>
-                  <span style="color: rgb(29, 28, 29); font-family: Slack-Lato, appleLogo, sans-serif; font-size: 18px; font-variant-ligatures: common-ligatures;">&amp;nbsp;à la préfecture de votre région pour être reconnu apte à exercer ce métier, avoir un&amp;nbsp;</span>
-                  <span style="color: rgb(29, 28, 29); font-family: Slack-Lato, appleLogo, sans-serif; font-size: 18px; font-variant-ligatures: common-ligatures; font-weight: 700;">casier judiciaire vierge </span>
-                  <span style="color: rgb(29, 28, 29); font-family: Slack-Lato, appleLogo, sans-serif; font-size: 18px; font-variant-ligatures: common-ligatures;">et&amp;nbsp;</span>
-                  <font color="#1d1c1d" face="Slack-Lato, appleLogo, sans-serif" style="">
-                    <span style="font-size: 18px; font-variant-ligatures: common-ligatures;">
-                      détenir le
-                      <b>brevet de secourisme</b>
-                      depuis moins de 2 ans.
-                    </span>
-                  </font>
+              <div class="col-lg-6 pt16 pb16">
+                <h2 class="title-2">
+          Quels sont les prérequis pour devenir chauffeur de Taxi à Paris? 
+         </h2>
+                <p class="para">
+                  Pour devenir conducteur taxi en toute légalité, vous devez répondre à ces critères :
+                  <ul class="liste">
+                    <li>Avoir un permis de conduire catégorie (B) de plus de 3 ans de validité</li>
+                    <li>Passer une visite médicale à la préfecture de votre région pour être reconnu apte à exercer ce métier</li>
+                    <li>Avoir un casier judiciaire vierge</li>
+                    <li>Détenir le brevet de secourisme depuis moins de 2 ans</li>
+                  </ul>
                 </p>
+
                 <div class="s_btn text-left pt16 pb16" data-name="Button">
-                  <a href="#https://www.mcm-academy.fr/blog/blog-taxi-10/post/les-prerequis-pour-exercer-les-metiers-de-chauffeur-vtc-ou-taxi-26" class="btn btn-outline-alpha" spellcheck="false" data-mci-spellchecked="true" style="word-break: break-word; position: relative; z-index: 0;" lang="merciapp"> En savoir plus </a>
+                  <a href="/blog/les-prérequis-pour-exercer-les-métiers-de-chauffeur-vtc-ou-taxi" class="btn btn-outline-alpha">
+              En savoir plus
+            </a>
                 </div>
-                <mci-extension data-role="overlay" />
               </div>
             </div>
           </div>
         </section>
+
         <section id="sh_corpomate_theme_section_152" data-name="Title">
           <div class="container">
             <div class="row">
-              <h1 class="elementor-size-default">Les démarches pour devenir conducteur de taxi</h1>
+              <h2 class="title-2">
+          Les démarches pour devenir conducteur de taxi
+        </h2>
             </div>
           </div>
         </section>
-        <section id="sh_corpomate_theme_section_20" data-name="Key Points" style="background-color: rgb(239, 198, 49);">
+
+        <section id="sh_corpomate_theme_section_20" data-name="Key Points" style="background-color: rgb(239, 198, 49)">
           <div class="container">
             <div class="row">
               <div class="col-md-4 bg-white sh_border_right sh_disable_hover_part">
@@ -93,52 +95,58 @@
                   <div class="sh_icon">
                     <div class="sh_dia">
                       <span class="fa fa-diamond sh_icon1" />
-                      <span class="fa fa-laptop sh_icon2" data-original-title="" title="" aria-describedby="tooltip731997" style="color: rgb(239, 198, 49);" />
+                      <span class="fa fa-laptop sh_icon2" data-original-title="" title="" aria-describedby="tooltip731997" style="color: rgb(239, 198, 49)" />
                     </div>
                   </div>
                   <div class="sh_right_content">
                     <h4>Inscription à la CMA</h4>
                     <p>
-                      <font style="color: rgb(0, 0, 0); font-size: 14px;">
+                      <text style="color: rgb(0, 0, 0); font-size: 14px">
                         L'
-                        <a href="https://www.examentaxivtc.fr/#!/login" spellcheck="false" data-mci-spellchecked="true" style="word-break: break-word; position: relative; z-index: 0;">
+                        <a href="https://www.examentaxivtc.fr/">
                           <b>inscription</b>
                         </a>
                         à la chambre des métiers et de l'artisanat se fait en ligne .
-                      </font>
+                      </text>
                     </p>
                   </div>
                 </div>
-                <mci-extension data-role="overlay" />
               </div>
               <div class="col-md-4 bg-white sh_border_right sh_disable_hover_part">
                 <div class="sh_content">
                   <div class="sh_icon">
                     <div class="sh_dia">
                       <span class="fa fa-building sh_icon1" />
-                      <span class="fa fa-sign-in sh_icon2" style="color: rgb(239, 198, 49);" />
+                      <span class="fa fa-sign-in sh_icon2" style="color: rgb(239, 198, 49)" />
                     </div>
                   </div>
                   <div class="sh_right_content">
                     <h4>Inscription à la formation</h4>
                     <p>
-                      <font style="font-size: 14px;">Inscrivez-vous à notre formation en ligne et choisissez votre date d'examen.</font>
+                      <text style="font-size: 14px">Inscrivez-vous à notre formation en ligne et choisissez votre
+                  date d'examen.</text>
                     </p>
                   </div>
                 </div>
               </div>
-              <div class="col-md-4 bg-white sh_disable_hover_part" style="border-style: none; border-width: 0px;">
+              <div class="col-md-4 bg-white sh_disable_hover_part">
                 <div class="sh_content">
                   <div class="sh_icon">
                     <div class="sh_dia">
                       <span class="fa fa-file-text-o sh_icon1" />
-                      <span class="fa fa-file-text-o sh_icon2" data-original-title="" title="" aria-describedby="tooltip44911" style="color: rgb(239, 198, 49);" />
+                      <span class="fa fa-file-text-o sh_icon2" style="color: rgb(239, 198, 49)" />
                     </div>
                   </div>
                   <div class="sh_right_content">
                     <h4>Examen Final</h4>
                     <p>
-                      <font style="font-size: 14px;">Pour détenir votre carte pro, vous devez réussir l'examen. 3 tentatives &amp;nbsp;possibles.</font>
+                      <text style="font-size: 14px">
+                        Pour obtenir votre carte pro, vous devez réussir l
+                        <a href="/examen-vtc-taxi-moto-taxi">
+                          <b>'examen.</b>
+                        </a>
+                        3 tentatives &amp;nbsp;possibles.
+                      </text>
                     </p>
                   </div>
                 </div>
@@ -146,146 +154,135 @@
             </div>
           </div>
         </section>
+
         <section class="s_text_image pt32 pb32" data-name="Text - Image">
           <div class="container">
             <div class="row align-items-center">
               <div class="col-lg-6 pt16 pb16">
                 <h2>
-                  <b>FORMATION TAXI PARISIEN&amp;nbsp;</b>
+                  <b>Formation Taxi à Paris</b>
                 </h2>
-                <p>
-                  <span style="white-space: pre-wrap;">
-                    <font style="font-size: 18px;">Vous souhaitez obtenir votre carte professionnelle, et devenir taxi parisien ? </font>
-                  </span>
-                  <span style="font-size: 17px; color: rgb(29, 28, 29); font-family: Slack-Lato, appleLogo, sans-serif; font-variant-ligatures: common-ligatures;">
-                    Avec plus de 10 ans d'expérience dans le domaine du transport de personnes, MCM Academy, vous&amp;nbsp;
-                    <span style="font-weight: 700;">garantie une formation à distance 100% théorique </span>
-                    de qualité, grâce à laquelle vous pourrez acquérir toutes les connaissances nécessaires pour exercer le métier de conducteur de taxi, en vous offrant une préparation optimale à l'examen final .
-                    <br />
-                    Les&amp;nbsp;
-                    <span style="font-weight: 700;">cours</span>
-                    &amp;nbsp;de la formation seront accecibles depuis notre plateforme e-learning en illimité.
-                    <br />
-                    Ils sont portés sur la&amp;nbsp;
-                    <span style="font-weight: 700;">réglementation&amp;nbsp;</span>
-                    du transport public , la&amp;nbsp;
-                    <span style="font-weight: 700;">sécurité</span>
-                    &amp;nbsp;routière, la&amp;nbsp;
-                    <span style="font-weight: 700;">gestion</span>
-                    &amp;nbsp;, la connaissance du territoire et la réglementation locale et les
-                    <b>langues française et anglaise</b>
-                    afin d'évaluer votre capacité d’expression et de compréhension et ainsi assurer une bonne communication avec vos futurs clients.
-                  </span>
-                  <span style="color: rgb(0, 0, 0); font-size: 17px;" />
-                  <br style="box-sizing: inherit; color: rgb(29, 28, 29); font-family: Slack-Lato, appleLogo, sans-serif; font-size: 15px; font-variant-ligatures: common-ligatures; background-color: rgb(248, 248, 248);" />
-                  <span style="font-size: 17px; color: rgb(29, 28, 29); font-family: Slack-Lato, appleLogo, sans-serif; font-variant-ligatures: common-ligatures;">
-                    Des&amp;nbsp;
-                    <span style="font-weight: 700;">exercices</span>
-                    &amp;nbsp;sous formes de&amp;nbsp;
-                    <span style="font-weight: 700;">QCM</span>
-                    &amp;nbsp;et d'&amp;nbsp;
-                    <span style="font-weight: 700;">examens blancs </span>
-                    ont étés concotés par nos experts métiers, afin de vous permettre de vous auto-évaluer et de vous habituer aux conditions de l'examen.
-                  </span>
-                  <br />
+                <p class="para">
+                  Vous souhaitez obtenir votre carte professionnelle, et devenir taxi parisien ? 
+Avec plus de 10 ans d'expérience dans le domaine du transport de personnes, MCM Academy, vous
+                  <b>garantie une formation à distance 100% théorique</b>
+                  de qualité, grâce à laquelle vous pourrez acquérir toutes les connaissances nécessaires pour exercer le métier de conducteur de taxi, en vous offrant une préparation optimale à l'examen final .
+Les  cours  de la formation seront accessibles depuis notre plateforme e-learning en illimité.
+Ils portent sur la
+                  <b>réglementation</b>
+                  du transport public , la
+                  <b>sécurité</b>
+                  routière, la
+                  <b>gestion</b>
+                  , la connaissance du territoire et la réglementation locale et les
+                  <b>langues française et anglaise</b>
+                  afin d'évaluer votre capacité d’expression et de compréhension et ainsi assurer une bonne communication avec vos futurs clients.
+Des
+                  <b>exercices</b>
+                  sous forme de
+                  <b>QCM</b>
+                  et d'
+                  <b>examens blancs</b>
+                  ont été concoctés par nos experts métiers, afin de vous permettre de vous auto-évaluer et de vous habituer aux conditions de l'examen.
                 </p>
+
+
                 <div class="s_btn text-left pt16 pb16" data-name="Buttons">
-                  <a href="#" class="btn btn-primary o_default_snippet_text">En savoir plus</a>
+                  <a href="/qui-sommes-nous" class="btn btn-primary">En savoir plus</a>
                 </div>
               </div>
+
               <div class="col-lg-6 pt16 pb16">
-                <img src="/web/image/232336/comment%20s%27inscrire%20au%20registre%20VTC%202.png" class="img img-fluid mx-auto" alt="Odoo • Texte et Image" data-original-title="" title="" aria-describedby="tooltip698381" />
+                <img alt="Conducteur taxi épanoui" class="img img-fluid lazy" data-src="/mcm_website_theme/static/src/img/taxi paris/FORMATION TAXI PARISIEN (1).webp" data-srcsafari="mcm_website_theme/static/src/img/taxi paris/FORMATION TAXI PARISIEN (1).png" />
+
+
               </div>
+
             </div>
           </div>
         </section>
-        <section class="s_call_to_action bg-200 pt48 pb24" data-name="Call to Action">
-          <div class="container">
-            <div class="row">
-              <div class="col-lg-9 pb24">
-                <h3>
-                  <b>Téléchargez notre programme de formation taxi parisien</b>
-                </h3>
-                <p class="lead o_default_snippet_text">Rejoignez-nous et passez à la vitesse supérieure.</p>
-              </div>
-              <div class="col-lg-3 s_btn text-right pt8 pb24" data-name="Button">
-                <a href="/fr/contactus" class="btn btn-primary btn-lg">
-                  <span data-original-title="" title="" aria-describedby="tooltip278966">Télécharger</span>
-                  <i class="fa fa-1x fa-fw fa-arrow-circle-right ml-1" />
-                </a>
-              </div>
-            </div>
+
+        <!--TÉLÉCHARGER LE PROGRAMME DE LA FORMATION TAXI -->
+        <section id="sh_corpomate_theme_section_167" class="sh_animation_part" style="background-color: rgb(253, 209, 5); margin: 76px 0px">
+          <div class="container js-scroll fade-in-top">
+            <h3 style="color: rgb(0, 0, 0); font-size: 19px; max-width: 100%">
+              <b>Téléchargez notre programme de formation taxi parisien</b>
+            </h3>
+            <p class="lead o_default_snippet_text">
+            Rejoignez-nous et passez à la vitesse supérieure.
+          </p>
+            <a class="animated-button-black" href="/mcm_website_theme/static/pdf/PROGRAMME DE  FORMATION a distance de 70H TAXI ET VTC.pdf" title="Programme de la formation TAXI" alt="Programme de la formation TAXI">
+              <span />
+              <span />
+              <span />
+              <span />
+              JE TÉLÉCHARGE
+            </a>
           </div>
         </section>
+
+
         <section class="s_text_image pt32 pb32" data-name="Image - Text">
           <div class="container">
             <div class="row align-items-center">
               <div class="col-lg-6 pt16 pb16">
-                <img src="/web/image/240185/1.png" class="img img-fluid mx-auto" alt="Odoo • Image et Texte" data-original-title="" title="" aria-describedby="tooltip187347" />
+                <img alt="candidat examen taxi" class="img img-fluid lazy" data-src="/mcm_website_theme/static/src/img/taxi paris/1.webp" data-srcsafari="/mcm_website_theme/static/src/img/taxi paris/1.png" title="candidat examen taxi" />
               </div>
-              <div class="col-lg-6 pt16 pb16" style="border-style: none; border-width: 0px;">
-                <h2>
-                  <b>EXAMEN TAXI PARISIEN</b>
-                </h2>
-                <p>
-                  <font style="font-size: 18px;">
-                    Devenir taxi parisien nécessitera de passer l’
-                    <a href="https://www.mcm-academy.fr/examen-vtc-taxi-moto-taxi" spellcheck="false" data-mci-spellchecked="true" style="word-break: break-word; position: relative; z-index: 0;" lang="merciapp" class="btn btn-warning">
-                      <b>examen</b>
-                    </a>
-                    de chauffeur de taxi (
-                    <b>Certificat de Capacité Professionnel de Chauffeur de Taxi</b>
-                    ) organisé par la chambre des métiers et de l'artisanat de l'
-                    <span style="color: rgb(0, 0, 0); font-family: Roboto, sans-serif; font-size: 16.8px;">Î</span>
-                    le de France.&amp;nbsp;
-                    <br />
-                  </font>
-                  <span style="color: rgb(0, 0, 0); font-size: 17px;">Vous devrez passer des épreuves théoriques d’</span>
-                  <span style="font-weight: 700; color: rgb(0, 0, 0); font-size: 17px;">admissibilité</span>
-                  <span style="color: rgb(0, 0, 0); font-size: 17px;">&amp;nbsp;, sous forme de questions à choix multiples et de questions (&amp;nbsp;</span>
-                  <span style="font-weight: 700; color: rgb(0, 0, 0); font-size: 17px;">QCM</span>
-                  <span style="color: rgb(0, 0, 0); font-size: 17px;">&amp;nbsp;) à réponses courtes, et d’une épreuve pratique d’&amp;nbsp;</span>
-                  <span style="font-weight: 700; color: rgb(0, 0, 0); font-size: 17px;">admission</span>
-                  <span style="color: rgb(0, 0, 0); font-size: 17px;">&amp;nbsp;, qui consiste en une mise en situation pratique de réalisation d’une course de taxi ou d’une mission de transport en taxi.</span>
-                  <span style="color: rgb(0, 0, 0); font-size: 17px;"> La réussite aux épreuves d’admissibilité permet d’accéder à l’</span>
-                  <span style="font-weight: 700; color: rgb(0, 0, 0); font-size: 17px;">épreuve d’admission.</span>
+              <div class="col-lg-6 pt16 pb16">
+                <h2 class="title-2">
+            Examen Taxi parisien
+          </h2>
+                <p class="para">
+                  Devenir taxi parisien nécessitera de passer l’
+                  <a href="/examen-vtc-taxi-moto-taxi">examen</a>
+                  de chauffeur de taxi
+                  <b>( Certificat de Capacité Professionnel de Chauffeur de Taxi )</b>
+                  organisé par la chambre des métiers et de l'artisanat de l'Île de France.
                   <br />
+                  Vous devrez passer des épreuves théoriques d’
+                  <b>admissibilité</b>
+                  , sous forme de questions à choix multiples et de questions
+                  <b>(QCM)</b>
+                  à réponses courtes, et d’une épreuve pratique d’
+                  <b>admission</b>
+                  , qui consiste en une mise en situation pratique de réalisation d’une course de taxi ou d’une mission de transport en taxi. La réussite aux épreuves d’admissibilité permet d’accéder à l’
+                  <b>épreuve d’admission</b>
+                  .
                 </p>
-                <mci-extension data-role="overlay" />
-                <mci-extension data-role="overlay" />
               </div>
             </div>
           </div>
         </section>
+
         <section class="s_text_image pt32 pb32" data-name="Text - Image">
           <div class="container">
             <div class="row align-items-center">
               <div class="col-lg-6 pt16 pb16">
-                <h2>Comment financer ma formation?</h2>
-                <h2 />
-                <p style="font-size: 14px;">
-                  <font style="font-size: 18px;">MCM Academy vous offre deux moyens de financement assez intéressants !&amp;nbsp;</font>
-                  &amp;nbsp;
-                  <font style="font-size: 18px;">
-                    Et vous offrant le choix de financer votre formation taxi par carte bancaire avec possibilité de paiement sur deux tranches, ou en mobilisant votre
+                <h2 class="title-2">Comment financer ma formation Taxi parisien?</h2>
+
+                <p class="para">
+                  MCM Academy vous offre deux moyens de financement assez intéressants ! Et vous offrant le choix de financer votre formation taxi par carte bancaire avec possibilité de paiement sur deux tranches, ou en mobilisant votre
+                  <a href="/mon-compte-de-formation-cpf">
                     <b>
-                      <a href="https://www.mcm-academy.fr/mon-compte-de-formation-cpf" class="btn btn-warning">compte de formation personnel</a>
+                      <u>compte de formation personnel</u>
                     </b>
-                    .
-                  </font>
+                  </a>
+                  .
                 </p>
                 <div class="s_btn text-left pt16 pb16" data-name="Buttons">
-                  <a href="#" class="btn btn-primary" spellcheck="false" data-mci-spellchecked="true" style="word-break: break-word; position: relative; z-index: 0;" lang="merciapp" data-original-title="" title="" aria-describedby="tooltip982120">Je me lance !</a>
+                  <a href="/formation-taxi-Paris#pricing" class="btn btn-primary">Je me lance !</a>
                 </div>
-                <mci-extension data-role="overlay" />
               </div>
               <div class="col-lg-6 pt16 pb16">
-                <img src="/web/image/website.s_text_image_default_image" class="img img-fluid mx-auto" alt="Odoo • Texte et Image" />
+                <img data-src="/mcm_website_theme/static/src/img/taxi paris/Comment financer ma formation taxi -mcm academy.webp" data-srcsafari="/mcm_website_theme/static/src/img/taxi paris/Comment financer ma formation taxi -mcm academy.png" class="img img-fluid mx-auto lazy" alt="financer ma formation Taxi parisien" />
               </div>
             </div>
           </div>
         </section>
+
       </div>
+
+
     </t>
   </template>
 </odoo>
