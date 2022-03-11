@@ -197,7 +197,7 @@ class Partner(models.Model):
                                     self.changestage("Document non Validé", partner)
                             """si les documents sont refusés, on classe l'apprenant bolt sous Non éligible"""
                             if refuse and partner.bolt:
-                                -logger.info("Archivé %s" %str(partner.name))
+                                _logger.info("Archivé %s" %str(partner.name))
                                 self.changestage("Archivé", partner)
 
                             if document_valide:
@@ -215,8 +215,9 @@ class Partner(models.Model):
                                         self.changestage("Rétractation non Coché", partner)
                                 if partner.renounce_request :
                                     if partner.bolt:
-                                        """S'il a renoncé et son contrat est signé et ses documents sont validé sera classé sous contrat Signé """
-                                        self.changestage("Bolt-Contrat Signé",partner)
+                                        if partner.inscrit_mcm == False and partner.eval_box == False:
+                                            """S'il a renoncé et son contrat est signé et ses documents sont validé sera classé sous contrat Signé """
+                                            self.changestage("Bolt-Contrat Signé",partner)
                                         """Si client bolt et inscrit à l'examen eval box, et n'a pas encore commencé
                                          sa formation sera classé sous examen eval box 
                                         si non sous Plateforme de formation """
