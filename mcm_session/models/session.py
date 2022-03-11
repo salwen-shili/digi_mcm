@@ -103,6 +103,10 @@ class Session(models.Model):
         pourcentage = f'{pourcentage_without_round:.2f}' #Garder justes deux chiddre après la virgule
         return pourcentage
 
+    def calculer_nombre_absence(self, nbr_absence):
+        for examen in self.env['info.examen'].search([]):
+            print(examen)
+
     @api.model
     def _read_group_stage_ids(self, stages, domain, order):
         """ Read group customization in order to display all the stages in the
