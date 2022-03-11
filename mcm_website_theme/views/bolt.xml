@@ -363,7 +363,6 @@ pricebar::after {
                                                 <b>Un accompagnement</b>
                                                 du premier clic à la première course avec des
                                                 <b>conseillers Bolt</b>
-                                                <br />
                                                 (de l’inscription à l’examen à l’inscription sur Bolt).
                                             </li>
                                             <li style="margin-bottom: 8px;">
@@ -371,7 +370,6 @@ pricebar::after {
                                                 <b>tarifs préférentiels</b>
                                                 sur la préparation et l’inscription à
                                                 <b>l’examen théorique</b>
-                                                <br />
                                                 (20€ au lieu de 706€)
                                             </li>
                                             <li style="margin-bottom: 8px;">
@@ -379,7 +377,6 @@ pricebar::after {
                                                 <b>tarifs préférentiels</b>
                                                 sur la préparation et la location du véhicule pour
                                                 <b>l’examen pratique</b>
-                                                <br />
                                                 (20€ au lieu de 200€)
                                             </li>
                                             <li style="margin-bottom: 8px;">
@@ -390,8 +387,6 @@ pricebar::after {
                                             </li>
                                             <li style="margin-bottom: 8px;">
                                                 Une aide dans toutes les démarches administratives grâce à notre partenaire
-                                                <br />
-
                                                 <b>La Maison du Chauffeur VTC.</b>
                                             </li>
                                             <li style="margin-bottom: 8px;">
@@ -410,7 +405,7 @@ pricebar::after {
 
                                     </p>
                                     <p class="para">
-                                        Pour connaître toutes les étapes pour devenir chauffeur VTC, n’hésitez pas à
+                                        Pour connaître toutes les étapes pour devenir chauffeur VTC,  n’hésitez pas à
                                         <a href="https://blog.bolt.eu/fr/devenez-chauffeur-vtc-avec-lacademie-bolt/">
                                             <b>
                                                 <u> consulter cet article.</u>
@@ -419,9 +414,6 @@ pricebar::after {
                                         .
                                     </p>
 
-                                    <div class="s_btn text-left pt16 pb16">
-                                        <a href="#" class="btn btn-outline-primary o_default_snippet_text">Découvrir</a>
-                                    </div>
                                 </div>
                                 <div class="col-lg-6 pt16 pb16" style="border-style: none; border-width: 0px;">
                                     <img src="/mcm_website_theme/static/src/img/bolt-mcm.png" class="img img-fluid mx-auto" alt="Odoo • Image et Texte" />
