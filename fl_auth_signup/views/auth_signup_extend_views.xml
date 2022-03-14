@@ -401,15 +401,67 @@
                                             </div>
                                         </div>
                                         <br />
+                                        <!-- Questions-->
+                                        <label for="voie">Lorem ipsum dolor sit amet consectetur?</label>
+                                        <div class="outlined-input-field bg-c" id="voie_container" t-if="not name">
 
-                                        <div class="outlined-input-field bg-c" id="comp_address_container" t-if="not street2">
-                                            <input type="text" id="comp_address" name="street2" class="outlined-text-field" autocomplete="off" />
-                                            <label for="comp_address">Complément d'adresse</label>
-                                            <i class="material-icons error-icon">error_outline</i>
-                                            <div class="helper-text bg-c" id="comp_address_helper">
+                                            <select class="outlined-text-field" name="voie" id="voie" required="required">
+                                                <option value='1'>1</option>
+                                                <option value='2'>2</option>
+                                                <option value='3'>3</option>
+                                                <option value='4'>4</option>
+                                            </select>
+
+                                            <i class="material-icons error-icon"></i>
+                                            <div class="helper-text bg-c" id="voie_helper">
                                                 <span></span>
                                             </div>
                                         </div>
+                                        <br />
+                                        <div class="outlined-input-field bg-c" id="voie_container" t-if="not name">
+                                            <select class="outlined-text-field" name="voie" id="voie" required="required">
+                                                <option value='1'>1</option>
+                                                <option value='2'>2</option>
+                                                <option value='3'>3</option>
+                                                <option value='4'>4</option>
+                                            </select>
+                                            <label for="voie">Lorem ipsum dolor sit amet consectetur?</label>
+                                            <i class="material-icons error-icon"></i>
+                                            <div class="helper-text bg-c" id="voie_helper">
+                                                <span></span>
+                                            </div>
+                                        </div>
+                                        <br />
+                                        <div class="outlined-input-field bg-c" id="voie_container" t-if="not name">
+                                            <select class="outlined-text-field" name="voie" id="voie" required="required">
+                                                <option value='1'>1</option>
+                                                <option value='2'>2</option>
+                                                <option value='3'>3</option>
+                                                <option value='4'>4</option>
+                                            </select>
+                                            <label for="voie">Lorem ipsum dolor sit amet consectetur?</label>
+                                            <i class="material-icons error-icon"></i>
+                                            <div class="helper-text bg-c" id="voie_helper">
+                                                <span></span>
+                                            </div>
+                                        </div>
+                                        <br />
+                                        <div class="outlined-input-field bg-c" id="voie_container" t-if="not name">
+                                            <label for="voie">Lorem ipsum dolor sit amet consectetur?</label>
+                                            <select class="outlined-text-field" name="voie" id="voie" required="required">
+                                                <option value='1'>1</option>
+                                                <option value='2'>2</option>
+                                                <option value='3'>3</option>
+                                                <option value='4'>4</option>
+                                            </select>
+
+                                            <i class="material-icons error-icon"></i>
+                                            <div class="helper-text bg-c" id="voie_helper">
+                                                <span></span>
+                                            </div>
+                                        </div>
+                                        <br />
+                                        <!-- End Questions-->
                                         <div class="outlined-input-field bg-c" id="comp_address_container" t-if="street2">
                                             <input type="text" id="comp_address" name="street2" t-att-value="street2" class="outlined-text-field" autocomplete="off" />
                                             <label for="comp_address" style="top: -0.7rem;padding: 0.25rem;">Complément d'adresse </label>
