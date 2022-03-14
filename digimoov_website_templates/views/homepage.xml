@@ -413,8 +413,15 @@
                                             </a>
                                         </div>
                                     </div>
+                                    <script>
+                                        function redirection(url){
+                                            window.location.herf=url;
+                                        }
+                                    </script>
+
+
                                     <!-- transport lourd-->
-                                    <div class="col-lg-4 col-md-4 wrap-feature14-box">
+                                    <div class="col-lg-4 col-md-4 wrap-feature14-box pointer-bloc" onclick="redirection('/formation-capacite-transport-lourd-marchandise' )">
                                         <div>
                                             <img class="rounded img-responsive lazy" data-src="/digimoov_website_templates/static/img/transport-routier/1.webp" data-srcsafari="/digimoov_website_templates/static/img/transport-routier/1.png" alt="transport lourd" />
                                             <div class="m-t-30">
@@ -428,7 +435,7 @@
                                         </div>
                                     </div>
                                     <!-- habilitation electrique-->
-                                    <div class="col-lg-4 col-md-4 wrap-feature14-box">
+                                    <div class="col-lg-4 col-md-4 wrap-feature14-box pointer-bloc" onclick="redirection('/habilitation-electrique')">
                                         <div>
                                             <img class="rounded img-responsive video-img lazy" data-srcsafari="/digimoov_website_templates/static/img/habilitation-electrique/formation-habilitation-électrique.png" data-src="/digimoov_website_templates/static/img/habilitation-electrique/formation-habilitation-électrique.webp" alt="habilitation electrique" />
 
