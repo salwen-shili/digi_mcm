@@ -131,6 +131,7 @@ class Website(Home):
             if website_page:
                 return request.render(str(website_page.view_id.key), values)
             else:
+                # raise 404 not found if the url was not found
                 raise werkzeug.exceptions.NotFound()
         if (request.website.id == 1):
             user = http.request.env.user
@@ -160,6 +161,7 @@ class Website(Home):
                 if website_page:
                     return request.render(str(website_page.view_id.key), values)
                 else:
+                    #raise 404 not found if the url was not found
                     raise werkzeug.exceptions.NotFound()
         return request.render("website.homepage", values)
         # --------------------------------------------------------------------------
