@@ -68,10 +68,10 @@
         'views/devenir-coursier-lyon.xml',
         'views/capacitaire-transport-bordeaux.xml',
         #page de blog
-        'views/blog/website_blog_posts.xml',
+        # 'views/blog/website_blog_posts.xml',
 
     ],
-    'qweb': ['static/src/xml/website_blog_posts_loop.xml'],
+    'qweb': [],
     'demo': [
     ],
     'test': [

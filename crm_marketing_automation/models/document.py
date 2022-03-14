@@ -40,7 +40,10 @@ class Document(models.Model):
             print('vals partner_id ')
             if self.state == 'waiting':
                 partner = vals['partner_id']
-                partner_ = self.env['res.partner'].sudo().search([('id', "=", partner)])
+                print('vals partner:',vals['partner_id'])
+                print('int partner:',int(partner))
+                partner_ = self.env['res.partner'].sudo().search([('id', "=", int(partner))])
+                print('display name :',partner_.display_name)
                 if partner_ and not partner_.bolt:
                     self.change_stage_lead("Document non Validé", partner_)
                 if partner_ and  partner_.bolt:

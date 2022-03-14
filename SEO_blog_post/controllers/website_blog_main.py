@@ -19,21 +19,50 @@ from odoo.addons.website_blog.controllers.main import WebsiteBlog
 
 
 class CustomWebsiteBlog(WebsiteBlog):
+
+    @http.route([
+        '/blog',
+        '/blog/page/<int:page>',
+        '/blog/tag/<string:tag>',
+        '/blog/tag/<string:tag>/page/<int:page>',
+        '''/blog/<model("blog.blog", "[('website_id', 'in', (False, current_website_id))]"):blog>''',
+        '''/blog/<model("blog.blog"):blog>/page/<int:page>''',
+        '''/blog/<model("blog.blog"):blog>/tag/<string:tag>''',
+        '''/blog/<model("blog.blog"):blog>/tag/<string:tag>/page/<int:page>''',
+    ], type='http', auth="public", website=True)
+    def blog(self, blog=None, tag=None, page=1, **opt):
+        Blog = request.env['blog.blog']
+        if blog and not blog.can_access_from_current_website():
+            raise werkzeug.exceptions.NotFound()
+
+        blogs = Blog.search(request.website.website_domain(), order="create_date asc, id asc")
+
+        date_begin, date_end, state = opt.get('date_begin'), opt.get('date_end'), opt.get('state')
+
+        values = self._prepare_blog_values(blogs=blogs, blog=blog, date_begin=date_begin, date_end=date_end, tags=tag, state=state, page=page)
+
+        if blog:
+            values['main_object'] = blog
+            values['edit_in_backend'] = True
+            values['blog_url'] = QueryURL('', ['blog', 'tag'], blog=blog, tag=tag, date_begin=date_begin, date_end=date_end)
+        else:
+            values['blog_url'] = QueryURL('/blog', ['tag'], date_begin=date_begin, date_end=date_end)
+        return request.render("website_blog.blog_post_short", values)
+
     #prepare website route for blog post /blog/blog_post_website_url
     @http.route([
         '''/blog/<string:blog_post>''',
     ], type='http', auth="public", website=True)
     def custom_blog_post(self, blog=None, blog_post=None, tag_id=None, page=1, enable_editor=None, **post):
-        print('custom_blog_post')
         blog = False
         blog_post = '/blog/' + str(blog_post)
         if blog_post:
-            blog_post = request.env['blog.post'].sudo().search([('website_url', "=", str(blog_post))], limit=1)
+            blog_post = request.env['blog.post'].sudo().search([('blog_post_website_url', "=", str(blog_post))], limit=1)
             if blog_post:
                 blog_post = blog_post
                 blog = blog_post.blog_id
-        print('blog_post:', blog_post)
-        print('blog:', blog)
+            else:
+                raise werkzeug.exceptions.NotFound()
         if blog:
             if not blog.can_access_from_current_website():
                 raise werkzeug.exceptions.NotFound()
@@ -103,7 +132,6 @@ class CustomWebsiteBlog(WebsiteBlog):
         '''/blog/<model("blog.blog", "[('website_id', 'in', (False, current_website_id))]"):blog>/post/<model("blog.post", "[('blog_id','=',blog[0])]"):blog_post>''',
     ], type='http', auth="public", website=True)
     def blog_post(self, blog, blog_post, tag_id=None, page=1, enable_editor=None, **post):
-        post_in_blog = super(CustomWebsiteBlog, self).blog_post(blog, blog_post, tag_id, page, enable_editor)
         if blog_post:
-            return werkzeug.utils.redirect(blog_post.website_url, 301)
-        return post_in_blog
+            return werkzeug.utils.redirect(blog_post.blog_post_website_url, 301)
+        return super(CustomWebsiteBlog, self).blog_post(blog, blog_post, tag_id, page, enable_editor)
