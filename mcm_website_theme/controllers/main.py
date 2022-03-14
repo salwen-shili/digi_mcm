@@ -131,7 +131,7 @@ class Website(Home):
             if website_page:
                 return request.render(str(website_page.view_id.key), values)
             else:
-                return request.render("website.homepage", values)
+                raise werkzeug.exceptions.NotFound()
         if (request.website.id == 1):
             user = http.request.env.user
             partner = user.partner_id
@@ -160,7 +160,7 @@ class Website(Home):
                 if website_page:
                     return request.render(str(website_page.view_id.key), values)
                 else:
-                    return werkzeug.utils.redirect('/', 301)
+                    raise werkzeug.exceptions.NotFound()
         return request.render("website.homepage", values)
         # --------------------------------------------------------------------------
         # states Search Bar
