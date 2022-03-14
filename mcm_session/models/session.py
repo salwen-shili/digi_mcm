@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 # Part of Odoo. See LICENSE file for full copyright and licensing details.
+import locale
 
 from odoo import api, fields, models, _
 from odoo.exceptions import ValidationError
@@ -102,6 +103,20 @@ class Session(models.Model):
         pourcentage_without_round = (nbr_recu_total * 100 / nbr_inscrits_total)
         pourcentage = f'{pourcentage_without_round:.2f}' #Garder justes deux chiddre après la virgule
         return pourcentage
+
+    def date_session_frensh(self, date_examen):
+        """ FORCER la date en francais par ce que odoo.sh applique """
+        date_format = '%d %B %Y'
+        locale.setlocale(locale.LC_TIME, str(self.env.user.lang) + '.utf8')
+        date_examen = (self.date_exam).strftime(date_format).title()
+        print("date_examen", date_examen)
+        return date_examen
+
+    def month_session_in_lettre(self, month_format):
+        """ Fonction qui affiche les mois de date d'examen en lettres et en majuscules"""
+        month_format = '%B'
+        month_format = (self.date_exam).strftime(month_format).upper()
+        return month_format
 
     @api.model
     def _read_group_stage_ids(self, stages, domain, order):
