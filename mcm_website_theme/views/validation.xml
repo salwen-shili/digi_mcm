@@ -42,8 +42,8 @@ background-color: #000000;
                         <div class="content">
                             <p id="notifMessage" style="text-align: center;font-size: 16px; color:#000"></p>
                             <div class="" style="text-align-last: center;margin-block-start: 1.5rem;">
-                                <input type="submit" class="text-center next action-button" style="float: unset !important;" value="Téléchargement Manuel" onclick="onSubmitForm('manuelle')" />
-                                <input type="submit" class="text-center next action-button" style="float: unset !important;" value="Téléchargement Automatique" onclick="onSubmitForm('automatique')" />
+                                <input type="submit" class="text-center next action-button" style="float: unset !important; width: 111px;" value="Manuel" onclick="onSubmitForm('manuelle')" />
+                                <input type="submit" class="text-center next action-button" style="float: unset !important; width: 111px;" value="Automatique" onclick="onSubmitForm('automatique')" />
 
                             </div>
                         </div>
@@ -72,7 +72,7 @@ background-color: #000000;
                                 }
                             </style>
                             <form id="msform" action="/validation/submit" method="POST">
-                                <input type="hidden" value="" id="redirection" name="redirection" />
+
 
                                 <div class="card px-0 pt-4 pb-0 mt-3 mb-3 bg-c">
                                     <h2 id="heading">Inscription</h2>
@@ -251,6 +251,7 @@ background-color: #000000;
 
                                     </fieldset>
                                     <fieldset class="col-12 text-left " id="group4">
+                                        <input type="hidden" value="" id="redirection" name="redirection" />
                                         <h4>
                                             Qu’attendez vous de votre formation ?
                                         </h4>
