@@ -48,7 +48,7 @@ class Session(models.Model):
     company_id = fields.Many2one('res.company', string='Company', default=lambda self: self.env.company)
     # Les champs pour le rapport jury
     ville_jury_id = fields.Many2one('session.ville', string="Ville de jury",
-                                       track_visibility='always')  # edit the field to be required and show field edit history
+                                    track_visibility='always')  # edit the field to be required and show field edit history
     adresse_jury_id = fields.Many2one('session.adresse.examen', "Adresse de jury")
     date_jury = fields.Date()
     heure_jury = fields.Char()
@@ -85,23 +85,34 @@ class Session(models.Model):
         """ Cette fonction permet de faire la somme d'inscrit de nombre de client avec statut (gagné, annulé et perdu).
          La fonction est utilisé dans la template de rapport jury"""
         nbr_present = self.client_ids.filtered(lambda cl: cl.presence == 'Présent(e)')
-        print("ghghgh",len(nbr_present))
+        print("ghghgh", len(nbr_present))
         return len(nbr_present)
 
-    def nbr_recus_par_session(self, nbr_recu):
-        for rec in self.client_ids:
-            print(len(rec))
-            for examen in rec.note_exam_id.filtered(lambda cl: cl.date_exam == self.date_exam):
-                if examen.resultat == 'recu':
-                    nbr_recu = len(examen)
-                    return nbr_recu
+    def prc_present(self, prc_present):
+        nbr_present = self.nbr_present_par_session(self)
+        nbr_inscrit = self.nbr_client_par_session(self)
+        res = (nbr_present * 100 / nbr_inscrit)
+        prc_present = f'{res:.2f}'
+        print(prc_present)
+        return prc_present
+
+    def nbr_recus_par_session(self, total_nbr_recu):
+        """ Nombre de recus par session"""
+        for examen in self.env['info.examen'].search([('date_exam', "=", self.date_exam)]):
+            if examen:
+                nbr_recu = examen.env['info.examen'].search_count(
+                    [('session_id', "=", self.id), ('resultat', "=", 'recu')])
+                total_nbr_recu = nbr_recu + self.count_annule
+                print("total_nbr_recu", total_nbr_recu)
+                return total_nbr_recu
 
     def pourcentage_client_recu(self, pourcentage):
+        """ Calculer pourcentage clients reçus"""
         nbr_recu_total = self.nbr_recus_par_session(self)
         print(nbr_recu_total)
         nbr_inscrits_total = self.nbr_client_par_session(self)
         pourcentage_without_round = (nbr_recu_total * 100 / nbr_inscrits_total)
-        pourcentage = f'{pourcentage_without_round:.2f}' #Garder justes deux chiddre après la virgule
+        pourcentage = f'{pourcentage_without_round:.2f}'  # Garder justes deux chiddre après la virgule
         return pourcentage
 
     def date_session_frensh(self, date_examen):
@@ -118,9 +129,71 @@ class Session(models.Model):
         month_format = (self.date_exam).strftime(month_format).upper()
         return month_format
 
-    def calculer_nombre_absence(self, nbr_absence):
-        for examen in self.env['info.examen'].search([]):
-            print(examen)
+    def calculer_nombre_absence(self, total_absence):
+        """ Calculer nombre des absences par session"""
+        for examen in self.env['info.examen'].search([('date_exam', "=", self.date_exam)]):
+            if examen:
+                print(examen.date_exam)
+                nbr_absence = examen.env['info.examen'].search_count(
+                    [('session_id', "=", self.id), ('presence', "!=", 'present')])
+                total_absence = nbr_absence + self.count_annule
+                print("///////////", total_absence)
+                return total_absence
+
+    def pourcentage_absence(self, resultat):
+        """ Pourcentage pour les absences par session"""
+        nbr_absence = self.calculer_nombre_absence(self)
+        nbr_inscrit = self.nbr_client_par_session(self)
+        res = (nbr_absence * 100 / nbr_inscrit)
+        resultat = f'{res:.2f}'
+        print(resultat)
+        return resultat
+
+    def calculer_nombre_absence_justifiée(self, total_absence_justifiée):
+        """ Calculer la somme des absences justifiées par session"""
+        for examen in self.env['info.examen'].search([('date_exam', "=", self.date_exam)]):
+            if examen:
+                nbr_absence = examen.env['info.examen'].search_count(
+                    [('session_id', "=", self.id), ('presence', "=", 'absence_justifiee')])
+                total_absence_justifiée = nbr_absence + self.count_annule
+                return total_absence_justifiée
+
+    def pourcentage_absence_justifiée(self, resultat):
+        """ pourcentage absence justifiée """
+        nbr_absence_justifiee = self.calculer_nombre_absence_justifiée(self)
+        nbr_inscrit = self.nbr_client_par_session(self)
+        res = (nbr_absence_justifiee * 100 / nbr_inscrit)
+        resultat = f'{res:.2f}'
+        print(resultat)
+        return resultat
+
+    def pourcentage_abandon(self, prc_abandon):
+        nbr_absence_abandon = self.count_annule
+        nbr_inscrit = self.nbr_client_par_session(self)
+        res = (nbr_absence_abandon * 100 / nbr_inscrit)
+        prc_abandon = f'{res:.2f}'
+        print(prc_abandon)
+        return prc_abandon
+
+    def nbr_echec(self, nbr_echec):
+        """ Calculer nombre d'echec :
+        resultat = ajournée
+        presence = present"""
+        for examen in self.env['info.examen'].search([('date_exam', "=", self.date_exam)]):
+            if examen:
+                nbr_absence = examen.env['info.examen'].search_count(
+                    [('session_id', "=", self.id), ('presence', "=", 'present'), ('resultat', "=", 'ajourne')])
+                nbr_echec = nbr_absence + self.count_annule
+                return nbr_echec
+
+    def pourcentage_echec(self, prc_echec):
+        """ Calculer pourcentage des clients (echec)"""
+        nbr_echec = self.nbr_echec(self)
+        nbr_inscrit = self.nbr_client_par_session(self)
+        res = (nbr_echec * 100 / nbr_inscrit)
+        prc_echec = f'{res:.2f}'
+        print(prc_echec)
+        return prc_echec
 
     @api.model
     def _read_group_stage_ids(self, stages, domain, order):

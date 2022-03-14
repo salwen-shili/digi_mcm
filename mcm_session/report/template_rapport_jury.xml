@@ -34,6 +34,7 @@
                                         <b>
                                             <u>SESSION DU
                                                 <span t-esc="o.date_session_frensh(date_examen)"/>
+                                                <span t-esc="o.pourcentage_echec(prc_echec)"/>
                                             </u>
                                         </b>
                                     </span>
@@ -112,7 +113,7 @@
                                     personnes
                                 </p>
                                 <p>B) Nombre de candidats reçus à l’examen
-                                    <span t-esc="docs.nbr_recus_par_session(nbr_recu)"/>
+                                    <span t-esc="docs.nbr_recus_par_session(total_nbr_recu)"/>
                                     sur
                                     <span t-esc="docs.nbr_client_par_session(nbr_inscrits)"/>
                                 </p>
@@ -222,7 +223,90 @@
                             <img src='/mcm_session/static/src/img/footer_jury.png'
                                  height="100" width="1600"/>
                         </div>
+                        <!-- 4 éme page : tableau de statestique-->
+                        <p style="page-break-after:always;"/>
+                        <table class="table" style="padding-top:0px!important;">
+                            <tbody>
+
+                                <tr>
+                                    <th class="td">Nombre d'inscrits
+                                        <td class="td" style="height:40px;width:200px;">
+                                            <span t-esc="docs.nbr_client_par_session(nbr_inscrits)"/>
+                                        </td>
+                                        <td class="td" style="height:40px;width:200px;">100%</td>
+                                    </th>
+                                </tr>
+
+                                <tr>
+                                    <th width="0" class="td">Nombre de présents
+                                        <td class="td" style="height:40px;width:200px;">
+                                            <span t-esc="docs.nbr_present_par_session(nbr_present)"/>
+                                        </td>
+
+                                        <td class="td" style="height:40px;width:200px;">
+                                            <span t-esc="docs.prc_present(prc_present)"/>
+                                        </td>
+                                    </th>
+                                </tr>
+                                <tr>
+                                    <th width="0" class="td">Nombre d'absents
+                                        <td class="td" style="height:40px;width:200px;">
+                                            <span t-esc="docs.calculer_nombre_absence(total_absence)"/>
+                                        </td>
+
+                                        <td class="td" style="height:40px;width:200px;">
+                                            <span t-esc="docs.pourcentage_absence(resultat)">%</span>
+                                        </td>
+                                    </th>
+                                </tr>
+                                <tr>
+                                    <th width="0" class="td">Nombre d'absence justifiée
+                                        <td class="td" style="height:40px;width:200px;">
+                                            <span t-esc="docs.calculer_nombre_absence_justifiée(total_absence_justifiée)"/>
+                                        </td>
+
+                                        <td class="td" style="height:40px;width:200px;">
+                                            <span t-esc="docs.pourcentage_absence_justifiée(resultat)"/>
+                                        </td>
+                                    </th>
+                                </tr>
+                                <tr>
+                                    <th width="0" class="td">Nombre d'abandon
+                                        <td class="td" style="height:40px;width:200px;">
+                                            <span t-esc="o.count_annule"/>
+                                        </td>
+
+                                        <td class="td" style="height:40px;width:200px;">
+                                            <span t-esc="docs.pourcentage_abandon(prc_abandon)"/>
+                                        </td>
+                                    </th>
+                                </tr>
+                                <tr>
+                                    <th width="0" class="td">Nombre d'admis
+                                        <td class="td" style="height:40px;width:200px;">
+                                            <span t-esc="docs.nbr_recus_par_session(total_nbr_recu)"/>
+                                        </td>
+
+                                        <td class="td" style="height:40px;width:200px;">
+                                            <span t-esc="docs.pourcentage_client_recu(pourcentage)"/>
+                                        </td>
+                                    </th>
+                                </tr>
+                                <tr>
+                                    <th width="0" class="td">Nombre d'échec
+                                        <td class="td" style="height:40px;width:200px;">
+                                            <span t-esc="docs.nbr_echec(nbr_echec)"/>
+                                        </td>
+
+                                        <td class="td" style="height:40px;width:200px;">
+                                            <span t-esc="docs.pourcentage_echec(prc_echec)"/>
+                                        </td>
+                                    </th>
+                                </tr>
+                            </tbody>
+                        </table>
                     </t>
+
                 </t>
             </t>
         </template>
