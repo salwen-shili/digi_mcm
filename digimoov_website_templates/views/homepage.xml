@@ -14,6 +14,7 @@
 
             <div id="wrap" class="oe_structure oe_empty">
                 <div id="homepage" t-if="partenaire!='coursier2roues' and partenaire!='habilitation-electrique' and partenaire!='eco-conduite' and partenaire!='transport-routier'">
+
                     <section class="s_one_page_banner static-slider2" data-name="Home Banner Ten">
                         <div class="container">
                             <div class="row align-items-center">
@@ -62,7 +63,8 @@
                             </div>
                         </div>
                     </section>
-                    <section class="pt16 pb32 js-scroll fade-in-top">
+
+                    <section class="pb32 js-scroll fade-in-top">
                         <div class="container js-scroll fade-in-top">
                             <div class="center-logo mt32">
                                 <div>
