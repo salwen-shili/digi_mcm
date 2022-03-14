@@ -421,11 +421,11 @@
 
 
                                     <!-- transport lourd-->
-                                    <div class="col-lg-4 col-md-4 wrap-feature14-box pointer-bloc" onclick="redirection('/formation-capacite-transport-lourd-marchandise' )">
+                                    <div class="col-lg-4 col-md-4 wrap-feature14-box pointer-bloc">
                                         <div>
                                             <img class="rounded img-responsive lazy" data-src="/digimoov_website_templates/static/img/transport-routier/1.webp" data-srcsafari="/digimoov_website_templates/static/img/transport-routier/1.png" alt="transport lourd" />
-                                            <div class="m-t-30">
-                                                <h3 class="font-medium text-center">
+                                            <div class="">
+                                                <h3 class="font-medium text-center" style="font-size: 20px !important;">
                                                 Formation en capacité de transport lourd de marchandises de + 3.5 tonnes
                                                 </h3>
                                                 <p class="custom_p m-b-30 m-t-30 formation text-left">
@@ -435,12 +435,12 @@
                                         </div>
                                     </div>
                                     <!-- habilitation electrique-->
-                                    <div class="col-lg-4 col-md-4 wrap-feature14-box pointer-bloc" onclick="redirection('/habilitation-electrique')">
+                                    <div class="col-lg-4 col-md-4 wrap-feature14-box pointer-bloc">
                                         <div>
                                             <img class="rounded img-responsive video-img lazy" data-srcsafari="/digimoov_website_templates/static/img/habilitation-electrique/formation-habilitation-électrique.png" data-src="/digimoov_website_templates/static/img/habilitation-electrique/formation-habilitation-électrique.webp" alt="habilitation electrique" />
 
-                                            <div class="m-t-30">
-                                                <h3 class="font-medium text-center" style="    padding: 14px 0px;">
+                                            <div class="">
+                                                <h3 class="font-medium text-center" style="font-size: 20px !important;     padding-top: 7px;">
                                                 Formation en habilitation électrique BS-BE manœuvres
                                                 </h3>
                                                 <p class="custom_p m-b-30 m-t-30 formation text-left">

@@ -1925,14 +1925,9 @@ footer {
 }
 
 .pointer-bloc {
-  cursor: pointer;
   transition: all 0.5s ease-in;
 }
 .pointer-bloc :hover {
   background: #f4f7ff;
   transition: all 0.5s ease-out;
-}
-.formation {
-  font-size: 18px !important;
-  line-height: 1.3 !important;
 }
