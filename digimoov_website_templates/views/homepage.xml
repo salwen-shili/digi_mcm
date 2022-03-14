@@ -387,6 +387,69 @@
                         </div>
                     </section>
 
+
+                    <!-- -->
+                    <!--Nouvelles formations chez Digimoov ! -->
+                    <section class="s_restaurant_video_image" data-name="Two images with paragraph and video">
+                        <div class="spacer feature14">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-lg-4 col-md-4">
+                                        <h2 class="m-t-20 m-b-30 font-stylish-1 text-beta">
+                                            <b>Nouvelles formations chez Digimoov !</b>
+                                        </h2>
+                                        <p class="custom_p">You can relay on our amazing features list and also
+								our
+								customer services will be great experience for our users
+							</p>
+                                        <p class="custom_p o_default_snippet_text">You will surely fall in love with ready touse
+								bootstrap ui
+								kit framework.
+							</p>
+                                        <div class="s_btn" data-name="Button">
+                                            <a class="btn btn-rounded rounded-circle btn-alpha btn-md arrow-btn m-t-20 m-b-30 bizople_button o_default_snippet_text" href="#">
+                                                View Other Features
+                                                <span class="fa fa-1x fa-fw fa-long-arrow-right ml-1" />
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <!-- transport lourd-->
+                                    <div class="col-lg-4 col-md-4 wrap-feature14-box">
+                                        <div>
+                                            <img class="rounded img-responsive lazy" data-src="/digimoov_website_templates/static/img/transport-routier/1.webp" data-srcsafari="/digimoov_website_templates/static/img/transport-routier/1.png" alt="transport lourd" />
+                                            <div class="m-t-30">
+                                                <h3 class="font-medium text-center">
+                                                Formation en capacité de transport lourd de marchandises de + 3.5 tonnes
+                                                </h3>
+                                                <p class="custom_p m-b-30 m-t-30 text-left">
+                                                Optez pour notre formation 100 % en ligne sur la capacité de transport lourd de marchandises ! Une formation complète de 280 heures, concoctée par des experts du métier pour vous préparer à l’examen final et obtenir votre attestation de transport.
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- habilitation electrique-->
+                                    <div class="col-lg-4 col-md-4 wrap-feature14-box">
+                                        <div>
+                                            <img class="rounded img-responsive video-img lazy" data-srcsafari="/digimoov_website_templates/static/img/habilitation-electrique/formation-habilitation-électrique.png" data-src="/digimoov_website_templates/static/img/habilitation-electrique/formation-habilitation-électrique.webp" alt="habilitation electrique" />
+
+                                            <div class="m-t-30">
+                                                <h3 class="font-medium text-center" style="    padding: 14px 0px;">
+                                                Formation en habilitation électrique BS-BE manœuvres
+                                                </h3>
+                                                <p class="custom_p m-b-30 m-t-30 text-left">
+                  Vous êtes entrepreneur, et vous pensez à former votre personnel sur l'habilitation électrique BS/BE Manoeuvres ? Chez  Digimoov,  on vous propose  une formation 100 % en ligne certifiée  pour obtenir votre habilitation en 3 jours !.
+                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- -->
+                    <!-- -->
+                    <!-- counter-->
                     <section class="s_furniture_fun-fact-section oe_img_bg oe_custom_bg parallax-section" alt="Transport routier de marchandise">
                         <div class="container">
                             <div class="row clearfix">
