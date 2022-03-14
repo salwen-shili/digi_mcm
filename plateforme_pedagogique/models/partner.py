@@ -663,7 +663,7 @@ class partner(models.Model):
 
     def wedof_api_integration(self):
         base_url = self.env['ir.config_parameter'].sudo().get_param('web.base.url')
-        if "localhost" not in str(base_url) and "dev.odoo" not in str(base_url):
+        if "localhost" in str(base_url) and "dev.odoo" not in str(base_url):
             companies = self.env['res.company'].sudo().search([('id',"=",2)])
             api_key=""
             if companies:
@@ -676,7 +676,7 @@ class partner(models.Model):
             params_wedof = (
                 ('order', 'desc'),
                 ('type', 'all'),
-                ('state', 'accepted'),
+                ('state', 'inTraining'),
                 ('billingState', 'all'),
                 ('certificationState', 'all'),
                 ('sort', 'lastUpdate'),
@@ -713,7 +713,7 @@ class partner(models.Model):
                 newformat = "%d/%m/%Y %H:%M:%S"
                 lastupdateform = lastupdate.strftime(newformat)
                 lastupd = datetime.strptime(lastupdateform, "%d/%m/%Y %H:%M:%S")
-                print('date', today, dateFormation, certificat)
+                print('date', today, dateFormation, certificat,idform)
                 """Si date de formation <= ajourdhui et s'il a choisi  la formation de transport  léger de marchandises
                 on cherche l'apprenant par email sur 360"""
                 if 'digimoov' in str(idform) and (dateFormation <= today):
@@ -734,36 +734,36 @@ class partner(models.Model):
                         if (user_mail.upper() == email.upper()) and (totalTime >= 1):
                             _logger.info('users %s ' % email.upper())
                             _logger.info('user email %s' % user['mail'].upper())
-                            response_post = requests.post(
-                                'https://www.wedof.fr/api/registrationFolders/' + externalId + '/inTraining',
-                                headers=headers, data=data)
-                            print('response post', response_post.status_code)
-                            """Si dossier passe en formation on met à jour statut cpf sur la fiche client"""
-
-                            product_id = self.env['product.template'].sudo().search(
-                                [('id_edof', "=", str(module)), ('company_id', "=", 2)], limit=1)
-
-                            if response_post.status_code == 200:
-
-                                partner = self.env['res.partner'].sudo().search([('numero_cpf', "=", str(externalId))])
-
-                                if len(partner) > 1:
-                                    for part in partner:
-                                        part_email = part.email
-                                        if part_email.upper() == email.upper():
-                                            _logger.info('if partner >1 %s' % partner.numero_cpf)
-                                            partner.statut_cpf = "in_training"
-                                            partner.date_cpf = lastupd
-                                            if product_id:
-                                                partner.id_edof = product_id.id_edof
-
-                                elif len(partner) == 1:
-                                    _logger.info('if partner %s' % partner.numero_cpf)
-                                    partner.statut_cpf = "in_training"
-                                    partner.date_cpf = lastupd
-                                    partner.diplome = diplome
-                                    if product_id:
-                                        partner.id_edof = product_id.id_edof
+                            # response_post = requests.post(
+                            #     'https://www.wedof.fr/api/registrationFolders/' + externalId + '/inTraining',
+                            #     headers=headers, data=data)
+                            # _logger.info('response post %s' %str(response_post.text))
+                            # """Si dossier passe en formation on met à jour statut cpf sur la fiche client"""
+                            #
+                            # product_id = self.env['product.template'].sudo().search(
+                            #     [('id_edof', "=", str(module)), ('company_id', "=", 2)], limit=1)
+                            #
+                            # if response_post.status_code == 200:
+                            #
+                            #     partner = self.env['res.partner'].sudo().search([('numero_cpf', "=", str(externalId))])
+                            #
+                            #     if len(partner) > 1:
+                            #         for part in partner:
+                            #             part_email = part.email
+                            #             if part_email.upper() == email.upper():
+                            #                 _logger.info('if partner >1 %s' % partner.numero_cpf)
+                            #                 partner.statut_cpf = "in_training"
+                            #                 partner.date_cpf = lastupd
+                            #                 if product_id:
+                            #                     partner.id_edof = product_id.id_edof
+                            #
+                            #     elif len(partner) == 1:
+                            #         _logger.info('if partner %s' % partner.numero_cpf)
+                            #         partner.statut_cpf = "in_training"
+                            #         partner.date_cpf = lastupd
+                            #         partner.diplome = diplome
+                            #         if product_id:
+                            #             partner.id_edof = product_id.id_edof
 
     """changer l'etat sur wedof de non traité vers validé à partir d'API"""
 
