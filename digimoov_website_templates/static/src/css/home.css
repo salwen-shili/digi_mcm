@@ -1923,3 +1923,11 @@ footer {
 .prev-easy {
   margin: 0 16px;
 }
+
+.pointer-bloc {
+  transition: all 0.5s ease-in;
+}
+.pointer-bloc :hover {
+  background: #f4f7ff;
+  transition: all 0.5s ease-out;
+}
