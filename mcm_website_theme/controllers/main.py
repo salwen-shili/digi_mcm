@@ -638,6 +638,8 @@ class Routes_Site(http.Controller):
         product = order.order_line[0].product_id
         vals['product_id'] = product.id
         vals['company_id'] = partner.company_id.id
+        redirection = kw.get("redirection") #get the value of redirection sent from a form of questionnaire
+
         new_quetionnaire = request.env['questionnaire'].sudo().create(vals)
         # Si le client a choisi un pack
         if order:
@@ -647,10 +649,14 @@ class Routes_Site(http.Controller):
             if order.partner_id:
                 documents = request.env['documents.document'].sudo().search(
                     [('partner_id', '=', order.partner_id.id)])
-                if order and order.company_id.id == 1 and not documents:
-                    return request.redirect('/charger_mes_documents')
-                else:
-                    return request.redirect('/shop/cart')
+                if order and not documents:
+                    if redirection == 'automatique': #check if the value of redirection is auto to redirect the client to upload his documents using idenfy
+                        return werkzeug.utils.redirect('/charger_mes_documents',301)
+                    elif redirection == 'manuelle' : #check if the value of redirection is manual to redirect the client to upload his documents manually
+                        return werkzeug.utils.redirect('/charger_mes_documents_manual', 301)
+                    else:
+                        return werkzeug.utils.redirect('/shop/cart', 301) # if no redirection sended we redirect the client to shop cart
+            return werkzeug.utils.redirect('/shop/cart', 301)
         return http.request.render('mcm_contact_documents.portal_my_home', {'step': 'document'})
 
     @http.route(['''/bolt''', '''/BOLT''', '''/Bolt'''], type='http', auth='public', website=True, )
