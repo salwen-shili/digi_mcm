@@ -26,7 +26,7 @@ background-color: #000000;
 }
             </style>
             <div id="wrap" class="oe_structure oe_empty">
-                <input type="hidden" t-att-value="partner_has_documents" id="hasdocument"></input>
+                <input type="text" t-att-value="partner_has_documents" id="hasdocument"></input>
 
                 <link href="/mcm_website_theme/static/src/css/register_form.min.css" rel="stylesheet" />
                 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
@@ -42,9 +42,9 @@ background-color: #000000;
                         <div class="content">
                             <p id="notifMessage" style="text-align: center;font-size: 16px; color:#000"></p>
                             <div class="" style="text-align-last: center;margin-block-start: 1.5rem;">
-                                <input type="submit" class="text-center next action-button" style="float: unset !important; width: 111px;" value="Manuel" onclick="onSubmitForm('manuelle')" />
-                                <input type="submit" class="text-center next action-button" style="float: unset !important; width: 111px;" value="Automatique" onclick="onSubmitForm('automatique')" />
-
+                                <input t-if="partner_has_documents != True " type="submit" class="text-center next action-button" style="float: unset !important; width: 111px;" value="Manuel" onclick="onSubmitForm('manuelle')" />
+                                <input t-if="partner_has_documents != True " type="submit" class="text-center next action-button" style="float: unset !important; width: 111px;" value="Automatique" onclick="onSubmitForm('automatique')" />
+                                <input t-if="partner_has_documents == True " type="submit" class="text-center next action-button" style="float: unset !important;" value="Continuer" onclick="(function(){document.getElementById('msform').submit();;return false;})();return false;" />
                             </div>
                         </div>
                     </div>

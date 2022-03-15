@@ -283,8 +283,9 @@
                                         <div class="content">
                                             <p id="notifMessage"></p>
                                             <div class="" style="margin-block-start: 1.5rem;">
-                                                <input type="submit" class="text-center next action-button" style="float: unset !important;" value="Continuer" onclick="(function(){document.getElementById('msform').submit();;return false;})();return false;" />
-
+                                                <input t-if="partner_has_documents != True " type="submit" class="text-center next action-button" style="float: unset !important; width: 111px;" value="Manuel" onclick="onSubmitForm('manuelle')" />
+                                                <input t-if="partner_has_documents != True " type="submit" class="text-center next action-button" style="float: unset !important; width: 111px;" value="Automatique" onclick="onSubmitForm('automatique')" />
+                                                <input t-if="partner_has_documents == True " type="submit" class="text-center next action-button" style="float: unset !important;" value="Continuer" onclick="(function(){document.getElementById('msform').submit();;return false;})();return false;" />
                                             </div>
                                         </div>
                                     </div>
