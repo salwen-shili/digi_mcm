@@ -11,9 +11,9 @@
             <div class="row align-items-center">
               <div class="col-lg-6 pt16 pb16">
                 <h1 class="title-1">
-                  Formation
+                  Devenir
                   <br />
-                  <text class="yellow-mcm">Taxi parisien</text>
+                  <text class="yellow-mcm">taxi parisien</text>
                 </h1>
                 <p class="para">
                   Paris est une ville très attractive pour
@@ -55,15 +55,32 @@
               </div>
               <div class="col-lg-6 pt16 pb16">
                 <h2 class="title-2">
-          Quels sont les prérequis pour devenir chauffeur de Taxi à Paris? 
+          Quels sont les prérequis pour devenir chauffeur de taxi à Paris? 
          </h2>
                 <p class="para">
-                  Pour devenir conducteur taxi en toute légalité, vous devez répondre à ces critères :
+                  Pour devenir
+                  <b>conducteur taxi</b>
+                  en toute légalité, vous devez répondre à ces critères :
                   <ul class="liste">
-                    <li>Avoir un permis de conduire catégorie (B) de plus de 3 ans de validité</li>
-                    <li>Passer une visite médicale à la préfecture de votre région pour être reconnu apte à exercer ce métier</li>
-                    <li>Avoir un casier judiciaire vierge</li>
-                    <li>Détenir le brevet de secourisme depuis moins de 2 ans</li>
+                    <li>
+                      Avoir un
+                      <b>permis de conduire</b>
+                      catégorie (B) de plus de 3 ans de validité
+                    </li>
+                    <li>
+                      Passer une
+                      <b>visite médicale</b>
+                      à la préfecture de votre région pour être reconnu apte à exercer ce métier
+                    </li>
+                    <li>
+                      Avoir un
+                      <b>casier judiciaire vierge</b>
+                    </li>
+                    <li>
+                      Détenir le
+                      <b>brevet de secourisme</b>
+                      depuis moins de 2 ans
+                    </li>
                   </ul>
                 </p>
 
@@ -80,7 +97,7 @@
         <section id="sh_corpomate_theme_section_152" data-name="Title">
           <div class="container">
             <div class="row">
-              <h2 class="title-2">
+              <h2 class="title-2 text-center">
           Les démarches pour devenir conducteur de taxi
         </h2>
             </div>
@@ -160,35 +177,22 @@
             <div class="row align-items-center">
               <div class="col-lg-6 pt16 pb16">
                 <h2>
-                  <b>Formation Taxi à Paris</b>
+                  <b>Formation Taxi parisien</b>
                 </h2>
                 <p class="para">
-                  Vous souhaitez obtenir votre carte professionnelle, et devenir taxi parisien ? 
-Avec plus de 10 ans d'expérience dans le domaine du transport de personnes, MCM Academy, vous
-                  <b>garantie une formation à distance 100% théorique</b>
-                  de qualité, grâce à laquelle vous pourrez acquérir toutes les connaissances nécessaires pour exercer le métier de conducteur de taxi, en vous offrant une préparation optimale à l'examen final .
-Les  cours  de la formation seront accessibles depuis notre plateforme e-learning en illimité.
-Ils portent sur la
-                  <b>réglementation</b>
-                  du transport public , la
-                  <b>sécurité</b>
-                  routière, la
-                  <b>gestion</b>
-                  , la connaissance du territoire et la réglementation locale et les
-                  <b>langues française et anglaise</b>
-                  afin d'évaluer votre capacité d’expression et de compréhension et ainsi assurer une bonne communication avec vos futurs clients.
-Des
-                  <b>exercices</b>
-                  sous forme de
-                  <b>QCM</b>
-                  et d'
-                  <b>examens blancs</b>
-                  ont été concoctés par nos experts métiers, afin de vous permettre de vous auto-évaluer et de vous habituer aux conditions de l'examen.
+                  Vous souhaitez obtenir votre carte professionnelle et devenir taxi parisien ? Avec plus de 10 ans d'expérience dans le domaine du transport de personnes, MCM Academy, vous garantit une formation à distance 100% théoriques de qualité, grâce à laquelle vous pourrez acquérir toutes les connaissances nécessaires pour exercer le métier de conducteur de taxi, en vous offrant une préparation optimale à l'examen final.
+                </p>
+                <p class="para">
+                  Les cours de la formation seront accessibles depuis notre plateforme e-learning en illimité.
+Ils sont portés sur la réglementation du transport public , la sécurité routière, la gestion , la connaissance du territoire et la réglementation locale et les langues française et anglaise afin d'évaluer votre capacité d’expression et de compréhension et ainsi assurer une bonne communication avec vos futurs clients.
+                </p>
+                <p class="para">
+                  Des exercices sous forme de QCM et d’examens blancs ont été concoctés par nos experts métiers, afin de vous permettre de vous auto-évaluer et de vous habituer aux conditions de l'examen.
                 </p>
 
 
                 <div class="s_btn text-left pt16 pb16" data-name="Buttons">
-                  <a href="/qui-sommes-nous" class="btn btn-primary">En savoir plus</a>
+                  <a href="#pricing" class="btn btn-primary">Je m'inscris</a>
                 </div>
               </div>
 
@@ -230,7 +234,7 @@ Des
               </div>
               <div class="col-lg-6 pt16 pb16">
                 <h2 class="title-2">
-            Examen Taxi parisien
+            Examen taxi parisien
           </h2>
                 <p class="para">
                   Devenir taxi parisien nécessitera de passer l’
@@ -258,7 +262,7 @@ Des
           <div class="container">
             <div class="row align-items-center">
               <div class="col-lg-6 pt16 pb16">
-                <h2 class="title-2">Comment financer ma formation Taxi parisien?</h2>
+                <h2 class="title-2">Comment financer ma formation ?</h2>
 
                 <p class="para">
                   MCM Academy vous offre deux moyens de financement assez intéressants ! Et vous offrant le choix de financer votre formation taxi par carte bancaire avec possibilité de paiement sur deux tranches, ou en mobilisant votre
