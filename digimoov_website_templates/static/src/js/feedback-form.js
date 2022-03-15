@@ -1,5 +1,5 @@
 function onSubmitForm(redirection) {
-  //redirection
+  //redirection auto / manual mode
   if (document.getElementById('redirection')) {
     document.getElementById('redirection').value = redirection;
   }
@@ -7,7 +7,7 @@ function onSubmitForm(redirection) {
 }
 
 $(document).ready(function () {
-  //popup's message depends with partner has documents
+  //popup's message depends on partner has documents
   document.getElementById('hasdocument').value == 'True'
     ? (document.getElementById('notifMessage').textContent =
         "Vous pouvez désormais choisir votre date et centre d'examen et financer votre formation.")
