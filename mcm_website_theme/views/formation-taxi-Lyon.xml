@@ -34,7 +34,7 @@
                   en tant que chauffeur taxi.
                 </p>
                 <div class="s_btn text-left pt16 pb16" data-name="Buttons">
-                  <a href="#" class="btn btn-primary o_default_snippet_text">En savoir plus</a>
+                  <a href="#pricing" class="btn btn-primary o_default_snippet_text">Je m'inscirs</a>
                 </div>
               </div>
               <div class="col-lg-6 pt16 pb16">
@@ -87,7 +87,11 @@ Les prérequis
                   Pour l'acquérir, il faut déposer une demande à la préfecture de votre région ou en ligne sur son site web .
                   <br />
                   L'étape suivante est de choisir votre date d'
-                  <a href="https://www.cma-lyonrhone.fr/se-former/examen-taxi-vtc">examen</a>
+                  <a href="https://www.cma-lyonrhone.fr/se-former/examen-taxi-vtc">
+                    <b>
+                      <u>examen</u>
+                    </b>
+                  </a>
                   et le passer auprès de la chambre des métiers et de l'artisanat. Plusieurs sessions sont organisées par le préfet au cours de l'année.
                 </p>
                 <p class="para">
@@ -110,20 +114,18 @@ Les prérequis
               </div>
               <div class="col-lg-6 pt16 pb16">
                 <h2 class="title-2">
-                  Formation taxi
+                  Suivre une Formation taxi - Lyon-
                   <text class="yellow-mcm">à distance</text>
                 </h2>
-                <p>
-                  <font style="font-size: 18px;">
+                <p class="para">
                     Notre centre de formation taxi propose une formation en ligne 100% théorique, à suivre sur notre plateforme e-learning à votre rythme, ou vous voulez, quand vous voulez, avec un accès illimité durant la période de formation.
-                    <br />
-                    En accédant à notre plateforme de formation, vous aurez droit à des vidéos interactives avec lesquelles vous pourrez commenter ou poser vos questions, comme vous aurez la possibilité d'assister à des cours en Live avec nos formateurs métiers pour d'amples explications.
-                    <br />
-                    À la fin de chaque module, des examens blancs sous forme de QCM et QRO seront mis à vous seront proposés afin d'évaluer vos connaissances requises lors de votre parcours de formation.
-                  </font>
+                </p>
+                <p class="para">
+                  En accédant à notre plateforme de formation, vous aurez droit à des vidéos interactives avec lesquelles vous pourrez commenter ou poser vos questions, comme vous aurez la possibilité d'assister à des cours en Live avec nos formateurs métiers pour d'amples explications.
+À la fin de chaque module, des examens blancs sous forme de QCM et QRO seront mis à vous seront proposés afin d'évaluer vos connaissances requises lors de votre parcours de formation.
                 </p>
                 <div class="s_btn text-left pt16 pb16" data-name="Button">
-                  <a href="#" class="btn btn-outline-primary" spellcheck="false" data-mci-spellchecked="true" style="word-break: break-word; position: relative; z-index: 0;" data-original-title="" title="" aria-describedby="tooltip321181">Je m'inscris !</a>
+                  <a href="#pricing" class="btn btn-outline-primary" spellcheck="false" data-mci-spellchecked="true" style="word-break: break-word; position: relative; z-index: 0;" data-original-title="" title="" aria-describedby="tooltip321181">Je m'inscris !</a>
                 </div>
 
               </div>
@@ -169,7 +171,7 @@ Les prérequis
                   </font>
                 </p>
                 <div class="s_btn text-left pt16 pb16" data-name="Buttons">
-                  <a href="#https://www.mcm-academy.fr/examen-vtc-taxi-moto-taxi" class="btn btn-primary" spellcheck="false" data-mci-spellchecked="true" style="word-break: break-word; position: relative; z-index: 0;">En savoir plus</a>
+                  <a href="/examen-vtc-taxi-moto-taxi" class="btn btn-primary" spellcheck="false" data-mci-spellchecked="true" style="word-break: break-word; position: relative; z-index: 0;">En savoir plus</a>
                 </div>
 
               </div>
