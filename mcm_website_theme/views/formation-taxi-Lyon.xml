@@ -135,7 +135,7 @@ Les prérequis
         <!--TÉLÉCHARGER LE PROGRAMME DE LA FORMATION TAXI -->
         <section id="sh_corpomate_theme_section_167" class="sh_animation_part" style="background-color: rgb(253, 209, 5); margin: 76px 0px">
           <div class="container js-scroll fade-in-top">
-            <h3 style="color: rgb(0, 0, 0); font-size: 19px; max-width: 100%">
+            <h3 style="color: rgb(0, 0, 0); font-size: 24px; max-width: 100%">
               <b>Téléchargez notre programme de formation taxi</b>
             </h3>
             <p class="lead o_default_snippet_text">
@@ -152,14 +152,14 @@ Les prérequis
         </section>
 
 
-        <section class="s_text_image pt32 pb32" data-name="Text - Image">
+        <section class="s_text_image pb32" data-name="Text - Image">
           <div class="container">
             <div class="row align-items-center">
               <div class="col-lg-6 pt16 pb16">
                 <h2 class="title-2">
-                  <b>
-                    <font style="font-size: 36px;">Examen taxi</font>
-                  </b>
+                 
+                    Examen taxi
+             
                 </h2>
                 <p>
                   <font style="font-size: 18px;">

@@ -44,6 +44,7 @@
         'views/my_account_progress.xml',
         'views/cart_progressbar.xml',
         'views/edit_info.xml',
+        'views/nos-formations.xml',
         # 'views/test1.xml',
         # 'views/test2.xml',
         # 'views/test3.xml',
@@ -67,7 +68,7 @@
         'views/livreur-de-colis-nantes.xml',
         'views/devenir-coursier-lyon.xml',
         'views/capacitaire-transport-bordeaux.xml',
-        #page de blog
+        # page de blog
         'views/blog/website_blog_posts.xml',
 
     ],

@@ -399,17 +399,13 @@
                                         <h2 class="m-t-20 m-b-30 font-stylish-1 text-beta">
                                             <b>Nouvelles formations chez Digimoov !</b>
                                         </h2>
-                                        <p class="custom_p">You can relay on our amazing features list and also
-								our
-								customer services will be great experience for our users
+                                        <p class="custom_p">Nouvelles formations chez Digimoov !
+Toujours en quête d'innovation, et afin de mieux répondre à vos besoins en formations, et vous aider à développer vos projets professionnels, Digimoov mets à votre disposition de nouvelles formations en ligne à découvrir dés maintenant !
 							</p>
-                                        <p class="custom_p o_default_snippet_text">You will surely fall in love with ready touse
-								bootstrap ui
-								kit framework.
-							</p>
+
                                         <div class="s_btn" data-name="Button">
-                                            <a class="btn btn-rounded rounded-circle btn-alpha btn-md arrow-btn m-t-20 m-b-30 bizople_button o_default_snippet_text" href="#">
-                                                View Other Features
+                                            <a class="btn btn-rounded rounded-circle btn-alpha btn-md arrow-btn m-t-20 m-b-30 bizople_button o_default_snippet_text" href="/nos-formations">
+                                                En Savoir plus
                                                 <span class="fa fa-1x fa-fw fa-long-arrow-right ml-1" />
                                             </a>
                                         </div>

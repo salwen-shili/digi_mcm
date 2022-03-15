@@ -60,8 +60,25 @@ class Website(Website):
             values = {
                 'digimoov_products': digimoov_products,
             }
-            print("9a3ed yodkhol")
+
             return request.render("digimoov_website_templates.devenir_coursier_paris",
+                                  values)
+        else:
+            raise werkzeug.exceptions.NotFound()
+
+    # Route nos formations
+
+    @http.route('/nos-formations', type='http', auth='public', website=True)
+    def nos_formations_digimoov(self, **kw, ):
+
+        if request.website.id == 2:
+            digimoov_products = request.env['product.product'].sudo().search([('company_id', '=', 2)],
+                                                                             order="list_price")
+            values = {
+                'digimoov_products': digimoov_products,
+            }
+
+            return request.render("digimoov_website_templates.nos_formations",
                                   values)
         else:
             raise werkzeug.exceptions.NotFound()
@@ -899,4 +916,3 @@ class Habilitation_electrique(http.Controller):
             return request.render("digimoov_website_templates.habilitation-electrique-marseille", values)
         else:
             raise werkzeug.exceptions.NotFound()
-
