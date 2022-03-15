@@ -19,8 +19,9 @@
             lancer dans le secteur du
                                     <b>transport routier</b>
                                     de marchandises, et créer votre propre boite de livraison ?
-            Digimoov, vous propose un formation en e-learning de qualité, de 102
-            heures, concotée par des formateurs qualifiés, avec des cours en
+                                    <a href="/qui-sommes-nous">Digimoov</a>
+                                    , vous propose un formation en e-learning de qualité, de 102
+            heures, concoctée par des formateurs qualifiés, avec des cours en
             vidéos et en Live.
                                 </p>
                                 <div class="banner-btn s_btn" data-name="Button">
@@ -36,7 +37,6 @@
                         </div>
                     </div>
                 </section>
-
                 <section class="s_text_image pt32 pb32" data-name="Text - Image">
                     <div class="container">
                         <div class="row align-items-center">
@@ -60,14 +60,11 @@
                                     <a href="/blog/digimoov-3/post/comment-devenir-un-gestionnaire-de-transport-39#scrollTop=0">gestionnaire de transport</a>
                                     .
                                 </p>
-
-
                                 <p class="para">
                                  Pour ce faire, vous devez passer un examen, obtenir l'équivalence de
             vos diplômes ou prouver une expérience de plus de 10 ans dans le
             domaine.
                                </p>
-
                                 <p class="para">
                                 Le chemin le plus classique pour l'obtention de cette licence est le
             suivi d'une formation pour réussir l'examen organisé par la DREAL.
@@ -79,7 +76,6 @@
                         </div>
                     </div>
                 </section>
-
                 <section class="pt16 pb32 js-scroll fade-in-top">
                     <div class="container js-scroll fade-in-top">
                         <div class="center-logo mt32">
@@ -96,14 +92,12 @@
                             <div class="pt32">
                                 <img class="img-fluid lazy" style="width: 160px" data-src="/digimoov_website_templates/static/img/coursier2roues/logo-DREAL.webp" data-srcsafari="/digimoov_website_templates/static/img/coursier2roues/logo-DREAL.png" title="Centre agrée de la préfecture" alt="dreal" />
                             </div>
-
                             <div class="pt32">
                                 <img class="img-fluid lazy" style="width: 263px" data-srcSafari="/mcm_website_theme/static/src/img/logo-investir-avenir.png" data-src="/mcm_website_theme/static/src/img/logo-investir-avenir.webp" title="Investir dans vos compétences avec MCM Academy" alt="Investir dans vos compétences avec MCM Academy" />
                             </div>
                         </div>
                     </div>
                 </section>
-
                 <section class="about-us centric_template pt128 section-padding pb0" data-name="About Us" id="en-savoir-plus">
                     <div class="container">
                         <div class="row">
@@ -116,7 +110,7 @@
                                 <div class="aboutus-content">
                                     <h2 class="h2-title">
                                         La formation :
-                                        <text class="pink-v">capacité de transport léger de marchandises</text>
+                                        <text class="pink-v">capacité de transport léger de marchandises à Bordeaux</text>
                                     </h2>
                                     <p class="para">
                                         La
@@ -140,7 +134,6 @@
                         </div>
                     </div>
                 </section>
-
                 <section class="s_call_to_action pt48 pb24 bg-night-fade-gradient" data-name="Call to Action">
                     <div class="container">
                         <div class="row">
@@ -162,7 +155,6 @@
                         </div>
                     </div>
                 </section>
-
                 <section class="s_text_image pt32 pb32" data-name="Image - Text">
                     <div class="container">
                         <div class="row align-items-center">
@@ -173,7 +165,6 @@
                                 <h2 class="h2-title">
                                     <b>Examen capacité de transport léger</b>
                                 </h2>
-
                                 <p class="para">
                                     L’
                                     <a href="/examen-capacite-transport-marchandises">examen</a>
@@ -194,7 +185,6 @@
                         </div>
                     </div>
                 </section>
-
                 <div id="pricing-table-trustpilot-partner">
                     <!-- TrustBox widget - Carousel -->
                     <section class="mt96 mb96">
@@ -204,7 +194,6 @@
                             </div>
                         </div>
                     </section>
-
                     <!-- End TrustBox widget -->
                     <div id="pricing" class="row justify-content-center">
                         <div class="col-md-8 text-center col-lg-11">
@@ -213,12 +202,10 @@
                                 <br />
                                 Inscrivez-vous dès maintenant !
                             </h2>
-
                         </div>
                     </div>
                     <div class="container">
                         <input t-att-value="request.website.microsoft_tracking_key" id="microsoft_tracking_key" type="hidden" />
-
                         <div class="row content-center">
                             <div class="col-md-4 col-sm-6">
                                 <div class="card border-0 shadow border-pricing">
@@ -291,7 +278,6 @@
                                                         </li>
                                                     </ul>
                                                     <p class="text-center font-weight-bolder text-dark h1 display-4 mb-0">
-
                                                         <p class="text-center font-weight-bolder text-dark h1 display-4 mb-0" t-if="not promo">
                                                             <span t-esc="round(product.list_price)" />
                                                             <span t-esc="product.currency_id.symbol" />
@@ -304,7 +290,6 @@
                                                                 </t>
                                                             </t>
                                                         </p>
-
                                                     </p>
                                                     <t t-if="promo and promo.name!='box2home'">
                                                         <p class="text-center font-weight-bolder text-secondary">
@@ -347,11 +332,9 @@
                                         </div> -->
                                     <div class="text-center text-white border-0 pack-wrap">
                                         <br />
-
                                         <p>
                                             <strong class="pack-name"> PRO </strong>
                                         </p>
-
                                         <!-- <p>&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;</p> -->
                                         <p class="blink-soft">
                                             <b>Éligible au CPF</b>
@@ -389,7 +372,6 @@
                                                             <i class="fa fa-check-circle fa-lg mr-2 text-success" />
                                                             <b>Assistance par mail</b>
                                                         </li>
-
                                                         <li class="mb-4">
                                                             <span class="desc-size fa fa-check-circle fa-lg mr-2 text-success" data-original-title="" title="" aria-describedby="tooltip96053" />
                                                             <b>Séances de groupe en Live avec les formateurs</b>
@@ -417,19 +399,15 @@
                         &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;
                         &amp;nbsp; &amp;nbsp;&amp;nbsp;</b>
                                                         </li>
-
                                                         <li>
                                                             <i />
                                                         </li>
                                                     </ul>
                                                     <p class="text-center font-weight-bolder text-dark h1 display-4 mb-0">
-
                                                         <p class="text-center font-weight-bolder text-dark h1 display-4 mb-0">
                                                             <span t-esc="round(product.list_price)" />
-
                                                             <span t-esc="product.currency_id.symbol" />
                                                         </p>
-
                                                     </p>
                                                     <t t-if="promo and promo.name!='box2home'">
                                                         <p class="text-center font-weight-bolder text-secondary">
@@ -441,7 +419,6 @@
                                                     <p class="paiement medium text-center font-weight-bolder text-secondary">
                     Paiement 1 ou 2 fois
                                             </p>
-
                                                     <br />
                                                     <button class="btn-inscription btn btn-block text-white" onClick="(function(){document.getElementById('form-2-1').submit();return false;})();">
                     Je m'inscris
@@ -470,7 +447,6 @@
                                         </div> -->
                                     <div class="text-center text-white border-0 pack-wrap">
                                         <br />
-
                                         <p>
                                             <strong class="pack-name"> PREMIUM </strong>
                                         </p>
@@ -508,7 +484,6 @@
                                                             <b>Assistance par mail</b>
                                                             <br />
                                                         </li>
-
                                                         <li class="mb-4">
                                                             <i class="fa fa-check-circle fa-lg mr-2 text-success" />
                                                             <b>Séances en Live avec un tuteur dédié</b>
@@ -540,12 +515,10 @@
                                                         </li>
                                                     </ul>
                                                     <p class="text-center font-weight-bolder text-dark h1 display-4 mb-0">
-
                                                         <p class="text-center font-weight-bolder text-dark h1 display-4 mb-0">
                                                             <span t-esc="round(product.list_price)" />
                                                             <span t-esc="product.currency_id.symbol" />
                                                         </p>
-
                                                     </p>
                                                     <t t-if="promo">
                                                         <p class="text-center font-weight-bolder text-secondary">
@@ -557,7 +530,6 @@
                                                     <p class="paiement medium text-center font-weight-bolder text-secondary">
                     Paiement 1 ou 3 fois
                                             </p>
-
                                                     <br />
                                                     <button class="btn-inscription btn btn-block text-white" onClick="(function(){ document.getElementById('form-3-1').submit();return false;})();">
                     Je m'inscris
@@ -571,8 +543,6 @@
                         </div>
                     </div>
                     <!-- End pricing table-->
-
-
                     <!-- partenaires-->
                     <section class="bg-200 bg-light-1 s_estate_logo_partners">
                         <div class="feature14 spacer">
@@ -627,7 +597,6 @@
                         </div>
                     </section>
                 </div>
-
             </div>
 
 
