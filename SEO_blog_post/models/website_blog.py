@@ -18,11 +18,11 @@ class BlogPost(models.Model):
     _sql_constraints = [
         ('code_uniq', 'unique (blog_post_website_url)', "Nom de l'article existe dèjàaaaa"),
     ]
-    blog_post_website_url = fields.Char('Website URL', compute='_compute_blog_post_website_url', help='The full URL to access the document through the website.',store=True)
+    blog_post_website_url = fields.Char('Website URL', compute='_compute_blog_post_website_url', help='The full URL to access the document through the website.',store=True) #add computed field stored in the database to use it in search function contains the blog post website url optimized
     def _compute_blog_post_website_url(self):
         for blog_post in self:
             blog_posts = self.env['blog.post'].sudo().search([('id', '!=', blog_post.id)])
             for post in blog_posts:
                 if post.name == blog_post.name:
                     raise UserError("'Nom de l'article existe dèjà")
-            blog_post.blog_post_website_url = "/blog/%s" % (slugify(blog_post.name or '').strip().strip('-'))
+            blog_post.blog_post_website_url = "/blog/%s" % (slugify(blog_post.name or '').strip().strip('-')) #using slugify to change the website_url to be without special characters
