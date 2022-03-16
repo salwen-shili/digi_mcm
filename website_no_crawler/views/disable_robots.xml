@@ -11,6 +11,8 @@ Disallow: /service-pedagogique
 Disallow: /shop/cart
 Disallow: /contact
 Disallow: /conditions
+Disallow: /helpdesk/rating
+Disallow: /web/content/slide.slide/*
 Sitemap:<t t-esc="url_root"/>sitemap.xml
             </t>
         </xpath>
@@ -25,6 +27,9 @@ Disallow: /service-clientele
 Disallow: /service-pedagogique
 Disallow: /shop/cart
 Disallow: /contact
+Disallow: /helpdesk/rating
+Disallow: /my/cerfa
+Disallow: /web/content/slide.slide/*
 Sitemap:<t t-esc="url_root"/>sitemap.xml
             </t>
         </xpath>
