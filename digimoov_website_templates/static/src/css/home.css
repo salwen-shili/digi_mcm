@@ -1733,6 +1733,9 @@ footer {
 }
 
 @media all and (max-width: 425px) {
+  .h1-title {
+    font-size: 55px !important;
+  }
   .center-logo {
     display: flex;
     flex-direction: column;
@@ -1958,4 +1961,7 @@ footer {
   .home-banner .bannarcol h1 {
     font-size: 55px;
   }
+}
+.color-marmelade {
+  color: #ff9c00 !important;
 }
