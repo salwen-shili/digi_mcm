@@ -240,7 +240,12 @@ function showPopup() {
 
   var continueBtn = document.getElementById('continueBtn');
   var textbtn;
-  cpfChecked || pole_emploi_checkbox.checked
+
+  var polechecked = false;
+  if (document.getElementById('pole_emploi_checkbox')) {
+    polechecked = pole_emploi_checkbox.checked;
+  }
+  cpfChecked || polechecked
     ? (textbtn = 'Mobiliser mon CPF')
     : (textbtn = 'Passer au paiement');
 
