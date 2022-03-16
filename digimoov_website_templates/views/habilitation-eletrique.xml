@@ -1,40 +1,14 @@
 <odoo>
     <template id="digimoov_website_templates.habilitation-electrique" name="Habilitation electrique | Digimoov">
         <t t-call="website.layout">
-            <script defer="defer" type="text/javascript" src="/digimoov_website_templates/static/src/js/lazy-min.js" />
-            <link href="/digimoov_website_templates/static/src/css/css-dist/home.min.css" rel="stylesheet" />
+            <script defer="defer" type="text/javascript" src="/digimoov_website_templates/static/src/js/lazy-min.min.js" />
+            <link href="/digimoov_website_templates/static/src/css/home.min.css" rel="stylesheet" />
             <br />
             <br />
-            <style>
-                @media all and (max-width: 425px) {
-                    .center-logo {
-                    display: flex;
-                    flex-direction: column;
-                    align-content: center;
-                    justify-content: space-between;
-                    align-items: center;
-                    }
-                    h1{
-                      font-size: 53.4px !important;  
-                    }
-                }
-                  .center-logo {
-                    display: flex;
-                    flex-direction: row;
-                    align-content: center;
-                    justify-content: space-between;
-                    align-items: center;
-                    }
-                .para {
-                    vertical-align: baseline !important;
-                    font-size: 16px !important;
-                    color: #6a6c72 !important;
-                    line-height: 1.7 ;
-                }
-            </style>
+
             <div id="wrap" class="oe_structure oe_empty">
                 <!-- -->
-                <section class="centric_template home-banner pt128 banner_padding" style="padding-bottom: 0px !important; word-break: break-word; position: relative; z-index: 0;">
+                <section class="centric_template home-banner pt128 banner_padding">
                     <div class="container">
                         <div class="row">
                             <div class="bannarcol col-lg-6 col-md-12">
@@ -42,16 +16,16 @@
                                 <h1 style="font-size: 70.4px; color: #9c00ff">Électrique</h1>
                                 <p class="paratext">
                                     Vous êtes entrepreneur, et vous pensez à former votre personnel
-                sur l'habilitation électrique BS/BE Manoeuvres ? Chez&amp;nbsp;
+                                    sur l'habilitation électrique BS/BE Manoeuvres ? Chez&amp;nbsp;
                                     <text style="color: rgb(156, 0, 255)">Digimoov,&amp;nbsp;</text>
                                     on vous propose&amp;nbsp;
                                     <b>
                                         <text class="text-delta">une formation 100 % en ligne certifiée&amp;nbsp;
-                                    </text>
+                                        </text>
                                     </b>
                                     pour obtenir votre habilitation
                                     <text style="color: rgb(156, 0, 255)">
-                                        <b>en 3 jours ! </b>
+                                        <b>en 3 jours !</b>
                                     </text>
                                 </p>
                                 <div class="banner-btn s_btn" data-name="Button">
@@ -105,7 +79,7 @@
                                     L’
                                     <b>habilitation</b>
                                     , délivrée par l'employeur, détermine le type des opérations sur
-                lesquelles pourrait
+                                    lesquelles pourrait
                                     <b>intervenir</b>
                                     l'employé,&amp;nbsp;sachant qu'obtenir une
                                     <b>habilitation</b>
@@ -113,18 +87,18 @@
                                 </p>
                                 <p class="para">
                                     Il y a plusieurs catégories d’
-                                    <b>habilitations électriques </b>
+                                    <b>habilitations électriques</b>
                                     qui varient en fonction du domaine de
                                     <b>tension</b>
                                     des ouvrages (basse ou haute tension), et de la nature des
-                opérations que le travailleur doit effectuer.
+                                    opérations que le travailleur doit effectuer.
                                 </p>
                             </div>
                         </div>
                     </div>
                 </section>
                 <!-- -->
-                <section class="centric_template pt128 section-padding about-us pb0" data-name="About Us" id="en-savoir-plus" style="word-break: break-word; position: relative; z-index: 0;">
+                <section class="centric_template pt128 section-padding about-us pb0" data-name="About Us" id="en-savoir-plus">
                     <div class="container">
                         <div class="row">
                             <div class="col-lg-6 col-md-12">
@@ -145,7 +119,8 @@
                                             </text>
                                         </text>
                                         <text class="text-delta">L’</text>
-                                        <text style="color: rgb(59, 210, 188)">habilitation électrique BS/BE manœuvres</text>
+                                        <text style="color: rgb(59, 210, 188)">habilitation électrique BS/BE manœuvres
+                                        </text>
 
                                         <text style="color: rgb(0, 0, 0) !important" class="text-delta">?</text>
 
@@ -160,16 +135,16 @@
                                         . Cette
                                         <b>formation</b>
                                         a pour
-                                        <b>objectifs </b>
+                                        <b>objectifs</b>
                                         d'assurer la
-                                        <b>sécurité </b>
+                                        <b>sécurité</b>
                                         des biens et des personnes, démontrer les
                                         <b>compétences</b>
                                         des intervenants en matière de sécurité électrique, et
-                          savoir identifier la
-                                        <b>conduite </b>
+                                        savoir identifier la
+                                        <b>conduite</b>
                                         sur laquelle il faut intervenir en cas d’
-                                        <b>accident </b>
+                                        <b>accident</b>
                                         ou d’
                                         <b>incendie</b>
                                         d’origine
@@ -177,11 +152,13 @@
                                         . Cette
                                         <b>formation</b>
                                         vous permettra aussi de spécifier le type des
-                                        <b>interventions </b>
+                                        <b>interventions</b>
                                         que chacun de vos employés est autorisé à effectuer.
                                     </p>
                                     <div class="s_btn text-center pt16 pb16" data-name="Button">
-                                        <a href="#pricing" class="btn btn-primary" style="                                             word-break: break-word;                                             position: relative;                                             z-index: 0;                                         ">Je m'inscris !</a>
+                                        <a href="#pricing" class="btn btn-primary" style="                                             word-break: break-word;                                             position: relative;                                             z-index: 0;                                         ">
+                                            Je m'inscris !
+                                        </a>
                                     </div>
                                 </div>
                             </div>
@@ -208,10 +185,10 @@
                                     et à la prévention des
                                     <b>risques</b>
                                     électriques. Elle concerne toute personne qui doit effectuer
-                  des interventions simples d’ordre électrique de
+                                    des interventions simples d’ordre électrique de
                                     <b>remplacement</b>
                                     et de
-                                    <b> raccordement </b>
+                                    <b>raccordement</b>
                                     et des manœuvres d’
                                     <b>appareils électriques</b>
                                     dans un environnement électriquement
@@ -221,8 +198,8 @@
                                 </p>
                                 <p class="para">
                                     Elle se base sur le Code du travail qui définit les principes
-                  généraux de prévention, conférant à l’employeur une obligation
-                  de résultat en matière de
+                                    généraux de prévention, conférant à l’employeur une obligation
+                                    de résultat en matière de
                                     <b>sécurité au travail</b>
                                     (
                                     <b>Norme NF C 18-510 du 21 décembre 2011</b>
@@ -236,17 +213,17 @@
                     </div>
                 </section>
                 <!-- -->
-                <section class="s_accounting_offer" style="word-break: break-word; position: relative; z-index: 0;">
+                <section class="s_accounting_offer">
                     <div class="mini-spacer text-white">
                         <div class="container">
                             <div class="row">
-                                <h3 class="align-self-center col-lg-9 col-md-8 col-sm-12 display-7"> 
+                                <h3 class="align-self-center col-lg-9 col-md-8 col-sm-12 display-7">
                                     Programme de formation habilitation BS/BE manœuvres
                                 </h3>
                                 <div class="ml-auto m-t-10 m-b-10 s_btn col-lg-3 col-md-4 col-sm-12" data-name="Button" style="text-align: center">
                                     <a rel="noopner" target="_blank" href="/digimoov_website_templates/static/pdf/Programme de formation habilitation électrique-digimoov-marmelade.pdf" alt="Programme de formation habilitation électrique-digimoov-marmelade" title="Programme de formation habilitation électrique digimoov marmelade">
                                         <button class="bizople_button btn btn-md btn-outline-light rounded-circle" style="                                         word-break: break-word;                                         position: relative;                                         z-index: 0;                                         ">
-                                        Téléchargez-le !
+                                            Téléchargez-le !
                                         </button>
                                     </a>
                                 </div>
@@ -255,7 +232,7 @@
                     </div>
                 </section>
                 <!-- -->
-                <section class="s_text_image pt32 pb32" data-name="Text - Image" style="word-break: break-word; position: relative; z-index: 0;">
+                <section class="s_text_image pt32 pb32" data-name="Text - Image">
                     <div class="container" style="border-style: none; border-width: 0px;">
                         <div class="row align-items-center">
                             <div class="col-lg-6">
@@ -274,14 +251,14 @@
                                 </p>
                                 <p class="para" style="line-height: 1.4;">
                                     <b style="color:#343996 !important">
-                  Partie théorique :
+                                        Partie théorique :
                                     </b>
                                     Un
                                     <b>&amp;nbsp;programme&amp;nbsp;</b>
                                     et un contenu de la formation&amp;nbsp;
                                     <b>conformes&amp;nbsp;</b>
                                     à la norme NF C 18-510 avec des modalités d’accès personnalisées
-                :
+                                    :
                                     <br />
                                     <b>10h</b>
                                     &amp;nbsp;d’apprentissage théorique sur l’
@@ -292,7 +269,7 @@
                                     &amp;nbsp;!
                                     <br />
                                     L’accès à votre formation est de 30 jours ouvrables à partir de
-                la première connexion.
+                                    la première connexion.
                                     <br />
                                     • Un&amp;nbsp;
                                     <b>parcours</b>
@@ -300,22 +277,22 @@
                                     <b>clair</b>
                                     <br />
                                     • Pour chaque chapitre, vous consultez la fiche « L’essentiel »
-                puis répondez à des questions pour vous approprier les
-                connaissances.&amp;nbsp;
+                                    puis répondez à des questions pour vous approprier les
+                                    connaissances.&amp;nbsp;
                                     <br />
                                     • Une pédagogie inversée : des « Bon à savoir » pour chaque
-                question, pour aller plus loin et être incollable.&amp;nbsp;
+                                    question, pour aller plus loin et être incollable.&amp;nbsp;
                                     <br />
                                     • Un Quiz Final pour chaque module pour verrouiller vos
-                acquis.&amp;nbsp;
+                                    acquis.&amp;nbsp;
                                     <br />
                                     <b style="color:#343996 !important">
-                  Partie pratique :
+                                        Partie pratique :
                                     </b>
                                     &amp;nbsp;
                                     <b>4h</b>
                                     &amp;nbsp;de formation en présentiel avec un formateur
-                partenaire.
+                                    partenaire.
                                 </p>
                             </div>
                         </div>
@@ -323,10 +300,20 @@
                 </section>
                 <!-- pricing table-->
                 <div class="container pt32 pb32" id="pricing">
+                    <div id="pricing" class="row justify-content-center">
+                        <div class="col-md-8 text-center col-lg-11">
+                            <h2 class="text-beta title-pricing mb20">
+                                LET'S GO !
+                                <br />
+                                Inscrivez-vous dès maintenant !
+                            </h2>
+
+                        </div>
+                    </div>
                     <div class="row" style="place-content: center">
                         <div class="col-lg-5 col-md-7 col-sm-12">
-                            <div class="card border-0 shadow" style="border-radius: 25px 25px">
-                                <div class="text-center text-white border-0" style="                   background-color: #6e209f;                   border-top-left-radius: 25px;                   border-top-right-radius: 25px;                 ">
+                            <div class="card border-0 shadow border-pricing">
+                                <div class="text-center text-white border-0 pack-wrap   ">
                                     <br />
                                     <br />
                                     <p>
@@ -344,7 +331,7 @@
                                             <input t-att-value="request.website.microsoft_tracking_key" id="microsoft_tracking_key" type="hidden" />
                                             <input type="hidden" class="product_id" name="product_id" t-att-value="product.id" />
                                             <input type="hidden" name="promo" t-att-value="promo.id" t-if="promo" />
-                                            <div class="card-body p-card-pricing" style="background-color: white">
+                                            <div class="card-body bg-white">
                                                 <ul class="list-unstyled">
                                                     <li class="mb-4">
                                                         <i class="fa fa-check-circle fa-lg mr-2 text-success" />
@@ -372,7 +359,7 @@
                                                     </li>
                                                     <li class="mb-4">
                                                         <i class="fa fa-check-circle fa-lg mr-2 text-success" />
-                                                        <b>Formation pratique de 4 h en présentiel </b>
+                                                        <b>Formation pratique de 4 h en présentiel</b>
                                                     </li>
                                                 </ul>
                                                 <div class="text-center">
@@ -390,13 +377,13 @@
                                                     </b>
                                                 </div>
                                                 <p class="font-weight-bolder medium text-center text-secondary" style="color: red !important">
-                        Paiement en une seule fois
+                                                    Paiement en une seule fois
                                                 </p>
                                                 <br />
                                                 <br />
                                                 <br />
                                                 <button class="btn btn-block text-white" onClick="(function(){document.getElementById('form-habiliation-electrique').submit();return false;})();return false;" style="background-color: #6e209f; border-radius: 25px">
-                        Je m'inscris
+                                                    Je m'inscris
                                                 </button>
                                             </div>
                                         </form>
@@ -413,11 +400,11 @@
                             <div class="row justify-content-center">
                                 <div class="col-md-7 text-center">
                                     <h2 class="text-beta title">Partenaire exclusif</h2>
-                                    <p class="subtitle">
-                  Afin de vous aider à réaliser vos objectifs professionnels
-                  dans les meilleures conditions,&amp;nbsp; nous avons développé
-                  de nombreux partenariats avec les leaders du marché de la
-                  livraison à domicile.&amp;nbsp;
+                                    <p class="paragtext">
+                                        Afin de vous aider à réaliser vos objectifs professionnels
+                                        dans les meilleures conditions,&amp;nbsp; nous avons développé
+                                        de nombreux partenariats avec les leaders du marché de la
+                                        livraison à domicile.&amp;nbsp;
                                     </p>
                                 </div>
                             </div>
@@ -436,48 +423,24 @@
             </div>
         </t>
     </template>
+    <!-- digimoov_website_templates.habilitation-electrique-lyon-->
     <template id="digimoov_website_templates.habilitation-electrique-lyon" name="Formation habilitation Lyon | Digimoov">
         <t t-call="website.layout">
-            <script defer="defer" type="text/javascript" src="/digimoov_website_templates/static/src/js/lazy-min.js" />
-            <link href="/digimoov_website_templates/static/src/css/css-dist/home.min.css" rel="stylesheet" />
+            <script defer="defer" type="text/javascript" src="/digimoov_website_templates/static/src/js/lazy-min.min.js" />
+            <link href="/digimoov_website_templates/static/src/css/home.min.css" rel="stylesheet" />
+            <!-- <link href="/digimoov_website_templates/static/src/css/css-dist/home.min.css" rel="stylesheet" /> -->
             <br />
             <br />
-            <style>
-                @media all and (max-width: 425px) {
-                    .center-logo {
-                    display: flex;
-                    flex-direction: column;
-                    align-content: center;
-                    justify-content: space-between;
-                    align-items: center;
-                    }
-                    h1{
-                      font-size: 53.4px !important;
-                    }
-                }
-                  .center-logo {
-                    display: flex;
-                    flex-direction: row;
-                    align-content: center;
-                    justify-content: space-between;
-                    align-items: center;
-                    }
-                .para {
-                    vertical-align: baseline !important;
-                    font-size: 16px !important;
-                    color: #6a6c72 !important;
-                    line-height: 1.7 ;
-                }
-            </style>
-            <div id="wrap" class="oe_structure oe_empty" style="word-break: break-word; position: relative; z-index: 0;">
-                <section class="centric_template home-banner pt128 banner_padding" style="padding-bottom: 0px !important; word-break: break-word; position: relative; z-index: 0;">
+
+            <div id="wrap" class="oe_structure oe_empty">
+                <section class="centric_template home-banner pt128 banner_padding">
                     <div class="container">
                         <div class="row">
                             <div class="bannarcol col-lg-6 col-md-12" style="border-style: none; border-width: 0px;">
                                 <h1 style="font-size: 70.4px; color: #9c00ff">
-                                    <font style="color: rgb(255, 156, 0);">Habilitation</font>
-                                    <font style="color: rgb(156, 0, 255);">électrique&amp;nbsp;BS-BE&amp;nbsp;manœuvres</font>
-                                    <font style="color: rgb(255, 156, 0);">Lyon</font>
+                                    <text style="color: rgb(255, 156, 0);">Habilitation</text>
+                                    <text style="color: rgb(156, 0, 255);">électrique&amp;nbsp;BS-BE&amp;nbsp;manœuvres</text>
+                                    <text style="color: rgb(255, 156, 0);">Lyon</text>
                                 </h1>
                                 <p class="paratext">
                                     Digimoov vous propose en collaboration avec Marmelade app, une
@@ -485,7 +448,7 @@
                                     aux habilitations BS, BE manœuvre. Une formation qui s'adresse au personnel électricien et non-électricien pour les habiliter à effectuer des opérations d'ordre électrique élémentaires (BS) ou manœuvrer des appareillages électriques en basse tension (BE manœuvre) en toute sécurité, et à intervenir en cas d'accidents ou incendie pour protéger l'environnement de l'entreprise.
                                 </p>
                                 <div class="banner-btn s_btn" data-name="Button">
-                                    <a href="#pricing" class="bannerbtn btn btn-alpha rounded-circle" title="je m'inscirs" alt="boutton je m'inscris" spellcheck="false" data-mci-spellchecked="true" style="word-break: break-word; position: relative; z-index: 0;">Inscrivez-vous maintenant !
+                                    <a href="#pricing" class="bannerbtn btn btn-alpha rounded-circle" title="je m'inscirs" alt="boutton je m'inscris" spellcheck="false" data-mci-spellchecked="true">Inscrivez-vous maintenant !
                                     </a>
                                 </div>
                                 <mci-extension data-role="overlay" />
@@ -508,7 +471,7 @@
                         </div>
                     </div>
                 </section>
-                <section class="centric_template pt128 section-padding about-us pb0" data-name="About Us" id="en-savoir-plus" style="word-break: break-word; position: relative; z-index: 0;">
+                <section class="centric_template pt128 section-padding about-us pb0" data-name="About Us" id="en-savoir-plus">
                     <div class="container">
                         <div class="row">
                             <div class="col-lg-6 col-md-12">
@@ -519,7 +482,7 @@
                             <div class="col-lg-6 col-md-12" style="border-style: none; border-width: 0px;">
                                 <div class="aboutus-content">
                                     <h2 style="                                         font-weight: bold !important;                                         font-size: 48px !important;                                         padding-bottom: 25px !important;                                         ">
-                                        <font color="#000000">La démarche à suivre pour une habilitation électrique</font>
+                                        <text color="#000000">La démarche à suivre pour une habilitation électrique</text>
                                     </h2>
                                     <p class="para">
                                         L'habilitation électrique BS BE est une mesure
@@ -548,7 +511,7 @@
                         <div class="row align-items-center">
                             <div class="pt16 pb16 col-lg-6" style="border-style: none; border-width: 0px;">
                                 <h2 style="                   font-weight: bold !important;                   font-size: 48px !important;                   color: #000 !important;                   padding-bottom: 25px !important;                 ">
-                                    <font style="color: rgb(0, 0, 255);">Définition des symboles de l'habilitation BS/BE manœuvres</font>
+                                    <text style="color: rgb(0, 0, 255);">Définition des symboles de l'habilitation BS/BE manœuvres</text>
                                 </h2>
                                 <p class="para">
                                     Le
@@ -577,7 +540,7 @@
                         </div>
                     </div>
                 </section>
-                <section class="s_accounting_offer bg-300" style="word-break: break-word; position: relative; z-index: 0;" data-name="Mini Appoinment Two">
+                <section class="s_accounting_offer bg-300" data-name="Mini Appoinment Two">
                     <div class="mini-spacer text-white">
                         <div class="container">
                             <div class="row">
@@ -597,7 +560,7 @@
                         </div>
                     </div>
                 </section>
-                <section class="s_text_image pt32 pb32" data-name="Text - Image" style="word-break: break-word; position: relative; z-index: 0;">
+                <section class="s_text_image pt32 pb32" data-name="Text - Image">
                     <div class="container" style="border-style: none; border-width: 0px;">
                         <div class="row align-items-center">
                             <div class="col-lg-6">
@@ -606,10 +569,10 @@
                             <div class="pt16 pb16 col-lg-6" style="border-style: none; border-width: 0px;">
                                 <h2 style="                   font-weight: bold !important;                   font-size: 48px !important;                   color: #000 !important;                   padding-bottom: 25px !important;                 ">
                                     Déroulement de la
-                                    <font style="color: rgb(156, 0, 255);">Formation habilitation</font>
-                                    <font style="color: rgb(255, 156, 0);">
+                                    <text style="color: rgb(156, 0, 255);">Formation habilitation</text>
+                                    <text style="color: rgb(255, 156, 0);">
                                         <br />
-                                    </font>
+                                    </text>
                                 </h2>
                                 <p class="para">
                                     Nous vous proposons une formation basée sur&amp;nbsp;
@@ -638,15 +601,15 @@
                         <div class="row align-items-center">
                             <div class="col-lg-6 pt16 pb16" style="border-style: none; border-width: 0px;">
                                 <h2>
-                                    <font style="font-size: 48px;">
+                                    <text style="font-size: 48px;">
                                         <b>Le </b>
-                                    </font>
-                                    <font style="color: rgb(0, 0, 255); font-size: 48px;">
+                                    </text>
+                                    <text style="color: rgb(0, 0, 255); font-size: 48px;">
                                         <b>recyclage </b>
-                                    </font>
-                                    <font style="font-size: 48px;">
+                                    </text>
+                                    <text style="font-size: 48px;">
                                         <b>de l'habilitation électrique</b>
-                                    </font>
+                                    </text>
                                 </h2>
                                 <p>
                                     Suite au suivi d'une formation initiale, le recyclage de la formation habilitation électrique BS BE manœuvres se fait tous les 3 ans.
@@ -662,141 +625,277 @@
                         </div>
                     </div>
                 </section>
+
+                <!-- pricing table-->
+                <div class="container pt32 pb32" id="pricing">
+                    <div id="pricing" class="row justify-content-center">
+                        <div class="col-md-8 text-center col-lg-11">
+                            <h2 class="text-beta title-pricing mb20">
+                                LET'S GO !
+                                <br />
+                                Inscrivez-vous dès maintenant !
+                            </h2>
+
+                        </div>
+                    </div>
+                    <div class="row" style="place-content: center">
+                        <div class="col-lg-5 col-md-7 col-sm-12">
+                            <div class="card border-0 shadow border-pricing">
+                                <div class="text-center text-white border-0 pack-wrap   ">
+                                    <br />
+                                    <br />
+                                    <p>
+                                        <strong style="color: white">
+                                            <text style="font-size: 30px">Habilitation Électrique</text>
+                                        </strong>
+                                    </p>
+                                    <p>
+                                        <b>&amp;nbsp;&amp;nbsp;</b>
+                                    </p>
+                                </div>
+                                <t t-foreach="digimoov_products" t-as="product">
+                                    <t t-if="product.default_code=='habilitation-electrique'">
+                                        <form action="/shop/cart/update" method="post" id="form-habiliation-electrique">
+                                            <input t-att-value="request.website.microsoft_tracking_key" id="microsoft_tracking_key" type="hidden" />
+                                            <input type="hidden" class="product_id" name="product_id" t-att-value="product.id" />
+                                            <input type="hidden" name="promo" t-att-value="promo.id" t-if="promo" />
+                                            <div class="card-body bg-white">
+                                                <ul class="list-unstyled">
+                                                    <li class="mb-4">
+                                                        <i class="fa fa-check-circle fa-lg mr-2 text-success" />
+                                                        <b>Formation 14h</b>
+                                                    </li>
+                                                    <li class="mb-4">
+                                                        <i class="fa fa-check-circle fa-lg mr-2 text-success" />
+                                                        <b>Programme et un contenu conformes à la NF C 18-510</b>
+                                                    </li>
+                                                    <li class="mb-4">
+                                                        <i class="fa fa-check-circle fa-lg mr-2 text-success" />
+                                                        <b>Accompagnement et assistance technique et pédagogique</b>
+                                                    </li>
+                                                    <li class="mb-4">
+                                                        <i class="fa fa-check-circle fa-lg mr-2 text-success" />
+                                                        <b>Equipe dédiée joignable de 8h à 20h</b>
+                                                    </li>
+                                                    <li class="mb-4">
+                                                        <i class="fa fa-check-circle fa-lg mr-2 text-success" />
+                                                        <b>Un parcours de formation clair</b>
+                                                    </li>
+                                                    <li class="mb-4">
+                                                        <i class="fa fa-check-circle fa-lg mr-2 text-success" />
+                                                        <b>Des quiz à la fin de chaque chapitre</b>
+                                                    </li>
+                                                    <li class="mb-4">
+                                                        <i class="fa fa-check-circle fa-lg mr-2 text-success" />
+                                                        <b>Formation pratique de 4 h en présentiel</b>
+                                                    </li>
+                                                </ul>
+                                                <div class="text-center">
+                                                    <b style="font-size: 60px !important; color: #000000" t-if="not promo">
+                                                        <span t-esc="round(product.list_price)" />
+                                                        <span t-esc="product.currency_id.symbol" />
+                                                    </b>
+                                                    <b style="font-size: 60px !important; color: #000000" t-if="promo">
+                                                        <t t-foreach="promo.item_ids" t-as="item">
+                                                            <t t-if="item.product_id.id==product.id">
+                                                                <span t-esc="round(item.fixed_price)" />
+                                                                <span t-esc="product.currency_id.symbol" />
+                                                            </t>
+                                                        </t>
+                                                    </b>
+                                                </div>
+                                                <p class="font-weight-bolder medium text-center text-secondary" style="color: red !important">
+                                                    Paiement en une seule fois
+                                                </p>
+                                                <br />
+                                                <br />
+                                                <br />
+                                                <button class="btn btn-block text-white" onClick="(function(){document.getElementById('form-habiliation-electrique').submit();return false;})();return false;" style="background-color: #6e209f; border-radius: 25px">
+                                                    Je m'inscris
+                                                </button>
+                                            </div>
+                                        </form>
+                                    </t>
+                                </t>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- partenaire-->
+                <section class="s_estate_logo_partners bg-light-1 bg-200" data-name="Partners with logos and paragraph">
+                    <div class="spacer feature14">
+                        <div class="container">
+                            <div class="row justify-content-center">
+                                <div class="col-md-7 text-center">
+                                    <h2 class="text-beta title">Partenaire exclusif</h2>
+                                    <p class="paragtext">
+                                        Afin de vous aider à réaliser vos objectifs professionnels
+                                        dans les meilleures conditions,&amp;nbsp; nous avons développé
+                                        de nombreux partenariats avec les leaders du marché de la
+                                        livraison à domicile.&amp;nbsp;
+                                    </p>
+                                </div>
+                            </div>
+                            <section class="clients s_references bg-200 pt16 pb16 p-m-0" data-name="References">
+                                <div class="row align-items-center justify-content-center">
+                                    <div class=" col-md-4 col-sm-12 text-center mb-4 mb-md-0  ">
+                                        <a href="http://bitly.ws/nW9I">
+                                            <img class="img img-fluid res-width-30" alt="marmelade" title="marmelade" aria-describedby="tooltip175558" style="margin-top: 21px;" src="/digimoov_website_templates/static/img/habilitation-electrique/marmelade app.png" />
+                                        </a>
+                                    </div>
+                                </div>
+                            </section>
+                        </div>
+                    </div>
+                </section>
             </div>
         </t>
 
 
     </template>
+    <!-- digimoov_website_templates.habilitation-electrique-marseille-->
     <template id="digimoov_website_templates.habilitation-electrique-marseille" name="Formation habilitation Marseille | Digimoov">
         <t t-call="website.layout">
-            <script defer="defer" type="text/javascript" src="/digimoov_website_templates/static/src/js/lazy-min.js" />
-            <link href="/digimoov_website_templates/static/src/css/css-dist/home.min.css" rel="stylesheet" />
+            <script defer="defer" type="text/javascript" src="/digimoov_website_templates/static/src/js/lazy-min.min.js" />
+            <link href="/digimoov_website_templates/static/src/css/home.min.css" rel="stylesheet" />
             <br />
             <br />
-            <style>
-                @media all and (max-width: 425px) {
-                    .center-logo {
-                    display: flex;
-                    flex-direction: column;
-                    align-content: center;
-                    justify-content: space-between;
-                    align-items: center;
-                    }
-                    h1{
-                      font-size: 53.4px !important;
-                    }
-                }
-                  .center-logo {
-                    display: flex;
-                    flex-direction: row;
-                    align-content: center;
-                    justify-content: space-between;
-                    align-items: center;
-                    }
-                .para {
-                    vertical-align: baseline !important;
-                    font-size: 16px !important;
-                    color: #6a6c72 !important;
-                    line-height: 1.7 ;
-                }
-            </style>
-            <div id="wrap" class="oe_structure oe_empty" style="word-break: break-word; position: relative; z-index: 0;">
-                <section class="centric_template home-banner pt128 banner_padding" style="padding-bottom: 0px !important; word-break: break-word; position: relative; z-index: 0;">
+
+            <div id="wrap" class="oe_structure oe_empty">
+
+                <section class="centric_template home-banner pt128 banner_padding">
                     <div class="container">
                         <div class="row">
-                            <div class="bannarcol col-lg-6 col-md-12" style="border-style: none; border-width: 0px;">
-                                <h1>
+                            <div class="bannarcol col-lg-6 col-md-12">
+                                <h1 class=" text-left">
                                     Formation&amp;nbsp;
-                                    <font style="color: rgb(156, 0, 255);">
+                                    <text style="color: #9c00ff">
                                         Habilitation Électrique
                                         <br />
-                                    </font>
+                                    </text>
                                     Marseille
                                 </h1>
-                                <p class="paratext">
+                                <p class="paratext text-left">
                                     Notre centre de formation
                                     <b>Digimoov</b>
                                     , vous propose en partenariat avec
                                     <b>Marmelade app</b>
-                                    , une formation en ligne sur l'habilitation électrique BS/BE manœuvres, afin de vous habiliter, ou habiliter votre équipe à prévoir les risques électriques liés aux installations électriques sur votre lieu de travail, et auxquels vous pourrez être exposé, et ainsi intervenir en cas d'accident ou d'incident électrique&amp;nbsp;pour vous protéger et protéger vos biens.
+                                    , une formation en ligne sur l'habilitation électrique BS/BE
+            manœuvres, afin de vous habiliter, ou habiliter votre équipe à
+            prévoir les risques électriques liés aux installations électriques
+            sur votre lieu de travail, et auxquels vous pourrez être exposé, et
+            ainsi intervenir en cas d'accident ou d'incident
+            électrique&amp;nbsp;pour vous protéger et protéger vos biens.
                                     <br />
                                 </p>
                                 <div class="banner-btn s_btn" data-name="Button">
                                     <a href="#pricing" class="bannerbtn btn btn-alpha rounded-circle" title="je m'inscirs" alt="boutton je m'inscris">Je m'inscris maintenant !
-                                    </a>
+            </a>
                                 </div>
                             </div>
-                            <div class="col-lg-6 col-md-12 image_padding mt24" style="border-style: none; border-width: 0px;">
+                            <div class="col-lg-6 col-md-12 image_padding mt24">
                                 <div class="banner_image">
-                                    <img class="img img-fluid" src="/web/image/257675/habilitation-digimoov.png" title="électricien en formation habilitation électrique" alt="électricien en formation habilitation électrique" />
+                                    <img class="img img-fluid lazy" data-src="/digimoov_website_templates/static/img/habilitation-electrique/formation-digimoov-habilitation.png" data-srcsafari="/digimoov_website_templates/static/img/habilitation-electrique/formation-digimoov-habilitation.png" title="électricien en formation habilitation électrique" alt="électricien en formation habilitation électrique" />
                                 </div>
                             </div>
                         </div>
                     </div>
                 </section>
+
+
                 <section class="container pt40 pb32 section-padding">
                     <div class="row align-items-center justify-content-center">
                         <div class="col-md-4 col-sm-12 text-center mb-4 mb-md-0">
-                            <img class="img-fluid" style="width: 188px" src="/mcm_website_theme/static/src/img/formation-taxi-vtc-certifiée-qualiopi.png" />
+                            <img class="img-fluid lazy pos-qualopi" data-src="/mcm_website_theme/static/src/img/formation-taxi-vtc-certifiée-qualiopi.webp" data-srcSafari="/mcm_website_theme/static/src/img/formation-taxi-vtc-certifiée-qualiopi.png" title="MCM Academy centre agrée par Qualiopi" alt="qualiopi" />
                         </div>
                         <div class="col-md-4 col-sm-12 text-center mb-4 mb-md-0">
-                            <img class="img-fluid" style="width: 110px" src="/mcm_website_theme/static/src/img/mcm academy-partenaire-france-relance.jpg" />
+                            <img class="img-fluid lazy" style="width: 110px" data-srcSafari="/mcm_website_theme/static/src/img/mcm academy-partenaire-france-relance.jpg" data-src="/mcm_website_theme/static/src/img/mcm academy-partenaire-france-relance.webp" title="France relance-MCM Academy" alt="France relance-MCM Academy" />
                         </div>
                     </div>
                 </section>
-                <section class="centric_template pt128 section-padding about-us pb0" data-name="About Us" id="en-savoir-plus" style="word-break: break-word; position: relative; z-index: 0;">
+                <!-- fin LOGOS-->
+
+                <section class="centric_template pt128 section-padding about-us pb0" data-name="About Us" id="en-savoir-plus">
                     <div class="container">
                         <div class="row">
                             <div class="col-lg-6 col-md-12">
                                 <div class="aboutus-img">
-                                    <img class="img img-fluid" src="/web/image/257684/Comment%20r%C3%A9ussir%20l%27examen%20de%20capacit%C3%A9%20de%20transport%20routier%20-%20digimoov.png" title="technicien répare un tableau électrique" alt="technicien répare un tableau électrique" />
+                                    <img class="img img-fluid lazy" data-srcsafari="/digimoov_website_templates/static/img/marseille/Comment réussir l'examen de capacité de transport routier - digimoov.png" data-src="/digimoov_website_templates/static/img/marseille/Comment réussir l'examen de capacité de transport routier - digimoov.webp" title="technicien répare un tableau électrique" alt="technicien répare un tableau électrique" />
                                 </div>
                             </div>
-                            <div class="col-lg-6 col-md-12" style="border-style: none; border-width: 0px;">
+                            <div class="col-lg-6 col-md-12">
                                 <div class="aboutus-content">
-                                    <h2 style="                                         font-weight: bold !important;                                         font-size: 48px !important;                                         padding-bottom: 25px !important;                                         ">
+                                    <h2 style="
+                font-weight: bold !important;
+                font-size: 48px !important;
+                padding-bottom: 25px !important;
+              ">
                                         <text style="color: rgb(59, 210, 188)">
-                                            <font class="text-alpha" style="">Qu'est-ce qu'une Habilitation électrique BS/BE manœuvres ?</font>
+                                            <text class="text-alpha" style="">Qu'est-ce qu'une Habilitation électrique BS/BE manœuvres
+                  ?</text>
                                             &amp;nbsp;
                                         </text>
                                     </h2>
-                                    <p class="para">
+                                    <p class="paragtext">
                                         L’habilitation
                                         <b>&amp;nbsp;</b>
                                         électrique "
                                         <b>BS BE manœuvres"&amp;nbsp;</b>
-                                        concerne toute personne qui doit effectuer des interventions simples d’ordre électrique de remplacement et de raccordement et des manœuvres d’appareils électriques dans un environnement électriquement dangereux (agent de maintenance, etc.).
+                                        concerne toute personne qui doit effectuer des interventions
+              simples d’ordre électrique de remplacement et de raccordement et
+              des manœuvres d’appareils électriques dans un environnement
+              électriquement dangereux (agent de maintenance, etc.).
                                         <br />
-                                        Cette formation a comme objectifs de : communiquer les règles de sécurité électrique respectant les décrets N°2010-1118 du 22 Septembre 2010, former le personnel sur les consignes de sécurité prévues par la NF C18 510, prévoir les dangers de l’électricité auxquels vous pourrez être exposé,&amp;nbsp;appliquer les mesures de sécurité et les instructions de l’employeur, et enfin, identifier la conduite à tenir en cas d’accident ou d’incendie d’origine électrique.
+                                        Cette formation a comme objectifs de : communiquer les règles de
+              sécurité électrique respectant les décrets N°2010-1118 du 22
+              Septembre 2010, former le personnel sur les consignes de sécurité
+              prévues par la NF C18 510, prévoir les dangers de l’électricité
+              auxquels vous pourrez être exposé,&amp;nbsp;appliquer les mesures
+              de sécurité et les instructions de l’employeur, et enfin,
+              identifier la conduite à tenir en cas d’accident ou d’incendie
+              d’origine électrique.
                                     </p>
                                     <div class="s_btn text-center pt16 pb16" data-name="Button">
-                                        <a href="#pricing" class="btn btn-primary" style="                                             word-break: break-word;                                             position: relative;                                             z-index: 0;                                         " spellcheck="false" data-mci-spellchecked="true" data-original-title="" title="" aria-describedby="tooltip549964">&amp;nbsp;En savoir plus</a>
+                                        <a href="#pricing" class="btn btn-primary" style="word-break: break-word; position: relative; z-index: 0" spellcheck="false" data-mci-spellchecked="true" data-original-title="" title="" aria-describedby="tooltip549964">&amp;nbsp;En savoir plus</a>
                                     </div>
                                 </div>
-                                <mci-extension data-role="overlay" />
                             </div>
                         </div>
                     </div>
                 </section>
+
                 <section class="s_text_image pt32 pb32" data-name="Text - Image">
                     <div class="container">
                         <div class="row align-items-center">
-                            <div class="pt16 pb16 col-lg-6" style="border-style: none; border-width: 0px;">
-                                <h2 style="                   font-weight: bold !important;                   font-size: 48px !important;                   color: #000 !important;                   padding-bottom: 25px !important;                 ">
-                                    <font class="text-alpha" style="">Titre d'habilitation électrique BS-BE manœuvres</font>
+                            <div class="pt16 pb16 col-lg-6">
+                                <h2 style="
+              font-weight: bold !important;
+              font-size: 48px !important;
+              color: #000 !important;
+              padding-bottom: 25px !important;
+            ">
+                                    <text class="text-alpha" style="">Titre d'habilitation électrique BS-BE manœuvres</text>
                                 </h2>
-                                <p class="para">
-                                    Le titre d'habilitation est un document délivré à la fin de la formation par l'employeur à ses employés, et qui atteste que les personnes concernées, sont habilitées à intervenir en cas d'incident électrique.
+
+                                <p class="paragtext">
+                                    Le titre d'habilitation est un document délivré à la fin de la
+            formation par l'employeur à ses employés, et qui atteste que les
+            personnes concernées, sont habilitées à intervenir en cas d'incident
+            électrique.
                                     <br />
-                                    Ce certificat inclut le symbole&amp;nbsp;de l'habilitation, le domaine&amp;nbsp;de tension concerné, ainsi que le type des ouvrages ou installations concernés.
+                                    Ce certificat inclut le symbole&amp;nbsp;de l'habilitation, le
+            domaine&amp;nbsp;de tension concerné, ainsi que le type des ouvrages
+            ou installations concernés.
                                     <br />
-                                    La norme NF C18-510 indique que le titulaire d’un titre d’habilitation doit être porteur de ce titre pendant les heures de travail ou le conserver à sa portée et être en mesure de le présenter sur demande motivée.
+                                    La norme NF C18-510 indique que le titulaire d’un titre
+            d’habilitation doit être porteur de ce titre pendant les heures de
+            travail ou le conserver à sa portée et être en mesure de le
+            présenter sur demande motivée.
                                     <br />
                                 </p>
                                 <div class="s_btn text-center pt16 pb16" data-name="Button">
-                                    <a href="#" class="btn btn-primary" spellcheck="false" data-mci-spellchecked="true" style="word-break: break-word; position: relative; z-index: 0;">Je m'inscris !</a>
+                                    <a href="#" class="btn btn-primary" spellcheck="false" data-mci-spellchecked="true">Je m'inscris !</a>
                                 </div>
-                                <mci-extension data-role="overlay" />
                             </div>
                             <div class="col-lg-6">
                                 <img src="/digimoov_website_templates/static/img/habilitation-electrique/qui-est-concerné-par-la-formation-habilitation.png" class="img img-fluid mx-auto" alt=" électricien en formation pratique de l’habilitation" />
@@ -804,118 +903,219 @@
                         </div>
                     </div>
                 </section>
-                <section class="s_text_image pt32 pb32" data-name="Text - Image" style="word-break: break-word; position: relative; z-index: 0;">
-                    <div class="container" style="border-style: none; border-width: 0px;">
+
+                <section class="s_text_image pt32 pb32" data-name="Text - Image">
+                    <div class="container">
                         <div class="row align-items-center">
                             <div class="col-lg-6">
-                                <img src="/web/image/257901/Formation%20Attestation%20de%20Transport%20L%C3%A9ger%20de%20Marchandises.png" class="img img-fluid mx-auto" alt="électricien feuille à la main en formation pratique habilitation" data-original-title="" title="" aria-describedby="tooltip950388" />
+                                <img data-src="digimoov_website_templates/static/img/habilitation-electrique/Formation Attestation de Transport Léger de Marchandises.webp" data-srcSafari="digimoov_website_templates/static/img/habilitation-electrique/Formation Attestation de Transport Léger de Marchandises.png" class="img img-fluid mx-auto lazy" alt="électricien feuille à la main en formation pratique habilitation" />
                             </div>
-                            <div class="pt16 pb16 col-lg-6" style="border-style: none; border-width: 0px;">
-                                <h2 style="                   font-weight: bold !important;                   font-size: 48px !important;                   color: #000 !important;                   padding-bottom: 25px !important;                 ">
-                                    <font style="" class="text-alpha">F</font>
-                                    <text class="h1-title text-epsilon">
-                                        <text style="color: rgb(156, 0, 255)">
-                                            <font class="text-alpha" style="">ormation Habilitation en e-learning
-                  
-                
-              
-                  
-                
-              </font>
-                                        </text>
-                                    </text>
+                            <div class="pt16 pb16 col-lg-6">
+                                <h2 class="title-h2 blue-color">
+                                    Formation Habilitation en e-learning
                                 </h2>
-                                <p class="para">
-                                    Notre centre de formation propose, en collaboration avec notre partenaire exclusif Marmelade app, une
+                                <p class="paragtext">
+                                    Notre centre de formation propose, en collaboration avec notre
+            partenaire exclusif Marmelade app, une
                                     <b>formation 100% en ligne</b>
                                     sur l'habilitation électrique BS-BE manœuvres. La formation dure
                                     <b>
                                         14 heures.
                                         <br />
                                     </b>
-                                    La partie théorique est de 10 heures, et se déroule sur une application mobile très facile à manipuler.
+                                    La partie théorique est de 10 heures, et se déroule sur une
+            application mobile très facile à manipuler.
                                     <br />
-                                    Le parcours de formation comporte des modules, découpés en chapitre, pour un apprentissage précis et efficace.
+                                    Le parcours de formation comporte des modules, découpés en chapitre,
+            pour un apprentissage précis et efficace.
                                     <br />
-                                    Au niveau de chaque chapitre, vous consultez la fiche «&amp;nbsp;L’essentiel&amp;nbsp;» puis vous répondez à des questions pour vous approprier les connaissances.
+                                    Au niveau de chaque chapitre, vous consultez la fiche
+            «&amp;nbsp;L’essentiel&amp;nbsp;» puis vous répondez à des questions
+            pour vous approprier les connaissances.
                                     <br />
-                                    À la fin de chaque chapitre vous passez un quiz final, que vous devriez réussir pour passer à l'étape suivante qui est la formation pratique.
+                                    À la fin de chaque chapitre vous passez un quiz final, que vous
+            devriez réussir pour passer à l'étape suivante qui est la formation
+            pratique.
                                     <br />
-                                    <b>La formation pratique dure 4 heures et se passe en présentiel à Marseille</b>
-                                    , lors de laquelle vous découvrez le champ d'application de la norme NF C 18-510, vous ferez des études, des mises en situation pratiques, et vous partagerez vos expériences en groupe.
+                                    <b>La formation pratique dure 4 heures et se passe en présentiel à
+              Marseille</b>
+                                    , lors de laquelle vous découvrez le champ d'application de la norme
+            NF C 18-510, vous ferez des études, des mises en situation
+            pratiques, et vous partagerez vos expériences en groupe.
                                 </p>
                             </div>
                         </div>
                     </div>
                 </section>
-                <section class="s_accounting_offer bg-green-gradient" style="word-break: break-word; position: relative; z-index: 0;" data-name="Mini Appoinment Two">
+
+                <section class="s_accounting_offer bg-green-gradient" data-name="Mini Appoinment Two">
                     <div class="mini-spacer text-white">
                         <div class="container">
                             <div class="row">
-                                <h2 class="align-self-center col-lg-9 col-md-8 col-sm-12 display-7"> Programme de formation habilitation électrique - Marseille</h2>
+                                <h2 class="align-self-center col-lg-9 col-md-8 col-sm-12 display-7">
+            Programme de formation habilitation électrique - Marseille
+          </h2>
                                 <div class="ml-auto m-t-10 m-b-10 s_btn col-lg-3 col-md-4 col-sm-12" data-name="Button" style="text-align: center">
                                     <a rel="noopner" target="_blank" href="/digimoov_website_templates/static/pdf/Programme de formation habilitation électrique-digimoov-marmelade.pdf" alt="Programme de formation habilitation électrique-digimoov-marmelade" title="Programme de formation habilitation électrique digimoov marmelade">
-                                        <button class="bizople_button btn btn-md btn-outline-light rounded-circle" style="                                         word-break: break-word;                                         position: relative;                                         z-index: 0;                                         " spellcheck="false" data-mci-spellchecked="true" data-original-title="" title="" aria-describedby="tooltip36401">
-                                        Téléchargez-le !
-                                        </button>
+                                        <button class="bizople_button btn btn-md btn-outline-light rounded-circle" style="word-break: break-word; position: relative; z-index: 0" spellcheck="false" data-mci-spellchecked="true" data-original-title="" title="" aria-describedby="tooltip36401">
+                Téléchargez-le !
+              </button>
                                     </a>
-                                    <mci-extension data-role="overlay" />
                                 </div>
                             </div>
                         </div>
                     </div>
                 </section>
+                <!-- -->
+                <!-- pricing table-->
+                <div class="container pt32 pb32" id="pricing">
+                    <div id="pricing" class="row justify-content-center">
+                        <div class="col-md-8 text-center col-lg-11">
+                            <h2 class="text-beta title-pricing mb20">
+                                LET'S GO !
+                                <br />
+                                Inscrivez-vous dès maintenant !
+                            </h2>
+
+                        </div>
+                    </div>
+                    <div class="row" style="place-content: center">
+                        <div class="col-lg-5 col-md-7 col-sm-12">
+                            <div class="card border-0 shadow border-pricing">
+                                <div class="text-center text-white border-0 pack-wrap   ">
+                                    <br />
+                                    <br />
+                                    <p>
+                                        <strong style="color: white">
+                                            <text style="font-size: 30px">Habilitation Électrique</text>
+                                        </strong>
+                                    </p>
+                                    <p>
+                                        <b>&amp;nbsp;&amp;nbsp;</b>
+                                    </p>
+                                </div>
+                                <t t-foreach="digimoov_products" t-as="product">
+                                    <t t-if="product.default_code=='habilitation-electrique'">
+                                        <form action="/shop/cart/update" method="post" id="form-habiliation-electrique">
+                                            <input t-att-value="request.website.microsoft_tracking_key" id="microsoft_tracking_key" type="hidden" />
+                                            <input type="hidden" class="product_id" name="product_id" t-att-value="product.id" />
+                                            <input type="hidden" name="promo" t-att-value="promo.id" t-if="promo" />
+                                            <div class="card-body bg-white">
+                                                <ul class="list-unstyled">
+                                                    <li class="mb-4">
+                                                        <i class="fa fa-check-circle fa-lg mr-2 text-success" />
+                                                        <b>Formation 14h</b>
+                                                    </li>
+                                                    <li class="mb-4">
+                                                        <i class="fa fa-check-circle fa-lg mr-2 text-success" />
+                                                        <b>Programme et un contenu conformes à la NF C 18-510</b>
+                                                    </li>
+                                                    <li class="mb-4">
+                                                        <i class="fa fa-check-circle fa-lg mr-2 text-success" />
+                                                        <b>Accompagnement et assistance technique et pédagogique</b>
+                                                    </li>
+                                                    <li class="mb-4">
+                                                        <i class="fa fa-check-circle fa-lg mr-2 text-success" />
+                                                        <b>Equipe dédiée joignable de 8h à 20h</b>
+                                                    </li>
+                                                    <li class="mb-4">
+                                                        <i class="fa fa-check-circle fa-lg mr-2 text-success" />
+                                                        <b>Un parcours de formation clair</b>
+                                                    </li>
+                                                    <li class="mb-4">
+                                                        <i class="fa fa-check-circle fa-lg mr-2 text-success" />
+                                                        <b>Des quiz à la fin de chaque chapitre</b>
+                                                    </li>
+                                                    <li class="mb-4">
+                                                        <i class="fa fa-check-circle fa-lg mr-2 text-success" />
+                                                        <b>Formation pratique de 4 h en présentiel</b>
+                                                    </li>
+                                                </ul>
+                                                <div class="text-center">
+                                                    <b style="font-size: 60px !important; color: #000000" t-if="not promo">
+                                                        <span t-esc="round(product.list_price)" />
+                                                        <span t-esc="product.currency_id.symbol" />
+                                                    </b>
+                                                    <b style="font-size: 60px !important; color: #000000" t-if="promo">
+                                                        <t t-foreach="promo.item_ids" t-as="item">
+                                                            <t t-if="item.product_id.id==product.id">
+                                                                <span t-esc="round(item.fixed_price)" />
+                                                                <span t-esc="product.currency_id.symbol" />
+                                                            </t>
+                                                        </t>
+                                                    </b>
+                                                </div>
+                                                <p class="font-weight-bolder medium text-center text-secondary" style="color: red !important">
+                                                    Paiement en une seule fois
+                                                </p>
+                                                <br />
+                                                <br />
+                                                <br />
+                                                <button class="btn btn-block text-white" onClick="(function(){document.getElementById('form-habiliation-electrique').submit();return false;})();return false;" style="background-color: #6e209f; border-radius: 25px">
+                                                    Je m'inscris
+                                                </button>
+                                            </div>
+                                        </form>
+                                    </t>
+                                </t>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- partenaire-->
+                <section class="s_estate_logo_partners bg-light-1 bg-200" data-name="Partners with logos and paragraph">
+                    <div class="spacer feature14">
+                        <div class="container">
+                            <div class="row justify-content-center">
+                                <div class="col-md-7 text-center">
+                                    <h2 class="text-beta title">Partenaire exclusif</h2>
+                                    <p class="paragtext">
+                                        Afin de vous aider à réaliser vos objectifs professionnels
+                                        dans les meilleures conditions,&amp;nbsp; nous avons développé
+                                        de nombreux partenariats avec les leaders du marché de la
+                                        livraison à domicile.&amp;nbsp;
+                                    </p>
+                                </div>
+                            </div>
+                            <section class="clients s_references bg-200 pt16 pb16 p-m-0" data-name="References">
+                                <div class="row align-items-center justify-content-center">
+                                    <div class=" col-md-4 col-sm-12 text-center mb-4 mb-md-0  ">
+                                        <a href="http://bitly.ws/nW9I">
+                                            <img class="img img-fluid" alt="marmelade" title="marmelade" aria-describedby="tooltip175558" style="margin-top: 21px;" src="/digimoov_website_templates/static/img/habilitation-electrique/marmelade app.png" />
+                                        </a>
+                                    </div>
+                                </div>
+                            </section>
+                        </div>
+                    </div>
+                </section>
             </div>
+
         </t>
 
 
     </template>
+    <!-- digimoov_website_templates.habilitation-electrique-paris-->
     <template id="digimoov_website_templates.habilitation-electrique-paris" name="Formation habilitation Paris | Digimoov">
         <t t-call="website.layout">
-            <script defer="defer" type="text/javascript" src="/digimoov_website_templates/static/src/js/lazy-min.js" />
-            <link href="/digimoov_website_templates/static/src/css/css-dist/home.min.css" rel="stylesheet" />
+            <script defer="defer" type="text/javascript" src="/digimoov_website_templates/static/src/js/lazy-min.min.js" />
+            <link href="/digimoov_website_templates/static/src/css/home.min.css" rel="stylesheet" />
             <br />
             <br />
-            <style>
-                @media all and (max-width: 425px) {
-                .center-logo {
-                display: flex;
-                flex-direction: column;
-                align-content: center;
-                justify-content: space-between;
-                align-items: center;
-                }
-                h1{
-                font-size: 53.4px !important;
-                }
-                }
-                .center-logo {
-                display: flex;
-                flex-direction: row;
-                align-content: center;
-                justify-content: space-between;
-                align-items: center;
-                }
-                .para {
-                vertical-align: baseline !important;
-                font-size: 16px !important;
-                color: #6a6c72 !important;
-                line-height: 1.7 ;
-                }
-            </style>
-            <div id="wrap" class="oe_structure oe_empty" style="word-break: break-word; position: relative; z-index: 0;">
-                <section class="centric_template home-banner pt128 banner_padding" style="padding-bottom: 0px !important; word-break: break-word; position: relative; z-index: 0;">
+
+            <div id="wrap" class="oe_structure oe_empty">
+                <section class="centric_template home-banner pt128 banner_padding">
                     <div class="container">
                         <div class="row">
                             <div class="bannarcol col-lg-6 col-md-12" style="border-style: none; border-width: 0px;">
                                 <h1 style="font-size: 70.4px; color: #9c00ff">
-                                    <font style="font-size: 62px;">Formation </font>
-                                    <font style="color: rgb(52, 57, 150); font-size: 62px;">Habilitation </font>
+                                    <text style="font-size: 62px;">Formation </text>
+                                    <text style="color: rgb(52, 57, 150); font-size: 62px;">Habilitation </text>
                                     <span style="color: rgb(52, 57, 150); font-size: 62px; font-weight: 600;">
                                         <br />
                                     </span>
-                                    <font style="color: rgb(52, 57, 150); font-size: 62px;">BS BE</font>
-                                    <font style="font-size: 62px;"> manœuvre&amp;nbsp;Paris</font>
+                                    <text style="color: rgb(52, 57, 150); font-size: 62px;">BS BE</text>
+                                    <text style="font-size: 62px;"> manœuvre&amp;nbsp;Paris</text>
                                 </h1>
                                 <p class="paratext">
                                     Vous êtes à Paris, vous cherchez à vous habiliter ou à habiliter votre personnel à prévoir ou à gérer les risques électriques auxquels peut être exposé votre environnement de travail ?
@@ -925,7 +1125,7 @@
                                     , vous propose une formation&amp;nbsp;de 14 heures pour vous attribuer les compétences nécessaires en habilitation électrique BS BE manœuvre.
                                 </p>
                                 <div class="banner-btn s_btn" data-name="Button">
-                                    <a href="#pricing" class="bannerbtn btn btn-alpha rounded-circle" title="je m'inscirs" alt="boutton je m'inscris" spellcheck="false" data-mci-spellchecked="true" style="word-break: break-word; position: relative; z-index: 0;">Inscrivez-vous dès maintenant ! </a>
+                                    <a href="#pricing" class="bannerbtn btn btn-alpha rounded-circle" title="je m'inscirs" alt="boutton je m'inscris" spellcheck="false" data-mci-spellchecked="true">Inscrivez-vous dès maintenant ! </a>
                                 </div>
                                 <mci-extension data-role="overlay" />
                             </div>
@@ -947,19 +1147,19 @@
                         </div>
                     </div>
                 </section>
-                <section class="centric_template pt128 section-padding about-us pb0" data-name="About Us" id="en-savoir-plus" style="word-break: break-word; position: relative; z-index: 0;">
+                <section class="centric_template pt128 section-padding about-us pb0" data-name="About Us" id="en-savoir-plus">
                     <div class="container">
                         <div class="row">
                             <div class="col-lg-6 col-md-12" style="border-style: none; border-width: 0px;">
                                 <div class="aboutus-content">
                                     <h2 style="                                         font-weight: bold !important;                                         font-size: 48px !important;                                         padding-bottom: 25px !important;                                         ">
                                         <text style="color: rgb(0, 0, 0)">
-                                            <font class="text-beta" style="">
+                                            <text class="text-beta" style="">
                                                 <text style="color: rgb(59, 210, 188);">
-                                                    <font class="text-delta">Formation&amp;nbsp;BS BE manœuvre :&amp;nbsp;</font>
+                                                    <text class="text-delta">Formation&amp;nbsp;BS BE manœuvre :&amp;nbsp;</text>
                                                 </text>
                                                 Définition et prérequis
-                                            </font>
+                                            </text>
                                         </text>
                                     </h2>
                                     <p class="para">
@@ -974,9 +1174,9 @@
                                         <span style="font-weight: bolder; font-size: 16px;">Le symbole BS</span>
                                         <span style="font-size: 16px;">&amp;nbsp;des interventions de basse tension élémentaires (exemple : changement d'un fusible).</span>
                                         <br />
-                                        <font style="font-size: 18px;" class="text-beta">
+                                        <text style="font-size: 18px;" class="text-beta">
                                             <b>Les prérequis</b>
-                                        </font>
+                                        </text>
                                         <br />
                                         - Avoir des connaissances de base sur les opérations électriques pour suivre la formation habilitation électrique BE BS manœuvre.
                                         <br />
@@ -1001,8 +1201,8 @@
                             </div>
                             <div class="pt16 pb16 col-lg-6" style="border-style: none; border-width: 0px;">
                                 <h2 style="font-weight: bold !important; font-size: 48px !important; padding-bottom: 25px !important;">
-                                    <font color="#000000" style="color: rgb(156, 0, 255);">Objectifs et durée</font>
-                                    <font color="#000000"> de validité de la formation</font>
+                                    <text color="#000000" style="color: rgb(156, 0, 255);">Objectifs et durée</text>
+                                    <text color="#000000"> de validité de la formation</text>
                                 </h2>
                                 <p class="para">
                                     La
@@ -1043,7 +1243,7 @@
                         </div>
                     </div>
                 </section>
-                <section class="s_accounting_offer bg-night-fade-gradient" style="word-break: break-word; position: relative; z-index: 0;" data-name="Mini Appoinment Two">
+                <section class="s_accounting_offer bg-night-fade-gradient" data-name="Mini Appoinment Two">
                     <div class="mini-spacer text-white">
                         <div class="container">
                             <div class="row">
@@ -1059,7 +1259,7 @@
                         </div>
                     </div>
                 </section>
-                <section class="s_text_image pt32 pb32" data-name="Text - Image" style="word-break: break-word; position: relative; z-index: 0;">
+                <section class="s_text_image pt32 pb32" data-name="Text - Image">
                     <div class="container" style="border-style: none; border-width: 0px;">
                         <div class="row align-items-center">
                             <div class="col-lg-6">
@@ -1068,11 +1268,11 @@
                             <div class="pt16 pb16 col-lg-6" style="border-style: none; border-width: 0px;">
                                 <h2 style="                   font-weight: bold !important;                   font-size: 48px !important;                   color: #000 !important;                   padding-bottom: 25px !important;                 ">
                                     Formation&amp;nbsp;
-                                    <font style="color: rgb(52, 57, 150);">Habilitation</font>
+                                    <text style="color: rgb(52, 57, 150);">Habilitation</text>
                                     <span style="color: rgb(52, 57, 150); margin-bottom: 5px;">
                                         <br />
                                     </span>
-                                    <font style="color: rgb(52, 57, 150);">BS BE</font>
+                                    <text style="color: rgb(52, 57, 150);">BS BE</text>
                                     &amp;nbsp;manœuvre - Paris
                                 </h2>
                                 <p class="para">
@@ -1105,7 +1305,7 @@
                                     acquis.&amp;nbsp;
                                     <br />
                                     <b>
-                                        <font color="#343996" style="color: rgb(99, 99, 99);">La partie pratique&amp;nbsp;sera de&amp;nbsp;</font>
+                                        <text color="#343996" style="color: rgb(99, 99, 99);">La partie pratique&amp;nbsp;sera de&amp;nbsp;</text>
                                         4h
                                     </b>
                                     et se passera en
@@ -1116,7 +1316,136 @@
                         </div>
                     </div>
                 </section>
+
+                <!-- pricing table-->
+                <div class="container pt32 pb32" id="pricing">
+                    <div id="pricing" class="row justify-content-center">
+                        <div class="col-md-8 text-center col-lg-11">
+                            <h2 class="text-beta title-pricing mb20">
+                                LET'S GO !
+                                <br />
+                                Inscrivez-vous dès maintenant !
+                            </h2>
+
+                        </div>
+                    </div>
+                    <div class="row" style="place-content: center">
+                        <div class="col-lg-5 col-md-7 col-sm-12">
+                            <div class="card border-0 shadow border-pricing">
+                                <div class="text-center text-white border-0 pack-wrap   ">
+                                    <br />
+                                    <br />
+                                    <p>
+                                        <strong style="color: white">
+                                            <text style="font-size: 30px">Habilitation Électrique</text>
+                                        </strong>
+                                    </p>
+                                    <p>
+                                        <b>&amp;nbsp;&amp;nbsp;</b>
+                                    </p>
+                                </div>
+                                <t t-foreach="digimoov_products" t-as="product">
+                                    <t t-if="product.default_code=='habilitation-electrique'">
+                                        <form action="/shop/cart/update" method="post" id="form-habiliation-electrique">
+                                            <input t-att-value="request.website.microsoft_tracking_key" id="microsoft_tracking_key" type="hidden" />
+                                            <input type="hidden" class="product_id" name="product_id" t-att-value="product.id" />
+                                            <input type="hidden" name="promo" t-att-value="promo.id" t-if="promo" />
+                                            <div class="card-body bg-white">
+                                                <ul class="list-unstyled">
+                                                    <li class="mb-4">
+                                                        <i class="fa fa-check-circle fa-lg mr-2 text-success" />
+                                                        <b>Formation 14h</b>
+                                                    </li>
+                                                    <li class="mb-4">
+                                                        <i class="fa fa-check-circle fa-lg mr-2 text-success" />
+                                                        <b>Programme et un contenu conformes à la NF C 18-510</b>
+                                                    </li>
+                                                    <li class="mb-4">
+                                                        <i class="fa fa-check-circle fa-lg mr-2 text-success" />
+                                                        <b>Accompagnement et assistance technique et pédagogique</b>
+                                                    </li>
+                                                    <li class="mb-4">
+                                                        <i class="fa fa-check-circle fa-lg mr-2 text-success" />
+                                                        <b>Equipe dédiée joignable de 8h à 20h</b>
+                                                    </li>
+                                                    <li class="mb-4">
+                                                        <i class="fa fa-check-circle fa-lg mr-2 text-success" />
+                                                        <b>Un parcours de formation clair</b>
+                                                    </li>
+                                                    <li class="mb-4">
+                                                        <i class="fa fa-check-circle fa-lg mr-2 text-success" />
+                                                        <b>Des quiz à la fin de chaque chapitre</b>
+                                                    </li>
+                                                    <li class="mb-4">
+                                                        <i class="fa fa-check-circle fa-lg mr-2 text-success" />
+                                                        <b>Formation pratique de 4 h en présentiel</b>
+                                                    </li>
+                                                </ul>
+                                                <div class="text-center">
+                                                    <b style="font-size: 60px !important; color: #000000" t-if="not promo">
+                                                        <span t-esc="round(product.list_price)" />
+                                                        <span t-esc="product.currency_id.symbol" />
+                                                    </b>
+                                                    <b style="font-size: 60px !important; color: #000000" t-if="promo">
+                                                        <t t-foreach="promo.item_ids" t-as="item">
+                                                            <t t-if="item.product_id.id==product.id">
+                                                                <span t-esc="round(item.fixed_price)" />
+                                                                <span t-esc="product.currency_id.symbol" />
+                                                            </t>
+                                                        </t>
+                                                    </b>
+                                                </div>
+                                                <p class="font-weight-bolder medium text-center text-secondary" style="color: red !important">
+                                                    Paiement en une seule fois
+                                                </p>
+                                                <br />
+                                                <br />
+                                                <br />
+                                                <button class="btn btn-block text-white" onClick="(function(){document.getElementById('form-habiliation-electrique').submit();return false;})();return false;" style="background-color: #6e209f; border-radius: 25px">
+                                                    Je m'inscris
+                                                </button>
+                                            </div>
+                                        </form>
+                                    </t>
+                                </t>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- partenaire-->
+                <section class="s_estate_logo_partners bg-light-1 bg-200" data-name="Partners with logos and paragraph">
+                    <div class="spacer feature14">
+                        <div class="container">
+                            <div class="row justify-content-center">
+                                <div class="col-md-7 text-center">
+                                    <h2 class="text-beta title">Partenaire exclusif</h2>
+                                    <p class="paragtext">
+                                        Afin de vous aider à réaliser vos objectifs professionnels
+                                        dans les meilleures conditions,&amp;nbsp; nous avons développé
+                                        de nombreux partenariats avec les leaders du marché de la
+                                        livraison à domicile.&amp;nbsp;
+                                    </p>
+                                </div>
+                            </div>
+                            <section class="clients s_references bg-200 pt16 pb16 p-m-0" data-name="References">
+                                <div class="row align-items-center justify-content-center">
+                                    <div class=" col-md-4 col-sm-12 text-center mb-4 mb-md-0  ">
+                                        <a href="http://bitly.ws/nW9I">
+                                            <img class="img img-fluid res-width-30" alt="marmelade" title="marmelade" aria-describedby="tooltip175558" style="margin-top: 21px;" src="/digimoov_website_templates/static/img/habilitation-electrique/marmelade app.png" />
+                                        </a>
+                                    </div>
+                                </div>
+                            </section>
+                        </div>
+                    </div>
+                </section>
             </div>
+        </t>
+    </template>
+    <!-- page de rest vide-->
+    <template id="digimoov_website_templates.page_vide" name="Page vide">
+        <t t-call="website.layout">
+            <div id="wrap" class="oe_structure oe_empty"></div>
         </t>
     </template>
 </odoo>
