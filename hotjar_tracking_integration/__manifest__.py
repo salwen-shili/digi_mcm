@@ -2,15 +2,15 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
 {
-    'name': 'Google Tag Manager',
+    'name': 'Hotjar tracking Odoo Integration',
     'category': 'Website',
-    'summary': 'Google Tag Manager - Odoo integration',
+    'summary': 'Hotjar tracking Odoo Integration',
     'version': '1.0.0',
     'license': 'AGPL-3',
     'description': '''
-Includes Google Tag Manager HTML elements in the website metadata
+Includes Hotjar tracking script in head of website
     ''',
-    'author': 'Pierre Faniel',
+    'author': 'Houssem Ben Mbarek',
     'depends': [
         'website',
         'web'
@@ -21,7 +21,6 @@ Includes Google Tag Manager HTML elements in the website metadata
         'views/website_views.xml',
     ],
     'images': [
-        'static/description/google_tag_manager.png',
     ],
     'installable': True,
     'application': False,
