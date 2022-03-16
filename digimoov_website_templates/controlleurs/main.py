@@ -916,3 +916,18 @@ class Habilitation_electrique(http.Controller):
             return request.render("digimoov_website_templates.habilitation-electrique-marseille", values)
         else:
             raise werkzeug.exceptions.NotFound()
+
+    @http.route(['/formation-habilitation-paris'], type='http', auth='public', website=True)
+    def habilitation_electrique_paris(self, **kw, ):
+        digimoov_products = False
+        values = False
+        if request.website.id == 2:
+            # get digimoov products to send them to pricing table
+            digimoov_products = request.env['product.product'].sudo().search([('company_id', '=', 2)],
+                                                                             order="list_price")
+            values = {
+                'digimoov_products': digimoov_products,
+            }
+            return request.render("digimoov_website_templates.habilitation-electrique-paris", values)
+        else:
+            raise werkzeug.exceptions.NotFound()
