@@ -8,9 +8,7 @@
                 <!-- TrustBox script -->
                 <script type="text/javascript" src="//widget.trustpilot.com/bootstrap/v5/tp.widget.bootstrap.min.js" async="async" />
                 <!-- End TrustBox script -->
-
-                <link href="/digimoov_website_templates/static/src/css/style-landing.min.css" rel="stylesheet"></link>
-
+                <link href="/digimoov_website_templates/static/src/css/style-landing.min.css" rel="stylesheet" />
                 <div>
                     <!-- bloc 1 Comment devenir coursier à Paris ?-->
                     <section class="banner_padding centric_template home-banner pt96" data-name="Banner">
@@ -46,7 +44,6 @@
                         </div>
                     </section>
                     <!-- bloc 2 Comment devenir coursier à Paris ?-->
-
                     <section class="s_text_image pt32 pb32" data-name="Text - Image">
                         <div class="container">
                             <div class="row align-items-center">
@@ -58,48 +55,56 @@
                                         Avoir une
                                         <b>capacité de transport</b>
                                         pour créer son entreprise de livraison  et
-                                        <b>devenir coursier en voiture, scooter ou encore en camionette</b>
-                                        ne peut s’obtenir qu’après le passage d'un examen.
+                                        <b>devenir coursier en voiture, scooter ou encore en&amp;nbsp;camionnette</b>
+                                        &amp;nbsp;ne peut s’obtenir qu’après le passage d'
+                                        <a href="/examen-capacite-transport-marchandises">
+                                            <b>un examen</b>
+                                        </a>
+                                        .
                                         <br />
-                                        Cet examen ,est organisé par la DREAL pour tester vos connaissances du milieu du transport et de la livraison, suite au suivi d'une formation sur la capacité de transport léger de marchandises.
+                                        Cet examen est organisé par la DREAL pour tester vos connaissances du milieu du transport et de la livraison, suite au suivi d'une formation sur la capacité de transport léger de marchandises.
                                         <br />
-                                        En effet, notre formation vous donnera toutes les clés en main pour obtenir votre capacité de transport et vous permettera ainsi de remplir les conditions pour créer votre
-                                        <b>entreprise de transport</b>
+                                        En effet, notre formation vous donnera toutes les clés en main pour obtenir votre capacité de transport et vous permettra ainsi de remplir les conditions pour créer votre
+                                        <b>entreprise de transport à Paris</b>
                                         .
                                     </p>
                                 </div>
-                                <!-- Illustration to the right, png for safari, webp for other browsers, lazy load image-->
-
                                 <div class="col-lg-6 pt16 pb16">
-                                    <img data-srcSafari="/digimoov_website_templates/static/img/Paris/Obtenir-sa-capacité-de-transport-pour-devenir-coursier-à-Paris-digimoov.png" data-src="/digimoov_website_templates/static/img/Paris/Obtenir-sa-capacité-de-transport-pour-devenir-coursier-à-Paris-digimoov.webp" class="img img-fluid mx-auto lazy" alt="Obtenir sa capacité de transport pour devenir coursier à Paris" title="Obtenir sa capacité de transport pour devenir coursier à Paris" />
+                                    <img data-srcsafari="/digimoov_website_templates/static/img/Paris/Obtenir-sa-capacité-de-transport-pour-devenir-coursier-à-Paris-digimoov.png" data-src="/digimoov_website_templates/static/img/Paris/Obtenir-sa-capacité-de-transport-pour-devenir-coursier-à-Paris-digimoov.webp" class="img img-fluid mx-auto lazy" alt="Obtenir sa capacité de transport pour devenir coursier à Paris" title="Obtenir sa capacité de transport pour devenir coursier à Paris" />
                                 </div>
                             </div>
                         </div>
                     </section>
-
                     <!-- bloc 3   Formation Attestation de Transport Léger de Marchandises               -->
                     <section class="s_furniture_about about-area section-pt" data-name="Image - Text">
                         <div class="container">
                             <div class="row">
                                 <div class="col-lg-6">
                                     <div class="about-image">
-                                        <!-- Illustration to the left, png for safari, webp for other browsers, lazy load image-->
-
                                         <img data-srcsafari="/digimoov_website_templates/static/img/Paris/Attestation-de-transport-léger-de-marchandises-marseille-Digimoov.png" data-src="/digimoov_website_templates/static/img/Paris/Attestation-de-transport-léger-de-marchandises-marseille-Digimoov.png" alt="Formation Attestation de Transport Léger de Marchandises" class="img img-fluid lazy" title="Formation Attestation de Transport Léger de Marchandises" aria-describedby="tooltip121024" />
-
-
                                     </div>
                                 </div>
                                 <div class="col-lg-6">
                                     <div class="about-contents">
-                                        <h2 class="h2-title blue-v2">
-                                            Formation Attestation de Transport Léger de Marchandises                                        </h2>
+                                        <h2 class="blue-v2 h2-title">Formation de transport léger de marchandises Paris</h2>
                                         <p class="para">
-                                            La formation capacité de transport léger est portée sur 6 modules : L'entreprise et le droit civile commercial, l'entreprise et son activité commerciale, le cadre règlementaire de l'activité de transport, l'entreprise et son activité financière, la gestion des ressources humaines, et enfin la sécurité routière.
+                                            La formation capacité de transport léger porte sur 6 modules: L'entreprise et
+                                            <b>le droit civile commercia</b>
+                                            l, l'entreprise et son
+                                            <b>activité commerciale</b>
+                                            , le
+                                            <b>cadre règlementaire</b>
+                                            de l'activité de transport, l'entreprise et son
+                                            <b>activité financière</b>
+                                            , la
+                                            <b>gestion des ressources humaines</b>
+                                            , et enfin la
+                                            <b>sécurité routière</b>
+                                            .
                                             <br />
-                                            Les modules seront présentés sur notre plateforme e-learning sous forme de vidéos intéractives, diapositives et de Live avec les formateurs.
+                                            Les modules seront présentés sur notre plateforme e-learning sous forme de vidéos interactives, diapositives et de Live avec les formateurs.
                                             <br />
-                                            La formation dure 102 h, et vous pourrez la suivre à votre rythme avec un accés illimité durant un mois.
+                                            La formation dure 102 h, et vous pourrez la suivre à votre rythme avec un accès illimité durant un mois.
                                             .
                                         </p>
                                         <div class="s_btn" data-name="Button">
@@ -111,7 +116,6 @@
                         </div>
                     </section>
                     <!-- bloc 5 logos    -->
-
                     <section class="pt16 pb32 js-scroll fade-in-top">
                         <div class="container js-scroll fade-in-top">
                             <div class="center-logo mt32">
@@ -128,7 +132,6 @@
                                 <div class="pt32">
                                     <img class="img-fluid lazy" style="width: 160px" data-src="/digimoov_website_templates/static/img/coursier2roues/logo-DREAL.webp" data-srcsafari="/digimoov_website_templates/static/img/coursier2roues/logo-DREAL.png" title="Centre agrée de la préfecture" alt="dreal" />
                                 </div>
-
                                 <div class="pt32">
                                     <img class="img-fluid lazy" style="width: 263px" data-srcSafari="/mcm_website_theme/static/src/img/logo-investir-avenir.png" data-src="/mcm_website_theme/static/src/img/logo-investir-avenir.webp" title="Investir dans vos compétences avec MCM Academy" alt="Investir dans vos compétences avec MCM Academy" />
                                 </div>
@@ -159,7 +162,6 @@
                             </div>
                         </div>
                     </section>
-
                     <div id="pricing-table-trustpilot-partner">
                         <!-- TrustBox widget - Carousel -->
                         <section class="mt96 mb96">
@@ -169,7 +171,6 @@
                                 </div>
                             </div>
                         </section>
-
                         <!-- End TrustBox widget -->
                         <div id="pricing" class="row justify-content-center">
                             <div class="col-md-8 text-center col-lg-11">
@@ -178,12 +179,10 @@
                                     <br />
                                     Inscrivez-vous dès maintenant !
                                 </h2>
-
                             </div>
                         </div>
                         <div class="container">
                             <input t-att-value="request.website.microsoft_tracking_key" id="microsoft_tracking_key" type="hidden" />
-
                             <div class="row content-center">
                                 <div class="col-md-4 col-sm-6">
                                     <div class="card border-0 shadow border-pricing">
@@ -256,7 +255,6 @@
                                                             </li>
                                                         </ul>
                                                         <p class="text-center font-weight-bolder text-dark h1 display-4 mb-0">
-
                                                             <p class="text-center font-weight-bolder text-dark h1 display-4 mb-0" t-if="not promo">
                                                                 <span t-esc="round(product.list_price)" />
                                                                 <span t-esc="product.currency_id.symbol" />
@@ -269,7 +267,6 @@
                                                                     </t>
                                                                 </t>
                                                             </p>
-
                                                         </p>
                                                         <t t-if="promo and promo.name!='box2home'">
                                                             <p class="text-center font-weight-bolder text-secondary">
@@ -312,11 +309,9 @@
                                         </div> -->
                                         <div class="text-center text-white border-0 pack-wrap">
                                             <br />
-
                                             <p>
                                                 <strong class="pack-name"> PRO </strong>
                                             </p>
-
                                             <!-- <p>&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;</p> -->
                                             <p class="blink-soft">
                                                 <b>Éligible au CPF</b>
@@ -354,7 +349,6 @@
                                                                 <i class="fa fa-check-circle fa-lg mr-2 text-success" />
                                                                 <b>Assistance par mail</b>
                                                             </li>
-
                                                             <li class="mb-4">
                                                                 <span class="desc-size fa fa-check-circle fa-lg mr-2 text-success" data-original-title="" title="" aria-describedby="tooltip96053" />
                                                                 <b>Séances de groupe en Live avec les formateurs</b>
@@ -382,19 +376,15 @@
                         &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;
                         &amp;nbsp; &amp;nbsp;&amp;nbsp;</b>
                                                             </li>
-
                                                             <li>
                                                                 <i />
                                                             </li>
                                                         </ul>
                                                         <p class="text-center font-weight-bolder text-dark h1 display-4 mb-0">
-
                                                             <p class="text-center font-weight-bolder text-dark h1 display-4 mb-0">
                                                                 <span t-esc="round(product.list_price)" />
-
                                                                 <span t-esc="product.currency_id.symbol" />
                                                             </p>
-
                                                         </p>
                                                         <t t-if="promo and promo.name!='box2home'">
                                                             <p class="text-center font-weight-bolder text-secondary">
@@ -406,7 +396,6 @@
                                                         <p class="paiement medium text-center font-weight-bolder text-secondary">
                     Paiement 1 ou 2 fois
                                             </p>
-
                                                         <br />
                                                         <button class="btn-inscription btn btn-block text-white" onClick="(function(){document.getElementById('form-2-1').submit();return false;})();">
                     Je m'inscris
@@ -435,7 +424,6 @@
                                         </div> -->
                                         <div class="text-center text-white border-0 pack-wrap">
                                             <br />
-
                                             <p>
                                                 <strong class="pack-name"> PREMIUM </strong>
                                             </p>
@@ -473,7 +461,6 @@
                                                                 <b>Assistance par mail</b>
                                                                 <br />
                                                             </li>
-
                                                             <li class="mb-4">
                                                                 <i class="fa fa-check-circle fa-lg mr-2 text-success" />
                                                                 <b>Séances en Live avec un tuteur dédié</b>
@@ -505,12 +492,10 @@
                                                             </li>
                                                         </ul>
                                                         <p class="text-center font-weight-bolder text-dark h1 display-4 mb-0">
-
                                                             <p class="text-center font-weight-bolder text-dark h1 display-4 mb-0">
                                                                 <span t-esc="round(product.list_price)" />
                                                                 <span t-esc="product.currency_id.symbol" />
                                                             </p>
-
                                                         </p>
                                                         <t t-if="promo">
                                                             <p class="text-center font-weight-bolder text-secondary">
@@ -522,7 +507,6 @@
                                                         <p class="paiement medium text-center font-weight-bolder text-secondary">
                     Paiement 1 ou 3 fois
                                             </p>
-
                                                         <br />
                                                         <button class="btn-inscription btn btn-block text-white" onClick="(function(){ document.getElementById('form-3-1').submit();return false;})();">
                     Je m'inscris
@@ -536,8 +520,6 @@
                             </div>
                         </div>
                         <!-- End pricing table-->
-
-
                         <!-- partenaires-->
                         <section class="bg-200 bg-light-1 s_estate_logo_partners">
                             <div class="feature14 spacer">
@@ -592,10 +574,7 @@
                             </div>
                         </section>
                     </div>
-
                 </div>
-
-
             </div>
 
 

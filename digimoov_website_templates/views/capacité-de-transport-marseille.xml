@@ -20,8 +20,12 @@
                                     Marseille
                                 </h1>
                                 <p class="para">
-            Vous êtes à marseille, et vous souhaitez entreprendre dans le domaine du transport, créer votre entreprise et être indépendant. Notre centre de formation en capacité de transport léger de marchandises vous propose une formation de qualité, à distance, à suivre à votre rythme sur une durée de 102 h, encadrée par des formateurs qualifiés. 
-          </p>
+                                    Vous êtes à
+                                    <b>Marseille</b>
+                                    , et vous souhaitez entreprendre dans le domaine du transport, créer votre entreprise et être indépendant. Notre
+                                    <b>centre de formation en capacité de transport léger</b>
+                                    de marchandises vous propose une formation de qualité, à distance, à suivre à votre rythme sur une durée de 102 h, encadrée par des formateurs qualifiés.
+                                </p>
                                 <div class="banner-btn s_btn" data-name="Button">
                                     <a href="#pricing" class="bannerbtn btn btn-success rounded-circle" title="je m'inscirs" alt="boutton je m'inscris" aria-describedby="tooltip679124">Je m'inscris dès maintenant !
             </a>
@@ -49,15 +53,14 @@
                                 <p class="para">
                                     Exercer l'activité de
                                     <a href="/blog/digimoov-3/post/comment-devenir-auto-entrepreneur-dans-le-domaine-du-transport-33">transport léger de marchandises</a>
-                                    consiste à transporter des marchandises dont le poid n'exède pas les
+                                    consiste à transporter des marchandises dont le poids n'excède pas les
             3.5 tonnes, sur des véhicules motorisés y compris ceux de moins de 4
             roues, pour votre propre compte ou pour le compte d'autrui. Pour ce
-            faire,il faut détenir
+            faire, il faut détenir
                                     <a href="/blog/digimoov-3/post/comment-obtenir-votre-capacite-de-transport-leger-6">une licence de capacité de transport léger de marchandises
             </a>
-                                    suite à un passage d'un examen auprés de la DREAL.
+                                    suite à un passage d'un examen auprès de la DREAL.
                                 </p>
-
                             </div>
                         </div>
                     </div>
@@ -79,7 +82,6 @@
                             <div class="pt32">
                                 <img class="img-fluid lazy" style="width: 160px" data-src="/digimoov_website_templates/static/img/coursier2roues/logo-DREAL.webp" data-srcsafari="/digimoov_website_templates/static/img/coursier2roues/logo-DREAL.png" title="Centre agrée de la préfecture" alt="dreal" />
                             </div>
-
                             <div class="pt32">
                                 <img class="img-fluid lazy" style="width: 263px" data-srcSafari="/mcm_website_theme/static/src/img/logo-investir-avenir.png" data-src="/mcm_website_theme/static/src/img/logo-investir-avenir.webp" title="Investir dans vos compétences avec MCM Academy" alt="Investir dans vos compétences avec MCM Academy" />
                             </div>
@@ -87,7 +89,6 @@
                     </div>
                 </section>
                 <!-- bloc 4-->
-
                 <section class="about-us centric_template pt128 section-padding pb128">
                     <section>
                         <div class="container">
@@ -107,28 +108,24 @@
                                         <p class="para">
                                             Afin de garantir la réussite de l'
                                             <a href="/examen-capacite-transport-marchandises">examen de capacité de transport léger de marchandises</a>
-                                            , Digimoov vous propose une formation assez complète sur les
-                    6 modules sur lesquels seront portés l'examen à savoir
-                    :&amp;nbsp;L’entreprise et le droit civil et commercial,
-                    L’entreprise et son activité commerciale, l’entreprise et le
-                    cadre réglementaire de l’activité de transport, l’entreprise
-                    et son activité financière, l’entreprise et ses salariés, et
-                    l’entreprise et la sécurité.
+                                            , Digimoov vous propose une formation assez complète sur les 6 modules sur lesquels sera porté l'examen à savoir :&amp;nbsp;L’entreprise et le droit civil et commercial, L’entreprise et son activité commerciale, l’entreprise et le cadre réglementaire de l’activité de transport, l’entreprise et son activité financière, l’entreprise et ses salariés et l’entreprise et la sécurité.
                                             <br />
                                             Au cours de la formation vous aurez droit à un
-                    accompagnement et un suivi personalisé tout au long du
+                    accompagnement et un suivi personnalisé tout au long du
                     parcours, mais aussi la possibilité de vous auto-évaluer
-                    grâce à des QCM et des examens blancs pour vous entraîner à
+                    grâce à des
+                                            <b> QCM</b>
+                                            et des
+                                            <b>examens blancs</b>
+                                            pour vous entraîner à
                     l'examen final.
                                         </p>
-
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </section>
                 </section>
-
                 <!-- bloc 5-->
                 <section class="s_call_to_action pt48 pb24 bg-night-fade-gradient" data-name="Call to Action">
                     <div class="container">
@@ -153,7 +150,6 @@
                         </div>
                     </div>
                 </section>
-
                 <!-- bloc 6-->
                 <section class="s_text_image pt32 pb32" data-name="Image - Text">
                     <div class="container">
@@ -169,11 +165,11 @@
                                 </h2>
                                 <p class="para">
                                     Digimoov vous offre la possibilité de financer votre formation par
-              carte bancaire avec des modalités assez flexibles ou en
+                                    <b>carte bancaire</b>
+                                    avec des modalités assez flexibles ou en
                                     <a href="/mon-compte-de-formation-cpf">mobilisant votre CPF</a>
                                     .
                                 </p>
-
                                 <p class="quote-text">
              *Vous pouvez consulter notre règlement pour plus d’informations ou
             détails.
@@ -182,7 +178,6 @@
                         </div>
                     </div>
                 </section>
-
                 <div id="pricing-table-trustpilot-partner">
                     <!-- TrustBox widget - Carousel -->
                     <section class="mt96 mb96">
@@ -192,7 +187,6 @@
                             </div>
                         </div>
                     </section>
-
                     <!-- End TrustBox widget -->
                     <div id="pricing" class="row justify-content-center">
                         <div class="col-md-8 text-center col-lg-11">
@@ -201,12 +195,10 @@
                                 <br />
                                 Inscrivez-vous dès maintenant !
                             </h2>
-
                         </div>
                     </div>
                     <div class="container">
                         <input t-att-value="request.website.microsoft_tracking_key" id="microsoft_tracking_key" type="hidden" />
-
                         <div class="row content-center">
                             <div class="col-md-4 col-sm-6">
                                 <div class="card border-0 shadow border-pricing">
@@ -279,7 +271,6 @@
                                                         </li>
                                                     </ul>
                                                     <p class="text-center font-weight-bolder text-dark h1 display-4 mb-0">
-
                                                         <p class="text-center font-weight-bolder text-dark h1 display-4 mb-0" t-if="not promo">
                                                             <span t-esc="round(product.list_price)" />
                                                             <span t-esc="product.currency_id.symbol" />
@@ -292,7 +283,6 @@
                                                                 </t>
                                                             </t>
                                                         </p>
-
                                                     </p>
                                                     <t t-if="promo and promo.name!='box2home'">
                                                         <p class="text-center font-weight-bolder text-secondary">
@@ -335,11 +325,9 @@
                                         </div> -->
                                     <div class="text-center text-white border-0 pack-wrap">
                                         <br />
-
                                         <p>
                                             <strong class="pack-name"> PRO </strong>
                                         </p>
-
                                         <!-- <p>&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;</p> -->
                                         <p class="blink-soft">
                                             <b>Éligible au CPF</b>
@@ -377,7 +365,6 @@
                                                             <i class="fa fa-check-circle fa-lg mr-2 text-success" />
                                                             <b>Assistance par mail</b>
                                                         </li>
-
                                                         <li class="mb-4">
                                                             <span class="desc-size fa fa-check-circle fa-lg mr-2 text-success" data-original-title="" title="" aria-describedby="tooltip96053" />
                                                             <b>Séances de groupe en Live avec les formateurs</b>
@@ -405,19 +392,15 @@
                         &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;
                         &amp;nbsp; &amp;nbsp;&amp;nbsp;</b>
                                                         </li>
-
                                                         <li>
                                                             <i />
                                                         </li>
                                                     </ul>
                                                     <p class="text-center font-weight-bolder text-dark h1 display-4 mb-0">
-
                                                         <p class="text-center font-weight-bolder text-dark h1 display-4 mb-0">
                                                             <span t-esc="round(product.list_price)" />
-
                                                             <span t-esc="product.currency_id.symbol" />
                                                         </p>
-
                                                     </p>
                                                     <t t-if="promo and promo.name!='box2home'">
                                                         <p class="text-center font-weight-bolder text-secondary">
@@ -429,7 +412,6 @@
                                                     <p class="paiement medium text-center font-weight-bolder text-secondary">
                     Paiement 1 ou 2 fois
                                             </p>
-
                                                     <br />
                                                     <button class="btn-inscription btn btn-block text-white" onClick="(function(){document.getElementById('form-2-1').submit();return false;})();">
                     Je m'inscris
@@ -458,7 +440,6 @@
                                         </div> -->
                                     <div class="text-center text-white border-0 pack-wrap">
                                         <br />
-
                                         <p>
                                             <strong class="pack-name"> PREMIUM </strong>
                                         </p>
@@ -496,7 +477,6 @@
                                                             <b>Assistance par mail</b>
                                                             <br />
                                                         </li>
-
                                                         <li class="mb-4">
                                                             <i class="fa fa-check-circle fa-lg mr-2 text-success" />
                                                             <b>Séances en Live avec un tuteur dédié</b>
@@ -528,12 +508,10 @@
                                                         </li>
                                                     </ul>
                                                     <p class="text-center font-weight-bolder text-dark h1 display-4 mb-0">
-
                                                         <p class="text-center font-weight-bolder text-dark h1 display-4 mb-0">
                                                             <span t-esc="round(product.list_price)" />
                                                             <span t-esc="product.currency_id.symbol" />
                                                         </p>
-
                                                     </p>
                                                     <t t-if="promo">
                                                         <p class="text-center font-weight-bolder text-secondary">
@@ -545,7 +523,6 @@
                                                     <p class="paiement medium text-center font-weight-bolder text-secondary">
                     Paiement 1 ou 3 fois
                                             </p>
-
                                                     <br />
                                                     <button class="btn-inscription btn btn-block text-white" onClick="(function(){ document.getElementById('form-3-1').submit();return false;})();">
                     Je m'inscris
@@ -559,8 +536,6 @@
                         </div>
                     </div>
                     <!-- End pricing table-->
-
-
                     <!-- partenaires-->
                     <section class="bg-200 bg-light-1 s_estate_logo_partners">
                         <div class="feature14 spacer">
@@ -615,8 +590,6 @@
                         </div>
                     </section>
                 </div>
-
-
             </div>
 
 

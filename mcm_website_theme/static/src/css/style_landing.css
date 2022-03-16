@@ -49,11 +49,11 @@
   background-color: #000;
 }
 
-a {
+.link {
   color: #000;
 }
 
-a:hover {
+.link:hover {
   color: #195697 !important;
 }
 
@@ -304,4 +304,46 @@ a:hover {
 
 #sh_corpomate_theme_section_188 .sh_pricing ul li {
   font-weight: 600 !important;
+}
+
+@media (max-width: 329.98px) {
+  .title-1 {
+    font-size: 55px;
+  }
+}
+.center-logo {
+  display: flex;
+  flex-direction: row;
+  align-content: center;
+  justify-content: space-between;
+  align-items: center;
+}
+@media all and (max-width: 575px) {
+  .center-logo {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content: space-between;
+    align-items: center;
+  }
+}
+#sh_corpomate_theme_section_20 .sh_right_content h4 {
+  font-size: 22px;
+  line-height: 28px;
+  margin-bottom: 10px;
+  font-weight: 600;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: unset;
+  overflow: initial;
+}
+#sh_corpomate_theme_section_20 .sh_right_content p {
+  margin: 0px;
+  display: -webkit-box;
+  -webkit-line-clamp: 5;
+  -webkit-box-orient: vertical;
+  overflow: inherit;
+  font-size: 17px;
+  line-height: 1.8;
+  margin-top: 0;
 }

@@ -1,0 +1,85 @@
+<odoo>
+    <template id="digimoov_website_templates.nos_formations" name="Nos formations">
+        <t t-call="website.layout">
+
+            <script defer="defer" type="text/javascript" src="/digimoov_website_templates/static/src/js/lazy-min.min.js" />
+
+
+            <div id="wrap" class="oe_structure oe_empty" style="word-break: break-word; position: relative; z-index: 0;" data-oe-model="ir.ui.view" data-oe-id="7544" data-oe-field="arch" data-oe-xpath="/t[1]/t[1]/div[1]">
+                <section class="pt32 pb32" data-name="Title">
+                    <div class="container">
+                        <div class="row s_nb_column_fixed">
+                            <div class="col-lg-12 s_title pt16 pb16" style="text-align: center;">
+                                <h2 class="s_title_default">
+                                    <b>Choisir une formation, c'est bâtir une carrière !</b>
+                                </h2>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <section class="s_restaurant_video_image" data-name="Two images with paragraph and video">
+                    <div class="spacer feature14">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-lg-4 col-md-4 wrap-feature14-box" style="border-style: none; border-width: 0px;">
+                                    <div>
+                                        <img class="rounded img-responsive" src="/digimoov_website_templates/static/img/transport-routier/1.png" alt="bizople kit" data-original-title="" title="" aria-describedby="tooltip268757" />
+                                        <div class="m-t-30">
+                                            <h5 class="font-medium">
+                                                <text class="text-beta" style="">Formation en capacité de transport lourd de marchandises de +3.5 tonnes</text>
+                                                <span class="font-14 lnr lnr-arrow-right m-l-10"></span>
+                                            </h5>
+                                            <p class="custom_p m-t-20">Optez pour notre formation en ligne sur la capacité de transport lourd de marchandises ! Une formation de 280 heures, concoctée par des experts du métier pour vous préparer à l’examen et vous aider à obtenir votre licence de transport.</p>
+                                            <div class="s_btn text-center pt16 pb16" data-name="Button">
+                                                <a href="/formation-capacite-transport-lourd-marchandise" class="btn btn-primary o_default_snippet_text">En savoir plus</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-md-4 wrap-feature14-box" style="border-style: none; border-width: 0px;">
+                                    <div>
+                                        <img class="rounded img-responsive video-img" src="/digimoov_website_templates/static/img/Paris/Attestation-de-transport-léger-de-marchandises-marseille-Digimoov.png" style="width:84%" alt="bizople kit" />
+                                        <div class="embed-responsive hide embed-responsive-16by9" data-animation="animated fadeIn"></div>
+                                        <div class="m-t-30">
+                                            <h5 class="font-medium">
+                                                <text class="text-beta" style="">Formation en capacité de transport léger de marchandises - 3.5 tonnes</text>
+                                                <span class="lnr lnr-arrow-right m-l-10 font-14"></span>
+                                            </h5>
+                                            <p class="custom_p m-t-20">
+                                                Vous souhaitez entreprendre dans le transport léger de marchandise et créer votre propre entreprise ? Chez Digimoov on vous propose une formation de 102 h en ligne agréée.
+                                                <br />
+                                                + De 90% de nos stagiaires sont satisfaits !
+                                            </p>
+                                            <div class="s_btn text-center pt16 pb16" data-name="Button">
+                                                <a href="/attestation-transport-leger-marchandises" class="btn btn-primary o_default_snippet_text">En savoir plus</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-md-4 wrap-feature14-box" style="border-style: none; border-width: 0px;">
+                                    <div>
+                                        <img class="rounded img-responsive video-img" src="/digimoov_website_templates/static/img/habilitation-electrique/formation-habilitation-électrique.png" alt="bizople kit" data-original-title="" title="" aria-describedby="tooltip527511" />
+                                        <div class="embed-responsive hide embed-responsive-16by9" data-animation="animated fadeIn"></div>
+                                        <div class="m-t-30">
+                                            <h5 class="font-medium">
+                                                <text class="text-beta" style="">Formation en habilitation électrique BS-BE manœuvres</text>
+                                                <span class="lnr lnr-arrow-right m-l-10 font-14"></span>
+                                            </h5>
+                                            <p class="custom_p m-t-20">Vous êtes entrepreneur, et vous pensez à former votre personnel sur l'habilitation électrique BS/BE Manoeuvres ? ChezDigimoov,on vous propose une formation 100 % en ligne certifiéepour obtenir votre habilitation en 3 jours !
+									</p>
+                                            <div class="s_btn text-center pt16 pb16" data-name="Button">
+                                                <a href="/habilitation-electrique" class="btn btn-primary o_default_snippet_text">En savoir plus</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+
+        </t>
+    </template>
+</odoo>
