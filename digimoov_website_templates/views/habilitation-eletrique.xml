@@ -1108,11 +1108,12 @@
             <br />
 
             <div id="wrap" class="oe_structure oe_empty">
+
                 <section class="centric_template home-banner pt128 banner_padding">
                     <div class="container">
                         <div class="row">
                             <div class="bannarcol col-lg-6 col-md-12" style="border-style: none; border-width: 0px;">
-                                <h1 style="font-size: 70.4px; color: #9c00ff">
+                                <h1 class=" titletext-left">
                                     <text style="font-size: 62px;">Formation </text>
                                     <text style="color: rgb(52, 57, 150); font-size: 62px;">Habilitation </text>
                                     <span style="color: rgb(52, 57, 150); font-size: 62px; font-weight: 600;">
@@ -1134,12 +1135,13 @@
                             </div>
                             <div class="col-lg-6 col-md-12 image_padding mt24">
                                 <div class="banner_image">
-                                    <img class="img img-fluid" src="/web/image/259279/T%203.png" title="électricien en formation habilitation électrique" alt="électricien en formation habilitation électrique" />
+                                    <img alt="électricien feuille à la main en formation pratique habilitation" class="img img-fluid lazy" data-src="/digimoov_website_templates/static/img/habilitation-electrique/habilitation-electrique.webp" data-srcsafari="/digimoov_website_templates/static/img/habilitation-electrique/habilitation-electrique.png" />
                                 </div>
                             </div>
                         </div>
                     </div>
                 </section>
+
                 <section class="container pt40 pb32 section-padding">
                     <div class="row align-items-center justify-content-center">
                         <div class="col-md-4 col-sm-12 text-center mb-4 mb-md-0">
@@ -1150,6 +1152,7 @@
                         </div>
                     </div>
                 </section>
+
                 <section class="centric_template pt128 section-padding about-us pb0" data-name="About Us" id="en-savoir-plus">
                     <div class="container">
                         <div class="row">
@@ -1190,7 +1193,7 @@
                             </div>
                             <div class="col-lg-6 col-md-12">
                                 <div class="aboutus-img">
-                                    <img class="img img-fluid" src="/web/image/257675/habilitation-digimoov.png" title="technicien répare un tableau électrique" alt="technicien répare un tableau électrique" />
+                                    <img class="img img-fluid lazy" data-src="/digimoov_website_templates/static/img/habilitation-electrique/habilitation-digimoov.webp" data-srcsafari="/digimoov_website_templates/static/img/habilitation-electrique/formation-digimoov-habilitation.png" title="électricien en formation habilitation électrique" alt="électricien en formation habilitation électrique" />
                                 </div>
                             </div>
                         </div>
@@ -1200,7 +1203,7 @@
                     <div class="container">
                         <div class="row align-items-center">
                             <div class="col-lg-6">
-                                <img src="/web/image/259277/Formation%20%20Habilitation%20%C3%89lectrique%20Marseille.png" class="img img-fluid mx-auto" alt=" électricien en formation pratique de l’habilitation" data-original-title="" title="" aria-describedby="tooltip22801" />
+                                <img src="/digimoov_website_templates/static/img/habilitation-electrique/Formation  Habilitation Électrique Marseille.png" class="img img-fluid mx-auto" alt=" électricien en formation pratique de l’habilitation" data-original-title="" title="" aria-describedby="tooltip22801" />
                             </div>
                             <div class="pt16 pb16 col-lg-6" style="border-style: none; border-width: 0px;">
                                 <h2 style="font-weight: bold !important; font-size: 48px !important; padding-bottom: 25px !important;">
@@ -1266,7 +1269,7 @@
                     <div class="container" style="border-style: none; border-width: 0px;">
                         <div class="row align-items-center">
                             <div class="col-lg-6">
-                                <img src="/web/image/257900/habilitation-electrique-formation.png" class="img img-fluid mx-auto" alt="électricien feuille à la main en formation pratique habilitation" />
+                                <img class="img img-fluid" src="digimoov_website_templates/static/img/habilitation-electrique/formation-habilitation-électrique.png" title="électricien en formation habilitation électrique" alt="électricien en formation habilitation électrique" />
                             </div>
                             <div class="pt16 pb16 col-lg-6" style="border-style: none; border-width: 0px;">
                                 <h2 style="                   font-weight: bold !important;                   font-size: 48px !important;                   color: #000 !important;                   padding-bottom: 25px !important;                 ">
