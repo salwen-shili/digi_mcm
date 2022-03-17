@@ -369,6 +369,9 @@
                     <a t-if="from_bolt == 'True' and request.website.id == 1" class="close" href="#" onclick="resetPopupBolt()">
                         <i class="fa fa-times"></i>
                     </a>
+                    <a t-if="request.website.id == 2" class="close" href="#" onclick="closepopup()">
+                        <i class="fa fa-times"></i>
+                    </a>
                     <div class="content" id="popupcontent">
                         <p id="notifMessage">
 

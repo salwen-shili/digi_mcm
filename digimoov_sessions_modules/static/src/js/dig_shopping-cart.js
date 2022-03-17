@@ -240,7 +240,12 @@ function showPopup() {
 
   var continueBtn = document.getElementById('continueBtn');
   var textbtn;
-  cpfChecked || pole_emploi_checkbox.checked
+
+  var polechecked = false;
+  if (document.getElementById('pole_emploi_checkbox')) {
+    polechecked = pole_emploi_checkbox.checked;
+  }
+  cpfChecked || polechecked
     ? (textbtn = 'Mobiliser mon CPF')
     : (textbtn = 'Passer au paiement');
 
@@ -642,10 +647,13 @@ function onchangeTextButton() {
 function onchangeTextButton1() {
   //hide cpf details when pole_emploi is checked
 
-  //hide poleEmploi details
-  hidePoleEmploiDetails();
-  //send pole emploi checked
-  sendPoleEmploiState(pole_emploi_checkbox.checked);
+  if (document.getElementById('pole_emploi_checkbox')) {
+    //hide poleEmploi details
+
+    sendPoleEmploiState(pole_emploi_checkbox.checked);
+    //send pole emploi checked
+    hidePoleEmploiDetails();
+  }
 
   if (document.getElementById('pm_shop_checkout')) {
     document.getElementById('pm_shop_checkout').innerText =

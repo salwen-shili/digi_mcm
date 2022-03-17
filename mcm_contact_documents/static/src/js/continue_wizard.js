@@ -86,13 +86,15 @@ document.addEventListener('DOMContentLoaded', function () {
 
   const finished = document.getElementById('finished');
   const documents = document.getElementById('personal');
-  const documentsUrl = '/charger_mes_documents';
+  const documentsUrl = `/charger_mes_documents?${Math.floor(
+    Math.random() * 100
+  )}`;
   const financement = document.getElementById('payment');
-  const financementUrl = '/shop/cart';
+  const financementUrl = `/shop/cart?${Math.floor(Math.random() * 100)}`;
   const validation = document.getElementById('confirm');
-  const validationUrl = '/validation';
+  const validationUrl = `/validation?${Math.floor(Math.random() * 100)}`;
   const btnContinuer = document.getElementById('button-continuer');
-  const questionnaireUrl = '/coordonnees';
+  const questionnaireUrl = `/coordonnees?${Math.floor(Math.random() * 100)}`;
   const textDescription = document.getElementById('textDescription');
   var bolt_contract_uri = '/';
   //is Bolt
