@@ -411,7 +411,8 @@
                                             </div>
                                         </div>
                                         <br />
-                                        <!-- Questions-->
+                                        <!-- Questions -->
+                                        <!-- Company name with request.website.name -->
                                         <label for="question_signup" style="font-size: 17px;color: #000000cf;">
                                             Comment avez vous découvert
                                             <t t-esc="request.website.name" />
