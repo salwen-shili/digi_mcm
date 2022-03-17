@@ -6,6 +6,7 @@
             <div id="wrap" class="oe_structure oe_empty">
                 <input type="hidden" t-att-value="partner_has_documents" id="hasdocument"></input>
 
+
                 <link href="/digimoov_website_templates/static/src/css/register_form.css" rel="stylesheet" />
                 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
                 <link href="/digimoov_website_templates/static/src/css/material_form.css" rel="stylesheet" />
@@ -252,7 +253,8 @@
                                             <input type="button" name="previous" class="previous action-button-previous" value="Précédent" />
 
                                         </div>
-                                        <script></script>
+                                        <input type="hidden" value="" id="redirection" name="redirection" />
+
                                     </fieldset>
 
                                     <div style="text-align:center;margin-top:40px;">
