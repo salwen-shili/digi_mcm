@@ -417,10 +417,10 @@
 
                                             <select class="outlined-text-select" name="question_signup" id="question_signup" required="required">
                                                 <option value="" disabled="disabled" selected="selected">Vous devez selectionner une réponse</option>
-                                                <option value='0'>Suite à une annonce sur facebook</option>
-                                                <option value='1'>Suite à une recherche sur Google</option>
-                                                <option value='2'>Suite à une annonce publicitaire sur Google/autre site</option>
-                                                <option value='3'>Suite à la recommandation d'un ami/collègue/parent</option>
+                                                <option value='Facebook'>Suite à une annonce sur facebook</option>
+                                                <option value='Google'>Suite à une recherche sur Google</option>
+                                                <option value='Annonce'>Suite à une annonce publicitaire sur Google/autre site</option>
+                                                <option value='Recommandation'>Suite à la recommandation d'un ami/collègue/parent</option>
                                             </select>
 
                                             <i class="material-icons error-icon"></i>
