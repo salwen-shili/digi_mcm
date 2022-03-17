@@ -610,7 +610,7 @@ class ResPartner(models.Model):
             }
             base_url = self.env['ir.config_parameter'].sudo().get_param('web.base.url')
 
-            if "localhost" not in str(base_url) and "dev.odoo" not in str(base_url):
+            if "localhost" not in str(base_url):
                 response = requests.post(
                     'https://api.aircall.io//v1/contacts',
                     data=json.dumps(data),
@@ -622,7 +622,6 @@ class ResPartner(models.Model):
                 # if response.status_code == 400:
                 #     raise ValidationError(
                 #         json.loads(response.content)['troubleshoot'] + 'Please enter Phone/mobile number with country code')
-                print('aircall response:',response)
                 content = json.loads(response.content)
                 print('aircall response content:',content)
                 if response :
