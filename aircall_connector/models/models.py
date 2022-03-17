@@ -559,7 +559,6 @@ class ResPartner(models.Model):
                 phone = str(res.phone.replace(' ', ''))[-9:]
                 phone = '+33'+phone
                 phone = phone[0:3] + ' ' + phone[3:4] + ' ' + phone[4:6] + ' ' + phone[6:8] + ' ' + phone[8:10] + ' ' + phone[10:]
-                print('aircall phone :',phone)
                 phone_num = [
                     {
                         "label": "Phone Number",
@@ -652,12 +651,18 @@ class ResPartner(models.Model):
                     phone_num = []
                     emails = []
                     if 'phone' in values:
+                        phone = str(values['phone'].replace(' ', ''))[-9:]
+                        phone = '+33' + phone
+                        phone = phone[0:3] + ' ' + phone[3:4] + ' ' + phone[4:6] + ' ' + phone[6:8] + ' ' + phone[8:10] + ' ' + phone[10:]
                         phone_num.append({
                             "label": "Phone Number",
                             "value": values['phone']
                         })
 
                     elif 'mobile' in values:
+                        phone = str(values['mobile'].replace(' ', ''))[-9:]
+                        phone = '+33' + phone
+                        phone = phone[0:3] + ' ' + phone[3:4] + ' ' + phone[4:6] + ' ' + phone[6:8] + ' ' + phone[8:10] + ' ' + phone[10:]
                         phone_num.append({
                             "label": "Mobile Number",
                             "value": values['mobile']
