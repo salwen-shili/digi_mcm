@@ -412,11 +412,11 @@
                                         </div>
                                         <br />
                                         <!-- Questions-->
-                                        <label for="voie">Comment avez vous découvert Digimoov ?*</label>
+                                        <label for="voie">Comment avez vous découvert Digimoov ? *</label>
                                         <div class="outlined-input-field bg-c" id="question_signup_container" t-if="not name">
 
-                                            <select class="outlined-text-field" name="question_signup" id="question_signup" required="required">
-                                                <option value="" disabled="disabled" selected="selected"></option>
+                                            <select class="outlined-text-select" name="question_signup" id="question_signup" required="required">
+                                                <option value="" disabled="disabled" selected="selected">Vous devez selectionner une réponse</option>
                                                 <option value='0'>Suite à une annonce sur facebook</option>
                                                 <option value='1'>Suite à une recherche sur Google</option>
                                                 <option value='2'>Suite à une annonce publicitaire sur Google/autre site</option>
