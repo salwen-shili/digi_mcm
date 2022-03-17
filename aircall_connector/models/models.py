@@ -624,7 +624,6 @@ class ResPartner(models.Model):
                 #     raise ValidationError(
                 #         json.loads(response.content)['troubleshoot'] + 'Please enter Phone/mobile number with country code')
                 content = json.loads(response.content)
-                print('aircall response content:',content)
                 if response :
                     statut_code = response.status_code
                     #Condition ajoutée car ça peut générer une erreur dans l'inscription dans le site de mcm_academy
