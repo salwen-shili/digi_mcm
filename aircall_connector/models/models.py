@@ -609,32 +609,33 @@ class ResPartner(models.Model):
 
             }
             base_url = self.env['ir.config_parameter'].sudo().get_param('web.base.url')
+
             if "localhost" not in str(base_url) and "dev.odoo" not in str(base_url):
                 response = requests.post(
                     'https://api.aircall.io//v1/contacts',
                     data=json.dumps(data),
                     headers=header)
 
-            # Send phone number to aircall to verify if it is a valid number ..if it's not valid api return response 400
-            # and raising error
+                # Send phone number to aircall to verify if it is a valid number ..if it's not valid api return response 400
+                # and raising error
 
-            # if response.status_code == 400:
-            #     raise ValidationError(
-            #         json.loads(response.content)['troubleshoot'] + 'Please enter Phone/mobile number with country code')
-            print('aircall response:',response)
-            content = json.loads(response.content)
-            print('aircall response content:',content)
-            if response :
-                statut_code = response.status_code
-                #Condition ajoutée car ça peut générer une erreur dans l'inscription dans le site de mcm_academy
-                if statut_code != 204:
-                    response = json.loads(response.content)
-                if response and statut_code == 200:
-                    res.air_contact_id = response['contact']['id']
+                # if response.status_code == 400:
+                #     raise ValidationError(
+                #         json.loads(response.content)['troubleshoot'] + 'Please enter Phone/mobile number with country code')
+                print('aircall response:',response)
+                content = json.loads(response.content)
+                print('aircall response content:',content)
+                if response :
+                    statut_code = response.status_code
+                    #Condition ajoutée car ça peut générer une erreur dans l'inscription dans le site de mcm_academy
+                    if statut_code != 204:
+                        response = json.loads(response.content)
+                    if response and statut_code == 200:
+                        res.air_contact_id = response['contact']['id']
+                        return res
                     return res
-                return res
-            else:
-                return res
+                else:
+                    return res
         else:
             return res
 
