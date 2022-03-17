@@ -87,13 +87,16 @@
                                 </center>
                             </div>
 
-                            <div class="row" style="position:absolute;bottom:-1250px">
+                            <div class="row" style="position:absolute;bottom:1250px">
                                 <img src='/mcm_session/static/src/img/footer_jury.png' height="80" width="2000"/>
                             </div>
                         </div>
 
                         <p style="page-break-after:always;"/>
                         <div class="page">
+                            <div class="row">
+                            <img src='/mcm_session/static/src/img/header_middle.png' height="60" width="2000"/>
+                        </div>
                             <span>
                                 <p style="padding-top: 50px;">
                                     <strong>
@@ -124,8 +127,10 @@
                                     sur
                                     <span t-esc="docs.nbr_client_par_session(nbr_inscrits)"/>
                                 </p>
-                                <p>- Le taux de réussite est donc de <span
-                                        t-esc="docs.pourcentage_client_recu(pourcentage)"/> %.
+                                <p>- Le taux de réussite est donc de
+                                    <span
+                                            t-esc="docs.pourcentage_client_recu(pourcentage)"/>
+                                    %.
                                 </p>
                                 <br/>
                                 <p>c) Liste récapitulative des candidats inscrits, absents, reçus ou ajournés en
@@ -137,7 +142,8 @@
                                     session :
                                 </p>
 
-                                <p>Aucune difficulté n’est à mentionner, tout s’est bien déroulé.</p><br/>
+                                <p>Aucune difficulté n’est à mentionner, tout s’est bien déroulé.</p>
+                                <br/>
                                 <p>e) Le dossier d’inscription à l’examen du candidat, accompagné du relevé des notes
                                     obtenues
                                     aux différentes épreuves ainsi que de la
@@ -173,6 +179,9 @@
                         </div>
                         <p style="page-break-after:always;"/>
                         <div class="page">
+                            <div class="row">
+                            <img src='/mcm_session/static/src/img/header_middle.png' height="60" width="2000"/>
+                        </div>
                             <p style="padding-top: 50px;">
                                 <b>
                                     <u>PERSONNES PRESENTES :</u>
@@ -244,6 +253,9 @@
 
                     <!-- 4 éme page : tableau de statestique-->
                     <div class="page">
+                        <div class="row">
+                            <img src='/mcm_session/static/src/img/header_middle.png' height="60" width="2000"/>
+                        </div>
                         <style>
                             .th{
                             height: 50px;
