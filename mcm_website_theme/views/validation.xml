@@ -4,9 +4,8 @@
         <t t-call="website.layout">
             <style>
                  .action-button {
-  height: 40px;
-  width: 150px;
-  font-size: 15px;
+     padding: 10px 10px;
+  font-size: 13px;
 background-color: #000000;  
   border: 1px solid hsl(240, 44%, 28%);
   color: #ffffff;
@@ -41,9 +40,13 @@ background-color: #000000;
                             <i class="fa fa-times"></i>
                         </a>
                         <div class="content">
-                            <p id="notifMessage" style="text-align: center;font-size: 16px;"></p>
+                            <p id="notifMessage" style="text-align: center;font-size: 16px; color:#000"></p>
                             <div class="" style="text-align-last: center;margin-block-start: 1.5rem;">
-                                <input type="submit" class="text-center next action-button" style="float: unset !important;" value="Continuer" onclick="(function(){document.getElementById('msform').submit();;return false;})();return false;" />
+                                <!-- Telechargement auto / manual -->
+                                <input t-if="partner_has_documents != True " type="submit" class="text-center next action-button" style="float: unset !important; width: 111px;" value="Manuel" onclick="onSubmitForm('manuelle')" />
+                                <input t-if="partner_has_documents != True " type="submit" class="text-center next action-button" style="float: unset !important; width: 111px;" value="Automatique" onclick="onSubmitForm('automatique')" />
+                                <!-- continue in case partner has already updated his doucuments -->
+                                <input t-if="partner_has_documents == True " type="submit" class="text-center next action-button" style="float: unset !important;" value="Continuer" onclick="(function(){document.getElementById('msform').submit();;return false;})();return false;" />
                             </div>
                         </div>
                     </div>
@@ -71,6 +74,8 @@ background-color: #000000;
                                 }
                             </style>
                             <form id="msform" action="/validation/submit" method="POST">
+
+
                                 <div class="card px-0 pt-4 pb-0 mt-3 mb-3 bg-c">
                                     <h2 id="heading">Inscription</h2>
                                     <p class="p_class">Remplissez tous les champs du formulaire pour passer à l'étape suivante</p>
@@ -248,6 +253,7 @@ background-color: #000000;
 
                                     </fieldset>
                                     <fieldset class="col-12 text-left " id="group4">
+                                        <input type="hidden" value="" id="redirection" name="redirection" />
                                         <h4>
                                             Qu’attendez vous de votre formation ?
                                         </h4>
