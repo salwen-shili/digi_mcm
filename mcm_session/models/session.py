@@ -7,7 +7,7 @@ from odoo.exceptions import ValidationError
 import random
 from num2words import num2words
 
-from odoo.odoo.tools import datetime
+from datetime import datetime
 
 
 class Session(models.Model):
