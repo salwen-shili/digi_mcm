@@ -412,7 +412,11 @@
                                         </div>
                                         <br />
                                         <!-- Questions-->
-                                        <label for="question_signup" style="font-size: 17px;color: #000000cf;">Comment avez vous découvert Digimoov ? *</label>
+                                        <label for="question_signup" style="font-size: 17px;color: #000000cf;">
+                                            Comment avez vous découvert
+                                            <t t-esc="request.website.name" />
+                                            ? *
+                                        </label>
                                         <div class="outlined-input-field bg-c" id="question_signup_container" t-if="not name">
 
                                             <select class="outlined-text-select" name="question_signup" id="question_signup" required="required">
