@@ -735,7 +735,7 @@ class partner(models.Model):
                             table_user = response_user.json()
                             totalTime = int(table_user['totalTimeSpentInMinutes'])
                             """si l'apprenant connecté sur 360 
-                            on change le statut de son dossier sur wedof"""
+                            on change le statut de son dossier sur wedof """
                             if (user_mail.upper() == partner_email.upper()) and (totalTime >= 1):
                                 _logger.info('users %s ' % partner_email.upper())
                                 _logger.info('user email %s' % user['mail'].upper())
