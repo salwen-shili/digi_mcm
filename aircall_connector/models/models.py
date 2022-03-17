@@ -254,6 +254,7 @@ class ResUser(models.Model):
         else:
             #Case when response has no content, this can cause a problem in signup in mcm website
             if call_response.status_code != 204:
+                print(call_response.content)
                 if call_response.content :
                     calls = json.loads(call_response.content)
                     call=calls['calls']
@@ -610,7 +611,7 @@ class ResPartner(models.Model):
             }
             base_url = self.env['ir.config_parameter'].sudo().get_param('web.base.url')
 
-            if "localhost" not in str(base_url):
+            if base_url:
                 response = requests.post(
                     'https://api.aircall.io//v1/contacts',
                     data=json.dumps(data),
