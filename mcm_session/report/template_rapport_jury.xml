@@ -5,14 +5,14 @@
         <t t-if="o.ville_jury_id.name_ville != 'Paris'">
             <div class="row">
                 <br/>
-                <img src='/mcm_session/static/src/img/header_jury.png' height="300" width="1600"/>
+                <img src='/mcm_session/static/src/img/header_jury.png' height="300" width="2000"/>
             </div>
         </t>
         <t t-else="">
             <div class="row">
                 <br/>
                 <img src='/mcm_session/static/src/img/La_DRIEAT_Ile-de-France.png' height="300"
-                     width="1600"/>
+                     width="2000"/>
             </div>
         </t>
     </template>
@@ -26,11 +26,10 @@
                         .page {
                         line-height: 1.75 ;
                         font-size:20px ;
-                        padding-left: 20px;
-                        padding-right: 20px;
                         }
+                        .margin { margin-top: 0px;}
                     </style>
-                    <div class="page">
+                    <div class="page margin">
                         <div class="oe_structure"/>
                         <t t-call="mcm_session.header_rapport_jury"/>
                         <div class="row">
@@ -51,7 +50,7 @@
                                 <br/>
                                 <style>
                                     .tr, .td , .table, .tbody{
-                                    padding: 2px;
+                                    padding: 1px;
                                     border: solid;
                                     }
                                 </style>
@@ -88,349 +87,360 @@
                                 </center>
                             </div>
                         </div>
-                        <div class="row" style="padding-top:50px!important;">
+                        <div class="row" style="padding-top:60px!important;">
                             <br/>
-                            <img src='/mcm_session/static/src/img/footer_jury.png' height="100" width="1600"/>
+                            <img src='/mcm_session/static/src/img/footer_jury.png' height="80" width="2000"/>
+                        </div>
+
+                        <p style="page-break-after:always;"/>
+                        <div class="page">
+                            <span>
+                                <p style="padding-top: 50px;">
+                                    <strong>
+                                        <u>Stagiaires :</u>
+                                    </strong>
+                                </p>
+                            </span>
+                            <style>.tab {
+                                display: inline-block;
+                                margin-left: 40px;
+                                }
+                            </style>
+                            <span class="tab" style="font-size:18px;">
+                                <p>a) Nombre de candidats inscrits et présents :</p>
+                                <p>- Le nombre de candidats inscrits était de
+                                    <span t-esc="docs.nbr_client_par_session(nbr_inscrits)"/>
+                                    personnes
+                                </p>
+                                <p>
+                                    - Le nombre de candidats présents était de
+                                    <span t-esc="docs.nbr_present_par_session(nbr_present)"/>
+                                    personnes
+                                </p>
+                                <p>B) Nombre de candidats reçus à l’examen
+                                    <span t-esc="docs.nbr_recus_par_session(total_nbr_recu)"/>
+                                    sur
+                                    <span t-esc="docs.nbr_client_par_session(nbr_inscrits)"/>
+                                </p>
+                                <p>- Le taux de réussite est donc de<span
+                                        t-esc="docs.pourcentage_client_recu(pourcentage)"/>%.
+                                </p>
+                                <p>c) Liste récapitulative des candidats inscrits, absents, reçus ou ajournés en
+                                    annexe.
+                                </p>
+                                <p>d) Le constat du déroulement des épreuves ainsi que la mention des éventuelles
+                                    difficultés rencontrées lors du déroulement de la
+                                    session :
+                                </p>
+                                <p>Aucune difficulté n’est à mentionner, tout s’est bien déroulé.</p>
+                                <p>e) Le dossier d’inscription à l’examen du candidat, accompagné du relevé des notes
+                                    obtenues
+                                    aux différentes épreuves ainsi que de la
+                                    copie d’examen.
+                                    <br/>
+                                    Ces éléments se trouvent dans le dossier de chaque candidat
+                                </p>
+                            </span>
+                            <br/>
+                            <style>
+                                .tr, .td , .table{
+                                padding: 2px;
+                                border: solid;
+                                }
+                            </style>
+                            <center style="padding-top:40px!important;">
+                                <table class="table">
+                                    <tbody>
+                                        <tr>
+                                            <td class="td" align="center" style="height: 200px; width: 200px;">
+                                                <b>Remarques</b>
+                                            </td>
+                                            <td class="td" align="center" style="height: 200px; width: 600px;">
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </center>
+                            <div class="row" style="padding-top:100px!important;page-break-after:inside;">
+                                <img src='/mcm_session/static/src/img/footer_jury.png' height="80" width="2000"/>
+                            </div>
                         </div>
                         <p style="page-break-after:always;"/>
-                        <span>
-                            <p style="padding-top: 50px;">
-                                <strong>
-                                    <u>Stagiaires :</u>
-                                </strong>
+                        <div class="page">
+                            <p style="padding-top: 70px;">
+                                <b>
+                                    <u>PERSONNES PRESENTES :</u>
+                                </b>
                             </p>
-                        </span>
-                        <style>.tab {
-                            display: inline-block;
-                            margin-left: 40px;
-                            }
-                        </style>
-                        <span class="tab" style="font-size:18px;">
-                            <p>a) Nombre de candidats inscrits et présents :</p>
-                            <p>- Le nombre de candidats inscrits était de
-                                <span t-esc="docs.nbr_client_par_session(nbr_inscrits)"/>
-                                personnes
+                            <style>
+                                .th, .tr, .td , .table{
+                                padding: 1px;
+                                border: solid;
+                                }
+                            </style>
+                            <div class="row" style="padding-top:40px!important;">
+                                <table class="table">
+                                    <tbody>
+                                        <thead>
+                                            <tr class="tr">
+                                                <th class="td">Nom et prénom</th>
+                                                <th width="0" class="td">Fonction</th>
+                                                <th class="td">Date</th>
+                                                <th class="td">Signature</th>
+                                            </tr>
+                                        </thead>
+                                        <tr t-foreach='o.intervenant_id' t-as='line'>
+                                            <td class="td" style="height:60px;width:200px;">
+                                                <span t-esc="line.intervenant_id.display_name"/>
+                                            </td>
+                                            <td class="td" style="height:60px;width:200px;">
+                                                <span t-esc="line.fonction_id.name"/>
+                                            </td>
+                                            <td class="td" style="height:60px;width:200px;">
+                                                <span t-esc="(o.date_exam).strftime('%d/%m/%Y')"/>
+                                            </td>
+                                            <td class="td" style="height:60px;width:200px;">
+                                                <span></span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="td" style="height:60px;width:200px;"></td>
+                                            <td class="td" style="height:60px;width:200px;"></td>
+                                            <td class="td" style="height:60px;width:200px;"></td>
+                                            <td class="td" style="height:60px;width:200px;"></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <p style="padding-top: 40px;">Cette session est présidée par
+                                .........................................................................................................
+                                :
                             </p>
                             <p>
-                                - Le nombre de candidats présents était de
-                                <span t-esc="docs.nbr_present_par_session(nbr_present)"/>
-                                personnes
+                                <b>Date :</b>
+                                <span t-esc="context_timestamp(datetime.datetime.now()).strftime('%d/%m/%Y')"/>
                             </p>
-                            <p>B) Nombre de candidats reçus à l’examen
-                                <span t-esc="docs.nbr_recus_par_session(total_nbr_recu)"/>
-                                sur
-                                <span t-esc="docs.nbr_client_par_session(nbr_inscrits)"/>
+                            <p>
+                                <b>Heure :</b>
+                                <span t-esc="context_timestamp(datetime.datetime.now()).strftime('%H:%M:%S')"/>
                             </p>
-                            <p>- Le taux de réussite est donc de<span
-                                    t-esc="docs.pourcentage_client_recu(pourcentage)"/>%.
+                            <p>
+                                <b>Signature :</b>
                             </p>
-                            <p>c) Liste récapitulative des candidats inscrits, absents, reçus ou ajournés en
-                                annexe.
-                            </p>
-                            <p>d) Le constat du déroulement des épreuves ainsi que la mention des éventuelles
-                                difficultés rencontrées lors du déroulement de la
-                                session :
-                            </p>
-                            <p>Aucune difficulté n’est à mentionner, tout s’est bien déroulé.</p>
-                            <p>e) Le dossier d’inscription à l’examen du candidat, accompagné du relevé des notes
-                                obtenues
-                                aux différentes épreuves ainsi que de la
-                                copie d’examen.
-                                <br/>
-                                Ces éléments se trouvent dans le dossier de chaque candidat
-                            </p>
-                        </span>
-                        <br/>
+
+                            <div class="row" style="padding-top:30px!important;">
+                                <img src='/mcm_session/static/src/img/footer_jury.png'
+                                     height="80" width="2000"/>
+                            </div>
+                        </div>
+                    </div>
+                    <p style="page-break-after:always;"/>
+
+                    <!-- 4 éme page : tableau de statestique-->
+                    <div class="page">
                         <style>
-                            .tr, .td , .table{
-                            padding: 2px;
-                            border: solid;
+                            .th{
+                            height: 50px;
+                            width: 20%;
+                            vertical-align: middle;
+                            text-align: center;
+
+                            background: #E6E6FA;}
+
+                            .td {
+                            white-space: nowrap;
+                            height: 30px;
+                            width: 9%;
+                            vertical-align: middle;
+                            text-align: center;
+
                             }
+                            .table{
+                            table-layout: fixed;
+                            margin-left: auto;
+                            margin-right: auto;
+                            text-align: center;}
                         </style>
-                        <center style="padding-top:40px!important;">
+                        <div class="page-margin">
                             <table class="table">
                                 <tbody>
                                     <tr>
-                                        <td class="td" align="center" style="height: 200px; width: 200px;">
-                                            <b>Remarques</b>
-                                        </td>
-                                        <td class="td" align="center" style="height: 200px; width: 600px;">
-                                        </td>
+                                        <th colspan="8" class="th">
+                                            <span t-esc="o.name"/>
+                                            -
+                                            <span t-esc="o.session_adresse_examen.adresse_centre_examen"/>
+                                            -
+                                            <t t-if="o.temps_convocation == 'matin'">
+                                                <span t-field="o.heure_examen_matin"/>
+                                            </t>
+                                            <t t-if="o.temps_convocation == 'apres_midi'">
+                                                <span t-field="o.heure_examen_apres_midi"/>
+                                            </t>
+                                        </th>
+                                    </tr>
+
+                                    <tr>
+                                        <th class="th">Nombre d'inscrits
+                                            <td class="td">
+                                                <span t-esc="docs.nbr_client_par_session(nbr_inscrits)"/>
+                                            </td>
+                                            <td class="td">100%</td>
+                                            <th class="th"></th>
+                                            <th class="th">Solo</th>
+                                            <th class="th">Pro</th>
+                                            <th class="th">Premium</th>
+                                            <th class="th">Repassage</th>
+                                        </th>
+                                    </tr>
+                                    <tr>
+                                        <th class="th">Nombre de présents
+                                            <td class="td">
+                                                <span t-esc="docs.nbr_present_par_session(nbr_present)"/>
+                                            </td>
+
+                                            <td class="td">
+                                                <span t-esc="docs.prc_present(prc_present)"/>
+                                            </td>
+                                        </th>
+                                        <th class="th">Nombre d'inscrits
+                                            <td class="td">
+                                                <span>
+                                                    <span t-esc="docs.pack_solo_inscrit(sum_solo_inscrit)"/>
+                                                </span>
+                                            </td>
+                                            <td class="td">
+                                                <span>
+                                                    <span t-esc="docs.pack_pro_inscrit(sum_pro_inscrit)"/>
+                                                </span>
+                                            </td>
+                                            <td class="td">
+                                                <span>
+                                                    <span t-esc="docs.pack_premium_inscrit(sum_premium_inscrit)"/>
+                                                </span>
+                                            </td>
+
+                                            <td class="td">
+                                                <span>
+                                                    <span t-esc="docs.pack_repassage_inscrit(sum_repassage_inscrit)"/>
+                                                </span>
+                                            </td>
+                                        </th>
+                                    </tr>
+                                    <tr>
+                                        <th class="th">Nombre d'absents
+                                            <td class="td">
+                                                <span t-esc="docs.calculer_nombre_absence(total_absence)"/>
+                                            </td>
+
+                                            <td class="td">
+                                                <span t-esc="docs.pourcentage_absence(resultat)">%</span>
+                                            </td>
+                                        </th>
+                                        <th class="th">Nombre de présents
+                                            <td class="td">
+                                                <span t-esc="docs.pack_solo_present(sum_solo_present)"/>
+                                            </td>
+                                            <td class="td">
+                                                <span t-esc="docs.pack_pro_present(sum_pro_present)">%</span>
+                                            </td>
+                                            <td class="td">
+                                                <span t-esc="docs.pack_premium_present(sum_premium_present)"/>
+                                            </td>
+                                            <td class="td">
+                                                <span t-esc="docs.pack_repassage_present(sum_repassage_present)">%
+                                                </span>
+                                            </td>
+                                        </th>
+                                    </tr>
+                                    <tr>
+                                        <th class="th">Nombre d'absence justifiée
+                                            <td class="td">
+                                                <span t-esc="docs.calculer_nombre_absence_justifiée(total_absence_justifiée)"/>
+                                            </td>
+
+                                            <td class="td">
+                                                <span t-esc="docs.pourcentage_absence_justifiée(resultat)"/>
+                                            </td>
+                                        </th>
+                                        <th class="th">Taux de présence
+                                            <td class="td">
+                                                <span t-esc="docs.taux_de_presence_solo()"/>
+                                            </td>
+                                            <td class="td">
+                                                <span t-esc="docs.taux_de_presence_pro()"/>
+                                            </td>
+                                            <td class="td">
+                                                <span t-esc="docs.taux_de_presence_premium()"/>
+                                            </td>
+                                            <td class="td">
+                                                <span t-esc="docs.taux_de_presence_repassage()"/>
+                                            </td>
+                                        </th>
+                                    </tr>
+                                    <tr>
+                                        <th class="th">Nombre d'abandon
+                                            <td class="td">
+                                                <span t-esc="o.count_annule"/>
+                                            </td>
+
+                                            <td class="td">
+                                                <span t-esc="docs.pourcentage_abandon(prc_abandon)"/>
+                                            </td>
+                                        </th>
+                                        <th class="th">Nombre d'admis
+                                            <td class="td">
+                                                <span t-esc="docs.nbr_recus_solo()"/>
+                                            </td>
+                                            <td class="td">
+                                                <span t-esc="docs.nbr_recus_pro()"/>
+                                            </td>
+                                            <td class="td">
+                                                <span t-esc="docs.nbr_recus_premium()"/>
+                                            </td>
+                                            <td class="td">
+                                                <span t-esc="docs.nbr_recus_repassage()"/>
+                                            </td>
+                                        </th>
+                                    </tr>
+                                    <tr>
+                                        <th class="th">Nombre d'admis
+                                            <td class="td">
+                                                <span t-esc="docs.nbr_recus_par_session(total_nbr_recu)"/>
+                                            </td>
+
+                                            <td class="td">
+                                                <span t-esc="docs.pourcentage_client_recu(pourcentage)"/>
+                                            </td>
+                                        </th>
+                                        <th class="th">Taux de réussite
+                                            <td class="td">
+                                                <span t-esc="docs.taux_de_reussite_solo()"/>
+                                            </td>
+                                            <td class="td">
+                                                <span t-esc="docs.taux_de_reussite_pro()"/>
+                                            </td>
+                                            <td class="td">
+                                                <span t-esc="docs.taux_de_reussite_premium()"/>
+                                            </td>
+                                            <td class="td">
+                                                <span t-esc="docs.taux_de_reussite_repassage()"/>
+                                            </td>
+                                        </th>
+                                    </tr>
+                                    <tr>
+                                        <th class="th">Nombre d'échec
+                                            <td class="td">
+                                                <span t-esc="docs.nbr_echec(nbr_echec)"/>
+                                            </td>
+
+                                            <td class="td">
+                                                <span t-esc="docs.pourcentage_echec(prc_echec)"/>
+                                            </td>
+                                        </th>
                                     </tr>
                                 </tbody>
                             </table>
-                        </center>
-                        <div class="row" style="padding-top:100px!important;">
-                            <img src='/mcm_session/static/src/img/footer_jury.png' height="125" width="1600"/>
                         </div>
-                        <p style="page-break-after:always;"/>
-                        <p style="padding-top: 70px;">
-                            <b>
-                                <u>PERSONNES PRESENTES :</u>
-                            </b>
-                        </p>
-                        <style>
-                            .th, .tr, .td , .table{
-                            padding: 2px;
-                            border: solid;
-                            }
-                        </style>
-                        <table class="table" style="padding-top:40px!important;">
-                            <tbody>
-                                <thead>
-                                    <tr class="tr">
-                                        <th class="td">Nom et prénom</th>
-                                        <th width="0" class="td">Fonction</th>
-                                        <th class="td">Date</th>
-                                        <th class="td">Signature</th>
-                                    </tr>
-                                </thead>
-                                <tr t-foreach='o.intervenant_id' t-as='line'>
-                                    <td class="td" style="height:60px;width:200px;">
-                                        <span t-esc="line.intervenant_id.display_name"/>
-                                    </td>
-                                    <td class="td" style="height:60px;width:200px;">
-                                        <span t-esc="line.fonction_id.name"/>
-                                    </td>
-                                    <td class="td" style="height:60px;width:200px;">
-                                        <span t-esc="(o.date_exam).strftime('%d/%m/%Y')"/>
-                                    </td>
-                                    <td class="td" style="height:60px;width:200px;">
-                                        <span></span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="td" style="height:60px;width:200px;"></td>
-                                    <td class="td" style="height:60px;width:200px;"></td>
-                                    <td class="td" style="height:60px;width:200px;"></td>
-                                    <td class="td" style="height:60px;width:200px;"></td>
-                                </tr>
-                            </tbody>
-                        </table>
-                        <p style="padding-top: 40px;">Cette session est présidée par
-                            .........................................................................................................
-                            :
-                        </p>
-                        <p>
-                            <b>Date :</b>
-                            <span t-esc="context_timestamp(datetime.datetime.now()).strftime('%d/%m/%Y')"/>
-                        </p>
-                        <p>
-                            <b>Heure :</b>
-                            <span t-esc="context_timestamp(datetime.datetime.now()).strftime('%H:%M:%S')"/>
-                        </p>
-                        <p>
-                            <b>Signature :</b>
-                        </p>
-                    </div>
-                    <div class="row" style="padding-top:30px!important;page-break-inside: avoid;position:absolute;">
-                        <img src='/mcm_session/static/src/img/footer_jury.png'
-                             height="100" width="1600"/>
-                    </div>
-                    <!-- 4 éme page : tableau de statestique-->
-                    <p style="page-break-after:always;"/>
-                    <style>
-                        .th{
-                        height: 50px;
-                        width: 20%;
-                        vertical-align: middle;
-                        text-align: center;
-
-                        background: #E6E6FA;}
-
-                        .td {
-                        white-space: nowrap;
-                        height: 30px;
-                        width: 9%;
-                        vertical-align: middle;
-                        text-align: center;
-
-                        }
-                        .table{
-                        table-layout: fixed;
-                        margin-left: auto;
-                        margin-right: auto;
-                        text-align: center;}
-                    </style>
-                    <div class="page-margin">
-                        <table class="table">
-                            <tbody>
-                                <tr>
-                                    <th colspan="8" class="th">
-                                        <span t-esc="o.name"/>
-                                        -
-                                        <span t-esc="o.session_adresse_examen.adresse_centre_examen"/>
-                                        -
-                                        <t t-if="o.temps_convocation == 'matin'">
-                                            <span t-field="o.heure_examen_matin"/>
-                                        </t>
-                                        <t t-if="o.temps_convocation == 'apres_midi'">
-                                            <span t-field="o.heure_examen_apres_midi"/>
-                                        </t>
-                                    </th>
-                                </tr>
-
-                                <tr>
-                                    <th class="th">Nombre d'inscrits
-                                        <td class="td">
-                                            <span t-esc="docs.nbr_client_par_session(nbr_inscrits)"/>
-                                        </td>
-                                        <td class="td">100%</td>
-                                        <th class="th"></th>
-                                        <th class="th">Solo</th>
-                                        <th class="th">Pro</th>
-                                        <th class="th">Premium</th>
-                                        <th class="th">Repassage</th>
-                                    </th>
-                                </tr>
-                                <tr>
-                                    <th class="th">Nombre de présents
-                                        <td class="td">
-                                            <span t-esc="docs.nbr_present_par_session(nbr_present)"/>
-                                        </td>
-
-                                        <td class="td">
-                                            <span t-esc="docs.prc_present(prc_present)"/>
-                                        </td>
-                                    </th>
-                                    <th class="th">Nombre d'inscrits
-                                        <td class="td">
-                                            <span>
-                                                <span t-esc="docs.pack_solo_inscrit(sum_solo_inscrit)"/>
-                                            </span>
-                                        </td>
-                                        <td class="td">
-                                            <span>
-                                                <span t-esc="docs.pack_pro_inscrit(sum_pro_inscrit)"/>
-                                            </span>
-                                        </td>
-                                        <td class="td">
-                                            <span>
-                                                <span t-esc="docs.pack_premium_inscrit(sum_premium_inscrit)"/>
-                                            </span>
-                                        </td>
-
-                                        <td class="td">
-                                            <span>
-                                                <span t-esc="docs.pack_repassage_inscrit(sum_repassage_inscrit)"/>
-                                            </span>
-                                        </td>
-                                    </th>
-                                </tr>
-                                <tr>
-                                    <th class="th">Nombre d'absents
-                                        <td class="td">
-                                            <span t-esc="docs.calculer_nombre_absence(total_absence)"/>
-                                        </td>
-
-                                        <td class="td">
-                                            <span t-esc="docs.pourcentage_absence(resultat)">%</span>
-                                        </td>
-                                    </th>
-                                    <th class="th">Nombre de présents
-                                        <td class="td">
-                                            <span t-esc="docs.pack_solo_present(sum_solo_present)"/>
-                                        </td>
-                                        <td class="td">
-                                            <span t-esc="docs.pack_pro_present(sum_pro_present)">%</span>
-                                        </td>
-                                        <td class="td">
-                                            <span t-esc="docs.pack_premium_present(sum_premium_present)"/>
-                                        </td>
-                                        <td class="td">
-                                            <span t-esc="docs.pack_repassage_present(sum_repassage_present)">%
-                                            </span>
-                                        </td>
-                                    </th>
-                                </tr>
-                                <tr>
-                                    <th class="th">Nombre d'absence justifiée
-                                        <td class="td">
-                                            <span t-esc="docs.calculer_nombre_absence_justifiée(total_absence_justifiée)"/>
-                                        </td>
-
-                                        <td class="td">
-                                            <span t-esc="docs.pourcentage_absence_justifiée(resultat)"/>
-                                        </td>
-                                    </th>
-                                    <th class="th">Taux de présence
-                                        <td class="td">
-                                            <span t-esc="docs.taux_de_presence_solo()"/>
-                                        </td>
-                                        <td class="td">
-                                            <span t-esc="docs.taux_de_presence_pro()"/>
-                                        </td>
-                                        <td class="td">
-                                            <span t-esc="docs.taux_de_presence_premium()"/>
-                                        </td>
-                                        <td class="td">
-                                            <span t-esc="docs.taux_de_presence_repassage()"/>
-                                        </td>
-                                    </th>
-                                </tr>
-                                <tr>
-                                    <th class="th">Nombre d'abandon
-                                        <td class="td">
-                                            <span t-esc="o.count_annule"/>
-                                        </td>
-
-                                        <td class="td">
-                                            <span t-esc="docs.pourcentage_abandon(prc_abandon)"/>
-                                        </td>
-                                    </th>
-                                    <th class="th">Nombre d'admis
-                                        <td class="td">
-                                            <span t-esc="docs.nbr_recus_solo()"/>
-                                        </td>
-                                        <td class="td">
-                                            <span t-esc="docs.nbr_recus_pro()"/>
-                                        </td>
-                                        <td class="td">
-                                            <span t-esc="docs.nbr_recus_premium()"/>
-                                        </td>
-                                        <td class="td">
-                                            <span t-esc="docs.nbr_recus_repassage()"/>
-                                        </td>
-                                    </th>
-                                </tr>
-                                <tr>
-                                    <th class="th">Nombre d'admis
-                                        <td class="td">
-                                            <span t-esc="docs.nbr_recus_par_session(total_nbr_recu)"/>
-                                        </td>
-
-                                        <td class="td">
-                                            <span t-esc="docs.pourcentage_client_recu(pourcentage)"/>
-                                        </td>
-                                    </th>
-                                    <th class="th">Taux de réussite
-                                        <td class="td">
-                                            <span t-esc="docs.taux_de_reussite_solo()"/>
-                                        </td>
-                                        <td class="td">
-                                            <span t-esc="docs.taux_de_reussite_pro()"/>
-                                        </td>
-                                        <td class="td">
-                                            <span t-esc="docs.taux_de_reussite_premium()"/>
-                                        </td>
-                                        <td class="td">
-                                            <span t-esc="docs.taux_de_reussite_repassage()"/>
-                                        </td>
-                                    </th>
-                                </tr>
-                                <tr>
-                                    <th class="th">Nombre d'échec
-                                        <td class="td">
-                                            <span t-esc="docs.nbr_echec(nbr_echec)"/>
-                                        </td>
-
-                                        <td class="td">
-                                            <span t-esc="docs.pourcentage_echec(prc_echec)"/>
-                                        </td>
-                                    </th>
-                                </tr>
-                            </tbody>
-                        </table>
                     </div>
                     <style>
                         .page-margin
@@ -588,13 +598,16 @@
                                     </td>
                                     <td class="td" style="background: #87CEEB;">
                                         <b>
-                                        <span t-esc="o.moyenne_des_somme_qcm_qro()"/>
+                                            <span t-esc="o.moyenne_des_somme_qcm_qro()"/>
                                         </b>
                                     </td>
-
                                 </tr>
                             </tbody>
                         </table>
+                        <div class="row" style="padding-top:30px!important;">
+                                <img src='/mcm_session/static/src/img/footer_jury.png'
+                                     height="80" width="2000"/>
+                            </div>
                     </div>
                 </t>
             </t>
