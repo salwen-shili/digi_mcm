@@ -401,67 +401,7 @@
                                             </div>
                                         </div>
                                         <br />
-                                        <!-- Questions-->
-                                        <label for="voie">Lorem ipsum dolor sit amet consectetur?</label>
-                                        <div class="outlined-input-field bg-c" id="voie_container" t-if="not name">
 
-                                            <select class="outlined-text-field" name="voie" id="voie" required="required">
-                                                <option value='1'>1</option>
-                                                <option value='2'>2</option>
-                                                <option value='3'>3</option>
-                                                <option value='4'>4</option>
-                                            </select>
-
-                                            <i class="material-icons error-icon"></i>
-                                            <div class="helper-text bg-c" id="voie_helper">
-                                                <span></span>
-                                            </div>
-                                        </div>
-                                        <br />
-                                        <div class="outlined-input-field bg-c" id="voie_container" t-if="not name">
-                                            <select class="outlined-text-field" name="voie" id="voie" required="required">
-                                                <option value='1'>1</option>
-                                                <option value='2'>2</option>
-                                                <option value='3'>3</option>
-                                                <option value='4'>4</option>
-                                            </select>
-                                            <label for="voie">Lorem ipsum dolor sit amet consectetur?</label>
-                                            <i class="material-icons error-icon"></i>
-                                            <div class="helper-text bg-c" id="voie_helper">
-                                                <span></span>
-                                            </div>
-                                        </div>
-                                        <br />
-                                        <div class="outlined-input-field bg-c" id="voie_container" t-if="not name">
-                                            <select class="outlined-text-field" name="voie" id="voie" required="required">
-                                                <option value='1'>1</option>
-                                                <option value='2'>2</option>
-                                                <option value='3'>3</option>
-                                                <option value='4'>4</option>
-                                            </select>
-                                            <label for="voie">Lorem ipsum dolor sit amet consectetur?</label>
-                                            <i class="material-icons error-icon"></i>
-                                            <div class="helper-text bg-c" id="voie_helper">
-                                                <span></span>
-                                            </div>
-                                        </div>
-                                        <br />
-                                        <div class="outlined-input-field bg-c" id="voie_container" t-if="not name">
-                                            <label for="voie">Lorem ipsum dolor sit amet consectetur?</label>
-                                            <select class="outlined-text-field" name="voie" id="voie" required="required">
-                                                <option value='1'>1</option>
-                                                <option value='2'>2</option>
-                                                <option value='3'>3</option>
-                                                <option value='4'>4</option>
-                                            </select>
-
-                                            <i class="material-icons error-icon"></i>
-                                            <div class="helper-text bg-c" id="voie_helper">
-                                                <span></span>
-                                            </div>
-                                        </div>
-                                        <br />
-                                        <!-- End Questions-->
                                         <div class="outlined-input-field bg-c" id="comp_address_container" t-if="street2">
                                             <input type="text" id="comp_address" name="street2" t-att-value="street2" class="outlined-text-field" autocomplete="off" />
                                             <label for="comp_address" style="top: -0.7rem;padding: 0.25rem;">Complément d'adresse </label>
@@ -471,6 +411,26 @@
                                             </div>
                                         </div>
                                         <br />
+                                        <!-- Questions-->
+                                        <label for="voie">Comment avez vous découvert Digimoov ?</label>
+                                        <div class="outlined-input-field bg-c" id="question_container" t-if="not name">
+
+                                            <select class="outlined-text-field" name="question" id="question" required="required">
+                                                <option value='0'>Suite à une annonce sur facebook</option>
+                                                <option value='1'>Suite à une recherche sur Google</option>
+                                                <option value='2'>Suite à une annonce publicitaire sur Google/autre site</option>
+                                                <option value='3'>Suite à la recommandation d'un ami/collègue/parent</option>
+                                            </select>
+
+                                            <i class="material-icons error-icon"></i>
+                                            <div class="helper-text bg-c" id="question_helper">
+                                                <span></span>
+                                            </div>
+                                        </div>
+
+
+                                        <br />
+                                        <!-- End Questions-->
                                         <input type="hidden" name="redirect" t-att-value="'/felicitations' or redirect " />
                                         <!-- <div style="float: left">
                                           <label class="pure-material-checkbox">
@@ -630,7 +590,7 @@
 
                     </t>
                     <t t-if="request.website.id == 2">
-                        <link href="/digimoov_website_templates/static/src/css/material_form.css" rel="stylesheet" />
+                        <link href="/digimoov_website_templates/static/src/css/material_form.min.css" rel="stylesheet" />
                         <link href="/fl_auth_signup/static/css/style_dig.css" rel="stylesheet" />
                     </t>
                     <style>
@@ -682,8 +642,6 @@
                                     </div>
                                     <div class="o_login_auth" />
                                 </div>
-
-
                             </form>
                         </div>
                         <div class="col-lg-6 text-center logo-flex " t-if="not token">
