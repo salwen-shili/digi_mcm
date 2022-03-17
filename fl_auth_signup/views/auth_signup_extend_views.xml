@@ -412,10 +412,10 @@
                                         </div>
                                         <br />
                                         <!-- Questions-->
-                                        <label for="voie">Comment avez vous découvert Digimoov ?</label>
-                                        <div class="outlined-input-field bg-c" id="question_container" t-if="not name">
+                                        <label for="voie">Comment avez vous découvert Digimoov ?*</label>
+                                        <div class="outlined-input-field bg-c" id="question_signup_container" t-if="not name">
 
-                                            <select class="outlined-text-field" name="question" id="question" required="required">
+                                            <select class="outlined-text-field" name="question_signup" id="question_signup" required="required">
                                                 <option value="" disabled="disabled" selected="selected"></option>
                                                 <option value='0'>Suite à une annonce sur facebook</option>
                                                 <option value='1'>Suite à une recherche sur Google</option>
@@ -424,14 +424,14 @@
                                             </select>
 
                                             <i class="material-icons error-icon"></i>
-                                            <div class="helper-text bg-c" id="question_helper">
+                                            <div class="helper-text bg-c" id="question_signup_helper">
                                                 <span></span>
                                             </div>
                                         </div>
 
 
                                         <br />
-                                        <!-- End Questions-->
+                                        <!-- End question_signups-->
                                         <input type="hidden" name="redirect" t-att-value="'/felicitations' or redirect " />
                                         <!-- <div style="float: left">
                                           <label class="pure-material-checkbox">
