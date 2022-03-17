@@ -455,7 +455,7 @@ class Session(models.Model):
             new_format = '%d/%B/%Y'
             date_exam = self.date_exam
             # Changer format de date et la mettre en majuscule
-            new_date_format = datetime.strptime(str(rec.date_creation), "%d %B %Y").date().strftime('%d/%m/%Y')
+            new_date_format = datetime.strptime(str(rec.date_creation), "%d/%m/%Y").date().strftime('%d/%m/%Y')
             new_date = new_date_format
         return new_date
 
