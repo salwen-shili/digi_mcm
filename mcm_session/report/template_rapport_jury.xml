@@ -86,10 +86,10 @@
                                     </table>
                                 </center>
                             </div>
-                        </div>
-                        <div class="row" style="padding-top:60px!important;">
-                            <br/>
-                            <img src='/mcm_session/static/src/img/footer_jury.png' height="80" width="2000"/>
+
+                            <div class="row" style="position:absolute;bottom:-1250px">
+                                <img src='/mcm_session/static/src/img/footer_jury.png' height="80" width="2000"/>
+                            </div>
                         </div>
 
                         <p style="page-break-after:always;"/>
@@ -101,12 +101,13 @@
                                     </strong>
                                 </p>
                             </span>
+                            <br/>
                             <style>.tab {
                                 display: inline-block;
                                 margin-left: 40px;
                                 }
                             </style>
-                            <span class="tab" style="font-size:18px;">
+                            <span class="tab" style="font-size:22px;">
                                 <p>a) Nombre de candidats inscrits et présents :</p>
                                 <p>- Le nombre de candidats inscrits était de
                                     <span t-esc="docs.nbr_client_par_session(nbr_inscrits)"/>
@@ -117,22 +118,26 @@
                                     <span t-esc="docs.nbr_present_par_session(nbr_present)"/>
                                     personnes
                                 </p>
+                                <br/>
                                 <p>B) Nombre de candidats reçus à l’examen
                                     <span t-esc="docs.nbr_recus_par_session(total_nbr_recu)"/>
                                     sur
                                     <span t-esc="docs.nbr_client_par_session(nbr_inscrits)"/>
                                 </p>
-                                <p>- Le taux de réussite est donc de<span
-                                        t-esc="docs.pourcentage_client_recu(pourcentage)"/>%.
+                                <p>- Le taux de réussite est donc de <span
+                                        t-esc="docs.pourcentage_client_recu(pourcentage)"/> %.
                                 </p>
+                                <br/>
                                 <p>c) Liste récapitulative des candidats inscrits, absents, reçus ou ajournés en
                                     annexe.
                                 </p>
+                                <br/>
                                 <p>d) Le constat du déroulement des épreuves ainsi que la mention des éventuelles
                                     difficultés rencontrées lors du déroulement de la
                                     session :
                                 </p>
-                                <p>Aucune difficulté n’est à mentionner, tout s’est bien déroulé.</p>
+
+                                <p>Aucune difficulté n’est à mentionner, tout s’est bien déroulé.</p><br/>
                                 <p>e) Le dossier d’inscription à l’examen du candidat, accompagné du relevé des notes
                                     obtenues
                                     aux différentes épreuves ainsi que de la
@@ -140,6 +145,7 @@
                                     <br/>
                                     Ces éléments se trouvent dans le dossier de chaque candidat
                                 </p>
+                                <br/>
                             </span>
                             <br/>
                             <style>
@@ -148,7 +154,7 @@
                                 border: solid;
                                 }
                             </style>
-                            <center style="padding-top:40px!important;">
+                            <center style="padding-top:60pt!important;">
                                 <table class="table">
                                     <tbody>
                                         <tr>
@@ -161,13 +167,13 @@
                                     </tbody>
                                 </table>
                             </center>
-                            <div class="row" style="padding-top:100px!important;page-break-after:inside;">
+                            <div class="row" style="padding-top:150px!important;">
                                 <img src='/mcm_session/static/src/img/footer_jury.png' height="80" width="2000"/>
                             </div>
                         </div>
                         <p style="page-break-after:always;"/>
                         <div class="page">
-                            <p style="padding-top: 70px;">
+                            <p style="padding-top: 50px;">
                                 <b>
                                     <u>PERSONNES PRESENTES :</u>
                                 </b>
@@ -212,7 +218,7 @@
                                     </tbody>
                                 </table>
                             </div>
-                            <p style="padding-top: 40px;">Cette session est présidée par
+                            <p style="padding-top: 40px;font-size:22px;">Cette session est présidée par
                                 .........................................................................................................
                                 :
                             </p>
@@ -605,9 +611,9 @@
                             </tbody>
                         </table>
                         <div class="row" style="padding-top:30px!important;">
-                                <img src='/mcm_session/static/src/img/footer_jury.png'
-                                     height="80" width="2000"/>
-                            </div>
+                            <img src='/mcm_session/static/src/img/footer_jury.png'
+                                 height="80" width="2000"/>
+                        </div>
                     </div>
                 </t>
             </t>
