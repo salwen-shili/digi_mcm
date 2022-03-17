@@ -32,7 +32,13 @@ class CustomWebsiteBlog(WebsiteBlog):
     ], type='http', auth="public", website=True)
     def blog(self, blog=None, tag=None, page=1, **opt):
         Blog = request.env['blog.blog']
-        if blog and not blog.can_access_from_current_website():
+        blogs = Blog.search(request.website.website_domain(), order="create_date asc, id asc")
+        if blog and len(blogs) == 1: #check if the website has only one category and the url contains the website_url of this category to redirect the client to /blog using the code 301 of redirection
+            return werkzeug.utils.redirect('/blog',301)
+        elif blog and len(blogs) > 1 :
+            if blog.name =="DIGIMOOV" : #check if the name of category is DIGIMOOV to redirect it to /blog
+                return werkzeug.utils.redirect('/blog', 301)
+        if blog and not blog.can_access_from_current_website(): # redirect client to /blog
             raise werkzeug.exceptions.NotFound()
 
         blogs = Blog.search(request.website.website_domain(), order="create_date asc, id asc")
