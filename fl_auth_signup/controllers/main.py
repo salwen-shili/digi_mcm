@@ -21,7 +21,7 @@ class AuthSignupHome(AuthSignupHome):
         """ Shared helper that creates a res.partner out of a token """
         values = {key: qcontext.get(key) for key in
                   ('login', 'lastName','firstname', 'password', 'phone', "zip", "city", "voie", "nom_voie",
-                   "num_voie", 'street2','question_signup')}
+                   "num_voie", 'street2','question_signup')} #get question_signup value
         values['login'] = values['login'].replace(' ', '').lower()
         if not values:
             raise UserError(_("Le formulaire n'est pas correctement rempli."))
@@ -63,7 +63,7 @@ class AuthSignupHome(AuthSignupHome):
         SIGN_UP_REQUEST_PARAMS.add('num_voie')
         SIGN_UP_REQUEST_PARAMS.add('street')
         SIGN_UP_REQUEST_PARAMS.add('street2')
-        SIGN_UP_REQUEST_PARAMS.add('question_signup')
+        SIGN_UP_REQUEST_PARAMS.add('question_signup') #add question_signup in params of signup
         #add keys to SIGN_UP_REQUEST_PARAMS to get datas from signup form
         qcontext = {k: v for (k, v) in request.params.items() if k in SIGN_UP_REQUEST_PARAMS}
         qcontext.update(self.get_auth_signup_config())
