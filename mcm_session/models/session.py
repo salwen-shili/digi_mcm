@@ -104,7 +104,7 @@ class Session(models.Model):
             if examen:
                 nbr_recu = examen.env['info.examen'].search_count(
                     [('session_id', "=", self.id), ('resultat', "=", 'recu')])
-                total_nbr_recu = nbr_recu + self.count_annule
+                total_nbr_recu = nbr_recu
         print("total_nbr_recu", total_nbr_recu)
         return total_nbr_recu
 
@@ -210,7 +210,7 @@ class Session(models.Model):
             if examen:
                 nbr_absence = examen.env['info.examen'].search_count(
                     [('session_id', "=", self.id), ('presence', "=", 'absence_justifiee')])
-                total_absence_justifiée = nbr_absence + self.count_annule
+                total_absence_justifiée = nbr_absence
                 return total_absence_justifiée
 
     def pourcentage_absence_justifiée(self, resultat):
