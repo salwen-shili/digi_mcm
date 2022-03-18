@@ -160,8 +160,12 @@ class Session(models.Model):
         print(nbr_recu_total)
         nbr_inscrits_total = self.nbr_client_par_session(self)
         pourcentage_without_round = (nbr_recu_total * 100 / nbr_inscrits_total)
-        pourcentage = f'{pourcentage_without_round:.2f}'  # Garder justes deux chiddre après la virgule
-        return pourcentage
+        if pourcentage_without_round > 0:
+            pourcentage = f'{pourcentage_without_round:.2f}'  # Garder justes deux chiddre après la virgule
+            return pourcentage
+        else:
+            pourcentage = f'{pourcentage_without_round:.0f}'  # si 0 la resultat sera 0 %
+            return pourcentage
 
     def date_session_frensh(self, date_examen):
         """ FORCER la date en francais par ce que odoo.sh applique """
@@ -193,9 +197,12 @@ class Session(models.Model):
         nbr_absence = self.calculer_nombre_absence(self)
         nbr_inscrit = self.nbr_client_par_session(self)
         res = (nbr_absence * 100 / nbr_inscrit)
-        resultat = f'{res:.2f}'
-        print(resultat)
-        return resultat
+        if res > 0:
+            resultat = f'{res:.2f}'
+            return resultat
+        else:
+            resultat = f'{res:.0f}'
+            return resultat
 
     def calculer_nombre_absence_justifiée(self, total_absence_justifiée):
         """ Calculer la somme des absences justifiées par session"""
@@ -211,17 +218,23 @@ class Session(models.Model):
         nbr_absence_justifiee = self.calculer_nombre_absence_justifiée(self)
         nbr_inscrit = self.nbr_client_par_session(self)
         res = (nbr_absence_justifiee * 100 / nbr_inscrit)
-        resultat = f'{res:.2f}'
-        print(resultat)
-        return resultat
+        if res > 0:
+            resultat = f'{res:.2f}'
+            return resultat
+        else:
+            resultat = f'{res:.0f}'
+            return resultat
 
     def pourcentage_abandon(self, prc_abandon):
         nbr_absence_abandon = self.count_annule
         nbr_inscrit = self.nbr_client_par_session(self)
         res = (nbr_absence_abandon * 100 / nbr_inscrit)
-        prc_abandon = f'{res:.2f}'
-        print(prc_abandon)
-        return prc_abandon
+        if res > 0:
+            prc_abandon = f'{res:.2f}'
+            return prc_abandon
+        else:
+            prc_abandon = f'{res:.0f}'
+            return prc_abandon
 
     def nbr_echec(self, nbr_echec):
         """ Calculer nombre d'echec :
@@ -238,9 +251,12 @@ class Session(models.Model):
         nbr_echec = self.nbr_echec(self)
         nbr_inscrit = self.nbr_client_par_session(self)
         res = (nbr_echec * 100 / nbr_inscrit)
-        prc_echec = f'{res:.2f}'
-        print(prc_echec)
-        return prc_echec
+        if res > 0:
+            prc_echec = f'{res:.2f}'
+            return prc_echec
+        else:
+            prc_echec = f'{res:.0f}'
+            return prc_echec
 
     def pack_solo_inscrit(self, sum_solo_inscrit):
         nbr_from_examen = 0
@@ -362,57 +378,92 @@ class Session(models.Model):
         pack_solo_present = self.pack_solo_present(self)
         nbr_inscrit = self.nbr_client_par_session(self)
         taux_de_presence = pack_solo_present * 100 / nbr_inscrit
-        taux_de_presence_solo = f'{taux_de_presence:.2f}'
-        return taux_de_presence_solo
+        if taux_de_presence > 0:
+            taux_de_presence_solo = f'{taux_de_presence:.2f}'
+            return taux_de_presence_solo
+        else:
+            taux_de_presence_solo = f'{taux_de_presence:.0f}'
+            return taux_de_presence_solo
 
     def taux_de_presence_pro(self):
         pack_pro_present = self.pack_pro_present(self)
         nbr_inscrit = self.nbr_client_par_session(self)
         taux_de_presence = pack_pro_present * 100 / nbr_inscrit
-        taux_de_presence_pro = f'{taux_de_presence:.2f}'
-        return taux_de_presence_pro
+        if taux_de_presence > 0:
+            taux_de_presence_pro = f'{taux_de_presence:.2f}'
+            return taux_de_presence_pro
+        else:
+            taux_de_presence_pro = f'{taux_de_presence:.0f}'
+            return taux_de_presence_pro
 
     def taux_de_presence_premium(self):
+        """ Calculer taux de présence pour les packs premium;
+        avec une condition pour enlever la partie décimale
+        si la résultat est égale à zéro"""
         pack_premium_present = self.pack_premium_present(self)
         nbr_inscrit = self.nbr_client_par_session(self)
         taux_de_presence = pack_premium_present * 100 / nbr_inscrit
-        taux_de_presence_premium = f'{taux_de_presence:.2f}'
-        return taux_de_presence_premium
+        if taux_de_presence > 0:
+            taux_de_presence_premium = f'{taux_de_presence:.2f}'
+            return taux_de_presence_premium
+        else:
+            taux_de_presence_premium = f'{taux_de_presence:.0f}'
+            return taux_de_presence_premium
 
     def taux_de_presence_repassage(self):
         pack_repassage_present = self.pack_repassage_present(self)
         nbr_inscrit = self.nbr_client_par_session(self)
         taux_de_presence = pack_repassage_present * 100 / nbr_inscrit
-        taux_de_presence_repassage = f'{taux_de_presence:.2f}'
-        return taux_de_presence_repassage
+        if taux_de_presence > 0:
+            taux_de_presence_repassage = f'{taux_de_presence:.2f}'
+            return taux_de_presence_repassage
+        else:
+            taux_de_presence_repassage = f'{taux_de_presence:.0f}'
+            return taux_de_presence_repassage
 
     def taux_de_reussite_solo(self):
         pack_solo_reussite = self.nbr_recus_solo()
         nbr_inscrit = self.nbr_client_par_session(self)
         taux_de_reussite = pack_solo_reussite * 100 / nbr_inscrit
-        taux_de_reussite_solo = f'{taux_de_reussite:.2f}'
-        return taux_de_reussite_solo
+        if taux_de_reussite > 0:
+            taux_de_reussite_solo = f'{taux_de_reussite:.2f}'
+            return taux_de_reussite_solo
+        else:
+            taux_de_reussite_solo = f'{taux_de_reussite:.0f}'
+            return taux_de_reussite_solo
 
     def taux_de_reussite_pro(self):
         pack_pro_reussite = self.nbr_recus_pro()
         nbr_inscrit = self.nbr_client_par_session(self)
         taux_de_reussite = pack_pro_reussite * 100 / nbr_inscrit
-        taux_de_reussite_pro = f'{taux_de_reussite:.2f}'
-        return taux_de_reussite_pro
+        if taux_de_reussite > 0:
+            taux_de_reussite_pro = f'{taux_de_reussite:.2f}'
+            return taux_de_reussite_pro
+        else:
+            taux_de_reussite_pro = f'{taux_de_reussite:.0f}'
+            return taux_de_reussite_pro
 
     def taux_de_reussite_premium(self):
         pack_premium_reussite = self.nbr_recus_premium()
         nbr_inscrit = self.nbr_client_par_session(self)
         taux_de_reussite = pack_premium_reussite * 100 / nbr_inscrit
-        taux_de_reussite_premium = f'{taux_de_reussite:.2f}'
-        return taux_de_reussite_premium
+        if taux_de_reussite > 0:
+            taux_de_reussite_premium = f'{taux_de_reussite:.2f}'
+            return taux_de_reussite_premium
+        else:
+            taux_de_reussite_premium = f'{taux_de_reussite:.0f}'
+            return taux_de_reussite_premium
 
     def taux_de_reussite_repassage(self):
         pack_repassage_reussite = self.nbr_recus_repassage()
         nbr_inscrit = self.nbr_client_par_session(self)
         taux_de_reussite = pack_repassage_reussite * 100 / nbr_inscrit
-        taux_de_reussite_repassage = f'{taux_de_reussite:.2f}'
-        return taux_de_reussite_repassage
+        if taux_de_reussite > 0:
+            taux_de_reussite_repassage = f'{taux_de_reussite:.2f}'
+            return taux_de_reussite_repassage
+        else:
+            taux_de_reussite_repassage = f'{taux_de_reussite:.0f}'
+            return taux_de_reussite_repassage
 
     @api.depends('epreuve_a')
     def moyenne_qcm(self):
