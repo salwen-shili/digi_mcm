@@ -20,10 +20,21 @@
                 <div class="row">
                     <div class="col-sm-12">
                         <div class="form-group label-floating form-group-sm is-empty">
+                            <label class="control-label" for="question_signup" string="Comment avez vous découvert notre site ? :">
+                                Comment avez vous découvert notre site ? :
+                            </label>
+                            <field name="question_signup" readonly="1"/>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="form-group label-floating form-group-sm is-empty">
                             <label class="control-label" for="company_id" string="Société :">
                                 Société
                             </label>
-                            <field name="company_id"/>
+                            <field name="company_id" />
                         </div>
                     </div>
                 </div>

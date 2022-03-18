@@ -12,7 +12,7 @@ ajouter addresse de facturation à la vue client
     'sequence': 15,
     'summary': 'Partner',
     'depends': [
-        'mcm_session',
+        'mcm_session','fl_auth_signup'
     ],
     'description': """
 ajouter addresse de facturation à la vue client

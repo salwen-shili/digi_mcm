@@ -17,7 +17,7 @@
                     max-width: 100% !important;
                     }
                 </style>
-                <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+                <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"/>
 
                 <!-- <div class="form-group field-phone">
                             <label for="phone" class="control-label">Téléphone</label>
@@ -34,21 +34,28 @@
               ">
                             <div class="form-section">
                                 <div class="card px-0 pt-4 pb-0 mt-3 mb-3 bg-c">
-                                    <h2 id="heading" style="text-align:center" t-if="not name or not last_login">Inscription</h2>
-                                    <p class="p_class" style="text-align:center" t-if="not name or not last_login">Remplissez tous les champs du formulaire pour
+                                    <h2 id="heading" style="text-align:center" t-if="not name or not last_login">
+                                        Inscription
+                                    </h2>
+                                    <p class="p_class" style="text-align:center" t-if="not name or not last_login">
+                                        Remplissez tous les champs du formulaire pour
                                         passer à l'étape suivante
                                     </p>
 
                                     <!-- progressbar -->
                                     <t t-if="request.website.id == 1">
-                                        <link href="/mcm_website_theme/static/src/css/register_form.css" rel="stylesheet" />
+                                        <link href="/mcm_website_theme/static/src/css/register_form.css"
+                                              rel="stylesheet"/>
 
-                                        <link href="/mcm_website_theme/static/src/css/material_form.css" rel="stylesheet" />
+                                        <link href="/mcm_website_theme/static/src/css/material_form.css"
+                                              rel="stylesheet"/>
 
                                     </t>
                                     <t t-if="request.website.id == 2">
-                                        <link href="/digimoov_website_templates/static/src/css/material_form.css" rel="stylesheet" />
-                                        <link href="/digimoov_website_templates/static/src/css/register_form.css" rel="stylesheet" />
+                                        <link href="/digimoov_website_templates/static/src/css/material_form.css"
+                                              rel="stylesheet"/>
+                                        <link href="/digimoov_website_templates/static/src/css/register_form.css"
+                                              rel="stylesheet"/>
                                     </t>
                                     <ul id="progressbar" t-if="not name or not last_login" style="text-align: center;">
                                         <li class="active" id="account">
@@ -71,18 +78,18 @@
                                     </div>
                                     <style t-if="request.website.id == 1">
                                         .wrapper{
-                                                margin-top: 39px;
-                                                border: 1px solid #000;
-                                                padding: 12px;
-                                                box-shadow: 0px 10px 15px 7px rgb(0 0 0 / 5%);
-                                                border-radius: 5px;
+                                        margin-top: 39px;
+                                        border: 1px solid #000;
+                                        padding: 12px;
+                                        box-shadow: 0px 10px 15px 7px rgb(0 0 0 / 5%);
+                                        border-radius: 5px;
                                         }
                                         .cnx-subtitle{
                                         font-size: 16px;
                                         color: #000;
                                         text-align: center;
                                         }
-                                      
+
                                         .cnx-subtitle > a {
                                         color: #5850ec;
                                         border-bottom: 1px solid #5850ec;
@@ -90,18 +97,18 @@
                                     </style>
                                     <style t-if="request.website.id == 2">
                                         .wrapper{
-                                                margin-top: 39px;
-                                                border: 1px solid #5c54ec;
-                                                padding: 12px;
-                                                box-shadow: 0px 10px 15px 7px rgb(0 0 0 / 5%);
-                                                border-radius: 5px;
+                                        margin-top: 39px;
+                                        border: 1px solid #5c54ec;
+                                        padding: 12px;
+                                        box-shadow: 0px 10px 15px 7px rgb(0 0 0 / 5%);
+                                        border-radius: 5px;
                                         }
                                         .cnx-subtitle{
                                         font-size: 16px;
                                         color: #000;
                                         text-align: center;
                                         }
-                                      
+
                                         .cnx-subtitle > a {
                                         color: #5850ec;
                                         border-bottom: 1px solid #5850ec;
@@ -109,18 +116,19 @@
                                     </style>
                                     <div class="wrapper">
                                         <div class="cnx-subtitle">
-                                            <span> Vous avez déjà un compte ?  </span>
-                                            <a href="/web/login"> Connectez-vous ! </a>
+                                            <span>Vous avez déjà un compte ?</span>
+                                            <a href="/web/login">Connectez-vous !</a>
                                         </div>
                                     </div>
 
 
-                                    <br t-if="not name or not last_login" />
+                                    <br t-if="not name or not last_login"/>
 
                                     <div class="alert alert-danger" t-if="error" role="alert">
-                                        <t t-esc="error" />
+                                        <t t-esc="error"/>
                                         <p>
-                                            <a t-attf-href="/web/login?{{ keep_query() }}" class="btn btn-link" role="button">Connexion
+                                            <a t-attf-href="/web/login?{{ keep_query() }}" class="btn btn-link"
+                                               role="button">Connexion
                                             </a>
                                             <a t-attf-href="/web/reset_password" class="btn btn-link" role="button">
                                                 Mot de passe oublié
@@ -138,7 +146,10 @@
                                         <div class="outlined-input-field bg-c" id="lastname_container" t-if="not name">
 
 
-                                            <input type="text" name="lastName" id="lastname" class="outlined-text-field" autocomplete="off" t-att-value="lastName" pattern="[A-Z,a-z,À-ÿ '-]{2,}" required="required" inputmode="latin-name" />
+                                            <input type="text" name="lastName" id="lastname" class="outlined-text-field"
+                                                   autocomplete="off" t-att-value="lastName"
+                                                   pattern="[A-Z,a-z,À-ÿ '-]{2,}" required="required"
+                                                   inputmode="latin-name"/>
                                             <label for="lastname" style="font-size: 1rem; top: 1rem; padding: 0px;">Nom
                                                 *
                                             </label>
@@ -148,20 +159,25 @@
                                             </div>
 
                                         </div>
-                                        <br t-if="not name or not last_login" />
+                                        <br t-if="not name or not last_login"/>
 
                                         <div class="outlined-input-field bg-c" id="firstname_container" t-if="not name">
-                                            <input type="text" id="firstname" name="firstname" class="outlined-text-field" autocomplete="off" t-att-value="firstname" pattern="[A-Z,a-z,À-ÿ '-]{2,}" required="required" inputmode="latin-name" />
+                                            <input type="text" id="firstname" name="firstname"
+                                                   class="outlined-text-field" autocomplete="off"
+                                                   t-att-value="firstname" pattern="[A-Z,a-z,À-ÿ '-]{2,}"
+                                                   required="required" inputmode="latin-name"/>
                                             <label for="firstname">Prénom *</label>
                                             <i class="material-icons error-icon">error_outline</i>
                                             <div class="helper-text bg-c" id="firstname_helper">
                                                 <span></span>
                                             </div>
                                         </div>
-                                        <br t-if="not name or not last_login" />
+                                        <br t-if="not name or not last_login"/>
 
                                         <div class="outlined-input-field bg-c" id="phone_container" t-if="not phone">
-                                            <input type="text" id="phone" name="phone" class="outlined-text-field" autocomplete="off" t-att-value="phone" maxlength="10" pattern="(07|06)[0-9]\d{7}" required="required" inputmode="numeric" />
+                                            <input type="text" id="phone" name="phone" class="outlined-text-field"
+                                                   autocomplete="off" t-att-value="phone" maxlength="10"
+                                                   pattern="(07|06)[0-9]\d{7}" required="required" inputmode="numeric"/>
                                             <label for="phone">Téléphone *</label>
                                             <i class="material-icons error-icon">error_outline</i>
                                             <div class="helper-text bg-c" id="phone_helper">
@@ -169,7 +185,10 @@
                                             </div>
                                         </div>
                                         <div class="outlined-input-field bg-c" id="phone_container" t-if="phone">
-                                            <input type="text" id="phone" name="phone" class="outlined-text-field" autocomplete="off" t-att-value="phone" maxlength="10" pattern="(07|06)[0-9]\d{7}" required="required" inputmode="numeric" t-att-readonly="'readonly' if phone else None" />
+                                            <input type="text" id="phone" name="phone" class="outlined-text-field"
+                                                   autocomplete="off" t-att-value="phone" maxlength="10"
+                                                   pattern="(07|06)[0-9]\d{7}" required="required" inputmode="numeric"
+                                                   t-att-readonly="'readonly' if phone else None"/>
                                             <label for="phone" style="top: -0.7rem;padding: 0.25rem;">Téléphone *
                                             </label>
                                             <i class="material-icons error-icon">error_outline</i>
@@ -177,10 +196,12 @@
                                             <span>Vous ne pouvez pas modifier votre téléphone .</span>
 
                                         </div>
-                                        <br />
+                                        <br/>
 
                                         <div class="outlined-input-field bg-c" id="email_container" t-if="not name">
-                                            <input type="email" id="email" class="outlined-text-field" autocomplete="off" value="" required="required" inputmode="email" name="login" />
+                                            <input type="email" id="email" class="outlined-text-field"
+                                                   autocomplete="off" value="" required="required" inputmode="email"
+                                                   name="login"/>
                                             <label for="email">Email *</label>
                                             <i class="material-icons error-icon">error_outline</i>
                                             <div class="helper-text bg-c" id="email_helper">
@@ -188,33 +209,43 @@
                                             </div>
                                         </div>
                                         <div class="outlined-input-field bg-c" id="email_container" t-if="name">
-                                            <input type="email" id="email" class="outlined-text-field" autocomplete="off" t-att-value="login" required="required" inputmode="email" name="login" t-att-readonly="'readonly' if login else None" />
+                                            <input type="email" id="email" class="outlined-text-field"
+                                                   autocomplete="off" t-att-value="login" required="required"
+                                                   inputmode="email" name="login"
+                                                   t-att-readonly="'readonly' if login else None"/>
                                             <label for="email" style="top: -0.7rem;padding: 0.25rem;">Email *</label>
                                             <i class="material-icons error-icon">error_outline</i>
                                             <span>Vous ne pouvez pas modifier votre email.</span>
                                         </div>
 
-                                        <br t-if="not name or not last_login" />
-                                        <div class="outlined-input-field bg-c" id="confirm_email_container" t-if="not name">
-                                            <input type="email" id="confirm_email" class="outlined-text-field" name="confirm_email" autocomplete="off" value="" required="required" inputmode="email" />
+                                        <br t-if="not name or not last_login"/>
+                                        <div class="outlined-input-field bg-c" id="confirm_email_container"
+                                             t-if="not name">
+                                            <input type="email" id="confirm_email" class="outlined-text-field"
+                                                   name="confirm_email" autocomplete="off" value="" required="required"
+                                                   inputmode="email"/>
                                             <label for="confirm_email">Confirmer votre email *</label>
                                             <i class="material-icons error-icon">error_outline</i>
                                             <div class="helper-text bg-c" id="confirm_email_helper">
                                                 <span></span>
                                             </div>
                                         </div>
-                                        <div class="outlined-input-field bg-c" id="confirm_email_container" t-if="name" style="display:none">
-                                            <input type="email" id="confirm_email" class="outlined-text-field" name="confirm_email" autocomplete="off" t-att-value="login" required="required" inputmode="email" />
+                                        <div class="outlined-input-field bg-c" id="confirm_email_container" t-if="name"
+                                             style="display:none">
+                                            <input type="email" id="confirm_email" class="outlined-text-field"
+                                                   name="confirm_email" autocomplete="off" t-att-value="login"
+                                                   required="required" inputmode="email"/>
                                             <label for="confirm_email">Confirmer votre email *</label>
                                             <i class="material-icons error-icon">error_outline</i>
                                             <div class="helper-text bg-c" id="confirm_email_helper">
                                                 <span></span>
                                             </div>
                                         </div>
-                                        <br t-if="not name or not last_login" />
+                                        <br t-if="not name or not last_login"/>
 
                                         <div class="outlined-input-field bg-c" id="password_container">
-                                            <input type="password" id="password" class="outlined-text-field" autocomplete="off" required="required" name="password" />
+                                            <input type="password" id="password" class="outlined-text-field"
+                                                   autocomplete="off" required="required" name="password"/>
                                             <label for="password">Mot de passe *</label>
                                             <i class="toggle-password material-icons visibility " style="
                                                 display: initial;
@@ -222,15 +253,16 @@
                                                 top: 1rem;
                                                 right: 1rem;
                                                 cursor:pointer;
-                                            ">visibility</i>
+                                            ">visibility
+                                            </i>
 
                                             <div class="text-left helper-text bg-c" id="password_helper">
                                                 <span></span>
                                             </div>
                                         </div>
 
-                                        <br t-if="not name or not last_login" />
-                                        <br t-if="name" />
+                                        <br t-if="not name or not last_login"/>
+                                        <br t-if="name"/>
                                     </fieldset>
                                 </div>
                             </div>
@@ -257,7 +289,7 @@
 
                 </script>
                 <!-- Address Form -->
-                <input t-att-value="request.website.microsoft_tracking_key" id="microsoft_tracking_key" type="hidden" />
+                <input t-att-value="request.website.microsoft_tracking_key" id="microsoft_tracking_key" type="hidden"/>
                 <div class="container-fluid" t-if="not name or not last_login">
                     <div class="row justify-content-center paper">
                         <div class="
@@ -268,7 +300,8 @@
                 mb-2
               ">
                             <div class="form-section">
-                                <div class="card px-0 pt-4 pb-0 mt-3 mb-3 bg-c" style="marging: 0 !important; padding: 0 !important">
+                                <div class="card px-0 pt-4 pb-0 mt-3 mb-3 bg-c"
+                                     style="marging: 0 !important; padding: 0 !important">
                                     <!-- fieldsets -->
                                     <fieldset>
                                         <div class="row">
@@ -278,8 +311,11 @@
                                         </div>
                                         <!-- error-input-field -->
                                         <div class="row">
-                                            <div class="col-md-4 mgb outlined-input-field bg-c" id="zipcode_container" t-if="not name">
-                                                <input type="text" id="zipcode" name="zip" class="outlined-text-field" required="required" maxlength="5" pattern="[0-9]{5,5}" inputmode="numeric" autocomplete="off" value="" />
+                                            <div class="col-md-4 mgb outlined-input-field bg-c" id="zipcode_container"
+                                                 t-if="not name">
+                                                <input type="text" id="zipcode" name="zip" class="outlined-text-field"
+                                                       required="required" maxlength="5" pattern="[0-9]{5,5}"
+                                                       inputmode="numeric" autocomplete="off" value=""/>
                                                 <label for="zipcode" style="left: 2rem !important">Code Postal *
                                                 </label>
                                                 <i class="material-icons error-icon">error_outline</i>
@@ -288,18 +324,25 @@
                                                 </div>
                                             </div>
 
-                                            <div class="col-md-4 mgb outlined-input-field bg-c" id="zipcode_container" t-if="name">
-                                                <input type="text" id="zipcode" name="zip" class="outlined-text-field" required="required" maxlength="5" pattern="[0-9]{5,5}" inputmode="numeric" autocomplete="off" t-att-value="zip_code" />
-                                                <label for="zipcode" style="left: 2rem !important;top: -0.7rem;padding: 0.25rem;">Code Postal *
+                                            <div class="col-md-4 mgb outlined-input-field bg-c" id="zipcode_container"
+                                                 t-if="name">
+                                                <input type="text" id="zipcode" name="zip" class="outlined-text-field"
+                                                       required="required" maxlength="5" pattern="[0-9]{5,5}"
+                                                       inputmode="numeric" autocomplete="off" t-att-value="zip_code"/>
+                                                <label for="zipcode"
+                                                       style="left: 2rem !important;top: -0.7rem;padding: 0.25rem;">Code
+                                                    Postal *
                                                 </label>
                                                 <i class="material-icons error-icon">error_outline</i>
                                                 <div class="helper-text bg-c" id="zipcode_helper">
                                                     <span></span>
                                                 </div>
                                             </div>
-                                            <div class="col-md-8 outlined-input-field bg-c" id="city_container" aria-disabled="true" t-if="not name">
+                                            <div class="col-md-8 outlined-input-field bg-c" id="city_container"
+                                                 aria-disabled="true" t-if="not name">
                                                 <!-- <input type="text" id="city" class="outlined-text-field" autocomplete="off" /> -->
-                                                <select class="outlined-text-field disabled" name="city" id="city" type="hidden" required="required"></select>
+                                                <select class="outlined-text-field disabled" name="city" id="city"
+                                                        type="hidden" required="required"></select>
                                                 <label for="city" style="left: 2rem !important">Ville *
                                                 </label>
                                                 <i class="material-icons error-icon">error_outline</i>
@@ -307,21 +350,28 @@
                                                     <span></span>
                                                 </div>
                                             </div>
-                                            <div class="col-md-8 outlined-input-field bg-c" id="city_container" aria-disabled="true" t-if="name">
+                                            <div class="col-md-8 outlined-input-field bg-c" id="city_container"
+                                                 aria-disabled="true" t-if="name">
 
-                                                <input class="outlined-text-field disabled" name="city" id="city" t-att-value="city" />
-                                                <label for="city" style="left: 2rem !important;top: -0.7rem;padding: 0.25rem;">Ville *</label>
+                                                <input class="outlined-text-field disabled" name="city" id="city"
+                                                       t-att-value="city"/>
+                                                <label for="city"
+                                                       style="left: 2rem !important;top: -0.7rem;padding: 0.25rem;">
+                                                    Ville *
+                                                </label>
                                                 <i class="material-icons error-icon">error_outline</i>
                                                 <div class="helper-text bg-c" id="city_helper">
                                                     <span></span>
                                                 </div>
                                             </div>
                                         </div>
-                                        <br />
+                                        <br/>
 
 
-                                        <div class="outlined-input-field bg-c" id="voie_container" aria-disabled="true" t-if="not name">
-                                            <select class="outlined-text-field" name="voie" id="voie" disabled="true" required="required">
+                                        <div class="outlined-input-field bg-c" id="voie_container" aria-disabled="true"
+                                             t-if="not name">
+                                            <select class="outlined-text-field" name="voie" id="voie" disabled="true"
+                                                    required="required">
                                                 <option value=""></option>
                                                 <option value='AUTRE'>(AUTRE...)</option>
                                                 <option value='ALLÉE'>ALLÉE</option>
@@ -353,8 +403,10 @@
                                                 <span></span>
                                             </div>
                                         </div>
-                                        <div class="outlined-input-field bg-c" id="voie_container" aria-disabled="true" t-if="name">
-                                            <input class="outlined-text-field" name="voie" id="voie" t-att-value="voie" required="true" />
+                                        <div class="outlined-input-field bg-c" id="voie_container" aria-disabled="true"
+                                             t-if="name">
+                                            <input class="outlined-text-field" name="voie" id="voie" t-att-value="voie"
+                                                   required="true"/>
                                             <label for="voie">Type de voie *</label>
                                             <i class="material-icons error-icon"></i>
                                             <div class="helper-text bg-c" id="voie_helper">
@@ -362,11 +414,13 @@
                                             </div>
                                         </div>
 
-                                        <br />
+                                        <br/>
 
-                                        <div class="outlined-input-field bg-c" id="nom_voie_container" aria-disabled="true" t-if="not nom_voie">
+                                        <div class="outlined-input-field bg-c" id="nom_voie_container"
+                                             aria-disabled="true" t-if="not nom_voie">
 
-                                            <input type="text" name="nom_voie" id="nom_voie" class="outlined-text-field" autocomplete="off" required="required" />
+                                            <input type="text" name="nom_voie" id="nom_voie" class="outlined-text-field"
+                                                   autocomplete="off" required="required"/>
 
                                             <label for="nom_voie">Nom de voie *</label>
                                             <i class="material-icons error-icon">error_outline</i>
@@ -374,18 +428,24 @@
                                                 <span></span>
                                             </div>
                                         </div>
-                                        <div class="outlined-input-field bg-c" id="nom_voie_container" aria-disabled="true" t-if="nom_voie">
-                                            <input type="text" name="nom_voie" id="nom_voie" t-att-value="nom_voie" class="outlined-text-field" autocomplete="off" />
-                                            <label for="nom_voie" style="top: -0.7rem;padding: 0.25rem;">Nom de voie *</label>
+                                        <div class="outlined-input-field bg-c" id="nom_voie_container"
+                                             aria-disabled="true" t-if="nom_voie">
+                                            <input type="text" name="nom_voie" id="nom_voie" t-att-value="nom_voie"
+                                                   class="outlined-text-field" autocomplete="off"/>
+                                            <label for="nom_voie" style="top: -0.7rem;padding: 0.25rem;">Nom de voie *
+                                            </label>
                                             <i class="material-icons error-icon">error_outline</i>
                                             <div class="helper-text bg-c" id="nom_voie_helper">
                                                 <span></span>
                                             </div>
                                         </div>
-                                        <br />
+                                        <br/>
 
-                                        <div class="outlined-input-field bg-c" id="num_voie_container" t-if="not num_voie">
-                                            <input type="text" id="num_voie" name="num_voie" class="outlined-text-field" required="required" inputmode="numeric" pattern="[0-9]+" autocomplete="off" />
+                                        <div class="outlined-input-field bg-c" id="num_voie_container"
+                                             t-if="not num_voie">
+                                            <input type="text" id="num_voie" name="num_voie" class="outlined-text-field"
+                                                   required="required" inputmode="numeric" pattern="[0-9]+"
+                                                   autocomplete="off"/>
                                             <label for="num_voie">N° de voie *</label>
                                             <i class="material-icons error-icon">error_outline</i>
                                             <div class="helper-text bg-c" id="num_voie_helper">
@@ -393,39 +453,63 @@
                                             </div>
                                         </div>
                                         <div class="outlined-input-field bg-c" id="num_voie_container" t-if="num_voie">
-                                            <input type="text" id="num_voie" t-att-value="num_voie" name="num_voie" class="outlined-text-field" autocomplete="off" />
-                                            <label for="num_voie" style="top: -0.7rem;padding: 0.25rem;">N° de voie * </label>
+                                            <input type="text" id="num_voie" t-att-value="num_voie" name="num_voie"
+                                                   class="outlined-text-field" autocomplete="off"/>
+                                            <label for="num_voie" style="top: -0.7rem;padding: 0.25rem;">N° de voie *
+                                            </label>
                                             <i class="material-icons error-icon">error_outline</i>
                                             <div class="helper-text bg-c" id="num_voie_helper">
                                                 <span></span>
                                             </div>
                                         </div>
-                                        <br />
+                                        <br/>
 
-                                        <div class="outlined-input-field bg-c" id="comp_address_container" t-if="street2">
-                                            <input type="text" id="comp_address" name="street2" t-att-value="street2" class="outlined-text-field" autocomplete="off" />
-                                            <label for="comp_address" style="top: -0.7rem;padding: 0.25rem;">Complément d'adresse </label>
+                                        <div class="outlined-input-field bg-c" id="comp_address_container"
+                                             t-if="not street2">
+                                            <input type="text" id="comp_address" name="street2"
+                                                   class="outlined-text-field" autocomplete="off"/>
+                                            <label for="comp_address">Complément d'adresse</label>
                                             <i class="material-icons error-icon">error_outline</i>
                                             <div class="helper-text bg-c" id="comp_address_helper">
                                                 <span></span>
                                             </div>
                                         </div>
-                                        <br />
+                                        <div class="outlined-input-field bg-c" id="comp_address_container"
+                                             t-if="street2">
+                                            <input type="text" id="comp_address" name="street2" t-att-value="street2"
+                                                   class="outlined-text-field" autocomplete="off"/>
+                                            <label for="comp_address" style="top: -0.7rem;padding: 0.25rem;">Complément
+                                                d'adresse
+                                            </label>
+                                            <i class="material-icons error-icon">error_outline</i>
+                                            <div class="helper-text bg-c" id="comp_address_helper">
+                                                <span></span>
+                                            </div>
+                                        </div>
+                                        <br/>
                                         <!-- Questions -->
                                         <!-- Company name with request.website.name -->
                                         <label for="question_signup" style="font-size: 17px;color: #000000cf;">
                                             Comment avez vous découvert
-                                            <t t-esc="request.website.name" />
+                                            <t t-esc="request.website.name"/>
                                             ? *
                                         </label>
-                                        <div class="outlined-input-field bg-c" id="question_signup_container" t-if="not name">
+                                        <div class="outlined-input-field bg-c" id="question_signup_container"
+                                             t-if="not name">
 
-                                            <select class="outlined-text-select" name="question_signup" id="question_signup" required="required">
-                                                <option value="" disabled="disabled" selected="selected">Vous devez selectionner une réponse</option>
-                                                <option value='Facebook'>Suite à une annonce sur facebook</option>
+                                            <select class="outlined-text-select" name="question_signup"
+                                                    id="question_signup" required="required">
+                                                <option value="" disabled="disabled" selected="selected">Vous devez
+                                                    selectionner une réponse
+                                                </option>
+                                                <option value='Facebook'>Suite à une annonce sur Facebook</option>
                                                 <option value='Google'>Suite à une recherche sur Google</option>
-                                                <option value='Annonce'>Suite à une annonce publicitaire sur Google/autre site</option>
-                                                <option value='Recommandation'>Suite à la recommandation d'un ami/collègue/parent</option>
+                                                <option value='Annonce'>Suite à une annonce publicitaire sur
+                                                    Google/autre site
+                                                </option>
+                                                <option value='Recommandation'>Suite à la recommandation d'un
+                                                    ami/collègue/parent
+                                                </option>
                                             </select>
 
                                             <i class="material-icons error-icon"></i>
@@ -435,9 +519,23 @@
                                         </div>
 
 
-                                        <br />
+                                        <br/>
                                         <!-- End question_signups-->
-                                        <input type="hidden" name="redirect" t-att-value="'/felicitations' or redirect " />
+                                        <div class="outlined-input-field bg-c" id="comp_address_container"
+                                             t-if="street2">
+                                            <input type="text" id="comp_address" name="street2" t-att-value="street2"
+                                                   class="outlined-text-field" autocomplete="off"/>
+                                            <label for="comp_address" style="top: -0.7rem;padding: 0.25rem;">Complément
+                                                d'adresse
+                                            </label>
+                                            <i class="material-icons error-icon">error_outline</i>
+                                            <div class="helper-text bg-c" id="comp_address_helper">
+                                                <span></span>
+                                            </div>
+                                        </div>
+                                        <br/>
+                                        <input type="hidden" name="redirect"
+                                               t-att-value="'/felicitations' or redirect "/>
                                         <!-- <div style="float: left">
                                           <label class="pure-material-checkbox">
                                             <input type="checkbox" id="introuvable" />
@@ -454,104 +552,123 @@
                                           </button>
                                         </div> -->
                                         <div class="text-center oe_login_buttons pt-5" style="margin-block-end: 3rem">
-                                            <a href="/web/login?" class="rkmd-btn btn-white ripple-effect ripple-yellow" style="margin-right: 10px; display:none">
+                                            <a href="/web/login?" class="rkmd-btn btn-white ripple-effect ripple-yellow"
+                                               style="margin-right: 10px; display:none">
 
                                                 se connecter
                                             </a>
                                             <t t-if="request.website.id == 1">
-                                                <button id="inscrire" type="submit" t-if="not name or not last_login" class="rkmd-btn btn-black ripple-effect ripple-yellow" data-oe-model="ir.ui.view" data-oe-id="1730" data-oe-field="arch" data-oe-xpath="/data/xpath[4]/div[2]/div[1]/div[1]/div[1]/div[1]/fieldset[1]/div[7]/button[1]">
+                                                <button id="inscrire" type="submit" t-if="not name or not last_login"
+                                                        class="rkmd-btn btn-black ripple-effect ripple-yellow"
+                                                        data-oe-model="ir.ui.view" data-oe-id="1730"
+                                                        data-oe-field="arch"
+                                                        data-oe-xpath="/data/xpath[4]/div[2]/div[1]/div[1]/div[1]/div[1]/fieldset[1]/div[7]/button[1]">
                                                     S'inscrire
                                                     <i class="material-icons right">send</i>
                                                 </button>
-                                                <button type="submit" class="rkmd-btn btn-black ripple-effect ripple-yellow" t-if="last_login">
+                                                <button type="submit"
+                                                        class="rkmd-btn btn-black ripple-effect ripple-yellow"
+                                                        t-if="last_login">
                                                     Confirmer
                                                 </button>
                                             </t>
                                             <t t-if="request.website.id == 2">
-                                                <button id="inscrire" type="submit" t-if="not name or not last_login" class="rkmd-btn btn-blue ripple-effect ripple-yellow" data-oe-model="ir.ui.view" data-oe-id="1730" data-oe-field="arch" data-oe-xpath="/data/xpath[4]/div[2]/div[1]/div[1]/div[1]/div[1]/fieldset[1]/div[7]/button[1]">
+                                                <button id="inscrire" type="submit" t-if="not name or not last_login"
+                                                        class="rkmd-btn btn-blue ripple-effect ripple-yellow"
+                                                        data-oe-model="ir.ui.view" data-oe-id="1730"
+                                                        data-oe-field="arch"
+                                                        data-oe-xpath="/data/xpath[4]/div[2]/div[1]/div[1]/div[1]/div[1]/fieldset[1]/div[7]/button[1]">
                                                     S'inscrire
                                                     <i class="material-icons right">send</i>
                                                 </button>
-                                                <button type="submit" class="rkmd-btn btn-black ripple-effect ripple-yellow" t-if="last_login">
+                                                <button type="submit"
+                                                        class="rkmd-btn btn-black ripple-effect ripple-yellow"
+                                                        t-if="last_login">
                                                     Confirmer
                                                 </button>
                                             </t>
 
                                             <script></script>
 
-                                            <div class="o_login_auth" data-oe-model="ir.ui.view" data-oe-id="1730" data-oe-field="arch" data-oe-xpath="/data/xpath[4]/div[2]/div[1]/div[1]/div[1]/div[1]/fieldset[1]/div[7]/div[1]"></div>
+                                            <div class="o_login_auth" data-oe-model="ir.ui.view" data-oe-id="1730"
+                                                 data-oe-field="arch"
+                                                 data-oe-xpath="/data/xpath[4]/div[2]/div[1]/div[1]/div[1]/div[1]/fieldset[1]/div[7]/div[1]"></div>
                                         </div>
-                                        <link href="/mcm_contact_documents/static/src/css/button.min.css" rel="stylesheet" />
+                                        <link href="/mcm_contact_documents/static/src/css/button.min.css"
+                                              rel="stylesheet"/>
 
 
                                     </fieldset>
                                 </div>
                             </div>
                             <script t-if="name">
-                    $(`#zipcode`).animate(
-                    {
-                    fontSize: "0.8rem",
-                    top: "-0.7rem",
-                    padding: "0.25rem",
-                    },
-                    80
-                    );
-                    $(`#city`).animate(
-                    {
-                    fontSize: "0.8rem",
-                    top: "-0.7rem",
-                    padding: "0.25rem",
-                    },
-                    80
-                    );
-                    if (('#voie').val){
-                    $(`#voie`).animate(
-                    {
-                    fontSize: "0.8rem",
-                    top: "-0.7rem",
-                    padding: "0.25rem",
-                    },
-                    80
-                    );
-                    }
-                    $(`#nom_voie`).animate(
-                    {
-                    fontSize: "0.8rem",
-                    top: "-0.7rem",
-                    padding: "0.25rem",
-                    },
-                    80
-                    );
-                     $(`#num_voie`).animate(
-                    {
-                    fontSize: "0.8rem",
-                    top: "-0.7rem",
-                    padding: "0.25rem",
-                    },
-                    80
-                    );
-                     $(`#comp_address`).animate(
-                    {
-                    fontSize: "0.8rem",
-                    top: "-0.7rem",
-                    padding: "0.25rem",
-                    },
-                    80
-                    );
+                                $(`#zipcode`).animate(
+                                {
+                                fontSize: "0.8rem",
+                                top: "-0.7rem",
+                                padding: "0.25rem",
+                                },
+                                80
+                                );
+                                $(`#city`).animate(
+                                {
+                                fontSize: "0.8rem",
+                                top: "-0.7rem",
+                                padding: "0.25rem",
+                                },
+                                80
+                                );
+                                if (('#voie').val){
+                                $(`#voie`).animate(
+                                {
+                                fontSize: "0.8rem",
+                                top: "-0.7rem",
+                                padding: "0.25rem",
+                                },
+                                80
+                                );
+                                }
+                                $(`#nom_voie`).animate(
+                                {
+                                fontSize: "0.8rem",
+                                top: "-0.7rem",
+                                padding: "0.25rem",
+                                },
+                                80
+                                );
+                                $(`#num_voie`).animate(
+                                {
+                                fontSize: "0.8rem",
+                                top: "-0.7rem",
+                                padding: "0.25rem",
+                                },
+                                80
+                                );
+                                $(`#comp_address`).animate(
+                                {
+                                fontSize: "0.8rem",
+                                top: "-0.7rem",
+                                padding: "0.25rem",
+                                },
+                                80
+                                );
 
-                </script>
+                            </script>
                         </div>
                     </div>
                 </div>
-                <script defer="defer" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js" />
+                <script defer="defer" type="text/javascript"
+                        src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"/>
 
 
                 <!-- <script defer="defer" type="text/javascript" src="/mcm_website_theme/static/src/js/register_form.js" /> -->
 
-                <script defer="defer" type="text/javascript" src="/fl_auth_signup/static/js/validate_inscription.min.js" t-if="not name or not last_login" />
+                <script defer="defer" type="text/javascript" src="/fl_auth_signup/static/js/validate_inscription.min.js"
+                        t-if="not name or not last_login"/>
 
-                <script defer="defer" type="text/javascript" src="/fl_auth_signup/static/js/validate_inscription_reset.js" t-if="name" />
-                <script defer="defer" type="text/javascript" src="/mcm_website_theme/static/src/js/material.min.js" />
+                <script defer="defer" type="text/javascript"
+                        src="/fl_auth_signup/static/js/validate_inscription_reset.js" t-if="name"/>
+                <script defer="defer" type="text/javascript" src="/mcm_website_theme/static/src/js/material.min.js"/>
 
             </xpath>
 
@@ -559,7 +676,7 @@
         <template id="fl_auth_signup.login" inherit_id="auth_signup.login" name="Sign up - Reset Password">
             <xpath expr="//div[@class='justify-content-between mt-2 d-flex small']" position="before">
                 <t t-set="head">
-                    <meta name="robots" content="noindex" />
+                    <meta name="robots" content="noindex"/>
                 </t>
             </xpath>
             <xpath expr="//div[@class='justify-content-between mt-2 d-flex small']" position="replace">
@@ -576,13 +693,15 @@
         <template id="fl_auth_signup.reset_password" inherit_id="auth_signup.reset_password" name="Reset password">
             <xpath expr="//div[1]" position="replace">
                 <t t-set="head">
-                    <meta name="robots" content="noindex" />
+                    <meta name="robots" content="noindex"/>
                 </t>
                 <div t-if="message">
                     <p class="alert alert-success" t-if="message" role="status">
-                        <t t-esc="message" />
+                        <t t-esc="message"/>
                     </p>
-                    <a href="/web/login" style="font-size: 16px; color: #5850ec; text-decoration: underline !important;" class=" float-right" role="button">Revenir à l’écran de connexion</a>
+                    <a href="/web/login" style="font-size: 16px; color: #5850ec; text-decoration: underline !important;"
+                       class=" float-right" role="button">Revenir à l’écran de connexion
+                    </a>
                 </div>
 
             </xpath>
@@ -591,19 +710,19 @@
                 <t t-if="not token">
                     <t t-if="request.website.id == 1">
 
-                        <link href="/mcm_website_theme/static/src/css/material_form.css" rel="stylesheet" />
-                        <link href="/fl_auth_signup/static/css/style_mcm.css" rel="stylesheet" />
+                        <link href="/mcm_website_theme/static/src/css/material_form.css" rel="stylesheet"/>
+                        <link href="/fl_auth_signup/static/css/style_mcm.css" rel="stylesheet"/>
 
                     </t>
                     <t t-if="request.website.id == 2">
-                        <link href="/digimoov_website_templates/static/src/css/material_form.min.css" rel="stylesheet" />
-                        <link href="/fl_auth_signup/static/css/style_dig.css" rel="stylesheet" />
+                        <link href="/digimoov_website_templates/static/src/css/material_form.min.css" rel="stylesheet"/>
+                        <link href="/fl_auth_signup/static/css/style_dig.css" rel="stylesheet"/>
                     </t>
                     <style>
-                    .cnx-subtitle{
+                        .cnx-subtitle{
                         margin-bottom:13px;
-                    }
-                </style>
+                        }
+                    </style>
                 </t>
 
 
@@ -613,47 +732,65 @@
 
                         <div t-attf-class="#{'col-lg-6' if not token else ''}">
 
-                            <form class="oe_login_form" t-attf-class="#{'oe_login_form' if not token else ' form-group field-login'}" role="form" method="post" t-if="not message">
-                                <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()" />
+                            <form class="oe_login_form"
+                                  t-attf-class="#{'oe_login_form' if not token else ' form-group field-login'}"
+                                  role="form" method="post" t-if="not message">
+                                <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
 
                                 <t t-if="token and not invalid_token">
                                     <t t-call="auth_signup.fields">
-                                        <t t-set="only_passwords" t-value="1" />
+                                        <t t-set="only_passwords" t-value="1"/>
                                     </t>
                                 </t>
-                                <div class="cnx-title" t-if="not token">Problèmes de connexion ? </div>
+                                <div class="cnx-title" t-if="not token">Problèmes de connexion ?</div>
                                 <div class="cnx-subtitle" t-if="not token">
-                                    <span>Merci de confirmer votre adresse email, pour qu'on puisse vous aider à réinitialiser votre mot de passe.</span>
+                                    <span>Merci de confirmer votre adresse email, pour qu'on puisse vous aider à
+                                        réinitialiser votre mot de passe.
+                                    </span>
                                 </div>
                                 <t t-if="not token">
                                     <div class="form-group field-login">
                                         <label for="login" class="col-form-label">Adresse email</label>
-                                        <input type="text" name="login" t-att-value="login" id="login" class="form-control" autofocus="autofocus" required="required" autocapitalize="off" />
+                                        <input type="text" name="login" t-att-value="login" id="login"
+                                               class="form-control" autofocus="autofocus" required="required"
+                                               autocapitalize="off"/>
                                     </div>
                                 </t>
 
                                 <p class="alert alert-danger" t-if="error" role="alert">
-                                    <t t-esc="error" />
+                                    <t t-esc="error"/>
                                 </p>
-                                <input type="hidden" name="redirect" t-att-value="redirect" />
-                                <input type="hidden" name="token" t-att-value="token" />
+                                <input type="hidden" name="redirect" t-att-value="redirect"/>
+                                <input type="hidden" name="token" t-att-value="token"/>
                                 <div class="clearfix oe_login_buttons" t-if="not token">
                                     <div class="d-flex justify-content-between align-items-center small mt-2 mb16">
-                                        <a style="font-size: 16px; color: #5850ec; text-decoration: underline !important;" t-if="not token" t-attf-href="/web/login?{{ keep_query() }}">Revenir à l’écran de connexion</a>
-                                        <a style="font-size: 16px; color: #5850ec; text-decoration: underline !important;" t-if="invalid_token" href="/web/login">Revenir à l’écran de connexion</a>
+                                        <a style="font-size: 16px; color: #5850ec; text-decoration: underline !important;"
+                                           t-if="not token" t-attf-href="/web/login?{{ keep_query() }}">Revenir à
+                                            l’écran de connexion
+                                        </a>
+                                        <a style="font-size: 16px; color: #5850ec; text-decoration: underline !important;"
+                                           t-if="invalid_token" href="/web/login">Revenir à l’écran de connexion
+                                        </a>
                                     </div>
                                     <div class="text-center">
-                                        <button type="submit" style="width:100%" t-attf-class="rkmd-btn    #{'btn-indigo' if request.website.id == 2 else 'btn-black'}">Confirmer</button>
+                                        <button type="submit" style="width:100%"
+                                                t-attf-class="rkmd-btn    #{'btn-indigo' if request.website.id == 2 else 'btn-black'}">
+                                            Confirmer
+                                        </button>
 
                                     </div>
-                                    <div class="o_login_auth" />
+                                    <div class="o_login_auth"/>
                                 </div>
                             </form>
                         </div>
                         <div class="col-lg-6 text-center logo-flex " t-if="not token">
 
-                            <img t-if="request.website.id == 2" class="img img img-fluid" style="width:54%;margin-bottom: 50px;" src="/mcm_website_theme/static/src/img/logos/logo-digimoov.png" />
-                            <img t-if="request.website.id == 1" class="img img img-fluid" style="width:60%;margin-bottom: 101px;" src="/mcm_website_theme/static/src/img/logos/MCM ACADEMY.png" />
+                            <img t-if="request.website.id == 2" class="img img img-fluid"
+                                 style="width:54%;margin-bottom: 50px;"
+                                 src="/mcm_website_theme/static/src/img/logos/logo-digimoov.png"/>
+                            <img t-if="request.website.id == 1" class="img img img-fluid"
+                                 style="width:60%;margin-bottom: 101px;"
+                                 src="/mcm_website_theme/static/src/img/logos/MCM ACADEMY.png"/>
                         </div>
                     </div>
                 </div>
@@ -664,24 +801,24 @@
         <template id="fl_auth_signup.form_extented" inherit_id="auth_signup.signup" name="Extended Form Sign up">
             <xpath expr="//form" position="before">
                 <t t-set="head">
-                    <meta name="robots" content="noindex" />
+                    <meta name="robots" content="noindex"/>
                 </t>
             </xpath>
             <xpath expr="//form" position="replace">
 
                 <form id="first_form" role="form" method="post" t-if="not message">
-                    <input name="csrf_token" t-att-value="request.csrf_token()" type="hidden" />
+                    <input name="csrf_token" t-att-value="request.csrf_token()" type="hidden"/>
 
                     <t t-call="auth_signup.fields">
-                        <t t-set="only_passwords" t-value="bool(token and not invalid_token)" />
+                        <t t-set="only_passwords" t-value="bool(token and not invalid_token)"/>
                     </t>
 
                     <p class="alert alert-danger" t-if="error" role="alert" style="display:none !important">
-                        <t t-esc="error" />
+                        <t t-esc="error"/>
                     </p>
                     <!--          <input type="hidden" name="redirect" t-att-value="'/charger_mes_documents'"/>-->
-                    <input name="token" t-att-value="token" type="hidden" />
-                    <input id="product_id" t-att-value="product_id" type="hidden" />
+                    <input name="token" t-att-value="token" type="hidden"/>
+                    <input id="product_id" t-att-value="product_id" type="hidden"/>
 
                 </form>
 
@@ -692,19 +829,19 @@
         <template id="fl_auth_signup.web_login" inherit_id="web.login" name="Extended Login">
             <xpath expr="//form" position="before">
                 <t t-set="head">
-                    <meta name="robots" content="noindex" />
+                    <meta name="robots" content="noindex"/>
                 </t>
             </xpath>
             <xpath expr="//form[@class='oe_login_form']" position="replace">
                 <t t-if="request.website.id == 1">
 
-                    <link href="/mcm_website_theme/static/src/css/material_form.css" rel="stylesheet" />
-                    <link href="/fl_auth_signup/static/css/style_mcm.css" rel="stylesheet" />
+                    <link href="/mcm_website_theme/static/src/css/material_form.css" rel="stylesheet"/>
+                    <link href="/fl_auth_signup/static/css/style_mcm.css" rel="stylesheet"/>
 
                 </t>
                 <t t-if="request.website.id == 2">
-                    <link href="/digimoov_website_templates/static/src/css/material_form.css" rel="stylesheet" />
-                    <link href="/fl_auth_signup/static/css/style_dig.css" rel="stylesheet" />
+                    <link href="/digimoov_website_templates/static/src/css/material_form.css" rel="stylesheet"/>
+                    <link href="/fl_auth_signup/static/css/style_dig.css" rel="stylesheet"/>
                 </t>
 
 
@@ -766,64 +903,84 @@
                                 <input type="hidden" name="redirect" t-att-value="redirect" />
                             </form> -->
 
-                            <form class="oe_login_form" role="form" t-attf-action="/web/login" method="post" onsubmit="this.action = this.action + location.hash">
-                                <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()" />
+                            <form class="oe_login_form" role="form" t-attf-action="/web/login" method="post"
+                                  onsubmit="this.action = this.action + location.hash">
+                                <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
 
                                 <div class="form-group field-db" t-if="databases and len(databases) &gt; 1">
                                     <label for="db" class="col-form-label">Database</label>
                                     <div t-attf-class="input-group {{'input-group-sm' if form_small else ''}}">
-                                        <input type="text" name="db" t-att-value="request.db" id="db" t-attf-class="form-control #{'form-control-sm' if form_small else ''}" required="required" readonly="readonly" />
+                                        <input type="text" name="db" t-att-value="request.db" id="db"
+                                               t-attf-class="form-control #{'form-control-sm' if form_small else ''}"
+                                               required="required" readonly="readonly"/>
                                         <span class="input-group-append">
                                             <a role="button" href="/web/database/selector" class="btn btn-secondary">
                                                 Select
-                                                <i class="fa fa-database" role="img" aria-label="Database" title="Database" />
+                                                <i class="fa fa-database" role="img" aria-label="Database"
+                                                   title="Database"/>
                                             </a>
                                         </span>
                                     </div>
                                 </div>
-                                <div class="cnx-title"> Connexion </div>
+                                <div class="cnx-title">Connexion</div>
 
                                 <div class="form-group field-login">
                                     <label for="login">Adresse email</label>
-                                    <input type="text" placeholder="Email" name="login" t-att-value="login" id="login" t-attf-class="form-control #{'form-control-sm' if form_small else ''}" required="required" autofocus="autofocus" autocapitalize="off" />
+                                    <input type="text" placeholder="Email" name="login" t-att-value="login" id="login"
+                                           t-attf-class="form-control #{'form-control-sm' if form_small else ''}"
+                                           required="required" autofocus="autofocus" autocapitalize="off"/>
                                 </div>
 
                                 <div class="form-group field-password">
                                     <label for="password">Mot de passe</label>
-                                    <input type="password" placeholder="Password" name="password" id="password" t-attf-class="form-control #{'form-control-sm' if form_small else ''}" required="required" autocomplete="current-password" t-att-autofocus="'autofocus' if login else None" maxlength="4096" />
+                                    <input type="password" placeholder="Password" name="password" id="password"
+                                           t-attf-class="form-control #{'form-control-sm' if form_small else ''}"
+                                           required="required" autocomplete="current-password"
+                                           t-att-autofocus="'autofocus' if login else None" maxlength="4096"/>
                                 </div>
 
                                 <p class="alert alert-danger" t-if="error" role="alert">
-                                    <t t-esc="error" />
+                                    <t t-esc="error"/>
                                 </p>
                                 <p class="alert alert-success" t-if="message" role="status">
-                                    <t t-esc="message" />
+                                    <t t-esc="message"/>
                                 </p>
                                 <div style="margin: 15px 0 ">
-                                    <a t-if="reset_password_enabled" t-attf-href="/web/reset_password?{{ keep_query() }}" style="font-size: 16px; color: #5850ec; text-decoration: underline !important;">
+                                    <a t-if="reset_password_enabled"
+                                       t-attf-href="/web/reset_password?{{ keep_query() }}"
+                                       style="font-size: 16px; color: #5850ec; text-decoration: underline !important;">
                                         Mot de passe oublié ?
                                     </a>
                                 </div>
                                 <div class="cnx-subtitle">
-                                    <span> Vous n'avez pas encore créer votre compte ? </span>
-                                    <a href="/web/signup"> Inscrivez-vous ! </a>
+                                    <span>Vous n'avez pas encore créer votre compte ?</span>
+                                    <a href="/web/signup">Inscrivez-vous !</a>
                                 </div>
 
                                 <div t-attf-class="clearfix oe_login_buttons text-center mb-1 {{'pt-2' if form_small else 'pt-3'}}">
-                                    <button type="submit" t-attf-class="rkmd-btn   #{'btn-indigo' if request.website.id == 2 else 'btn-black'}">Je me connecte</button>
+                                    <button type="submit"
+                                            t-attf-class="rkmd-btn   #{'btn-indigo' if request.website.id == 2 else 'btn-black'}">
+                                        Je me connecte
+                                    </button>
                                     <t t-if="debug">
-                                        <button type="submit" name="redirect" value="/web/become" class="btn btn-link btn-sm btn-block">Log in as superuser</button>
+                                        <button type="submit" name="redirect" value="/web/become"
+                                                class="btn btn-link btn-sm btn-block">Log in as superuser
+                                        </button>
                                     </t>
-                                    <div class="o_login_auth" />
+                                    <div class="o_login_auth"/>
                                 </div>
                                 <div style="    align-items: center;     border-bottom: 1px solid #dadde1;     display: flex;     margin: 20px 16px;     text-align: center;"></div>
 
-                                <input type="hidden" name="redirect" t-att-value="redirect" />
+                                <input type="hidden" name="redirect" t-att-value="redirect"/>
                             </form>
                         </div>
                         <div class="col-lg-6 text-center logo-flex ">
-                            <img t-if="request.website.id == 2" class="img img img-fluid" style="width:54%;margin-bottom: 50px;" src="/mcm_website_theme/static/src/img/logos/logo-digimoov.png" />
-                            <img t-if="request.website.id == 1" class="img img img-fluid" style="width:60%;margin-bottom: 101px;" src="/mcm_website_theme/static/src/img/logos/MCM ACADEMY.png" />
+                            <img t-if="request.website.id == 2" class="img img img-fluid"
+                                 style="width:54%;margin-bottom: 50px;"
+                                 src="/mcm_website_theme/static/src/img/logos/logo-digimoov.png"/>
+                            <img t-if="request.website.id == 1" class="img img img-fluid"
+                                 style="width:60%;margin-bottom: 101px;"
+                                 src="/mcm_website_theme/static/src/img/logos/MCM ACADEMY.png"/>
                         </div>
                     </div>
                 </div>
