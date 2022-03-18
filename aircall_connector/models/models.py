@@ -639,6 +639,7 @@ class ResPartner(models.Model):
                         return res
                     else:
                         return res
+                    return res
                 return res
             return res
         else:
