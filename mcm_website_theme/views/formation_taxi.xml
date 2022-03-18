@@ -517,6 +517,43 @@
               </div>
             </div>
           </section>
+          <!-- backlinks-->
+          <section class="s_faq_collapse pt48 pb32">
+            <div class="container">
+              <div class="row s_col_no_bgcolor">
+                <div class="pt16 pb16 col-lg-4 text-center">
+
+
+                  <a class="backlink_a" href="/formation-taxi-Paris">
+                    Formation taxi Paris
+                  </a>
+
+
+                </div>
+
+                <div class="pt16 pb16 col-lg-4 text-center">
+
+                  <a class="backlink_a" href="/formation-taxi-Lille">
+                    
+                  Formation taxi Lille
+
+                  </a>
+
+
+                </div>
+                <div class="pt16 pb16 col-lg-4 text-center">
+
+
+                  <a class="backlink_a" href="/formation-taxi-Lyon">
+                    Formation taxi Lyon
+                  </a>
+
+
+                </div>
+              </div>
+            </div>
+          </section>
+
         </div>
       </div>
     </t>

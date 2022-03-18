@@ -300,3 +300,9 @@ a:hover {
 #sh_corpomate_theme_section_188 .sh_pricing ul li {
   font-weight: 600 !important;
 }
+.backlink_a {
+  color: #00619b !important;
+  text-align: center;
+  text-decoration: underline !important;
+  font-size: 18px;
+}
