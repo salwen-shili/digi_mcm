@@ -552,95 +552,98 @@ class ResPartner(models.Model):
         ax_api_id = self.env['ir.config_parameter'].sudo().get_param('aircall_connector.ax_api_id')
         ax_api_token = self.env['ir.config_parameter'].sudo().get_param('aircall_connector.ax_api_token')
         is_auto_create = self.env['ir.config_parameter'].sudo().get_param('aircall_connector.is_auto_create')
-        # base_url = self.env['ir.config_parameter'].sudo().get_param('web.base.url')
-        #
-        # if "localhost" not in str(base_url) and "dev.odoo" not in str(base_url):
-        if ax_api_id and ax_api_token and not 'air_contact_id' in values and is_auto_create and not res.air_contact_id and (
+        base_url = self.env['ir.config_parameter'].sudo().get_param('web.base.url')
+
+        if "localhost" not in str(base_url):
+            if ax_api_id and ax_api_token and not 'air_contact_id' in values and is_auto_create and not res.air_contact_id and (
                     res.phone or res.mobile):
-            phone_num = []
-            if res.phone:
-                phone_number = res.phone #get the phone number from client info
-                phone = str(res.phone.replace(' ', ''))[-9:]
-                phone = '+33'+phone
-                phone = phone[0:3] + ' ' + phone[3:4] + ' ' + phone[4:6] + ' ' + phone[6:8] + ' ' + phone[8:10] + ' ' + phone[10:] #convert the phone number format to +33 X XX XX XX XX
-                phone_num = [
-                    {
-                        "label": "Phone Number",
-                        "value": phone  #Send the new number format to aircall
-                    }
-                ]
-            elif res.mobile: # get mobile number from client info
-                mobile = str(res.mobile.replace(' ', ''))[-9:]
-                mobile = '+33'+mobile #convert the mobile number format to +33 X XX XX XX XX
-                phone_num = [
-                    {
-                        "label": "Mobile Number",
-                        "value": mobile #send the mobile number to aircall
-                    }
-                ]
-            name = values['name'].split(' ')
-            firstname = phone_num
-            lastname = False
-            if res.firstname and res.lastName : #get the firstname and lastname from client info and send them to aircall
-                firstname = res.firstname
-                lastname = res.lastName
-            elif name :
-                if len(name) > 1 :
-                    firstname = name[0]
-                    lastname = name[1]
-                else:
-                    firstname = name[0]
+                phone_num = []
+                if res.phone:
+                    phone_number = res.phone #get the phone number from client info
+                    phone = str(res.phone.replace(' ', ''))[-9:]
+                    phone = '+33'+phone
+                    phone = phone[0:3] + ' ' + phone[3:4] + ' ' + phone[4:6] + ' ' + phone[6:8] + ' ' + phone[8:10] + ' ' + phone[10:] #convert the phone number format to +33 X XX XX XX XX
+                    phone_num = [
+                        {
+                            "label": "Phone Number",
+                            "value": phone  #Send the new number format to aircall
+                        }
+                    ]
+                elif res.mobile: # get mobile number from client info
+                    mobile = str(res.mobile.replace(' ', ''))[-9:]
+                    mobile = '+33'+mobile #convert the mobile number format to +33 X XX XX XX XX
+                    phone_num = [
+                        {
+                            "label": "Mobile Number",
+                            "value": mobile #send the mobile number to aircall
+                        }
+                    ]
+                name = values['name'].split(' ')
+                firstname = phone_num
+                lastname = False
+                if res.firstname and res.lastName : #get the firstname and lastname from client info and send them to aircall
+                    firstname = res.firstname
+                    lastname = res.lastName
+                elif name :
+                    if len(name) > 1 :
+                        firstname = name[0]
+                        lastname = name[1]
+                    else:
+                        firstname = name[0]
 
-            data = {
-                "first_name": firstname,
-                "information": "created from Odoo",
-                "phone_numbers": phone_num,
-                "emails": [
-                    {
-                        "label": "Odoo email",
-                        "value": res.email
-                    }
-                ]
-            }
+                data = {
+                    "first_name": firstname,
+                    "information": "created from Odoo",
+                    "phone_numbers": phone_num,
+                    "emails": [
+                        {
+                            "label": "Odoo email",
+                            "value": res.email
+                        }
+                    ]
+                }
 
-            if lastname:
-                data['last_name'] = lastname
-            auth = ax_api_id + ':' + ax_api_token
-            encoded_auth = base64.b64encode(auth.encode()).decode()
-            header = {
-                'Content-Type': 'application/json',
-                'Authorization': 'Basic :{}'.format(encoded_auth)
+                if lastname:
+                    data['last_name'] = lastname
+                auth = ax_api_id + ':' + ax_api_token
+                encoded_auth = base64.b64encode(auth.encode()).decode()
+                header = {
+                    'Content-Type': 'application/json',
+                    'Authorization': 'Basic :{}'.format(encoded_auth)
 
-            }
-            # base_url = self.env['ir.config_parameter'].sudo().get_param('web.base.url')
-            #
-            # if "localhost" not in str(base_url) and "dev.odoo" not in str(base_url):
-            response = requests.post(
-                'https://api.aircall.io//v1/contacts',
-                data=json.dumps(data),
-                headers=header)
+                }
+                base_url = self.env['ir.config_parameter'].sudo().get_param('web.base.url')
 
-            # Send phone number to aircall to verify if it is a valid number ..if it's not valid api return response 400
-            # and raising error
+                if "localhost" not in str(base_url):
+                    response = requests.post(
+                        'https://api.aircall.io//v1/contacts',
+                        data=json.dumps(data),
+                        headers=header)
 
-            # if response.status_code == 400:
-            #     raise ValidationError(
-            #         json.loads(response.content)['troubleshoot'] + 'Please enter Phone/mobile number with country code')
-            content = json.loads(response.content)
-            if response :
-                statut_code = response.status_code
-                #Condition ajoutée car ça peut générer une erreur dans l'inscription dans le site de mcm_academy
-                if statut_code != 204:
-                    response = json.loads(response.content)
-                if response and statut_code == 200:
-                    res.air_contact_id = response['contact']['id']
-                    return res
-                return res
-            else:
+                    # Send phone number to aircall to verify if it is a valid number ..if it's not valid api return response 400
+                    # and raising error
+
+                    # if response.status_code == 400:
+                    #     raise ValidationError(
+                    #         json.loads(response.content)['troubleshoot'] + 'Please enter Phone/mobile number with country code')
+                    content = json.loads(response.content)
+                    if response :
+                        statut_code = response.status_code
+                        #Condition ajoutée car ça peut générer une erreur dans l'inscription dans le site de mcm_academy
+                        if statut_code != 204:
+                            response = json.loads(response.content)
+                            return res
+                        if response and statut_code == 200:
+                            res.air_contact_id = response['contact']['id']
+                            return res
+                        return res
+                    else:
+                        return res
                 return res
             return res
         else:
             return res
+        return res
 
     def write(self, values):
         # Add code here
