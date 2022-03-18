@@ -21,7 +21,7 @@ class AuthSignupHome(AuthSignupHome):
         # Get all the inputs
         values = {key: qcontext.get(key) for key in
                   ('login', 'name', 'firstname', 'lastName', 'password', 'phone', "zip", "city", "voie", "nom_voie",
-                   "num_voie", 'street2')}
+                   "num_voie", 'street2','question_signup')}
         # Remove spaces and lower cases in login
         values['login'] = values['login'].replace(' ', '').lower()
         # Generate when mandatory fields are empty
