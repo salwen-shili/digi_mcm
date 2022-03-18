@@ -696,7 +696,7 @@ class partner(models.Model):
                 certificat = dossier['_links']['certification']['name']
                 certificat_info = dossier['_links']['certification']['certifInfo']
                 date_formation = dossier['trainingActionInfo']['sessionStartDate']
-                """convertir date de formatio """
+                """convertir date de formation """
                 date_split = date_formation[0:10]
                 date_ = datetime.strptime(date_split, "%Y-%m-%d")
                 dateFormation = date_.date()
@@ -713,57 +713,64 @@ class partner(models.Model):
                 newformat = "%d/%m/%Y %H:%M:%S"
                 lastupdateform = lastupdate.strftime(newformat)
                 lastupd = datetime.strptime(lastupdateform, "%d/%m/%Y %H:%M:%S")
-                print('date', today, dateFormation, certificat)
+                print('date', today, dateFormation, certificat,idform)
                 """Si date de formation <= ajourdhui et s'il a choisi  la formation de transport  léger de marchandises
-                on cherche l'apprenant par email sur 360"""
+                on cherche l'apprenant par numero de dossier cpf sur odoo"""
                 if 'digimoov' in str(idform) and (dateFormation <= today):
                     _logger.info('wedooooffffff %s' % certificat)
                     _logger.info('dateformation %s' % dateFormation)
                     _logger.info('email %s' % email)
-                    response_plateforme = requests.get('https://app.360learning.com/api/v1/users', params=param_360)
-                    users = response_plateforme.json()
-                    for user in users:
-                        user_mail = user['mail']
-                        user_id = user['_id']
-                        response_user = requests.get('https://app.360learning.com/api/v1/users/' + user_id,
-                                                     params=param_360)
-                        table_user = response_user.json()
-                        totalTime = int(table_user['totalTimeSpentInMinutes'])
-                        """si l'apprenant connecté sur 360 
-                        on change le statut de son dossier sur wedof"""
-                        if (user_mail.upper() == email.upper()) and (totalTime >= 1):
-                            _logger.info('users %s ' % email.upper())
-                            _logger.info('user email %s' % user['mail'].upper())
-                            response_post = requests.post(
-                                'https://www.wedof.fr/api/registrationFolders/' + externalId + '/inTraining',
-                                headers=headers, data=data)
-                            print('response post', response_post.status_code)
-                            """Si dossier passe en formation on met à jour statut cpf sur la fiche client"""
+                    partner=self.env['res.partner'].search([('numero_cpf',"=",externalId)],limit=1)
+                    if partner :
+                        _logger.info('if partner %s ' % str(externalId))
+                        partner_email=partner.email
+                        """Chercher l'apprenant sur 360 par email"""
+                        response_plateforme = requests.get('https://app.360learning.com/api/v1/users', params=param_360)
+                        users = response_plateforme.json()
+                        for user in users:
+                            user_mail = user['mail']
+                            user_id = user['_id']
+                            response_user = requests.get('https://app.360learning.com/api/v1/users/' + user_id,
+                                                         params=param_360)
+                            table_user = response_user.json()
+                            totalTime = int(table_user['totalTimeSpentInMinutes'])
+                            """si l'apprenant est connecté sur 360 
+                            on change le statut de son dossier sur wedof """
+                            if (user_mail.upper() == partner_email.upper()) and (totalTime >= 1):
+                                _logger.info('users %s ' % partner_email.upper())
+                                _logger.info('user email %s' % user['mail'].upper())
+                                response_post = requests.post(
+                                    'https://www.wedof.fr/api/registrationFolders/' + externalId + '/inTraining',
+                                    headers=headers, data=data)
+                                _logger.info('response post %s' %str(response_post.text))
+                                print('response post',str(response_post.text))
 
-                            product_id = self.env['product.template'].sudo().search(
-                                [('id_edof', "=", str(module)), ('company_id', "=", 2)], limit=1)
+                                """Si dossier passe en formation on met à jour statut cpf sur la fiche client"""
 
-                            if response_post.status_code == 200:
+                                product_id = self.env['product.template'].sudo().search(
+                                    [('id_edof', "=", str(module)), ('company_id', "=", 2)], limit=1)
 
-                                partner = self.env['res.partner'].sudo().search([('numero_cpf', "=", str(externalId))])
+                                if response_post.status_code == 200:
 
-                                if len(partner) > 1:
-                                    for part in partner:
-                                        part_email = part.email
-                                        if part_email.upper() == email.upper():
-                                            _logger.info('if partner >1 %s' % partner.numero_cpf)
-                                            partner.statut_cpf = "in_training"
-                                            partner.date_cpf = lastupd
-                                            if product_id:
-                                                partner.id_edof = product_id.id_edof
+                                    partner = self.env['res.partner'].sudo().search([('numero_cpf', "=", str(externalId))])
 
-                                elif len(partner) == 1:
-                                    _logger.info('if partner %s' % partner.numero_cpf)
-                                    partner.statut_cpf = "in_training"
-                                    partner.date_cpf = lastupd
-                                    partner.diplome = diplome
-                                    if product_id:
-                                        partner.id_edof = product_id.id_edof
+                                    if len(partner) > 1:
+                                        for part in partner:
+                                            part_email = part.email
+                                            if part_email.upper() == email.upper():
+                                                _logger.info('if partner >1 %s' % partner.numero_cpf)
+                                                partner.statut_cpf = "in_training"
+                                                partner.date_cpf = lastupd
+                                                if product_id:
+                                                    partner.id_edof = product_id.id_edof
+
+                                    elif len(partner) == 1:
+                                        _logger.info('if partner %s' % partner.numero_cpf)
+                                        partner.statut_cpf = "in_training"
+                                        partner.date_cpf = lastupd
+                                        partner.diplome = diplome
+                                        if product_id:
+                                            partner.id_edof = product_id.id_edof
 
     """changer l'etat sur wedof de non traité vers validé à partir d'API"""
 
