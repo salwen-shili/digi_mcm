@@ -36,3 +36,11 @@
   text-decoration: underline !important;
   font-weight: 700;
 }
+.blog-footer-title {
+  font-size: 22px;
+  margin-block-end: 10px;
+}
+.blog-footer-title {
+  font-size: 18px;
+  margin-block-end: 7px;
+}

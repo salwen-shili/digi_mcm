@@ -31,9 +31,9 @@
                         <div class="row">
                             <div class="col-md-8 col-sm-8 col-lg-5">
                                 <aside id="text-5" class="widget widget_text">
-                                    <h3 class="widget-title">
+                                    <div class="widget-title">
                                         <font style="color: rgb(255, 255, 255);">Bon à savoir</font>
-                                    </h3>
+                                    </div>
                                     <div class="textwidget">
                                         <a href="/blog/blog-taxi-10/post/les-prerequis-pour-exercer-les-metiers-de-chauffeur-vtc-ou-taxi-26" style="cursor: pointer; color:#ffffff">
                                             <p style="color: #fff">Les prérequis pour exercer les métiers de chauffeur VTC ou TAXI</p>
@@ -55,9 +55,9 @@
                             </div>
                             <div class="col-md-4 col-sm-4 col-lg-3">
                                 <aside id="text-4" class="widget widget_text">
-                                    <h3 class="widget-title">
+                                    <div class="widget-title">
                                         <font style="color: rgb(255, 255, 255);">Centre de support</font>
-                                    </h3>
+                                    </div>
                                     <div class="textwidget">
                                         <ul>
 
@@ -89,11 +89,11 @@
                             </div>
                             <div class="col-md-8 col-sm-8 col-lg-4" style="border-style: none; border-width: 0px;">
                                 <aside id="contact-info-widget-2" class="widget contact-info">
-                                    <h3 class="widget-title">
+                                    <div class="widget-title">
                                         <font style="color: rgb(255, 255, 255);">Retrouvez-nous et partagez vos
                                             expériences sur nos réseaux sociaux
                                         </font>
-                                    </h3>
+                                    </div>
                                     <div class="contact-info">
                                         <ul class="contact-details">
                                             <li style="font-weight: 400;">
