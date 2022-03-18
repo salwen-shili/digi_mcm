@@ -184,10 +184,10 @@ class Session(models.Model):
     def calculer_nombre_absence(self, total_absence):
         """ Calculer nombre des absences par session"""
         for examen in self.env['info.examen'].search([('date_exam', "=", self.date_exam)]):
-            if examen:
+            if examen.partner_id.statut == 'won':
                 print(examen.date_exam)
                 nbr_absence = examen.env['info.examen'].search_count(
-                    [('session_id', "=", self.id), ('presence', "!=", 'present')])
+                    [('session_id', "=", self.id), ('presence', "=", 'absent')])
                 total_absence = nbr_absence + self.count_annule
                 print("///////////", total_absence)
                 return total_absence
