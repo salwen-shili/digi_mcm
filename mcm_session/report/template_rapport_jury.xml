@@ -198,12 +198,12 @@
                                                 <th class="td">Signature</th>
                                             </tr>
                                         </thead>
-                                        <tr t-foreach='o.intervenant_id' t-as='line'>
+                                        <tr t-foreach='o.intervenant_id' t-as='lines'>
                                             <td class="td" style="height:60px;width:200px;">
-                                                <span t-esc="line.intervenant_id.display_name"/>
+                                                <span t-esc="lines.intervenant_id.display_name"/>
                                             </td>
                                             <td class="td" style="height:60px;width:200px;">
-                                                <span t-esc="line.fonction_id.name"/>
+                                                <span t-esc="lines.fonction_id.name"/>
                                             </td>
                                             <td class="td" style="height:60px;width:200px;">
                                                 <span t-esc="(o.date_exam).strftime('%d/%m/%Y')"/>
@@ -581,9 +581,9 @@
                                         <t t-if="sales and financement_mode">
                                             <span t-esc="(sales[0].signed_on).strftime('%d/%m/%Y')"/>
                                         </t>
-                                        <t t-else="not sales">
+                                        <t t-else="">
                                             <t t-if="line.date_creation">
-                                                <span t-esc="o.convert_date_inscription_to_number()"/>
+                                                <span t-esc="datetime.datetime.strptime(str(line.date_creation),'%d/%m/%Y').date().strftime('%d/%m/%Y')"/>
                                             </t>
                                             <t t-else="">
                                                 <span>.........</span>
@@ -639,6 +639,7 @@
                 <img src='/mcm_session/static/src/img/footer_jury.png'
                      height="80" width="2000"/>
             </div>
+
         </t>
     </template>
 </odoo>
