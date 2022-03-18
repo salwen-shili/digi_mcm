@@ -197,28 +197,7 @@ class ResUser(models.Model):
             if 'emails' in contact and contact['emails'] and contact['emails'][0]['value'] :
                 email = contact['emails'][0]['value']
                 email = str(email).lower().replace(' ','')
-                if company_name == 'DIGIMOOV':
-                    #Create new user for DIGIMOOV using email,name from aircall
-                    odoo_contact = self.env['res.users'].sudo().create({
-                        'name': contact['first_name'] + ' ' + contact['last_name'],
-                        'login': str(email).lower().replace(' ',''),
-                        'groups_id': [(6, 0, [self.env.ref('base.group_portal').id])],
-                        'email': str(email).lower().replace(' ',''),
-                        'notification_type': 'email',
-                        'company_id': 2,
-                        'company_ids': [1, 2]
-                    })
-                else:
-                    # Create new user for MCM ACADEMY using email,name from aircall
-                    odoo_contact = self.env['res.users'].sudo().create({
-                        'name': contact['first_name'] + ' ' + (contact['last_name'] if contact['last_name'] else ''),
-                        'login': str(email).lower().replace(' ',''),
-                        'groups_id': [(6, 0, [self.env.ref('base.group_portal').id])],
-                        'email': str(email).lower().replace(' ',''),
-                        'notification_type': 'email',
-                        'company_id': 1,
-                        'company_ids': [1, 2]
-                    })
+                
             if odoo_contact:
                 if contact['phone_numbers']:
                     phone_number = str(contact['phone_numbers'][0]['value']).replace(' ', '')
@@ -227,8 +206,13 @@ class ResUser(models.Model):
 
             else:
                 name=odoo_contact.partner_id.name
+                aircall_client_name = False
+                if contact['first_name'] and contact['last_name'] :
+                    aircall_client_name = str(contact['first_name'] + ' ' + contact['last_name'])
+                elif contact['first_name'] and not contact['last_name'] :
+                    aircall_client_name = str(contact['first_name'])
 
-                odoo_contact.partner_id.sudo().write({'name':(contact['first_name'] + ' ' + contact['last_name']) if not name else name,
+                odoo_contact.partner_id.sudo().write({'name':aircall_client_name if not name and aircall_client_name else name,
                                                'air_contact_id': contact['id'],
                                                'email': contact['emails'][0]['value'].lower().replace(' ','') if contact['emails'] else False,
                                                'phone': contact['phone_numbers'][0]['value'] if contact[
@@ -242,8 +226,6 @@ class ResUser(models.Model):
                     odoo_contact.sudo().write({'company_id': 1,
                                                'company_ids': [1, 2]
                                                })
-        print('odoo_contact_final')
-        print(odoo_contact.partner_id.name)
         if odoo_contact:
             return odoo_contact.partner_id
         else:
@@ -272,9 +254,11 @@ class ResUser(models.Model):
         else:
             #Case when response has no content, this can cause a problem in signup in mcm website
             if call_response.status_code != 204:
-                calls = json.loads(call_response.content)
-                call=calls['calls']
-                self.call_details(calls)
+                print(call_response.content)
+                if call_response.content :
+                    calls = json.loads(call_response.content)
+                    call=calls['calls']
+                    self.call_details(calls)
 
     def call_details(self, call_response):
         """This function get all call details from Aircall """
@@ -572,23 +556,40 @@ class ResPartner(models.Model):
                 res.phone or res.mobile):
             phone_num = []
             if res.phone:
+                phone_number = res.phone #get the phone number from client info
+                phone = str(res.phone.replace(' ', ''))[-9:]
+                phone = '+33'+phone
+                phone = phone[0:3] + ' ' + phone[3:4] + ' ' + phone[4:6] + ' ' + phone[6:8] + ' ' + phone[8:10] + ' ' + phone[10:] #convert the phone number format to +33 X XX XX XX XX
                 phone_num = [
                     {
                         "label": "Phone Number",
-                        "value": res.phone
+                        "value": phone  #Send the new number format to aircall
                     }
                 ]
-            elif res.mobile:
+            elif res.mobile: # get mobile number from client info
+                mobile = str(res.mobile.replace(' ', ''))[-9:]
+                mobile = '+33'+mobile #convert the mobile number format to +33 X XX XX XX XX
                 phone_num = [
                     {
                         "label": "Mobile Number",
-                        "value": res.mobile
+                        "value": mobile #send the mobile number to aircall
                     }
                 ]
             name = values['name'].split(' ')
-            data = {
-                "first_name": name[0] if name else phone_num,
+            firstname = phone_num
+            lastname = False
+            if res.firstname and res.lastName : #get the firstname and lastname from client info and send them to aircall
+                firstname = res.firstname
+                lastname = res.lastName
+            elif name :
+                if len(name) > 1 :
+                    firstname = name[0]
+                    lastname = name[1]
+                else:
+                    firstname = name[0]
 
+            data = {
+                "first_name": firstname,
                 "information": "created from Odoo",
                 "phone_numbers": phone_num,
                 "emails": [
@@ -598,9 +599,9 @@ class ResPartner(models.Model):
                     }
                 ]
             }
-            if len(name) > 1:
-                data['last_name'] = name[1]
 
+            if lastname:
+                data['last_name'] = lastname
             auth = ax_api_id + ':' + ax_api_token
             encoded_auth = base64.b64encode(auth.encode()).decode()
             header = {
@@ -608,28 +609,32 @@ class ResPartner(models.Model):
                 'Authorization': 'Basic :{}'.format(encoded_auth)
 
             }
-            response = requests.post(
-                'https://api.aircall.io//v1/contacts',
-                data=json.dumps(data),
-                headers=header)
+            base_url = self.env['ir.config_parameter'].sudo().get_param('web.base.url')
 
-            # Send phone number to aircall to verify if it is a valid number ..if it's not valid api return response 400
-            # and raising error
+            if "localhost" not in str(base_url) and "dev.odoo" not in str(base_url):
+                response = requests.post(
+                    'https://api.aircall.io//v1/contacts',
+                    data=json.dumps(data),
+                    headers=header)
 
-            # if response.status_code == 400:
-            #     raise ValidationError(
-            #         json.loads(response.content)['troubleshoot'] + 'Please enter Phone/mobile number with country code')
-            if response :
-                statut_code = response.status_code
-                #Condition ajoutée car ça peut générer une erreur dans l'inscription dans le site de mcm_academy
-                if statut_code != 204:
-                    response = json.loads(response.content)
-                if response and statut_code == 200:
-                    res.air_contact_id = response['contact']['id']
+                # Send phone number to aircall to verify if it is a valid number ..if it's not valid api return response 400
+                # and raising error
+
+                # if response.status_code == 400:
+                #     raise ValidationError(
+                #         json.loads(response.content)['troubleshoot'] + 'Please enter Phone/mobile number with country code')
+                content = json.loads(response.content)
+                if response :
+                    statut_code = response.status_code
+                    #Condition ajoutée car ça peut générer une erreur dans l'inscription dans le site de mcm_academy
+                    if statut_code != 204:
+                        response = json.loads(response.content)
+                    if response and statut_code == 200:
+                        res.air_contact_id = response['contact']['id']
+                        return res
                     return res
-                return res
-            else:
-                return res
+                else:
+                    return res
         else:
             return res
 
@@ -646,12 +651,18 @@ class ResPartner(models.Model):
                     phone_num = []
                     emails = []
                     if 'phone' in values:
+                        phone = str(values['phone'].replace(' ', ''))[-9:]
+                        phone = '+33' + phone
+                        phone = phone[0:3] + ' ' + phone[3:4] + ' ' + phone[4:6] + ' ' + phone[6:8] + ' ' + phone[8:10] + ' ' + phone[10:] #convert the phone number format to +33 X XX XX XX XX and send it to aircall in write function of res partner
                         phone_num.append({
                             "label": "Phone Number",
                             "value": values['phone']
                         })
 
                     elif 'mobile' in values:
+                        phone = str(values['mobile'].replace(' ', ''))[-9:]
+                        phone = '+33' + phone
+                        phone = phone[0:3] + ' ' + phone[3:4] + ' ' + phone[4:6] + ' ' + phone[6:8] + ' ' + phone[8:10] + ' ' + phone[10:]
                         phone_num.append({
                             "label": "Mobile Number",
                             "value": values['mobile']
