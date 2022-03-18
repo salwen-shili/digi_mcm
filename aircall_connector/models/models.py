@@ -556,29 +556,29 @@ class ResPartner(models.Model):
                 res.phone or res.mobile):
             phone_num = []
             if res.phone:
-                phone_number = res.phone
+                phone_number = res.phone #get the phone number from client info
                 phone = str(res.phone.replace(' ', ''))[-9:]
                 phone = '+33'+phone
-                phone = phone[0:3] + ' ' + phone[3:4] + ' ' + phone[4:6] + ' ' + phone[6:8] + ' ' + phone[8:10] + ' ' + phone[10:]
+                phone = phone[0:3] + ' ' + phone[3:4] + ' ' + phone[4:6] + ' ' + phone[6:8] + ' ' + phone[8:10] + ' ' + phone[10:] #convert the phone number format to +33 X XX XX XX XX
                 phone_num = [
                     {
                         "label": "Phone Number",
-                        "value": phone
+                        "value": phone  #Send the new number format to aircall
                     }
                 ]
-            elif res.mobile:
+            elif res.mobile: # get mobile number from client info
                 mobile = str(res.mobile.replace(' ', ''))[-9:]
-                mobile = '+33'+mobile
+                mobile = '+33'+mobile #convert the mobile number format to +33 X XX XX XX XX
                 phone_num = [
                     {
                         "label": "Mobile Number",
-                        "value": mobile
+                        "value": mobile #send the mobile number to aircall
                     }
                 ]
             name = values['name'].split(' ')
             firstname = phone_num
             lastname = False
-            if res.firstname and res.lastName :
+            if res.firstname and res.lastName : #get the firstname and lastname from client info and send them to aircall
                 firstname = res.firstname
                 lastname = res.lastName
             elif name :
@@ -653,7 +653,7 @@ class ResPartner(models.Model):
                     if 'phone' in values:
                         phone = str(values['phone'].replace(' ', ''))[-9:]
                         phone = '+33' + phone
-                        phone = phone[0:3] + ' ' + phone[3:4] + ' ' + phone[4:6] + ' ' + phone[6:8] + ' ' + phone[8:10] + ' ' + phone[10:]
+                        phone = phone[0:3] + ' ' + phone[3:4] + ' ' + phone[4:6] + ' ' + phone[6:8] + ' ' + phone[8:10] + ' ' + phone[10:] #convert the phone number format to +33 X XX XX XX XX and send it to aircall in write function of res partner
                         phone_num.append({
                             "label": "Phone Number",
                             "value": values['phone']
