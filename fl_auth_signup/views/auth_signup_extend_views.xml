@@ -437,6 +437,15 @@
 
                                         <br />
                                         <!-- End question_signups-->
+                                        <div class="outlined-input-field bg-c" id="comp_address_container" t-if="street2">
+                                            <input type="text" id="comp_address" name="street2" t-att-value="street2" class="outlined-text-field" autocomplete="off" />
+                                            <label for="comp_address" style="top: -0.7rem;padding: 0.25rem;">Complément d'adresse </label>
+                                            <i class="material-icons error-icon">error_outline</i>
+                                            <div class="helper-text bg-c" id="comp_address_helper">
+                                                <span></span>
+                                            </div>
+                                        </div>
+                                        <br />
                                         <input type="hidden" name="redirect" t-att-value="'/felicitations' or redirect " />
                                         <!-- <div style="float: left">
                                           <label class="pure-material-checkbox">
