@@ -420,6 +420,29 @@
                         </div>
                     </div>
                 </section>
+                <!-- backlinks-->
+                <section class="s_faq_collapse pt48 pb32">
+                    <div class="container">
+                        <div class="row s_col_no_bgcolor">
+                            <div class="pt16 pb16 col-lg-4 text-center">
+                                <a class="backlink_a" href="/formation-habilitation-paris">
+                                    Formation habiliation Paris
+                                </a>
+                            </div>
+
+                            <div class="pt16 pb16 col-lg-4 text-center">
+                                <a class="backlink_a" href="/formation-habilitation-marseille">
+                                    Formation habiliation Marseille
+                                </a>
+                            </div>
+                            <div class="pt16 pb16 col-lg-4 text-center">
+                                <a class="backlink_a" href="/formation-habilitation-lyon">
+                                    Formation habiliation Lyon
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </section>
             </div>
         </t>
     </template>
