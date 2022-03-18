@@ -663,7 +663,7 @@ class partner(models.Model):
 
     def wedof_api_integration(self):
         base_url = self.env['ir.config_parameter'].sudo().get_param('web.base.url')
-        if "localhost" in str(base_url) and "dev.odoo" not in str(base_url):
+        if "localhost" not in str(base_url) and "dev.odoo" not in str(base_url):
             companies = self.env['res.company'].sudo().search([('id',"=",2)])
             api_key=""
             if companies:
@@ -696,7 +696,7 @@ class partner(models.Model):
                 certificat = dossier['_links']['certification']['name']
                 certificat_info = dossier['_links']['certification']['certifInfo']
                 date_formation = dossier['trainingActionInfo']['sessionStartDate']
-                """convertir date de formatio """
+                """convertir date de formation """
                 date_split = date_formation[0:10]
                 date_ = datetime.strptime(date_split, "%Y-%m-%d")
                 dateFormation = date_.date()
@@ -734,7 +734,7 @@ class partner(models.Model):
                                                          params=param_360)
                             table_user = response_user.json()
                             totalTime = int(table_user['totalTimeSpentInMinutes'])
-                            """si l'apprenant connecté sur 360 
+                            """si l'apprenant est connecté sur 360 
                             on change le statut de son dossier sur wedof """
                             if (user_mail.upper() == partner_email.upper()) and (totalTime >= 1):
                                 _logger.info('users %s ' % partner_email.upper())
