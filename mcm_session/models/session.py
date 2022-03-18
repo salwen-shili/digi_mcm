@@ -244,7 +244,7 @@ class Session(models.Model):
         for examen in self.env['info.examen'].search([('date_exam', "=", self.date_exam)]):
             nbr_absence = examen.env['info.examen'].search_count(
                 [('session_id', "=", self.id), ('presence', "=", 'present'), ('resultat', "=", 'ajourne')])
-            nbr_echec = nbr_absence + self.count_annule
+            nbr_echec = nbr_absence
             return nbr_echec
 
     def pourcentage_echec(self, prc_echec):
