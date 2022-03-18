@@ -28,6 +28,7 @@ class ResPartner(models.Model):
             res['zip_code'] = str(partner.zip)
             res['city'] = str(partner.city)
             res['last_login'] = partner.last_login
+            res['question_signup'] = partner.question_signup
         return res
 
     """This method was re-written because signup url is got from system parameter base_url
