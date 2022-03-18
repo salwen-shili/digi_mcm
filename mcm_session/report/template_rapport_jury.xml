@@ -524,9 +524,12 @@
                                     <td class="td">
                                         <t t-set="session"
                                            t-value="line.note_exam_id.filtered(lambda se: se.date_exam == o.date_exam)"/>
-                                        <t>
+                                        <t t-if="session.epreuve_b != 0">
                                             <span t-esc="session.epreuve_a"/>
                                             <span>/200</span>
+                                        </t>
+                                        <t t-else="">
+                                            <span></span>
                                         </t>
                                     </td>
                                     <td class="td">
@@ -534,20 +537,23 @@
                                            t-value="line.note_exam_id.filtered(lambda se: se.date_exam == o.date_exam)"/>
                                         <t t-if="session.epreuve_b != 0">
                                             <span t-esc="session.epreuve_b"/>
-                                            <span>/200</span>
+                                            <span></span>
                                         </t>
                                         <t t-else="">
-                                            <span>0</span>
+                                            <span></span>
                                         </t>
                                     </td>
                                     <t t-if="session.resultat != 'ajourne'">
                                         <td class="td">
                                             <t t-set="session"
                                                t-value="line.note_exam_id.filtered(lambda se: se.date_exam == o.date_exam)"/>
-
-                                            <span t-esc="session.moyenne_generale"/>
-                                            <span>/200</span>
-
+                                            <t t-if="session.moyenne_generale != 0">
+                                                <span t-esc="session.moyenne_generale"/>
+                                                <span>/200</span>
+                                            </t>
+                                            <t t-else="">
+                                                <span></span>
+                                            </t>
                                         </td>
                                     </t>
                                     <t t-else="">
@@ -577,7 +583,7 @@
                                         </t>
                                         <t t-else="not sales">
                                             <t t-if="line.date_creation">
-                                                <span t-esc="o.convert_date_inscription_to_numbe()"/>
+                                                <span t-esc="o.convert_date_inscription_to_number()"/>
                                             </t>
                                             <t t-else="">
                                                 <span>.........</span>

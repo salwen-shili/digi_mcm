@@ -226,6 +226,7 @@ class Session(models.Model):
             return resultat
 
     def pourcentage_abandon(self, prc_abandon):
+        """ Calculer pourcentage d'abandon par session """
         nbr_absence_abandon = self.count_annule
         nbr_inscrit = self.nbr_client_par_session(self)
         res = (nbr_absence_abandon * 100 / nbr_inscrit)
@@ -259,6 +260,7 @@ class Session(models.Model):
             return prc_echec
 
     def pack_solo_inscrit(self, sum_solo_inscrit):
+        """ Calculer le nombre du client inscrit par session selon le pack solo """
         nbr_from_examen = 0
         for examen in self.env['info.examen'].search(
                 [('date_exam', "=", self.date_exam), ('session_id', "=", self.id)]):
@@ -279,6 +281,7 @@ class Session(models.Model):
         return sum_solo_inscrit
 
     def pack_solo_present(self, sum_solo_present):
+        """ Calculer le nombre du client present par session selon le pack solo """
         nbr_from_examen_solo = 0
         for examen in self.env['info.examen'].search(
                 [('date_exam', "=", self.date_exam), ('session_id', "=", self.id), ('presence', "=", 'present')]):
@@ -288,6 +291,7 @@ class Session(models.Model):
         return sum_solo_present
 
     def pack_pro_present(self, sum_pro_present):
+        """ Calculer le nombre du client present par session selon le pack pro """
         nbr_from_examen_pro = 0
         for examen in self.env['info.examen'].search(
                 [('date_exam', "=", self.date_exam), ('session_id', "=", self.id), ('presence', "=", 'present')]):
@@ -297,6 +301,7 @@ class Session(models.Model):
         return sum_pro_present
 
     def pack_premium_present(self, sum_premium_present):
+        """ Calculer le nombre du client present par session selon le pack premium """
         nbr_from_examen_premium = 0
         for examen in self.env['info.examen'].search(
                 [('date_exam', "=", self.date_exam), ('session_id', "=", self.id), ('presence', "=", 'present')]):
@@ -306,6 +311,7 @@ class Session(models.Model):
         return sum_premium_present
 
     def pack_repassage_present(self, sum_repassage_present):
+        """ Calculer le nombre du client present par session selon le pack repassage """
         nbr_from_examen_repassage = 0
         for examen in self.env['info.examen'].search(
                 [('date_exam', "=", self.date_exam), ('session_id', "=", self.id), ('presence', "=", 'present')]):
@@ -315,6 +321,7 @@ class Session(models.Model):
         return sum_repassage_present
 
     def pack_pro_inscrit(self, sum_pro_inscrit):
+        """ Calculer le nombre du client inscrit par session selon le pack pro """
         nbr_from_examen_pro = 0
         for examen in self.env['info.examen'].search(
                 [('date_exam', "=", self.date_exam), ('session_id', "=", self.id)]):
@@ -335,6 +342,7 @@ class Session(models.Model):
         return sum_pro_inscrit
 
     def pack_premium_inscrit(self, sum_premium_inscrit):
+        """ Calculer le nombre du client inscrit par session selon le pack premium """
         nbr_from_examen_premium = 0
         for examen in self.env['info.examen'].search(
                 [('date_exam', "=", self.date_exam), ('session_id', "=", self.id)]):
@@ -355,6 +363,7 @@ class Session(models.Model):
         return sum_premium_inscrit
 
     def pack_repassage_inscrit(self, sum_repassage_inscrit):
+        """ Calculer le nombre du client inscrit par session selon le pack repassage """
         nbr_from_examen_repassage = 0
         for examen in self.env['info.examen'].search(
                 [('date_exam', "=", self.date_exam), ('session_id', "=", self.id)]):
@@ -375,6 +384,7 @@ class Session(models.Model):
         return sum_repassage_inscrit
 
     def taux_de_presence_solo(self):
+        """ Calculer taux de presence par session selon le pack solo """
         pack_solo_present = self.pack_solo_present(self)
         nbr_inscrit = self.nbr_client_par_session(self)
         taux_de_presence = pack_solo_present * 100 / nbr_inscrit
@@ -386,6 +396,7 @@ class Session(models.Model):
             return taux_de_presence_solo
 
     def taux_de_presence_pro(self):
+        """ Calculer taux de presence par session selon le pack pro """
         pack_pro_present = self.pack_pro_present(self)
         nbr_inscrit = self.nbr_client_par_session(self)
         taux_de_presence = pack_pro_present * 100 / nbr_inscrit
@@ -411,6 +422,7 @@ class Session(models.Model):
             return taux_de_presence_premium
 
     def taux_de_presence_repassage(self):
+        """ Calculer taux de presence par session selon le pack repassage """
         pack_repassage_present = self.pack_repassage_present(self)
         nbr_inscrit = self.nbr_client_par_session(self)
         taux_de_presence = pack_repassage_present * 100 / nbr_inscrit
@@ -422,6 +434,7 @@ class Session(models.Model):
             return taux_de_presence_repassage
 
     def taux_de_reussite_solo(self):
+        """ Calculer taux de reussite par session selon le pack solo """
         pack_solo_reussite = self.nbr_recus_solo()
         nbr_inscrit = self.nbr_client_par_session(self)
         taux_de_reussite = pack_solo_reussite * 100 / nbr_inscrit
@@ -433,6 +446,7 @@ class Session(models.Model):
             return taux_de_reussite_solo
 
     def taux_de_reussite_pro(self):
+        """ Calculer taux de reussite par session selon le pack pro """
         pack_pro_reussite = self.nbr_recus_pro()
         nbr_inscrit = self.nbr_client_par_session(self)
         taux_de_reussite = pack_pro_reussite * 100 / nbr_inscrit
@@ -444,6 +458,7 @@ class Session(models.Model):
             return taux_de_reussite_pro
 
     def taux_de_reussite_premium(self):
+        """ Calculer taux de reussite par session selon le pack premium """
         pack_premium_reussite = self.nbr_recus_premium()
         nbr_inscrit = self.nbr_client_par_session(self)
         taux_de_reussite = pack_premium_reussite * 100 / nbr_inscrit
@@ -455,6 +470,7 @@ class Session(models.Model):
             return taux_de_reussite_premium
 
     def taux_de_reussite_repassage(self):
+        """ Calculer taux de reussite par session selon le pack repassage """
         pack_repassage_reussite = self.nbr_recus_repassage()
         nbr_inscrit = self.nbr_client_par_session(self)
         taux_de_reussite = pack_repassage_reussite * 100 / nbr_inscrit
@@ -467,41 +483,54 @@ class Session(models.Model):
 
     @api.depends('epreuve_a')
     def moyenne_qcm(self):
+        """ CALCULER moyenne de la note QCM des clients par session"""
         for rec in self.client_ids:
             sum_qcm = 0
             for examen in rec.self.env['info.examen'].sudo().search(
                     [('session_id', "=", self.id)]):
                 sum_qcm += sum(examen.mapped('epreuve_a')) / self.nbr_client_par_session(self)
                 moyenne_qcm = sum_qcm
-                sum_a = f'{moyenne_qcm:.2f}'
-                print("sum_qcm", sum_a)
-            return sum_a
+                if moyenne_qcm > 0:
+                    sum_a = f'{moyenne_qcm:.2f}'
+                    return sum_a
+                else:
+                    sum_a = f'{moyenne_qcm:.0f}'
+                    return sum_a
 
     @api.depends('epreuve_b')
     def moyenne_qro(self):
+        """ CALCULER moyenne de la note QRO des clients par session"""
         for rec in self.client_ids:
             sum_qro = 0
             for examen in rec.self.env['info.examen'].sudo().search(
                     [('session_id', "=", self.id)]):
                 sum_qro += sum(examen.mapped('epreuve_b')) / self.nbr_client_par_session(self)
                 moyenne_qro = sum_qro
-                sum_b = f'{moyenne_qro:.2f}'
-                print("sum_qcm", sum_qro)
-            return sum_b
+                if moyenne_qro > 0:
+                    sum_b = f'{moyenne_qro:.2f}'
+                    return sum_b
+                else:
+                    sum_b = f'{moyenne_qro:.0f}'
+                    return sum_b
 
     @api.depends('moyenne_generale')
     def moyenne_des_somme_qcm_qro(self):
+        """ CALCULER moyenne de somme de la note QRO et QCM par session"""
         for rec in self.client_ids:
             sum_qcm_qro = 0
             for examen in rec.self.env['info.examen'].sudo().search(
                     [('session_id', "=", self.id)]):
                 sum_qcm_qro += sum(examen.mapped('moyenne_generale')) / self.nbr_client_par_session(self)
                 moyenne_qcm_qro = sum_qcm_qro
-                sum_qo = f'{moyenne_qcm_qro:.2f}'
-                print("sum_qcm", sum_qo)
-            return sum_qo
+                if moyenne_qcm_qro > 0:
+                    sum_qo = f'{moyenne_qcm_qro:.2f}'
+                    return sum_qo
+                else:
+                    sum_qo = f'{moyenne_qcm_qro:.0f}'
+                    return sum_qo
 
-    def convert_date_inscription_to_numbe(self):
+    def convert_date_inscription_to_number(self):
+        """ CONVERTIR date inscription vers numéro"""
         for rec in self.client_ids:
             new_format = '%d/%B/%Y'
             date_exam = self.date_exam
