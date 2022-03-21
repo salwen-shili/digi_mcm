@@ -94,7 +94,7 @@ class Session(models.Model):
         nbr_present = self.nbr_present_par_session(self)
         nbr_inscrit = self.nbr_client_par_session(self)
         res = (nbr_present * 100 / nbr_inscrit)
-        prc_present = f'{res:.2f}'
+        prc_present = f'{res:.2f}'.replace('.00','')
         print(prc_present)
         return prc_present
 
@@ -161,7 +161,7 @@ class Session(models.Model):
         nbr_inscrits_total = self.nbr_client_par_session(self)
         pourcentage_without_round = (nbr_recu_total * 100 / nbr_inscrits_total)
         if pourcentage_without_round > 0:
-            pourcentage = f'{pourcentage_without_round:.2f}'  # Garder justes deux chiddre après la virgule
+            pourcentage = f'{pourcentage_without_round:.2f}'.replace('.00','')  # Garder justes deux chiddre après la virgule
             return pourcentage
         else:
             pourcentage = f'{pourcentage_without_round:.0f}'  # si 0 la resultat sera 0 %
@@ -198,7 +198,7 @@ class Session(models.Model):
         nbr_inscrit = self.nbr_client_par_session(self)
         res = (nbr_absence * 100 / nbr_inscrit)
         if res > 0:
-            resultat = f'{res:.2f}'
+            resultat = f'{res:.2f}'.replace('.00','')
             return resultat
         else:
             resultat = f'{res:.0f}'
@@ -219,7 +219,7 @@ class Session(models.Model):
         nbr_inscrit = self.nbr_client_par_session(self)
         res = (nbr_absence_justifiee * 100 / nbr_inscrit)
         if res > 0:
-            resultat = f'{res:.2f}'
+            resultat = f'{res:.2f}'.replace('.00','')
             return resultat
         else:
             resultat = f'{res:.0f}'
@@ -231,7 +231,7 @@ class Session(models.Model):
         nbr_inscrit = self.nbr_client_par_session(self)
         res = (nbr_absence_abandon * 100 / nbr_inscrit)
         if res > 0:
-            prc_abandon = f'{res:.2f}'
+            prc_abandon = f'{res:.2f}'.replace('.00','')
             return prc_abandon
         else:
             prc_abandon = f'{res:.0f}'
@@ -253,7 +253,7 @@ class Session(models.Model):
         nbr_inscrit = self.nbr_client_par_session(self)
         res = (nbr_echec * 100 / nbr_inscrit)
         if res > 0:
-            prc_echec = f'{res:.2f}'
+            prc_echec = f'{res:.2f}'.replace('.00','')
             return prc_echec
         else:
             prc_echec = f'{res:.0f}'
@@ -390,7 +390,7 @@ class Session(models.Model):
         if nbr_inscrit > 0:
             taux_de_presence = pack_solo_present * 100 / nbr_inscrit
             if taux_de_presence > 0:
-                taux_de_presence_solo = f'{taux_de_presence:.2f}'
+                taux_de_presence_solo = f'{taux_de_presence:.2f}'.replace('.00','')
                 return taux_de_presence_solo
             else:
                 taux_de_presence_solo = f'{taux_de_presence:.0f}'
@@ -406,7 +406,7 @@ class Session(models.Model):
         if nbr_inscrit > 0:
             taux_de_presence = pack_pro_present * 100 / nbr_inscrit
             if taux_de_presence > 0:
-                taux_de_presence_pro = f'{taux_de_presence:.2f}'
+                taux_de_presence_pro = f'{taux_de_presence:.2f}'.replace('.00','')
                 return taux_de_presence_pro
             else:
                 taux_de_presence_pro = f'{taux_de_presence:.0f}'
@@ -424,7 +424,7 @@ class Session(models.Model):
         if nbr_inscrit > 0:
             taux_de_presence = pack_premium_present * 100 / nbr_inscrit
             if taux_de_presence > 0:
-                taux_de_presence_premium = f'{taux_de_presence:.2f}'
+                taux_de_presence_premium = f'{taux_de_presence:.2f}'.replace('.00','')
                 return taux_de_presence_premium
             else:
                 taux_de_presence_premium = f'{taux_de_presence:.0f}'
@@ -440,7 +440,7 @@ class Session(models.Model):
         if nbr_inscrit > 0:
             taux_de_presence = pack_repassage_present * 100 / nbr_inscrit
             if taux_de_presence > 0:
-                taux_de_presence_repassage = f'{taux_de_presence:.2f}'
+                taux_de_presence_repassage = f'{taux_de_presence:.2f}'.replace('.00','')
                 return taux_de_presence_repassage
             else:
                 taux_de_presence_repassage = f'{taux_de_presence:.0f}'
@@ -456,7 +456,7 @@ class Session(models.Model):
         if nbr_inscrit > 0:
             taux_de_reussite = pack_solo_reussite * 100 / nbr_inscrit
             if taux_de_reussite > 0:
-                taux_de_reussite_solo = f'{taux_de_reussite:.2f}'
+                taux_de_reussite_solo = f'{taux_de_reussite:.2f}'.replace('.00','')
                 return taux_de_reussite_solo
             else:
                 taux_de_reussite_solo = f'{taux_de_reussite:.0f}'
@@ -472,7 +472,7 @@ class Session(models.Model):
         if nbr_inscrit > 0:
             taux_de_reussite = pack_pro_reussite * 100 / nbr_inscrit
             if taux_de_reussite > 0:
-                taux_de_reussite_pro = f'{taux_de_reussite:.2f}'
+                taux_de_reussite_pro = f'{taux_de_reussite:.2f}'.replace('.00','')
                 return taux_de_reussite_pro
             else:
                 taux_de_reussite_pro = f'{taux_de_reussite:.0f}'
@@ -488,7 +488,7 @@ class Session(models.Model):
         if nbr_inscrit > 0:
             taux_de_reussite = pack_premium_reussite * 100 / nbr_inscrit
             if taux_de_reussite > 0:
-                taux_de_reussite_premium = f'{taux_de_reussite:.2f}'
+                taux_de_reussite_premium = f'{taux_de_reussite:.2f}'.replace('.00','')
                 return taux_de_reussite_premium
             else:
                 taux_de_reussite_premium = f'{taux_de_reussite:.0f}'
@@ -504,7 +504,7 @@ class Session(models.Model):
         if nbr_inscrit > 0:
             taux_de_reussite = pack_repassage_reussite * 100 / nbr_inscrit
             if taux_de_reussite > 0:
-                taux_de_reussite_repassage = f'{taux_de_reussite:.2f}'
+                taux_de_reussite_repassage = f'{taux_de_reussite:.2f}'.replace('.00','')
                 return taux_de_reussite_repassage
             else:
                 taux_de_reussite_repassage = f'{taux_de_reussite:.0f}'
@@ -516,60 +516,53 @@ class Session(models.Model):
     @api.depends('epreuve_a')
     def moyenne_qcm(self):
         """ CALCULER moyenne de la note QCM des clients par session"""
+        sum_qcm = 0
+        moyenne_qcm = 0
+        nbr_present = self.nbr_present_par_session(self)
         for rec in self.client_ids:
-            sum_qcm = 0
-            for examen in rec.self.env['info.examen'].sudo().search(
-                    [('session_id', "=", self.id)]):
-                sum_qcm += sum(examen.mapped('epreuve_a')) / self.nbr_client_par_session(self)
-                moyenne_qcm = sum_qcm
-                if moyenne_qcm > 0:
-                    sum_a = f'{moyenne_qcm:.2f}'
-                    return sum_a
-                else:
-                    sum_a = f'{moyenne_qcm:.0f}'
-                    return sum_a
+            for examen in self.env['info.examen'].sudo().search(
+                    [('session_id', "=", self.id), ('partner_id', "=", rec.id)]):
+                print("examen", examen)
+                sum_qcm += sum(examen.mapped('epreuve_a'))
+        if nbr_present > 0:
+            moyenne_qcm = sum_qcm / nbr_present
+            return f'{moyenne_qcm:.2f}'.replace('.00','')
+        else:
+            return 0
 
     @api.depends('epreuve_b')
     def moyenne_qro(self):
         """ CALCULER moyenne de la note QRO des clients par session"""
+        nbr_present = self.nbr_present_par_session(self)
+        sum_qro = 0
+        moyenne_qro = 0
         for rec in self.client_ids:
-            sum_qro = 0
-            for examen in rec.self.env['info.examen'].sudo().search(
-                    [('session_id', "=", self.id)]):
-                sum_qro += sum(examen.mapped('epreuve_b')) / self.nbr_client_par_session(self)
-                moyenne_qro = sum_qro
-                if moyenne_qro > 0:
-                    sum_b = f'{moyenne_qro:.2f}'
-                    return sum_b
-                else:
-                    sum_b = f'{moyenne_qro:.0f}'
-                    return sum_b
+            for examen in self.env['info.examen'].sudo().search(
+                    [('session_id', "=", self.id), ('partner_id', "=", rec.id)]):
+                print("examen", examen.epreuve_b)
+                sum_qro += sum(examen.mapped('epreuve_b'))
+        if nbr_present > 0:
+            moyenne_qro = sum_qro / nbr_present
+            return f'{moyenne_qro:.2f}'.replace('.00','')
+        else:
+            return 0
 
     @api.depends('moyenne_generale')
     def moyenne_des_somme_qcm_qro(self):
         """ CALCULER moyenne de somme de la note QRO et QCM par session"""
+        sum_qcm_qro = 0
+        moyenne_qcm_qro = 0
+        nbr_present = self.nbr_present_par_session(self)
         for rec in self.client_ids:
-            sum_qcm_qro = 0
-            for examen in rec.self.env['info.examen'].sudo().search(
-                    [('session_id', "=", self.id)]):
-                sum_qcm_qro += sum(examen.mapped('moyenne_generale')) / self.nbr_client_par_session(self)
-                moyenne_qcm_qro = sum_qcm_qro
-                if moyenne_qcm_qro > 0:
-                    sum_qo = f'{moyenne_qcm_qro:.2f}'
-                    return sum_qo
-                else:
-                    sum_qo = f'{moyenne_qcm_qro:.0f}'
-                    return sum_qo
-
-    def convert_date_inscription_to_number(self):
-        """ CONVERTIR date inscription vers numéro"""
-        for rec in self.client_ids:
-            new_format = '%d/%B/%Y'
-            date_exam = self.date_exam
-            # Changer format de date et la mettre en majuscule
-            new_date_format = datetime.strptime(str(rec.date_creation), "%d/%m/%Y").date().strftime('%d/%m/%Y')
-            new_date = new_date_format
-        return new_date
+            for examen in self.env['info.examen'].sudo().search(
+                    [('session_id', "=", self.id), ('partner_id', "=", rec.id)]):
+                sum_qcm_qro += sum(examen.mapped('moyenne_generale'))
+        if nbr_present > 0:
+            moyenne_qcm_qro = sum_qcm_qro / nbr_present
+            print("f'{moyenne_qcm_qro:.2f}'", f'{moyenne_qcm_qro:.2f}'.split('.')[1])
+            return f'{moyenne_qcm_qro:.2f}'.replace('.00','')
+        else:
+            return 0
 
     @api.model
     def _read_group_stage_ids(self, stages, domain, order):

@@ -525,8 +525,8 @@
                                         <t t-set="session"
                                            t-value="line.note_exam_id.filtered(lambda se: se.date_exam == o.date_exam)"/>
                                         <t t-if="session.epreuve_b != 0">
-                                            <span t-esc="session.epreuve_a"/>
-                                            <span>/200</span>
+                                            <span t-esc="'%.0f' % session.epreuve_a"/>
+                                            <span>/100</span>
                                         </t>
                                         <t t-else="">
                                             <span></span>
@@ -536,8 +536,8 @@
                                         <t t-set="session"
                                            t-value="line.note_exam_id.filtered(lambda se: se.date_exam == o.date_exam)"/>
                                         <t t-if="session.epreuve_b != 0">
-                                            <span t-esc="session.epreuve_b"/>
-                                            <span></span>
+                                            <span t-esc="'%.0f' % session.epreuve_b"/>
+                                            <span>/ 100</span>
                                         </t>
                                         <t t-else="">
                                             <span></span>
@@ -616,16 +616,19 @@
                                     </t>
                                 </tr>
                                 <tr>
-                                    <th class="th" colspan="2">Moyenne</th>
+                                    <th class="th" colspan="2">Moyenne générale</th>
                                     <td class="td">
                                         <span t-esc="o.moyenne_qcm()"/>
+                                        <span>/ 100</span>
                                     </td>
                                     <td class="td">
                                         <span t-esc="o.moyenne_qro()"/>
+                                        <span>/ 100</span>
                                     </td>
                                     <td class="td" style="background: #87CEEB;">
                                         <b>
                                             <span t-esc="o.moyenne_des_somme_qcm_qro()"/>
+                                            <span>/ 200</span>
                                         </b>
                                     </td>
                                 </tr>
