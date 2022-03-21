@@ -52,3 +52,8 @@
 .website_blog .o_wblog_read {
   max-width: 830px;
 }
+.cta-btn {
+  padding-block-start: 12px;
+  margin-block-end: 19px;
+  background: #ffe67514;
+}
