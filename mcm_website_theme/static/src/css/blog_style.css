@@ -28,7 +28,10 @@
 .blog-ul > li {
   margin-block-end: 5px;
   line-height: 1.3 !important;
-  font-weight: normal;
+  font-weight: normal !important;
+  color: #212529e8 !important;
+  font-weight: 500;
+  letter-spacing: 0.5px !important;
 }
 .blog-text-link {
   font-size: 18px !important;
