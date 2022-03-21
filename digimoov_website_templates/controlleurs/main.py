@@ -138,7 +138,12 @@ class Website(Website):
                                   values)
         else:
             raise werkzeug.exceptions.NotFound()
-
+    @http.route('/capacité-de-transport-marseille', type='http', auth='public', website=True)
+    def attestation_transport_leger_marchandises_destination_marseille_old_url(self, **kw, ):
+        if request.website.id == 2:
+            return werkzeug.utils.redirect('/capacite-de-transport-marseille',301) #redirect old url /capacité-de-transport-marseille to new url /capacite-de-transport-marseille
+        else:
+            raise werkzeug.exceptions.NotFound()
 
 class FAQ(http.Controller):
 
