@@ -204,10 +204,5 @@ class PaymentStripeAcquirer(models.Model):
             error = tree.get("failure_message") or tree.get('error', {}).get('message')
             self._set_transaction_error(error)
             return False
-    def cancel_subscription(self):
-        url="subscriptions/sub_1KJgwaIEbFL8iNKWBmYcCf9v"
-        paiement_intent = self.acquirer_id._stripe_request(url, method="DELETE")
-        data_paiement = paiement_intent.get('data', [])
-        print('data', data_paiement)
-
+    
 
