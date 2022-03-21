@@ -548,7 +548,7 @@
                                             <t t-set="session"
                                                t-value="line.note_exam_id.filtered(lambda se: se.date_exam == o.date_exam)"/>
                                             <t t-if="session.moyenne_generale != 0">
-                                                <span t-esc="session.moyenne_generale"/>
+                                                <span t-esc="'%.0f' % session.moyenne_generale"/>
                                                 <span>/200</span>
                                             </t>
                                             <t t-else="">
@@ -639,7 +639,6 @@
                 <img src='/mcm_session/static/src/img/footer_jury.png'
                      height="80" width="2000"/>
             </div>
-
         </t>
     </template>
 </odoo>
