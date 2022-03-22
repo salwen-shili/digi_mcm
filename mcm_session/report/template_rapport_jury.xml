@@ -26,8 +26,8 @@
                         .page {
                         line-height: 1.75 ;
                         font-size:20px ;
+
                         }
-                        .margin { margin-top: 0px;}
                     </style>
                     <div class="page margin">
                         <div class="oe_structure"/>
