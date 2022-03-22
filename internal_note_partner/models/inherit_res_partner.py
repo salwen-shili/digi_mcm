@@ -22,6 +22,7 @@ class InheritResPartner(models.Model):
     is_present = fields.Boolean(default=False)
     is_Absent = fields.Boolean(default=False)
     is_absence_justifiee = fields.Boolean(default=False)
+    is_not_paid = fields.Boolean(default=False)
 
     def _get_last_presence_resultat_values(self):
         """ Function to get presence and resultat values of last session in tree partner view"""
@@ -76,6 +77,14 @@ class InheritResPartner(models.Model):
                        ('subtype_id', '=', 'Note')],
             'context': "{'create': False, 'edit':False}"
         }
+
+    @api.onchange("etat_financement_cpf_cb")
+    def financement_not_paid(self):
+        for rec in self:
+            if rec.etat_financement_cpf_cb == "not_paid":
+                self.is_not_paid = True
+            else:
+                self.is_not_paid = False
 
     def write(self, values):
         """ Mettre à jour presence & resultat fields pour chaque mise à jour"""
