@@ -63,7 +63,7 @@ class PaymentStripeAcquirer(models.Model):
         id_produit=sale.module_id.product_id.id_stripe
         """vérifier la valeur de instalment number 
         et créer la date d'annulation d'abonnement """
-        instalment_number = (sale.instalment_number) - 1
+        instalment_number = (sale.instalment_number)
         print('name product instalment', nom_produit, instalment_number)
         today=date.today()
         canceled=str(today+ relativedelta(months=instalment_number)+ timedelta(days=1))
@@ -204,3 +204,5 @@ class PaymentStripeAcquirer(models.Model):
             error = tree.get("failure_message") or tree.get('error', {}).get('message')
             self._set_transaction_error(error)
             return False
+    
+

@@ -386,4 +386,14 @@ class Partner(models.Model):
                     part.diviser_nom(part)
                     lead.nom=part.lastName
                     lead.prenom=part.firstName
+
+    def cancel_subscription(self):
+        subscription="sub_1KQJqTIEbFL8iNKWR3zdh07g"
+        aquire=self.env['payment.acquirer'].sudo().search([],limit=1)
+        print("search",aquire)
+        url = "subscriptions/%s" % (subscription)
+        paiement_intent=aquire._stripe_request(url, method="DELETE")
+        data_paiement = paiement_intent.get('data', [])
+        print('data', paiement_intent)
+
                 
