@@ -888,6 +888,24 @@ class WebhookController(http.Controller):
                     #     so.action_cancel()
                     #     so.unlink()
                     user.partner_id.statut = 'won'
+
+
+                    mail_compose_message = request.env['mail.compose.message']
+                    mail_compose_message.fetch_sendinblue_template()
+                    template_id = request.env['mail.template'].sudo().search(
+                        [('subject', "=", "Passez votre examen blanc avec MCM ACADEMY X BOLT"),
+                         ('model_id', "=", 'res.partner')],
+                        limit=1)  # when the webhook of wedof send the state accepted we send an email to client to register in CMA. we get the mail template from sendinblue
+                    if template_id:
+                        message = request.env['mail.message'].sudo().search(
+                            [('subject', "=", "Passez votre examen blanc avec MCM ACADEMY X BOLT"),
+                             ('model', "=", 'res.partner'), ('res_id', "=", request.env.user.partner_id.id)],
+                            limit=1)  # check if we have already sent the email
+                        if not message:
+                            partner.with_context(force_send=True).message_post_with_template(template_id.id,
+                                                                                             composition_mode='comment',
+                                                                                             )  # send the email to client
+
                     if not user.partner_id.renounce_request:
                         if user.partner_id.phone:
                             phone = str(user.partner_id.phone.replace(' ', ''))[-9:]
@@ -925,27 +943,51 @@ class WebhookController(http.Controller):
                                                                                                      5:7] + ' ' + phone[
                                                                                                                   7:]
                             user.partner_id.phone = phone
-                        url = 'https://formation.mcm-academy.fr/register'
-                        body = "Chere(e) %s : félicitation pour votre inscription, vous avez été invité par MCM ACADEMY à commencer votre formation via ce lien : %s . vous devez créer un compte avec les mêmes identifiants que MCM ACADEMY" % (
+                        url = 'https://bit.ly/3CZ2HtS'
+                        body = "MCM ACADEMY. Afin d'accéder à notre formation vous devez vous inscrire à l'examen auprès de la CMA de votre région via le lien suivant:%s" % (
                             user.partner_id.name, url)
                         if body:
                             composer = request.env['sms.composer'].with_context(
                                 default_res_model='res.partner',
-                                default_res_ids=user.partner_id.id,
-                                default_composition_mode='mass',
+                                default_res_id=user.partner_id.id,
+                                default_composition_mode='comment',
                             ).sudo().create({
                                 'body': body,
                                 'mass_keep_log': True,
-                                'mass_force_send': True,
+                                'mass_force_send': False,
+                                'use_active_domain': False,
                             })
                             sms = request.env['mail.message'].sudo().search(
                                 [("body", "=", body), ("message_type", "=", 'sms'),
                                  ("res_id", "=", user.partner_id.id)])
                             if not sms:
-                                composer.action_send_sms()  # envoyer un sms de félicitation d'inscription
+                                composer.action_send_sms()  # we send sms to client contains link to register in cma.
                             if user.partner_id.phone:
                                 user.partner_id.phone = '0' + str(user.partner_id.phone.replace(' ', ''))[
                                                               -9:]
+
+                        mail_compose_message = request.env['mail.compose.message']
+                        mail_compose_message.fetch_sendinblue_template()
+                        template_id = False
+                        template_id = request.env['mail.template'].sudo().search(
+                            [('subject', "=", "Inscription examen chambre des métiers"),
+                             ('model_id', "=", 'res.partner')],
+                            limit=1)  # we send email to client contains link to register in cma. we get the mail template from sendinblue
+                        if not template_id:
+                            template_id = request.env['mail.template'].sudo().search(
+                                [('name', "=", "MCM INSCRIPTION EXAMEN CMA"),
+                                 ('model_id', "=", 'res.partner')],
+                                limit=1)
+                        if template_id:
+                            message = request.env['mail.message'].sudo().search(
+                                [('subject', "=", "Inscription examen chambre des métiers"),
+                                 ('model', "=", 'res.partner'), ('res_id', "=", user.partner_id.id)],
+                                limit=1)
+                            if not message:  # check if we have already sent the email
+                                user.partner_id.with_context(force_send=True).message_post_with_template(
+                                    template_id.id,
+                                    composition_mode='comment',
+                                )  # send the email to clien
                     """changer step à validé dans espace client """
                     user.partner_id.step = 'finish'
                     session = request.env['partner.sessions'].search([('client_id', '=', user.partner_id.id),
