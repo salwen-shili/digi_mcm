@@ -410,7 +410,7 @@ class Session(models.Model):
         avec une condition pour enlever la partie décimale
         si la résultat est égale à zéro"""
         pack_premium_present = self.pack_premium_present(self)
-        nbr_inscrit = self.pack_solo_inscrit(self)
+        nbr_inscrit = self.pack_premium_inscrit(self)
         if nbr_inscrit > 0:
             taux_de_presence = pack_premium_present * 100 / nbr_inscrit
             if taux_de_presence > 0:
