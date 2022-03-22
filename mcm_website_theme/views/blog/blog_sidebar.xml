@@ -1,0 +1,18 @@
+<odoo>
+    <template id="mcm_website_theme.sidebar_blog_mcm" inherit_id="website_blog.sidebar_blog_index">
+        <xpath expr="//div[@id='o_wblog_sidebar']" position="replace">
+            <div id="o_wblog_sidebar" class="w-100">
+                <div class="oe_structure" id="oe_structure_blog_sidebar_index_1" />
+                <div class="o_wblog_sidebar_block pb-5">
+                    <h6 class="text-uppercase pb-2 mb-4 border-bottom font-weight-bold">About us Tesing...</h6>
+                    <div>
+                        <p>Write a small text here to describe your blog or company///////.</p>
+                    </div>
+                </div>
+                <div class="oe_structure" id="oe_structure_blog_sidebar_index_2" />
+            </div>
+        </xpath>
+
+
+    </template>
+</odoo>
