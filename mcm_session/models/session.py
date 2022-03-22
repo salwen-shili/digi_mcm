@@ -94,7 +94,7 @@ class Session(models.Model):
         nbr_present = self.nbr_present_par_session(self)
         nbr_inscrit = self.nbr_client_par_session(self)
         res = (nbr_present * 100 / nbr_inscrit)
-        prc_present = f'{res:.2f}'.replace('.00','')
+        prc_present = f'{res:.2f}'.replace('.00', '')
         print(prc_present)
         return prc_present
 
@@ -161,7 +161,8 @@ class Session(models.Model):
         nbr_inscrits_total = self.nbr_client_par_session(self)
         pourcentage_without_round = (nbr_recu_total * 100 / nbr_inscrits_total)
         if pourcentage_without_round > 0:
-            pourcentage = f'{pourcentage_without_round:.2f}'.replace('.00','')  # Garder justes deux chiddre après la virgule
+            pourcentage = f'{pourcentage_without_round:.2f}'.replace('.00',
+                                                                     '')  # Garder justes deux chiddre après la virgule
             return pourcentage
         else:
             pourcentage = f'{pourcentage_without_round:.0f}'  # si 0 la resultat sera 0 %
@@ -198,7 +199,7 @@ class Session(models.Model):
         nbr_inscrit = self.nbr_client_par_session(self)
         res = (nbr_absence * 100 / nbr_inscrit)
         if res > 0:
-            resultat = f'{res:.2f}'.replace('.00','')
+            resultat = f'{res:.2f}'.replace('.00', '')
             return resultat
         else:
             resultat = f'{res:.0f}'
@@ -219,7 +220,7 @@ class Session(models.Model):
         nbr_inscrit = self.nbr_client_par_session(self)
         res = (nbr_absence_justifiee * 100 / nbr_inscrit)
         if res > 0:
-            resultat = f'{res:.2f}'.replace('.00','')
+            resultat = f'{res:.2f}'.replace('.00', '')
             return resultat
         else:
             resultat = f'{res:.0f}'
@@ -231,7 +232,7 @@ class Session(models.Model):
         nbr_inscrit = self.nbr_client_par_session(self)
         res = (nbr_absence_abandon * 100 / nbr_inscrit)
         if res > 0:
-            prc_abandon = f'{res:.2f}'.replace('.00','')
+            prc_abandon = f'{res:.2f}'.replace('.00', '')
             return prc_abandon
         else:
             prc_abandon = f'{res:.0f}'
@@ -253,7 +254,7 @@ class Session(models.Model):
         nbr_inscrit = self.nbr_client_par_session(self)
         res = (nbr_echec * 100 / nbr_inscrit)
         if res > 0:
-            prc_echec = f'{res:.2f}'.replace('.00','')
+            prc_echec = f'{res:.2f}'.replace('.00', '')
             return prc_echec
         else:
             prc_echec = f'{res:.0f}'
@@ -390,7 +391,7 @@ class Session(models.Model):
         if nbr_inscrit > 0:
             taux_de_presence = pack_solo_present * 100 / nbr_inscrit
             if taux_de_presence > 0:
-                taux_de_presence_solo = f'{taux_de_presence:.2f}'.replace('.00','')
+                taux_de_presence_solo = f'{taux_de_presence:.2f}'.replace('.00', '')
                 return taux_de_presence_solo
             else:
                 taux_de_presence_solo = f'{taux_de_presence:.0f}'
@@ -406,7 +407,7 @@ class Session(models.Model):
         if nbr_inscrit > 0:
             taux_de_presence = pack_pro_present * 100 / nbr_inscrit
             if taux_de_presence > 0:
-                taux_de_presence_pro = f'{taux_de_presence:.2f}'.replace('.00','')
+                taux_de_presence_pro = f'{taux_de_presence:.2f}'.replace('.00', '')
                 return taux_de_presence_pro
             else:
                 taux_de_presence_pro = f'{taux_de_presence:.0f}'
@@ -424,7 +425,7 @@ class Session(models.Model):
         if nbr_inscrit > 0:
             taux_de_presence = pack_premium_present * 100 / nbr_inscrit
             if taux_de_presence > 0:
-                taux_de_presence_premium = f'{taux_de_presence:.2f}'.replace('.00','')
+                taux_de_presence_premium = f'{taux_de_presence:.2f}'.replace('.00', '')
                 return taux_de_presence_premium
             else:
                 taux_de_presence_premium = f'{taux_de_presence:.0f}'
@@ -440,7 +441,7 @@ class Session(models.Model):
         if nbr_inscrit > 0:
             taux_de_presence = pack_repassage_present * 100 / nbr_inscrit
             if taux_de_presence > 0:
-                taux_de_presence_repassage = f'{taux_de_presence:.2f}'.replace('.00','')
+                taux_de_presence_repassage = f'{taux_de_presence:.2f}'.replace('.00', '')
                 return taux_de_presence_repassage
             else:
                 taux_de_presence_repassage = f'{taux_de_presence:.0f}'
@@ -456,7 +457,7 @@ class Session(models.Model):
         if nbr_inscrit > 0:
             taux_de_reussite = pack_solo_reussite * 100 / nbr_inscrit
             if taux_de_reussite > 0:
-                taux_de_reussite_solo = f'{taux_de_reussite:.2f}'.replace('.00','')
+                taux_de_reussite_solo = f'{taux_de_reussite:.2f}'.replace('.00', '')
                 return taux_de_reussite_solo
             else:
                 taux_de_reussite_solo = f'{taux_de_reussite:.0f}'
@@ -472,7 +473,7 @@ class Session(models.Model):
         if nbr_inscrit > 0:
             taux_de_reussite = pack_pro_reussite * 100 / nbr_inscrit
             if taux_de_reussite > 0:
-                taux_de_reussite_pro = f'{taux_de_reussite:.2f}'.replace('.00','')
+                taux_de_reussite_pro = f'{taux_de_reussite:.2f}'.replace('.00', '')
                 return taux_de_reussite_pro
             else:
                 taux_de_reussite_pro = f'{taux_de_reussite:.0f}'
@@ -488,7 +489,7 @@ class Session(models.Model):
         if nbr_inscrit > 0:
             taux_de_reussite = pack_premium_reussite * 100 / nbr_inscrit
             if taux_de_reussite > 0:
-                taux_de_reussite_premium = f'{taux_de_reussite:.2f}'.replace('.00','')
+                taux_de_reussite_premium = f'{taux_de_reussite:.2f}'.replace('.00', '')
                 return taux_de_reussite_premium
             else:
                 taux_de_reussite_premium = f'{taux_de_reussite:.0f}'
@@ -504,7 +505,7 @@ class Session(models.Model):
         if nbr_inscrit > 0:
             taux_de_reussite = pack_repassage_reussite * 100 / nbr_inscrit
             if taux_de_reussite > 0:
-                taux_de_reussite_repassage = f'{taux_de_reussite:.2f}'.replace('.00','')
+                taux_de_reussite_repassage = f'{taux_de_reussite:.2f}'.replace('.00', '')
                 return taux_de_reussite_repassage
             else:
                 taux_de_reussite_repassage = f'{taux_de_reussite:.0f}'
@@ -526,7 +527,7 @@ class Session(models.Model):
                 sum_qcm += sum(examen.mapped('epreuve_a'))
         if nbr_present > 0:
             moyenne_qcm = sum_qcm / nbr_present
-            return f'{moyenne_qcm:.2f}'.replace('.00','')
+            return f'{moyenne_qcm:.2f}'.replace('.00', '')
         else:
             return 0
 
@@ -543,7 +544,7 @@ class Session(models.Model):
                 sum_qro += sum(examen.mapped('epreuve_b'))
         if nbr_present > 0:
             moyenne_qro = sum_qro / nbr_present
-            return f'{moyenne_qro:.2f}'.replace('.00','')
+            return f'{moyenne_qro:.2f}'.replace('.00', '')
         else:
             return 0
 
@@ -560,7 +561,7 @@ class Session(models.Model):
         if nbr_present > 0:
             moyenne_qcm_qro = sum_qcm_qro / nbr_present
             print("f'{moyenne_qcm_qro:.2f}'", f'{moyenne_qcm_qro:.2f}'.split('.')[1])
-            return f'{moyenne_qcm_qro:.2f}'.replace('.00','')
+            return f'{moyenne_qcm_qro:.2f}'.replace('.00', '')
         else:
             return 0
 
