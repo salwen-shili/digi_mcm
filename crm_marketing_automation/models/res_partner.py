@@ -365,10 +365,11 @@ class Partner(models.Model):
                                 if partner.renounce_request and partner.bolt and partner.inscrit_mcm == False and eval_box == True:
                                     print("++++++",partner.email)
                                     self.changestage("Inscription Examen Eval Box", partner)
-                                if partner.renounce_request and partner.bolt and  partner.inscrit_mcm   and eval_box == False:
+                                if partner.renounce_request and partner.bolt and  partner.inscrit_mcm   and eval_box == True:
                                     print("======",partner.email)
-
                                     self.changestage("Bolt-Plateforme de formation", partner)
+                                if partner.renounce_request and partner.bolt and partner.inscrit_mcm == False and eval_box == False:
+                                    self.changestage("Bolt-Contrat Signé", partner)
 
                     """Si mode de financement cpf on doit vérifier seulement l'etat des documents  
                         et la renonciation sur la fiche client """
