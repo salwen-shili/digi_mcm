@@ -87,7 +87,6 @@ class Session(models.Model):
         """ Cette fonction permet de faire la somme d'inscrit de nombre de client avec statut (gagné, annulé et perdu).
          La fonction est utilisé dans la template de rapport jury"""
         nbr_present = self.client_ids.filtered(lambda cl: cl.presence == 'Présent(e)')
-        print("ghghgh", len(nbr_present))
         return len(nbr_present)
 
     def prc_present(self, prc_present):
@@ -95,7 +94,6 @@ class Session(models.Model):
         nbr_inscrit = self.nbr_client_par_session(self)
         res = (nbr_present * 100 / nbr_inscrit)
         prc_present = f'{res:.2f}'.replace('.00', '')
-        print(prc_present)
         return prc_present
 
     def nbr_recus_par_session(self, total_nbr_recu):
@@ -105,7 +103,6 @@ class Session(models.Model):
                 nbr_recu = examen.env['info.examen'].search_count(
                     [('session_id', "=", self.id), ('resultat', "=", 'recu')])
                 total_nbr_recu = nbr_recu
-        print("total_nbr_recu", total_nbr_recu)
         return total_nbr_recu
 
     # takwa
@@ -117,19 +114,16 @@ class Session(models.Model):
         for examen in x:
             if examen.module_id.product_id.default_code == "basique":
                 nbr_recu_solo += 1
-        print('nbr_recu_solo:', nbr_recu_solo)
         return nbr_recu_solo
 
     def nbr_recus_pro(self):
         """ Nombre d'admis par session pro"""
         nbr_recu_pro = 0
-        print("nbr_recu_pro", nbr_recu_pro)
         x = self.env['info.examen'].sudo().search(
             [('date_exam', "=", self.date_exam), ('session_id', "=", self.id), ('resultat', "=", 'recu')])
         for examen in x:
             if examen.module_id.product_id.default_code == "avancee":
                 nbr_recu_pro += 1
-        print("nbr_recu_pro", nbr_recu_pro)
         return nbr_recu_pro
 
     def nbr_recus_premium(self):
@@ -140,7 +134,6 @@ class Session(models.Model):
         for examen in x:
             if examen.module_id.product_id.default_code == "premium":
                 nbr_recu_premium += 1
-        print("nbr_recu_premium", nbr_recu_premium)
         return nbr_recu_premium
 
     def nbr_recus_repassage(self):
@@ -151,13 +144,11 @@ class Session(models.Model):
             if examen:
                 if examen.module_id.product_id.default_code == "examen":
                     nbr_recu_repassage += 1
-                    print("nbr_recu_repassage", nbr_recu_repassage)
         return nbr_recu_repassage
 
     def pourcentage_client_recu(self, pourcentage):
         """ Calculer pourcentage clients reçus"""
         nbr_recu_total = self.nbr_recus_par_session(self)
-        print(nbr_recu_total)
         nbr_inscrits_total = self.nbr_client_par_session(self)
         pourcentage_without_round = (nbr_recu_total * 100 / nbr_inscrits_total)
         if pourcentage_without_round > 0:
@@ -173,7 +164,6 @@ class Session(models.Model):
         date_format = '%d %B %Y'
         locale.setlocale(locale.LC_TIME, str(self.env.user.lang) + '.utf8')
         date_examen = (self.date_exam).strftime(date_format).title()
-        print("date_examen", date_examen)
         return date_examen
 
     def month_session_in_lettre(self, month_format):
@@ -184,14 +174,13 @@ class Session(models.Model):
 
     def calculer_nombre_absence(self, total_absence):
         """ Calculer nombre des absences par session"""
+        nbr_absence = 0
         for examen in self.env['info.examen'].search([('date_exam', "=", self.date_exam)]):
             if examen.partner_id.statut == 'won':
-                print(examen.date_exam)
                 nbr_absence = examen.env['info.examen'].search_count(
-                    [('session_id', "=", self.id), ('presence', "=", 'absent')])
-                total_absence = nbr_absence + self.count_annule
-                print("///////////", total_absence)
-                return total_absence
+                    [('session_id', "=", self.id), ('presence', "!=", 'present')])
+            total_absence = nbr_absence
+            return total_absence
 
     def pourcentage_absence(self, resultat):
         """ Pourcentage pour les absences par session"""
@@ -421,7 +410,7 @@ class Session(models.Model):
         avec une condition pour enlever la partie décimale
         si la résultat est égale à zéro"""
         pack_premium_present = self.pack_premium_present(self)
-        nbr_inscrit = self.pack_solo_inscrit(self)
+        nbr_inscrit = self.pack_premium_inscrit(self)
         if nbr_inscrit > 0:
             taux_de_presence = pack_premium_present * 100 / nbr_inscrit
             if taux_de_presence > 0:
