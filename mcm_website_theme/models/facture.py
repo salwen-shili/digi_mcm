@@ -26,5 +26,5 @@ class AccountMove(models.Model):
                 if acquirer_id:
                     url = "subscriptions/%s" % (self.stripe_sub_reference)
                     acquirer_id._stripe_request(url, method="DELETE")
-            record = super(AccountMove, self).write(vals)
-            return record
+        record = super(AccountMove, self).write(vals)
+        return record
