@@ -480,7 +480,7 @@
                         width: 80%;
                         text-align: center;}
                     </style>
-                    <div class=" page-margin" style="padding_top:30px">
+                    <div class="page-margin" style="padding-top:30px">
                         <table class="table">
                             <tbody>
                                 <thead>
