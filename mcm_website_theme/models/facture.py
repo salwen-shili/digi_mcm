@@ -12,7 +12,6 @@ class AccountMove(models.Model):
     """Quand la facture sera modifié on vérifie si le montant est totalement payé """
 
     def write(self, vals):
-        print('vals %s' % str(vals))
         if 'amount_residual' in vals and vals['amount_residual'] == 0.0 and self.company_id.id == 2:
             _logger.info('paid invoice %s' % vals['amount_residual'])
             """si la facture est payé et montant du egal à zero on fait annuler l'abonnement sur stripe  """
