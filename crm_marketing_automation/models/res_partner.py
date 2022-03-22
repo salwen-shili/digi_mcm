@@ -173,7 +173,7 @@ class Partner(models.Model):
                             if (count == len(documents) and count != 0):
                                 document_valide = True
                             if (document.state == "waiting"):
-                                _logger.info("document waiting  %s" % partner.name)
+                                # _logger.info("document waiting  %s" % partner.name)
                                 waiting = True
                             if (document.state =="refused"):
                                 _logger.info("refused %s " %str(partner.name))
@@ -223,7 +223,7 @@ class Partner(models.Model):
                                         if partner.inscrit_mcm == False and partner.eval_box == True:
                                             _logger.info('eval box %s' % str(partner.email))
                                             self.changestage("Inscription Examen Eval Box", partner)
-                                        if partner.inscrit_mcm and partner.eval_box == False:
+                                        if partner.inscrit_mcm and partner.eval_box == True:
                                             _logger.info('plateforme %s' % str(partner.email))
                                             self.changestage("Bolt-Plateforme de formation", partner)
                                     else :
