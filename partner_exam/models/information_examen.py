@@ -62,6 +62,7 @@ class NoteExamen(models.Model):
     is_absence_justifiee = fields.Boolean(default=False)
     phone = fields.Char(related="partner_id.phone")
     mobile = fields.Char(compute="_compute_phone_value_to_mobile", store=True)
+    module_id = fields.Many2one(related="partner_id.module_id")
 
     @api.depends('partner_id.phone')
     def _compute_phone_value_to_mobile(self):

@@ -7,6 +7,8 @@ from odoo.exceptions import ValidationError
 import random
 from num2words import num2words
 
+from datetime import datetime
+
 
 class Session(models.Model):
     _name = 'mcmacademy.session'
@@ -48,7 +50,7 @@ class Session(models.Model):
     company_id = fields.Many2one('res.company', string='Company', default=lambda self: self.env.company)
     # Les champs pour le rapport jury
     ville_jury_id = fields.Many2one('session.ville', string="Ville de jury",
-                                       track_visibility='always')  # edit the field to be required and show field edit history
+                                    track_visibility='always')  # edit the field to be required and show field edit history
     adresse_jury_id = fields.Many2one('session.adresse.examen', "Adresse de jury")
     date_jury = fields.Date()
     heure_jury = fields.Char()
@@ -78,31 +80,92 @@ class Session(models.Model):
         """ Cette fonction permet de faire la somme d'inscrit de nombre de client avec statut (gagné, annulé et perdu).
          La fonction est utilisé dans la template de rapport jury"""
         nbr_inscrits = 0
-        nbr_inscrits = nbr_inscrits + self.count_stagiaires + self.count_annule + self.count_panier_perdu
+        nbr_inscrits = nbr_inscrits + self.count_stagiaires + self.count_annule + self.count_panier_perdu + self.count_perdu
         return nbr_inscrits
 
     def nbr_present_par_session(self, nbr_present):
         """ Cette fonction permet de faire la somme d'inscrit de nombre de client avec statut (gagné, annulé et perdu).
          La fonction est utilisé dans la template de rapport jury"""
         nbr_present = self.client_ids.filtered(lambda cl: cl.presence == 'Présent(e)')
-        print("ghghgh",len(nbr_present))
+        print("ghghgh", len(nbr_present))
         return len(nbr_present)
 
-    def nbr_recus_par_session(self, nbr_recu):
-        for rec in self.client_ids:
-            print(len(rec))
-            for examen in rec.note_exam_id.filtered(lambda cl: cl.date_exam == self.date_exam):
-                if examen.resultat == 'recu':
-                    nbr_recu = len(examen)
-                    return nbr_recu
+    def prc_present(self, prc_present):
+        nbr_present = self.nbr_present_par_session(self)
+        nbr_inscrit = self.nbr_client_par_session(self)
+        res = (nbr_present * 100 / nbr_inscrit)
+        prc_present = f'{res:.2f}'.replace('.00','')
+        print(prc_present)
+        return prc_present
+
+    def nbr_recus_par_session(self, total_nbr_recu):
+        """ Nombre de recus par session"""
+        for examen in self.env['info.examen'].search([('date_exam', "=", self.date_exam)]):
+            if examen:
+                nbr_recu = examen.env['info.examen'].search_count(
+                    [('session_id', "=", self.id), ('resultat', "=", 'recu')])
+                total_nbr_recu = nbr_recu
+        print("total_nbr_recu", total_nbr_recu)
+        return total_nbr_recu
+
+    # takwa
+    def nbr_recus_solo(self):
+        """ Nombre d'admis par session Solo"""
+        nbr_recu_solo = 0
+        x = self.env['info.examen'].sudo().search(
+            [('date_exam', "=", self.date_exam), ('session_id', "=", self.id), ('resultat', "=", 'recu')])
+        for examen in x:
+            if examen.module_id.product_id.default_code == "basique":
+                nbr_recu_solo += 1
+        print('nbr_recu_solo:', nbr_recu_solo)
+        return nbr_recu_solo
+
+    def nbr_recus_pro(self):
+        """ Nombre d'admis par session pro"""
+        nbr_recu_pro = 0
+        print("nbr_recu_pro", nbr_recu_pro)
+        x = self.env['info.examen'].sudo().search(
+            [('date_exam', "=", self.date_exam), ('session_id', "=", self.id), ('resultat', "=", 'recu')])
+        for examen in x:
+            if examen.module_id.product_id.default_code == "avancee":
+                nbr_recu_pro += 1
+        print("nbr_recu_pro", nbr_recu_pro)
+        return nbr_recu_pro
+
+    def nbr_recus_premium(self):
+        """ Nombre d'admis par session premium"""
+        nbr_recu_premium = 0
+        x = self.env['info.examen'].sudo().search(
+            [('date_exam', "=", self.date_exam), ('session_id', "=", self.id), ('resultat', "=", 'recu')])
+        for examen in x:
+            if examen.module_id.product_id.default_code == "premium":
+                nbr_recu_premium += 1
+        print("nbr_recu_premium", nbr_recu_premium)
+        return nbr_recu_premium
+
+    def nbr_recus_repassage(self):
+        """ Nombre d'admis par session repassage"""
+        nbr_recu_repassage = 0
+        for examen in self.env['info.examen'].search(
+                [('date_exam', "=", self.date_exam), ('session_id', "=", self.id), ('resultat', "=", 'recu')]):
+            if examen:
+                if examen.module_id.product_id.default_code == "examen":
+                    nbr_recu_repassage += 1
+                    print("nbr_recu_repassage", nbr_recu_repassage)
+        return nbr_recu_repassage
 
     def pourcentage_client_recu(self, pourcentage):
+        """ Calculer pourcentage clients reçus"""
         nbr_recu_total = self.nbr_recus_par_session(self)
         print(nbr_recu_total)
         nbr_inscrits_total = self.nbr_client_par_session(self)
         pourcentage_without_round = (nbr_recu_total * 100 / nbr_inscrits_total)
-        pourcentage = f'{pourcentage_without_round:.2f}' #Garder justes deux chiddre après la virgule
-        return pourcentage
+        if pourcentage_without_round > 0:
+            pourcentage = f'{pourcentage_without_round:.2f}'.replace('.00','')  # Garder justes deux chiddre après la virgule
+            return pourcentage
+        else:
+            pourcentage = f'{pourcentage_without_round:.0f}'  # si 0 la resultat sera 0 %
+            return pourcentage
 
     def date_session_frensh(self, date_examen):
         """ FORCER la date en francais par ce que odoo.sh applique """
@@ -117,6 +180,389 @@ class Session(models.Model):
         month_format = '%B'
         month_format = (self.date_exam).strftime(month_format).upper()
         return month_format
+
+    def calculer_nombre_absence(self, total_absence):
+        """ Calculer nombre des absences par session"""
+        for examen in self.env['info.examen'].search([('date_exam', "=", self.date_exam)]):
+            if examen.partner_id.statut == 'won':
+                print(examen.date_exam)
+                nbr_absence = examen.env['info.examen'].search_count(
+                    [('session_id', "=", self.id), ('presence', "=", 'absent')])
+                total_absence = nbr_absence + self.count_annule
+                print("///////////", total_absence)
+                return total_absence
+
+    def pourcentage_absence(self, resultat):
+        """ Pourcentage pour les absences par session"""
+        nbr_absence = self.calculer_nombre_absence(self)
+        nbr_inscrit = self.nbr_client_par_session(self)
+        res = (nbr_absence * 100 / nbr_inscrit)
+        if res > 0:
+            resultat = f'{res:.2f}'.replace('.00','')
+            return resultat
+        else:
+            resultat = f'{res:.0f}'
+            return resultat
+
+    def calculer_nombre_absence_justifiée(self, total_absence_justifiée):
+        """ Calculer la somme des absences justifiées par session"""
+        for examen in self.env['info.examen'].search([('date_exam', "=", self.date_exam)]):
+            if examen:
+                nbr_absence = examen.env['info.examen'].search_count(
+                    [('session_id', "=", self.id), ('presence', "=", 'absence_justifiee')])
+                total_absence_justifiée = nbr_absence
+                return total_absence_justifiée
+
+    def pourcentage_absence_justifiée(self, resultat):
+        """ pourcentage absence justifiée """
+        nbr_absence_justifiee = self.calculer_nombre_absence_justifiée(self)
+        nbr_inscrit = self.nbr_client_par_session(self)
+        res = (nbr_absence_justifiee * 100 / nbr_inscrit)
+        if res > 0:
+            resultat = f'{res:.2f}'.replace('.00','')
+            return resultat
+        else:
+            resultat = f'{res:.0f}'
+            return resultat
+
+    def pourcentage_abandon(self, prc_abandon):
+        """ Calculer pourcentage d'abandon par session """
+        nbr_absence_abandon = self.count_annule
+        nbr_inscrit = self.nbr_client_par_session(self)
+        res = (nbr_absence_abandon * 100 / nbr_inscrit)
+        if res > 0:
+            prc_abandon = f'{res:.2f}'.replace('.00','')
+            return prc_abandon
+        else:
+            prc_abandon = f'{res:.0f}'
+            return prc_abandon
+
+    def nbr_echec(self, nbr_echec):
+        """ Calculer nombre d'echec :
+        resultat = ajournée
+        presence = present"""
+        for examen in self.env['info.examen'].search([('date_exam', "=", self.date_exam)]):
+            nbr_absence = examen.env['info.examen'].search_count(
+                [('session_id', "=", self.id), ('presence', "=", 'present'), ('resultat', "=", 'ajourne')])
+            nbr_echec = nbr_absence
+            return nbr_echec
+
+    def pourcentage_echec(self, prc_echec):
+        """ Calculer pourcentage des clients (echec)"""
+        nbr_echec = self.nbr_echec(self)
+        nbr_inscrit = self.nbr_client_par_session(self)
+        res = (nbr_echec * 100 / nbr_inscrit)
+        if res > 0:
+            prc_echec = f'{res:.2f}'.replace('.00','')
+            return prc_echec
+        else:
+            prc_echec = f'{res:.0f}'
+            return prc_echec
+
+    def pack_solo_inscrit(self, sum_solo_inscrit):
+        """ Calculer le nombre du client inscrit par session selon le pack solo """
+        nbr_from_examen = 0
+        for examen in self.env['info.examen'].search(
+                [('date_exam', "=", self.date_exam), ('session_id', "=", self.id)]):
+            if examen.module_id.product_id.default_code == "basique":
+                nbr_from_examen += 1
+        nbr_canceled_prospect = 0
+        tot_solo_inscrit = nbr_from_examen
+        for nbr_inscrit_pack_solo in self.canceled_prospect_ids:
+            if nbr_inscrit_pack_solo.mcm_session_id.id == self.id:
+                if nbr_inscrit_pack_solo.module_id.product_id.default_code == "basique":
+                    nbr_canceled_prospect += 1
+                    tot_solo_inscrit = tot_solo_inscrit + nbr_canceled_prospect
+        nbr_panier_perdu = 0
+        for nbr_inscrit_pack_solo_perdu in self.panier_perdu_ids:
+            if nbr_inscrit_pack_solo.mcm_session_id.id == self.id and nbr_inscrit_pack_solo_perdu.module_id.product_id.default_code == "basique":
+                nbr_panier_perdu += 1
+        sum_solo_inscrit = tot_solo_inscrit + nbr_panier_perdu
+        return sum_solo_inscrit
+
+    def pack_solo_present(self, sum_solo_present):
+        """ Calculer le nombre du client present par session selon le pack solo """
+        nbr_from_examen_solo = 0
+        for examen in self.env['info.examen'].search(
+                [('date_exam', "=", self.date_exam), ('session_id', "=", self.id), ('presence', "=", 'present')]):
+            if examen.module_id.product_id.default_code == "basique":
+                nbr_from_examen_solo += 1
+        sum_solo_present = nbr_from_examen_solo
+        return sum_solo_present
+
+    def pack_pro_present(self, sum_pro_present):
+        """ Calculer le nombre du client present par session selon le pack pro """
+        nbr_from_examen_pro = 0
+        for examen in self.env['info.examen'].search(
+                [('date_exam', "=", self.date_exam), ('session_id', "=", self.id), ('presence', "=", 'present')]):
+            if examen.module_id.product_id.default_code == "avancee":
+                nbr_from_examen_pro += 1
+        sum_pro_present = nbr_from_examen_pro
+        return sum_pro_present
+
+    def pack_premium_present(self, sum_premium_present):
+        """ Calculer le nombre du client present par session selon le pack premium """
+        nbr_from_examen_premium = 0
+        for examen in self.env['info.examen'].search(
+                [('date_exam', "=", self.date_exam), ('session_id', "=", self.id), ('presence', "=", 'present')]):
+            if examen.module_id.product_id.default_code == "premium":
+                nbr_from_examen_premium += 1
+        sum_premium_present = nbr_from_examen_premium
+        return sum_premium_present
+
+    def pack_repassage_present(self, sum_repassage_present):
+        """ Calculer le nombre du client present par session selon le pack repassage """
+        nbr_from_examen_repassage = 0
+        for examen in self.env['info.examen'].search(
+                [('date_exam', "=", self.date_exam), ('session_id', "=", self.id), ('presence', "=", 'present')]):
+            if examen.module_id.product_id.default_code == "examen":
+                nbr_from_examen_repassage += 1
+        sum_repassage_present = nbr_from_examen_repassage
+        return sum_repassage_present
+
+    def pack_pro_inscrit(self, sum_pro_inscrit):
+        """ Calculer le nombre du client inscrit par session selon le pack pro """
+        nbr_from_examen_pro = 0
+        for examen in self.env['info.examen'].search(
+                [('date_exam', "=", self.date_exam), ('session_id', "=", self.id)]):
+            if examen.module_id.product_id.default_code == "avancee":
+                nbr_from_examen_pro += 1
+        nbr_canceled_prospect_pro = 0
+        tot = nbr_from_examen_pro
+        for nbr_inscrit_pack_pro in self.canceled_prospect_ids:
+            if nbr_inscrit_pack_pro.mcm_session_id.id == self.id:
+                if nbr_inscrit_pack_pro.module_id.product_id.default_code == "avancee":
+                    nbr_canceled_prospect_pro += 1
+                    tot = nbr_canceled_prospect_pro + nbr_from_examen_pro
+        nbr_panier_perdu_pro = 0
+        for nbr_inscrit_pack_pro_perdu in self.panier_perdu_ids:
+            if nbr_inscrit_pack_pro_perdu.mcm_session_id.id == self.id and nbr_inscrit_pack_pro_perdu.module_id.product_id.default_code == "avancee":
+                nbr_panier_perdu_pro += 1
+        sum_pro_inscrit = tot + nbr_panier_perdu_pro
+        return sum_pro_inscrit
+
+    def pack_premium_inscrit(self, sum_premium_inscrit):
+        """ Calculer le nombre du client inscrit par session selon le pack premium """
+        nbr_from_examen_premium = 0
+        for examen in self.env['info.examen'].search(
+                [('date_exam', "=", self.date_exam), ('session_id', "=", self.id)]):
+            if examen.module_id.product_id.default_code == "premium":
+                nbr_from_examen_premium += 1
+        nbr_canceled_prospect_premium = 0
+        tot_premium = nbr_from_examen_premium
+        for nbr_inscrit_pack_premium in self.canceled_prospect_ids:
+            if nbr_inscrit_pack_premium.mcm_session_id.id == self.id:
+                if nbr_inscrit_pack_premium.module_id.product_id.default_code == "premium":
+                    nbr_canceled_prospect_premium += 1
+                    tot_premium = tot_premium + nbr_canceled_prospect_premium
+        nbr_panier_perdu_premium = 0
+        for nbr_inscrit_pack_premium_perdu in self.panier_perdu_ids:
+            if nbr_inscrit_pack_premium_perdu.mcm_session_id.id == self.id and nbr_inscrit_pack_premium_perdu.module_id.product_id.default_code == "premium":
+                nbr_panier_perdu_premium += 1
+        sum_premium_inscrit = tot_premium + nbr_panier_perdu_premium
+        return sum_premium_inscrit
+
+    def pack_repassage_inscrit(self, sum_repassage_inscrit):
+        """ Calculer le nombre du client inscrit par session selon le pack repassage """
+        nbr_from_examen_repassage = 0
+        for examen in self.env['info.examen'].search(
+                [('date_exam', "=", self.date_exam), ('session_id', "=", self.id)]):
+            if examen.module_id.product_id.default_code == "examen":
+                nbr_from_examen_repassage += 1
+        nbr_canceled_prospect_repassage = 0
+        tot = nbr_from_examen_repassage
+        for nbr_inscrit_pack_repassage in self.canceled_prospect_ids:
+            if nbr_inscrit_pack_repassage.mcm_session_id.id == self.id:
+                if nbr_inscrit_pack_repassage.module_id.product_id.default_code == "examen":
+                    nbr_canceled_prospect_repassage += 1
+                    tot = tot + nbr_from_examen_repassage
+        nbr_panier_perdu_repassage = 0
+        for nbr_inscrit_pack_repassage_perdu in self.panier_perdu_ids:
+            if nbr_inscrit_pack_repassage_perdu.mcm_session_id.id == self.id and nbr_inscrit_pack_repassage_perdu.module_id.product_id.default_code == "examen":
+                nbr_panier_perdu_repassage += 1
+        sum_repassage_inscrit = tot + nbr_panier_perdu_repassage
+        return sum_repassage_inscrit
+
+    def taux_de_presence_solo(self):
+        """ Calculer taux de presence par session selon le pack solo """
+        pack_solo_present = self.pack_solo_present(self)
+        nbr_inscrit = self.pack_solo_inscrit(self)
+        if nbr_inscrit > 0:
+            taux_de_presence = pack_solo_present * 100 / nbr_inscrit
+            if taux_de_presence > 0:
+                taux_de_presence_solo = f'{taux_de_presence:.2f}'.replace('.00','')
+                return taux_de_presence_solo
+            else:
+                taux_de_presence_solo = f'{taux_de_presence:.0f}'
+                return taux_de_presence_solo
+        else:
+            taux_de_presence_solo = 0
+            return taux_de_presence_solo
+
+    def taux_de_presence_pro(self):
+        """ Calculer taux de presence par session selon le pack pro """
+        pack_pro_present = self.pack_pro_present(self)
+        nbr_inscrit = self.pack_pro_inscrit(self)
+        if nbr_inscrit > 0:
+            taux_de_presence = pack_pro_present * 100 / nbr_inscrit
+            if taux_de_presence > 0:
+                taux_de_presence_pro = f'{taux_de_presence:.2f}'.replace('.00','')
+                return taux_de_presence_pro
+            else:
+                taux_de_presence_pro = f'{taux_de_presence:.0f}'
+                return taux_de_presence_pro
+        else:
+            taux_de_presence_pro = 0
+            return taux_de_presence_pro
+
+    def taux_de_presence_premium(self):
+        """ Calculer taux de présence pour les packs premium;
+        avec une condition pour enlever la partie décimale
+        si la résultat est égale à zéro"""
+        pack_premium_present = self.pack_premium_present(self)
+        nbr_inscrit = self.pack_solo_inscrit(self)
+        if nbr_inscrit > 0:
+            taux_de_presence = pack_premium_present * 100 / nbr_inscrit
+            if taux_de_presence > 0:
+                taux_de_presence_premium = f'{taux_de_presence:.2f}'.replace('.00','')
+                return taux_de_presence_premium
+            else:
+                taux_de_presence_premium = f'{taux_de_presence:.0f}'
+                return taux_de_presence_premium
+        else:
+            taux_de_presence_premium = 0
+            return taux_de_presence_premium
+
+    def taux_de_presence_repassage(self):
+        """ Calculer taux de presence par session selon le pack repassage """
+        pack_repassage_present = self.pack_repassage_present(self)
+        nbr_inscrit = self.pack_repassage_inscrit(self)
+        if nbr_inscrit > 0:
+            taux_de_presence = pack_repassage_present * 100 / nbr_inscrit
+            if taux_de_presence > 0:
+                taux_de_presence_repassage = f'{taux_de_presence:.2f}'.replace('.00','')
+                return taux_de_presence_repassage
+            else:
+                taux_de_presence_repassage = f'{taux_de_presence:.0f}'
+                return taux_de_presence_repassage
+        else:
+            taux_de_presence_repassage = 0
+            return taux_de_presence_repassage
+
+    def taux_de_reussite_solo(self):
+        """ Calculer taux de reussite par session selon le pack solo """
+        pack_solo_reussite = self.nbr_recus_solo()
+        nbr_inscrit = self.pack_solo_present(self)
+        if nbr_inscrit > 0:
+            taux_de_reussite = pack_solo_reussite * 100 / nbr_inscrit
+            if taux_de_reussite > 0:
+                taux_de_reussite_solo = f'{taux_de_reussite:.2f}'.replace('.00','')
+                return taux_de_reussite_solo
+            else:
+                taux_de_reussite_solo = f'{taux_de_reussite:.0f}'
+                return taux_de_reussite_solo
+        else:
+            taux_de_reussite_solo = 0
+            return taux_de_reussite_solo
+
+    def taux_de_reussite_pro(self):
+        """ Calculer taux de reussite par session selon le pack pro """
+        pack_pro_reussite = self.nbr_recus_pro()
+        nbr_inscrit = self.pack_pro_present(self)
+        if nbr_inscrit > 0:
+            taux_de_reussite = pack_pro_reussite * 100 / nbr_inscrit
+            if taux_de_reussite > 0:
+                taux_de_reussite_pro = f'{taux_de_reussite:.2f}'.replace('.00','')
+                return taux_de_reussite_pro
+            else:
+                taux_de_reussite_pro = f'{taux_de_reussite:.0f}'
+                return taux_de_reussite_pro
+        else:
+            taux_de_reussite_pro = 0
+            return taux_de_reussite_pro
+
+    def taux_de_reussite_premium(self):
+        """ Calculer taux de reussite par session selon le pack premium """
+        pack_premium_reussite = self.nbr_recus_premium()
+        nbr_inscrit = self.pack_premium_present(self)
+        if nbr_inscrit > 0:
+            taux_de_reussite = pack_premium_reussite * 100 / nbr_inscrit
+            if taux_de_reussite > 0:
+                taux_de_reussite_premium = f'{taux_de_reussite:.2f}'.replace('.00','')
+                return taux_de_reussite_premium
+            else:
+                taux_de_reussite_premium = f'{taux_de_reussite:.0f}'
+                return taux_de_reussite_premium
+        else:
+            taux_de_reussite_premium = 0
+            return taux_de_reussite_premium
+
+    def taux_de_reussite_repassage(self):
+        """ Calculer taux de reussite par session selon le pack repassage """
+        pack_repassage_reussite = self.nbr_recus_repassage()
+        nbr_inscrit = self.pack_repassage_present(self)
+        if nbr_inscrit > 0:
+            taux_de_reussite = pack_repassage_reussite * 100 / nbr_inscrit
+            if taux_de_reussite > 0:
+                taux_de_reussite_repassage = f'{taux_de_reussite:.2f}'.replace('.00','')
+                return taux_de_reussite_repassage
+            else:
+                taux_de_reussite_repassage = f'{taux_de_reussite:.0f}'
+                return taux_de_reussite_repassage
+        else:
+            taux_de_reussite_repassage = 0
+            return taux_de_reussite_repassage
+
+    @api.depends('epreuve_a')
+    def moyenne_qcm(self):
+        """ CALCULER moyenne de la note QCM des clients par session"""
+        sum_qcm = 0
+        moyenne_qcm = 0
+        nbr_present = self.nbr_present_par_session(self)
+        for rec in self.client_ids:
+            for examen in self.env['info.examen'].sudo().search(
+                    [('session_id', "=", self.id), ('partner_id', "=", rec.id)]):
+                print("examen", examen)
+                sum_qcm += sum(examen.mapped('epreuve_a'))
+        if nbr_present > 0:
+            moyenne_qcm = sum_qcm / nbr_present
+            return f'{moyenne_qcm:.2f}'.replace('.00','')
+        else:
+            return 0
+
+    @api.depends('epreuve_b')
+    def moyenne_qro(self):
+        """ CALCULER moyenne de la note QRO des clients par session"""
+        nbr_present = self.nbr_present_par_session(self)
+        sum_qro = 0
+        moyenne_qro = 0
+        for rec in self.client_ids:
+            for examen in self.env['info.examen'].sudo().search(
+                    [('session_id', "=", self.id), ('partner_id', "=", rec.id)]):
+                print("examen", examen.epreuve_b)
+                sum_qro += sum(examen.mapped('epreuve_b'))
+        if nbr_present > 0:
+            moyenne_qro = sum_qro / nbr_present
+            return f'{moyenne_qro:.2f}'.replace('.00','')
+        else:
+            return 0
+
+    @api.depends('moyenne_generale')
+    def moyenne_des_somme_qcm_qro(self):
+        """ CALCULER moyenne de somme de la note QRO et QCM par session"""
+        sum_qcm_qro = 0
+        moyenne_qcm_qro = 0
+        nbr_present = self.nbr_present_par_session(self)
+        for rec in self.client_ids:
+            for examen in self.env['info.examen'].sudo().search(
+                    [('session_id', "=", self.id), ('partner_id', "=", rec.id)]):
+                sum_qcm_qro += sum(examen.mapped('moyenne_generale'))
+        if nbr_present > 0:
+            moyenne_qcm_qro = sum_qcm_qro / nbr_present
+            print("f'{moyenne_qcm_qro:.2f}'", f'{moyenne_qcm_qro:.2f}'.split('.')[1])
+            return f'{moyenne_qcm_qro:.2f}'.replace('.00','')
+        else:
+            return 0
 
     @api.model
     def _read_group_stage_ids(self, stages, domain, order):
