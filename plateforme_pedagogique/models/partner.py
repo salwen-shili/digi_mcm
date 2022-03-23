@@ -1752,7 +1752,7 @@ class partner(models.Model):
                                                 'mass_force_send': False,
                                                 'use_active_domain': False,
                                             })
-                                            sms = self.env['mail.message'].search([('body', "=", body),('res_id',"=",user.partner_id.id)])
+                                            sms = self.env['mail.message'].sudo().search([('body', "like", url),('partner_ids',"in",user.partner_id.id)]) # search using field partner_ids 
                                             if not sms :
                                                 composer.action_send_sms() # we send sms to client contains link to register in cma.
                                             if user.partner_id.phone:
