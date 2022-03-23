@@ -53,7 +53,6 @@ class Session(models.Model):
                                     track_visibility='always')  # edit the field to be required and show field edit history
     adresse_jury_id = fields.Many2one('session.adresse.examen', "Adresse de jury")
     date_jury = fields.Date()
-    heure_jury = fields.Char()
     num_agrement_jury = fields.Char()
 
     @api.onchange('adresse_jury_id')
