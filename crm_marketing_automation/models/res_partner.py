@@ -84,7 +84,9 @@ class Partner(models.Model):
         if stages:
             for stage in stages:
                 lead = self.env['crm.lead'].sudo().search([('partner_id', '=', partner.id)], limit=1)
-                if lead and partner.name:
+                if lead and partner.name and _(lead.stage_id.name) != name:
+                    _logger.info("stage %s" %str(_(lead.stage_id.name)))
+                    _logger.info("stage %s" % str(name))
                     lead.sudo().write({
                         'prenom': partner.firstName if partner.firstName else "",
                         'nom': partner.lastName if partner.lastName else "",
@@ -194,10 +196,10 @@ class Partner(models.Model):
                                     self.changestage("Bolt-Document non Validé", partner)
                                 else :
                                     self.changestage("Document non Validé", partner)
-                            """si les documents sont refusés, on classe l'apprenant bolt sous Non éligible"""
-                            if refuse and partner.bolt:
-                                # _logger.info("Archivé %s" %str(partner.name))
-                                self.changestage("Archivé", partner)
+                            # """si les documents sont refusés, on classe l'apprenant bolt sous Non éligible"""
+                            # if refuse and partner.bolt:
+                            #     # _logger.info("Archivé %s" %str(partner.name))
+                            #     self.changestage("Archivé", partner)
 
                             if document_valide:
                                 _logger.info('document valide %s' % str(partner.email))

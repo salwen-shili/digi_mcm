@@ -20,13 +20,13 @@ class Document(models.Model):
                     self.change_stage_lead("Document non Validé", partner_)
                 if partner_ and  partner_.bolt:
                     self.change_stage_lead("Bolt-Document non Validé", partner_)
-            """si les documents sont refusés, on classe l'apprenant bolt sous Non éligible"""
-            if vals['state'] == 'refused' :
-                partner = self.partner_id
-                partner_ = self.env['res.partner'].sudo().search([('id', "=", int(partner))])
-                if partner_ and partner_.bolt:
-                    _logger.info('if state in refused  %s' % partner_.name)
-                    self.change_stage_lead("Archivé", partner_)
+            # """si les documents sont refusés, on classe l'apprenant bolt sous Non éligible"""
+            # if vals['state'] == 'refused' :
+            #     partner = self.partner_id
+            #     partner_ = self.env['res.partner'].sudo().search([('id', "=", int(partner))])
+            #     if partner_ and partner_.bolt:
+            #         _logger.info('if state in refused  %s' % partner_.name)
+            #         self.change_stage_lead("Archivé", partner_)
 
         if 'state' in vals and 'partner_id' in vals:
             if vals['state'] == 'waiting':
@@ -54,7 +54,7 @@ class Document(models.Model):
         stage = self.env['crm.stage'].sudo().search([("name", "=", _(statut))])
         if stage:
             lead = self.env['crm.lead'].sudo().search([('partner_id', '=', partner.id)], limit=1)
-            if lead:
+            if lead and _(lead.stage_id.name) != statut:
                 lead.sudo().write({
                      'prenom': partner.firstName if partner.firstName else "",
                      'nom': partner.lastName if partner.lastName else "",
