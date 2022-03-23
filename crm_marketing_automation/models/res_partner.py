@@ -84,7 +84,7 @@ class Partner(models.Model):
         if stages:
             for stage in stages:
                 lead = self.env['crm.lead'].sudo().search([('partner_id', '=', partner.id)], limit=1)
-                if lead and partner.name:
+                if lead and partner.name and lead.stage_id.name != name:
                     _logger.info("stage %s" %str(lead.stage_id.name))
                     _logger.info("stage %s" % str(name))
                     lead.sudo().write({
