@@ -37,7 +37,8 @@
                 <field name="last_login"/>
                 <field name="totalTimeSpentInMinutes"/>
                 <field name="temps_minute" optional="hide"/>
-                <field name="etat_financement_cpf_cb" options='{"bg_color": "red:is_==True;"}' optional="show" string="Financement"/>
+                <field name="is_not_paid" optional="show"/>
+                <field name="etat_financement_cpf_cb" options='{"bg_color": "#D8BFD8:is_not_paid==True;"}' optional="show" string="Financement"/>
             </xpath>
         </field>
     </record>
@@ -61,6 +62,7 @@
                         <label for="second_email" string="Email secondaire:" class="oe_edit_only">Email secondaire</label>
                         <field name="second_email"  class="oe_edit_only" />
                      </div>
+                    <field name="is_not_paid" />
 
                 </div>
             </xpath>
