@@ -54,7 +54,7 @@ class Document(models.Model):
         stage = self.env['crm.stage'].sudo().search([("name", "=", _(statut))])
         if stage:
             lead = self.env['crm.lead'].sudo().search([('partner_id', '=', partner.id)], limit=1)
-            if lead:
+            if lead and lead.stage_id.name != statut:
                 lead.sudo().write({
                      'prenom': partner.firstName if partner.firstName else "",
                      'nom': partner.lastName if partner.lastName else "",
