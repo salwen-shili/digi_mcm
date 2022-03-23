@@ -37,7 +37,7 @@
                 <field name="last_login"/>
                 <field name="totalTimeSpentInMinutes"/>
                 <field name="temps_minute" optional="hide"/>
-                <field name="etat_financement_cpf_cb" options='{"fg_color": "red:is_not_paid==True;"}' optional="show" string="Financement"/>
+                <field name="etat_financement_cpf_cb" options='{"bg_color": "red:is_==True;"}' optional="show" string="Financement"/>
             </xpath>
         </field>
     </record>

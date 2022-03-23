@@ -116,5 +116,9 @@ class InheritResPartner(models.Model):
                 self.is_present = False
                 self.is_recu = False
                 self.is_absence_justifiee = False
+        if 'etat_financement_cpf_cb' in values:
+            if self.etat_financement_cpf_cb == "Non payées":
+                self.is_not_paid = True
+                print("iiiiiiiiiiii", self.is_not_paid)
         return val
 
