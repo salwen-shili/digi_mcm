@@ -461,31 +461,6 @@ class partner(models.Model):
                                 existe = True
                                 urlsession = 'https://app.360learning.com/api/v1/groups/' + id_groupe + '/users/' + partner.email + '?company=' + company_id + '&apiKey=' + api_key
                                 respsession = requests.put(urlsession, headers=headers, data=data_group)
-                            if partner.phone:
-                                phone = str(partner.phone.replace(' ', ''))[-9:]
-                                phone = '+33' + ' ' + phone[0:1] + ' ' + phone[1:3] + ' ' + phone[3:5] + ' ' + phone[
-                                                                                                               5:7] + ' ' + phone[
-                                                                                                                            7:]
-                                partner.phone = phone
-                            url = 'https://digimoov.360learning.com/'
-                            body = "Chere(e) %s : félicitation pour votre inscription, vous avez été invité par Digimoov à commencer votre formation via ce lien : %s .Vos identifiants sont identiques que sur le site web Digimoov.fr" % (
-                                partner.name, url)
-                            if body:
-                                sms = self.env['mail.message'].sudo().search(
-                                    [("body", "=", body), ("message_type", "=", 'sms'), ("res_id", "=", partner.id)])
-                                if not sms:
-                                    composer = self.env['sms.composer'].with_context(
-                                        default_res_model='res.partner',
-                                        default_res_ids=partner.id,
-                                        default_composition_mode='mass',
-                                    ).sudo().create({
-                                        'body': body,
-                                        'mass_keep_log': True,
-                                        'mass_force_send': True,
-                                    })
-                                    composer.action_send_sms() # envoyer un sms de félicitation à l'apprenant et l'inviter à commncer sa formation
-                                if partner.phone:
-                                    partner.phone = '0' + str(partner.phone.replace(' ', ''))[-9:]
 
 
                     # Si la session n'est pas trouvée sur 360 on l'ajoute
@@ -1601,30 +1576,6 @@ class partner(models.Model):
                                     #     so.action_cancel()
                                     #     so.unlink()
                                     user.partner_id.statut = 'won'
-                                    if not user.partner_id.renounce_request and product_id.default_code!='habilitation-electrique':
-                                        if user.partner_id.phone:
-                                            phone = str(user.partner_id.phone.replace(' ', ''))[-9:]
-                                            phone = '+33' + ' ' + phone[0:1] + ' ' + phone[1:3] + ' ' + phone[3:5] + ' ' + phone[5:7] + ' ' + phone[7:]
-                                            user.partner_id.phone = phone
-                                        url = 'https://www.digimoov.fr/my'
-                                        body = "Chere(e) %s félicitation pour votre inscription, votre formation commence dans 14 jours. Si vous souhaitez commencer dès maintenant cliquez sur le lien suivant : %s" % (
-                                            user.partner_id.name, url)
-                                        if body:
-                                            composer = self.env['sms.composer'].with_context(
-                                                default_res_model='res.partner',
-                                                default_res_ids=user.partner_id.id,
-                                                default_composition_mode='mass',
-                                            ).sudo().create({
-                                                'body': body,
-                                                'mass_keep_log': True,
-                                                'mass_force_send': True,
-                                            })
-                                            sms = self.env['mail.message'].search(
-                                                [('body', "=", body), ('res_id', "=", user.partner_id.id)])
-                                            if not sms:
-                                                composer.action_send_sms()
-                                            if user.partner_id.phone:
-                                                user.partner_id.phone = '0' + str(user.partner_id.phone.replace(' ', ''))[-9:]
                                     """changer step à validé dans espace client """
                                     user.partner_id.step = 'finish'
                                     session = self.env['partner.sessions'].search([('client_id', '=', user.partner_id.id),
@@ -1702,85 +1653,6 @@ class partner(models.Model):
                                     #     so.action_cancel()
                                     #     so.unlink()
                                     user.partner_id.statut = 'won'
-                                    if not user.partner_id.renounce_request:
-                                        if user.partner_id.phone:
-                                            phone = str(user.partner_id.phone.replace(' ', ''))[-9:]
-                                            phone = '+33' + ' ' + phone[0:1] + ' ' + phone[1:3] + ' ' + phone[
-                                                                                                        3:5] + ' ' + phone[
-                                                                                                                     5:7] + ' ' + phone[
-                                                                                                                                  7:]
-                                            user.partner_id.phone = phone
-                                        url = 'https://www.mcm-academy.fr/my'
-                                        body = "Chere(e) %s félicitation pour votre inscription, votre formation commence dans 14 jours. Si vous souhaitez commencer dès maintenant cliquez sur le lien suivant : %s" % (
-                                            user.partner_id.name, url)
-                                        if body:
-                                            composer = self.env['sms.composer'].with_context(
-                                                default_res_model='res.partner',
-                                                default_res_ids=user.partner_id.id,
-                                                default_composition_mode='mass',
-                                            ).sudo().create({
-                                                'body': body,
-                                                'mass_keep_log': True,
-                                                'mass_force_send': True,
-                                            })
-                                            sms = self.env['mail.message'].sudo().search(
-                                                [("body", "=", body), ("message_type", "=", 'sms'),
-                                                 ("res_id", "=", user.partner_id.id)])
-                                            if not sms:
-                                                composer.action_send_sms() # envoyer un sms de félicitation d'inscription
-                                            if user.partner_id.phone:
-                                                user.partner_id.phone = '0' + str(user.partner_id.phone.replace(' ', ''))[
-                                                                              -9:]
-                                    else:
-                                        if user.partner_id.phone:
-                                            phone = str(user.partner_id.phone.replace(' ', ''))[-9:]
-                                            phone = '+33' + ' ' + phone[0:1] + ' ' + phone[1:3] + ' ' + phone[
-                                                                                                        3:5] + ' ' + phone[
-                                                                                                                     5:7] + ' ' + phone[
-                                                                                                                                  7:]
-                                            user.partner_id.phone = phone
-                                        url = 'https://bit.ly/3CZ2HtS'
-                                        body = "MCM ACADEMY. Afin d'accéder à notre formation vous devez vous inscrire à l'examen auprès de la CMA de votre région via le lien suivant :%s" % (url)
-                                        if body:
-                                            composer = self.env['sms.composer'].with_context(
-                                                default_res_model='res.partner',
-                                                default_res_id=user.partner_id.id,
-                                                default_composition_mode='comment',
-                                            ).sudo().create({
-                                                'body': body,
-                                                'mass_keep_log': True,
-                                                'mass_force_send': False,
-                                                'use_active_domain': False,
-                                            })
-                                            sms = self.env['mail.message'].sudo().search([('body', "like", url),('partner_ids',"in",user.partner_id.id)]) # search using field partner_ids 
-                                            if not sms :
-                                                composer.action_send_sms() # we send sms to client contains link to register in cma.
-                                            if user.partner_id.phone:
-                                                user.partner_id.phone = '0' + str(user.partner_id.phone.replace(' ', ''))[
-                                                                              -9:]
-                                        mail_compose_message = self.env['mail.compose.message']
-                                        mail_compose_message.fetch_sendinblue_template()
-                                        template_id = False
-                                        template_id = self.env['mail.template'].sudo().search(
-                                            [('subject', "=", "Inscription examen chambre des métiers"),
-                                             ('model_id', "=", 'res.partner')],
-                                            limit=1)  # we send email to client contains link to register in cma. we get the mail template from sendinblue
-                                        if not template_id:
-                                            template_id = self.env['mail.template'].sudo().search(
-                                                [('name', "=", "MCM INSCRIPTION EXAMEN CMA"),
-                                                 ('model_id', "=", 'res.partner')],
-                                                limit=1)
-                                        if template_id:
-                                            message = self.env['mail.message'].sudo().search(
-                                                [('subject', "=", "Inscription examen chambre des métiers"),
-                                                 ('model', "=", 'res.partner'), ('res_id', "=", user.partner_id.id)],
-                                                limit=1)
-                                            if not message:  # check if we have already sent the email
-                                                user.partner_id.with_context(
-                                                    force_send=True).message_post_with_template(
-                                                    template_id.id,
-                                                    composition_mode='comment',
-                                                )  # send the email to client
                                     """changer step à validé dans espace client """
                                     user.partner_id.step = 'finish'
                                     session = self.env['partner.sessions'].search([('client_id', '=', user.partner_id.id),
