@@ -44,6 +44,10 @@ class UpdateFieldFinancementWizard(models.TransientModel):
                 statut.is_absence_justifiee = True
                 statut.is_Absent = False
                 statut.is_present = False
+            if statut.etat_financement_cpf_cb == 'not_paid':
+
+                statut.is_not_paid = True
+                print("iiiiiiiiiiii", statut.is_not_paid)
 
 
 

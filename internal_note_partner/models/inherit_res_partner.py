@@ -81,7 +81,7 @@ class InheritResPartner(models.Model):
     @api.onchange("etat_financement_cpf_cb")
     def financement_not_paid(self):
         for rec in self:
-            if rec.etat_financement_cpf_cb == "not_paid":
+            if rec.etat_financement_cpf_cb == 'Non payées':
                 self.is_not_paid = True
             else:
                 self.is_not_paid = False
