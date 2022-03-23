@@ -30,7 +30,7 @@
                                         léger.
                                     </p>
                                     <strong>
-                                        Prénom et Nom :
+                                        Nom et Prénom :
                                         <span t-raw="'%s' % o.name if o.name else ''"/>
                                     </strong>
                                     <br></br>

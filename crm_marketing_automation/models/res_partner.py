@@ -173,7 +173,7 @@ class Partner(models.Model):
                             if (count == len(documents) and count != 0):
                                 document_valide = True
                             if (document.state == "waiting"):
-                                _logger.info("document waiting  %s" % partner.name)
+                                # _logger.info("document waiting  %s" % partner.name)
                                 waiting = True
                             if (document.state =="refused"):
                                 _logger.info("refused %s " %str(partner.name))
@@ -223,7 +223,7 @@ class Partner(models.Model):
                                         if partner.inscrit_mcm == False and partner.eval_box == True:
                                             _logger.info('eval box %s' % str(partner.email))
                                             self.changestage("Inscription Examen Eval Box", partner)
-                                        if partner.inscrit_mcm and partner.eval_box == False:
+                                        if partner.inscrit_mcm and partner.eval_box == True:
                                             _logger.info('plateforme %s' % str(partner.email))
                                             self.changestage("Bolt-Plateforme de formation", partner)
                                     else :
@@ -365,10 +365,11 @@ class Partner(models.Model):
                                 if partner.renounce_request and partner.bolt and partner.inscrit_mcm == False and eval_box == True:
                                     print("++++++",partner.email)
                                     self.changestage("Inscription Examen Eval Box", partner)
-                                if partner.renounce_request and partner.bolt and  partner.inscrit_mcm   and eval_box == False:
+                                if partner.renounce_request and partner.bolt and  partner.inscrit_mcm   and eval_box == True:
                                     print("======",partner.email)
-
                                     self.changestage("Bolt-Plateforme de formation", partner)
+                                if partner.renounce_request and partner.bolt and partner.inscrit_mcm == False and eval_box == False:
+                                    self.changestage("Bolt-Contrat Signé", partner)
 
                     """Si mode de financement cpf on doit vérifier seulement l'etat des documents  
                         et la renonciation sur la fiche client """
@@ -386,4 +387,14 @@ class Partner(models.Model):
                     part.diviser_nom(part)
                     lead.nom=part.lastName
                     lead.prenom=part.firstName
+
+    def cancel_subscription(self):
+        subscription="sub_1KQJqTIEbFL8iNKWR3zdh07g"
+        aquire=self.env['payment.acquirer'].sudo().search([],limit=1)
+        print("search",aquire)
+        url = "subscriptions/%s" % (subscription)
+        paiement_intent=aquire._stripe_request(url, method="DELETE")
+        data_paiement = paiement_intent.get('data', [])
+        print('data', paiement_intent)
+
                 

@@ -26,8 +26,8 @@
                         .page {
                         line-height: 1.75 ;
                         font-size:20px ;
+
                         }
-                        .margin { margin-top: 0px;}
                     </style>
                     <div class="page margin">
                         <div class="oe_structure"/>
@@ -480,7 +480,7 @@
                         width: 80%;
                         text-align: center;}
                     </style>
-                    <div class=" page-margin">
+                    <div class="page-margin" style="padding-top:30px">
                         <table class="table">
                             <tbody>
                                 <thead>
@@ -524,26 +524,26 @@
                                     <td class="td">
                                         <t t-set="session"
                                            t-value="line.note_exam_id.filtered(lambda se: se.date_exam == o.date_exam)"/>
-                                        <t t-if="session.epreuve_b != 0">
+                                        <t t-if="session.presence == 'present'">
                                             <span t-esc="'%.0f' % session.epreuve_a"/>
                                             <span>/100</span>
                                         </t>
-                                        <t t-else="">
+                                        <t t-if="session.epreuve_a == 0 and session.epreuve_b == 0 and session.presence != 'present'">
                                             <span></span>
                                         </t>
                                     </td>
                                     <td class="td">
                                         <t t-set="session"
                                            t-value="line.note_exam_id.filtered(lambda se: se.date_exam == o.date_exam)"/>
-                                        <t t-if="session.epreuve_b != 0">
+                                        <t t-if="session.presence == 'present'">
                                             <span t-esc="'%.0f' % session.epreuve_b"/>
                                             <span>/ 100</span>
                                         </t>
-                                        <t t-else="">
+                                        <t t-if="session.epreuve_a == 0 and session.epreuve_b == 0 and session.presence != 'present'">
                                             <span></span>
                                         </t>
                                     </td>
-                                    <t t-if="session.resultat != 'ajourne'">
+                                    <t t-if="session.resultat != 'ajourne' and session.presence == 'present'">
                                         <td class="td">
                                             <t t-set="session"
                                                t-value="line.note_exam_id.filtered(lambda se: se.date_exam == o.date_exam)"/>
@@ -556,7 +556,20 @@
                                             </t>
                                         </td>
                                     </t>
-                                    <t t-else="">
+                                    <t t-if="session.resultat == 'ajourne' and session.presence == 'present'">
+                                        <td class="td">
+                                            <t t-set="session"
+                                               t-value="line.note_exam_id.filtered(lambda se: se.date_exam == o.date_exam)"/>
+                                            <t t-if="session.moyenne_generale != 0">
+                                                <span t-esc="'%.0f' % session.moyenne_generale"/>
+                                                <span>/200</span>
+                                            </t>
+                                            <t t-else="">
+                                                <span></span>
+                                            </t>
+                                        </td>
+                                    </t>
+                                    <t t-if="session.resultat == 'ajourne' and session.presence != 'present'">
                                         <td class="td" style="background-color:#E9967A;">
                                             <t t-set="session"
                                                t-value="line.note_exam_id.filtered(lambda se: se.date_exam == o.date_exam)"/>
