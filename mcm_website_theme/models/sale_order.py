@@ -82,7 +82,7 @@ class SaleOrder(models.Model):
                         'mass_keep_log': True,
                         'mass_force_send': True,
                     })
-                    composer.action_send_sms()
+                    composer.action_send_sms() 
                     if self.partner_id.phone:
                         self.partner_id.phone = '0' + str(self.partner_id.phone.replace(' ', ''))[
                                                       -9:]
@@ -94,21 +94,43 @@ class SaleOrder(models.Model):
                                                                                              5:7] + ' ' + phone[
                                                                                                           7:]
                     self.partner_id.phone = phone
-                url = 'https://formation.mcm-academy.fr/register'
-                body = "Chere(e) %s : félicitation pour votre inscription, vous avez été invité par MCM ACADEMY à commencer votre formation via ce lien : %s . vous devez créer un compte avec les mêmes identifiants que MCM ACADEMY" % (
-                    self.partner_id.name, url)
+                url = 'https://bit.ly/3CZ2HtS'
+                body = "MCM ACADEMY. Afin d'accéder à notre formation vous devez vous inscrire à l'examen auprès de la CMA de votre région via le lien suivant : %s" % (url)
                 if body:
                     composer = self.env['sms.composer'].with_context(
                         default_res_model='res.partner',
-                        default_res_ids=self.partner_id.id,
-                        default_composition_mode='mass',
+                        default_res_id=self.partner_id.id,
+                        default_composition_mode='comment',
                     ).sudo().create({
                         'body': body,
                         'mass_keep_log': True,
-                        'mass_force_send': True,
+                        'mass_force_send': False,
+                        'use_active_domain': False,
                     })
-                    composer.action_send_sms()
+                    composer.action_send_sms() # we send sms to client contains link to register in cma.
                     if self.partner_id.phone:
                         self.partner_id.phone = '0' + str(self.partner_id.phone.replace(' ', ''))[
                                                       -9:]
+                mail_compose_message = self.env['mail.compose.message']
+                mail_compose_message.fetch_sendinblue_template()
+                template_id = False
+                template_id = self.env['mail.template'].sudo().search(
+                    [('subject', "=", "Inscription examen chambre des métiers"),
+                     ('model_id', "=", 'res.partner')],
+                    limit=1)  # we send email to client contains link to register in cma. we get the mail template from sendinblue
+                if not template_id :
+                    template_id = self.env['mail.template'].sudo().search(
+                        [('name', "=", "MCM INSCRIPTION EXAMEN CMA"),
+                         ('model_id', "=", 'res.partner')],
+                        limit=1)
+                if template_id:
+                    message = self.env['mail.message'].sudo().search(
+                        [('subject', "=", "Inscription examen chambre des métiers"),
+                         ('model', "=", 'res.partner'), ('res_id', "=", self.partner_id.id)],
+                        limit=1)
+                    if not message:  # check if we have already sent the email
+                        self.partner_id.with_context(force_send=True).message_post_with_template(
+                            template_id.id,
+                            composition_mode='comment',
+                            )  # send the email to client
         return order
