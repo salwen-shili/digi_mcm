@@ -80,6 +80,8 @@ class InheritResPartner(models.Model):
 
     @api.onchange("etat_financement_cpf_cb")
     def _financement_not_paid(self):
+        """ cette fonction sera executée une seul fois pour remplir les ancienes champs pour appliquer
+                la condition de coloration sur les clients avec des financements égale non payés """
         print("debut")
         active_ids = self.ids
         active_ids = self.env.context.get('active_ids', [])
