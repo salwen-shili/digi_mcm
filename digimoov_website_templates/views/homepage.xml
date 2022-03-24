@@ -316,7 +316,7 @@
                   un véhicule de moins de 3,5 tonnes de PTAC. Elle vous
                   permettra aussi de monter votre propre boîte de livraison.
                                             </p>
-                                            <div class="boosting-section tab-btn s_btn text-right m-t-30">
+                                            <div class="boosting-section tab-btn s_btn text-right m-t-30 mb32">
                                                 <a target="_blank" rel="noopner" href="/blog/digimoov-3/post/bon-a-savoir-sur-la-formation-capacite-de-transport-leger-6#details-formation" class="boosting-section boostingbtn btn btn-alpha rounded-circle" data-original-title="" title="" aria-describedby="tooltip272185">
                     En-savoir plus&amp;nbsp;&amp;nbsp;
                   </a>
@@ -423,8 +423,12 @@
                                                 <h3 class="font-medium text-center" style="font-size: 20px !important;">
                                                 Formation en capacité de transport lourd de marchandises de + 3.5 tonnes
                                                 </h3>
-                                                <p class="custom_p m-b-30 m-t-30 formation text-left">
-                                                Optez pour notre formation 100 % en ligne sur la capacité de transport lourd de marchandises ! Une formation complète de 280 heures, concoctée par des experts du métier pour vous préparer à l’examen final et obtenir votre attestation de transport.
+                                                <p class="custom_p m-b-30 m-t-30 formation text-center">
+
+                                                    <a class="btn btn-rounded rounded-circle btn-alpha btn-md arrow-btn m-t-20 m-b-30 bizople_button o_default_snippet_text btn-formations" href="/formation-capacite-transport-lourd-marchandise">
+                                                    En Savoir plus
+                                                   
+                                                </a>
                                                 </p>
                                             </div>
                                         </div>
@@ -438,9 +442,13 @@
                                                 <h3 class="font-medium text-center" style="font-size: 20px !important;     padding-top: 7px;">
                                                 Formation en habilitation électrique BS-BE manœuvres
                                                 </h3>
-                                                <p class="custom_p m-b-30 m-t-30 formation text-left">
-                  Vous êtes entrepreneur, et vous pensez à former votre personnel sur l'habilitation électrique BS/BE Manoeuvres ? Chez  Digimoov,  on vous propose  une formation 100 % en ligne certifiée  pour obtenir votre habilitation en 3 jours !.
-                </p>
+                                                <p class="custom_p m-b-30 m-t-30 formation text-center">
+                                                    <a class="btn btn-rounded rounded-circle btn-alpha btn-md arrow-btn m-t-20 m-b-30 bizople_button o_default_snippet_text btn-formations" href="/habilitation-electrique">
+                                                    En Savoir plus
+                                                   
+                                                </a>
+
+                                                </p>
                                             </div>
                                         </div>
                                     </div>
@@ -492,6 +500,62 @@
                                             </div>
                                         </div>
                                     </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!--section 6 devenir livreur en scooter, voiture, camionnette  -->
+                    <section class="s_accounting_three_blocks" data-name="Three block with image and paragraphs">
+                        <div class="spacer feature7">
+                            <div class="container">
+                                <div class="row m-t-40">
+
+                                    <div class="col-md-4 wrap-feature7-box">
+                                        <img class="rounded img-responsive lazy scooter-pos" data-src="/digimoov_website_templates/static/img/Transport léger sur scooter.webp" data-srcSafari="/digimoov_website_templates/static/img/Homepage/Transport léger sur scooter.png" alt="Scooter pour faire de la livraison" title="Transport léger sur scooter" />
+                                        <div class="m-t-30">
+                                            <h3 class="font-medium text-center">
+                  Devenir livreur en scooter
+                </h3>
+                                            <p class="custom_p m-b-30 m-t-30 text-center ">
+                  Passez à la vitesse supérieure et faites des livraisons plus
+                  rapides et à moindre effort sur scooter grâce à la capacité de
+                  transport de marchandises.
+                </p>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="col-md-4 wrap-feature7-box">
+                                        <img class="rounded img-responsive lazy voiture-pos" data-src="/digimoov_website_templates/static/img/Transport léger  sur voiture.webp" data-srcSafari="/digimoov_website_templates/static/img/Homepage/Transport léger  sur voiture.png" alt="Voiture pour Transport léger de marchandise" title="Transport léger  sur voiture" />
+                                        <div class="m-t-30">
+                                            <h3 class="font-medium text-center">
+                    Devenir livreur en voiture
+                  </h3>
+                                            <p class="custom_p m-b-30 m-t-30 text-center ">
+                    Le secteur de la livraison est en pleine expansion.
+                    Plusieurs entreprises sont à la recherche des livreurs
+                    reconnus en tant que professionnels de transport routier
+                    léger de marchandises.
+                  </p>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="col-md-4 wrap-feature7-box">
+                                        <img class="rounded img-responsive lazy camionnette-pos" data-src="/digimoov_website_templates/static/img/Transport léger sur camionnette 3,5t.webp" data-srcSafari="/digimoov_website_templates/static/img/Homepage/Transport léger sur camionnette 3,5t.png" alt="camionnette pour transport -3.5t PTAC" title="Transport léger sur camionnette 3,5t" />
+                                        <div class="m-t-30">
+                                            <h3 class="font-medium text-center">
+                    Devenir livreur en camionnette
+                  </h3>
+                                            <p class="custom_p m-b-30 m-t-30 text-center ">
+                    La capacité professionnelle de transport routier léger de
+                    marchandises vous permettra d'exploiter des véhicules de
+                    -3,5 tonnes de poids total autorisé en charge.
+                  </p>
+                                        </div>
+                                    </div>
+
                                 </div>
                             </div>
                         </div>

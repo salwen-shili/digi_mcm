@@ -1977,3 +1977,7 @@ footer {
 .color-marmelade {
   color: #ff9c00 !important;
 }
+
+.btn-formations:hover {
+  color: #085294;
+}
