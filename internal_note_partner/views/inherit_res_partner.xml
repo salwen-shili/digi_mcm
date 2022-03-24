@@ -46,7 +46,6 @@
                 <field name="last_internal_log" widget="html" optional="show"/>
             </xpath>
             <xpath expr="//tree/field[@name='last_internal_log']" position="before">
-                <field name="is_not_paid" invisible="1"/>
                 <field name="is_recu" invisible="1"/>
                 <field name="is_ajourne" invisible="1"/>
                 <field name="is_present" invisible="1"/>

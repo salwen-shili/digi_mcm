@@ -10,6 +10,8 @@
                 <field name="name"></field>
                 <filter name="apprenants" string="les apprenants"
                         domain="[('apprenant','=','True')]"/>
+                                <filter name="etat_financement_cpf_cb" string="Financement non payés" domain="[('etat_financement_cpf_cb', '!=', 'not_paid')]"/>
+
             </search>
         </field>
     </record>
