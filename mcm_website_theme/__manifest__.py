@@ -51,6 +51,7 @@ add css and js files to website model
         'views/formation-taxi-Lille.xml',
         'views/formation-taxi-Paris.xml',
         'views/formation-taxi-Lyon.xml',
+        'views/blog/blog_sidebar.xml'
     ],
 
     'installable': True,

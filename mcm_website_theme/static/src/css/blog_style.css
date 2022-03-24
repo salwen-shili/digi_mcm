@@ -37,7 +37,7 @@
 .blog-text-link {
   font-size: 18px !important;
   line-height: 1.5 !important;
-  color: #212529e8 !important;
+  color: #00375e !important;
   text-decoration: underline !important;
   font-weight: 700;
 }
@@ -56,4 +56,19 @@
   padding-block-start: 12px;
   margin-block-end: 19px;
   background: #ffe67514;
+}
+
+.inscription-card {
+  margin-top: 24px;
+  padding: 5px;
+  background: #fff847;
+  background: -webkit-linear-gradient(132deg, #fff847 0%, #ffffff 100%);
+  background: linear-gradient(
+    27deg,
+    #fff84754 0%,
+    #fff84754 30%,
+    #fff847c2 63%,
+    #fdffdb94 100%
+  );
+  width: max-content;
 }
