@@ -51,7 +51,7 @@ class ResUsers(models.Model):
                 template.with_context(lang=user.lang).send_mail(user.id, force_send=force_send, raise_exception=True)
             _logger.info("Password reset email sent for user <%s> to <%s>", user.login, user.email)
             if user.phone :
-                phone = str(user.phone.replace(' ', ''))[-9:]
+                phone = str(user.phone.replace(' ', ''))[-9:] # change phone to this format to be accepted in sms +33 X XX XX XX XX 
                 phone = '+33' + ' ' + phone[0:1] + ' ' + phone[1:3] + ' ' + phone[
                                                                             3:5] + ' ' + phone[
                                                                                          5:7] + ' ' + phone[
