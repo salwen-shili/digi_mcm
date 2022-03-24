@@ -4,10 +4,26 @@
             <link rel="stylesheet" href="/mcm_website_theme/static/src/css/cta-button.min.css" />
             <div id="o_wblog_sidebar" class="w-100">
                 <div class="oe_structure" id="oe_structure_blog_sidebar_index_1" />
-                <div class="o_wblog_sidebar_block pb-5 text-center" style="
-                margin-top: 24px;padding:5px;background: #fff847;
-                background: -webkit-linear-gradient(132deg, #fff847 0%, #ffffff 100%);
-                background: linear-gradient(27deg, #fff84754 0%,#fff84754 30%,#fff847c2 63%, #fdffdb94 100%);">
+                <style>
+                    .inscription-card {
+  margin-top: 24px;
+  padding: 5px;
+  background: #fff847;
+  background: -webkit-linear-gradient(132deg, #fff847 0%, #ffffff 100%);
+  background: linear-gradient(
+    27deg,
+    #fff84754 0%,
+    #fff84754 30%,
+    #fff847c2 63%,
+    #fdffdb94 100%
+  );
+  width: 117% ;
+}
+@media (max-width: 769px) {
+	.inscription-card{width: 100%}
+}
+                </style>
+                <div class="o_wblog_sidebar_block pb-5 text-center inscription-card">
                     <div class="text-uppercase pb-2 mb-4 border-bottom font-weight-bold" style="font-size:32px;">Besoin d'une formation VTC, TAXI ou VMDTR ?</div>
                     <div>
                         <p class="blog-para-1" style="font-size:20px;">
@@ -30,4 +46,6 @@
 
 
     </template>
+
+
 </odoo>
