@@ -4,4 +4,4 @@ from . import action_formation
 from . import res_partner
 from . import session
 from . import sale_order
-# from . import res_users
+from . import res_users
