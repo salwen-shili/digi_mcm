@@ -76,7 +76,7 @@ class ResUsers(models.Model):
                         'use_active_domain': False,
                     })
                     composer = composer.with_user(SUPERUSER_ID)
-                    composer.action_send_sms() # we send sms to client contains link of reset password.
+                    composer._action_send_sms() # we send sms to client contains link of reset password.
                     if user.phone:
                         user.phone = '0' + str(user.phone.replace(' ', ''))[
                                                       -9:]
