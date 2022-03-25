@@ -48,6 +48,30 @@ class CustomerPortal(CustomerPortal):
         print(invoice_count)
         partner_orders_signed = request.env['sale.order'].sudo().search([('partner_id', '=', request.env.user.partner_id.id),('company_id', '=', 1),('state',"=",'sale')])
         isSigned = "False"
+        exam_state = 'False'
+        if not request.website.is_public_user():
+            survey = request.env['survey.survey'].sudo().search(
+                [('title', "=", 'Examen blanc Français')], limit=1)
+            if survey:
+                survey_user = request.env['survey.user_input'].sudo().search(
+                    [('partner_id', "=", request.env.user.partner_id.id),
+                     ('survey_id', '=', survey.id)],
+                    order='create_date asc', limit=1)
+                if not survey_user:
+                    exam_state = 'exam_not_passed'
+                if survey_user and survey_user.state == 'new':
+                    exam_state = 'exam_not_passed'
+
+                if survey_user and survey_user.state == 'done':
+                    if not survey_user.quizz_corrected:
+                        exam_state = 'in_process'
+                    else:
+                        if survey_user.quizz_passed:
+                            exam_state = 'success'
+                        else:
+                            exam_state = 'failed'
+
+       
         if partner_orders_signed :
             for order in partner_orders_signed :
                 if order.order_line :
@@ -80,7 +104,8 @@ class CustomerPortal(CustomerPortal):
             'rdvIsBooked' : rdvIsBooked,
             'cartIsEmpty' : cartIsEmpty,
             'isSigned' : isSigned,
-            'bolt_contract_uri':bolt_contract_uri
+            'bolt_contract_uri':bolt_contract_uri,
+            'exam_state': exam_state,
         })
         return values
 
