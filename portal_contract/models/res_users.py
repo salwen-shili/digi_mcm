@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 # Part of Odoo. See LICENSE file for full copyright and licensing details.
 
-from odoo import api, fields, models, _
+from odoo import api, fields, models, _ ,SUPERUSER_ID
 from odoo.exceptions import UserError
 from odoo.addons.auth_signup.models.res_partner import SignupError, now
 import logging
@@ -52,10 +52,11 @@ class ResUsers(models.Model):
             _logger.info("Password reset email sent for user <%s> to <%s>", user.login, user.email)
             if user.phone :
                 phone = str(user.phone.replace(' ', ''))[-9:] # change phone to this format to be accepted in sms +33 X XX XX XX XX 
-                phone = '+33' + ' ' + phone[0:1] + ' ' + phone[1:3] + ' ' + phone[
-                                                                            3:5] + ' ' + phone[
-                                                                                         5:7] + ' ' + phone[
-                                                                                                      7:]
+                phone = '+33' +phone
+                # ' ' + phone[0:1] + ' ' + phone[1:3] + ' ' + phone[
+                #                                             3:5] + ' ' + phone[
+                #                                                          5:7] + ' ' + phone[
+                #                                                                       7:]
                 user.phone = phone
                 url = user.signup_url
                 short_url = pyshorteners.Shortener()
@@ -74,6 +75,7 @@ class ResUsers(models.Model):
                         'mass_force_send': False,
                         'use_active_domain': False,
                     })
+                    composer = composer.with_user(SUPERUSER_ID)
                     composer.action_send_sms() # we send sms to client contains link of reset password.
                     if user.phone:
                         user.phone = '0' + str(user.phone.replace(' ', ''))[
