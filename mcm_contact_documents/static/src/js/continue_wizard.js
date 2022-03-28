@@ -224,11 +224,47 @@ document.addEventListener('DOMContentLoaded', function () {
       }
       break;
     case 'document':
-      textDescription.innerHTML = messageAction.documents.message;
-      // btnContinuer.setAttribute('href', messageAction.documents.url);
-      const uploadMode = `<a  href="/charger_mes_documents_manual" class="text-center next action-button" style="float: unset !important; width: 111px;" value="Manuel"  />
-                                                <a href="/charger_mes_documents" class="text-center next action-button" style="float: unset !important; width: 111px;" value="Automatique" ;`;
-      // btnContinuer.html = uploadMode;
+      step = 2;
+      documents.classList.add('active');
+
+      textDescription.innerHTML = textDocuments;
+
+      // btnContinuer.setAttribute('href', documentsUrl);
+      const uploadDocumentBtns = `
+        <div style="
+  
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    align-items: flex-end;
+    flex-wrap: wrap;
+    flex-direction: row;
+">
+                                    <div class="">
+                                        <a id="button-continuer" href="/charger_mes_documents_manual?${Math.floor(
+                                          Math.random() * 100
+                                        )}" style="margin-right: 8px;">
+                                            <button id="btn-action" class="rkmd-btn btn-black ripple-effect ripple-yellow" type="submit" style="font-size: 11px;width:116px">
+                                            
+                                            Manuel
+                                        </button>
+                                        </a>
+                                    </div>
+
+                                    <div class="">
+
+                                        <a id="button-continuer" href="/charger_mes_documents?${Math.floor(
+                                          Math.random() * 100
+                                        )}">
+                                            <button id="btn-action" class="rkmd-btn btn-black ripple-effect ripple-yellow" type="submit" style="font-size: 11px;width:116px;">
+                                            
+                                            Auto
+                                        </button>
+                                        </a>
+                                    </div>
+                                </div>`;
+      finished.innerHTML = uploadDocumentBtns;
+
       break;
     case 'financements':
       //has not signed his contract
