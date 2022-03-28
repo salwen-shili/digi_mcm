@@ -18,15 +18,16 @@ function setPopup() {
     condition = document.getElementById('exam_state');
     btnContiner = document.getElementById('btn-inside-popup');
     cartIsEmpty = document.getElementById('cartIsEmpty');
-    if (cartIsEmpty.value == 'True') {
-      notifMessage.innerHTML = message['cartIsEmpty'];
-      btnContiner.addEventListener('click', function () {
-        document.getElementById('form-1-1').submit();
-        return false;
-      });
-      openPopup();
-      return;
-    } else if (condition.value == 'in_process') {
+    // if (cartIsEmpty.value == 'True') {
+    //   notifMessage.innerHTML = message['cartIsEmpty'];
+    //   btnContiner.addEventListener('click', function () {
+    //     document.getElementById('form-1-1').submit();
+    //     return false;
+    //   });
+    //   openPopup();
+    //   return;
+    // } else
+    if (condition.value == 'in_process') {
       notifMessage.innerHTML = message['in_process'];
       btnContiner.addEventListener('click', function () {
         closePopup();
