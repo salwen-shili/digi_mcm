@@ -62,6 +62,7 @@ class partner(models.Model):
                                                 ('not_paid', 'Non payées'),
                                                 ('in_payment', 'En paiement')],
                                                string="Financement", default=False )
+    is_not_paid = fields.Boolean(default=False)
 
     """Changer login d'apprenant au moment de changement d'email sur la fiche client"""
 

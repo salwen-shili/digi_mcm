@@ -12,6 +12,7 @@ class UpdateFieldFinancementWizard(models.TransientModel):
         partners = self.env['res.partner'].browse(self._context.get('active_ids'))
         # loop the partners
         for statut in partners:
+            print("statut", statut)
             if statut and statut.etat_financement_cpf_cb != None and statut.mode_de_financement == "cpf":
                 # set the selected field for each partner
                 statut.etat_financement_cpf_cb = statut.statut_cpf

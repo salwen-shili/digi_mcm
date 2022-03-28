@@ -10,6 +10,8 @@
                 <field name="name"></field>
                 <filter name="apprenants" string="les apprenants"
                         domain="[('apprenant','=','True')]"/>
+                                <filter name="etat_financement_cpf_cb" string="Financement non payés" domain="[('etat_financement_cpf_cb', '!=', 'not_paid')]"/>
+
             </search>
         </field>
     </record>
@@ -37,7 +39,8 @@
                 <field name="last_login"/>
                 <field name="totalTimeSpentInMinutes"/>
                 <field name="temps_minute" optional="hide"/>
-                <field name="etat_financement_cpf_cb" optional="show" string="Financement"/>
+                <field name="is_not_paid" invisible="0" optional="hide"/>
+                <field name="etat_financement_cpf_cb" options='{"bg_color": "#FEE7F0:is_not_paid==True;"}' optional="show" string="Financement"/>
             </xpath>
         </field>
     </record>
@@ -61,6 +64,7 @@
                         <label for="second_email" string="Email secondaire:" class="oe_edit_only">Email secondaire</label>
                         <field name="second_email"  class="oe_edit_only" />
                      </div>
+                    <field name="is_not_paid" invisible="1"/>
 
                 </div>
             </xpath>

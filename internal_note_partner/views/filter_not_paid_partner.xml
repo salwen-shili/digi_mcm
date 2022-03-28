@@ -1,0 +1,12 @@
+<odoo>
+    <record model='ir.ui.view' id='view_res_partner_filter'>
+        <field name='name'>res..partner.filter</field>
+        <field name='model'>res.partner</field>
+        <field name='inherit_id' ref='base.view_res_partner_filter'/>
+        <field name='arch' type='xml'>
+            <filter name="type_person" position="before">
+                <filter name="etat_financement_cpf_cb" string="Financement non payés" domain="[('etat_financement_cpf_cb', '!=', 'not_paid')]"/>
+            </filter>
+        </field>
+    </record>
+</odoo>
