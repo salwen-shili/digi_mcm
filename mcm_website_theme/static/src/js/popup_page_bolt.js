@@ -27,20 +27,20 @@ function setPopup() {
     //   openPopup();
     //   return;
     // } else
-    if (condition.value == 'in_process') {
+    if (condition.value == 'in_process' && !cartIsEmpty.value == 'True') {
       notifMessage.innerHTML = message['in_process'];
       btnContiner.addEventListener('click', function () {
         closePopup();
       });
       openPopup();
-    } else if (condition.value == 'success') {
+    } else if (condition.value == 'success' && !cartIsEmpty.value == 'True') {
       notifMessage.innerHTML = message['success'];
       openPopup();
       btnContiner.addEventListener('click', function () {
         closePopup();
         window.location.href = '/my/home';
       });
-    } else if (condition.value == 'failed') {
+    } else if (condition.value == 'failed' && !cartIsEmpty.value == 'True') {
       notifMessage.innerHTML = message['failed'];
       openPopup();
 

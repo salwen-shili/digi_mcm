@@ -145,8 +145,8 @@ document.addEventListener('DOMContentLoaded', function () {
   var bolt_contract_uri = '/';
   //is Bolt
 
-  var isBolt = document.getElementById('isBolt').value;
-  const isSigned = document.getElementById('isSigned').value;
+  var isBoltState = document.getElementById('isBolt').value;
+  const isSignedState = document.getElementById('isSigned').value;
   // const rdvIsBooked = document.getElementById('finished');
   // const rdvIsBooked = document.getElementById('rdvIsBooked').value;
   // const contractIsSigned = document.getElementById('contractIsSigned').value;
@@ -159,15 +159,15 @@ document.addEventListener('DOMContentLoaded', function () {
   const textDescription = document.getElementById('textDescription');
   activateStep(current.value);
   //console.log('step', current.value);
-  if (isBolt == 'True' && boltWrongCart == 'True') {
+  if (isBoltState == 'True' && boltWrongCart == 'True') {
     //bolt user with a wrong cart (other than bolt-vtc)
     btnContinuer.setAttribute('href', messageAction.boltWrongCart.url);
     textDescription.innerHTML = messageAction.boltWrongCart.message;
     return;
   } else if (
-    isBolt == 'True' &&
-    document.getElementById('cartIsEmpty').value === 'True' &&
-    document.getElementById('bolt_contract_uri').value === 'False'
+    isBoltState == 'True' &&
+    document.getElementById('cartIsEmpty').value == 'True' &&
+    document.getElementById('bolt_contract_uri').value == 'False'
   ) {
     //bolt user with empty cart
     btnContinuer.setAttribute('href', messageAction.cartIsEmpty.url);
@@ -180,8 +180,9 @@ document.addEventListener('DOMContentLoaded', function () {
       // coordonnes is the first step by default
       // we will treat exam state of bolt here any way
       //Bolt exam state : exam_not_passed, in_process, success, failed
-      if (isBolt == 'True') {
+      if (isBoltState == 'True') {
         if (document.getElementById('exam_state')) {
+          console.log('asd');
           switch (document.getElementById('exam_state').value) {
             case 'exam_not_passed':
               btnContinuer.setAttribute(
@@ -227,7 +228,7 @@ document.addEventListener('DOMContentLoaded', function () {
       step = 2;
       documents.classList.add('active');
 
-      textDescription.innerHTML = textDocuments;
+      textDescription.innerHTML = messageAction.documents.message;
 
       // btnContinuer.setAttribute('href', documentsUrl);
       const uploadDocumentBtns = `
@@ -296,8 +297,8 @@ document.addEventListener('DOMContentLoaded', function () {
     //   }
     //   break;
     case 'finish':
-      if (isBolt == 'True') {
-        if (isSigned == 'True') {
+      if (isBoltState == 'True') {
+        if (isSignedState == 'True') {
           //Client bolt + contrat is signed
           //check if he has reserved an appointment
           if (rdvIsBooked == 'True') {
