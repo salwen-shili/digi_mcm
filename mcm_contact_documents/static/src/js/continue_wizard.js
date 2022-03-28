@@ -149,7 +149,6 @@ document.addEventListener('DOMContentLoaded', function () {
   // const rdvIsBooked = document.getElementById('finished');
   // const rdvIsBooked = document.getElementById('rdvIsBooked').value;
   // const contractIsSigned = document.getElementById('contractIsSigned').value;
-  //
 
   // const financementUrl = `/shop/cart?${Math.floor(Math.random() * 100)}`;
 
@@ -266,11 +265,11 @@ document.addEventListener('DOMContentLoaded', function () {
       finished.innerHTML = uploadDocumentBtns;
 
       break;
-    case 'financements':
+    case 'financement':
       //has not signed his contract
       //he has paid so he must has a contract
       //we recheck if we have an url
-
+      console.log('1');
       if (document.getElementById('bolt_contract_uri').value !== 'False') {
         bolt_contract_uri = document.getElementById('bolt_contract_uri').value;
         console.log(bolt_contract_uri);
@@ -283,17 +282,18 @@ document.addEventListener('DOMContentLoaded', function () {
           });
         }
       } else {
-        textDescription.innerHTML = messageDescription[textFinancement];
-        btnContinuer.setAttribute('href', financementUrl);
+        console.log('3');
+        textDescription.innerHTML = messageAction.financement.message;
+        btnContinuer.setAttribute('href', messageAction.financement.url);
       }
 
       break;
-    case 'validation':
-      btnContinuer.setAttribute('href', validationUrl);
-      if (current.value === 'finish') {
-        finished.innerHTML = finish;
-      }
-      break;
+    // case 'validation':
+    //   btnContinuer.setAttribute('href', validationUrl);
+    //   if (current.value === 'finish') {
+    //     finished.innerHTML = finish;
+    //   }
+    //   break;
     case 'finish':
       if (isBolt == 'True') {
         if (isSigned == 'True') {
