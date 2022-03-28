@@ -5,17 +5,28 @@ var message = {
   success:
     'Félicitations, vous avez réussi votre examen. Cliquez sur continuer pour finaliser votre inscription.',
   failed: "Malheureusement vous n'avez pas réussi votre examen.",
+  cartIsEmpty: `Vous pouvez ajouter votre formation dans le panier en cliquant sur continer.`,
 };
 var notifMessage;
 var condition;
 var btnContiner;
+var cartIsEmpty;
 
 function setPopup() {
   if (document.getElementById('notifMessage')) {
     notifMessage = document.getElementById('notifMessage');
     condition = document.getElementById('exam_state');
     btnContiner = document.getElementById('btn-inside-popup');
-    if (condition.value == 'in_process') {
+    cartIsEmpty = document.getElementById('cartIsEmpty');
+    if (cartIsEmpty.value == 'True') {
+      notifMessage.innerHTML = message['cartIsEmpty'];
+      btnContiner.addEventListener('click', function () {
+        document.getElementById('form-1-1').submit();
+        return false;
+      });
+      openPopup();
+      return;
+    } else if (condition.value == 'in_process') {
       notifMessage.innerHTML = message['in_process'];
       btnContiner.addEventListener('click', function () {
         closePopup();

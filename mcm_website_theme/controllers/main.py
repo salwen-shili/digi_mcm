@@ -161,7 +161,7 @@ class Website(Home):
                 if website_page:
                     return request.render(str(website_page.view_id.key), values)
                 else:
-                    #raise 404 not found if the url was not found
+                    # raise 404 not found if the url was not found
                     raise werkzeug.exceptions.NotFound()
         return request.render("website.homepage", values)
         # --------------------------------------------------------------------------
@@ -640,7 +640,8 @@ class Routes_Site(http.Controller):
         product = order.order_line[0].product_id
         vals['product_id'] = product.id
         vals['company_id'] = partner.company_id.id
-        redirection = kw.get("redirection") #get the value of redirection sent from a form of questionnaire
+        # get the value of redirection sent from a form of questionnaire
+        redirection = kw.get("redirection")
 
         new_quetionnaire = request.env['questionnaire'].sudo().create(vals)
         # Si le client a choisi un pack
@@ -652,12 +653,13 @@ class Routes_Site(http.Controller):
                 documents = request.env['documents.document'].sudo().search(
                     [('partner_id', '=', order.partner_id.id)])
                 if order and not documents:
-                    if redirection == 'automatique': #check if the value of redirection is auto to redirect the client to upload his documents using idenfy
-                        return werkzeug.utils.redirect('/charger_mes_documents',301)
-                    elif redirection == 'manuelle' : #check if the value of redirection is manual to redirect the client to upload his documents manually
+                    if redirection == 'automatique':  # check if the value of redirection is auto to redirect the client to upload his documents using idenfy
+                        return werkzeug.utils.redirect('/charger_mes_documents', 301)
+                    elif redirection == 'manuelle':  # check if the value of redirection is manual to redirect the client to upload his documents manually
                         return werkzeug.utils.redirect('/charger_mes_documents_manual', 301)
                     else:
-                        return werkzeug.utils.redirect('/shop/cart', 301) # if no redirection sended we redirect the client to shop cart
+                        # if no redirection sended we redirect the client to shop cart
+                        return werkzeug.utils.redirect('/shop/cart', 301)
             return werkzeug.utils.redirect('/shop/cart', 301)
         return http.request.render('mcm_contact_documents.portal_my_home', {'step': 'document'})
 
@@ -716,12 +718,18 @@ class Routes_Site(http.Controller):
                             exam_state = 'success'
                         else:
                             exam_state = 'failed'
-
+        cartIsEmpty = "False"
+        order = request.website.sale_get_order()
+        if not order:
+            cartIsEmpty = "True"
+        if order and not order.order_line:
+            cartIsEmpty = "True"
         values = {
             'bolt_product': bolt_product,
             'vtc_product': vtc_product,
             'promo': promo,
             'exam_state': exam_state,
+            'cartIsEmpty': cartIsEmpty,
         }
 
         if request.website.id == 2:
@@ -1553,7 +1561,7 @@ class CustomerPortal(CustomerPortal):
     #         'none': {'input': 'none', 'label': _('None')},
     #         'project': {'input': 'project', 'label': _('Project')},
     #     }
-    # 
+    #
     #     # extends filterby criteria with project the customer has access to
     #     projects = request.env['project.project'].search([])
     #     print(projects)
@@ -1561,7 +1569,7 @@ class CustomerPortal(CustomerPortal):
     #         searchbar_filters.update({
     #             str(project.id): {'label': project.name, 'domain': [('project_id', '=', project.id)]}
     #         })
-    # 
+    #
     #     # extends filterby criteria with project (criteria name is the project id)
     #     # Note: portal users can't view projects they don't follow
     #     project_groups = request.env['project.task'].read_group([('project_id', 'not in', projects.ids)],
@@ -1573,7 +1581,7 @@ class CustomerPortal(CustomerPortal):
     #         searchbar_filters.update({
     #             str(proj_id): {'label': proj_name, 'domain': [('project_id', '=', proj_id)]}
     #         })
-    # 
+    #
     #     # default sort by value
     #     if not sortby:
     #         sortby = 'date'
@@ -1582,13 +1590,13 @@ class CustomerPortal(CustomerPortal):
     #     if not filterby:
     #         filterby = 'all'
     #     domain = searchbar_filters[filterby]['domain']
-    # 
+    #
     #     # archive groups - Default Group By 'create_date'
     #     archive_groups = self._get_archive_groups('project.task', domain)
     #     if date_begin and date_end:
     #         domain += [('create_date', '>', date_begin),
     #                    ('create_date', '<=', date_end)]
-    # 
+    #
     #     # search
     #     if search and search_in:
     #         search_domain = []
@@ -1605,7 +1613,7 @@ class CustomerPortal(CustomerPortal):
     #             search_domain = OR(
     #                 [search_domain, [('stage_id', 'ilike', search)]])
     #         domain += search_domain
-    # 
+    #
     #     # Display tasks of active user
     #     users = request.env.user
     #     users_tasks_domain = [

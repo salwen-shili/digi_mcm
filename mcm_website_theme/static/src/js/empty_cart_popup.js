@@ -7,6 +7,7 @@ const messages = {
   rdvIsBooked: `félicitations pour votre inscription, l'un de nos agents va vous contacter suite au rendez-vous réservé pour finaliser le financement de votre examen`,
   rdvIsnotbooked: `Veuillez réserver un créneau pour finaliser votre inscription a l'examen VTC afin d'accéder à la plateforme de formation`,
   isNotSigned: `Nous vous remercions pour votre confiance, votre paiement a été effectué avec succès! Vous pouvez maintenant finaliser votre inscription en signant votre contrat pour avoir accès à notre plateforme de formation.`,
+  emptyCartNoContract: `Votre panier est vide. Cliquez sur continer pour ajouter votre formation dans le panier.`,
 };
 var bolt_contract_uri = '/';
 var btnAction;
@@ -24,6 +25,7 @@ function setPopup() {
       }
       //contract is signed
       if (isSigned == 'True') {
+        console.log(' is signed)');
         if (document.getElementById('rdvIsBooked')) {
           rdvIsBooked = document.getElementById('rdvIsBooked').value;
           // rdv is booked
@@ -53,6 +55,7 @@ function setPopup() {
           }
         }
       } else {
+        console.log(document.getElementById('bolt_contract_uri').value);
         //contract is not signed
         //get uri to sign contract
         if (document.getElementById('bolt_contract_uri').value !== 'False') {
@@ -71,6 +74,17 @@ function setPopup() {
               window.location.href = bolt_contract_uri;
             });
           }
+        } else if (document.getElementById('btn-action')) {
+          //set notification message to the right description
+          notifMessage.textContent = messages['emptyCartNoContract'];
+          btnAction = document.getElementById('btn-action');
+          //change button to 'signer mon contrat'
+          btnAction.innerText = 'continer';
+          btnAction.addEventListener('click', function () {
+            //redirection to the uri
+            console.log('redirection...', `/bolt#pricing`);
+            window.location.href = `/bolt#pricing`;
+          });
         }
       }
 

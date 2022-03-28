@@ -64,7 +64,7 @@ const noRdv = `<h2 class="purple-text text-center"><strong>FÉLICITATIONS !</str
 const isNotSignedMessage = `Nous vous remercions pour votre confiance, votre paiement a été effectué avec succès! Vous pouvez maintenant finaliser votre inscription en signant votre contrat pour avoir accès à notre plateforme de formation.`;
 
 const textCoordonnees = `<b>Félicitations!</b> Vous avez terminé la première étape de votre inscription. Cliquez sur <b>continuer</b> pour passer à l'<b>étape suivante<b/>. `;
-const textDocuments = `<b>Félicitations!</b> Vous avez terminé l'étape <b>Coordonnées</b> de votre inscription. Pour passer à l'étape suivante merci de vous munir d'une copie originale de votre carte d'identité et cliquer sur <b>continuer</b>.`;
+const textDocuments = `<b>Félicitations!</b> Vous avez terminé l'étape <b>coordonnées</b> de votre inscription. Pour passer à l'étape suivante merci de vous munir d'une copie originale de votre carte d'identité et cliquer sur <b>continuer</b>.`;
 const textFinancement = `<b>Félicitations!</b> Vous avez chargé vos documents. Vous pourrez désormais choisir votre date et centre d'examen et financer votre formation.`;
 var rdvIsBooked = false;
 var bolt_contract_uri = '/';
@@ -116,16 +116,50 @@ document.addEventListener('DOMContentLoaded', function () {
       textDescription.innerHTML = textCoordonnees;
 
       break;
-    case 'document':
+    case 'financement':
       step = 2;
       documents.classList.add('active');
 
       textDescription.innerHTML = textDocuments;
 
-      btnContinuer.setAttribute('href', documentsUrl);
+      // btnContinuer.setAttribute('href', documentsUrl);
+      const uploadDocumentBtns = `
+        <div style="
+  
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    align-items: flex-end;
+    flex-wrap: wrap;
+    flex-direction: row;
+">
+                                    <div class="">
+                                        <a id="button-continuer" href="/charger_mes_documents_manual?${Math.floor(
+                                          Math.random() * 100
+                                        )}" style="margin-right: 8px;">
+                                            <button id="btn-action" class="rkmd-btn btn-black ripple-effect ripple-yellow" type="submit" style="font-size: 11px;width:116px">
+                                            
+                                            Manuel
+                                        </button>
+                                        </a>
+                                    </div>
+
+                                    <div class="">
+
+                                        <a id="button-continuer" href="/charger_mes_documents?${Math.floor(
+                                          Math.random() * 100
+                                        )}">
+                                            <button id="btn-action" class="rkmd-btn btn-black ripple-effect ripple-yellow" type="submit" style="font-size: 11px;width:116px;">
+                                            
+                                            Auto
+                                        </button>
+                                        </a>
+                                    </div>
+                                </div>`;
+      finished.innerHTML = uploadDocumentBtns;
 
       break;
-    case 'financement':
+    case 'financements':
       //has not signed his contract
       //he has paid so he must has a contract
       //we recheck if we have an url
