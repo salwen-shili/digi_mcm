@@ -7,7 +7,6 @@ function openCalendly() {
 }
 
 //
-
 const financement = document.getElementById('payment');
 const financementUrl = `/shop/cart?${Math.floor(Math.random() * 100)}`;
 const validation = document.getElementById('confirm');
