@@ -29,7 +29,6 @@ from odoo.tools.mimetypes import guess_mimetype
 logger = logging.getLogger(__name__)
 
 
-
 class CustomerPortal(CustomerPortal):
 
     def _prepare_portal_layout_values(self):
@@ -41,46 +40,74 @@ class CustomerPortal(CustomerPortal):
         values['document_count'] = document_count
         values = super(CustomerPortal, self)._prepare_portal_layout_values()
         invoice_count = request.env['account.move'].search_count([
-            ('type', 'in', ('out_invoice', 'in_invoice', 'out_refund', 'in_refund', 'out_receipt', 'in_receipt')),
+            ('type', 'in', ('out_invoice', 'in_invoice',
+             'out_refund', 'in_refund', 'out_receipt', 'in_receipt')),
             ('type_facture', '=', 'web'), ('cpf_solde_invoice', '=', False), ('cpf_acompte_invoice', '=', False)])
         values['invoice_count'] = invoice_count
         print('invoice_count')
         print(invoice_count)
-        partner_orders_signed = request.env['sale.order'].sudo().search([('partner_id', '=', request.env.user.partner_id.id),('company_id', '=', 1),('state',"=",'sale')])
+        partner_orders_signed = request.env['sale.order'].sudo().search(
+            [('partner_id', '=', request.env.user.partner_id.id), ('company_id', '=', 1), ('state', "=", 'sale')])
         isSigned = "False"
-        if partner_orders_signed :
-            for order in partner_orders_signed :
-                if order.order_line :
-                    for line in order.order_line :
-                        if (line.product_id.default_code=='vtc_bolt'):
+        exam_state = 'False'
+        if not request.website.is_public_user():
+            survey = request.env['survey.survey'].sudo().search(
+                [('title', "=", 'Examen blanc Français')], limit=1)
+            if survey:
+                survey_user = request.env['survey.user_input'].sudo().search(
+                    [('partner_id', "=", request.env.user.partner_id.id),
+                     ('survey_id', '=', survey.id)],
+                    order='create_date asc', limit=1)
+                if not survey_user:
+                    exam_state = 'exam_not_passed'
+                if survey_user and survey_user.state == 'new':
+                    exam_state = 'exam_not_passed'
+
+                if survey_user and survey_user.state == 'done':
+                    if not survey_user.quizz_corrected:
+                        exam_state = 'in_process'
+                    else:
+                        if survey_user.quizz_passed:
+                            exam_state = 'success'
+                        else:
+                            exam_state = 'failed'
+
+        if partner_orders_signed:
+            for order in partner_orders_signed:
+                if order.order_line:
+                    for line in order.order_line:
+                        if (line.product_id.default_code == 'vtc_bolt'):
                             isSigned = "True"
         bolt_order = False
         partner_orders_not_signed = request.env['sale.order'].sudo().search(
             [('partner_id', '=', request.env.user.partner_id.id), ('company_id', '=', 1), ('state', "=", 'sent')])
-        if partner_orders_not_signed :
-            for order in partner_orders_not_signed :
-                if order.order_line :
-                    for line in order.order_line :
-                        if (line.product_id.default_code=='vtc_bolt'):
+        if partner_orders_not_signed:
+            for order in partner_orders_not_signed:
+                if order.order_line:
+                    for line in order.order_line:
+                        if (line.product_id.default_code == 'vtc_bolt'):
                             bolt_order = order
         bolt_contract_uri = "False"
-        if bolt_order :
-            bolt_contract_uri = "/my/orders/%s?access_token=%s" % (str(bolt_order.id), str(bolt_order.access_token))
+        if bolt_order:
+            bolt_contract_uri = "/my/orders/%s?access_token=%s" % (
+                str(bolt_order.id), str(bolt_order.access_token))
         rdvIsBooked = "False"
-        rendezvous = request.env['calendly.rendezvous'].sudo().search([('partner_id', '=', request.env.user.partner_id.id)],limit=1)
-        if rendezvous :
+        rendezvous = request.env['calendly.rendezvous'].sudo().search(
+            [('partner_id', '=', request.env.user.partner_id.id)], limit=1)
+        if rendezvous:
             rdvIsBooked = "True"
         cartIsEmpty = "False"
         order = request.website.sale_get_order()
         if not order:
             cartIsEmpty = "True"
-        if order and not order.order_line :
+        if order and not order.order_line:
             cartIsEmpty = "True"
         values.update({
-            'rdvIsBooked' : rdvIsBooked,
-            'cartIsEmpty' : cartIsEmpty,
-            'isSigned' : isSigned,
-            'bolt_contract_uri':bolt_contract_uri
+            'rdvIsBooked': rdvIsBooked,
+            'cartIsEmpty': cartIsEmpty,
+            'isSigned': isSigned,
+            'bolt_contract_uri': bolt_contract_uri,
+            'exam_state': exam_state,
         })
         return values
 
@@ -157,7 +184,7 @@ class CustomerPortal(CustomerPortal):
             'date': date_begin,
             'documents': documents,
             'page_name': 'document',
-            'website' : website,
+            'website': website,
             'pager': pager,
             'default_url': '/my/documents',
             'searchbar_sortings': searchbar_sortings,
@@ -168,6 +195,7 @@ class CustomerPortal(CustomerPortal):
         return request.render("mcm_contact_documents.portal_my_documents", values)
 # upload documents MCM-Academy
     # Retour en arrière pour la version précédente pour les mimetype à cause d un problème service clientèle le 06/09/2021
+
     @http.route(['/submitted/document'], type="http", auth="user", methods=['POST'], website=True, csrf=False)
     def submit_documents(self, **kw):
         partner_id = http.request.env.user.partner_id
@@ -179,7 +207,8 @@ class CustomerPortal(CustomerPortal):
                 'name': "Documents MCM ACADEMY"
             }
             vals_list.append(vals)
-            folder_id = request.env['documents.folder'].sudo().create(vals_list)
+            folder_id = request.env['documents.folder'].sudo().create(
+                vals_list)
             vals_list = []
             vals = {
                 'name': "Statut document",
@@ -215,16 +244,19 @@ class CustomerPortal(CustomerPortal):
                         'partner_id': False,
                         'owner_id': False}
                     vals_list.append(vals)
-                    document = request.env['documents.document'].sudo().create(vals_list)
+                    document = request.env['documents.document'].sudo().create(
+                        vals_list)
                     if document:
                         uid = document.create_uid
                         document.sudo().write(
                             {'owner_id': uid, 'partner_id': uid.partner_id,
                              'name': document.name + ' ' + str(uid.name)})
-                         # ajout du champ mimetype  dans ir.attachement
+                        # ajout du champ mimetype  dans ir.attachement
                     if len(files) == 2:
-                        datas_Carte_didentité_Recto = base64.encodebytes(files[0].read())
-                        datas_Carte_didentité_Verso = base64.encodebytes(files[1].read())
+                        datas_Carte_didentité_Recto = base64.encodebytes(
+                            files[0].read())
+                        datas_Carte_didentité_Verso = base64.encodebytes(
+                            files[1].read())
                         # Attachement Carte d'identité Recto
                         request.env['ir.attachment'].sudo().create({
                             'name': "Carte d'identité recto",
@@ -244,7 +276,8 @@ class CustomerPortal(CustomerPortal):
                         })
                         # Attachement Carte d'identité recto
                     elif len(files) == 1:
-                        datas_carte_didentiterecto = base64.encodebytes(files[0].read())
+                        datas_carte_didentiterecto = base64.encodebytes(
+                            files[0].read())
                         request.env['ir.attachment'].sudo().create({
                             'name': "Carte d'identité recto",
                             'type': 'binary',
@@ -253,7 +286,8 @@ class CustomerPortal(CustomerPortal):
                             'res_id': document.id
                         })
                 if files2 and document:
-                    datas_carte_didentite = base64.encodebytes(files2[0].read())
+                    datas_carte_didentite = base64.encodebytes(
+                        files2[0].read())
                     # ajout du champ mimetype  dans ir.attachement
                     request.env['ir.attachment'].sudo().create({
                         'name': "Carte d'identité Verso",
@@ -284,15 +318,18 @@ class CustomerPortal(CustomerPortal):
                         'partner_id': False,
                         'owner_id': False}
                     vals_list.append(vals)
-                    document = request.env['documents.document'].sudo().create(vals_list)
+                    document = request.env['documents.document'].sudo().create(
+                        vals_list)
                     if document:
                         uid = document.create_uid
                         document.sudo().write(
                             {'owner_id': uid, 'partner_id': uid.partner_id,
                              'name': document.name + ' ' + str(uid.name)})
                     if len(files) == 2:
-                        datas_permis_Recto = base64.encodebytes(files[0].read())
-                        datas_permis_Verso = base64.encodebytes(files[1].read())
+                        datas_permis_Recto = base64.encodebytes(
+                            files[0].read())
+                        datas_permis_Verso = base64.encodebytes(
+                            files[1].read())
                         # Attachement Carte d'identité Recto
                         request.env['ir.attachment'].sudo().create({
                             'name': "Carte d'identité recto",
@@ -311,7 +348,8 @@ class CustomerPortal(CustomerPortal):
                         })
                         # Attachement Carte d'identité recto
                     elif len(files) == 1:
-                        datas_permis_recto = base64.encodebytes(files[0].read())
+                        datas_permis_recto = base64.encodebytes(
+                            files[0].read())
                         request.env['ir.attachment'].sudo().create({
                             'name': "Permis de conduire Recto",
                             'type': 'binary',
@@ -329,7 +367,8 @@ class CustomerPortal(CustomerPortal):
                         'res_model': 'documents.document',
                         'res_id': document.id
                     })
-                document.sudo().write({'name': "Permis de conduire Recto/Verso"})
+                document.sudo().write(
+                    {'name': "Permis de conduire Recto/Verso"})
             except Exception as e:
                 logger.exception("Fail to upload document Carte d'identité ")
         except:
@@ -345,6 +384,7 @@ class CustomerPortal(CustomerPortal):
             return request.redirect('/pricing')
 # Upload documents digimoov
     # Retour en arrière pour la version précédente pour les mimetype à cause d un problème service clientèle le 06/09/2021
+
     @http.route('/upload_my_files', type="http", auth="user", methods=['POST'], website=True, csrf=False)
     def upload_my_files(self, **kw):
         # charger le dossier des documents clients appartenant a Digimoov
@@ -358,7 +398,8 @@ class CustomerPortal(CustomerPortal):
                 'company_id': 2
             }
             vals_list.append(vals)
-            folder_id = request.env['documents.folder'].sudo().create(vals_list)
+            folder_id = request.env['documents.folder'].sudo().create(
+                vals_list)
             vals_list = []
             vals = {
                 'name': "Statut document",
@@ -371,8 +412,7 @@ class CustomerPortal(CustomerPortal):
         files_identity = request.httprequest.files.getlist('identity')
         files_identity_verso = request.httprequest.files.getlist('identity2')
 
-
-        if (len(files_identity) > 2 ):
+        if (len(files_identity) > 2):
             name = http.request.env.user.name
             email = http.request.env.user.email
             return request.redirect('/charger_mes_documents')
@@ -382,7 +422,7 @@ class CustomerPortal(CustomerPortal):
             try:
                 files = request.httprequest.files.getlist('identity')
                 files2 = request.httprequest.files.getlist('identity2')
-                if files :
+                if files:
                     vals_list = []
                     # charge le modele de la carte d'identité [un seul modele pour deux attachements]
                     # on a pris les precaution au cas ou un client télécharge le recto et le verso avec le meme upload file
@@ -396,18 +436,21 @@ class CustomerPortal(CustomerPortal):
                         'partner_id': False,
                         'owner_id': False}
                     vals_list.append(vals)
-                    document = request.env['documents.document'].sudo().create(vals_list)
+                    document = request.env['documents.document'].sudo().create(
+                        vals_list)
                     if document:
                         uid = document.create_uid
                         document.sudo().write(
                             {'owner_id': uid, 'partner_id': uid.partner_id,
                              'name': document.name + ' ' + str(uid.name)})
                     # En cas ou le candiadat charge deux piéces_jointe
-                    #ajout du champ mimetype dans ir.attachement
-                    #Retour en arrière pour la version précédente pour les mimetype à cause d un problème service clientèle le 06/09/2021
+                    # ajout du champ mimetype dans ir.attachement
+                    # Retour en arrière pour la version précédente pour les mimetype à cause d un problème service clientèle le 06/09/2021
                     if len(files) == 2:
-                        datas_Carte_didentité_Recto = base64.encodebytes(files[0].read())
-                        datas_Carte_didentité_Verso = base64.encodebytes(files[1].read())
+                        datas_Carte_didentité_Recto = base64.encodebytes(
+                            files[0].read())
+                        datas_Carte_didentité_Verso = base64.encodebytes(
+                            files[1].read())
                         # Attachement Carte d'identité Recto
                         request.env['ir.attachment'].sudo().create({
                             'name': "Carte d'identité recto",
@@ -428,7 +471,8 @@ class CustomerPortal(CustomerPortal):
                         # ajout du champ mimetype dans ir.attachement
                         # Retour en arrière pour la version précédente pour les mimetype à cause d un problème service clientèle le 06/09/2021
                     elif len(files) == 1:
-                        datas_carte_didentiterecto = base64.encodebytes(files[0].read())
+                        datas_carte_didentiterecto = base64.encodebytes(
+                            files[0].read())
                         request.env['ir.attachment'].sudo().create({
                             'name': "Carte d'identité recto",
                             'type': 'binary',
@@ -438,8 +482,9 @@ class CustomerPortal(CustomerPortal):
                         })
                         # ajout du champ mimetype dans ir.attachement
                         # Retour en arrière pour la version précédente pour les mimetype à cause d un problème service clientèle le 06/09/2021
-                if files2 and document :
-                    datas_carte_didentite = base64.encodebytes(files2[0].read())
+                if files2 and document:
+                    datas_carte_didentite = base64.encodebytes(
+                        files2[0].read())
 
                     request.env['ir.attachment'].sudo().create({
                         'name': "Carte d'identité Verso",
@@ -476,11 +521,13 @@ class CustomerPortal(CustomerPortal):
                 'company_id': 2
             }
             vals_list.append(vals)
-            folder_id = request.env['documents.folder'].sudo().create(vals_list)
+            folder_id = request.env['documents.folder'].sudo().create(
+                vals_list)
 
         try:
             # Récupérer le justificatif de domicile
-            fichier_justificatif = request.httprequest.files.getlist('justificatif_domicile')
+            fichier_justificatif = request.httprequest.files.getlist(
+                'justificatif_domicile')
             fichier_cerfa = request.httprequest.files.getlist('cerfa')
             if fichier_justificatif:
                 vals_list = []
@@ -494,7 +541,8 @@ class CustomerPortal(CustomerPortal):
                     'owner_id': False
                 }
                 vals_list.append(vals)
-                document_justificatif = request.env['documents.document'].sudo().create(vals_list)
+                document_justificatif = request.env['documents.document'].sudo().create(
+                    vals_list)
                 if document_justificatif:
                     # Ajouter le partner_id et le owner_id
                     uid = document_justificatif.create_uid
@@ -502,7 +550,8 @@ class CustomerPortal(CustomerPortal):
                         {'owner_id': uid, 'partner_id': uid.partner_id,
                          'name': document_justificatif.name + ' ' + str(uid.name)})
                     # Créer la pièce jointe
-                    datas_justificatif = base64.encodebytes(fichier_justificatif[0].read())
+                    datas_justificatif = base64.encodebytes(
+                        fichier_justificatif[0].read())
                     request.env['ir.attachment'].sudo().create({
                         'name': "Jusitificatif de domicile",
                         'type': 'binary',
@@ -511,11 +560,13 @@ class CustomerPortal(CustomerPortal):
                         'res_id': document_justificatif.id
                     })
         except Exception as e:
-            logger.exception("Erreur de chargement du fichier justificatif de domicile ")
+            logger.exception(
+                "Erreur de chargement du fichier justificatif de domicile ")
 
         try:
             # Récupérer l'identité de l'hébergeur
-            fichier_identite = request.httprequest.files.getlist('identite_hebergeur')
+            fichier_identite = request.httprequest.files.getlist(
+                'identite_hebergeur')
             if fichier_identite:
                 # Création du document identité de l'hébergeur
                 vals_list = []
@@ -528,7 +579,8 @@ class CustomerPortal(CustomerPortal):
                     'owner_id': False
                 }
                 vals_list.append(vals)
-                document_identite_hebergeur = request.env['documents.document'].sudo().create(vals_list)
+                document_identite_hebergeur = request.env['documents.document'].sudo().create(
+                    vals_list)
                 if document_identite_hebergeur:
                     # Ajouter le partner_id et le owner_id
                     uid = document_identite_hebergeur.create_uid
@@ -536,7 +588,8 @@ class CustomerPortal(CustomerPortal):
                         {'owner_id': uid, 'partner_id': uid.partner_id,
                          'name': document_identite_hebergeur.name + ' ' + str(uid.name)})
                     # Créer la pièce jointe
-                    datas_identite_hebergeur = base64.encodebytes(fichier_identite[0].read())
+                    datas_identite_hebergeur = base64.encodebytes(
+                        fichier_identite[0].read())
                     request.env['ir.attachment'].sudo().create({
                         'name': "Carte d'identité de l'hébergeur",
                         'type': 'binary',
@@ -545,12 +598,15 @@ class CustomerPortal(CustomerPortal):
                         'res_id': document_identite_hebergeur.id
                     })
                 if document_identite_hebergeur:
-                    document_identite_hebergeur.sudo().write({'name': "Carte d'identité de l'hébergeur"})
+                    document_identite_hebergeur.sudo().write(
+                        {'name': "Carte d'identité de l'hébergeur"})
         except Exception as e:
-            logger.exception("Erreur de chargement du document: Carte d'identité de l'hébergeur")
+            logger.exception(
+                "Erreur de chargement du document: Carte d'identité de l'hébergeur")
         try:
             # charger l'attestation de l'hébergement
-            fichier_attestation = request.httprequest.files.getlist('attestation_hebergement')
+            fichier_attestation = request.httprequest.files.getlist(
+                'attestation_hebergement')
             if fichier_attestation:
                 # Création du document
                 vals_list = []
@@ -563,15 +619,17 @@ class CustomerPortal(CustomerPortal):
                     'owner_id': False
                 }
                 vals_list.append(vals)
-                document_attestation = request.env['documents.document'].sudo().create(vals_list)
-                if document_attestation :
+                document_attestation = request.env['documents.document'].sudo().create(
+                    vals_list)
+                if document_attestation:
                     # Ajouter le partner_id et le owner_id
                     uid = document_attestation.create_uid
                     document_attestation.sudo().write(
                         {'owner_id': uid, 'partner_id': uid.partner_id,
                          'name': document_attestation.name + ' ' + str(uid.name)})
                     # Créer la pièce jointe
-                    datas_attestation_hebergement = base64.encodebytes(fichier_attestation[0].read())
+                    datas_attestation_hebergement = base64.encodebytes(
+                        fichier_attestation[0].read())
                     request.env['ir.attachment'].sudo().create({
                         'name': "Attestation d'hébergement",
                         'type': 'binary',
@@ -580,10 +638,10 @@ class CustomerPortal(CustomerPortal):
                         'res_id': document_attestation.id
                     })
         except Exception as e:
-            logger.exception("Erreur de téléchargement du fichier: Attestation d'hébergement")
+            logger.exception(
+                "Erreur de téléchargement du fichier: Attestation d'hébergement")
 
     # ce code  a été modifié par Seifeddinne le 26/10/2021
-
 
         try:
             # charger le document CERFA
@@ -603,7 +661,8 @@ class CustomerPortal(CustomerPortal):
                     'owner_id': False
                 }
                 vals_list.append(vals)
-                document_cerfa = request.env['documents.document'].sudo().create(vals_list)
+                document_cerfa = request.env['documents.document'].sudo().create(
+                    vals_list)
                 if document_cerfa:
                     # Ajouter le partner_id et le owner_id
                     uid = document_cerfa.create_uid
@@ -623,10 +682,10 @@ class CustomerPortal(CustomerPortal):
         partner_id = http.request.env.user.partner_id
         print(partner_id.module_id.name)
         return http.request.render('mcm_contact_documents.mcm_contact_documents_new_documents', {
-            'email': email, 'name': name, 'partner_id':partner_id ,'error_identity':'','error_permis':'','error_permis_number':'','error_domicile':'' })
+            'email': email, 'name': name, 'partner_id': partner_id, 'error_identity': '', 'error_permis': '', 'error_permis_number': '', 'error_domicile': ''})
 
+    # Nouvelle page qui ressemble à la page précédente
 
-    #Nouvelle page qui ressemble à la page précédente
     @http.route('/charger_mes_documents_1', type="http", auth="user", website=True)
     def create_documents_digimoov1(self, **kw):
         name = http.request.env.user.name
@@ -640,10 +699,10 @@ class CustomerPortal(CustomerPortal):
         name = http.request.env.user.name
         email = http.request.env.user.email
         partner_id = http.request.env.user.partner_id
-        if request.website.id==2: # id 2 of website in database means website DIGIMOOV
+        if request.website.id == 2:  # id 2 of website in database means website DIGIMOOV
             return http.request.render('mcm_contact_documents.mcm_contact_document_charger_mes_documents', {
                 'email': email, 'name': name, 'partner_id': partner_id, 'error_identity': '', 'error_permis': '', 'error_permis_number': '', 'error_domicile': ''})
-        elif request.website.id==1: # id 1 of website in database means website MCM ACADEMY
+        elif request.website.id == 1:  # id 1 of website in database means website MCM ACADEMY
             return http.request.render('mcm_contact_documents.mcm_contact_documents_charger_mes_documents_mcm', {
                 'email': email, 'name': name, 'partner_id': partner_id, 'error_identity': '', 'error_permis': '', 'error_permis_number': '', 'error_domicile': ''})
 
@@ -652,13 +711,12 @@ class CustomerPortal(CustomerPortal):
         name = http.request.env.user.name
         email = http.request.env.user.email
         partner_id = http.request.env.user.partner_id
-        if request.website.id==2: # id 2 of website in database means website DIGIMOOV
+        if request.website.id == 2:  # id 2 of website in database means website DIGIMOOV
             return http.request.render('mcm_contact_documents.digimoov_documents_manual', {
                 'email': email, 'name': name, 'partner_id': partner_id, 'error_identity': '', 'error_permis': '', 'error_permis_number': '', 'error_domicile': ''})
-        elif request.website.id==1: # id 1 of website in database means website MCM ACADEMY
+        elif request.website.id == 1:  # id 1 of website in database means website MCM ACADEMY
             return http.request.render('mcm_contact_documents.mcm_documents_manual', {
                 'email': email, 'name': name, 'partner_id': partner_id, 'error_identity': '', 'error_permis': '', 'error_permis_number': '', 'error_domicile': ''})
-
 
     def _document_get_page_view_values(self, document, access_token, **kwargs):
         values = {
@@ -668,43 +726,51 @@ class CustomerPortal(CustomerPortal):
         return self._get_page_view_values(document, access_token, values, 'my_documents_history', False, **kwargs)
 
     @http.route(['/my/document/<int:document_id>'], type='http', website=True)
-    def portal_my_document(self, document_id=None,access_token=None, **kw):
-        document=request.env['documents.document'].sudo().search(
-            [('id', '=', document_id)],limit=1)
-        #view portal of refused document
+    def portal_my_document(self, document_id=None, access_token=None, **kw):
+        document = request.env['documents.document'].sudo().search(
+            [('id', '=', document_id)], limit=1)
+        # view portal of refused document
         if document:
             if document.state != 'refused':
                 return request.redirect('/my/documents')
-            document_sudo=document.sudo()
+            document_sudo = document.sudo()
             if document.owner_id.id != http.request.env.user.id:
                 return request.redirect('/my/documents')
-        values = self._document_get_page_view_values(document_sudo, access_token, **kw)
+        values = self._document_get_page_view_values(
+            document_sudo, access_token, **kw)
 
         return request.render("mcm_contact_documents.portal_document_page",
                               values)
 
     @http.route(['/update/<int:document_id>'], type="http", auth="user", methods=['POST'], website=True, csrf=False)
-    def update_document(self,document_id=None, **kw):
+    def update_document(self, document_id=None, **kw):
         document = request.env['documents.document'].sudo().search(
             [('id', '=', document_id)], limit=1)
-        #search and get the refused document
+        # search and get the refused document
         # # ce code  a été modifié par Seifeddinne le 26/10/2021
         # rectification de la partie Cerfa ajout de [ir.attachement]
 
         if document:
             try:
-                files = request.httprequest.files.getlist('updated_document') #if the refused document is not CERFA
+                files = request.httprequest.files.getlist(
+                    'updated_document')  # if the refused document is not CERFA
                 if not files:
                     # if the refused document is CERFA
-                    files = request.httprequest.files.getlist('updated_document_cerfa')
-                files2 = request.httprequest.files.getlist('updated_document_cerfa2') # get the second page of cerfa if the client upload only one image in first upload zone
-                files3 = request.httprequest.files.getlist('updated_document_cerfa3')  # get the third page of cerfa if the client upload only one image in first upload zone
+                    files = request.httprequest.files.getlist(
+                        'updated_document_cerfa')
+                # get the second page of cerfa if the client upload only one image in first upload zone
+                files2 = request.httprequest.files.getlist(
+                    'updated_document_cerfa2')
+                # get the third page of cerfa if the client upload only one image in first upload zone
+                files3 = request.httprequest.files.getlist(
+                    'updated_document_cerfa3')
                 for ufile in files:
                     # mimetype = self._neuter_mimetype(ufile.content_type, http.request.env.user)
                     datas = base64.encodebytes(ufile.read())
-                    if request.website.id==1: # if refused document is for a mcm academy client
+                    if request.website.id == 1:  # if refused document is for a mcm academy client
                         vals = {
-                            'state':'waiting', #set the state of the refused document to verification (MCM ACADEMY)
+                            # set the state of the refused document to verification (MCM ACADEMY)
+                            'state': 'waiting',
                         }
                         document.sudo().write(vals)
                         request.env['ir.attachment'].sudo().create({
@@ -714,10 +780,11 @@ class CustomerPortal(CustomerPortal):
                             'res_model': 'documents.document',
                             'res_id': document.id
                         })
-                    else: # if refused document is for a digimoov client
+                    else:  # if refused document is for a digimoov client
                         vals = {
-                            'state': 'waiting', #set the state of the refused document to verification (DIGIMOOV)
-                            'datas':datas
+                            # set the state of the refused document to verification (DIGIMOOV)
+                            'state': 'waiting',
+                            'datas': datas
                         }
                         document.sudo().write(vals)
                         request.env['ir.attachment'].sudo().create({
@@ -728,7 +795,8 @@ class CustomerPortal(CustomerPortal):
                             'res_id': document.id
                         })
                 if files2:
-                    datas_cerfa = base64.encodebytes(files2[0].read()) #get the second page of cerfa
+                    # get the second page of cerfa
+                    datas_cerfa = base64.encodebytes(files2[0].read())
                     request.env['ir.attachment'].sudo().create({
                         'name': "Cerfa Page 3",
                         'type': 'binary',
@@ -737,7 +805,8 @@ class CustomerPortal(CustomerPortal):
                         'res_id': document.id
                     })
                 if files3:
-                    datas_cerfa = base64.encodebytes(files3[0].read()) #get the third page of cerfa
+                    datas_cerfa = base64.encodebytes(
+                        files3[0].read())  # get the third page of cerfa
                     request.env['ir.attachment'].sudo().create({
                         'name': "Cerfa Page 3",
                         'type': 'binary',
@@ -753,5 +822,3 @@ class CustomerPortal(CustomerPortal):
     @http.route(['/my/cerfa'], type='http', auth="user", website=True)
     def portal_cerfa(self):
         return request.render("mcm_contact_documents.cerfa_portal_template")
-
-
