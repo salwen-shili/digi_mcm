@@ -56,7 +56,7 @@ class CustomerPortal(CustomerPortal):
             if survey:
                 survey_user = request.env['survey.user_input'].sudo().search(
                     [('partner_id', "=", request.env.user.partner_id.id),
-                     ('survey_id', '=', survey.id)],
+                     ('survey_id', '=', survey.id),('state',"=",'done')],
                     order='create_date asc', limit=1)
                 if not survey_user:
                     exam_state = 'exam_not_passed'
@@ -102,12 +102,18 @@ class CustomerPortal(CustomerPortal):
             cartIsEmpty = "True"
         if order and not order.order_line:
             cartIsEmpty = "True"
+        boltWrongProduct = False
+        if order and order.order_line:
+            for line in order.order_line:
+                if order.partner_id.bolt ==True and line.product_id.default_code != "vtc_bolt":
+                    boltWrongProduct = True
         values.update({
             'rdvIsBooked': rdvIsBooked,
             'cartIsEmpty': cartIsEmpty,
             'isSigned': isSigned,
             'bolt_contract_uri': bolt_contract_uri,
             'exam_state': exam_state,
+            'boltWrongProduct': boltWrongProduct,
         })
         return values
 

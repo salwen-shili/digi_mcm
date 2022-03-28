@@ -724,12 +724,18 @@ class Routes_Site(http.Controller):
             cartIsEmpty = "True"
         if order and not order.order_line:
             cartIsEmpty = "True"
+        boltWrongProduct = False
+        if order and order.order_line:
+            for line in order.order_line:
+                if order.partner_id.bolt == True and line.product_id.default_code != "vtc_bolt":
+                    boltWrongProduct = True
         values = {
             'bolt_product': bolt_product,
             'vtc_product': vtc_product,
             'promo': promo,
             'exam_state': exam_state,
             'cartIsEmpty': cartIsEmpty,
+            'boltWrongProduct': boltWrongProduct,
         }
 
         if request.website.id == 2:

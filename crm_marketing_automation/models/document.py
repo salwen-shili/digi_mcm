@@ -87,3 +87,9 @@ class Document(models.Model):
                 lead.mcm_session_id = partner.mcm_session_id if partner.mcm_session_id else False
                 lead.module_id = partner.module_id if partner.module_id else False
                 lead.company_id = partner.company_id if partner.company_id else False
+    @api.model
+    def create(self, vals):
+        new_record = super(Document, self).create(vals)
+        if new_record.partner_id and new_record.datas :
+            new_record.partner_id.step = "financement"
+        return new_record

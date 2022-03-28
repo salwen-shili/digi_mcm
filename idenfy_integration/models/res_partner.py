@@ -90,6 +90,7 @@ class ResPartner(models.Model):
                             [('name', "=", document), ('partner_id', "=", rec.id)])
                         if not partner_document:
                             self.env['documents.document'].create(vals)
+                            rec.step = "financement"
         return True
 
     def uploaded_doc_after_check_status(self,website):
