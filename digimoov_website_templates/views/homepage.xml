@@ -541,8 +541,8 @@
                                             <p>
                                                 <strong class="pack-name"> SOLO </strong>
                                             </p>
-                                            <p class="blink-soft">
-                                                <b>Paiement en 2 fois</b>
+                                            <p t-if="not promo" class="blink-soft">
+                                                <b t-if="">Paiement en 2 fois</b>
                                             </p>
                                             <br />
                                         </div>
@@ -621,7 +621,7 @@
 
                                                         </p>
                                                         <t t-if="promo and promo.name!='box2home'">
-                                                            <p class="text-center font-weight-bolder text-secondary">
+                                                            <p class="text-center font-weight-bolder text-secondary" style="margin-top:57px">
                                                                 <b class="promo-code">
                                                                     <t>avec le code</t>
                                                                     <t t-esc="promo.code" />
