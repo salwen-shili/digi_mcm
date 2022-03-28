@@ -126,6 +126,8 @@ const finishBolt = {
 //wait page load
 
 document.addEventListener('DOMContentLoaded', function () {
+  const finished = document.getElementById('finished');
+  const documents = document.getElementById('personal');
   //calendly inputs
   if (document.getElementById('rdvIsBooked')) {
     rdvIsBooked = document.getElementById('rdvIsBooked').value;
