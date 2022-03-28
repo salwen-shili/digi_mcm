@@ -290,7 +290,9 @@
                                             <font style="color: rgb(0, 0, 0); font-size: 18px;">C’est la DREAL de votre département qui s’occupera de la gestion de votre inscription et du déroulement de l’examen. Pour vous inscrire, vous aurez à remplir un formulaire sur le site</font>
                                             <font style="color: rgb(0, 0, 255); font-size: 18px;">
                                                 &amp;nbsp;&amp;nbsp;
-                                                <b>https://www.demarches-simplifiees.fr</b>
+                                                <a href="https://www.demarches-simplifiees.fr">
+                                                    <b>https://www.demarches-simplifiees.fr</b>
+                                                </a>
                                             </font>
                                             <font style="color: rgb(0, 0, 0); font-size: 18px;">
                                                 <b>&amp;nbsp;</b>
