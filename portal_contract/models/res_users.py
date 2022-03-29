@@ -67,22 +67,21 @@ class ResUsers(models.Model):
                 elif user.company_id.id == 2:
                     base_url= 'https://www.digimoov.fr'
 
-                # link_tracker = self.env['link.tracker'].sudo().search([('url', "=", url)])
-                link_tracker = self.env['link.tracker'].sudo().create({
-                        'title': 'Rénitialisation de mot de passe de %s' %(user.name),
-                        'url': url,
+                link_tracker = self.env['link.tracker'].sudo().search([('url', "=", url)])
+                if link_tracker :
+                    link_tracker = self.env['link.tracker'].sudo().create({
+                            'title': 'Rénitialisation de mot de passe de %s' %(user.name),
+                            'url': url,
+                        })
+                    link_tracker.sudo().write({
+                        'short_url': base_url+ '/r/%(code)s' % {'code': link_tracker.code}
                     })
-                link_tracker.sudo().write({
-                    'short_url': base_url+ '/r/%(code)s' % {'code': link_tracker.code}
-                })
                 if not link_tracker :
                     short_url = pyshorteners.Shortener(api_key=bitly_access_token) #api key of bitly
                     short_url = short_url.bitly.short(
                         url)
                 else:
                     short_url = link_tracker.short_url
-                print('your short url is :',short_url)
-
                 body = "Une demande de changement de mot de passe nous a été signalée, si vous etes à l'origine de cette action cliquez ici : " + str(short_url)+ " (valable 24h)"
                 if body:
                     composer = self.env['sms.composer'].with_context(
