@@ -69,12 +69,13 @@ class ResUsers(models.Model):
 
                 link_tracker = self.env['link.tracker'].sudo().search([('url', "=", url)])
                 if link_tracker :
+                    #generate short link using module of link tracker
                     link_tracker = self.env['link.tracker'].sudo().create({
                             'title': 'Rénitialisation de mot de passe de %s' %(user.name),
                             'url': url,
                         })
                     link_tracker.sudo().write({
-                        'short_url': base_url+ '/r/%(code)s' % {'code': link_tracker.code}
+                        'short_url': base_url+ '/r/%(code)s' % {'code': link_tracker.code} #change the short url of link tracker based on base url
                     })
                 if not link_tracker :
                     short_url = pyshorteners.Shortener(api_key=bitly_access_token) #api key of bitly
@@ -95,8 +96,8 @@ class ResUsers(models.Model):
                         'use_active_domain': True,
                         'active_domain' : [('id', 'in', user.partner_id.ids)]
                     })
-                    # composer = composer.with_user(SUPERUSER_ID)
-                    # composer._action_send_sms() # we send sms to client contains link of reset password.
+                    composer = composer.with_user(SUPERUSER_ID)
+                    composer._action_send_sms() # we send sms to client contains link of reset password.
                     if user.phone:
                         user.phone = '0' + str(user.phone.replace(' ', ''))[
                                                       -9:]
