@@ -7,7 +7,7 @@ const messages = {
   rdvIsBooked: `félicitations pour votre inscription, l'un de nos agents va vous contacter suite au rendez-vous réservé pour finaliser le financement de votre examen`,
   rdvIsnotbooked: `Veuillez réserver un créneau pour finaliser votre inscription a l'examen VTC afin d'accéder à la plateforme de formation`,
   isNotSigned: `Nous vous remercions pour votre confiance, votre paiement a été effectué avec succès! Vous pouvez maintenant finaliser votre inscription en signant votre contrat pour avoir accès à notre plateforme de formation.`,
-  emptyCartNoContract: `Votre panier est vide. Cliquez sur continer pour ajouter votre formation dans le panier.`,
+  emptyCartNoContract: `Votre panier est vide, veuillez cliquer sur continuer pour ajouter votre formation.`,
 };
 var bolt_contract_uri = '/';
 var btnAction;
@@ -79,7 +79,7 @@ function setPopup() {
           notifMessage.textContent = messages['emptyCartNoContract'];
           btnAction = document.getElementById('btn-action');
           //change button to 'signer mon contrat'
-          btnAction.innerText = 'continer';
+          btnAction.innerText = 'continuer';
           btnAction.addEventListener('click', function () {
             //redirection to the uri
             console.log('redirection...', `/bolt#pricing`);

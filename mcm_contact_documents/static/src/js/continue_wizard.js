@@ -37,7 +37,7 @@ const messageAction = {
     message: `Votre panier est vide. Vous devez choisir votre formation en cliquant sur continuer.`,
     url: '/bolt#pricing',
   },
-  boltWrongCart: {
+  boltWrongProduct: {
     message: `Vous n'avez pas choisit la <b>formation VTC BOLT</b>. Vous devez cliquer sur continuer pour mettre à jour votre panier`,
     url: '/bolt#pricing',
   },
@@ -131,9 +131,9 @@ document.addEventListener('DOMContentLoaded', function () {
   if (document.getElementById('rdvIsBooked')) {
     rdvIsBooked = document.getElementById('rdvIsBooked').value;
   }
-  var boltWrongCart;
-  if (document.getElementById('boltWrongCart')) {
-    boltWrongCart = document.getElementById('boltWrongCart').value;
+  var boltWrongProduct;
+  if (document.getElementById('boltWrongProduct')) {
+    boltWrongProduct = document.getElementById('boltWrongProduct').value;
   }
   var user_name = document.getElementById('user_name_connected').value;
   var user_email = document.getElementById('user_email_connected').value;
@@ -159,10 +159,10 @@ document.addEventListener('DOMContentLoaded', function () {
   const textDescription = document.getElementById('textDescription');
   activateStep(current.value);
   //console.log('step', current.value);
-  if (isBoltState == 'True' && boltWrongCart == 'True') {
+  if (isBoltState == 'True' && boltWrongProduct == 'True') {
     //bolt user with a wrong cart (other than bolt-vtc)
-    btnContinuer.setAttribute('href', messageAction.boltWrongCart.url);
-    textDescription.innerHTML = messageAction.boltWrongCart.message;
+    btnContinuer.setAttribute('href', messageAction.boltWrongProduct.url);
+    textDescription.innerHTML = messageAction.boltWrongProduct.message;
     return;
   } else if (
     isBoltState == 'True' &&

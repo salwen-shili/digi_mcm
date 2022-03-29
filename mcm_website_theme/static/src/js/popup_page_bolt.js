@@ -5,7 +5,7 @@ var message = {
   success:
     'Félicitations, vous avez réussi votre examen. Cliquez sur continuer pour finaliser votre inscription.',
   failed: "Malheureusement vous n'avez pas réussi votre examen.",
-  cartIsEmpty: `Vous pouvez ajouter votre formation dans le panier en cliquant sur continer.`,
+  cartIsEmpty: `Vous pouvez ajouter votre formation dans le panier en cliquant sur continuer.`,
 };
 var notifMessage;
 var condition;
@@ -27,20 +27,21 @@ function setPopup() {
     //   openPopup();
     //   return;
     // } else
-    if (condition.value == 'in_process' && !cartIsEmpty.value == 'True') {
+    console.log(condition.value == 'in_process' && cartIsEmpty.value == 'True');
+    if (condition.value == 'in_process' && !(cartIsEmpty.value == 'True')) {
       notifMessage.innerHTML = message['in_process'];
       btnContiner.addEventListener('click', function () {
         closePopup();
       });
       openPopup();
-    } else if (condition.value == 'success' && !cartIsEmpty.value == 'True') {
+    } else if (condition.value == 'success' && !(cartIsEmpty.value == 'True')) {
       notifMessage.innerHTML = message['success'];
       openPopup();
       btnContiner.addEventListener('click', function () {
         closePopup();
         window.location.href = '/my/home';
       });
-    } else if (condition.value == 'failed' && !cartIsEmpty.value == 'True') {
+    } else if (condition.value == 'failed' && !(cartIsEmpty.value == 'True')) {
       notifMessage.innerHTML = message['failed'];
       openPopup();
 
