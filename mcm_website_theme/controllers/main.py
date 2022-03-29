@@ -703,7 +703,7 @@ class Routes_Site(http.Controller):
             if survey:
                 survey_user = request.env['survey.user_input'].sudo().search(
                     [('partner_id', "=", request.env.user.partner_id.id),
-                     ('survey_id', '=', survey.id)],
+                     ('survey_id', '=', survey.id),('state',"=",'done')],
                     order='create_date asc', limit=1)
                 if not survey_user:
                     exam_state = 'exam_not_passed'
