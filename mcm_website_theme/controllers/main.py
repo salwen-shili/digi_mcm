@@ -630,7 +630,12 @@ class Routes_Site(http.Controller):
         vals['attentes'] = kw.get("attentes")
         partner = http.request.env.user.partner_id
         # Étape suivante est documents
-        partner.step = "document"
+        documents = request.env['documents.document'].sudo().search(
+            [('partner_id', '=', partner.id)])
+        if not documents :
+            partner.step = "document"
+        else:
+            partner.step = "financement"
         partner = request.env['res.partner'].sudo().search(
             [('id', "=", partner.id)])[-1]
         vals['partner_id'] = partner.id
