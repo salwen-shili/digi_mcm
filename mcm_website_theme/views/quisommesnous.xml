@@ -20,11 +20,10 @@
                 </script>
             </t>
             <div id="wrap" class="oe_structure oe_empty">
-                <script defer="defer" type="text/javascript"
-                        src="/digimoov_website_templates/static/src/js/lazy-min.min.js"></script>
-                <link rel="stylesheet" href="/mcm_website_theme/static/src/css/homepage.min.css"/>
+                <script defer="defer" type="text/javascript" src="/digimoov_website_templates/static/src/js/lazy-min.min.js"></script>
+                <link rel="stylesheet" href="/mcm_website_theme/static/src/css/homepage.min.css" />
                 <script type="text/javascript" src="/mcm_website_theme/static/src/js/msAds.min.js"></script>
-                <link rel="stylesheet" href="/mcm_website_theme/static/src/css/cta-button.min.css"/>
+                <link rel="stylesheet" href="/mcm_website_theme/static/src/css/cta-button.min.css" />
                 <!-- <script type="text/javascript" src="/mcm_website_theme/static/src/js/scrollAnimation.js"></script> -->
                 <style>
                     h1{
@@ -162,20 +161,18 @@
                     }
                 </style>
                 <!-- cover-->
-                <section id="sh_corpomate_theme_section_258 " class="sh_animation_part pt8"
-                         data-name="Formation chauffeur TAXI">
+                <section id="sh_corpomate_theme_section_258 " class="sh_animation_part pt8" data-name="Formation chauffeur TAXI">
                     <div class="container-banner">
                         <div class="row">
-                            <div class="col-lg-6 pb16 pt56 js-scroll slide-left"
-                                 style="border-style: none; border-width: 0px">
+                            <div class="col-lg-6 pb16 pt56 js-scroll slide-left" style="border-style: none; border-width: 0px">
                                 <div class="">
                                     <div class="text-center">
                                         <h1 class="title-mcm slider-text-info">MCM Academy</h1>
-                                        <br/>
+                                        <br />
                                         <p class="heading text-center">
                                             CENTRE DE FORMATION EN LIGNE DES MÉTIERS DE TRANSPORT.
                                         </p>
-                                        <br/>
+                                        <br />
                                         <a class="animated-button-yellow" href="#pricing" title="Inscription">
                                             <span></span>
                                             <span></span>
@@ -187,11 +184,8 @@
                                 </div>
                             </div>
                             <div class="col-lg-6 pb48 pt16 js-scroll slide-right">
-                                <br/>
-                                <img data-src="/mcm_website_theme/static/src/img/quisommesnous/couv MCM.png"
-                                     data-srcSafari="/mcm_website_theme/static/src/img/quisommesnous/couv MCM.webp"
-                                     class="img img-fluid mx-auto lazy" alt="Devenir chauffeur Taxi, VTC ou Moto-Taxi"
-                                     title="Taxi chauffeur" style="text-align: center"/>
+                                <br />
+                                <img data-src="/mcm_website_theme/static/src/img/quisommesnous/couv MCM.png" data-srcSafari="/mcm_website_theme/static/src/img/quisommesnous/couv MCM.webp" class="img img-fluid mx-auto lazy" alt="Devenir chauffeur Taxi, VTC ou Moto-Taxi" title="Taxi chauffeur" style="text-align: center" />
                             </div>
                         </div>
                     </div>
@@ -243,10 +237,7 @@
                                 </p>
                             </div>
                             <div class="pt16 pb16 col-lg-5" style="border-style: none; border-width: 0px">
-                                <img data-src="/mcm_website_theme/static/src/img/quisommesnous/apprenants-satisfaits.webp"
-                                     data-srcsafari="/mcm_website_theme/static/src/img/quisommesnous/apprenants-satisfaits.png"
-                                     class="img img-fluid mx-auto lazy" alt="Apprenants satisfaits"
-                                     data-original-title="" title="" aria-describedby="tooltip771176"/>
+                                <img data-src="/mcm_website_theme/static/src/img/quisommesnous/apprenants-satisfaits.webp" data-srcsafari="/mcm_website_theme/static/src/img/quisommesnous/apprenants-satisfaits.png" class="img img-fluid mx-auto lazy" alt="Apprenants satisfaits" data-original-title="" title="" aria-describedby="tooltip771176" />
                             </div>
                         </div>
                     </div>
@@ -265,10 +256,7 @@
                         </div>
                         <div class="row align-items-center">
                             <div class="pt16 pb16 col-lg-5" style="border-style: none; border-width: 0px">
-                                <img data-src="/mcm_website_theme/static/src/img/quisommesnous/MCM-Acadmy-centre-de-renommée.webp"
-                                     data-srcsafari="/mcm_website_theme/static/src/img/quisommesnous/MCM-Acadmy-centre-de-renommée.png"
-                                     class="img img-fluid mx-auto lazy" alt="" data-original-title="" title=""
-                                     aria-describedby="tooltip771176"/>
+                                <img data-src="/mcm_website_theme/static/src/img/quisommesnous/MCM-Acadmy-centre-de-renommée.webp" data-srcsafari="/mcm_website_theme/static/src/img/quisommesnous/MCM-Acadmy-centre-de-renommée.png" class="img img-fluid mx-auto lazy" alt="" data-original-title="" title="" aria-describedby="tooltip771176" />
                             </div>
                             <div class="pt16 pb16 col-lg-7" style="border-style: none; border-width: 0px">
                                 <ul class="fa-ul" style="font-size: 16.5px; line-height: 1.2rem">
@@ -329,7 +317,7 @@
                                 <div class="sh_content">
                                     <div class="sh_left_content">
                                         <div class="sh_left_icon">
-                                            <span class="fa fa-briefcase"/>
+                                            <span class="fa fa-briefcase" />
                                         </div>
                                         <div class="sh_right_content">
                                             <h5>DAVID L.</h5>
@@ -341,7 +329,7 @@
                                                 <font color="#9c9c94" style="color: rgb(66, 66, 66)">
                                                     <b>COMPÉTENCES</b>
                                                 </font>
-                                                <br/>
+                                                <br />
                                             </p>
                                             <p style="
                           margin-right: 0px;
@@ -376,7 +364,7 @@
                           margin-right: 0px;
                           margin-left: 0px;
                           line-height: 1.9;
-                        "/>
+                        " />
                                             <p style="
                           margin-right: 0px;
                           margin-left: 0px;
@@ -394,7 +382,7 @@
                                 <div class="sh_content">
                                     <div class="sh_left_content">
                                         <div class="sh_left_icon">
-                                            <span class="fa fa-briefcase"/>
+                                            <span class="fa fa-briefcase" />
                                         </div>
                                         <div class="sh_right_content">
                                             <h5>ÉRIC B.</h5>
@@ -450,9 +438,9 @@
                                                 <font color="#9c9c94" style="color: rgb(66, 66, 66)">Réglementation
                                                     locale
                                                 </font>
-                                                <span style="color: rgb(107, 123, 144); font-size: 15px"/>
-                                                <font style="color: rgb(156, 156, 148); font-size: 15px"/>
-                                                <br/>
+                                                <span style="color: rgb(107, 123, 144); font-size: 15px" />
+                                                <font style="color: rgb(156, 156, 148); font-size: 15px" />
+                                                <br />
                                             </p>
                                         </div>
                                     </div>
@@ -462,7 +450,7 @@
                                 <div class="sh_content">
                                     <div class="sh_left_content">
                                         <div class="sh_left_icon">
-                                            <span class="fa fa-briefcase"/>
+                                            <span class="fa fa-briefcase" />
                                         </div>
                                         <div class="sh_right_content">
                                             <h5>MOUNIR T.</h5>
@@ -518,7 +506,7 @@
                                 <div class="sh_content">
                                     <div class="sh_left_content">
                                         <div class="sh_left_icon">
-                                            <span class="fa fa-briefcase"/>
+                                            <span class="fa fa-briefcase" />
                                         </div>
                                         <div class="sh_right_content">
                                             <h5>Priscilla D.</h5>
@@ -548,8 +536,8 @@
                                                 <font color="#9c9c94" style="color: rgb(66, 66, 66)">Économie et gestion
                                                     des entreprises Marketing
                                                 </font>
-                                                <span style="color: rgb(66, 66, 66); font-size: 15px"/>
-                                                <br/>
+                                                <span style="color: rgb(66, 66, 66); font-size: 15px" />
+                                                <br />
                                             </p>
                                         </div>
                                     </div>
@@ -559,7 +547,7 @@
                                 <div class="sh_content">
                                     <div class="sh_left_content">
                                         <div class="sh_left_icon">
-                                            <span class="fa fa-briefcase"/>
+                                            <span class="fa fa-briefcase" />
                                         </div>
                                         <div class="sh_right_content">
                                             <h5>VINCENT H.</h5>
@@ -591,13 +579,9 @@
                             </div>
                         </div>
                         <div class="row d-flex align-items-stretch js-scroll fade-in-top">
-                            <div class="col-lg-4 s_col_no_bgcolor pt16 pb16"
-                                 style="border-style: none; border-width: 0px">
+                            <div class="col-lg-4 s_col_no_bgcolor pt16 pb16" style="border-style: none; border-width: 0px">
                                 <div class="card bg-white">
-                                    <img class="card-img-top"
-                                         src="/mcm_website_theme/static/src/img/quisommesnous/Formation-chauffeur-vtc.png"
-                                         alt="Odoo - Echantillon n°1 pour trois colonnes " data-original-title=""
-                                         title="" aria-describedby="tooltip160830"/>
+                                    <img class="card-img-top" src="/mcm_website_theme/static/src/img/quisommesnous/Formation-chauffeur-vtc.png" alt="Odoo - Echantillon n°1 pour trois colonnes " data-original-title="" title="" aria-describedby="tooltip160830" />
                                     <div class="card-body">
                                         <h4 class="card-title" style="text-align: center">
                                             <b>
@@ -617,13 +601,9 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-lg-4 s_col_no_bgcolor pt16 pb16"
-                                 style="border-style: none; border-width: 0px">
+                            <div class="col-lg-4 s_col_no_bgcolor pt16 pb16" style="border-style: none; border-width: 0px">
                                 <div class="card bg-white">
-                                    <img class="card-img-top"
-                                         src="/mcm_website_theme/static/src/img/quisommesnous/Formation-chauffeur-taxi.png"
-                                         alt="Odoo- Echantillon n° 3 pour trois colonnes" data-original-title=""
-                                         title="" aria-describedby="tooltip67402"/>
+                                    <img class="card-img-top" src="/mcm_website_theme/static/src/img/quisommesnous/Formation-chauffeur-taxi.png" alt="Odoo- Echantillon n° 3 pour trois colonnes" data-original-title="" title="" aria-describedby="tooltip67402" />
                                     <div class="card-body">
                                         <h4 class="card-title" style="text-align: center">
                                             <b>
@@ -635,7 +615,7 @@
                                             formation TAXI et vous offre un suivi complet du jour de
                                             l'inscription à l'obtention de votre carte
                                             professionnelle.
-                                            <br/>
+                                            <br />
                                         </p>
                                         <div class="s_btn text-center pt16 pb16" data-name="Button">
                                             <a href="#" class="btn btn-secondary">En savoir plus</a>
@@ -643,13 +623,9 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-lg-4 s_col_no_bgcolor pt16 pb16"
-                                 style="border-style: none; border-width: 0px">
+                            <div class="col-lg-4 s_col_no_bgcolor pt16 pb16" style="border-style: none; border-width: 0px">
                                 <div class="card bg-white">
-                                    <img class="card-img-top"
-                                         src="/mcm_website_theme/static/src/img/quisommesnous/Formation-chauffeur-mototaxi.png"
-                                         alt="Odoo- Echantillon n° 3 pour trois colonnes" data-original-title=""
-                                         title="" aria-describedby="tooltip67402"/>
+                                    <img class="card-img-top" src="/mcm_website_theme/static/src/img/quisommesnous/Formation-chauffeur-mototaxi.png" alt="Odoo- Echantillon n° 3 pour trois colonnes" data-original-title="" title="" aria-describedby="tooltip67402" />
                                     <div class="card-body">
                                         <h4 class="card-title" style="text-align: center">
                                             <b>
@@ -664,7 +640,7 @@
                                             ? Indépendant de nature, vous voulez lancer votre carrière
                                             professionnelle ? C'est simple : devenez chauffeur de
                                             MOTO-TAXI avec MCM Academy !
-                                            <br/>
+                                            <br />
                                         </p>
                                         <div class="s_btn text-center pt16 pb16" data-name="Button">
                                             <a href="#" class="btn btn-secondary">En savoir plus</a>
@@ -679,15 +655,14 @@
                 <section id="sh_corpomate_theme_section_58" data-name="About Snippet 7">
                     <div class="container">
                         <div class="row">
-                            <div class="col-lg-3 col-md-6 col-sm-6  js-scroll slide-left"
-                                 style="border-style: none; border-width: 0px">
+                            <div class="col-lg-3 col-md-6 col-sm-6  js-scroll slide-left" style="border-style: none; border-width: 0px">
                                 <div class="sh_content">
                                     <div class="sh_number">
                                         <section class="sh_num o_default_snippet_text">1</section>
                                     </div>
                                     <div class="sh_icon_content">
                                         <div class="sh_icon">
-                                            <span class="fa fa-connectdevelop"/>
+                                            <span class="fa fa-connectdevelop" />
                                         </div>
                                     </div>
                                     <div class="sh_description">
@@ -706,7 +681,7 @@
                                     </div>
                                     <div class="sh_icon_content">
                                         <div class="sh_icon">
-                                            <span class="fa fa-group"/>
+                                            <span class="fa fa-group" />
                                         </div>
                                     </div>
                                     <div class="sh_description">
@@ -725,7 +700,7 @@
                                     </div>
                                     <div class="sh_icon_content">
                                         <div class="sh_icon">
-                                            <span class="fa fa-cog"/>
+                                            <span class="fa fa-cog" />
                                         </div>
                                     </div>
                                     <div class="sh_description">
@@ -744,7 +719,7 @@
                                     </div>
                                     <div class="sh_icon_content">
                                         <div class="sh_icon">
-                                            <span class="fa fa-trophy"/>
+                                            <span class="fa fa-trophy" />
                                         </div>
                                     </div>
                                     <div class="sh_description">
@@ -812,7 +787,7 @@
                                                 </div>
                                                 <div class="sh_img_part">
                                                     <div class="sh_img">
-                                                        <img src="/mcm_website_theme/static/src/img/testimonial/omar saadaoui.png"/>
+                                                        <img src="/mcm_website_theme/static/src/img/testimonial/omar saadaoui.png" />
                                                     </div>
                                                     <div class="sh_text">
                                                         <h3>Omar Saadaoui</h3>
@@ -835,7 +810,7 @@
                                                 </div>
                                                 <div class="sh_img_part">
                                                     <div class="sh_img">
-                                                        <img src="/mcm_website_theme/static/src/img/testimonial/henry serda.png"/>
+                                                        <img src="/mcm_website_theme/static/src/img/testimonial/henry serda.png" />
                                                     </div>
                                                     <div class="sh_text">
                                                         <h3>Henry Serda</h3>
@@ -860,7 +835,7 @@
                                                 </div>
                                                 <div class="sh_img_part">
                                                     <div class="sh_img">
-                                                        <img src="/mcm_website_theme/static/src/img/testimonial/cathy e.png"/>
+                                                        <img src="/mcm_website_theme/static/src/img/testimonial/cathy e.png" />
                                                     </div>
                                                     <div class="sh_text">
                                                         <h3>Cathy E</h3>
@@ -884,7 +859,7 @@
                                                 </div>
                                                 <div class="sh_img_part">
                                                     <div class="sh_img">
-                                                        <img src="/mcm_website_theme/static/src/img/testimonial/omar saadaoui.png"/>
+                                                        <img src="/mcm_website_theme/static/src/img/testimonial/omar saadaoui.png" />
                                                     </div>
                                                     <div class="sh_text">
                                                         <h3>Omar Saadaoui</h3>
@@ -909,7 +884,7 @@
                                                 </div>
                                                 <div class="sh_img_part">
                                                     <div class="sh_img">
-                                                        <img src="/mcm_website_theme/static/src/img/testimonial/cathy e.png"/>
+                                                        <img src="/mcm_website_theme/static/src/img/testimonial/cathy e.png" />
                                                     </div>
                                                     <div class="sh_text">
                                                         <h3>Cathy E</h3>
@@ -933,7 +908,7 @@
                                                 </div>
                                                 <div class="sh_img_part">
                                                     <div class="sh_img">
-                                                        <img src="/mcm_website_theme/static/src/img/testimonial/omar saadaoui.png"/>
+                                                        <img src="/mcm_website_theme/static/src/img/testimonial/omar saadaoui.png" />
                                                     </div>
                                                     <div class="sh_text">
                                                         <h3>Omar Saadaoui</h3>
@@ -956,7 +931,7 @@
                                                 </div>
                                                 <div class="sh_img_part">
                                                     <div class="sh_img">
-                                                        <img src="/mcm_website_theme/static/src/img/testimonial/henry serda.png"/>
+                                                        <img src="/mcm_website_theme/static/src/img/testimonial/henry serda.png" />
                                                     </div>
                                                     <div class="sh_text">
                                                         <h3>Henry Serda</h3>
@@ -980,7 +955,7 @@
                                                 </div>
                                                 <div class="sh_img_part">
                                                     <div class="sh_img">
-                                                        <img src="/mcm_website_theme/static/src/img/testimonial/omar saadaoui.png"/>
+                                                        <img src="/mcm_website_theme/static/src/img/testimonial/omar saadaoui.png" />
                                                     </div>
                                                     <div class="sh_text">
                                                         <h3>Omar Saadaoui</h3>
@@ -1003,7 +978,7 @@
                                                 </div>
                                                 <div class="sh_img_part">
                                                     <div class="sh_img">
-                                                        <img src="/mcm_website_theme/static/src/img/testimonial/henry serda.png"/>
+                                                        <img src="/mcm_website_theme/static/src/img/testimonial/henry serda.png" />
                                                     </div>
                                                     <div class="sh_text">
                                                         <h3>Henry Serda</h3>
@@ -1028,7 +1003,7 @@
                                                 </div>
                                                 <div class="sh_img_part">
                                                     <div class="sh_img">
-                                                        <img src="/mcm_website_theme/static/src/img/testimonial/cathy e.png"/>
+                                                        <img src="/mcm_website_theme/static/src/img/testimonial/cathy e.png" />
                                                     </div>
                                                     <div class="sh_text">
                                                         <h3>Cathy E</h3>
@@ -1052,7 +1027,7 @@
                                                 </div>
                                                 <div class="sh_img_part">
                                                     <div class="sh_img">
-                                                        <img src="/mcm_website_theme/static/src/img/testimonial/omar saadaoui.png"/>
+                                                        <img src="/mcm_website_theme/static/src/img/testimonial/omar saadaoui.png" />
                                                     </div>
                                                     <div class="sh_text">
                                                         <h3>Omar Saadaoui</h3>
@@ -1072,7 +1047,7 @@
                                     <span aria-label="Next">›</span>
                                 </button>
                             </div>
-                            <div class="owl-dots disabled"/>
+                            <div class="owl-dots disabled" />
                             <div class="owl-nav disabled">
                                 <button type="button" role="presentation" class="owl-prev">
                                     <span aria-label="Previous">‹</span>
@@ -1081,7 +1056,7 @@
                                     <span aria-label="Next">›</span>
                                 </button>
                             </div>
-                            <div class="owl-dots disabled"/>
+                            <div class="owl-dots disabled" />
                             <div class="owl-nav disabled">
                                 <button type="button" role="presentation" class="owl-prev">
                                     <span aria-label="Previous">‹</span>
@@ -1090,7 +1065,7 @@
                                     <span aria-label="Next">›</span>
                                 </button>
                             </div>
-                            <div class="owl-dots disabled"/>
+                            <div class="owl-dots disabled" />
                         </div>
                     </div>
                 </section>
@@ -1106,30 +1081,18 @@
 
                                 <div t-if="partenaire=='' or partenaire !='bolt'">
                                     <a href="#">
-                                        <img data-src="/mcm_website_theme/static/src/img/partenaires/cma.png"
-                                             data-srcSafari="/mcm_website_theme/static/src/img/partenaires/cma.png"
-                                             class="img img-fluid lazy" alt="Logo partenaire CMA" data-original-title=""
-                                             title="CMA partenaire MCM ACADEMY" aria-describedby="tooltip623872"
-                                             style="margin-top: 30px; width: 50%"/>
+                                        <img data-src="/mcm_website_theme/static/src/img/partenaires/cma.png" data-srcSafari="/mcm_website_theme/static/src/img/partenaires/cma.png" class="img img-fluid lazy" alt="Logo partenaire CMA" data-original-title="" title="CMA partenaire MCM ACADEMY" aria-describedby="tooltip623872" style="margin-top: 30px; width: 50%" />
                                     </a>
                                 </div>
 
                                 <div t-if="partenaire=='' or not partenaire ">
-                                    <a href="https://bolt.eu/fr/" target="_blank" rel="noopner">
-                                        <img data-src="/mcm_website_theme/static/src/img/partenaires/bolt.png"
-                                             data-srcSafari="/mcm_website_theme/static/src/img/partenaires/bolt.png"
-                                             class="img img-fluid lazy" alt="Logo partenaire bolt"
-                                             data-original-title="" title="Bolt partenaire MCM ACADEMY"
-                                             aria-describedby="tooltip843653" style="margin-top: 30px; width: 38%"/>
+                                    <a href="/bolt" target="_blank" rel="noopner">
+                                        <img data-src="/mcm_website_theme/static/src/img/partenaires/bolt.png" data-srcSafari="/mcm_website_theme/static/src/img/partenaires/bolt.png" class="img img-fluid lazy" alt="Logo partenaire bolt" data-original-title="" title="Bolt partenaire MCM ACADEMY" aria-describedby="tooltip843653" style="margin-top: 30px; width: 38%" />
                                     </a>
                                 </div>
                                 <div t-if="partenaire=='bolt' ">
-                                    <a href="https://bolt.eu/fr/" target="_blank" rel="noopner">
-                                        <img data-src="/mcm_website_theme/static/src/img/partenaires/Bolt_logo.svg.png"
-                                             data-srcSafari="/mcm_website_theme/static/src/img/partenaires/Bolt_logo.svg.png"
-                                             class="img img-fluid lazy" alt="Logo partenaire bolt"
-                                             data-original-title="" title="Bolt partenaire MCM ACADEMY"
-                                             aria-describedby="tooltip843653" style="margin-top: 30px; width: 38%"/>
+                                    <a href="/bolt" target="_blank" rel="noopner">
+                                        <img data-src="/mcm_website_theme/static/src/img/partenaires/Bolt_logo.svg.png" data-srcSafari="/mcm_website_theme/static/src/img/partenaires/Bolt_logo.svg.png" class="img img-fluid lazy" alt="Logo partenaire bolt" data-original-title="" title="Bolt partenaire MCM ACADEMY" aria-describedby="tooltip843653" style="margin-top: 30px; width: 38%" />
                                     </a>
                                 </div>
                                 <!-- <div t-if="partenaire=='' or partenaire !='bolt'">
@@ -1140,21 +1103,12 @@
 
                                 <div t-if="partenaire=='' or not partenaire ">
                                     <a href="https://www.comptable-douai.com/" target="_blank" rel="noopner">
-                                        <img data-src="/mcm_website_theme/static/src/img/partenaires/joel.png"
-                                             data-srcSafari="/mcm_website_theme/static/src/img/partenaires/joel.png"
-                                             class="img img-fluid lazy"
-                                             alt="Logo partenaire Cabinet Comptable Joël Pruvost" data-original-title=""
-                                             title="Cabinet Comptable Joël Pruvost partenaire Digimoov"
-                                             aria-describedby="tooltip175558" style="margin-top: 30px; width: 68%"/>
+                                        <img data-src="/mcm_website_theme/static/src/img/partenaires/joel.png" data-srcSafari="/mcm_website_theme/static/src/img/partenaires/joel.png" class="img img-fluid lazy" alt="Logo partenaire Cabinet Comptable Joël Pruvost" data-original-title="" title="Cabinet Comptable Joël Pruvost partenaire Digimoov" aria-describedby="tooltip175558" style="margin-top: 30px; width: 68%" />
                                     </a>
                                 </div>
                                 <div t-if="partenaire=='bolt'">
                                     <a href="https://www.digimoov.fr/" target="_blank" rel="noopner">
-                                        <img data-src="/mcm_website_theme/static/src/img/partenaires/digimoov.png"
-                                             data-srcSafari="/mcm_website_theme/static/src/img/partenaires/digimoov.png"
-                                             class="img img-fluid lazy" alt="Logo partenaire Digimoov"
-                                             data-original-title="" title="Digimoov partenaire MCM ACADEMY"
-                                             aria-describedby="tooltip843653" style="margin-top: 30px; width: 46%"/>
+                                        <img data-src="/mcm_website_theme/static/src/img/partenaires/digimoov.png" data-srcSafari="/mcm_website_theme/static/src/img/partenaires/digimoov.png" class="img img-fluid lazy" alt="Logo partenaire Digimoov" data-original-title="" title="Digimoov partenaire MCM ACADEMY" aria-describedby="tooltip843653" style="margin-top: 30px; width: 46%" />
                                     </a>
                                 </div>
                             </div>
