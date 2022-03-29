@@ -34,8 +34,14 @@ const messageAction = {
   },
 
   cartIsEmpty: {
-    message: `Votre panier est vide. Vous devez choisir votre formation en cliquant sur continuer.`,
-    url: '/bolt#pricing',
+    bolt: {
+      message: `Votre panier est vide. Vous devez choisir votre formation en cliquant sur continuer.`,
+      url: '/bolt#pricing',
+    },
+    nonBolt: {
+      message: `Votre panier est vide. Vous devez choisir votre formation en cliquant sur continuer.`,
+      url: '/#pricing',
+    },
   },
   boltWrongProduct: {
     message: `Vous n'avez pas choisit la <b>formation VTC BOLT</b>. Vous devez cliquer sur continuer pour mettre à jour votre panier`,
@@ -170,9 +176,16 @@ document.addEventListener('DOMContentLoaded', function () {
     document.getElementById('bolt_contract_uri').value == 'False'
   ) {
     //bolt user with empty cart
-    btnContinuer.setAttribute('href', messageAction.cartIsEmpty.url);
-    textDescription.innerHTML = messageAction.cartIsEmpty.message;
+    btnContinuer.setAttribute('href', messageAction.cartIsEmpty.bolt.url);
+    textDescription.innerHTML = messageAction.cartIsEmpty.bolt.message;
     return;
+  } else if (
+    document.getElementById('cartIsEmpty').value == 'True' &&
+    document.getElementById('bolt_contract_uri').value == 'False'
+  ) {
+    //not a bolt user with empty cart
+    btnContinuer.setAttribute('href', messageAction.cartIsEmpty.nonBolt.url);
+    textDescription.innerHTML = messageAction.cartIsEmpty.nonBolt.message;
   }
 
   switch (current.value) {
@@ -180,58 +193,61 @@ document.addEventListener('DOMContentLoaded', function () {
       // coordonnes is the first step by default
       // we will treat exam state of bolt here any way
       //Bolt exam state : exam_not_passed, in_process, success, failed
-      if (isBoltState == 'True') {
-        if (document.getElementById('exam_state')) {
-          console.log('asd');
-          switch (document.getElementById('exam_state').value) {
-            case 'exam_not_passed':
-              btnContinuer.setAttribute(
-                'href',
-                messageAction.boltExamen.notpassed.url
-              );
-              textDescription.innerHTML =
-                messageAction.boltExamen.notpassed.message;
-              break;
-            case 'in_process':
-              btnContinuer.setAttribute(
-                'href',
-                messageAction.boltExamen.inProcess.url
-              );
-              textDescription.innerHTML =
-                messageAction.boltExamen.inProcess.message;
-              break;
-            case 'success':
-              btnContinuer.setAttribute(
-                'href',
-                messageAction.boltExamen.succed.url
-              );
-              textDescription.innerHTML =
-                messageAction.boltExamen.succed.message;
-              break;
-            case 'failed':
-              btnContinuer.setAttribute(
-                'href',
-                messageAction.boltExamen.failed.url
-              );
-              textDescription.innerHTML =
-                messageAction.boltExamen.failed.message;
-              break;
+      if (document.getElementById('cartIsEmpty').value == 'False') {
+        if (isBoltState == 'True') {
+          if (document.getElementById('exam_state')) {
+            switch (document.getElementById('exam_state').value) {
+              case 'exam_not_passed':
+                btnContinuer.setAttribute(
+                  'href',
+                  messageAction.boltExamen.notpassed.url
+                );
+                textDescription.innerHTML =
+                  messageAction.boltExamen.notpassed.message;
+                break;
+              case 'in_process':
+                btnContinuer.setAttribute(
+                  'href',
+                  messageAction.boltExamen.inProcess.url
+                );
+                textDescription.innerHTML =
+                  messageAction.boltExamen.inProcess.message;
+                break;
+              case 'success':
+                btnContinuer.setAttribute(
+                  'href',
+                  messageAction.boltExamen.succed.url
+                );
+                textDescription.innerHTML =
+                  messageAction.boltExamen.succed.message;
+                break;
+              case 'failed':
+                btnContinuer.setAttribute(
+                  'href',
+                  messageAction.boltExamen.failed.url
+                );
+                textDescription.innerHTML =
+                  messageAction.boltExamen.failed.message;
+                break;
+            }
           }
+        } else {
+          // coordonnees
+          btnContinuer.setAttribute('href', messageAction.coordonnees.url);
+          textDescription.innerHTML = messageAction.coordonnees.message;
         }
-      } else {
-        // coordonnees
-        btnContinuer.setAttribute('href', messageAction.coordonnees.url);
-        textDescription.innerHTML = messageAction.coordonnees.message;
       }
+
       break;
     case 'document':
-      step = 2;
-      documents.classList.add('active');
+      if (document.getElementById('cartIsEmpty').value == 'False') {
+        step = 2;
+        documents.classList.add('active');
 
-      textDescription.innerHTML = messageAction.documents.message;
+        textDescription.innerHTML = messageAction.documents.message;
 
-      // btnContinuer.setAttribute('href', documentsUrl);
-      const uploadDocumentBtns = `
+        // btnContinuer.setAttribute('href', documentsUrl);
+        const uploadDocumentBtns = `
         <div style="
   
     display: flex;
@@ -264,32 +280,36 @@ document.addEventListener('DOMContentLoaded', function () {
                                         </a>
                                     </div>
                                 </div>`;
-      finished.innerHTML = uploadDocumentBtns;
+        finished.innerHTML = uploadDocumentBtns;
 
-      break;
+        break;
+      }
     case 'financement':
       //has not signed his contract
       //he has paid so he must has a contract
       //we recheck if we have an url
-      console.log('1');
-      if (document.getElementById('bolt_contract_uri').value !== 'False') {
-        bolt_contract_uri = document.getElementById('bolt_contract_uri').value;
-        console.log(bolt_contract_uri);
-        if (document.getElementById('btn-action')) {
-          textDescription.textContent = messageDescription[isNotSignedMessage];
-          btnAction = document.getElementById('btn-action');
-          btnAction.innerText = 'Signer mon contrat';
-          btnAction.addEventListener('click', function () {
-            window.location.href = bolt_contract_uri;
-          });
+      if (document.getElementById('cartIsEmpty').value == 'False') {
+        if (document.getElementById('bolt_contract_uri').value !== 'False') {
+          bolt_contract_uri =
+            document.getElementById('bolt_contract_uri').value;
+
+          if (document.getElementById('btn-action')) {
+            textDescription.textContent =
+              messageDescription[isNotSignedMessage];
+            btnAction = document.getElementById('btn-action');
+            btnAction.innerText = 'Signer mon contrat';
+            btnAction.addEventListener('click', function () {
+              window.location.href = bolt_contract_uri;
+            });
+          }
+        } else {
+          textDescription.innerHTML = messageAction.financement.message;
+          btnContinuer.setAttribute('href', messageAction.financement.url);
         }
-      } else {
-        console.log('3');
-        textDescription.innerHTML = messageAction.financement.message;
-        btnContinuer.setAttribute('href', messageAction.financement.url);
+
+        break;
       }
 
-      break;
     // case 'validation':
     //   btnContinuer.setAttribute('href', validationUrl);
     //   if (current.value === 'finish') {
@@ -297,38 +317,40 @@ document.addEventListener('DOMContentLoaded', function () {
     //   }
     //   break;
     case 'finish':
-      if (isBoltState == 'True') {
-        if (isSignedState == 'True') {
-          //Client bolt + contrat is signed
-          //check if he has reserved an appointment
-          if (rdvIsBooked == 'True') {
-            //has reserved => he will wait for his call
-            finished.innerHTML = finishBolt['rdv'];
-            console.log("rdvIsBooked == 'True'", rdvIsBooked == 'True');
-          } else {
-            console.log("else rdvIsBooked == 'True'", rdvIsBooked == 'True');
-            // has to reserve appointment
-            //  => Show bolt calendly
-            finished.innerHTML = finishBolt['noRdv'];
-            setTimeout(function () {
-              Calendly.initBadgeWidget({
-                url: 'https://calendly.com/mcm-academy/examen-vtc-cma',
-                prefill: {
-                  name: user_name,
-                  email: user_email,
-                },
-                text: "Inscription à l'examen VTC",
-                color: '#1A1A1A',
-                textColor: '#FFFFFF',
-              });
-            }, 1500);
+      if (document.getElementById('cartIsEmpty').value == 'False') {
+        if (isBoltState == 'True') {
+          if (isSignedState == 'True') {
+            //Client bolt + contrat is signed
+            //check if he has reserved an appointment
+            if (rdvIsBooked == 'True') {
+              //has reserved => he will wait for his call
+              finished.innerHTML = finishBolt['rdv'];
+              console.log("rdvIsBooked == 'True'", rdvIsBooked == 'True');
+            } else {
+              console.log("else rdvIsBooked == 'True'", rdvIsBooked == 'True');
+              // has to reserve appointment
+              //  => Show bolt calendly
+              finished.innerHTML = finishBolt['noRdv'];
+              setTimeout(function () {
+                Calendly.initBadgeWidget({
+                  url: 'https://calendly.com/mcm-academy/examen-vtc-cma',
+                  prefill: {
+                    name: user_name,
+                    email: user_email,
+                  },
+                  text: "Inscription à l'examen VTC",
+                  color: '#1A1A1A',
+                  textColor: '#FFFFFF',
+                });
+              }, 1500);
+            }
           }
+        } else {
+          // his not bolt
+          // => Step 4 is his final step
+          // => redirect to e-learning plateform
+          finished.innerHTML = finish;
         }
-      } else {
-        // his not bolt
-        // => Step 4 is his final step
-        // => redirect to e-learning plateform
-        finished.innerHTML = finish;
       }
 
       break;
@@ -345,7 +367,7 @@ function activateStep(stepValue) {
   const documents = document.getElementById('personal');
   const financement = document.getElementById('payment');
   const validation = document.getElementById('confirm');
-  console.log(stepValue);
+  // console.log(stepValue);
   var step = 1;
 
   switch (stepValue) {

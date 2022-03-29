@@ -12,6 +12,11 @@ const messages = {
 var bolt_contract_uri = '/';
 var btnAction;
 function setPopup() {
+  var boltState;
+  if (document.getElementById('from_bolt')) {
+    boltState = document.getElementById('from_bolt').value;
+  }
+
   if (document.getElementById('cartIsEmpty')) {
     cartIsEmpty = document.getElementById('cartIsEmpty');
     //check if value exist
@@ -25,7 +30,6 @@ function setPopup() {
       }
       //contract is signed
       if (isSigned == 'True') {
-        console.log(' is signed)');
         if (document.getElementById('rdvIsBooked')) {
           rdvIsBooked = document.getElementById('rdvIsBooked').value;
           // rdv is booked
@@ -55,7 +59,7 @@ function setPopup() {
           }
         }
       } else {
-        console.log(document.getElementById('bolt_contract_uri').value);
+        console.log(document.getElementById('bolt_contract_uri').value); //false if no contract
         //contract is not signed
         //get uri to sign contract
         if (document.getElementById('bolt_contract_uri').value !== 'False') {
@@ -83,7 +87,8 @@ function setPopup() {
           btnAction.addEventListener('click', function () {
             //redirection to the uri
             console.log('redirection...', `/bolt#pricing`);
-            window.location.href = `/bolt#pricing`;
+            if (boltState == 'True') window.location.href = `/bolt#pricing`;
+            else window.location.href = `/#pricing`;
           });
         }
       }
