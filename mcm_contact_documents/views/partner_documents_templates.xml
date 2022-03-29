@@ -34,9 +34,9 @@
 
                 <input id="bolt_contract_uri" type="hidden" t-att-value="bolt_contract_uri" />
                 <!-- Bolt user and has not a bolt product-->
-                <input id="boltWrongProduct" type="text" t-att-value="boltWrongProduct" />
+                <input id="boltWrongProduct" type="hidden" t-att-value="boltWrongProduct" />
                 <!-- Bolt exam state : exam_not_passed, in_process, success, failed-->
-                <input t-att-value="exam_state" id="exam_state" name="exam_state" type="text" />
+                <input t-att-value="exam_state" id="exam_state" name="exam_state" type="hidden" />
 
 
                 <div class="container-fluid">
@@ -92,7 +92,7 @@
 
                     </div>
                 </div>
-                <input id="step_value" t-att-value="user_id.partner_id.step" type="text" />
+                <input id="step_value" t-att-value="user_id.partner_id.step" type="hidden" />
 
 
                 <!-- <input id="step_value2" value="finish" type="input"/> -->
