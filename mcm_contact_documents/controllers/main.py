@@ -102,11 +102,11 @@ class CustomerPortal(CustomerPortal):
             cartIsEmpty = "True"
         if order and not order.order_line:
             cartIsEmpty = "True"
-        boltWrongProduct = False
+        boltWrongProduct = "False"
         if order and order.order_line:
             for line in order.order_line:
                 if order.partner_id.bolt ==True and line.product_id.default_code != "vtc_bolt":
-                    boltWrongProduct = True
+                    boltWrongProduct = "True"
         values.update({
             'rdvIsBooked': rdvIsBooked,
             'cartIsEmpty': cartIsEmpty,

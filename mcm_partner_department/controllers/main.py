@@ -194,6 +194,11 @@ class WebsiteSale(WebsiteSale):
         """This route is called when adding a product to cart (no options)."""
         error_message = ''
         order = request.website.sale_get_order()
+
+        if order and order.partner_id.bolt == True :
+            bolt_product = request.env['product.product'].sudo().search(
+                [('company_id', '=', 1), ('default_code', "=", 'vtc_bolt')], order="list_price", limit=1)
+            product_id = int(bolt_product)
         if order and product_id:
             product = request.env['product.product'].sudo().search(
                 [('id', "=", product_id)])
@@ -287,18 +292,17 @@ class WebsiteSale(WebsiteSale):
             else:
                 print('test false')
                 product = request.env['product.template'].sudo().search(
-                    [('id', '=', product_id)])
+                    [('id', '=', int(product_id))])
                 error_message = "error"
                 url = "/shop/product/" + str(slug(product))
                 values = self._prepare_product_values(product, category='', search='', **kw)
                 values['error_department'] = "error"
                 return request.render("website_sale.product", values)
-
         if kw.get('express'):
             return request.redirect("/shop/checkout?express=1")
         if product_id:
             product = request.env['product.template'].sudo().search(
-                [('id', '=', product_id)], limit=1)
+                [('id', '=', int(product_id))], limit=1)
             slugname = (product.name).strip().strip('-').replace(' ', '-').lower()
             if not promo and product and product.company_id.id == 2:
                 return request.redirect("/%s/shop/cart" % (slugname))
