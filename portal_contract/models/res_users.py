@@ -59,9 +59,30 @@ class ResUsers(models.Model):
                 #                                                                       7:]
                 user.phone = phone
                 url = user.signup_url
-                short_url = pyshorteners.Shortener(api_key=bitly_access_token) #api key of bitly
-                short_url = short_url.bitly.short(
-                    url)
+                base_url = self.env['ir.config_parameter'].sudo().get_param('web.base.url')
+                # Define base_url according to partner company
+                if user.company_id.id == 1:
+                    base_url='https://www.mcm-academy.fr'
+
+                elif user.company_id.id == 2:
+                    base_url= 'https://www.digimoov.fr'
+
+                # link_tracker = self.env['link.tracker'].sudo().search([('url', "=", url)])
+                link_tracker = self.env['link.tracker'].sudo().create({
+                        'title': 'Rénitialisation de mot de passe de %s' %(user.name),
+                        'url': url,
+                    })
+                link_tracker.sudo().write({
+                    'short_url': base_url+ '/r/%(code)s' % {'code': link_tracker.code}
+                })
+                if not link_tracker :
+                    short_url = pyshorteners.Shortener(api_key=bitly_access_token) #api key of bitly
+                    short_url = short_url.bitly.short(
+                        url)
+                else:
+                    short_url = link_tracker.short_url
+                print('your short url is :',short_url)
+
                 body = "Une demande de changement de mot de passe nous a été signalée, si vous etes à l'origine de cette action cliquez ici : " + str(short_url)+ " (valable 24h)"
                 if body:
                     composer = self.env['sms.composer'].with_context(
@@ -75,8 +96,8 @@ class ResUsers(models.Model):
                         'use_active_domain': True,
                         'active_domain' : [('id', 'in', user.partner_id.ids)]
                     })
-                    composer = composer.with_user(SUPERUSER_ID)
-                    composer._action_send_sms() # we send sms to client contains link of reset password.
+                    # composer = composer.with_user(SUPERUSER_ID)
+                    # composer._action_send_sms() # we send sms to client contains link of reset password.
                     if user.phone:
                         user.phone = '0' + str(user.phone.replace(' ', ''))[
                                                       -9:]
