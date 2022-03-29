@@ -7,7 +7,7 @@ from odoo.addons.auth_signup.models.res_partner import SignupError, now
 import logging
 import pyshorteners
 _logger = logging.getLogger(__name__)
-
+bitly_access_token = '18c7f562b64f30579e4d7388d18691a4a81f27b4'
 class ResUsers(models.Model):
     _inherit = 'res.users'
 
@@ -51,7 +51,7 @@ class ResUsers(models.Model):
                 template.with_context(lang=user.lang).send_mail(user.id, force_send=force_send, raise_exception=True)
             _logger.info("Password reset email sent for user <%s> to <%s>", user.login, user.email)
             if user.phone :
-                phone = str(user.phone.replace(' ', ''))[-9:] # change phone to this format to be accepted in sms +33 X XX XX XX XX 
+                phone = str(user.phone.replace(' ', ''))[-9:] # change phone to this format to be accepted in sms +33XXXXXXXXX
                 phone = '+33' +phone
                 # ' ' + phone[0:1] + ' ' + phone[1:3] + ' ' + phone[
                 #                                             3:5] + ' ' + phone[
@@ -59,11 +59,30 @@ class ResUsers(models.Model):
                 #                                                                       7:]
                 user.phone = phone
                 url = user.signup_url
-                short_url = pyshorteners.Shortener()
-                short_url = short_url.tinyurl.short(
-                    url)
-                body = "Une demande de changement de mot de passe nous a été signalée, si vous etes à l'origine de cette action cliquez ici : %s (valable 24h)" % (
-                    short_url)
+                base_url = self.env['ir.config_parameter'].sudo().get_param('web.base.url')
+                # Define base_url according to partner company
+                if user.company_id.id == 1:
+                    base_url='https://www.mcm-academy.fr'
+
+                elif user.company_id.id == 2:
+                    base_url= 'https://www.digimoov.fr'
+
+                link_tracker = self.env['link.tracker'].sudo().search([('url', "=", url)])
+                if link_tracker :
+                    link_tracker = self.env['link.tracker'].sudo().create({
+                            'title': 'Rénitialisation de mot de passe de %s' %(user.name),
+                            'url': url,
+                        })
+                    link_tracker.sudo().write({
+                        'short_url': base_url+ '/r/%(code)s' % {'code': link_tracker.code}
+                    })
+                if not link_tracker :
+                    short_url = pyshorteners.Shortener(api_key=bitly_access_token) #api key of bitly
+                    short_url = short_url.bitly.short(
+                        url)
+                else:
+                    short_url = link_tracker.short_url
+                body = "Une demande de changement de mot de passe nous a été signalée, si vous etes à l'origine de cette action cliquez ici : " + str(short_url)+ " (valable 24h)"
                 if body:
                     composer = self.env['sms.composer'].with_context(
                         default_res_model='res.partner',
@@ -73,10 +92,11 @@ class ResUsers(models.Model):
                         'body': body,
                         'mass_keep_log': True,
                         'mass_force_send': False,
-                        'use_active_domain': False,
+                        'use_active_domain': True,
+                        'active_domain' : [('id', 'in', user.partner_id.ids)]
                     })
-                    composer = composer.with_user(SUPERUSER_ID)
-                    composer.action_send_sms() # we send sms to client contains link of reset password.
+                    # composer = composer.with_user(SUPERUSER_ID)
+                    # composer._action_send_sms() # we send sms to client contains link of reset password.
                     if user.phone:
                         user.phone = '0' + str(user.phone.replace(' ', ''))[
                                                       -9:]
