@@ -149,8 +149,10 @@
             <!-- Début de widget de badge Calendly -->
             <link rel="stylesheet" href="/digimoov_website_templates/static/src/css/widget_calendly.min.css" />
             <style>
+               
         .calendly-badge-widget {
         left: 20px !important;
+        max-width: 280px !important;
     }
     .calendly-badge-content{
         color: #fdd103 !important;
