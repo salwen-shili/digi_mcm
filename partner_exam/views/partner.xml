@@ -16,7 +16,31 @@
             </xpath>
             <xpath expr="//page[last()]" position="after">
                 <page name="note_exam" string="Examen">
-                    <field name="note_exam_id"/>
+                    <field name="note_exam_id" context="{'default_partner_id': active_id}">
+                        <tree string="Notes des examens Tree" default_order="create_date desc"
+                              >
+                            <field name="partner_id" />
+                            <field name="mode_de_financement" optional="hide"/>
+                            <field name="session_id"/>
+                            <field name="date_exam"/>
+                            <field name="module_id" optional="hide"/>
+                            <field name="epreuve_a" avg="Moy.QCM" string="QCM"/>
+                            <field name="epreuve_b" avg="Moy.QRO" string="QRO"/>
+                            <field name="moyenne_generale" avg="Moy.G"/>
+                            <field name="mention"/>
+                            <field name="is_recu" invisible="1"/>
+                            <field name="is_ajourne" invisible="1"/>
+                            <field name="is_present" invisible="1"/>
+                            <field name="is_Absent" invisible="1"/>
+                            <field name="is_absence_justifiee" invisible="1"/>
+                            <field name="resultat" options='{"fg_color": "green:is_recu==True; red:is_ajourne==True"}'/>
+                            <field name="presence"
+                                   options='{"fg_color": "green:is_present==True; red:is_Absent==True; #ff6600:is_absence_justifiee==True"}'/>
+                            <field name="nombre_de_passage"/>
+                            <field name="sorti_formation" optional="hide"/>
+                            <field name="temps_minute" optional="hide"/>
+                        </tree>
+                    </field>
                 </page>
             </xpath>
 

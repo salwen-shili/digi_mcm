@@ -72,7 +72,6 @@ class NoteExamen(models.Model):
                 rec.mobile = rec.phone
                 print("alloo mobile", rec.mobile)
 
-
     @api.onchange('resultat', 'partner_id', 'presence')
     def update_boolean_values(self):
         for rec in self:
@@ -116,22 +115,49 @@ class NoteExamen(models.Model):
                     line.epreuve_b = qro
                     line.moyenne_generale = (line.epreuve_a + line.epreuve_b)
 
-    @api.onchange('partner_id', 'epreuve_a', 'epreuve_b', 'presence')
+    @api.onchange('partner_id', 'epreuve_a', 'epreuve_b', 'presence', 'nombre_de_passage')
     def compute_moyenne_generale(self):
         """ This function used to auto display some result
         like the "Moyenne Generale" & "Mention" & "Resultat" """
         for rec in self:
+            nbr_count = ""
+            session_count = rec.env['partner.sessions'].search_count(
+                [('client_id', '=', rec.partner_id.id), ('paiement', '!=', True)])
+            print("session_count:::::", session_count)
+            if session_count == 1:
+                self.nombre_de_passage = "premier"
+                nbr_count = "premier"
+                print(self.nombre_de_passage)
+            if session_count == 2:
+                self.nombre_de_passage = "deuxieme"
+                nbr_count = "deuxieme"
+                print(self.nombre_de_passage)
+            if session_count == 3:
+                self.nombre_de_passage = "troisieme"
+                nbr_count = "troisieme"
+            if session_count == 4:
+                self.nombre_de_passage = "premier"
+                nbr_count = "premier"
+            if session_count == 5:
+                self.nombre_de_passage = "deuxieme"
+                nbr_count = "deuxieme"
+            if session_count == 6:
+                self.nombre_de_passage = "troisieme"
+                nbr_count = "troisieme"
             rec.moyenne_generale = (rec.epreuve_a + rec.epreuve_b)
             if rec.epreuve_a >= 50 and rec.epreuve_b >= 40 and rec.moyenne_generale >= 120 and rec.partner_id:
                 rec.moyenne_generale = rec.moyenne_generale
                 rec.mention = 'recu'
                 rec.resultat = 'recu'
+                #self.partner_id = self.partner_id.id
                 self.session_id = self.partner_id.mcm_session_id
                 self.date_exam = self.partner_id.mcm_session_id.date_exam
                 self.presence = 'present'
                 self.ville_id = self.partner_id.mcm_session_id.session_ville_id.id
                 self.partner_id.presence = "Présent(e)"
                 self.partner_id.resultat = "Admis(e)"
+                self.nombre_de_passage = nbr_count
+                print("nbr_count11111", nbr_count)
             else:
                 # reset your fields
                 rec.epreuve_a = rec.epreuve_a
@@ -139,6 +165,8 @@ class NoteExamen(models.Model):
                 rec.mention = 'ajourne'
                 rec.resultat = 'ajourne'
                 rec.partner_id.resultat = "Ajourné(e)"
+                self.nombre_de_passage = nbr_count
+                print("nbr_count11111", nbr_count)
 
                 last_line = self.env['partner.sessions'].search(
                     [('client_id', '=', rec.partner_id.id), ('date_exam', '<', date.today())], limit=1,
@@ -150,6 +178,8 @@ class NoteExamen(models.Model):
                     self.ville_id = self.partner_id.mcm_session_id.session_ville_id.id
                     self.partner_id.presence = "Présent(e)"
                     self.partner_id.resultat = "Ajourné(e)"
+                    self.nombre_de_passage = nbr_count
+                    print("nbr_count2222222", nbr_count)
                 elif rec.epreuve_a < 1 and rec.epreuve_b < 1 and not last_line.justification and rec.partner_id:
                     self.session_id = self.partner_id.mcm_session_id
                     self.date_exam = self.partner_id.mcm_session_id.date_exam
@@ -157,6 +187,8 @@ class NoteExamen(models.Model):
                     self.ville_id = self.partner_id.mcm_session_id.session_ville_id.id
                     self.partner_id.update({'presence': "Absent(e)"})
                     self.partner_id.resultat = "Ajourné(e)"
+                    self.nombre_de_passage = nbr_count
+                    print("nbr_countavantdernier", nbr_count)
                 elif rec.epreuve_a < 1 and rec.epreuve_b < 1 and last_line.justification is True and rec.partner_id:
                     self.session_id = last_line.session_id
                     self.date_exam = last_line.session_id.date_exam
@@ -164,6 +196,8 @@ class NoteExamen(models.Model):
                     self.ville_id = last_line.session_id.session_ville_id.id
                     self.partner_id.update({'presence': "Absence justifiée"})
                     self.partner_id.resultat = "Ajourné(e)"
+                    self.nombre_de_passage = nbr_count
+            print("nbr_countLast", nbr_count)
 
     @api.onchange("résultat")
     def etat_de_client_apres_examen(self):
@@ -366,27 +400,6 @@ class NoteExamen(models.Model):
         res = super(NoteExamen, self).write(values)
         # Add condition based on checkbox field paiement != True
         # to put auto value in "nombre de passage" based on sum of historic sessions
-        if 'partner_id' in values or 'epreuve_a' in values:
+        if 'partner_id' in values:
             self.update_boolean_values()
-            session_count = self.env['partner.sessions'].search_count(
-                [('client_id', '=', self.partner_id.id), ('paiement', '!=', True)])
-            if session_count == 1:
-                self.nombre_de_passage = "premier"
-                self.partner_id.nombre_de_passage = "Premier"
-                print(self.partner_id.nombre_de_passage)
-            if session_count == 2:
-                self.nombre_de_passage = "deuxieme"
-                self.partner_id.nombre_de_passage = "Deuxième"
-            if session_count == 3:
-                self.nombre_de_passage = "troisieme"
-                self.partner_id.nombre_de_passage = "Troisième"
-            if session_count == 4:
-                self.nombre_de_passage = "premier"
-                self.partner_id.nombre_de_passage = "Premier"
-            if session_count == 5:
-                self.nombre_de_passage = "deuxieme"
-                self.partner_id.nombre_de_passage = "Deuxième"
-            if session_count == 6:
-                self.nombre_de_passage = "troisieme"
-                self.partner_id.nombre_de_passage = "Troisième"
         return res

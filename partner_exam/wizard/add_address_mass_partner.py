@@ -17,15 +17,15 @@ class UpdateFieldFinancementWizard(models.TransientModel):
                 # set the selected field for each partner
                 statut.etat_financement_cpf_cb = statut.statut_cpf
             # Remplir nombre de passage dans la fiche client
-            examen = self.env['info.examen'].sudo().search([('partner_id', "=", statut.id)], limit=1,
-                                                           order="id desc")
-            if examen:
-                if examen.nombre_de_passage == "premier":
-                    statut.nombre_de_passage = "Premier" # affectation valeur "Premier" dans champ nombre de passage
-                if examen.nombre_de_passage == "deuxieme":
-                    statut.nombre_de_passage = "Deuxième"
-                if examen.nombre_de_passage == "troisieme":
-                    statut.nombre_de_passage = "Troisième"
+            # examen = self.env['info.examen'].sudo().search([('partner_id', "=", statut.id)], limit=1,
+            #                                                order="id desc")
+            # if examen:
+            #     if examen.nombre_de_passage == "premier":
+            #         statut.nombre_de_passage = "Premier" # affectation valeur "Premier" dans champ nombre de passage
+            #     if examen.nombre_de_passage == "deuxieme":
+            #         statut.nombre_de_passage = "Deuxième"
+            #     if examen.nombre_de_passage == "troisieme":
+            #         statut.nombre_de_passage = "Troisième"
             # Remplir les champ boolean pour recuperer les couleur (vert,rouge et orange)
             if statut.resultat == 'Admis(e)':
                 statut.is_recu = True
