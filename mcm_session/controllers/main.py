@@ -97,7 +97,11 @@ class WebsiteSale(WebsiteSale):
         no_variant_attribute_values = None
         if kw.get('no_variant_attribute_values'):
             no_variant_attribute_values = json.loads(kw.get('no_variant_attribute_values'))
-
+        if sale_order.partner_id.bolt == True :
+            bolt_product = request.env['product.product'].sudo().search(
+                [('company_id', '=', 1), ('default_code', "=", 'vtc_bolt')], order="list_price", limit=1)
+            if bolt_product :
+                product_id = bolt_product
         sale_order._cart_update(
             product_id=int(product_id),
             add_qty=1,

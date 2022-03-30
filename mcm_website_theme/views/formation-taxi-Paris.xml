@@ -364,7 +364,7 @@ Ils sont portés sur la réglementation du transport public , la sécurité rout
                 </a>
               </div>
               <div class="pt32" t-if="partenaire=='bolt'  or partenaire !='bolt'">
-                <a href="https://bolt.eu/fr/" target="_blank" rel="noopner">
+                <a href="/bolt" target="_blank" rel="noopner">
                   <img data-src="/mcm_website_theme/static/src/img/logos/logo-bolt.png" data-srcSafari="/mcm_website_theme/static/src/img/logos/logo-bolt.png" class="img-fluid lazy" style="width: 100px; margin-top: 9px" alt="Logo partenaire MCM-ACADEMY" title="Bolt partenaire MCM ACADEMY" />
                 </a>
               </div>

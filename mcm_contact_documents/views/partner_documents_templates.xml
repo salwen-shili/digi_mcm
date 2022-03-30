@@ -33,12 +33,15 @@
                 <input id="rdvIsBooked" type="hidden" t-att-value="rdvIsBooked" />
 
                 <input id="bolt_contract_uri" type="hidden" t-att-value="bolt_contract_uri" />
+                <!-- Bolt user and has not a bolt product-->
+                <input id="boltWrongProduct" type="hidden" t-att-value="boltWrongProduct" />
+                <!-- Bolt exam state : exam_not_passed, in_process, success, failed-->
+                <input t-att-value="exam_state" id="exam_state" name="exam_state" type="hidden" />
 
 
                 <div class="container-fluid">
 
-                    <div class="text-center p-0 mt-3 mb-2
-              ">
+                    <div class="text-center p-0 mt-3 mb-2">
                         <div class="form-section">
                             <div class="card px-0 pt-4 pb-0 mt-3 mb-3 bg-c">
                                 <h2 id="heading" style="font-size: 1.5rem;">Continuer votre inscription</h2>
