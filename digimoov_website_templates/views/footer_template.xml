@@ -5,6 +5,7 @@
       <style>
         .calendly-badge-widget {
           left: 20px !important;
+          max-width: 280px !important;
         }
       </style>
 

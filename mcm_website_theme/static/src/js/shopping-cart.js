@@ -42,11 +42,13 @@ document.addEventListener('DOMContentLoaded', function () {
     document.getElementById('promo_button').style.display = 'inline';
   }
   //event on click on checkbox paiement installment
-  document
-    .getElementById('checkbox_instalment')
-    .addEventListener('click', function () {
-      displayInstalmentPayment();
-    });
+  if (document.getElementById('checkbox_instalment')) {
+    document
+      .getElementById('checkbox_instalment')
+      .addEventListener('click', function () {
+        displayInstalmentPayment();
+      });
+  }
 });
 
 //animation

@@ -7,10 +7,16 @@ const messages = {
   rdvIsBooked: `félicitations pour votre inscription, l'un de nos agents va vous contacter suite au rendez-vous réservé pour finaliser le financement de votre examen`,
   rdvIsnotbooked: `Veuillez réserver un créneau pour finaliser votre inscription a l'examen VTC afin d'accéder à la plateforme de formation`,
   isNotSigned: `Nous vous remercions pour votre confiance, votre paiement a été effectué avec succès! Vous pouvez maintenant finaliser votre inscription en signant votre contrat pour avoir accès à notre plateforme de formation.`,
+  emptyCartNoContract: `Votre panier est vide, veuillez cliquer sur continuer pour ajouter votre formation.`,
 };
 var bolt_contract_uri = '/';
 var btnAction;
 function setPopup() {
+  var boltState;
+  if (document.getElementById('from_bolt')) {
+    boltState = document.getElementById('from_bolt').value;
+  }
+
   if (document.getElementById('cartIsEmpty')) {
     cartIsEmpty = document.getElementById('cartIsEmpty');
     //check if value exist
@@ -53,6 +59,7 @@ function setPopup() {
           }
         }
       } else {
+        console.log(document.getElementById('bolt_contract_uri').value); //false if no contract
         //contract is not signed
         //get uri to sign contract
         if (document.getElementById('bolt_contract_uri').value !== 'False') {
@@ -71,6 +78,18 @@ function setPopup() {
               window.location.href = bolt_contract_uri;
             });
           }
+        } else if (document.getElementById('btn-action')) {
+          //set notification message to the right description
+          notifMessage.textContent = messages['emptyCartNoContract'];
+          btnAction = document.getElementById('btn-action');
+          //change button to 'signer mon contrat'
+          btnAction.innerText = 'continuer';
+          btnAction.addEventListener('click', function () {
+            //redirection to the uri
+            console.log('redirection...', `/bolt#pricing`);
+            if (boltState == 'True') window.location.href = `/bolt#pricing`;
+            else window.location.href = `/#pricing`;
+          });
         }
       }
 

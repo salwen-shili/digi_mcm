@@ -1638,34 +1638,40 @@ footer {
 .features {
   padding: 30px 0;
 }
-@media (min-width: 1199px) {
-  .homebuttonspacing {
-    margin-top: -15px !important;
+
+/* @media only screen and (min-width: 991px) and (max-width: 1198px) {
+  .type-write {
+    height: 4em;
   }
-}
-@media only screen and (min-width: 991px) and (max-width: 1198px) {
-  .homebuttonspacing {
-    margin-top: 17px !important;
-  }
-}
+} */
 @media only screen and (min-width: 992px) and (max-width: 1198px) {
-  .homebuttonspacing {
-    margin-top: 26px !important;
+  .type-write {
+    height: 3.3em;
   }
 }
-@media only screen and (min-width: 767px) and (max-width: 991px) {
-  .homebuttonspacing {
-    margin-top: 50px !important;
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+  .type-write {
+    height: 5.5em;
   }
 }
-@media only screen and (min-width: 405px) and (max-width: 766px) {
-  .homebuttonspacing {
-    margin-top: -15px !important;
+/* @media only screen and (min-width: 405px) and (max-width: 545px) {
+  .type-write {
+    height: 3em;
+  }
+} */
+@media only screen and (min-width: 546px) and (max-width: 767px) {
+  .type-write {
+    height: 3.5em;
   }
 }
-@media only screen and (min-width: 345px) and (max-width: 404px) {
-  .homebuttonspacing {
-    margin-top: 72px !important;
+@media only screen and (min-width: 345px) and (max-width: 545px) {
+  .type-write {
+    height: 5.5em;
+  }
+}
+@media only screen and (min-width: 100px) and (max-width: 343px) {
+  .type-write {
+    height: 6.5em;
   }
 }
 
