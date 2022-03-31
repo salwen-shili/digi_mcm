@@ -70,6 +70,7 @@
         'views/capacitaire-transport-bordeaux.xml',
         # page de blog
         # 'views/blog/website_blog_posts.xml',
+        'views/partners/ubereats.xml'
 
     ],
     'qweb': [],

@@ -1,0 +1,217 @@
+<odoo>
+    <template id="digimoov_website_templates.ubereats_landing_page" name="Ubereats partenaire">
+
+        <t t-call="website.layout">
+
+
+            <script defer="defer" type="text/javascript" src="/digimoov_website_templates/static/src/js/lazy-min.min.js" />
+            <link href="/digimoov_website_templates/static/src/css/home.min.css" rel="stylesheet" />
+            <!-- <link href="/digimoov_website_templates/static/src/css/css-dist/home.min.css" rel="stylesheet" /> -->
+            <!-- TrustBox script -->
+            <script type="text/javascript" src="//widget.trustpilot.com/bootstrap/v5/tp.widget.bootstrap.min.js" async="async" />
+            <!-- End TrustBox script -->
+            <div id="wrap" class="oe_structure oe_empty">
+                <section class="centric_template" data-name="Banner">
+                    <section class="home-banner pt128 pb80" id="home_page">
+                        <div class="container">
+                            <div class="row">
+                                <div class="bannercol col-lg-6 col-md-12">
+                                    <div class="banner_image">
+                                        <img class="img img-fluid lazy" data-src="digimoov_website_templates/static/img/ubereats/devenz-coursier-uber-eats.png" data-srcSafari="digimoov_website_templates/static/img/ubereats/devenz-coursier-uber-eats.png" title="Devenez Coursier Uber eats avec Digimoov" alt="Devenez Coursier Uber eats avec Digimoov" />
+                                    </div>
+                                </div>
+                                <div class="bannarcol col-lg-6 col-md-12">
+                                    <h1 class="h1-title">
+                                        Devenez
+                                        <text class="green-ubereats">Coursier Uber eats</text>
+                                        avec
+                                        <text class="purple-title">Digimoov</text>
+                                    </h1>
+                                    <p class="paratext">
+                                        Devenir chauffeur Uber Eats impliquera de créer son entreprise
+              pour pratiquer une activité de transport en tant qu’indépendant .
+              Pour ce faire, vous devrez détenir votre attestation de transport
+              léger de marchandises.
+                                        <br />
+                                        En tant que centre de formation en ligne spécialisé dans la
+              capacité de transport, Digimoov vous offre une formation assez
+              complète de 102 heures à suivre à votre rythme, pour préparer au
+              mieux votre examen, et ainsi détenir votre licence.
+                                    </p>
+
+                                    <div class="banner-btn s_btn" data-name="Button">
+                                        <a href="#pricing" class="bannerbtn btn btn-alpha rounded-circle" data-original-title="" title="" aria-describedby="tooltip356431">Je m'inscris !</a>
+                                        <a class="watch-video" href="/contact" data-original-title="" title="" aria-describedby="tooltip428748">Contactez-nous</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </section>
+
+                <section class="s_creative_left_img_right_para" data-name="left Image Right Paragraph">
+                    <div class="feature39 spacer wrap-feature39-box">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="card-body">
+                                        <h2 class="title font-bold text-beta">Pourquoi nous choisir ?</h2>
+                                        <p class="m-t-40 m-b-40 custom_p">&amp;nbsp;</p>
+                                        <div class="d-flex no-block m-b-40">
+                                            <div class="display-4 m-r-20">
+                                                <span class="fa fa-user" data-original-title="" title="" aria-describedby="tooltip786247" style="color: rgb(156, 0, 255)" />
+                                            </div>
+                                            <div>
+                                                <h6 class="subtitle">
+                    +&amp;nbsp;1500 stagiaires nous ont fait confiance.
+                  </h6>
+                                            </div>
+                                        </div>
+                                        <div class="d-flex no-block m-b-40">
+                                            <div class="display-4 m-r-20">
+                                                <span class="fa fa-star" data-original-title="" title="" aria-describedby="tooltip262507" style="color: rgb(156, 0, 255)" />
+                                            </div>
+                                            <div>
+                                                <h6 class="subtitle">
+                    + 95% taux de satisfaction client et une note de 4.5 sur
+                    trustpilot.
+                  </h6>
+                                            </div>
+                                        </div>
+                                        <div class="d-flex no-block m-b-40">
+                                            <div class="display-4 m-r-20">
+                                                <span class="fa fa-trophy" data-original-title="" title="" aria-describedby="tooltip714605" style="color: rgb(156, 0, 255)" />
+                                            </div>
+                                            <div>
+                                                <h6 class="subtitle">
+                    Un taux de réussite moyen de plus de 80% sur la période de
+                    2020-2021
+                  </h6>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <img data-src="/digimoov_website_templates/static/img/ubereats/pourquoi-nous-choisir.png" data-srcSafari="/digimoov_website_templates/static/img/ubereats/pourquoi-nous-choisir.webp" class="img-fluid lazy" alt="bizople" data-original-title="" title="" aria-describedby="tooltip288540" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="s_creative_left_img_right_para" data-name="left Image Right Paragraph">
+                    <div class="feature39 spacer wrap-feature39-box">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <img data-src="/digimoov_website_templates/static/img/ubereats/Attestation de transport léger de marchandises-Digimoov.webp" data-srcSafari="/digimoov_website_templates/static/img/ubereats/Attestation de transport léger de marchandises-Digimoov.png" class="img-fluid lazy" alt="bizople" />
+                                </div>
+                                <div class="col-lg-6">
+                                    <h2 class="h2-text-30 blue-digimoov">
+              Obtenez votre Attestation de transport léger de marchandises
+            </h2>
+
+                                    <p class="paratext text-16">
+              L’attestation de capacité de transport est un document obligatoire
+              pour toute personne souhaitant devenir capacitaire.
+            </p>
+                                    <p class="paratext text-16">
+              En effet, pour créer une entreprise de transport routier léger ou
+              de location de voitures ne dépassant pas 3,5 tonnes PTAC, vous
+              devez obtenir une attestation de capacité professionnelle en
+              transport routier léger. Cela permet à l’entreprise de s’inscrire
+              au registre des transporteurs et loueurs tenus par la DREAL.
+            </p>
+                                    <div class="s_btn mt32" data-name="Button">
+                                        <a class="btn btn-alpha rounded-circle btn-rounded btn-md arrow-btn bizople_button o_default_snippet_text" href="#">
+                                            View other features
+                                            <span class="fa fa-1x fa-fw fa-long-arrow-right ml-1" />
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="s_creative_left_img_right_para" data-name="left Image Right Paragraph">
+                    <div class="feature39 spacer wrap-feature39-box">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-md-8">
+                                    <div class="max-500 ">
+                                        <div class="card-body">
+                                            <h2 class="h2-text-30 blue-digimoov">
+                Formation Capacité de Transport 100% en ligne pour devenir
+                coursier Uber
+              </h2>
+
+                                            <p class="paratext">
+                Digimoov vous assure une formation de 102 heures 100 % en ligne.
+                Une formation qui vous permettra d'apprendre 6 modules
+                indispensables pour la réussite en tant que transporteur
+                indépendant. Vous serez invité à une plateforme pédagogique où
+                vous aurez accès à des cours en vidéoconférences, des exercices
+                et des examens blancs pour tester vos connaissances, et une
+                révision en Live juste avant l'examen pour combler vos lacunes.
+              </p>
+
+
+                                            <div class="s_btn mt32" data-name="Button">
+                                                <a class="btn btn-alpha rounded-circle btn-rounded btn-md arrow-btn bizople_button o_default_snippet_text" href="#">
+                                                    View other features
+                                                    <span class="fa fa-1x fa-fw fa-long-arrow-right ml-1" />
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-4 wrap-feature2-box" style="border-style: none; border-width: 0px">
+                                    <section class="card card-shadow">
+                                        <img data-src="/digimoov_website_templates/static/img/ubereats/devenz-coursier-uber-eats.webp" data-srcSafari="/digimoov_website_templates/static/img/ubereats/devenz-coursier-uber-eats.png" class="img-fluid lazy" alt="bizople" />
+                                        <div class="card-body text-center p-40">
+                                            <h6>Besoin d'en savoir plus ?</h6>
+                                            <h4 class="font-bold">
+                    Blog : Comment devenir livreur Uber ?
+                  </h4>
+                                            <div class="s_btn" data-name="Button">
+                                                <a href="/comment-devenir-livreur-uber-eats" class="m-t-30 text-underline btn btn-success" data-original-title="" title="" aria-describedby="tooltip856636">Je découvre</a>
+                                            </div>
+                                        </div>
+                                    </section>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="s_call_to_action bg-200 pt48 pb24" data-name="Call to Action">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-9 pb24">
+                                <h3>
+                                    <b>Télécharger notre programme de formation</b>
+                                </h3>
+                                <p class="lead o_default_snippet_text">
+            Rejoignez-nous et passez à la vitesse supérieure.
+          </p>
+                            </div>
+                            <div class="col-lg-3 s_btn text-right pt8 pb24" data-name="Button">
+                                <a href="/fr/contactus" class="btn btn-primary btn-lg">
+                                    <span>Je télécharge </span>
+                                    &amp;nbsp;
+                                    <i class="fa fa-1x fa-fw fa-arrow-circle-right ml-1" />
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+        </t>
+
+
+    </template>
+</odoo>

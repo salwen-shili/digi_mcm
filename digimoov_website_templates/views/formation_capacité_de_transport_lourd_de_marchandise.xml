@@ -17,7 +17,7 @@
                     <div class="container">
                         <div class="row">
                             <div class="bannarcol col-lg-6 col-md-12" style="border-style: none; border-width: 0px">
-                                <h1 style="text-align: center; "> FORMATION CAPACITÉ TRANSPORT LOURD +3.5 t </h1>
+                                <h1 style="text-align: center; ">FORMATION CAPACITÉ TRANSPORT LOURD +3.5 t </h1>
                                 <p class="para text-center">
                                     Optez pour notre formation 100 % en ligne sur la capacité de transport lourd de marchandises !
                                     
@@ -270,7 +270,7 @@
                                 </p>
                             </div>
                             <div class="col-lg-3 s_btn text-right pt8 pb24" data-name="Button">
-                                <a target="_blank" rel="noopener" href="/digimoov_website_templates/static/pdf/PROGRAMME DE FORMATION EN LIGNE DE LA CAPACITE DE  TRANSPORT LOURD DE MARCHANDISES.pdf" alt="Transport lourd programme de formation" class="btn btn-primary btn-lg">
+                                <a target="_blank" rel="noopener" href="/digimoov_website_templates/static/pdf/PROGRAMME DE FORMATION TRANSPORT LOURD DE MARCHANDISES.pdf" alt="Transport lourd programme de formation" class="btn btn-primary btn-lg">
                                     <span aria-describedby="tooltip254674">Télécharger</span>
                                     <i class="fa fa-1x fa-fw fa-arrow-circle-right ml-1" aria-describedby="tooltip761958" />
                                 </a>
