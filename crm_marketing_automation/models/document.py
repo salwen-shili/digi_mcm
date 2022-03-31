@@ -91,5 +91,5 @@ class Document(models.Model):
     def create(self, vals):
         new_record = super(Document, self).create(vals)
         if new_record.partner_id and new_record.datas :
-            new_record.partner_id.step = "financement"
+            new_record.partner_id.step = "financement" #change step of client to financement when the documents of client uploaded manually by our services
         return new_record

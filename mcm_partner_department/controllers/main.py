@@ -198,7 +198,7 @@ class WebsiteSale(WebsiteSale):
         if order and order.partner_id.bolt == True :
             bolt_product = request.env['product.product'].sudo().search(
                 [('company_id', '=', 1), ('default_code', "=", 'vtc_bolt')], order="list_price", limit=1)
-            product_id = int(bolt_product)
+            product_id = int(bolt_product) #force product_id of bolt in shop cart if the client is bolt even if the client has chosen another product
         if order and product_id:
             product = request.env['product.product'].sudo().search(
                 [('id', "=", product_id)])

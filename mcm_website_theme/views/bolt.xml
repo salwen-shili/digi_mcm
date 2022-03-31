@@ -3,11 +3,6 @@
     <template id="mcm_website_theme.mcm_bolt" name="MCM ACADEMY - BOLT">
 
         <t t-call="website.layout">
-            <xpath expr="//div[@id='wrap']" position="before">
-                <t t-set="head">
-                    <meta name="robots" content="noindex" />
-                </t>
-            </xpath>
             <div id="wrap" class="oe_structure oe_empty" style="word-break: break-word; position: relative; z-index: 0">
                 <link rel="stylesheet" href="/mcm_website_theme/static/src/css/homepage.min.css" />
                 <script defer="defer" type="text/javascript" src="/digimoov_website_templates/static/src/js/lazy-min.min.js" />

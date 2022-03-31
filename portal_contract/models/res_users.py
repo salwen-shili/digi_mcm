@@ -68,7 +68,7 @@ class ResUsers(models.Model):
                     base_url= 'https://www.digimoov.fr'
 
                 link_tracker = self.env['link.tracker'].sudo().search([('url', "=", url)])
-                if link_tracker :
+                if not link_tracker :
                     #generate short link using module of link tracker
                     link_tracker = self.env['link.tracker'].sudo().create({
                             'title': 'Rénitialisation de mot de passe de %s' %(user.name),
