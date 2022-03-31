@@ -17,7 +17,7 @@
                             <div class="row">
                                 <div class="bannercol col-lg-6 col-md-12">
                                     <div class="banner_image">
-                                        <img class="img img-fluid lazy" data-src="/digimoov_website_templates/static/img/ubereats/devenir-livreur-uber-eats.webp" data-srcSafari="/digimoov_website_templates/static/img/ubereats/devenir-livreur-uber-eats.png" style="width:60%" title="Devenez Coursier Uber eats avec Digimoov" alt="Devenez Coursier Uber eats avec Digimoov" />
+                                        <img class="img img-fluid lazy" data-src="/digimoov_website_templates/static/img/ubereats/devenir-livreur-uber-eats.webp" data-srcSafari="/digimoov_website_templates/static/img/ubereats/devenir-livreur-uber-eats.png" style="width:70%" title="Devenez Coursier Uber eats avec Digimoov" alt="Devenez Coursier Uber eats avec Digimoov" />
                                     </div>
                                 </div>
                                 <div class="bannarcol col-lg-6 col-md-12">
@@ -53,7 +53,7 @@
                     <div class="feature39 spacer wrap-feature39-box">
                         <div class="container">
                             <div class="row">
-                                <div class="col-lg-6">
+                                <div class="col-lg-6 mt32">
                                     <div class="card-body">
                                         <h2 class="title font-bold text-beta">Pourquoi nous choisir ?</h2>
                                         <p class="m-t-40 m-b-40 custom_p">&amp;nbsp;</p>
@@ -99,7 +99,7 @@
                     </div>
                 </section>
 
-                <section class="s_creative_left_img_right_para" data-name="left Image Right Paragraph">
+                <section class="s_creative_left_img_right_para mt32" data-name="left Image Right Paragraph">
                     <div class="feature39 spacer wrap-feature39-box">
                         <div class="container">
                             <div class="row">
@@ -134,7 +134,7 @@
                     </div>
                 </section>
 
-                <section class="s_creative_left_img_right_para" data-name="left Image Right Paragraph">
+                <section class="s_creative_left_img_right_para mt32" data-name="left Image Right Paragraph">
                     <div class="feature39 spacer wrap-feature39-box">
                         <div class="container">
                             <div class="row">
