@@ -20,7 +20,7 @@
                             <div class="row align-items-center">
                                 <div class="col-md-6 align-self-center">
                                     <t t-if="partenaire=='' or partenaire!='box2home'">
-                                        <h1 class="title-1" t-if="partenaire=='' or partenaire!='box2home'">
+                                        <h1 class="title-1 type-write" t-if="partenaire=='' or partenaire!='box2home'">
                                             FORMATION EN CAPACITÉ DE TRANSPORT LÉGER DE
                                             <text class="stabiloblue">MARCHANDISES</text>
                                             POUR DEVENIR LIVREUR EN
