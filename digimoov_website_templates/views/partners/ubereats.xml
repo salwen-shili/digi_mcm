@@ -2,8 +2,6 @@
     <template id="digimoov_website_templates.ubereats_landing_page" name="Ubereats partenaire">
 
         <t t-call="website.layout">
-
-
             <script defer="defer" type="text/javascript" src="/digimoov_website_templates/static/src/js/lazy-min.min.js" />
             <link href="/digimoov_website_templates/static/src/css/home.min.css" rel="stylesheet" />
             <!-- <link href="/digimoov_website_templates/static/src/css/css-dist/home.min.css" rel="stylesheet" /> -->
@@ -17,7 +15,7 @@
                             <div class="row">
                                 <div class="bannercol col-lg-6 col-md-12">
                                     <div class="banner_image">
-                                        <img class="img img-fluid lazy" data-src="/digimoov_website_templates/static/img/ubereats/devenir-livreur-uber-eats.webp" data-srcSafari="/digimoov_website_templates/static/img/ubereats/devenir-livreur-uber-eats.png" style="width:70%" title="Devenez Coursier Uber eats avec Digimoov" alt="Devenez Coursier Uber eats avec Digimoov" />
+                                        <img class="img img-fluid lazy" data-src="digimoov_website_templates/static/img/ubereats/devenz-coursier-uber-eats.png" data-srcsafari="digimoov_website_templates/static/img/ubereats/devenz-coursier-uber-eats.png" title="Coursier Uber eats" alt="Devenez Coursier Uber eats avec Digimoov" />
                                     </div>
                                 </div>
                                 <div class="bannarcol col-lg-6 col-md-12">
@@ -38,17 +36,15 @@
               complète de 102 heures à suivre à votre rythme, pour préparer au
               mieux votre examen, et ainsi détenir votre licence.
                                     </p>
-
                                     <div class="banner-btn s_btn" data-name="Button">
-                                        <a href="#pricing" class="bannerbtn btn btn-alpha rounded-circle" data-original-title="" title="" aria-describedby="tooltip356431">Je m'inscris !</a>
-                                        <a class="watch-video" href="/contact" data-original-title="" title="" aria-describedby="tooltip428748">Contactez-nous</a>
+                                        <a href="#pricing" class="bannerbtn btn btn-alpha rounded-circle" data-original-title="" title="" aria-describedby="tooltip356431" spellcheck="false" data-mci-spellchecked="true">Je m'inscris !</a>
+                                        <a class="watch-video" href="/contact" data-original-title="" title="" aria-describedby="tooltip428748" spellcheck="false" data-mci-spellchecked="true" lang="merciapp">Contactez-nous</a>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </section>
                 </section>
-
                 <section class="s_creative_left_img_right_para" data-name="left Image Right Paragraph">
                     <div class="feature39 spacer wrap-feature39-box">
                         <div class="container">
@@ -92,25 +88,23 @@
                                     </div>
                                 </div>
                                 <div class="col-lg-6">
-                                    <img data-src="/digimoov_website_templates/static/img/ubereats/pourquoi-nous-choisir.png" data-srcSafari="/digimoov_website_templates/static/img/ubereats/pourquoi-nous-choisir.webp" class="img-fluid lazy" alt="bizople" data-original-title="" title="" aria-describedby="tooltip288540" />
+                                    <img data-src="/digimoov_website_templates/static/img/ubereats/pourquoi-nous-choisir.png" data-srcsafari="/digimoov_website_templates/static/img/ubereats/pourquoi-nous-choisir.webp" class="img-fluid lazy" alt="Formation Attestation de Transport Léger de Marchandises" data-original-title="" title="livreur avec digimoov" aria-describedby="tooltip288540" />
                                 </div>
                             </div>
                         </div>
                     </div>
                 </section>
-
-                <section class="s_creative_left_img_right_para mt32" data-name="left Image Right Paragraph">
+                <section class="s_creative_left_img_right_para" data-name="left Image Right Paragraph">
                     <div class="feature39 spacer wrap-feature39-box">
                         <div class="container">
                             <div class="row">
                                 <div class="col-lg-6">
-                                    <img data-src="/digimoov_website_templates/static/img/ubereats/Attestation de transport léger de marchandises-Digimoov.webp" data-srcSafari="/digimoov_website_templates/static/img/ubereats/Attestation de transport léger de marchandises-Digimoov.png" class="img-fluid lazy" alt="bizople" />
+                                    <img data-src="/digimoov_website_templates/static/img/ubereats/Attestation de transport léger de marchandises-Digimoov.webp" data-srcsafari="/digimoov_website_templates/static/img/ubereats/Attestation de transport léger de marchandises-Digimoov.png" class="img-fluid lazy" alt="Attestation de transport léger de marchandises" data-original-title="" title="livreuse pointant du doigt une attestation de transport" aria-describedby="tooltip267734" />
                                 </div>
                                 <div class="col-lg-6">
                                     <h2 class="h2-text-30 blue-digimoov">
               Obtenez votre Attestation de transport léger de marchandises
             </h2>
-
                                     <p class="paratext text-16">
               L’attestation de capacité de transport est un document obligatoire
               pour toute personne souhaitant devenir capacitaire.
@@ -123,17 +117,17 @@
               au registre des transporteurs et loueurs tenus par la DREAL.
             </p>
                                     <div class="s_btn mt32" data-name="Button">
-                                        <a class="btn btn-alpha rounded-circle btn-rounded btn-md arrow-btn bizople_button o_default_snippet_text" href="#">
-                                            View other features
+                                        <a class="arrow-btn bizople_button btn btn-alpha rounded-circle" href="/a-quoi-sert-l-attestation-de-capacite-en-transport-leger" spellcheck="false" data-mci-spellchecked="true" data-original-title="" title="" aria-describedby="tooltip36073" lang="merciapp">
+                                            En savoir plus&amp;nbsp;
                                             <span class="fa fa-1x fa-fw fa-long-arrow-right ml-1" />
                                         </a>
                                     </div>
+
                                 </div>
                             </div>
                         </div>
                     </div>
                 </section>
-
                 <section class="s_creative_left_img_right_para mt32" data-name="left Image Right Paragraph">
                     <div class="feature39 spacer wrap-feature39-box">
                         <div class="container">
@@ -145,7 +139,6 @@
                 Formation Capacité de Transport 100% en ligne pour devenir
                 coursier Uber
               </h2>
-
                                             <p class="paratext">
                 Digimoov vous assure une formation de 102 heures 100 % en ligne.
                 Une formation qui vous permettra d'apprendre 6 modules
@@ -155,38 +148,32 @@
                 et des examens blancs pour tester vos connaissances, et une
                 révision en Live juste avant l'examen pour combler vos lacunes.
               </p>
-
-
                                             <div class="s_btn mt32" data-name="Button">
-                                                <a class="btn btn-alpha rounded-circle btn-rounded btn-md arrow-btn bizople_button o_default_snippet_text" href="#">
-                                                    View other features
-                                                    <span class="fa fa-1x fa-fw fa-long-arrow-right ml-1" />
-                                                </a>
+                                                <a class="arrow-btn bizople_button btn btn-alpha rounded-circle" href="#pricing" spellcheck="false" data-mci-spellchecked="true" data-original-title="" title="" aria-describedby="tooltip345997" lang="merciapp">Je m'inscris ! </a>
                                             </div>
                                         </div>
                                     </div>
+                                    <mci-extension data-role="overlay" />
                                 </div>
-
                                 <div class="col-md-4 wrap-feature2-box" style="border-style: none; border-width: 0px">
                                     <section class="card card-shadow">
-                                        <img data-src="/digimoov_website_templates/static/img/ubereats/devenz-coursier-uber-eats.webp" data-srcSafari="/digimoov_website_templates/static/img/ubereats/devenz-coursier-uber-eats.png" class="img-fluid lazy" alt="bizople" />
+                                        <img data-src="/digimoov_website_templates/static/img/ubereats/devenz-coursier-uber-eats.webp" data-srcsafari="/digimoov_website_templates/static/img/ubereats/devenz-coursier-uber-eats.png" class="img-fluid" alt="coursier uber eats" src="/digimoov_website_templates/static/img/ubereats/devenz-coursier-uber-eats.webp" data-original-title="" title="coursier sur scooter" aria-describedby="tooltip86016" />
                                         <div class="card-body text-center p-40">
                                             <h6>Besoin d'en savoir plus ?</h6>
                                             <h4 class="font-bold">
                     Blog : Comment devenir livreur Uber ?
                   </h4>
                                             <div class="s_btn" data-name="Button">
-                                                <a href="/comment-devenir-livreur-uber-eats" class="m-t-30 text-underline btn btn-success" data-original-title="" title="" aria-describedby="tooltip856636">Je découvre</a>
+                                                <a href="/comment-devenir-livreur-uber-eats" class="m-t-30 text-underline btn btn-success" data-original-title="" title="" aria-describedby="tooltip856636" spellcheck="false" data-mci-spellchecked="true" lang="merciapp">Je découvre</a>
                                             </div>
                                         </div>
+                                        <mci-extension data-role="overlay" />
                                     </section>
                                 </div>
-
                             </div>
                         </div>
                     </div>
                 </section>
-
                 <section class="s_call_to_action bg-200 pt48 pb24" data-name="Call to Action">
                     <div class="container">
                         <div class="row">
@@ -209,9 +196,6 @@
                     </div>
                 </section>
             </div>
-
         </t>
-
-
     </template>
 </odoo>
