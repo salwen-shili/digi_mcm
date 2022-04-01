@@ -957,3 +957,21 @@ class Uber_eats(http.Controller):
             return request.render("digimoov_website_templates.ubereats_landing_page", values)
         else:
             raise werkzeug.exceptions.NotFound()
+
+
+class Deliveroo(http.Controller):
+    @http.route(['/devenez-coursier-deliveroo'], type='http', auth='public', website=True)
+    def deliveroo_landing_page(self, **kw, ):
+        digimoov_products = False
+        values = False
+        if request.website.id == 2:
+
+            # get digimoov products to send them to pricing table
+            digimoov_products = request.env['product.product'].sudo().search([('company_id', '=', 2)],
+                                                                             order="list_price")
+            values = {
+                'digimoov_products': digimoov_products,
+            }
+            return request.render("digimoov_website_templates.deliveroo_landing_page", values)
+        else:
+            raise werkzeug.exceptions.NotFound()

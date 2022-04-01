@@ -1,5 +1,5 @@
 <odoo>
-    <template id="digimoov_website_templates.ubereats_landing_page" name="Ubereats partenaire">
+    <template id="digimoov_website_templates.deliveroo_landing_page" name="Ubereats partenaire">
 
         <t t-call="website.layout">
             <script defer="defer" type="text/javascript" src="/digimoov_website_templates/static/src/js/lazy-min.min.js" />
