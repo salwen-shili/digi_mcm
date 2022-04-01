@@ -37,7 +37,7 @@ class AccountMove(models.Model):
     cpf_acompte_invoice = fields.Boolean(default=False)
     amount_residual = fields.Monetary(string='Montant due', compute='_get_mcm_paid_amount', store=True)
     amount = fields.Monetary(string='Montant', compute='_compute_payments_widget_to_reconcile_info', store=True)
-    amount_paye = fields.Monetary(string='Montant payé', store=True, readonly=True, compute='_compute_change_amount')
+    amount_paye = fields.Monetary(string='Montant payé', store=True, readonly=True)
     restamount = fields.Monetary(string='Reste à payé ', compute='_compute_change_amount', store=True, readonly=True)
     module_id = fields.Many2one('mcmacademy.module', 'Module')
     session_id = fields.Many2one('mcmacademy.session', 'Session')
@@ -149,7 +149,6 @@ class AccountMove(models.Model):
             move.sudo().unlink()
 
     """Créer une facture suite à l'evennement à facturer sur cpf"""
-
     def create_invoice(self):
         companies = self.env['res.company'].sudo().search([])
         if companies:
@@ -268,8 +267,11 @@ class AccountMove(models.Model):
                                         print('line', line.price_unit)
                                         line.price_unit = amountCGU
                                         print('line', line.price_unit)
+                                    """Calculer l'es 'acompte 25% du montant total de la formation """
+
                                     acompte = (product_id.lst_price * move.pourcentage_acompte) / 100
-                                    print('acompte', acompte, product_id.lst_price)
+                                    move.cpf_acompte_amount=acompte
+                                    print('acompte', acompte, product_id.lst_price,move.amount_paye)
                                     if so.pricelist_id.code:
                                         move.pricelist_id = amountCGU
                                     move.company_id = so.company_id
@@ -279,6 +281,7 @@ class AccountMove(models.Model):
                                     move.methodes_payment = 'cpf'
                                     move.post()
                                     journal_id = move.journal_id.id
+                                    """Effectuer  un payement de 25% de montant total de la formation pour digimoov"""
                                     payment_method = self.env['account.payment.method'].sudo().search(
                                         [('code', 'ilike', 'electronic')])
                                     payment = self.env['account.payment'].sudo().create(
@@ -367,7 +370,9 @@ class AccountMove(models.Model):
                                         print('line', line.price_unit)
                                         line.price_unit = amountCGU
                                         print('line', line.price_unit)
+                                    """Calculer l'es 'acompte 25% du montant total de la formation """
                                     acompte = (product_id.lst_price * move.pourcentage_acompte) / 100
+                                    move.cpf_acompte_amount=acompte
                                     print('acompte', acompte, product_id.lst_price)
                                     if so.pricelist_id.code:
                                         move.pricelist_id = amountCGU
@@ -377,25 +382,6 @@ class AccountMove(models.Model):
                                     # move.cpf_invoice = True
                                     move.methodes_payment = 'cpf'
                                     move.post()
-                                    # journal_id = move.journal_id.id
-                                    # payment_method = self.env['account.payment.method'].sudo().search(
-                                    #     [('code', 'ilike', 'electronic')])
-                                    # payment = self.env['account.payment'].sudo().create(
-                                    #     {'payment_type': 'inbound',
-                                    #      'payment_method_id': payment_method.id,
-                                    #      'partner_type': 'customer',
-                                    #      'partner_id': move.partner_id.id,
-                                    #      'amount': acompte,
-                                    #      'currency_id': move.currency_id.id,
-                                    #      'payment_date': datetime.now(),
-                                    #      'journal_id': journal_id,
-                                    #      'communication': False,
-                                    #      'payment_token_id': False,
-                                    #      'invoice_ids': [(6, 0, move.ids)],
-                                    #      })
-                                    # print("paiement", payment)
-                                    #
-                                    # payment.post()
 
                                     ref = move.name
 
