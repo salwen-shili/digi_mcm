@@ -3,7 +3,14 @@
 #Modification de la facture_client
 
 from odoo import api, fields, models, _
-
+from datetime import datetime, timedelta, date
+import json
+from odoo import _
+import requests
+from requests.structures import CaseInsensitiveDict
+from dateutil.relativedelta import relativedelta
+import logging
+_logger = logging.getLogger(__name__)
 class AccountMove(models.Model):
     _inherit = "account.move"
     restamount = fields.Monetary(string='Reste à payé ', store=True)
@@ -86,8 +93,5 @@ class resPartnerWizard(models.TransientModel):
         for rec in self:
             rec.amount=(rec.amount*rec.pourcentage)/100
 
-
-
-
-
+  
 

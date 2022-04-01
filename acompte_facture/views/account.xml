@@ -8,11 +8,11 @@
         <field name="model">account.move</field>
         <field name="inherit_id" ref="account.view_move_form"/>
         <field name="arch" type="xml">
-            <xpath expr="//field[@name='amount_untaxed']" position="before">
+            <xpath expr="//field[@name='amount_total']" position="after">
                 <field name="type_facture" invisible="1"/>
                 <field name="methodes_payment" invisible="1"/>
                 <label for="pourcentage_acompte" attrs="{'invisible':['|',('methodes_payment','=','cartebleu'),('company_id','=',1)]}"/>
-                <div class="oe_subtotal_footer_separator">
+                <div class="oe_subtotal_footer_separator" >
                     <field name="pourcentage_acompte" class="oe_inline" readonly="False"
                            attrs="{'invisible':['|',('methodes_payment','=','cartebleu'),('company_id','=',1)]}" force_save="1"/>
                     <span attrs="{'invisible':['|',('methodes_payment','=','cartebleu'),('company_id','=',1)]}">%</span>
@@ -21,8 +21,8 @@
             </xpath>
 
             <xpath expr="//field[@name='amount_untaxed']" position="after">
-                <field name="amount_paye" string = 'Payé'  force_save="1" attrs="{'invisible':['|',('methodes_payment','=','cartebleu'),('company_id','=',1)]}"/>
-                <field name="restamount" force_save="1" attrs="{'invisible':['|',('methodes_payment','=','cartebleu'),('company_id','=',1)]}"/>
+<!--                <field name="amount_paye" string = 'Payé'  force_save="1" attrs="{'invisible':['|',('methodes_payment','=','cartebleu'),('company_id','=',1)]}"/>-->
+<!--                <field name="restamount" force_save="1" attrs="{'invisible':['|',('methodes_payment','=','cartebleu'),('company_id','=',1)]}"/>-->
             </xpath>
             <xpath expr="//notebook/page/group[1]" position="inside" attrs="{'invisible': [('methodes_payment','=','cartebleu')]}" invisible="True">
                 <field name="amount_residual" class="oe_subtotal_footer_separator"

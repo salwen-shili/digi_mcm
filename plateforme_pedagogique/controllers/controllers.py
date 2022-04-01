@@ -1198,3 +1198,19 @@ class WebhookController(http.Controller):
                     if product_id:
                         user.partner_id.id_edof = product_id.id_edof
         return True
+
+    """Créer une facture apres l'evennement "à facturer" sur edof"""
+    @http.route(['/facturer_cpf'], type='json', auth="public", methods=['POST'])
+    def facturer_cpf(self, **kw):
+        dossier = json.loads(request.httprequest.data)
+        event = request.httprequest.headers.get('X-Wedof-Event')
+        _logger.info("webhoooooooooook facturer %s" % str(dossier))
+        _logger.info("header %s" % str(event))
+        """recuperer l'api_key de wedof"""
+        companies= request.env['res.company'].sudo().search([()])
+        api_key = ""
+        for  company in companies:
+            api_key = company.wedof_api_key
+            
+            
+        return True
