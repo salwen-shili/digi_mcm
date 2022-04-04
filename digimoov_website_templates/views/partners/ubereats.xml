@@ -15,13 +15,13 @@
                     <section class="home-banner pt128 pb80" id="home_page">
                         <div class="container">
                             <div class="row">
-                                <div class="bannercol col-lg-6 col-md-12">
+                                <div class="col-lg-6 col-md-12">
                                     <div class="banner_image">
                                         <img class="img img-fluid lazy" data-src="digimoov_website_templates/static/img/ubereats/devenz-coursier-uber-eats.png" data-srcsafari="digimoov_website_templates/static/img/ubereats/devenz-coursier-uber-eats.png" title="Coursier Uber eats" alt="Devenez Coursier Uber eats avec Digimoov" />
                                     </div>
                                 </div>
                                 <div class="bannarcol col-lg-6 col-md-12">
-                                    <h1 class="h1-title">
+                                    <h1 class="h1-title text-left">
                                         Devenez
                                         <text class="green-ubereats">Coursier Uber eats</text>
                                         avec
@@ -49,7 +49,7 @@
                 </section>
 
                 <section class="s_creative_left_img_right_para" data-name="left Image Right Paragraph">
-                    <div class="feature39 spacer wrap-feature39-box">
+                    <div class="feature39 wrap-feature39-box">
                         <div class="container">
                             <div class="row">
                                 <div class="col-lg-6 mt32">
@@ -158,7 +158,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <mci-extension data-role="overlay" />
+
                                 </div>
                                 <div class="col-md-4 wrap-feature2-box" style="border-style: none; border-width: 0px">
                                     <section class="card card-shadow">
@@ -172,7 +172,7 @@
                                                 <a href="/comment-devenir-livreur-uber-eats" class="m-t-30 text-underline btn btn-success" data-original-title="" title="" aria-describedby="tooltip856636" spellcheck="false" data-mci-spellchecked="true" lang="merciapp">Je découvre</a>
                                             </div>
                                         </div>
-                                        <mci-extension data-role="overlay" />
+
                                     </section>
                                 </div>
                             </div>
@@ -192,7 +192,7 @@
           </p>
                             </div>
                             <div class="col-lg-3 s_btn text-right pt8 pb24" data-name="Button">
-                                <a href="/fr/contactus" class="btn btn-primary btn-lg">
+                                <a href="/digimoov_website_templates/static/pdf/PROGRAMME-DE-FORMATION-DE-TRANSPORT-LEGER-DE-MARCHANDISES-DIGIMOOV.pdf" class="btn btn-primary btn-lg">
                                     <span>Je télécharge </span>
                                     &amp;nbsp;
                                     <i class="fa fa-1x fa-fw fa-arrow-circle-right ml-1" />

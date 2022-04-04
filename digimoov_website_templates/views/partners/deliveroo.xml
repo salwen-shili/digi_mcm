@@ -1,5 +1,5 @@
 <odoo>
-    <template id="digimoov_website_templates.deliveroo_landing_page" name="Ubereats partenaire">
+    <template id="digimoov_website_templates.deliveroo_landing_page" name="deliveroo partenaire">
 
         <t t-call="website.layout">
             <script defer="defer" type="text/javascript" src="/digimoov_website_templates/static/src/js/lazy-min.min.js" />
@@ -8,35 +8,27 @@
             <!-- TrustBox script -->
             <script type="text/javascript" src="//widget.trustpilot.com/bootstrap/v5/tp.widget.bootstrap.min.js" async="async" />
             <!-- End TrustBox script -->
-
-            <div id="wrap" class="oe_structure oe_empty">
-
+            <!-- End TrustBox script -->
+            <div id="wrap" class="oe_structure oe_empty" style="word-break: break-word; position: relative; z-index: 0;">
                 <section class="centric_template" data-name="Banner">
                     <section class="home-banner pt128 pb80" id="home_page">
                         <div class="container">
                             <div class="row">
-                                <div class="bannercol col-lg-6 col-md-12">
-                                    <div class="banner_image">
-                                        <img class="img img-fluid lazy" data-src="digimoov_website_templates/static/img/ubereats/devenz-coursier-uber-eats.png" data-srcsafari="digimoov_website_templates/static/img/ubereats/devenz-coursier-uber-eats.png" title="Coursier Uber eats" alt="Devenez Coursier Uber eats avec Digimoov" />
-                                    </div>
+                                <div class="col-lg-6 col-md-12" style="border-style: none; border-width: 0px;">
+
+                                    <img class="img img-fluid lazy" data-src="/digimoov_website_templates/static/img/deliveroo/livreur-deliveroo.webp" data-srcsafari="/digimoov_website_templates/static/img/deliveroo/livreur-deliveroo.png" title="Coursier Uber eats" alt="Devenez Coursier Uber eats avec Digimoov" />
+
                                 </div>
-                                <div class="bannarcol col-lg-6 col-md-12">
-                                    <h1 class="h1-title">
-                                        Devenez
-                                        <text class="green-ubereats">Coursier Uber eats</text>
-                                        avec
-                                        <text class="purple-title">Digimoov</text>
+                                <div class="bannarcol col-lg-6 col-md-12" style="border-style: none; border-width: 0px;">
+                                    <h1 class="h1-title text-left">
+                                        Comment devenir livreur
+                                        <text style="color: rgb(29, 245, 191);">deliveroo </text>
+                                        <text style="" class="text-beta">?</text>
                                     </h1>
-                                    <p class="paratext">
-                                        Devenir chauffeur Uber Eats impliquera de créer son entreprise
-              pour pratiquer une activité de transport en tant qu’indépendant .
-              Pour ce faire, vous devrez détenir votre attestation de transport
-              léger de marchandises.
+                                    <p class="paratext text-left">
+                                        La démarche à effectuer afin de devenir coursier Deliveroo est plutôt simple, mais vu qu'il s'agit d'une activité réglementée, vous devez avoir votre attestation de transport léger de marchandises pour pouvoir livrer en scooter, sinon vous serez confronté à des pénalités ou amandes.&amp;nbsp;
                                         <br />
-                                        En tant que centre de formation en ligne spécialisé dans la
-              capacité de transport, Digimoov vous offre une formation assez
-              complète de 102 heures à suivre à votre rythme, pour préparer au
-              mieux votre examen, et ainsi détenir votre licence.
+                                        La formation en capacité de transport léger est notre spécialité chez Digimoov. Nous vous offrons une formation en ligne assez complète de 102 heures à suivre à votre rythme, pour préparer au mieux votre examen, et ainsi détenir votre licence et travailler en toute légalité.
                                     </p>
                                     <div class="banner-btn s_btn" data-name="Button">
                                         <a href="#pricing" class="bannerbtn btn btn-alpha rounded-circle" data-original-title="" title="" aria-describedby="tooltip356431" spellcheck="false" data-mci-spellchecked="true">Je m'inscris !</a>
@@ -48,138 +40,83 @@
                     </section>
                 </section>
 
+
                 <section class="s_creative_left_img_right_para" data-name="left Image Right Paragraph">
-                    <div class="feature39 spacer wrap-feature39-box">
+                    <div class="feature39 wrap-feature39-box">
                         <div class="container">
                             <div class="row">
-                                <div class="col-lg-6 mt32">
-                                    <div class="card-body">
-                                        <h2 class="title font-bold text-beta">Pourquoi nous choisir ?</h2>
-                                        <p class="m-t-40 m-b-40 custom_p">&amp;nbsp;</p>
-                                        <div class="d-flex no-block m-b-40">
-                                            <div class="display-4 m-r-20">
-                                                <span class="fa fa-user" data-original-title="" title="" aria-describedby="tooltip786247" style="color: rgb(156, 0, 255)" />
-                                            </div>
-                                            <div>
-                                                <h6 class="subtitle">
-                    +&amp;nbsp;1500 stagiaires nous ont fait confiance.
-                  </h6>
-                                            </div>
-                                        </div>
-                                        <div class="d-flex no-block m-b-40">
-                                            <div class="display-4 m-r-20">
-                                                <span class="fa fa-star" data-original-title="" title="" aria-describedby="tooltip262507" style="color: rgb(156, 0, 255)" />
-                                            </div>
-                                            <div>
-                                                <h6 class="subtitle">
-                    + 95% taux de satisfaction client et une note de 4.5 sur
-                    trustpilot.
-                  </h6>
-                                            </div>
-                                        </div>
-                                        <div class="d-flex no-block m-b-40">
-                                            <div class="display-4 m-r-20">
-                                                <span class="fa fa-trophy" data-original-title="" title="" aria-describedby="tooltip714605" style="color: rgb(156, 0, 255)" />
-                                            </div>
-                                            <div>
-                                                <h6 class="subtitle">
-                    Un taux de réussite moyen de plus de 80% sur la période de
-                    2020-2021
-                  </h6>
-                                            </div>
-                                        </div>
-                                    </div>
+                                <div class="col-lg-6">
+                                    <h2 class="blue-digimoov h2-text-30">
+                                        <text style="font-size: 36px;">Les conditions pour devenir coursier&amp;nbsp;</text>
+                                        <text style="color: rgb(29, 245, 191); font-size: 36px;">deliveroo</text>
+                                    </h2>
+                                    <p class="paratext text-16 mb32">
+                                        Pour devenir livreur deliveroo en scooter électrique ou tout autre véhicule électrique, vous devez répondre à certaines conditions en relation avec votre statut en tant que coursier indépendant et ce que demande l'entreprise deliveroo.
+                                        <br />
+                                        Voici la liste :
+                                        <br />
+                                        - Avoir une attestation de capacité en transport léger de marchandises.
+                                        <br />
+                                        - Être équipé d’un scooter conforme aux règles de sécurité du Code de la route.
+                                        <br />
+                                        - Avoir un smartphone récent avec le système d’exploitation iOS ou Android.
+                                        <br />
+                                        - S'inscrire en tant que travailleur indépendant en France.
+                                        <br />
+                                        - Avoir plus de 18 ans.
+                                        <br />
+                                    </p>
+
                                 </div>
                                 <div class="col-lg-6">
-                                    <img data-src="/digimoov_website_templates/static/img/ubereats/pourquoi-nous-choisir.png" data-srcsafari="/digimoov_website_templates/static/img/ubereats/pourquoi-nous-choisir.webp" class="img-fluid lazy" alt="Formation Attestation de Transport Léger de Marchandises" data-original-title="" title="livreur avec digimoov" aria-describedby="tooltip288540" />
+                                    <img data-src="/digimoov_website_templates/static/img/deliveroo/Formation capacité de transport Marseille- digimoov.webp" data-srcsafari="/digimoov_website_templates/static/img/deliveroo/Formation capacité de transport Marseille- digimoov.png" class="img-fluid lazy" alt="Attestation de transport léger de marchandises" data-original-title="" title="livreuse pointant du doigt une attestation de transport" aria-describedby="tooltip267734" />
                                 </div>
                             </div>
                         </div>
                     </div>
                 </section>
-
-                <section class="s_creative_left_img_right_para" data-name="left Image Right Paragraph">
-                    <div class="feature39 spacer wrap-feature39-box">
+                <section class="s_creative_left_img_right_para mt12 bg-white-75" data-name="left Image Right Paragraph" style="">
+                    <div class="feature39 wrap-feature39-box">
                         <div class="container">
                             <div class="row">
-                                <div class="col-lg-6">
-                                    <img data-src="/digimoov_website_templates/static/img/ubereats/Attestation de transport léger de marchandises-Digimoov.webp" data-srcsafari="/digimoov_website_templates/static/img/ubereats/Attestation de transport léger de marchandises-Digimoov.png" class="img-fluid lazy" alt="Attestation de transport léger de marchandises" data-original-title="" title="livreuse pointant du doigt une attestation de transport" aria-describedby="tooltip267734" />
-                                </div>
-                                <div class="col-lg-6">
-                                    <h2 class="h2-text-30 blue-digimoov">
-              Obtenez votre Attestation de transport léger de marchandises
-            </h2>
-                                    <p class="paratext text-16">
-              L’attestation de capacité de transport est un document obligatoire
-              pour toute personne souhaitant devenir capacitaire.
-            </p>
-                                    <p class="paratext text-16">
-              En effet, pour créer une entreprise de transport routier léger ou
-              de location de voitures ne dépassant pas 3,5 tonnes PTAC, vous
-              devez obtenir une attestation de capacité professionnelle en
-              transport routier léger. Cela permet à l’entreprise de s’inscrire
-              au registre des transporteurs et loueurs tenus par la DREAL.
-            </p>
-                                    <div class="s_btn mt32" data-name="Button">
-                                        <a class="arrow-btn bizople_button btn btn-alpha rounded-circle" href="/a-quoi-sert-l-attestation-de-capacite-en-transport-leger" spellcheck="false" data-mci-spellchecked="true" data-original-title="" title="" aria-describedby="tooltip36073" lang="merciapp">
-                                            En savoir plus&amp;nbsp;
-                                            <span class="fa fa-1x fa-fw fa-long-arrow-right ml-1" />
-                                        </a>
-                                    </div>
-
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-
-                <section class="s_creative_left_img_right_para mt32" data-name="left Image Right Paragraph">
-                    <div class="feature39 spacer wrap-feature39-box">
-                        <div class="container">
-                            <div class="row">
-                                <div class="col-md-8">
+                                <div class="col-md-8" style="border-style: none; border-width: 0px;">
                                     <div class="max-500 ">
                                         <div class="card-body">
                                             <h2 class="h2-text-30 blue-digimoov">
-                Formation Capacité de Transport 100% en ligne pour devenir
-                coursier Uber
-              </h2>
+                Formation Capacité de Transport léger de marchandises de -3.5T&amp;nbsp;</h2>
                                             <p class="paratext">
-                Digimoov vous assure une formation de 102 heures 100 % en ligne.
-                Une formation qui vous permettra d'apprendre 6 modules
-                indispensables pour la réussite en tant que transporteur
-                indépendant. Vous serez invité à une plateforme pédagogique où
-                vous aurez accès à des cours en vidéoconférences, des exercices
-                et des examens blancs pour tester vos connaissances, et une
-                révision en Live juste avant l'examen pour combler vos lacunes.
-              </p>
+                                                Digimoov vous assure une formation de 102 heures à distance, durant laquelle vous serez encadrés par une équipe pédagogique assez impliquée et experte dans le domaine du transport. Et lors de laquelle vous découvrirez 6 modules indispensables pour votre&amp;nbsp; réussite à l'examen en capacité de transport léger.
+                                                <br />
+                                                Ces modules sont axés sur l'entreprise et son activité commerciale, financière, le droit civil, la gestion des salariés et le respect de la réglementation liée au secteur de transport de marchandises, mais aussi de la sécurité routière.
+                                                <br />
+                                                Dès votre inscription, vous serez invité à une plateforme pédagogique où vous aurez accès à des cours en vidéoconférences, des exercices et des examens blancs pour tester vos connaissances, et une révision en Live juste avant l'examen pour combler vos lacunes.
+                                            </p>
                                             <div class="s_btn mt32" data-name="Button">
                                                 <a class="arrow-btn bizople_button btn btn-alpha rounded-circle" href="#pricing" spellcheck="false" data-mci-spellchecked="true" data-original-title="" title="" aria-describedby="tooltip345997" lang="merciapp">Je m'inscris ! </a>
                                             </div>
                                         </div>
                                     </div>
-                                    <mci-extension data-role="overlay" />
+
                                 </div>
-                                <div class="col-md-4 wrap-feature2-box" style="border-style: none; border-width: 0px">
+                                <div class="col-md-4 wrap-feature2-box mt32" style="border-style: none; border-width: 0px;">
                                     <section class="card card-shadow">
-                                        <img data-src="/digimoov_website_templates/static/img/ubereats/devenz-coursier-uber-eats.webp" data-srcsafari="/digimoov_website_templates/static/img/ubereats/devenz-coursier-uber-eats.png" class="img-fluid" alt="coursier uber eats" src="/digimoov_website_templates/static/img/ubereats/devenz-coursier-uber-eats.webp" data-original-title="" title="coursier sur scooter" aria-describedby="tooltip86016" />
+                                        <img data-src="/digimoov_website_templates/static/img/deliveroo/centre de formation en ligne digimoov.webp" data-srcsafari="/digimoov_website_templates/static/img/deliveroo/centre de formation en ligne digimoov.png" class="img-fluid lazy" alt="coursier uber eats" data-original-title="" title="coursier sur scooter" aria-describedby="tooltip86016" />
                                         <div class="card-body text-center p-40">
                                             <h6>Besoin d'en savoir plus ?</h6>
                                             <h4 class="font-bold">
-                                                Blog : Comment devenir livreur Uber ?
-                                            </h4>
+                    Blog : Tout savoir sur la capacité de transport léger de marchandises</h4>
                                             <div class="s_btn" data-name="Button">
-                                                <a href="/comment-devenir-livreur-uber-eats" class="m-t-30 text-underline btn btn-success" data-original-title="" title="" aria-describedby="tooltip856636" spellcheck="false" data-mci-spellchecked="true" lang="merciapp">Je découvre</a>
+                                                <a href="/tout-savoir-sur-la-capacite-de-transport-leger-de-marchandises#scrollTop=0" class="m-t-30 text-underline btn btn-success" data-original-title="" title="" aria-describedby="tooltip856636" spellcheck="false" data-mci-spellchecked="true" lang="merciapp" style="word-break: break-word; position: relative; z-index: 0;">Je découvre</a>
                                             </div>
                                         </div>
-                                        <mci-extension data-role="overlay" />
+
+
                                     </section>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </section>
-
                 <section class="s_call_to_action bg-200 pt48 pb24" data-name="Call to Action">
                     <div class="container">
                         <div class="row">
@@ -192,7 +129,7 @@
           </p>
                             </div>
                             <div class="col-lg-3 s_btn text-right pt8 pb24" data-name="Button">
-                                <a href="/fr/contactus" class="btn btn-primary btn-lg">
+                                <a href="/digimoov_website_templates/static/pdf/PROGRAMME-DE-FORMATION-DE-TRANSPORT-LEGER-DE-MARCHANDISES-DIGIMOOV.pdf" class="btn btn-primary btn-lg">
                                     <span>Je télécharge </span>
                                     &amp;nbsp;
                                     <i class="fa fa-1x fa-fw fa-arrow-circle-right ml-1" />
@@ -201,8 +138,8 @@
                         </div>
                     </div>
                 </section>
-
             </div>
+
         </t>
     </template>
 </odoo>
