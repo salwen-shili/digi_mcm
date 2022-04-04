@@ -38,7 +38,9 @@ class Facture(models.Model):
                 if partner.mode_de_financement != 'cpf':
                     if partner and rec.amount_residual == 0:
                         partner.etat_financement_cpf_cb = 'paid'
+                        partner.is_not_paid = False
                     else:
                         partner.etat_financement_cpf_cb = 'not_paid'
+                        partner.is_not_paid = True
         record = super(Facture, self).write(vals)
         return record
