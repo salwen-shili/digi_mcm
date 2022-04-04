@@ -87,20 +87,15 @@ class InheritResPartner(models.Model):
     def _financement_not_paid(self):
         """ cette fonction sera executée une seul fois pour remplir les ancienes champs pour appliquer
                 la condition de coloration sur les clients avec des financements égale non payés """
-        print("debut")
         active_ids = self.ids
         active_ids = self.env.context.get('active_ids', [])
-        print("active_ids", active_ids)
         records = self.env['res.partner'].browse(self.env.context.get('active_ids'))
-        print("records", records)
         for rec in records:
             if rec.etat_financement_cpf_cb:
-                print("reccccccccc", rec.etat_financement_cpf_cb)
                 if rec.etat_financement_cpf_cb == 'not_paid':
-                    print("rec.etat_financement_cpf_cb", rec.etat_financement_cpf_cb)
                     rec.is_not_paid = True
-                    print("is_not_paid", rec.is_not_paid)
-
+                else:
+                    rec.is_not_paid = False
 
     def write(self, values):
         """ Mettre à jour presence & resultat fields pour chaque mise à jour"""
