@@ -20,7 +20,7 @@ class IdenfyWebsiteSale(WebsiteSale):
         order = request.website.sale_get_order()
         name = http.request.env.user.name
         email = http.request.env.user.email
-        order.partner_id.idenfy_document_data_id.status != 'APPROVED' and order.partner_id.check_status(request.website) or ''
+        # order.partner_id.idenfy_document_data_id.status != 'APPROVED' and order.partner_id.check_status(request.website) or '' #comment line
         status = order.partner_id.idenfy_document_data_id.status
         if order.partner_id and not request.env.user.has_group('base.group_user') and status in ['APPROVED']:
             order.partner_id.fetch_document_details_from_idenfy(request.website)
