@@ -82,6 +82,7 @@ class resComapny(models.Model):
                     self.env['info.examen'].search([], limit=1, order='id desc').sudo().create({
                         'partner_id': self.id,
                         'session_id': self.mcm_session_id.id,
+                        'module_id': self.module_id.id,
                         'date_exam': self.mcm_session_id.date_exam,
                         'epreuve_a': 0,
                         'epreuve_b': 0,
