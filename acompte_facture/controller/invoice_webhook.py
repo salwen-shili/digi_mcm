@@ -43,32 +43,32 @@ class WebhookController(http.Controller):
         state = dossier['state']
         print('training', training_id)
 
-        user = self.env['res.partner'].sudo().search([('numero_cpf', "=", externalId)])
+        user = request.env['res.partner'].sudo().search([('numero_cpf', "=", externalId)])
 
         product_id = ""
         if 'digimoov' in str(training_id):
 
-            product_id = self.env['product.product'].sudo().search(
+            product_id = request.env['product.product'].sudo().search(
                 [('id_edof', "=", str(training_id)), ('company_id', "=", 2)], limit=1)
         else:
             print('if digi ', product_id)
-            product_id = self.env['product.product'].sudo().search(
+            product_id = request.env['product.product'].sudo().search(
                 [('id_edof', "=", str(training_id)), ('company_id', "=", 1)], limit=1)
 
         if user and product_id and product_id.company_id.id == 2 and user.id_edof and user.date_examen_edof and user.session_ville_id:
 
-            module_id = self.env['mcmacademy.module'].sudo().search(
+            module_id = request.env['mcmacademy.module'].sudo().search(
                 [('company_id', "=", 2), ('session_ville_id', "=", user.session_ville_id.id),
                  ('date_exam', "=", user.date_examen_edof), ('product_id', "=", product_id.id),
                  ('session_id.number_places_available', '>', 0)], limit=1)
             print('before if modulee', module_id)
             if module_id:
                 print('if modulee', module_id)
-                product_id = self.env['product.product'].sudo().search(
+                product_id = request.env['product.product'].sudo().search(
                     [('product_tmpl_id', '=', module_id.product_id.id)])
-                self.env.user.company_id = 2
+                request.env.user.company_id = 2
                 """chercher facture avec numero de dossier si n'existe pas on crée une facture"""
-                # invoice = self.env['account.move'].sudo().search(
+                # invoice = request.env['account.move'].sudo().search(
                 #     [('numero_cpf', "=", externalId),
                 #      ('state', "=", 'posted'),
                 #      ('partner_id', "=", user.id)], limit=1)
@@ -77,14 +77,14 @@ class WebhookController(http.Controller):
                 # print('invoice', invoice.name)
 
                 print('if  not invoice digi ')
-                so = self.env['sale.order'].sudo().create({
+                so = request.env['sale.order'].sudo().create({
                     'partner_id': user.id,
                     'company_id': 2,
                 })
                 so.module_id = user.module_id
                 so.session_id = user.session_id
                 """Créer une ligne de vente avec le montant CGU récupéré depuis cpf"""
-                so_line = self.env['sale.order.line'].sudo().create({
+                so_line = request.env['sale.order.line'].sudo().create({
                     'name': product_id.name,
                     'product_id': product_id.id,
                     'product_uom_qty': 1,
@@ -135,9 +135,9 @@ class WebhookController(http.Controller):
                         move.post()
                         journal_id = move.journal_id.id
                         """Effectuer  un payement de 25% de montant total de la formation pour digimoov"""
-                        payment_method = self.env['account.payment.method'].sudo().search(
+                        payment_method = request.env['account.payment.method'].sudo().search(
                             [('code', 'ilike', 'electronic')])
-                        payment = self.env['account.payment'].sudo().create(
+                        payment = request.env['account.payment'].sudo().create(
                             {'payment_type': 'inbound',
                              'payment_method_id': payment_method.id,
                              'partner_type': 'customer',
@@ -158,20 +158,20 @@ class WebhookController(http.Controller):
 
                 so.action_cancel()
                 so.unlink()
-        elif user and externalId == "40128783966" and product_id and product_id.company_id.id == 1 and user.id_edof and user.date_examen_edof and user.session_ville_id:
+        elif user and product_id and product_id.company_id.id == 1 and user.id_edof and user.date_examen_edof and user.session_ville_id:
             """Pour mcm creation de facture sans passer un paiement de 25%"""
-            module_id = self.env['mcmacademy.module'].sudo().search(
+            module_id = request.env['mcmacademy.module'].sudo().search(
                 [('company_id', "=", 1), ('session_ville_id', "=", user.session_ville_id.id),
                  ('date_exam', "=", user.date_examen_edof), ('product_id', "=", product_id.id),
                  ('session_id.number_places_available', '>', 0)], limit=1)
             print('before if modulee', module_id)
             if module_id:
                 print('if modulee', module_id)
-                product_id = self.env['product.product'].sudo().search(
+                product_id = request.env['product.product'].sudo().search(
                     [('product_tmpl_id', '=', module_id.product_id.id)])
-                self.env.user.company_id = 1
+                request.env.user.company_id = 1
                 """chercher facture avec numero de dossier si n'existe pas on crée une facture"""
-                # invoice = self.env['account.move'].sudo().search(
+                # invoice = request.env['account.move'].sudo().search(
                 #     [('numero_cpf', "=", externalId),
                 #      ('state', "=", 'posted'),
                 #      ('partner_id', "=", user.id)], limit=1)
@@ -180,14 +180,14 @@ class WebhookController(http.Controller):
                 # print('invoice', invoice.name)
 
                 print('if  not invoice digi ')
-                so = self.env['sale.order'].sudo().create({
+                so = request.env['sale.order'].sudo().create({
                     'partner_id': user.id,
                     'company_id': 1,
                 })
                 so.module_id = user.module_id
                 so.session_id = user.session_id
                 """Créer une ligne de vente avec le montant CGU récupéré depuis cpf"""
-                so_line = self.env['sale.order.line'].sudo().create({
+                so_line = request.env['sale.order.line'].sudo().create({
                     'name': product_id.name,
                     'product_id': product_id.id,
                     'product_uom_qty': 1,

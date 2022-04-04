@@ -13,7 +13,8 @@ class Partner(models.Model):
     bolt=fields.Boolean('Client Bolt')
     inscrit_mcm=fields.Date("Date d'inscription")
     eval_box=fields.Boolean('Eval Box')
-
+    numero_evalbox=fields.Char('Numéro de dossier Evalbox')
+   
     # @api.model
     # def search_read(self, domain=None, fields=None, offset=0, limit=None, order=None):
     # 
