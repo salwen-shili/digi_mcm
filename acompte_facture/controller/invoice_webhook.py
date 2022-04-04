@@ -68,96 +68,96 @@ class WebhookController(http.Controller):
                     [('product_tmpl_id', '=', module_id.product_id.id)])
                 request.env.user.company_id = 2
                 """chercher facture avec numero de dossier si n'existe pas on crée une facture"""
-                # invoice = request.env['account.move'].sudo().search(
-                #     [('numero_cpf', "=", externalId),
-                #      ('state', "=", 'posted'),
-                #      ('partner_id', "=", user.id)], limit=1)
-                # print('invoice', invoice.name)
-                # if not invoice:
-                # print('invoice', invoice.name)
+                invoice = request.env['account.move'].sudo().search(
+                    [('numero_cpf', "=", externalId),
+                     ('state', "=", 'posted'),
+                     ('partner_id', "=", user.id)], limit=1)
+                print('invoice', invoice.name)
+                if not invoice:
+                    _logger.info('invoice digi %s' % str(invoice.name))
+    
+                    print('if  not invoice digi ')
+                    so = request.env['sale.order'].sudo().create({
+                        'partner_id': user.id,
+                        'company_id': 2,
+                    })
+                    so.module_id = user.module_id
+                    so.session_id = user.session_id
+                    """Créer une ligne de vente avec le montant CGU récupéré depuis cpf"""
+                    so_line = request.env['sale.order.line'].sudo().create({
+                        'name': product_id.name,
+                        'product_id': product_id.id,
+                        'product_uom_qty': 1,
+                        'product_uom': product_id.uom_id.id,
+                        'price_unit': amountCGU,
+                        'order_id': so.id,
+                        'tax_id': product_id.taxes_id,
+                        'company_id': 2,
+                    })
+                    # prix de la formation dans le devis
+                    amount_before_instalment = so.amount_total
+                    # so.amount_total = so.amount_total * 0.25
+                    for line in so.order_line:
+                        line.price_unit = so.amount_total
+                    so.action_confirm()
+                    ref = False
+                    # Creation de la Facture Cpf
+                    # Si la facture est de type CPF :  On parse le pourcentage qui est 25 %
+                    # methode_payment prend la valeur CPF pour savoir bien qui est une facture CPF qui prend la valeur 25 % par default
 
-                print('if  not invoice digi ')
-                so = request.env['sale.order'].sudo().create({
-                    'partner_id': user.id,
-                    'company_id': 2,
-                })
-                so.module_id = user.module_id
-                so.session_id = user.session_id
-                """Créer une ligne de vente avec le montant CGU récupéré depuis cpf"""
-                so_line = request.env['sale.order.line'].sudo().create({
-                    'name': product_id.name,
-                    'product_id': product_id.id,
-                    'product_uom_qty': 1,
-                    'product_uom': product_id.uom_id.id,
-                    'price_unit': amountCGU,
-                    'order_id': so.id,
-                    'tax_id': product_id.taxes_id,
-                    'company_id': 2,
-                })
-                # prix de la formation dans le devis
-                amount_before_instalment = so.amount_total
-                # so.amount_total = so.amount_total * 0.25
-                for line in so.order_line:
-                    line.price_unit = so.amount_total
-                so.action_confirm()
-                ref = False
-                # Creation de la Facture Cpf
-                # Si la facture est de type CPF :  On parse le pourcentage qui est 25 %
-                # methode_payment prend la valeur CPF pour savoir bien qui est une facture CPF qui prend la valeur 25 % par default
+                    if so.amount_total > 0 and so.order_line:
+                        moves = so._create_invoices(final=True)
+                        for move in moves:
+                            move.type_facture = 'interne'
+                            # move.cpf_acompte_invoice= True
+                            # move.cpf_invoice =True
+                            move.methodes_payment = 'cpf'
+                            move.numero_cpf = externalId
+                            move.pourcentage_acompte = 25
+                            move.module_id = so.module_id
+                            move.session_id = so.session_id
+                            for line in move.invoice_line_ids:
+                                print('line', line.price_unit)
+                                line.price_unit = amountCGU
+                                print('line', line.price_unit)
+                            """Calculer l'es 'acompte 25% du montant total de la formation """
 
-                if so.amount_total > 0 and so.order_line:
-                    moves = so._create_invoices(final=True)
-                    for move in moves:
-                        move.type_facture = 'interne'
-                        # move.cpf_acompte_invoice= True
-                        # move.cpf_invoice =True
-                        move.methodes_payment = 'cpf'
-                        move.numero_cpf = externalId
-                        move.pourcentage_acompte = 25
-                        move.module_id = so.module_id
-                        move.session_id = so.session_id
-                        for line in move.invoice_line_ids:
-                            print('line', line.price_unit)
-                            line.price_unit = amountCGU
-                            print('line', line.price_unit)
-                        """Calculer l'es 'acompte 25% du montant total de la formation """
+                            acompte = (product_id.lst_price * move.pourcentage_acompte) / 100
+                            move.cpf_acompte_amount = acompte
+                            print('acompte', acompte, product_id.lst_price, move.amount_paye)
+                            if so.pricelist_id.code:
+                                move.pricelist_id = amountCGU
+                            move.company_id = so.company_id
+                            move.price_unit = amountCGU  # changé avec montant CGU
+                            # move.cpf_acompte_invoice=True
+                            # move.cpf_invoice = True
+                            move.methodes_payment = 'cpf'
+                            move.post()
+                            journal_id = move.journal_id.id
+                            """Effectuer  un payement de 25% de montant total de la formation pour digimoov"""
+                            payment_method = request.env['account.payment.method'].sudo().search(
+                                [('code', 'ilike', 'electronic')])
+                            payment = request.env['account.payment'].sudo().create(
+                                {'payment_type': 'inbound',
+                                 'payment_method_id': payment_method.id,
+                                 'partner_type': 'customer',
+                                 'partner_id': move.partner_id.id,
+                                 'amount': acompte,
+                                 'currency_id': move.currency_id.id,
+                                 'payment_date': datetime.now(),
+                                 'journal_id': journal_id,
+                                 'communication': False,
+                                 'payment_token_id': False,
+                                 'invoice_ids': [(6, 0, move.ids)],
+                                 })
+                            print("paiement", payment)
 
-                        acompte = (product_id.lst_price * move.pourcentage_acompte) / 100
-                        move.cpf_acompte_amount = acompte
-                        print('acompte', acompte, product_id.lst_price, move.amount_paye)
-                        if so.pricelist_id.code:
-                            move.pricelist_id = amountCGU
-                        move.company_id = so.company_id
-                        move.price_unit = amountCGU  # changé avec montant CGU
-                        # move.cpf_acompte_invoice=True
-                        # move.cpf_invoice = True
-                        move.methodes_payment = 'cpf'
-                        move.post()
-                        journal_id = move.journal_id.id
-                        """Effectuer  un payement de 25% de montant total de la formation pour digimoov"""
-                        payment_method = request.env['account.payment.method'].sudo().search(
-                            [('code', 'ilike', 'electronic')])
-                        payment = request.env['account.payment'].sudo().create(
-                            {'payment_type': 'inbound',
-                             'payment_method_id': payment_method.id,
-                             'partner_type': 'customer',
-                             'partner_id': move.partner_id.id,
-                             'amount': acompte,
-                             'currency_id': move.currency_id.id,
-                             'payment_date': datetime.now(),
-                             'journal_id': journal_id,
-                             'communication': False,
-                             'payment_token_id': False,
-                             'invoice_ids': [(6, 0, move.ids)],
-                             })
-                        print("paiement", payment)
+                            payment.post()
 
-                        payment.post()
+                            ref = move.name
 
-                        ref = move.name
-
-                so.action_cancel()
-                so.unlink()
+                    so.action_cancel()
+                    so.unlink()
         elif user and product_id and product_id.company_id.id == 1 and user.id_edof and user.date_examen_edof and user.session_ville_id:
             """Pour mcm creation de facture sans passer un paiement de 25%"""
             module_id = request.env['mcmacademy.module'].sudo().search(
@@ -171,75 +171,75 @@ class WebhookController(http.Controller):
                     [('product_tmpl_id', '=', module_id.product_id.id)])
                 request.env.user.company_id = 1
                 """chercher facture avec numero de dossier si n'existe pas on crée une facture"""
-                # invoice = request.env['account.move'].sudo().search(
-                #     [('numero_cpf', "=", externalId),
-                #      ('state', "=", 'posted'),
-                #      ('partner_id', "=", user.id)], limit=1)
-                # print('invoice', invoice.name)
-                # if not invoice:
-                # print('invoice', invoice.name)
+                invoice = request.env['account.move'].sudo().search(
+                    [('numero_cpf', "=", externalId),
+                     ('state', "=", 'posted'),
+                     ('partner_id', "=", user.id)], limit=1)
+                print('invoice', invoice.name)
+                if not invoice:
+                    _logger.info('invoice %s'%str(invoice.name))
 
-                print('if  not invoice digi ')
-                so = request.env['sale.order'].sudo().create({
-                    'partner_id': user.id,
-                    'company_id': 1,
-                })
-                so.module_id = user.module_id
-                so.session_id = user.session_id
-                """Créer une ligne de vente avec le montant CGU récupéré depuis cpf"""
-                so_line = request.env['sale.order.line'].sudo().create({
-                    'name': product_id.name,
-                    'product_id': product_id.id,
-                    'product_uom_qty': 1,
-                    'product_uom': product_id.uom_id.id,
-                    'price_unit': amountCGU,
-                    'order_id': so.id,
-                    'tax_id': product_id.taxes_id,
-                    'company_id': 1,
-                })
-                # prix de la formation dans le devis
-                amount_before_instalment = so.amount_total
-                # so.amount_total = so.amount_total * 0.25
-                for line in so.order_line:
-                    line.price_unit = so.amount_total
-                so.action_confirm()
-                ref = False
-                # Creation de la Facture Cpf
-                # Si la facture est de type CPF :  On parse le pourcentage qui est 25 %
-                # methode_payment prend la valeur CPF pour savoir bien qui est une facture CPF qui prend la valeur 25 % par default
+                    print('if  not invoice digi ')
+                    so = request.env['sale.order'].sudo().create({
+                        'partner_id': user.id,
+                        'company_id': 1,
+                    })
+                    so.module_id = user.module_id
+                    so.session_id = user.session_id
+                    """Créer une ligne de vente avec le montant CGU récupéré depuis cpf"""
+                    so_line = request.env['sale.order.line'].sudo().create({
+                        'name': product_id.name,
+                        'product_id': product_id.id,
+                        'product_uom_qty': 1,
+                        'product_uom': product_id.uom_id.id,
+                        'price_unit': amountCGU,
+                        'order_id': so.id,
+                        'tax_id': product_id.taxes_id,
+                        'company_id': 1,
+                    })
+                    # prix de la formation dans le devis
+                    amount_before_instalment = so.amount_total
+                    # so.amount_total = so.amount_total * 0.25
+                    for line in so.order_line:
+                        line.price_unit = so.amount_total
+                    so.action_confirm()
+                    ref = False
+                    # Creation de la Facture Cpf
+                    # Si la facture est de type CPF :  On parse le pourcentage qui est 25 %
+                    # methode_payment prend la valeur CPF pour savoir bien qui est une facture CPF qui prend la valeur 25 % par default
 
-                if so.amount_total > 0 and so.order_line:
-                    moves = so._create_invoices(final=True)
-                    for move in moves:
-                        move.type_facture = 'interne'
-                        # move.cpf_acompte_invoice= True
-                        # move.cpf_invoice =True
-                        move.methodes_payment = 'cpf'
-                        move.numero_cpf = externalId
-                        move.pourcentage_acompte = 25
-                        move.module_id = so.module_id
-                        move.session_id = so.session_id
-                        for line in move.invoice_line_ids:
-                            print('line', line.price_unit)
-                            line.price_unit = amountCGU
-                            print('line', line.price_unit)
-                        """Calculer l'es 'acompte 25% du montant total de la formation """
-                        acompte = (product_id.lst_price * move.pourcentage_acompte) / 100
-                        move.cpf_acompte_amount = acompte
-                        print('acompte', acompte, product_id.lst_price)
-                        if so.pricelist_id.code:
-                            move.pricelist_id = amountCGU
-                        move.company_id = so.company_id
-                        move.price_unit = amountCGU  # changé avec montant CGU
-                        # move.cpf_acompte_invoice=True
-                        # move.cpf_invoice = True
-                        move.methodes_payment = 'cpf'
-                        move.post()
+                    if so.amount_total > 0 and so.order_line:
+                        moves = so._create_invoices(final=True)
+                        for move in moves:
+                            move.type_facture = 'interne'
+                            # move.cpf_acompte_invoice= True
+                            # move.cpf_invoice =True
+                            move.methodes_payment = 'cpf'
+                            move.numero_cpf = externalId
+                            move.pourcentage_acompte = 25
+                            move.module_id = so.module_id
+                            move.session_id = so.session_id
+                            for line in move.invoice_line_ids:
+                                print('line', line.price_unit)
+                                line.price_unit = amountCGU
+                                print('line', line.price_unit)
+                            """Calculer l'es 'acompte 25% du montant total de la formation """
+                            acompte = (product_id.lst_price * move.pourcentage_acompte) / 100
+                            move.cpf_acompte_amount = acompte
+                            print('acompte', acompte, product_id.lst_price)
+                            if so.pricelist_id.code:
+                                move.pricelist_id = amountCGU
+                            move.company_id = so.company_id
+                            move.price_unit = amountCGU  # changé avec montant CGU
+                            # move.cpf_acompte_invoice=True
+                            # move.cpf_invoice = True
+                            move.methodes_payment = 'cpf'
+                            move.post()
 
-                        ref = move.name
+                            ref = move.name
 
-                so.action_cancel()
-                so.unlink()
+                    so.action_cancel()
+                    so.unlink()
 
 
         return True
