@@ -53,6 +53,13 @@
             </t>
         </xpath>
     </template>
+    <template id="mcm_website_slide_main" inherit_id="website_slides.course_main">
+        <xpath expr="//div[@id='wrap']" position="before">
+            <t t-set="head">
+                <meta name="robots" content="noindex"/>
+            </t>
+        </xpath>
+    </template>
     <record id="courses_home_page" model="website.page">
         <field name="website_published">True</field>
         <field name="website_indexed">False</field>
