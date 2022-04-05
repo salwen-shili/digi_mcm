@@ -1091,4 +1091,11 @@ Une seule demande de report sans frais sera prise en compte et étudiée.
             </div>
         </t>
     </template>
+     <record id="digimoov_conditions_page" model="website.page">
+        <field name="website_published">True</field>
+        <field name="website_indexed">False</field>
+        <field name="website_id">2</field>
+        <field name="url">/conditions</field>
+        <field name="view_id" ref="digimoov_website_templates.digimoov_template_conditions"/>
+    </record>
 </odoo>
