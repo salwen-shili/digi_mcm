@@ -132,33 +132,7 @@
                             <div class="pb16 pt16 s_btn text-center" data-name="Button">
                                 <button type="submit" class="btn btn-alpha o_anim_fade_in_up o_animate" data-original-title="" title="" aria-describedby="tooltip906293" style="animation-name: o_anim_fade_in_up; visibility: visible; animation-play-state: paused;">
                                     <a href="/pricing" target="_blank" rel="noopner" data-original-title="" title="" aria-describedby="tooltip562802">
-                                        <font style="color: rgb(255, 255, 255);" onclick='(function (w, d, t, r, u) {
-    var f, n, i;
-    (w[u] = w[u] || []),
-      (f = function () {
-        var o = {
-          ti: "134610618",
-        };
-        (o.q = w[u]), (w[u] = new UET(o)), w[u].push("pageLoad");
-      }),
-      (n = d.createElement(t)),
-      (n.src = r),
-      (n.async = 1),
-      (n.onload = n.onreadystatechange =
-        function () {
-          var s = this.readyState;
-          (s &amp;&amp; s !== "loaded" &amp;&amp; s !== "complete") ||
-            (f(), (n.onload = n.onreadystatechange = null));
-        }),
-      (i = d.getElementsByTagName(t)[0]),
-      i.parentNode.insertBefore(n, i);
-  })(window, document, "script", "https://bat.bing.com/bat.js", "uetq");
-  window.uetq = window.uetq || [];
-  window.uetq.push("event", "clic sur inscrire page nos centre examen", {
-    event_category: "clic event",
-    event_label: "clic sur inscrire page nos centre examen",
-    event_value: 77,
-  });'>S'inscrire maintenant</font>
+                                        <font style="color: rgb(255, 255, 255);">S'inscrire maintenant</font>
                                     </a>
                                 </button>
                             </div>

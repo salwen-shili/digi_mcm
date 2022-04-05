@@ -155,34 +155,6 @@ $(document).ready(function () {
       e.preventDefault();
       return;
     } else {
-      (function (w, d, t, r, u) {
-        var f, n, i;
-        (w[u] = w[u] || []),
-          (f = function () {
-            var o = {
-              ti: document.getElementById('microsoft_tracking_key').value,
-            };
-            (o.q = w[u]), (w[u] = new UET(o)), w[u].push('pageLoad');
-          }),
-          (n = d.createElement(t)),
-          (n.src = r),
-          (n.async = 1),
-          (n.onload = n.onreadystatechange =
-            function () {
-              var s = this.readyState;
-              (s && s !== 'loaded' && s !== 'complete') ||
-                (f(), (n.onload = n.onreadystatechange = null));
-            }),
-          (i = d.getElementsByTagName(t)[0]),
-          i.parentNode.insertBefore(n, i);
-      })(window, document, 'script', 'https://bat.bing.com/bat.js', 'uetq');
-      //console.log('inside script');
-      window.uetq = window.uetq || [];
-      window.uetq.push('event', 'click sur inscription wedof', {
-        event_category: 'Inscription wedof',
-        event_label: 'Inscription wedof',
-        event_value: '10',
-      });
     }
   });
 });
