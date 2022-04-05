@@ -18,9 +18,10 @@
                             <div class="row">
                                 <div class="col-lg-6 col-md-12" style="border-style: none; border-width: 0px;">
 
-                                    <img class="img img-fluid lazy" data-src="digimoov_website_templates/static/img/ubereats/devenz-coursier-uber-eats.png" data-srcsafari="digimoov_website_templates/static/img/ubereats/devenz-coursier-uber-eats.png" title="Coursier Uber eats" alt="Devenez Coursier Uber eats avec Digimoov" />
+                                    <img class="img img-fluid lazy" data-src="digimoov_website_templates/static/img/ubereats/devenz-coursier-uber-eats.png" data-srcsafari="digimoov_website_templates/static/img/ubereats/devenz-coursier-uber-eats.png" title="Coursier Uber eats" alt="Devenez Coursier Uber eats avec Digimoov" style="width: 80%;" />
 
                                 </div>
+
                                 <div class="bannarcol col-lg-6 col-md-12" style="border-style: none; border-width: 0px;">
                                     <h1 class="h1-title text-left">
                                         Devenez
