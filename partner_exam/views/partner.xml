@@ -16,7 +16,7 @@
             </xpath>
             <xpath expr="//page[last()]" position="after">
                 <page name="note_exam" string="Examen">
-                    <field name="note_exam_id"/>
+                    <field name="note_exam_id" />
                 </page>
             </xpath>
 
