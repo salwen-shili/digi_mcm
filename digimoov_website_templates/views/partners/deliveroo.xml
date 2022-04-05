@@ -16,13 +16,13 @@
                             <div class="row">
                                 <div class="col-lg-6 col-md-12" style="border-style: none; border-width: 0px;">
 
-                                    <img class="img img-fluid lazy" data-src="/digimoov_website_templates/static/img/deliveroo/livreur-deliveroo.webp" data-srcsafari="/digimoov_website_templates/static/img/deliveroo/livreur-deliveroo.png" title="Coursier Uber eats" alt="Devenez Coursier Uber eats avec Digimoov" />
+                                    <img class="img img-fluid lazy" style="width:70%" data-src="/digimoov_website_templates/static/img/deliveroo/livreur-deliveroo.webp" data-srcsafari="/digimoov_website_templates/static/img/deliveroo/livreur-deliveroo.png" title="Coursier Uber eats" alt="Devenez Coursier Uber eats avec Digimoov" />
 
                                 </div>
                                 <div class="bannarcol col-lg-6 col-md-12" style="border-style: none; border-width: 0px;">
                                     <h1 class="h1-title text-left">
                                         Comment devenir livreur
-                                        <text style="color: rgb(29, 245, 191);">deliveroo </text>
+                                        <text style="color: rgb(29, 245, 191);">deliveroo</text>
                                         <text style="" class="text-beta">?</text>
                                     </h1>
                                     <p class="paratext text-left">
@@ -104,13 +104,11 @@
                                         <div class="card-body text-center p-40">
                                             <h6>Besoin d'en savoir plus ?</h6>
                                             <h4 class="font-bold">
-                    Blog : Tout savoir sur la capacité de transport léger de marchandises</h4>
+                                                Blog : Tout savoir sur la capacité de transport léger de marchandises</h4>
                                             <div class="s_btn" data-name="Button">
                                                 <a href="/tout-savoir-sur-la-capacite-de-transport-leger-de-marchandises#scrollTop=0" class="m-t-30 text-underline btn btn-success" data-original-title="" title="" aria-describedby="tooltip856636" spellcheck="false" data-mci-spellchecked="true" lang="merciapp" style="word-break: break-word; position: relative; z-index: 0;">Je découvre</a>
                                             </div>
                                         </div>
-
-
                                     </section>
                                 </div>
                             </div>

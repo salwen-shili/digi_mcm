@@ -11,32 +11,33 @@
 
             <div id="wrap" class="oe_structure oe_empty">
 
+
                 <section class="centric_template" data-name="Banner">
                     <section class="home-banner pt128 pb80" id="home_page">
                         <div class="container">
                             <div class="row">
-                                <div class="col-lg-6 col-md-12">
-                                    <div class="banner_image">
-                                        <img class="img img-fluid lazy" data-src="digimoov_website_templates/static/img/ubereats/devenz-coursier-uber-eats.png" data-srcsafari="digimoov_website_templates/static/img/ubereats/devenz-coursier-uber-eats.png" title="Coursier Uber eats" alt="Devenez Coursier Uber eats avec Digimoov" />
-                                    </div>
+                                <div class="col-lg-6 col-md-12" style="border-style: none; border-width: 0px;">
+
+                                    <img class="img img-fluid lazy" data-src="digimoov_website_templates/static/img/ubereats/devenz-coursier-uber-eats.png" data-srcsafari="digimoov_website_templates/static/img/ubereats/devenz-coursier-uber-eats.png" title="Coursier Uber eats" alt="Devenez Coursier Uber eats avec Digimoov" />
+
                                 </div>
-                                <div class="bannarcol col-lg-6 col-md-12">
+                                <div class="bannarcol col-lg-6 col-md-12" style="border-style: none; border-width: 0px;">
                                     <h1 class="h1-title text-left">
                                         Devenez
                                         <text class="green-ubereats">Coursier Uber eats</text>
                                         avec
                                         <text class="purple-title">Digimoov</text>
                                     </h1>
-                                    <p class="paratext">
+                                    <p class="paratext text-left">
                                         Devenir chauffeur Uber Eats impliquera de créer son entreprise
-              pour pratiquer une activité de transport en tant qu’indépendant .
-              Pour ce faire, vous devrez détenir votre attestation de transport
-              léger de marchandises.
+                                        pour pratiquer une activité de transport en tant qu’indépendant .
+                                        Pour ce faire, vous devrez détenir votre attestation de transport
+                                        léger de marchandises.
                                         <br />
                                         En tant que centre de formation en ligne spécialisé dans la
-              capacité de transport, Digimoov vous offre une formation assez
-              complète de 102 heures à suivre à votre rythme, pour préparer au
-              mieux votre examen, et ainsi détenir votre licence.
+                                        capacité de transport, Digimoov vous offre une formation assez
+                                        complète de 102 heures à suivre à votre rythme, pour préparer au
+                                        mieux votre examen, et ainsi détenir votre licence.
                                     </p>
                                     <div class="banner-btn s_btn" data-name="Button">
                                         <a href="#pricing" class="bannerbtn btn btn-alpha rounded-circle" data-original-title="" title="" aria-describedby="tooltip356431" spellcheck="false" data-mci-spellchecked="true">Je m'inscris !</a>
@@ -48,11 +49,12 @@
                     </section>
                 </section>
 
+
                 <section class="s_creative_left_img_right_para" data-name="left Image Right Paragraph">
                     <div class="feature39 wrap-feature39-box">
                         <div class="container">
                             <div class="row">
-                                <div class="col-lg-6 mt32">
+                                <div class="col-lg-6 ">
                                     <div class="card-body">
                                         <h2 class="title font-bold text-beta">Pourquoi nous choisir ?</h2>
                                         <p class="m-t-40 m-b-40 custom_p">&amp;nbsp;</p>
@@ -99,14 +101,14 @@
                 </section>
 
                 <section class="s_creative_left_img_right_para" data-name="left Image Right Paragraph">
-                    <div class="feature39 spacer wrap-feature39-box">
+                    <div class="feature39  wrap-feature39-box">
                         <div class="container">
                             <div class="row">
                                 <div class="col-lg-6">
                                     <img data-src="/digimoov_website_templates/static/img/ubereats/Attestation de transport léger de marchandises-Digimoov.webp" data-srcsafari="/digimoov_website_templates/static/img/ubereats/Attestation de transport léger de marchandises-Digimoov.png" class="img-fluid lazy" alt="Attestation de transport léger de marchandises" data-original-title="" title="livreuse pointant du doigt une attestation de transport" aria-describedby="tooltip267734" />
                                 </div>
                                 <div class="col-lg-6">
-                                    <h2 class="h2-text-30 blue-digimoov">
+                                    <h2 class="h2-text-30 blue-digimoov mt32">
               Obtenez votre Attestation de transport léger de marchandises
             </h2>
                                     <p class="paratext text-16">

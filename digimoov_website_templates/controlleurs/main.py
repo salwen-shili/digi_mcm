@@ -942,7 +942,7 @@ class Habilitation_electrique(http.Controller):
 
 
 class Uber_eats(http.Controller):
-    @http.route(['/devenez-coursier-ubereats'], type='http', auth='public', website=True)
+    @http.route(['/ubereats'], type='http', auth='public', website=True)
     def ubereats_landing_page(self, **kw, ):
         digimoov_products = False
         values = False
@@ -960,7 +960,7 @@ class Uber_eats(http.Controller):
 
 
 class Deliveroo(http.Controller):
-    @http.route(['/devenez-coursier-deliveroo'], type='http', auth='public', website=True)
+    @http.route(['/deliveroo'], type='http', auth='public', website=True)
     def deliveroo_landing_page(self, **kw, ):
         digimoov_products = False
         values = False
