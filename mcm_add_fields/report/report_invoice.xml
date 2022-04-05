@@ -121,7 +121,10 @@
                         <!--                            <span>Reference:</span>-->
                         <!--                            <span t-field="o.partner_id.module_id.duree"/>-->
                         <!--                        </h6>-->
-
+                        <h6 t-if="o.methodes_payment=='cpf'">
+                             <span>Prix de la formation:</span>
+                            <span t-field="o.module_id.product_id.lst_price" t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
+                        </h6>
                     </div>
                     <div class="col-auto mw-200 mb-4" name="reference" invisible="1" style="visibility:hidden;">
                     </div>
@@ -137,9 +140,9 @@
                             <th name="th_description" class="text-center" style="border: 1px solid black; width: 267px;">
                                 <span>Désignation</span>
                             </th>
-                            <th name="th_source" class="d-none text-center" style="border: 1px solid black;">
-                                <span>Source Document</span>
-                            </th>
+<!--                            <th name="th_source" class="d-none text-center" style="border: 1px solid black;">-->
+<!--                                <span>Source Document</span>-->
+<!--                            </th>-->
                             <th name="th_quantity" class="text-center" style="border: 1px solid black;">
                                 <span>Quantité</span>
                             </th>
@@ -155,7 +158,8 @@
                                 <t t-set="colspan" t-value="colspan+1"/>
                             </th>
                             <th name="th_subtotal" class="text-center" style="border: 1px solid black;">
-                                <span groups="account.group_show_line_subtotals_tax_excluded">Total HT</span>
+                                <span groups="account.group_show_line_subtotals_tax_excluded" t-if="o.methodes_payment!='cpf'">Total HT</span>
+                                <span groups="account.group_show_line_subtotals_tax_excluded" t-if="o.methodes_payment=='cpf'">Total TTC</span>
                                 <span groups="account.group_show_line_subtotals_tax_included">Prix Total</span>
                             </th>
                         </tr>
@@ -174,7 +178,9 @@
                                     <td name="account_invoice_line_name" class="text-center"
                                         style="border: 1px solid black;" >
                                         <strong>
-                                            <span t-field="line.product_id.name" t-options="{'widget': 'text'}"/>
+                                            <span t-if="o.methodes_payment!='cpf'" t-field="line.product_id.name" t-options="{'widget': 'text'}"/>
+                                            <span t-if="o.methodes_payment=='cpf'" t-options="{'widget': 'text'}">Montant calculé selon CGU</span>
+
                                         </strong>
                                     </td>
 <!--                                    <td name="account_invoice_line_name" class="text-center"-->
@@ -331,18 +337,18 @@
                         <!-- compagnie_id== 1 c'est pour MCM_Academy -->
                         <!-- compagnie_id== 2 c'est pour Digimoov -->
              <xpath expr="//table[@name='invoice_line_table']" position="after">
-                <table style="width: 100% ;border-color:#000" name="Acount_Client" t-if="o.methodes_payment == 'cpf' and o.pourcentage_acompte !=0 and o.company_id.id==2">
+                <table style="width: 100% ;border-color:#000" name="Acount_Client" t-if="o.methodes_payment == 'cpf' and o.pourcentage_acompte !=0">
                                 <tr>
                                     <td class="text-center"
-                                        style="background-color: #E8E8E8; border: 1px solid black; padding: 5px; width: 267px;" t-if="o.methodes_payment == 'cpf' and o.pourcentage_acompte !=0 and o.company_id.id==2">
-                                        Acompte :
+                                        style="background-color: #E8E8E8; border: 1px solid black; padding: 5px; width: 267px;" t-if="o.methodes_payment == 'cpf' and o.pourcentage_acompte !=0">
+                                        Acompte déja Reçu :
                                     </td>
                                      <td class="text-center o_price_total" style="border: 1px solid black; padding: 5px">
-                                        <span t-field="o.pourcentage_acompte" readonly="False" t-if="o.methodes_payment == 'cpf' and o.company_id.id==2"/>%
+                                        <span t-field="o.pourcentage_acompte" readonly="False" t-if="o.methodes_payment == 'cpf'"/>%
                                      </td>
                                      <td class="text-center o_price_total" style="border: 1px solid black; padding: 5px">
                                         <strong>
-                                             <span t-field="o.amount_paye" t-if="o.methodes_payment == 'cpf' and o.company_id.id==2"/>
+                                            <span  t-field="o.cpf_acompte_amount" t-if="o.methodes_payment == 'cpf'"></span>
                                             <span t-field="o.module_id.product_id.list_price" t-if="o.methodes_payment == 'cartebleu'"/>
                                         </strong>
                                     </td>
@@ -364,9 +370,13 @@
                             </br>
                             <table style="margin-bottom: 1rem;border-color:#000" name="total">
                                 <tr>
-                                    <td class="text-left"
+                                    <td t-if="o.methodes_payment != 'cpf'" class="text-left"
                                         style="background-color: #E8E8E8; border: 1px solid black; padding: 5px" >
                                         Total HT
+                                    </td>
+                                     <td t-if="o.methodes_payment == 'cpf'" class="text-left"
+                                        style="background-color: #E8E8E8; border: 1px solid black; padding: 5px" >
+                                        Montant calculé selon CGU
                                     </td>
                                     <td class="text-left" style="border: 1px solid black; padding: 5px" >
                                         <span t-field="o.amount_untaxed" t-if="o.methodes_payment == 'cpf'" t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
@@ -422,8 +432,8 @@
                                     </td>
                                     <td class="text-center o_price_total" style="border: 1px solid black; padding: 5px">
                                         <strong>
-                                            <span t-field="o.restamount" t-if="o.methodes_payment == 'cpf' and o.pourcentage_acompte != 0 and o.company_id.id==2 "/>
-                                            <span t-field="o.amount_total" t-if="o.methodes_payment == 'cpf' and o.pourcentage_acompte == 0"/>
+                                            <span t-field="o.amount_residual" t-if="o.methodes_payment == 'cpf' and o.pourcentage_acompte != 0 and o.company_id.id==2 "/>
+                                            <span t-field="o.amount_total" t-if="o.methodes_payment == 'cpf' and o.pourcentage_acompte == 0 and o.company_id.id==2"/>
                                             <span t-field="o.amount_total" t-if="o.company_id.id==1"/>
                                         </strong>
                                     </td>

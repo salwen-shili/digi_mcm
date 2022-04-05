@@ -1758,3 +1758,5 @@ class partner(models.Model):
         if date_debut <= datetime.today():
             print('else' )
 
+
+
