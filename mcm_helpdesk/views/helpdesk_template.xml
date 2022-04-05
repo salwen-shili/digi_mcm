@@ -157,4 +157,10 @@
         <field name="url">/helpdesk</field>
         <field name="view_id" ref="website_helpdesk.team"/>
     </record>
+    <record id="mcm_helpdesk_not_published_team_page" model="website.page">
+        <field name="website_published">True</field>
+        <field name="website_indexed">False</field>
+        <field name="url">/helpdesk</field>
+        <field name="view_id" ref="website_helpdesk.not_published_any_team"/>
+    </record>
 </odoo>
