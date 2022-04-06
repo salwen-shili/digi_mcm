@@ -3,7 +3,7 @@
 
         <t t-call="website.layout">
             <script defer="defer" type="text/javascript" src="/digimoov_website_templates/static/src/js/lazy-min.min.js" />
-            <link href="/digimoov_website_templates/static/src/css/css-dist/home.min.css" rel="stylesheet" />
+            <link href="/digimoov_website_templates/static/src/css/home.min.css" rel="stylesheet" />
             <div id="wrap" class="oe_empty oe_structure">
                 <section class="banner_padding centric_template home-banner pt96" data-name="Banner">
                     <div class="container" style="border-style: none; border-width: 0px;">

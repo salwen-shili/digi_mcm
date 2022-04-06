@@ -451,7 +451,7 @@
         <t t-call="website.layout">
             <script defer="defer" type="text/javascript" src="/digimoov_website_templates/static/src/js/lazy-min.min.js" />
             <link href="/digimoov_website_templates/static/src/css/home.min.css" rel="stylesheet" />
-            <!-- <link href="/digimoov_website_templates/static/src/css/css-dist/home.min.css" rel="stylesheet" /> -->
+            <!-- <link href="/digimoov_website_templates/static/src/css/home.min.css" rel="stylesheet" /> -->
             <br />
             <br />
 

@@ -2,7 +2,7 @@
     <template id="digimoov_website_templates.digimoov_template_habilitation_electrique" name="">
         <t t-call="website.layout">
             <script defer="defer" type="text/javascript" src="/digimoov_website_templates/static/src/js/lazy-min.js" />
-            <link href="/digimoov_website_templates/static/src/css/css-dist/home.min.css" rel="stylesheet" />
+            <link href="/digimoov_website_templates/static/src/css/home.min.css" rel="stylesheet" />
             <script type="text/javascript" src="/mcm_website_theme/static/src/js/msAds.js" />
             <div id="transport-routier" style="border-style: none; border-width: 0px;">
                 <style>

@@ -3,7 +3,7 @@
         <t t-call="website.layout">
             <div id="wrap" class="oe_empty oe_structure">
                 <script defer="defer" type="text/javascript" src="/digimoov_website_templates/static/src/js/lazy-min.js" />
-                <link href="/digimoov_website_templates/static/src/css/css-dist/home.min.css" rel="stylesheet" />
+                <link href="/digimoov_website_templates/static/src/css/home.min.css" rel="stylesheet" />
                 <script type="text/javascript" src="/mcm_website_theme/static/src/js/msAds.js" />
                 <!-- t-if="partenaire=='capacite_lourde'"-->
                 <div id="capacite_lourde">
