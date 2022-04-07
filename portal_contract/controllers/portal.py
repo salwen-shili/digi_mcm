@@ -113,6 +113,194 @@ class CustomerPortal(CustomerPortal):
         })
         return request.render("sale.portal_my_orders", values)
 
+    @http.route(['''/my/orders/<int:order_id>''','''/my/orders/<string:product>/<int:order_id>''','''/my/orders/<string:product>/<string:partenaire>/<int:order_id>'''], type='http', auth="public", website=True)
+    def portal_order_page(self, order_id, report_type=None, access_token=None, message=False, download=False,product=None,partenaire=None, **kw):
+        try:
+            order_sudo = self._document_check_access('sale.order', order_id, access_token=access_token)
+            order = order_sudo
+            if message == "sign_ok" and access_token: # check if the contract is signed and have access token
+                if order and order.company_id.id == 2 :
+                    product_id = False
+                    if order:
+                        for line in order.order_line:
+                            product_id = line.product_id
+
+                    if not product and not partenaire and product_id:
+                        product = True
+                        partenaire = True
+                    if product and not partenaire:
+                        if product_id:
+                            slugname = (product_id.name).strip().strip(
+                                '-').replace(' ', '-').lower()
+                            if str(slugname) != str(product):
+                                if order.pricelist_id and order.pricelist_id.name in ['ubereats', 'deliveroo', 'coursierjob', 'box2home', 'coursier2roues']: # check if the client has paid with one of this pricelist ['ubereats', 'deliveroo', 'coursierjob', 'box2home', 'coursier2roues' ] for digimoov
+                                    return request.redirect("/my/orders/%s/%s/%d?access_token=%s&message=%s" % (slugname, order.pricelist_id.name,order_id,access_token,message))
+                                else:
+                                    return request.redirect("/my/orders/%s/%d?access_token=%s&message=%s" % (slugname,order_id,access_token,message))
+                            else:
+                                if order.pricelist_id and order.pricelist_id.name in ['ubereats', 'deliveroo', 'coursierjob', 'box2home', 'coursier2roues']:
+                                    return request.redirect("/my/orders/%s/%s/%d?access_token=%s&message=%s" % (slugname, order.pricelist_id.name,order_id,access_token,message))
+                        else:
+                            return request.redirect("/my/orders/%d?access_token=%s&message=%s" % (order_id,access_token,message))
+                    elif product and partenaire:
+                        if product_id:
+                            slugname = (product_id.name).strip().strip(
+                                '-').replace(' ', '-').lower()
+                            if str(slugname) != str(product):
+                                pricelist = request.env['product.pricelist'].sudo().search(
+                                    [('company_id', '=', 2), ('name', "=", str(partenaire))])
+                                if not pricelist:
+                                    pricelist_id = order.pricelist_id
+                                    if pricelist_id.name in ['ubereats', 'deliveroo', 'coursierjob', 'box2home', 'coursier2roues']:
+                                        return request.redirect("/my/orders/%s/%s/%d?access_token=%s&message=%s" % (slugname, order.pricelist_id.name,order_id,access_token,message))
+                                    else:
+                                        return request.redirect("/my/orders/%s/%d?access_token=%s&message=%s" % (slugname,order_id,access_token,message))
+                                else:
+                                    if pricelist.name in ['ubereats', 'deliveroo', 'coursierjob', 'box2home', 'coursier2roues']:
+                                        return request.redirect("/my/orders/%s/%s/%d?access_token=%s&message=%s" % (slugname, order.pricelist_id.name,order_id,access_token,message))
+                                    else:
+                                        return request.redirect("/my/orders/%s/%d?access_token=%s&message=%s" % (slugname,order_id,access_token,message))
+                            else:
+                                pricelist = request.env['product.pricelist'].sudo().search(
+                                    [('company_id', '=', 2), ('name', "=", str(partenaire))])
+
+                                if not pricelist:
+                                    pricelist_id = order.pricelist_id
+                                    if pricelist_id.name in ['bolt']:
+                                        return request.redirect("/my/orders/%s/%s/%d?access_token=%s&message=%s" % (slugname, order.pricelist_id.name,order_id,access_token,message))
+                                    else:
+                                        return request.redirect("/my/orders/%s/%d?access_token=%s&message=%s" % (slugname,order_id,access_token,message))
+                                else:
+                                    if pricelist.name in ['ubereats', 'deliveroo', 'coursierjob', 'box2home', 'coursier2roues']:
+                                        if pricelist.name != order.pricelist_id.name:
+                                            return request.redirect("/my/orders/%s/%s/%d?access_token=%s&message=%s" % (slugname, order.pricelist_id.name,order_id,access_token,message))
+                                    else:
+                                        return request.redirect("/my/orders/%s/%d?access_token=%s&message=%s" % (slugname,order_id,access_token,message))
+                        else:
+                            pricelist = request.env['product.pricelist'].sudo().search(
+                                [('company_id', '=', 2), ('name', "=", str(partenaire))])
+                            if pricelist and pricelist.name in ['ubereats', 'deliveroo', 'coursierjob', 'box2home', 'coursier2roues']:
+                                return request.redirect("/my/orders/%s/%d?access_token=%s&message=%s" % (pricelist.name,order_id,access_token,message))
+                            else:
+                                return request.redirect("/my/orders/%d?access_token=%s&message=%s" % (order_id,access_token,message))
+                if order and order.company_id.id == 1:
+                    product_id = False
+                    if order:
+                        for line in order.order_line:
+                            product_id = line.product_id
+
+                    if not product and not partenaire and product_id:
+                        product = True
+                        partenaire = True
+                    if product and not partenaire:
+                        if product_id:
+                            slugname = (product_id.name).strip().strip(
+                                '-').replace(' ', '-').lower()
+                            if str(slugname) != str(product):
+                                if order.pricelist_id and order.pricelist_id.name in ['bolt']: # check if the client has paid with one of this pricelist ['bolt'] for mcm academy
+                                    return request.redirect("/my/orders/%s/%s/%d?access_token=%s&message=%s" % (slugname, order.pricelist_id.name,order_id,access_token,message)) # redirect the client to /my/orders/product_name/pricelist_name
+                                else:
+                                    return request.redirect("/my/orders/%s/%d?access_token=%s&message=%s/" % (slugname,order_id,access_token,message)) # redirect the client to /my/orders/product_name
+                            else:
+                                if order.pricelist_id and order.pricelist_id.name in ['bolt']:
+                                    return request.redirect("/my/orders/%s/%s/%d?access_token=%s&message=%s" % (slugname, order.pricelist_id.name,order_id,access_token,message))
+                        else:
+                            return request.redirect("/my/orders/%d?access_token=%s&message=%s/" % (order_id,access_token,message)) #redirect the client to the default contract url
+                    elif product and partenaire:
+                        if product_id:
+                            slugname = (product_id.name).strip().strip(
+                                '-').replace(' ', '-').lower()
+                            if str(slugname) != str(product):
+                                pricelist = request.env['product.pricelist'].sudo().search(
+                                    [('company_id', '=', 1), ('name', "=", str(partenaire))])
+                                if not pricelist:
+                                    pricelist_id = order.pricelist_id
+                                    if pricelist_id.name in ['bolt', ]:
+                                        return request.redirect("/my/orders/%s/%s/%d?access_token=%s&message=%s" % (slugname, order.pricelist_id.name,order_id,access_token,message))
+                                    else:
+                                        return request.redirect("/my/orders/%s/%d?access_token=%s&message=%s" % (slugname,order_id,access_token,message))
+                                else:
+                                    if pricelist.name in ['bolt']:
+                                        return request.redirect("/my/orders/%s/%s/%d?access_token=%s&message=%s" % (slugname, order.pricelist_id.name,order_id,access_token,message))
+                                    else:
+                                        return request.redirect("/my/orders/%s/%d?access_token=%s&message=%s" % (slugname,order_id,access_token,message))
+                            else:
+                                pricelist = request.env['product.pricelist'].sudo().search(
+                                    [('company_id', '=', 1), ('name', "=", str(partenaire))])
+
+                                if not pricelist:
+                                    pricelist_id = order.pricelist_id
+                                    if pricelist_id.name in ['bolt']:
+                                        return request.redirect("/my/orders/%s/%s/%d?access_token=%s&message=%s" % (slugname, order.pricelist_id.name,order_id,access_token,message))
+                                    else:
+                                        return request.redirect("/my/orders/%s/%d?access_token=%s&message=%s" % (slugname,order_id,access_token,message))
+                                else:
+                                    if pricelist.name in ['bolt']:
+                                        if pricelist.name != order.pricelist_id.name:
+                                            return request.redirect("/my/orders/%s/%s/%d?access_token=%s&message=%s" % (slugname, order.pricelist_id.name,order_id,access_token,message))
+                                    else:
+                                        return request.redirect("/my/orders/%s/%d?access_token=%s&message=%s" % (slugname,order_id,access_token,message))
+                        else:
+                            pricelist = request.env['product.pricelist'].sudo().search(
+                                [('company_id', '=', 1), ('name', "=", str(partenaire))])
+                            if pricelist and pricelist.name in ['bolt']:
+                                return request.redirect("/my/orders/%s/%d?access_token=%s&message=%s" % (pricelist.name,order_id,access_token,message))
+                            else:
+                                return request.redirect("/my/orders/%d?access_token=%s&message=%s" % (order_id,access_token,message))
+        except (AccessError, MissingError):
+            return request.redirect('/my')
+        if report_type in ('html', 'pdf', 'text'):
+            return self._show_report(model=order_sudo, report_type=report_type,
+                                     report_ref='sale.action_report_saleorder', download=download)
+
+        # use sudo to allow accessing/viewing orders for public user
+        # only if he knows the private token
+        now = fields.Date.today()
+
+        # Log only once a day
+        if order_sudo and request.session.get(
+                'view_quote_%s' % order_sudo.id) != now and request.env.user.share and access_token:
+            request.session['view_quote_%s' % order_sudo.id] = now
+            body = _('Quotation viewed by customer %s') % order_sudo.partner_id.name
+            _message_post_helper('sale.order', order_sudo.id, body, token=order_sudo.access_token,
+                                 message_type='notification', subtype="mail.mt_note")
+
+        values = {
+            'sale_order': order_sudo,
+            'message': message,
+            'token': access_token,
+            'return_url': '/shop/payment/validate',
+            'bootstrap_formatting': True,
+            'partner_id': order_sudo.partner_id.id,
+            'report_type': 'html',
+            'action': order_sudo._get_portal_return_action(),
+        }
+        if order_sudo.company_id:
+            values['res_company'] = order_sudo.company_id
+
+        if order_sudo.has_to_be_paid():
+            domain = expression.AND([
+                ['&', ('state', 'in', ['enabled', 'test']), ('company_id', '=', order_sudo.company_id.id)],
+                ['|', ('country_ids', '=', False), ('country_ids', 'in', [order_sudo.partner_id.country_id.id])]
+            ])
+            acquirers = request.env['payment.acquirer'].sudo().search(domain)
+
+            values['acquirers'] = acquirers.filtered(
+                lambda acq: (acq.payment_flow == 'form' and acq.view_template_id) or
+                            (acq.payment_flow == 's2s' and acq.registration_view_template_id))
+            values['pms'] = request.env['payment.token'].search([('partner_id', '=', order_sudo.partner_id.id)])
+            values['acq_extra_fees'] = acquirers.get_acquirer_extra_fees(order_sudo.amount_total,
+                                                                         order_sudo.currency_id,
+                                                                         order_sudo.partner_id.country_id.id)
+
+        if order_sudo.state in ('draft', 'sent', 'cancel'):
+            history = request.session.get('my_quotations_history', [])
+        else:
+            history = request.session.get('my_orders_history', [])
+        values.update(get_records_pager(history, order_sudo))
+
+        return request.render('sale.sale_order_portal_template', values)
+
     @http.route(['/my/orders/<int:order_id>/accept'], type='json', auth="public", website=True)
     def portal_quote_accept(self, order_id, access_token=None, name=None, signature=None):
         # get from query string if not on json param
