@@ -142,17 +142,18 @@ class NoteExamen(models.Model):
                     if session_count == 3:
                         self.nombre_de_passage = "troisieme"
                         nbr_count = "troisieme"
-                    if session_count == 4:
-                        self.nombre_de_passage = "premier"
-                        nbr_count = "premier"
-                    if session_count == 5:
-                        self.nombre_de_passage = "deuxieme"
-                        nbr_count = "deuxieme"
-                    if session_count == 6:
-                        self.nombre_de_passage = "troisieme"
-                        nbr_count = "troisieme"
+                    # if session_count == 4:
+                    #     self.nombre_de_passage = "premier"
+                    #     nbr_count = "premier"
+                    # if session_count == 5:
+                    #     self.nombre_de_passage = "deuxieme"
+                    #     nbr_count = "deuxieme"
+                    # if session_count == 6:
+                    #     self.nombre_de_passage = "troisieme"
+                    #     nbr_count = "troisieme"
                 elif self.partner_id.module_id.name != "Repassage d'examen" or self.partner_id.justification != 'absence_justifiee':
-                    print("paiement_a_zero False", paiement_a_zero, "session_count", session_count)
+                    session_count = 1
+                    print("paiement_a_zero False", paiement_a_zero, "sessiotttttttttttttttn_count", session_count)
                     print("session_count_yyyy", session_count)
                     self.nombre_de_passage = "premier"
                     nbr_count = "premier"

@@ -67,15 +67,15 @@ class resComapny(models.Model):
                 if session_count == 3:
                     self.nombre_de_passage = "troisieme"
                     nbr_count = "troisieme"
-                if session_count == 4:
-                    self.nombre_de_passage = "premier"
-                    nbr_count = "premier"
-                if session_count == 5:
-                    self.nombre_de_passage = "deuxieme"
-                    nbr_count = "deuxieme"
-                if session_count == 6:
-                    self.nombre_de_passage = "troisieme"
-                    nbr_count = "troisieme"
+                # if session_count == 4:
+                #     self.nombre_de_passage = "premier"
+                #     nbr_count = "premier"
+                # if session_count == 5:
+                #     self.nombre_de_passage = "deuxieme"
+                #     nbr_count = "deuxieme"
+                # if session_count == 6:
+                #     self.nombre_de_passage = "troisieme"
+                #     nbr_count = "troisieme"
 
                 if self.justification is True:
                     print("nbr_count", nbr_count)
