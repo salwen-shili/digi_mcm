@@ -388,4 +388,38 @@ class AccountMove(models.Model):
                                 so.action_cancel()
                                 so.unlink()
 
+    def get_acompte(self):
+        companies = self.env['res.company'].sudo().search([])
+        if companies:
+            for company in companies:
+                api_key = company.wedof_api_key
+                params_wedof = (
+                    ('order', 'desc'),
+                    ('type', 'all'),
+                    ('state', 'all'),
+                    ('billingState', 'depositPaid'),
+                    ('certificationState', 'all'),
+                    ('sort', 'lastUpdate'),
+                    ('limit', '1000')
+                )
+                headers = {
+                    'accept': 'application/json',
+                    'Content-Type': 'application/json',
+                    'X-API-KEY': api_key,
+                }
+                response = requests.get('https://www.wedof.fr/api/registrationFolders/', headers=headers,
+                                        params=params_wedof)
+                registrations = response.json()
+                for dossier in registrations:
+                    externalId = dossier['externalId']
+                    amountCGU = dossier['amountCGU']
+                    print("dossier",dossier)
+                    partner=self.env['res.partner'].sudo().search([("numero_cpf","=",externalId)],limit=1)
+                    if partner:
+                        partner.acompte=True
+                        print("partner",partner.acompte)
+
+
+
+
 

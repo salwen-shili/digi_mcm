@@ -243,3 +243,18 @@ class WebhookController(http.Controller):
 
 
         return True
+
+    """Ajouter date d'acompte reçu sur la fiche client apres l'evennement "a reçu un acompte" sur edof"""
+    @http.route(['/acompte_cpf'], type='json', auth="public", methods=['POST'])
+    def acompte_cpf(self, **kw):
+        dossier = json.loads(request.httprequest.data)
+        event = request.httprequest.headers.get('X-Wedof-Event')
+        _logger.info("webhoooooooooook acompte %s" % str(dossier))
+        _logger.info("header %s" % str(event))
+        externalId = dossier['externalId']
+        partner=request.env['res.partner'].sudo().search([("numero_cpf","=",externalId)],limit=1)
+        if partner:
+            partner.acompte = True
+            partner.acompte_date=date.today()
+        
+
