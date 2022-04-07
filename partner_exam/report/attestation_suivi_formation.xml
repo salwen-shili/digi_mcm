@@ -31,7 +31,7 @@
                                             <span t-field="o.title"/>
                                         </strong>
                                         <br/>
-                                        Prénom et nom:
+                                        Nom et prénom :
                                         <strong>
                                             <span t-field="o.name"/>
                                         </strong>
@@ -342,7 +342,7 @@
                                             <span t-field="o.title"/>
                                         </strong>
                                         <br/>
-                                        Prénom et nom:
+                                        Nom et prénom :
                                         <strong>
                                             <span t-field="o.name"/>
                                         </strong>
