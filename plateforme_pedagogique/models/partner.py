@@ -382,7 +382,7 @@ class partner(models.Model):
                     # Ajouter i-One to table user
                     data_user = '{"mail":"' + partner.email + '" , "password":"' + password + '", "firstName":"' + partner.firstName + '", "lastName":"' + partner.lastName + '", "phone":"' + partner.phone + '", "lang":"fr","sendCredentials":"true"}'
                     resp = requests.post(urluser, headers=headers, data=data_user)
-                    print(data_user, 'user', resp.status_code)
+                    _logger.info('data_user %s' %str(data_user))
                     respo = str(json.loads(resp.text))
                     responce_api = json.loads(resp.text)
                     _logger.info('response addd  %s' %respo)
