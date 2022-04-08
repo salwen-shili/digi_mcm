@@ -93,5 +93,6 @@ class resPartnerWizard(models.TransientModel):
         for rec in self:
             rec.amount=(rec.amount*rec.pourcentage)/100
 
+
   
 

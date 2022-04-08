@@ -39,4 +39,67 @@
             <attribute name="t-attf-href">#{blog_post.blog_post_website_url}</attribute>
         </xpath>
     </template>
+    <template id="mcm_website_user_profile_main" inherit_id="website_profile.user_profile_main">
+        <xpath expr="//div[@id='wrap']" position="before">
+            <t t-set="head">
+                <meta name="robots" content="noindex"/>
+            </t>
+        </xpath>
+    </template>
+    <template id="mcm_website_slide_main" inherit_id="website_slides.slide_main">
+        <xpath expr="//div[@id='wrap']" position="before">
+            <t t-set="head">
+                <meta name="robots" content="noindex"/>
+            </t>
+        </xpath>
+    </template>
+    <template id="mcm_website_slide_main" inherit_id="website_slides.course_main">
+        <xpath expr="//div[@id='wrap']" position="before">
+            <t t-set="head">
+                <meta name="robots" content="noindex"/>
+            </t>
+        </xpath>
+    </template>
+    <record id="courses_home_page" model="website.page">
+        <field name="website_published">True</field>
+        <field name="website_indexed">False</field>
+        <field name="url">/slides</field>
+        <field name="view_id" ref="website_slides.courses_home"/>
+    </record>
+    <record id="courses_all" model="website.page">
+        <field name="website_published">True</field>
+        <field name="website_indexed">False</field>
+        <field name="url">/slides/all</field>
+        <field name="view_id" ref="website_slides.courses_all"/>
+    </record>
+    <record id="website_info" model="website.page">
+        <field name="website_published">True</field>
+        <field name="website_indexed">False</field>
+        <field name="url">/website/info</field>
+        <field name="view_id" ref="website.website_info"/>
+    </record>
+    <record id="channel_list_page" model="website.page">
+        <field name="website_published">True</field>
+        <field name="website_indexed">False</field>
+        <field name="url">/livechat</field>
+        <field name="view_id" ref="website_livechat.channel_list_page"/>
+    </record>
+    <record id="rank_badge_main_page" model="website.page">
+        <field name="website_published">True</field>
+        <field name="website_indexed">False</field>
+        <field name="url">/profile/ranks_badges</field>
+        <field name="view_id" ref="website_profile.rank_badge_main"/>
+    </record>
+    <record id="terms_page" model="website.page">
+        <field name="website_published">True</field>
+        <field name="website_indexed">False</field>
+        <field name="url">/shop/terms</field>
+        <field name="view_id" ref="website_sale.terms"/>
+    </record>
+    <record id="users_page_main" model="website.page">
+        <field name="website_published">True</field>
+        <field name="website_indexed">False</field>
+        <field name="url">/profile/users</field>
+        <field name="view_id" ref="website_profile.users_page_main"/>
+    </record>
 </odoo>

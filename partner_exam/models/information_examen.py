@@ -21,7 +21,8 @@ class NoteExamen(models.Model):
     partner_id = fields.Many2one('res.partner', string="Client")
     epreuve_a = fields.Float(string="Epreuve A(QCM):", track_visibility='always', group_operator='avg')
     epreuve_b = fields.Float(string="Epreuve B(QRO)", track_visibility='always', default=1, group_operator='avg')
-    moyenne_generale = fields.Float(string="Moyenne Générale", track_visibility='always', store=True, group_operator='avg')
+    moyenne_generale = fields.Float(string="Moyenne Générale", track_visibility='always', store=True,
+                                    group_operator='avg')
     mention = fields.Selection([
         ('recu', 'Reçu'),
         ('ajourne', 'Ajourné')],
@@ -62,7 +63,7 @@ class NoteExamen(models.Model):
     is_absence_justifiee = fields.Boolean(default=False)
     phone = fields.Char(related="partner_id.phone")
     mobile = fields.Char(compute="_compute_phone_value_to_mobile", store=True)
-    module_id = fields.Many2one(related="partner_id.module_id")
+    module_id = fields.Many2one("mcmacademy.module")
 
     @api.depends('partner_id.phone')
     def _compute_phone_value_to_mobile(self):
@@ -120,44 +121,22 @@ class NoteExamen(models.Model):
         """ This function used to auto display some result
         like the "Moyenne Generale" & "Mention" & "Resultat" """
         for rec in self:
-            nbr_count = ""
             session_count = rec.env['partner.sessions'].search_count(
                 [('client_id', '=', rec.partner_id.id), ('paiement', '!=', True)])
-            print("session_count:::::", session_count)
-            if session_count == 1:
-                self.nombre_de_passage = "premier"
-                nbr_count = "premier"
-                print(self.nombre_de_passage)
-            if session_count == 2:
-                self.nombre_de_passage = "deuxieme"
-                nbr_count = "deuxieme"
-                print(self.nombre_de_passage)
-            if session_count == 3:
-                self.nombre_de_passage = "troisieme"
-                nbr_count = "troisieme"
-            if session_count == 4:
-                self.nombre_de_passage = "premier"
-                nbr_count = "premier"
-            if session_count == 5:
-                self.nombre_de_passage = "deuxieme"
-                nbr_count = "deuxieme"
-            if session_count == 6:
-                self.nombre_de_passage = "troisieme"
-                nbr_count = "troisieme"
             rec.moyenne_generale = (rec.epreuve_a + rec.epreuve_b)
             if rec.epreuve_a >= 50 and rec.epreuve_b >= 40 and rec.moyenne_generale >= 120 and rec.partner_id:
                 rec.moyenne_generale = rec.moyenne_generale
                 rec.mention = 'recu'
                 rec.resultat = 'recu'
-                #self.partner_id = self.partner_id.id
+                # self.partner_id = self.partner_id.id
                 self.session_id = self.partner_id.mcm_session_id
+                self.module_id = self.partner_id.module_id.id
                 self.date_exam = self.partner_id.mcm_session_id.date_exam
                 self.presence = 'present'
                 self.ville_id = self.partner_id.mcm_session_id.session_ville_id.id
                 self.partner_id.presence = "Présent(e)"
                 self.partner_id.resultat = "Admis(e)"
-                self.nombre_de_passage = nbr_count
-                print("nbr_count11111", nbr_count)
+
             else:
                 # reset your fields
                 rec.epreuve_a = rec.epreuve_a
@@ -165,39 +144,34 @@ class NoteExamen(models.Model):
                 rec.mention = 'ajourne'
                 rec.resultat = 'ajourne'
                 rec.partner_id.resultat = "Ajourné(e)"
-                self.nombre_de_passage = nbr_count
-                print("nbr_count11111", nbr_count)
 
                 last_line = self.env['partner.sessions'].search(
                     [('client_id', '=', rec.partner_id.id), ('date_exam', '<', date.today())], limit=1,
                     order='id desc')
                 if 1 <= rec.epreuve_a < 201 or 1 <= rec.epreuve_b < 201 and not last_line.justification and rec.partner_id:
                     self.session_id = self.partner_id.mcm_session_id
+                    self.module_id = self.partner_id.module_id.id
                     self.date_exam = self.partner_id.mcm_session_id.date_exam
                     self.presence = 'present'
                     self.ville_id = self.partner_id.mcm_session_id.session_ville_id.id
                     self.partner_id.presence = "Présent(e)"
                     self.partner_id.resultat = "Ajourné(e)"
-                    self.nombre_de_passage = nbr_count
-                    print("nbr_count2222222", nbr_count)
                 elif rec.epreuve_a < 1 and rec.epreuve_b < 1 and not last_line.justification and rec.partner_id:
                     self.session_id = self.partner_id.mcm_session_id
+                    self.module_id = self.partner_id.module_id.id
                     self.date_exam = self.partner_id.mcm_session_id.date_exam
                     self.presence = 'Absent'
                     self.ville_id = self.partner_id.mcm_session_id.session_ville_id.id
                     self.partner_id.update({'presence': "Absent(e)"})
                     self.partner_id.resultat = "Ajourné(e)"
-                    self.nombre_de_passage = nbr_count
-                    print("nbr_countavantdernier", nbr_count)
                 elif rec.epreuve_a < 1 and rec.epreuve_b < 1 and last_line.justification is True and rec.partner_id:
                     self.session_id = last_line.session_id
+                    self.module_id = last_line.client_id.module_id.id
                     self.date_exam = last_line.session_id.date_exam
                     self.presence = 'absence_justifiee'
                     self.ville_id = last_line.session_id.session_ville_id.id
                     self.partner_id.update({'presence': "Absence justifiée"})
                     self.partner_id.resultat = "Ajourné(e)"
-                    self.nombre_de_passage = nbr_count
-            print("nbr_countLast", nbr_count)
 
     @api.onchange("résultat")
     def etat_de_client_apres_examen(self):
@@ -209,22 +183,6 @@ class NoteExamen(models.Model):
                 rec.etat = "avec succès"
             if not rec.resultat == "recu":
                 rec.etat = "sans succès"
-
-    @api.model
-    def create(self, vals):
-        resultat = super(NoteExamen, self).create(vals)
-        resultat.compute_moyenne_generale()
-        resultat.mise_ajour_mode_financement()
-        if 'partner_id' in vals:
-            if 'presence' == 'present':
-                self.partner_id.presence = "Présent(e)"
-            if 'presence' == 'Absent':
-                self.partner_id.presence = "Absent(e)"
-            if 'presence' == 'absence_justifiee':
-                self.partner_id.presence = "Absence justifiée"
-            elif not 'presence':
-                self.partner_id.presence = "_______"
-        return resultat
 
     def _clear_duplicates_exams(self):
         """ Cron Delete exams duplications based on id and date_exam """
@@ -239,6 +197,7 @@ class NoteExamen(models.Model):
         self.browse(duplicates_exams).unlink()
 
     """ Mettre à jour le champ mode de financement selon la facture """
+
     def mise_ajour_mode_financement(self):
         for client in self:
             facture = self.env['account.move'].sudo().search([('partner_id', '=', client.partner_id.id),
@@ -402,4 +361,41 @@ class NoteExamen(models.Model):
         # to put auto value in "nombre de passage" based on sum of historic sessions
         if 'partner_id' in values:
             self.update_boolean_values()
+        return res
+
+    def create(self, values):
+        res = super(NoteExamen, self).create(values)
+        res.compute_moyenne_generale()
+        res.mise_ajour_mode_financement()
+        if 'partner_id' in values:
+            """ Une affectation simple de champ presence lors 
+            de la creation d'un examen avec une absence justifiée automatiquement """
+            if 'presence' == 'present':
+                self.partner_id.presence = "Présent(e)"
+            if 'presence' == 'Absent':
+                self.partner_id.presence = "Absent(e)"
+            if 'presence' == 'absence_justifiee':
+                self.partner_id.presence = "Absence justifiée"
+            elif not 'presence':
+                self.partner_id.presence = "_______"
+        """ Génère automatiquement le nombre de passages en fonction des conditions, 
+        si un pack (Pro, SOLO, repassage...) est égal à "examen" ou s'il y a une justification valide.  
+        Après avoir vérifié la dernière ligne des notes d'examen si le numéro de passage == "premier'". 
+        ainsi la ligne suivante sera déplacée comme la seconde... 
+        Dans le cas contraire, le nombre de passage sera à nouveau le premier. """
+        if res.partner_id.note_exam_id:
+            if res.partner_id.module_id.product_id.default_code == 'examen' or res.partner_id.justification == 'absence_justifiee':
+                info_exam = self.env['info.examen'].sudo().search(
+                    [('partner_id', '=', res.partner_id.id), ('id', "!=", res.id)], order="id desc", limit=1)
+                if info_exam:
+                    if info_exam.nombre_de_passage == 'premier':
+                        res.nombre_de_passage = 'deuxieme'
+                    elif info_exam.nombre_de_passage == 'deuxieme':
+                        res.nombre_de_passage = 'troisieme'
+                    elif info_exam.nombre_de_passage == 'troisieme':
+                        res.nombre_de_passage = 'premier'
+                else:
+                    res.nombre_de_passage = 'premier'
+            else:
+                res.nombre_de_passage = 'premier'
         return res

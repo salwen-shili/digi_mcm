@@ -243,3 +243,45 @@ class WebhookController(http.Controller):
 
 
         return True
+
+    """Ajouter date d'acompte reçu sur la fiche client apres l'evennement "a reçu un acompte" sur edof"""
+    @http.route(['/acompte_cpf'], type='json', auth="public", methods=['POST'])
+    def acompte_cpf(self, **kw):
+        dossier = json.loads(request.httprequest.data)
+        event = request.httprequest.headers.get('X-Wedof-Event')
+        _logger.info("webhoooooooooook acompte %s" % str(dossier))
+        _logger.info("header %s" % str(event))
+        external = dossier['externalId']
+        params_ = (
+            ('order', 'desc'),
+            ('type', 'deposit'),
+            ('state','issued'),
+            ('registrationFolderId', external),
+            ('sort', 'lastUpdate'),
+            ('limit', '1000')
+        )
+
+        response_paiement = requests.get('https://www.wedof.fr/api/payments/', headers=headers,
+                                         params=params_)
+        paiements = response_paiement.json()
+        print("dossier", dossier)
+        """Récupérer le paiement selon numero de dossier et type de paiement acompte  """
+        for paiement in paiements:
+            externalId = paiement['externalId']
+            """Changer format date"""
+            if 'transactionDate' in paiement:
+                transaction_date = paiement['transactionDate']
+                trdate = datetime.strptime(transaction_date, '%Y-%m-%dT%H:%M:%S.%fz')
+                newformat = "%d/%m/%Y"
+                trdateform = trdate.strftime(newformat)
+                trans_date = datetime.strptime(trdateform, "%d/%m/%Y")
+                print("paiement", externalId, trans_date, external)
+                """Chercher la fiche client correspondante et affecter la date d'acompte"""
+                partner = request.env['res.partner'].sudo().search([("numero_cpf", "=", external)], limit=1)
+                print("partner", partner.acompte_date)
+                if partner:
+                    partner.acompte_date = trans_date
+                    print("partner", partner.acompte_date)
+
+        
+

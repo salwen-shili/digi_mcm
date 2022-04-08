@@ -24,6 +24,7 @@
             <xpath expr="//field[@name='acc_number']" position="after">
                 <field name="bic"/>
             </xpath>
+
         </field>
     </record>
 </odoo>

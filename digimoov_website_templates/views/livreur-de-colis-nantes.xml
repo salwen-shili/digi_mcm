@@ -59,7 +59,7 @@
                                     Une licence que vous pouvez détenir par trois voies : en suivant une
             formation et en passant un examen auprès de la DREAL et qui est le
             chemin le plus classique opté par les candidats, en obtenant une
-                                    <a href="/blog/comment-obtenir-la-capacite-professionnelle-de-transport-leger-de-marchandise-par-equivalence">équivalence de vos diplômes</a>
+                                    <a href="/blog/digimoov-3/post/comment-obtenir-la-capacite-professionnelle-de-transport-leger-de-marchandises-par-equivalence-30">équivalence de vos diplômes</a>
                                     , ou en justifiant une gestion en continu d'une société de transport
             public routier de marchandises durant au moins deux ans, sans avoir
             arrêté l’activité depuis plus de 10 ans.
@@ -573,4 +573,11 @@
 
         </t>
     </template>
+    <record id="digimoov_livreur_de_colis_nantes_page" model="website.page">
+        <field name="website_published">True</field>
+        <field name="website_indexed">False</field>
+        <field name="website_id">2</field>
+        <field name="url">/livreur-de-colis-nantes</field>
+        <field name="view_id" ref="digimoov_website_templates.livreur_de_colis_nantes"/>
+    </record>
 </odoo>

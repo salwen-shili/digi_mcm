@@ -1378,6 +1378,15 @@ class WebsiteSale(WebsiteSale):
                 return werkzeug.utils.redirect('/formation-moto-taxi#pricing', 301)
             else:
                 return werkzeug.utils.redirect('/#pricing', 301)
+        elif product and product.website_id and product.website_id.id == 2:
+            if product.default_code == 'examen':
+                return werkzeug.utils.redirect('/examen-capacite-transport-marchandises#nouvelle-tentative', 301)
+            elif product.default_code == 'habilitation-electrique':
+                return werkzeug.utils.redirect('/habilitation-electrique#pricing', 301)
+            elif product.default_code == 'transport-routier':
+                return werkzeug.utils.redirect('/formation-capacite-transport-lourd-marchandise#pricing', 301)
+            else:
+                return werkzeug.utils.redirect('/#pricing', 301)
         return res
 
 

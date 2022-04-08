@@ -13,6 +13,8 @@
     'author': 'Houssem Ben mbarek',
     'depends': [
         'website_blog',
+        'website_slides',
+        'website',
     ],
     'data': [
         #page de blog
