@@ -138,8 +138,8 @@ class NoteExamen(models.Model):
                 self.ville_id = self.partner_id.mcm_session_id.session_ville_id.id
                 self.partner_id.presence = "Présent(e)"
                 self.partner_id.resultat = "Admis(e)"
-                #self.nombre_de_passage = nbr_count
-                #print("nbr_count11111", nbr_count)
+                # self.nombre_de_passage = nbr_count
+                # print("nbr_count11111", nbr_count)
             else:
                 # reset your fields
                 rec.epreuve_a = rec.epreuve_a
@@ -147,8 +147,8 @@ class NoteExamen(models.Model):
                 rec.mention = 'ajourne'
                 rec.resultat = 'ajourne'
                 rec.partner_id.resultat = "Ajourné(e)"
-                #self.nombre_de_passage = nbr_count
-                #print("nbr_count11111", nbr_count)
+                # self.nombre_de_passage = nbr_count
+                # print("nbr_count11111", nbr_count)
 
                 last_line = self.env['partner.sessions'].search(
                     [('client_id', '=', rec.partner_id.id), ('date_exam', '<', date.today())], limit=1,
@@ -161,8 +161,8 @@ class NoteExamen(models.Model):
                     self.ville_id = self.partner_id.mcm_session_id.session_ville_id.id
                     self.partner_id.presence = "Présent(e)"
                     self.partner_id.resultat = "Ajourné(e)"
-                    #self.nombre_de_passage = nbr_count
-                    #print("nbr_count2222222", nbr_count)
+                    # self.nombre_de_passage = nbr_count
+                    # print("nbr_count2222222", nbr_count)
                 elif rec.epreuve_a < 1 and rec.epreuve_b < 1 and not last_line.justification and rec.partner_id:
                     self.session_id = self.partner_id.mcm_session_id
                     self.module_id = self.partner_id.module_id.id
@@ -171,8 +171,8 @@ class NoteExamen(models.Model):
                     self.ville_id = self.partner_id.mcm_session_id.session_ville_id.id
                     self.partner_id.update({'presence': "Absent(e)"})
                     self.partner_id.resultat = "Ajourné(e)"
-                    #self.nombre_de_passage = nbr_count
-                    #print("nbr_countavantdernier", nbr_count)
+                    # self.nombre_de_passage = nbr_count
+                    # print("nbr_countavantdernier", nbr_count)
                 elif rec.epreuve_a < 1 and rec.epreuve_b < 1 and last_line.justification is True and rec.partner_id:
                     self.session_id = last_line.session_id
                     self.module_id = last_line.client_id.module_id.id
@@ -181,7 +181,7 @@ class NoteExamen(models.Model):
                     self.ville_id = last_line.session_id.session_ville_id.id
                     self.partner_id.update({'presence': "Absence justifiée"})
                     self.partner_id.resultat = "Ajourné(e)"
-                    #self.nombre_de_passage = nbr_count
+                    # self.nombre_de_passage = nbr_count
 
     @api.onchange("résultat")
     def etat_de_client_apres_examen(self):
@@ -373,11 +373,13 @@ class NoteExamen(models.Model):
             self.update_boolean_values()
         return res
 
-    def create(self,values):
+    def create(self, values):
         res = super(NoteExamen, self).create(values)
         res.compute_moyenne_generale()
         res.mise_ajour_mode_financement()
         if 'partner_id' in values:
+            """ Une affectation simple de champ presence lors 
+            de la creation d'un examen avec une absence justifiée automatiquement """
             if 'presence' == 'present':
                 self.partner_id.presence = "Présent(e)"
             if 'presence' == 'Absent':
@@ -386,9 +388,15 @@ class NoteExamen(models.Model):
                 self.partner_id.presence = "Absence justifiée"
             elif not 'presence':
                 self.partner_id.presence = "_______"
-        if res.partner_id.note_exam_id :
+        """ Génère automatiquement le nombre de passages en fonction des conditions, 
+        si un pack (Pro, SOLO, repassage...) est égal à "examen" ou s'il y a une justification valide.  
+        Après avoir vérifié la dernière ligne des notes d'examen si le numéro de passage == "premier'". 
+        ainsi la ligne suivante sera déplacée comme la seconde... 
+        Dans le cas contraire, le nombre de passage sera à nouveau le premier. """
+        if res.partner_id.note_exam_id:
             if res.partner_id.module_id.product_id.default_code == 'examen' or res.partner_id.justification == 'absence_justifiee':
-                info_exam = self.env['info.examen'].sudo().search([('partner_id', '=', res.partner_id.id),('id',"!=",res.id)],order="id desc", limit=1)
+                info_exam = self.env['info.examen'].sudo().search(
+                    [('partner_id', '=', res.partner_id.id), ('id', "!=", res.id)], order="id desc", limit=1)
                 if info_exam:
                     if info_exam.nombre_de_passage == 'premier':
                         res.nombre_de_passage = 'deuxieme'
