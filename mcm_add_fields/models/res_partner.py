@@ -9,3 +9,4 @@ class resComapny(models.Model):
     session_id = fields.Many2one('mcm.session','Session')
     partner_from = fields.Char('Partenaire')
     acompte_date=fields.Date("Acompte reçu")
+    acompte=fields.Char()
