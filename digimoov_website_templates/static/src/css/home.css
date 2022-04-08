@@ -1163,7 +1163,9 @@ figure.snip1256.hover figcaption {
   max-width: 90%;
   margin: 0 auto;
 }
-
+.blue-digimoov {
+  color: #202647;
+}
 .style1 {
   font-size: 25px !important;
   color: #202647 !important;
@@ -1867,7 +1869,9 @@ footer {
 .red-v {
   color: #e76363;
 }
-
+.green-ubereats {
+  color: #5fb709;
+}
 .pink-v {
   color: #c67ba5;
 }
@@ -1986,4 +1990,12 @@ footer {
 
 .btn-formations:hover {
   color: #085294;
+}
+.text-16 {
+  font-size: 16px;
+}
+.h2-text-30 {
+  font-weight: bold !important;
+  padding-bottom: 25px !important;
+  font-size: 30px !important;
 }

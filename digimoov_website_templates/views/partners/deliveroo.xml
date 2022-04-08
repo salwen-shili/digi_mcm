@@ -1,0 +1,620 @@
+<odoo>
+    <template id="digimoov_website_templates.deliveroo_landing_page" name="deliveroo partenaire">
+
+        <t t-call="website.layout">
+            <script defer="defer" type="text/javascript"
+                    src="/digimoov_website_templates/static/src/js/lazy-min.min.js"/>
+            <link href="/digimoov_website_templates/static/src/css/home.min.css" rel="stylesheet"/>
+            <!-- <link href="/digimoov_website_templates/static/src/css/css-dist/home.min.css" rel="stylesheet" /> -->
+            <!-- TrustBox script -->
+            <script type="text/javascript" src="//widget.trustpilot.com/bootstrap/v5/tp.widget.bootstrap.min.js"
+                    async="async"/>
+            <!-- End TrustBox script -->
+            <!-- End TrustBox script -->
+            <div id="wrap" class="oe_structure oe_empty"
+                 style="word-break: break-word; position: relative; z-index: 0;">
+                <section class="centric_template" data-name="Banner">
+                    <section class="home-banner pt128 pb80" id="home_page">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-lg-6 col-md-12" style="border-style: none; border-width: 0px;">
+
+                                    <img class="img img-fluid lazy" style="width:70%"
+                                         data-src="/digimoov_website_templates/static/img/deliveroo/livreur-deliveroo.webp"
+                                         data-srcsafari="/digimoov_website_templates/static/img/deliveroo/livreur-deliveroo.png"
+                                         title="Coursier Uber eats" alt="Devenez Coursier Uber eats avec Digimoov"/>
+
+                                </div>
+                                <div class="bannarcol col-lg-6 col-md-12"
+                                     style="border-style: none; border-width: 0px;">
+                                    <h1 class="h1-title text-left">
+                                        Comment devenir livreur
+                                        <text style="color: rgb(29, 245, 191);">deliveroo</text>
+                                        <text style="" class="text-beta">?</text>
+                                    </h1>
+                                    <p class="paratext text-left">
+                                        La démarche à effectuer afin de devenir coursier Deliveroo est plutôt simple,
+                                        mais vu qu'il s'agit d'une activité réglementée, vous devez avoir votre
+                                        attestation de transport léger de marchandises pour pouvoir livrer en scooter,
+                                        sinon vous serez confronté à des pénalités ou amandes.&amp;nbsp;
+                                        <br/>
+                                        La formation en capacité de transport léger est notre spécialité chez Digimoov.
+                                        Nous vous offrons une formation en ligne assez complète de 102 heures à suivre à
+                                        votre rythme, pour préparer au mieux votre examen, et ainsi détenir votre
+                                        licence et travailler en toute légalité.
+                                    </p>
+                                    <div class="banner-btn s_btn" data-name="Button">
+                                        <a href="#pricing" class="bannerbtn btn btn-alpha rounded-circle"
+                                           data-original-title="" title="" aria-describedby="tooltip356431"
+                                           spellcheck="false" data-mci-spellchecked="true">Je m'inscris !
+                                        </a>
+                                        <a class="watch-video" href="/contact" data-original-title="" title=""
+                                           aria-describedby="tooltip428748" spellcheck="false"
+                                           data-mci-spellchecked="true" lang="merciapp">Contactez-nous
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </section>
+
+
+                <section class="s_creative_left_img_right_para" data-name="left Image Right Paragraph">
+                    <div class="feature39 wrap-feature39-box">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <h2 class="blue-digimoov h2-text-30">
+                                        <text style="font-size: 36px;">Les conditions pour devenir coursier&amp;nbsp;
+                                        </text>
+                                        <text style="color: rgb(29, 245, 191); font-size: 36px;">deliveroo</text>
+                                    </h2>
+                                    <p class="paratext text-16 mb32">
+                                        Pour devenir livreur deliveroo en scooter électrique ou tout autre véhicule
+                                        électrique, vous devez répondre à certaines conditions en relation avec votre
+                                        statut en tant que coursier indépendant et ce que demande l'entreprise
+                                        deliveroo.
+                                        <br/>
+                                        Voici la liste :
+                                        <br/>
+                                        - Avoir une attestation de capacité en transport léger de marchandises.
+                                        <br/>
+                                        - Être équipé d’un scooter conforme aux règles de sécurité du Code de la route.
+                                        <br/>
+                                        - Avoir un smartphone récent avec le système d’exploitation iOS ou Android.
+                                        <br/>
+                                        - S'inscrire en tant que travailleur indépendant en France.
+                                        <br/>
+                                        - Avoir plus de 18 ans.
+                                        <br/>
+                                    </p>
+
+                                </div>
+                                <div class="col-lg-6">
+                                    <img data-src="/digimoov_website_templates/static/img/deliveroo/Formation capacité de transport Marseille- digimoov.webp"
+                                         data-srcsafari="/digimoov_website_templates/static/img/deliveroo/Formation capacité de transport Marseille- digimoov.png"
+                                         class="img-fluid lazy" alt="Attestation de transport léger de marchandises"
+                                         data-original-title=""
+                                         title="livreuse pointant du doigt une attestation de transport"
+                                         aria-describedby="tooltip267734"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <section class="s_creative_left_img_right_para mt12 bg-white-75" data-name="left Image Right Paragraph"
+                         style="">
+                    <div class="feature39 wrap-feature39-box">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-md-8" style="border-style: none; border-width: 0px;">
+                                    <div class="max-500 ">
+                                        <div class="card-body">
+                                            <h2 class="h2-text-30 blue-digimoov">
+                                                Formation Capacité de Transport léger de marchandises de -3.5T&amp;nbsp;
+                                            </h2>
+                                            <p class="paratext">
+                                                Digimoov vous assure une formation de 102 heures à distance, durant
+                                                laquelle vous serez encadrés par une équipe pédagogique assez impliquée
+                                                et experte dans le domaine du transport. Et lors de laquelle vous
+                                                découvrirez 6 modules indispensables pour votre&amp;nbsp; réussite à
+                                                l'examen en capacité de transport léger.
+                                                <br/>
+                                                Ces modules sont axés sur l'entreprise et son activité commerciale,
+                                                financière, le droit civil, la gestion des salariés et le respect de la
+                                                réglementation liée au secteur de transport de marchandises, mais aussi
+                                                de la sécurité routière.
+                                                <br/>
+                                                Dès votre inscription, vous serez invité à une plateforme pédagogique où
+                                                vous aurez accès à des cours en vidéoconférences, des exercices et des
+                                                examens blancs pour tester vos connaissances, et une révision en Live
+                                                juste avant l'examen pour combler vos lacunes.
+                                            </p>
+                                            <div class="s_btn mt32" data-name="Button">
+                                                <a class="arrow-btn bizople_button btn btn-alpha rounded-circle"
+                                                   href="#pricing" spellcheck="false" data-mci-spellchecked="true"
+                                                   data-original-title="" title="" aria-describedby="tooltip345997"
+                                                   lang="merciapp">Je m'inscris !
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="col-md-4 wrap-feature2-box mt32"
+                                     style="border-style: none; border-width: 0px;">
+                                    <section class="card card-shadow">
+                                        <img data-src="/digimoov_website_templates/static/img/deliveroo/centre de formation en ligne digimoov.webp"
+                                             data-srcsafari="/digimoov_website_templates/static/img/deliveroo/centre de formation en ligne digimoov.png"
+                                             class="img-fluid lazy" alt="coursier uber eats" data-original-title=""
+                                             title="coursier sur scooter" aria-describedby="tooltip86016"/>
+                                        <div class="card-body text-center p-40">
+                                            <h6>Besoin d'en savoir plus ?</h6>
+                                            <h4 class="font-bold">
+                                                Blog : Tout savoir sur la capacité de transport léger de marchandises
+                                            </h4>
+                                            <div class="s_btn" data-name="Button">
+                                                <a href="/tout-savoir-sur-la-capacite-de-transport-leger-de-marchandises#scrollTop=0"
+                                                   class="m-t-30 text-underline btn btn-success" data-original-title=""
+                                                   title="" aria-describedby="tooltip856636" spellcheck="false"
+                                                   data-mci-spellchecked="true" lang="merciapp"
+                                                   style="word-break: break-word; position: relative; z-index: 0;">Je
+                                                    découvre
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </section>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <section class="s_call_to_action bg-200 pt48 pb24" data-name="Call to Action">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-9 pb24">
+                                <h3>
+                                    <b>Télécharger notre programme de formation</b>
+                                </h3>
+                                <p class="lead o_default_snippet_text">
+                                    Rejoignez-nous et passez à la vitesse supérieure.
+                                </p>
+                            </div>
+                            <div class="col-lg-3 s_btn text-right pt8 pb24" data-name="Button">
+                                <a href="/digimoov_website_templates/static/pdf/PROGRAMME-DE-FORMATION-DE-TRANSPORT-LEGER-DE-MARCHANDISES-DIGIMOOV.pdf"
+                                   class="btn btn-primary btn-lg">
+                                    <span>Je télécharge</span>
+                                    &amp;nbsp;
+                                    <i class="fa fa-1x fa-fw fa-arrow-circle-right ml-1"/>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+            <!-- TrustBox widget - Carousel -->
+            <!-- TrustBox widget - Carousel -->
+            <section class="mt96 mb48">
+                <div class="container">
+                    <div class="trustpilot-widget" data-locale="fr-FR" data-template-id="53aa8912dec7e10d38f59f36"
+                         data-businessunit-id="60a28e22d3a8ed00019ff03e" data-style-height="140px"
+                         data-style-width="100%" data-theme="light" data-stars="4,5" data-review-languages="fr">
+                        <a href="https://fr.trustpilot.com/review/digimoov.fr" target="_blank" rel="noopener">
+                            Trustpilot
+                        </a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- End TrustBox widget -->
+
+            <!-- End TrustBox widget -->
+            <!-- Pricing table-->
+            <div id="pricing-table-trustpilot-partner">
+                <div id="pricing" class="row justify-content-center">
+                    <div class="col-md-8 text-center col-lg-11">
+                        <h2 class="text-beta title-pricing mb20">
+                            LET'S GO !
+                            <br/>
+                            Inscrivez-vous dès maintenant !
+                        </h2>
+
+                    </div>
+                </div>
+                <div class="container">
+                    <input t-att-value="request.website.microsoft_tracking_key" id="microsoft_tracking_key"
+                           type="hidden"/>
+
+                    <div class="row content-center">
+                        <div class="col-md-4 col-sm-6">
+                            <div class="card border-0 shadow border-pricing">
+                                <div class="text-center text-white border-0 pack-wrap ">
+                                    <br/>
+                                    <p>
+                                        <strong class="pack-name">SOLO</strong>
+                                    </p>
+                                    <p class="blink-soft">
+                                        <t t-if="not promo">
+                                            <b>Paiement en 1 seule fois</b>
+                                        </t>
+                                        <b>&amp;nbsp; &amp;nbsp;</b>
+
+                                    </p>
+                                    <br/>
+                                </div>
+                                <t t-foreach="digimoov_products" t-as="product">
+                                    <t t-if="product.default_code=='basique'">
+                                        <form action="/shop/cart/update" method="post" id="form-1-1">
+                                            <input type="hidden" class="product_id" name="product_id"
+                                                   t-att-value="product.id"/>
+                                            <input type="hidden" name="promo" t-att-value="promo.id" t-if="promo"/>
+                                            <div class="card-body">
+                                                <ul class="list-unstyled">
+                                                    <li class="mb-4">
+                                                        <i class="fa fa-check-circle fa-lg mr-2 text-success"/>
+                                                        <b>Formation 102h (100% en ligne)</b>
+                                                    </li>
+                                                    <li class="mb-4">
+                                                        <i class="fa fa-check-circle fa-lg mr-2 text-success"/>
+                                                        <b>Accès à 5 examens d'entraînement</b>
+                                                    </li>
+                                                    <li class="mb-4">
+                                                        <i class="fa fa-check-circle fa-lg mr-2 text-success"/>
+                                                        <b>Assistance par téléphone</b>
+                                                    </li>
+                                                    <li class="mb-4">
+                                                        <i class="fa fa-check-circle fa-lg mr-2 text-success"/>
+                                                        <b>Assistance par mail</b>
+                                                    </li>
+                                                    <li class="mb-4">
+                                                        <i class="fa fa-times-circle fa-lg mr-2 text-danger"/>
+                                                        Livre d'entraînement version électronique
+                                                    </li>
+                                                    <li class="mb-4">
+                                                        <i class="fa fa-lg fa-times-circle mr-2 text-danger"/>
+                                                        Séances en Live avec les formateurs
+                                                    </li>
+                                                    <li class="mb-4">
+                                                        <i class="fa fa-lg fa-times-circle mr-2 text-danger"/>
+                                                        Séance en Live avec un expert métier
+                                                    </li>
+                                                    <li class="mb-4">
+                                                        <i class="fa fa-lg fa-times-circle mr-2 text-danger"/>
+                                                        Révision du programme avant l'examen
+                                                    </li>
+                                                    <li class="mb-4">
+                                                        <i class="fa fa-check-circle fa-lg mr-2 text-success"/>
+                                                        <b>
+                                                            &amp;nbsp;Examen final en présentiel &amp;nbsp; &amp;nbsp;
+                                                            &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;
+                                                            &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;
+                                                            &amp;nbsp;&amp;nbsp;
+                                                        </b>
+                                                    </li>
+                                                    <li class="mb-4">
+                                                        <i class="fa fa-check-circle fa-lg mr-2 text-success"/>
+                                                        <b>Séance en Live pour corriger l'examen &amp;nbsp;
+                                                            &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;
+                                                            &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;
+                                                            &amp;nbsp; &amp;nbsp;&amp;nbsp;
+                                                        </b>
+                                                    </li>
+                                                    <li>
+                                                        <i/>
+                                                    </li>
+                                                </ul>
+                                                <p class="text-center font-weight-bolder text-dark h1 display-4 mb-0">
+
+                                                    <p class="text-center font-weight-bolder text-dark h1 display-4 mb-0"
+                                                       t-if="not promo">
+                                                        <span t-esc="round(product.list_price)"/>
+                                                        <span t-esc="product.currency_id.symbol"/>
+                                                    </p>
+                                                    <p class="text-center font-weight-bolder text-dark h1 display-4 mb-0"
+                                                       t-if="promo">
+                                                        <t t-foreach="promo.item_ids" t-as="item">
+                                                            <t t-if="item.product_id.id==product.id">
+                                                                <span t-esc="round(item.fixed_price)"/>
+                                                                <span t-esc="product.currency_id.symbol"/>
+                                                            </t>
+                                                        </t>
+                                                    </p>
+
+                                                </p>
+                                                <t t-if="promo and promo.name!='box2home'">
+                                                    <p class="text-center font-weight-bolder text-secondary"
+                                                       style="margin-top:68px">
+                                                        <b class="promo-code">
+                                                            <t class="paiement medium text-center font-weight-bolder text-secondary">
+                                                                avec le code
+                                                            </t>
+                                                            <t t-esc="promo.code"/>
+                                                        </b>
+                                                    </p>
+                                                </t>
+                                                <!--                                                        <p class="medium text-center font-weight-bolder text-secondary paiement" t-if="not partenaire or partenaire==''">-->
+                                                <!--                    Paiement en 1 seule fois-->
+                                                <!--                                            </p>-->
+                                                <br/>
+                                                <button class="btn btn-block text-white btn-inscription"
+                                                        onClick="(function(){ document.getElementById('form-1-1').submit();return false;})();">
+                                                    Je m'inscris
+                                                </button>
+                                            </div>
+                                        </form>
+                                    </t>
+                                </t>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-sm-6">
+                            <div class="card border-0 shadow border-pricing">
+                                <!-- <div class="text-center text-white border-0" style="
+            background-color: #6e209f;
+            border-top-left-radius: 25px;
+            border-top-right-radius: 25px;
+          ">
+                                    <br />
+                                    <p>
+                                        <strong style="color: white">
+                                            <font style="font-size: 30px">PRO</font>
+                                        </strong>
+                                    </p>
+                                    <p>
+                                        <b></b>
+                                    </p>
+                                    <br />
+                                </div> -->
+                                <div class="text-center text-white border-0 pack-wrap">
+                                    <br/>
+
+                                    <p>
+                                        <strong class="pack-name">PRO</strong>
+                                    </p>
+
+                                    <!-- <p>&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;</p> -->
+                                    <p class="blink-soft">
+                                        <b>Éligible au CPF</b>
+                                    </p>
+                                    <br/>
+                                </div>
+                                <t t-foreach="digimoov_products" t-as="product">
+                                    <t t-if="product.default_code=='avancee'">
+                                        <form action="/shop/cart/update" method="post" id="form-2-1">
+                                            <input type="hidden" class="product_id" name="product_id"
+                                                   t-att-value="product.id"/>
+                                            <input type="hidden" name="promo" t-att-value="promo.id" t-if="promo"/>
+                                            <div class="card-body car-body-c">
+                                                <ul class="list-unstyled">
+                                                    <li class="mb-4">
+                                                        <i class="fa fa-check-circle fa-lg mr-2 text-success"/>
+                                                        <b>Formation 102h (100% en ligne)</b>
+                                                    </li>
+                                                    <li class="mb-4">
+                                                        <i class="fa fa-check-circle fa-lg mr-2 text-success"/>
+                                                        <b>Livre d’entraînement version électronique</b>
+                                                        <!-- <i class="fa fa-info-circle info"></i>
+                                                        <span class="additional-info">additional info</span> -->
+                                                    </li>
+                                                    <li class="mb-4">
+                                                        <i class="fa fa-check-circle fa-lg mr-2 text-success"/>
+                                                        <b>Accès à 10 examens d'entraînement</b>
+                                                        <!-- <i class="fa fa-info-circle info"></i>
+                                                        <span class="additional-info">additional info</span> -->
+                                                    </li>
+                                                    <li class="mb-4">
+                                                        <i class="fa fa-check-circle fa-lg mr-2 text-success"
+                                                           data-original-title="" title=""
+                                                           aria-describedby="tooltip131000"/>
+                                                        <b>Assistance par téléphone</b>
+                                                    </li>
+                                                    <li class="mb-4">
+                                                        <i class="fa fa-check-circle fa-lg mr-2 text-success"/>
+                                                        <b>Assistance par mail</b>
+                                                    </li>
+
+                                                    <li class="mb-4">
+                                                        <span class="desc-size fa fa-check-circle fa-lg mr-2 text-success"
+                                                              data-original-title="" title=""
+                                                              aria-describedby="tooltip96053"/>
+                                                        <b>Séances de groupe en Live avec les formateurs</b>
+                                                    </li>
+                                                    <li class="mb-4">
+                                                        <span class="desc-size fa fa-lg fa-times-circle text-danger mr-2"
+                                                              data-original-title="" title=""
+                                                              aria-describedby="tooltip288722"/>
+                                                        Séance en Live avec un expert métier
+                                                    </li>
+                                                    <li class="mb-4">
+                                                        <i class="fa fa-lg fa-times-circle text-danger mr-2"/>
+                                                        Révision du programme avant l'examen
+                                                    </li>
+                                                    <li class="mb-4">
+                                                        <i class="fa fa-check-circle fa-lg mr-2 text-success"/>
+                                                        <b>
+                                                            &amp;nbsp;Examen final en présentiel &amp;nbsp; &amp;nbsp;
+                                                            &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;
+                                                            &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;
+                                                            &amp;nbsp;&amp;nbsp;
+                                                        </b>
+                                                    </li>
+                                                    <li class="mb-4">
+                                                        <i class="fa fa-check-circle fa-lg mr-2 text-success"/>
+                                                        <b>Séance en Live pour corriger l’examen &amp;nbsp;
+                                                            &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;
+                                                            &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;
+                                                            &amp;nbsp; &amp;nbsp;&amp;nbsp;
+                                                        </b>
+                                                    </li>
+
+                                                    <li>
+                                                        <i/>
+                                                    </li>
+                                                </ul>
+                                                <p class="text-center font-weight-bolder text-dark h1 display-4 mb-0">
+
+                                                    <p class="text-center font-weight-bolder text-dark h1 display-4 mb-0">
+                                                        <span t-esc="round(product.list_price)"/>
+
+                                                        <span t-esc="product.currency_id.symbol"/>
+                                                    </p>
+
+                                                </p>
+                                                <t t-if="promo and promo.name!='box2home'">
+                                                    <p class="text-center font-weight-bolder text-secondary">
+                                                        <b class="promo-code">
+                                                            <t>&amp;nbsp; &amp;nbsp; &amp;nbsp;&amp;nbsp;</t>
+                                                        </b>
+                                                    </p>
+                                                </t>
+                                                <p class="paiement medium text-center font-weight-bolder text-secondary">
+                                                    Paiement 1 ou 2 fois
+                                                </p>
+
+                                                <br/>
+                                                <div style="max-width:95%;">
+                                                    <button class="btn-inscription btn btn-block text-white"
+                                                            onClick="(function(){document.getElementById('form-2-1').submit();return false;})();">
+                                                        Je m'inscris
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </t>
+                                </t>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-sm-12">
+                            <div class="card border-0 shadow border-pricing">
+                                <!-- <div class="text-center text-white border-0" style="
+            background-color: #6e209f;
+            border-top-left-radius: 25px;
+            border-top-right-radius: 25px;
+          ">
+                                    <br />
+                                    <h2>
+                                        <strong style="color: white">PREMIUM</strong>
+                                    </h2>
+                                    <p>
+                                        <b></b>
+                                    </p>
+                                    <br />
+                                </div> -->
+                                <div class="text-center text-white border-0 pack-wrap">
+                                    <br/>
+
+                                    <p>
+                                        <strong class="pack-name">PREMIUM</strong>
+                                    </p>
+                                    <p class="blink-soft">
+                                        <b>Éligible au CPF</b>
+                                    </p>
+                                    <br/>
+                                </div>
+                                <t t-foreach="digimoov_products" t-as="product">
+                                    <t t-if="product.default_code=='premium'">
+                                        <form action="/shop/cart/update" method="post" id="form-3-1">
+                                            <input type="hidden" class="product_id" name="product_id"
+                                                   t-att-value="product.id"/>
+                                            <input type="hidden" name="promo" t-att-value="promo.id" t-if="promo"/>
+                                            <div class="card-body">
+                                                <ul class="list-unstyled">
+                                                    <li class="mb-4">
+                                                        <i class="fa fa-check-circle fa-lg mr-2 text-success"/>
+                                                        <b>Formation 102h (100% en ligne)</b>
+                                                    </li>
+                                                    <li class="mb-4">
+                                                        <i class="fa fa-check-circle fa-lg mr-2 text-success"/>
+                                                        <b>Livre d’entraînement version électronique</b>
+                                                    </li>
+                                                    <li class="mb-4">
+                                                        <i class="fa fa-check-circle fa-lg mr-2 text-success"/>
+                                                        <b>Accès à 14+ examens d'entraînement</b>
+                                                    </li>
+                                                    <li class="mb-4">
+                                                        <i class="fa fa-check-circle fa-lg mr-2 text-success"/>
+                                                        <b>Assistance par téléphone</b>
+                                                        <br/>
+                                                    </li>
+                                                    <li class="mb-4">
+                                                        <i class="fa fa-check-circle fa-lg mr-2 text-success"/>
+                                                        <b>Assistance par mail</b>
+                                                        <br/>
+                                                    </li>
+
+                                                    <li class="mb-4">
+                                                        <i class="fa fa-check-circle fa-lg mr-2 text-success"/>
+                                                        <b>Séances en Live avec un tuteur dédié</b>
+                                                        <br/>
+                                                    </li>
+                                                    <li class="mb-4">
+                                                        <i class="fa fa-check-circle fa-lg mr-2 text-success"/>
+                                                        <b>Séance en Live avec un expert métier</b>
+                                                        <b>&amp;nbsp;</b>
+                                                        <br/>
+                                                    </li>
+                                                    <li class="mb-4">
+                                                        <i class="fa fa-check-circle fa-lg mr-2 text-success"/>
+                                                        <b>Révision du programme avant l'examen</b>
+                                                    </li>
+                                                    <li class="mb-4">
+                                                        <span class="desc-size fa fa-check-circle fa-lg mr-2 text-success"/>
+                                                        <b>Examen final en présentiel</b>
+                                                    </li>
+                                                    <li class="mb-4">
+                                                        <i class="fa fa-lg fa-check-circle mr-2 text-success"/>
+                                                        <b>Séance en Live pour corriger l’examen</b>
+                                                        &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;
+                                                        &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;
+                                                        &amp;nbsp; &amp;nbsp; &amp;nbsp;&amp;nbsp;
+                                                    </li>
+                                                    <li>
+                                                        <i/>
+                                                    </li>
+                                                </ul>
+                                                <p class="text-center font-weight-bolder text-dark h1 display-4 mb-0">
+
+                                                    <p class="text-center font-weight-bolder text-dark h1 display-4 mb-0">
+                                                        <span t-esc="round(product.list_price)"/>
+                                                        <span t-esc="product.currency_id.symbol"/>
+                                                    </p>
+
+                                                </p>
+                                                <t t-if="promo">
+                                                    <p class="text-center font-weight-bolder text-secondary">
+                                                        <b class="promo-code">
+                                                            <t>&amp;nbsp; &amp;nbsp; &amp;nbsp;&amp;nbsp;</t>
+                                                        </b>
+                                                    </p>
+                                                </t>
+                                                <p class="paiement medium text-center font-weight-bolder text-secondary">
+                                                    Paiement 1 ou 3 fois
+                                                </p>
+
+                                                <br/>
+                                                <button class="btn-inscription btn btn-block text-white"
+                                                        onClick="(function(){ document.getElementById('form-3-1').submit();return false;})();">
+                                                    Je m'inscris
+                                                </button>
+                                            </div>
+                                        </form>
+                                    </t>
+                                </t>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- End pricing table-->
+
+
+            </div>
+        </t>
+    </template>
+    <record id="deliveroo_page" model="website.page">
+        <field name="website_published">True</field>
+        <field name="website_indexed">True</field>
+        <field name="track">True</field>
+        <field name="url">/deliveroo</field>
+        <field name="view_id" ref="digimoov_website_templates.deliveroo_landing_page"/>
+    </record>
+</odoo>

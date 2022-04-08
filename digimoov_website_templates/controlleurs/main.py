@@ -138,12 +138,15 @@ class Website(Website):
                                   values)
         else:
             raise werkzeug.exceptions.NotFound()
+
     @http.route('/capacité-de-transport-marseille', type='http', auth='public', website=True)
     def attestation_transport_leger_marchandises_destination_marseille_old_url(self, **kw, ):
         if request.website.id == 2:
-            return werkzeug.utils.redirect('/capacite-de-transport-marseille',301) #redirect old url /capacité-de-transport-marseille to new url /capacite-de-transport-marseille
+            # redirect old url /capacité-de-transport-marseille to new url /capacite-de-transport-marseille
+            return werkzeug.utils.redirect('/capacite-de-transport-marseille', 301)
         else:
             raise werkzeug.exceptions.NotFound()
+
 
 class FAQ(http.Controller):
 
@@ -934,5 +937,53 @@ class Habilitation_electrique(http.Controller):
                 'digimoov_products': digimoov_products,
             }
             return request.render("digimoov_website_templates.habilitation-electrique-paris", values)
+        else:
+            raise werkzeug.exceptions.NotFound()
+
+
+class Uber_eats(http.Controller):
+    @http.route(['/ubereats'], type='http', auth='public', website=True)
+    def ubereats_landing_page(self, **kw, ):
+        digimoov_products = False
+        values = {}
+        if request.website.id == 2:
+
+            # get digimoov products to send them to pricing table
+            digimoov_products = request.env['product.product'].sudo().search([('company_id', '=', 2)],
+                                                                             order="list_price")
+            partenaire = 'ubereats'
+            promo = False
+            #search for pricelist code UBEREATS
+            promo = request.env['product.pricelist'].sudo().search(
+                [('company_id', '=', 2), ('code', 'ilike', partenaire.upper())])
+            values = {
+                'digimoov_products': digimoov_products,
+                'promo': promo,
+            }
+            return request.render("digimoov_website_templates.ubereats_landing_page", values)
+        else:
+            raise werkzeug.exceptions.NotFound()
+
+
+class Deliveroo(http.Controller):
+    @http.route(['/deliveroo'], type='http', auth='public', website=True)
+    def deliveroo_landing_page(self, **kw, ):
+        digimoov_products = False
+        values = {}
+        if request.website.id == 2:
+            # get digimoov products to send them to pricing table
+            digimoov_products = request.env['product.product'].sudo().search([('company_id', '=', 2)],
+                                                                             order="list_price")
+            
+            partenaire = 'deliveroo'
+            promo = False
+            # search for pricelist code DELIVEROO
+            promo = request.env['product.pricelist'].sudo().search(
+                [('company_id', '=', 2), ('code', 'ilike', partenaire.upper())])
+            values = {
+                'digimoov_products': digimoov_products,
+                'promo': promo,
+            }
+            return request.render("digimoov_website_templates.deliveroo_landing_page", values)
         else:
             raise werkzeug.exceptions.NotFound()
