@@ -414,6 +414,8 @@ class AccountMove(models.Model):
                 registrations = response.json()
 
                 for dossier in registrations:
+                    _logger.info("dossier %s"% str(dossier))
+
                     external = dossier['externalId']
                     params_ = (
                         ('order', 'desc'),
@@ -427,10 +429,11 @@ class AccountMove(models.Model):
                     response_paiement = requests.get('https://www.wedof.fr/api/payments/', headers=headers,
                                           params=params_ )
                     paiements=response_paiement.json()
-                    print("dossier",dossier)
                     """Récupérer le paiement selon numero de dossier et type de paiement acompte  """
                     for paiement in paiements:
                         externalId = paiement['externalId']
+                        _logger.info("paiement %s" % str(dossier))
+
                         """Changer format date"""
                         if 'transactionDate' in paiement:
                             transaction_date=paiement['transactionDate']
@@ -443,6 +446,7 @@ class AccountMove(models.Model):
                             partner=self.env['res.partner'].sudo().search([("numero_cpf","=",external)],limit=1)
                             print("partner", partner.acompte_date)
                             if partner:
+                                _logger.info("if partner paiement %s" % str(partner.acompte_date))
                                 partner.acompte_date=trans_date
                                 print("partner",partner.acompte_date)
 
