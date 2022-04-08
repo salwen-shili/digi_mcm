@@ -269,18 +269,19 @@ class WebhookController(http.Controller):
         for paiement in paiements:
             externalId = paiement['externalId']
             """Changer format date"""
-            transaction_date = paiement['transactionDate']
-            trdate = datetime.strptime(transaction_date, '%Y-%m-%dT%H:%M:%S.%fz')
-            newformat = "%d/%m/%Y"
-            trdateform = trdate.strftime(newformat)
-            trans_date = datetime.strptime(trdateform, "%d/%m/%Y")
-            print("paiement", externalId, trans_date, external)
-            """Chercher la fiche client correspondante et affecter la date d'acompte"""
-            partner = request.env['res.partner'].sudo().search([("numero_cpf", "=", external)], limit=1)
-            print("partner", partner.acompte_date)
-            if partner:
-                partner.acompte_date = trans_date
+            if 'transactionDate' in paiement:
+                transaction_date = paiement['transactionDate']
+                trdate = datetime.strptime(transaction_date, '%Y-%m-%dT%H:%M:%S.%fz')
+                newformat = "%d/%m/%Y"
+                trdateform = trdate.strftime(newformat)
+                trans_date = datetime.strptime(trdateform, "%d/%m/%Y")
+                print("paiement", externalId, trans_date, external)
+                """Chercher la fiche client correspondante et affecter la date d'acompte"""
+                partner = request.env['res.partner'].sudo().search([("numero_cpf", "=", external)], limit=1)
                 print("partner", partner.acompte_date)
+                if partner:
+                    partner.acompte_date = trans_date
+                    print("partner", partner.acompte_date)
 
         
 
