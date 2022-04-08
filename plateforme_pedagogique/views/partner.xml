@@ -175,7 +175,11 @@
         <field name="arch" type="xml">
             <xpath expr="//group/field[@name='mode_de_financement']" position="after">
                 <field name="is_pole_emploi" string="Pole Emploi"
-                       attrs="{'invisible': [('mode_de_financement', '!=', 'cpf')]}"/>
+                       attrs="{'invisible': ['|',('mode_de_financement', '!=', 'cpf'),('is_pole_emploi','=',False)]}"/>
+            </xpath>
+            <xpath expr="//group/field[@name='mode_de_financement']" position="before">
+                <field name="acompte_date"   attrs="{'invisible': ['|',('mode_de_financement', '!=', 'cpf'),('acompte_date','=',False)]}" ></field>
+
             </xpath>
         </field>
     </record>
