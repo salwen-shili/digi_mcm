@@ -121,10 +121,8 @@ class NoteExamen(models.Model):
         """ This function used to auto display some result
         like the "Moyenne Generale" & "Mention" & "Resultat" """
         for rec in self:
-            nbr_count = ""
             session_count = rec.env['partner.sessions'].search_count(
                 [('client_id', '=', rec.partner_id.id), ('paiement', '!=', True)])
-            print("session_count:::::", session_count)
             rec.moyenne_generale = (rec.epreuve_a + rec.epreuve_b)
             if rec.epreuve_a >= 50 and rec.epreuve_b >= 40 and rec.moyenne_generale >= 120 and rec.partner_id:
                 rec.moyenne_generale = rec.moyenne_generale
@@ -138,8 +136,7 @@ class NoteExamen(models.Model):
                 self.ville_id = self.partner_id.mcm_session_id.session_ville_id.id
                 self.partner_id.presence = "Présent(e)"
                 self.partner_id.resultat = "Admis(e)"
-                # self.nombre_de_passage = nbr_count
-                # print("nbr_count11111", nbr_count)
+
             else:
                 # reset your fields
                 rec.epreuve_a = rec.epreuve_a
@@ -147,8 +144,6 @@ class NoteExamen(models.Model):
                 rec.mention = 'ajourne'
                 rec.resultat = 'ajourne'
                 rec.partner_id.resultat = "Ajourné(e)"
-                # self.nombre_de_passage = nbr_count
-                # print("nbr_count11111", nbr_count)
 
                 last_line = self.env['partner.sessions'].search(
                     [('client_id', '=', rec.partner_id.id), ('date_exam', '<', date.today())], limit=1,
@@ -161,8 +156,6 @@ class NoteExamen(models.Model):
                     self.ville_id = self.partner_id.mcm_session_id.session_ville_id.id
                     self.partner_id.presence = "Présent(e)"
                     self.partner_id.resultat = "Ajourné(e)"
-                    # self.nombre_de_passage = nbr_count
-                    # print("nbr_count2222222", nbr_count)
                 elif rec.epreuve_a < 1 and rec.epreuve_b < 1 and not last_line.justification and rec.partner_id:
                     self.session_id = self.partner_id.mcm_session_id
                     self.module_id = self.partner_id.module_id.id
@@ -171,8 +164,6 @@ class NoteExamen(models.Model):
                     self.ville_id = self.partner_id.mcm_session_id.session_ville_id.id
                     self.partner_id.update({'presence': "Absent(e)"})
                     self.partner_id.resultat = "Ajourné(e)"
-                    # self.nombre_de_passage = nbr_count
-                    # print("nbr_countavantdernier", nbr_count)
                 elif rec.epreuve_a < 1 and rec.epreuve_b < 1 and last_line.justification is True and rec.partner_id:
                     self.session_id = last_line.session_id
                     self.module_id = last_line.client_id.module_id.id
@@ -181,7 +172,6 @@ class NoteExamen(models.Model):
                     self.ville_id = last_line.session_id.session_ville_id.id
                     self.partner_id.update({'presence': "Absence justifiée"})
                     self.partner_id.resultat = "Ajourné(e)"
-                    # self.nombre_de_passage = nbr_count
 
     @api.onchange("résultat")
     def etat_de_client_apres_examen(self):
