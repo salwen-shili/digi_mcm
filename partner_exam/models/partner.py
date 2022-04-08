@@ -54,19 +54,19 @@ class resComapny(models.Model):
                     'attachment_ids': self.attachment_ids,
                     'autre_raison': self.autre_raison})
                 # Add new line in examen if mcm_session_id changed
-                nbr_count = ""
-                session_count = self.env['partner.sessions'].search_count(
-                    [('client_id', '=', self.id), ('paiement', '!=', True)])
-                if session_count == 1:
-                    self.nombre_de_passage = "premier"
-                    nbr_count = "premier"
-                    print(self.nombre_de_passage)
-                if session_count == 2:
-                    self.nombre_de_passage = "deuxieme"
-                    nbr_count = "deuxieme"
-                if session_count == 3:
-                    self.nombre_de_passage = "troisieme"
-                    nbr_count = "troisieme"
+                # nbr_count = ""
+                # session_count = self.env['partner.sessions'].search_count(
+                #     [('client_id', '=', self.id), ('paiement', '!=', True)])
+                # if session_count == 1:
+                #     self.nombre_de_passage = "premier"
+                #     nbr_count = "premier"
+                #     print(self.nombre_de_passage)
+                # if session_count == 2:
+                #     self.nombre_de_passage = "deuxieme"
+                #     nbr_count = "deuxieme"
+                # if session_count == 3:
+                #     self.nombre_de_passage = "troisieme"
+                #     nbr_count = "troisieme"
                 # if session_count == 4:
                 #     self.nombre_de_passage = "premier"
                 #     nbr_count = "premier"
@@ -78,7 +78,6 @@ class resComapny(models.Model):
                 #     nbr_count = "troisieme"
 
                 if self.justification is True:
-                    print("nbr_count", nbr_count)
                     self.env['info.examen'].search([], limit=1, order='id desc').sudo().create({
                         'partner_id': self.id,
                         'session_id': self.mcm_session_id.id,
@@ -87,8 +86,7 @@ class resComapny(models.Model):
                         'epreuve_a': 0,
                         'epreuve_b': 0,
                         'presence': 'absence_justifiee',
-                        'ville_id': self.mcm_session_id.session_ville_id.id,
-                        'nombre_de_passage': nbr_count})
+                        'ville_id': self.mcm_session_id.session_ville_id.id,})
             # Create new line in historic sessions
             sessions = self.env['partner.sessions'].search(
                 [('client_id', '=', self.id), ('session_id', '=', self.mcm_session_id.id)])

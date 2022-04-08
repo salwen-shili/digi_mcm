@@ -50,18 +50,18 @@ class InheritResPartner(models.Model):
                         rec.resultat = "Admis(e)"
                     elif not resultat.resultat:
                         rec.resultat = "_______"
-                for nb_passage in rec.env['info.examen'].sudo().search([('partner_id', "=", rec.id), ('date_exam', '<', date.today())], limit=1, order="id desc"):
-                    if nb_passage.nombre_de_passage == 'premier':
-                        rec.nombre_de_passage = "Premier"
-                        print("rec.nombre_de_passage1111", rec.nombre_de_passage)
-                    if nb_passage.nombre_de_passage == 'deuxieme':
-                        rec.nombre_de_passage = "Deuxième"
-                        print("rec.nombre_de_passage2222", rec.nombre_de_passage)
-                    if nb_passage.nombre_de_passage == 'troisieme':
-                        rec.nombre_de_passage = "Troisième"
-                        print("rec.nombre_de_passage3333", rec.nombre_de_passage)
-                    elif not nb_passage.nombre_de_passage:
-                        rec.nombre_de_passage = "_______"
+                # for nb_passage in rec.env['info.examen'].sudo().search([('partner_id', "=", rec.id), ('date_exam', '<', date.today())], limit=1, order="id desc"):
+                #     if nb_passage.nombre_de_passage == 'premier':
+                #         rec.nombre_de_passage = "Premier"
+                #         print("rec.nombre_de_passage1111", rec.nombre_de_passage)
+                #     if nb_passage.nombre_de_passage == 'deuxieme':
+                #         rec.nombre_de_passage = "Deuxième"
+                #         print("rec.nombre_de_passage2222", rec.nombre_de_passage)
+                #     if nb_passage.nombre_de_passage == 'troisieme':
+                #         rec.nombre_de_passage = "Troisième"
+                #         print("rec.nombre_de_passage3333", rec.nombre_de_passage)
+                #     elif not nb_passage.nombre_de_passage:
+                #         rec.nombre_de_passage = "_______"
 
     def _compute_get_last_internal_log(self):
         for record in self:
