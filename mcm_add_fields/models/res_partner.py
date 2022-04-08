@@ -8,5 +8,4 @@ class resComapny(models.Model):
 
     session_id = fields.Many2one('mcm.session','Session')
     partner_from = fields.Char('Partenaire')
-    acompte_date=fields.Date("Date d'acompte")
-    acompte=fields.Boolean("Acompte reçu")
+    acompte_date=fields.Date("Acompte reçu")

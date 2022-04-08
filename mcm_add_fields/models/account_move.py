@@ -402,22 +402,48 @@ class AccountMove(models.Model):
                     ('sort', 'lastUpdate'),
                     ('limit', '1000')
                 )
+
                 headers = {
                     'accept': 'application/json',
                     'Content-Type': 'application/json',
                     'X-API-KEY': api_key,
                 }
+                """Récupérer à partir de wedof la liste des dossiers   ayant statut de facture acompte déposé  """
                 response = requests.get('https://www.wedof.fr/api/registrationFolders/', headers=headers,
                                         params=params_wedof)
                 registrations = response.json()
+
                 for dossier in registrations:
-                    externalId = dossier['externalId']
-                    amountCGU = dossier['amountCGU']
+                    external = dossier['externalId']
+                    params_ = (
+                        ('order', 'desc'),
+                        ('type', 'deposit'),
+                        ('state','issued'),
+                        ('registrationFolderId', external),
+                        ('sort', 'lastUpdate'),
+                        ('limit', '1000')
+                    )
+
+                    response_paiement = requests.get('https://www.wedof.fr/api/payments/', headers=headers,
+                                          params=params_ )
+                    paiements=response_paiement.json()
                     print("dossier",dossier)
-                    partner=self.env['res.partner'].sudo().search([("numero_cpf","=",externalId)],limit=1)
-                    if partner:
-                        partner.acompte=True
-                        print("partner",partner.acompte)
+                    """Récupérer le paiement selon numero de dossier et type de paiement acompte  """
+                    for paiement in paiements:
+                        externalId = paiement['externalId']
+                        """Changer format date"""
+                        transaction_date=paiement['transactionDate']
+                        trdate = datetime.strptime(transaction_date, '%Y-%m-%dT%H:%M:%S.%fz')
+                        newformat = "%d/%m/%Y"
+                        trdateform = trdate.strftime(newformat)
+                        trans_date = datetime.strptime(trdateform, "%d/%m/%Y")
+                        print("paiement", externalId,trans_date,external)
+                        """Chercher la fiche client correspondante et affecter la date d'acompte"""
+                        partner=self.env['res.partner'].sudo().search([("numero_cpf","=",external)],limit=1)
+                        print("partner", partner.acompte_date)
+                        if partner:
+                            partner.acompte_date=trans_date
+                            print("partner",partner.acompte_date)
 
 
 
