@@ -945,14 +945,20 @@ class Uber_eats(http.Controller):
     @http.route(['/ubereats'], type='http', auth='public', website=True)
     def ubereats_landing_page(self, **kw, ):
         digimoov_products = False
-        values = False
+        values = {}
         if request.website.id == 2:
 
             # get digimoov products to send them to pricing table
             digimoov_products = request.env['product.product'].sudo().search([('company_id', '=', 2)],
                                                                              order="list_price")
+            partenaire = 'ubereats'
+            promo = False
+            #search for pricelist code UBEREATS
+            promo = request.env['product.pricelist'].sudo().search(
+                [('company_id', '=', 2), ('code', 'ilike', partenaire.upper())])
             values = {
                 'digimoov_products': digimoov_products,
+                'promo': promo,
             }
             return request.render("digimoov_website_templates.ubereats_landing_page", values)
         else:
@@ -963,14 +969,20 @@ class Deliveroo(http.Controller):
     @http.route(['/deliveroo'], type='http', auth='public', website=True)
     def deliveroo_landing_page(self, **kw, ):
         digimoov_products = False
-        values = False
+        values = {}
         if request.website.id == 2:
-
             # get digimoov products to send them to pricing table
             digimoov_products = request.env['product.product'].sudo().search([('company_id', '=', 2)],
                                                                              order="list_price")
+            
+            partenaire = 'deliveroo'
+            promo = False
+            # search for pricelist code DELIVEROO
+            promo = request.env['product.pricelist'].sudo().search(
+                [('company_id', '=', 2), ('code', 'ilike', partenaire.upper())])
             values = {
                 'digimoov_products': digimoov_products,
+                'promo': promo,
             }
             return request.render("digimoov_website_templates.deliveroo_landing_page", values)
         else:
