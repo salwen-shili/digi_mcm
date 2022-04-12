@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <template id="template_raport_cerfa">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="web.basic_layout">
+                    <style>
+                        .page {
+                        line-height: 1.75 ;
+                        font-size:20px ;
+
+                        }
+                    </style>
+                    <div class="page">
+                        <div class="oe_structure"/>
+                        <div class="row">
+                            <br/>
+                            <div class="oe_structure"/>
+                            <div class="col-12">
+                                <img src='/partner_exam/static/src/img/cerfa_header.png' height="360"
+                                     width="1200"/>
+
+                            </div>
+                            <div class="row">
+                                <img src='/partner_exam/static/src/img/cerfa_dynamic.png'
+                                     style="position:absolute;z-index:3;width:100%;height:600px" height="600"
+                                     width="1100"/>
+                                <div>
+                                    <strong style="position:absolute;z-index:3;margin-top:100px;margin-left:60px;">
+                                        <t t-if="o.title.name=='Monsieur'">
+                                            <img src='/partner_exam/static/src/img/check_icon_cerfa.png' height="20"
+                                                 width="10" style=""/>
+                                        </t>
+                                    </strong>
+                                    <strong style="position:absolute;z-index:3;margin-top:100px;margin-left:150px;">
+                                        <t t-if="o.title.name=='Madame'">
+                                            <img src='/partner_exam/static/src/img/check_icon_cerfa.png' height="20"
+                                                 width="10"/>
+                                        </t>
+                                    </strong>
+                                    <strong style="position:absolute;z-index:3;margin-top:100px;margin-left:250px;">
+                                        <span t-raw="'%s' % o.name.split(' ')[0] if o.name else ''"/>
+                                        <br/>
+                                        <span t-raw="'%s' % o.name.split(' ')[1] if o.name else ''"/>
+                                        <br/>
+                                        <span>--------A---------</span>
+                                        <br/>
+                                        <span t-field="o.birthday" t-field-options='{"format": "dd/MM/yyyy"}'/>
+                                        <br/>
+                                        <span>--------B---------</span>
+                                        <br/>
+                                        <span t-raw="'%s' % o.nationality if o.nationality else '-------------'"/>
+                                    </strong>
+                                    <strong style="position:absolute;z-index:3;margin-top:200px;margin-left:500px;">
+                                            <span t-raw="'%s' % o.birth_city if o.birth_city else '-------------'"/>
+                                        </strong>
+                                    <strong style="position:absolute;z-index:3;margin-top:240px;margin-left:880px;">
+                                        <span>-----C------</span>
+                                    </strong>
+                                    <strong style="position:absolute;z-index:3;margin-top:325px;margin-left:250px;">
+                                        <span>------D------</span><br/>
+                                        <span>------E------</span><br/>
+                                    </strong>
+                                    <strong style="position:absolute;z-index:3;margin-top:325px;margin-left:450px;">
+                                        <span>------F------</span>
+                                    </strong>
+                                    <strong style="position:absolute;z-index:3;margin-top:325px;margin-left:880px;">
+                                        <span>------G------</span>
+                                    </strong>
+                                    <strong style="position:absolute;z-index:3;margin-top:390px;margin-left:880px;">
+                                        <span>------H------</span>
+                                    </strong>
+                                    <strong style="position:absolute;z-index:3;margin-top:420px;margin-left:460px;">
+                                        <span t-raw="'%s' % o.city if o.city else '-------------'"/>
+                                    </strong>
+                                    <strong style="position:absolute;z-index:3;margin-top:420px;margin-left:250px;">
+                                        <span t-raw="'%s' % o.zip if o.zip else '-------------'"/><br/>
+                                        <span t-raw="'%s' % o.country_id.name if o.country_id else '-------------'"/><br/>
+                                        <span t-raw="'%s' % o.phone if o.phone else '-------------'"/><br/>
+                                        <span t-raw="'%s' % o.email if o.email else '-------------'"/><br/>
+                                    </strong>
+                                    <strong style="position:absolute;z-index:3;margin-top:390px;margin-left:880px;">
+                                        <span>------H------</span>
+                                    </strong>
+                                </div>
+                            </div>
+                            <div class="row" style="padding-top:600px;margin_left:9px;">
+                                <img src='/partner_exam/static/src/img/cerfa_footer_page1.png'
+                                     height="500" width="1100"/>
+                            </div>
+                        </div>
+                        <p style="page-break-after:always;"/>
+                        <div class="row">
+                            <img src='/partner_exam/static/src/img/cerfa_page_2.png' height="1300" width="1200"/>
+                        </div>
+                        <p style="page-break-after:always;"/>
+                        <div class="row">
+                            <img src='/partner_exam/static/src/img/cerfa_page3_1.png' height="600" width="1200"/>
+                            <img src='/partner_exam/static/src/img/cerfa_page3_2.png' height="200" width="1200"/>
+                            <img src='/partner_exam/static/src/img/cerfa_page3_3.png' height="650" width="1200"/>
+                        </div>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+</odoo>
