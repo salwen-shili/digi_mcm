@@ -953,7 +953,7 @@ class Uber_eats(http.Controller):
                                                                              order="list_price")
             partenaire = 'ubereats'
             promo = False
-            #search for pricelist code UBEREATS
+            # search for pricelist code UBEREATS
             promo = request.env['product.pricelist'].sudo().search(
                 [('company_id', '=', 2), ('code', 'ilike', partenaire.upper())])
             values = {
@@ -974,7 +974,7 @@ class Deliveroo(http.Controller):
             # get digimoov products to send them to pricing table
             digimoov_products = request.env['product.product'].sudo().search([('company_id', '=', 2)],
                                                                              order="list_price")
-            
+
             partenaire = 'deliveroo'
             promo = False
             # search for pricelist code DELIVEROO
@@ -985,5 +985,29 @@ class Deliveroo(http.Controller):
                 'promo': promo,
             }
             return request.render("digimoov_website_templates.deliveroo_landing_page", values)
+        else:
+            raise werkzeug.exceptions.NotFound()
+
+
+class Amazon(http.Controller):
+    @http.route(['/amazon'], type='http', auth='public', website=True)
+    def amazon_landing_page(self, **kw, ):
+        digimoov_products = False
+        values = {}
+        if request.website.id == 2:
+            # get digimoov products to send them to pricing table
+            digimoov_products = request.env['product.product'].sudo().search([('company_id', '=', 2)],
+                                                                             order="list_price")
+
+            partenaire = 'amazon'
+            promo = False
+            # search for pricelist code amazon
+            promo = request.env['product.pricelist'].sudo().search(
+                [('company_id', '=', 2), ('code', 'ilike', partenaire.upper())])
+            values = {
+                'digimoov_products': digimoov_products,
+                'promo': promo,
+            }
+            return request.render("digimoov_website_templates.digimoov_template_amazon_landing_page", values)
         else:
             raise werkzeug.exceptions.NotFound()
