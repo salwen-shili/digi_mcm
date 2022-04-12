@@ -1,21 +1,21 @@
 .button {
   position: relative;
   color: #fff;
-  background: #5869c5;
+  background: #343996;
   text-decoration: none;
   display: inline-block;
   text-transform: uppercase;
   letter-spacing: 1px;
   border: 2px solid transparent;
   border-radius: 1000px;
-  padding: 10px 20px;
+  padding: 7px 20px;
   margin: 40px;
   box-shadow: 0 2px 5px 0 rgba(3, 6, 26, 0.15);
+  font-size: 14px;
 }
 .button:hover {
   cursor: pointer;
-
-  background: #6272ca;
+  background: #5869c5;
   color: #fff;
   -webkit-animation: none;
   animation: none;
@@ -35,22 +35,22 @@
     transform: scale(0.9);
   }
   15% {
-    transform: scale(1.15);
+    transform: scale(1);
   }
   20% {
-    transform: scale(1.15) rotate(-5deg);
+    transform: scale(1.05) rotate(-5deg);
   }
   25% {
-    transform: scale(1.15) rotate(5deg);
+    transform: scale(1.05) rotate(5deg);
   }
   30% {
-    transform: scale(1.15) rotate(-3deg);
+    transform: scale(1.05) rotate(-3deg);
   }
   35% {
-    transform: scale(1.15) rotate(2deg);
+    transform: scale(1.05) rotate(2deg);
   }
   40% {
-    transform: scale(1.15) rotate(0);
+    transform: scale(1.05) rotate(0);
   }
 }
 
@@ -63,22 +63,22 @@
     transform: scale(0.9);
   }
   15% {
-    transform: scale(1.15);
+    transform: scale(1.05);
   }
   20% {
-    transform: scale(1.15) rotate(-5deg);
+    transform: scale(1.05) rotate(-5deg);
   }
   25% {
-    transform: scale(1.15) rotate(5deg);
+    transform: scale(1.05) rotate(5deg);
   }
   30% {
-    transform: scale(1.15) rotate(-3deg);
+    transform: scale(1.05) rotate(-3deg);
   }
   35% {
-    transform: scale(1.15) rotate(2deg);
+    transform: scale(1.05) rotate(2deg);
   }
   40% {
-    transform: scale(1.15) rotate(0);
+    transform: scale(1.05) rotate(0);
   }
 }
 .button-pulse {
