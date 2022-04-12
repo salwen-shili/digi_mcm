@@ -1,0 +1,269 @@
+<t t-name="website.devenir-livreur-amazon">
+  <t t-call="website.layout">
+    <div id="wrap" class="oe_structure oe_empty" style="word-break: break-word; position: relative; z-index: 0">
+      <section class="s_text_image mt32 mb16" data-name="Image - Text">
+        <div class="container">
+          <div class="row align-items-center">
+            <div class="col-lg-6 pt16 pb16">
+              <img src="/digimoov_website_templates/static/img/partners/A 4.png" class="img img-fluid mx-auto" alt="Odoo • Image et Texte" />
+            </div>
+            <div class="col-lg-6 pt16 pb16" style="border-style: none; border-width: 0px">
+              <h1 style="                   -webkit-font-smoothing: antialiased;                   margin: 0px 0px 20px;                   vertical-align: middle;                   cursor: text;                   padding: 0px;                   counter-reset: list-1 0 list-2 0 list-3 0 list-4 0 list-5 0                     list-6 0 list-7 0 list-8 0 list-9 0;                 ">
+                <span style="-webkit-font-smoothing: antialiased">
+                  <text style="color: rgb(156, 0, 255); font-size: 58px">
+                    <span style="">
+                      <b>Digimoov</b>
+                    </span>
+                  </text>
+                  <text style="font-size: 58px" class="text-beta">
+                    <b style="">en partenariat avec </b>
+                    <b style="">amazon,</b>
+                  </text>
+                  <span style="">
+                    <b>
+                      <text class="text-beta" style="">Vous ouvrent les portes de la réussite !</text>
+                    </b>
+                  </span>
+                </span>
+              </h1>
+              <p>
+                Vous souhaitez entreprendre dans le secteur du transport de
+                marchandises?
+                <br />
+                Digimoov et Amazon s'allient pour vous aider à
+                réussir votre projet professionnel.
+                <br />
+              </p>
+              <p>
+                    Obtenez votre attestation de
+                capacité de transport léger de marchandises avec Digimoov, et
+                inscrivez-vous au programme "Partenaire de livraison avec
+                Amazon", un programme qui vise à recruter les nouveaux
+                capacitaires souhaitant lancer ou développer leurs entreprises
+                de transport dans leurs régions, et ce, en leur offrant la
+                possibilité de devenir partenaires Amazon.
+                </p>
+              <p>
+                Vous aussi
+                <b>inscrivez-vous à notre formation en ligne</b>
+                pour une préparation
+                optimale à l'
+                <b>examen</b>
+                en capacité de transport léger. Obtenez
+                votre licence et devenez partenaire de livraison avec Amazon !
+              </p>
+              <p />
+              <div class="pb16 pt16 s_btn text-left" data-name="Button">
+                <a href="#pricing" class="btn btn-outline-alpha btn-lg" spellcheck="false" data-mci-spellchecked="true" style="word-break: break-word; position: relative; z-index: 0" data-original-title="" title="" aria-describedby="tooltip171084" lang="merciapp">Inscrivez-vous !</a>
+              </div>
+              <mci-extension data-role="overlay" />
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="s_text_image mt16 mb16" data-name="Text - Image">
+        <div class="container">
+          <div class="row align-items-center">
+            <div class="col-lg-6 pt16 pb16" style="border-style: none; border-width: 0px">
+              <h2 class="title font-bold text-beta" style="text-align: left">
+                <text style="font-size: 48px">Comment devenir partenaire</text>
+                &amp;nbsp;
+                <text style="color: rgb(0, 168, 225); font-size: 48px">amazon&amp;nbsp;</text>
+                <text style="font-size: 48px" class="text-beta">?</text>
+              </h2>
+              <div>
+                <div style="text-align: left">
+                  <span style="color: rgb(66, 66, 66); font-size: 1rem">
+                    Pour devenir partenaire de livraison avec amazon, vous devez
+                    disposer d’une
+                    <b>attestation en capacité de transport léger de
+                      marchandises</b>
+                    .
+                  </span>
+                </div>
+                <span style="color: black; font-size: 1rem">
+                  <div style="text-align: left">
+                    <span style="color: rgb(66, 66, 66); font-size: 1rem">Cette licence de transport concerne les véhicules
+                      motorisés dont la capacité ne dépasse pas les 3.5 tonnes,
+                      ici on parle de&amp;nbsp;véhicules légers de moins de 3,5
+                      t.</span>
+                  </div>
+                </span>
+              </div>
+              <p>
+                <span style="                     background-attachment: initial;                     background-clip: initial;                     background-image: initial;                     background-origin: initial;                     background-position: initial;                     background-repeat: initial;                     background-size: initial;                     color: rgb(66, 66, 66);                     font-size: 14px;                     text-align: center;                   " />
+              </p>
+              <div style="text-align: left; box-sizing: border-box">
+                <span style="                     box-sizing: border-box;                     color: rgb(66, 66, 66);                     font-size: 1rem;                   ">Une fois votre capacité de conducteur routier adaptée
+                  obtenue, vous pourrez être inscrit dans le registre national
+                  des transporteurs, créer votre entreprise de transport de
+                  marchandises ou de colis, et lancer votre projet professionnel
+                  en tant qu'indépendant, ou devenir partenaire de livraison
+                  amazon.</span>
+              </div>
+            </div>
+            <div class="col-lg-6 pt16 pb16">
+              <img src="/digimoov_website_templates/static/img/partners/Capacité de transport léger de marchandise.gif" class="img img-fluid mx-auto" alt="Odoo • Texte et Image" data-original-title="" title="" aria-describedby="tooltip226939" />
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="s_text_image mt16 mb16" data-name="Image - Text">
+        <div class="container">
+          <div class="row align-items-center">
+            <div class="col-lg-6 pt16 pb16">
+              <img src="/digimoov_website_templates/static/img/partners/Comment s'inscrire au programme Partenaire de livraison amazon -digimoov.png" class="img img-fluid mx-auto" alt="Odoo • Image et Texte" />
+            </div>
+            <div class="col-lg-6 pt16 pb16" style="border-style: none; border-width: 0px">
+              <h2>
+                <text style="font-size: 48px" class="text-beta">
+                  <b>Le programme</b>
+                  &amp;nbsp;:
+                </text>
+                <text style="" class="text-beta" color="#555555">
+                  <br />
+                </text>
+                <text style="color: rgb(0, 168, 225); font-size: 48px">
+                  <b>Devenir</b>
+                </text>
+                &amp;nbsp;
+                <text style="color: rgb(0, 168, 225); font-size: 48px">
+                  <b>Partenaire de livraison amazon</b>
+                </text>
+              </h2>
+              <div>
+                <div style="text-align: left">
+                  <text color="#000000">
+                    <span style="font-size: 16px">
+                      Suite à l'obtention de votre licence de transport, vous
+                      aurez l'opportunité de participer au programme «
+                      Partenaire de Livraison ».
+                      <br />
+                      Un programme qui s'ajoute aux partenariats existants
+                      établis par Amazon avec plus de 100 entreprises de
+                      livraison en France.
+                      <br />
+                      <br />
+                      En effet,depuis plus de 20 ans, Amazon collabore avec des
+                      entreprises de transport de toutes tailles, afin de livrer
+                      les clients partout en France. Et aujourd'hui, Amazon
+                      étend ces partenariats aux gérants de petites et moyennes
+                      entreprises avec le nouveau programme « Partenaire de
+                      Livraison », afin de les aider à développer leur activité
+                      de livraison de colis, et à saisir les opportunités de
+                      l’e-commerce.
+                    </span>
+                  </text>
+                  <br />
+                </div>
+              </div>
+              <div class="s_btn text-left pt16 pb16" data-name="Button">
+                <a href="https://attendee.gotowebinar.com/register/1774167984569078795" class="btn btn-outline-beta" spellcheck="false" data-mci-spellchecked="true" style="word-break: break-word; position: relative; z-index: 0" lang="merciapp" data-original-title="" title="" aria-describedby="tooltip376939">En savoir plus</a>
+              </div>
+              <mci-extension data-role="overlay" />
+              <mci-extension data-role="overlay" />
+              <mci-extension data-role="overlay" />
+              <mci-extension data-role="overlay" />
+              <mci-extension data-role="overlay" />
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="s_text_image mt16 mb16" data-name="Text - Image">
+        <div class="container">
+          <div class="row align-items-center">
+            <div class="col-lg-6 pt16 pb16" style="border-style: none; border-width: 0px">
+              <h2>
+                <text style="font-size: 48px" class="text-beta">
+                  <b>Formation en capacité de&amp;nbsp;</b>
+                </text>
+                <text style="font-size: 48px" class="text-beta">
+                  <b>transport léger</b>
+                </text>
+                <text style="color: rgb(0, 168, 225); font-size: 48px">&amp;nbsp;</text>
+                <text style="font-size: 48px" class="text-beta">
+                  <b>de marchandises -3.5T </b>
+                </text>
+              </h2>
+              <p>
+                Digimoov vous propose
+                <b>une formation à distance de 102 heures</b>
+                , concoctée par des experts du métier,&amp;nbsp;
+                <b>composée de 6 modules</b>
+                axés sur l'entreprise et son activité financière, la
+                réglementation du secteur de transport, la sécurité routière, le
+                droit civil, la gestion des ressources humaines et l'activité
+                commerciale de l'entreprise.
+              </p>
+              <p>
+                Dès votre inscription, vous aurez accès à notre&amp;nbsp;
+                <b>plateforme e-learning</b>
+                grâce à laquelle vous découvrirez nos différents parcours de
+                formation ou&amp;nbsp; présentés sous-formes de
+                <b>vidéoconférences</b>
+                , de vidéos préenregistrées avec des corrections des examens,
+                comme vous aurez l'opportunité de suivre nos
+                <b>cours en Live</b>
+                avec nos formateurs pour d'amples explications.
+              </p>
+              <p>
+                À&amp;nbsp;la fin de chaque module, vous pourrez
+                <b>tester vos connaissances à l'aide de questionnaire à
+                  multiples choix et à des examens blancs&amp;nbsp;</b>
+                .
+              </p>
+              <div class="s_btn text-center pt16 pb16" data-name="Button">
+                <a href="/digimoov_website_templates/static/pdf/PROGRAMME-DE-FORMATION-DE-TRANSPORT-LEGER-DE-MARCHANDISES-DIGIMOOV.pdf" class="btn btn-primary" spellcheck="false" data-mci-spellchecked="true" style="word-break: break-word; position: relative; z-index: 0" data-original-title="" title="" aria-describedby="tooltip758603" lang="merciapp">Télécharger le programme de formation</a>
+              </div>
+              <mci-extension data-role="overlay" />
+              <mci-extension data-role="overlay" />
+              <mci-extension data-role="overlay" />
+              <mci-extension data-role="overlay" />
+            </div>
+            <div class="col-lg-6 pt16 pb16" style="border-style: none; border-width: 0px">
+              <img src="/web/image/261456/ILLU%204.png" class="img img-fluid mx-auto" alt="Formation en capacité de transport léger de marchandises -3.5T" data-original-title="" title="candidat en formation capacité de transport" aria-describedby="tooltip463406" />
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="s_text_image mt16 mb16" data-name="Image - Text">
+        <div class="container">
+          <div class="row align-items-center">
+            <div class="col-lg-6 pt16 pb16">
+              <img src="/web/image/261457/ILLU%205.png" class="img img-fluid mx-auto" alt="Comment financer ma formation en capacité de transport " data-original-title="" title="candidat paye sa formation en capacité de transport par carte bancaire" aria-describedby="tooltip6300" />
+            </div>
+            <div class="col-lg-6 pt16 pb16" style="border-style: none; border-width: 0px">
+              <h2>
+                <text color="#202647">
+                  <span style="font-size: 48px">
+                    <b>Comment financer ma formation en</b>
+                  </span>
+                  &amp;nbsp;
+                  <span style="color: rgb(0, 168, 225); font-size: 48px">
+                    <b>capacité de transport</b>
+                  </span>
+                  &amp;nbsp;
+                  <span style="font-size: 48px">
+                    <b>?</b>
+                  </span>
+                </text>
+              </h2>
+              <p style="                   -webkit-font-smoothing: antialiased;                   margin-right: 0px;                   margin-bottom: 20px;                   margin-left: 0px;                   cursor: text;                   padding: 0px;                   counter-reset: list-1 0 list-2 0 list-3 0 list-4 0 list-5 0                     list-6 0 list-7 0 list-8 0 list-9 0;                 ">
+                Digimoov vous offre la possibilité de financer votre formation
+                par
+                <b>carte bancaire, avec des facilités de paiement</b>
+                assez
+                intéressantes, et qui varient selon le pack choisi. Comme on
+                vous offre d'autres modalités de financement en passant par le
+                régime de
+                <b>"Pôle emploi"</b>
+                ou encore en mobilisant votre
+                <b>Compte Personnel de Formation.</b>
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </t>
+</t>
