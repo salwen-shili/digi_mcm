@@ -623,7 +623,6 @@ function onchangeTextButton() {
       // hide instalment
 
       displayInstalmentPayment(); //hide instalment
-
       displayPromo(); //hide promo
       if (order_instalment) {
         order_instalment.style.display = 'none'; //hide instalment
