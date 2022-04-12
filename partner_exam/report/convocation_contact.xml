@@ -191,26 +191,6 @@
                                             </tr>
                                         </thead>
                                     </table>
-                                    <!--                                <img src='/partner_exam/static/src/img/logo_digimoov.png'-->
-                                    <!--                                     style="max-height: 190px; float:left;padding-right:30px;"/>-->
-                                    <!--                                <br/>-->
-
-                                    <!--                                <p style="line-height: 1.26 !important;">-->
-                                    <!--                                    <b>Organisme de formation : DIGIMOOV</b>-->
-                                    <!--                                </p>-->
-                                    <!--                                <br/>-->
-                                    <!--                                <p style="font-size:14px;line-height: 0.5 !important;">-->
-                                    <!--                                    <strong>DIGIMOOV</strong>-->
-                                    <!--                                    10 rue de PENTHIEVRE PARIS 75008-->
-                                    <!--                                </p>-->
-                                    <!--                                <p style="font-size:14px;">-->
-                                    <!--                                    <b>Numéro SIRET :</b>-->
-                                    <!--                                    81121988000085-->
-                                    <!--                                </p>-->
-                                    <!--                                <p class="line-height-three">-->
-                                    <!--                                    <b>Numéro de déclaration d’activité :</b>-->
-                                    <!--                                    11755542075 (auprès du préfet de région de : 75)-->
-                                    <!--                                </p>-->
                                     <br/>
                                     <br/>
                                     <br/>
@@ -278,10 +258,17 @@
                                         conditions n'est pas remplie, le report sans frais ne sera pas accepté.
                                         <br/>
                                         <br/>
-
                                         5. Je comprends que chaque examen sera automatiquement décompté comme un passage
                                         que
                                         je sois présent, absent ou qu’il s’agisse d’un report.
+                                        <br/>
+                                        6. Je comprends qu'après chaque absence ou ajournement d'examen, mon compte
+                                        sera automatiquement supprimé de la Plateforme de Formation jusqu'au paiement
+                                        du repassage.
+                                        <br/>
+                                        7. Je comprends qu’après trois ajournements à l’examen de capacité de transport
+                                        de
+                                        marchandises léger, je dois me réinscrire à la formation.
                                         <br/>
                                         <br/>
                                     </span>
