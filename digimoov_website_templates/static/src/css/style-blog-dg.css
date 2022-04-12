@@ -1,0 +1,129 @@
+.button {
+  position: relative;
+  color: #fff;
+  background: #5869c5;
+  text-decoration: none;
+  display: inline-block;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  border: 2px solid transparent;
+  border-radius: 1000px;
+  padding: 10px 20px;
+  margin: 40px;
+  box-shadow: 0 2px 5px 0 rgba(3, 6, 26, 0.15);
+}
+.button:hover {
+  cursor: pointer;
+
+  background: #6272ca;
+  color: #fff;
+  -webkit-animation: none;
+  animation: none;
+}
+
+.button-wiggle {
+  -webkit-animation: wiggle 4s 2s infinite;
+  animation: wiggle 4s 2s infinite;
+}
+
+@-webkit-keyframes wiggle {
+  5%,
+  50% {
+    transform: scale(1);
+  }
+  10% {
+    transform: scale(0.9);
+  }
+  15% {
+    transform: scale(1.15);
+  }
+  20% {
+    transform: scale(1.15) rotate(-5deg);
+  }
+  25% {
+    transform: scale(1.15) rotate(5deg);
+  }
+  30% {
+    transform: scale(1.15) rotate(-3deg);
+  }
+  35% {
+    transform: scale(1.15) rotate(2deg);
+  }
+  40% {
+    transform: scale(1.15) rotate(0);
+  }
+}
+
+@keyframes wiggle {
+  5%,
+  50% {
+    transform: scale(1);
+  }
+  10% {
+    transform: scale(0.9);
+  }
+  15% {
+    transform: scale(1.15);
+  }
+  20% {
+    transform: scale(1.15) rotate(-5deg);
+  }
+  25% {
+    transform: scale(1.15) rotate(5deg);
+  }
+  30% {
+    transform: scale(1.15) rotate(-3deg);
+  }
+  35% {
+    transform: scale(1.15) rotate(2deg);
+  }
+  40% {
+    transform: scale(1.15) rotate(0);
+  }
+}
+.button-pulse {
+  -webkit-animation: pulse 2s infinite 3s cubic-bezier(0.25, 0, 0, 1);
+  animation: pulse 2s infinite 3s cubic-bezier(0.25, 0, 0, 1);
+  box-shadow: 0 0 0 0 transparent;
+}
+
+@-webkit-keyframes pulse {
+  to {
+    box-shadow: 0 0 0 18px rgba(255, 255, 255, 0);
+  }
+}
+
+@keyframes pulse {
+  to {
+    box-shadow: 0 0 0 18px rgba(255, 255, 255, 0);
+  }
+}
+.button-float {
+  -webkit-animation: float 1.5s linear alternate infinite;
+  animation: float 1.5s linear alternate infinite;
+}
+
+@-webkit-keyframes float {
+  50% {
+    transform: translateY(-px);
+  }
+  100% {
+    transform: translateY(-18px);
+  }
+}
+
+@keyframes float {
+  50% {
+    transform: translateY(-px);
+  }
+  100% {
+    transform: translateY(-18px);
+  }
+}
+
+.btn-wiggle {
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+}
+
+/* <a href="#" class="btn-wiggle button button-wiggle">test</a> */
