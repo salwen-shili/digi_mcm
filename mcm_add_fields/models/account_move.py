@@ -161,7 +161,7 @@ class AccountMove(models.Model):
                     ('billingState', 'toBill'),
                     ('certificationState', 'all'),
                     ('sort', 'lastUpdate'),
-                    ('limit', '10')
+                    ('limit', '100')
                 )
                 headers = {
                     'accept': 'application/json',
