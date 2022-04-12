@@ -219,6 +219,8 @@
                                         et demeurant au
                                         <strong>
                                             <span t-raw="'%s' % o.street if o.street else '..............'"/>
+                                            <span t-raw="'%s' % o.zip if o.zip else '..............'"/>
+                                            <span t-raw="'%s' % o.city if o.city else '..............'"/>
                                         </strong>
                                         , atteste sur
                                         l'honneur
