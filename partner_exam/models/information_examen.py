@@ -273,21 +273,18 @@ class NoteExamen(models.Model):
             'X-API-KEY': api_key,
         }
         params_wedof = (
-            ('order', 'asc'),
-            ('type', 'all'),
+            ('order', 'desc'),
             ('state', 'inTraining'),
-            ('billingState', 'all'),
-            ('certificationState', 'all'),
             ('sort', 'lastUpdate'),
-            ('limit', '1000')
+            ('limit', '100'),
         )
         data1 = '{}'
         data = '{\n "absenceDuration": 0,\n "forceMajeureAbsence": false,\n "trainingDuration": 0\n}'
-        response = requests.get('https://www.wedof.fr/api/registrationFolders/', headers=headers,
-                                params=params_wedof)
+        response = requests.get('https://www.wedof.fr/api/registrationFolders', headers=headers,
+                             params=params_wedof)
         registrations = response.json()
         for dossier in registrations:
-            _logger.info('lengh api get %s' % str( json.loads(response.content)))
+            _logger.info('lengh api get %s' % str( len(registrations)))
 
             externalId = dossier['externalId']
             print('externalId', externalId)
@@ -340,13 +337,10 @@ class NoteExamen(models.Model):
         }
       
         params_wedof = (
-            ('order', 'asc'),
-            ('type', 'all'),
+            ('order', 'desc'),
             ('state', 'inTraining'),
-            ('billingState', 'all'),
-            ('certificationState', 'all'),
             ('sort', 'lastUpdate'),
-            ('limit', '1000')
+            ('limit', '100'),
         )
         param_360 = (
             ('company', '56f5520e11d423f46884d593'),
