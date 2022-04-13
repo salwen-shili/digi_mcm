@@ -31,11 +31,14 @@
                     </text>
                     <text style="font-size: 58px" class="text-beta">
                       <b style="">en partenariat avec </b>
-                      <b style="">amazon,</b>
+                      <b style="">Amazon,</b>
                     </text>
                     <span style="">
                       <b>
-                        <text class="text-beta" style="">Vous ouvrent les portes de la réussite !</text>
+                        <text class="text-beta" style="">
+                          <br />
+                          Vous ouvrent les portes de la réussite !
+                        </text>
                       </b>
                     </span>
                   </span>
@@ -81,8 +84,8 @@
               <div class="col-lg-6 pt16 pb16" style="border-style: none; border-width: 0px">
                 <h2 class="title font-bold text-beta" style="text-align: left">
                   <text style="font-size: 48px">Comment devenir partenaire</text>
-                  &amp;nbsp;
-                  <text style="color: rgb(0, 168, 225); font-size: 48px">amazon&amp;nbsp;</text>
+
+                  <text style="color: rgb(0, 168, 225); font-size: 48px">Amazon&amp;nbsp;</text>
                   <text style="font-size: 48px" class="text-beta">?</text>
                 </h2>
                 <div>
@@ -131,8 +134,8 @@
               <div class="col-lg-6 pt16 pb16" style="border-style: none; border-width: 0px">
                 <h2>
                   <text style="font-size: 48px" class="text-beta">
-                    <b>Le programme</b>
-                    &amp;nbsp;:
+                    <b>Le programme:</b>
+
                   </text>
                   <text style="" class="text-beta" color="#555555">
                     <br />
@@ -142,7 +145,7 @@
                   </text>
                   &amp;nbsp;
                   <text style="color: rgb(0, 168, 225); font-size: 48px">
-                    <b>Partenaire de livraison amazon</b>
+                    <b>Partenaire de livraison Amazon</b>
                   </text>
                 </h2>
                 <div>
@@ -223,7 +226,7 @@
 
               </div>
               <div class="col-lg-6 pt16 pb16" style="border-style: none; border-width: 0px">
-                <img src="/web/image/261456/ILLU%204.png" class="img img-fluid mx-auto" alt="Formation en capacité de transport léger de marchandises -3.5T" data-original-title="" title="candidat en formation capacité de transport" aria-describedby="tooltip463406" />
+                <img src="/digimoov_website_templates/static/img/partners/ILLU 4.png" class="img img-fluid mx-auto" alt="Formation en capacité de transport léger de marchandises -3.5T" data-original-title="" title="candidat en formation capacité de transport" aria-describedby="tooltip463406" />
               </div>
             </div>
           </div>
