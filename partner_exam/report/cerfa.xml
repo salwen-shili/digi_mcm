@@ -41,46 +41,48 @@
                                     <strong style="position:absolute;z-index:3;margin-top:100px;margin-left:250px;">
                                         <span t-raw="'%s' % o.name.split(' ')[0] if o.name else ''"/>
                                         <br/>
-                                        <span t-raw="'%s' % o.name.split(' ')[1] if o.name else ''"/>
+                                        <span t-raw="'%s' % o.name.split(' ',1)[1] if o.name else ''"/>
                                         <br/>
-                                        <span>--------A---------</span>
+                                        <!--                                        <t t-if="o.title.name=='Madame' and o.name.split(' ')[2]">-->
+                                        <!--                                            <span t-raw="'%s' % o.name.split(' ')[2] if o.name else ''"/>-->
+                                        <!--                                        </t>-->
+                                        <span t-field="o.nom_marital"/>
                                         <br/>
                                         <span t-field="o.birthday" t-field-options='{"format": "dd/MM/yyyy"}'/>
                                         <br/>
-                                        <span>--------B---------</span>
+                                        <span t-raw="'%s' % o.num_departement if o.num_departement else ''"/>
                                         <br/>
-                                        <span t-raw="'%s' % o.nationality if o.nationality else '-------------'"/>
+                                        <span t-raw="'%s' % o.nationality if o.nationality else ''"/>
                                     </strong>
                                     <strong style="position:absolute;z-index:3;margin-top:200px;margin-left:500px;">
-                                            <span t-raw="'%s' % o.birth_city if o.birth_city else '-------------'"/>
-                                        </strong>
-                                    <strong style="position:absolute;z-index:3;margin-top:240px;margin-left:880px;">
-                                        <span>-----C------</span>
+                                        <span t-raw="'%s' % o.birth_city if o.birth_city else ''"/>
                                     </strong>
                                     <strong style="position:absolute;z-index:3;margin-top:325px;margin-left:250px;">
-                                        <span>------D------</span><br/>
-                                        <span>------E------</span><br/>
+                                        <span t-raw="'%s' % o.street.split(' ')[0] if o.street else ''"/>
+                                        <br/>
+                                        <span t-raw="'%s' % o.street.split(' ',2)[2] if o.street else ''"/>
+                                        <br/>
                                     </strong>
                                     <strong style="position:absolute;z-index:3;margin-top:325px;margin-left:450px;">
-                                        <span>------F------</span>
                                     </strong>
                                     <strong style="position:absolute;z-index:3;margin-top:325px;margin-left:880px;">
-                                        <span>------G------</span>
-                                    </strong>
-                                    <strong style="position:absolute;z-index:3;margin-top:390px;margin-left:880px;">
-                                        <span>------H------</span>
+                                        <span t-raw="'%s' % o.street.split(' ')[1] if o.street else ''"/>
                                     </strong>
                                     <strong style="position:absolute;z-index:3;margin-top:420px;margin-left:460px;">
                                         <span t-raw="'%s' % o.city if o.city else '-------------'"/>
                                     </strong>
-                                    <strong style="position:absolute;z-index:3;margin-top:420px;margin-left:250px;">
-                                        <span t-raw="'%s' % o.zip if o.zip else '-------------'"/><br/>
-                                        <span t-raw="'%s' % o.country_id.name if o.country_id else '-------------'"/><br/>
-                                        <span t-raw="'%s' % o.phone if o.phone else '-------------'"/><br/>
-                                        <span t-raw="'%s' % o.email if o.email else '-------------'"/><br/>
+                                    <strong style="position:absolute;z-index:3;margin-top:230px;margin-left:840px;">
+                                        <span t-raw="'%s' % o.other_cases if o.other_cases else '-------------'"/>
                                     </strong>
-                                    <strong style="position:absolute;z-index:3;margin-top:390px;margin-left:880px;">
-                                        <span>------H------</span>
+                                    <strong style="position:absolute;z-index:3;margin-top:513px;margin-left:250px;">
+                                        <span t-raw="'%s' % o.email if o.email else '-------------'"/>
+                                    </strong>
+                                    <strong style="position:absolute;z-index:3;margin-top:420px;margin-left:250px;">
+                                        <span t-raw="'%s' % o.zip if o.zip else '-------------'"/>
+                                        <br/>
+                                        <span t-raw="'%s' % o.country_id.name if o.country_id else '-------------'"/>
+                                        <br/>
+                                        <span t-raw="'%s' % o.phone if o.phone else '-------------'"/>
                                     </strong>
                                 </div>
                             </div>
@@ -97,7 +99,14 @@
                         <div class="row">
                             <img src='/partner_exam/static/src/img/cerfa_page3_1.png' height="600" width="1200"/>
                             <img src='/partner_exam/static/src/img/cerfa_page3_2.png' height="200" width="1200"/>
-                            <img src='/partner_exam/static/src/img/cerfa_page3_3.png' height="650" width="1200"/>
+                            <img src='/partner_exam/static/src/img/cerfa_page3_3.png'
+                                 style="position:absolute;z-index:3;width:100%;height:800px"/>
+                            <strong style="position:absolute;z-index:3;margin-top:105px;margin-left:120px;">
+                                <span t-raw="'%s' % o.city if o.city else '-------------'"/>
+                            </strong>
+                            <strong style="position:absolute;z-index:3;margin-top:105px;margin-left:820px;">
+                                <span t-esc="context_timestamp(datetime.datetime.now()).strftime('%d/%m/%Y')"/>
+                            </strong>
                         </div>
                     </div>
                 </t>

@@ -18,6 +18,9 @@ class resComapny(models.Model):
     paiement = fields.Boolean(string="Paiement")
     attachment_ids = fields.Many2many('ir.attachment', string="Attachment", required=True)
     autre_raison = fields.Text(string="Autre Raison")
+    num_departement = fields.Char(string="N° du département en France")
+    nom_marital = fields.Char(string="Nom marital")
+    other_cases = fields.Char(string="Le nom de l’Etat pour les autres cas")
 
     def compute_notes_exams_count(self):
         for record in self:
