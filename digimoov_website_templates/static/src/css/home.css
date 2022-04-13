@@ -1999,3 +1999,9 @@ footer {
   padding-bottom: 25px !important;
   font-size: 30px !important;
 }
+
+.paragraphe-landing {
+  color: #555555;
+  font-size: 1rem;
+  line-height: 23px !important;
+}

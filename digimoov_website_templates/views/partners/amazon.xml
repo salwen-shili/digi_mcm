@@ -10,6 +10,7 @@
       <!-- TrustBox script -->
       <script type="text/javascript" src="//widget.trustpilot.com/bootstrap/v5/tp.widget.bootstrap.min.js" async="async" />
       <!-- End TrustBox script -->
+
       <div id="wrap" class="oe_structure oe_empty" style="word-break: break-word; position: relative; z-index: 0">
         <section class="s_text_image mt32 mb16" data-name="Image - Text">
           <div class="container">
@@ -22,7 +23,10 @@
                   <span style="-webkit-font-smoothing: antialiased">
                     <text style="color: rgb(156, 0, 255); font-size: 58px">
                       <span style="">
-                        <b>Digimoov</b>
+                        <b>
+                          Digimoov
+                      
+                        </b>
                       </span>
                     </text>
                     <text style="font-size: 58px" class="text-beta">
@@ -36,7 +40,7 @@
                     </span>
                   </span>
                 </h1>
-                <p>
+                <p class="paragraphe-landing">
                   Vous souhaitez entreprendre dans le secteur du transport de
                 marchandises?
                   <br />
@@ -44,7 +48,7 @@
                 réussir votre projet professionnel.
                   <br />
                 </p>
-                <p>
+                <p class="paragraphe-landing">
                     Obtenez votre attestation de
                 capacité de transport léger de marchandises avec Digimoov, et
                 inscrivez-vous au programme "Partenaire de livraison avec
@@ -53,7 +57,7 @@
                 de transport dans leurs régions, et ce, en leur offrant la
                 possibilité de devenir partenaires Amazon.
                 </p>
-                <p>
+                <p class="paragraphe-landing">
                   Vous aussi
                   <b>inscrivez-vous à notre formation en ligne</b>
                   pour une préparation
@@ -100,7 +104,7 @@
                     </div>
                   </span>
                 </div>
-                <p>
+                <p class="paragraphe-landing">
                   <span style="                     background-attachment: initial;                     background-clip: initial;                     background-image: initial;                     background-origin: initial;                     background-position: initial;                     background-repeat: initial;                     background-size: initial;                     color: rgb(66, 66, 66);                     font-size: 14px;                     text-align: center;                   " />
                 </p>
                 <div style="text-align: left; box-sizing: border-box">
@@ -182,41 +186,34 @@
               <div class="col-lg-6 pt16 pb16" style="border-style: none; border-width: 0px">
                 <h2>
                   <text style="font-size: 48px" class="text-beta">
-                    <b>Formation en capacité de&amp;nbsp;</b>
-                  </text>
-                  <text style="font-size: 48px" class="text-beta">
-                    <b>transport léger</b>
-                  </text>
-                  <text style="color: rgb(0, 168, 225); font-size: 48px">&amp;nbsp;</text>
-                  <text style="font-size: 48px" class="text-beta">
-                    <b>de marchandises -3.5T </b>
+                    <b>Formation en capacité de transport léger de marchandises -3.5T</b>
                   </text>
                 </h2>
-                <p>
+                <p class="paragraphe-landing">
                   Digimoov vous propose
                   <b>une formation à distance de 102 heures</b>
-                  , concoctée par des experts du métier,&amp;nbsp;
+                  , concoctée par des experts du métier,
                   <b>composée de 6 modules</b>
                   axés sur l'entreprise et son activité financière, la
                 réglementation du secteur de transport, la sécurité routière, le
                 droit civil, la gestion des ressources humaines et l'activité
                 commerciale de l'entreprise.
                 </p>
-                <p>
-                  Dès votre inscription, vous aurez accès à notre&amp;nbsp;
+                <p class="paragraphe-landing">
+                  Dès votre inscription, vous aurez accès à notre
                   <b>plateforme e-learning</b>
                   grâce à laquelle vous découvrirez nos différents parcours de
-                formation ou&amp;nbsp; présentés sous-formes de
+                formation ou présentés sous-formes de
                   <b>vidéoconférences</b>
                   , de vidéos préenregistrées avec des corrections des examens,
                 comme vous aurez l'opportunité de suivre nos
                   <b>cours en Live</b>
                   avec nos formateurs pour d'amples explications.
                 </p>
-                <p>
-                  À&amp;nbsp;la fin de chaque module, vous pourrez
+                <p class="paragraphe-landing">
+                  Àla fin de chaque module, vous pourrez
                   <b>tester vos connaissances à l'aide de questionnaire à
-                  multiples choix et à des examens blancs&amp;nbsp;</b>
+                  multiples choix et à des examens blancs</b>
                   .
                 </p>
                 <div class="s_btn text-center pt16 pb16" data-name="Button">
@@ -226,11 +223,12 @@
 
               </div>
               <div class="col-lg-6 pt16 pb16" style="border-style: none; border-width: 0px">
-                <img src="/digimoov_website_templates/static/img/partners/ILLU 4.png" class="img img-fluid mx-auto" alt="Formation en capacité de transport léger de marchandises -3.5T" data-original-title="" title="candidat en formation capacité de transport" aria-describedby="tooltip463406" />
+                <img src="/web/image/261456/ILLU%204.png" class="img img-fluid mx-auto" alt="Formation en capacité de transport léger de marchandises -3.5T" data-original-title="" title="candidat en formation capacité de transport" aria-describedby="tooltip463406" />
               </div>
             </div>
           </div>
         </section>
+
         <section class="s_text_image mt16 mb16" data-name="Image - Text">
           <div class="container">
             <div class="row align-items-center">
@@ -253,7 +251,7 @@
                     </span>
                   </text>
                 </h2>
-                <p style="                   -webkit-font-smoothing: antialiased;                   margin-right: 0px;                   margin-bottom: 20px;                   margin-left: 0px;                   cursor: text;                   padding: 0px;                   counter-reset: list-1 0 list-2 0 list-3 0 list-4 0 list-5 0                     list-6 0 list-7 0 list-8 0 list-9 0;                 ">
+                <p class="paragraphe-landing">
                   Digimoov vous offre la possibilité de financer votre formation
                 par
                   <b>carte bancaire, avec des facilités de paiement</b>
@@ -304,7 +302,7 @@
               <div class="card border-0 shadow border-pricing">
                 <div class="text-center text-white border-0 pack-wrap ">
                   <br />
-                  <p>
+                  <p class="paragraphe-landing">
                     <strong class="pack-name"> SOLO </strong>
                   </p>
                   <p class="blink-soft">
@@ -419,12 +417,12 @@
                     border-top-right-radius: 25px;
                   ">
                                             <br />
-                                            <p>
+                                            <p class="paragraphe-landing">
                                                 <strong style="color: white">
                                                     <font style="font-size: 30px">PRO</font>
                                                 </strong>
                                             </p>
-                                            <p>
+                                            <p class="paragraphe-landing">
                                                 <b></b>
                                             </p>
                                             <br />
@@ -432,11 +430,11 @@
                 <div class="text-center text-white border-0 pack-wrap">
                   <br />
 
-                  <p>
+                  <p class="paragraphe-landing">
                     <strong class="pack-name"> PRO </strong>
                   </p>
 
-                  <!-- <p>&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;</p> -->
+                  <!-- <p class="paragraphe-landing">&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;</p> -->
                   <p class="blink-soft">
                     <b>Éligible au CPF</b>
                   </p>
@@ -549,7 +547,7 @@
                                             <h2>
                                                 <strong style="color: white">PREMIUM</strong>
                                             </h2>
-                                            <p>
+                                            <p class="paragraphe-landing">
                                                 <b></b>
                                             </p>
                                             <br />
@@ -557,7 +555,7 @@
                 <div class="text-center text-white border-0 pack-wrap">
                   <br />
 
-                  <p>
+                  <p class="paragraphe-landing">
                     <strong class="pack-name"> PREMIUM </strong>
                   </p>
                   <p class="blink-soft">
