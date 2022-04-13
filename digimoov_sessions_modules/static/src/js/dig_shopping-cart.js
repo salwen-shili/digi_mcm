@@ -12,12 +12,12 @@ document.addEventListener('DOMContentLoaded', function () {
         continueBtn.classList.remove('disabled');
         error.style.display = 'none';
 
-        sendData(condition);
+        updateCondition(condition);
       } else {
         continueBtn.setAttribute('disabled', 'disabled');
         continueBtn.classList.add('disabled');
         error.style.display = 'inline-block';
-        sendData(condition);
+        updateCondition(condition);
       }
     });
   //end
@@ -81,7 +81,7 @@ const sendHttpRequest = (method, url, data) => {
   });
   return promise;
 };
-const sendData = (condition) => {
+const updateCondition = (condition) => {
   sendHttpRequest('POST', '/shop/payment/update_condition', {
     params: {
       condition: condition,
@@ -192,10 +192,12 @@ const cpfAccepted = () => {
 
 function onChangeCheckButton() {
   if (document.getElementById('options-date')) {
+    //No session available
     if (
       document.getElementById('options-date').value === 'all' ||
       document.getElementById('centre_examen').value === 'all'
     ) {
+      console.log(document.getElementById('options-date'));
       document
         .getElementById('pm_shop_checkout')
         .setAttribute('disabled', 'true');
@@ -204,7 +206,9 @@ function onChangeCheckButton() {
         .getElementById('pm_shop_checkout2')
         .setAttribute('disabled', 'true');
       document.getElementById('pm_shop_checkout2').classList.add('disabled');
-    } else if (
+    }
+    //we have available sessions
+    else if (
       document.getElementById('options-date').value !== 'all' &&
       document.getElementById('centre_examen').value !== 'all'
     ) {
@@ -213,6 +217,11 @@ function onChangeCheckButton() {
       document.getElementById('pm_shop_checkout2').removeAttribute('disabled');
       document.getElementById('pm_shop_checkout2').classList.remove('disabled');
       document.getElementById('error_choix_date').style.display = 'none';
+      //available session ===> check if we have surpassed 4 months
+      const sel = document.getElementById('options-date');
+      const isAccessible = sessionIsAccessible(
+        sel.options[sel.selectedIndex].text
+      );
     }
   } else {
     document
