@@ -8,6 +8,7 @@ import requests
 from requests.structures import CaseInsensitiveDict
 from datetime import datetime, timedelta, date
 import logging
+import json
 
 _logger = logging.getLogger(__name__)
 
@@ -238,25 +239,38 @@ class NoteExamen(models.Model):
                     duplicates_exams.append(dup.id)
         self.browse(duplicates_exams).unlink()
 
-    """ Mettre à jour le champ mode de financement selon la facture """
+    """ Mettre à jour le champ mode de financement selon la fiche client """
     def mise_ajour_mode_financement(self):
         for client in self:
-            facture = self.env['account.move'].sudo().search([('partner_id', '=', client.partner_id.id),
-                                                              ('state', "=", "posted"), ], limit=1)
-            _logger.info('facture %s', client.partner_id.email)
-            _logger.info('facture %s', facture.methodes_payment)
-            if facture:
-                client.mode_de_financement = dict(facture._fields['methodes_payment'].selection).get(
-                    facture.methodes_payment)
+            partner = self.env['res.partner'].sudo().search([('id', '=', client.partner_id.id),
+                                                             ], limit=1)
+            _logger.info('fiche %s', partner.email)
+            _logger.info('fiche %s', partner.mode_de_financement)
+            if partner:
+                client.mode_de_financement = dict(partner._fields['mode_de_financement'].selection).get(
+                    partner.mode_de_financement)
                 print("client.mode_de_financement", client.mode_de_financement)
-
+    def mise_ajour_mode_financement_ir_cron(self):
+        for client in self.env['info.examen'].sudo().search([]):
+            partner = self.env['res.partner'].sudo().search([('id', '=', client.partner_id.id),
+                                                             ], limit=1)
+            _logger.info('fiche  %s', partner.email)
+            _logger.info('fiche %s', partner.mode_de_financement)
+            if partner:
+                client.mode_de_financement = dict(partner._fields['mode_de_financement'].selection).get(
+                    partner.mode_de_financement)
+                print("client.mode_de_financement", client.mode_de_financement)
     """utiliser api wedof pour changer etat de dossier sur edof selon la presence le jour d'examen"""
 
     def change_etat_wedof(self):
+        company = self.env['res.company'].sudo().search([('id', "=", 2)])
+        api_key = ""
+        if company:
+            api_key = company.wedof_api_key
         headers = {
             'accept': 'application/json',
             'Content-Type': 'application/json',
-            'X-API-KEY': '026514d6bc7d880515a27eae4947bccef4fbbf03',
+            'X-API-KEY': api_key,
         }
         params_wedof = (
             ('order', 'asc'),
@@ -269,12 +283,14 @@ class NoteExamen(models.Model):
         )
         data1 = '{}'
         data = '{\n "absenceDuration": 0,\n "forceMajeureAbsence": false,\n "trainingDuration": 0\n}'
-        response = requests.get('https://www.wedof.fr/api/registrationFolders', headers=headers,
+        response = requests.get('https://www.wedof.fr/api/registrationFolders/', headers=headers,
                                 params=params_wedof)
         registrations = response.json()
         for dossier in registrations:
-            _logger.info('lengh api get %s' % str(len(registrations)))
+            _logger.info('lengh api get %s' % str( json.loads(response.content)))
+
             externalId = dossier['externalId']
+            print('externalId', externalId)
             email = dossier['attendee']['email']
             lastupdatestr = str(dossier['lastUpdate'])
             lastupdate = datetime.strptime(lastupdatestr, '%Y-%m-%dT%H:%M:%S.%fz')
@@ -313,11 +329,16 @@ class NoteExamen(models.Model):
     """utiliser api wedof pour changer etat de dossier sur edof selon l'absence le jour d'examen"""
 
     def change_etat_wedof_absent(self):
+        company = self.env['res.company'].sudo().search([('id', "=", 2)])
+        api_key = ""
+        if company:
+            api_key = company.wedof_api_key
         headers = {
             'accept': 'application/json',
             'Content-Type': 'application/json',
-            'X-API-KEY': '026514d6bc7d880515a27eae4947bccef4fbbf03',
+            'X-API-KEY': api_key,
         }
+      
         params_wedof = (
             ('order', 'asc'),
             ('type', 'all'),

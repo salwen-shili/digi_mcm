@@ -102,13 +102,13 @@
                         </h6>
                         <h6 t-if="o.partner_id.module_id.product_id.distance_formation==False and o.company_id.id==1">
                             <span>Dates de la formation: du</span>
-                            <span t-field="o.partner_id.module_id.date_debut"/>
+                            <span t-field="o.partner_id.module_id.date_debut" t-options="{'widget': 'date'}"/>
                             <span>au</span>
                             <span t-field="o.module_id.date_exam" t-options="{'widget': 'date'}"/>
                         </h6>
                         <h6 t-if="o.module_id and o.company_id.id==2">
                             <span>Dates de la formation: du</span>
-                            <span t-field="o.create_date" t-options="{'widget': 'date'}"/>
+                            <span t-field="o.partner_id.module_id.date_debut" t-options="{'widget': 'date'}"/>
                             <span>au</span>
                             <span t-field="o.module_id.date_exam" t-options="{'widget': 'date'}"/>
                         </h6>

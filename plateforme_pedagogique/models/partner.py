@@ -405,6 +405,8 @@ class partner(models.Model):
                     # Changer format de date et la mettre en majuscule
                     date_ajout = today.strftime(new_format)
                     partner.date_creation = date_ajout
+                    _logger.info('date_inscrit %s' % str(partner.date_creation))
+
                     # Affecter i-One to groupe digimoov-bienvenue
                     respgroupe = requests.put(urlgroup_Bienvenue, headers=headers, data=data_group)
                     print('bienvenue ', respgroupe.status_code, partner.date_creation)
@@ -487,10 +489,13 @@ class partner(models.Model):
                                 respsession = requests.put(urlsession, headers=headers, data=data_group)
                                 print(existe, 'ajouter à son session', respsession.status_code)
                     if self.env.su:
+
                         # sending mail in sudo was meant for it being sent from superuser
                         self = self.with_user(SUPERUSER_ID)
                     if not partner.lang :
                         partner.lang = 'fr_FR'
+                    _logger.info('avant email %s' % str(partner.name))
+
                     template_id = int(self.env['ir.config_parameter'].sudo().get_param(
                         'plateforme_pedagogique.mail_template_add_ione_to_plateforme_digimoov_mcm'))
                     template_id = self.env['mail.template'].search([('id', '=', template_id)]).id
@@ -506,7 +511,7 @@ class partner(models.Model):
                         partner.with_context(force_send=True).message_post_with_template(template_id,
                                                                                                   composition_mode='comment',
                                                                                                   )
-
+                        _logger.info('if template  %s' % str(partner.name))
 
                 if not (create):
                     """Créer des tickets contenant le message  d'erreur pour service client et service IT 
