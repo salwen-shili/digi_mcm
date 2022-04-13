@@ -172,7 +172,7 @@
                   </div>
                 </div>
                 <div class="s_btn text-left pt16 pb16" data-name="Button">
-                  <a href="https://attendee.gotowebinar.com/register/1774167984569078795" class="btn btn-outline-beta" spellcheck="false" data-mci-spellchecked="true" style="word-break: break-word; position: relative; z-index: 0" lang="merciapp" data-original-title="" title="" aria-describedby="tooltip376939">En savoir plus</a>
+                  <a target="_blank" href="https://attendee.gotowebinar.com/register/1774167984569078795" class="btn btn-outline-beta" spellcheck="false" data-mci-spellchecked="true" style="word-break: break-word; position: relative; z-index: 0" lang="merciapp" data-original-title="" title="" aria-describedby="tooltip376939">En savoir plus</a>
                 </div>
 
 
@@ -217,7 +217,7 @@
                   .
                 </p>
                 <div class="s_btn text-center pt16 pb16" data-name="Button">
-                  <a href="/digimoov_website_templates/static/pdf/PROGRAMME-DE-FORMATION-DE-TRANSPORT-LEGER-DE-MARCHANDISES-DIGIMOOV.pdf" class="btn btn-primary" spellcheck="false" data-mci-spellchecked="true" style="word-break: break-word; position: relative; z-index: 0" data-original-title="" title="" aria-describedby="tooltip758603" lang="merciapp">Télécharger le programme de formation</a>
+                  <a target="_blank" href="/digimoov_website_templates/static/pdf/PROGRAMME-DE-FORMATION-DE-TRANSPORT-LEGER-DE-MARCHANDISES-DIGIMOOV.pdf" class="btn btn-primary" spellcheck="false" data-mci-spellchecked="true" style="word-break: break-word; position: relative; z-index: 0" data-original-title="" title="" aria-describedby="tooltip758603" lang="merciapp">Télécharger le programme de formation</a>
                 </div>
 
 
