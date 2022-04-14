@@ -247,6 +247,7 @@ class AccountMove(models.Model):
                                 if invoice:
                                     num = invoice.name
                                     bill_num = num.replace('FA', '')
+                                    bill_num = bill_num.replace('-', '')
                                 if not invoice:
 
 
@@ -309,6 +310,7 @@ class AccountMove(models.Model):
                                             move.post()
                                             num = move.name
                                             bill_num = num.replace('FA', '')
+                                            bill_num = bill_num.replace('-', '')
                                             journal_id = move.journal_id.id
                                             """Effectuer  un payement de 25% de montant total de la formation pour digimoov"""
                                             payment_method = self.env['account.payment.method'].sudo().search(
@@ -355,6 +357,7 @@ class AccountMove(models.Model):
                                 if invoice :
                                     num = invoice.name
                                     bill_num = num.replace('FA', '')
+                                    bill_num = bill_num.replace('-', '')
                                 if not invoice:
                                     print('if  not invoice digi ')
                                     so = self.env['sale.order'].sudo().create({
@@ -414,6 +417,7 @@ class AccountMove(models.Model):
                                             move.post()
                                             num = move.name
                                             bill_num = num.replace('FA', '')
+                                            bill_num=bill_num.replace('-','')
                                             ref = move.name
                                     so.action_cancel()
                                     so.unlink()
