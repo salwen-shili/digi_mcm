@@ -105,7 +105,7 @@ class resComapny(models.Model):
         if 'mode_de_financement' in values:
             info_exam = self.env['info.examen'].sudo().search([('partner_id', '=', self.id)])
             if info_exam:
-                info_exam.mode_de_financement = dict(partner._fields['mode_de_financement'].selection).get(
-                    partner.mode_de_financement)
+                info_exam.mode_de_financement = dict(self._fields['mode_de_financement'].selection).get(
+                    self.mode_de_financement)
 
         return session
