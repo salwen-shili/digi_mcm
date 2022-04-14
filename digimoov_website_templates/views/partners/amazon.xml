@@ -689,13 +689,13 @@
             </a>
           </div>
           <div>
-            <a href="http://www.comptable-douai.com/" target="_blank" rel="noopener">
-              <img width="100" height="100" data-src="/digimoov_website_templates/static/img/coursier2roues/Cabinet Comptable Joel Pruvost.png" data-srcsafari="/digimoov_website_templates/static/img/coursier2roues/Cabinet Comptable Joel Pruvost.png" class="img img-fluid lazy joel-icon" alt="Logo partenaire Cabinet Comptable Joël Pruvost" title="Cabinet Comptable Joël Pruvost partenaire Digimoov" />
+            <a href="" target="_blank" rel="noopener">
+              <img width="200" height="100" style="width:174px" data-src="/digimoov_website_templates/static/img/partners/Amazon.png" data-srcsafari="/digimoov_website_templates/static/img/partners/Amazon.png" class="img img-fluid lazy joel-icon" alt="Logo partenaire amazon" title="Amazon partenaire Digimoov" />
             </a>
           </div>
           <div>
             <a href="https://prev-easy.com/">
-              <img width="150" height="100" data-src="/digimoov_website_templates/static/img/Homepage/talenz-prev-easy.png" data-srcsafari="/digimoov_website_templates/static/img/Homepage/talenz-prev-easy.png" class="img img-fluid lazy prev-easy-icon" alt="preveasy partenaire digimoov" />
+              <img width="150" height="100" style="margin-top: -14px;" data-src="/digimoov_website_templates/static/img/Homepage/talenz-prev-easy.png" data-srcsafari="/digimoov_website_templates/static/img/Homepage/talenz-prev-easy.png" class="img img-fluid lazy prev-easy-icon" alt="preveasy partenaire digimoov" />
             </a>
           </div>
         </div>
