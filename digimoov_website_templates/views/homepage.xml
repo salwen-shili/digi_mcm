@@ -389,7 +389,7 @@
                                         <br />
                                     </p>
                                     <div class="s_btn text-left pt16 pb16" data-name="Button">
-                                        <a href="#" class="btn btn-outline-primary" spellcheck="false" data-mci-spellchecked="true" style="word-break: break-word; position: relative; z-index: 0;" data-original-title="" title="" aria-describedby="tooltip733359">En savoir plus</a>
+                                        <a href="/amazon" class="btn btn-outline-primary" spellcheck="false" data-mci-spellchecked="true" style="word-break: break-word; position: relative; z-index: 0;" data-original-title="" title="" aria-describedby="tooltip733359">En savoir plus</a>
                                     </div>
                                     <mci-extension data-role="overlay" />
                                 </div>
