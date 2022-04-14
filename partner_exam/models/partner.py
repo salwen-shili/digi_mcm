@@ -101,4 +101,11 @@ class resComapny(models.Model):
             self.paiement = False
             self.attachment_ids = None
             self.autre_raison = None
+        """Si mode de financement changé sur la fiche client sera changé sur info examen"""
+        if 'mode_de_financement' in values:
+            info_exam = self.env['info.examen'].sudo().search([('partner_id', '=', self.id)])
+            if info_exam:
+                info_exam.mode_de_financement = dict(partner._fields['mode_de_financement'].selection).get(
+                    partner.mode_de_financement)
+
         return session
