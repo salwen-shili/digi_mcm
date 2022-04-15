@@ -17,7 +17,7 @@ import pyshorteners
 import logging
 _logger = logging.getLogger(__name__)
 
-class WebhookController(http.Controller):
+class WebhookInvoiceController(http.Controller):
     """Créer une facture apres l'evennement "à facturer" sur edof"""
     @http.route(['/facturer_cpf'], type='json', auth="public", methods=['POST'])
     def facturer_cpf(self, **kw):
@@ -303,6 +303,7 @@ class WebhookController(http.Controller):
     """Ajouter date d'acompte reçu sur la fiche client apres l'evennement "a reçu un acompte" sur edof"""
     @http.route(['/acompte_cpf'], type='json', auth="public", methods=['POST'])
     def acompte_cpf(self, **kw):
+        _logger.info("webhooooooook rest amount")
         dossier = json.loads(request.httprequest.data)
         event = request.httprequest.headers.get('X-Wedof-Event')
         _logger.info("webhoooooooooook acompte %s" % str(dossier))
@@ -354,6 +355,7 @@ class WebhookController(http.Controller):
     """Payer le montant restant  sur la facture apres l'evenement 'payé' sur edof"""
     @http.route(['/rest_amount_cpf'], type='json', auth="public", methods=['POST'])
     def rest_amount_invoice(self):
+        _logger.info("webhooooooook rest amount")
         dossier = json.loads(request.httprequest.data)
         event = request.httprequest.headers.get('X-Wedof-Event')
         _logger.info("webhoooooooooook restamount %s" % str(dossier))
