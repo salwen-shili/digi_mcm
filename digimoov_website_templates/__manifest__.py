@@ -71,7 +71,8 @@
         # page de blog
         # 'views/blog/website_blog_posts.xml',
         'views/partners/ubereats.xml',
-        'views/partners/deliveroo.xml'
+        'views/partners/deliveroo.xml',
+        'views/partners/amazon.xml',
 
     ],
     'qweb': [],

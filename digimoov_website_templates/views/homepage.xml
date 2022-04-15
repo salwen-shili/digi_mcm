@@ -332,76 +332,71 @@
                         </div>
                     </section>
 
-
-                    <!-- -->
-                    <!--Nouvelles formations chez Digimoov ! -->
-                    <section class="s_restaurant_video_image" data-name="Two images with paragraph and video">
-                        <div class="spacer feature14">
-                            <div class="container">
-                                <div class="row">
-                                    <script>
-                            function redirectToUrl(url) {
-                            window.location.href = url;
-                            }
-                            </script>
-                                    <div class="col-lg-4 col-md-4">
-                                        <h2 class="m-t-20 m-b-30 font-stylish-1 text-beta">
-                                            <b>Nouvelles formations chez Digimoov !</b>
-                                        </h2>
-                                        <p class="custom_p">Nouvelles formations chez Digimoov !
-                                            Toujours en quête d'innovation, et afin de mieux répondre à vos besoins en formations, et vous aider à développer vos projets professionnels, Digimoov mets à votre disposition de nouvelles formations en ligne à découvrir dés maintenant !
-							                </p>
-
-                                        <div class="s_btn" data-name="Button">
-                                            <a class="btn btn-rounded rounded-circle btn-alpha btn-md arrow-btn m-t-20 m-b-30 bizople_button o_default_snippet_text" href="/nos-formations">
-                                                En Savoir plus
-                                                <span class="fa fa-1x fa-fw fa-long-arrow-right ml-1" />
-                                            </a>
-                                        </div>
+                    <!-- Amazon-->
+                    <section class="s_text_image pt32 pb32 bg-200" data-name="Image - Text" style="">
+                        <div class="container">
+                            <div class="row align-items-center">
+                                <div class="col-lg-6 pt16 pb16">
+                                    <img src="/digimoov_website_templates/static/img/partners/I 2.png" class="img img-fluid mx-auto" alt="partenaire de livraison avec Amazon" />
+                                </div>
+                                <div class="col-lg-6 pt16 pb16" style="border-style: none; border-width: 0px;">
+                                    <h2>
+                                        <font style="font-size: 36px;" class="text-beta">
+                                            <b>
+                                                Devenez Partenaire de livraison avec Amazon
+                                                <br />
+                                            </b>
+                                        </font>
+                                    </h2>
+                                    <p>
+                                        <font style="color: rgb(99, 99, 99);">
+                                            <b>
+                                                <br />
+                                            </b>
+                                        </font>
+                                    </p>
+                                    <p>
+                                        <font style="color: rgb(99, 99, 99);">
+                                            <b>Digimoov&amp;nbsp;</b>
+                                            et&amp;nbsp;
+                                        </font>
+                                        <span style="font-weight: bolder;">
+                                            <font style="color: rgb(99, 99, 99);">amazon s'allient pour vous ouvrir les portes de la réussite !
+                
+                </font>
+                                        </span>
+                                        <font style="color: rgb(99, 99, 99);">
+                                            <br />
+                                        </font>
+                                        <font style="color: rgb(99, 99, 99);">Un partenariat dont le but est de promouvoir le programme "Partenaire de livraison amazon", qui vise à recruter les&amp;nbsp;</font>
+                                        <span style="font-weight: bolder;">
+                                            <font style="color: rgb(99, 99, 99);">nouveaux capacitaires
+                
+                </font>
+                                        </span>
+                                        <font style="color: rgb(99, 99, 99);">&amp;nbsp;souhaitant lancer ou développer leur activité dans leurs régions, et ce, en leur offrant la possibilité de devenir partenaires amazon.
+                </font>
+                                        <br />
+                                        <br />
+                                        <font style="color: rgb(99, 99, 99);">Vous aussi&amp;nbsp;</font>
+                                        <span style="font-weight: bolder;">
+                                            <font style="color: rgb(99, 99, 99);">inscrivez-vous à notre formation en ligne</font>
+                                        </span>
+                                        <font style="color: rgb(99, 99, 99);">&amp;nbsp;pour une préparation optimale à l'examen en capacité de transport léger. </font>
+                                        <br />
+                                        <font style="color: rgb(99, 99, 99);">Obtenez votre licence et devenez partenaire de livraison avec amazon !
+                </font>
+                                        <br />
+                                    </p>
+                                    <div class="s_btn text-left pt16 pb16" data-name="Button">
+                                        <a href="/amazon" class="btn btn-outline-primary" spellcheck="false" data-mci-spellchecked="true" style="word-break: break-word; position: relative; z-index: 0;" data-original-title="" title="" aria-describedby="tooltip733359">En savoir plus</a>
                                     </div>
-                                    <!-- transport lourd-->
-                                    <div class="col-lg-4 col-md-4 wrap-feature14-box pointer-bloc" id="transport-lourd" onclick="redirectToUrl('/formation-capacite-transport-lourd-marchandise')">
-                                        <div>
-                                            <img class="rounded img-responsive lazy" data-src="/digimoov_website_templates/static/img/transport-routier/1.webp" data-srcsafari="/digimoov_website_templates/static/img/transport-routier/1.png" alt="transport lourd" />
-                                            <div class="">
-                                                <h3 class="font-medium text-center" style="font-size: 20px !important;">
-                                                Formation en capacité de transport lourd de marchandises de + 3.5 tonnes
-                                                </h3>
-                                                <p class="custom_p m-b-30 m-t-30 formation text-center">
-
-                                                    <a class="btn btn-rounded rounded-circle btn-alpha btn-md arrow-btn m-t-20 m-b-30 bizople_button o_default_snippet_text btn-formations" href="/formation-capacite-transport-lourd-marchandise">
-                                                    Je découvre
-                                                   
-                                                </a>
-                                                </p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- habilitation electrique-->
-                                    <div class="col-lg-4 col-md-4 wrap-feature14-box pointer-bloc" onclick="redirectToUrl('/habilitation-electrique')">
-                                        <div>
-                                            <img class="rounded img-responsive lazy" data-srcsafari="/digimoov_website_templates/static/img/habilitation-electrique/formation-habilitation-électrique.png" data-src="/digimoov_website_templates/static/img/habilitation-electrique/formation-habilitation-électrique.webp" alt="habilitation electrique" />
-
-                                            <div class="">
-                                                <h3 class="font-medium text-center" style="font-size: 20px !important;     padding-top: 7px;">
-                                                Formation en habilitation électrique BS-BE manœuvres
-                                                </h3>
-                                                <p class="custom_p m-b-30 m-t-30 formation text-center">
-                                                    <a class="btn btn-rounded rounded-circle btn-alpha btn-md arrow-btn m-t-20 m-b-30 bizople_button o_default_snippet_text btn-formations" href="/habilitation-electrique">
-                                                    Je découvre
-                                                   
-                                                </a>
-
-                                                </p>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    <mci-extension data-role="overlay" />
                                 </div>
                             </div>
                         </div>
                     </section>
 
-                    <!-- -->
                     <!-- -->
                     <!-- counter-->
                     <section class="s_furniture_fun-fact-section oe_img_bg oe_custom_bg parallax-section" alt="Transport routier de marchandise">
@@ -922,11 +917,17 @@
                                     <img data-src="/digimoov_website_templates/static/img/coursier2roues/box2home.png" data-srcsafari="/digimoov_website_templates/static/img/coursier2roues/box2home.png" class="img img-fluid lazy box2home-icon" alt="Logo partenaire Box2home" title="Box2home partenaire Digimoov" />
                                 </a>
                             </div>
-                            <div>
+                            <!-- <div>
                                 <a href="http://www.comptable-douai.com/" target="_blank" rel="noopener">
                                     <img width="100" height="100" data-src="/digimoov_website_templates/static/img/coursier2roues/Cabinet Comptable Joel Pruvost.png" data-srcsafari="/digimoov_website_templates/static/img/coursier2roues/Cabinet Comptable Joel Pruvost.png" class="img img-fluid lazy joel-icon" alt="Logo partenaire Cabinet Comptable Joël Pruvost" title="Cabinet Comptable Joël Pruvost partenaire Digimoov" />
                                 </a>
+                            </div> -->
+                            <div>
+                                <a href="/amazon" target="_blank" rel="noopener">
+                                    <img width="100" height="100" data-src="/digimoov_website_templates/static/img/partners/Amazon.png" data-srcsafari="/digimoov_website_templates/static/img/partners/Amazon.png" style="width:176px" class="img img-fluid lazy joel-icon" alt="Logo partenaire amazon" title="Amazon partenaire Digimoov" />
+                                </a>
                             </div>
+
                             <div>
                                 <a href="https://prev-easy.com/">
                                     <img width="150" height="100" data-src="/digimoov_website_templates/static/img/Homepage/talenz-prev-easy.png" data-srcsafari="/digimoov_website_templates/static/img/Homepage/talenz-prev-easy.png" class="img img-fluid lazy prev-easy-icon" alt="preveasy partenaire digimoov" />
