@@ -65,6 +65,28 @@ class NoteExamen(models.Model):
     phone = fields.Char(related="partner_id.phone")
     mobile = fields.Char(compute="_compute_phone_value_to_mobile", store=True)
     module_id = fields.Many2one("mcmacademy.module")
+    # Champ Mcm-academy
+    epreuve_theorique = fields.Selection([
+        ('reussi', 'Réussi(e)'),
+        ('ajourne', 'Ajourné(e)')], string="Epreuve théorique")
+
+    epreuve_pratique = fields.Selection([
+        ('reussi', 'Réussi(e)'),
+        ('ajourne', 'Ajourné(e)')], string="Epreuve pratique")
+
+    state_theorique = fields.Selection([
+        ('reussi', 'Réussi(e)'),
+        ('ajourne', 'Ajourné(e)')], string="Statut théorique")
+
+    state_pratique = fields.Selection([
+        ('reussi', 'Réussi(e)'),
+        ('ajourne', 'Ajourné(e)')], string="Statut pratique")
+
+    presence_mcm = fields.Selection([
+        ('present', 'Présent'),
+        ('Absent', 'Absent'),
+        ('absence_justifiee', 'Absence justifiée')],
+        string="Présence")
 
     @api.depends('partner_id.phone')
     def _compute_phone_value_to_mobile(self):

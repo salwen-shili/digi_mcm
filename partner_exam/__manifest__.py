@@ -26,6 +26,7 @@
     'description': "Rajout note d'examen de condidat ",
     'data': [
         'security/ir.model.access.csv',
+        'security/security.xml',
         'views/partner.xml',
         'views/notes_examens_partner.xml',
         'views/add_signature.xml',
