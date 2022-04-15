@@ -52,10 +52,14 @@
                   <br />
                 </p>
                 <p class="paragraphe-landing">
-                    Obtenez votre attestation de
+                  Obtenez votre attestation de
                 capacité de transport léger de marchandises avec Digimoov, et
-                inscrivez-vous au programme "Partenaire de livraison avec
-                Amazon", un programme qui vise à recruter les nouveaux
+                  inscrivez-vous au programme
+                  <a href="https://register.gotowebinar.com/register/1774167984569078795">
+                    "Partenaire de livraison avec
+                Amazon"                  
+              </a>
+                  , un programme qui vise à recruter les nouveaux
                 capacitaires souhaitant lancer ou développer leurs entreprises
                 de transport dans leurs régions, et ce, en leur offrant la
                 possibilité de devenir partenaires Amazon.
@@ -79,7 +83,7 @@
           </div>
         </section>
 
-        <section class="s_text_image mt16 mb16" data-name="Text - Image">
+        <section class="s_text_image mt32 mb16" data-name="Text - Image">
           <div class="container">
             <div class="row align-items-center">
 
@@ -199,12 +203,14 @@
                   </text>
                   &amp;nbsp;
                   <text style="color: rgb(0, 168, 225); font-size: 48px">
+
                     <b>Partenaire de livraison Amazon</b>
+
                   </text>
                 </h2>
                 <div>
                   <div style="text-align: left">
-                    <text color="#000000">
+                    <p class="paragraphe-landing">
                       <span style="font-size: 16px">
                         Suite à l'obtention de votre licence de transport, vous
                       aurez l'opportunité de participer au programme «
@@ -224,7 +230,7 @@
                       de livraison de colis, et à saisir les opportunités de
                       l’e-commerce.
                       </span>
-                    </text>
+                    </p>
                     <br />
                   </div>
                 </div>
@@ -252,21 +258,21 @@
                 <img src="/digimoov_website_templates/static/img/partners/ILLU 5.png" class="img img-fluid mx-auto" alt="Comment financer ma formation en capacité de transport " data-original-title="" title="candidat paye sa formation en capacité de transport par carte bancaire" aria-describedby="tooltip6300" />
               </div>
 
-              <div class="col-lg-6 pt16 pb16" style="border-style: none; border-width: 0px">
+              <div class="col-lg-6 pt16 pb16">
                 <h2>
-                  <text color="#202647">
-                    <span style="font-size: 48px">
-                      <b>Comment financer ma formation en</b>
-                    </span>
 
-                    <span style="color: rgb(0, 168, 225); font-size: 48px">
-                      <b>capacité de transport</b>
-                    </span>
+                  <span style="font-size: 48px">
+                    <b>Comment financer ma formation en</b>
+                  </span>
 
-                    <span style="font-size: 48px">
-                      <b>?</b>
-                    </span>
-                  </text>
+                  <span style="color: rgb(0, 168, 225); font-size: 48px">
+                    <b>capacité de transport</b>
+                  </span>
+
+                  <span style="font-size: 48px">
+                    <b>?</b>
+                  </span>
+
                 </h2>
                 <p class="paragraphe-landing">
                   Digimoov vous offre la possibilité de financer votre formation
