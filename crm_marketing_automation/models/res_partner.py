@@ -4,6 +4,7 @@
 from odoo import api, fields, models, _
 import calendar
 import requests
+import json
 from requests.structures import CaseInsensitiveDict
 from datetime import date, datetime, timedelta
 import logging
@@ -26,8 +27,8 @@ class Partner(models.Model):
     #     return res
     def write(self, vals):
         record = super(Partner, self).write(vals)
-        if 'eval_box' in vals and vals['eval_box']==True and self.bolt:
-            eval_box=vals['eval_box']
+        if 'numero_evalbox' in vals and vals['numero_evalbox'] != False and self.bolt:
+            eval_box=vals['numero_evalbox']
             self.change_crm_lead_i_One(self,eval_box)
         if 'inscrit_mcm' in vals and self.bolt :
             if self.renounce_request:
@@ -217,16 +218,16 @@ class Partner(models.Model):
                                         self.changestage("Rétractation non Coché", partner)
                                 if partner.renounce_request :
                                     if partner.bolt:
-                                        if partner.inscrit_mcm == False and partner.eval_box == False:
+                                        if partner.inscrit_mcm == False and partner.numero_evalbox == False:
                                             """S'il a renoncé et son contrat est signé et ses documents sont validé sera classé sous contrat Signé """
                                             self.changestage("Bolt-Contrat Signé",partner)
                                         """Si client bolt et inscrit à l'examen eval box, et n'a pas encore commencé
                                          sa formation sera classé sous examen eval box 
                                         si non sous Plateforme de formation """
-                                        if partner.inscrit_mcm == False and partner.eval_box == True:
+                                        if partner.inscrit_mcm == False and partner.numero_evalbox != False:
                                             _logger.info('eval box %s' % str(partner.email))
                                             self.changestage("Inscription Examen Eval Box", partner)
-                                        if partner.inscrit_mcm and partner.eval_box == True:
+                                        if partner.inscrit_mcm and partner.numero_evalbox != False:
                                             _logger.info('plateforme %s' % str(partner.email))
                                             self.changestage("Bolt-Plateforme de formation", partner)
                                     else :
@@ -365,10 +366,10 @@ class Partner(models.Model):
                                     else :
                                         self.changestage("Rétractation non Coché", partner)
 
-                                if partner.renounce_request and partner.bolt and partner.inscrit_mcm == False and eval_box == True:
+                                if partner.renounce_request and partner.bolt and partner.inscrit_mcm == False and eval_box != False:
                                     print("++++++",partner.email)
                                     self.changestage("Inscription Examen Eval Box", partner)
-                                if partner.renounce_request and partner.bolt and  partner.inscrit_mcm   and eval_box == True:
+                                if partner.renounce_request and partner.bolt and  partner.inscrit_mcm   and eval_box != False:
                                     print("======",partner.email)
                                     self.changestage("Bolt-Plateforme de formation", partner)
                                 if partner.renounce_request and partner.bolt and partner.inscrit_mcm == False and eval_box == False:
