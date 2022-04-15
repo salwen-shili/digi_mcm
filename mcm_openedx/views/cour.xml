@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+   <!-- <data>
+        <record model="ir.ui.view" id="course_form_view">
+            <field name="name">course.form</field>
+            <field name="model">mcm_openedx.course</field>
+            <field name="arch" type="xml">
+                <form string="Course Form">
+                    <xpath expr="//form//sheet" position="before">
+                        <header>
+                            <button name="recherche" string="chercher client"
+                                    type="object"></button>
+                        </header>
+                    </xpath>
+                    <sheet>
+                        <group>
+                            <field name="nomutilisateur"/>
+                            <field name="email"/>
+                            <field name="idcour"/>
+                            <field name="jour"/>
+                            <field name="temppasse"/>
+                            <field name="seconde"/>
+                            <field name="partner"/>
+                        </group>
+
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <record model="ir.ui.view" id="course_tree_view">
+            <field name="name">course.tree</field>
+            <field name="model">mcm_openedx.course</field>
+            <field name="arch" type="xml">
+
+                <tree string="Statetstique">
+                    <field name="nomutilisateur"/>
+                    <field name="email"/>
+                    <field name="idcour"/>
+                    <field name="jour"/>
+                    <field name="temppasse"/>
+                    <field name="seconde"/>
+                    <field name="partner"/>
+                </tree>
+            </field>
+        </record>
+        <record model="ir.ui.view" id="view_openacad_session_kanban">
+            <field name="name">mcm_openedx.course.kanban</field>
+            <field name="model">mcm_openedx.course</field>
+            <field name="arch" type="xml">
+                <kanban default_group_by="idcour">
+                    <field name="color"/>
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div
+                                    t-attf-class="oe_kanban_color_{{kanban_getcolor(record.color.raw_value)}}
+                                                  oe_kanban_global_click_edit oe_semantic_html_override
+                                                  oe_kanban_card {{record.group_fancy==1 ? 'oe_kanban_card_fancy' : ''}}">
+
+                                <div class="oe_dropdown_kanban">
+                                    &lt;!&ndash; dropdown menu &ndash;&gt;
+                                    <div class="oe_dropdown_toggle">
+                                        <i class="fa fa-bars fa-lg"/>
+                                        <ul class="oe_dropdown_menu">
+                                            <li>
+                                                <a type="delete">Delete</a>
+                                            </li>
+                                            <li>
+                                                <ul class="oe_kanban_colorpicker"
+                                                    data-field="color"/>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="oe_clear"></div>
+                                </div>
+                                <div t-attf-class="oe_kanban_content">
+                                    &lt;!&ndash; title &ndash;&gt;
+                                    Nom Utilisateur
+                                    <field name="nomutilisateur"/>
+                                    <br/>
+                                    Email:
+                                    <field name="email"/>
+                                    <br/>
+                                    ID Cours:
+                                    <field name="idcour"/>
+                                    <br/>
+                                    jours:
+                                    <field name="jour"/>
+                                    <br/>
+                                    Temps passés:
+                                    <field name="temppasse"/>
+                                    <br/>
+                                    Temps passés (sec):
+                                    <field name="seconde"/>
+                                    <br/>
+                                    <field name="partner"/>
+                                </div>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="mcm_openedx_session_graph_view">
+            <field name="name">mcm_openedx.course.graph</field>
+            <field name="model">mcm_openedx.course</field>
+            <field name="arch" type="xml">
+                <graph string="Participations by Courses">
+                    <field name="idcour"/>
+                    <field name="attendees_count" type="measure"/>
+                </graph>
+            </field>
+        </record>
+        <record id="course_list_action" model="ir.actions.act_window">
+            <field name="name">Courses</field>
+            <field name="res_model">mcm_openedx.course</field>
+            <field name="view_mode">kanban,tree,form,graph</field>
+
+        </record>
+    </data>
+-->
+
+</odoo>
