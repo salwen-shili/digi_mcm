@@ -1,35 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-<!--
+    <!--
 
-    &lt;!&ndash; tache cron pour executer la fonction de l'affectation des Coaches&ndash;&gt;
+        &lt;!&ndash; tache cron pour executer la fonction de l'affectation des Coaches&ndash;&gt;
 
-    <record id="ir_cron_affecter_coach" model="ir.cron">
-        <field name="name">Affecter les coach pour des apprenants</field>
-        <field name="model_id" ref="model_mcm_openedx_coach"/>
-        <field name="active" eval="True"></field>
-        <field name="state">code</field>
-        <field name="code">model.test_coach()</field>
-        <field name="interval_number">1</field>
-        <field name="interval_type">days</field>
-        <field name="numbercall">-1</field>
-        <field name="priority" eval="1"/>
-    </record>
-    &lt;!&ndash; voir si l'apprenat est bolt &ndash;&gt;
+        <record id="ir_cron_affecter_coach" model="ir.cron">
+            <field name="name">Affecter les coach pour des apprenants</field>
+            <field name="model_id" ref="model_mcm_openedx_coach"/>
+            <field name="active" eval="True"></field>
+            <field name="state">code</field>
+            <field name="code">model.test_coach()</field>
+            <field name="interval_number">1</field>
+            <field name="interval_type">days</field>
+            <field name="numbercall">-1</field>
+            <field name="priority" eval="1"/>
+        </record>
+        &lt;!&ndash; voir si l'apprenat est bolt &ndash;&gt;
 
+
+
+    -->
     <record id="ir_cron_affecter_societe" model="ir.cron">
         <field name="name">Affecter les coach pour les societe</field>
-        <field name="model_id" ref="model_mcm_openedx_coach"/>
+        <field name="model_id" ref="model_res_partner"/>
         <field name="active" eval="True"></field>
         <field name="state">code</field>
         <field name="code">model.estBolt()</field>
-        <field name="interval_number">30</field>
-        <field name="interval_type">days</field>
+        <field name="interval_number">59</field>
+        <field name="interval_type">minutes</field>
         <field name="numbercall">-1</field>
         <field name="priority" eval="1"/>
     </record>
-
--->
 
     <!-- tache cron pour  supprimer les apprenants -->
 
@@ -42,7 +43,7 @@
         <field name="interval_number">1</field>
         <field name="interval_type">days</field>
         <field name="numbercall">-1</field>
-        <field name="priority" eval="1"/>
+        <field name="priority" eval="2"/>
     </record>
 
 
@@ -58,6 +59,6 @@
         <field name="interval_number">1</field>
         <field name="interval_type">days</field>
         <field name="numbercall">-1</field>
-        <field name="priority" eval="1"/>
+        <field name="priority" eval="3"/>
     </record>
 </odoo>

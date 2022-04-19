@@ -29,13 +29,18 @@
                 <header>
                     <button name="ajoutMoocit_manuelle" string="Ajouter Sur MOOCit"
                             attrs="{'invisible': [('company_id', '=', 2)]}"
-                            type="object" confirm="Confirmer l'Ajout"></button>
+                            type="object" confirm="Confirmer l'Ajout"
+                            state="En Formation" class="oe_highlight"
+
+                    ></button>
 
 
                     <button name="supprimer_IOne_MCM" string="Supprimer de MOOCit"
                             attrs="{'invisible': [('company_id', '=', 2)]}"
-                            type="object" confirm="Confirmer Suppression"></button>
+                            type="object" confirm="Confirmer Suppression"
+                            state="supprimé" class="oe_highlight"></button>
 
+                    <field name="state" widget="statusbar" statusbar_visible="en_attente,en_formation,supprimé"   attrs="{'invisible': [('company_id', '=', 2)]}"/>
 
                 </header>
 
@@ -82,7 +87,7 @@
         <field name="arch" type="xml">
 
             <tree>
-                <field name="date_ajout_surMOOCIT"/>
+                <field name="inscrit_mcm"/>
                 <field name="supprimerdemoocit"/>
                 <field name="client"/>
                 <field name="coach_peda"/>
@@ -103,10 +108,14 @@
 
     <!-- top level menu: no parent -->
     <menuitem id="main_mcm_openedx_menu" name="MCM_OpenEdx"/>
-    <menuitem id="coach_menu" name="Coaches" parent="main_mcm_openedx_menu" action="coach_list_action"/>
+    <!--
+        <menuitem id="coach_menu" name="Coaches" parent="main_mcm_openedx_menu" action="coach_list_action"/>
+    -->
     <menuitem id="mcm_apprennat_menu" name="Apprenants" parent="main_mcm_openedx_menu" action="contact_list_action"/>
     <menuitem id="mcm_courses_menu" name="MOOCIT" parent="main_mcm_openedx_menu"/>
     <menuitem id="mcm_session_menu" name="Session" parent="mcm_courses_menu" action="session_list_action"/>
-    <menuitem id="courss_menu" name="Statestique" parent="mcm_courses_menu" action="course_list_action"/>
+    <!--
+        <menuitem id="courss_menu" name="Statestique" parent="mcm_courses_menu" action="course_list_action"/>
+    -->
 
 </odoo>

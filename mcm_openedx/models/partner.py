@@ -27,6 +27,10 @@ class partner(models.Model):
                               ('coachh2', 'Sara'),
                               ])
     coach_peda = fields.Many2one('res.partner', string="Coach_Peda", domain=[('est_coach', '=', True)])
+    state = fields.Selection([('en_attente', 'En attente'), ('en_formation', 'En Formation'), ('supprimé', 'Supprimé')],
+                             required=True, default='en_attente')
+
+    # desinscrire les cours de formation  VTC a l'apprenant
 
     def desinscriteVTC(self, partner):
         user = self.env['res.users'].sudo().search([('partner_id', '=', self.id)], limit=1)
@@ -51,8 +55,6 @@ class partner(models.Model):
             'Authorization': 'Bearer 366b7bd572fe9d99d665ccd2a47faa29da262dab'
         }
         resp = requests.request("POST", url, headers=header, data=payload)
-        _logger.info(resp.text)
-        _logger.info(payload, 'user', resp.status_code)
 
     # ajouter les cours de formation taxi a l'apprenant
 
@@ -65,7 +67,7 @@ class partner(models.Model):
             'courses': 'course-v1:Digimoov+reg_vtc_02+2,'
                        'course-v1:Digimoov+dev_com_01+1,'
                        'course-v1:Digimoov+sec_rout_02+2,'
-                       'course-v1:Digimoov+ges02+2,'
+                       'course-v1Digimoov+ges02+2,'
                        'course-v1:Digimoov+angl_01+1,'
                        'course-v1:Digimoov+fr_02+2',
             'identifiers': self.email,
@@ -77,8 +79,8 @@ class partner(models.Model):
             'Authorization': 'Bearer 366b7bd572fe9d99d665ccd2a47faa29da262dab'
         }
         resp = requests.request("POST", url, headers=header, data=payload)
-        _logger.info(resp.text)
-        _logger.info(payload, 'user', resp.status_code)
+
+    # desinscrire les cours de formation taxi a l'apprenant
 
     def desinscriteTaxi(self, partner):
         url = "https://formation.mcm-academy.fr/api/bulk_enroll/v1/bulk_enroll"
@@ -103,8 +105,6 @@ class partner(models.Model):
             'Authorization': 'Bearer 366b7bd572fe9d99d665ccd2a47faa29da262dab'
         }
         resp = requests.request("POST", url, headers=header, data=payload)
-        _logger.info(resp.text)
-        _logger.info(payload, 'user', resp.status_code)
 
     # ajouter les cours de formation taxi a l'apprenant
     def inscriteTaxi(self, partner):
@@ -128,8 +128,6 @@ class partner(models.Model):
             'Authorization': 'Bearer 366b7bd572fe9d99d665ccd2a47faa29da262dab'
         }
         resp = requests.request("POST", url, headers=header, data=payload)
-        _logger.info(resp.text)
-        _logger.info(payload, 'user', resp.status_code)
 
     # ajouter les cours de la conaissance local pour le choix de departement
     def ajoutconnaisancelocalpasdecalais(self, partner):
@@ -148,8 +146,6 @@ class partner(models.Model):
             'Authorization': 'Bearer 366b7bd572fe9d99d665ccd2a47faa29da262dab'
         }
         resp = requests.request("POST", url, headers=header, data=payload)
-        _logger.info(resp.text)
-        _logger.info(payload, 'user', resp.status_code)
 
     # ajouter les cours de la conaissance local pour le choix de departement
     def ajoutconnaisancelocalNord(self, partner):
@@ -168,8 +164,6 @@ class partner(models.Model):
             'Authorization': 'Bearer 366b7bd572fe9d99d665ccd2a47faa29da262dab'
         }
         resp = requests.request("POST", url, headers=header, data=payload)
-        _logger.info(resp.text)
-        _logger.info(payload, 'user', resp.status_code)
 
     # ajouter les apprenants manuellemnt a partire de  la fiche Client
     def ajoutMoocit_automatique(self):
@@ -180,6 +174,7 @@ class partner(models.Model):
                                                               ]):
             _logger.info(partner.name)
             _logger.info(partner.module_id.id)
+            today = datetime.today()
 
             # ajout automatique  des utilsateur sur MOOCit
             # verifier staut de sale
@@ -203,12 +198,13 @@ class partner(models.Model):
             if (count == len(documentss) and count != 0):
                 document_valide = True
 
-            _logger.info("document", document_valide)
-            _logger.info("partner.numero_evalboxt", partner.numero_evalbox)
-            _logger.info("sale_order", sale_order.state)
+            _logger.info("document %s" % str(document_valide))
+
+            _logger.info("sale_order %s" % str(sale_order.state))
             # en va changer numero_evalbox avec numero eval ..
             # verifier si la case evalbox est True
-            if (partner.numero_evalbox == True):
+            print(partner.numero_evalbox)
+            if (partner.numero_evalbox != False):
                 # defenir le mode de financement
                 if partner.mode_de_financement == "particulier":
                     # verifier si le sale et les documents et satut sont valides
@@ -219,11 +215,11 @@ class partner(models.Model):
                         if (sale_order.state == 'sale') and (sale_order.signature):
                             # Si demande de renonce est coché donc l'apprenant est ajouté sans attendre 14jours
                             if (partner.renounce_request):
-                                partner.ajouter_IOne_MCM(partner)
+                                self.ajouter_IOne_MCM(partner)
 
                             # si non il doit attendre 14jours pour etre ajouté a la platform
                             if not partner.renounce_request and (sale_order.signed_on + timedelta(days=14)) <= today:
-                                partner.ajouter_IOne_MCM(partner)
+                                self.ajouter_IOne_MCM(partner)
 
                 if partner.mode_de_financement == "cpf":
                     _logger.info(partner.mode_de_financement)
@@ -232,26 +228,27 @@ class partner(models.Model):
                     _logger.info(partner.mcm_session_id.date_exam)
                     if (document_valide) and (partner.mcm_session_id.date_exam) and (
                             partner.mcm_session_id.date_exam > date.today()):
+
                         if (partner.renounce_request):
                             self.ajouter_IOne_MCM(partner)
-                    if not (partner.renounce_request) and partner.numero_cpf:
-                        """chercher le dossier cpf sur wedof pour prendre la date d'ajout"""
-                        headers = {
-                            'accept': 'application/json',
-                            'Content-Type': 'application/json',
-                            'X-API-KEY': partner.company_id.wedof_api_key,
-                        }
-                        responsesession = requests.get(
-                            'https://www.wedof.fr/api/registrationFolders/' + partner.numero_cpf,
-                            headers=headers)
-                        dossier = responsesession.json()
-                        dateDebutSession_str = ""
-                        _logger.info('session %s' % str(dossier))
-                        if "trainingActionInfo" in dossier:
-                            dateDebutSession_str = dossier['trainingActionInfo']['sessionStartDate']
-                            dateDebutSession = datetime.strptime(dateDebutSession_str, '%Y-%m-%dT%H:%M:%S.%fz')
-                            if dateDebutSession <= datetime.today():
-                                self.ajouter_IOne_MCM(partner)
+                        if not (partner.renounce_request) and partner.numero_cpf:
+                            """chercher le dossier cpf sur wedof pour prendre la date d'ajout"""
+                            headers = {
+                                'accept': 'application/json',
+                                'Content-Type': 'application/json',
+                                'X-API-KEY': partner.company_id.wedof_api_key,
+                            }
+                            responsesession = requests.get(
+                                'https://www.wedof.fr/api/registrationFolders/' + partner.numero_cpf,
+                                headers=headers)
+                            dossier = responsesession.json()
+                            dateDebutSession_str = ""
+                            _logger.info('session %s' % str(dossier))
+                            if "trainingActionInfo" in dossier:
+                                dateDebutSession_str = dossier['trainingActionInfo']['sessionStartDate']
+                                dateDebutSession = datetime.strptime(dateDebutSession_str, '%Y-%m-%dT%H:%M:%S.%fz')
+                                if dateDebutSession <= datetime.today():
+                                    self.ajouter_IOne_MCM(partner)
 
     # ajouter les apprenants manuellemnt a partire de  la fiche Client
     def ajoutMoocit_manuelle(self):
@@ -270,8 +267,8 @@ class partner(models.Model):
         for document in documents:
             if (document.state == "validated"):
                 count = count + 1
-        _logger.info('count %s ' %str(count), 'len', len(documents))
-        _logger.info('len %s' %str(len(documents)))
+        _logger.info('count %s ' % str(count))
+        _logger.info('len %s' % str(len(documents)))
         if (count == len(documents) and count != 0):
             document_valide = True
         else:
@@ -288,13 +285,16 @@ class partner(models.Model):
             }
         # en va changer numero_evalbox avec numero eval ..
         # verifier si la case evalbox est True
-        if (self.numero_evalbox == True):
+        _logger.info('numeroooooooo %s' % str(self.numero_evalbox))
+
+        if (self.numero_evalbox != False):
             # defenir le mode de financement
             if self.mode_de_financement == "particulier":
-                _logger.info(self.mode_de_financement)
+                _logger.info('mode_de_financement %s' % str(self.mode_de_financement))
+
                 # verifier si le sale et les documents et satut sont valides
                 if ((sale_order) and (document_valide) and (self.statut == "won")):
-                    _logger.info('document et sale valide Condition 1 validee')
+                    _logger.info('document et sale valide Condition 1 validee %s')
                     # Vérifier si contrat signé ou non
 
                     if (sale_order.state == 'sale') and (sale_order.signature):
@@ -379,14 +379,16 @@ class partner(models.Model):
     # fonction pour tester si le client en partenriat Avec Bolt ou non Si nn i la va  identifier le Client avec le nom de la company
     def estBolt(self):
         for user in self.env['res.partner'].sudo().search(
-                [('company_id', '=', 1), ('client_id', '!=', ''),
-                 ('module_id', 'like', 'Formation à distance VTC-BOLT')]):
+                [('company_id', '=', 1), ('client', '=', False),
+                 ]):
             # user.bolt = True
             if (user):
-                user.client = 'BOLT'
-                _logger.info(user.client)
-            else:
-                user.client = user.company_id.name
+                if (user.bolt == True):
+                    user.client = 'BOLT'
+                    _logger.info(user.client)
+                else:
+                    user.client = user.company_id.name
+                    _logger.info(user.client)
 
     # ajout d'ione avec test de departement et de module choisit par l'apprenant  et lui affecter aux cours automatiquement
     def ajouter_IOne_MCM(self, partner):
@@ -409,11 +411,13 @@ class partner(models.Model):
             'Authorization': 'Bearer 366b7bd572fe9d99d665ccd2a47faa29da262dab'
         }
         response = requests.request("POST", url, headers=headers, data=payload)
-        _logger.info(response.text)
-        _logger.info(payload, 'user', response.status_code)
-        if (response.status_code == 200):
-            self.inscrit_mcm = date.today()
 
+        _logger.info('user %s' % str(payload))
+        _logger.info('existantttttt dejaa %s')
+        if (response.status_code == 200):
+            for rec in self:
+                self.write({'state': 'en_formation'})
+            self.inscrit_mcm = date.today()
             partner.lang = 'fr_FR'
             if self.env.su:
                 # sending mail in sudo was meant for it being sent from superuser
@@ -471,7 +475,7 @@ class partner(models.Model):
                 self.supprimer_sixmoins(self)
 
             elif (partner.module_id.product_id.default_code == "vtc_bolt"):
-                if (bolt == True) and (evalbox == True):
+                if (bolt == True):
                     _logger.info("client Bolt Formation VTC")
                     self.inscriteVTC(self)
                     self.supprimer_sixmoins(self)
@@ -488,7 +492,7 @@ class partner(models.Model):
             # return notification
 
         elif (response.status_code == 409):
-            _logger.info("existantttttt dejaa ")
+            _logger.info('existantttttt dejaa %s')
 
     # envoit d'un sms
     def testsms(self, partner):
@@ -520,20 +524,38 @@ class partner(models.Model):
 
     # supprimer ione le desinscrire des cours sur la platfrom moocit
     def supprimer_IOne_MCM(self):
-         departement = self.state_id.code
-        # _logger.info(departement)
-        # if (self.module_id.product_id.default_code == "taxi"):
-        #     self.desinscriteTaxi(self)
-        # elif (self.module_id.product_id.default_code == "vtc"):
-        #     self.desinscriteVTC(self)
-        #
-        # elif (self.module_id.product_id.default_code == "vtc_bolt"):
-        #     self.desinscriteVTC(self)
+        departement = self.state_id.code
+        _logger.info(departement)
+        for rec in self:
+            self.write({'state': 'supprimé'})
+        if (self.module_id.product_id.default_code == "taxi"):
+            self.desinscriteTaxi(self)
+        elif (self.module_id.product_id.default_code == "vtc"):
+            self.desinscriteVTC(self)
 
+        elif (self.module_id.product_id.default_code == "vtc_bolt"):
+            self.desinscriteVTC(self)
+
+    # affecter la date de suppression apres l'ajout de 6 mois
 
     def supprimer_sixmoins(self, partner):
         partner.supprimerdemoocit = partner.inscrit_mcm + (relativedelta(months=6))
-        _logger.info("supprimer aprex 6 mois", partner.supprimerdemoocit)
+        _logger.info("supprimer aprex 6 mois")
+
+    # ajouter une date de suppression pour les ancien utilsateur avant prod
+    def supprimer_avantprod(self):
+        for partner in self.env['res.partner'].sudo().search([('company_id', '=', 1),
+                                                              ('inscrit_mcm', '!=', False),
+
+                                                              ]):
+            if (partner):
+                for rec in partner:
+                    if (partner.state == "en_attente"):
+                        partner.sudo().write({'state': 'en_formation'})
+                partner.supprimerdemoocit = partner.inscrit_mcm + (relativedelta(months=6))
+                _logger.info("supprimer aprex 6 mois")
+
+    # supprimer ione  automatique le desinscrire des cours sur la platfrom moocit
 
     def supprimer_automatique(self):
         # chercher dans res.partner la liste de apprennats puis verifier la
