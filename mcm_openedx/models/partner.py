@@ -26,7 +26,7 @@ class partner(models.Model):
     coach = fields.Selection([('coach1', 'Safa'),
                               ('coachh2', 'Sara'),
                               ])
-    coach_peda = fields.Many2one('res.partner', string="Coach_Peda", domain=[('est_coach', '=', True)])
+    coach_peda = fields.Many2one('res.partner', string="Coach_Pedagogique", domain=[('est_coach', '=', True)])
     state = fields.Selection([('en_attente', 'En attente'), ('en_formation', 'En Formation'), ('supprimé', 'Supprimé')],
                              required=True, default='en_attente')
 

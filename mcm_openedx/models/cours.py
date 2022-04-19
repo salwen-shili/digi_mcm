@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+
 from odoo import models, fields, api
 
 
@@ -13,8 +14,6 @@ class Cours(models.Model):
     temppasse = fields.Char(string="Temps passés")
     seconde = fields.Char(setup="	Temps passés (sec)")
     color = fields.Integer()
-    responsible_id = fields.Many2one('res.users',
-                                     ondelete='set null', string="Coach pedagogique", index=True)
     attendees_count = fields.Integer(
         string="Temps passée", compute='_get_attendees_count', store=True)
 
@@ -24,14 +23,13 @@ class Cours(models.Model):
             r.attendees_count = len(r.temppasse)
 
     def recherche(self):
-        print(self.email)
 
         for recc in self.env['res.partner'].sudo().search([('email', "like", '@')
                                                            ]):
-            for exist in self.env['mcm_openedx.course'].sudo().search([('email', "=", recc.email)
-                                                                       ]):
-                exist.nomutilisateur = recc.email
-
-
-
-
+            tmp = 0
+            for exist in self.env['mcm_openedx.course'].sudo().search(
+                    [('email', "=", recc.email), ('temppasse', '=', self.temppasse)
+                     ]):
+                if (exist.email == recc.email):
+                    tmp = int(exist.temppasse) + tmp
+                print(tmp)

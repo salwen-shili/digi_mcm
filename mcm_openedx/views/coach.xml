@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
 
+
 <!--
     <record model="ir.ui.view" id="coach_form_view">
         <field name="name">Coaches</field>
@@ -81,5 +82,6 @@
     </record>
 
 -->
+
 
 </odoo>

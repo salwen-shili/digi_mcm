@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
-   <!-- <data>
+<!--
+    <data>
         <record model="ir.ui.view" id="course_form_view">
             <field name="name">course.form</field>
             <field name="model">mcm_openedx.course</field>
@@ -47,7 +48,7 @@
             <field name="name">mcm_openedx.course.kanban</field>
             <field name="model">mcm_openedx.course</field>
             <field name="arch" type="xml">
-                <kanban default_group_by="idcour">
+                <kanban default_group_by="nomutilisateur">
                     <field name="color"/>
                     <templates>
                         <t t-name="kanban-box">
@@ -100,7 +101,6 @@
                 </kanban>
             </field>
         </record>
-
         <record model="ir.ui.view" id="mcm_openedx_session_graph_view">
             <field name="name">mcm_openedx.course.graph</field>
             <field name="model">mcm_openedx.course</field>

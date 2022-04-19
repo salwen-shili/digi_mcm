@@ -80,30 +80,23 @@ class Coach(models.Model):
         nombre_coach = 0
         listaffecter = []
         sanscoach = 0
+
         for coach1 in self.env['mcm_openedx.coach'].sudo().search([('coach_name', '!=', '')]):
             nombre_coach = nombre_coach + 1
 
-            # cree un dict
-            thisdict = {
-                "coach_name": coach1.coach_name.name,
-                "nombre_apprenant": coach1.nombre_apprenant,
-            }
-            # for nombre_apprenant, valeur in thisdict.items():
-            #     print("nombre_apprenant", nombre_apprenant, "vaut", valeur)
-            listcoachh.append(thisdict)
 
             if (coach1.coach_name.est_coach == False):
                 print("n'est plus un coach ", coach1.coach_name.name)
-
         for apprenatsanscoach in self.env['res.partner'].sudo().search(
                 [('statut', "=", "won"), ('coach_peda', '=', False), ('company_id', '=', 1)]):
             sanscoach = sanscoach + 1
             # listaffecter.append()
-        print(sanscoach)
-        if (sanscoach == 0):
-            limit = divmod(sanscoach, nombre_coach)
-            print("div", limit[0])
-            print("Rest", limit[1])
+        print("nb sans coach",sanscoach)
+
+        limit = divmod(sanscoach, nombre_coach)
+        print("div", limit[0])
+        print("Rest", limit[1])
+
         for coach in self.env['mcm_openedx.coach'].sudo().search([('coach_name', '!=', '')]):
             i = 0
 
@@ -115,7 +108,6 @@ class Coach(models.Model):
                 print(listcoach)
                 for i in range(len(listcoach)):
                     print(listcoach[i])
-
 
             listexiste = []
             listexiste.append(coach.apprenant_name)
