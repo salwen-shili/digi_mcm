@@ -20,7 +20,7 @@ class resComapny(models.Model):
     autre_raison = fields.Text(string="Autre Raison")
     num_departement = fields.Char(string="N° du département en France")
     nom_marital = fields.Char(string="Nom marital")
-    other_cases = fields.Char(string="Le nom de l’Etat pour les autres cas")
+    other_cases = fields.Char(string="Nom de l’Etat pour les autres cas")
 
     def compute_notes_exams_count(self):
         for record in self:

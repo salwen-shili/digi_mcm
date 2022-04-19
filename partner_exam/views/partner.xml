@@ -9,15 +9,15 @@
             <xpath expr="//group//div[@class='row form-panel']//div[1]//div[3]//div[5]" position="after">
                 <div class="col-sm-12">
                     <div>
-                        <label for="num_departement" string="N° du département en France"/>
+                        <label for="num_departement" string="N° du département en France :"/>
                         <field name="num_departement"/>
                     </div>
                     <div>
-                        <label for="nom_marital" string="Nom marital"/>
+                        <label for="nom_marital" string="Nom marital :"/>
                         <field name="nom_marital"/>
                     </div>
                     <div>
-                        <label for="other_cases" string="Le nom de l’Etat pour les autres cas"/>
+                        <label for="other_cases" string="Nom de l’Etat pour les autres cas :"/>
                         <field name="other_cases"/>
                     </div>
                     <div attrs="{'invisible': [('company_id', '=', 2)]}">
