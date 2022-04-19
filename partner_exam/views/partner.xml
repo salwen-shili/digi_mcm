@@ -13,10 +13,6 @@
                         <field name="num_departement"/>
                     </div>
                     <div>
-                        <label for="nom_marital" string="Nom marital :"/>
-                        <field name="nom_marital"/>
-                    </div>
-                    <div>
                         <label for="other_cases" string="Nom de l’Etat pour les autres cas :"/>
                         <field name="other_cases"/>
                     </div>
@@ -57,8 +53,12 @@
     <record model="ir.ui.view" id="inherit_partner_for_report_form_view">
         <field name="name">Client Add report boolean field</field>
         <field name="model">res.partner</field>
-        <field name="inherit_id" ref="base.view_partner_form"></field>
+        <field name="inherit_id" ref="mcm_session.mcmacademy_view_res_partner_form_3"></field>
         <field name="arch" type="xml">
+            <field name="birth_state" position="after">
+                <label for="nom_marital" string="Nom marital :"/>
+                <field name="nom_marital"/>
+            </field>
             <xpath expr="//page/group[@name='session']/group" position="after">
                 <group name="report" class="oe_edit_only">
                     <field name="report" string="Changement information session"/>
