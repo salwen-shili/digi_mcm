@@ -98,34 +98,35 @@ class NoteExamen(models.Model):
 
     @api.onchange('resultat', 'partner_id', 'presence')
     def update_boolean_values(self):
-        for rec in self:
-            if rec.resultat == 'recu':
-                rec.is_recu = True
-                rec.is_ajourne = False
-            if rec.resultat == 'ajourne' and rec.presence == 'present':
-                rec.is_ajourne = True
-                rec.is_recu = False
-                rec.is_Absent = True
-                rec.is_absence_justifiee = False
-            if rec.resultat == 'ajourne' and rec.presence == 'absence_justifiee':
-                rec.is_ajourne = True
-                rec.is_recu = False
-                rec.is_Absent = False
-                rec.is_absence_justifiee = True
-            if rec.presence == 'present':
-                rec.is_present = True
-                rec.is_Absent = False
-                rec.is_absence_justifiee = False
-            if rec.presence == 'Absent' and rec.resultat == 'ajourne':
-                rec.is_Absent = True
-                rec.is_ajourne = True
-                rec.is_present = False
-                rec.is_recu = False
-                rec.is_absence_justifiee = False
-            # if rec.presence == 'absence_justifiee':
-            #     rec.is_absence_justifiee = True
-            #     rec.is_recu = False
-            #     rec.is_Absent = False
+        if self.company_id == 2:
+            for rec in self:
+                if rec.resultat == 'recu':
+                    rec.is_recu = True
+                    rec.is_ajourne = False
+                if rec.resultat == 'ajourne' and rec.presence == 'present':
+                    rec.is_ajourne = True
+                    rec.is_recu = False
+                    rec.is_Absent = True
+                    rec.is_absence_justifiee = False
+                if rec.resultat == 'ajourne' and rec.presence == 'absence_justifiee':
+                    rec.is_ajourne = True
+                    rec.is_recu = False
+                    rec.is_Absent = False
+                    rec.is_absence_justifiee = True
+                if rec.presence == 'present':
+                    rec.is_present = True
+                    rec.is_Absent = False
+                    rec.is_absence_justifiee = False
+                if rec.presence == 'Absent' and rec.resultat == 'ajourne':
+                    rec.is_Absent = True
+                    rec.is_ajourne = True
+                    rec.is_present = False
+                    rec.is_recu = False
+                    rec.is_absence_justifiee = False
+                # if rec.presence == 'absence_justifiee':
+                #     rec.is_absence_justifiee = True
+                #     rec.is_recu = False
+                #     rec.is_Absent = False
 
     def _calcul_ancien_client(self):
         """ Suit aux changements pour les notes des examens;
