@@ -2,5 +2,5 @@
 
 from . import partner
 from . import session
-from . import cours
+from . import cours_stat
 from . import coach

@@ -15,9 +15,7 @@ _logger = logging.getLogger(__name__)
 
 class partner(models.Model):
     _inherit = 'res.partner'
-
     # ajouter champs au modele partner par defaut res.partner ne sont pas des instructors
-
     supprimerdemoocit = fields.Date("Date de suppression")
     departement = fields.Many2one('res.country.state')
     date_ajout_surMOOCIT = fields.Date(string="Date ajout moocit")
@@ -29,6 +27,10 @@ class partner(models.Model):
     coach_peda = fields.Many2one('res.partner', string="Coach_Pedagogique", domain=[('est_coach', '=', True)])
     state = fields.Selection([('en_attente', 'En attente'), ('en_formation', 'En Formation'), ('supprimé', 'Supprimé')],
                              required=True, default='en_attente')
+
+    mooc_dernier_coonx = fields.Date()
+    mooc_temps_passe = fields.Float()
+    date_imortation_stat = fields.Date()
 
     # desinscrire les cours de formation  VTC a l'apprenant
 

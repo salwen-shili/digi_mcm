@@ -3,7 +3,7 @@
     <data>
         <record model="ir.ui.view" id="course_form_view">
             <field name="name">course.form</field>
-            <field name="model">mcm_openedx.course</field>
+            <field name="model">mcm_openedx.course_stat</field>
             <field name="arch" type="xml">
                 <form string="Course Form">
                     <xpath expr="//form//sheet" position="before">
@@ -15,13 +15,8 @@
                     <sheet>
                         <group>
                             <field name="nomutilisateur"/>
+                              <field name="temppassetotale" disabled="disabled"/>
 
-                            <field name="email"/>
-                            <field name="idcour"/>
-                            <field name="jour"/>
-                            <field name="temppasse"/>
-                            <field name="seconde"/>
-                            <field name="partner"/>
                         </group>
 
                     </sheet>
@@ -30,24 +25,19 @@
         </record>
         <record model="ir.ui.view" id="course_tree_view">
             <field name="name">course.tree</field>
-            <field name="model">mcm_openedx.course</field>
+            <field name="model">mcm_openedx.course_stat</field>
             <field name="arch" type="xml">
 
                 <tree string="Statetstique">
                     <field name="nomutilisateur"/>
                     <field name="temppassetotale"/>
-                    <field name="email"/>
-                    <field name="idcour"/>
-                    <field name="jour"/>
-                    <field name="temppasse"/>
-                    <field name="seconde"/>
-                    <field name="partner"/>
+
                 </tree>
             </field>
         </record>
         <record model="ir.ui.view" id="view_openacad_session_kanban">
-            <field name="name">mcm_openedx.course.kanban</field>
-            <field name="model">mcm_openedx.course</field>
+            <field name="name">mcm_openedx.course_stat.kanban</field>
+            <field name="model">mcm_openedx.course_stat</field>
             <field name="arch" type="xml">
                 <kanban default_group_by="nomutilisateur">
                     <field name="color"/>
@@ -81,26 +71,26 @@
 
                                     <br/>
 
-                                    Temps passé sur moocit
+                                    Temps passé sur moocit en Heures :
                                     <field name="temppassetotale"/>
 
                                     <br/>
                                     Email:
                                     <field name="email"/>
-                                    <br/>
-                                    ID Cours:
-                                    <field name="idcour"/>
-                                    <br/>
-                                    jours:
-                                    <field name="jour"/>
-                                    <br/>
-                                    Temps passés:
-                                    <field name="temppasse"/>
-                                    <br/>
-                                    Temps passés (sec):
-                                    <field name="seconde"/>
-                                    <br/>
-                                    <field name="partner"/>
+                                    <!-- <br/>
+                                     ID Cours:
+                                     <field name="idcour"/>
+                                     <br/>
+                                     jours:
+                                     <field name="jour"/>
+                                     <br/>
+                                     Temps passés:
+                                     <field name="temppasse"/>
+                                     <br/>
+                                     Temps passés (sec):
+                                     <field name="seconde"/>
+                                     <br/>
+                                     <field name="partner"/>-->
                                 </div>
                             </div>
                         </t>
@@ -109,8 +99,8 @@
             </field>
         </record>
         <record model="ir.ui.view" id="mcm_openedx_session_graph_view">
-            <field name="name">mcm_openedx.course.graph</field>
-            <field name="model">mcm_openedx.course</field>
+            <field name="name">mcm_openedx.course_stat.graph</field>
+            <field name="model">mcm_openedx.course_stat</field>
             <field name="arch" type="xml">
                 <graph string="Participations by Courses">
                     <field name="idcour"/>
@@ -120,7 +110,7 @@
         </record>
         <record id="course_list_action" model="ir.actions.act_window">
             <field name="name">Courses</field>
-            <field name="res_model">mcm_openedx.course</field>
+            <field name="res_model">mcm_openedx.course_stat</field>
             <field name="view_mode">kanban,tree,form,graph</field>
 
         </record>

@@ -34,7 +34,7 @@
     'data': [
         # 'security/ir.model.access.csv',
         # 'security/security.xml',
-        "views/cour.xml",
+        "views/statestique.xml",
         "views/partner.xml",
         "views/session.xml",
         "views/gerer_user_ir_cron.xml",

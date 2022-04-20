@@ -76,6 +76,62 @@
                 <attribute name="attrs">{'invisible': [('est_coach', '=', True)]}</attribute>
             </xpath>
 
+            <xpath expr="//page[@name='internal_notes']" position="after">
+                <page string="Statistiques  MOOCit" name="mcm_plateforme"
+                      attrs="{'invisible': [('company_id', '=', 2)]}">
+                    <group>
+                        <group col="12">
+                        </group>
+                        <group col="8" colspan="4" string="Géneral">
+                            <div>
+                                <span class="o_stat_text">
+                                    Date Importation Statestiques
+                                </span>
+                                <span>
+                                    <field name="date_imortation_stat"/>
+
+                                </span>
+                            </div>
+                            <div>
+                                <span class="o_stat_text">
+                                    <i class="fa fa-check"/>
+                                    Dernière Connexion
+                                </span>
+                                <br/>
+                                <span>
+                                    <field name="mooc_dernier_coonx"/>
+                                </span>
+                            </div>
+                            <div>
+                                <span>
+                                    <i class="fa fa-clock-o"/>
+                                </span>
+                                <span class="o_stat_text">
+                                    Temps passé par minute
+                                </span>
+                                <br/>
+                                <span class="o_stat_text">
+                                    <field name="mooc_temps_passe"></field>
+                                </span>
+
+                            </div>
+                            <div>
+                                <span>
+                                    <i class="fa fa-sign-in" style="align:center"/>
+                                </span>
+                                <span class="o_stat_text">
+                                    Date d'inscription :
+
+                                </span>
+                                <br/>
+                                <span>
+                                    <field name="inscrit_mcm"></field>
+                                </span>
+                            </div>
+                        </group>
+                    </group>
+                </page>
+            </xpath>
 
         </field>
 
