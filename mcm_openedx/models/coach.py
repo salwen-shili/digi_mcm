@@ -84,14 +84,13 @@ class Coach(models.Model):
         for coach1 in self.env['mcm_openedx.coach'].sudo().search([('coach_name', '!=', '')]):
             nombre_coach = nombre_coach + 1
 
-
             if (coach1.coach_name.est_coach == False):
                 print("n'est plus un coach ", coach1.coach_name.name)
         for apprenatsanscoach in self.env['res.partner'].sudo().search(
                 [('statut', "=", "won"), ('coach_peda', '=', False), ('company_id', '=', 1)]):
             sanscoach = sanscoach + 1
             # listaffecter.append()
-        print("nb sans coach",sanscoach)
+        print("nb sans coach", sanscoach)
 
         limit = divmod(sanscoach, nombre_coach)
         print("div", limit[0])
@@ -100,15 +99,6 @@ class Coach(models.Model):
         for coach in self.env['mcm_openedx.coach'].sudo().search([('coach_name', '!=', '')]):
             i = 0
 
-            for coachh in coach:
-                listcoach.append(coachh.nombre_apprenant)
-                print(coachh.coach_name.name)
-                print(coachh.nombre_apprenant)
-                listcoach.sort()
-                print(listcoach)
-                for i in range(len(listcoach)):
-                    print(listcoach[i])
-
             listexiste = []
             listexiste.append(coach.apprenant_name)
             for apprenat in self.env['res.partner'].sudo().search(
@@ -116,5 +106,19 @@ class Coach(models.Model):
                     limit=limit[0]):
                 if apprenat.id not in listexiste:
                     print("app", apprenat.id)
-
                     apprenat.coach_peda = coach.coach_name
+            for coachh in coach:
+                listcoach.append(coachh.nombre_apprenant)
+                print(coachh.coach_name.name)
+                print(coachh.nombre_apprenant)
+                listcoach.sort()
+                print(listcoach)
+                for i in range(len(listcoach)):
+                    if i < i + 1:
+                        print("inffffffff")
+                if (listcoach[0] == coach.nombre_apprenant):
+                    print("tesssssssssssssssstttttttttt",coachh.coach_name.name)
+                    if apprenat.id not in listexiste:
+                        apprenat.coach_peda = coach.coach_name
+
+

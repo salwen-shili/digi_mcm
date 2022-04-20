@@ -12,8 +12,9 @@ class Cours(models.Model):
     idcour = fields.Char(string="ID Cours")
     jour = fields.Date(string="Jour")
     temppasse = fields.Char(string="Temps passés")
-    seconde = fields.Char(setup="	Temps passés (sec)")
+    seconde = fields.Integer(setup="	Temps passés (sec)")
     color = fields.Integer()
+    temppassetotale = fields.Integer(string="Temps passé sur moocit ")
     attendees_count = fields.Integer(
         string="Temps passée", compute='_get_attendees_count', store=True)
 
@@ -23,13 +24,11 @@ class Cours(models.Model):
             r.attendees_count = len(r.temppasse)
 
     def recherche(self):
+        for exist in self.env['mcm_openedx.course'].sudo().search(
+                [('email', "=", self.email)
+                 ]):
+            temppassetotale = 0
+            if (exist):
+                exist.temppassetotale = exist.seconde + exist.temppassetotale
 
-        for recc in self.env['res.partner'].sudo().search([('email', "like", '@')
-                                                           ]):
-            tmp = 0
-            for exist in self.env['mcm_openedx.course'].sudo().search(
-                    [('email', "=", recc.email), ('temppasse', '=', self.temppasse)
-                     ]):
-                if (exist.email == recc.email):
-                    tmp = int(exist.temppasse) + tmp
-                print(tmp)
+        print(exist.temppassetotale)

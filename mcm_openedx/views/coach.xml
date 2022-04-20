@@ -2,7 +2,6 @@
 <odoo>
 
 
-<!--
     <record model="ir.ui.view" id="coach_form_view">
         <field name="name">Coaches</field>
         <field name="model">mcm_openedx.coach</field>
@@ -81,7 +80,6 @@
 
     </record>
 
--->
 
 
 </odoo>
