@@ -27,10 +27,44 @@
                 </div>
             </xpath>
             <xpath expr="//page[last()]" position="after">
-                <page name="note_exam" string="Examen">
-                    <field name="note_exam_id"/>
+                <page name="note_exam" string="Examen DIGIMOOV" >
+                    <field name="note_exam_id">
+                        <tree>
+                            <field name="partner_id"/>
+                            <field name="mode_de_financement"/>
+                            <field name="session_id"/>
+                            <field name="date_exam"/>
+                            <field name="epreuve_a" attrs="{'column_invisible': [('parent.company_id.id', '=', 2)]}"/>
+                            <field name="epreuve_b"/>
+                            <field name="resultat"/>
+                            <field name="presence"/>
+                            <field name="company_id"/>
+                            <field name="nombre_de_passage"/>
+                        </tree>
+                    </field>
                 </page>
             </xpath>
+
+<!--            <xpath expr="//page[last()]" position="after">-->
+<!--                <page name="note_exam" string="Examen MCM-ACADEMY">-->
+<!--                    <field name="note_exam_id">-->
+<!--                        <tree>-->
+<!--                            <field name="partner_id"/>-->
+<!--                            <field name="mode_de_financement"/>-->
+<!--                            <field name="session_id"/>-->
+<!--                            <field name="date_exam"/>-->
+<!--                            <field name="presence"/>-->
+<!--                            <field name="epreuve_theorique" />-->
+<!--                            <field name="state_theorique"/>-->
+<!--                            <field name="epreuve_pratique"/>-->
+<!--                            <field name="state_pratique"/>-->
+<!--                            <field name="presence_mcm"/>-->
+<!--                            <field name="company_id"/>-->
+<!--                            <field name="nombre_de_passage"/>-->
+<!--                        </tree>-->
+<!--                    </field>-->
+<!--                </page>-->
+<!--            </xpath>-->
 
             <div name="button_box" position="inside">
                 <button class="oe_stat_button" context="{'search_default_partner_id': active_id}" type="object"
