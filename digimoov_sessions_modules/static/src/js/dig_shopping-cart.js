@@ -822,7 +822,7 @@ function sessionIsAccessible(prop) {
   //init
   let isAccessible = false;
   //if months == 4 check toDay's day is superior to session's day
-  if (months == 4) {
+  if (months == 4 && toDay.getFullYear() == sessionDate.getFullYear()) {
     console.log(
       sessionDate.getDate(),
       toDay.getDate(),
@@ -835,7 +835,7 @@ function sessionIsAccessible(prop) {
     isAccessible = true;
   }
 
-  console.log(isAccessible);
+  console.log('isAccessible :', isAccessible);
   if (!isAccessible) {
     showAlertDate();
     disablePaymentButton();
