@@ -95,13 +95,16 @@
                     <field name="session_id"/>
                     <field name="date_exam"/>
                     <field name="epreuve_theorique" attrs="{'invisible': [('company_id', '=', 2)]}" optional="hide"/>
-                    <field name="epreuve_pratique" attrs="{'invisible': [('company_id', '!=', 2)]}" optional="hide"/>
-                    <field name="state_theorique" attrs="{'invisible': [('company_id', '!=', 2)]}" optional="hide"/>
-                    <field name="state_pratique" attrs="{'invisible': [('company_id', '!=', 2)]}" optional="hide"/>
+                    <field name="epreuve_pratique" attrs="{'invisible': [('company_id', '=', 2)]}" optional="hide"/>
+                    <field name="state_theorique" attrs="{'invisible': [('company_id', '=', 2)]}" optional="hide"/>
+                    <field name="state_pratique" attrs="{'invisible': [('company_id', '=', 2)]}" optional="hide"/>
                     <field name="module_id" optional="hide"/>
-                    <field name="epreuve_a" avg="Moy.QCM" attrs="{'invisible': [('company_id', '=', 2)]}" optional="hide"/>
-                    <field name="epreuve_b" avg="Moy.QRO" attrs="{'invisible': [('company_id', '=', 2)]}" optional="hide"/>
-                    <field name="moyenne_generale" avg="Moy.G" attrs="{'invisible': [('company_id', '!=', 2)]}" optional="hide"/>
+                    <field name="epreuve_a" avg="Moy.QCM" attrs="{'invisible': [('company_id', '=', 1)]}"
+                           optional="hide"/>
+                    <field name="epreuve_b" avg="Moy.QRO" attrs="{'invisible': [('company_id', '=', 1)]}"
+                           optional="hide"/>
+                    <field name="moyenne_generale" avg="Moy.G" attrs="{'invisible': [('company_id', '=', 1)]}"
+                           optional="hide"/>
                     <field name="mention" attrs="{'invisible': [('company_id', '!=', 2)]}" optional="hide"/>
                     <field name="is_recu" invisible="1"/>
                     <field name="is_ajourne" invisible="1"/>
@@ -112,8 +115,10 @@
                            attrs="{'invisible': [('company_id', '!=', 2)]}" optional="hide"/>
                     <field name="presence"
                            options='{"fg_color": "green:is_present==True; red:is_Absent==True; #ff6600:is_absence_justifiee==True"}'
-                           attrs="{'column_invisible': [('parent.company_id.id', '!=', 2)]}" optional="hide" string="Présence DIGIMOOV"/>
-                    <field name="presence_mcm" attrs="{'invisible': [('company_id', '=', 2)]}" optional="hide" string="Présence MCM"/>
+                           attrs="{'column_invisible': [('parent.company_id.id', '!=', 2)]}" optional="hide"
+                           string="Présence DIGIMOOV"/>
+                    <field name="presence_mcm" attrs="{'invisible': [('company_id', '=', 2)]}" optional="hide"
+                           string="Présence MCM"/>
                     <field name="nombre_de_passage"/>
                     <field name="sorti_formation" optional="hide"
                            attrs="{'invisible': [('company_id', '!=', 2)]}"/>
