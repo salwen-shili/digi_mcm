@@ -534,7 +534,7 @@
                                 </option>
                             </select>
                         </div>
-                        <p id="error_choix_date" class="alert alert-warning" style="margin-left:0%;display:none;">
+                        <p id="error_choix_date" class="alert alert-warning" style="margin-top:10px; margin-left:0%; display:none;">
                             Vous devez sélectionner votre date d'examen
                         </p>
                     </b>

@@ -62,7 +62,7 @@
                                 <t t-if="module">
                                     <t t-if="module.session_id.website_published==True">
                                         <b>
-                                            <option t-att-value="module.session_ville_id.name_ville" t-att-id="module.id" style="text-transform: capitalize;">
+                                            <option t-att-value="module.session_ville_id.name_ville" t-att-id="module.id" style="text-transform: capitalize;" t-att-title="module.date_exam.strftime('%m/%d/%Y')">
                                                 <t t-if="not from_habilitation_electrique" t-esc="module.date_exam.strftime('%d %B %Y')" />
                                                 <t t-if="from_habilitation_electrique" t-esc="module.date_exam.strftime('%B %Y')" />
                                             </option>
@@ -74,8 +74,8 @@
 
                     </div>
                     <b>
-                        <input type="hidden" value="false" id="habilitation" t-if="not from_habilitation_electrique"/>
-                        <input type="hidden" value="true" id="habilitation" t-if="from_habilitation_electrique"/>
+                        <input type="hidden" value="false" id="habilitation" t-if="not from_habilitation_electrique" />
+                        <input type="hidden" value="true" id="habilitation" t-if="from_habilitation_electrique" />
                         <div id="select-date" style="margin-left: 0%">
                             <select name="date_examen" id="options-date" class="form-control search-slt" style="display:none">
                                 <option value="all" id="all" t-if="not from_habilitation_electrique">
@@ -88,8 +88,16 @@
                         </div>
                     </b>
 
-                    <p id="error_choix_date" class="alert alert-warning" style="margin-left:0%;display:none;">
+                    <p id="error_choix_date" class="alert alert-warning" style="margin-top:10px;margin-left:0%;display:none;">
                                 Vous devez sélectionner votre date d'examen
+                    </p>
+                    <p id="error_choix_date_4" class="alert alert-warning" style="margin-top:10px;margin-left:0%;display:none;">
+                        Malheureusement vous ne pouvez pas réserver cette date d'examen pour le moment car vous ne pouvez pas dépasser 4 mois entre la date d'inscription à la formation et le passage du premier examen.
+La date d'examen choisie sera disponible à partir du
+                        <span id="available-date"></span>
+                        .
+                        <br />
+                        Vous pouvez toujours réserver la première date.
                     </p>
 
 
@@ -120,7 +128,7 @@
     <template id="digimoov_website_sale_cart_script" inherit_id="website_sale.cart">
         <xpath expr="//div[@id='wrap']" position="before">
             <t t-set="head">
-                <meta name="robots" content="noindex"/>
+                <meta name="robots" content="noindex" />
             </t>
         </xpath>
         <xpath expr="//a[@class='btn btn-primary float-right']" position="replace">

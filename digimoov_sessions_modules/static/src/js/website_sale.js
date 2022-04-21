@@ -42,8 +42,7 @@ odoo.define('digimoov_sessions_modules.website_sale', function (require) {
         if (center && exam_date) {
           if (center == 'all' || exam_date.value == 'all') {
             var pm_button = document.getElementById('pm_shop_check');
-            var pm_button_checkout =
-              document.getElementById('pm_shop_checkout');
+            var pm_button_checkout = document.getElementById('pm_shop_checkout');
           }
         }
         this._rpc({
@@ -77,9 +76,7 @@ odoo.define('digimoov_sessions_modules.website_sale', function (require) {
         }
 
         if ($('#options-date').value) {
-          document
-            .getElementById('date_insert')
-            .removeChild('#date_insert select');
+          document.getElementById('date_insert').removeChild('#date_insert select');
         }
 
         var dateOptions = '';
@@ -87,23 +84,24 @@ odoo.define('digimoov_sessions_modules.website_sale', function (require) {
         $('#exam_date option').each(function () {
           var self = this;
           var select_option = $(this);
-          var isIOS =
-            /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+          var isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
           var ios = false;
           if (isIOS) {
             ios = true;
           } else {
             ios = false;
           }
+          //self title contains date in format dd/mm/yyyy
 
           if (self.value === center) {
+            // console.log(self.data);
             var date = self.text;
             datenb++;
             //show only one date
-            if(datenb < 3) {
-            dateOptions += `<option value=${self.value} id=${self.id}>
-             ${date}
-            </option>`;
+            if (datenb < 3) {
+              // dateOptions += `<option value=${self.value} id=${self.id} data='8/21/2022' >
+
+              dateOptions += `<option value=${self.value} id=${self.id} data=${self.title}>${date}</option>`;
             }
             // document.getElementById("options-date").appendChild(dateOptions);
           }
@@ -126,13 +124,13 @@ odoo.define('digimoov_sessions_modules.website_sale', function (require) {
         });
 
         if (dateOptions) {
-          var habilitation="Sélectionnez votre date d'examen";
+          var habilitation = "Sélectionnez votre date d'examen";
           if (document.getElementById('habilitation')) {
-          habilitation =
-            document.getElementById('habilitation').value == 'true'
-              ? 'Sélectionnez votre mois'
-              : "Sélectionnez votre date d'examen";
-         }
+            habilitation =
+              document.getElementById('habilitation').value == 'true'
+                ? 'Sélectionnez votre mois'
+                : "Sélectionnez votre date d'examen";
+          }
           var select = `<select name="date_examen" id="options-date" class="form-control search-slt" onchange="onChangeCheckButton()" style="text-transform: capitalize;" >
           <option value="all" id="all">
                                     ${habilitation}
@@ -183,8 +181,7 @@ odoo.define('digimoov_sessions_modules.website_sale', function (require) {
         if (center && exam_date) {
           if (center == 'all' || exam_date == 'all') {
             var pm_button = document.getElementById('pm_shop_check');
-            var pm_button_checkout =
-              document.getElementById('pm_shop_checkout');
+            var pm_button_checkout = document.getElementById('pm_shop_checkout');
           }
         }
         onChangeCheckButton();
