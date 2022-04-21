@@ -37,6 +37,7 @@
                                    attrs="{'invisible': [('company_id', '!=', 2)]}">
                                 <field name="active" invisible="1"/>
                                 <field name="session_id"/>
+                                <field name="module_id"/>
                                 <field name="date_exam"/>
                                 <field name="epreuve_a"/>
                                 <field name="epreuve_b"/>
