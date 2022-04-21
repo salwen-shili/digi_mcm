@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <!-- session form view -->
+        <record model="ir.ui.view" id="user_signature_form_view">
+            <field name="name">user.signature.form</field>
+            <field name="model">res.user.signature</field>
+            <field name="arch" type="xml">
+                <form string="Signature d'utilisateur">
+                    <sheet>
+                        <group>
+                            <field name="user_id" domain="[('share','=',False)]"/>
+                            <field name="company_id"/>
+                            <field name="email_from"/>
+                            <field name="signature"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- session tree/list view -->
+        <record model="ir.ui.view" id="user_signature_tree_view">
+            <field name="name">action.session.tree</field>
+            <field name="model">res.user.signature</field>
+            <field name="arch" type="xml">
+                <tree string="Signature d'utilisateur">
+                    <field name="user_id"/>
+                    <field name="email_from"/>
+                    <field name="company_id"/>
+                </tree>
+            </field>
+        </record>
+    </data>
+    <record id="res_user_signature_type_action" model="ir.actions.act_window">
+        <field name="name">User signature</field>
+        <field name="res_model">res.user.signature</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Créer une signature pour un utilisateur
+            </p>
+        </field>
+    </record>
+    <menuitem id="res_user_signature_menu" name="Signatures des utilisateurs"
+              parent="base.menu_users" action="res_user_signature_type_action" sequence="10"
+              groups="base.group_no_one"/>
+</odoo>

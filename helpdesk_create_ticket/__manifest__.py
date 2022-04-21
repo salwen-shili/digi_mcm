@@ -14,10 +14,14 @@
     'author': 'Digimoov',
     'depends': [
         'base',
+        'mail',
         'helpdesk'
     ],
     'data': [
+        'security/ir.model.access.csv',
+        'security/signature_security.xml',
         'views/helpdesk_team.xml',
+        'views/user_signature.xml',
         'data/scheduled_unlink_tickets.xml'
     ],
     'images': [

@@ -1,0 +1,5 @@
+id,name,model_id/id,group_id/id,perm_read,perm_write,perm_create,perm_unlink
+
+res_user_signature user,res user signature user,model_res_user_signature,,1,0,0,0
+res_user_signature_admin,res user signature user,model_res_user_signature,base.group_no_one,1,1,1,1
+
