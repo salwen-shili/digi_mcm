@@ -77,6 +77,7 @@ const sendHttpRequest = (method, url, data) => {
   });
   return promise;
 };
+
 const updateCondition = (condition) => {
   sendHttpRequest('POST', '/shop/payment/update_condition', {
     params: {
