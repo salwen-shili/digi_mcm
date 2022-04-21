@@ -813,7 +813,7 @@ function hideAlertDate() {
 // This function substract 4 months from date session,
 function sessionIsAccessible(prop) {
   hideAlertDate();
-  alert(new Date(prop));
+  // alert(new Date(prop));
   const toDay = new Date();
   const sessionDate = new Date(prop);
   console.log('sessionDate :', sessionDate);
