@@ -28,12 +28,13 @@
                                 <field name="phone" widget="phone" options="{'enable_sms': True}" invisible="1"/>
                                 <label for="mobile"/>
                                 <div class="o_row">
-                                    <field name="mobile" widget="phone" options="{'enable_sms': True}" />
+                                    <field name="mobile" widget="phone" options="{'enable_sms': True}"/>
                                 </div>
                             </h2>
                         </div>
                         <group>
-                            <group name="note_examen" string="Notes QRO/QCM">
+                            <group name="note_examen" string="Notes QRO/QCM"
+                                   attrs="{'invisible': [('company_id', '!=', 2)]}">
                                 <field name="active" invisible="1"/>
                                 <field name="session_id"/>
                                 <field name="date_exam"/>
@@ -46,7 +47,20 @@
                                 <field name="is_Absent" invisible="1"/>
                                 <field name="is_absence_justifiee" invisible="1"/>
                             </group>
-                            <group name="statuts" string="Statut">
+                            <group name="note_exam_mcm" string="Les informations"
+                                   attrs="{'invisible': [('company_id', '=', 2)]}">
+                                <field name="session_id"/>
+                                <field name="module_id"/>
+                                <field name="date_exam"/>
+                                <field name="epreuve_theorique"/>
+                                <field name="epreuve_pratique"/>
+                            </group>
+                            <group name="statut_mcm" string="Statut" attrs="{'invisible': [('company_id', '=', 2)]}">
+                                <field name="presence_mcm"/>
+                                <field name="state_theorique"/>
+                                <field name="state_pratique"/>
+                            </group>
+                            <group name="statuts" string="Statut" attrs="{'invisible': [('company_id', '!=', 2)]}">
                                 <field name="presence"/>
                                 <field name="mention"/>
                                 <field name="resultat"/>
@@ -57,7 +71,7 @@
                                 <field name="company_id"/>
                                 <field name="mode_de_financement"/>
                                 <field name="temps_minute"/>
-                                <field name="sorti_formation"/>
+                                <field name="sorti_formation" attrs="{'invisible': [('company_id', '!=', 2)]}"/>
                             </group>
                         </group>
                     </sheet>
@@ -80,22 +94,36 @@
                     <field name="mode_de_financement" optional="show"/>
                     <field name="session_id"/>
                     <field name="date_exam"/>
+                    <field name="epreuve_theorique" attrs="{'invisible': [('company_id', '=', 2)]}" optional="hide"/>
+                    <field name="epreuve_pratique" attrs="{'invisible': [('company_id', '=', 2)]}" optional="hide"/>
+                    <field name="state_theorique" attrs="{'invisible': [('company_id', '=', 2)]}" optional="hide"/>
+                    <field name="state_pratique" attrs="{'invisible': [('company_id', '=', 2)]}" optional="hide"/>
                     <field name="module_id" optional="hide"/>
-                    <field name="epreuve_a" avg="Moy.QCM"/>
-                    <field name="epreuve_b" avg="Moy.QRO"/>
-                    <field name="moyenne_generale" avg="Moy.G"/>
-                    <field name="mention"/>
+                    <field name="epreuve_a" avg="Moy.QCM" attrs="{'invisible': [('company_id', '=', 1)]}"
+                           optional="hide"/>
+                    <field name="epreuve_b" avg="Moy.QRO" attrs="{'invisible': [('company_id', '=', 1)]}"
+                           optional="hide"/>
+                    <field name="moyenne_generale" avg="Moy.G" attrs="{'invisible': [('company_id', '=', 1)]}"
+                           optional="hide"/>
+                    <field name="mention" attrs="{'invisible': [('company_id', '!=', 2)]}" optional="hide"/>
                     <field name="is_recu" invisible="1"/>
                     <field name="is_ajourne" invisible="1"/>
                     <field name="is_present" invisible="1"/>
                     <field name="is_Absent" invisible="1"/>
                     <field name="is_absence_justifiee" invisible="1"/>
-                    <field name="resultat" options='{"fg_color": "green:is_recu==True; red:is_ajourne==True"}'/>
+                    <field name="resultat" options='{"fg_color": "green:is_recu==True; red:is_ajourne==True"}'
+                           attrs="{'invisible': [('company_id', '!=', 2)]}" optional="hide"/>
                     <field name="presence"
-                           options='{"fg_color": "green:is_present==True; red:is_Absent==True; #ff6600:is_absence_justifiee==True"}'/>
+                           options='{"fg_color": "green:is_present==True; red:is_Absent==True; #ff6600:is_absence_justifiee==True"}'
+                           attrs="{'invisible': [('company_id', '!=', 2)]}" optional="hide"
+                           string="Présence DIGIMOOV"/>
+                    <field name="presence_mcm" attrs="{'invisible': [('company_id', '=', 2)]}" optional="hide"
+                           string="Présence MCM"/>
                     <field name="nombre_de_passage"/>
-                    <field name="sorti_formation" optional="hide"/>
+                    <field name="sorti_formation" optional="hide"
+                           attrs="{'invisible': [('company_id', '!=', 2)]}"/>
                     <field name="temps_minute" optional="hide"/>
+                    <field name="company_id" optional="hide"/>
                 </tree>
             </field>
         </record>
@@ -108,8 +136,13 @@
                     <field name="partner_id"/>
                     <field name="session_id"/>
                     <field name="date_exam"/>
-                    <field name="mention"/>
-                    <field name="resultat"/>
+                    <field name="company_id"/>
+                    <field name="mention" attrs="{'invisible': [('company_id', '=', 2)]}"/>
+                    <field name="resultat" attrs="{'invisible': [('company_id', '=', 2)]}"/>
+                    <field name="epreuve_theorique"/>
+                    <field name="epreuve_pratique"/>
+                    <field name="state_theorique"/>
+                    <field name="state_pratique"/>
                     <separator/>
                     <filter name="active" string="Active" domain="[('active', '=', True)]"/>
                     <separator/>
@@ -123,6 +156,7 @@
         </record>
 
         <menuitem id="info_examen_info" name="Notes des examens"
-                  parent="mcm_session.mcm_academy_session_root_menu" action="action_info_examen" sequence="12" groups="mcm_session.group_session_module_manager"/>
+                  parent="mcm_session.mcm_academy_session_root_menu" action="action_info_examen" sequence="12"
+                  groups="mcm_session.group_session_module_manager"/>
     </data>
 </odoo>

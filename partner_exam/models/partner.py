@@ -9,6 +9,7 @@ class resComapny(models.Model):
 
     note_exam = fields.Char("Note d'examen blanc")
     note_exam_id = fields.One2many('info.examen', 'partner_id')
+    note_exam_mcm_id = fields.One2many('info.examen', 'partner_id')
     note_exam_count = fields.Integer(compute="compute_notes_exams_count")
     this_is_technical_field = fields.Boolean(readonly=True, default=True)
     company_id = fields.Many2one('res.company', default=lambda self: self.env.company)

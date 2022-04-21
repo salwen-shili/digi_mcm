@@ -65,6 +65,28 @@ class NoteExamen(models.Model):
     phone = fields.Char(related="partner_id.phone")
     mobile = fields.Char(compute="_compute_phone_value_to_mobile", store=True)
     module_id = fields.Many2one("mcmacademy.module")
+    # Champ Mcm-academy
+    epreuve_theorique = fields.Selection([
+        ('reussi', 'Réussi(e)'),
+        ('ajourne', 'Ajourné(e)')], string="Epreuve théorique")
+
+    epreuve_pratique = fields.Selection([
+        ('reussi', 'Réussi(e)'),
+        ('ajourne', 'Ajourné(e)')], string="Epreuve pratique")
+
+    state_theorique = fields.Selection([
+        ('reussi', 'Réussi(e)'),
+        ('ajourne', 'Ajourné(e)')], string="Statut théorique")
+
+    state_pratique = fields.Selection([
+        ('reussi', 'Réussi(e)'),
+        ('ajourne', 'Ajourné(e)')], string="Statut pratique")
+
+    presence_mcm = fields.Selection([
+        ('present', 'Présent'),
+        ('Absent', 'Absent'),
+        ('absence_justifiee', 'Absence justifiée')],
+        string="Présence")
 
     @api.depends('partner_id.phone')
     def _compute_phone_value_to_mobile(self):
@@ -76,34 +98,35 @@ class NoteExamen(models.Model):
 
     @api.onchange('resultat', 'partner_id', 'presence')
     def update_boolean_values(self):
-        for rec in self:
-            if rec.resultat == 'recu':
-                rec.is_recu = True
-                rec.is_ajourne = False
-            if rec.resultat == 'ajourne' and rec.presence == 'present':
-                rec.is_ajourne = True
-                rec.is_recu = False
-                rec.is_Absent = True
-                rec.is_absence_justifiee = False
-            if rec.resultat == 'ajourne' and rec.presence == 'absence_justifiee':
-                rec.is_ajourne = True
-                rec.is_recu = False
-                rec.is_Absent = False
-                rec.is_absence_justifiee = True
-            if rec.presence == 'present':
-                rec.is_present = True
-                rec.is_Absent = False
-                rec.is_absence_justifiee = False
-            if rec.presence == 'Absent' and rec.resultat == 'ajourne':
-                rec.is_Absent = True
-                rec.is_ajourne = True
-                rec.is_present = False
-                rec.is_recu = False
-                rec.is_absence_justifiee = False
-            # if rec.presence == 'absence_justifiee':
-            #     rec.is_absence_justifiee = True
-            #     rec.is_recu = False
-            #     rec.is_Absent = False
+        if self.company_id == 2:
+            for rec in self:
+                if rec.resultat == 'recu':
+                    rec.is_recu = True
+                    rec.is_ajourne = False
+                if rec.resultat == 'ajourne' and rec.presence == 'present':
+                    rec.is_ajourne = True
+                    rec.is_recu = False
+                    rec.is_Absent = True
+                    rec.is_absence_justifiee = False
+                if rec.resultat == 'ajourne' and rec.presence == 'absence_justifiee':
+                    rec.is_ajourne = True
+                    rec.is_recu = False
+                    rec.is_Absent = False
+                    rec.is_absence_justifiee = True
+                if rec.presence == 'present':
+                    rec.is_present = True
+                    rec.is_Absent = False
+                    rec.is_absence_justifiee = False
+                if rec.presence == 'Absent' and rec.resultat == 'ajourne':
+                    rec.is_Absent = True
+                    rec.is_ajourne = True
+                    rec.is_present = False
+                    rec.is_recu = False
+                    rec.is_absence_justifiee = False
+                # if rec.presence == 'absence_justifiee':
+                #     rec.is_absence_justifiee = True
+                #     rec.is_recu = False
+                #     rec.is_Absent = False
 
     def _calcul_ancien_client(self):
         """ Suit aux changements pour les notes des examens;
@@ -174,7 +197,7 @@ class NoteExamen(models.Model):
                     self.partner_id.update({'presence': "Absence justifiée"})
                     self.partner_id.resultat = "Ajourné(e)"
 
-    @api.onchange("résultat")
+    @api.onchange("résultat", "epreuve_theorique", "epreuve_pratique")
     def etat_de_client_apres_examen(self):
         """Fonction pour mettre le champs etat
         automatique depend de champ resultat,
@@ -184,6 +207,19 @@ class NoteExamen(models.Model):
                 rec.etat = "avec succès"
             if not rec.resultat == "recu":
                 rec.etat = "sans succès"
+        # Ajouter une condition si company == MCM-ACADEMY et selon state téthorique == reussi
+        # donc state pratique sera automatiquement Réussi(e)
+        if self.company_id.id == 1:
+            if self.epreuve_theorique:
+                if self.epreuve_theorique == 'reussi':
+                    self.state_theorique = 'reussi'  # Affectation automatique
+                else:  # si epreuve_theorique == Ajournée
+                    self.state_theorique = 'ajourne'
+            if self.epreuve_pratique:
+                if self.epreuve_pratique == 'reussi':
+                    self.state_pratique = 'reussi'
+                else:  # si epreuve pratique == Ajournée
+                    self.state_pratique = 'ajourne'
 
     def _clear_duplicates_exams(self):
         """ Cron Delete exams duplications based on id and date_exam """
@@ -198,6 +234,7 @@ class NoteExamen(models.Model):
         self.browse(duplicates_exams).unlink()
 
     """ Mettre à jour le champ mode de financement selon la fiche client """
+
     def mise_ajour_mode_financement(self):
         for client in self:
             partner = self.env['res.partner'].sudo().search([('id', '=', client.partner_id.id),
@@ -208,6 +245,7 @@ class NoteExamen(models.Model):
                 client.mode_de_financement = dict(partner._fields['mode_de_financement'].selection).get(
                     partner.mode_de_financement)
                 print("client.mode_de_financement", client.mode_de_financement)
+
     def mise_ajour_mode_financement_ir_cron(self):
         for client in self.env['info.examen'].sudo().search([]):
             partner = self.env['res.partner'].sudo().search([('id', '=', client.partner_id.id),
@@ -218,6 +256,7 @@ class NoteExamen(models.Model):
                 client.mode_de_financement = dict(partner._fields['mode_de_financement'].selection).get(
                     partner.mode_de_financement)
                 print("client.mode_de_financement", client.mode_de_financement)
+
     """utiliser api wedof pour changer etat de dossier sur edof selon la presence le jour d'examen"""
 
     def change_etat_wedof(self):
@@ -239,10 +278,10 @@ class NoteExamen(models.Model):
         data1 = '{}'
         data = '{\n "absenceDuration": 0,\n "forceMajeureAbsence": false,\n "trainingDuration": 0\n}'
         response = requests.get('https://www.wedof.fr/api/registrationFolders', headers=headers,
-                             params=params_wedof)
+                                params=params_wedof)
         registrations = response.json()
         for dossier in registrations:
-            _logger.info('lengh api get %s' % str( len(registrations)))
+            _logger.info('lengh api get %s' % str(len(registrations)))
 
             externalId = dossier['externalId']
             print('externalId', externalId)
