@@ -53,7 +53,8 @@ class HelpdeskTicket(models.Model):
         return super(HelpdeskTicket, self).write(vals)
 
     def unlink_ticket_rejected_mails(self):
-        tickets = self.env["helpdesk.ticket"].sudo().search([], order="id DESC", limit=100) # récupérer les 100 derniers tickets créers 
+        tickets = self.env["helpdesk.ticket"].sudo().search([], order="id DESC",
+                                                            limit=500)  # récupérer les 500 derniers tickets créers
         # list des terms ou emails rejetés ( supprimer les tickets envoyés par ces emails )
         rejected_mails = [
             'no-reply@360learning.com','zoom.us','product-feedback@calendly.com','no-reply','customermarketing@aircall.io','newsletter@axeptio.eu','order-update@amazon.fr',
@@ -64,9 +65,9 @@ class HelpdeskTicket(models.Model):
         ]
         # list des terms  rejetés ( supprimer les tickets qui ont l'un de ces terms comme objet )
         rejected_subject = [
-            'nouveau ticket','assigné à vous','assigned to you'
-        ]
-        list_ids_deleted_tickets=[] # préparer une liste vide qui sera par les id des tickets à supprimer
+            'nouveau ticket', 'assigné à vous', 'assigned to you', 'SPAM'
+        ]  # add the term spam from rejected subjects in ticket
+        list_ids_deleted_tickets = []  # préparer une liste vide qui sera par les id des tickets à supprimer
         for ticket in tickets: #parcourir les 100 derniers tickets
             if ticket.partner_email:
                 if any(email in ticket.partner_email for email in rejected_mails): #vérifier si l'email de client contient l'un des emails/terms rejetés mis à la liste rejected_mails
