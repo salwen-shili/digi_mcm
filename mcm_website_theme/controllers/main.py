@@ -641,9 +641,12 @@ class Routes_Site(http.Controller):
         vals['partner_id'] = partner.id
         # Récupérer la commande liée au client
         order = request.website.sale_get_order()
-        # Récupérer le produit
-        product = order.order_line[0].product_id
-        vals['product_id'] = product.id
+        if order.order_line:
+            # Récupérer le produit
+            product = order.order_line[0].product_id.id
+        else:
+            product = False
+        vals['product_id'] = product
         vals['company_id'] = partner.company_id.id
         # get the value of redirection sent from a form of questionnaire
         redirection = kw.get("redirection")
