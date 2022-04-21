@@ -58,21 +58,22 @@
                                                 <br></br>
                                                 A été
                                                 <strong>
-                                                    <span t-field="o.note_exam_id[-1].mention" style="text-transform: lowercase;"/>(e)
+                                                    <span t-field="o.note_exam_id[-1].mention"
+                                                          style="text-transform: lowercase;"/>(e)
                                                 </strong>
                                                 aux épreuves d’examen pour l’obtention de
                                                 l’attestation de capacité de transport léger de marchandises
                                                 organisé au centre d’examen situé au
                                                 <strong>
-                                                    <t t-if="o.mcm_session_id.session_adresse_examen.adresse_centre_examen">
-                                                        <span t-field='o.mcm_session_id[0].session_adresse_examen.adresse_centre_examen'/>
+                                                    <t t-if="o.note_exam_id[0].session_id.session_adresse_examen.adresse_centre_examen">
+                                                        <span t-field='o.note_exam_id[-1].session_id.session_adresse_examen.adresse_centre_examen'/>
                                                     </t>
                                                 </strong>
                                                 <br></br>
                                                 le
                                                 <strong>
-                                                    <t t-if="o.mcm_session_id.date_exam">
-                                                        <span t-field='o.mcm_session_id[0].date_exam'
+                                                    <t t-if="o.note_exam_id[-1].session_id.date_exam">
+                                                        <span t-field='o.note_exam_id[-1].session_id.date_exam'
                                                               t-field-options='{"format": "dd/MM/yyyy"}'/>
                                                     </t>
                                                 </strong>
@@ -196,7 +197,8 @@
                                                         public routier, sont déclarés reçus
                                                         les candidats qui ont obtenu, pour l'ensemble des épreuves, une
                                                         note au
-                                                        moins égale à 120 sur 200, sous réserve qu'ils aient obtenu au moins 50 points
+                                                        moins égale à 120 sur 200, sous réserve qu'ils aient obtenu au
+                                                        moins 50 points
                                                         pour
                                                         le questionnaire à choix
                                                         multiples et 40 points pour l'épreuve à réponses
