@@ -33,6 +33,7 @@
                             <field name="partner_id"/>
                             <field name="mode_de_financement"/>
                             <field name="session_id"/>
+                            <field name="module_id"/>
                             <field name="date_exam"/>
                             <field name="epreuve_a"/>
                             <field name="epreuve_b"/>
