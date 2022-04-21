@@ -1,25 +1,23 @@
 document.addEventListener('DOMContentLoaded', function () {
   displayInstalmentPayment();
   onchangeTextButton1();
-  document
-    .getElementById('checkbox_conditions')
-    .addEventListener('change', function () {
-      var condition = document.getElementById('checkbox_conditions').checked;
-      var error = document.getElementById('error_conditions');
-      var continueBtn = document.getElementById('continueBtn');
-      if (condition) {
-        continueBtn.removeAttribute('disabled');
-        continueBtn.classList.remove('disabled');
-        error.style.display = 'none';
+  document.getElementById('checkbox_conditions').addEventListener('change', function () {
+    var condition = document.getElementById('checkbox_conditions').checked;
+    var error = document.getElementById('error_conditions');
+    var continueBtn = document.getElementById('continueBtn');
+    if (condition) {
+      continueBtn.removeAttribute('disabled');
+      continueBtn.classList.remove('disabled');
+      error.style.display = 'none';
 
-        updateCondition(condition);
-      } else {
-        continueBtn.setAttribute('disabled', 'disabled');
-        continueBtn.classList.add('disabled');
-        error.style.display = 'inline-block';
-        updateCondition(condition);
-      }
-    });
+      updateCondition(condition);
+    } else {
+      continueBtn.setAttribute('disabled', 'disabled');
+      continueBtn.classList.add('disabled');
+      error.style.display = 'inline-block';
+      updateCondition(condition);
+    }
+  });
   //end
 
   document
@@ -27,11 +25,9 @@ document.addEventListener('DOMContentLoaded', function () {
     .setAttribute('src', 'https://www.youtube.com/embed/PN7gVHdT7x4');
 
   //event on click on checkbox paiement installment
-  document
-    .getElementById('checkbox_instalment')
-    .addEventListener('click', function () {
-      displayInstalmentPayment();
-    });
+  document.getElementById('checkbox_instalment').addEventListener('click', function () {
+    displayInstalmentPayment();
+  });
 });
 
 //animation
@@ -178,6 +174,7 @@ const addUserPlateform = () => {
   //     console.log('error addUser', err);
   //   });
 };
+//cpf accepted
 const cpfAccepted = () => {
   sendHttpRequest('POST', '/shop/cpf_accepted', {})
     .then((res) => {
@@ -191,20 +188,17 @@ const cpfAccepted = () => {
 };
 
 function onChangeCheckButton() {
+  hideAlertDate();
   if (document.getElementById('options-date')) {
     //No session available
     if (
       document.getElementById('options-date').value === 'all' ||
       document.getElementById('centre_examen').value === 'all'
     ) {
-      console.log(document.getElementById('options-date'));
-      document
-        .getElementById('pm_shop_checkout')
-        .setAttribute('disabled', 'true');
+      // console.log(document.getElementById('options-date'));
+      document.getElementById('pm_shop_checkout').setAttribute('disabled', 'true');
       document.getElementById('pm_shop_checkout').classList.add('disabled');
-      document
-        .getElementById('pm_shop_checkout2')
-        .setAttribute('disabled', 'true');
+      document.getElementById('pm_shop_checkout2').setAttribute('disabled', 'true');
       document.getElementById('pm_shop_checkout2').classList.add('disabled');
     }
     //we have available sessions
@@ -218,22 +212,25 @@ function onChangeCheckButton() {
       document.getElementById('pm_shop_checkout2').classList.remove('disabled');
       document.getElementById('error_choix_date').style.display = 'none';
       //available session ===> check if we have surpassed 4 months
+      // const sel = document.getElementById('options-date');
+      // const isAccessible = sessionIsAccessible(sel.options[sel.selectedIndex].text);
+      // if (isAccessible) {
+      //   disablePaymentButton();
+      // }
+
+      // get selected option and show/hide alert for session >4 months
       const sel = document.getElementById('options-date');
-      const isAccessible = sessionIsAccessible(
-        sel.options[sel.selectedIndex].text
-      );
+
+      sessionIsAccessible(sel.options[sel.selectedIndex].getAttribute('data'));
     }
   } else {
-    document
-      .getElementById('pm_shop_checkout')
-      .setAttribute('disabled', 'true');
+    document.getElementById('pm_shop_checkout').setAttribute('disabled', 'true');
     document.getElementById('pm_shop_checkout').classList.add('disabled');
-    document
-      .getElementById('pm_shop_checkout2')
-      .setAttribute('disabled', 'true');
+    document.getElementById('pm_shop_checkout2').setAttribute('disabled', 'true');
     document.getElementById('pm_shop_checkout2').classList.add('disabled');
   }
 }
+
 //show popup if date is selected
 function showPopup() {
   if (!document.getElementById('options-date')) {
@@ -267,42 +264,10 @@ function showPopup() {
     window.location.href = '#popup1';
   } else {
     if (document.getElementById('error_choix_date')) {
-      document.getElementById('error_choix_date').style.display =
-        'inline-block';
+      document.getElementById('error_choix_date').style.display = 'inline-block';
     }
   }
 }
-
-// function msTracking(event, event_category, event_label, event_value) {
-//   (function (w, d, t, r, u) {
-//     var f, n, i;
-//     (w[u] = w[u] || []),
-//       (f = function () {
-//         var o = {
-//           ti: '134610618',
-//         };
-//         (o.q = w[u]), (w[u] = new UET(o)), w[u].push('pageLoad');
-//       }),
-//       (n = d.createElement(t)),
-//       (n.src = r),
-//       (n.async = 1),
-//       (n.onload = n.onreadystatechange =
-//         function () {
-//           var s = this.readyState;
-//           (s && s !== 'loaded' && s !== 'complete') ||
-//             (f(), (n.onload = n.onreadystatechange = null));
-//         }),
-//       (i = d.getElementsByTagName(t)[0]),
-//       i.parentNode.insertBefore(n, i);
-//   })(window, document, 'script', '//bat.bing.com/bat.js', 'uetq');
-
-//   window.uetq = window.uetq || [];
-//   window.uetq.push('event', event, {
-//     event_category: event_category,
-//     event_label: event_label,
-//     event_value: event_value,
-//   });
-// }
 
 function verify_payment_method() {
   //user can navigate #popup1 to the url directly so we need to secure
@@ -318,8 +283,7 @@ function verify_payment_method() {
         'inline-block');
     } else {
       if (document.getElementById('error_choix_date_popup')) {
-        document.getElementById('error_choix_date_popup').style.display =
-          'none';
+        document.getElementById('error_choix_date_popup').style.display = 'none';
       }
     }
   }
@@ -527,9 +491,7 @@ function showPoleEmploiDetails() {
   if (document.getElementById('pole-emploi-details')) {
     document.getElementById('pole-emploi-details').classList.remove('hide');
     if (document.getElementById('arrow-down-pole-emploi')) {
-      document
-        .getElementById('arrow-down-pole-emploi')
-        .classList.remove('hide');
+      document.getElementById('arrow-down-pole-emploi').classList.remove('hide');
     }
   }
 }
@@ -583,35 +545,27 @@ function onchangeTextButton() {
   var stripe_pm = document.getElementById('stripe_pm');
   if (stripe_pm) {
     if (stripe_pm.checked == true) {
-      document.getElementById('pm_shop_check').href =
-        '/shop/checkout?express=1';
+      document.getElementById('pm_shop_check').href = '/shop/checkout?express=1';
 
-      document.getElementById('pm_shop_checkout').href =
-        '/shop/checkout?express=1';
+      document.getElementById('pm_shop_checkout').href = '/shop/checkout?express=1';
     }
   }
   cpf_pm = document.getElementById('cpf_pm');
   if (cpf_pm) {
     if (cpf_pm.checked == true || pole_emploi_checkbox.checked == true) {
       if (document.getElementById('pm_shop_checkout2')) {
-        document.getElementById('pm_shop_checkout2').innerText =
-          'Mobiliser mon CPF';
+        document.getElementById('pm_shop_checkout2').innerText = 'Mobiliser mon CPF';
       }
       if (document.getElementById('pm_shop_checkout')) {
-        document.getElementById('pm_shop_checkout').innerText =
-          'Mobiliser mon CPF';
+        document.getElementById('pm_shop_checkout').innerText = 'Mobiliser mon CPF';
       }
       if (cpf_pm.value == 'Formation pro') {
-        document.getElementById('pm_shop_check').href =
-          'https://bit.ly/3uLde9W';
-        document.getElementById('pm_shop_checkout').href =
-          'https://bit.ly/3uLde9W';
+        document.getElementById('pm_shop_check').href = 'https://bit.ly/3uLde9W';
+        document.getElementById('pm_shop_checkout').href = 'https://bit.ly/3uLde9W';
       }
       if (cpf_pm.value == 'Formation premium') {
-        document.getElementById('pm_shop_check').href =
-          'https://bit.ly/3LJQLQP';
-        document.getElementById('pm_shop_checkout').href =
-          'https://bit.ly/3LJQLQP';
+        document.getElementById('pm_shop_check').href = 'https://bit.ly/3LJQLQP';
+        document.getElementById('pm_shop_checkout').href = 'https://bit.ly/3LJQLQP';
       }
       // if (document.getElementById('promo_code')) {
       //   document.getElementById('promo_code').style.display = 'none';
@@ -646,16 +600,14 @@ function onchangeTextButton() {
     document.getElementById('arrow-down').classList.remove('hide');
 
     document.getElementById('pm_shop_text').innerHTML = 'Mobiliser mon CPF';
-    document.getElementById('pm_shop_check_text').innerHTML =
-      'Mobiliser mon CPF';
-    document.getElementById('pm_shop_checkout_text').innerHTML =
-      'Mobiliser mon CPF';
+    document.getElementById('pm_shop_check_text').innerHTML = 'Mobiliser mon CPF';
+    document.getElementById('pm_shop_checkout_text').innerHTML = 'Mobiliser mon CPF';
   }
 }
 
 function onchangeTextButton1() {
   //hide cpf details when pole_emploi is checked
-
+  hideAlertDate();
   if (document.getElementById('pole_emploi_checkbox')) {
     //hide poleEmploi details
 
@@ -665,12 +617,10 @@ function onchangeTextButton1() {
   }
 
   if (document.getElementById('pm_shop_checkout')) {
-    document.getElementById('pm_shop_checkout').innerText =
-      'Passer au paiement';
+    document.getElementById('pm_shop_checkout').innerText = 'Passer au paiement';
   }
   if (document.getElementById('pm_shop_checkout2')) {
-    document.getElementById('pm_shop_checkout2').innerText =
-      'Passer au paiement';
+    document.getElementById('pm_shop_checkout2').innerText = 'Passer au paiement';
   }
   if (document.getElementById('cpf-details')) {
     document.getElementById('cpf-details').classList.add('hide');
@@ -704,11 +654,9 @@ function onchangeTextButton1() {
   var stripe_pm = document.getElementById('stripe_pm');
   if (stripe_pm) {
     if (stripe_pm.checked == true) {
-      document.getElementById('pm_shop_check').href =
-        '/shop/checkout?express=1';
+      document.getElementById('pm_shop_check').href = '/shop/checkout?express=1';
 
-      document.getElementById('pm_shop_checkout').href =
-        '/shop/checkout?express=1';
+      document.getElementById('pm_shop_checkout').href = '/shop/checkout?express=1';
     }
   }
 
@@ -717,12 +665,10 @@ function onchangeTextButton1() {
       document.getElementById('cpf-details').classList.add('hide');
       document.getElementById('arrow-down').classList.add('hide');
       if (document.getElementById('pm_shop_checkout')) {
-        document.getElementById('pm_shop_checkout').innerHTML =
-          'Passer au paiement';
+        document.getElementById('pm_shop_checkout').innerHTML = 'Passer au paiement';
       }
       if (document.getElementById('pm_shop_checkout2')) {
-        document.getElementById('pm_shop_checkout2').innerText =
-          'Passer au paiement';
+        document.getElementById('pm_shop_checkout2').innerText = 'Passer au paiement';
       }
     }
 
@@ -759,23 +705,23 @@ function show_coupon() {
 
 function showInstalment() {
   if (document.getElementById('order_instalment_number')) {
-    document.getElementById('order_instalment_number').style.visibility =
-      'unset';
+    document.getElementById('order_instalment_number').style.visibility = 'unset';
   }
   if (document.getElementById('order_amount_to_pay')) {
     document.getElementById('order_amount_to_pay').style.visibility = 'unset';
     document.getElementById('order_amount_to_pay').style.display = 'revert';
   }
 }
+
 function hideInstalment() {
   if (document.getElementById('order_instalment_number')) {
-    document.getElementById('order_instalment_number').style.visibility =
-      'hidden';
+    document.getElementById('order_instalment_number').style.visibility = 'hidden';
   }
   if (document.getElementById('order_amount_to_pay')) {
     document.getElementById('order_amount_to_pay').style.visibility = 'hidden';
   }
 }
+
 function displayInstalmentPayment() {
   if (document.getElementById('order_instalment')) {
     var orderInstalment = document.getElementById('order_instalment');
@@ -798,6 +744,7 @@ function displayInstalmentPayment() {
     }
   }
 }
+
 function displayPromo() {
   if (document.getElementById('stripe_pm')) {
     if (document.getElementById('stripe_pm').checked) {
@@ -826,6 +773,7 @@ function showPromo() {
     document.getElementById('promo_input').style.display = 'inline';
   }
 }
+
 function hidePromo() {
   if (document.getElementById('promo_code')) {
     document.getElementById('promo_code').style.display = 'none';
@@ -836,4 +784,105 @@ function hidePromo() {
   if (document.getElementById('promo_input')) {
     document.getElementById('promo_input').style.display = 'none';
   }
+}
+
+//Disable both payment buttons
+function disablePaymentButton() {
+  document.getElementById('pm_shop_checkout').setAttribute('disabled', 'true');
+  document.getElementById('pm_shop_checkout').classList.add('disabled');
+  document.getElementById('pm_shop_checkout2').setAttribute('disabled', 'true');
+  document.getElementById('pm_shop_checkout2').classList.add('disabled');
+}
+//Enable both payment buttons
+function enablePaymentButton() {
+  document.getElementById('pm_shop_checkout').setAttribute('disabled', 'false');
+  document.getElementById('pm_shop_checkout').classList.remove('disabled');
+  document.getElementById('pm_shop_checkout2').setAttribute('disabled', 'false');
+  document.getElementById('pm_shop_checkout2').classList.remove('disabled');
+}
+
+// show a warning message for session > 4 months
+function showAlertDate() {
+  document.getElementById('error_choix_date_4').style.display = 'inline-block';
+}
+// hide the warning message for session > 4 months
+function hideAlertDate() {
+  document.getElementById('error_choix_date_4').style.display = 'none';
+}
+
+// This function substract 4 months from date session,
+function sessionIsAccessible(prop) {
+  hideAlertDate();
+  alert(new Date(prop));
+  const toDay = new Date();
+  const sessionDate = new Date(prop);
+  console.log('sessionDate :', sessionDate);
+  const months = monthDiff(toDay, sessionDate);
+
+  //init
+  let isAccessible = false;
+  //if months == 4 check toDay's day is superior to session's day
+  if (months == 4) {
+    console.log(
+      sessionDate.getDate(),
+      toDay.getDate(),
+      sessionDate.getDate() - toDay.getDate() <= 0
+    );
+    sessionDate.getDate() - toDay.getDate() <= 0
+      ? (isAccessible = true)
+      : (isAccessible = false);
+  } else if (months < 4) {
+    isAccessible = true;
+  }
+
+  console.log(isAccessible);
+  if (!isAccessible) {
+    showAlertDate();
+    disablePaymentButton();
+    setAvailableDate(sessionDate);
+  } else {
+    hideAlertDate();
+    return;
+  }
+}
+// Substract 2 dates and get months
+function monthDiff(d1, d2) {
+  var months;
+  months = (d2.getFullYear() - d1.getFullYear()) * 12;
+  months -= d1.getMonth();
+  months += d2.getMonth();
+
+  return months;
+}
+
+function formatDateEN(date) {
+  return date.toLocaleString('en-US', {
+    year: 'numeric',
+    month: 'numeric',
+    day: 'numeric',
+  });
+}
+
+function formatDateFR(date) {
+  return date.toLocaleString('fr-FR', {
+    year: 'numeric',
+    month: 'numeric',
+    day: 'numeric',
+  });
+}
+
+function availableDate(sessionDate) {
+  const month = sessionDate.getMonth();
+  sessionDate.setMonth(sessionDate.getMonth() - 4);
+  while (sessionDate.getMonth() === month) {
+    sessionDate.setDate(sessionDate.getDate() - 1);
+  }
+
+  return formatDateFR(sessionDate);
+}
+
+function setAvailableDate(sessionDate) {
+  if (document.getElementById('available-date')) {
+    document.getElementById('available-date').innerHTML = availableDate(sessionDate);
+  } else return;
 }
