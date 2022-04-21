@@ -115,7 +115,7 @@
                            attrs="{'invisible': [('company_id', '!=', 2)]}" optional="hide"/>
                     <field name="presence"
                            options='{"fg_color": "green:is_present==True; red:is_Absent==True; #ff6600:is_absence_justifiee==True"}'
-                           attrs="{'column_invisible': [('parent.company_id.id', '!=', 2)]}" optional="hide"
+                           attrs="{'invisible': [('company_id', '!=', 2)]}" optional="hide"
                            string="Présence DIGIMOOV"/>
                     <field name="presence_mcm" attrs="{'invisible': [('company_id', '=', 2)]}" optional="hide"
                            string="Présence MCM"/>
