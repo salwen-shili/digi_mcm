@@ -98,12 +98,10 @@ odoo.define('digimoov_sessions_modules.website_sale', function (require) {
             var date = self.text;
             datenb++;
             //show only one date
-            if (datenb < 5) {
-              // dateOptions += `<option value=${self.value} id=${self.id} data=${self.title} >
-              dateOptions += `<option value=${self.value} id=${self.id} data='8/21/2022' >
-             
-             ${date}
-            </option>`;
+            if (datenb < 3) {
+              // dateOptions += `<option value=${self.value} id=${self.id} data='8/21/2022' >
+
+              dateOptions += `<option value=${self.value} id=${self.id} data=${self.title}>${date}</option>`;
             }
             // document.getElementById("options-date").appendChild(dateOptions);
           }
