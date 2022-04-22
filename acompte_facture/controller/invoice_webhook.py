@@ -19,7 +19,7 @@ _logger = logging.getLogger(__name__)
 
 class WebhookInvoiceController(http.Controller):
     """Créer une facture apres l'evennement "à facturer" sur edof"""
-    @http.route(['/facturer_cpf'], type='json', auth="public", methods=['POST'])
+    @http.route(['/facturer_cpf'], type='http', auth="public", methods=['POST'])
     def facturer_cpf(self, **kw):
         companies = self.env['res.company'].sudo().search([])
         if companies:
@@ -109,12 +109,12 @@ class WebhookInvoiceController(http.Controller):
                              ('partner_id', "=", user.id)], limit=1)
                         print('invoice', invoice.name)
                         if invoice :
+                            invoice.module_id = user.module_id
                             num=invoice.name
                             bill_num=num.replace('FA', '')
                             bill_num = bill_num.replace('-', '')
                         if not invoice:
                             _logger.info('invoice digi %s' % str(invoice.name))
-    
                             print('if  not invoice digi ')
                             so = request.env['sale.order'].sudo().create({
                                 'partner_id': user.id,
@@ -290,18 +290,20 @@ class WebhookInvoiceController(http.Controller):
                             so.action_cancel()
                             so.unlink()
             """Facturer le dossier cpf par l'api en utilisant la référence de la facture odoo """
-            data='{"billNumber":"' + bill_num + '"}'
-            facturer_dossier=requests.post('https://www.wedof.fr/api/registrationFolders/'+ externalId +'/billing',headers=headers,data=data)
-            content = json.loads(facturer_dossier.content)
-            _logger.info("post facture %s" %str(content))
-            if str(facturer_dossier.status_code) == "200":
-                _logger.info("post success facture %s" % str(facturer_dossier.status_code))
+            if bill_num.isdigit():
+                _logger.info("bill num %s" % bill_num)
+                data='{"billNumber":"' + bill_num + '"}'
+                facturer_dossier=requests.post('https://www.wedof.fr/api/registrationFolders/'+ externalId +'/billing',headers=headers,data=data)
+                content = json.loads(facturer_dossier.content)
+                _logger.info("post facture %s" %str(content))
+                if str(facturer_dossier.status_code) == "200":
+                    _logger.info("post success facture %s" % str(facturer_dossier.status_code))
 
                 
         return True
 
     """Ajouter date d'acompte reçu sur la fiche client apres l'evennement "a reçu un acompte" sur edof"""
-    @http.route(['/acompte_cpf'], type='json', auth="public", methods=['POST'])
+    @http.route(['/acompte_cpf'], type='http', auth="public", methods=['POST'])
     def acompte_cpf(self, **kw):
         _logger.info("webhooooooook rest amount")
         dossier = json.loads(request.httprequest.data)
@@ -353,7 +355,7 @@ class WebhookInvoiceController(http.Controller):
 
 
     """Payer le montant restant  sur la facture apres l'evenement 'payé' sur edof"""
-    @http.route(['/rest_amount_cpf'], type='json', auth="public", methods=['POST'])
+    @http.route(['/rest_amount_cpf'], type='http', auth="public", methods=['POST'])
     def rest_amount_invoice(self):
         _logger.info("webhooooooook rest amount")
         dossier = json.loads(request.httprequest.data)
