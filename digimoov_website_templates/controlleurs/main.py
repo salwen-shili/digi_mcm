@@ -49,6 +49,13 @@ class Website(Website):
         else:
             raise werkzeug.exceptions.NotFound()
 
+    @http.route('/test-form', type='http', auth='public', website=True)
+    def attestation_transport_leger_marchandises(self, **kw, ):
+        if request.website.id == 2:
+            return request.render("digimoov_website_templates.digimoov_template_test_form")
+        else:
+            raise werkzeug.exceptions.NotFound()
+
     # Page de destination Paris
 
     @http.route('/devenir-coursier-paris', type='http', auth='public', website=True)
@@ -337,7 +344,6 @@ class DIGIEXAMEN(http.Controller):
                 [('partner_id', "=", partner.id), ('nombre_de_passage', "=", 'premier')], order='date_exam desc', limit=1)
             # Récupérer date d'examen à partir de la première session
             date_exam = session_filtered.session_id.date_exam
-            print("date examen de la derniere ligne", date_exam)
             # PUBLIC USER = VISITOR OR USER ODOO NOT CONNECTED, return true or false
             is_public_user = request.website.is_public_user()
             echec_examen = request.env['product.product'].sudo().search(
@@ -347,7 +353,8 @@ class DIGIEXAMEN(http.Controller):
                     now = date.today()  # Date d'aujourd'hui
                     date_dateutil = date_exam + dateutil.relativedelta.relativedelta(
                         months=6)  # Calcule la durée de temps à partir de la première date d'examen de l'apprenant en ajoutant 6 mois
-                    exam_count = partner.note_exam_count
+                    exam_count = request.env['info.examen'].sudo().search_count(
+                        [('partner_id', "=", partner.id), ('date_exam', ">=", date_exam)])
                     if exam_count < 3:  # Si nombre de passage < 3
                         logging.info(
                             'Si nombre de passage < 3 °°°°°°°°°°°°°°°°°°°°')
@@ -940,6 +947,10 @@ class Habilitation_electrique(http.Controller):
             return request.render("digimoov_website_templates.habilitation-electrique-paris", values)
         else:
             raise werkzeug.exceptions.NotFound()
+
+    @http.route(['/page-vide'], type='http', auth='public', website=True)
+    def page_vide(self, **kw, ):
+        return request.render("digimoov_website_templates.page_vide", {})
 
 
 class Uber_eats(http.Controller):
