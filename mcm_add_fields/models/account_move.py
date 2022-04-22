@@ -44,7 +44,7 @@ class AccountMove(models.Model):
     pricelist_id = fields.Many2one('product.pricelist', 'Liste de prix')
     methodes_payment = fields.Selection(selection=[('cpf', 'CPF'), ('cartebleu', 'Carte bleue')],
                                         String='Méthode de payment')
-    cpf_acompte_amount = fields.Monetary('Montant acompte')
+    cpf_acompte_amount = fields.Monetary("Montant d'acompte")
     pourcentage_acompte = fields.Integer(string="Pourcentage d'acompte", compute='_compute_change_amount', store=True,
                                          readonly=False)
 
@@ -158,7 +158,7 @@ class AccountMove(models.Model):
                     ('order', 'desc'),
                     ('type', 'all'),
                     ('state', 'all'),
-                    ('billingState', 'toBill'),
+                    ('billingState', 'billed,toBill'),
                     ('certificationState', 'all'),
                     ('sort', 'lastUpdate'),
                     ('limit', '100')
@@ -174,7 +174,8 @@ class AccountMove(models.Model):
                 for dossier in registrations:
                     externalId = dossier['externalId']
                     amountCGU = dossier['amountCGU']
-                    print("CGU", amountCGU)
+                    amount_ht=dossier['amountHt']
+                    print("CGU", amountCGU,dossier)
                     bill_num=""
                     email = dossier['attendee']['email']
                     email = email.replace("%", ".")  # remplacer % par .
@@ -227,12 +228,12 @@ class AccountMove(models.Model):
                                 [('id_edof', "=", str(training_id)), ('company_id', "=", 1)], limit=1)
 
                         if user and product_id and product_id.company_id.id == 2 and user.id_edof and user.date_examen_edof and user.session_ville_id:
-
+                            _logger.info("userrrr******** %s" %user.numero_cpf)
                             module_id = self.env['mcmacademy.module'].sudo().search(
                                 [('company_id', "=", 2), ('session_ville_id', "=", user.session_ville_id.id),
                                  ('date_exam', "=", user.date_examen_edof), ('product_id', "=", product_id.id),
                                  ('session_id.number_places_available', '>', 0)], limit=1)
-                            print('before if modulee', module_id)
+                            print('before if modulee', module_id.name)
                             if module_id:
                                 print('if modulee', module_id)
                                 product_id = self.env['product.product'].sudo().search(
@@ -243,20 +244,57 @@ class AccountMove(models.Model):
                                     [('numero_cpf', "=", externalId),
                                      ('state', "=", 'posted'),
                                      ('partner_id', "=", user.id)], limit=1)
-                                print('invoice', invoice.name)
-                                if invoice:
+                                print('invoice', invoice.name,invoice.invoice_payments_widget)
+                                if invoice :
+                                    # invoice.button_draft()
+                                    # for line in invoice.invoice_line_ids:
+                                    #     print('line invoiice ', line.price_unit,invoice.name)
+                                    #     line.price_unit = amountCGU
+                                    # invoice.post()
+                                    #
+                                    # invoice.amount_paye = (product_id.lst_price * invoice.pourcentage_acompte) / 100
+
+                                    # invoice.cpf_acompte_amount = (product_id.lst_price * invoice.pourcentage_acompte) / 100
+                                    # print("invvvvv",invoice.cpf_acompte_amount)
+                                    # payment = self.env['account.payment'].sudo().search([('invoice_ids',"in",invoice.id),
+                                    #                                                      ('amount',"=",acompte_amount)])
+                                    # print("helloooo",payment)
+                                    # if not payment:
+                                    #     invoice.cpf_acompte_amount = acompte_amount
+                                    #     """Effectuer  un payement de 25% de montant total de la formation pour digimoov"""
+                                    #     journal_id = invoice.journal_id.id
+                                    #
+                                    #     payment_method = self.env['account.payment.method'].sudo().search(
+                                    #         [('code', 'ilike', 'electronic')])
+                                    #     payment = self.env['account.payment'].sudo().create(
+                                    #         {'payment_type': 'inbound',
+                                    #          'payment_method_id': payment_method.id,
+                                    #          'partner_type': 'customer',
+                                    #          'partner_id': invoice.partner_id.id,
+                                    #          'amount': acompte_amount,
+                                    #          'currency_id': invoice.currency_id.id,
+                                    #          'journal_id': journal_id,
+                                    #          'communication': False,
+                                    #          'payment_token_id': False,
+                                    #          'payment_date': date_acompte,
+                                    #          'invoice_ids': [(6, 0, invoice.ids)],
+                                    #          })
+                                    #     print("paiement", payment)
+                                    #
+                                    #     payment.post()
                                     num = invoice.name
+                                    invoice.module_id=user.module_id
+                                    print('if invoice********',invoice.module_id.name,user.name)
                                     bill_num = num.replace('FA', '')
                                     bill_num = bill_num.replace('-', '')
                                 if not invoice:
-
-
                                     print('if  not invoice digi ')
                                     so = self.env['sale.order'].sudo().create({
                                         'partner_id': user.id,
                                         'company_id': 2,
                                     })
                                     so.module_id = user.module_id
+                                    print("SO module id ",so.module_id.name, user.name)
                                     so.session_id = user.session_id
                                     """Créer une ligne de vente avec le montant CGU récupéré depuis cpf"""
                                     so_line = self.env['sale.order.line'].sudo().create({
@@ -292,14 +330,14 @@ class AccountMove(models.Model):
                                             move.module_id = so.module_id
                                             move.session_id = so.session_id
                                             for line in move.invoice_line_ids:
-                                                print('line', line.price_unit)
                                                 line.price_unit = amountCGU
                                                 print('line', line.price_unit)
                                             """Calculer l'es 'acompte 25% du montant total de la formation """
 
-                                            acompte = (product_id.lst_price * move.pourcentage_acompte) / 100
                                             move.cpf_acompte_amount=acompte_amount
-                                            print('acompte', acompte, product_id.lst_price,move.amount_paye)
+                                            move.amount_paye = ( product_id.lst_price * invoice.pourcentage_acompte) / 100
+
+                                            print('acompte', move.acompte_invoice, product_id.lst_price,move.amount_paye)
                                             if so.pricelist_id.code:
                                                 move.pricelist_id = amountCGU
                                             move.company_id = so.company_id
@@ -423,14 +461,17 @@ class AccountMove(models.Model):
                                     so.unlink()
 
                     """Facturer le dossier cpf par l'api en utilisant la référence de la facture odoo """
-                    data = '{"billNumber":"' + bill_num + '"}'
-                    facturer_dossier = requests.post(
-                        'https://www.wedof.fr/api/registrationFolders/' + externalId + '/billing', headers=headers,
-                        data=data)
-                    content = json.loads(facturer_dossier.content)
-                    _logger.info("post facture %s" % str(content))
-                    if str(facturer_dossier.status_code) == "200":
-                        _logger.info("post success facture %s" % str(facturer_dossier.status_code))
+
+                    if bill_num.isdigit() and dossier['billingState'] =="toBill":
+                        _logger.info("bill num %s" %bill_num)
+                        data = '{"billNumber":"' + bill_num + '"}'
+                        facturer_dossier = requests.post(
+                            'https://www.wedof.fr/api/registrationFolders/' + externalId + '/billing', headers=headers,
+                            data=data)
+                        content = json.loads(facturer_dossier.content)
+                        _logger.info("post facture %s" % str(content))
+                        if str(facturer_dossier.status_code) == "200":
+                            _logger.info("post success facture %s" % str(facturer_dossier.status_code))
 
     def get_acompte(self):
         companies = self.env['res.company'].sudo().search([])
