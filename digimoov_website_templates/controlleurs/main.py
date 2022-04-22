@@ -333,10 +333,11 @@ class DIGIEXAMEN(http.Controller):
             4- Si nombre de passage > 3: Redirection : /#pricing """
         if request.website.id == 2:
             partner = request.env.user.partner_id  # Récupérer id de l'apprenant connecté
-            session = request.env['partner.sessions'].sudo().search(
-                [('client_id', '=', partner.id)], order='id asc', limit=1)
+            session_filtered = request.env['info.examen'].sudo().search(
+                [('partner_id', "=", partner.id), ('nombre_de_passage', "=", 'premier')], order='date_exam desc', limit=1)
             # Récupérer date d'examen à partir de la première session
-            date_exam = session.session_id.date_exam
+            date_exam = session_filtered.session_id.date_exam
+            print("date examen de la derniere ligne", date_exam)
             # PUBLIC USER = VISITOR OR USER ODOO NOT CONNECTED, return true or false
             is_public_user = request.website.is_public_user()
             echec_examen = request.env['product.product'].sudo().search(
