@@ -243,7 +243,7 @@ class AccountMove(models.Model):
                                 invoice = self.env['account.move'].sudo().search(
                                     [('numero_cpf', "=", externalId),
                                      ('state', "=", 'posted'),
-                                     ('partner_id', "=", user.id),('type',"=",'out invoice')], limit=1)
+                                     ('partner_id', "=", user.id)], limit=1)
                                 print('invoice', invoice.name,invoice.invoice_payments_widget)
                                 if invoice :
                                     # invoice.button_draft()
