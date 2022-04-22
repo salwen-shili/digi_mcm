@@ -85,11 +85,12 @@
                         <group col="8" colspan="4" string="Géneral">
                             <div>
                                 <span class="o_stat_text">
-                                    Date Importation Statestiques
+                                    <i class="fa fa-download"/>
+                                    Dernier importation
                                 </span>
+                                <br/>
                                 <span>
                                     <field name="date_imortation_stat"/>
-
                                 </span>
                             </div>
                             <div>

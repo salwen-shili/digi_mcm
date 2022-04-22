@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-
-    <!-- tache cron pour executer la fonction de l'affectation des Coaches-->
+<!--
+    &lt;!&ndash; tache cron pour executer la fonction de l'affectation des Coaches&ndash;&gt;
 
     <record id="ir_cron_affecter_coach" model="ir.cron">
         <field name="name">Affecter les coach pour des apprenants</field>
@@ -14,7 +14,7 @@
         <field name="numbercall">-1</field>
         <field name="priority" eval="1"/>
     </record>
-    <!--Affecter les  apprenants a des coach automatiquement-->
+    &lt;!&ndash;Affecter les  apprenants a des coach automatiquement&ndash;&gt;
     <record id="ir_cron_affecter_apprennats_a_descoaches" model="ir.cron">
         <field name="name">Affecter les apprenants a des coach automatiquement</field>
         <field name="model_id" ref="model_mcm_openedx_coach"/>
@@ -26,7 +26,7 @@
         <field name="numbercall">-1</field>
         <field name="priority" eval="2"/>
     </record>
-    <!-- voir si l'apprenat est bolt -->
+    &lt;!&ndash; voir si l'apprenat est bolt &ndash;&gt;
 
 
     <record id="ir_cron_affecter_societe" model="ir.cron">
@@ -41,7 +41,7 @@
         <field name="priority" eval="1"/>
     </record>
 
-    <!-- tache cron pour  supprimer les apprenants -->
+    &lt;!&ndash; tache cron pour  supprimer les apprenants &ndash;&gt;
 
     <record id="ir_cron_affecter_coach" model="ir.cron">
         <field name="name">tache cron pour supprimer les apprenants</field>
@@ -56,7 +56,7 @@
     </record>
 
 
-    <!-- tache cron pour ajouter les apprenants -->
+    &lt;!&ndash; tache cron pour ajouter les apprenants &ndash;&gt;
 
     <record id="ir_cron_affecter_coach" model="ir.cron">
         <field name="name">ajout automatique des apprennats a moocit
@@ -69,5 +69,5 @@
         <field name="interval_type">days</field>
         <field name="numbercall">-1</field>
         <field name="priority" eval="3"/>
-    </record>
+    </record>-->
 </odoo>

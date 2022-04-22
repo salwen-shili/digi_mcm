@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from datetime import date
+import datetime
 
 from odoo import models, fields, api
 
@@ -15,9 +15,10 @@ class Cours_stat(models.Model):
     temppasse = fields.Char(string="Temps passés")
     seconde = fields.Integer(setup="	Temps passés (sec)")
     color = fields.Integer()
-    temppassetotale = fields.Float(string="Temps passé sur moocit En H : ")
+    temppassetotale = fields.Char(string="Temps passé sur moocit En H : ")
     attendees_count = fields.Integer(
         string="Temps passée", compute='_get_attendees_count', store=True)
+    partner = fields.Many2one('res.partner')
 
     @api.depends('temppasse')
     def _get_attendees_count(self):
@@ -26,21 +27,26 @@ class Cours_stat(models.Model):
 
     def recherche(self):
         temppassetotale = 0
-        for exist in self.env['mcm_openedx.course_stat'].sudo().search([('email', "=", self.email)]):
+        # chercher dans la partie cour le mail et calculer le temps passer sur moocit
+        for exist in self.env['mcm_openedx.course_stat'].sudo().search(
+                [('email', "=", self.email)]):
+
             if (exist):
-                print(exist.seconde)
                 temppassetotale = exist.seconde + temppassetotale
-                print(temppassetotale)
                 heure = temppassetotale / 3600
-                minute = (temppassetotale - (3600 * heure)) / 60
-                # time = (heure)
-                time = minute
-            print(time)
-            self.temppassetotale = time
-            app = self.env['res.partner'].sudo().search([('email', "=", exist.email)])
-            if (app.email == exist.email):
-                print(app.email)
-                print(exist.email)
-                app.mooc_temps_passe = time
-                app.mooc_dernier_coonx = exist.jour
-                app.date_imortation_stat = date.today()
+                self.temppassetotale = heure
+        temppassetotale = self.temppassetotale
+        print(temppassetotale)
+        self.partner=exist.partner.id
+        # chercher ddans res partner l'user qui possede le meme email pour lui affecter les valeurs
+        for apprenant in self.env['res.partner'].sudo().search([('statut', "=", "won"),
+                                                                ('company_id', '!=', 2),
+                                                                ('email', 'ilike', exist.email)]):
+            print(apprenant.email)
+            print("sss", self.email)
+            # deux jour erreur :) psk maj vs mini :)
+            apprenant.date_imortation_stat = datetime.date.today()
+            apprenant.mooc_temps_passe = temppassetotale
+            apprenant.mooc_dernier_coonx = exist.jour
+        exist.partner = apprenant.id
+        print(exist.partner.name)

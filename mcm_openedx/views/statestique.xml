@@ -15,7 +15,10 @@
                     <sheet>
                         <group>
                             <field name="nomutilisateur"/>
-                              <field name="temppassetotale" disabled="disabled"/>
+                            <field name="email"/>
+                            <field name="temppassetotale"/>
+                             <field name="partner"/>
+
 
                         </group>
 
@@ -30,7 +33,18 @@
 
                 <tree string="Statetstique">
                     <field name="nomutilisateur"/>
+
                     <field name="temppassetotale"/>
+                    <field name="idcour"/>
+
+                    <field name="jour"/>
+
+                    <field name="temppasse"/>
+
+                    <field name="seconde"/>
+                    <field name="partner"/>
+
+
 
                 </tree>
             </field>
@@ -39,7 +53,7 @@
             <field name="name">mcm_openedx.course_stat.kanban</field>
             <field name="model">mcm_openedx.course_stat</field>
             <field name="arch" type="xml">
-                <kanban default_group_by="nomutilisateur">
+                <kanban default_group_by="email">
                     <field name="color"/>
                     <templates>
                         <t t-name="kanban-box">
@@ -77,20 +91,22 @@
                                     <br/>
                                     Email:
                                     <field name="email"/>
-                                    <!-- <br/>
-                                     ID Cours:
-                                     <field name="idcour"/>
-                                     <br/>
-                                     jours:
-                                     <field name="jour"/>
-                                     <br/>
-                                     Temps passés:
-                                     <field name="temppasse"/>
-                                     <br/>
-                                     Temps passés (sec):
-                                     <field name="seconde"/>
-                                     <br/>
-                                     <field name="partner"/>-->
+                                    <br/>
+                                    ID Cours:
+                                    <field name="idcour"/>
+                                    <br/>
+                                    jours:
+                                    <field name="jour"/>
+                                    <br/>
+                                    Temps passés:
+                                    <field name="temppasse"/>
+                                    <br/>
+                                    Temps passés (sec):
+                                    <field name="seconde"/>
+                                    <br/>
+                                     Partner:
+                                     <field name="partner"/>
+
                                 </div>
                             </div>
                         </t>
