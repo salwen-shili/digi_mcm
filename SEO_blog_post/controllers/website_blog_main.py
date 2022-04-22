@@ -65,6 +65,13 @@ class CustomWebsiteBlog(WebsiteBlog):
         if blog_post:
             blog_post = request.env['blog.post'].sudo().search([('blog_post_website_url', "=", str(blog_post))], limit=1)
             if blog_post:
+                if not blog_post.is_published:
+                    blog_post_rewrite = request.env['website.rewrite'].sudo().search(
+                        [('url_from', "=", blog_post.blog_post_website_url)], limit=1)
+                    if blog_post_rewrite and blog_post_rewrite.url_to:
+                        return werkzeug.utils.redirect(blog_post_rewrite.url_to, blog_post_rewrite.redirect_type)
+                    elif blog_post_rewrite.redirect_type == '404':
+                        raise werkzeug.exceptions.NotFound()
                 blog_post = blog_post
                 blog = blog_post.blog_id
             else:
