@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
 
+<!--
 
     <record id="session_search_view" model="ir.ui.view">
         <field name="name">Sessions</field>
@@ -42,5 +43,6 @@
 
     </record>
 
+-->
 
 </odoo>
