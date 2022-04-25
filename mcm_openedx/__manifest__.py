@@ -34,11 +34,11 @@
     'data': [
         # 'security/ir.model.access.csv',
         # 'security/security.xml',
-        "views/statestique.xml",
         "views/partner.xml",
-        "views/session.xml",
         "views/gerer_user_ir_cron.xml",
-        "views/coach.xml",
+        # "views/statestique.xml",
+        # "views/session.xml",
+        # "views/coach.xml",
         'data/mail_data.xml',
 
     ],

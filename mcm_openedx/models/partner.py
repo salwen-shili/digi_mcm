@@ -326,7 +326,7 @@ class partner(models.Model):
                         }
                     }
             if self.mode_de_financement == "cpf":
-                _logger.info(self.mcm_session_id.date_exam)
+                _logger.info(' date exman %s' % str(self.mcm_session_id.date_exam))
                 if (document_valide) and (self.mcm_session_id.date_exam) and (
                         self.mcm_session_id.date_exam > date.today()):
                     if (self.renounce_request):
@@ -338,16 +338,28 @@ class partner(models.Model):
                         'Content-Type': 'application/json',
                         'X-API-KEY': self.company_id.wedof_api_key,
                     }
+                    params_wedof = (
+                        ('order', 'desc'),
+                        ('type', 'all'),
+                        ('state', 'accepted'),
+                        ('billingState', 'all'),
+                        ('certificationState', 'all'),
+                        ('sort', 'lastUpdate'),
+                    )
                     responsesession = requests.get(
-                        'https://www.wedof.fr/api/registrationFolders/' + partner.numero_cpf,
-                        headers=headers)
+                        'https://www.wedof.fr/api/registrationFolders/' + self.numero_cpf,
+                        headers=headers, params=params_wedof )
                     dossier = responsesession.json()
                     dateDebutSession_str = ""
                     _logger.info('session %s' % str(dossier))
                     if "trainingActionInfo" in dossier:
                         dateDebutSession_str = dossier['trainingActionInfo']['sessionStartDate']
+                        _logger.info(' testtt %s')
                         dateDebutSession = datetime.strptime(dateDebutSession_str, '%Y-%m-%dT%H:%M:%S.%fz')
+                        _logger.info('dateDebutSession %s' % str(dateDebutSession))
+                        print(datetime.today())
                         if dateDebutSession <= datetime.today():
+                            _logger.info(' Donnnnnnne %s' )
                             self.ajouter_IOne_MCM(self)
 
 
@@ -418,7 +430,7 @@ class partner(models.Model):
 
         _logger.info('user %s' % str(payload))
         _logger.info('existantttttt dejaa %s')
-        if (response.status_code == 200):
+        if (response.status_code == 409):
             for rec in self:
                 self.write({'state': 'en_formation'})
             self.inscrit_mcm = date.today()
@@ -495,7 +507,7 @@ class partner(models.Model):
             # }
             # return notification
 
-        elif (response.status_code == 409):
+        elif (response.status_code == 200):
             _logger.info('existantttttt dejaa %s')
 
     # envoit d'un sms
