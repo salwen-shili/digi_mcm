@@ -88,3 +88,12 @@ li > li {
 .blog-article-prototype img {
   margin-bottom: 33px;
 }
+
+.cta-action {
+  text-align: center !important;
+  margin-bottom: 32px;
+}
+
+.cta-action p {
+  text-align: center !important;
+}
