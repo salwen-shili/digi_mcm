@@ -2,7 +2,6 @@
 
 import requests
 from datetime import datetime, timedelta, date
-from entreprise.odoo.addons.account_asset.tests.test_account_asset import today
 from odoo import _
 import locale
 from dateutil.relativedelta import relativedelta
