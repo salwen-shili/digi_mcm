@@ -82,3 +82,7 @@
   );
   width: max-content;
 }
+
+.blog-article-prototype img {
+  margin-bottom: 33px;
+}
