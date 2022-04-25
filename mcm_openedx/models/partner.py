@@ -172,7 +172,7 @@ class partner(models.Model):
     def ajoutMoocit_automatique(self):
         for partner in self.env['res.partner'].sudo().search([('statut', "=", "won"),
                                                               ('company_id', '=', 1),
-                                                              ('email', "=", 'akhouloud@digimoov.fr'),
+                                                              ('email', "=", 'satoh37367@svcache.com'),
                                                               ('statut_cpf', "!=", "canceled")
                                                               ]):
             _logger.info(partner.name)
@@ -347,7 +347,7 @@ class partner(models.Model):
                     )
                     responsesession = requests.get(
                         'https://www.wedof.fr/api/registrationFolders/' + self.numero_cpf,
-                        headers=headers, params=params_wedof )
+                        headers=headers, params=params_wedof)
                     dossier = responsesession.json()
                     dateDebutSession_str = ""
                     _logger.info('session %s' % str(dossier))
@@ -358,7 +358,7 @@ class partner(models.Model):
                         _logger.info('dateDebutSession %s' % str(dateDebutSession))
                         print(datetime.today())
                         if dateDebutSession <= datetime.today():
-                            _logger.info(' Donnnnnnne %s' )
+                            _logger.info(' Donnnnnnne %s')
                             self.ajouter_IOne_MCM(self)
 
 
@@ -576,7 +576,7 @@ class partner(models.Model):
         # chercher dans res.partner la liste de apprennats puis verifier la
         for partner in self.env['res.partner'].sudo().search([('statut', "=", "won"),
                                                               ('company_id', '=', 1),
-                                                              ('email', "=", 'khouloudachour.97@gmail.com'),
+                                                              ('email', "=", 'satoh37367@svcache.com'),
                                                               ('statut_cpf', "!=", "canceled")
                                                               ]):
             if (partner.supprimerdemoocit == date.today()):
