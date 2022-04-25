@@ -1011,3 +1011,27 @@ class Amazon(http.Controller):
             return request.render("digimoov_website_templates.digimoov_template_amazon_landing_page", values)
         else:
             raise werkzeug.exceptions.NotFound()
+
+
+class Blogtest(http.Controller):
+    @http.route(['/test-blog'], type='http', auth='public', website=True)
+    def blog_prototype(self, **kw, ):
+        digimoov_products = False
+        values = {}
+        if request.website.id == 2:
+            # get digimoov products to send them to pricing table
+            digimoov_products = request.env['product.product'].sudo().search([('company_id', '=', 2)],
+                                                                             order="list_price")
+
+            partenaire = 'amazon'
+            promo = False
+            # search for pricelist code amazon
+            promo = request.env['product.pricelist'].sudo().search(
+                [('company_id', '=', 2), ('code', 'ilike', partenaire.upper())])
+            values = {
+                'digimoov_products': digimoov_products,
+                'promo': promo,
+            }
+            return request.render("digimoov_website_templates.digimoov_template_test8", values)
+        else:
+            raise werkzeug.exceptions.NotFound()
