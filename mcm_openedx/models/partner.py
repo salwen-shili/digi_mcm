@@ -55,7 +55,10 @@ class partner(models.Model):
             'Content-Type': 'application/x-www-form-urlencoded',
             'Authorization': 'Bearer 366b7bd572fe9d99d665ccd2a47faa29da262dab'
         }
-        resp = requests.request("POST", url, headers=header, data=payload)
+
+        response = requests.request("POST", url, headers=header, data=payload)
+        print(response.text)
+        print(payload, 'user', response.status_code)
 
     # ajouter les cours de formation taxi a l'apprenant
 
@@ -68,7 +71,7 @@ class partner(models.Model):
             'courses': 'course-v1:Digimoov+reg_vtc_02+2,'
                        'course-v1:Digimoov+dev_com_01+1,'
                        'course-v1:Digimoov+sec_rout_02+2,'
-                       'course-v1Digimoov+ges02+2,'
+                       'course-v1:Digimoov+ges02+2,'
                        'course-v1:Digimoov+angl_01+1,'
                        'course-v1:Digimoov+fr_02+2',
             'identifiers': self.email,
@@ -79,7 +82,8 @@ class partner(models.Model):
             'Content-Type': 'application/x-www-form-urlencoded',
             'Authorization': 'Bearer 366b7bd572fe9d99d665ccd2a47faa29da262dab'
         }
-        resp = requests.request("POST", url, headers=header, data=payload)
+        response = requests.request("POST", url, headers=header, data=payload)
+        print(response.text)
 
     # desinscrire les cours de formation taxi a l'apprenant
 
@@ -95,7 +99,6 @@ class partner(models.Model):
                        'course-v1:Digimoov+conn_loc_nord_02+2,'
                        'course-v1:Digimoov+sec_rout_02+2,'
                        'course-v1:Digimoov+ges02+2,'
-                       'course-v1:DIGIMOOV+CN02+2022,'
                        'course-v1:Digimoov+angl_01+1,'
                        'course-v1:Digimoov+fr_02+2',
             'identifiers': self.email,
@@ -106,7 +109,8 @@ class partner(models.Model):
             'Content-Type': 'application/x-www-form-urlencoded',
             'Authorization': 'Bearer 366b7bd572fe9d99d665ccd2a47faa29da262dab'
         }
-        resp = requests.request("POST", url, headers=header, data=payload)
+        response = requests.request("POST", url, headers=header, data=payload)
+        print(response.text)
 
     # ajouter les cours de formation taxi a l'apprenant
     def inscriteTaxi(self, partner):
@@ -115,13 +119,14 @@ class partner(models.Model):
             'auto_enroll': 'true',
             'email_students': 'false',
             'action': 'enroll',
-            'courses': 'course-v1:Digimoov+t3p_02+2,'
-                       'course-v1:Digimoov+reg_taxi_02+2,'
-                       'course-v1:Digimoov+sec_rout_02+2,'
-                       'course-v1:DIGIMOOV+CN02+2022,'
-                       'course-v1:Digimoov+ges02+2,'
-                       'course-v1:Digimoov+angl_01+1,'
-                       'course-v1:Digimoov+fr_02+2',
+            'courses':
+                'course-v1:Digimoov+ges02+2,'
+                'course-v1:Digimoov+angl_01+1,'
+                'course-v1:Digimoov+reg_taxi_02+2,'
+                'course-v1:Digimoov+sec_rout_02+2,'
+                'course-v1:Digimoov+t3p_02+2,'
+                # 'course-v1:DIGIMOOV+CN02+2022,' probleme avec id de cour 2022
+                'course-v1:Digimoov+fr_02+2',
             'identifiers': self.email,
         }
 
@@ -130,7 +135,8 @@ class partner(models.Model):
             'Content-Type': 'application/x-www-form-urlencoded',
             'Authorization': 'Bearer 366b7bd572fe9d99d665ccd2a47faa29da262dab'
         }
-        resp = requests.request("POST", url, headers=header, data=payload)
+        response = requests.request("POST", url, headers=header, data=payload)
+        print(response.text)
 
     # ajouter les cours de la conaissance local pour le choix de departement
     def ajoutconnaisancelocalpasdecalais(self, partner):
@@ -148,7 +154,8 @@ class partner(models.Model):
             'Content-Type': 'application/x-www-form-urlencoded',
             'Authorization': 'Bearer 366b7bd572fe9d99d665ccd2a47faa29da262dab'
         }
-        resp = requests.request("POST", url, headers=header, data=payload)
+        response = requests.request("POST", url, headers=header, data=payload)
+        print(response.text)
 
     # ajouter les cours de la conaissance local pour le choix de departement
     def ajoutconnaisancelocalNord(self, partner):
@@ -461,28 +468,16 @@ class partner(models.Model):
                 if (departement == "59"):
                     self.inscriteTaxi(self)
                     self.ajoutconnaisancelocalNord(self)
-
                     self.supprimer_sixmoins(self)
                     _logger.info("ajouter a formation taxi car il a choisit et  departement 59")
 
                 elif (departement == "62"):
                     self.inscriteTaxi(self)
                     self.ajoutconnaisancelocalpasdecalais(self)
-
                     self.supprimer_sixmoins(self)
-
                 else:
-                    _logger.info(" appeler ERicc pour realiser un cours")
-                    return {
-                        'type': 'ir.actions.client',
-                        'tag': 'display_notification',
-                        'params': {
-                            'title': _(' utilisateur digimoov '),
-                            'message': _(' utilisateur ne appartient pas a MCM_Academy '),
-                            'sticky': True,
-                            'className': 'bg-danger'
-                        }
-                    }
+                    self.inscriteTaxi(self)
+
             # Formation à distance VTC-BOLT je doit l'ajouter
             elif (partner.module_id.product_id.default_code == "vtc"):
                 _logger.info("client Bolt Formation VTC")
