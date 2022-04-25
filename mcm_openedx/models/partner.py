@@ -172,7 +172,7 @@ class partner(models.Model):
     def ajoutMoocit_automatique(self):
         for partner in self.env['res.partner'].sudo().search([('statut', "=", "won"),
                                                               ('company_id', '=', 1),
-                                                              ('email', "=", 'satoh37367@svcache.com'),
+                                                              ('email', "=", 'vikada3017@topyte.com'),
                                                               ('statut_cpf', "!=", "canceled")
                                                               ]):
             _logger.info(partner.name)
@@ -306,7 +306,7 @@ class partner(models.Model):
                             self.ajouter_IOne_MCM(self)
 
                         # si non il doit attendre 14jours pour etre ajouté a la platform*
-
+                        today = date.today()
                         if not self.renounce_request and (sale_order.signed_on + timedelta(days=14)) <= today:
                             self.ajouter_IOne_MCM(self)
 
@@ -576,7 +576,7 @@ class partner(models.Model):
         # chercher dans res.partner la liste de apprennats puis verifier la
         for partner in self.env['res.partner'].sudo().search([('statut', "=", "won"),
                                                               ('company_id', '=', 1),
-                                                              ('email', "=", 'satoh37367@svcache.com'),
+                                                              ('email', "=", 'vikada3017@topyte.com'),
                                                               ('statut_cpf', "!=", "canceled")
                                                               ]):
             if (partner.supprimerdemoocit == date.today()):
