@@ -89,6 +89,7 @@ class Website(Website):
                                   values)
         else:
             raise werkzeug.exceptions.NotFound()
+
     # Page de destination Lyon
 
     @http.route('/devenir-coursier-lyon', type='http', auth='public', website=True)
@@ -117,6 +118,7 @@ class Website(Website):
                                   values)
         else:
             raise werkzeug.exceptions.NotFound()
+
     # Page de destination bordeaux
 
     @http.route('/capacitaire-transport-bordeaux', type='http', auth='public', website=True)
@@ -131,6 +133,7 @@ class Website(Website):
                                   values)
         else:
             raise werkzeug.exceptions.NotFound()
+
     # Page de destination Marseille
 
     @http.route('/capacite-de-transport-marseille', type='http', auth='public', website=True)
@@ -341,7 +344,8 @@ class DIGIEXAMEN(http.Controller):
         if request.website.id == 2:
             partner = request.env.user.partner_id  # Récupérer id de l'apprenant connecté
             session_filtered = request.env['info.examen'].sudo().search(
-                [('partner_id', "=", partner.id), ('nombre_de_passage', "=", 'premier')], order='date_exam desc', limit=1)
+                [('partner_id', "=", partner.id), ('nombre_de_passage', "=", 'premier')], order='date_exam desc',
+                limit=1)
             # Récupérer date d'examen à partir de la première session
             date_exam = session_filtered.session_id.date_exam
             # PUBLIC USER = VISITOR OR USER ODOO NOT CONNECTED, return true or false
