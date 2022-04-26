@@ -7,7 +7,7 @@
                     <style>
                         .page {
                         line-height: 1.75 ;
-                        font-size:20px ;
+                        font-size:23px ;
 
                         }
                     </style>
@@ -36,7 +36,7 @@
                             <strong style="position:absolute;z-index:3;margin-top:989px;margin-left:15px;">
                                 <img src="/partner_exam/static/src/img/check_icon_cerfa.png" height="20" width="10"/>
                             </strong>
-                            <strong style="position:absolute;z-index:3;margin-top:135px;margin-left:310px;">
+                            <strong style="position:absolute;z-index:3;margin-top:130px;margin-left:310px;">
                                 <span t-raw="'%s' % o.name.split(' ')[0] if o.name else ''"/>
                                 <br/>
                                 <span t-raw="'%s' % o.name.split(' ',1)[1] if o.name else ''"/>
@@ -72,16 +72,16 @@
                             <strong style="position:absolute;z-index:3;margin-top:409px;margin-left:980px;">
                                 <span t-raw="'%s' % o.street.split(' ')[1] if o.street else ''"/>
                             </strong>
-                            <strong style="position:absolute;z-index:3;margin-top:530px;margin-left:600px;">
+                            <strong style="position:absolute;z-index:3;margin-top:525px;margin-left:600px;">
                                 <span t-raw="'%s' % o.city if o.city else '-------------'"/>
                             </strong>
                             <strong style="position:absolute;z-index:3;margin-top:300px;margin-left:960px;">
-                                <span t-raw="'%s' % o.other_cases if o.other_cases else '-------------'"/>
+                                <span t-raw="'%s' % o.other_cases if o.other_cases else ''"/>
                             </strong>
-                            <strong style="position:absolute;z-index:3;margin-top:650px;margin-left:290px;">
+                            <strong style="position:absolute;z-index:3;margin-top:640px;margin-left:290px;">
                                 <span t-raw="'%s' % o.email if o.email else '-------------'"/>
                             </strong>
-                            <strong style="position:absolute;z-index:3;margin-top:540px;margin-left:290px;">
+                            <strong style="position:absolute;z-index:3;margin-top:525px;margin-left:290px;">
                                 <span t-raw="'%s' % o.zip if o.zip else '-------------'"/>
                                 <br/>
                                 <span t-raw="'%s' % o.country_id.name if o.country_id else '-------------'"/>
