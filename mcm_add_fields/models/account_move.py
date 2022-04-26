@@ -647,7 +647,7 @@ class AccountMove(models.Model):
                 response_paiement = requests.get('https://www.wedof.fr/api/payments/', headers=headers,
                                                  params=params_)
                 paiements = response_paiement.json()
-                """Récupérer le paiement selon numero de dossier et type de paiement acompte  """
+                """Récupérer le paiement selon numero de dossier et type de paiement 'facture'  """
                 for paiement in paiements:
                     externalId = paiement['registrationFolder']['externalId']
                     """Changer format date"""
@@ -661,7 +661,7 @@ class AccountMove(models.Model):
                         _logger.info("paiement %s" % str(paiement))
                         print('externalId',externalId)
                         invoices=self.env['account.move'].sudo().search([("numero_cpf","=",externalId),
-                                                                         ("	invoice_payment_state","!=","paid")])
+                                                                         ("invoice_payment_state","!=","paid")])
                         for invoice in invoices :
                             print("invoice",invoice.name)
                             # journal_id = invoice.journal_id.id
