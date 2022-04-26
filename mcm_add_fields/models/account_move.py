@@ -520,7 +520,7 @@ class AccountMove(models.Model):
                         _logger.info("paiement %s" % str(dossier))
 
                         """Changer format date"""
-                        if 'transactionDate' in paiement:
+                        if 'transactionDate' in paiement and paiement['transactionDate']:
                             transaction_date=paiement['transactionDate']
                             trdate = datetime.strptime(transaction_date, '%Y-%m-%dT%H:%M:%S.%fz')
                             newformat = "%d/%m/%Y"
@@ -609,6 +609,84 @@ class AccountMove(models.Model):
                             print("paiement", payment)
 
                             payment.post()
+
+    """Modifier les anicennes factures cpf avec les informations récupéré à partir de wedof """
+    def invoice_update(self):
+        companies = self.env['res.company'].sudo().search([])
+        if companies:
+            for company in companies:
+                api_key = company.wedof_api_key
+                params_wedof = (
+                    ('order', 'desc'),
+                    ('type', 'all'),
+                    ('state', 'all'),
+                    ('billingState', 'paid'),
+                    ('certificationState', 'all'),
+                    ('sort', 'lastUpdate'),
+                    ('since','2022-01-03'),
+                    ('limit', '1000')
+                )
+
+                headers = {
+                    'accept': 'application/json',
+                    'Content-Type': 'application/json',
+                    'X-API-KEY': api_key,
+                }
+                """Récupérer à partir de wedof la liste des dossiers   ayant statut de facture acompte déposé  """
+                # response = requests.get('https://www.wedof.fr/api/registrationFolders/', headers=headers,
+                #                         params=params_wedof)
+                # registrations = response.json()
+                params_ = (
+                    ('order', 'desc'),
+                    ('type', 'bill'),
+                    ('state', 'issued'),
+                    ('sort', 'lastUpdate'),
+                    ('limit', '1000')
+                )
+
+                response_paiement = requests.get('https://www.wedof.fr/api/payments/', headers=headers,
+                                                 params=params_)
+                paiements = response_paiement.json()
+                """Récupérer le paiement selon numero de dossier et type de paiement acompte  """
+                for paiement in paiements:
+                    externalId = paiement['registrationFolder']['externalId']
+                    """Changer format date"""
+                    if 'transactionDate' in paiement and paiement['transactionDate']:
+                        transaction_date = str(paiement['transactionDate'])
+                        print(transaction_date)
+                        trdate = datetime.strptime(transaction_date, '%Y-%m-%dT%H:%M:%S.%fz')
+                        newformat = "%d/%m/%Y"
+                        trdateform = trdate.strftime(newformat)
+                        trans_date = datetime.strptime(trdateform, "%d/%m/%Y")
+                        _logger.info("paiement %s" % str(paiement))
+                        print('externalId',externalId)
+                        invoices=self.env['account.move'].sudo().search([("numero_cpf","=",externalId),
+                                                                         ("	invoice_payment_state","!=","paid")])
+                        for invoice in invoices :
+                            print("invoice",invoice.name)
+                            # journal_id = invoice.journal_id.id
+                            # """Effectuer  un payement de montant restant  de la formation pour digimoov"""
+                            # payment_method = self.env['account.payment.method'].sudo().search(
+                            #     [('code', 'ilike', 'electronic')])
+                            # payment = self.env['account.payment'].sudo().create(
+                            #     {'payment_type': 'inbound',
+                            #      'payment_method_id': payment_method.id,
+                            #      'partner_type': 'customer',
+                            #      'partner_id': invoice.partner_id.id,
+                            #      'amount': invoice.amount_residual,
+                            #      'currency_id': invoice.currency_id.id,
+                            #      'payment_date': trans_date if trans_date else date.today(),
+                            #      'journal_id': journal_id,
+                            #      'communication': False,
+                            #      'payment_token_id': False,
+                            #      'invoice_ids': [(6, 0, invoice.ids)],
+                            #      })
+                            # print("paiement", payment)
+                            #
+                            # payment.post()
+                            print("invoice",invoice.name)
+
+
 
 
 
