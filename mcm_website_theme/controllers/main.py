@@ -632,7 +632,7 @@ class Routes_Site(http.Controller):
         # Étape suivante est documents
         documents = request.env['documents.document'].sudo().search(
             [('partner_id', '=', partner.id)])
-        if not documents :
+        if not documents:
             partner.step = "document"
         else:
             partner.step = "financement"
@@ -711,7 +711,7 @@ class Routes_Site(http.Controller):
             if survey:
                 survey_user = request.env['survey.user_input'].sudo().search(
                     [('partner_id', "=", request.env.user.partner_id.id),
-                     ('survey_id', '=', survey.id),('state',"=",'done')],
+                     ('survey_id', '=', survey.id), ('state', "=", 'done')],
                     order='create_date asc', limit=1)
                 if not survey_user:
                     exam_state = 'exam_not_passed'
@@ -1855,3 +1855,17 @@ class MCM_SIGNUP(http.Controller):
                 payment.post()
 
                 return True
+
+    @http.route('/inscription-bolt', type='http', auth='public', website=True)
+    def inscription_bolt_jotform(self, **kw, ):
+        if request.website.id == 1:
+            return request.render("mcm_website_theme.mcm_bolt_inscirption")
+        else:
+            raise werkzeug.exceptions.NotFound()
+
+    @http.route('/examen-blanc', type='http', auth='public', website=True)
+    def documents_bolt_jotform(self, **kw, ):
+        if request.website.id == 1:
+            return request.render("mcm_website_theme.mcm_bolt_documents")
+        else:
+            raise werkzeug.exceptions.NotFound()
