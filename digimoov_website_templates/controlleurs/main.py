@@ -356,9 +356,10 @@ class DIGIEXAMEN(http.Controller):
                 if date_exam:  # Si date examen exist
                     now = date.today()  # Date d'aujourd'hui
                     date_dateutil = date_exam + dateutil.relativedelta.relativedelta(
-                        months=6)  # Calcule la durée de temps à partir de la première date d'examen de l'apprenant en ajoutant 6 mois
+                        months=6)  # Calcule la durée de temps à partir de la ligne d'examen qui contient premier de l'apprenant en ajoutant 6 mois
                     exam_count = request.env['info.examen'].sudo().search_count(
-                        [('partner_id', "=", partner.id), ('date_exam', ">=", date_exam)])
+                        [('partner_id', "=", partner.id), ('date_exam', ">=",
+                                                           date_exam)])  # Calculer le nombre des examens a partir de la ligne qui contient un premier repassage
                     if exam_count < 3:  # Si nombre de passage < 3
                         logging.info(
                             'Si nombre de passage < 3 °°°°°°°°°°°°°°°°°°°°')
