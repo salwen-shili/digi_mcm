@@ -776,7 +776,8 @@ class Routes_Site(http.Controller):
     @http.route(['/contact-examen-blanc'], type='http', auth="public", csrf=False)
     def webhook_integration_examen(self, **kw):
         rawRequest = kw['rawRequest']
-        _logger.info("%%%%%%%%%%% rawRequest examen blanc %%%%%%%%%: %s" % (rawRequest))
+        _logger.info("webhoook contact jotform %s" % (kw))
+        #_logger.info("rawRequest examen blanc : %s" % (rawRequest))
         return True
 
     @http.route('/formation-taxi-Paris', type='http', auth='public', website=True)
