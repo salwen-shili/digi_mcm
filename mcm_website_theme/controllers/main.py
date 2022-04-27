@@ -862,15 +862,18 @@ class Routes_Site(http.Controller):
 
     @http.route(['/contact-examen-blanc'], type='http', auth="public", csrf=False)
     def webhook_integration_examen(self, **kw):
-        rawRequest = kw['rawRequest']
-        rawRequest = json.loads(rawRequest)
-        _logger.info("RESULTAT Webhoook examen blanc %s" % (rawRequest))
+        rawRequest = json.loads(kw['rawRequest'])
+        submissionID = json.loads(kw['submissionID'])
+        _logger.info("RawRequest Webhoook examen blanc %s" % (rawRequest))
         # res = unidecode(rawRequest)
+        submissionID = submissionID['submissionID']
+        _logger.info("submissionID Webhoook %s" % (slug))
         q114_resultatExamen = rawRequest['q114_resultatExamen']
-        slug = rawRequest['slug']
         _logger.info("RESULTAT Webhoook examen blanc %s" % (q114_resultatExamen))
-        _logger.info("SLUG Webhoook examen blanc %s" % (slug))
-        # _logger.info("rawRequest examen blanc : %s" % (rawRequest))
+        if request.website.is_public_user():
+            users = request.env['res.users'].sudo().search(
+                [('slug', "=", slug), ('email', "=", 'premier')], order='date_exam desc',
+                limit=1)
         return True
 
     @http.route('/formation-taxi-Paris', type='http', auth='public', website=True)
