@@ -190,6 +190,7 @@ const cpfAccepted = () => {
 
 function onChangeCheckButton() {
   hideAlertDate();
+
   if (document.getElementById('options-date')) {
     //No session available
     if (
@@ -817,6 +818,9 @@ function hideAlertDate() {
 // This function substract 4 months from date session,
 function sessionIsAccessible(prop) {
   hideAlertDate();
+   if (window.location.href.includes('lourd')){
+  alert('lourd');
+  }
   // alert(new Date(prop));
   const toDay = new Date();
   const sessionDate = new Date(prop);
